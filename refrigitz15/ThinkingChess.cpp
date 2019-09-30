@@ -7102,7 +7102,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].TableListSolder.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for Elephant.
@@ -7122,7 +7122,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].TableListElefant.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for Hourse.
@@ -7142,7 +7142,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].TableListHourse.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for Castles.
@@ -7162,7 +7162,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].TableListCastle.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for Minstre.
@@ -7182,7 +7182,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].TableListMinister.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for King.
@@ -7202,7 +7202,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].KingOnTable[m].KingThinking[0].TableListKing.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 							}
@@ -7224,7 +7224,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].TableListSolder.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for Elephant.
@@ -7244,7 +7244,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].TableListElefant.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for Hourse.
@@ -7264,7 +7264,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].TableListHourse.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for Castles.
@@ -7284,7 +7284,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].TableListCastle.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for Minstre.
@@ -7304,7 +7304,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].TableListMinister.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 								//Repeate for King.
@@ -7324,7 +7324,7 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 									}
 									for (int jj = 0; (jj < AStarGreedy[k].KingOnTable[m].KingThinking[0].TableListKing.size()); jj++)
 									{
-										Huristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+										Huristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jj, Order * -1);
 									}
 								}
 							}
@@ -7339,27 +7339,27 @@ int **Table = new int*[8]; for (int g = 0; g < 8; g++)Table[g] = new int[8];
 						//Reapeate for Solders.
 						if (//IJ == 1 &&
 						AStarGreedy.Count > 0 && iIndex[0] != -1)
-						Huristic += AStarGreedy[iIndex[0]].SolderesOnTable[mIndex[0]].SoldierThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jIndex[0], Order * -1);
+						Huristic += AStarGreedy[iIndex[0]].SolderesOnTable[mIndex[0]].SoldierThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jIndex[0], Order * -1);
 						//Repeate for Elephant.
 						if (//IJ == 2 &&
 						AStarGreedy.Count > 0 && iIndex[1] != -1)
-						Huristic += AStarGreedy[iIndex[1]].ElephantOnTable[mIndex[1]].ElefantThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jIndex[1], Order * -1);
+						Huristic += AStarGreedy[iIndex[1]].ElephantOnTable[mIndex[1]].ElefantThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jIndex[1], Order * -1);
 						//Repeate for Hourse.
 						if (//IJ == 3 &&
 						AStarGreedy.Count > 0 && iIndex[2] != -1)
-						Huristic += AStarGreedy[iIndex[2]].HoursesOnTable[mIndex[2]].HourseThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jIndex[2], Order * -1);
+						Huristic += AStarGreedy[iIndex[2]].HoursesOnTable[mIndex[2]].HourseThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jIndex[2], Order * -1);
 						//Repeate for Castles.
 						if (//IJ == 4 &&
 						AStarGreedy.Count > 0 && iIndex[3] != -1)
-						Huristic += AStarGreedy[iIndex[3]].CastlesOnTable[mIndex[3]].CastleThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jIndex[3], Order * -1);
+						Huristic += AStarGreedy[iIndex[3]].CastlesOnTable[mIndex[3]].CastleThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jIndex[3], Order * -1);
 						//Repeate for Minstre.
 						if (//IJ == 5 &&
 						AStarGreedy.Count > 0 && iIndex[4] != -1)
-						Huristic += AStarGreedy[iIndex[4]].MinisterOnTable[mIndex[4]].MinisterThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jIndex[4], Order * -1);
+						Huristic += AStarGreedy[iIndex[4]].MinisterOnTable[mIndex[4]].MinisterThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jIndex[4], Order * -1);
 						//Repeate for King.
 						if (//IJ == 6 &&
 						AStarGreedy.Count > 0 && iIndex[5] != -1)
-						Huristic += AStarGreedy[iIndex[5]].KingOnTable[mIndex[5]].KingThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jIndex[5], Order * -1);
+						Huristic += AStarGreedy[iIndex[5]].KingOnTable[mIndex[5]].KingThinking[0].ReturnHuristicCalculartor(iAstarGready++, ii, jIndex[5], Order * -1);
 						*/
 					}
 				}

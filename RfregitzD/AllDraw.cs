@@ -334,7 +334,7 @@ namespace RefrigtzDLL
         const int MaxCastlesFounded = 14;
         const int MaxMinisterFounded = 18;
         const int MaxKingFounded = 22;
-        [NonSerialized()] public Task ob;
+        [field:NonSerialized] public Task ob;
         //Making String datastructure to root variable
         public AllDraw AStarGreedyString = null;
 

@@ -223,7 +223,7 @@ namespace QuantumRefrigiz
         public int Row, Column;
         public Color color;
         public int Order;
-        [NonSerialized()] public Task t = null;
+        [field:NonSerialized] public Task t = null;
         public List<AllDraw> AStarGreedy = new List<AllDraw>();
         int[,] Value = new int[8, 8];
         bool IgnoreFromCheckandMateHuristic = false;

@@ -6093,7 +6093,7 @@ namespace QuantumRefrigiz
                 }
                 NumbersOfCurrentBranchesPenalties += NumberOfPenalties;
                 int DummyOrder = Order;
-                if (ii == -1)
+                if (ii != -1)
                 {
                     //return 0;
                     /*SetObjectNumbers(TableConst);

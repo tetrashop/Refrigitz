@@ -6086,15 +6086,14 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 int Huristic = 0;
-                if (iAstarGready >= AllDraw.MaxAStarGreedy)
+                if (AStarGreedy == null && iAstarGready != 0)
                 {
                     ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                     return 0;
                 }
-                iAstarGready++;
                 NumbersOfCurrentBranchesPenalties += NumberOfPenalties;
                 int DummyOrder = Order;
-                if (ii == -1)
+                if (ii != -1)
                 {
                     //return 0;
                     /*SetObjectNumbers(TableConst);
@@ -6144,11 +6143,11 @@ namespace QuantumRefrigiz
                                             Kin[0] = 1;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6171,10 +6170,10 @@ namespace QuantumRefrigiz
                                             Kin[1] = 2;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                            // CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6196,11 +6195,11 @@ namespace QuantumRefrigiz
                                             Kin[2] = 3;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6222,11 +6221,11 @@ namespace QuantumRefrigiz
                                             Kin[3] = 4;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6268,7 +6267,7 @@ namespace QuantumRefrigiz
                                             Kin[5] = 6;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
                                    // else
@@ -6301,7 +6300,7 @@ namespace QuantumRefrigiz
                                             Kin[0] = 1;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
                                    // else
@@ -6325,10 +6324,10 @@ namespace QuantumRefrigiz
                                             Kin[1] = 2;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6350,10 +6349,10 @@ namespace QuantumRefrigiz
                                             Kin[2] = 3;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                 }
                                 //For All Castles on table Count.
@@ -6376,7 +6375,7 @@ namespace QuantumRefrigiz
                                        // else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                 }
@@ -6397,10 +6396,10 @@ namespace QuantumRefrigiz
                                             Kin[4] = 5;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                 }
@@ -6421,10 +6420,10 @@ namespace QuantumRefrigiz
                                             Kin[5] = 6;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                 }
@@ -6462,7 +6461,7 @@ namespace QuantumRefrigiz
                                     ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnSoldier[j][0]) + Number(RowColumnSoldier[j][1]);
                                     if (Order == 1)
                                         AllDraw.OutPut.Append("\r\nHuristic Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                                    else
+                                    //else
                                         AllDraw.OutPut.Append("\r\nHuristic Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
                                 }
                                 //ActionStringSetting = true;
@@ -6490,7 +6489,7 @@ namespace QuantumRefrigiz
                                     ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnElefant[j][0]) + Number(RowColumnElefant[j][1]);
                                     if (Order == 1)
                                         AllDraw.OutPut.Append("\r\nHuristic Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                                    else
+                                    //else
                                         AllDraw.OutPut.Append("\r\nHuristic Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
                                 }
 
@@ -6517,7 +6516,7 @@ namespace QuantumRefrigiz
                                     ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnHourse[j][0]) + Number(RowColumnHourse[j][1]);
                                     if (Order == 1)
                                         AllDraw.OutPut.Append("\r\nHuristic Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                                    else
+                                   //else
                                         AllDraw.OutPut.Append("\r\nHuristic Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
                                 }
 
@@ -6544,7 +6543,7 @@ namespace QuantumRefrigiz
                                     ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnCastle[j][0]) + Number(RowColumnCastle[j][1]);
                                     if (Order == 1)
                                         AllDraw.OutPut.Append("\r\nHuristic Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                                    else
+                                    //else
                                         AllDraw.OutPut.Append("\r\nHuristic Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
                                 }
 
@@ -6571,7 +6570,7 @@ namespace QuantumRefrigiz
                                     ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnMinister[j][0]) + Number(RowColumnMinister[j][1]);
                                     if (Order == 1)
                                         AllDraw.OutPut.Append("\r\nHuristic Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                                    else
+                                    //else
                                         AllDraw.OutPut.Append("\r\nHuristic Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
                                 }
                                 //ActionStringSetting = true;
@@ -6598,7 +6597,7 @@ namespace QuantumRefrigiz
                                         ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnKing[j][0]) + Number(RowColumnKing[j][1]);
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
                                     }
                                     //ActionStringSetting = true;
@@ -6608,7 +6607,7 @@ namespace QuantumRefrigiz
 
                     }
                     else
-                        return Huristic;
+                        return int.MinValue;
                     if (AStarGreedy != null)
                     {
                         for (int k = 0; k < AStarGreedy.Count; k++)
@@ -6628,7 +6627,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].SolderesOnTable[m].SoldierThinkingQuantum[0].TableListSolder.Count; jj++)
                                             Huristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6640,7 +6639,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].ElephantOnTable[m].ElefantThinkingQuantum[0].TableListElefant.Count; jj++)
                                             Huristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6652,7 +6651,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].HoursesOnTable[m].HourseThinkingQuantum[0].TableListHourse.Count; jj++)
                                             Huristic += AStarGreedy[k].HoursesOnTable[m].HourseThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6664,7 +6663,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].CastlesOnTable[m].CastleThinkingQuantum[0].TableListCastle.Count; jj++)
                                             Huristic += AStarGreedy[k].CastlesOnTable[m].CastleThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6676,7 +6675,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].MinisterOnTable[m].MinisterThinkingQuantum[0].TableListMinister.Count; jj++)
                                             Huristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6688,7 +6687,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].KingOnTable[m].KingThinkingQuantum[0].TableListKing.Count; jj++)
                                             Huristic += AStarGreedy[k].KingOnTable[m].KingThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6702,7 +6701,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].SolderesOnTable[m].SoldierThinkingQuantum[0].TableListSolder.Count; jj++)
                                             Huristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6714,7 +6713,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].ElephantOnTable[m].ElefantThinkingQuantum[0].TableListElefant.Count; jj++)
                                             Huristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6726,7 +6725,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].HoursesOnTable[m].HourseThinkingQuantum[0].TableListHourse.Count; jj++)
                                             Huristic += AStarGreedy[k].HoursesOnTable[m].HourseThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6738,7 +6737,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].CastlesOnTable[m].CastleThinkingQuantum[0].TableListCastle.Count; jj++)
                                             Huristic += AStarGreedy[k].CastlesOnTable[m].CastleThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6750,7 +6749,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].MinisterOnTable[m].MinisterThinkingQuantum[0].TableListMinister.Count; jj++)
                                             Huristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6762,7 +6761,7 @@ namespace QuantumRefrigiz
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                        else
+                                        //else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].KingOnTable[m].KingThinkingQuantum[0].TableListKing.Count; jj++)
                                             Huristic += AStarGreedy[k].KingOnTable[m].KingThinkingQuantum[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6899,7 +6898,18 @@ namespace QuantumRefrigiz
                         }
                     }
                     else
-                        return Huristic;
+                    {
+                        if (Order == AllDraw.OrderPlate)
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return int.MinValue;
+                        }
+                        else
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return int.MaxValue;
+                        }
+                    }
                 }
                 Order = DummyOrder;
                 ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;

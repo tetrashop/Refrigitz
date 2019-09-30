@@ -5784,7 +5784,7 @@ namespace RefrigtzW
                     return 0;
                 NumbersOfCurrentBranchesPenalties += NumberOfPenalties;
                 int DummyOrder = Order;
-                if (ii != -1)
+                if (ii == -1)
                 {
                     //return 0;
                     /*SetObjectNumbers(TableConst);
@@ -6298,7 +6298,7 @@ namespace RefrigtzW
 
                     }
                     else
-                        return Double.MinValue;
+                        return Huristic;
                     if (AStarGreedy != null)
                     {
                         for (int k = 0; k < AStarGreedy.Count; k++)
@@ -6589,12 +6589,7 @@ namespace RefrigtzW
                         }
                     }
                     else
-                    {
-                        if (Order == AllDraw.OrderPlate)
-                            return Double.MinValue;
-                        else
-                            return Double.MaxValue;
-                    }
+                        return Huristic;
                 }
                 Order = DummyOrder;
                 return Huristic;

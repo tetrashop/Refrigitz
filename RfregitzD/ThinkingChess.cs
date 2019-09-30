@@ -6088,28 +6088,28 @@ namespace RefrigtzDLL
                 }
                 NumbersOfCurrentBranchesPenalties += NumberOfPenalties;
                 int DummyOrder = Order;
-                if (ii != -1)
+                if (ii == -1)
                 {
                     //return 0;
                     /*SetObjectNumbers(TableConst);
                     //NumbersOfCurrentBranchesPenalties = 0;
 
                     int[] iIndex = { -1, -1, -1, -1, -1, -1 }, mIndex = { -1, -1, -1, -1, -1, -1 }, jIndex = { -1, -1, -1, -1, -1, -1 }, Kin = { 1, 2, 3, 4, 5, 6 };
-                    int[] Less = new int[6];
+                    double[] Less = new double[6];
                     if (Order == AllDraw.OrderPlate)
                     {
                         for (var i = 0; i < 6; i++)
                         {
-                            Less[i] = new int();
-                            Less[i] = int.MinValue;
+                            Less[i] = new double();
+                            Less[i] = Double.MinValue;
                         }
                     }
                     else
                     {
                         for (var i = 0; i < 6; i++)
                         {
-                            Less[i] = new int();
-                            Less[i] = int.MaxValue;
+                            Less[i] = new double();
+                            Less[i] = Double.MaxValue;
                         }
                     }
                     iAstarGready++;
@@ -6138,11 +6138,11 @@ namespace RefrigtzDLL
                                             Kin[0] = 1;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6165,10 +6165,10 @@ namespace RefrigtzDLL
                                             Kin[1] = 2;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                            // CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6190,11 +6190,11 @@ namespace RefrigtzDLL
                                             Kin[2] = 3;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6216,11 +6216,11 @@ namespace RefrigtzDLL
                                             Kin[3] = 4;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6262,7 +6262,7 @@ namespace RefrigtzDLL
                                             Kin[5] = 6;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
                                    // else
@@ -6295,7 +6295,7 @@ namespace RefrigtzDLL
                                             Kin[0] = 1;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
                                    // else
@@ -6319,10 +6319,10 @@ namespace RefrigtzDLL
                                             Kin[1] = 2;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
 
@@ -6344,10 +6344,10 @@ namespace RefrigtzDLL
                                             Kin[2] = 3;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                 }
                                 //For All Castles on table Count.
@@ -6370,7 +6370,7 @@ namespace RefrigtzDLL
                                        // else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                 }
@@ -6391,10 +6391,10 @@ namespace RefrigtzDLL
                                             Kin[4] = 5;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                 }
@@ -6415,10 +6415,10 @@ namespace RefrigtzDLL
                                             Kin[5] = 6;
                                             //Huristic = Less;
                                         }
-                                        else
+                                        //else
                                             //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
                                     }
-                                    else
+                                    //else
                                         //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
                                 }
@@ -6592,7 +6592,7 @@ namespace RefrigtzDLL
                                         ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnKing[j][0]) + Number(RowColumnKing[j][1]);
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                                       else
+                                        else
                                             AllDraw.OutPut.Append("\r\nHuristic King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
                                     }
                                     //ActionStringSetting = true;
@@ -6602,7 +6602,7 @@ namespace RefrigtzDLL
 
                     }
                     else
-                        return int.MinValue;
+                        return Huristic;
                     if (AStarGreedy != null)
                     {
                         for (int k = 0; k < AStarGreedy.Count; k++)
@@ -6613,7 +6613,7 @@ namespace RefrigtzDLL
                             Object OOO = new Object();
                             lock (OOO)
                             {
-                                if (Order == 1)
+                                if (Order == -1)
                                 {
                                     //Repeate for Solder.
                                     for (int m = 0; m < AStarGreedy[k].SodierMidle; m++)
@@ -6634,7 +6634,7 @@ namespace RefrigtzDLL
                                             continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                                       else
+                                        else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
                                         for (var jj = 0; jj < AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].TableListElefant.Count; jj++)
                                             Huristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
@@ -6668,7 +6668,7 @@ namespace RefrigtzDLL
                                     {
                                         if (AStarGreedy[k].MinisterOnTable == null || AStarGreedy[k].MinisterOnTable[m] == null)
                                             continue;
-                                       if (Order == 1)
+                                        if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
                                         else
                                             AllDraw.OutPut.Append("\r\nHuristic Deap Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
@@ -6705,7 +6705,7 @@ namespace RefrigtzDLL
                                     for (int m = AStarGreedy[k].ElefantMidle; m < AStarGreedy[k].ElefantHigh; m++)
                                     {
                                         if (AStarGreedy[k].ElephantOnTable == null || AStarGreedy[k].ElephantOnTable[m] == null)
-                                           continue;
+                                            continue;
                                         if (Order == 1)
                                             AllDraw.OutPut.Append("\r\nHuristic Deep Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
                                         else
@@ -6893,18 +6893,7 @@ namespace RefrigtzDLL
                         }
                     }
                     else
-                    {
-                        if (Order == AllDraw.OrderPlate)
-                        {
-                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                            return int.MinValue;
-                        }
-                        else
-                        {
-                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                            return int.MaxValue;
-                        }
-                    }
+                        return Huristic;
                 }
                 Order = DummyOrder;
                 ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;

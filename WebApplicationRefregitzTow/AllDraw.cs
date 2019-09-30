@@ -975,7 +975,7 @@ if (Kind == 2)
         //Rearrange AllDraw Object Content.
         public void SetRowColumn(int index)
         {
-            AllDraw thisAStarGreedyString = new AllDraw(OrderP, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);  thisAStarGreedyString = this.AStarGreedyString;
+            AllDraw thisAStarGreedyString = this.AStarGreedyString;
             Object a1 = new Object();
             lock (a1)
             {
@@ -13791,28 +13791,6 @@ if (Kind == 2)
             return IsDang;
 
         }
-          void ClearAStarGreadyWhenListsAreEmpy(int Kind, int i)
-        {
-            if (Kind == 1 && SolderesOnTable[i].SoldierThinking[0].AStarGreedy != null && SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count > 0)
-                SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Clear();
-            else
-if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count > 0)
-                ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Clear();
-            else
-                if (Kind == 3 && HoursesOnTable[i].HourseThinking[0].AStarGreedy != null && HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count > 0)
-                HoursesOnTable[i].HourseThinking[0].AStarGreedy.Clear();
-            else
-                if (Kind == 4 && CastlesOnTable[i].CastleThinking[0].AStarGreedy != null && CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count > 0)
-                CastlesOnTable[i].CastleThinking[0].AStarGreedy.Clear();
-            else
-                if (Kind == 5 && MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null && MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count > 0)
-                MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Clear();
-
-            else
-                if (Kind == 6 && KingOnTable[i].KingThinking[0].AStarGreedy != null && KingOnTable[i].KingThinking[0].AStarGreedy.Count > 0)
-                KingOnTable[i].KingThinking[0].AStarGreedy.Clear();
-
-        }
         bool IsThereCalculatedAStarGreedyNode()
         {
             bool Is = false;
@@ -13825,8 +13803,6 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         Is = true;
                         break;
                     }
-                    else
-                        ClearAStarGreadyWhenListsAreEmpy(1, i);
                     /*else {
                         Object O = new Object();
                         lock (O)
@@ -13849,18 +13825,16 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             Is = true;
                             break;
                         }
-                        else
-                            ClearAStarGreadyWhenListsAreEmpy(2, i);
                         /*else
-                          {
-                              Object O = new Object();
-                              lock (O)
-                              {
-                                  Tabl = CloneATable(Tabl);
-                                  FoundOfLeafDepenOfKindFullGame(Tabl, OrderP, 0, i, j, -1, -1, true, true);
-
-                              }
-                          }*/
+                        {
+                            Object O = new Object();
+                            lock (O)
+                            {
+                                Tabl = CloneATable(Tabl);
+                                FoundOfLeafDepenOfKindFullGame(Tabl, OrderP, 0, i, j, -1, -1, true, true);
+                                
+                            }
+                        }*/
                     }
                 }
             }
@@ -13875,9 +13849,6 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             Is = true;
                             break;
                         }
-                        else
-                            ClearAStarGreadyWhenListsAreEmpy(3, i);
-
                         /*else
                         {
                             Object O = new Object();
@@ -13901,9 +13872,6 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             Is = true;
                             break;
                         }
-                        else
-                            ClearAStarGreadyWhenListsAreEmpy(4, i);
-
                         /* else
                          {
                              Object O = new Object();
@@ -13927,9 +13895,6 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             Is = true;
                             break;
                         }
-                        else
-                            ClearAStarGreadyWhenListsAreEmpy(5, i);
-
                         /* else
                          {
                              Object O = new Object();
@@ -13953,9 +13918,6 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             Is = true;
                             break;
                         }
-                        else
-                            ClearAStarGreadyWhenListsAreEmpy(6, i);
-
                         /* else
                          {
                              Object O = new Object();
@@ -13970,7 +13932,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             }
             return Is;
         }
-        bool IsThereNotAllOfEmptyOrNonCalculatedAStarGreedyNode(int Order, int Kind, int i)
+        bool IsAllThereEmptyOrNonCalculatedAStarGreedyNode(int Order, int Kind, int i)
         {
             bool Is = true;
             if (Kind == 1)
@@ -14032,7 +13994,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
         bool IsThereEmptyOrNonCalculatedAStarGreedyNode(int Order, int Kind, int i, int j)
         {
             bool Is = false;
-            if (!IsThereNotAllOfEmptyOrNonCalculatedAStarGreedyNode(Order, Kind, i))
+            if (!IsAllThereEmptyOrNonCalculatedAStarGreedyNode(Order, Kind, i))
             {
                 if (Kind == 1)
                 {
@@ -14074,7 +14036,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
 
                 }
             }
-            return (!Is);
+            return Is;
         }
         void BlitzGameThinkingTreeSolderGray(ref double PreviousLessS, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {

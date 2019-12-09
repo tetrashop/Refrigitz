@@ -230,8 +230,7 @@ namespace RefrigtzDLL
         public int Row, Column;
         public Color color;
         public int Order;
-        //[NonSerialized()]
-        //public Task t = null;
+        [NonSerialized()] public Task t = null;
         public List<AllDraw> AStarGreedy = new List<AllDraw>();
         int[,] Value = new int[8, 8];
         bool IgnoreFromCheckandMateHuristic = false;
@@ -6150,353 +6149,689 @@ namespace RefrigtzDLL
                 //when killer list exist and for victory
                 if (KillerAtThinking[j] > 0)
                 {
-                    IsAtLeastOneKillerAtDraw = true;
-                    HaveKilled = iAstarGready;
-                }
-                else//when kiler is for lose 
-                if (KillerAtThinking[j] < 0)
-                {
-                    IsAtLeastOneKillerAtDraw = true;
-                    HaveKilled = (iAstarGready * -1);
-                }
-            }
-            //when there is not served layer
-            if ((!(IsSupHu[j])) && j < IsSupHu.Count && j >= 0)
-            {
-                //when there is computations
-                for (j = 0; HuristicListSolder != null && j < HuristicListSolder.Count; j++)
-                {
+                    //return 0;
+                    /*SetObjectNumbers(TableConst);
+                    //NumbersOfCurrentBranchesPenalties = 0;
 
-                    Huristic += HuristicListSolder[j][0] +
-                        HuristicListSolder[j][1] +
-                        HuristicListSolder[j][2] +
-                        HuristicListSolder[j][3] +
-                        HuristicListSolder[j][4] +
-                        HuristicListSolder[j][5] +
-                        HuristicListSolder[j][6] +
-                    HuristicListSolder[j][7] +
-                    HuristicListSolder[j][8] +
-                    HuristicListSolder[j][9];
-                    Object O1 = new Object();
-                    lock (O1)
+                    int[] iIndex = { -1, -1, -1, -1, -1, -1 }, mIndex = { -1, -1, -1, -1, -1, -1 }, jIndex = { -1, -1, -1, -1, -1, -1 }, Kin = { 1, 2, 3, 4, 5, 6 };
+                    int[] Less = new int[6];
+                    if (Order == AllDraw.OrderPlate)
                     {
-                        if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
+                        for (var i = 0; i < 6; i++)
                         {
-                            ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnSoldier[j][0]) + Number(RowColumnSoldier[j][1]);
-                            if (Order == 1)
-                                AllDraw.OutPut.Append("\r\nHuristic Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                            else
-                                AllDraw.OutPut.Append("\r\nHuristic Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                            Less[i] = new int();
+                            Less[i] = int.MinValue;
                         }
                     }
-
-                }
-
-                //When Elephant Kind.
-                for (j = 0; HuristicListElefant != null && j < HuristicListElefant.Count; j++)
-                {
-
-                    Huristic += HuristicListElefant[j][0] +
-                    HuristicListElefant[j][1] +
-                    HuristicListElefant[j][2] +
-                    HuristicListElefant[j][3] +
-                    HuristicListElefant[j][4] +
-                    HuristicListElefant[j][5] +
-                    HuristicListElefant[j][6] +
-                    HuristicListElefant[j][7] +
-                    HuristicListElefant[j][8] +
-                    HuristicListElefant[j][9];
-                    Object O1 = new Object();
-                    lock (O1)
+                    else
                     {
-                        if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
+                        for (var i = 0; i < 6; i++)
                         {
-                            ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnElefant[j][0]) + Number(RowColumnElefant[j][1]);
-                            if (Order == 1)
-                                AllDraw.OutPut.Append("\r\nHuristic Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                            else
-                                AllDraw.OutPut.Append("\r\nHuristic Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                            Less[i] = new int();
+                            Less[i] = int.MaxValue;
                         }
                     }
+                    iAstarGready++;
+                    //Calculate numbers of current branches penalties.
 
-
-                }
-                //when is hourse
-                for (j = 0; HuristicListHourse != null && j < HuristicListHourse.Count; j++)
-                {
-
-                    Huristic += HuristicListHourse[j][0] +
-                HuristicListHourse[j][1] +
-                HuristicListHourse[j][2] +
-                HuristicListHourse[j][3] +
-                HuristicListHourse[j][4] +
-                HuristicListHourse[j][5] +
-                HuristicListHourse[j][6] +
-                HuristicListHourse[j][7] +
-                HuristicListHourse[j][8] +
-                HuristicListHourse[j][9];
-                    Object O1 = new Object();
-                    lock (O1)
-                    {
-                        if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
+                        //When is Gray.
+                        if (Order == 1)
                         {
-                            ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnHourse[j][0]) + Number(RowColumnHourse[j][1]);
-                            if (Order == 1)
-                                AllDraw.OutPut.Append("\r\nHuristic Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                            else
-                                AllDraw.OutPut.Append("\r\nHuristic Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                        }
-
-                    }
-
-
-                }
-                //when is castle
-                for (j = 0; HuristicListCastle != null && j < HuristicListCastle.Count; j++)
-                {
-
-                    Huristic += HuristicListCastle[j][0] +
-            HuristicListCastle[j][1] +
-            HuristicListCastle[j][2] +
-            HuristicListCastle[j][3] +
-            HuristicListCastle[j][4] +
-            HuristicListCastle[j][5] +
-            HuristicListCastle[j][6] +
-            HuristicListCastle[j][7] +
-            HuristicListCastle[j][8] +
-            HuristicListCastle[j][9];
-                    Object O1 = new Object();
-                    lock (O1)
-                    {
-                        if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
-                        {
-                            ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnCastle[j][0]) + Number(RowColumnCastle[j][1]);
-                            if (Order == 1)
-                                AllDraw.OutPut.Append("\r\nHuristic Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                            else
-                                AllDraw.OutPut.Append("\r\nHuristic Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                        }
-                    }
-
-                }
-                //when is minister
-                for (j = 0; HuristicListMinister != null && j < HuristicListMinister.Count; j++)
-                {
-
-                    Huristic += HuristicListMinister[j][0] +
-        HuristicListMinister[j][1] +
-        HuristicListMinister[j][2] +
-        HuristicListMinister[j][3] +
-        HuristicListMinister[j][4] +
-        HuristicListMinister[j][5] +
-        HuristicListMinister[j][6] +
-        HuristicListMinister[j][7] +
-        HuristicListMinister[j][8] +
-        HuristicListMinister[j][9];
-                    Object O1 = new Object();
-                    lock (O1)
-                    {
-                        if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
-                        {
-                            ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnMinister[j][0]) + Number(RowColumnMinister[j][1]);
-                            if (Order == 1)
-                                AllDraw.OutPut.Append("\r\nHuristic Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                            else
-                                AllDraw.OutPut.Append("\r\nHuristic Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                        }
-                    }
-
-                }
-                //when is king
-                for (j = 0; HuristicListKing != null && j < HuristicListKing.Count; j++)
-                {
-                    {
-
-                        Huristic += HuristicListKing[j][0] +
-        HuristicListKing[j][1] +
-        HuristicListKing[j][2] +
-        HuristicListKing[j][3] +
-        HuristicListKing[j][4] +
-        HuristicListKing[j][5] +
-        HuristicListKing[j][6] +
-        HuristicListKing[j][7] +
-        HuristicListKing[j][8] +
-        HuristicListKing[j][9];
-                        Object O1 = new Object();
-                        lock (O1)
-                        {
-                            if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
+                            //For All Depth Count.
+                            for (var i = 0; i < AStarGreedy.Count; i++)
                             {
-                                ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnKing[j][0]) + Number(RowColumnKing[j][1]);
-                                if (Order == 1)
-                                    AllDraw.OutPut.Append("\r\nHuristic King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                                else
-                                    AllDraw.OutPut.Append("\r\nHuristic King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
-                            }
-                        }
+                                //For All solder DrawOn Table Count.
+                                for (int m = 0; m < SolderOnTableCount(ref AStarGreedy[i].SolderesOnTable, true, AStarGreedy[i].SodierHigh); m++)
+                                for (int m = 0; m < AStarGreedy[i].SodierMidle; m++)
+                                {
+                                    //When Depth of Solders On Table is Not NULL.
+                                    if (AStarGreedy[i].SolderesOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].SolderesOnTable[m].SoldierThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Calculate Maximum Huristic in Branch.
+                                        if (AStarGreedy[i].SolderesOnTable[m].SoldierThinking[0].MaxHuristic(ref jIndex[0], Kin[0], ref Less[0], Order *-1))
+                                        {
+                                            iIndex[0] = i;
+                                            mIndex[0] = m;
+                                            Kin[0] = 1;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
-                    }
-                }
+                                    }
+                                    else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
-            }
-            else
-            {
-                BOUND = -1;
-                return Huristic;
-            }
-            return Huristic;
-        }
-        //deeper section to deep inside huristic calculation 
-        public int ReturnHuristicCalculartorDeeper(int iAstarGready, int ii, int j, int Order, ref int HaveKilled, ref int BOUND)
 
-        {
-            int Huristic = 0;
-            //when is deeper
-            if (AStarGreedy != null)
-            {
-                //for all deeper
-                for (int k = 0; k < AStarGreedy.Count; k++)
-                {
-                    //continue when deeper is null
-                    if (AStarGreedy[k] == null)
-                        continue;
-                    Object OOO = new Object();
-                    lock (OOO)
-                    {
-                        //gray
-                        if (Order == -1)
-                        {
-                            //Repeate for Solder.
-                            for (int m = 0; m < AStarGreedy[k].SodierMidle; m++)
-                            {
+                                }
+                                //For All Elephant On Table Count.
+                                for (int m = 0; m < ElefantOnTableCount(ref AStarGreedy[i].ElephantOnTable, true, AStarGreedy[i].ElefantHigh); m++)
+                                for (int m = 0; m < AStarGreedy[i].ElefantMidle; m++)
+                                {
 
-                                Huristic += ReturnHuristicCalculartorDeeperSolider(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
-                            }
-                            //Repeate for Elephant.
-                            for (int m = 0; m < AStarGreedy[k].ElefantMidle; m++)
-                            {
+                                    //For All Elephant in Depth Count.
+                                    if (AStarGreedy[i].ElephantOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].ElephantOnTable[m].ElefantThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Found of Maxmimum in Branch.
+                                        if (AStarGreedy[i].ElephantOnTable[m].ElefantThinking[0].MaxHuristic(ref jIndex[1], Kin[1], ref Less[1], Order *-1))
+                                        {
+                                            iIndex[1] = i;
+                                            mIndex[1] = m;
+                                            Kin[1] = 2;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                           // CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+                                    }
+                                    else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
 
-                                Huristic += ReturnHuristicCalculartorDeeperElephant(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
+
+                                }
+                                //For All Hourse on Table Count.
+                                for (int m = 0; m < HourseOnTableCount(ref AStarGreedy[i].HoursesOnTable, true, AStarGreedy[i].HourseHight); m++)
+                                for (int m = 0; m < AStarGreedy[i].HourseMidle; m++)
+                                {
+                                    //When is HourseOn Table Depth Object is Not NULL.
+                                    if (AStarGreedy[i].HoursesOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].HoursesOnTable[m].HourseThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Forund of Maximum on on Branch.
+                                        if (AStarGreedy[i].HoursesOnTable[m].HourseThinking[0].MaxHuristic(ref jIndex[2], Kin[2], ref Less[2], Order *-1))
+                                        {
+                                            iIndex[2] = i;
+                                            mIndex[2] = m;
+                                            Kin[2] = 3;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+                                    }
+                                    else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+
+                                }
+                                //For All Castles on table Count.
+                                for (int m = 0; m < CastleOnTableCount(ref AStarGreedy[i].CastlesOnTable, true, AStarGreedy[i].CastleHigh); m++)
+                                for (  int m = 0; m < AStarGreedy[i].CastleMidle; m++)
+                                {
+                                    //When Depth Objects of Hourse Table is Not NULL.
+                                    if (AStarGreedy[i].CastlesOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].CastlesOnTable[m].CastleThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Found of Maximum Castles Branch.
+                                        if (AStarGreedy[i].CastlesOnTable[m].CastleThinking[0].MaxHuristic(ref jIndex[3], Kin[3], ref Less[3], Order *-1))
+                                        {
+                                            iIndex[3] = i;
+                                            mIndex[3] = m;
+                                            Kin[3] = 4;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+                                    }
+                                    else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+
+                                }
+                                //For All Minsiter on table count.
+                                for (int m = 0; m < MinisterOnTableCount(ref AStarGreedy[i].MinisterOnTable, true, AStarGreedy[i].MinisterHigh); m++)
+                                for (int m = 0; m < AStarGreedy[i].MinisterMidle; m++)
+                                {
+                                    //When Minster of Depth is Not Null.
+                                    if (AStarGreedy[i].MinisterOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].MinisterOnTable[m].MinisterThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Found of Maximum Minster on table Branches.
+                                        if (AStarGreedy[i].MinisterOnTable[m].MinisterThinking[0].MaxHuristic(ref jIndex[4], Kin[4], ref Less[4], Order *-1))
+                                        {
+                                            iIndex[4] = i;
+                                            mIndex[4] = m;
+                                            Kin[4] = 5;
+                                            //Huristic = Less;
+                                        }
+                                    }
+
+                                }
+                                //For All King on table Count.
+                                for (int m = 0; m < KingOnTableCount(ref AStarGreedy[i].KingOnTable, true, AStarGreedy[i].KingHigh); m++)
+                                for (int m = 0; m < AStarGreedy[i].KingMidle; m++)
+                                {
+                                    //When Depth Object of King Table is Not NULL.
+                                    if (AStarGreedy[i].KingOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].KingOnTable[m].KingThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Found of Maximum on table Branches.
+                                        if (AStarGreedy[i].KingOnTable[m].KingThinking[0].MaxHuristic(ref jIndex[5], Kin[5], ref Less[5], Order *-1))
+                                        {
+                                            iIndex[5] = i;
+                                            mIndex[5] = m;
+                                            Kin[5] = 6;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+                                    }
+                                   // else
+                                       // CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+
+                                }
                             }
-                            //Repeate for Hourse.
-                            for (int m = 0; m < AStarGreedy[k].HourseMidle; m++)
-                            {
-                                Huristic += ReturnHuristicCalculartorDeeperHourse(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
-                            }
-                            //Repeate for Castles.
-                            for (int m = 0; m < AStarGreedy[k].CastleMidle; m++)
-                            {
-                                Huristic += ReturnHuristicCalculartorDeeperCastle(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
-                            }
-                            //Repeate for Minstre.
-                            for (int m = 0; m < AStarGreedy[k].MinisterMidle; m++)
-                            {
-                                Huristic += ReturnHuristicCalculartorDeeperMinister(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
-                            }
-                            //Repeate for King.
-                            for (int m = 0; m < AStarGreedy[k].KingMidle; m++)
-                            {
-                                Huristic += ReturnHuristicCalculartorDeeperKing(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
-                            }
+
                         }
                         else
                         {
-                            for (int m = AStarGreedy[k].SodierMidle; m < AStarGreedy[k].SodierHigh; m++)
+                            //For All Depth Variables.
+                            for (var i = 0; i < AStarGreedy.Count; i++)
                             {
-                                Huristic += ReturnHuristicCalculartorDeeperSolider(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
+                                //For All Brown Solders on table count.
+                                for (int m = SolderOnTableCount(ref AStarGreedy[i].SolderesOnTable, true, AStarGreedy[i].SodierHigh); m < SolderOnTableCount(ref AStarGreedy[i].SolderesOnTable, false, AStarGreedy[i].SodierHigh); m++)
+                                for (int m = AStarGreedy[i].SodierMidle; m < AStarGreedy[i].SodierHigh; m++)
+                                {
+                                    //When solderis on table depth obejcts is nopt null.
+                                    if (AStarGreedy[i].SolderesOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].SolderesOnTable[m].SoldierThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Found of Maximum on Depth solders on table items.
+                                        if (AStarGreedy[i].SolderesOnTable[m].SoldierThinking[0].MaxHuristic(ref jIndex[0], Kin[0], ref Less[0], Order *-1))
+                                        {
+                                            iIndex[0] = i;
+                                            mIndex[0] = m;
+                                            Kin[0] = 1;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+                                    }
+                                   // else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+                                }
+                                //For All Elephant On Table Count.
+                                for (int m = ElefantOnTableCount(ref AStarGreedy[i].ElephantOnTable, true, AStarGreedy[i].ElefantHigh); m < ElefantOnTableCount(ref AStarGreedy[i].ElephantOnTable, false, AStarGreedy[i].ElefantHigh); m++)
+                                for (int m = AStarGreedy[i].ElefantMidle; m < AStarGreedy[i].ElefantHigh; m++)
+                                {
+                                    //For All Elephant in Depth Count.
+                                    if (AStarGreedy[i].ElephantOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].ElephantOnTable[m].ElefantThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Found of Maxmimum in Branch.
+                                        if (AStarGreedy[i].ElephantOnTable[m].ElefantThinking[0].MaxHuristic(ref jIndex[1], Kin[1], ref Less[1], Order *-1))
+                                        {
+                                            iIndex[1] = i;
+                                            mIndex[1] = m;
+                                            Kin[1] = 2;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+                                    }
+                                    else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+
+                                }
+                                //For All Hourse on Table Count.
+                                for (int m = HourseOnTableCount(ref AStarGreedy[i].HoursesOnTable, true, AStarGreedy[i].HourseHight); m < HourseOnTableCount(ref AStarGreedy[i].HoursesOnTable, false, AStarGreedy[i].HourseHight); m++)
+                                for (int m = AStarGreedy[i].HourseMidle; m < AStarGreedy[i].HourseHight; m++)
+                                {
+                                    //When is HourseOn Table Depth Object is Not NULL.
+                                    if (AStarGreedy[i].HoursesOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].HoursesOnTable[m].HourseThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Forund of Maximum on on Branch.
+                                        if (AStarGreedy[i].HoursesOnTable[m].HourseThinking[0].MaxHuristic(ref jIndex[2], Kin[2], ref Less[2], Order *-1))
+                                        {
+                                            iIndex[2] = i;
+                                            mIndex[2] = m;
+                                            Kin[2] = 3;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+                                    }
+                                    else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+                                }
+                                //For All Castles on table Count.
+                                for (int m = CastleOnTableCount(ref AStarGreedy[i].CastlesOnTable, true, AStarGreedy[i].CastleHigh); m < CastleOnTableCount(ref AStarGreedy[i].CastlesOnTable, false, AStarGreedy[i].CastleHigh); m++)
+                                for (int m = AStarGreedy[i].CastleMidle; m < AStarGreedy[i].CastleHigh; m++)
+                                {
+                                    //When Depth Objects of Hourse Table is Not NULL.
+                                    if (AStarGreedy[i].CastlesOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].CastlesOnTable[m].CastleThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Found of Maximum Castles Branch.
+                                        if (AStarGreedy[i].CastlesOnTable[m].CastleThinking[0].MaxHuristic(ref jIndex[3], Kin[3], ref Less[3], Order *-1))
+                                        {
+                                            iIndex[3] = i;
+                                            mIndex[3] = m;
+                                            Kin[3] = 4;
+                                            //Huristic = Less;
+                                        }
+                                       // else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+                                    }
+                                    else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+                                }
+                                //For All Minsiter on table count.
+                                for (int m = MinisterOnTableCount(ref AStarGreedy[i].MinisterOnTable, true, AStarGreedy[i].MinisterHigh); m < MinisterOnTableCount(ref AStarGreedy[i].MinisterOnTable, false, AStarGreedy[i].MinisterHigh); m++)
+                                for (int m = AStarGreedy[i].MinisterMidle; m < AStarGreedy[i].MinisterHigh; m++)
+                                {
+                                    //When Minster of Depth is Not Null.
+                                    if (AStarGreedy[i].MinisterOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].MinisterOnTable[m].MinisterThinking[0].IsSupHu[j])
+                                            continue;
+                                        //Found of Maximum Minster on table Branches.
+                                        if (AStarGreedy[i].MinisterOnTable[m].MinisterThinking[0].MaxHuristic(ref jIndex[4], Kin[4], ref Less[4], Order *-1))
+                                        {
+                                            iIndex[4] = i;
+                                            mIndex[4] = m;
+                                            Kin[4] = 5;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+                                    }
+                                    else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+                                }
+                                //For All King on table Count.
+                                for (int m = KingOnTableCount(ref AStarGreedy[i].KingOnTable, true, AStarGreedy[i].KingHigh); m < KingOnTableCount(ref AStarGreedy[i].KingOnTable, false, AStarGreedy[i].KingHigh); m++)
+                                for (int m = AStarGreedy[i].KingMidle; m < AStarGreedy[i].KingHigh; m++)
+                                {
+                                    //When Minster of Depth is Not Null.
+                                    if (AStarGreedy[i].KingOnTable[m] != null)
+                                    {
+                                        if (AStarGreedy[i].KingOnTable[m].KingThinking[0].IsSupHu[j])
+                                            continue;
+                                        //When Depth Object of King Table is Not NULL.
+                                        if (AStarGreedy[i].KingOnTable[m].KingThinking[0].MaxHuristic(ref jIndex[5], Kin[5], ref Less[5], Order * -1))
+                                        {
+                                            iIndex[5] = i;
+                                            mIndex[5] = m;
+                                            Kin[5] = 6;
+                                            //Huristic = Less;
+                                        }
+                                        else
+                                            //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+                                    }
+                                    else
+                                        //CodeClass.SaveByCode(2, callStack.GetFileLineNumber(), callStack.GetFileName());
+
+                                }
                             }
-                            //Repeate for Elephant.
-                            for (int m = AStarGreedy[k].ElefantMidle; m < AStarGreedy[k].ElefantHigh; m++)
+
+                        }
+                        */
+                    if ((!(IsSupHu[j])) && j < IsSupHu.Count && j >= 0)
+                    {
+                        // int IJ = -1;
+                        // if (Order == AllDraw.OrderPlate)
+                        // IJ = MaxOfSixHuristic(Less) + 1;
+                        //else
+                        //IJ = MinOfSixHuristic(Less) + 1;
+                        // Calculate Huristic of Current Node.
+                        //When Sodleris Kind.
+                        //System.Math.Abs(Kind) == 1 &&
+                        for (j = 0; HuristicListSolder != null && j < HuristicListSolder.Count; j++)
+                        {
+                            //if (!ActionStringSetting)
                             {
-                                Huristic += ReturnHuristicCalculartorDeeperElephant(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
+                                Huristic += HuristicListSolder[j][0] +
+                                    HuristicListSolder[j][1] +
+                                    HuristicListSolder[j][2] +
+                                    HuristicListSolder[j][3] +
+                                    HuristicListSolder[j][4] +
+                                    HuristicListSolder[j][5] +
+                                    HuristicListSolder[j][6] +
+                                HuristicListSolder[j][7] +
+                                HuristicListSolder[j][8] +
+                                HuristicListSolder[j][9];
+                                Object O1 = new Object();
+                                lock (O1)
+                                {
+                                    ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnSoldier[j][0]) + Number(RowColumnSoldier[j][1]);
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                }
+                                //ActionStringSetting = true;
                             }
-                            //Repeate for Hourse.
-                            for (int m = AStarGreedy[k].HourseMidle; m < AStarGreedy[k].HourseHight; m++)
+                        }
+
+                        //When Elephant Kind.
+                        for (j = 0; HuristicListElefant != null && j < HuristicListElefant.Count; j++)
+                        {
+
+                            Huristic += HuristicListElefant[j][0] +
+                            HuristicListElefant[j][1] +
+                            HuristicListElefant[j][2] +
+                            HuristicListElefant[j][3] +
+                            HuristicListElefant[j][4] +
+                            HuristicListElefant[j][5] +
+                            HuristicListElefant[j][6] +
+                            HuristicListElefant[j][7] +
+                            HuristicListElefant[j][8] +
+                            HuristicListElefant[j][9];
+                            Object O1 = new Object();
+                            lock (O1)
                             {
-                                Huristic += ReturnHuristicCalculartorDeeperHourse(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
+                                if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
+                                {
+                                    ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnElefant[j][0]) + Number(RowColumnElefant[j][1]);
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                }
                             }
-                            //Repeate for Castles.
-                            for (int m = AStarGreedy[k].CastleMidle; m < AStarGreedy[k].CastleHigh; m++)
+
+
+                        }
+                        //when is hourse
+                        for (j = 0; HuristicListHourse != null && j < HuristicListHourse.Count; j++)
+                        {
+
+                            Huristic += HuristicListHourse[j][0] +
+                        HuristicListHourse[j][1] +
+                        HuristicListHourse[j][2] +
+                        HuristicListHourse[j][3] +
+                        HuristicListHourse[j][4] +
+                        HuristicListHourse[j][5] +
+                        HuristicListHourse[j][6] +
+                        HuristicListHourse[j][7] +
+                        HuristicListHourse[j][8] +
+                        HuristicListHourse[j][9];
+                            Object O1 = new Object();
+                            lock (O1)
                             {
-                                Huristic += ReturnHuristicCalculartorDeeperCastle(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
+                                if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
+                                {
+                                    ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnHourse[j][0]) + Number(RowColumnHourse[j][1]);
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                }
+
                             }
-                            //Repeate for Minstre.
-                            for (int m = AStarGreedy[k].MinisterMidle; m < AStarGreedy[k].MinisterHigh; m++)
+
+
+                        }
+                        //when is castle
+                        for (j = 0; HuristicListCastle != null && j < HuristicListCastle.Count; j++)
+                        {
+
+                            Huristic += HuristicListCastle[j][0] +
+                    HuristicListCastle[j][1] +
+                    HuristicListCastle[j][2] +
+                    HuristicListCastle[j][3] +
+                    HuristicListCastle[j][4] +
+                    HuristicListCastle[j][5] +
+                    HuristicListCastle[j][6] +
+                    HuristicListCastle[j][7] +
+                    HuristicListCastle[j][8] +
+                    HuristicListCastle[j][9];
+                            Object O1 = new Object();
+                            lock (O1)
                             {
-                                Huristic += ReturnHuristicCalculartorDeeperMinister(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
+                                if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
+                                {
+                                    ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnCastle[j][0]) + Number(RowColumnCastle[j][1]);
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                }
                             }
-                            //Repeate for King.
-                            for (int m = AStarGreedy[k].KingMidle; m < AStarGreedy[k].KingHigh; m++)
+
+                            //ActionStringSetting = true;
+                        }
+                    }
+                    for (j = 0; HuristicListMinister != null && j < HuristicListMinister.Count; j++)
+                    {
+                        //if (!ActionStringSetting)
+                        {
+                            Huristic += HuristicListMinister[j][0] +
+                HuristicListMinister[j][1] +
+                HuristicListMinister[j][2] +
+                HuristicListMinister[j][3] +
+                HuristicListMinister[j][4] +
+                HuristicListMinister[j][5] +
+                HuristicListMinister[j][6] +
+                HuristicListMinister[j][7] +
+                HuristicListMinister[j][8] +
+                HuristicListMinister[j][9];
+                            Object O1 = new Object();
+                            lock (O1)
                             {
-                                Huristic += ReturnHuristicCalculartorDeeperKing(k, m, iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
+                                ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnMinister[j][0]) + Number(RowColumnMinister[j][1]);
+                                if (Order == 1)
+                                    AllDraw.OutPut.Append("\r\nHuristic Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                else
+                                    AllDraw.OutPut.Append("\r\nHuristic Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                            }
+                            //ActionStringSetting = true;
+                        }
+                    }
+                    for (j = 0; HuristicListKing != null && j < HuristicListKing.Count; j++)
+                    {
+                        {
+                            //if (!ActionStringSetting)
+                            {
+                                Huristic += HuristicListKing[j][0] +
+                HuristicListKing[j][1] +
+                HuristicListKing[j][2] +
+                HuristicListKing[j][3] +
+                HuristicListKing[j][4] +
+                HuristicListKing[j][5] +
+                HuristicListKing[j][6] +
+                HuristicListKing[j][7] +
+                HuristicListKing[j][8] +
+                HuristicListKing[j][9];
+                                Object O1 = new Object();
+                                lock (O1)
+                                {
+                                    ActionsString = " " + Alphabet(Row) + Number(Column) + Alphabet(RowColumnKing[j][0]) + Number(RowColumnKing[j][1]);
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level " + iAstarGready.ToString() + " By Action String " + ActionsString);
+                                }
+                                //ActionStringSetting = true;
+                            }
+                        }
+                    }
+
+                }
+                else
+                    return int.MinValue;
+                if (AStarGreedy != null)
+                {
+                    for (int k = 0; k < AStarGreedy.Count; k++)
+                    {
+
+                        if (AStarGreedy[k] == null)
+                            continue;
+                        Object OOO = new Object();
+                        lock (OOO)
+                        {
+                            if (Order == 1)
+                            {
+                                //Repeate for Solder.
+                                for (int m = 0; m < AStarGreedy[k].SodierMidle; m++)
+                                {
+                                    if (AStarGreedy[k].SolderesOnTable == null || AStarGreedy[k].SolderesOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].TableListSolder.Count; jj++)
+                                        Huristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for Elephant.
+                                for (int m = 0; m < AStarGreedy[k].ElefantMidle; m++)
+                                {
+                                    if (AStarGreedy[k].ElephantOnTable == null || AStarGreedy[k].ElephantOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].TableListElefant.Count; jj++)
+                                        Huristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for Hourse.
+                                for (int m = 0; m < AStarGreedy[k].HourseMidle; m++)
+                                {
+                                    if (AStarGreedy[k].HoursesOnTable == null || AStarGreedy[k].HoursesOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].TableListHourse.Count; jj++)
+                                        Huristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for Castles.
+                                for (int m = 0; m < AStarGreedy[k].CastleMidle; m++)
+                                {
+                                    if (AStarGreedy[k].CastlesOnTable == null || AStarGreedy[k].CastlesOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].TableListCastle.Count; jj++)
+                                        Huristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for Minstre.
+                                for (int m = 0; m < AStarGreedy[k].MinisterMidle; m++)
+                                {
+                                    if (AStarGreedy[k].MinisterOnTable == null || AStarGreedy[k].MinisterOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].TableListMinister.Count; jj++)
+                                        Huristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for King.
+                                for (int m = 0; m < AStarGreedy[k].KingMidle; m++)
+                                {
+                                    if (AStarGreedy[k].KingOnTable == null || AStarGreedy[k].KingOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].KingOnTable[m].KingThinking[0].TableListKing.Count; jj++)
+                                        Huristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                            }
+                            else
+                            {
+                                for (int m = AStarGreedy[k].SodierMidle; m < AStarGreedy[k].SodierHigh; m++)
+                                {
+                                    if (AStarGreedy[k].SolderesOnTable == null || AStarGreedy[k].SolderesOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Soldier AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].TableListSolder.Count; jj++)
+                                        Huristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for Elephant.
+                                for (int m = AStarGreedy[k].ElefantMidle; m < AStarGreedy[k].ElefantHigh; m++)
+                                {
+                                    if (AStarGreedy[k].ElephantOnTable == null || AStarGreedy[k].ElephantOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Elephant AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].TableListElefant.Count; jj++)
+                                        Huristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for Hourse.
+                                for (int m = AStarGreedy[k].HourseMidle; m < AStarGreedy[k].HourseHight; m++)
+                                {
+                                    if (AStarGreedy[k].HoursesOnTable == null || AStarGreedy[k].HoursesOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Hourse AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].TableListHourse.Count; jj++)
+                                        Huristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for Castles.
+                                for (int m = AStarGreedy[k].CastleMidle; m < AStarGreedy[k].CastleHigh; m++)
+                                {
+                                    if (AStarGreedy[k].CastlesOnTable == null || AStarGreedy[k].CastlesOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].TableListCastle.Count; jj++)
+                                        Huristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for Minstre.
+                                for (int m = AStarGreedy[k].MinisterMidle; m < AStarGreedy[k].MinisterHigh; m++)
+                                {
+                                    if (AStarGreedy[k].MinisterOnTable == null || AStarGreedy[k].MinisterOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].TableListMinister.Count; jj++)
+                                        Huristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
+                                //Repeate for King.
+                                for (int m = AStarGreedy[k].KingMidle; m < AStarGreedy[k].KingHigh; m++)
+                                {
+                                    if (AStarGreedy[k].KingOnTable == null || AStarGreedy[k].KingOnTable[m] == null)
+                                        continue;
+                                    if (Order == 1)
+                                        AllDraw.OutPut.Append("\r\nHuristic Deep Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
+                                    else
+                                        AllDraw.OutPut.Append("\r\nHuristic Deap Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
+                                    for (var jj = 0; jj < AStarGreedy[k].KingOnTable[m].KingThinking[0].TableListKing.Count; jj++)
+                                        Huristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHuristicCalculartor(iAstarGready, ii, jj, Order * -1);
+                                }
                             }
                         }
                     }
                 }
-
-
             }
-            BOUND = 0;
-            return Huristic;
-        }
-        //deeper for specific object
-        public int ReturnHuristicCalculartorDeeperKing(int k, int m, int iAstarGready, int ii, int j, int Order, ref int HaveKilled, ref int BOUND)
-
-        {
-            int Huristic = 0;
-
-            if (AStarGreedy[k].KingOnTable == null || AStarGreedy[k].KingOnTable[m] == null || AStarGreedy[k].KingOnTable[m].KingThinking == null || AStarGreedy[k].KingOnTable[m].KingThinking[0] == null || AStarGreedy[k].KingOnTable[m].KingThinking[0].TableListKing == null)
-                return Huristic;
-            /*if (AllDraw.NumberOfLeafComputation == -1&&AllDraw.FirstTraversalTree)
-            {
-                if (Order == 1)
-                    AllDraw.OutPut.Append("\r\nHuristic Deep Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                else
-                    AllDraw.OutPut.Append("\r\nHuristic Deap Learning King AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
-            }*/
-            for (var jj = 0; jj < AStarGreedy[k].KingOnTable[m].KingThinking[0].TableListKing.Count; jj++)
-                Huristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref HaveKilled);
-
-            return Huristic;
-        }
-        //deeper for specific object
-        public int ReturnHuristicCalculartorDeeperMinister(int k, int m, int iAstarGready, int ii, int j, int Order, ref int HaveKilled, ref int BOUND)
-
-        {
-            int Huristic = 0;
-
-            if (AStarGreedy[k].MinisterOnTable == null || AStarGreedy[k].MinisterOnTable[m] == null || AStarGreedy[k].MinisterOnTable[m].MinisterThinking == null || AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0] == null || AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].TableListMinister == null)
-                return Huristic;
-            /*if (AllDraw.NumberOfLeafComputation == -1&&AllDraw.FirstTraversalTree)
-            {
-                if (Order == 1)
-                    AllDraw.OutPut.Append("\r\nHuristic Deep Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                else
-                    AllDraw.OutPut.Append("\r\nHuristic Deap Learning Minister AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
-            }*/
-            for (var jj = 0; jj < AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].TableListMinister.Count; jj++)
-                Huristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref HaveKilled);
-
-            return Huristic;
-        }
-        //deeper for specific object
-        public int ReturnHuristicCalculartorDeeperCastle(int k, int m, int iAstarGready, int ii, int j, int Order, ref int HaveKilled, ref int BOUND)
-
-        {
-            int Huristic = 0;
-
-            if (AStarGreedy[k].CastlesOnTable == null || AStarGreedy[k].CastlesOnTable[m] == null || AStarGreedy[k].CastlesOnTable[m].CastleThinking == null || AStarGreedy[k].CastlesOnTable[m].CastleThinking[0] == null || AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].TableListCastle == null)
-                return Huristic;
-            /* if (AllDraw.NumberOfLeafComputation == -1&&AllDraw.FirstTraversalTree)
-             {
-                 if (Order == 1)
-                     AllDraw.OutPut.Append("\r\nHuristic Deep Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Bob at Level ");
-                 else
-                     AllDraw.OutPut.Append("\r\nHuristic Deap Learning Castle AstarGreedy By Level " + CurrentAStarGredyMax.ToString() + " Alice at Level ");
-             }*/
-            for (var jj = 0; jj < AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].TableListCastle.Count; jj++)
-                Huristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref HaveKilled);
-
             return Huristic;
         }
 
@@ -6602,119 +6937,83 @@ namespace RefrigtzDLL
                         HuristicListElefant[j][8] +
                     HuristicListElefant[j][9];
 
-                }
-                else
-                //When Hourse Kind.
-                if (System.Math.Abs(Kind) == 3 && HuristicListHourse.Count > 0)
-                {
-                    Huristic += HuristicListHourse[j][0] +
-                        HuristicListHourse[j][1] +
-                        HuristicListHourse[j][2] +
-                        HuristicListHourse[j][3] +
-                        HuristicListHourse[j][4] +
-                        HuristicListHourse[j][5] +
-                        HuristicListHourse[j][6] +
-                        HuristicListHourse[j][7] +
-                        HuristicListHourse[j][8] +
-                    HuristicListHourse[j][9];
-                }
-                else
-                //When Castles Kind.
-                if (System.Math.Abs(Kind) == 4 && HuristicListCastle.Count > 0)
-                {
-                    Huristic += HuristicListCastle[j][0] +
-                        HuristicListCastle[j][1] +
-                        HuristicListCastle[j][2] +
-                        HuristicListCastle[j][3] +
-                        HuristicListCastle[j][4] +
-                        HuristicListCastle[j][5] +
-                        HuristicListCastle[j][6] +
-                        HuristicListCastle[j][7] +
-                    HuristicListCastle[j][8] +
-                        HuristicListCastle[j][9];
-                }
-                else
-                //When Minister Kind.
-                if (System.Math.Abs(Kind) == 5 && HuristicListMinister.Count > 0)
-                {
-                    Huristic += HuristicListMinister[j][0] +
-                        HuristicListMinister[j][1] +
-                        HuristicListMinister[j][2] +
-                        HuristicListMinister[j][3] +
-                        HuristicListMinister[j][4] +
-                        HuristicListMinister[j][5] +
-                        HuristicListMinister[j][6] +
-                    HuristicListMinister[j][7] +
-                    HuristicListMinister[j][8] +
-                    HuristicListMinister[j][9];
-                }
-                else
-                //When King Kind.
-                if (System.Math.Abs(Kind) == 6 && HuristicListKing.Count > 0)
-                {
-                    Huristic += HuristicListKing[j][0] +
-                        HuristicListKing[j][1] +
-                        HuristicListKing[j][2] +
-                        HuristicListKing[j][3] +
-                        HuristicListKing[j][4] +
-                        HuristicListKing[j][5] +
-                        HuristicListKing[j][6] +
-                        HuristicListKing[j][7] +
-                        HuristicListKing[j][8] +
-                        HuristicListKing[j][9];
-                }
-            }
-            else
-            {
-                if (Order == AllDraw.OrderPlate)
-                {
-                    BOUND = -1;
-                    ////{ AllDraw.OutPut.Append("\r\n");for (double l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                }
-                else
-                {
-                    ////{ AllDraw.OutPut.Append("\r\n");for (double l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                    BOUND = 1;
-                }
-            }
-            return Huristic;
-        }
-        //main insider method for manage huristic count
-        public int ReturnHuristicCalculartor(int iAstarGready, int ii, int j, int Order, ref int HaveKilled)
-        {
-            int BOUND = 0;
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //bool ActionStringSetting = false;
-            Object O = new Object();
-            lock (O)
-            {
-                int Huristic = 0;
-                //when deeper there is not or level exceed
-                if (AStarGreedy == null && iAstarGready != 0)
-                {
-                    ////{ AllDraw.OutPut.Append("\r\n");for (double l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                    return 0;
-                }
-                NumbersOfCurrentBranchesPenalties += NumberOfPenalties;
-                int DummyOrder = Order;
-                //when there is deeper
-                if (ii != -1)
-                {
-                    //kiiler huristic determination//main deeper huristic
-                    Huristic += ReturnHuristicCalculartorKiller(iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
-                    //main deeper huristic
-                    Huristic += ReturnHuristicCalculartorDeeper(iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
-
-
-                }
-                else
-                {
-                    //sufacive huristic
-                    Huristic += ReturnHuristicCalculartorSurface(iAstarGready, ii, j, Order, ref HaveKilled, ref BOUND);
-
-                }
-                Order = DummyOrder;
-                if (BOUND < 0)
+                        }
+                        else
+                        //When Hourse Kind.
+                        if (System.Math.Abs(Kind) == 3 && HuristicListHourse.Count > 0)
+                        {
+                            Huristic += HuristicListHourse[j][0] +
+                                HuristicListHourse[j][1] +
+                                HuristicListHourse[j][2] +
+                                HuristicListHourse[j][3] +
+                                HuristicListHourse[j][4] +
+                                HuristicListHourse[j][5] +
+                                HuristicListHourse[j][6] +
+                                HuristicListHourse[j][7] +
+                                HuristicListHourse[j][8] +
+                            HuristicListHourse[j][9];
+                        }
+                        else
+                        //When Castles Kind.
+                        if (System.Math.Abs(Kind) == 4 && HuristicListCastle.Count > 0)
+                        {
+                            Huristic += HuristicListCastle[j][0] +
+                                HuristicListCastle[j][1] +
+                                HuristicListCastle[j][2] +
+                                HuristicListCastle[j][3] +
+                                HuristicListCastle[j][4] +
+                                HuristicListCastle[j][5] +
+                                HuristicListCastle[j][6] +
+                                HuristicListCastle[j][7] +
+                            HuristicListCastle[j][8] +
+                                HuristicListCastle[j][9];
+                        }
+                        else
+                        //When Minister Kind.
+                        if (System.Math.Abs(Kind) == 5 && HuristicListMinister.Count > 0)
+                        {
+                            Huristic += HuristicListMinister[j][0] +
+                                HuristicListMinister[j][1] +
+                                HuristicListMinister[j][2] +
+                                HuristicListMinister[j][3] +
+                                HuristicListMinister[j][4] +
+                                HuristicListMinister[j][5] +
+                                HuristicListMinister[j][6] +
+                            HuristicListMinister[j][7] +
+                            HuristicListMinister[j][8] +
+                            HuristicListMinister[j][9];
+                        }
+                        else
+                        //When King Kind.
+                        if (System.Math.Abs(Kind) == 6 && HuristicListKing.Count > 0)
+                        {
+                            Huristic += HuristicListKing[j][0] +
+                                HuristicListKing[j][1] +
+                                HuristicListKing[j][2] +
+                                HuristicListKing[j][3] +
+                                HuristicListKing[j][4] +
+                                HuristicListKing[j][5] +
+                                HuristicListKing[j][6] +
+                                HuristicListKing[j][7] +
+                                HuristicListKing[j][8] +
+                                HuristicListKing[j][9];
+                        }
+                    }
+                    else
+                    {
+                        if (Order == AllDraw.OrderPlate)
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return int.MinValue;
+                        }
+                        else
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return int.MaxValue;
+                        }
+                    }
+                
+               if (BOUND < 0)
                     Huristic = int.MinValue;
                 else
                     if (BOUND > 0)
@@ -6722,7 +7021,7 @@ namespace RefrigtzDLL
 
                 ////{ AllDraw.OutPut.Append("\r\n");for (double l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristicCalculartor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Huristic;
-            }
+            
         }
         //Returrn of Hurestic Tree.QC_Ok.
         //Scope of Every Objects Movments.

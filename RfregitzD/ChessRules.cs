@@ -152,7 +152,7 @@ namespace RefrigtzDLL
         int Kind;
         int KindNA;
         int Row, Column;
-        int[,] Table = new int[8, 8];
+        int[,] TableS = new int[8, 8];
         int Order = 0;
         //public bool ExistInDestinationEnemy = false;
         bool ArrangmentsBoard = false;
@@ -201,29 +201,30 @@ namespace RefrigtzDLL
         //Constructor 
         public ChessRules(int CurrentAStarGredy, bool MovementsAStarGreedyHuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool ArrangmentsChanged, int Ki, int[,] A, int Ord, int i, int j)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            { //long Time = TimeElapced.TimeNow();Spaces++;
 
-            CurrentAStarGredyMax = CurrentAStarGredy;
-            MovementsAStarGreedyHuristicFoundT = MovementsAStarGreedyHuristicTFou;
-            IgnoreSelfObjectsT = IgnoreSelfObject;
-            UsePenaltyRegardMechnisamT = UsePenaltyRegardMechnisa;
-            BestMovmentsT = BestMovment;
-            PredictHuristicT = PredictHurist;
-            OnlySelfT = OnlySel;
-            AStarGreedyHuristicT = AStarGreedyHuris;
-            ArrangmentsBoard = ArrangmentsChanged;
-            Row = i;
-            Column = j;
+                CurrentAStarGredyMax = CurrentAStarGredy;
+                MovementsAStarGreedyHuristicFoundT = MovementsAStarGreedyHuristicTFou;
+                IgnoreSelfObjectsT = IgnoreSelfObject;
+                UsePenaltyRegardMechnisamT = UsePenaltyRegardMechnisa;
+                BestMovmentsT = BestMovment;
+                PredictHuristicT = PredictHurist;
+                OnlySelfT = OnlySel;
+                AStarGreedyHuristicT = AStarGreedyHuris;
+                ArrangmentsBoard = ArrangmentsChanged;
+                Row = i;
+                Column = j;
 
-            //Initiate Global Variables By Local Parameters.
-            KindNA = Ki;
-            Kind = System.Math.Abs(Ki);
-            Table = new int[8, 8];
-            for (var ik = 0; ik < 8; ik++)
-                for (var jk = 0; jk < 8; jk++)
-                    Table[ik, jk] = A[ik, jk];
-            Order = Ord;
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ChessRules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Initiate Global Variables By Local Parameters.
+                KindNA = Ki;
+                Kind = System.Math.Abs(Ki);
+                TableS = CloneATable(A);
+
+                Order = Ord;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ChessRules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+            }
         }
         //Initiate of Rules of Chess Refregitz.
         public bool Rules(int RowFirst, //The First Click Row
@@ -235,12 +236,15 @@ namespace RefrigtzDLL
             , bool SelfHomeStatCP = true
             )
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
             Object O = new Object();
             lock (O)
             {
+                int[,] Table = CloneATable(TableS);
 
-                if (Table[RowFirst, ColumnFirst] > 0 && Table[RowSecond, ColumnSecond] > 0)
+                //long Time = TimeElapced.TimeNow();Spaces++;
+
+
+               if (Table[RowFirst, ColumnFirst] > 0 && Table[RowSecond, ColumnSecond] > 0)
                 {
                     if (!SelfHomeStatCP)
                         IgnoreSelfObject = true;
@@ -259,936 +263,959 @@ namespace RefrigtzDLL
                 }
                 else
                     IgnoreSelfObject = false;
-            }
-            //Initaite Global Varibales.
-            Object O1 = new Object();
-            lock (O1)
-            {
-                CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKingHaveSupporter = false;
-                CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKingHaveSupporterNumber = 0;
-            }
-            //When Order is Non Detectable Continue Traversal Back.
-            //if (Order != CurrentOrder)
-            //  return false;
-            //Found Location of Tow Gray and Brown Kings. 
-            int RowB = 0, ColumnB = 0;
-            int RowG = 0, ColumnG = 0;
-            FindBrownKing(Table, ref RowB, ref ColumnB);
-            FindGrayKing(Table, ref RowG, ref ColumnG);
 
-            //Gray Order.
-            if ((Order == 1))
-            {
-                if (Table[RowFirst, ColumnFirst] == 6)
+                //Initaite Global Varibales.
+                Object O1 = new Object();
+                lock (O1)
                 {
-                    if (System.Math.Abs(RowB - RowSecond) <= 1 && System.Math.Abs(ColumnB - ColumnSecond) <= 1)
+                    CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKingHaveSupporter = false;
+                    CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKingHaveSupporterNumber = 0;
+                }
+                //When Order is Non Detectable Continue Traversal Back.
+                //if (Order != CurrentOrder)
+                //  return false;
+                //Found Location of Tow Gray and Brown Kings. 
+                int RowB = 0, ColumnB = 0;
+                int RowG = 0, ColumnG = 0;
+                FindBrownKing(CloneATable(TableS), ref RowB, ref ColumnB);
+                FindGrayKing(CloneATable(TableS), ref RowG, ref ColumnG);
+
+                //Gray Order.
+                if ((Order == 1))
+                {
+                    if (Table[RowFirst, ColumnFirst] == 6)
+                    {
+                        if (System.Math.Abs(RowB - RowSecond) <= 1 && System.Math.Abs(ColumnB - ColumnSecond) <= 1)
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return false;
+                        }
+                    }
+                    //Illegal King Foundation.
+                    if (System.Math.Abs(RowB - RowG) <= 1 && System.Math.Abs(ColumnB - ColumnG) <= 1)
+                    {
+                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                        return false;
+                    }
+                }//Brown Order.
+                else
+                {
+                    if (Table[RowFirst, ColumnFirst] == -6)
+                    {
+                        if (System.Math.Abs(RowG - RowSecond) <= 1 && System.Math.Abs(ColumnG - ColumnSecond) <= 1)
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return false;
+                        }
+                    }
+                    //Ilegal Kings Foundation.
+                    if (System.Math.Abs(RowB - RowG) <= 1 && System.Math.Abs(ColumnB - ColumnG) <= 1)
                     {
                         ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                         return false;
                     }
                 }
-                //Illegal King Foundation.
-                if (System.Math.Abs(RowB - RowG) <= 1 && System.Math.Abs(ColumnB - ColumnG) <= 1)
+                //Determination of Enemy in the Destionation Home.
+                bool ExistInDestinationEnemy = new bool();
+                if (((Table[RowFirst, ColumnFirst] > 0) && (Table[RowSecond, ColumnSecond] < 0) && (Order == 1)))
                 {
-                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                    return false;
+                    ExistInDestinationEnemy = true;
                 }
-            }//Brown Order.
-            else
-            {
-                if (Table[RowFirst, ColumnFirst] == -6)
-                {
-                    if (System.Math.Abs(RowG - RowSecond) <= 1 && System.Math.Abs(ColumnG - ColumnSecond) <= 1)
-                    {
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return false;
-                    }
-                }
-                //Ilegal Kings Foundation.
-                if (System.Math.Abs(RowB - RowG) <= 1 && System.Math.Abs(ColumnB - ColumnG) <= 1)
-                {
-                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                    return false;
-                }
-            }
-            //Determination of Enemy in the Destionation Home.
-            bool ExistInDestinationEnemy = new bool();
-            if (((Table[RowFirst, ColumnFirst] > 0) && (Table[RowSecond, ColumnSecond] < 0) && (Order == 1)))
-            {
-                ExistInDestinationEnemy = true;
-            }
-            else
-                if (((Table[RowFirst, ColumnFirst] < 0) && (Table[RowSecond, ColumnSecond] > 0) && (Order == -1)))
+                else
+                    if (((Table[RowFirst, ColumnFirst] < 0) && (Table[RowSecond, ColumnSecond] > 0) && (Order == -1)))
                 {
                     ExistInDestinationEnemy = true;
                 }
 
-            //If There is A Source of Soldier.
-            if (System.Math.Abs(Kind) == 1)
-            {
-                if (!(ArrangmentsBoard))
+                //If There is A Source of Soldier.
+                if (System.Math.Abs(Kind) == 1)
                 {
-                    //Solders of Gray at Begining.
-                    if (ColumnFirst == 1 && (Order == 1))
+                    if (!(ArrangmentsBoard))
                     {
+                        //Solders of Gray at Begining.
+                        if (ColumnFirst == 1 && (Order == 1))
+                        {
 
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                        }
+                        else//Solder of Brown At Begining.
+                            if (ColumnFirst == 6 && (Order == -1))
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                        }
+                        else//Another Solder Movments.
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                        }
                     }
-                    else//Solder of Brown At Begining.
-                        if (ColumnFirst == 6 && (Order == -1))
+                    else
                     {
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
-                    }
-                    else//Another Solder Movments.
-                    {
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                        //Solders of Gray at Begining.
+                        if (ColumnFirst == 6 && (Order == 1))
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                        }
+                        else//Solder of Brown At Begining.
+                            if (ColumnFirst == 1 && (Order == -1))
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                        }
+                        else//Another Solder Movments.
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                        }
                     }
                 }
-                else
+                else//For another Kind of Objects.
                 {
-                    //Solders of Gray at Begining.
-                    if (ColumnFirst == 6 && (Order == 1))
-                    {
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
-                    }
-                    else//Solder of Brown At Begining.
-                        if (ColumnFirst == 1 && (Order == -1))
-                    {
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
-                    }
-                    else//Another Solder Movments.
-                    {
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
-                    }
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
                 }
-            }
-            else//For another Kind of Objects.
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
             }
         }
         //Castle King Movment Consideration.
         public bool CastleKing(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            if (!(ArrangmentsBoard))
-            {             //Gray Order.
-                if (Order == 1)
-                {
-                    //When Gray Castles Not Act.
-                    if (RefrigtzDLL.ChessRules.CastleKingAllowedGray)
-                    {
-                        //If Column is At First Location.
-                        if (ColumnFirst == 0 && ColumnSecond == 0)
-                        {
-                            //When Kings Moves for Small Kings Castles Movments.
-                            if (RowFirst == RowSecond - 2 && ((RowSecond - 2) >= 0))
-                            {
-                                //Consideration of Castles King of Gray King.
-
-                                if (((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond - 2, ColumnSecond] == 6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == 4)
-                                {
-                                    Object O = new Object();
-                                    lock (O)
-                                    {
-                                        CastleActGray = true;
-                                        SmallKingCastleGray = true;
-                                    }
-                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                    return true;
-                                }
-
-                            }
-
-                            else//For Greates Castles King Movments.
-                                if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
-                            {
-                                //Consideration of Castles King M<ovments.
-
-                                if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
-                                {
-                                    Object O = new Object();
-                                    lock (O)
-                                    {
-                                        CastleActGray = true;
-                                        BigKingCastleGray = true;
-                                    }
-                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                    return true;
-                                }
-
-
-                            }
-                        }
-                    }
-                }
-                else//Order of Brown.
-                {
-                    //When Brown Castles King Not Occured.
-                    if (RefrigtzDLL.ChessRules.CastleKingAllowedBrown)
-                    {
-                        //Column Situation.
-                        if (ColumnFirst == 7 && ColumnSecond == 7)
-                        {
-                            //Small Brown King Castles Consideration.
-                            if (RowFirst == RowSecond - 2 && ((RowSecond - 2) < 8))
-                            {
-
-
-                                if (((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == -6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == -4)
-                                {
-                                    //CastleActBrown = true;
-                                    Object O1 = new Object();
-                                    lock (O1)
-                                    {
-                                        SmallKingCastleBrown = true;
-                                    }
-                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                    return true;
-                                }
-
-
-                            }
-                            else
-                                if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
-                            //Brown Kings.Big King Castles Consideration.
-                            {
-
-                                if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
-                                {
-                                    //CastleActBrown = true;
-                                    Object O = new Object();
-                                    lock (O)
-                                    {
-                                        BigKingCastleBrown = true;
-                                    }
-                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                    return true;
-                                }
-
-                            }
-                        }
-                    }
-                }
-            }
-            else
+            Object O = new Object();
+            lock (O)
             {
-                //Gray Order.
-                if (Order == 1)
-                {
-                    //When Gray Castles Not Act.
-                    if (RefrigtzDLL.ChessRules.CastleKingAllowedGray)
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                if (!(ArrangmentsBoard))
+                {             //Gray Order.
+                    if (Order == 1)
                     {
-                        //If Column is At First Location.
-                        if (ColumnFirst == 7 && ColumnSecond == 7)
+                        //When Gray Castles Not Act.
+                        if (RefrigtzDLL.ChessRules.CastleKingAllowedGray)
                         {
-                            //When Kings Moves for Small Kings Castles Movments.
-                            if (RowFirst == RowSecond - 2 && ((RowSecond - 2) >= 0))
+                            //If Column is At First Location.
+                            if (ColumnFirst == 0 && ColumnSecond == 0)
                             {
-                                //Consideration of Castles King of Gray King.
-
-
-                                if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == 6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == 4)
+                                //When Kings Moves for Small Kings Castles Movments.
+                                if (RowFirst == RowSecond - 2 && ((RowSecond - 2) >= 0))
                                 {
-                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                    //CastleActGray = true;
-                                    //SmallKingCastleGray = true;
-                                    return true;
+                                    //Consideration of Castles King of Gray King.
+
+                                    if (((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond - 2, ColumnSecond] == 6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == 4)
+                                    {
+                                        Object OO = new Object();
+                                        lock (OO)
+                                        {
+                                            CastleActGray = true;
+                                            SmallKingCastleGray = true;
+                                        }
+                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        return true;
+                                    }
+
                                 }
 
+                                else//For Greates Castles King Movments.
+                                    if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
+                                {
+                                    //Consideration of Castles King M<ovments.
+
+                                    if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
+                                    {
+                                        Object OO = new Object();
+                                        lock (OO)
+                                        {
+                                            CastleActGray = true;
+                                            BigKingCastleGray = true;
+                                        }
+                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        return true;
+                                    }
+
+
+                                }
                             }
-
-                            else//For Greates Castles King Movments.
-                                if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
+                        }
+                    }
+                    else//Order of Brown.
+                    {
+                        //When Brown Castles King Not Occured.
+                        if (RefrigtzDLL.ChessRules.CastleKingAllowedBrown)
+                        {
+                            //Column Situation.
+                            if (ColumnFirst == 7 && ColumnSecond == 7)
                             {
-                                //Consideration of Castles King M<ovments.
-
-                                if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
+                                //Small Brown King Castles Consideration.
+                                if (RowFirst == RowSecond - 2 && ((RowSecond - 2) < 8))
                                 {
-                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                    //CastleActGray = true;
-                                    //BigKingCastleGray = true;
-                                    return true;
+
+
+                                    if (((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == -6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == -4)
+                                    {
+                                        //CastleActBrown = true;
+                                        Object O1 = new Object();
+                                        lock (O1)
+                                        {
+                                            SmallKingCastleBrown = true;
+                                        }
+                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        return true;
+                                    }
+
+
                                 }
+                                else
+                                    if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
+                                //Brown Kings.Big King Castles Consideration.
+                                {
 
+                                    if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
+                                    {
+                                        //CastleActBrown = true;
+                                        Object OO = new Object();
+                                        lock (OO)
+                                        {
+                                            BigKingCastleBrown = true;
+                                        }
+                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        return true;
+                                    }
 
+                                }
                             }
                         }
                     }
                 }
-                else//Order of Brown.
+                else
                 {
-                    //When Brown Castles King Not Occured.
-                    if (RefrigtzDLL.ChessRules.CastleKingAllowedBrown)
+                    //Gray Order.
+                    if (Order == 1)
                     {
-                        //Column Situation.
-                        if (ColumnFirst == 0 && ColumnSecond == 0)
+                        //When Gray Castles Not Act.
+                        if (RefrigtzDLL.ChessRules.CastleKingAllowedGray)
                         {
-                            //Small Brown King Castles Consideration.
-                            if (RowFirst == RowSecond - 2 && ((RowSecond - 2) > 0))
+                            //If Column is At First Location.
+                            if (ColumnFirst == 7 && ColumnSecond == 7)
                             {
-
-
-                                if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == -6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == -4)
+                                //When Kings Moves for Small Kings Castles Movments.
+                                if (RowFirst == RowSecond - 2 && ((RowSecond - 2) >= 0))
                                 {
-                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                    //CastleActBrown = true;
-                                    //SmallKingCastleBrown = true;
-                                    return true;
+                                    //Consideration of Castles King of Gray King.
+
+
+                                    if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == 6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == 4)
+                                    {
+                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        //CastleActGray = true;
+                                        //SmallKingCastleGray = true;
+                                        return true;
+                                    }
+
                                 }
 
+                                else//For Greates Castles King Movments.
+                                    if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
+                                {
+                                    //Consideration of Castles King M<ovments.
 
+                                    if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
+                                    {
+                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        //CastleActGray = true;
+                                        //BigKingCastleGray = true;
+                                        return true;
+                                    }
+
+
+                                }
                             }
-                            else
-                                if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
-                            //Brown Kings.Big King Castles Consideration.
+                        }
+                    }
+                    else//Order of Brown.
+                    {
+                        //When Brown Castles King Not Occured.
+                        if (RefrigtzDLL.ChessRules.CastleKingAllowedBrown)
+                        {
+                            //Column Situation.
+                            if (ColumnFirst == 0 && ColumnSecond == 0)
                             {
-
-                                if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
+                                //Small Brown King Castles Consideration.
+                                if (RowFirst == RowSecond - 2 && ((RowSecond - 2) > 0))
                                 {
-                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                    //  CastleActBrown = true;
-                                    //BigKingCastleBrown = true;
-                                    return true;
-                                }
 
+
+                                    if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == -6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == -4)
+                                    {
+                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        //CastleActBrown = true;
+                                        //SmallKingCastleBrown = true;
+                                        return true;
+                                    }
+
+
+                                }
+                                else
+                                    if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
+                                //Brown Kings.Big King Castles Consideration.
+                                {
+
+                                    if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
+                                    {
+                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        //  CastleActBrown = true;
+                                        //BigKingCastleBrown = true;
+                                        return true;
+                                    }
+
+                                }
                             }
                         }
                     }
                 }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return false;
             }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return false;
         }
         //Simulation and Consdtruction of Check.
         public bool CheckConstructor(Color color, int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, int Ki, int Order)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //Initiate a Local Variable.
-            int[,] tab = new int[8, 8];
-            //Clone A Copy of Table.
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                {
-                    tab[i, j] = Table[i, j];
-                }
+            Object O = new Object();
+            lock (O)
+            {    //long Time = TimeElapced.TimeNow();Spaces++;
+                 //Initiate a Local Variable.
+                 //Clone A Copy of Table.
+                int[,] tab = CloneATable(TableS);
 
-            //Act a Move.
-            tab[RowSecond, ColumnSecond] = tab[RowFirst, ColumnFirst];
-            tab[RowFirst, ColumnFirst] = 0;
-            //If There is Check State.
-            if (Check(tab, Order))
-            {
-                //When int of Order is Gray Check return Check State.
-                if (Order == 1)
-                    if (CheckGray)
-                    {
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckConstructor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return true;
-                    }
-                //When int is Brown State  there is Check State return Check State.
-                if (Order == -1)
-                    if (CheckBrown)
-                    {
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckConstructor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return true;
-                    }
+
+                //Act a Move.
+                tab[RowSecond, ColumnSecond] = tab[RowFirst, ColumnFirst];
+                tab[RowFirst, ColumnFirst] = 0;
+                //If There is Check State.
+                if (Check(tab, Order))
+                {
+                    //When int of Order is Gray Check return Check State.
+                    if (Order == 1)
+                        if (CheckGray)
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckConstructor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return true;
+                        }
+                    //When int is Brown State  there is Check State return Check State.
+                    if (Order == -1)
+                        if (CheckBrown)
+                        {
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckConstructor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return true;
+                        }
+                }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckConstructor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Return Non Check State.
+                return false;
             }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckConstructor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Return Non Check State.
-            return false;
         }
         //Method of Self Home int Objects Consideration.
         private bool ExistSelfHome(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //Initiate of Local Variable.
-            bool NotExistInDestinationSelfHome = false;
-            //When There is Not Source and Destination is the Same Home Location. 
-            if (RowFirst != RowSecond || ColumnFirst != ColumnSecond)
+            Object O = new Object();
+            lock (O)
             {
-                //If the Same Gray int Return Self Home. 
-                if (Table[RowSecond, ColumnSecond] > 0 && Table[RowFirst, ColumnFirst] > 0)
-                    NotExistInDestinationSelfHome = true;
-                else//If The Same int Brown Return Self Home.
-                    if (Table[RowSecond, ColumnSecond] < 0 && Table[RowFirst, ColumnFirst] < 0)
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                //Initiate of Local Variable.
+                bool NotExistInDestinationSelfHome = false;
+                //When There is Not Source and Destination is the Same Home Location. 
+                if (RowFirst != RowSecond || ColumnFirst != ColumnSecond)
+                {
+                    //If the Same Gray int Return Self Home. 
+                    if (Table[RowSecond, ColumnSecond] > 0 && Table[RowFirst, ColumnFirst] > 0)
                         NotExistInDestinationSelfHome = true;
+                    else//If The Same int Brown Return Self Home.
+                        if (Table[RowSecond, ColumnSecond] < 0 && Table[RowFirst, ColumnFirst] < 0)
+                        NotExistInDestinationSelfHome = true;
+                }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ExistSelfHome:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return NotExistInDestinationSelfHome;
             }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ExistSelfHome:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return NotExistInDestinationSelfHome;
         }
 
         //Object Danger Consideration
         public bool ObjectDangourKingMove(int Order, int[,] Table, bool DoIgnore)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            int[,] Tab = new int[8, 8];
-            //Clone a Copy
-            for (var i = 0; i < 8; i++)
-            for (var j = 0; j < 8; j++)
-            Tab[i, j] = Table[i, j];
-            //Initiate Variables.
-            CheckGray = false;
-            CheckBrown = false;
-            CheckGrayObjectDangour = false;
-            CheckBrownObjectDangour = false;
-            int RowG = 0, ColumnG = 0;
-            int RowB = 0, ColumnB = 0;
-            //Object O = new Object();
-            ////lock (O)
-            ///{
-            /// if (DoIgnore)
-            ///RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = true;
-            // }
-            //Check identification.
-            //Check(Tab, Order);
-            bool CheckGrayDummy = CheckGray;
-            bool CheckBrownDummy = CheckBrown;
-            //If There is Check on Tow Side.
-            /*if (CheckBrown || CheckGray)
-            {
-                //Check meand achmaz.
-                if (CheckBrown)
-                    CheckBrownObjectDangour = true;
-                if (CheckGray)
-                    CheckGrayObjectDangour = true;
-                return true;
-
-            }*/
-            int CDummy = RefrigtzDLL.ChessRules.CurrentOrder;
-            int COrder = Order;
-            if (Order == 1)
-            {
-                //Location of King Gary
-                if (FindGrayKing(Tab, ref RowG, ref ColumnG))
+            Object O = new Object();
+            lock (O)
+            {     //long Time = TimeElapced.TimeNow();Spaces++;
+                int[,] Tab = new int[8, 8];
+                //Clone a Copy
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Tab[i, j] = Table[i, j];
+                //Initiate Variables.
+                CheckGray = false;
+                CheckBrown = false;
+                CheckGrayObjectDangour = false;
+                CheckBrownObjectDangour = false;
+                int RowG = 0, ColumnG = 0;
+                int RowB = 0, ColumnB = 0;
+                //Object O = new Object();
+                ////lock (O)
+                ///{
+                /// if (DoIgnore)
+                ///RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = true;
+                // }
+                //Check identification.
+                //Check(Tab, Order);
+                bool CheckGrayDummy = CheckGray;
+                bool CheckBrownDummy = CheckBrown;
+                //If There is Check on Tow Side.
+                /*if (CheckBrown || CheckGray)
                 {
-                    //For Enemy Brown.
-                    for (var ii = 0; ii < 8; ii++)
+                    //Check meand achmaz.
+                    if (CheckBrown)
+                        CheckBrownObjectDangour = true;
+                    if (CheckGray)
+                        CheckGrayObjectDangour = true;
+                    return true;
+
+                }*/
+                int CDummy = RefrigtzDLL.ChessRules.CurrentOrder;
+                int COrder = Order;
+                if (Order == 1)
+                {
+                    //Location of King Gary
+                    if (FindGrayKing(Tab, ref RowG, ref ColumnG))
                     {
-                        for (var jj = 0; jj < 8; jj++)
+                        //For Enemy Brown.
+                        for (var ii = 0; ii < 8; ii++)
                         {
-                            
-                            //Ignore Gray.
-                            if (Tab[ii, jj] >= 0)
-                                continue;
-                            //For Current Gray and Empty.
-                            for (var iii = 0; iii < 8; iii++)
+                            for (var jj = 0; jj < 8; jj++)
                             {
-                                for (var jjj = 0; jjj < 8; jjj++)
+
+                                //Ignore Gray.
+                                if (Tab[ii, jj] >= 0)
+                                    continue;
+                                //For Current Gray and Empty.
+                                for (var iii = 0; iii < 8; iii++)
                                 {
-                                    for (var i = 0; i < 8; i++)
-                                        for (var j = 0; j < 8; j++)
-                                            Tab[i, j] = Table[i, j];
-                                    //Ignore Brown.
-                                    if (Tab[iii, jjj] < 0)
-                                        continue;
-                                    RefrigtzDLL.ThinkingChess AA = new RefrigtzDLL.ThinkingChess(0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
-                                    //When There is Attacked to Gray from Brown.
-                                    if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Brown, Order * -1))
+                                    for (var jjj = 0; jjj < 8; jjj++)
                                     {
-                                        //Move.
-                                        int a = Tab[iii, jjj];
-                                        Tab[iii, jjj] = Tab[ii, jj];
-                                        Tab[ii, jj] = 0;
-                                        int[,] Tabl = new int[8, 8];
-                                        for (int h = 0; h < 8; h++)
-                                            for (int g = 0; g < 8; g++)
-                                                Tabl[h, g] = Tab[h, g];
-                                        RefrigtzDLL.ChessRules AAA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tabl[iii, jjj], Tabl, Order, iii, jjj);
-                                        //When there is checked or checkmate.
-                                        if (AAA.CheckMate(Tabl, Order))
+                                        for (var i = 0; i < 8; i++)
+                                            for (var j = 0; j < 8; j++)
+                                                Tab[i, j] = Table[i, j];
+                                        //Ignore Brown.
+                                        if (Tab[iii, jjj] < 0)
+                                            continue;
+                                        RefrigtzDLL.ThinkingChess AA = new RefrigtzDLL.ThinkingChess(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
+                                        //When There is Attacked to Gray from Brown.
+                                        if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Brown, Order * -1))
                                         {
-                                            //if (AAA.CheckMateGray)
-                                            if (AAA.CheckMateGray)
+                                            //Move.
+                                            int a = Tab[iii, jjj];
+                                            Tab[iii, jjj] = Tab[ii, jj];
+                                            Tab[ii, jj] = 0;
+                                            int[,] Tabl = new int[8, 8];
+                                            for (int h = 0; h < 8; h++)
+                                                for (int g = 0; g < 8; g++)
+                                                    Tabl[h, g] = Tab[h, g];
+                                            RefrigtzDLL.ChessRules AAA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tabl[iii, jjj], Tabl, Order, iii, jjj);
+                                            //When there is checked or checkmate.
+                                            if (AAA.CheckMate(Tabl, Order))
                                             {
-                                                CheckGrayObjectDangour = true;
-                                                break;
+                                                //if (AAA.CheckMateGray)
+                                                if (AAA.CheckMateGray)
+                                                {
+                                                    CheckGrayObjectDangour = true;
+                                                    break;
+                                                }
                                             }
+                                            //CheckGrayObjectDangour = true;
                                         }
-                                        //CheckGrayObjectDangour = true;
+                                        if (CheckGrayObjectDangour)
+                                            break;
+
                                     }
                                     if (CheckGrayObjectDangour)
                                         break;
-
                                 }
                                 if (CheckGrayObjectDangour)
                                     break;
+
                             }
                             if (CheckGrayObjectDangour)
                                 break;
 
                         }
-                        if (CheckGrayObjectDangour)
-                            break;
-
                     }
                 }
-            }
-            else
-            {
-                //Location of King Brown
-                if (FindBrownKing(Tab, ref RowB, ref ColumnB))
+                else
                 {
-
-                    //For Gray Enemy.
-                    for (var ii = 0; ii < 8; ii++)
+                    //Location of King Brown
+                    if (FindBrownKing(Tab, ref RowB, ref ColumnB))
                     {
-                        for (var jj = 0; jj < 8; jj++)
-                        {
-                            //Ignore Brown
-                            if (Tab[ii, jj] <= 0)
-                                continue;
-                            //For Current Brown.
-                            for (var iii = 0; iii < 8; iii++)
-                            {
-                                for (var jjj = 0; jjj < 8; jjj++)
-                                {
-                                    for (var i = 0; i < 8; i++)
-                                        for (var j = 0; j < 8; j++)
-                                            Tab[i, j] = Table[i, j];
-                                    //Ignore Gray.
-                                    if (Tab[iii, jjj] > 0)
-                                        continue;
 
-                                    RefrigtzDLL.ThinkingChess AA = new RefrigtzDLL.ThinkingChess(0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
-                                    //When There is Attack to Brown.
-                                    if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Gray, Order * -1))
+                        //For Gray Enemy.
+                        for (var ii = 0; ii < 8; ii++)
+                        {
+                            for (var jj = 0; jj < 8; jj++)
+                            {
+                                //Ignore Brown
+                                if (Tab[ii, jj] <= 0)
+                                    continue;
+                                //For Current Brown.
+                                for (var iii = 0; iii < 8; iii++)
+                                {
+                                    for (var jjj = 0; jjj < 8; jjj++)
                                     {
-                                        //Move
-                                        int a = Tab[iii, jjj];
-                                        Tab[iii, jjj] = Tab[ii, jj];
-                                        Tab[ii, jj] = 0;
-                                        int[,] Tabl = new int[8, 8];
-                                        for (int h = 0; h < 8; h++)
-                                            for (int g = 0; g < 8; g++)
-                                                Tabl[h, g] = Tab[h, g];
-                                        RefrigtzDLL.ChessRules AAA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tabl[iii, jjj], Tabl, Order, iii, jjj);
-                                        //When There is Check or Checkedmate
-                                        if (AAA.CheckMate(Tabl, Order))
+                                        for (var i = 0; i < 8; i++)
+                                            for (var j = 0; j < 8; j++)
+                                                Tab[i, j] = Table[i, j];
+                                        //Ignore Gray.
+                                        if (Tab[iii, jjj] > 0)
+                                            continue;
+
+                                        RefrigtzDLL.ThinkingChess AA = new RefrigtzDLL.ThinkingChess(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
+                                        //When There is Attack to Brown.
+                                        if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Gray, Order * -1))
                                         {
-                                            //if (AAA.CheckMateBrown)
-                                            if (AAA.CheckMateBrown)
+                                            //Move
+                                            int a = Tab[iii, jjj];
+                                            Tab[iii, jjj] = Tab[ii, jj];
+                                            Tab[ii, jj] = 0;
+                                            int[,] Tabl = new int[8, 8];
+                                            for (int h = 0; h < 8; h++)
+                                                for (int g = 0; g < 8; g++)
+                                                    Tabl[h, g] = Tab[h, g];
+                                            RefrigtzDLL.ChessRules AAA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tabl[iii, jjj], Tabl, Order, iii, jjj);
+                                            //When There is Check or Checkedmate
+                                            if (AAA.CheckMate(Tabl, Order))
                                             {
-                                                CheckBrownObjectDangour = true;
-                                                break;
+                                                //if (AAA.CheckMateBrown)
+                                                if (AAA.CheckMateBrown)
+                                                {
+                                                    CheckBrownObjectDangour = true;
+                                                    break;
+                                                }
+
                                             }
 
+                                            //CheckBrownObjectDangour = true;
+
                                         }
-
-                                        //CheckBrownObjectDangour = true;
-
+                                        if (CheckBrownObjectDangour)
+                                            break;
                                     }
                                     if (CheckBrownObjectDangour)
                                         break;
                                 }
                                 if (CheckBrownObjectDangour)
                                     break;
+
                             }
                             if (CheckBrownObjectDangour)
                                 break;
 
                         }
-                        if (CheckBrownObjectDangour)
-                            break;
-
                     }
                 }
-            }
-            //Iniaiate Global Variables.
-            //Object O1 = new Object();
-            //lock (O1)
-            //{
-            //RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = false;
-            //}
-            //If There is Brown ObjectDanger Or Gray ObjectDanger.
-            if (CheckBrownObjectDangour || CheckGrayObjectDangour)
-            {
-                //Iniaate Global Check Variable By Local Variables.
+                //Iniaiate Global Variables.
+                //Object O1 = new Object();
+                //lock (O1)
+                //{
+                //RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = false;
+                //}
+                //If There is Brown ObjectDanger Or Gray ObjectDanger.
+                if (CheckBrownObjectDangour || CheckGrayObjectDangour)
+                {
+                    //Iniaate Global Check Variable By Local Variables.
+                    RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
+                    Order = COrder;
+                    CheckGray = CheckGrayDummy;
+                    CheckBrown = CheckBrownDummy;
+                    //Achamz is Validity.
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return true;
+                }
                 RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
                 Order = COrder;
+
+                //Iniatiate Of Global Varibales By Local Variables.
                 CheckGray = CheckGrayDummy;
                 CheckBrown = CheckBrownDummy;
-                //Achamz is Validity.
+                //Return Not Validiy.
                 ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return true;
+                return false;
             }
-            RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
-            Order = COrder;
-
-            //Iniatiate Of Global Varibales By Local Variables.
-            CheckGray = CheckGrayDummy;
-            CheckBrown = CheckBrownDummy;
-            //Return Not Validiy.
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return false;
         }
         public bool ObjectDangourKingMove(int Order, int[,] Table)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            int[,] Tab = new int[8, 8];
-            //Clone a Copy
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Tab[i, j] = Table[i, j];
-            //Initiate Variables.
-            CheckGray = false;
-            CheckBrown = false;
-            CheckGrayObjectDangour = false;
-            CheckBrownObjectDangour = false;
-            int RowG = 0, ColumnG = 0;
-            int RowB = 0, ColumnB = 0;
-            //Object O = new Object();
-            ////lock (O)
-            ///{
-            /// if (DoIgnore)
-            ///RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = true;
-            // }
-            //Check identification.
-            //Check(Tab, Order);
-            bool CheckGrayDummy = CheckGray;
-            bool CheckBrownDummy = CheckBrown;
-            //If There is Check on Tow Side.
-            /*if (CheckBrown || CheckGray)
-            {
-                //Check meand achmaz.
-                if (CheckBrown)
-                    CheckBrownObjectDangour = true;
-                if (CheckGray)
-                    CheckGrayObjectDangour = true;
-                return true;
-
-            }*/
-            int CDummy = RefrigtzDLL.ChessRules.CurrentOrder;
-            int COrder = Order;
-            if (Order == 1)
-            {
-                //Location of King Gary
-                if (FindGrayKing(Tab, ref RowG, ref ColumnG))
+            Object O = new Object();
+            lock (O)
+            {   //long Time = TimeElapced.TimeNow();Spaces++;
+                int[,] Tab = new int[8, 8];
+                //Clone a Copy
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Tab[i, j] = Table[i, j];
+                //Initiate Variables.
+                CheckGray = false;
+                CheckBrown = false;
+                CheckGrayObjectDangour = false;
+                CheckBrownObjectDangour = false;
+                int RowG = 0, ColumnG = 0;
+                int RowB = 0, ColumnB = 0;
+                //Object O = new Object();
+                ////lock (O)
+                ///{
+                /// if (DoIgnore)
+                ///RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = true;
+                // }
+                //Check identification.
+                //Check(Tab, Order);
+                bool CheckGrayDummy = CheckGray;
+                bool CheckBrownDummy = CheckBrown;
+                //If There is Check on Tow Side.
+                /*if (CheckBrown || CheckGray)
                 {
-                    //For Enemy Brown.
-                    for (var ii = 0; ii < 8; ii++)
-                    {
-                        for (var jj = 0; jj < 8; jj++)
-                        {
+                    //Check meand achmaz.
+                    if (CheckBrown)
+                        CheckBrownObjectDangour = true;
+                    if (CheckGray)
+                        CheckGrayObjectDangour = true;
+                    return true;
 
-                            //Ignore Gray.
-                            if (Tab[ii, jj] >= 0)
-                                continue;
-                            //For Current Gray and Empty.
-                            for (var iii = 0; iii < 8; iii++)
+                }*/
+                int CDummy = RefrigtzDLL.ChessRules.CurrentOrder;
+                int COrder = Order;
+                if (Order == 1)
+                {
+                    //Location of King Gary
+                    if (FindGrayKing(Tab, ref RowG, ref ColumnG))
+                    {
+                        //For Enemy Brown.
+                        for (var ii = 0; ii < 8; ii++)
+                        {
+                            for (var jj = 0; jj < 8; jj++)
                             {
-                                for (var jjj = 0; jjj < 8; jjj++)
+
+                                //Ignore Gray.
+                                if (Tab[ii, jj] >= 0)
+                                    continue;
+                                //For Current Gray and Empty.
+                                for (var iii = 0; iii < 8; iii++)
                                 {
-                                    for (var i = 0; i < 8; i++)
-                                        for (var j = 0; j < 8; j++)
-                                            Tab[i, j] = Table[i, j];
-                                    //Ignore Brown.
-                                    if (Tab[iii, jjj] < 0)
-                                        continue;
-                                    RefrigtzDLL.ThinkingChess AA = new RefrigtzDLL.ThinkingChess(0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
-                                    //When There is Attacked to Gray from Brown.
-                                    if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Brown, Order * -1))
+                                    for (var jjj = 0; jjj < 8; jjj++)
                                     {
-                                        //Move.
-                                        int a = Tab[iii, jjj];
-                                        Tab[iii, jjj] = Tab[ii, jj];
-                                        Tab[ii, jj] = 0;
-                                        int[,] Tabl = new int[8, 8];
-                                        for (int h = 0; h < 8; h++)
-                                            for (int g = 0; g < 8; g++)
-                                                Tabl[h, g] = Tab[h, g];
-                                        RefrigtzDLL.ChessRules AAA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tabl[iii, jjj], Tabl, Order, iii, jjj);
-                                        //When there is checked or checkmate.
-                                        if (AAA.Check(Tabl, Order))
+                                        for (var i = 0; i < 8; i++)
+                                            for (var j = 0; j < 8; j++)
+                                                Tab[i, j] = Table[i, j];
+                                        //Ignore Brown.
+                                        if (Tab[iii, jjj] < 0)
+                                            continue;
+                                        RefrigtzDLL.ThinkingChess AA = new RefrigtzDLL.ThinkingChess(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
+                                        //When There is Attacked to Gray from Brown.
+                                        if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Brown, Order * -1))
                                         {
-                                            //if (AAA.CheckMateGray)
-                                            if (AAA.CheckGray)
+                                            //Move.
+                                            int a = Tab[iii, jjj];
+                                            Tab[iii, jjj] = Tab[ii, jj];
+                                            Tab[ii, jj] = 0;
+                                            int[,] Tabl = new int[8, 8];
+                                            for (int h = 0; h < 8; h++)
+                                                for (int g = 0; g < 8; g++)
+                                                    Tabl[h, g] = Tab[h, g];
+                                            RefrigtzDLL.ChessRules AAA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tabl[iii, jjj], Tabl, Order, iii, jjj);
+                                            //When there is checked or checkmate.
+                                            if (AAA.Check(Tabl, Order))
                                             {
-                                                CheckGrayObjectDangour = true;
-                                                break;
+                                                //if (AAA.CheckMateGray)
+                                                if (AAA.CheckGray)
+                                                {
+                                                    CheckGrayObjectDangour = true;
+                                                    break;
+                                                }
                                             }
+                                            //CheckGrayObjectDangour = true;
                                         }
-                                        //CheckGrayObjectDangour = true;
+                                        if (CheckGrayObjectDangour)
+                                            break;
+
                                     }
                                     if (CheckGrayObjectDangour)
                                         break;
-
                                 }
                                 if (CheckGrayObjectDangour)
                                     break;
+
                             }
                             if (CheckGrayObjectDangour)
                                 break;
 
                         }
-                        if (CheckGrayObjectDangour)
-                            break;
-
                     }
                 }
-            }
-            else
-            {
-                //Location of King Brown
-                if (FindBrownKing(Tab, ref RowB, ref ColumnB))
+                else
                 {
-
-                    //For Gray Enemy.
-                    for (var ii = 0; ii < 8; ii++)
+                    //Location of King Brown
+                    if (FindBrownKing(Tab, ref RowB, ref ColumnB))
                     {
-                        for (var jj = 0; jj < 8; jj++)
-                        {
-                            //Ignore Brown
-                            if (Tab[ii, jj] <= 0)
-                                continue;
-                            //For Current Brown.
-                            for (var iii = 0; iii < 8; iii++)
-                            {
-                                for (var jjj = 0; jjj < 8; jjj++)
-                                {
-                                    for (var i = 0; i < 8; i++)
-                                        for (var j = 0; j < 8; j++)
-                                            Tab[i, j] = Table[i, j];
-                                    //Ignore Gray.
-                                    if (Tab[iii, jjj] > 0)
-                                        continue;
 
-                                    RefrigtzDLL.ThinkingChess AA = new RefrigtzDLL.ThinkingChess(0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
-                                    //When There is Attack to Brown.
-                                    if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Gray, Order * -1))
+                        //For Gray Enemy.
+                        for (var ii = 0; ii < 8; ii++)
+                        {
+                            for (var jj = 0; jj < 8; jj++)
+                            {
+                                //Ignore Brown
+                                if (Tab[ii, jj] <= 0)
+                                    continue;
+                                //For Current Brown.
+                                for (var iii = 0; iii < 8; iii++)
+                                {
+                                    for (var jjj = 0; jjj < 8; jjj++)
                                     {
-                                        //Move
-                                        int a = Tab[iii, jjj];
-                                        Tab[iii, jjj] = Tab[ii, jj];
-                                        Tab[ii, jj] = 0;
-                                        int[,] Tabl = new int[8, 8];
-                                        for (int h = 0; h < 8; h++)
-                                            for (int g = 0; g < 8; g++)
-                                                Tabl[h, g] = Tab[h, g];
-                                        RefrigtzDLL.ChessRules AAA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tabl[iii, jjj], Tabl, Order, iii, jjj);
-                                        //When There is Check or Checkedmate
-                                        if (AAA.Check(Tabl, Order))
+                                        for (var i = 0; i < 8; i++)
+                                            for (var j = 0; j < 8; j++)
+                                                Tab[i, j] = Table[i, j];
+                                        //Ignore Gray.
+                                        if (Tab[iii, jjj] > 0)
+                                            continue;
+
+                                        RefrigtzDLL.ThinkingChess AA = new RefrigtzDLL.ThinkingChess(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
+                                        //When There is Attack to Brown.
+                                        if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Gray, Order * -1))
                                         {
-                                            //if (AAA.CheckMateBrown)
-                                            if (AAA.CheckBrown)
+                                            //Move
+                                            int a = Tab[iii, jjj];
+                                            Tab[iii, jjj] = Tab[ii, jj];
+                                            Tab[ii, jj] = 0;
+                                            int[,] Tabl = new int[8, 8];
+                                            for (int h = 0; h < 8; h++)
+                                                for (int g = 0; g < 8; g++)
+                                                    Tabl[h, g] = Tab[h, g];
+                                            RefrigtzDLL.ChessRules AAA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tabl[iii, jjj], Tabl, Order, iii, jjj);
+                                            //When There is Check or Checkedmate
+                                            if (AAA.Check(Tabl, Order))
                                             {
-                                                CheckBrownObjectDangour = true;
-                                                break;
+                                                //if (AAA.CheckMateBrown)
+                                                if (AAA.CheckBrown)
+                                                {
+                                                    CheckBrownObjectDangour = true;
+                                                    break;
+                                                }
+
                                             }
 
+                                            //CheckBrownObjectDangour = true;
+
                                         }
-
-                                        //CheckBrownObjectDangour = true;
-
+                                        if (CheckBrownObjectDangour)
+                                            break;
                                     }
                                     if (CheckBrownObjectDangour)
                                         break;
                                 }
                                 if (CheckBrownObjectDangour)
                                     break;
+
                             }
                             if (CheckBrownObjectDangour)
                                 break;
 
                         }
-                        if (CheckBrownObjectDangour)
-                            break;
-
                     }
                 }
-            }
-            //Iniaiate Global Variables.
-            //Object O1 = new Object();
-            //lock (O1)
-            //{
-            //RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = false;
-            //}
-            //If There is Brown ObjectDanger Or Gray ObjectDanger.
-            if (CheckBrownObjectDangour || CheckGrayObjectDangour)
-            {
-                //Iniaate Global Check Variable By Local Variables.
+                //Iniaiate Global Variables.
+                //Object O1 = new Object();
+                //lock (O1)
+                //{
+                //RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = false;
+                //}
+                //If There is Brown ObjectDanger Or Gray ObjectDanger.
+                if (CheckBrownObjectDangour || CheckGrayObjectDangour)
+                {
+                    //Iniaate Global Check Variable By Local Variables.
+                    RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
+                    Order = COrder;
+                    CheckGray = CheckGrayDummy;
+                    CheckBrown = CheckBrownDummy;
+                    //Achamz is Validity.
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return true;
+                }
                 RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
                 Order = COrder;
+
+                //Iniatiate Of Global Varibales By Local Variables.
                 CheckGray = CheckGrayDummy;
                 CheckBrown = CheckBrownDummy;
-                //Achamz is Validity.
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return true;
+                //Return Not Validiy.
+                return false;
             }
-            RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
-            Order = COrder;
-
-            //Iniatiate Of Global Varibales By Local Variables.
-            CheckGray = CheckGrayDummy;
-            CheckBrown = CheckBrownDummy;
-            //Return Not Validiy.
-            return false;
         }
         bool AchmazCheckByMoveByRule(int[,] Tabl, int RowF, int ColumnF, int RowS, int ColumnS, int Order)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            bool Achmaz = false;
-            int[,] Table = new int[8, 8];
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Table[i, j] = Tabl[i, j];
-            Table[RowS, ColumnS] = Table[RowF, ColumnF];
-            Table[RowF, ColumnF] = 0;
-            if (Check(Table, Order))
-            {
-                if (Order == 1 && CheckGray)
-                    Achmaz = true;
-                if (Order == -1 && CheckBrown)
-                    Achmaz = true;
+            Object O = new Object();
+            lock (O)
+            {    //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Achmaz = false;
+                int[,] Table = new int[8, 8];
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tabl[i, j];
+                Table[RowS, ColumnS] = Table[RowF, ColumnF];
+                Table[RowF, ColumnF] = 0;
+                if (Check(CloneATable(Table), Order))
+                {
+                    if (Order == 1 && CheckGray)
+                        Achmaz = true;
+                    if (Order == -1 && CheckBrown)
+                        Achmaz = true;
 
+                }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("AchmazCheckByMoveByRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Achmaz;
             }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("AchmazCheckByMoveByRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return Achmaz;
         }
         public bool ObjectDangourKingMove(int Order, int[,] Table, bool DoIgnore, int ii, int jj)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            int[,] Tab = new int[8, 8];
-            //Clone a Copy
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Tab[i, j] = Table[i, j];
-            //Initiate Variables.
-            CheckGray = false;
-            CheckBrown = false;
-            CheckGrayObjectDangour = false;
-            CheckBrownObjectDangour = false;
             Object O = new Object();
             lock (O)
-            {
-                if (DoIgnore)
-                    RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = true;
-            }
-
-            //Check identification.
-            Check(Tab, Order);
-            bool CheckGrayDummy = CheckGray;
-            bool CheckBrownDummy = CheckBrown;
-            //If There is Check on Tow Side.
-            if (CheckBrown || CheckGray)
-            {
-                //Check meand achmaz.
-                if (CheckBrown)
-                    CheckBrownObjectDangour = true;
-                if (CheckGray)
-                    CheckGrayObjectDangour = true;
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return true;
-
-            }
-            int CDummy = RefrigtzDLL.ChessRules.CurrentOrder;
-            int COrder = Order;
-
-            //Location of King Gary
-
-            {
-                //Iniatite Global Varibales.
-                RefrigtzDLL.ChessRules.CurrentOrder = -1;
-                Order = -1;
-                //For Enemies.
+            { //long Time = TimeElapced.TimeNow();Spaces++;
+                int[,] Tab = new int[8, 8];
+                //Clone a Copy
                 for (var i = 0; i < 8; i++)
-                {
                     for (var j = 0; j < 8; j++)
+                        Tab[i, j] = Table[i, j];
+                //Initiate Variables.
+                CheckGray = false;
+                CheckBrown = false;
+                CheckGrayObjectDangour = false;
+                CheckBrownObjectDangour = false;
+                Object OO = new Object();
+                lock (OO)
+                {
+                    if (DoIgnore)
+                        RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = true;
+                }
+
+                //Check identification.
+                Check(Tab, Order);
+                bool CheckGrayDummy = CheckGray;
+                bool CheckBrownDummy = CheckBrown;
+                //If There is Check on Tow Side.
+                if (CheckBrown || CheckGray)
+                {
+                    //Check meand achmaz.
+                    if (CheckBrown)
+                        CheckBrownObjectDangour = true;
+                    if (CheckGray)
+                        CheckGrayObjectDangour = true;
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return true;
+
+                }
+                int CDummy = RefrigtzDLL.ChessRules.CurrentOrder;
+                int COrder = Order;
+
+                //Location of King Gary
+
+                {
+                    //Iniatite Global Varibales.
+                    RefrigtzDLL.ChessRules.CurrentOrder = -1;
+                    Order = -1;
+                    //For Enemies.
+                    for (var i = 0; i < 8; i++)
                     {
-                        //Ignore of current.
-                        if (Order == 1 && Tab[i, i] >= 0)
-                            continue;
-                        if (Order == -1 && Tab[i, i] <= 0)
-                            continue;
-                        //For All Current
-                        for (var iii = 0; iii < 8; iii++)
+                        for (var j = 0; j < 8; j++)
                         {
-                            for (var jjj = 0; jjj < 8; jjj++)
+                            //Ignore of current.
+                            if (Order == 1 && Tab[i, i] >= 0)
+                                continue;
+                            if (Order == -1 && Tab[i, i] <= 0)
+                                continue;
+                            //For All Current
+                            for (var iii = 0; iii < 8; iii++)
                             {
-                                //Ignore of enemies.
-                                if (Order == 1 && Tab[iii, jjj] <= 0)
-                                    continue;
-                                if (Order == -1 && Tab[iii, jjj] >= 0)
-                                    continue;
-
-
-                                //Clone a Copy
-                                for (var ik = 0; ik < 8; ik++)
-                                    for (var jk = 0; jk < 8; jk++)
-                                        Tab[ik, jk] = Table[ik, jk];
-                                RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tab[i, j], Tab, Order * -1, i, j);
-                                Color a = Color.Gray;
-                                if (Order * -1 == -1)
-                                    a = Color.Brown;
-                                //When Enemies can gard King
-                                if (A.Rules(i, j, iii, jjj, a, Tab[i, j]))
+                                for (var jjj = 0; jjj < 8; jjj++)
                                 {
-                                    Tab[iii, jjj] = Tab[i, j];
-                                    Tab[i, j] = 0;
-                                    if (A.CheckMate(Tab, Order))
-                                    {
-                                        if (Order == 1 && A.CheckMateGray)
-                                        {
-                                            //For Current.
-                                            for (var iiii = 0; iiii < 8; iiii++)
-                                            {
-                                                for (var jjjj = 0; jjjj < 8; jjjj++)
-                                                {
-                                                    //Ignore of enemies.
-                                                    if (Order == 1 && Tab[iiii, jjjj] <= 0)
-                                                        continue;
-                                                    if (Order == -1 && Tab[iiii, jjjj] >= 0)
-                                                        continue;
-                                                    //For Enemies and Emety.
-                                                    for (int iiiii = 0; iiiii < 8; iiiii++)
-                                                    {
-                                                        for (int jjjjj = 0; jjjjj < 8; jjjjj++)
-                                                        {
-                                                            //Ignore of Current.
-                                                            if (Order == 1 && Tab[iiiii, jjjjj] > 0)
-                                                                continue;
-                                                            if (Order == -1 && Tab[iiiii, jjjjj] < 0)
-                                                                continue;
-                                                            for (var ik = 0; ik < 8; ik++)
-                                                                for (var jk = 0; jk < 8; jk++)
-                                                                    Tab[ik, jk] = Table[ik, jk];
-                                                            Tab[iii, jjj] = Tab[i, j];
-                                                            Tab[i, j] = 0;
+                                    //Ignore of enemies.
+                                    if (Order == 1 && Tab[iii, jjj] <= 0)
+                                        continue;
+                                    if (Order == -1 && Tab[iii, jjj] >= 0)
+                                        continue;
 
-                                                            A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tab[iiii, jjjj], Tab, Order, iiii, jjjj);
-                                                            if (A.Rules(iiii, jjjj, iiiii, jjjjj, a, Tab[i, j]))
+
+                                    //Clone a Copy
+                                    for (var ik = 0; ik < 8; ik++)
+                                        for (var jk = 0; jk < 8; jk++)
+                                            Tab[ik, jk] = Table[ik, jk];
+                                    RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tab[i, j], Tab, Order * -1, i, j);
+                                    Color a = Color.Gray;
+                                    if (Order * -1 == -1)
+                                        a = Color.Brown;
+                                    //When Enemies can gard King
+                                    if (A.Rules(i, j, iii, jjj, a, Tab[i, j]))
+                                    {
+                                        Tab[iii, jjj] = Tab[i, j];
+                                        Tab[i, j] = 0;
+                                        if (A.CheckMate(Tab, Order))
+                                        {
+                                            if (Order == 1 && A.CheckMateGray)
+                                            {
+                                                //For Current.
+                                                for (var iiii = 0; iiii < 8; iiii++)
+                                                {
+                                                    for (var jjjj = 0; jjjj < 8; jjjj++)
+                                                    {
+                                                        //Ignore of enemies.
+                                                        if (Order == 1 && Tab[iiii, jjjj] <= 0)
+                                                            continue;
+                                                        if (Order == -1 && Tab[iiii, jjjj] >= 0)
+                                                            continue;
+                                                        //For Enemies and Emety.
+                                                        for (int iiiii = 0; iiiii < 8; iiiii++)
+                                                        {
+                                                            for (int jjjjj = 0; jjjjj < 8; jjjjj++)
                                                             {
-                                                                Tab[iiiii, jjjjj] = Tab[iiii, jjjj];
-                                                                Tab[iiii, jjjj] = 0;
-                                                                if (A.CheckMate(Tab, Order))
+                                                                //Ignore of Current.
+                                                                if (Order == 1 && Tab[iiiii, jjjjj] > 0)
+                                                                    continue;
+                                                                if (Order == -1 && Tab[iiiii, jjjjj] < 0)
+                                                                    continue;
+                                                                for (var ik = 0; ik < 8; ik++)
+                                                                    for (var jk = 0; jk < 8; jk++)
+                                                                        Tab[ik, jk] = Table[ik, jk];
+                                                                Tab[iii, jjj] = Tab[i, j];
+                                                                Tab[i, j] = 0;
+
+                                                                A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tab[iiii, jjjj], Tab, Order, iiii, jjjj);
+                                                                if (A.Rules(iiii, jjjj, iiiii, jjjjj, a, Tab[i, j]))
                                                                 {
-                                                                    CheckBrown = A.CheckBrown;
-                                                                    CheckGray = A.CheckGray;
-                                                                    CheckMateGray = A.CheckMateGray;
-                                                                    CheckMateBrown = A.CheckMateBrown;
-                                                                    CheckGrayObjectDangour = A.CheckGrayObjectDangour;
-                                                                    CheckBrownObjectDangour = A.CheckBrownObjectDangour;
-                                                                    RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
-                                                                    Order = COrder;
-                                                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                                                    return true;
+                                                                    Tab[iiiii, jjjjj] = Tab[iiii, jjjj];
+                                                                    Tab[iiii, jjjj] = 0;
+                                                                    if (A.CheckMate(Tab, Order))
+                                                                    {
+                                                                        CheckBrown = A.CheckBrown;
+                                                                        CheckGray = A.CheckGray;
+                                                                        CheckMateGray = A.CheckMateGray;
+                                                                        CheckMateBrown = A.CheckMateBrown;
+                                                                        CheckGrayObjectDangour = A.CheckGrayObjectDangour;
+                                                                        CheckBrownObjectDangour = A.CheckBrownObjectDangour;
+                                                                        RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
+                                                                        Order = COrder;
+                                                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                                                        return true;
+                                                                    }
                                                                 }
                                                             }
                                                         }
                                                     }
                                                 }
-                                            }
 
-                                        }
-                                        else
-                                            if (Order == -1 && A.CheckMateBrown)
+                                            }
+                                            else
+                                                if (Order == -1 && A.CheckMateBrown)
                                             {
 
                                                 //For Current.
@@ -1232,8 +1259,8 @@ namespace RefrigtzDLL
                                                                         CheckBrownObjectDangour = A.CheckBrownObjectDangour;
                                                                         RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
                                                                         Order = COrder;
-                                                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                                                    return true;
+                                                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                                                        return true;
                                                                     }
                                                                 }
                                                             }
@@ -1243,102 +1270,112 @@ namespace RefrigtzDLL
                                             }
 
 
+                                        }
+
                                     }
 
                                 }
-
                             }
                         }
                     }
+
                 }
 
+                RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
+                Order = COrder;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Iniatiate Of Global Varibales By Local Variables.
+                //Return Not Validiy.
+                return false;
             }
-
-            RefrigtzDLL.ChessRules.CurrentOrder = CDummy;
-            Order = COrder;
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Iniatiate Of Global Varibales By Local Variables.
-            //Return Not Validiy.
-            return false;
         }
         //Gray King Founder.
         public bool FindGrayKing(int[,] Table, ref int Row, ref int Column)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //For All Home Table.
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                {
-                    //If Current is Gray Home 
-                    if (Table[i, j] == 6)
+            Object O = new Object();
+            lock (O)
+            {   //long Time = TimeElapced.TimeNow();Spaces++;
+                //For All Home Table.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
                     {
-                        //Initiate Refreable Parameters.
-                        Row = i;
-                        Column = j;
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindGrayKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return true;
+                        //If Current is Gray Home 
+                        if (Table[i, j] == 6)
+                        {
+                            //Initiate Refreable Parameters.
+                            Row = i;
+                            Column = j;
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindGrayKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            return true;
+                        }
                     }
-                }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindGrayKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Not Found.
-            return false;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindGrayKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Not Found.
+                return false;
+            }
         }
         //Alpahber Object Consideration.
         static String ThingsAlphabet(int i)
         {
-            //long Time = TimeElapced.TimeNow();
-            //Initiate a Local Varibale. 
-            String A = "";
-            //Determinbe Gray Or Brown Movment.
-            if (i < 0)
-                A = "Brown:";
-            if (i > 0)
-                A = "Gray:";
-            //Determine Object Alhpabet. 
-            if (System.Math.Abs(i) == 1)
-                A += "(S)";
-            if (System.Math.Abs(i) == 2)
-                A += "(E)";
-            if (System.Math.Abs(i) == 3)
-                A += "(H)";
-            if (System.Math.Abs(i) == 4)
-                A += "(B)";
-            if (System.Math.Abs(i) == 5)
-                A += "(M)";
-            if (System.Math.Abs(i) == 6)
-                A += "(K)";
-            //Retrun Alphabet.
-            //AllDraw.OutPut.Append("\r\nThingsAlphabet:" + (TimeElapced.TimeNow() - Time).ToString());
-            return A;
+            Object O = new Object();
+            lock (O)
+            { //long Time = TimeElapced.TimeNow();
+              //Initiate a Local Varibale. 
+                String A = "";
+                //Determinbe Gray Or Brown Movment.
+                if (i < 0)
+                    A = "Brown:";
+                if (i > 0)
+                    A = "Gray:";
+                //Determine Object Alhpabet. 
+                if (System.Math.Abs(i) == 1)
+                    A += "(S)";
+                if (System.Math.Abs(i) == 2)
+                    A += "(E)";
+                if (System.Math.Abs(i) == 3)
+                    A += "(H)";
+                if (System.Math.Abs(i) == 4)
+                    A += "(B)";
+                if (System.Math.Abs(i) == 5)
+                    A += "(M)";
+                if (System.Math.Abs(i) == 6)
+                    A += "(K)";
+                //Retrun Alphabet.
+                //AllDraw.OutPut.Append("\r\nThingsAlphabet:" + (TimeElapced.TimeNow() - Time).ToString());
+                return A;
 
+            }
         }
         //Row Alphabet Consideration.
         static String RowAlphabet(int i)
         {
-            //long Time = TimeElapced.TimeNow();
-            //Initiate Local Variable.
-            String A = "";
-            //Row Alphabet Consideration.
-            if (i == 0)
-                A = "a";
-            if (i == 1)
-                A = "b";
-            if (i == 2)
-                A = "c";
-            if (i == 3)
-                A = "d";
-            if (i == 4)
-                A = "e";
-            if (i == 5)
-                A = "f";
-            if (i == 6)
-                A = "g";
-            if (i == 7)
-                A = "h";
-            //Return Row Alphabet.
-            //AllDraw.OutPut.Append("\r\nRowAlphabet:" + (TimeElapced.TimeNow() - Time).ToString());
-            return A;
+            Object O = new Object();
+            lock (O)
+            {        //long Time = TimeElapced.TimeNow();
+                     //Initiate Local Variable.
+                String A = "";
+                //Row Alphabet Consideration.
+                if (i == 0)
+                    A = "a";
+                if (i == 1)
+                    A = "b";
+                if (i == 2)
+                    A = "c";
+                if (i == 3)
+                    A = "d";
+                if (i == 4)
+                    A = "e";
+                if (i == 5)
+                    A = "f";
+                if (i == 6)
+                    A = "g";
+                if (i == 7)
+                    A = "h";
+                //Return Row Alphabet.
+                //AllDraw.OutPut.Append("\r\nRowAlphabet:" + (TimeElapced.TimeNow() - Time).ToString());
+                return A;
 
+            }
         }
         //Create Syntax of Movments.
         public String CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool CastleKing, bool SodierConvert//, ref AllDraw. THIS
@@ -1666,720 +1703,674 @@ namespace RefrigtzDLL
         //Consideration of Existing Table in List.
         bool ArrayInList(List<int[]> List, int[] A)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //Initiate Local Variables.
-            bool Is = false;
-            //For each Items of a Tow Part List.
-            for (var i = 0; i < List.Count; i++)
-            {
-                //If Listis Equal Setting of Local Variable Equality.
-                if (A[0] == List[i][0] && A[1] == List[i][1])
-                    Is = true;
+            Object O = new Object();
+            lock (O)
+            {    //long Time = TimeElapced.TimeNow();Spaces++;
+                 //Initiate Local Variables.
+                bool Is = false;
+                //For each Items of a Tow Part List.
+                for (var i = 0; i < List.Count; i++)
+                {
+                    //If Listis Equal Setting of Local Variable Equality.
+                    if (A[0] == List[i][0] && A[1] == List[i][1])
+                        Is = true;
+                }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ArrayInList:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Retrun Condition.
+                return Is;
             }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ArrayInList:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Retrun Condition.
-            return Is;
         }
         //Find a Specific Objects.
         public bool FindAThing(int[,] Table, ref int Row, ref int Column, int Thing, bool BeMovable, List<int[]> List)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //For All Items In Table Home.
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                {
-                    //Initiate Local Variables.
-                    int[] AA = new int[2];
-                    AA[0] = i;
-                    AA[1] = j;
-                    //If Table Home is Eqaul Tow Things Object.
-                    if (Table[i, j] == Thing)
+            Object O = new Object();
+            lock (O)
+            {     //long Time = TimeElapced.TimeNow();Spaces++;
+                  //For All Items In Table Home.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
                     {
-                        //If Set A Global Variable Low Logical.
-                        if (!BeMovable)
+                        //Initiate Local Variables.
+                        int[] AA = new int[2];
+                        AA[0] = i;
+                        AA[1] = j;
+                        //If Table Home is Eqaul Tow Things Object.
+                        if (Table[i, j] == Thing)
                         {
-                            //If Array Exist In List Continue Traversal Back.
-                            if (ArrayInList(List, AA))
-                                continue;
-                            //Iniatiate Local Varibales.
-                            Row = i;
-                            Column = j;
-                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindAThing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                            //Found State.
-                            return true;
-                        }
-                        else//else of Condition.
-                        {
-                            //Iniatiate Local Variables.
-                            Color A = Color.Gray;
-                            if (Order == -1)
-                                A = Color.Brown;
-                            //For All Second Home.
-                            for (var ii = 0; ii < 8; ii++)
-                                for (var jj = 0; jj < 8; jj++)
-                                {
-                                    //If First Home is Movable to Second Home.
-                                    if ((new RefrigtzDLL.ThinkingChess(0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Table, i, j, ii, jj, A, Order))
+                            //If Set A Global Variable Low Logical.
+                            if (!BeMovable)
+                            {
+                                //If Array Exist In List Continue Traversal Back.
+                                if (ArrayInList(List, AA))
+                                    continue;
+                                //Iniatiate Local Varibales.
+                                Row = i;
+                                Column = j;
+                                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindAThing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                //Found State.
+                                return true;
+                            }
+                            else//else of Condition.
+                            {
+                                //Iniatiate Local Variables.
+                                Color A = Color.Gray;
+                                if (Order == -1)
+                                    A = Color.Brown;
+                                //For All Second Home.
+                                for (var ii = 0; ii < 8; ii++)
+                                    for (var jj = 0; jj < 8; jj++)
                                     {
-                                        //If Array Exist in Home.
-                                        if (ArrayInList(List, AA))
-                                            continue;
-                                        //Initaite Local Variables.
-                                        Row = i;
-                                        Column = j;
-                                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindAThing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                                        //Found of State
-                                        return true;
+                                        //If First Home is Movable to Second Home.
+                                        if ((new RefrigtzDLL.ThinkingChess(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(CloneATable(Table), i, j, ii, jj, A, Order))
+                                        {
+                                            //If Array Exist in Home.
+                                            if (ArrayInList(List, AA))
+                                                continue;
+                                            //Initaite Local Variables.
+                                            Row = i;
+                                            Column = j;
+                                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindAThing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                            //Found of State
+                                            return true;
+                                        }
+
                                     }
+                            }
 
-                                }
                         }
-
                     }
-                }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindAThing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Not Found State.
-            return false;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindAThing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Not Found State.
+                return false;
+            }
         }
         //Brown King Found  Consideration.
         public bool FindBrownKing(int[,] Table, ref int Row, ref int Column)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //For All Home Table.
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                {
-                    //If Current Home is Brown King.
-                    if (Table[i, j] == -6)
+            Object O = new Object();
+            lock (O)
+            {    //long Time = TimeElapced.TimeNow();Spaces++;
+                 //For All Home Table.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
                     {
-                        //Initiate Refrencable Parameter.
-                        Row = i;
-                        Column = j;
-                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindBrownKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        //Found of Brown King.
-                        return true;
+                        //If Current Home is Brown King.
+                        if (Table[i, j] == -6)
+                        {
+                            //Initiate Refrencable Parameter.
+                            Row = i;
+                            Column = j;
+                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindBrownKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                            //Found of Brown King.
+                            return true;
+                        }
                     }
-                }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindBrownKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Not Found.
-            return false;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("FindBrownKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Not Found.
+                return false;
+            }
         }
         //A Constraint Check Removed Unused Method.
         public bool CheckRemovableByAttack(int[,] Table, int Order)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //Initiate Local Variables.
-            int[,] Tabl = new int[8, 8];
-            //Clone a Copy.
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Tabl[i, j] = Table[i, j];
-            //Initiate Global Variables.
             Object O = new Object();
             lock (O)
-            {
-                CheckGrayRemovable = true;
-
-                CheckBrownRemovable = true;
-            }
-
-            Check(Tabl, Order);
-            //if (Order == -1)
-            {
-                //For All Home Tables in Fourth Second Traversal.
+            {     //long Time = TimeElapced.TimeNow();Spaces++;
+                  //Initiate Local Variables.
+                int[,] Tabl = new int[8, 8];
+                //Clone a Copy.
                 for (var i = 0; i < 8; i++)
                     for (var j = 0; j < 8; j++)
-                        for (var ii = 0; ii < 8; ii++)
-                            for (var jj = 0; jj < 8; jj++)
-                            {
-                                //If Tow How is the Same Continue Traversal Back.
-                                if (i == ii && j == jj)
-                                    continue;
-                                //If is Brown Order.
-                                if (Table[i, j] < 0)
+                        Tabl[i, j] = Table[i, j];
+                //Initiate Global Variables.
+                Object OO = new Object();
+                lock (OO)
+                {
+                    CheckGrayRemovable = true;
+
+                    CheckBrownRemovable = true;
+                }
+
+                Check(Tabl, Order);
+                //if (Order == -1)
+                {
+                    //For All Home Tables in Fourth Second Traversal.
+                    for (var i = 0; i < 8; i++)
+                        for (var j = 0; j < 8; j++)
+                            for (var ii = 0; ii < 8; ii++)
+                                for (var jj = 0; jj < 8; jj++)
                                 {
-                                    //If Is Gray Order.
-                                    if (Table[ii, jj] > 0)
+                                    //If Tow How is the Same Continue Traversal Back.
+                                    if (i == ii && j == jj)
+                                        continue;
+                                    //If is Brown Order.
+                                    if (Table[i, j] < 0)
                                     {
-                                        //Initiate Local Variables.
-                                        int[,] Tab = new int[8, 8];
-                                        //Clone  a Copy.
-                                        for (var iii = 0; iii < 8; iii++)
-                                            for (var jjj = 0; jjj < 8; jjj++)
-                                            {
-                                                Tab[iii, jjj] = Table[iii, jjj];
-                                            }
-                                        //If Is Movable.
-                                        if ((new RefrigtzDLL.ThinkingChess(0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Tab, i, j, ii, jj, Color.Brown, -1))
+                                        //If Is Gray Order.
+                                        if (Table[ii, jj] > 0)
                                         {
+                                            //Initiate Local Variables.
+                                            int[,] Tab = new int[8, 8];
+                                            //Clone  a Copy.
+                                            for (var iii = 0; iii < 8; iii++)
+                                                for (var jjj = 0; jjj < 8; jjj++)
+                                                {
+                                                    Tab[iii, jjj] = Table[iii, jjj];
+                                                }
+                                            //If Is Movable.
+                                            if ((new RefrigtzDLL.ThinkingChess(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Tab, i, j, ii, jj, Color.Brown, -1))
+                                            {
+                                                //Clone a Copy.
+                                                for (var iii = 0; iii < 8; iii++)
+                                                    for (var jjj = 0; jjj < 8; jjj++)
+                                                    {
+                                                        Tab[iii, jjj] = Table[iii, jjj];
+                                                    }
+                                                //If Brown Check.
+                                                if (CheckBrown)
+                                                {
+                                                    //Initiate Local Variables.
+                                                    Tab[ii, jj] = Tab[i, j];
+                                                    Tab[i, j] = 0;
+                                                    //If There is Not Check.
+                                                    if (!Check(Tab, Order))
+                                                    {
+                                                        //If Is Not Brown Check.
+                                                        if (!CheckBrown)
+                                                        {
+                                                            //Initiate and Move.
+                                                            Tab[i, j] = Table[ii, jj];
+                                                            Tab[ii, jj] = 0;
+                                                            Object O1 = new Object();
+                                                            lock (O1)
+                                                            {
+                                                                CheckBrownRemovableValueRowi = i;
+                                                                CheckGrayRemovableValueColumni = j;
+                                                                CheckGrayRemovableValueRowii = ii;
+                                                                CheckGrayRemovableValueColumnjj = jj;
+                                                                CheckGrayRemovable = true;
+                                                            }
+                                                        }
+                                                    }
+                                                    //Move Back.
+                                                    Tab[i, j] = Table[ii, jj];
+                                                    Tab[ii, jj] = 0;
+                                                }
+
+
+                                            }
+                                        }
+                                    }
+                                }
+                }
+                {
+                    //For All Second Traversal Homes.
+                    for (var i = 0; i < 8; i++)
+                        for (var j = 0; j < 8; j++)
+                            for (var ii = 0; ii < 8; ii++)
+                                for (var jj = 0; jj < 8; jj++)
+                                {
+                                    //if The Tow Traversal are the ame Continue Traversal Back.
+                                    if (i == ii && j == jj)
+                                        continue;
+                                    //If the Gray.
+                                    if (Table[i, j] > 0)
+                                    {
+                                        //If the Brown.
+                                        if (Table[ii, jj] < 0)
+                                        {
+                                            //Inaitate Local Variables.
+                                            int[,] Tab = new int[8, 8];
                                             //Clone a Copy.
                                             for (var iii = 0; iii < 8; iii++)
                                                 for (var jjj = 0; jjj < 8; jjj++)
                                                 {
                                                     Tab[iii, jjj] = Table[iii, jjj];
                                                 }
-                                            //If Brown Check.
-                                            if (CheckBrown)
+                                            //Moveable Movemnts in the Tow Traversal Kind.
+                                            if ((new RefrigtzDLL.ThinkingChess(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Tab, i, j, ii, jj, Color.Gray, 1))
                                             {
-                                                //Initiate Local Variables.
-                                                Tab[ii, jj] = Tab[i, j];
-                                                Tab[i, j] = 0;
-                                                //If There is Not Check.
-                                                if (!Check(Tab, Order))
-                                                {
-                                                    //If Is Not Brown Check.
-                                                    if (!CheckBrown)
+                                                for (var iii = 0; iii < 8; iii++)
+                                                    for (var jjj = 0; jjj < 8; jjj++)
                                                     {
-                                                        //Initiate and Move.
-                                                        Tab[i, j] = Table[ii, jj];
-                                                        Tab[ii, jj] = 0;
-                                                        Object O1 = new Object();
-                                                        lock (O1)
+                                                        Tab[iii, jjj] = Table[iii, jjj];
+                                                    }
+                                                //If the Gray Check.
+                                                if (CheckGray)
+                                                {
+                                                    //Move 
+                                                    Tab[ii, jj] = Tab[i, j];
+                                                    Tab[i, j] = 0;
+                                                    //If ther is Not Check.
+                                                    if (!Check(Tab, Order))
+                                                    {
+                                                        //If there is Not Gray Check.
+                                                        if (!CheckGray)
                                                         {
-                                                            CheckBrownRemovableValueRowi = i;
-                                                            CheckGrayRemovableValueColumni = j;
-                                                            CheckGrayRemovableValueRowii = ii;
-                                                            CheckGrayRemovableValueColumnjj = jj;
-                                                            CheckGrayRemovable = true;
+                                                            //Move and Initaite Local and Global Variables.
+                                                            Tab[i, j] = Table[ii, jj];
+                                                            Tab[ii, jj] = 0;
+                                                            Object O1 = new Object();
+                                                            lock (O1)
+                                                            {
+                                                                CheckBrownRemovableValueRowi = i;
+                                                                CheckBrownRemovableValueColumnj = j;
+                                                                CheckBrownRemovableValueRowii = ii;
+                                                                CheckBrownRemovableValueColumnjj = jj;
+                                                                CheckBrownRemovable = true;
+                                                            }
+
                                                         }
                                                     }
+                                                    //Move Back.
+                                                    Tab[i, j] = Table[ii, jj];
+                                                    Tab[ii, jj] = 0;
                                                 }
-                                                //Move Back.
-                                                Tab[i, j] = Table[ii, jj];
-                                                Tab[ii, jj] = 0;
+
+
                                             }
-
-
                                         }
                                     }
                                 }
-                            }
+                }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckRemovableByAttack:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //If Check Remoavbe Brown Or Gray Return Removable.
+                if (CheckBrownRemovable || CheckGrayRemovable)
+                    return true;
+                //Return Not Removable.
+                return false;
             }
-            {
-                //For All Second Traversal Homes.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
-                        for (var ii = 0; ii < 8; ii++)
-                            for (var jj = 0; jj < 8; jj++)
-                            {
-                                //if The Tow Traversal are the ame Continue Traversal Back.
-                                if (i == ii && j == jj)
-                                    continue;
-                                //If the Gray.
-                                if (Table[i, j] > 0)
-                                {
-                                    //If the Brown.
-                                    if (Table[ii, jj] < 0)
-                                    {
-                                        //Inaitate Local Variables.
-                                        int[,] Tab = new int[8, 8];
-                                        //Clone a Copy.
-                                        for (var iii = 0; iii < 8; iii++)
-                                            for (var jjj = 0; jjj < 8; jjj++)
-                                            {
-                                                Tab[iii, jjj] = Table[iii, jjj];
-                                            }
-                                        //Moveable Movemnts in the Tow Traversal Kind.
-                                        if ((new RefrigtzDLL.ThinkingChess(0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Tab, i, j, ii, jj, Color.Gray, 1))
-                                        {
-                                            for (var iii = 0; iii < 8; iii++)
-                                                for (var jjj = 0; jjj < 8; jjj++)
-                                                {
-                                                    Tab[iii, jjj] = Table[iii, jjj];
-                                                }
-                                            //If the Gray Check.
-                                            if (CheckGray)
-                                            {
-                                                //Move 
-                                                Tab[ii, jj] = Tab[i, j];
-                                                Tab[i, j] = 0;
-                                                //If ther is Not Check.
-                                                if (!Check(Tab, Order))
-                                                {
-                                                    //If there is Not Gray Check.
-                                                    if (!CheckGray)
-                                                    {
-                                                        //Move and Initaite Local and Global Variables.
-                                                        Tab[i, j] = Table[ii, jj];
-                                                        Tab[ii, jj] = 0;
-                                                        Object O1 = new Object();
-                                                        lock (O1)
-                                                        {
-                                                            CheckBrownRemovableValueRowi = i;
-                                                            CheckBrownRemovableValueColumnj = j;
-                                                            CheckBrownRemovableValueRowii = ii;
-                                                            CheckBrownRemovableValueColumnjj = jj;
-                                                            CheckBrownRemovable = true;
-                                                        }
-
-                                                    }
-                                                }
-                                                //Move Back.
-                                                Tab[i, j] = Table[ii, jj];
-                                                Tab[ii, jj] = 0;
-                                            }
-
-
-                                        }
-                                    }
-                                }
-                            }
-            }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckRemovableByAttack:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //If Check Remoavbe Brown Or Gray Return Removable.
-            if (CheckBrownRemovable || CheckGrayRemovable)
-                return true;
-            //Return Not Removable.
-            return false;
         }
         bool[,] VeryFye(int[,] Table, int Order, Color a, int ii, int jj)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            int Cdummy = RefrigtzDLL.ChessRules.CurrentOrder;
-            if (Order == 1)
-                RefrigtzDLL.ChessRules.CurrentOrder = 1;
-            else
-                RefrigtzDLL.ChessRules.CurrentOrder = -1;
-            bool[,] Tab = new bool[8, 8];
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                {
-                    if (i == ii && j == jj)
-                        continue;
+            Object O = new Object();
+            lock (O)
+            {   //long Time = TimeElapced.TimeNow();Spaces++;
+                int Cdummy = RefrigtzDLL.ChessRules.CurrentOrder;
+                if (Order == 1)
+                    RefrigtzDLL.ChessRules.CurrentOrder = 1;
+                else
+                    RefrigtzDLL.ChessRules.CurrentOrder = -1;
+                bool[,] Tab = new bool[8, 8];
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                    {
+                        if (i == ii && j == jj)
+                            continue;
 
 
-                    if ((new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], Table, Order, ii, jj)).Rules(ii, jj, i, j, a, Table[ii, jj]))
-                    {
-                        Tab[i, j] = true;
+                        if ((new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], CloneATable(Table), Order, ii, jj)).Rules(ii, jj, i, j, a, Table[ii, jj]))
+                        {
+                            Tab[i, j] = true;
+                        }
+                        if ((new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], CloneATable(Table), Order, ii, jj)).Rules(ii, jj, i, j, a, Table[ii, jj]))
+                        {
+                            Tab[i, j] = true;
+                        }
                     }
-                    if ((new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], Table, Order, ii, jj)).Rules(ii, jj, i, j, a, Table[ii, jj]))
-                    {
-                        Tab[i, j] = true;
-                    }
-                }
-            RefrigtzDLL.ChessRules.CurrentOrder = Cdummy;
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("VeryFye:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return Tab;
+                RefrigtzDLL.ChessRules.CurrentOrder = Cdummy;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("VeryFye:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Tab;
+            }
         }
         public bool OnlyKingMovable(int[,] Tab, bool[,] TabB, int Order)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                {
-                    if (TabB[i, j])
+            Object O = new Object();
+            lock (O)
+            {    //long Time = TimeElapced.TimeNow();Spaces++;
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
                     {
-                        if (Order == 1)
+                        if (TabB[i, j])
                         {
-                            if (Tab[i, j] != 6)
+                            if (Order == 1)
+                            {
+                                if (Tab[i, j] != 6)
+                                {
+                                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("OnlyKingMovable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                    return false;
+                                }
+                            }
+                            else
+                                if (Tab[i, j] != -6)
                             {
                                 ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("OnlyKingMovable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                 return false;
                             }
                         }
-                        else
-                            if (Tab[i, j] != -6)
-                        {
-                            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("OnlyKingMovable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                            return false;
-                        }
+
                     }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("OnlyKingMovable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return true;
 
-                }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("OnlyKingMovable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return true;
-
+            }
         }
-        public bool Pat(int[,] Tab, int Order, Color a)
+        int[,] CloneATable(int[,] Tab)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            int[,] Table = new int[8, 8];
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Table[i, j] = Tab[i, j];
-            bool Pat = false;
             Object O = new Object();
             lock (O)
             {
-                PatCheckedInKingRule = true;
+                //Create and new an Object.
+                int[,] Table = new int[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
             }
-            if (!Check(Table, Order))
+
+        }
+        bool[,] CloneATable(bool[,] Tab)
+        {
+            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
             {
-                bool[,] TableS = new bool[8, 8];
-                //  if (Order == -1)
+                //Create and new an Object.
+                bool[,] Table = new bool[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
+            }
 
-                for (var ii = 0; ii < 8; ii++)
-                    for (var jj = 0; jj < 8; jj++)
-                    {
-                        if (Table[ii, jj] > 0)
+        }
+
+        public bool Pat(int[,] Tab, int Order, Color a)
+        {
+            Object O = new Object();
+            lock (O)
+            {     //long Time = TimeElapced.TimeNow();Spaces++;
+                int[,] Table = new int[8, 8];
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                bool Pat = false;
+                Object OO = new Object();
+                lock (OO)
+                {
+                    PatCheckedInKingRule = true;
+                }
+                if (!Check(CloneATable(Table), Order))
+                {
+                    bool[,] TableS = new bool[8, 8];
+                    //  if (Order == -1)
+
+                    for (var ii = 0; ii < 8; ii++)
+                        for (var jj = 0; jj < 8; jj++)
                         {
-                            bool[,] TableSS = VeryFye(Table, 1, Color.Gray, ii, jj);
+                            if (Table[ii, jj] > 0)
+                            {
+                                bool[,] TableSS = VeryFye(CloneATable(Table), 1, Color.Gray, ii, jj);
 
-                            for (var iii = 0; iii < 8; iii++)
-                                for (var jjj = 0; jjj < 8; jjj++)
-                                {
-                                    TableS[iii, jjj] |= TableSS[iii, jjj];
-                                }
+                                for (var iii = 0; iii < 8; iii++)
+                                    for (var jjj = 0; jjj < 8; jjj++)
+                                    {
+                                        TableS[iii, jjj] |= TableSS[iii, jjj];
+                                    }
+                            }
+                        }
+                    if (OnlyKingMovable(CloneATable(Table), CloneATable(TableS), 1))
+                    {
+                        NumbersofKingMovesToPatGray++;
+                    }
+                    Pat = false;
+                    for (var ii = 0; ii < 8; ii++)
+                        for (var jj = 0; jj < 8; jj++)
+                        {
+                            Pat |= TableS[ii, jj];
+                        }
+                    Pat = !Pat;
+                    if (Pat || NumbersofKingMovesToPatGray > 16)
+                    {
+                        Object On = new Object();
+                        lock (On)
+                        {
+                            AllDraw.EndOfGame = true;
+                            PatkGray = true;
                         }
                     }
-                if (OnlyKingMovable(Table, TableS, 1))
-                {
-                    NumbersofKingMovesToPatGray++;
-                }
-                Pat = false;
-                for (var ii = 0; ii < 8; ii++)
-                    for (var jj = 0; jj < 8; jj++)
-                    {
-                        Pat |= TableS[ii, jj];
-                    }
-                Pat = !Pat;
-                if (Pat || NumbersofKingMovesToPatGray > 16)
-                {
-                    Object On = new Object();
-                    lock (On)
-                    {
-                        AllDraw.EndOfGame = true;
-                        PatkGray = true;
-                    }
-                }
-                TableS = new bool[8, 8];
+                    TableS = new bool[8, 8];
 
-                for (var ii = 0; ii < 8; ii++)
-                    for (var jj = 0; jj < 8; jj++)
-                    {
-                        if (Table[ii, jj] < 0)
+                    for (var ii = 0; ii < 8; ii++)
+                        for (var jj = 0; jj < 8; jj++)
                         {
-                            bool[,] TableSS = VeryFye(Table, -1, Color.Brown, ii, jj);
-                            for (var iii = 0; iii < 8; iii++)
-                                for (var jjj = 0; jjj < 8; jjj++)
-                                {
-                                    TableS[iii, jjj] |= TableSS[iii, jjj];
-                                }
+                            if (Table[ii, jj] < 0)
+                            {
+                                bool[,] TableSS = VeryFye(CloneATable(Table), -1, Color.Brown, ii, jj);
+                                for (var iii = 0; iii < 8; iii++)
+                                    for (var jjj = 0; jjj < 8; jjj++)
+                                    {
+                                        TableS[iii, jjj] |= TableSS[iii, jjj];
+                                    }
+                            }
+                        }
+                    if (OnlyKingMovable(CloneATable(Table), CloneATable(TableS), -1))
+                    {
+                        NumbersofKingMovesToPatBrown++;
+                    }
+                    Pat = false;
+                    for (var ii = 0; ii < 8; ii++)
+                        for (var jj = 0; jj < 8; jj++)
+                        {
+                            Pat |= TableS[ii, jj];
+                        }
+                    Pat = !Pat;
+                    if (Pat || NumbersofKingMovesToPatBrown >= 16)
+                    {
+                        Object On = new Object();
+                        lock (On)
+                        {
+                            AllDraw.EndOfGame = true;
+                            PatBrown = true;
                         }
                     }
-                if (OnlyKingMovable(Table, TableS, -1))
-                {
-                    NumbersofKingMovesToPatBrown++;
+                    if (PatkGray || PatBrown)
+                        Pat = true;
                 }
-                Pat = false;
-                for (var ii = 0; ii < 8; ii++)
-                    for (var jj = 0; jj < 8; jj++)
-                    {
-                        Pat |= TableS[ii, jj];
-                    }
-                Pat = !Pat;
-                if (Pat || NumbersofKingMovesToPatBrown >= 16)
-                {
-                    Object On = new Object();
-                    lock (On)
-                    {
-                        AllDraw.EndOfGame = true;
-                        PatBrown = true;
-                    }
-                }
-                if (PatkGray || PatBrown)
-                    Pat = true;
-            }
-            else
-            {
-                if (CheckGray)
-                    NumbersofKingMovesToPatGray = 0;
                 else
-                    if (CheckBrown)
+                {
+                    if (CheckGray)
+                        NumbersofKingMovesToPatGray = 0;
+                    else
+                        if (CheckBrown)
                         NumbersofKingMovesToPatBrown = 0;
 
+                }
+                Object O1 = new Object();
+                lock (O1)
+                {
+                    PatCheckedInKingRule = false;
+                }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Pat:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Pat;
             }
-            Object O1 = new Object();
-            lock (O1)
-            {
-                PatCheckedInKingRule = false;
-            }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Pat:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return Pat;
         }
         void CheckKing(int[,] Table, int Order, int RowK, int ColumnK)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            int[,] Tab = new int[8, 8];
-            //Clone a Copy.
-            for (var ii = 0; ii < 8; ii++)
-                for (var jj = 0; jj < 8; jj++)
-                    Tab[ii, jj] = Table[ii, jj];
-            int Ord = Order;
-            Color aa = Color.Gray;
-            if (Ord == -1)
-                aa = Color.Brown;
-            bool BREAK = false;
-            //For All Home Table.
-            for (var i = 0; i < 8; i++)
-            {
-                for (var j = 0; j < 8; j++)
+            Object O = new Object();
+            lock (O)
+            {    //long Time = TimeElapced.TimeNow();Spaces++;
+                int[,] Tab = new int[8, 8];
+                //Clone a Copy.
+                for (var ii = 0; ii < 8; ii++)
+                    for (var jj = 0; jj < 8; jj++)
+                        Tab[ii, jj] = Table[ii, jj];
+                int Ord = Order;
+                Color aa = Color.Gray;
+                if (Ord == -1)
+                    aa = Color.Brown;
+                bool BREAK = false;
+                //For All Home Table.
+                for (var i = 0; i < 8; i++)
                 {
-                    //If The Current Home is the Gray King Continue Traversal Back.
-                    if (i == RowK && j == ColumnK)
-                        continue;
-                    if (Ord == 1 & Tab[i, j] <= 0)
-                        continue;
-                    if (Ord == -1 & Tab[i, j] >= 0)
-                        continue;
-                    //Initiate Global Variables.
-                    int Dummt = RefrigtzDLL.ChessRules.CurrentOrder;
-                    RefrigtzDLL.ChessRules.CurrentOrder = -1;
-                    //Clone a Copy.
-                    for (var ii = 0; ii < 8; ii++)
-                        for (var jj = 0; jj < 8; jj++)
-                            Tab[ii, jj] = Table[ii, jj];
-
-                    Color a = Color.Gray;
-                    if (Ord == -1)
-                        a = Color.Brown;
-                    RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[i, j], Table, Ord, i, j);
-                    if (Ord == 1)
+                    for (var j = 0; j < 8; j++)
                     {
-                        //Menen Parameter is Moveble to Second Parameters Location returm Movable.
-                        if (A.Rules(i, j, RowK, ColumnK, aa, Ord))
+                        //If The Current Home is the Gray King Continue Traversal Back.
+                        if (i == RowK && j == ColumnK)
+                            continue;
+                        if (Ord == 1 & Tab[i, j] <= 0)
+                            continue;
+                        if (Ord == -1 & Tab[i, j] >= 0)
+                            continue;
+                        //Initiate Global Variables.
+                        int Dummt = RefrigtzDLL.ChessRules.CurrentOrder;
+                        RefrigtzDLL.ChessRules.CurrentOrder = -1;
+                        //Clone a Copy.
+                        for (var ii = 0; ii < 8; ii++)
+                            for (var jj = 0; jj < 8; jj++)
+                                Tab[ii, jj] = Table[ii, jj];
+
+                        Color a = Color.Gray;
+                        if (Ord == -1)
+                            a = Color.Brown;
+                        RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[i, j], CloneATable(Table), Ord, i, j);
+                        if (Ord == 1)
                         {
-                            BREAK = true;
-                            //Initiate Local Is Check Variables.
-                            CheckBrown = true;
-                            break;
+                            //Menen Parameter is Moveble to Second Parameters Location returm Movable.
+                            if (A.Rules(i, j, RowK, ColumnK, aa, Ord))
+                            {
+                                BREAK = true;
+                                //Initiate Local Is Check Variables.
+                                CheckBrown = true;
+                                break;
+                            }
                         }
-                    }
-                    else
-                    {   //Menen Parameter is Moveble to Second Parameters Location returm Movable.
-                        if (A.Rules(i, j, RowK, ColumnK, aa, Ord))
-                        {
-                            BREAK = true;
-                            CheckGray = true;                            
-                            break;
+                        else
+                        {   //Menen Parameter is Moveble to Second Parameters Location returm Movable.
+                            if (A.Rules(i, j, RowK, ColumnK, aa, Ord))
+                            {
+                                BREAK = true;
+                                CheckGray = true;
+                                break;
+                            }
                         }
+
+                        //Initiate Global Variables.
+                        RefrigtzDLL.ChessRules.CurrentOrder = Dummt;
+
+
                     }
-
-                    //Initiate Global Variables.
-                    RefrigtzDLL.ChessRules.CurrentOrder = Dummt;
-
-
+                    if (BREAK)
+                        break;
                 }
-                if (BREAK)
-                    break;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
         }
         //Check Consideration Method.
         public bool Check(int[,] Table, int Ord)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //A player is not required to move their king out of check and the game concludes when there is a 100 % probability that one of the kings has been taken. As a result there is no checkmate.
-            if (DrawKing.KingGrayNotCheckedByQuantumMove && Ord == 1)
-                return false;
-            else
-                if (DrawKing.KingBrownNotCheckedByQuantumMove && Ord == -1)
-                return false;
-            int DummyOrder = Ord;
-            //Initiate Local and Global Briables.
-            bool Store = RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing;
             Object O = new Object();
             lock (O)
-            {
-                RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = false;
+            {  //long Time = TimeElapced.TimeNow();Spaces++;
+               //A player is not required to move their king out of check and the game concludes when there is a 100 % probability that one of the kings has been taken. As a result there is no checkmate.
+                if (DrawKing.KingGrayNotCheckedByQuantumMove && Ord == 1)
+                    return false;
+                else
+                if (DrawKing.KingBrownNotCheckedByQuantumMove && Ord == -1)
+                    return false;
+                int DummyOrder = Ord;
+                //Initiate Local and Global Briables.
+                bool Store = RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing;
+                Object OO = new Object();
+                lock (OO)
+                {
+                    RefrigtzDLL.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = false;
+                }
+                CheckGray = false;
+                CheckBrown = false;
+                //Initiate Local Variables.
+                int RowG = 0, ColumnG = 0;
+                int RowB = 0, ColumnB = 0;
+                //if (Ord == 1)
+
+                //Foud of Gray King.
+                if (FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG))
+                    CheckKing(CloneATable(Table), -1, RowG, ColumnG);
+
+                //Found of Brown King.
+                if (FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB))
+                    CheckKing(CloneATable(Table), 1, RowB, ColumnB);
+
+                Ord = DummyOrder;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Check:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //If Gray Check Or brwon Check return Check..
+                if (CheckBrown || CheckGray)
+                    return true;
+                //Return Non Check.
+                return false;
             }
-            CheckGray = false;
-            CheckBrown = false;
-            //Initiate Local Variables.
-            int RowG = 0, ColumnG = 0;
-            int RowB = 0, ColumnB = 0;
-            //if (Ord == 1)
-
-            //Foud of Gray King.
-            if (FindGrayKing(Table, ref RowG, ref ColumnG))
-                CheckKing(Table, -1, RowG, ColumnG);
-
-            //Found of Brown King.
-            if (FindBrownKing(Table, ref RowB, ref ColumnB))
-                CheckKing(Table, 1, RowB, ColumnB);
-
-            Ord = DummyOrder;
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Check:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //If Gray Check Or brwon Check return Check..
-            if (CheckBrown || CheckGray)
-                return true;
-            //Return Non Check.
-            return false;
         }
         void CheckMateKing(int[,] Tab, int Ord, bool CheckGrayDummy, bool CheckBrownDummy, int RowK, int ColumnK, ref bool ActMove, bool Checked)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            int DummyOrder = Order;
-            //For All Home Table.
-            for (var i = 0; i < 8; i++)
+            Object O = new Object();
+            lock (O)
             {
-                for (var j = 0; j < 8; j++)
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                int DummyOrder = Order;
+                //For All Home Table.
+                for (var i = 0; i < 8; i++)
                 {
-                    if (Ord == 1 && Tab[i, j] > 0)
-                        continue;
-                    if (Ord == -1 && Tab[i, j] < 0)
-                        continue;
-
-                    //Clone a Copy.
-                    CheckGray = CheckGrayDummy;
-                    CheckBrown = CheckBrownDummy;
-                    //If There is Gray Check.
-                    if (Checked)
+                    for (var j = 0; j < 8; j++)
                     {
-                        //Initiate Global Variables.
-                        RefrigtzDLL.ChessRules.CurrentOrder = 1;
-                        //Ig Gray King is Movable to First Home Table.
-                        Color a = Color.Gray;
-                        if (Ord == -1)
-                            a = Color.Brown;
-                        RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowK, ColumnK], Table, Ord, RowK, ColumnK);
-                        Order = DummyOrder;
-                        ///Table[ii, jj] = 0;
-                        //Menen Parameter is Moveble to Second Parameters Location returm Movable.
-                        for (int k = 0; k < 8; k++)
-                            for (int p = 0; p < 8; p++)
-                                Table[k, p] = Tab[k, p];
-                        if (A.Rules(RowK, ColumnK, i, j, a, Ord))
+                        if (Ord == 1 && Tab[i, j] > 0)
+                            continue;
+                        if (Ord == -1 && Tab[i, j] < 0)
+                            continue;
+
+                        //Clone a Copy.
+                        CheckGray = CheckGrayDummy;
+                        CheckBrown = CheckBrownDummy;
+                        //If There is Gray Check.
+                        if (Checked)
                         {
-                            Order = DummyOrder;
-                            //Initaite Loval and Move.
-                            //ActMove = false;
-                            int Store = Table[i, j];
-                            //For Another Methods
-                            Table[i, j] = Table[RowK, ColumnK];
-                            Table[RowK, ColumnK] = 0;
-                            //If Is Check.
-                            if (A.Check(Table, Ord))
-                            {
-                                //Move Back.
-                                //If Gray Check.
-                                if (Ord == 1)
-                                {
-                                    if (A.CheckGray)
-                                    {
-                                        //Move Mack.
-                                        ActMove = true;
-                                        continue;
-                                    }
-                                    else//If There is Not Gray Check.
-                                    {
-                                        //Move Back.
-                                        ActMove = false;
-                                        break;
-                                    }
-                                }
-                                else
-                                {
-                                    if (A.CheckBrown)
-                                    {
-                                        //Move Mack.
-                                        ActMove = true;
-                                        continue;
-                                    }
-                                    else//If There is Not Gray Check.
-                                    {
-                                        //Move Back.
-                                        ActMove = false;
-                                        break;
-                                    }
-                                }
-
-                            }
-                            else
-                            {
-                                //Comon Move Back.
-                                ActMove = false;
-                                break;
-                            }
-
-                        }
-                    }
-
-                }
-                //If One of The Not Movable.
-                if (!ActMove)
-                    break;
-            }
-            Order = DummyOrder;
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckMateKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-        }
-        void CheckMateNotKing(int[,] Tab, int Ord, bool CheckGrayDummy, bool CheckBrownDummy, ref bool ActMove)
-        {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            int DummyOrder = Ord;
-            //For All Home Table.
-            for (var i = 0; i < 8; i++)
-            {
-                for (var j = 0; j < 8; j++)
-                {
-                    if (Ord == 1 && Tab[i, j] <= 0)
-                        continue;
-                    if (Ord == -1 && Tab[i, j] >= 0)
-                        continue;
-                    //Initiate Global varibales. 
-                    CheckGray = CheckGrayDummy;
-                    CheckBrown = CheckBrownDummy;
-                    //Clone a Copy.
-                    CheckGray = CheckGrayDummy;
-                    CheckBrown = CheckBrownDummy;
-                    //If There is Gray Check.
-                    //Initiate Local Varibale.
-                    ActMove = true;
-                    //For All Second Home Table.
-                    for (var ii = 0; ii < 8; ii++)
-                    {
-
-                        for (var jj = 0; jj < 8; jj++)
-                        {
-                            if (Ord == 1 && Tab[ii, jj] > 0)
-                                continue;
-                            if (Ord == -1 && Tab[ii, jj] < 0)
-                                continue;
-                            //Clone a Copy.
-                            for (var iii = 0; iii < 8; iii++)
-                                for (var jjj = 0; jjj < 8; jjj++)
-                                    Table[iii, jjj] = Tab[iii, jjj];
+                            //Initiate Global Variables.
+                            RefrigtzDLL.ChessRules.CurrentOrder = 1;
+                            //Ig Gray King is Movable to First Home Table.
                             Color a = Color.Gray;
                             if (Ord == -1)
                                 a = Color.Brown;
-                            RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[i, j], Table, Ord, i, j);
+                            RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowK, ColumnK], CloneATable(Table), Ord, RowK, ColumnK);
+                            Order = DummyOrder;
                             ///Table[ii, jj] = 0;
                             //Menen Parameter is Moveble to Second Parameters Location returm Movable.
-                            if (A.Rules(i, j, ii, jj, a, Ord))
+                            for (int k = 0; k < 8; k++)
+                                for (int p = 0; p < 8; p++)
+                                    Table[k, p] = Tab[k, p];
+                            if (A.Rules(RowK, ColumnK, i, j, a, Ord))
                             {
                                 Order = DummyOrder;
-                                //Initiate Local Varibales and Move.
+                                //Initaite Loval and Move.
                                 //ActMove = false;
-                                //For Another Methods
                                 int Store = Table[i, j];
-                                Table[ii, jj] = Table[i, j];
-                                Table[i, j] = 0;
-                                //If Check.
-                                A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], Table, Ord, ii, jj);
-                                if (A.Check(Table, Ord))
+                                //For Another Methods
+                                Table[i, j] = Table[RowK, ColumnK];
+                                Table[RowK, ColumnK] = 0;
+                                //If Is Check.
+                                if (A.Check(CloneATable(Table), Ord))
                                 {
-                                    Order = DummyOrder;
                                     //Move Back.
-                                    Table[i, j] = Table[ii, jj];
-                                    Table[ii, jj] = Store;
                                     //If Gray Check.
                                     if (Ord == 1)
                                     {
                                         if (A.CheckGray)
                                         {
-                                            //Initiate and Move Back.
+                                            //Move Mack.
                                             ActMove = true;
-                                            Table[i, j] = Table[ii, jj];
-                                            Table[ii, jj] = Store;
                                             continue;
                                         }
-                                        //If There is Not Gray Check.
-                                        else
+                                        else//If There is Not Gray Check.
                                         {
-                                            //Initiate Varaible and Move Back.
+                                            //Move Back.
                                             ActMove = false;
-                                            Table[i, j] = Table[ii, jj];
-                                            Table[ii, jj] = Store;
                                             break;
                                         }
                                     }
@@ -2387,504 +2378,729 @@ namespace RefrigtzDLL
                                     {
                                         if (A.CheckBrown)
                                         {
-                                            //Initiate and Move Back.
+                                            //Move Mack.
                                             ActMove = true;
-                                            Table[i, j] = Table[ii, jj];
-                                            Table[ii, jj] = Store;
                                             continue;
                                         }
-                                        //If There is Not Gray Check.
-                                        else
+                                        else//If There is Not Gray Check.
                                         {
-                                            //Initiate Varaible and Move Back.
+                                            //Move Back.
                                             ActMove = false;
-                                            Table[i, j] = Table[ii, jj];
-                                            Table[ii, jj] = Store;
                                             break;
                                         }
                                     }
+
                                 }
                                 else
                                 {
-                                    //Move Back and Initiate.
-                                    Table[i, j] = Table[ii, jj];
-                                    Table[ii, jj] = Store;
+                                    //Comon Move Back.
                                     ActMove = false;
                                     break;
                                 }
+
                             }
                         }
-                        //If Not Movable Break.
-                        if (!ActMove)
-                            break;
-                    }
 
+                    }
+                    //If One of The Not Movable.
                     if (!ActMove)
                         break;
                 }
-                //If Not Movable Break.
-                if (!ActMove)
-                    break;
+                Order = DummyOrder;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckMateKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             }
-            Order = DummyOrder;
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckMateNotKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+        }
+        void CheckMateNotKing(int[,] Tab, int Ord, bool CheckGrayDummy, bool CheckBrownDummy, ref bool ActMove)
+        {
+            Object O = new Object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                int DummyOrder = Ord;
+                //For All Home Table.
+                for (var i = 0; i < 8; i++)
+                {
+                    for (var j = 0; j < 8; j++)
+                    {
+                        if (Ord == 1 && Tab[i, j] <= 0)
+                            continue;
+                        if (Ord == -1 && Tab[i, j] >= 0)
+                            continue;
+                        //Initiate Global varibales. 
+                        CheckGray = CheckGrayDummy;
+                        CheckBrown = CheckBrownDummy;
+                        //Clone a Copy.
+                        CheckGray = CheckGrayDummy;
+                        CheckBrown = CheckBrownDummy;
+                        //If There is Gray Check.
+                        //Initiate Local Varibale.
+                        ActMove = true;
+                        //For All Second Home Table.
+                        for (var ii = 0; ii < 8; ii++)
+                        {
+
+                            for (var jj = 0; jj < 8; jj++)
+                            {
+                                if (Ord == 1 && Tab[ii, jj] > 0)
+                                    continue;
+                                if (Ord == -1 && Tab[ii, jj] < 0)
+                                    continue;
+                                //Clone a Copy.
+                                for (var iii = 0; iii < 8; iii++)
+                                    for (var jjj = 0; jjj < 8; jjj++)
+                                        Table[iii, jjj] = Tab[iii, jjj];
+                                Color a = Color.Gray;
+                                if (Ord == -1)
+                                    a = Color.Brown;
+                                RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[i, j], CloneATable(Table), Ord, i, j);
+                                ///Table[ii, jj] = 0;
+                                //Menen Parameter is Moveble to Second Parameters Location returm Movable.
+                                if (A.Rules(i, j, ii, jj, a, Ord))
+                                {
+                                    Order = DummyOrder;
+                                    //Initiate Local Varibales and Move.
+                                    //ActMove = false;
+                                    //For Another Methods
+                                    int Store = Table[i, j];
+                                    Table[ii, jj] = Table[i, j];
+                                    Table[i, j] = 0;
+                                    //If Check.
+                                    A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], CloneATable(Table), Ord, ii, jj);
+                                    if (A.Check(CloneATable(Table), Ord))
+                                    {
+                                        Order = DummyOrder;
+                                        //Move Back.
+                                        Table[i, j] = Table[ii, jj];
+                                        Table[ii, jj] = Store;
+                                        //If Gray Check.
+                                        if (Ord == 1)
+                                        {
+                                            if (A.CheckGray)
+                                            {
+                                                //Initiate and Move Back.
+                                                ActMove = true;
+                                                Table[i, j] = Table[ii, jj];
+                                                Table[ii, jj] = Store;
+                                                continue;
+                                            }
+                                            //If There is Not Gray Check.
+                                            else
+                                            {
+                                                //Initiate Varaible and Move Back.
+                                                ActMove = false;
+                                                Table[i, j] = Table[ii, jj];
+                                                Table[ii, jj] = Store;
+                                                break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (A.CheckBrown)
+                                            {
+                                                //Initiate and Move Back.
+                                                ActMove = true;
+                                                Table[i, j] = Table[ii, jj];
+                                                Table[ii, jj] = Store;
+                                                continue;
+                                            }
+                                            //If There is Not Gray Check.
+                                            else
+                                            {
+                                                //Initiate Varaible and Move Back.
+                                                ActMove = false;
+                                                Table[i, j] = Table[ii, jj];
+                                                Table[ii, jj] = Store;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //Move Back and Initiate.
+                                        Table[i, j] = Table[ii, jj];
+                                        Table[ii, jj] = Store;
+                                        ActMove = false;
+                                        break;
+                                    }
+                                }
+                            }
+                            //If Not Movable Break.
+                            if (!ActMove)
+                                break;
+                        }
+
+                        if (!ActMove)
+                            break;
+                    }
+                    //If Not Movable Break.
+                    if (!ActMove)
+                        break;
+                }
+                Order = DummyOrder;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckMateNotKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+            }
         }
         //CheckMate Consideration.QC-OK
         public bool CheckMate(int[,] Tab, int Ord)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {     //long Time = TimeElapced.TimeNow();Spaces++;
 
-            //Initiate Local and Global  Varibales.
-            int[,] Table = new int[8, 8];
-            
+                //Initiate Local and Global  Varibales.
+                int[,] Table = new int[8, 8];
+
                 for (var i = 0; i < 8; i++)
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
-           
-            CheckGray = false;
-            CheckBrown = false;
-            CheckMateBrown = false;
-            CheckMateGray = false;
-            bool ActMoveG = true;
-            bool ActMoveGF = true;
-            bool ActMoveB = true;
-            bool ActMoveBF = true;
-            int RowG = 0, ColumnG = 0;
-            int RowB = 0, ColumnB = 0;
-            int DumnyOrder = Ord;
-            //Check Consideration.
-            Check(Table, Ord);
-            //Initiate Local Varibales.
-            bool CheckGrayDummy = CheckGray;
-            bool CheckBrownDummy = CheckBrown;
 
-            ActMoveG = true;
-            ActMoveGF = true;
+                CheckGray = false;
+                CheckBrown = false;
+                CheckMateBrown = false;
+                CheckMateGray = false;
+                bool ActMoveG = true;
+                bool ActMoveGF = true;
+                bool ActMoveB = true;
+                bool ActMoveBF = true;
+                int RowG = 0, ColumnG = 0;
+                int RowB = 0, ColumnB = 0;
+                int DumnyOrder = Ord;
+                //Check Consideration.
+                Check(CloneATable(Table), Ord);
+                //Initiate Local Varibales.
+                bool CheckGrayDummy = CheckGray;
+                bool CheckBrownDummy = CheckBrown;
 
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Table[i, j] = Tab[i, j];
-            RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowG, ColumnG], Table, Ord, RowG, ColumnG);
+                ActMoveG = true;
+                ActMoveGF = true;
 
-            //Found of Gray King.
-            if (FindGrayKing(Table, ref RowG, ref ColumnG))
-                A.CheckMateKing(Table, 1, CheckGrayDummy, CheckBrownDummy, RowG, ColumnG, ref ActMoveG, CheckGray);
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowG, ColumnG], CloneATable(Table), Ord, RowG, ColumnG);
 
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Table[i, j] = Tab[i, j];
-            //Found of Gray King.
-            if (FindGrayKing(Table, ref RowG, ref ColumnG))
-                A.CheckMateNotKing(Table, 1, CheckGrayDummy, CheckBrownDummy, ref ActMoveGF);
+                //Found of Gray King.
+                if (FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG))
+                    A.CheckMateKing(CloneATable(Table), 1, CheckGrayDummy, CheckBrownDummy, RowG, ColumnG, ref ActMoveG, CheckGray);
 
-            //Intiate Global Variables.
-            CheckGray = CheckGrayDummy;
-            CheckBrown = CheckBrownDummy;
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Found of Gray King.
+                if (FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG))
+                    A.CheckMateNotKing(CloneATable(Table), 1, CheckGrayDummy, CheckBrownDummy, ref ActMoveGF);
 
-            //Condition of CheckMate Gray King.
-            if (CheckGray && (ActMoveG && ActMoveGF))
-                CheckMateGray = true;
-
-
-            ActMoveB = true;
-            ActMoveBF = true;
-
-            RefrigtzDLL.ChessRules AA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowB, ColumnB], Table, Ord, RowB, ColumnB);
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Table[i, j] = Tab[i, j];
-            //Found of Brown King.
-            if (FindBrownKing(Table, ref RowB, ref ColumnB))
-                AA.CheckMateKing(Table, -1, CheckGrayDummy, CheckBrownDummy, RowB, ColumnB, ref ActMoveB, CheckBrown);
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Table[i, j] = Tab[i, j];
-            //Found of Brown King.
-            if (FindBrownKing(Table, ref RowB, ref ColumnB))
-                AA.CheckMateNotKing(Table, -1, CheckGrayDummy, CheckBrownDummy, ref ActMoveBF);
-
-
-            //Initiate Global Varibales.
-            CheckGray = CheckGrayDummy;
-            CheckBrown = CheckBrownDummy;
-            //Condition of Brown CheckMate.
-            if (CheckBrown && (ActMoveB && ActMoveBF))
-                CheckMateBrown = true;
-
-            //Initiate Global Variables.
-            Ord = DumnyOrder;
-            //If Brown CheckMate and Gray.
-            if (CheckMateGray || CheckMateBrown)
-            {
-                //Initiate Global Variable and Return CheckMate.
+                //Intiate Global Variables.
                 CheckGray = CheckGrayDummy;
                 CheckBrown = CheckBrownDummy;
-                Object On = new Object();
-                lock (On)
+
+                //Condition of CheckMate Gray King.
+                if (CheckGray && (ActMoveG && ActMoveGF))
+                    CheckMateGray = true;
+
+
+                ActMoveB = true;
+                ActMoveBF = true;
+
+                RefrigtzDLL.ChessRules AA = new RefrigtzDLL.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowB, ColumnB], CloneATable(Table), Ord, RowB, ColumnB);
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Found of Brown King.
+                if (FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB))
+                    AA.CheckMateKing(CloneATable(Table), -1, CheckGrayDummy, CheckBrownDummy, RowB, ColumnB, ref ActMoveB, CheckBrown);
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Found of Brown King.
+                if (FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB))
+                    AA.CheckMateNotKing(CloneATable(Table), -1, CheckGrayDummy, CheckBrownDummy, ref ActMoveBF);
+
+
+                //Initiate Global Varibales.
+                CheckGray = CheckGrayDummy;
+                CheckBrown = CheckBrownDummy;
+                //Condition of Brown CheckMate.
+                if (CheckBrown && (ActMoveB && ActMoveBF))
+                    CheckMateBrown = true;
+
+                //Initiate Global Variables.
+                Ord = DumnyOrder;
+                //If Brown CheckMate and Gray.
+                if (CheckMateGray || CheckMateBrown)
                 {
-                    AllDraw.EndOfGame = true;
-                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckMate:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                    return true;
+                    //Initiate Global Variable and Return CheckMate.
+                    CheckGray = CheckGrayDummy;
+                    CheckBrown = CheckBrownDummy;
+                    /*Object On = new Object();
+                    lock (On)
+                    {
+                        AllDraw.EndOfGame = true;
+                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckMate:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                        return true;
+                    }*/
                 }
+                //Initiate Global Variables.
+                CheckGray = CheckGrayDummy;
+                CheckBrown = CheckBrownDummy;
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckMate:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Return Not CheckMate.
+                return false;
             }
-            //Initiate Global Variables.
-            CheckGray = CheckGrayDummy;
-            CheckBrown = CheckBrownDummy;
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CheckMate:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Return Not CheckMate.
-            return false;
         }
         //Internal Rule of Chess Method.
         private bool Rule(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki, bool SelfHomeStatCP)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            //When is Not Castles King State.
-            if (Kind != 7)
-            {
-                //Determination of Enemy Existing.
-                if (ExistSelfHome(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki) && SelfHomeStatCP)
+            Object O = new Object();
+            lock (O)
+            {     //long Time = TimeElapced.TimeNow();Spaces++;
+                  //When is Not Castles King State.
+                if (Kind != 7)
+                {
+                    //Determination of Enemy Existing.
+                    if (ExistSelfHome(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki) && SelfHomeStatCP)
+                    {
+                        ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                        return false;
+                    }
+                }
+                //Determination of King Enemy at Destination Home.
+                /*if (!KingAttacker)
+                {
+                    //Coluld not hit King In Destination Enemy.
+                    if (Order == 1 && Table[RowSecond, ColumnSecond] == -6)
+                        return false;
+                    if (Order == -1 && Table[RowSecond, ColumnSecond] == 6)
+                        return false;
+                }*/
+                //If Source and The Destination are The Same.
+                if (RowFirst == RowSecond && ColumnFirst == ColumnSecond)
                 {
                     ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                     return false;
                 }
-            }
-            //Determination of King Enemy at Destination Home.
-            /*if (!KingAttacker)
-            {
-                //Coluld not hit King In Destination Enemy.
-                if (Order == 1 && Table[RowSecond, ColumnSecond] == -6)
-                    return false;
-                if (Order == -1 && Table[RowSecond, ColumnSecond] == 6)
-                    return false;
-            }*/
-            //If Source and The Destination are The Same.
-            if (RowFirst == RowSecond && ColumnFirst == ColumnSecond)
-            {
+                //Initiate Global Variable.
+                Object OO = new Object();
+                lock (OO)
+                {
+                    KingAttacker = false;
+                }
+                //Rule of Soldeir.
+                if (Kind == 1)
+                {
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return SoldierRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
+                }
+
+                else//Rule of Castles.
+                    if (Kind == 4)
+                {
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return CastleRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
+                }
+
+                else//Rule of Hourses.
+                        if (Kind == 3)
+                {
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return HourseRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
+                }
+                else//Rule of Elephant.
+                            if (Kind == 2)
+                {
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return ElefantRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
+                }
+                else
+                                if (Kind == 5)//Rule of Ministers.
+                {
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return MinisterRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
+                }
+                else
+                                    if (Kind == 6)//Rule of Kings.
+                {
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return KingRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
+                }
+                else
+                                        if (Kind == 7)//Rule of Castles King.
+                {
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+                }
+
                 ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Non Rulements.
                 return false;
             }
-            //Initiate Global Variable.
-            Object O = new Object();
-            lock (O)
-            {
-                KingAttacker = false;
-            }
-            //Rule of Soldeir.
-            if (Kind == 1)
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return SoldierRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
-            }
-
-            else//Rule of Castles.
-                if (Kind == 4)
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return CastleRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
-            }
-
-            else//Rule of Hourses.
-                    if (Kind == 3)
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return HourseRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
-            }
-            else//Rule of Elephant.
-                        if (Kind == 2)
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return ElefantRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
-            }
-            else
-                            if (Kind == 5)//Rule of Ministers.
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return MinisterRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
-            }
-            else
-                                if (Kind == 6)//Rule of Kings.
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return KingRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
-            }
-            else
-                                    if (Kind == 7)//Rule of Castles King.
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
-            }
-
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Non Rulements.
-            return false;
         }
         //King Rule Method.
         public bool KingRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            bool Move = false;
-            //When Miniaster Rule is Valid.
-            if (MinisterRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki) && (System.Math.Abs(RowFirst - RowSecond) <= 1) && (System.Math.Abs(ColumnFirst - ColumnSecond) <= 1))
-            {
-                //Initiate Local Variable.
-                /* int[,] Tab = new int[8, 8];
-                 //Clone A Copy.,
-                 for (var i = 0; i < 8; i++)
-                     for (var j = 0; j < 8; j++)
+            Object O = new Object();
+            lock (O)
+            {     //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When Miniaster Rule is Valid.
+                if (MinisterRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki) && (System.Math.Abs(RowFirst - RowSecond) <= 1) && (System.Math.Abs(ColumnFirst - ColumnSecond) <= 1))
+                {
+                    //Initiate Local Variable.
+                    /* int[,] Tab = new int[8, 8];
+                     //Clone A Copy.,
+                     for (var i = 0; i < 8; i++)
+                         for (var j = 0; j < 8; j++)
+                         {
+                             Tab[i, j] = Table[i, j];
+                         }
+                     //Initiate Local Varibale and Move.
+                     int Store = Tab[RowSecond, ColumnSecond];
+                     Tab[RowSecond, ColumnSecond] = Tab[RowFirst, ColumnFirst];
+                     Tab[RowFirst, ColumnFirst] = 0;
+                     //When There is Check State.
+                     if (Check(Tab, Order))
                      {
-                         Tab[i, j] = Table[i, j];
+                         if (!PatCheckedInKingRule)
+                         {
+                             //Check Gray State return Non Rule.
+                             if (Order == 1 && CheckGray)
+                                 return false;
+                             else//Brown Check State return Non Rule.
+                                 if (Order == -1 && CheckBrown)
+                                     return false;
+                         }
+                         else
+                         {
+                             //Check Gray State return Non Rule.
+                             if (Order == -1 && CheckGray)
+                                 return false;
+                             else//Brown Check State return Non Rule.
+                                 if (Order == 1 && CheckBrown)
+                                     return false;
+                         }
                      }
-                 //Initiate Local Varibale and Move.
-                 int Store = Tab[RowSecond, ColumnSecond];
-                 Tab[RowSecond, ColumnSecond] = Tab[RowFirst, ColumnFirst];
-                 Tab[RowFirst, ColumnFirst] = 0;
-                 //When There is Check State.
-                 if (Check(Tab, Order))
-                 {
-                     if (!PatCheckedInKingRule)
+
+                     //Determination of Gray Enemy State Check at Enemy King at Around Existing Return Not Validity.
+                     if (Order == 1 && Table[RowFirst, ColumnFirst] == 6)
                      {
-                         //Check Gray State return Non Rule.
-                         if (Order == 1 && CheckGray)
-                             return false;
-                         else//Brown Check State return Non Rule.
-                             if (Order == -1 && CheckBrown)
-                                 return false;
-                     }
-                     else
+
+                             if ((RowSecond + 1) < 8)
+                             {
+                                 if (Table[RowSecond + 1, ColumnSecond] == -6)
+                                     return false;
+                             }
+
+
+                             if ((ColumnSecond + 1) < 8)
+                             {
+                                 if (Table[RowSecond, ColumnSecond + 1] == -6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond + 1) < 8) && ((ColumnSecond + 1) < 8))
+                             {
+                                 if (Table[RowSecond + 1, ColumnSecond + 1] == -6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond - 1) >= 0))
+                             {
+                                 if (Table[RowSecond - 1, ColumnSecond] == -6)
+                                     return false;
+                             }
+
+
+                             if (ColumnSecond - 1 >= 0)
+                             {
+                                 if (Table[RowSecond, ColumnSecond - 1] == -6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond - 1) >= 0) && ((ColumnSecond - 1) >= 0))
+                             {
+                                 if (Table[RowSecond - 1, ColumnSecond - 1] == -6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond + 1) < 8) && ((ColumnSecond - 1) >= 0))
+                             {
+                                 if (Table[RowSecond + 1, ColumnSecond - 1] == -6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond - 1) >= 0) && ((ColumnSecond + 1) < 8))
+                             {
+                                 if (Table[RowSecond - 1, ColumnSecond + 1] == -6)
+                                     return false;
+                             }
+
+
+                     }//Determination of Brown Enemy State Check at Enemy King at Around Existing Return Not Validity.         
+                     else if (Order == -1 && Table[RowFirst, ColumnFirst] == -6)
                      {
-                         //Check Gray State return Non Rule.
-                         if (Order == -1 && CheckGray)
-                             return false;
-                         else//Brown Check State return Non Rule.
-                             if (Order == 1 && CheckBrown)
-                                 return false;
+
+                             if ((RowSecond + 1) < 8)
+                             {
+                                 if (Table[RowSecond + 1, ColumnSecond] == 6)
+                                     return false;
+                             }
+
+
+                             if ((ColumnSecond + 1) < 8)
+                             {
+                                 if (Table[RowSecond, ColumnSecond + 1] == 6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond + 1) < 8) && ((ColumnSecond + 1) < 8))
+                             {
+                                 if (Table[RowSecond + 1, ColumnSecond + 1] == 6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond - 1) >= 0))
+                             {
+                                 if (Table[RowSecond - 1, ColumnSecond] == 6)
+                                     return false;
+                             }
+
+
+                             if (ColumnSecond - 1 >= 0)
+                             {
+                                 if (Table[RowSecond, ColumnSecond - 1] == 6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond - 1) >= 0) && ((ColumnSecond - 1) >= 0))
+                             {
+                                 if (Table[RowSecond - 1, ColumnSecond - 1] == 6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond + 1) < 8) && ((ColumnSecond - 1) >= 0))
+                             {
+                                 if (Table[RowSecond + 1, ColumnSecond - 1] == 6)
+                                     return false;
+                             }
+
+
+                             if (((RowSecond - 1) >= 0) && ((ColumnSecond + 1) < 8))
+                             {
+                                 if (Table[RowSecond - 1, ColumnSecond + 1] == 6)
+                                     return false;
+                             }
+
+
                      }
-                 }
-
-                 //Determination of Gray Enemy State Check at Enemy King at Around Existing Return Not Validity.
-                 if (Order == 1 && Table[RowFirst, ColumnFirst] == 6)
-                 {
-                     
-                         if ((RowSecond + 1) < 8)
-                         {
-                             if (Table[RowSecond + 1, ColumnSecond] == -6)
-                                 return false;
-                         }
-                    
-                     
-                         if ((ColumnSecond + 1) < 8)
-                         {
-                             if (Table[RowSecond, ColumnSecond + 1] == -6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond + 1) < 8) && ((ColumnSecond + 1) < 8))
-                         {
-                             if (Table[RowSecond + 1, ColumnSecond + 1] == -6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond - 1) >= 0))
-                         {
-                             if (Table[RowSecond - 1, ColumnSecond] == -6)
-                                 return false;
-                         }
-                    
-                     
-                         if (ColumnSecond - 1 >= 0)
-                         {
-                             if (Table[RowSecond, ColumnSecond - 1] == -6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond - 1) >= 0) && ((ColumnSecond - 1) >= 0))
-                         {
-                             if (Table[RowSecond - 1, ColumnSecond - 1] == -6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond + 1) < 8) && ((ColumnSecond - 1) >= 0))
-                         {
-                             if (Table[RowSecond + 1, ColumnSecond - 1] == -6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond - 1) >= 0) && ((ColumnSecond + 1) < 8))
-                         {
-                             if (Table[RowSecond - 1, ColumnSecond + 1] == -6)
-                                 return false;
-                         }
-                    
-
-                 }//Determination of Brown Enemy State Check at Enemy King at Around Existing Return Not Validity.         
-                 else if (Order == -1 && Table[RowFirst, ColumnFirst] == -6)
-                 {
-                     
-                         if ((RowSecond + 1) < 8)
-                         {
-                             if (Table[RowSecond + 1, ColumnSecond] == 6)
-                                 return false;
-                         }
-                    
-                     
-                         if ((ColumnSecond + 1) < 8)
-                         {
-                             if (Table[RowSecond, ColumnSecond + 1] == 6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond + 1) < 8) && ((ColumnSecond + 1) < 8))
-                         {
-                             if (Table[RowSecond + 1, ColumnSecond + 1] == 6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond - 1) >= 0))
-                         {
-                             if (Table[RowSecond - 1, ColumnSecond] == 6)
-                                 return false;
-                         }
-                    
-                     
-                         if (ColumnSecond - 1 >= 0)
-                         {
-                             if (Table[RowSecond, ColumnSecond - 1] == 6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond - 1) >= 0) && ((ColumnSecond - 1) >= 0))
-                         {
-                             if (Table[RowSecond - 1, ColumnSecond - 1] == 6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond + 1) < 8) && ((ColumnSecond - 1) >= 0))
-                         {
-                             if (Table[RowSecond + 1, ColumnSecond - 1] == 6)
-                                 return false;
-                         }
-                    
-                     
-                         if (((RowSecond - 1) >= 0) && ((ColumnSecond + 1) < 8))
-                         {
-                             if (Table[RowSecond - 1, ColumnSecond + 1] == 6)
-                                 return false;
-                         }
-                    
-
-                 }
-                 */
-                Move = true;
+                     */
+                    Move = true;
+                }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("KingRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Move;
             }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("KingRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return Move;
         }
         //Rules of Minister Method.
         public bool MinisterRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            bool Move = false;
-            //When is Castles Rule.
-            if (CastleRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki))
-                //Return Validity.,
-                Move = true;
-            else
-                //When is Elephant Rule.
-                if (ElefantRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki))
+            Object O = new Object();
+            lock (O)
+            {    //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When is Castles Rule.
+                if (CastleRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki))
                     //Return Validity.,
                     Move = true;
-            //Return Not Valididty.
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("MinisterRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return Move;
+                else
+                    //When is Elephant Rule.
+                    if (ElefantRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki))
+                    //Return Validity.,
+                    Move = true;
+                //Return Not Valididty.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("MinisterRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Move;
+            }
+
         }
         //Castles Rule Method.
         public bool CastleRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            bool Move = false;
-            bool Act = false;
-            //If Variation is Only in Row.
-            if (System.Math.Abs(ColumnFirst - ColumnSecond) == 0 && System.Math.Abs(RowFirst - RowSecond) != 0)
+            Object O = new Object();
+            lock (O)
             {
-                //Initiate Local Variables.
-                int RowU = RowSecond, RowD = RowFirst;
-                int ColD = ColumnFirst, ColU = ColumnSecond;
-                int Rowf = 1, Colf = 1;
-                if (RowU < RowD)
-                    Rowf = -1;
-                if (ColU < ColD)
-                    Colf = -1;
-                int incf = 0, incR = 0;
-                if (Rowf < 0)
-                    incf = -1;
-                if (Colf < 0)
-                    incR = -1;
-                int F = 0, G = 0;
-                int A = 0, B = 0;
-                if (incf < 0)
-                {
-                    F = RowU;
-                    G = RowD;
-                }
-                else
-                {
-                    F = RowD;
-                    G = RowU;
+                int[,] Table = CloneATable(TableS);
 
-                }
-                if (incR < 0)
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                bool Act = false;
+                //If Variation is Only in Row.
+                if (System.Math.Abs(ColumnFirst - ColumnSecond) == 0 && System.Math.Abs(RowFirst - RowSecond) != 0)
                 {
-                    A = ColU;
-                    B = ColD;
-                }
-                else
-                {
-                    A = ColD;
-                    B = ColU;
-
-                }
-                {
-                    //For Variation of Row Home.
-                    for (var i = F; i <= G; i++)
+                    //Initiate Local Variables.
+                    int RowU = RowSecond, RowD = RowFirst;
+                    int ColD = ColumnFirst, ColU = ColumnSecond;
+                    int Rowf = 1, Colf = 1;
+                    if (RowU < RowD)
+                        Rowf = -1;
+                    if (ColU < ColD)
+                        Colf = -1;
+                    int incf = 0, incR = 0;
+                    if (Rowf < 0)
+                        incf = -1;
+                    if (Colf < 0)
+                        incR = -1;
+                    int F = 0, G = 0;
+                    int A = 0, B = 0;
+                    if (incf < 0)
                     {
-                        if (IgnoreSelfObject && i == RowSecond)
+                        F = RowU;
+                        G = RowD;
+                    }
+                    else
+                    {
+                        F = RowD;
+                        G = RowU;
+
+                    }
+                    if (incR < 0)
+                    {
+                        A = ColU;
+                        B = ColD;
+                    }
+                    else
+                    {
+                        A = ColD;
+                        B = ColU;
+
+                    }
+                    {
+                        //For Variation of Row Home.
+                        for (var i = F; i <= G; i++)
+                        {
+                            if (IgnoreSelfObject && i == RowSecond)
+                                continue;
+                            //When is Not Current Source Home.
+                            if (i != RowFirst)
+                            {
+                                //When There is Self Home at Home of Gray Return Not Validity.
+                                if (Table[i, ColumnFirst] > 0 && Table[RowFirst, ColumnFirst] > 0)
+                                {
+                                    Move = false;
+                                    Act = true;
+                                }
+                                //When There is Self Home of Brown Objects Return Not Validity.
+                                if (Table[i, ColumnFirst] < 0 && Table[RowFirst, ColumnFirst] < 0)
+                                {
+                                    Act = true;
+                                    Move = false;
+                                }
+
+                                //If Situation is Occured.
+                                if (i != RowSecond)
+                                {
+                                    //When There is Slef Home at Root Return Not Valididty.
+                                    if ((Table[i, ColumnFirst] < 0 || Table[i, ColumnFirst] > 0) && Table[RowFirst, ColumnFirst] > 0)
+                                    {
+                                        Act = true;
+                                        Move = false;
+                                    }
+                                    //When There is Slef Home at Root Return Not Valididty.
+                                    if ((Table[i, ColumnFirst] > 0 || Table[i, ColumnFirst] < 0) && Table[RowFirst, ColumnFirst] < 0)
+                                    {
+                                        Act = true;
+                                        Move = false;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                    if (!Act)
+                        Move = true;
+
+                }
+                //When There is Only Column Variation Home Changes.
+                if (System.Math.Abs(ColumnFirst - ColumnSecond) != 0 && System.Math.Abs(RowFirst - RowSecond) == 0)
+                {
+                    //Initiate Local Variables.
+                    int RowU = RowSecond, RowD = RowFirst;
+                    int ColD = ColumnFirst, ColU = ColumnSecond;
+                    int Rowf = 1, Colf = 1;
+                    if (RowU < RowD)
+                        Rowf = -1;
+                    if (ColU < ColD)
+                        Colf = -1;
+                    int incf = 0, incR = 0;
+                    if (Rowf < 0)
+                        incf = -1;
+                    if (Colf < 0)
+                        incR = -1;
+                    int F = 0, G = 0;
+                    int A = 0, B = 0;
+                    if (incf < 0)
+                    {
+                        F = RowU;
+                        G = RowD;
+                    }
+                    else
+                    {
+                        F = RowD;
+                        G = RowU;
+
+                    }
+                    if (incR < 0)
+                    {
+                        A = ColU;
+                        B = ColD;
+                    }
+                    else
+                    {
+                        A = ColD;
+                        B = ColU;
+
+                    }
+
+                    //For All Column Home Variation.
+                    for (var j = A; j <= B; j++)
+                    {
+                        if (IgnoreSelfObject && j == ColumnSecond)
                             continue;
-                        //When is Not Current Source Home.
-                        if (i != RowFirst)
+                        //When The Source is Not The Current.
+                        if (j != ColumnFirst)
                         {
-                            //When There is Self Home at Home of Gray Return Not Validity.
-                            if (Table[i, ColumnFirst] > 0 && Table[RowFirst, ColumnFirst] > 0)
-                            {
-                                Move = false;
-                                Act = true;
-                            }
-                            //When There is Self Home of Brown Objects Return Not Validity.
-                            if (Table[i, ColumnFirst] < 0 && Table[RowFirst, ColumnFirst] < 0)
+                            //For All Self Home at Root Return Not Validity
+                            if (Table[RowFirst, j] > 0 && Table[RowFirst, ColumnFirst] > 0)
                             {
                                 Act = true;
                                 Move = false;
                             }
-
-                            //If Situation is Occured.
-                            if (i != RowSecond)
+                            //For All Self Home at Root Return Not Validity.                       
+                            if (Table[RowFirst, j] < 0 && Table[RowFirst, ColumnFirst] < 0)
                             {
-                                //When There is Slef Home at Root Return Not Valididty.
-                                if ((Table[i, ColumnFirst] < 0 || Table[i, ColumnFirst] > 0) && Table[RowFirst, ColumnFirst] > 0)
+                                Act = true;
+                                Move = false;
+                            }
+                            //Condition Determination.
+                            if (j != ColumnSecond)
+                            {
+                                //Existing of Self Home At Root Cuased to Not validity.
+                                if ((Table[RowFirst, j] < 0 || Table[RowFirst, j] > 0) && Table[RowFirst, ColumnFirst] > 0)
                                 {
                                     Act = true;
                                     Move = false;
                                 }
-                                //When There is Slef Home at Root Return Not Valididty.
-                                if ((Table[i, ColumnFirst] > 0 || Table[i, ColumnFirst] < 0) && Table[RowFirst, ColumnFirst] < 0)
+                                //Existing of Self Home At Root Cuased to Not validity.
+                                if ((Table[RowFirst, j] > 0 || Table[RowFirst, j] < 0) && Table[RowFirst, ColumnFirst] < 0)
                                 {
                                     Act = true;
                                     Move = false;
@@ -2892,268 +3108,198 @@ namespace RefrigtzDLL
                             }
                         }
 
+
                     }
+                    //Return Validity.
+                    if (!Act)
+                        Move = true;
                 }
-                if (!Act)
-                    Move = true;
+
+                //Return Not Validity.
+                /*if (Move && System.Math.Abs(Ki) != 6)
+                {
+                    if (AchmazCheckByMoveByRule(CloneATable(Table), RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
+                        Move = false;
+                }
+                 */
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Return not Vailidity.
+                return Move;
 
             }
-            //When There is Only Column Variation Home Changes.
-            if (System.Math.Abs(ColumnFirst - ColumnSecond) != 0 && System.Math.Abs(RowFirst - RowSecond) == 0)
-            {
-                //Initiate Local Variables.
-                int RowU = RowSecond, RowD = RowFirst;
-                int ColD = ColumnFirst, ColU = ColumnSecond;
-                int Rowf = 1, Colf = 1;
-                if (RowU < RowD)
-                    Rowf = -1;
-                if (ColU < ColD)
-                    Colf = -1;
-                int incf = 0, incR = 0;
-                if (Rowf < 0)
-                    incf = -1;
-                if (Colf < 0)
-                    incR = -1;
-                int F = 0, G = 0;
-                int A = 0, B = 0;
-                if (incf < 0)
-                {
-                    F = RowU;
-                    G = RowD;
-                }
-                else
-                {
-                    F = RowD;
-                    G = RowU;
-
-                }
-                if (incR < 0)
-                {
-                    A = ColU;
-                    B = ColD;
-                }
-                else
-                {
-                    A = ColD;
-                    B = ColU;
-
-                }
-
-                //For All Column Home Variation.
-                for (var j = A; j <= B; j++)
-                {
-                    if (IgnoreSelfObject && j == ColumnSecond)
-                        continue;
-                    //When The Source is Not The Current.
-                    if (j != ColumnFirst)
-                    {
-                        //For All Self Home at Root Return Not Validity
-                        if (Table[RowFirst, j] > 0 && Table[RowFirst, ColumnFirst] > 0)
-                        {
-                            Act = true;
-                            Move = false;
-                        }
-                        //For All Self Home at Root Return Not Validity.                       
-                        if (Table[RowFirst, j] < 0 && Table[RowFirst, ColumnFirst] < 0)
-                        {
-                            Act = true;
-                            Move = false;
-                        }
-                        //Condition Determination.
-                        if (j != ColumnSecond)
-                        {
-                            //Existing of Self Home At Root Cuased to Not validity.
-                            if ((Table[RowFirst, j] < 0 || Table[RowFirst, j] > 0) && Table[RowFirst, ColumnFirst] > 0)
-                            {
-                                Act = true;
-                                Move = false;
-                            }
-                            //Existing of Self Home At Root Cuased to Not validity.
-                            if ((Table[RowFirst, j] > 0 || Table[RowFirst, j] < 0) && Table[RowFirst, ColumnFirst] < 0)
-                            {
-                                Act = true;
-                                Move = false;
-                            }
-                        }
-                    }
-
-
-                }
-                //Return Validity.
-                if (!Act)
-                    Move = true;
-            }
-
-            //Return Not Validity.
-            /*if (Move && System.Math.Abs(Ki) != 6)
-            {
-                if (AchmazCheckByMoveByRule(Table, RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
-                    Move = false;
-            }
-             */
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CastleRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Return not Vailidity.
-            return Move;
-
         }
         //Elephant Rule Method.
         public bool ElefantRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            bool Move = false;
-            bool Act = false;
-            //Orthogonal Movments of One Abs Derivation.
-            if (System.Math.Abs(ColumnFirst - ColumnSecond) == System.Math.Abs(RowFirst - RowSecond))
+            Object O = new Object();
+            lock (O)
             {
-                //Initaiet Of Local Variables.
-                int RowU = RowSecond, RowD = RowFirst;
-                int ColD = ColumnFirst, ColU = ColumnSecond;
-                int Rowf = 1, Colf = 1;
-                if (RowU < RowD)
-                    Rowf = -1;
-                if (ColU < ColD)
-                    Colf = -1;
-                int incf = 0, incR = 0;
-                if (Rowf < 0)
-                    incf = -1;
-                if (Colf < 0)
-                    incR = -1;
-                int F = 0, G = 0;
-                int A = 0, B = 0;
-                if (incf < 0)
-                {
-                    F = RowU;
-                    G = RowD;
-                }
-                else
-                {
-                    F = RowD;
-                    G = RowU;
+                int[,] Table = CloneATable(TableS);
 
-                }
-                if (incR < 0)
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                bool Act = false;
+                //Orthogonal Movments of One Abs Derivation.
+                if (System.Math.Abs(ColumnFirst - ColumnSecond) == System.Math.Abs(RowFirst - RowSecond))
                 {
-                    A = ColU;
-                    B = ColD;
-                }
-                else
-                {
-                    A = ColD;
-                    B = ColU;
-
-                }
-                //For All Root Source to Destination.
-                for (var i = F; i <= G; i++)
-                    for (var j = A; j <= B; j++)
+                    //Initaiet Of Local Variables.
+                    int RowU = RowSecond, RowD = RowFirst;
+                    int ColD = ColumnFirst, ColU = ColumnSecond;
+                    int Rowf = 1, Colf = 1;
+                    if (RowU < RowD)
+                        Rowf = -1;
+                    if (ColU < ColD)
+                        Colf = -1;
+                    int incf = 0, incR = 0;
+                    if (Rowf < 0)
+                        incf = -1;
+                    if (Colf < 0)
+                        incR = -1;
+                    int F = 0, G = 0;
+                    int A = 0, B = 0;
+                    if (incf < 0)
                     {
-                        if (IgnoreSelfObject && i == RowSecond && j == ColumnSecond)
-                            continue;
+                        F = RowU;
+                        G = RowD;
+                    }
+                    else
+                    {
+                        F = RowD;
+                        G = RowU;
 
-                        //If Abs Derivation is Not One Continue. 
-                        if (System.Math.Abs(i - RowFirst) != System.Math.Abs(j - ColumnFirst))
-                            continue;
-                        //If the Current is Not Source Home.
-                        if (i != RowFirst && j != ColumnFirst)
+                    }
+                    if (incR < 0)
+                    {
+                        A = ColU;
+                        B = ColD;
+                    }
+                    else
+                    {
+                        A = ColD;
+                        B = ColU;
+
+                    }
+                    //For All Root Source to Destination.
+                    for (var i = F; i <= G; i++)
+                        for (var j = A; j <= B; j++)
                         {
+                            if (IgnoreSelfObject && i == RowSecond && j == ColumnSecond)
+                                continue;
+
+                            //If Abs Derivation is Not One Continue. 
+                            if (System.Math.Abs(i - RowFirst) != System.Math.Abs(j - ColumnFirst))
+                                continue;
+                            //If the Current is Not Source Home.
+                            if (i != RowFirst && j != ColumnFirst)
                             {
-                                //If the Root Contains Self Home Return Not Validity.
-                                if (Table[i, j] > 0 && Table[RowFirst, ColumnFirst] > 0)
                                 {
-                                    Act = true;
-                                    Move = false;
-                                }
-                                //If The Root Contains Self Home Return Not vALIDITY. 
-                                if (Table[i, j] < 0 && Table[RowFirst, ColumnFirst] < 0)
-                                {
-                                    Act = true;
-                                    Move = false;
-                                }
-                                //When the Current is Not The Source Home.
-                                if (i != RowSecond && j != ColumnSecond)
-                                {
-                                    //When the Self ObjectExisting at the Root .
-                                    if ((Table[i, j] > 0 || Table[i, j] < 0) && Table[RowFirst, ColumnFirst] > 0)
+                                    //If the Root Contains Self Home Return Not Validity.
+                                    if (Table[i, j] > 0 && Table[RowFirst, ColumnFirst] > 0)
                                     {
                                         Act = true;
                                         Move = false;
                                     }
-                                    //When the Self ObjectExisting at the Root .
-                                    if ((Table[i, j] < 0 || Table[i, j] > 0) && Table[RowFirst, ColumnFirst] < 0)
+                                    //If The Root Contains Self Home Return Not vALIDITY. 
+                                    if (Table[i, j] < 0 && Table[RowFirst, ColumnFirst] < 0)
                                     {
                                         Act = true;
                                         Move = false;
+                                    }
+                                    //When the Current is Not The Source Home.
+                                    if (i != RowSecond && j != ColumnSecond)
+                                    {
+                                        //When the Self ObjectExisting at the Root .
+                                        if ((Table[i, j] > 0 || Table[i, j] < 0) && Table[RowFirst, ColumnFirst] > 0)
+                                        {
+                                            Act = true;
+                                            Move = false;
+                                        }
+                                        //When the Self ObjectExisting at the Root .
+                                        if ((Table[i, j] < 0 || Table[i, j] > 0) && Table[RowFirst, ColumnFirst] < 0)
+                                        {
+                                            Act = true;
+                                            Move = false;
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                    }
-                //Return Validity.
-                if (!Act)
-                    Move = true;
+                        }
+                    //Return Validity.
+                    if (!Act)
+                        Move = true;
+                }
+                /*if (Move && System.Math.Abs(Ki) != 6)
+                {
+                    if (AchmazCheckByMoveByRule(CloneATable(Table), RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
+                        Move = false;
+                }
+                 */
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ElephantRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                //Return Not Validity.
+                return Move;
             }
-            /*if (Move && System.Math.Abs(Ki) != 6)
-            {
-                if (AchmazCheckByMoveByRule(Table, RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
-                    Move = false;
-            }
-             */
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ElephantRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            //Return Not Validity.
-            return Move;
         }
         //Hource Rule Method.
         public bool HourseRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            bool Move = false;
-            //When L Movament is Occured. 
-            if (System.Math.Abs(ColumnFirst - ColumnSecond) == 2 && System.Math.Abs(RowFirst - RowSecond) == 1)
-            {
-                //Retrun Validity.
-                Move = true;
+            Object O = new Object();
+            lock (O)
+            {   //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When L Movament is Occured. 
+                if (System.Math.Abs(ColumnFirst - ColumnSecond) == 2 && System.Math.Abs(RowFirst - RowSecond) == 1)
+                {
+                    //Retrun Validity.
+                    Move = true;
+                }
+                //When Second L Movments Occured.
+                if (System.Math.Abs(ColumnFirst - ColumnSecond) == 1 && System.Math.Abs(RowFirst - RowSecond) == 2)
+                {
+                    //Return Validity.
+                    Move = true;
+                }
+                //Return Not Validity.
+                /* if (Move)
+                 {
+                     if (AchmazCheckByMoveByRule(CloneATable(Table), RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
+                         Move = false;
+                 }
+                 */
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("HourseRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Move;
             }
-            //When Second L Movments Occured.
-            if (System.Math.Abs(ColumnFirst - ColumnSecond) == 1 && System.Math.Abs(RowFirst - RowSecond) == 2)
-            {
-                //Return Validity.
-                Move = true;
-            }
-            //Return Not Validity.
-            /* if (Move)
-             {
-                 if (AchmazCheckByMoveByRule(Table, RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
-                     Move = false;
-             }
-             */
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("HourseRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return Move;
         }
         public bool SoldierRulesaArrangmentsBoardOne(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            bool Move = false;
-            //When int is Gray.
-            if (Order == 1)
+            Object O = new Object();
+            lock (O)
             {
-                //If Not Forward Return Not Validity.
-                if (ColumnFirst < ColumnSecond)
-                    Move = false;
-            }
-            else//int of Brown.
-                if (Order == -1)
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+                if (Order == 1)
+                {
+                    //If Not Forward Return Not Validity.
+                    if (ColumnFirst < ColumnSecond)
+                        Move = false;
+                }
+                else//int of Brown.
+                    if (Order == -1)
                 {
                     //If Not Back Wrad Return Not Vlaidity.
                     if (ColumnFirst > ColumnSecond)
                         Move = false;
                 }
-            //When Soldier Not Moved in Original Location do
-            if (NotMoved)
-            {
-                if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                //When Soldier Not Moved in Original Location do
+                if (NotMoved)
                 {
-                    //Depend on First Move do For Land Of Islam
-                    
+                    if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                    {
+                        //Depend on First Move do For Land Of Islam
+
 
                         if ((ColumnFirst + 2 < 8) && (ColumnFirst + 1 < 8) &&
                             (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 2) && (Table[RowSecond, ColumnSecond - 1] == 0)
@@ -3168,77 +3314,77 @@ namespace RefrigtzDLL
                         else
                             if ((ColumnFirst + 1 < 8) &&
                                 (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
-                            else//Hit Brown Soldier Rulments.
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Brown Soldier Rulments.
                                 if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
-                                {
-                                    if ((RowSecond - 1 < 8) &&
-                                        (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                    {
-                                        Move = true;
-                                    }
-                                    if ((RowSecond + 1 < 8) &&
-                                        (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                    {
-                                        Move = true;
-                                    }
+                        {
+                            if ((RowSecond - 1 < 8) &&
+                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
 
-                                }
-                   
-                }
-                else//Gray int.
-                    if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
+                        }
+
+                    }
+                    else//Gray int.
+                        if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
                     {
                         //Depend Of First Move do For Positivism
-                        
-                            if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
-                                (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)
-                                )
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
+
+                        if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
+                            (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)
+                            )
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
                             else
-                                if ((ColumnSecond + 1 < 8) &&
-                                    (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                                {
-                                    //When Destination is The Empty Return Validity Else Return Not Validity.
-                                    if (Table[RowSecond, ColumnSecond] == 0)
-                                        Move = true;
-                                    else
-                                        Move = false;
-                                }
-                                else//Hit Condition Enemy Movments.
-                                    if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                                    {
-                                        if ((RowSecond + 1 < 8) &&
-                                            (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                            //Return Validity.
-                                            Move = true;
-                                        if ((RowSecond - 1 >= 0) &&
-                                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                            //Return Validity.
-                                            Move = true;
-                                    }
-                       
+                                Move = false;
+                        }
+                        else
+                            if ((ColumnSecond + 1 < 8) &&
+                                (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Condition Enemy Movments.
+                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
+                        {
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                            if ((RowSecond - 1 >= 0) &&
+                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                        }
+
                     }
-            }
-            else//If Soldeior Moved Previously.
-            {
-                //For Brown int.
-                if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                }
+                else//If Soldeior Moved Previously.
                 {
-                    //Depend on Second Move do For Land Of Islam
-                    
+                    //For Brown int.
+                    if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                    {
+                        //Depend on Second Move do For Land Of Islam
+
                         if ((ColumnFirst + 1 < 8) &&
                                 (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 1) && (Table[RowSecond, ColumnSecond] == 0))
                         {
@@ -3250,79 +3396,85 @@ namespace RefrigtzDLL
                         }
                         else//Hit Brown Soldier Rulments.                            
                             if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
+                        {
+                            if ((RowSecond - 1 < 8) &&
+                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
                             {
-                                if ((RowSecond - 1 < 8) &&
-                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                {
-                                    Move = true;
-                                }
-                                if ((RowSecond + 1 < 8) &&
-                                    (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                {
-                                    Move = true;
-                                }
-
+                                Move = true;
                             }
-                   
-                }
-                else//Gray int.
-                    if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
+
+                        }
+
+                    }
+                    else//Gray int.
+                        if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
                     {
                         //Depend Of Second Move do For Positivism Land
-                        
-                            if ((ColumnSecond + 1 < 8) &&
-                                     (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
-                            else//Hit Condition Enemy Movments.
-                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                                {
-                                    if ((RowSecond + 1 < 8) &&
-                                        (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                        //Return Validity.
-                                        Move = true;
-                                    if ((RowSecond - 1 >= 0) &&
-                                            (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                        //Return Validity.
-                                        Move = true;
-                                }
-                       
-                    }
-            }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("SoldierRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return Move;
 
+                        if ((ColumnSecond + 1 < 8) &&
+                                 (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Condition Enemy Movments.
+                            if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
+                        {
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                            if ((RowSecond - 1 >= 0) &&
+                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                        }
+
+                    }
+                }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("SoldierRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Move;
+            }
         }
         public bool SoldierRulesaArrangmentsBoardZero(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
-            bool Move = false;
-            //When int is Gray.
-            if (Order == 1)
+
+            Object O = new Object();
+            lock (O)
             {
-                //If Not Forward Return Not Validity.
-                if (ColumnFirst > ColumnSecond)
-                    Move = false;
-            }
-            else//int of Brown.
-                if (Order == -1)
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+                if (Order == 1)
+                {
+                    //If Not Forward Return Not Validity.
+                    if (ColumnFirst > ColumnSecond)
+                        Move = false;
+                }
+                else//int of Brown.
+                    if (Order == -1)
                 {
                     //If Not Back Wrad Return Not Vlaidity.
                     if (ColumnFirst < ColumnSecond)
                         Move = false;
                 }
-            //When Soldier Not Moved in Original Location do
-            if (NotMoved)
-            {
-                if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
+                //When Soldier Not Moved in Original Location do
+                if (NotMoved)
                 {
-                    //Depend on First Move do For Land Of Islam
-                    
+                    if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
+                    {
+                        //Depend on First Move do For Land Of Islam
+
 
                         if ((ColumnFirst + 2 < 8) && (ColumnFirst + 1 < 8) &&
                             (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 2) && (Table[RowSecond, ColumnSecond - 1] == 0)
@@ -3337,77 +3489,77 @@ namespace RefrigtzDLL
                         else
                             if ((ColumnFirst + 1 < 8) &&
                                 (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
-                            else//Hit Gray Soldier Rulments.
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Gray Soldier Rulments.
                                 if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
-                                {
-                                    if ((RowSecond - 1 < 8) &&
-                                        (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                    {
-                                        Move = true;
-                                    }
-                                    if ((RowSecond + 1 < 8) &&
-                                        (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                    {
-                                        Move = true;
-                                    }
+                        {
+                            if ((RowSecond - 1 < 8) &&
+                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
 
-                                }
-                   
-                }
-                else//Brown int.
-                    if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                        }
+
+                    }
+                    else//Brown int.
+                        if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
                     {
                         //Depend Of First Move do For Positivism
-                        
-                            if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
-                                (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)
-                                )
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
+
+                        if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
+                            (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)
+                            )
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
                             else
-                                if ((ColumnSecond + 1 < 8) &&
-                                    (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                                {
-                                    //When Destination is The Empty Return Validity Else Return Not Validity.
-                                    if (Table[RowSecond, ColumnSecond] == 0)
-                                        Move = true;
-                                    else
-                                        Move = false;
-                                }
-                                else//Hit Condition Enemy Movments.
-                                    if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                                    {
-                                        if ((RowSecond + 1 < 8) &&
-                                            (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                            //Return Validity.
-                                            Move = true;
-                                        if ((RowSecond - 1 >= 0) &&
-                                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                            //Return Validity.
-                                            Move = true;
-                                    }
-                       
+                                Move = false;
+                        }
+                        else
+                            if ((ColumnSecond + 1 < 8) &&
+                                (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Condition Enemy Movments.
+                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
+                        {
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                            if ((RowSecond - 1 >= 0) &&
+                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                        }
+
                     }
-            }
-            else//If Soldeior Moved Previously.
-            {
-                //For Gray int.
-                if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
+                }
+                else//If Soldeior Moved Previously.
                 {
-                    //Depend on Second Move do For Land Of Islam
-                    
+                    //For Gray int.
+                    if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
+                    {
+                        //Depend on Second Move do For Land Of Islam
+
                         if ((ColumnFirst + 1 < 8) &&
                                 (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 1) && (Table[RowSecond, ColumnSecond] == 0))
                         {
@@ -3419,76 +3571,81 @@ namespace RefrigtzDLL
                         }
                         else//Hit Gray Soldier Rulments.                            
                             if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
+                        {
+                            if ((RowSecond - 1 < 8) &&
+                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
                             {
-                                if ((RowSecond - 1 < 8) &&
-                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                {
-                                    Move = true;
-                                }
-                                if ((RowSecond + 1 < 8) &&
-                                    (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                {
-                                    Move = true;
-                                }
-
+                                Move = true;
                             }
-                   
-                }
-                else//Brown int.
-                    if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
+
+                        }
+
+                    }
+                    else//Brown int.
+                        if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
                     {
                         //Depend Of Second Move do For Positivism Land
-                        
-                            if ((ColumnSecond + 1 < 8) &&
-                                     (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
-                            else//Hit Condition Enemy Movments.
-                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                                {
-                                    if ((RowSecond + 1 < 8) &&
-                                        (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                        //Return Validity.
-                                        Move = true;
-                                    if ((RowSecond - 1 >= 0) &&
-                                            (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                        //Return Validity.
-                                        Move = true;
-                                }
-                       
+
+                        if ((ColumnSecond + 1 < 8) &&
+                                 (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Condition Enemy Movments.
+                            if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
+                        {
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                            if ((RowSecond - 1 >= 0) &&
+                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                        }
+
                     }
+                }
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("SoldierRulesaArrangmentsBoardZero:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Move;
             }
-            ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("SoldierRulesaArrangmentsBoardZero:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-            return Move;
+            
         }
         //Solder Rule Method.
         public bool SoldierRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy)
         {
-            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {
+                //long Time = TimeElapced.TimeNow();Spaces++;
 
-            if (!(ArrangmentsBoard))
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("SoldierRules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return SoldierRulesaArrangmentsBoardZero(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
+                if (!(ArrangmentsBoard))
+                {
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("SoldierRules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return SoldierRulesaArrangmentsBoardZero(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
+                }
+                else
+                {
+                    ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("SoldierRules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                    return SoldierRulesaArrangmentsBoardOne(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
+                }
+                /*if (Move)
+                {
+                    if (AchmazCheckByMoveByRule(CloneATable(Table), RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
+                        Move = false;
+                }
+                 */
+                ///Return Not Validity.
             }
-            else
-            {
-                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("SoldierRules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                return SoldierRulesaArrangmentsBoardOne(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
-            }
-            /*if (Move)
-            {
-                if (AchmazCheckByMoveByRule(Table, RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
-                    Move = false;
-            }
-             */
-            ///Return Not Validity.
-
         }
     }
 }

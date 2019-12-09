@@ -89,6 +89,10 @@ namespace Refrigtz
     //Constructor
     public partial class FormRefrigtz : Form
     {
+        bool Deeperthandeeper = false;
+
+        bool FOUND = false;
+        
 #pragma warning disable CS0414 // The field 'FormRefrigtz.LoadO' is assigned but its value is never used
         bool LoadO = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.LoadO' is assigned but its value is never used
@@ -97,7 +101,7 @@ namespace Refrigtz
         public static String AllDrawKindString = "";
 
         bool MenueSelecte = false;
-        String path3 = @"temp";       
+        String path3 = @"temp";
         String AllDrawReplacement = "";
         bool Sugar = false;
         public bool Quantum = false;
@@ -370,14 +374,14 @@ namespace Refrigtz
         void AllOp()
         {
             while (!LoadedTable || (!MenueSelecte)) { Thread.Sleep(1000); }
-        
+
             //if (RefrigtzDLL.AllDraw.THISDummy != null)
             // RefrigtzDLL.AllDraw.THISDummy.Clone(Draw);
             if (!Quantum)
             {
-                if (MovmentsNumber == 0)
+                if (MovmentsNumber == 1)
                 {
-                   
+
                     /*   if (Stockfish)
                        {
                            GrayTimer.Sign = 1;
@@ -417,9 +421,9 @@ namespace Refrigtz
                             RefreshBoxText();
 
                         }
-                        if (RefrigtzDLL.AllDraw.MouseClick == 0 && !RefrigtzDLL.ThinkingChess.ThinkingRun)
+                       // if (RefrigtzDLL.AllDraw.MouseClick == 0 && !RefrigtzDLL.ThinkingChess.ThinkingRun)
                         {
-                            RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
+                            RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
                             Color a = Color.Gray;
                             if (OrderPlate == -1)
                                 a = Color.Brown;
@@ -428,7 +432,7 @@ namespace Refrigtz
                             //if (!UsePenaltyRegardMechnisam)
                             if (AA.CheckMate(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], OrderPlate))
                             {
-                                if (OrderPlate == 1 && AA.CheckMateGray)
+                                /*if (OrderPlate == 1 && AA.CheckMateGray)
                                 {
                                     EndOfGame = true;
                                     return;
@@ -438,10 +442,15 @@ namespace Refrigtz
                                 {
                                     EndOfGame = true;
                                     return;
+                                }*/
+                                if (AA.CheckMateGray || AA.CheckMateBrown)
+                                {
+                                    EndOfGame = true;
+                                    return;
                                 }
                             }
 
-                            if (A.CheckMate(Table, OrderPlate) || A.Pat(Table, OrderPlate, a))
+                            if (A.CheckMate(CloneATable(Table), OrderPlate) || A.Pat(CloneATable(Table), OrderPlate, a))
                             {
                                 if (A.CheckMateGray || A.CheckMateBrown || EndOfGame || A.PatkGray || A.PatBrown)
                                 {
@@ -453,6 +462,8 @@ namespace Refrigtz
                                     else if (A.PatkGray || A.PatBrown)
                                         SetBoxText("\r\nPat!");
                                     RefreshBoxText();
+                                    EndOfGame = true;
+                                    return;
                                     //if (AllOperate.IsAlive)
                                     //new Syncronization(AllOperate, 1);
 
@@ -605,7 +616,7 @@ namespace Refrigtz
                                         RefreshBoxText();
                                         Color a = Color.Brown;
 
-                                        bool FOUND = false;
+                                        FOUND = false;
                                         RefrigtzDLL.AllDraw THIS = null;
 
                                         SetDrawFounding(ref FOUND, ref THIS, false);
@@ -642,7 +653,7 @@ namespace Refrigtz
                                         ColumnRealeased = -1;
                                         //Thread.Sleep(1500);
                                         BobSection = false;
-                                        
+
                                         GrayTimer.StopTime();
                                         BrownTimer.StartTime("BrownTimer");
                                         AllDo = false;
@@ -702,7 +713,7 @@ namespace Refrigtz
                                         RefreshBoxText();
                                         Color a = Color.Brown;
 #pragma warning disable CS0219 // The variable 'FOUND' is assigned but its value is never used
-                                        bool FOUND = false;
+                                        FOUND = false;
 #pragma warning restore CS0219 // The variable 'FOUND' is assigned but its value is never used
 #pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                                         RefrigtzDLL.AllDraw THIS = null;
@@ -788,7 +799,7 @@ namespace Refrigtz
                                         RefreshBoxText();
                                         Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                         Draw.TableList.Clear();
-                                        Draw.TableList.Add(Table);
+                                        Draw.TableList.Add(CloneATable(Table));
                                         Draw.SetRowColumn(0);
                                         BobSection = false;
                                         AllDo = false;
@@ -987,7 +998,7 @@ namespace Refrigtz
                                         RefreshBoxText();
                                         Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                         Draw.TableList.Clear();
-                                        Draw.TableList.Add(Table);
+                                        Draw.TableList.Add(CloneATable(Table));
                                         Draw.SetRowColumn(0);
                                         if (RefrigtzDLL.ChessRules.BigKingCastleGray)
                                         {
@@ -1021,7 +1032,7 @@ namespace Refrigtz
                                         ColumnRealeased = -1;
                                         //Thread.Sleep(1500);
                                         BobSection = false;
-                                        
+
                                         GrayTimer.StopTime();
                                         BrownTimer.StartTime("BrownTimer");
 
@@ -1073,7 +1084,7 @@ namespace Refrigtz
                                     RefreshBoxText();
                                     //Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound,IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                     //Draw.TableList.Clear();
-                                    //Draw.TableList.Add(Table);
+                                    //Draw.TableList.Add(CloneATable(Table));
                                     //Draw.SetRowColumn(0);
                                     BobSection = true;
 
@@ -1148,16 +1159,17 @@ namespace Refrigtz
                                     RefreshBoxText();
                                     Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                     Draw.TableList.Clear();
-                                    Draw.TableList.Add(Table);
+                                    Draw.TableList.Add(CloneATable(Table));
                                     Draw.SetRowColumn(0);
                                     BobSection = true;
                                     AllDo = false;
                                 }
                                 else
                                     if (BobSection && OrderPlate == 1)
-                                { GrayTimer.StartTime("GrayTimer");
-                                        BrownTimer.StopTime();
-                                     
+                                {
+                                    GrayTimer.StartTime("GrayTimer");
+                                    BrownTimer.StopTime();
+
 
                                     if (tM != null)
                                     {
@@ -1215,7 +1227,7 @@ namespace Refrigtz
                                  a = Color.Brown;
                              bool[,] Tab = new bool[8, 8];
                              if (RowClickP != -1 && ColumnClickP != -1)
-                                 Tab = VeryFye(Table, OrderPlate, a);
+                                 Tab = VeryFye(CloneATable(Table), OrderPlate, a);
                              if ((RowRealesed >= 0) && (RowRealesed < 8) && (ColumnRealeased >= 0) && (ColumnRealeased < 8) && ((int)(this.PictureBoxRefrigtz.Width / 8) >= 0) && ((int)(this.PictureBoxRefrigtz.Width / 8) < 8) && ((int)(this.PictureBoxRefrigtz.Height / 8) >= 0) && ((int)(this.PictureBoxRefrigtz.Height / 8) < 8))
                              {
                                  if ((RowRealesed + ColumnRealeased) % 2 == 0)
@@ -1275,7 +1287,7 @@ namespace Refrigtz
                                          RefreshBoxText();
                                          Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound,IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                          Draw.TableList.Clear();
-                                         Draw.TableList.Add(Table);
+                                         Draw.TableList.Add(CloneATable(Table));
                                          Draw.SetRowColumn(0);
 
 
@@ -1334,7 +1346,7 @@ namespace Refrigtz
                                          RefreshBoxText();
                                          Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound,IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                          Draw.TableList.Clear();
-                                         Draw.TableList.Add(Table);
+                                         Draw.TableList.Add(CloneATable(Table));
                                          Draw.SetRowColumn(0);
                                          if (RefrigtzDLL.ChessRules.BigKingCastleGray)
                                          {
@@ -1690,10 +1702,10 @@ namespace Refrigtz
                                              input = fens + "\r\n";
                                              sw.BaseStream.Write(Encoding.ASCII.GetBytes(input), 0, input.size());
                                              sw.Flush();
-                                             RefrigtzDLL.AllDraw.TableListAction.Add(Table);
+                                             RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
                                              Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound,IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                              Draw.TableList.Clear();
-                                             Draw.TableList.Add(Table);
+                                             Draw.TableList.Add(CloneATable(Table));
                                              Draw.SetRowColumn(0);
                                              this.SetBoxText("\r\nThinking Finished by Bob!");
                                              RefreshBoxText();
@@ -1717,7 +1729,7 @@ namespace Refrigtz
                                                          }
                                                          if ((RefrigtzDLL.ChessRules.SmallKingCastleGray || RefrigtzDLL.ChessRules.BigKingCastleGray) && (!RefrigtzDLL.ChessRules.CastleActGray))
                                                              RefrigtzDLL.ChessRules.CastleActGray = true;
-                                                         RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0,OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
+                                                         RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0,OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
                                                      }
                                                      else
                                                      {
@@ -1729,7 +1741,7 @@ namespace Refrigtz
                                                          if ((RefrigtzDLL.ChessRules.SmallKingCastleBrown || RefrigtzDLL.ChessRules.BigKingCastleBrown) && (!RefrigtzDLL.ChessRules.CastleActBrown))
                                                              RefrigtzDLL.ChessRules.CastleActBrown = true;
 
-                                                         RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0,OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
+                                                         RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0,OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
                                                      }
                                                      SetBoxStatistic(RefrigtzDLL.AllDraw.SyntaxToWrite);
                                                      RefreshBoxStatistic();
@@ -1745,7 +1757,7 @@ namespace Refrigtz
                                              OrderPlate *= -1;
                                              BobSection = true;
                                              Draw.TableList.Clear();
-                                             Draw.TableList.Add(Table);
+                                             Draw.TableList.Add(CloneATable(Table));
                                              Draw.SetRowColumn(0);
                                              InsertTableAtDataBase(Table);
                                              GrayTimer.StartTime("GrayTimer");
@@ -1810,7 +1822,7 @@ namespace Refrigtz
                                 using (SoundPlayer soundClick = new SoundPlayer(Root + "\\Music\\Click6.wav"))
                                 {
                                     soundClick.Play();
-                                   // soundClick.Dispose();
+                                    // soundClick.Dispose();
                                 }
 
 
@@ -1831,9 +1843,9 @@ namespace Refrigtz
             }
             else
             {
-                if (MovmentsNumber == 0)
+                if (MovmentsNumber == 1)
                 {
-                   
+
                     /*            if (Stockfish)
                                 {
                                     GrayTimer.Sign = 1;
@@ -1876,7 +1888,7 @@ namespace Refrigtz
                         }
                         if (QuantumRefrigiz.AllDraw.MouseClick == 0 && !QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun)
                         {
-                            QuantumRefrigiz.ChessRules A = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
+                            QuantumRefrigiz.ChessRules A = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
                             Color a = Color.Gray;
                             if (OrderPlate == -1)
                                 a = Color.Brown;
@@ -1898,7 +1910,7 @@ namespace Refrigtz
                                 }
                             }
 
-                            if (A.CheckMate(Table, OrderPlate) || A.Pat(Table, OrderPlate, a))
+                            if (A.CheckMate(CloneATable(Table), OrderPlate) || A.Pat(CloneATable(Table), OrderPlate, a))
                             {
                                 if (A.CheckMateGray || A.CheckMateBrown || EndOfGame || A.PatkGray || A.PatBrown)
                                 {
@@ -2062,7 +2074,7 @@ namespace Refrigtz
                                         RefreshBoxText();
                                         Color a = Color.Brown;
 
-                                        bool FOUND = false;
+                                        FOUND = false;
                                         QuantumRefrigiz.AllDraw THIS = null;
 
                                         SetDrawFounding(ref FOUND, ref THIS, false);
@@ -2099,7 +2111,7 @@ namespace Refrigtz
                                         ColumnRealeased = -1;
                                         //Thread.Sleep(1500);
                                         BobSection = false;
-                                        
+
                                         GrayTimer.StopTime();
                                         BrownTimer.StartTime("BrownTimer");
                                         AllDo = false;
@@ -2159,7 +2171,7 @@ namespace Refrigtz
                                         RefreshBoxText();
                                         Color a = Color.Brown;
 #pragma warning disable CS0219 // The variable 'FOUND' is assigned but its value is never used
-                                        bool FOUND = false;
+                                        FOUND = false;
 #pragma warning restore CS0219 // The variable 'FOUND' is assigned but its value is never used
 #pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                                         QuantumRefrigiz.AllDraw THIS = null;
@@ -2461,7 +2473,7 @@ namespace Refrigtz
                                         ColumnRealeased = -1;
                                         //Thread.Sleep(1500);
                                         BobSection = false;
-                                        
+
                                         GrayTimer.StopTime();
                                         BrownTimer.StartTime("BrownTimer");
 
@@ -2653,7 +2665,7 @@ namespace Refrigtz
                                  a = Color.Brown;
                              bool[,] Tab = new bool[8, 8];
                              if (RowClickP != -1 && ColumnClickP != -1)
-                                 Tab = VeryFye(Table, OrderPlate, a);
+                                 Tab = VeryFye(CloneATable(Table), OrderPlate, a);
                              if ((RowRealesed >= 0) && (RowRealesed < 8) && (ColumnRealeased >= 0) && (ColumnRealeased < 8) && ((int)(this.PictureBoxRefrigtz.Width / 8) >= 0) && ((int)(this.PictureBoxRefrigtz.Width / 8) < 8) && ((int)(this.PictureBoxRefrigtz.Height / 8) >= 0) && ((int)(this.PictureBoxRefrigtz.Height / 8) < 8))
                              {
                                  if ((RowRealesed + ColumnRealeased) % 2 == 0)
@@ -3128,7 +3140,7 @@ namespace Refrigtz
                                              input = fens + "\r\n";
                                              sw.BaseStream.Write(Encoding.ASCII.GetBytes(input), 0, input.size());
                                              sw.Flush();
-                                             QuantumRefrigiz.AllDraw.TableListAction.Add(Table);
+                                             QuantumRefrigiz.AllDraw.TableListAction.Add(CloneATable(Table));
                                              DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound,IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                              DrawQ.TableList.Clear();
                                              DrawQ.TableList.Add(Table);
@@ -3155,7 +3167,7 @@ namespace Refrigtz
                                                          }
                                                          if ((QuantumRefrigiz.ChessRules.SmallKingCastleGray || QuantumRefrigiz.ChessRules.BigKingCastleGray) && (!QuantumRefrigiz.ChessRules.CastleActGray))
                                                              QuantumRefrigiz.ChessRules.CastleActGray = true;
-                                                         QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0,OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
+                                                         QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0,OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
                                                      }
                                                      else
                                                      {
@@ -3167,7 +3179,7 @@ namespace Refrigtz
                                                          if ((QuantumRefrigiz.ChessRules.SmallKingCastleBrown || QuantumRefrigiz.ChessRules.BigKingCastleBrown) && (!QuantumRefrigiz.ChessRules.CastleActBrown))
                                                              QuantumRefrigiz.ChessRules.CastleActBrown = true;
 
-                                                         QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0,OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
+                                                         QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0,OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
                                                      }
                                                      SetBoxStatistic(QuantumRefrigiz.AllDraw.SyntaxToWrite);
                                                      RefreshBoxStatistic();
@@ -3268,7 +3280,7 @@ namespace Refrigtz
             }
 
 
-        }
+       }
         //Error Handling.
         static void Log(Exception ex)
         {
@@ -3286,7 +3298,6 @@ namespace Refrigtz
         //Constructor No2
         public FormRefrigtz(bool AllDra)
         {
-
             AllDrawLoad = AllDra;
             InitializeComponent();
             X1 = TextBoxText.Location.X;
@@ -3330,7 +3341,7 @@ namespace Refrigtz
                 }
                 QuantumRefrigiz.ThinkingQuantumChess.LearniningTable = new LearningMachine.NetworkQuantumLearningKrinskyAtamata(8, 8, 8);
             }
-            
+
 
         }
 
@@ -3533,12 +3544,12 @@ namespace Refrigtz
                 {
                     if (!Quantum)
                     {
-                        if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Table[(int)RowClickP, (int)ColumnClickP], Table, Order, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, i, j, a, Table[(int)RowClickP, (int)ColumnClickP]))
+                        if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Table[(int)RowClickP, (int)ColumnClickP], CloneATable(Table), Order, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, i, j, a, Table[(int)RowClickP, (int)ColumnClickP]))
                             Tab[i, j] = true;
                     }
                     else
                     {
-                        if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Table[(int)RowClickP, (int)ColumnClickP], Table, Order, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, i, j, a, Table[(int)RowClickP, (int)ColumnClickP]))
+                        if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Table[(int)RowClickP, (int)ColumnClickP], CloneATable(Table), Order, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, i, j, a, Table[(int)RowClickP, (int)ColumnClickP]))
                             Tab[i, j] = true;
                     }
 
@@ -3714,7 +3725,7 @@ namespace Refrigtz
                                                                     if (BrownCountHiiting == 29)
                         SetImageOfPictrueBox(ref PictureBox29, Hit);
                     else
-                                                                        if (BrownCountHiiting == 30)
+                                                                        if (BrownCountHiiting == 10)
                         SetImageOfPictrueBox(ref PictureBox30, Hit);
                     else
                                                                             if (BrownCountHiiting == 31)
@@ -3821,7 +3832,7 @@ namespace Refrigtz
                                                                     if (BrownCountHiiting == 29)
                         SetImageOfPictrueBox(ref PictureBox29, Hit);
                     else
-                                                                        if (BrownCountHiiting == 30)
+                                                                        if (BrownCountHiiting == 10)
                         SetImageOfPictrueBox(ref PictureBox30, Hit);
                     else
                                                                             if (BrownCountHiiting == 31)
@@ -3870,7 +3881,7 @@ namespace Refrigtz
                         else
                             SetlableRefregitzMaxValue(labelNodesCount, QuantumRefrigiz.ThinkingQuantumChess.NumbersOfAllNode.ToString() + " at time " + ((int)(Store)).ToString() + "N/s and by Elapsed time " + ((int)((EndTime - TimeElapsed) / 1000)).ToString() + " s" + " By CheckMate Count " + QuantumRefrigiz.ThinkingQuantumChess.FoundFirstMating.ToString() + " By CheckMate SELF Count " + QuantumRefrigiz.ThinkingQuantumChess.FoundFirstSelfMating.ToString() + " For Order  " + QuantumRefrigiz.AllDraw.OrderPlate.ToString());
                     }
-                    //System.Threading.Thread.Sleep(1);
+                    System.Threading.Thread.Sleep(1);
 
                 }
             } //while (true);
@@ -3890,7 +3901,8 @@ namespace Refrigtz
                 {
                     if (!Quantum)
                     {
-                        //System.Threading.Thread.Sleep(10);
+                        RefrigtzDLL.AllDraw.Deeperthandeeper = Deeperthandeeper;
+                        System.Threading.Thread.Sleep(10);
                         RefrigtzDLL.AllDraw.Root = Root;
                         RefrigtzDLL.AllDraw.OrderPlate = OrderPlate;
                         RefrigtzDLL.AllDraw.Blitz = Blitz;
@@ -3919,15 +3931,21 @@ namespace Refrigtz
                         if (RefrigtzDLL.AllDraw.ActionStringReady)
                         {
                             SetBoxText(RefrigtzDLL.AllDraw.ActionString.ToString());
-                            RefrigtzDLL.AllDraw.ActionString = new StringBuilder("");
+                            RefrigtzDLL.AllDraw.ActionString.Clear();
                             RefrigtzDLL.AllDraw.ActionStringReady = false;
                             RefreshBoxText();
                         }
 
-                        if (RefrigtzDLL.AllDraw.OutPut.ToString() != "")
+                        if (RefrigtzDLL.AllDraw.OutPut.Length != 0)
                         {
-                            SetBoxText(RefrigtzDLL.AllDraw.OutPut.ToString());
-                            RefrigtzDLL.AllDraw.OutPut= new StringBuilder( "");
+                            String Temp = "";
+                            Object O = new Object();
+                            lock (O)
+                            {
+                                Temp = RefrigtzDLL.AllDraw.OutPut.ToString();
+                            }
+                            SetBoxText(Temp);
+                            RefrigtzDLL.AllDraw.OutPut.Clear();
                             RefreshBoxText();
 
                         }
@@ -3981,12 +3999,13 @@ namespace Refrigtz
                                 NextColumn = RefrigtzDLL.AllDraw.NextRow;
                             }
                         }
-                        //System.Threading.Thread.Sleep(2);
+                        System.Threading.Thread.Sleep(2);
 
                     }
                     else
                     {
-                        //System.Threading.Thread.Sleep(10);
+                        QuantumRefrigiz.AllDraw.Deeperthandeeper = Deeperthandeeper;
+                        System.Threading.Thread.Sleep(10);
                         QuantumRefrigiz.AllDraw.Root = Root;
                         QuantumRefrigiz.AllDraw.OrderPlate = OrderPlate;
                         QuantumRefrigiz.AllDraw.Blitz = Blitz;
@@ -4016,26 +4035,32 @@ namespace Refrigtz
                         {
                             SetBoxText(QuantumRefrigiz.AllDraw.ActionString.ToString());
                             RefreshBoxText();
-                            QuantumRefrigiz.AllDraw.ActionString = new StringBuilder("");
+                            QuantumRefrigiz.AllDraw.ActionString.Clear();
                             QuantumRefrigiz.AllDraw.ActionStringReady = false;
                         }
-                        if (QuantumRefrigiz.AllDraw.OutPut.ToString() != "")
+                        if (QuantumRefrigiz.AllDraw.OutPut.ToString().Length != 0)
                         {
-                            SetBoxText(QuantumRefrigiz.AllDraw.OutPut.ToString());
+                            String Temp = "";
+                            Object O = new Object();
+                            lock (O)
+                            {
+                                Temp = QuantumRefrigiz.AllDraw.OutPut.ToString();
+                            }
+                            SetBoxText(Temp);
                             RefreshBoxText();
-                            RefrigtzDLL.AllDraw.OutPut.Append("");
+                            QuantumRefrigiz.AllDraw.OutPut.Clear();
 
                         }
 
 
-                        if (RefrigtzDLL.AllDraw.ConvertedKind == -1)
+                        if (QuantumRefrigiz.AllDraw.ConvertedKind == -1)
                         {
                             FormُSelectItems.Items = -1;
                             FormُSelectItems A = new FormُSelectItems();
                             A.ShowDialog();
 
 
-                            while (RefrigtzDLL.AllDraw.ConvertedKind == -1) { QuantumRefrigiz.AllDraw.ConvertedKind = FormُSelectItems.Items; Thread.Sleep(2); }
+                            while (QuantumRefrigiz.AllDraw.ConvertedKind == -1) { QuantumRefrigiz.AllDraw.ConvertedKind = FormُSelectItems.Items; Thread.Sleep(2); }
 
 
                         }
@@ -4047,7 +4072,7 @@ namespace Refrigtz
                         }
                         //public static AllDraw THISDummy;
                         QuantumRefrigiz.AllDraw.StateCP = StateCP;
-                            QuantumRefrigiz.AllDraw.StateCC = StateCC;
+                        QuantumRefrigiz.AllDraw.StateCC = StateCC;
                         if (StateCP && (!Stockfish))
                         {
                             if (OrderPlate == -1 && Sec.RadioButtonGrayOrder.Checked)
@@ -4077,7 +4102,7 @@ namespace Refrigtz
 
                             }
                         }
-                        //System.Threading.Thread.Sleep(1);
+                        System.Threading.Thread.Sleep(1);
                     }
 
                 }
@@ -4100,7 +4125,7 @@ namespace Refrigtz
         bool DrawManagement()
         {
             SetAllDrawKind();
-            
+
             //Set Configuration To True for some unknown reason!.
             //UpdateConfigurationTableVal = true;                             
             SetAllDrawKindString();
@@ -4110,16 +4135,16 @@ namespace Refrigtz
             AllDrawReplacement = Path.Combine(P, AllDrawKindString);
             if (File.Exists(AllDrawKindString))
             {
+
                 if (File.Exists(AllDrawReplacement))
                 {
-                    if (((new System.IO.FileInfo(AllDrawKindString).Length) < (new System.IO.FileInfo(AllDrawReplacement)).Length))
+                    if ((!FOUND) && ((new System.IO.FileInfo(AllDrawKindString).Length) < (new System.IO.FileInfo(AllDrawReplacement)).Length))
                     {
                         File.Delete(AllDrawKindString);
                         File.Copy(AllDrawReplacement, AllDrawKindString);
                         Found = true;
                     }
-
-                    else
+                    else if (FOUND)
                     {
                         if (File.Exists(AllDrawReplacement))
                             File.Delete(AllDrawReplacement);
@@ -4135,13 +4160,14 @@ namespace Refrigtz
                     Found = true;
 
                 }
+                FOUND = true;
             }
             else if (File.Exists(AllDrawReplacement))
             {
                 File.Copy(AllDrawReplacement, AllDrawKindString);
                 Found = true;
             }
-           
+
             return Found;
         }
         void DeleteSetADrawKindString(String S)
@@ -4210,14 +4236,20 @@ namespace Refrigtz
             if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
                 AllDrawKind = 1;
         }
+        void LoadForm()
+        {
+
+        }
         //Load Refregitz Form.
         private void Form1_Load(object sender, EventArgs e)
         {
+            bool FDrawMangement = false;
             try
             {
+                
                 TakeRoot y = new TakeRoot();
 
-                DrawManagement();
+                FDrawMangement = DrawManagement();
 
 
                 BrownTimer = new Refrigtz.Timer(false);
@@ -4233,7 +4265,7 @@ namespace Refrigtz
 
                 TimerText.StartTime("TimerText");
 
-            
+
 
                 //Thread tr = new Thread(new ThreadStart(Timerstart));
                 //tr.Start();
@@ -4281,7 +4313,7 @@ namespace Refrigtz
                     }
                 }
                 //When direcrories not exist.
-                /*if (!Directory.Exists(Root + "\\DataBase"))
+                if (!Directory.Exists(Root + "\\DataBase"))
                 {
                     if (!Directory.Exists(Root + "\\DataBase\\MainBank"))
                     {
@@ -4296,7 +4328,7 @@ namespace Refrigtz
                         Directory.CreateDirectory(Root + "\\Images\\Original");
                     }
                 }
-                */
+                
                 //When file dos't exist.
                 if (!AllDrawLoad)
                 {
@@ -4325,8 +4357,64 @@ namespace Refrigtz
                             Log(t);
 
                         }
+                         
                         InsertTableAtDataBase(Table);
                         CreateConfigurationTable();
+                        SetAllDrawKind();
+
+                        //Set Configuration To True for some unknown reason!.
+                        //UpdateConfigurationTableVal = true;                             
+                        SetAllDrawKindString();
+                        if (FDrawMangement)
+                        {
+                            if (!Quantum)
+                                RefrigtzDLL.AllDraw.FirstTraversalTree = false;
+                            else
+                                QuantumRefrigiz.AllDraw.FirstTraversalTree = false;
+                        }
+                        if (DrawManagement())
+                        {
+                            //Load AllDraw.asd
+                            if (!Quantum)
+                                DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                            else
+                                DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+
+                        }
+                        else
+                        {
+                            if (!Quantum)
+                            {
+                               
+                                    Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                                    Draw.TableList.Clear();
+                                    Draw.TableList.Add(CloneATable(Table));
+                                    Draw.SetRowColumn(0);
+                                    RefrigtzDLL.AllDraw.DepthIterative = 0;
+                                    y.t = Draw;
+                                
+                            }
+                            else
+                            {
+                                
+                                    DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                                    DrawQ.TableList.Clear();
+                                    DrawQ.TableList.Add(Table);
+                                    DrawQ.SetRowColumn(0);
+                                    QuantumRefrigiz.AllDraw.DepthIterative = 0;
+                                    y.tt = DrawQ;                                
+                            }
+                            y.Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+
+                            DrawManagement();
+
+                            if (!Quantum)
+                                DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                            else
+                                DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+
+
+                        }
 
                     }
                     else
@@ -4364,6 +4452,8 @@ namespace Refrigtz
 
                             //Read Last Table and Set MovementNumber 
                             Table = ReadTable(0, ref MovmentsNumber);
+                            //OrderPlate *= -1;
+
 
                             if (DrawManagement())
                             {
@@ -4372,18 +4462,18 @@ namespace Refrigtz
                                     DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                 else
                                     DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-
+                           
                             }
                             else
                             {
-                                /*   (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                                y.Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
 
-                                        if (!Quantum)
-                                       DrawDrawen = (new TakeRoot()).Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                   else
-                                       DrawDrawen = (new TakeRoot()).Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                                if (!Quantum)
+                                    DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                                else
+                                    DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
 
-                             */
+
                             }
                         }
                         else
@@ -4409,14 +4499,52 @@ namespace Refrigtz
                                     InsertTableAtDataBase(Table);
                                     CreateConfigurationTable();
 
+                                    SetAllDrawKind();
+
+                                    //Set Configuration To True for some unknown reason!.
+                                    //UpdateConfigurationTableVal = true;                             
+                                    SetAllDrawKindString();
+
+                                    if (!Quantum)
+                                    {
+                                        FOUND = false;
+                                        RefrigtzDLL.AllDraw THIS = null;
+                                        SetDrawFounding(ref FOUND, ref THIS, true);
+                                    }
+                                    else
+                                    {
+                                        FOUND = false;
+                                        QuantumRefrigiz.AllDraw THIS = null;
+                                        SetDrawFounding(ref FOUND, ref THIS, true);
+                                    }
+
+                                    if (DrawManagement())
+                                    {
+                                        //Load AllDraw.asd
+                                        if (!Quantum)
+                                            DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                                        else
+                                            DrawDrawen = y.Load(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+
+                                    }
+                                    else
+                                    {
+
+                                        SetAllDrawKind();
+                                        //Set Configuration To True for some unknown reason!.
+                                        //UpdateConfigurationTableVal = true;                             
+                                        SetAllDrawKindString();
+                                        y.Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                                    }
                                 }
+
                             }
                             catch (FileNotFoundException t)
                             {
                                 Log(t);
 
                             }
-                         }
+                        }
                     }
 
                     //Set Level Variable from selection.
@@ -4445,10 +4573,10 @@ namespace Refrigtz
                 //Loaded = true;
                 LoadedDLL = true;
 
-                if (Sec.RadioButtonGrayOrder.Checked && MovmentsNumber == 0)
+                if (Sec.RadioButtonGrayOrder.Checked && MovmentsNumber == 1)
                     OrderPlate = 1;
                 else
-                 if (Sec.RadioButtonBrownOrder.Checked && MovmentsNumber == 0)
+                 if (Sec.RadioButtonBrownOrder.Checked && MovmentsNumber == 1)
                     OrderPlate = -1;
 
                 if (Sec.RadioButtonGrayOrder.Checked && OrderPlate == 1)
@@ -4468,7 +4596,7 @@ namespace Refrigtz
                     {
                         Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                         Draw.TableList.Clear();
-                        Draw.TableList.Add(Table);
+                        Draw.TableList.Add(CloneATable(Table));
                         Draw.SetRowColumn(0);
                         RefrigtzDLL.AllDraw.DepthIterative = 0;
 
@@ -4476,11 +4604,11 @@ namespace Refrigtz
                     }
                     else
                     {
-                        bool FOUND = false;
+                        FOUND = false;
                         RefrigtzDLL.AllDraw THIS = null;
                         Draw = y.t;
                         SetDrawFounding(ref FOUND, ref THIS, true);
-                        /*   bool FOUND = false;
+                        /*   FOUND = false;
                            RefrigtzDLL.AllDraw THIS = null;
                            SetDrawFounding(ref FOUND, ref THIS, false);
    */
@@ -4500,13 +4628,13 @@ namespace Refrigtz
                     }
                     else
                     {
-                        bool FOUND = false;
+                        FOUND = false;
                         QuantumRefrigiz.AllDraw THIS = null;
                         DrawQ = y.tt;
                         SetDrawFounding(ref FOUND, ref THIS, true);
 
                         /*DrawQ = y.tt;
-                        bool FOUND = false;
+                        FOUND = false;
                         QuantumRefrigiz.AllDraw THIS = null;
                         SetDrawFounding(ref FOUND, ref THIS, false);*/
 
@@ -4592,12 +4720,12 @@ namespace Refrigtz
                 if (!Quantum)
                 {
                     if (RefrigtzDLL.AllDraw.TableListAction.Count == 0)
-                        RefrigtzDLL.AllDraw.TableListAction.Add(Table);
+                        RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
                 }
                 else
                 {
                     if (QuantumRefrigiz.AllDraw.TableListAction.Count == 0)
-                        QuantumRefrigiz.AllDraw.TableListAction.Add(Table);
+                        QuantumRefrigiz.AllDraw.TableListAction.Add(CloneATable(Table));
                 }
 
                 DrawImageOfMain();
@@ -4674,12 +4802,18 @@ namespace Refrigtz
 #pragma warning restore CS0219 // The variable 'OneIncreament' is assigned but its value is never used
             int[,] Tab = Table;
             int Move = 0;
-            if (!Quantum)
+            /*if (!Quantum)
                 RefrigtzDLL.AllDraw.TableListAction.Clear();
             else
                 QuantumRefrigiz.AllDraw.TableListAction.Clear();
+*/
             do
             {
+                oleDbCmd = new OleDbCommand();
+                bookConn = new OleDbConnection(connParam);
+                bookConn.Open();
+                oleDbCmd.Connection = bookConn;
+
                 OrderPlate *= -1;
                 if (!Quantum)
                     RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
@@ -4695,16 +4829,16 @@ namespace Refrigtz
                         Zero += "0";
                     TableName = Zero + TableName;
 
-                  /*  if (bookConn != null)
-                    {
-                        bookConn.Close();
-                        bookConn.Dispose();
-                    }
-                    bookConn = new OleDbConnection(connParam);
-                    oleDbCmd.Connection = bookConn;
-                    bookConn.Open();
-                    */
-                    oleDbCmd.CommandText = String.Concat("Select * From " , TableName);
+                    /*  if (bookConn != null)
+                      {
+                          bookConn.Close();
+                          bookConn.Dispose();
+                      }
+                      bookConn = new OleDbConnection(connParam);
+                      oleDbCmd.Connection = bookConn;
+                      bookConn.Open();
+                      */
+                    oleDbCmd.CommandText = String.Concat("Select * From ", TableName);
                     OleDbDataReader dr = null;
                     /*   oleDbCmd.Parameters.AddWithValue("@a", System.Convert.ToInt32(Tab[0, i]));
                  oleDbCmd.Parameters.AddWithValue("@b",  System.Convert.ToInt32(Tab[1, i]));
@@ -4752,9 +4886,9 @@ namespace Refrigtz
                     else
                     {
                         if (!Quantum)
-                            RefrigtzDLL.AllDraw.TableListAction.Add(Table);
+                            RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
                         else
-                            QuantumRefrigiz.AllDraw.TableListAction.Add(Table);
+                            QuantumRefrigiz.AllDraw.TableListAction.Add(CloneATable(Table));
                     }
                     Move++;
                     if (Move > 2)
@@ -4777,10 +4911,25 @@ namespace Refrigtz
                         break;
 
                     }
+                    bookConn.Close();
+                    oleDbCmd.Clone();
+                    //oleDbCmd.Dispose();
+                    bookConn.Dispose();
+
                 }
                 catch (Exception t)
                 {
                     Log(t);
+                    bookConn.Close();
+                    oleDbCmd.Clone();
+                    //oleDbCmd.Dispose();
+                    bookConn.Dispose();
+
+                    oleDbCmd = new OleDbCommand();
+                    bookConn = new OleDbConnection(connParam);
+                    bookConn.Open();
+                    oleDbCmd.Connection = bookConn;
+
                     try
                     {
 
@@ -4793,17 +4942,17 @@ namespace Refrigtz
                             Zero += "0";
                         TableName = Zero + TableName;
 
-                      /*  if (bookConn != null)
-                        {
-                            bookConn.Close();
-                            bookConn.Dispose();
-                        }
-                        bookConn = new OleDbConnection(connParam);
-                        oleDbCmd.Connection = bookConn;
-                        bookConn.Open();
+                        /*  if (bookConn != null)
+                          {
+                              bookConn.Close();
+                              bookConn.Dispose();
+                          }
+                          bookConn = new OleDbConnection(connParam);
+                          oleDbCmd.Connection = bookConn;
+                          bookConn.Open();
 
-                        */
-                        oleDbCmd.CommandText = String.Concat("Select * From " , TableName);
+                          */
+                        oleDbCmd.CommandText = String.Concat("Select * From ", TableName);
                         OleDbDataReader dr = oleDbCmd.ExecuteReader();
                         int ii = 0;
                         while (dr.Read())
@@ -4838,7 +4987,7 @@ namespace Refrigtz
 
                             }
                         }
-                        if (!Quantum)
+                        /*if (!Quantum)
                         {
                             Draw.TableList.Clear();
                             Draw.TableList.Add(TableA);
@@ -4849,15 +4998,15 @@ namespace Refrigtz
                             DrawQ.TableList.Clear();
                             DrawQ.TableList.Add(TableA);
                             DrawQ.SetRowColumn(0);
-                        }
+                        }*/
                         if (MoveNumber > 0)
                             SetAndConfirmSyntax();
                         else
                         {
                             if (!Quantum)
-                                RefrigtzDLL.AllDraw.TableListAction.Add(Table);
+                                RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
                             else
-                                QuantumRefrigiz.AllDraw.TableListAction.Add(Table);
+                                QuantumRefrigiz.AllDraw.TableListAction.Add(CloneATable(Table));
                         }
                         if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, TableA, OrderPlate, -1, -1).CheckMate(TableA, OrderPlate)))
                         {
@@ -4868,9 +5017,19 @@ namespace Refrigtz
                             break;
 
                         }
+                        bookConn.Close();
+                        oleDbCmd.Clone();
+                        //oleDbCmd.Dispose();
+                        bookConn.Dispose();
+
                     }
                     catch (Exception tt)
                     {
+                        bookConn.Close();
+                        oleDbCmd.Clone();
+                        //oleDbCmd.Dispose();
+                        bookConn.Dispose();
+
                         Log(tt);
                         break;
                     }
@@ -4882,8 +5041,10 @@ namespace Refrigtz
                 {
 
                 }
+
             } while (MoveNumber <= MovmentsNumberMax);
-       
+            MovmentsNumberMax = MoveNumber;
+
             //Draw.TableList.Clear();
             //Draw.TableList.Add(Tab);
             //Draw.SetRowColumn(0);
@@ -4915,7 +5076,7 @@ namespace Refrigtz
                         Zero += "0";
                     TableName = Zero + TableName;
 
-                    oleDbCmd.CommandText = String.Concat("Select * From " , TableName);
+                    oleDbCmd.CommandText = String.Concat("Select * From ", TableName);
                     OleDbDataReader dr = null;
                     try
                     {
@@ -4950,10 +5111,11 @@ namespace Refrigtz
                     }
                     if (!Quantum)
                     {
-                        Draw.TableList.Clear();
-                        Draw.TableList.Add(TableA);
-                        Draw.SetRowColumn(0);
-                        if (!Draw.IsEnemyThingsinStable(TableA, RefrigtzDLL.AllDraw.TableVeryfy, Order))
+                        RefrigtzDLL.AllDraw THIS = null;
+                        bool Found = false;
+                        SetDrawFounding(ref Found, ref THIS, false);
+
+                         if (!Draw.IsEnemyThingsinStable(TableA, RefrigtzDLL.AllDraw.TableVeryfy, Order))
                         {
                             Tab = null;
                             Tab[0, 0] = -1;
@@ -4973,9 +5135,9 @@ namespace Refrigtz
                     }
                     else
                     {
-                        DrawQ.TableList.Clear();
-                        DrawQ.TableList.Add(TableA);
-                        DrawQ.SetRowColumn(0);
+                        QuantumRefrigiz.AllDraw THIS = null;
+                        bool Found = false;
+                        SetDrawFounding(ref Found, ref THIS, false);
                         if (!DrawQ.IsEnemyThingsinStable(TableA, QuantumRefrigiz.AllDraw.TableVeryfy, Order))
                         {
                             Tab = null;
@@ -5119,7 +5281,7 @@ namespace Refrigtz
                                 Zero += "0";
                             TableName = Zero + TableName;
 
-                            oleDbCmd.CommandText = String.Concat("Drop Table " , TableName);
+                            oleDbCmd.CommandText = String.Concat("Drop Table ", TableName);
                             OleDbDataReader dr = null;
                             dr = oleDbCmd.ExecuteReader();
                             return true;
@@ -5152,7 +5314,7 @@ namespace Refrigtz
                     }
                 }
 
-                //System.Threading.Thread.Sleep(2);
+                System.Threading.Thread.Sleep(2);
             } while (Move <= MovmentsNumberMax);
 
             return true;
@@ -5162,6 +5324,11 @@ namespace Refrigtz
         //Read Specific Table Number.
         int[,] ReadTableMovmentNumber()
         {
+            oleDbCmd = new OleDbCommand();
+            bookConn = new OleDbConnection(connParam);
+            bookConn.Open();
+            oleDbCmd.Connection = bookConn;
+
             int[,] Tab = Table;
             int Move = MovmentsNumber;
             if (!Quantum)
@@ -5190,7 +5357,7 @@ namespace Refrigtz
                     Zero += "0";
                 TableName = Zero + TableName;
 
-                oleDbCmd.CommandText = String.Concat("Select * From " , TableName);
+                oleDbCmd.CommandText = String.Concat("Select * From ", TableName);
                 OleDbDataReader dr = null;
                 dr = oleDbCmd.ExecuteReader();
                 int ii = 0;
@@ -5235,7 +5402,7 @@ namespace Refrigtz
                         Zero += "0";
                     TableName = Zero + TableName;
 
-                    oleDbCmd.CommandText = String.Concat("Select * From " , TableName);
+                    oleDbCmd.CommandText = String.Concat("Select * From ", TableName);
                     OleDbDataReader dr = null;
                     dr = oleDbCmd.ExecuteReader();
                     int ii = 0;
@@ -5269,6 +5436,10 @@ namespace Refrigtz
                 }
             }
 
+            bookConn.Close();
+            oleDbCmd.Clone();
+            //oleDbCmd.Dispose();
+            bookConn.Dispose();
 
 
             return Tab;
@@ -5283,22 +5454,30 @@ namespace Refrigtz
             try
             {
 
-
+                oleDbCmd = new OleDbCommand();
+                bookConn = new OleDbConnection(connParam);
+                bookConn.Open();
+                oleDbCmd.Connection = bookConn;
                 TableName = MovmentsNumber.ToString();
                 String Zero = "Table";
                 for (int i = 0; i < 8 - TableName.Length; i++)
                     Zero += "0";
                 TableName = Zero + TableName;
 
-               /* if (bookConn != null)
-                    bookConn.Close();
-                bookConn = new OleDbConnection(connParam);
-                oleDbCmd.Connection = bookConn;
-                bookConn.Open();
-                */
-                oleDbCmd.CommandText = String.Concat("Create Table ", TableName , " (a Number NOT NULL,b Number NOT NULL,c Number NOT NULL,d Number NOT NULL,e Number NOT NULL,f Number NOT NULL,g Number NOT NULL,h Number NOT NULL)");
+                /* if (bookConn != null)
+                     bookConn.Close();
+                 bookConn = new OleDbConnection(connParam);
+                 oleDbCmd.Connection = bookConn;
+                 bookConn.Open();
+                 */
+                oleDbCmd.CommandText = String.Concat("Create Table ", TableName, " (a Number NOT NULL,b Number NOT NULL,c Number NOT NULL,d Number NOT NULL,e Number NOT NULL,f Number NOT NULL,g Number NOT NULL,h Number NOT NULL)");
                 int temp = 0;
                 temp = oleDbCmd.ExecuteNonQuery();
+                bookConn.Close();
+                oleDbCmd.Clone();
+                //oleDbCmd.Dispose();
+                bookConn.Dispose();
+
                 return TableName;
             }
             catch (Exception t)
@@ -5312,13 +5491,13 @@ namespace Refrigtz
                     Zero += "0";
                 TableName = Zero + TableName;
 
-              /*  if (bookConn != null)
-                    bookConn.Close();
-                bookConn = new OleDbConnection(connParam);
-                oleDbCmd.Connection = bookConn;
-                bookConn.Open();
-                */
-                oleDbCmd.CommandText = String.Concat("Drop Table " , TableName);
+                /*  if (bookConn != null)
+                      bookConn.Close();
+                  bookConn = new OleDbConnection(connParam);
+                  oleDbCmd.Connection = bookConn;
+                  bookConn.Open();
+                  */
+                oleDbCmd.CommandText = String.Concat("Drop Table ", TableName);
                 int temp = 0;
                 temp = oleDbCmd.ExecuteNonQuery();
                 goto Begin12;
@@ -5332,6 +5511,11 @@ namespace Refrigtz
         //Creatiopn of Configuration Table
         void CreateConfigurationTable()
         {
+            oleDbCmd = new OleDbCommand();
+            bookConn = new OleDbConnection(connParam);
+            bookConn.Open();
+            oleDbCmd.Connection = bookConn;
+
             try
             {
                 if (!AllDrawLoad)
@@ -5346,18 +5530,18 @@ namespace Refrigtz
                         oleDbCmd.Connection = bookConn;
                         bookConn.Open();
                         */
-                        oleDbCmd.CommandText = @"Create Table Configuration (CheckBoxAStarGreedyHuristic Number NOT NULL,CheckBoxPredictHuristci Number NOT NULL,CheckBoxAStarGreadyFirstSearch Number NOT NULL,CheckBoxBestMovments Number NOT NULL,CheckBoxOnlySelf Number NOT NULL,RadioButtonOriginalImages Number NOT NULL,RadioButtonBigFittingImages Number NOT NULL,RadioButtonSmallFittingImages Number NOT NULL,CheckBoxAStarGreedyMovement Number NOT NULL,CheckBoxUseDoubleTime Number NOT NULL,CheckBoxUsePenaltyRegradMechnisam Number NOT NULL,CheckBoxDynamicProgrammingAStarGreedyt Number NOT NULL,ComboBoxMaxTree Number NOT NULL,ComboBoxAttack Number NOT NULL,ComboBoxObjectDangour Number NOT NULL,ComboBoxReducedAttacked Number NOT NULL,ComboBoxSupport Number NOT NULL,ComboBoxHitting Number NOT NULL,ComboBoxMovments Number NOT NULL,ArrangmentsChanged Number NOT NULL,GrayTimer Number NOT NULL,BrownTimer Number NOT NULL,BobSection Number NOT NULL,AliceSection Number NOT NULL,StateCP Number NOT NULL,StateCC Number NOT NULL,StateGe Number NOT NULL,Blitz Number NOT NULL,Person Number NOT NULL,SettingPRFALSE Number NOT NULL,FullGame Number NOT NULL,Stockfish Number NOT NULL,lable1 Text NOT NULL,lable2 Text NOT NULL,MovmentsNumber Number NOT NULL,Quantum Number NOT NULL,Sugar Number NOT NULL,MenueSelecte Number NOT NULL,AllDrawKind Number NOT NULL,OrderPlate Number NOT NULL)";
+                        oleDbCmd.CommandText = @"Create Table Configuration (CheckBoxAStarGreedyHuristic Number NOT NULL,CheckBoxPredictHuristci Number NOT NULL,CheckBoxAStarGreadyFirstSearch Number NOT NULL,CheckBoxBestMovments Number NOT NULL,CheckBoxOnlySelf Number NOT NULL,RadioButtonOriginalImages Number NOT NULL,RadioButtonBigFittingImages Number NOT NULL,RadioButtonSmallFittingImages Number NOT NULL,CheckBoxAStarGreedyMovement Number NOT NULL,CheckBoxUseDoubleTime Number NOT NULL,CheckBoxUsePenaltyRegradMechnisam Number NOT NULL,CheckBoxDynamicProgrammingAStarGreedyt Number NOT NULL,ComboBoxMaxTree Number NOT NULL,ComboBoxAttack Number NOT NULL,ComboBoxObjectDangour Number NOT NULL,ComboBoxReducedAttacked Number NOT NULL,ComboBoxSupport Number NOT NULL,ComboBoxHitting Number NOT NULL,ComboBoxMovments Number NOT NULL,ArrangmentsChanged Number NOT NULL,GrayTimer Number NOT NULL,BrownTimer Number NOT NULL,BobSection Number NOT NULL,AliceSection Number NOT NULL,StateCP Number NOT NULL,StateCC Number NOT NULL,StateGe Number NOT NULL,Blitz Number NOT NULL,Person Number NOT NULL,SettingPRFALSE Number NOT NULL,FullGame Number NOT NULL,Stockfish Number NOT NULL,lable1 Text NOT NULL,lable2 Text NOT NULL,MovmentsNumber Number NOT NULL,Quantum Number NOT NULL,Sugar Number NOT NULL,MenueSelecte Number NOT NULL,AllDrawKind Number NOT NULL,OrderPlate Number NOT NULL,Deeperthandeeper Number NOT NULL)";
                         int temp = 0;
                         temp = oleDbCmd.ExecuteNonQuery();
 
-                       /* if (bookConn != null)
-                            bookConn.Close();
-                        bookConn = new OleDbConnection(connParam);
-                        oleDbCmd.Connection = bookConn;
-                        bookConn.Open();
-                        */
+                        /* if (bookConn != null)
+                             bookConn.Close();
+                         bookConn = new OleDbConnection(connParam);
+                         oleDbCmd.Connection = bookConn;
+                         bookConn.Open();
+                         */
 
-                        oleDbCmd.CommandText = String.Concat("Insert into Configuration (CheckBoxAStarGreedyHuristic,CheckBoxPredictHuristci,CheckBoxAStarGreadyFirstSearch,CheckBoxBestMovments,CheckBoxOnlySelf,RadioButtonOriginalImages,RadioButtonBigFittingImages,RadioButtonSmallFittingImages,CheckBoxAStarGreedyMovement,CheckBoxUseDoubleTime,CheckBoxUsePenaltyRegradMechnisam,CheckBoxDynamicProgrammingAStarGreedyt,ComboBoxMaxTree,ComboBoxAttack,ComboBoxObjectDangour,ComboBoxReducedAttacked,ComboBoxSupport,ComboBoxHitting,ComboBoxMovments,ArrangmentsChanged,GrayTimer,BrownTimer,BobSection,AliceSection,StateCP,StateCC,StateGe,Blitz,Person,SettingPRFALSE,FullGame,Stockfish,lable1,lable2,MovmentsNumber,Quantum,Sugar,MenueSelecte,AllDrawKind,OrderPlate) values(", System.Convert.ToInt32(CheckBoxAStarGreedyHuristic.Checked).ToString() , "," , System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString() , "," , System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString() , "," , System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString() , "," , System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString() , "," , System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString() , "," , System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString() , "," , System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString() , "," , System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString() , "," , System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString() , "," , System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString() , "," , System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString() , "," , System.Convert.ToInt32(ComboBoxMaxLevel.Text).ToString() , "," , System.Convert.ToInt32(ComboBoxAttack.Text).ToString() , "," , System.Convert.ToInt32(ComboBoxObjectDangour.Text).ToString() , "," , System.Convert.ToInt32(ComboBoxReducedAttacked.Text).ToString() , "," , System.Convert.ToInt32(ComboBoxSupport.Text).ToString() , "," , System.Convert.ToInt32(ComboBoxKiller.Text).ToString() , "," , System.Convert.ToInt32(ComboBoxMovments.Text).ToString() , "," , System.Convert.ToInt32(ArrangmentsChanged).ToString() , "," , GrayTimer.Times.ToString() , "," , BrownTimer.Times.ToString() , "," , System.Convert.ToInt32(BobSection).ToString() , "," , System.Convert.ToInt32(AliceSection).ToString() , "," , System.Convert.ToInt32(StateCP).ToString() , "," , System.Convert.ToInt32(StateCC).ToString() , "," , System.Convert.ToInt32(StateGe).ToString() , "," , System.Convert.ToInt32(Blitz).ToString() , "," , System.Convert.ToInt32(Person).ToString() , "," , System.Convert.ToInt32(SettingPRFALSE).ToString() , "," , System.Convert.ToInt32(FullGame).ToString() , "," , System.Convert.ToInt32(Stockfish).ToString() , ",'" , label1.Text , "','" , label2.Text , "','" , MovmentsNumber.ToString() , "','" , System.Convert.ToInt32(Quantum).ToString() , "','" , System.Convert.ToInt32(Sugar).ToString() , "','", System.Convert.ToInt32(MenueSelecte).ToString(), "','" , System.Convert.ToInt32(AllDrawKind).ToString() ,"','", System.Convert.ToInt32(OrderPlate).ToString(), "')");
+                        oleDbCmd.CommandText = String.Concat("Insert into Configuration (CheckBoxAStarGreedyHuristic,CheckBoxPredictHuristci,CheckBoxAStarGreadyFirstSearch,CheckBoxBestMovments,CheckBoxOnlySelf,RadioButtonOriginalImages,RadioButtonBigFittingImages,RadioButtonSmallFittingImages,CheckBoxAStarGreedyMovement,CheckBoxUseDoubleTime,CheckBoxUsePenaltyRegradMechnisam,CheckBoxDynamicProgrammingAStarGreedyt,ComboBoxMaxTree,ComboBoxAttack,ComboBoxObjectDangour,ComboBoxReducedAttacked,ComboBoxSupport,ComboBoxHitting,ComboBoxMovments,ArrangmentsChanged,GrayTimer,BrownTimer,BobSection,AliceSection,StateCP,StateCC,StateGe,Blitz,Person,SettingPRFALSE,FullGame,Stockfish,lable1,lable2,MovmentsNumber,Quantum,Sugar,MenueSelecte,AllDrawKind,OrderPlate,Deeperthandeeper) values(", System.Convert.ToInt32(CheckBoxAStarGreedyHuristic.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString(), ",", System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString(), ",", System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString(), ",", System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString(), ",", System.Convert.ToInt32(ComboBoxMaxLevel.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxAttack.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxObjectDangour.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxReducedAttacked.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxSupport.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxKiller.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxMovments.Text).ToString(), ",", System.Convert.ToInt32(ArrangmentsChanged).ToString(), ",", GrayTimer.Times.ToString(), ",", BrownTimer.Times.ToString(), ",", System.Convert.ToInt32(BobSection).ToString(), ",", System.Convert.ToInt32(AliceSection).ToString(), ",", System.Convert.ToInt32(StateCP).ToString(), ",", System.Convert.ToInt32(StateCC).ToString(), ",", System.Convert.ToInt32(StateGe).ToString(), ",", System.Convert.ToInt32(Blitz).ToString(), ",", System.Convert.ToInt32(Person).ToString(), ",", System.Convert.ToInt32(SettingPRFALSE).ToString(), ",", System.Convert.ToInt32(FullGame).ToString(), ",", System.Convert.ToInt32(Stockfish).ToString(), ",'", label1.Text, "','", label2.Text, "','", MovmentsNumber.ToString(), "','", System.Convert.ToInt32(Quantum).ToString(), "','", System.Convert.ToInt32(Sugar).ToString(), "','", System.Convert.ToInt32(MenueSelecte).ToString(), "','", System.Convert.ToInt32(AllDrawKind).ToString(), "','", System.Convert.ToInt32(OrderPlate).ToString(), "','" + System.Convert.ToInt32(Deeperthandeeper).ToString() + "')");
 
                         oleDbCmd.Parameters.AddWithValue("@CheckBoxAStarGreedyHuristic", System.Convert.ToInt32(CheckBoxAStarGreedyHuristic.Checked));
                         oleDbCmd.Parameters.AddWithValue("@CheckBoxPredictHuristci", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked));
@@ -5399,6 +5583,7 @@ namespace Refrigtz
                         oleDbCmd.Parameters.AddWithValue("@MenueSelecte", System.Convert.ToInt32(MenueSelecte));
                         oleDbCmd.Parameters.AddWithValue("@AllDrawKind", System.Convert.ToInt32(AllDrawKind));
                         oleDbCmd.Parameters.AddWithValue("@OrderPlate", System.Convert.ToInt32(OrderPlate));
+                        oleDbCmd.Parameters.AddWithValue("@Deeperthandeeper", System.Convert.ToInt32(Deeperthandeeper));
                         temp = oleDbCmd.ExecuteNonQuery();
 
                     }
@@ -5407,12 +5592,12 @@ namespace Refrigtz
 
                         Log(t);
 
-                      /*  if (bookConn != null)
-                            bookConn.Close();
-                        bookConn = new OleDbConnection(connParam);
-                        oleDbCmd.Connection = bookConn;
-                        bookConn.Open();
-                        */
+                        /*  if (bookConn != null)
+                              bookConn.Close();
+                          bookConn = new OleDbConnection(connParam);
+                          oleDbCmd.Connection = bookConn;
+                          bookConn.Open();
+                          */
                         oleDbCmd.CommandText = @"Drop Table Configuration";
                         int temp = 0;
                         temp = oleDbCmd.ExecuteNonQuery();
@@ -5426,15 +5611,20 @@ namespace Refrigtz
 #pragma warning restore CS0168 // The variable 't' is declared but never used
             {
             }
+            bookConn.Close();
+            oleDbCmd.Clone();
+            //oleDbCmd.Dispose();
+            bookConn.Dispose();
         }
         void UpdateTable(int[,] Tabl, String TableName)
         {
             try
             {
-                if (bookConn == null)
-                    bookConn = new OleDbConnection(connParam);
-                else
-                    bookConn.Close();
+                oleDbCmd = new OleDbCommand();
+                bookConn = new OleDbConnection(connParam);
+                bookConn.Open();
+                oleDbCmd.Connection = bookConn;
+
                 oleDbCmd.CommandText = @"Drop Table " + TableName;
                 int temp = 0;
                 temp = oleDbCmd.ExecuteNonQuery();
@@ -5452,6 +5642,11 @@ namespace Refrigtz
         //Reading of Configuration Table Method.
         void ReadConfigurationTable()
         {
+            oleDbCmd = new OleDbCommand();
+            bookConn = new OleDbConnection(connParam);
+            bookConn.Open();
+            oleDbCmd.Connection = bookConn;
+
             if (!AllDrawLoad)
             {
                 Begin12:
@@ -5459,12 +5654,12 @@ namespace Refrigtz
                 {
 
 
-                   /* if (bookConn != null)
-                    {
-                        bookConn.Close();
-                        oleDbCmd.Dispose();
-                        bookConn.Dispose();
-                    }*/
+                    /* if (bookConn != null)
+                     {
+                         bookConn.Close();
+                         //oleDbCmd.Dispose();
+                         bookConn.Dispose();
+                     }*/
                     /*bookConn = new OleDbConnection(connParam);
                     oleDbCmd.Connection = bookConn;
                     bookConn.Open();
@@ -5511,6 +5706,8 @@ namespace Refrigtz
                     oleDbCmd.Parameters.AddWithValue("@MenueSelecte", System.Convert.ToInt32(MenueSelecte));
                     oleDbCmd.Parameters.AddWithValue("@AllDrawKind", System.Convert.ToInt32(AllDrawKind));
                     oleDbCmd.Parameters.AddWithValue("@OrderPlate", System.Convert.ToInt32(OrderPlate));
+                    oleDbCmd.Parameters.AddWithValue("@Deeperthandeeper", System.Convert.ToInt32(Deeperthandeeper));
+
                     dr = oleDbCmd.ExecuteReader();
                     bool ARead = false;
 
@@ -5578,8 +5775,18 @@ namespace Refrigtz
                         MenueSelecte = System.Convert.ToBoolean(dr["MenueSelecte"]);
                         AllDrawKind = System.Convert.ToInt32(dr["AllDrawKind"]);
                         OrderPlate = System.Convert.ToInt32(dr["OrderPlate"]);
+                        Deeperthandeeper = System.Convert.ToBoolean(dr["Deeperthandeeper"]);
+                        if (Deeperthandeeper)
+                            checkBoxDeeperthandeeper.Checked = true;
+                        else
+                            checkBoxDeeperthandeeper.Checked = false;
                         ARead = true;
                     }
+                    bookConn.Close();
+                    oleDbCmd.Clone();
+                    //oleDbCmd.Dispose();
+                    bookConn.Dispose();
+
                     if (!ARead)
                         CreateConfigurationTable();
 
@@ -5596,10 +5803,18 @@ namespace Refrigtz
                         oleDbCmd.CommandText = @"Drop Table Configuration";
                         int temp = 0;
                         temp = oleDbCmd.ExecuteNonQuery();
+                        bookConn.Close();
+                        oleDbCmd.Clone();
+                        //oleDbCmd.Dispose();
+                        bookConn.Dispose();
                     }
                     catch (Exception tt)
                     {
                         Log(tt);
+                        bookConn.Close();
+                        oleDbCmd.Clone();
+                        //oleDbCmd.Dispose();
+                        bookConn.Dispose();
                         CreateConfigurationTable();
                     }
                     goto Begin12;
@@ -5610,12 +5825,19 @@ namespace Refrigtz
         //Updating of Configuration Method.
         void UpdateConfigurationTable()
         {
+            oleDbCmd = new OleDbCommand();
+            bookConn = new OleDbConnection(connParam);
+            bookConn.Open();
+            oleDbCmd.Connection = bookConn;
+
             //if (UpdateConfigurationTableVal)
             {
 
-                Begin12:
+                //Begin12:
+#pragma warning disable CS0164 // This label has not been referenced
                 try
                 {
+#pragma warning restore CS0164 // This label has not been referenced
                     /* if (AStarGreedyHuristic)
                          CheckBoxAStarGreedyHuristic.Checked = true;
                      else
@@ -5652,7 +5874,8 @@ namespace Refrigtz
                      oleDbCmd.Connection = bookConn;
                      bookConn.Open();
                      */
-                    oleDbCmd.CommandText = String.Concat("Update Configuration Set CheckBoxAStarGreedyHuristic=", System.Convert.ToInt32(CheckBoxAStarGreedyHuristic.Checked).ToString(), ",CheckBoxPredictHuristci=", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString(), ",CheckBoxAStarGreadyFirstSearch=", System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString(), ",CheckBoxBestMovments=", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",CheckBoxOnlySelf=", System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString(), ",RadioButtonOriginalImages=", System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString(), ",RadioButtonBigFittingImages=", System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString(), ",RadioButtonSmallFittingImages=", System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString(), ",CheckBoxAStarGreedyMovement=", System.Convert.ToInt32(CheckBoxAStarGreedyMovement.Checked).ToString(), ",CheckBoxUseDoubleTime=", System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString(), ",CheckBoxUsePenaltyRegradMechnisam=", System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString(), ",CheckBoxDynamicProgrammingAStarGreedyt=", System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString(), ",ComboBoxMaxTree=", ComboBoxMaxLevel.Text, ",ComboBoxAttack=", ComboBoxAttack.Text, ",ComboBoxObjectDangour=", ComboBoxObjectDangour.Text, ",ComboBoxReducedAttacked=", ComboBoxReducedAttacked.Text, ",ComboBoxSupport=", ComboBoxSupport.Text, ",ComboBoxHitting=", ComboBoxKiller.Text, ",ComboBoxMovments=", ComboBoxMovments.Text, ",ArrangmentsChanged=", System.Convert.ToString(System.Convert.ToInt32(ArrangmentsChanged)), ",GrayTimer=", GrayTimer.Times.ToString(), ",BrownTimer=", BrownTimer.Times.ToString(), ",BobSection = ", System.Convert.ToUInt32(BobSection).ToString(), ",AliceSection =", System.Convert.ToUInt32(AliceSection).ToString(), ",StateCP = ", System.Convert.ToUInt32(StateCP).ToString(), ",StateCC = ", System.Convert.ToUInt32(StateCC).ToString(), ",StateGe=", System.Convert.ToUInt32(StateGe).ToString(), ",Blitz=", System.Convert.ToUInt32(Blitz).ToString(), ",Person=", System.Convert.ToUInt32(Person).ToString(), ",SettingPRFALSE=", System.Convert.ToUInt32(SettingPRFALSE).ToString(), ",FullGame=", System.Convert.ToUInt32(FullGame).ToString(), ",Stockfish=", System.Convert.ToUInt32(Stockfish).ToString(), ",lable1='", label1.Text, "',lable2='", label2.Text, "',MovmentsNumber='", MovmentsNumber.ToString(), "',", "Quantum = '", System.Convert.ToInt32(Quantum).ToString(), "',", "Sugar = '", System.Convert.ToInt32(Sugar).ToString(), "',", "MenueSelecte='", System.Convert.ToInt32(MenueSelecte).ToString(), "',", "AllDrawKind='", System.Convert.ToInt32(AllDrawKind).ToString(),"',", "OrderPlate='", System.Convert.ToInt32(OrderPlate).ToString(), "'");
+
+                    oleDbCmd.CommandText = String.Concat("Update Configuration Set CheckBoxAStarGreedyHuristic=", System.Convert.ToInt32(CheckBoxAStarGreedyHuristic.Checked).ToString(), ",CheckBoxPredictHuristci=", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString(), ",CheckBoxAStarGreadyFirstSearch=", System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString(), ",CheckBoxBestMovments=", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",CheckBoxOnlySelf=", System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString(), ",RadioButtonOriginalImages=", System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString(), ",RadioButtonBigFittingImages=", System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString(), ",RadioButtonSmallFittingImages=", System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString(), ",CheckBoxAStarGreedyMovement=", System.Convert.ToInt32(CheckBoxAStarGreedyMovement.Checked).ToString(), ",CheckBoxUseDoubleTime=", System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString(), ",CheckBoxUsePenaltyRegradMechnisam=", System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString(), ",CheckBoxDynamicProgrammingAStarGreedyt=", System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString(), ",ComboBoxMaxTree=", ComboBoxMaxLevel.Text, ",ComboBoxAttack=", ComboBoxAttack.Text, ",ComboBoxObjectDangour=", ComboBoxObjectDangour.Text, ",ComboBoxReducedAttacked=", ComboBoxReducedAttacked.Text, ",ComboBoxSupport=", ComboBoxSupport.Text, ",ComboBoxHitting=", ComboBoxKiller.Text, ",ComboBoxMovments=", ComboBoxMovments.Text, ",ArrangmentsChanged=", System.Convert.ToString(System.Convert.ToInt32(ArrangmentsChanged)), ",GrayTimer=", GrayTimer.Times.ToString(), ",BrownTimer=", BrownTimer.Times.ToString(), ",BobSection = ", System.Convert.ToUInt32(BobSection).ToString(), ",AliceSection =", System.Convert.ToUInt32(AliceSection).ToString(), ",StateCP = ", System.Convert.ToUInt32(StateCP).ToString(), ",StateCC = ", System.Convert.ToUInt32(StateCC).ToString(), ",StateGe=", System.Convert.ToUInt32(StateGe).ToString(), ",Blitz=", System.Convert.ToUInt32(Blitz).ToString(), ",Person=", System.Convert.ToUInt32(Person).ToString(), ",SettingPRFALSE=", System.Convert.ToUInt32(SettingPRFALSE).ToString(), ",FullGame=", System.Convert.ToUInt32(FullGame).ToString(), ",Stockfish=", System.Convert.ToUInt32(Stockfish).ToString(), ",lable1='", label1.Text, "',lable2='", label2.Text, "',MovmentsNumber='", MovmentsNumber.ToString(), "',", "Quantum = '", System.Convert.ToInt32(Quantum).ToString(), "',", "Sugar = '", System.Convert.ToInt32(Sugar).ToString(), "',", "MenueSelecte='", System.Convert.ToInt32(MenueSelecte).ToString(), "',", "AllDrawKind='", System.Convert.ToInt32(AllDrawKind).ToString(), "',", "OrderPlate='", System.Convert.ToInt32(OrderPlate).ToString(), "'," + "Deeperthandeeper='" + System.Convert.ToInt32(Deeperthandeeper).ToString() + "'");
 
                     oleDbCmd.Parameters.AddWithValue("@CheckBoxAStarGreedyHuristic", System.Convert.ToInt32(CheckBoxAStarGreedyHuristic.Checked));
                     oleDbCmd.Parameters.AddWithValue("@CheckBoxPredictHuristci", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked));
@@ -5690,12 +5913,12 @@ namespace Refrigtz
                     oleDbCmd.Parameters.AddWithValue("@lable2", label2.Text);
                     oleDbCmd.Parameters.AddWithValue("@MovmentsNumber", System.Convert.ToInt32(MovmentsNumber));
                     oleDbCmd.Parameters.AddWithValue("@Quantum", System.Convert.ToInt32(Quantum));
-                    oleDbCmd.Parameters.AddWithValue("@Sugar",System.Convert.ToInt32(Sugar));
+                    oleDbCmd.Parameters.AddWithValue("@Sugar", System.Convert.ToInt32(Sugar));
                     oleDbCmd.Parameters.AddWithValue("@MenueSelecte", System.Convert.ToInt32(MenueSelecte));
                     oleDbCmd.Parameters.AddWithValue("@AllDrawKind", System.Convert.ToInt32(AllDrawKind));
                     oleDbCmd.Parameters.AddWithValue("@OrderPlate", System.Convert.ToInt32(OrderPlate));
-
-
+                    oleDbCmd.Parameters.AddWithValue("@Deeperthandeeper", System.Convert.ToInt32(Deeperthandeeper));
+                    
                     /*   if (bookConn != null)
                            bookConn.Close();
                        bookConn = new OleDbConnection(connParam);
@@ -5712,19 +5935,19 @@ namespace Refrigtz
                     try
                     {
 
-                    /*    if (bookConn != null)
-                            bookConn.Close();
-                        bookConn = new OleDbConnection(connParam);
-                        oleDbCmd.Connection = bookConn;
-                        bookConn.Open();
-*/
+                        /*    if (bookConn != null)
+                                bookConn.Close();
+                            bookConn = new OleDbConnection(connParam);
+                            oleDbCmd.Connection = bookConn;
+                            bookConn.Open();
+    */
                         oleDbCmd.CommandText = @"Drop Table Configuration";
                         int temp = 0;
                         temp = oleDbCmd.ExecuteNonQuery();
 
                         CreateConfigurationTable();
 
-                      // goto Begin12;
+                        // goto Begin12;
                     }
                     catch (Exception tt)
                     {
@@ -5734,6 +5957,10 @@ namespace Refrigtz
 
                 }
             }
+            bookConn.Close();
+            oleDbCmd.Clone();
+            //oleDbCmd.Dispose();
+            bookConn.Dispose();
         }
         //Inserting of New Tabler at Database.
         void InsertTableAtDataBase(int[,] Table)
@@ -5747,34 +5974,43 @@ namespace Refrigtz
                     Tab[i, j] = Table[i, j];
                 }
             }
-        
+
             String TableName = CreatTable();
+
+            oleDbCmd = new OleDbCommand();
+            bookConn = new OleDbConnection(connParam);
+            bookConn.Open();
+            oleDbCmd.Connection = bookConn;
 
 
             for (int i = 0; i < 8; i++)
             {
-              /*  if (bookConn != null)
-                    bookConn.Close();
-                bookConn = new OleDbConnection(connParam);
-                oleDbCmd.Connection = bookConn;
-                bookConn.Open();
-*/
+                /*  if (bookConn != null)
+                      bookConn.Close();
+                  bookConn = new OleDbConnection(connParam);
+                  oleDbCmd.Connection = bookConn;
+                  bookConn.Open();
+  */
                 oleDbCmd.CommandText = @"insert into " + TableName + "(a,b,c,d,e,f,g,h)  values (" + Tab[0, i].ToString() + "," + Tab[1, i].ToString() + "," + Tab[2, i].ToString() + "," + Tab[3, i].ToString() + "," + Tab[4, i].ToString() + "," + Tab[5, i].ToString() + "," + Tab[6, i].ToString() + "," + Tab[7, i].ToString() + ")";
 
                 oleDbCmd.Parameters.AddWithValue("@a", System.Convert.ToInt32(Tab[0, i]));
-                oleDbCmd.Parameters.AddWithValue("@b",  System.Convert.ToInt32(Tab[1, i]));
-                oleDbCmd.Parameters.AddWithValue("@c",  System.Convert.ToInt32(Tab[2, i]));
-                oleDbCmd.Parameters.AddWithValue("@d",  System.Convert.ToInt32(Tab[3, i]));
-                oleDbCmd.Parameters.AddWithValue("@e",  System.Convert.ToInt32(Tab[4, i]));
-                oleDbCmd.Parameters.AddWithValue("@f",  System.Convert.ToInt32(Tab[5, i]));
-                oleDbCmd.Parameters.AddWithValue("@g",  System.Convert.ToInt32(Tab[6, i]));
-                oleDbCmd.Parameters.AddWithValue("@h",  System.Convert.ToInt32(Tab[7, i]));
+                oleDbCmd.Parameters.AddWithValue("@b", System.Convert.ToInt32(Tab[1, i]));
+                oleDbCmd.Parameters.AddWithValue("@c", System.Convert.ToInt32(Tab[2, i]));
+                oleDbCmd.Parameters.AddWithValue("@d", System.Convert.ToInt32(Tab[3, i]));
+                oleDbCmd.Parameters.AddWithValue("@e", System.Convert.ToInt32(Tab[4, i]));
+                oleDbCmd.Parameters.AddWithValue("@f", System.Convert.ToInt32(Tab[5, i]));
+                oleDbCmd.Parameters.AddWithValue("@g", System.Convert.ToInt32(Tab[6, i]));
+                oleDbCmd.Parameters.AddWithValue("@h", System.Convert.ToInt32(Tab[7, i]));
 
                 int temp = 0;
                 temp = oleDbCmd.ExecuteNonQuery();
 
             }
             //MaxCurrent
+            bookConn.Close();
+            oleDbCmd.Clone();
+            //oleDbCmd.Dispose();
+            bookConn.Dispose();
             if (MovmentsNumber >= 1)
                 GameStarted = true;
             MovmentsNumber++;
@@ -6118,10 +6354,10 @@ namespace Refrigtz
                 {
                     if (RefrigtzDLL.AllDraw.DrawTable)
                     {
-                        //System.Threading.Thread.Sleep(2);
-                        if (GameStarted && MovmentsNumber == 0)
+                        System.Threading.Thread.Sleep(2);
+                        if (GameStarted && MovmentsNumber == 1)
                             ButtonChangeArrangment.Visible = false;
-                        //System.Threading.Thread.Sleep(8);
+                        System.Threading.Thread.Sleep(8);
 
                         //if (RefrigtzDLL.AllDraw.TableListAction.Count > 3)
                         //ToolStripMenuItemRandomGeneticGames.Enabled = true;
@@ -6178,7 +6414,7 @@ namespace Refrigtz
                                 if (OrderPlate == -1)
                                     a = Color.Brown;
                                 bool[,] Tab = null;
-                                Tab = VeryFye(Table, OrderPlate, a);
+                                Tab = VeryFye(CloneATable(Table), OrderPlate, a);
                                 for (int i = 0; i < PictureBoxRefrigtz.Image.Width; i += PictureBoxRefrigtz.Image.Width / 8)
                                     for (int j = 0; j < PictureBoxRefrigtz.Image.Height; j += PictureBoxRefrigtz.Image.Height / 8)
                                     {
@@ -6233,7 +6469,7 @@ namespace Refrigtz
                     //PictureBoxTimerGray.Invalidate();
 
                     //return;
-                    //System.Threading.Thread.Sleep(2);
+                    System.Threading.Thread.Sleep(2);
                 }
                 //PictureBoxRefrigtz.Invalidate();
                 //PictureBoxRefrigtz.Update();
@@ -6244,10 +6480,10 @@ namespace Refrigtz
                     {
                         if (RefrigtzDLL.AllDraw.DrawTable)
                         {
-                            //System.Threading.Thread.Sleep(100);
-                            if (GameStarted && MovmentsNumber == 0)
+                            System.Threading.Thread.Sleep(100);
+                            if (GameStarted && MovmentsNumber == 1)
                                 ButtonChangeArrangment.Visible = false;
-                            //System.Threading.Thread.Sleep(8);
+                            System.Threading.Thread.Sleep(8);
 
                             //if (QuantumRefrigiz.AllDraw.TableListAction.Count > 3)
                             //ToolStripMenuItemRandomGeneticGames.Enabled = true;
@@ -6303,7 +6539,7 @@ namespace Refrigtz
                                     if (OrderPlate == -1)
                                         a = Color.Brown;
                                     bool[,] Tab = null;
-                                    Tab = VeryFye(Table, OrderPlate, a);
+                                    Tab = VeryFye(CloneATable(Table), OrderPlate, a);
                                     for (int i = 0; i < PictureBoxRefrigtz.Image.Width; i += PictureBoxRefrigtz.Image.Width / 8)
                                         for (int j = 0; j < PictureBoxRefrigtz.Image.Height; j += PictureBoxRefrigtz.Image.Height / 8)
                                         {
@@ -6355,16 +6591,16 @@ namespace Refrigtz
                         //PictureBoxTimerGray.Invalidate();
 
                         //return;
-                        //System.Threading.Thread.Sleep(20);
+                        System.Threading.Thread.Sleep(20);
                     }
                     else
                     {
                         if (QuantumRefrigiz.AllDraw.DrawTable)
                         {
-                            //System.Threading.Thread.Sleep(100);
-                            if (GameStarted && MovmentsNumber == 0)
+                            System.Threading.Thread.Sleep(100);
+                            if (GameStarted && MovmentsNumber == 1)
                                 ButtonChangeArrangment.Visible = false;
-                            //System.Threading.Thread.Sleep(8);
+                            System.Threading.Thread.Sleep(8);
 
                             //if (QuantumRefrigiz.AllDraw.TableListAction.Count > 3)
                             //ToolStripMenuItemRandomGeneticGames.Enabled = true;
@@ -6420,7 +6656,7 @@ namespace Refrigtz
                                     if (OrderPlate == -1)
                                         a = Color.Brown;
                                     bool[,] Tab = null;
-                                    Tab = VeryFye(Table, OrderPlate, a);
+                                    Tab = VeryFye(CloneATable(Table), OrderPlate, a);
                                     for (int i = 0; i < PictureBoxRefrigtz.Image.Width; i += PictureBoxRefrigtz.Image.Width / 8)
                                         for (int j = 0; j < PictureBoxRefrigtz.Image.Height; j += PictureBoxRefrigtz.Image.Height / 8)
                                         {
@@ -6483,15 +6719,15 @@ namespace Refrigtz
             System.Threading.Thread.Sleep(5);
         }
 
-        int CalculateMoveMentHueuristicUser(int Kind,int[,] Table, int Order, int Row, int Column, int RowSource, int ColumnS, Color color)
+        int CalculateMoveMentHueuristicUser(int Kind, int[,] Table, int Order, int Row, int Column, int RowSource, int ColumnS, Color color)
         {
 
             RefrigtzDLL.ThinkingChess th = null;
             QuantumRefrigiz.ThinkingQuantumChess th1 = null;
             if (!Quantum)
-                th = new RefrigtzDLL.ThinkingChess(Kind,0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Row, Column);
+                th = new RefrigtzDLL.ThinkingChess(-1,Kind, 0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Row, Column);
             else
-                th1 = new QuantumRefrigiz.ThinkingQuantumChess(Kind,0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Row, Column);
+                th1 = new QuantumRefrigiz.ThinkingQuantumChess(-1,Kind, 0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Row, Column);
             int HuristicAttackValue = new int();
             int HuristicMovementValue = new int();
             int HuristicSelfSupportedValue = new int();
@@ -6504,7 +6740,7 @@ namespace Refrigtz
             int HeuristicKingDangour = new int();
             if (!Quantum)
             {
-                th.CalculateHuristics(true, 0, Table, Row, Column, RowSource, ColumnS, color, ref HuristicAttackValue, ref HuristicMovementValue, ref HuristicSelfSupportedValue, ref HuristicObjectDangourCheckMateValue, ref HuristicHittingValue, ref HuristicReducedAttackValue, ref HeuristicDistabceOfCurrentMoveFromEnemyKingValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour);
+                th.CalculateHuristics(true, 0, CloneATable(Table), Row, Column, RowSource, ColumnS, color, ref HuristicAttackValue, ref HuristicMovementValue, ref HuristicSelfSupportedValue, ref HuristicObjectDangourCheckMateValue, ref HuristicHittingValue, ref HuristicReducedAttackValue, ref HeuristicDistabceOfCurrentMoveFromEnemyKingValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour);
                 int[] Hu = new int[4];
 
                 return HuristicAttackValue + HuristicMovementValue +
@@ -6514,7 +6750,7 @@ namespace Refrigtz
             }
             else
             {
-                th1.CalculateHuristics(true, 0, Table, Row, Column, RowSource, ColumnS, color, ref HuristicAttackValue, ref HuristicMovementValue, ref HuristicSelfSupportedValue, ref HuristicObjectDangourCheckMateValue, ref HuristicHittingValue, ref HuristicReducedAttackValue, ref HeuristicDistabceOfCurrentMoveFromEnemyKingValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour);
+                th1.CalculateHuristics(true, 0, CloneATable(Table), Row, Column, RowSource, ColumnS, color, ref HuristicAttackValue, ref HuristicMovementValue, ref HuristicSelfSupportedValue, ref HuristicObjectDangourCheckMateValue, ref HuristicHittingValue, ref HuristicReducedAttackValue, ref HeuristicDistabceOfCurrentMoveFromEnemyKingValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour);
                 int[] Hu = new int[4];
 
 
@@ -6757,11 +6993,11 @@ namespace Refrigtz
             {
                 if (Kind == 7)
                 {
-                    RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(Kind,Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                    RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(Kind, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                     LastRow = (int)RowRealesed;
                     LastColumn = (int)ColumnRealeased;
                     CurrentKind = 7;
-                    Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                    Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                     Table[(int)RowClickP, (int)ColumnClickP] = 0;
 
                     Table[(int)RowRealesed, (int)ColumnRealeased] = 6;
@@ -6770,11 +7006,11 @@ namespace Refrigtz
                 }
                 else if (Kind == -7)
                 {
-                    RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(Kind,Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                    RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(Kind, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                     LastRow = (int)RowRealesed;
                     LastColumn = (int)ColumnRealeased;
                     CurrentKind = -7;
-                    Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                    Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                     Table[(int)RowClickP, (int)ColumnClickP] = 0;
 
                     Table[(int)RowRealesed, (int)ColumnRealeased] = -6;
@@ -6784,11 +7020,11 @@ namespace Refrigtz
             {
                 if (Kind == 7)
                 {
-                    QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(Kind,Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                    QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(Kind, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                     LastRow = (int)RowRealesed;
                     LastColumn = (int)ColumnRealeased;
                     CurrentKind = 7;
-                    DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                    DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                     Table[(int)RowClickP, (int)ColumnClickP] = 0;
 
                     Table[(int)RowRealesed, (int)ColumnRealeased] = 6;
@@ -6797,11 +7033,11 @@ namespace Refrigtz
                 }
                 else if (Kind == -7)
                 {
-                    QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(Kind,Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                    QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(Kind, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                     LastRow = (int)RowRealesed;
                     LastColumn = (int)ColumnRealeased;
                     CurrentKind = -7;
-                    DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                    DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                     Table[(int)RowClickP, (int)ColumnClickP] = 0;
 
                     Table[(int)RowRealesed, (int)ColumnRealeased] = -6;
@@ -6833,7 +7069,7 @@ namespace Refrigtz
                             }
                             if ((RefrigtzDLL.ChessRules.SmallKingCastleGray || RefrigtzDLL.ChessRules.BigKingCastleGray) && (!RefrigtzDLL.ChessRules.CastleActGray))
                                 RefrigtzDLL.ChessRules.CastleActGray = true;
-                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
+                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
                         }
                         else
                         {
@@ -6845,7 +7081,7 @@ namespace Refrigtz
                             if ((RefrigtzDLL.ChessRules.SmallKingCastleBrown || RefrigtzDLL.ChessRules.BigKingCastleBrown) && (!RefrigtzDLL.ChessRules.CastleActBrown))
                                 RefrigtzDLL.ChessRules.CastleActBrown = true;
 
-                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
+                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
                         }
                         SetBoxStatistic(RefrigtzDLL.AllDraw.SyntaxToWrite);
                         RefreshBoxStatistic();
@@ -6875,7 +7111,7 @@ namespace Refrigtz
                             }
                             if ((QuantumRefrigiz.ChessRules.SmallKingCastleGray || QuantumRefrigiz.ChessRules.BigKingCastleGray) && (!QuantumRefrigiz.ChessRules.CastleActGray))
                                 QuantumRefrigiz.ChessRules.CastleActGray = true;
-                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
+                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
                         }
                         else
                         {
@@ -6887,7 +7123,7 @@ namespace Refrigtz
                             if ((QuantumRefrigiz.ChessRules.SmallKingCastleBrown || QuantumRefrigiz.ChessRules.BigKingCastleBrown) && (!QuantumRefrigiz.ChessRules.CastleActBrown))
                                 QuantumRefrigiz.ChessRules.CastleActBrown = true;
 
-                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
+                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
                         }
                         SetBoxStatistic(QuantumRefrigiz.AllDraw.SyntaxToWrite);
                         RefreshBoxStatistic();
@@ -6945,9 +7181,9 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 7, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 7))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 7, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 7))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
 
                                                 MovmentsCastleKing(7);
@@ -6964,7 +7200,7 @@ namespace Refrigtz
                                                         {
                                                             if (Draw.CastlesOnTable[i].Row == RowClickP + 3 && Draw.CastlesOnTable[i].Column == ColumnClick && ColumnClick == 0)
                                                             {
-                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
                                                             }
@@ -6985,7 +7221,7 @@ namespace Refrigtz
                                                         {
                                                             if (Draw.CastlesOnTable[i].Row == RowClickP - 4 && Draw.CastlesOnTable[i].Column == ColumnClickP & ColumnClick == 0)
                                                             {
-                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -7010,7 +7246,7 @@ namespace Refrigtz
                                                         {
                                                             if (Draw.CastlesOnTable[i].Row == RowClickP + 3 && Draw.CastlesOnTable[i].Column == ColumnClick && ColumnClick == 7)
                                                             {
-                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
 
                                                                 continue;
@@ -7034,7 +7270,7 @@ namespace Refrigtz
                                                         {
                                                             if (Draw.CastlesOnTable[i].Row == RowClickP - 4 && Draw.CastlesOnTable[i].Column == ColumnClickP && ColumnClick == 7)
                                                             {
-                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -7049,8 +7285,8 @@ namespace Refrigtz
 
                                                     }
                                                 }
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -7089,21 +7325,21 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
 
                                                 SetSyntax();
 
                                                 Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                                 Draw.TableList.Clear();
-                                                Draw.TableList.Add(Table);
+                                                Draw.TableList.Add(CloneATable(Table));
                                                 Draw.SetRowColumn(0);
 
 
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
@@ -7134,7 +7370,7 @@ namespace Refrigtz
                                                         if (ColumnClickP == 0)
                                                         Table[(int)RowClickP, (int)ColumnClickP] = -6;
                                                 }
-                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, King);
+                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -7155,17 +7391,17 @@ namespace Refrigtz
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
 
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 1))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 1))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 RefrigtzDLL.ThingsConverter.ActOfClickEqualTow = true;
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnRealeased;
                                                 CurrentKind = 1;
                                                 ConvertWait = true;
-                                                Draw.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate, false, Soldier);
+                                                Draw.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
                                                 Thread.Sleep(100);
                                                 while (ConvertWait) ;
                                                 int[,] TableCon = new int[8, 8];
@@ -7195,7 +7431,7 @@ namespace Refrigtz
                                                     }
                                                     Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                                     Draw.TableList.Clear();
-                                                    Draw.TableList.Add(Table);
+                                                    Draw.TableList.Add(CloneATable(Table));
                                                     Draw.SetRowColumn(0);
 
 
@@ -7211,7 +7447,7 @@ namespace Refrigtz
                                                     if (Hit != 0)
                                                         HitVal = true;
 
-                                                    Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Soldier);
+                                                    Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
                                                     Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                     Table[(int)RowRealesed, (int)ColumnRealeased] = 1;
                                                     Draw.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
@@ -7224,8 +7460,8 @@ namespace Refrigtz
                                                     }
 
                                                 }
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -7256,26 +7492,26 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Soldier, 1);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Soldier, 1);
                                                 Clicked = false;
                                                 continue;
                                             }
                                             else
                                             {
 
-                                                Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Soldier);
+                                                Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 1;
                                                 Draw.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
@@ -7296,11 +7532,11 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 2, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 2))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 2, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 2))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -7310,11 +7546,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 2;
-                                                Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Elefant);
+                                                Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Elefant);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 2;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -7348,19 +7584,19 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Elefant, 2);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Elefant, 2);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -7368,7 +7604,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 2;
-                                                Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Elefant);
+                                                Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Elefant);
                                                 Draw.ElephantOnTable[Elefant].DrawElefantOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -7388,11 +7624,11 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 3, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 3))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 3, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 3))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -7402,11 +7638,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 3;
-                                                Draw.HoursesOnTable[Hourse] = new RefrigtzDLL.DrawHourse(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Hourse);
+                                                Draw.HoursesOnTable[Hourse] = new RefrigtzDLL.DrawHourse(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Hourse);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 3;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -7440,19 +7676,19 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Hourse, 3);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Hourse, 3);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -7460,7 +7696,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 3;
-                                                Draw.HoursesOnTable[Hourse] = new RefrigtzDLL.DrawHourse(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Hourse);
+                                                Draw.HoursesOnTable[Hourse] = new RefrigtzDLL.DrawHourse(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Hourse);
                                                 Draw.HoursesOnTable[Hourse].DrawHourseOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
 
@@ -7483,11 +7719,11 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 4, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 4))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 4, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 4))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -7497,11 +7733,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 4;
-                                                Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Castle);
+                                                Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Castle);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 4;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -7535,19 +7771,19 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Castle, 4);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Castle, 4);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -7555,7 +7791,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 4;
-                                                Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Castle);
+                                                Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Castle);
                                                 Draw.CastlesOnTable[Castle].DrawCastleOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -7578,11 +7814,11 @@ namespace Refrigtz
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
 
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 5, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 5))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 5, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 5))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -7592,11 +7828,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 5;
-                                                Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Minister);
+                                                Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Minister);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 5;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -7631,20 +7867,20 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
 
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Minister, 5);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Minister, 5);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -7652,7 +7888,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 5;
-                                                Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Minister);
+                                                Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Minister);
                                                 Draw.MinisterOnTable[Minister].DrawMinisterOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -7673,11 +7909,11 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 6, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 6))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 6, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 6))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -7687,11 +7923,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 6;
-                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 6;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -7725,19 +7961,19 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, King, 6);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, King, 6);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -7746,7 +7982,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 6;
-                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, King);
+                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -7771,9 +8007,9 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -7, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -7))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -7, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -7))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
 
                                                 MovmentsCastleKing(-7);
@@ -7789,7 +8025,7 @@ namespace Refrigtz
                                                         {
                                                             if (Draw.CastlesOnTable[i].Row == RowClickP + 3 && Draw.CastlesOnTable[i].Column == ColumnClick && ColumnClick == 7)
                                                             {
-                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
 
                                                                 continue;
@@ -7813,7 +8049,7 @@ namespace Refrigtz
                                                         {
                                                             if (Draw.CastlesOnTable[i].Row == RowClickP - 4 && Draw.CastlesOnTable[i].Column == ColumnClickP & ColumnClick == 0)
                                                             {
-                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -7838,7 +8074,7 @@ namespace Refrigtz
                                                         {
                                                             if (Draw.CastlesOnTable[i].Row == RowClickP + 3 && Draw.CastlesOnTable[i].Column == ColumnClick && ColumnClick == 7)
                                                             {
-                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -7861,7 +8097,7 @@ namespace Refrigtz
                                                         {
                                                             if (Draw.CastlesOnTable[i].Row == RowClickP - 4 && Draw.CastlesOnTable[i].Column == ColumnClickP && ColumnClick == 7)
                                                             {
-                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                                                                Draw.CastlesOnTable[i] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -7876,8 +8112,8 @@ namespace Refrigtz
 
                                                     }
                                                 }
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -7914,13 +8150,13 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                                 Draw.TableList.Clear();
-                                                Draw.TableList.Add(Table);
+                                                Draw.TableList.Add(CloneATable(Table));
                                                 Draw.SetRowColumn(0);
 
 
@@ -7928,7 +8164,7 @@ namespace Refrigtz
                                                 RefrigtzDLL.AllDraw.DrawTable = false;
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
@@ -7956,7 +8192,7 @@ namespace Refrigtz
                                                         if (ColumnClickP == 0)
                                                         Table[(int)RowClickP, (int)ColumnClickP] = -6;
                                                 }
-                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, King);
+                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -7977,17 +8213,17 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -1))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -1))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 RefrigtzDLL.ThingsConverter.ActOfClickEqualTow = true;
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -1;
                                                 ConvertWait = true;
-                                                Draw.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate, false, Soldier);
+                                                Draw.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
 
                                                 while (ConvertWait) ;
                                                 int[,] TableCon = new int[8, 8];
@@ -8015,7 +8251,7 @@ namespace Refrigtz
                                                     }
                                                     Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                                                     Draw.TableList.Clear();
-                                                    Draw.TableList.Add(Table);
+                                                    Draw.TableList.Add(CloneATable(Table));
                                                     Draw.SetRowColumn(0);
 
 
@@ -8030,7 +8266,7 @@ namespace Refrigtz
                                                     if (Hit != 0)
                                                         HitVal = true;
 
-                                                    Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Soldier);
+                                                    Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Soldier);
                                                     Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                     Table[(int)RowRealesed, (int)ColumnRealeased] = -1;
                                                     for (int i = 0; i < 8; i++)
@@ -8041,8 +8277,8 @@ namespace Refrigtz
                                                         }
                                                     }
                                                 }
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -8075,19 +8311,19 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Soldier, -1);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Soldier, -1);
                                                 Clicked = false;
 
                                             }
@@ -8095,7 +8331,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -1;
-                                                Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Soldier);
+                                                Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Soldier);
                                                 Draw.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -8114,11 +8350,11 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -2, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -2))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -2, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -2))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -8128,11 +8364,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -2;
-                                                Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Elefant);
+                                                Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Elefant);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -2;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -8166,19 +8402,19 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Elefant, -2);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Elefant, -2);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -8186,7 +8422,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -2;
-                                                Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Elefant);
+                                                Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Elefant);
                                                 Draw.ElephantOnTable[Elefant].DrawElefantOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -8207,11 +8443,11 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -3, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -3))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -3, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -3))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -8221,11 +8457,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -3;
-                                                Draw.HoursesOnTable[Hourse] = new RefrigtzDLL.DrawHourse(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Hourse);
+                                                Draw.HoursesOnTable[Hourse] = new RefrigtzDLL.DrawHourse(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Hourse);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -3;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -8259,19 +8495,19 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Hourse, -3);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Hourse, -3);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -8279,7 +8515,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -3;
-                                                Draw.HoursesOnTable[Hourse] = new RefrigtzDLL.DrawHourse(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Hourse);
+                                                Draw.HoursesOnTable[Hourse] = new RefrigtzDLL.DrawHourse(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Hourse);
                                                 Draw.HoursesOnTable[Hourse].DrawHourseOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -8300,11 +8536,11 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -4, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -4))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -4, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -4))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -8314,11 +8550,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -4;
-                                                Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Castle);
+                                                Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Castle);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -4;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -8352,19 +8588,19 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Castle, -4);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Castle, -4);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -8372,7 +8608,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -4;
-                                                Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Castle);
+                                                Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Castle);
                                                 Draw.CastlesOnTable[Castle].DrawCastleOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -8393,11 +8629,11 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -5, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -5))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -5, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -5))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -8407,11 +8643,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -5;
-                                                Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Minister);
+                                                Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Minister);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -5;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -8445,20 +8681,20 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
                                                 //TakeRoot.CalculateRootGray(Draw);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Minister, -5);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Minister, -5);
                                                 Clicked = false;
 
                                                 continue;
@@ -8466,7 +8702,7 @@ namespace Refrigtz
                                             else
                                             {
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -5;
-                                                Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Minister);
+                                                Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Minister);
 
                                                 Draw.MinisterOnTable[Minister].DrawMinisterOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
@@ -8491,11 +8727,11 @@ namespace Refrigtz
                                         else
                                             if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -6, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -6))
+                                            if ((new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -6, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -6))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
-                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -8505,11 +8741,11 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -6;
-                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -6;
-                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -8544,20 +8780,20 @@ namespace Refrigtz
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
 
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, King, -6);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, King, -6);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -8566,7 +8802,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -6;
-                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, King);
+                                                Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                 Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -8645,9 +8881,9 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 7, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 7))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 7, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 7))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
 
 
@@ -8668,7 +8904,7 @@ namespace Refrigtz
                                                         {
                                                             if (DrawQ.CastlesOnTable[i].Row == RowClickP + 3 && DrawQ.CastlesOnTable[i].Column == ColumnClick && ColumnClick == 0)
                                                             {
-                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
                                                             }
@@ -8689,7 +8925,7 @@ namespace Refrigtz
                                                         {
                                                             if (DrawQ.CastlesOnTable[i].Row == RowClickP - 4 && DrawQ.CastlesOnTable[i].Column == ColumnClickP & ColumnClick == 0)
                                                             {
-                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -8714,7 +8950,7 @@ namespace Refrigtz
                                                         {
                                                             if (DrawQ.CastlesOnTable[i].Row == RowClickP + 3 && DrawQ.CastlesOnTable[i].Column == ColumnClick && ColumnClick == 7)
                                                             {
-                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
 
                                                                 continue;
@@ -8738,7 +8974,7 @@ namespace Refrigtz
                                                         {
                                                             if (DrawQ.CastlesOnTable[i].Row == RowClickP - 4 && DrawQ.CastlesOnTable[i].Column == ColumnClickP && ColumnClick == 7)
                                                             {
-                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -8753,8 +8989,8 @@ namespace Refrigtz
 
                                                     }
                                                 }
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -8797,7 +9033,7 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
 
                                                 SetSyntax();
@@ -8811,7 +9047,7 @@ namespace Refrigtz
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
@@ -8842,7 +9078,7 @@ namespace Refrigtz
                                                         if (ColumnClickP == 0)
                                                         Table[(int)RowClickP, (int)ColumnClickP] = -6;
                                                 }
-                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, King);
+                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 DrawQ.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -8863,20 +9099,20 @@ namespace Refrigtz
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
 
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 1))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 1))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
 
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 QuantumRefrigiz.ThingsConverter.ActOfClickEqualTow = true;
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnRealeased;
                                                 CurrentKind = 1;
                                                 ConvertWait = true;
-                                                DrawQ.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate, false, Soldier);
+                                                DrawQ.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
                                                 Thread.Sleep(100);
                                                 while (ConvertWait) ;
                                                 int[,] TableCon = new int[8, 8];
@@ -8922,7 +9158,7 @@ namespace Refrigtz
                                                     if (Hit != 0)
                                                         HitVal = true;
 
-                                                    DrawQ.SolderesOnTable[Soldier] = new QuantumRefrigiz.DrawSoldierQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Soldier);
+                                                    DrawQ.SolderesOnTable[Soldier] = new QuantumRefrigiz.DrawSoldierQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
                                                     Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                     Table[(int)RowRealesed, (int)ColumnRealeased] = 1;
                                                     DrawQ.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
@@ -8935,8 +9171,8 @@ namespace Refrigtz
                                                     }
 
                                                 }
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -8967,26 +9203,26 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Soldier, 1);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Soldier, 1);
                                                 Clicked = false;
                                                 continue;
                                             }
                                             else
                                             {
 
-                                                DrawQ.SolderesOnTable[Soldier] = new QuantumRefrigiz.DrawSoldierQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Soldier);
+                                                DrawQ.SolderesOnTable[Soldier] = new QuantumRefrigiz.DrawSoldierQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 1;
                                                 DrawQ.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
@@ -9007,14 +9243,14 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 2, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 2))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 2, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 2))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
 
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -9024,12 +9260,12 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 2;
-                                                DrawQ.ElephantOnTable[Elefant] = new QuantumRefrigiz.DrawElefantQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Elefant);
+                                                DrawQ.ElephantOnTable[Elefant] = new QuantumRefrigiz.DrawElefantQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Elefant);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 2;
                                                 DrawQ.ElephantOnTable[Elefant].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -9063,19 +9299,19 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Elefant, 2);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Elefant, 2);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -9083,7 +9319,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 2;
-                                                DrawQ.ElephantOnTable[Elefant] = new QuantumRefrigiz.DrawElefantQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Elefant);
+                                                DrawQ.ElephantOnTable[Elefant] = new QuantumRefrigiz.DrawElefantQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Elefant);
                                                 DrawQ.ElephantOnTable[Elefant].DrawElefantOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -9103,13 +9339,13 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 3, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 3))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 3, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 3))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -9119,12 +9355,12 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 3;
-                                                DrawQ.HoursesOnTable[Hourse] = new QuantumRefrigiz.DrawHourseQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Hourse);
+                                                DrawQ.HoursesOnTable[Hourse] = new QuantumRefrigiz.DrawHourseQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Hourse);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 3;
                                                 DrawQ.HoursesOnTable[Hourse].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -9158,19 +9394,19 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Hourse, 3);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Hourse, 3);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -9178,7 +9414,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 3;
-                                                DrawQ.HoursesOnTable[Hourse] = new QuantumRefrigiz.DrawHourseQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Hourse);
+                                                DrawQ.HoursesOnTable[Hourse] = new QuantumRefrigiz.DrawHourseQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Hourse);
                                                 DrawQ.HoursesOnTable[Hourse].DrawHourseOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
 
@@ -9201,14 +9437,14 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 4, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 4))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 4, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 4))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
 
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -9218,13 +9454,13 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 4;
-                                                DrawQ.CastlesOnTable[Castle] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Castle);
+                                                DrawQ.CastlesOnTable[Castle] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Castle);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 4;
                                                 DrawQ.CastlesOnTable[Castle].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
 
-                                                if (AA.Check(Table, OrderPlate))
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -9258,19 +9494,19 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Castle, 4);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Castle, 4);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -9278,7 +9514,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 4;
-                                                DrawQ.CastlesOnTable[Castle] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Castle);
+                                                DrawQ.CastlesOnTable[Castle] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Castle);
                                                 DrawQ.CastlesOnTable[Castle].DrawCastleOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -9301,13 +9537,13 @@ namespace Refrigtz
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
 
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 5, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 5))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 5, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 5))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -9317,12 +9553,12 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 5;
-                                                DrawQ.MinisterOnTable[Minister] = new QuantumRefrigiz.DrawMinisterQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, Minister);
+                                                DrawQ.MinisterOnTable[Minister] = new QuantumRefrigiz.DrawMinisterQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Minister);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 5;
                                                 DrawQ.MinisterOnTable[Minister].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -9357,20 +9593,20 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
 
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, Minister, 5);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, Minister, 5);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -9378,7 +9614,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 5;
-                                                DrawQ.MinisterOnTable[Minister] = new QuantumRefrigiz.DrawMinisterQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, Minister);
+                                                DrawQ.MinisterOnTable[Minister] = new QuantumRefrigiz.DrawMinisterQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Minister);
                                                 DrawQ.MinisterOnTable[Minister].DrawMinisterOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -9399,13 +9635,13 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 6, Table, 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 6))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 6, CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, 6))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                     continue;
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -9415,12 +9651,12 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = 6;
-                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = 6;
                                                 DrawQ.KingOnTable[King].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -9454,19 +9690,19 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Gray);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, Table, OrderPlate * -1, King, 6);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate * -1, King, 6);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -9475,7 +9711,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 6;
-                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, King);
+                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 DrawQ.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -9500,9 +9736,9 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -7, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -7))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -7, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -7))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
 
 
@@ -9519,7 +9755,7 @@ namespace Refrigtz
                                                         {
                                                             if (DrawQ.CastlesOnTable[i].Row == RowClickP + 3 && DrawQ.CastlesOnTable[i].Column == ColumnClick && ColumnClick == 7)
                                                             {
-                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
 
                                                                 continue;
@@ -9543,7 +9779,7 @@ namespace Refrigtz
                                                         {
                                                             if (DrawQ.CastlesOnTable[i].Row == RowClickP - 4 && DrawQ.CastlesOnTable[i].Column == ColumnClickP & ColumnClick == 0)
                                                             {
-                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -9568,7 +9804,7 @@ namespace Refrigtz
                                                         {
                                                             if (DrawQ.CastlesOnTable[i].Row == RowClickP + 3 && DrawQ.CastlesOnTable[i].Column == ColumnClick && ColumnClick == 7)
                                                             {
-                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed + 1, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -9591,7 +9827,7 @@ namespace Refrigtz
                                                         {
                                                             if (DrawQ.CastlesOnTable[i].Row == RowClickP - 4 && DrawQ.CastlesOnTable[i].Column == ColumnClickP && ColumnClick == 7)
                                                             {
-                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Brown, Table, OrderPlate, false, King);
+                                                                DrawQ.CastlesOnTable[i] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed - 1, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                                 Castles = i;
                                                                 continue;
 
@@ -9606,8 +9842,8 @@ namespace Refrigtz
 
                                                     }
                                                 }
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -9648,7 +9884,7 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
@@ -9662,7 +9898,7 @@ namespace Refrigtz
                                                 QuantumRefrigiz.AllDraw.DrawTable = false;
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 GrayTimer.StopTime();
                                                 BrownTimer.StartTime("BrownTimer");
                                                 InsertTableAtDataBase(Table);
@@ -9690,7 +9926,7 @@ namespace Refrigtz
                                                         if (ColumnClickP == 0)
                                                         Table[(int)RowClickP, (int)ColumnClickP] = -6;
                                                 }
-                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, Table, OrderPlate, false, King);
+                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 DrawQ.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -9711,19 +9947,19 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -1))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -1))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 QuantumRefrigiz.ThingsConverter.ActOfClickEqualTow = true;
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -1;
                                                 ConvertWait = true;
-                                                DrawQ.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate, false, Soldier);
+                                                DrawQ.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
 
                                                 while (ConvertWait) ;
                                                 int[,] TableCon = new int[8, 8];
@@ -9766,7 +10002,7 @@ namespace Refrigtz
                                                     if (Hit != 0)
                                                         HitVal = true;
 
-                                                    DrawQ.SolderesOnTable[Soldier] = new QuantumRefrigiz.DrawSoldierQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Soldier);
+                                                    DrawQ.SolderesOnTable[Soldier] = new QuantumRefrigiz.DrawSoldierQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Soldier);
                                                     Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                     Table[(int)RowRealesed, (int)ColumnRealeased] = -1;
                                                     for (int i = 0; i < 8; i++)
@@ -9777,8 +10013,8 @@ namespace Refrigtz
                                                         }
                                                     }
                                                 }
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -9811,19 +10047,19 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Soldier, -1);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Soldier, -1);
                                                 Clicked = false;
 
                                             }
@@ -9831,7 +10067,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -1;
-                                                DrawQ.SolderesOnTable[Soldier] = new QuantumRefrigiz.DrawSoldierQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Soldier);
+                                                DrawQ.SolderesOnTable[Soldier] = new QuantumRefrigiz.DrawSoldierQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Soldier);
                                                 DrawQ.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -9850,13 +10086,13 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -2, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -2))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -2, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -2))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -9866,12 +10102,12 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -2;
-                                                DrawQ.ElephantOnTable[Elefant] = new QuantumRefrigiz.DrawElefantQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Elefant);
+                                                DrawQ.ElephantOnTable[Elefant] = new QuantumRefrigiz.DrawElefantQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Elefant);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -2;
                                                 DrawQ.ElephantOnTable[Elefant].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -9905,19 +10141,19 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Elefant, -2);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Elefant, -2);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -9925,7 +10161,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -2;
-                                                DrawQ.ElephantOnTable[Elefant] = new QuantumRefrigiz.DrawElefantQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Elefant);
+                                                DrawQ.ElephantOnTable[Elefant] = new QuantumRefrigiz.DrawElefantQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Elefant);
                                                 DrawQ.ElephantOnTable[Elefant].DrawElefantOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -9946,14 +10182,14 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -3, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -3))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -3, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -3))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
 
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -9963,12 +10199,12 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -3;
-                                                DrawQ.HoursesOnTable[Hourse] = new QuantumRefrigiz.DrawHourseQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Hourse);
+                                                DrawQ.HoursesOnTable[Hourse] = new QuantumRefrigiz.DrawHourseQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Hourse);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -3;
                                                 DrawQ.HoursesOnTable[Hourse].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -10002,19 +10238,19 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Hourse, -3);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Hourse, -3);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -10022,7 +10258,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -3;
-                                                DrawQ.HoursesOnTable[Hourse] = new QuantumRefrigiz.DrawHourseQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Hourse);
+                                                DrawQ.HoursesOnTable[Hourse] = new QuantumRefrigiz.DrawHourseQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Hourse);
                                                 DrawQ.HoursesOnTable[Hourse].DrawHourseOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -10043,13 +10279,13 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -4, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -4))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -4, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -4))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -10059,12 +10295,12 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -4;
-                                                DrawQ.CastlesOnTable[Castle] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Castle);
+                                                DrawQ.CastlesOnTable[Castle] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Castle);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -4;
                                                 DrawQ.CastlesOnTable[Castle].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -10098,19 +10334,19 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Castle, -4);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Castle, -4);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -10118,7 +10354,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -4;
-                                                DrawQ.CastlesOnTable[Castle] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Castle);
+                                                DrawQ.CastlesOnTable[Castle] = new QuantumRefrigiz.DrawCastleQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Castle);
                                                 DrawQ.CastlesOnTable[Castle].DrawCastleOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -10139,13 +10375,13 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -5, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -5))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -5, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -5))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -10155,12 +10391,12 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -5;
-                                                DrawQ.MinisterOnTable[Minister] = new QuantumRefrigiz.DrawMinisterQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, Table, OrderPlate, false, Minister);
+                                                DrawQ.MinisterOnTable[Minister] = new QuantumRefrigiz.DrawMinisterQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Brown, CloneATable(Table), OrderPlate, false, Minister);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -5;
                                                 DrawQ.MinisterOnTable[Minister].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -10194,20 +10430,20 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
                                                 //TakeRoot.CalculateRootGray(DrawQ);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, Minister, -5);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, Minister, -5);
                                                 Clicked = false;
 
                                                 continue;
@@ -10215,7 +10451,7 @@ namespace Refrigtz
                                             else
                                             {
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -5;
-                                                DrawQ.MinisterOnTable[Minister] = new QuantumRefrigiz.DrawMinisterQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, Minister);
+                                                DrawQ.MinisterOnTable[Minister] = new QuantumRefrigiz.DrawMinisterQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Minister);
 
                                                 DrawQ.MinisterOnTable[Minister].DrawMinisterOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
@@ -10240,13 +10476,13 @@ namespace Refrigtz
                                         else
                                             if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                                         {
-                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -6, Table, -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -6))
+                                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -6, CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown, -6))
                                             {
-                                                if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
+                                                if (CheckMovment(CloneATable(Table), (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                     continue;
 
 
-                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
 #pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                                 bool HitVal = false;
@@ -10256,12 +10492,12 @@ namespace Refrigtz
                                                 LastRow = (int)RowRealesed;
                                                 LastColumn = (int)ColumnClickP;
                                                 CurrentKind = -6;
-                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, Table, OrderPlate, false, King);
+                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowRealesed, ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, King);
                                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
                                                 Table[(int)RowRealesed, (int)ColumnRealeased] = -6;
                                                 DrawQ.KingOnTable[King].IsQuntumMove = true;
-                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, Table, OrderPlate, -1, -1);
-                                                if (AA.Check(Table, OrderPlate))
+                                                AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
+                                                if (AA.Check(CloneATable(Table), OrderPlate))
                                                 {
                                                     if (AA.CheckGray && OrderPlate == 1)
                                                     {
@@ -10296,20 +10532,20 @@ namespace Refrigtz
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                                                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                                                 }
-                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                                                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
 
                                                 SetSyntax();
 
                                                 OrderPlate = OrderPlate * -1;
                                                 QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                                
+
 
                                                 BrownTimer.StopTime();
                                                 GrayTimer.StartTime("GrayTimer");
                                                 InsertTableAtDataBase(Table);
                                                 SetBoxText("\r\nWait...");
                                                 RefreshBoxText();
-                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, King, -6);
+                                                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, King, -6);
                                                 Clicked = false;
                                                 continue;
                                             }
@@ -10318,7 +10554,7 @@ namespace Refrigtz
                                             {
 
                                                 Table[(int)RowClickP, (int)ColumnClickP] = -6;
-                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, Table, OrderPlate, false, King);
+                                                DrawQ.KingOnTable[King] = new QuantumRefrigiz.DrawKingQ(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, King);
                                                 DrawQ.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
                                                 Clicked = false;
                                             }
@@ -11843,7 +12079,7 @@ namespace Refrigtz
 
                 if (File.Exists("output.txt"))
                     Next = File.ReadAllText("output.txt");
-                if (Preveios == Next || Next.Length< 1)
+                if (Preveios == Next || Next.Length < 1)
                     return true;
             }
             catch (Exception t)
@@ -11857,10 +12093,11 @@ namespace Refrigtz
             //WaitOn = false;
             return false;
         }
-        bool SetDrawFoundingQuantum(bool ConvertQ,int i, int j, int ii, int jj, int[,] Table, int[,] Tab)
-        { bool FOUND = false;
+        bool SetDrawFoundingQuantum(bool ConvertQ, int i, int j, int ii, int jj, int[,] Table, int[,] Tab)
+        {
+            FOUND = false;
             QuantumRefrigiz.AllDraw THIS = null;
-            DrawQ.FoundOfCurrentTableNode(Table, OrderPlate, ref THIS, ref FOUND);
+            DrawQ.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate, ref THIS, ref FOUND);
             if (FOUND)
             {
                 if (!ConvertQ)
@@ -11879,8 +12116,8 @@ namespace Refrigtz
                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                 }
-                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(0,Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
-              // OrderPlate = DrawQ.OrderP;
+                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(0, CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                // OrderPlate = DrawQ.OrderP;
                 /*QuantumRefrigiz.AllDraw.TableListAction.Add(Tab);
                 Person = false;
                 if (QuantumRefrigiz.AllDraw.AStarGreadyFirstSearch && QuantumRefrigiz.AllDraw.StoreADraw.Count > 0)
@@ -11890,7 +12127,7 @@ namespace Refrigtz
                     QuantumRefrigiz.AllDraw.StoreADraw[0].TableList.Add(Table);
                     QuantumRefrigiz.AllDraw.StoreADraw[0].SetRowColumn(0);
                 }
-                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                QuantumRefrigiz.AllDraw.Less += CalculateMoveMentHueuristicUser(CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
                 if (QuantumRefrigiz.AllDraw.TableListAction.Count > 1)
                 {
                     QuantumRefrigiz.ChessGeneticAlgorithm R = new QuantumRefrigiz.ChessGeneticAlgorithm(MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
@@ -11910,7 +12147,7 @@ namespace Refrigtz
                             }
                             if ((QuantumRefrigiz.ChessRules.SmallKingCastleGray || QuantumRefrigiz.ChessRules.BigKingCastleGray) && (!QuantumRefrigiz.ChessRules.CastleActGray))
                                 QuantumRefrigiz.ChessRules.CastleActGray = true;
-                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][i, j], ii, jj, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
+                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][i, j], ii, jj, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
                         }
                         else
                         {
@@ -11922,8 +12159,8 @@ namespace Refrigtz
                             if ((QuantumRefrigiz.ChessRules.SmallKingCastleBrown || QuantumRefrigiz.ChessRules.BigKingCastleBrown) && (!QuantumRefrigiz.ChessRules.CastleActBrown))
                                 QuantumRefrigiz.ChessRules.CastleActBrown = true;
 
-                            // QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
-                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][i, j], ii, jj, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
+                            // QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
+                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][i, j], ii, jj, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
                         }
                         SetBoxStatistic(QuantumRefrigiz.AllDraw.SyntaxToWrite);
                         RefreshBoxStatistic();
@@ -11941,7 +12178,7 @@ namespace Refrigtz
                 InsertTableAtDataBase(Table);
                 SetBoxText("\r\nWait...");
                 RefreshBoxText();
-                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, King, -6);
+                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) DrawQ.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, King, -6);
                 Clicked = false;
 
 
@@ -11952,11 +12189,11 @@ namespace Refrigtz
             }
             return false;
         }
-        bool SetDrawFoundingMovemnetDLL(bool ConvertD,int i, int j, int ii, int jj, int[,] Table, int[,] Tab)
+        bool SetDrawFoundingMovemnetDLL(bool ConvertD, int i, int j, int ii, int jj, int[,] Table, int[,] Tab)
         {
-            bool FOUND = false;
+            FOUND = false;
             RefrigtzDLL.AllDraw THIS = null;
-            Draw.FoundOfCurrentTableNode(Table, OrderPlate, ref THIS, ref FOUND);
+            Draw.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate, ref THIS, ref FOUND);
             if (FOUND)
             {
                 if (!ConvertD)
@@ -11975,7 +12212,7 @@ namespace Refrigtz
                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                 }
-                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(0,Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(0, CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
                 // OrderPlate = Draw.OrderP;
                 /*RefrigtzDLL.AllDraw.TableListAction.Add(Tab);
                 Person = false;
@@ -11986,7 +12223,7 @@ namespace Refrigtz
                     RefrigtzDLL.AllDraw.StoreADraw[0].TableList.Add(Table);
                     RefrigtzDLL.AllDraw.StoreADraw[0].SetRowColumn(0);
                 }
-                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(Table, -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
+                RefrigtzDLL.AllDraw.Less += CalculateMoveMentHueuristicUser(CloneATable(Table), -1, (int)RowRealesed, (int)ColumnRealeased, (int)RowRealesedP, (int)ColumnRealeasedP, Color.Brown);
                 if (RefrigtzDLL.AllDraw.TableListAction.Count > 1)
                 {
                     RefrigtzDLL.ChessGeneticAlgorithm R = new RefrigtzDLL.ChessGeneticAlgorithm(MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
@@ -12006,8 +12243,8 @@ namespace Refrigtz
                             }
                             if ((RefrigtzDLL.ChessRules.SmallKingCastleGray || RefrigtzDLL.ChessRules.BigKingCastleGray) && (!RefrigtzDLL.ChessRules.CastleActGray))
                                 RefrigtzDLL.ChessRules.CastleActGray = true;
-                            // RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
-                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][i, j], ii, jj, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
+                            // RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
+                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][i, j], ii, jj, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
                         }
                         else
                         {
@@ -12019,7 +12256,7 @@ namespace Refrigtz
                             if ((RefrigtzDLL.ChessRules.SmallKingCastleBrown || RefrigtzDLL.ChessRules.BigKingCastleBrown) && (!RefrigtzDLL.ChessRules.CastleActBrown))
                                 RefrigtzDLL.ChessRules.CastleActBrown = true;
 
-                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][i, j], ii, jj, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
+                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][i, j], ii, jj, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
                         }
                         SetBoxStatistic(RefrigtzDLL.AllDraw.SyntaxToWrite);
                         RefreshBoxStatistic();
@@ -12037,7 +12274,7 @@ namespace Refrigtz
                 InsertTableAtDataBase(Table);
                 SetBoxText("\r\nWait...");
                 RefreshBoxText();
-                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, King, -6);
+                //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, King, -6);
                 Clicked = false;
 
 
@@ -12057,7 +12294,7 @@ namespace Refrigtz
             {
                 if (RefrigtzDLL.AllDraw.MouseClick == 2)
                 {
-                    RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Table[i, j], Table, OrderPlate, i, j);
+                    RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Table[i, j], CloneATable(Table), OrderPlate, i, j);
                     Color a = Color.Gray;
                     if (OrderPlate == -1)
                         a = Color.Brown;
@@ -12077,7 +12314,7 @@ namespace Refrigtz
                             CurrentKind = 1;
                             ConvertWait = true;
                             RefrigtzDLL.ThingsConverter.ActOfClickEqualTow = true;
-                            Draw.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate, false, Soldier);
+                            Draw.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
                             Thread.Sleep(100);
                             while (ConvertWait) ;
                             int[,] TableCon = new int[8, 8];
@@ -12086,18 +12323,18 @@ namespace Refrigtz
                             {
 
                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
-                                  if (Draw.SolderesOnTable[Soldier].ConvertedToMinister)
-                                      Table[(int)RowRealesed, (int)ColumnRealeased] = 5;
-                                  else if (Draw.SolderesOnTable[Soldier].ConvertedToCastle)
-                                      Table[(int)RowRealesed, (int)ColumnRealeased] = 4;
-                                  else if (Draw.SolderesOnTable[Soldier].ConvertedToHourse)
-                                      Table[(int)RowRealesed, (int)ColumnRealeased] = 3;
-                                  else if (Draw.SolderesOnTable[Soldier].ConvertedToElefant)
-                                      Table[(int)RowRealesed, (int)ColumnRealeased] = 2;
+                                if (Draw.SolderesOnTable[Soldier].ConvertedToMinister)
+                                    Table[(int)RowRealesed, (int)ColumnRealeased] = 5;
+                                else if (Draw.SolderesOnTable[Soldier].ConvertedToCastle)
+                                    Table[(int)RowRealesed, (int)ColumnRealeased] = 4;
+                                else if (Draw.SolderesOnTable[Soldier].ConvertedToHourse)
+                                    Table[(int)RowRealesed, (int)ColumnRealeased] = 3;
+                                else if (Draw.SolderesOnTable[Soldier].ConvertedToElefant)
+                                    Table[(int)RowRealesed, (int)ColumnRealeased] = 2;
 
                                 if (OrderPlate == -1)
                                     Table[(int)RowRealesed, (int)ColumnRealeased] *= -1;
-                                
+
                                 RefrigtzDLL.ThingsConverter.ClickOcurred = false;
                                 for (int ik = 0; ik < 8; ik++)
                                 {
@@ -12121,7 +12358,7 @@ namespace Refrigtz
                             }
                         }
 
-                        bool FOUND = SetDrawFoundingMovemnetDLL(Draw.SolderesOnTable[Soldier].Convert,i, j, ii, jj, Table, Tab);
+                        bool FOUND = SetDrawFoundingMovemnetDLL(Draw.SolderesOnTable[Soldier].Convert, i, j, ii, jj, CloneATable(Table), Tab);
                         if (FOUND)
                         {
                             //Draw.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
@@ -12132,24 +12369,24 @@ namespace Refrigtz
                         DrawImageOfMain();
                         return false;
 
-                        }
+                    }
                     else
                     {
                         SetBoxText("\r\nWait...");
                         RefreshBoxText();
-                        //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, King, -6);
+                        //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, King, -6);
                         Clicked = true;
                         // SetRefregitzBicture();
 
                         return true;
                     }
                 }
-            }            
+            }
             else
             {
                 if (QuantumRefrigiz.AllDraw.MouseClick == 2)
                 {
-                    QuantumRefrigiz.ChessRules A = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Table[i, j], Table, OrderPlate, i, j);
+                    QuantumRefrigiz.ChessRules A = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, Table[i, j], CloneATable(Table), OrderPlate, i, j);
                     Color a = Color.Gray;
                     if (OrderPlate == -1)
                         a = Color.Brown;
@@ -12169,7 +12406,7 @@ namespace Refrigtz
                             CurrentKind = 1;
                             ConvertWait = true;
                             RefrigtzDLL.ThingsConverter.ActOfClickEqualTow = true;
-                            DrawQ.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate, false, Soldier);
+                            DrawQ.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
                             Thread.Sleep(100);
                             while (ConvertWait) ;
                             int[,] TableCon = new int[8, 8];
@@ -12178,14 +12415,14 @@ namespace Refrigtz
                             {
 
                                 Table[(int)RowClickP, (int)ColumnClickP] = 0;
-                                  if (Draw.SolderesOnTable[Soldier].ConvertedToMinister)
-                                      Table[(int)RowRealesed, (int)ColumnRealeased] = 5;
-                                  else if (Draw.SolderesOnTable[Soldier].ConvertedToCastle)
-                                      Table[(int)RowRealesed, (int)ColumnRealeased] = 4;
-                                  else if (Draw.SolderesOnTable[Soldier].ConvertedToHourse)
-                                      Table[(int)RowRealesed, (int)ColumnRealeased] = 3;
-                                  else if (Draw.SolderesOnTable[Soldier].ConvertedToElefant)
-                                      Table[(int)RowRealesed, (int)ColumnRealeased] = 2;
+                                if (Draw.SolderesOnTable[Soldier].ConvertedToMinister)
+                                    Table[(int)RowRealesed, (int)ColumnRealeased] = 5;
+                                else if (Draw.SolderesOnTable[Soldier].ConvertedToCastle)
+                                    Table[(int)RowRealesed, (int)ColumnRealeased] = 4;
+                                else if (Draw.SolderesOnTable[Soldier].ConvertedToHourse)
+                                    Table[(int)RowRealesed, (int)ColumnRealeased] = 3;
+                                else if (Draw.SolderesOnTable[Soldier].ConvertedToElefant)
+                                    Table[(int)RowRealesed, (int)ColumnRealeased] = 2;
                                 if (OrderPlate == -1)
                                     Table[(int)RowRealesed, (int)ColumnRealeased] *= -1;
 
@@ -12206,7 +12443,7 @@ namespace Refrigtz
                             Table[i, j] = 0;
                         }
                         QuantumRefrigiz.ThingsConverter.ActOfClickEqualTow = false;
-                        // bool FOUND = false;
+                        // FOUND = false;
                         // RefrigtzDLL.AllDraw THIS = null;
 
                         // SetDrawFounding(ref FOUND, ref THIS, false);
@@ -12245,7 +12482,7 @@ namespace Refrigtz
                             DrawQ.KingOnTable[King].IsQuntumMove = true;
                         }
 
-                        bool FOUND = SetDrawFoundingQuantum(DrawQ.SolderesOnTable[Soldier].Convert,i, j, ii, jj, Table, Tab);
+                        bool FOUND = SetDrawFoundingQuantum(DrawQ.SolderesOnTable[Soldier].Convert, i, j, ii, jj, CloneATable(Table), Tab);
                         if (FOUND)
                         {
                             // DrawQ.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
@@ -12260,7 +12497,7 @@ namespace Refrigtz
                     {
                         SetBoxText("\r\nWait...");
                         RefreshBoxText();
-                        //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, King, -6);
+                        //if (!FirstMovmentOnLoad && System.Convert.ToInt32(ComboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate * -1, King, -6);
                         Clicked = true;
                         // SetRefregitzBicture();
 
@@ -12421,7 +12658,7 @@ namespace Refrigtz
                 this.SetBoxText("\r\nThinking Finished by Alice!");
             RefreshBoxText();
 
-            
+
 
             /*
             RefrigtzDLL.AllDraw.TableListAction.Add(Tab);
@@ -12471,7 +12708,7 @@ namespace Refrigtz
                 //soundClick.Dispose();
             }
 
-            //bool FOUND = false;
+            //FOUND = false;
             //RefrigtzDLL.AllDraw THIS = null;
             Table = CloneATable(Tab);
             /*
@@ -12493,7 +12730,9 @@ namespace Refrigtz
 
             DrawImageOfMain();
       */
-            bool FOUND = false;
+            SetAndConfirmSyntax();
+
+            FOUND = false;
             RefrigtzDLL.AllDraw THIS = null;
             QuantumRefrigiz.AllDraw THISQ = null;
             if (!Quantum)
@@ -12501,19 +12740,21 @@ namespace Refrigtz
             else
                 SetDrawFounding(ref FOUND, ref THISQ, false);
 
-            SetAndConfirmSyntax();
-
+     
             OpAfterAllTinking(ref StoreStateCC, ref StoreStateCP, ref StoreStateGe);
 
             OrderPlate *= -1;
 
-            SetBoxTextWrite(Out);
+            //SetBoxTextWrite(Out);
 
             BrownTimer.StopTime();
             GrayTimer.StartTime("GrayTimer");
 
-            DrawImageOfMain();
+            SetBoxTextWrite(Out);
 
+
+            DrawImageOfMain();
+         
             BobSection = true;
         }
         void ComputerByComputerBobAsRefregitz(ref Process proc)
@@ -12558,7 +12799,7 @@ namespace Refrigtz
             ColumnRealeased = -1;
             //Thread.Sleep(1500);
             BobSection = false;
-            
+
             GrayTimer.StopTime();
             BrownTimer.StartTime("BrownTimer");
 
@@ -12570,10 +12811,25 @@ namespace Refrigtz
         }
         public void SetDrawFounding(ref bool FOUND, ref RefrigtzDLL.AllDraw THIS, bool First)
         {
+            if (Draw == null)
+                return;
+            int Dummy = OrderPlate;
+            /*  if (Sec.RadioButtonGrayOrder.Checked)
+                  OrderPlate = 1;
+              else
+                  OrderPlate = -1;
+       */
             RefrigtzDLL.AllDraw THISB = Draw.AStarGreedyString;
             while (Draw.AStarGreedyString != null)
                 Draw = Draw.AStarGreedyString;
-            Object O = new Object();
+            /*
+            OrderPlate = Draw.OrderP;
+            if ((Stockfish || Sugar || StateCC || StateCP) && (!BobSection) && LoadO)
+                OrderPlate *= -1;
+*/
+            //OrderPlate = Draw.OrderP;
+
+            /*Object O = new Object();
             lock (O)
             {
                 FOUND = false;
@@ -12581,7 +12837,7 @@ namespace Refrigtz
 
                 Color a = Color.Brown;
                 //if (First)
-                //Draw.FoundOfCurrentTableNode(Table, OrderPlate * -1, ref THIS, ref FOUND);
+                //Draw.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate * -1, ref THIS, ref FOUND);
                 //else
                 int Ord = OrderPlate;
                 Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
@@ -12604,7 +12860,7 @@ namespace Refrigtz
 
                     Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                     Draw.TableList.Clear();
-                    Draw.TableList.Add(Table);
+                    Draw.TableList.Add(CloneATable(Table));
                     Draw.SetRowColumn(0);
                     //Draw.AStarGreedyString = THISB;
                     RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
@@ -12612,157 +12868,7 @@ namespace Refrigtz
                     SetBoxText("\r\nDraw Not Found");
                     RefreshBoxText();
                 }
-            }
-                /*         Object O = new Object();
-                         lock (O)
-                         {
-                             FOUND = false;
-                             THIS = null;
-
-                             Color a = Color.Brown;
-                             //if (First)
-                             //Draw.FoundOfCurrentTableNode(Table, OrderPlate * -1, ref THIS, ref FOUND);
-                             //else
-                             int Ord = OrderPlate;
-                              Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
-                             if (FOUND)
-                             {
-                                 //THISB = THIS.AStarGreedyString;
-                                 Draw = THIS;
-                                   SetBoxText("\r\nDraw Found");
-                                 RefreshBoxText();
-                             }
-                             else
-                             {
-                                 FOUND = false;
-                                 THIS = null;
-
-                                 a = Color.Brown;
-                                Ord = OrderPlate;
-                                 if (MovmentsNumber == 0)
-                                 {
-                                     if (Sec.RadioButtonBrownOrder.Checked)
-                                         Ord = 1;
-                                 }
-                                 else
-                                     Ord = OrderPlate * -1;
-                                 while (Draw.AStarGreedyString != null)
-                                     Draw = Draw.AStarGreedyString;
-
-                                 if ((RefrigtzDLL.AllDraw.TableListAction.Count >= 2))
-                                     Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]), Ord, ref THIS, ref FOUND);
-                                 if (FOUND)
-                                 {
-                                     Draw = THIS;
-                                        SetBoxText("\r\nDraw Found By Recurve");
-                                     RefreshBoxText();
-                                     FOUND = Draw.InitiateAStarGreedytCreationThinking(0, 0, 0, a, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], Ord, false, false, 0);
-                                     if (FOUND)
-                                     {
-                                         Ord = OrderPlate * -1;
-
-                                         Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
-                                         if (FOUND)
-                                         {
-                                             //THISB = THIS.AStarGreedyString;
-                                             Draw = THIS;
-                                               SetBoxText("\r\nDraw Found Target Of Tree Expansion!");
-                                             RefreshBoxText();
-                                         }
-                                         else
-                                         {
-                                             if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
-                                                 AllDrawKind = 4;
-                                             else
-                                                            if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
-                                                 AllDrawKind = 3;
-                                             if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
-                                                 AllDrawKind = 2;
-                                             if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
-                                                 AllDrawKind = 1;
-                                             //Set Configuration To True for some unknown reason!.
-                                             //UpdateConfigurationTableVal = true;                             
-                                             SetAllDrawKindString();
-
-                                             (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                             DrawManagement();
-                                             //THISB = Draw.AStarGreedyString;
-                                             Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                             Draw.TableList.Clear();
-                                             Draw.TableList.Add(Table);
-                                             Draw.SetRowColumn(0);
-                                             //Draw.AStarGreedyString = THISB;
-                                             RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                             RefrigtzDLL.AllDraw.DepthIterative = 0;
-                                             SetBoxText("\r\nDraw Not Found by break");
-                                             RefreshBoxText();
-                                         }
-                                     }
-                                     else
-                                     {
-                                         if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
-                                             AllDrawKind = 4;
-                                         else
-                                                            if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
-                                             AllDrawKind = 3;
-                                         if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
-                                             AllDrawKind = 2;
-                                         if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
-                                             AllDrawKind = 1;
-                                         //Set Configuration To True for some unknown reason!.
-                                         //UpdateConfigurationTableVal = true;                             
-                                         SetAllDrawKindString();
-
-                                         (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                         DrawManagement();
-                                         Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                         Draw.TableList.Clear();
-                                         Draw.TableList.Add(Table);
-                                         Draw.SetRowColumn(0);
-                                         //Draw.AStarGreedyString = THISB;
-                                         RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                         RefrigtzDLL.AllDraw.DepthIterative = 0;
-                                         SetBoxText("\r\nDraw Not Found");
-                                         RefreshBoxText();
-                                     }
-                                 }
-                                 else
-                                 {
-                                     if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
-                                         AllDrawKind = 4;
-                                     else
-                                                            if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
-                                         AllDrawKind = 3;
-                                     if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
-                                         AllDrawKind = 2;
-                                     if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
-                                         AllDrawKind = 1;
-                                     //Set Configuration To True for some unknown reason!.
-                                     //UpdateConfigurationTableVal = true;                             
-                                     SetAllDrawKindString();
-
-                                     (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                     DrawManagement();
-
-                                     Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                     Draw.TableList.Clear();
-                                     Draw.TableList.Add(Table);
-                                     Draw.SetRowColumn(0);
-                                     //Draw.AStarGreedyString = THISB;
-                                     RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                     RefrigtzDLL.AllDraw.DepthIterative = 0;
-                                     SetBoxText("\r\nDraw Not Found");
-                                     RefreshBoxText();
-                                 }
-                             }
-                         }
-               */
-            }
-        public void SetDrawFounding(ref bool FOUND, ref QuantumRefrigiz.AllDraw THIS, bool First)
-        {
-            QuantumRefrigiz.AllDraw THISB = DrawQ.AStarGreedyString;
-            while (DrawQ.AStarGreedyString != null)
-                DrawQ = DrawQ.AStarGreedyString;
+            }*/
             Object O = new Object();
             lock (O)
             {
@@ -12771,166 +12877,352 @@ namespace Refrigtz
 
                 Color a = Color.Brown;
                 //if (First)
-                //Draw.FoundOfCurrentTableNode(Table, OrderPlate * -1, ref THIS, ref FOUND);
+                //Draw.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate * -1, ref THIS, ref FOUND);
                 //else
                 int Ord = OrderPlate;
-                DrawQ.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
+                Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
                 if (FOUND)
                 {
-                    //THISB = THIS.AStarGreedyString;
-                    DrawQ = THIS;
+
+                    Draw = THIS;
+
+                    if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
+                        AllDrawKind = 4;
+                    else
+                                            if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
+                        AllDrawKind = 3;
+                    if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
+                        AllDrawKind = 2;
+                    if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
+                        AllDrawKind = 1;
+
+                    SetAllDrawKindString();
+                    (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                    DrawManagement();
+                    Draw = THIS;
+
+                    Draw.IsCurrentDraw = true;
                     SetBoxText("\r\nDraw Found");
                     RefreshBoxText();
                 }
                 else
                 {
-                    SetAllDrawKind();
+                    FOUND = false;
+                    THIS = null;
+
+                    a = Color.Brown;
+                    while (Draw.AStarGreedyString != null)
+                        Draw = Draw.AStarGreedyString;
+
+                    Ord = OrderPlate * -1;
+                    if (LoadO)
+                    {
+                        if ((RefrigtzDLL.AllDraw.TableListAction.Count >= 2))
+                            Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]), Ord, ref THIS, ref FOUND);
+                    }
+                    else
+                    {
+                        if ((RefrigtzDLL.AllDraw.TableListAction.Count >= 1))
+                            Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND);
+
+                    }
+
+                    if (FOUND)
+                    {
+
+                        Draw = THIS;
+                        Draw.IsCurrentDraw = true;
+                        SetBoxText("\r\nDraw Found By Recurve");
+                        RefreshBoxText();
+                        FOUND = false;
+                        Ord = OrderPlate;
+
+                        Draw.ClearAllTablesHuristicsAndMore(Ord);
+                        bool Store = Deeperthandeeper;
+                        Deeperthandeeper = false;
+                        Draw.InitiateAStarGreedytCreationThinking(0, 0, 0, a, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], Ord, false, false, 0);
+                        Deeperthandeeper = Store;
+
+                        Draw.FoundOfCurrentTableNode(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], Ord, ref THIS, ref FOUND);
+
+
+                        if (FOUND)
+                        {
+                            Draw = THIS;
+
+                            if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
+                                AllDrawKind = 4;
+                            else
+                                            if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
+                                AllDrawKind = 3;
+                            if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
+                                AllDrawKind = 2;
+                            if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
+                                AllDrawKind = 1;
+
+                            SetAllDrawKindString();
+                            (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                            DrawManagement();
+
+                            Draw = THIS;
+
+
+                            SetBoxText("\r\nRecurved Draw Constructed and Found!");
+                            RefreshBoxText();
+                            
+                        }
+                        else
+                        {
+                            Ord = Dummy;
+
+                            if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
+                                AllDrawKind = 4;
+                            else
+                                               if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
+                                AllDrawKind = 3;
+                            if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
+                                AllDrawKind = 2;
+                            if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
+                                AllDrawKind = 1;
+                      
+                            SetAllDrawKindString();
+
+                            (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                            DrawManagement();
+                            Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                            Draw.TableList.Clear();
+                            Draw.TableList.Add(CloneATable(Table));
+                            Draw.SetRowColumn(0);
+                            Draw.IsCurrentDraw = true;
+                            Draw.AStarGreedyString = THISB;
+                            RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
+                            RefrigtzDLL.AllDraw.DepthIterative = 0;
+                            SetBoxText("\r\nDraw Not Found");
+                            RefreshBoxText();
+                        }
+                    }
+                    else
+                    {
+                        OrderPlate = Dummy;
+                        if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
+                            AllDrawKind = 4;
+                        else
+                                               if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
+                            AllDrawKind = 3;
+                        if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
+                            AllDrawKind = 2;
+                        if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
+                            AllDrawKind = 1;
+
+                        SetAllDrawKindString();
+
+                        (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                        DrawManagement();
+
+                        Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                        Draw.TableList.Clear();
+                        Draw.TableList.Add(CloneATable(Table));
+                        Draw.SetRowColumn(0);
+                        Draw.IsCurrentDraw = true;
+                        Draw.AStarGreedyString = THISB;
+                        RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
+                        RefrigtzDLL.AllDraw.DepthIterative = 0;
+                        SetBoxText("\r\nDraw Not Found");
+                        RefreshBoxText();
+                    }
+                }
+            }
+            OrderPlate = Dummy;
+            if (RefrigtzDLL.AllDraw.FirstTraversalTree)
+                FOUND = false;
+        }
+        public void SetDrawFounding(ref bool FOUND, ref QuantumRefrigiz.AllDraw THIS, bool First)
+        {
+            if (DrawQ == null)
+                return;
+            int Dummy = OrderPlate;
+               QuantumRefrigiz.AllDraw THISB = DrawQ.AStarGreedyString;
+            while (DrawQ.AStarGreedyString != null)
+                DrawQ = DrawQ.AStarGreedyString;
+
+            
+            Object O = new Object();
+            lock (O)
+            {
+                FOUND = false;
+                THIS = null;
+
+                Color a = Color.Brown;
+                //if (First)
+                //Draw.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate * -1, ref THIS, ref FOUND);
+                //else
+                int Ord = OrderPlate;
+                DrawQ.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
+                if (FOUND)
+                {
+                    DrawQ = THIS;
+                  
+                    if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
+                        AllDrawKind = 4;
+                    else
+                                            if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
+                        AllDrawKind = 3;
+                    if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
+                        AllDrawKind = 2;
+                    if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
+                        AllDrawKind = 1;
                     //Set Configuration To True for some unknown reason!.
                     //UpdateConfigurationTableVal = true;                             
                     SetAllDrawKindString();
-
                     (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                     DrawManagement();
+                    DrawQ = THIS;
 
-                    DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-
-                    DrawQ.TableList.Clear();
-                    DrawQ.TableList.Add(Table);
-                    DrawQ.SetRowColumn(0);
-                    //DrawQ.AStarGreedyString = THISB;
-                    RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                    RefrigtzDLL.AllDraw.DepthIterative = 0;
-                    SetBoxText("\r\nDraw Not Found");
+                    DrawQ.IsCurrentDraw = true;
+                    SetBoxText("\r\nDraw Found");
                     RefreshBoxText();
+                }
+                else
+                {
+                    FOUND = false;
+                    THIS = null;
+
+                    a = Color.Brown;
+                   
+                    while (DrawQ.AStarGreedyString != null)
+                        DrawQ = DrawQ.AStarGreedyString;
+
+                    Ord = OrderPlate * -1;
+                    if (LoadO)
+                    {
+                        if ((QuantumRefrigiz.AllDraw.TableListAction.Count >= 2))
+                            DrawQ.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2]), Ord, ref THIS, ref FOUND);
+                    }
+                    else
+                    {
+                        if ((QuantumRefrigiz.AllDraw.TableListAction.Count >= 1))
+                            DrawQ.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND);
+                    }
+                    if (FOUND)
+                    {
+
+                        DrawQ = THIS;
+                        Ord = OrderPlate;
+
+                        SetBoxText("\r\nDraw Found By Recurve");
+                        RefreshBoxText();
+                        FOUND = false;
+
+                        DrawQ.ClearAllTablesHuristicsAndMore(Ord);
+                        bool Store = Deeperthandeeper;
+                        Deeperthandeeper = false;
+
+                        DrawQ.InitiateAStarGreedytCreationThinkingQuantum(0, 0, 0, a, QuantumRefrigiz.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], Ord, false, false, 0);
+                        Deeperthandeeper = Store;
+
+                        DrawQ.FoundOfCurrentTableNode(QuantumRefrigiz.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], Ord, ref THIS, ref FOUND);
+
+
+
+                        if (FOUND)
+                        {
+                            DrawQ = THIS;
+                        
+                            if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
+                                AllDrawKind = 4;
+                            else
+                                            if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
+                                AllDrawKind = 3;
+                            if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
+                                AllDrawKind = 2;
+                            if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
+                                AllDrawKind = 1;
+                            //Set Configuration To True for some unknown reason!.
+                            //UpdateConfigurationTableVal = true;                             
+                            SetAllDrawKindString();
+                            (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                            DrawManagement();
+                            DrawQ = THIS;
+
+                            SetBoxText("\r\nRecurved Draw Constructed and Found!");
+                            RefreshBoxText();
+                            
+                        }
+                        else
+                        {
+
+                            if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
+                                AllDrawKind = 4;
+                            else
+                                              if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
+                                AllDrawKind = 3;
+                            if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
+                                AllDrawKind = 2;
+                            if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
+                                AllDrawKind = 1;
+                            //Set Configuration To True for some unknown reason!.
+                            //UpdateConfigurationTableVal = true;                             
+                            SetAllDrawKindString();
+
+                            (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                            DrawManagement();
+                            ///DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                            DrawQ.TableList.Clear();
+                            DrawQ.TableList.Add(Table);
+                            DrawQ.SetRowColumn(0);
+                            DrawQ.AStarGreedyString = THISB;
+                            DrawQ.IsCurrentDraw = true;
+
+                            DrawQ.AStarGreedyString = THISB;
+                            RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
+                            RefrigtzDLL.AllDraw.DepthIterative = 0;
+                            SetBoxText("\r\nDraw Not Found by break");
+                            RefreshBoxText();
+
+                        }
+
+                    }
+
+                    else
+                    {
+                        OrderPlate = Dummy;
+
+                        if (UsePenaltyRegardMechnisam && AStarGreedyHuristic)
+                            AllDrawKind = 4;
+                        else
+                                              if ((!UsePenaltyRegardMechnisam) && AStarGreedyHuristic)
+                            AllDrawKind = 3;
+                        if (UsePenaltyRegardMechnisam && (!AStarGreedyHuristic))
+                            AllDrawKind = 2;
+                        if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHuristic))
+                            AllDrawKind = 1;
+                        //Set Configuration To True for some unknown reason!.
+                        //UpdateConfigurationTableVal = true;                             
+                        SetAllDrawKindString();
+
+                        (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                        DrawManagement();
+
+                        //DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                        DrawQ.TableList.Clear();
+                        DrawQ.TableList.Add(Table);
+                        DrawQ.SetRowColumn(0);
+                        DrawQ.IsCurrentDraw = true;
+                        DrawQ.AStarGreedyString = THISB;
+                        RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
+                        RefrigtzDLL.AllDraw.DepthIterative = 0;
+                        SetBoxText("\r\nDraw Not Found");
+                        RefreshBoxText();
+
+
+                    }
 
                 }
+
+                OrderPlate = Dummy;
             }
-            /*       Object O = new Object();
-                     lock (O)
-                     {
-                         FOUND = false;
-                         THIS = null;
-
-                         Color a = Color.Brown;
-                         //if (First)
-                         //Draw.FoundOfCurrentTableNode(Table, OrderPlate * -1, ref THIS, ref FOUND);
-                         //else
-                         int Ord = OrderPlate;
-                           DrawQ.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
-                         if (FOUND)
-                         {
-                             //THISB = THIS.AStarGreedyString;
-                             DrawQ = THIS;
-                                SetBoxText("\r\nDraw Found");
-                             RefreshBoxText();
-                         }
-                         else
-                         {
-                             FOUND = false;
-                             THIS = null;
-
-                             a = Color.Brown;
-                             //if (First)
-                             //Draw.FoundOfCurrentTableNode(Table, OrderPlate * -1, ref THIS, ref FOUND);
-                             //else
-                             Ord = OrderPlate;
-                             if (MovmentsNumber == 0)
-                             {
-                                 if (Sec.RadioButtonBrownOrder.Checked)
-                                     Ord = 1;
-                             }
-                             else
-                                 Ord = OrderPlate * -1;
-                             while (DrawQ.AStarGreedyString != null)
-                                 DrawQ = DrawQ.AStarGreedyString;
-
-                             if ((QuantumRefrigiz.AllDraw.TableListAction.Count >= 2))
-                                 DrawQ.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2]), Ord, ref THIS, ref FOUND);
-                             if (FOUND)
-                             {
-                                  DrawQ = THIS;
-                                   SetBoxText("\r\nDraw Found By Recurve");
-                                 RefreshBoxText();
-                                 FOUND = DrawQ.InitiateAStarGreedytCreationThinkingQuantum(0, 0, 0, a, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], Ord, false, false, 0);
-                                 if (FOUND)
-                                 {
-                                     Ord = OrderPlate * -1;
-
-                                     DrawQ.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
-                                     if (FOUND)
-                                     {
-                                         DrawQ = THIS;
-                                             SetBoxText("\r\nDraw Found Target Of Tree Expansion!");
-                                         RefreshBoxText();
-                                     }
-                                     else
-                                     {
-                                       SetAllDrawKind();  
-                                       //Set Configuration To True for some unknown reason!.
-                                         //UpdateConfigurationTableVal = true;                             
-                                         SetAllDrawKindString();
-
-                                         (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                         DrawManagement();
-                                        //THISB = DrawQ.AStarGreedyString;
-                                         DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                         DrawQ.TableList.Clear();
-                                         DrawQ.TableList.Add(Table);
-                                         DrawQ.SetRowColumn(0);
-                                         //DrawQ.AStarGreedyString = THISB;
-                                         RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                         RefrigtzDLL.AllDraw.DepthIterative = 0;
-                                         SetBoxText("\r\nDraw Not Found by break");
-                                         RefreshBoxText();
-
-                                     }
-                                 }
-                                 else
-                                 {
-                                     SetAllDrawKind();
-                                     //Set Configuration To True for some unknown reason!.
-                                     //UpdateConfigurationTableVal = true;                             
-                                     SetAllDrawKindString();
-
-                                     (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                     DrawManagement();
-
-                                     DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                     DrawQ.TableList.Clear();
-                                     DrawQ.TableList.Add(Table);
-                                     DrawQ.SetRowColumn(0);
-                                    // DrawQ.AStarGreedyString = THISB;
-                                     RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                     RefrigtzDLL.AllDraw.DepthIterative = 0;
-                                     SetBoxText("\r\nDraw Not Found");
-                                     RefreshBoxText();
-                                 }
-                             }
-                             else
-                             {
-                               SetAllDrawKind();  
-                               //Set Configuration To True for some unknown reason!.
-                                 //UpdateConfigurationTableVal = true;                             
-                                 SetAllDrawKindString();
-
-                                 (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                                 DrawManagement();
-
-                                 DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-
-                                 DrawQ.TableList.Clear();
-                                 DrawQ.TableList.Add(Table);
-                                 DrawQ.SetRowColumn(0);
-                                 //DrawQ.AStarGreedyString = THISB;
-                                 RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                 RefrigtzDLL.AllDraw.DepthIterative = 0;
-                                 SetBoxText("\r\nDraw Not Found");
-                                 RefreshBoxText();
-
-                             }
-                         }
-                     }
-              */
+             if (RefrigtzDLL.AllDraw.FirstTraversalTree)
+                FOUND = false;
         }
         //All Operation of Thinking Handling.
         void AllOperations()
@@ -12942,10 +13234,10 @@ namespace Refrigtz
 
             //Fen();
             String FolderLocation = Root;
-            sortOutPut = new StringBuilder("");
+            sortOutPut.Clear();
 
             ProcessStartInfo start = new ProcessStartInfo();
-            if((!Sugar))
+            if ((!Sugar))
                 start.FileName = FolderLocation + "\\" + "stockfish8.exe";
             else
                 start.FileName = FolderLocation + "\\" + "Sugar.exe";
@@ -13318,7 +13610,7 @@ namespace Refrigtz
                     bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
                     OpBeforeThinking(ref a, ref StoreStateCC, ref StoreStateCP, ref StoreStateGe);
 
-                    bool FOUND = false;
+                    //FOUND = false;
 
                     //SetDrawFounding(ref FOUND, ref THIS, true);
 
@@ -13326,9 +13618,9 @@ namespace Refrigtz
                     //   FOUND = true;
                     int LeafAStarGrteedy = 0;
                     if (!Quantum)
-                        Table = Draw.Initiate(1, 4, a,CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
+                        Table = Draw.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
                     else
-                        Table = DrawQ.Initiate(1, 4, a,CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
+                        Table = DrawQ.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
                     //LoadConvertedTable = true;
                     //PaintedPaused = false;
                     this.SetBoxText("\r\nThinking Finished!");
@@ -13364,7 +13656,7 @@ namespace Refrigtz
 
                     DrawImageOfMain();
 
-                
+
                 }
                 catch (Exception t)
                 {
@@ -13400,7 +13692,7 @@ namespace Refrigtz
                     Color a = Color.Gray;
                     bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
                     OpBeforeThinking(ref a, ref StoreStateCC, ref StoreStateCP, ref StoreStateGe);
-                    bool FOUND = false;
+                    //FOUND = false;
 
                     RefrigtzDLL.AllDraw THIS = null;
                     QuantumRefrigiz.AllDraw THISQ = null;
@@ -13409,9 +13701,9 @@ namespace Refrigtz
 
                     int LeafAStarGrteedy = 0;
                     if (!Quantum)
-                        Table = Draw.Initiate(1, 4, a,CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
+                        Table = Draw.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
                     else
-                        Table = DrawQ.Initiate(1, 4, a,CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
+                        Table = DrawQ.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
 
 
                     try
@@ -13446,7 +13738,7 @@ namespace Refrigtz
                     DrawImageOfMain();
 
 
-                 }
+                }
                 catch (Exception t)
                 {
                     Log(t);
@@ -13483,7 +13775,7 @@ namespace Refrigtz
                 StoreStateGe = StateGe;
 
                 //AliceSection = false;
-                
+
 
 
                 if (OrderPlate == 1)
@@ -13546,9 +13838,9 @@ namespace Refrigtz
                     Disposingole = true;
                 }
                 if (Disposingbook)
-                    oleDbCmd.Dispose();
-                if (Disposingole)
-                    bookConn.Dispose();
+                    //oleDbCmd.Dispose();
+                    if (Disposingole)
+                        bookConn.Dispose();
                 System.IO.File.AppendAllText("CheckSum.btt", "\n\tInstallation Begine On " + DateTime.Now.ToString());
                 String FolderLocation = Root;
                 int ExitCode = 0;
@@ -13585,9 +13877,9 @@ namespace Refrigtz
                 if (!Quantum)
                 {
 
-                    RefrigtzDLL.AllDraw.TableListAction.Add(Table);
+                    RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
 
-                    if (RefrigtzDLL.AllDraw.TableListAction.Count >=1)
+                    if (RefrigtzDLL.AllDraw.TableListAction.Count >= 1)
                     {
                         RefrigtzDLL.ChessGeneticAlgorithm R = new RefrigtzDLL.ChessGeneticAlgorithm(MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                         if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, OrderPlate, true))
@@ -13608,7 +13900,7 @@ namespace Refrigtz
                                 }
                                 if ((RefrigtzDLL.ChessRules.SmallKingCastleGray || RefrigtzDLL.ChessRules.BigKingCastleGray) && (!RefrigtzDLL.ChessRules.CastleActGray))
                                     RefrigtzDLL.ChessRules.CastleActGray = true;
-                                RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
+                                RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
                             }
                             else
                             {
@@ -13620,7 +13912,7 @@ namespace Refrigtz
                                 if ((RefrigtzDLL.ChessRules.SmallKingCastleBrown || RefrigtzDLL.ChessRules.BigKingCastleBrown) && (!RefrigtzDLL.ChessRules.CastleActBrown))
                                     RefrigtzDLL.ChessRules.CastleActBrown = true;
 
-                                RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
+                                RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
                             }
                             SetBoxStatistic(RefrigtzDLL.AllDraw.SyntaxToWrite);
                             RefreshBoxStatistic();
@@ -13629,7 +13921,7 @@ namespace Refrigtz
                 }
                 else
                 {
-                    QuantumRefrigiz.AllDraw.TableListAction.Add(Table);
+                    QuantumRefrigiz.AllDraw.TableListAction.Add(CloneATable(Table));
 
                     if (QuantumRefrigiz.AllDraw.TableListAction.Count >= 1)
                     {
@@ -13652,7 +13944,7 @@ namespace Refrigtz
                                 }
                                 if ((QuantumRefrigiz.ChessRules.SmallKingCastleGray || QuantumRefrigiz.ChessRules.BigKingCastleGray) && (!QuantumRefrigiz.ChessRules.CastleActGray))
                                     QuantumRefrigiz.ChessRules.CastleActGray = true;
-                                QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
+                                QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
                             }
                             else
                             {
@@ -13664,7 +13956,7 @@ namespace Refrigtz
                                 if ((QuantumRefrigiz.ChessRules.SmallKingCastleBrown || QuantumRefrigiz.ChessRules.BigKingCastleBrown) && (!QuantumRefrigiz.ChessRules.CastleActBrown))
                                     QuantumRefrigiz.ChessRules.CastleActBrown = true;
 
-                                QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
+                                QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
                             }
                             SetBoxStatistic(QuantumRefrigiz.AllDraw.SyntaxToWrite);
                             RefreshBoxStatistic();
@@ -13742,7 +14034,7 @@ namespace Refrigtz
 
                 RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                 QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                bool FOUND = false;
+                //FOUND = false;
 
                 //SetDrawFounding(ref FOUND, ref THIS, true);
 
@@ -13750,7 +14042,7 @@ namespace Refrigtz
                 if (!Quantum)
                     Table = Draw.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
                 else
-                    Table = DrawQ.Initiate(1, 4, a,CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
+                    Table = DrawQ.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
 
                 //LoadConvertedTable = true;
                 //StateCP = false;
@@ -13789,7 +14081,7 @@ namespace Refrigtz
 
                 DrawImageOfMain();
 
-          
+
             }
             //BackgroundWorkerAllOp.RunWorkerAsync();
             //BackgroundWorkerSetNode.RunWorkerAsync();
@@ -13816,7 +14108,7 @@ namespace Refrigtz
             else
                 QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = true;
             StateGe = false;
-            
+
 
 
             if (OrderPlate == 1)
@@ -13834,7 +14126,7 @@ namespace Refrigtz
             Color a = Color.Gray;
             if (OrderPlate == -1)
                 a = Color.Brown;
-            Draw.InitiateGenetic(1, 4, a, Table, OrderPlate, false);
+            Draw.InitiateGenetic(1, 4, a, CloneATable(Table), OrderPlate, false);
 
             try
             {
@@ -13857,7 +14149,7 @@ namespace Refrigtz
             RefreshBoxText();
             if (!Quantum)
             {
-                RefrigtzDLL.AllDraw.TableListAction.Add(Table);
+                RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
                 if (RefrigtzDLL.AllDraw.TableListAction.Count >= 1)
                 {
                     RefrigtzDLL.ChessGeneticAlgorithm R = new RefrigtzDLL.ChessGeneticAlgorithm(MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
@@ -13877,7 +14169,7 @@ namespace Refrigtz
                             }
                             if ((RefrigtzDLL.ChessRules.SmallKingCastleGray || RefrigtzDLL.ChessRules.BigKingCastleGray) && (!RefrigtzDLL.ChessRules.CastleActGray))
                                 RefrigtzDLL.ChessRules.CastleActGray = true;
-                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
+                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActGray, Convert);
                         }
                         else
                         {
@@ -13889,7 +14181,7 @@ namespace Refrigtz
                             if ((RefrigtzDLL.ChessRules.SmallKingCastleBrown || RefrigtzDLL.ChessRules.BigKingCastleBrown) && (!RefrigtzDLL.ChessRules.CastleActBrown))
                                 RefrigtzDLL.ChessRules.CastleActBrown = true;
 
-                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
+                            RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
                         }
                         SetBoxStatistic(RefrigtzDLL.AllDraw.SyntaxToWrite);
                         RefreshBoxStatistic();
@@ -13919,7 +14211,7 @@ namespace Refrigtz
             }
             else
             {
-                QuantumRefrigiz.AllDraw.TableListAction.Add(Table);
+                QuantumRefrigiz.AllDraw.TableListAction.Add(CloneATable(Table));
                 if (QuantumRefrigiz.AllDraw.TableListAction.Count >= 1)
                 {
                     QuantumRefrigiz.ChessGeneticAlgorithm R = new QuantumRefrigiz.ChessGeneticAlgorithm(MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
@@ -13939,7 +14231,7 @@ namespace Refrigtz
                             }
                             if ((QuantumRefrigiz.ChessRules.SmallKingCastleGray || QuantumRefrigiz.ChessRules.BigKingCastleGray) && (!QuantumRefrigiz.ChessRules.CastleActGray))
                                 QuantumRefrigiz.ChessRules.CastleActGray = true;
-                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
+                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActGray, Convert);
                         }
                         else
                         {
@@ -13951,7 +14243,7 @@ namespace Refrigtz
                             if ((QuantumRefrigiz.ChessRules.SmallKingCastleBrown || QuantumRefrigiz.ChessRules.BigKingCastleBrown) && (!QuantumRefrigiz.ChessRules.CastleActBrown))
                                 QuantumRefrigiz.ChessRules.CastleActBrown = true;
 
-                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, Table, MovmentsNumber  , QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
+                            QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
                         }
                         SetBoxStatistic(QuantumRefrigiz.AllDraw.SyntaxToWrite);
                         RefreshBoxStatistic();
@@ -14002,7 +14294,7 @@ namespace Refrigtz
                 Color a = Color.Gray;
                 bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
                 OpBeforeThinking(ref a, ref StoreStateCC, ref StoreStateCP, ref StoreStateGe);
-                bool FOUND = false;
+                //FOUND = false;
 
                 RefrigtzDLL.AllDraw THIS = null;
                 QuantumRefrigiz.AllDraw THISQ = null;
@@ -14011,9 +14303,9 @@ namespace Refrigtz
 
                 int LeafAStarGrteedy = 0;
                 if (!Quantum)
-                    Table = Draw.Initiate(1, 4, a,CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
+                    Table = Draw.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
                 else
-                    Table = DrawQ.Initiate(1, 4, a,CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
+                    Table = DrawQ.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
 
                 //LoadConvertedTable = true;
                 StateCC = StoreStateCC;
@@ -14066,7 +14358,7 @@ namespace Refrigtz
 
                 DrawImageOfMain();
 
-       
+
             }
             //BackgroundWorkerAllOp.RunWorkerAsync();
             //BackgroundWorkerSetNode.RunWorkerAsync();
@@ -15243,7 +15535,7 @@ namespace Refrigtz
                                                 a = Color.Brown;
                                             bool[,] Tab = new bool[8, 8];
                                             if (RowClickP != -1 && ColumnClickP != -1)
-                                                Tab = VeryFye(Table, OrderPlate, a);
+                                                Tab = VeryFye(CloneATable(Table), OrderPlate, a);
                                             if (Tab != null)
                                             {
                                                 if (Tab[ii / (int)(PictureBoxRefrigtz.Image.Width / 8), jj / (int)(PictureBoxRefrigtz.Image.Height / 8)])
@@ -15304,7 +15596,7 @@ namespace Refrigtz
                                                 a = Color.Brown;
                                             bool[,] Tab = new bool[8, 8];
                                             if (RowClickP != -1 && ColumnClickP != -1)
-                                                Tab = VeryFye(Table, OrderPlate, a);
+                                                Tab = VeryFye(CloneATable(Table), OrderPlate, a);
                                             if (Tab != null)
                                             {
                                                 if (Tab[ii / (int)(PictureBoxRefrigtz.Image.Width / 8), jj / (int)(PictureBoxRefrigtz.Image.Height / 8)])
@@ -15405,7 +15697,7 @@ namespace Refrigtz
             }
 
             RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-            bool FOUND = false;
+            FOUND = false;
 
             SetDrawFounding(ref FOUND, ref THIS, false);
             MenueSelecte = true;
@@ -15425,13 +15717,13 @@ namespace Refrigtz
                     if (MovmentsNumber < MaxCurrentMovmentsNumber)
                     {
                         //Increased a movments.
-                        
+
                         //Read Increased Movments.
                         Table = ReadTableMovmentNumber();
                         //Clear Table List of Draw.
                         Draw.TableList.Clear();
                         //Add Table to Table List.
-                        Draw.TableList.Add(Table);
+                        Draw.TableList.Add(CloneATable(Table));
                         //Constructed a Draw All.
                         Draw.SetRowColumn(0);
                         //OutPut.ToString().
@@ -15469,7 +15761,7 @@ namespace Refrigtz
                         //Clear Current TableList.
                         Draw.TableList.Clear();
                         //Add Table To Table List
-                        Draw.TableList.Add(Table);
+                        Draw.TableList.Add(CloneATable(Table));
                         //Construction of All Things and Thinkings.
                         Draw.SetRowColumn(0);
                         //Out Put
@@ -15484,7 +15776,7 @@ namespace Refrigtz
                         using (SoundPlayer soundClick = new SoundPlayer(Root + "\\Music\\Click6.wav"))
                         {
                             soundClick.Play();
-                           //soundClick.Dispose();
+                            //soundClick.Dispose();
                         }
                         //Decreased a Movments.
 
@@ -15545,20 +15837,20 @@ namespace Refrigtz
 
                 UpdateConfigurationTable();
                 bookConn.Close();
-                oleDbCmd.Dispose();
+                //oleDbCmd.Dispose();
                 bookConn.Dispose();
                 if (!Quantum)
                 {
-                    RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, OrderPlate, -1, -1);
-                    RefrigtzDLL.ChessRules AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, OrderPlate, -1, -1);
+                    RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), OrderPlate, -1, -1);
+                    RefrigtzDLL.ChessRules AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), OrderPlate, -1, -1);
                     Color a = Color.Gray;
                     if (OrderPlate == -1)
                         a = Color.Brown;
                     if (OrderPlate == 1)
-                        A.CheckMate(Table, OrderPlate);
+                        A.CheckMate(CloneATable(Table), OrderPlate);
                     else
-                        A.CheckMate(Table, OrderPlate);
-                    AA.Pat(Table, OrderPlate, a);
+                        A.CheckMate(CloneATable(Table), OrderPlate);
+                    AA.Pat(CloneATable(Table), OrderPlate, a);
                     bool Exitting = false;
                     if (OrderPlate == 1 && (A.CheckMateGray || AA.PatBrown))
                         Exitting = true;
@@ -15624,16 +15916,16 @@ namespace Refrigtz
                 }
                 else
                 {
-                    QuantumRefrigiz.ChessRules A = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, OrderPlate, -1, -1);
-                    QuantumRefrigiz.ChessRules AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, OrderPlate, -1, -1);
+                    QuantumRefrigiz.ChessRules A = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), OrderPlate, -1, -1);
+                    QuantumRefrigiz.ChessRules AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), OrderPlate, -1, -1);
                     Color a = Color.Gray;
                     if (OrderPlate == -1)
                         a = Color.Brown;
                     if (OrderPlate == 1)
-                        A.CheckMate(Table, OrderPlate);
+                        A.CheckMate(CloneATable(Table), OrderPlate);
                     else
-                        A.CheckMate(Table, OrderPlate);
-                    AA.Pat(Table, OrderPlate, a);
+                        A.CheckMate(CloneATable(Table), OrderPlate);
+                    AA.Pat(CloneATable(Table), OrderPlate, a);
                     bool Exitting = false;
                     if (OrderPlate == 1 && (A.CheckMateGray || AA.PatBrown))
                         Exitting = true;
@@ -15719,7 +16011,8 @@ namespace Refrigtz
 
 
             try
-            {if (AllOperate != null)
+            {
+                if (AllOperate != null)
                     AllOperate.Abort();
                 if (BackgroundWorkerSetRefD.WorkerSupportsCancellation)
                     BackgroundWorkerSetRefD.CancelAsync();
@@ -15749,21 +16042,21 @@ namespace Refrigtz
                     Disposingole = true;
                 }
                 if (Disposingbook)
-                    oleDbCmd.Dispose();
-                if (Disposingole)
-                    bookConn.Dispose();
+                    //oleDbCmd.Dispose();
+                    if (Disposingole)
+                        bookConn.Dispose();
                 if (!Quantum)
                 {
-                    RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, OrderPlate, -1, -1);
-                    RefrigtzDLL.ChessRules AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, OrderPlate, -1, -1);
+                    RefrigtzDLL.ChessRules A = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), OrderPlate, -1, -1);
+                    RefrigtzDLL.ChessRules AA = new RefrigtzDLL.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), OrderPlate, -1, -1);
                     Color a = Color.Gray;
                     if (OrderPlate == -1)
                         a = Color.Brown;
                     if (OrderPlate == 1)
-                        A.CheckMate(Table, OrderPlate);
+                        A.CheckMate(CloneATable(Table), OrderPlate);
                     else
-                        A.CheckMate(Table, OrderPlate);
-                    AA.Pat(Table, OrderPlate, a);
+                        A.CheckMate(CloneATable(Table), OrderPlate);
+                    AA.Pat(CloneATable(Table), OrderPlate, a);
                     bool Exitting = false;
                     if (OrderPlate == 1 && (A.CheckMateGray || AA.PatBrown))
                         Exitting = true;
@@ -15829,16 +16122,16 @@ namespace Refrigtz
                 }
                 else
                 {
-                    QuantumRefrigiz.ChessRules A = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, OrderPlate, -1, -1);
-                    QuantumRefrigiz.ChessRules AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, Table, OrderPlate, -1, -1);
+                    QuantumRefrigiz.ChessRules A = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), OrderPlate, -1, -1);
+                    QuantumRefrigiz.ChessRules AA = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged, -1, CloneATable(Table), OrderPlate, -1, -1);
                     Color a = Color.Gray;
                     if (OrderPlate == -1)
                         a = Color.Brown;
                     if (OrderPlate == 1)
-                        A.CheckMate(Table, OrderPlate);
+                        A.CheckMate(CloneATable(Table), OrderPlate);
                     else
-                        A.CheckMate(Table, OrderPlate);
-                    AA.Pat(Table, OrderPlate, a);
+                        A.CheckMate(CloneATable(Table), OrderPlate);
+                    AA.Pat(CloneATable(Table), OrderPlate, a);
                     bool Exitting = false;
                     if (OrderPlate == 1 && (A.CheckMateGray || AA.PatBrown))
                         Exitting = true;
@@ -15919,10 +16212,10 @@ namespace Refrigtz
                 //UpdateConfigurationTableVal = true;                             
                 SetAllDrawKindString();
 
-                bool A1=(new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
+                bool A1 = (new TakeRoot()).Save(Quantum, this, ref LoadTree, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                 while (!A1) { }
                 ExitM = true;
-               Application.Exit();
+                Application.Exit();
             }
             catch (Exception t) { Log(t); }
         }
@@ -15973,12 +16266,11 @@ namespace Refrigtz
                             AStarGreedyHuristic = true;
                         else
                             AStarGreedyHuristic = false;
-                        if (MovmentsNumber == 0)
+                        if (MovmentsNumber == 1)
                         {
-                            Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                            Draw.TableList.Clear();
-                            Draw.TableList.Add(Table);
-                            Draw.SetRowColumn(0);
+                            RefrigtzDLL.AllDraw THIS = null;
+                            bool Found = false;
+                            SetDrawFounding(ref Found, ref THIS, false);
                         }
                         //UpdateConfigurationTable();
                         //RunInFront();
@@ -15994,12 +16286,11 @@ namespace Refrigtz
                             AStarGreedyHuristic = true;
                         else
                             AStarGreedyHuristic = false;
-                        if (MovmentsNumber == 0)
+                        if (MovmentsNumber == 1)
                         {
-                            DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                            DrawQ.TableList.Clear();
-                            DrawQ.TableList.Add(Table);
-                            DrawQ.SetRowColumn(0);
+                            QuantumRefrigiz.AllDraw THIS = null;
+                            bool Found = false;
+                            SetDrawFounding(ref Found, ref THIS, false);
                         }
                         //UpdateConfigurationTable();
                         //RunInFront();
@@ -16122,45 +16413,45 @@ namespace Refrigtz
         //Hardes Games tool Strip Event Handling.
         private void HardestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           /* CheckBoxAStarGreedyHuristic.Checked = true;
-            CheckBoxPredictHuristci.Checked = true;
-            CheckBoxAStarGreadyFirstSearch.Checked = true;
-            CheckBoxBestMovments.Checked = false;
-            CheckBoxOnlySelf.Checked = false;
-            CheckBoxUsePenaltyRegradMechnisam.Checked = true;
-          */  //RunInBackground();
-            //UpdateConfigurationTable();
-            //RunInFront();
+            /* CheckBoxAStarGreedyHuristic.Checked = true;
+             CheckBoxPredictHuristci.Checked = true;
+             CheckBoxAStarGreadyFirstSearch.Checked = true;
+             CheckBoxBestMovments.Checked = false;
+             CheckBoxOnlySelf.Checked = false;
+             CheckBoxUsePenaltyRegradMechnisam.Checked = true;
+           */  //RunInBackground();
+               //UpdateConfigurationTable();
+               //RunInFront();
         }
         //Medum Game tool Strip Event Handling .
         private void MedumToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           /* CheckBoxAStarGreedyHuristic.Checked = true;
-            CheckBoxPredictHuristci.Checked = true;
-            CheckBoxAStarGreadyFirstSearch.Checked = false;
-            CheckBoxBestMovments.Checked = false;
-            CheckBoxOnlySelf.Checked = false;
-         */   //RunInBackground();
-            //UpdateConfigurationTable();
-            //RunInFront();
+            /* CheckBoxAStarGreedyHuristic.Checked = true;
+             CheckBoxPredictHuristci.Checked = true;
+             CheckBoxAStarGreadyFirstSearch.Checked = false;
+             CheckBoxBestMovments.Checked = false;
+             CheckBoxOnlySelf.Checked = false;
+          */   //RunInBackground();
+               //UpdateConfigurationTable();
+               //RunInFront();
 
         }
         //Easest tool Strip Event Handling .
         private void EasestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           /* CheckBoxAStarGreedyHuristic.Checked = false;
+            /* CheckBoxAStarGreedyHuristic.Checked = false;
 
-            CheckBoxPredictHuristci.Checked = false;
-            CheckBoxAStarGreadyFirstSearch.Checked = false;
-            if (!Quantum)
-                RefrigtzDLL.AllDraw.AStarGreadyFirstSearch = false;
-            else
-                QuantumRefrigiz.AllDraw.AStarGreadyFirstSearch = false;
-            CheckBoxBestMovments.Checked = false;
-            CheckBoxOnlySelf.Checked = true;
-         */   //RunInBackground();
-            //UpdateConfigurationTable();
-            //RunInFront();
+             CheckBoxPredictHuristci.Checked = false;
+             CheckBoxAStarGreadyFirstSearch.Checked = false;
+             if (!Quantum)
+                 RefrigtzDLL.AllDraw.AStarGreadyFirstSearch = false;
+             else
+                 QuantumRefrigiz.AllDraw.AStarGreadyFirstSearch = false;
+             CheckBoxBestMovments.Checked = false;
+             CheckBoxOnlySelf.Checked = true;
+          */   //RunInBackground();
+               //UpdateConfigurationTable();
+               //RunInFront();
 
         }
         //Maximum Size Form Refregitz Evemnt Handling Operation.
@@ -16370,7 +16661,7 @@ namespace Refrigtz
             UsePenaltyRegardMechnisam = false;
             CheckBoxUsePenaltyRegradMechnisam.Checked = false;
             */
-            if (MovmentsNumber == 0)
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -16418,7 +16709,7 @@ namespace Refrigtz
             }
             RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
             QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-            bool FOUND = false;
+            FOUND = false;
             if (!Quantum)
                 SetDrawFounding(ref FOUND, ref THIS, false);
             else
@@ -16536,21 +16827,19 @@ namespace Refrigtz
                         UsePenaltyRegardMechnisam = true;
                     else
                         UsePenaltyRegardMechnisam = false;
-                    if (MovmentsNumber == 0)
+                    if (MovmentsNumber == 1)
                     {
                         if (!Quantum)
                         {
-                            Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                            Draw.TableList.Clear();
-                            Draw.TableList.Add(Table);
-                            Draw.SetRowColumn(0);
+                            RefrigtzDLL.AllDraw THIS = null;
+                            bool Found = false;
+                            SetDrawFounding(ref Found, ref THIS, false);
                         }
                         else
                         {
-                            DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                            DrawQ.TableList.Clear();
-                            DrawQ.TableList.Add(Table);
-                            DrawQ.SetRowColumn(0);
+                            QuantumRefrigiz.AllDraw THIS = null;
+                            bool Found = false;
+                            SetDrawFounding(ref Found, ref THIS, false);
                         }
                     }
                     //UpdateConfigurationTable();
@@ -16847,13 +17136,13 @@ namespace Refrigtz
         private void ErrorOpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ErrorTrueMonitorFalse = true;
-            (new FormTXT()).Show();
+            //(new FormTXT()).Show();
         }
 
         private void MonitorOpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ErrorTrueMonitorFalse = false;
-            (new FormTXT()).Show();
+            //(new FormTXT()).Show();
 
         }
 
@@ -16949,7 +17238,7 @@ namespace Refrigtz
             else
                 QuantumRefrigiz.AllDraw.DrawTable = false;
 
-            /*if (MovmentsNumber == 0)
+            /*if (MovmentsNumber == 1)
             {
                 for (int i = 0; i < 8; i++)
                 {
@@ -16961,18 +17250,18 @@ namespace Refrigtz
 
 
                 RefrigtzDLL.AllDraw.TableListAction.Clear();
-                RefrigtzDLL.AllDraw.TableListAction.Add(Table);
+                RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
                 ArrangmentsChanged = !ArrangmentsChanged;
                 Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                 Draw.TableList.Clear();
-                Draw.TableList.Add(Table);
+                Draw.TableList.Add(CloneATable(Table));
                 Draw.SetRowColumn(0);
                 UpdateConfigurationTableVal = true;
                 //UpdateConfigurationTable();
 
                 try
                 {
-                    UpdateTable(Table, "Table00000000");
+                    UpdateTable(CloneATable(Table), "Table00000000");
                 }
                 catch (Exception t)
                 {
@@ -17085,7 +17374,7 @@ namespace Refrigtz
 
             }
 
-        }     
+        }
         private void ToolStripMenuItem9_Click(object sender, EventArgs e)
         {
             ProfesionalWithComputer = true;
@@ -17120,11 +17409,12 @@ namespace Refrigtz
         private void ToolStripMenuItem10_Click(object sender, EventArgs e)
         {
             Quantum = false;
-          /*  AStarGreedyHuristic = false;
-            CheckBoxAStarGreedyHuristic.Checked = false;
-            UsePenaltyRegardMechnisam = false;
-            CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-          */  if (MovmentsNumber == 0)
+            /*  AStarGreedyHuristic = false;
+              CheckBoxAStarGreedyHuristic.Checked = false;
+              UsePenaltyRegardMechnisam = false;
+              CheckBoxUsePenaltyRegradMechnisam.Checked = false;
+            */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -17162,7 +17452,7 @@ namespace Refrigtz
             StateCC = true;
             RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
             QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-            bool FOUND = false;
+            FOUND = false;
             if (!Quantum)
                 SetDrawFounding(ref FOUND, ref THIS, false);
             else
@@ -17214,12 +17504,12 @@ namespace Refrigtz
 
         private void ToolStripMenuItem12_Click(object sender, EventArgs e)
         {
-         /*   AStarGreedyHuristic = false;
-            CheckBoxAStarGreedyHuristic.Checked = false;
-            UsePenaltyRegardMechnisam = false;
-            CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-            */
-            if (MovmentsNumber == 0)
+            /*   AStarGreedyHuristic = false;
+               CheckBoxAStarGreedyHuristic.Checked = false;
+               UsePenaltyRegardMechnisam = false;
+               CheckBoxUsePenaltyRegradMechnisam.Checked = false;
+               */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -17260,7 +17550,7 @@ namespace Refrigtz
             }
             RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
             QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-            bool FOUND = false;
+            FOUND = false;
             if (!Quantum)
                 SetDrawFounding(ref FOUND, ref THIS, false);
             else
@@ -17273,12 +17563,12 @@ namespace Refrigtz
 
         private void ToolStripMenuItem13_Click(object sender, EventArgs e)
         {
-         /*   AStarGreedyHuristic = false;
-            CheckBoxAStarGreedyHuristic.Checked = false;
-            UsePenaltyRegardMechnisam = false;
-            CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-*/
-            if (MovmentsNumber == 0)
+            /*   AStarGreedyHuristic = false;
+               CheckBoxAStarGreedyHuristic.Checked = false;
+               UsePenaltyRegardMechnisam = false;
+               CheckBoxUsePenaltyRegradMechnisam.Checked = false;
+   */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -17319,7 +17609,7 @@ namespace Refrigtz
             }
             RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
             QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-            bool FOUND = false;
+            FOUND = false;
             if (!Quantum)
                 SetDrawFounding(ref FOUND, ref THIS, false);
             else
@@ -17333,7 +17623,7 @@ namespace Refrigtz
             AllDo = false;
         }
 
-        
+
 
         private void PictureBoxTimerBrown_Click(object sender, EventArgs e)
         {
@@ -17366,12 +17656,12 @@ namespace Refrigtz
         private void ToolStripMenuItem21_Click(object sender, EventArgs e)
         {
             Quantum = true;
-          /*  AStarGreedyHuristic = false;
-            CheckBoxAStarGreedyHuristic.Checked = false;
-            UsePenaltyRegardMechnisam = false;
-            CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-            */
-            if (MovmentsNumber == 0)
+            /*  AStarGreedyHuristic = false;
+              CheckBoxAStarGreedyHuristic.Checked = false;
+              UsePenaltyRegardMechnisam = false;
+              CheckBoxUsePenaltyRegradMechnisam.Checked = false;
+              */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -17417,7 +17707,7 @@ namespace Refrigtz
                 label1.Text = "Refregiz";
                 label2.Text = "You";
             }
-            if (MovmentsNumber == 0)
+            if (MovmentsNumber == 1)
             {
                 DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                 DrawQ.TableList.Clear();
@@ -17427,7 +17717,7 @@ namespace Refrigtz
             else
             {
                 QuantumRefrigiz.AllDraw THIS = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                bool FOUND = false;
+                FOUND = false;
 
                 SetDrawFounding(ref FOUND, ref THIS, false);
             }
@@ -17451,11 +17741,13 @@ namespace Refrigtz
             {
                 try
                 {
-                    //System.Threading.Thread.Sleep(2);
+                    System.Threading.Thread.Sleep(2);
                     //tttt.Start();
                     //ttt.Start();
                     AllOp();
-                    System.Threading.Thread.Sleep(10);
+                    if (EndOfGame)
+                        return;
+                     System.Threading.Thread.Sleep(10);
                     // AllOperate.Start();
                 }
                 catch (Exception t) { Log(t); }
@@ -17466,7 +17758,7 @@ namespace Refrigtz
         {
             try
             {
-                //System.Threading.Thread.Sleep(2);
+                System.Threading.Thread.Sleep(2);
                 //tttt.Start();
                 //ttt.Start();
                 SetRefregitzDLL();
@@ -17496,7 +17788,7 @@ namespace Refrigtz
             {
                 try
                 {
-                    //System.Threading.Thread.Sleep(2);
+                    System.Threading.Thread.Sleep(2);
                     //tttt.Start();
                     //ttt.Start();
                     SetNodesCount();
@@ -17513,13 +17805,20 @@ namespace Refrigtz
             {
                 try
                 {
-                    //System.Threading.Thread.Sleep(2);
-                    
-                    //tttt.Start();
-                    //ttt.Start();
-                    SetRefregitzDLL();
-                    System.Threading.Thread.Sleep(1);
-                    // AllOperate.Start();
+                    Object O = new Object();
+                    lock (O)
+                    {
+                        System.Threading.Thread.Sleep(2);
+
+                        //tttt.Start();
+                        //ttt.Start();
+                        //Thread t = new Thread(new ThreadStart(SetRefregitzDLL));
+                        //t.Start();
+                        //t.Join();
+                        SetRefregitzDLL();
+                        System.Threading.Thread.Sleep(1);
+                        // AllOperate.Start();
+                    }
                 }
                 catch (Exception t) { Log(t); }
             } while (true);
@@ -17592,7 +17891,8 @@ namespace Refrigtz
             AStarGreedyHuristic = false;
             CheckBoxAStarGreedyHuristic.Checked = false;
             CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-          */  if (MovmentsNumber == 0)
+          */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -17635,7 +17935,7 @@ namespace Refrigtz
             {
                 RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                 QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                bool FOUND = false;
+                FOUND = false;
                 if (!Quantum)
                     SetDrawFounding(ref FOUND, ref THIS, false);
                 else
@@ -17652,11 +17952,12 @@ namespace Refrigtz
         private void ToolStripMenuItem23_Click(object sender, EventArgs e)
         {
             Quantum = false;
-        /*    AStarGreedyHuristic = false;
-            CheckBoxAStarGreedyHuristic.Checked = false;
-            UsePenaltyRegardMechnisam = false;
-            CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-       */     if (MovmentsNumber == 0)
+            /*    AStarGreedyHuristic = false;
+                CheckBoxAStarGreedyHuristic.Checked = false;
+                UsePenaltyRegardMechnisam = false;
+                CheckBoxUsePenaltyRegradMechnisam.Checked = false;
+           */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -17695,7 +17996,7 @@ namespace Refrigtz
             StateCC = true;
             RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
             QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-            bool FOUND = false;
+            FOUND = false;
             if (!Quantum)
                 SetDrawFounding(ref FOUND, ref THIS, false);
             else
@@ -17711,7 +18012,7 @@ namespace Refrigtz
 
         private void CheckBoxAStarGreedyHuristic_CheckStateChanged(object sender, EventArgs e)
         {
-           
+
 
         }
         void OptionChanged()
@@ -17735,7 +18036,7 @@ namespace Refrigtz
                  PictureBoxTimerGray.CancelAsync();
                  PictureBoxTimerGray.CancelAsync();
                */
-                
+
                 UpdateConfigurationTable();
 
 
@@ -17745,15 +18046,15 @@ namespace Refrigtz
                 SetAllDrawKind();
 
                 //Set Configuration To True for some unknown reason!.
-                                 //UpdateConfigurationTableVal = true;                             
-                                 //SetAllDrawKindString();
-                                 //UpdateConfigurationTable();
-                                 /* if (bookConn != null)
-                                  {
-                                      bookConn.Close();
-                                      oleDbCmd.Dispose();
-                                      bookConn.Dispose();
-                                  }*/
+                //UpdateConfigurationTableVal = true;                             
+                //SetAllDrawKindString();
+                //UpdateConfigurationTable();
+                /* if (bookConn != null)
+                 {
+                     bookConn.Close();
+                     //oleDbCmd.Dispose();
+                     bookConn.Dispose();
+                 }*/
                 if (i != AllDrawKind)
                     OpTableZero(false);
             }
@@ -17761,10 +18062,11 @@ namespace Refrigtz
 
         private void CheckBoxUsePenaltyRegradMechnisam_CheckStateChanged(object sender, EventArgs e)
         {
-         }
+        }
 
         private void Button1_Click_1(object sender, EventArgs e)
-        {if (AllOperate != null)
+        {
+            if (AllOperate != null)
                 AllOperate.Abort();
             if (BackgroundWorkerSetRefD.WorkerSupportsCancellation)
                 BackgroundWorkerSetRefD.CancelAsync();
@@ -17783,21 +18085,21 @@ namespace Refrigtz
             {
                 UpdateConfigurationTable();
                 bookConn.Close();
-                oleDbCmd.Dispose();
+                //oleDbCmd.Dispose();
                 bookConn.Dispose();
             }
             do
             {
                 try
                 {
-                    if (System.IO.File.Exists(Root + "\\Database\\CurrentBank.accdb"))                                          
+                    if (System.IO.File.Exists(Root + "\\Database\\CurrentBank.accdb"))
                         File.Delete(Root + "\\Database\\CurrentBank.accdb");
-                    
-                    if (System.IO.File.Exists(Root + "\\Database\\Monitor.html"))                     
+
+                    if (System.IO.File.Exists(Root + "\\Database\\Monitor.html"))
                         File.Delete(Root + "\\Database\\Monitor.html");
 
-                    if (File.Exists("List.txt"))                    
-                        File.Delete("List.txt");                    
+                    if (File.Exists("List.txt"))
+                        File.Delete("List.txt");
                     if (File.Exists("output.txt"))
                         File.Delete("output.txt");
                     if (File.Exists("CodeLogEvent.txt"))
@@ -17819,18 +18121,52 @@ namespace Refrigtz
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void buttonViewTree_Click(object sender, EventArgs e)
+        {
+            Object O = new Object();
+            lock (O)
+            {
+                try
+                {
+                    FormTXT t = new FormTXT(Draw);
+                    t.Show();
+                }
+                catch (Exception t) { Log(t); }
+            }
+        }
+
+        private void TextBoxStatistic_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxDeeperthandeeper_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (checkBoxDeeperthandeeper.Checked)
+                Deeperthandeeper = true;
+            else
+                Deeperthandeeper = false;
+
+        }
+
+        private void PictureBoxRefrigtz_Click_1(object sender, EventArgs e)
+        {
+
         }
 
         private void ToolStripMenuItem14_Click(object sender, EventArgs e)
         {
 
-          /*  AStarGreedyHuristic = false;
-            CheckBoxAStarGreedyHuristic.Checked = false;
-            UsePenaltyRegardMechnisam = false;
-            CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-            */
-            if (MovmentsNumber == 0)
+            /*  AStarGreedyHuristic = false;
+              CheckBoxAStarGreedyHuristic.Checked = false;
+              UsePenaltyRegardMechnisam = false;
+              CheckBoxUsePenaltyRegradMechnisam.Checked = false;
+              */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -17871,7 +18207,7 @@ namespace Refrigtz
             }
             RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
             QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-            bool FOUND = false;
+            FOUND = false;
             if (!Quantum)
                 SetDrawFounding(ref FOUND, ref THIS, false);
             else
@@ -17898,7 +18234,8 @@ namespace Refrigtz
             CheckBoxAStarGreedyHuristic.Checked = false;
             UsePenaltyRegardMechnisam = false;
             CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-           */ StateCP = false;
+           */
+            StateCP = false;
             StateGe = false;
             Blitz = false;
             StateCC = true;
@@ -17933,7 +18270,7 @@ namespace Refrigtz
             }
             RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
             QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-            bool FOUND = false;
+            FOUND = false;
             if (!Quantum)
                 SetDrawFounding(ref FOUND, ref THIS, false);
             else
@@ -17959,7 +18296,7 @@ namespace Refrigtz
         private void ToolStripMenuItem17_Click(object sender, EventArgs e)
         {
             //UsePenaltyRegardMechnisam = true;
-           // CheckBoxUsePenaltyRegradMechnisam.Checked = true;
+            // CheckBoxUsePenaltyRegradMechnisam.Checked = true;
             //TimerIniataite = true;
             label1.Text = "You";
             label2.Text = "stockfish-8";
@@ -17970,17 +18307,15 @@ namespace Refrigtz
             //PersonWithStockfish = true;
             if (!Quantum)
             {
-                Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                Draw.TableList.Clear();
-                Draw.TableList.Add(Table);
-                Draw.SetRowColumn(0);
+                RefrigtzDLL.AllDraw THIS = null;
+                bool Found = false;
+                SetDrawFounding(ref Found, ref THIS, false);
             }
             else
             {
-                DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                DrawQ.TableList.Clear();
-                DrawQ.TableList.Add(Table);
-                DrawQ.SetRowColumn(0);
+                QuantumRefrigiz.AllDraw THIS = null;
+                bool Found = false;
+                SetDrawFounding(ref Found, ref THIS, false);
             }
             AllDo = false;
         }
@@ -17991,7 +18326,8 @@ namespace Refrigtz
             CheckBoxAStarGreedyHuristic.Checked = false;
             UsePenaltyRegardMechnisam = false;
             CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-         */   if (MovmentsNumber == 0)
+         */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -18010,7 +18346,7 @@ namespace Refrigtz
             UsePenaltyRegardMechnisam = false;
             RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
             QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-            bool FOUND = false;
+            FOUND = false;
             if (!Quantum)
                 SetDrawFounding(ref FOUND, ref THIS, false);
             else
@@ -18021,11 +18357,12 @@ namespace Refrigtz
         private void ToolStripMenuItem19_Click(object sender, EventArgs e)
         {
             Quantum = false;
-          /*  UsePenaltyRegardMechnisam = false;
-            AStarGreedyHuristic = false;
-            CheckBoxAStarGreedyHuristic.Checked = false;
-            CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-         */   if (MovmentsNumber == 0)
+            /*  UsePenaltyRegardMechnisam = false;
+              AStarGreedyHuristic = false;
+              CheckBoxAStarGreedyHuristic.Checked = false;
+              CheckBoxUsePenaltyRegradMechnisam.Checked = false;
+           */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -18067,7 +18404,7 @@ namespace Refrigtz
             {
                 RefrigtzDLL.AllDraw THIS = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
                 QuantumRefrigiz.AllDraw THISQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                bool FOUND = false;
+                FOUND = false;
                 if (!Quantum)
                     SetDrawFounding(ref FOUND, ref THIS, false);
                 else
@@ -18086,7 +18423,8 @@ namespace Refrigtz
             CheckBoxAStarGreedyHuristic.Checked = false;
             UsePenaltyRegardMechnisam = false;
             CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-           */ if (MovmentsNumber == 0)
+           */
+            if (MovmentsNumber == 1)
             {
                 GrayTimer = new Refrigtz.Timer(true);
                 BrownTimer = new Refrigtz.Timer(true);
@@ -18106,22 +18444,20 @@ namespace Refrigtz
             {
                 if (!Quantum)
                 {
-                    Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                    Draw.TableList.Clear();
-                    Draw.TableList.Add(Table);
-                    Draw.SetRowColumn(0);
+                    RefrigtzDLL.AllDraw THIS = null;
+                    bool Found = false;
+                    SetDrawFounding(ref Found, ref THIS, false);
                 }
                 else
                 {
-                    DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHuristic, OnlySelf, AStarGreedyHuristic, ArrangmentsChanged);
-                    DrawQ.TableList.Clear();
-                    DrawQ.TableList.Add(Table);
-                    DrawQ.SetRowColumn(0);
+                    RefrigtzDLL.AllDraw THIS = null;
+                    bool Found = false;
+                    SetDrawFounding(ref Found, ref THIS, false);
                 }
             }
             AllDo = false;
         }
-        
+
 
     }
 }

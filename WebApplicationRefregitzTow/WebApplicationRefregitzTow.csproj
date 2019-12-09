@@ -408,6 +408,7 @@
     </Compile>
     <Compile Include="ThingsConverter.cs" />
     <Compile Include="ThinkingChess.cs" />
+    <Compile Include="TimeElapced.cs" />
     <Compile Include="Timer.cs" />
   </ItemGroup>
   <ItemGroup>

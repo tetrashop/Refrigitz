@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBoxTryCatchDisable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBoxTryCatchDisable.Designer.cs">
+      <DependentUpon>AboutBoxTryCatchDisable.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTryCatchDisable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +62,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBoxTryCatchDisable.resx">
+      <DependentUpon>AboutBoxTryCatchDisable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTryCatchDisable.resx">
       <DependentUpon>FormTryCatchDisable.cs</DependentUpon>
     </EmbeddedResource>

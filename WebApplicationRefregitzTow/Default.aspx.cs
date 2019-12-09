@@ -215,7 +215,7 @@ namespace WebApplicationRefregitzTow
                 ucc.Image28.ImageUrl = ChessImage;
             if (C == 29)
                 ucc.Image29.ImageUrl = ChessImage;
-            if (C == 30)
+            if (C == 10)
                 ucc.Image30.ImageUrl = ChessImage;
             if (C == 31)
                 ucc.Image32.ImageUrl = ChessImage;

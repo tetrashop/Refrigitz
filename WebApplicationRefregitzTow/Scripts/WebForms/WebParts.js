@@ -254,7 +254,7 @@ function Zone_GetWebPartIndex(location) {
     return webPartsCount;
 }
 function Zone_UpdatePosition() {
-    var topLeft = __wpTranslateOffset(0, 0, this.webPartTable, null, false);
+    var topLeft = __wpTranslateOffset(0, 0, this.webPartCloneATable(Table), null, false);
     this.webPartTableLeft = topLeft.x;
     this.webPartTableTop = topLeft.y;
     this.webPartTableRight = (this.webPartTable != null) ? topLeft.x + this.webPartTable.offsetWidth : topLeft.x;

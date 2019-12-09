@@ -260,8 +260,8 @@ namespace RefrigtzW
             //Found Location of Tow Gray and Brown Kings. 
             int RowB = 0, ColumnB = 0;
             int RowG = 0, ColumnG = 0;
-            FindBrownKing(Table, ref RowB, ref ColumnB);
-            FindGrayKing(Table, ref RowG, ref ColumnG);
+            FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB);
+            FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG);
 
             //Gray Order.
             if ((Order == 1))
@@ -625,7 +625,7 @@ namespace RefrigtzW
                                     //Ignore Brown.
                                     if (Tab[iii, jjj] < 0)
                                         continue;
-                                    RefrigtzW.ThinkingChess AA = new RefrigtzW.ThinkingChess(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
+                                    RefrigtzW.ThinkingChess AA = new RefrigtzW.ThinkingChess(-1,0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
                                     //When There is Attacked to Gray from Brown.
                                     if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Brown, Order * -1))
                                     {
@@ -693,7 +693,7 @@ namespace RefrigtzW
                                     if (Tab[iii, jjj] > 0)
                                         continue;
 
-                                    RefrigtzW.ThinkingChess AA = new RefrigtzW.ThinkingChess(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
+                                    RefrigtzW.ThinkingChess AA = new RefrigtzW.ThinkingChess(-1,0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
                                     //When There is Attack to Brown.
                                     if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Gray, Order * -1))
                                     {
@@ -825,7 +825,7 @@ namespace RefrigtzW
                                     //Ignore Brown.
                                     if (Tab[iii, jjj] < 0)
                                         continue;
-                                    RefrigtzW.ThinkingChess AA = new RefrigtzW.ThinkingChess(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
+                                    RefrigtzW.ThinkingChess AA = new RefrigtzW.ThinkingChess(-1,0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
                                     //When There is Attacked to Gray from Brown.
                                     if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Brown, Order * -1))
                                     {
@@ -893,7 +893,7 @@ namespace RefrigtzW
                                     if (Tab[iii, jjj] > 0)
                                         continue;
 
-                                    RefrigtzW.ThinkingChess AA = new RefrigtzW.ThinkingChess(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
+                                    RefrigtzW.ThinkingChess AA = new RefrigtzW.ThinkingChess(-1,0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, ii, jj);
                                     //When There is Attack to Brown.
                                     if (AA.Attack(Tab, ii, jj, iii, jjj, Color.Gray, Order * -1))
                                     {
@@ -972,7 +972,7 @@ namespace RefrigtzW
                     Table[i, j] = Tabl[i, j];
             Table[RowS, ColumnS] = Table[RowF, ColumnF];
             Table[RowF, ColumnF] = 0;
-            if (Check(Table, Order))
+            if (Check(CloneATable(Table), Order))
             {
                 if (Order == 1 && CheckGray)
                     Achmaz = true;
@@ -1632,7 +1632,7 @@ namespace RefrigtzW
                                 for (var jj = 0; jj < 8; jj++)
                                 {
                                     //If First Home is Movable to Second Home.
-                                    if ((new RefrigtzW.ThinkingChess(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Table, i, j, ii, jj, A, Order))
+                                    if ((new RefrigtzW.ThinkingChess(-1,0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(CloneATable(Table), i, j, ii, jj, A, Order))
                                     {
                                         //If Array Exist in Home.
                                         if (ArrayInList(List, AA))
@@ -1717,7 +1717,7 @@ namespace RefrigtzW
                                                 Tab[iii, jjj] = Table[iii, jjj];
                                             }
                                         //If Is Movable.
-                                        if ((new RefrigtzW.ThinkingChess(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Tab, i, j, ii, jj, Color.Brown, -1))
+                                        if ((new RefrigtzW.ThinkingChess(-1,0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Tab, i, j, ii, jj, Color.Brown, -1))
                                         {
                                             //Clone a Copy.
                                             for (var iii = 0; iii < 8; iii++)
@@ -1787,7 +1787,7 @@ namespace RefrigtzW
                                                 Tab[iii, jjj] = Table[iii, jjj];
                                             }
                                         //Moveable Movemnts in the Tow Traversal Kind.
-                                        if ((new RefrigtzW.ThinkingChess(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Tab, i, j, ii, jj, Color.Gray, 1))
+                                        if ((new RefrigtzW.ThinkingChess(-1,0,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, i, j)).Movable(Tab, i, j, ii, jj, Color.Gray, 1))
                                         {
                                             for (var iii = 0; iii < 8; iii++)
                                                 for (var jjj = 0; jjj < 8; jjj++)
@@ -1853,11 +1853,11 @@ namespace RefrigtzW
                         continue;
 
 
-                    if ((new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], Table, Order, ii, jj)).Rules(ii, jj, i, j, a, Table[ii, jj]))
+                    if ((new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], CloneATable(Table), Order, ii, jj)).Rules(ii, jj, i, j, a, Table[ii, jj]))
                     {
                         Tab[i, j] = true;
                     }
-                    if ((new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], Table, Order, ii, jj)).Rules(ii, jj, i, j, a, Table[ii, jj]))
+                    if ((new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], CloneATable(Table), Order, ii, jj)).Rules(ii, jj, i, j, a, Table[ii, jj]))
                     {
                         Tab[i, j] = true;
                     }
@@ -1865,6 +1865,43 @@ namespace RefrigtzW
             RefrigtzW.ChessRules.CurrentOrder = Cdummy;
             return Tab;
         }
+        int[,] CloneATable(int[,] Tab)
+        {
+            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {
+                //Create and new an Object.
+                int[,] Table = new int[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
+            }
+
+        }
+        bool[,] CloneATable(bool[,] Tab)
+        {
+            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {
+                //Create and new an Object.
+                bool[,] Table = new bool[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
+            }
+
+        }
+
         public bool OnlyKingMovable(int[,] Tab, bool[,] TabB, int Order)
         {
             for (var i = 0; i < 8; i++)
@@ -1898,7 +1935,7 @@ namespace RefrigtzW
             {
                 PatCheckedInKingRule = true;
             }
-            if (!Check(Table, Order))
+            if (!Check(CloneATable(Table), Order))
             {
                 bool[,] TableS = new bool[8, 8];
                 //  if (Order == -1)
@@ -1908,7 +1945,7 @@ namespace RefrigtzW
                     {
                         if (Table[ii, jj] > 0)
                         {
-                            bool[,] TableSS = VeryFye(Table, 1, Color.Gray, ii, jj);
+                            bool[,] TableSS = VeryFye(CloneATable(Table), 1, Color.Gray, ii, jj);
 
                             for (var iii = 0; iii < 8; iii++)
                                 for (var jjj = 0; jjj < 8; jjj++)
@@ -1917,7 +1954,7 @@ namespace RefrigtzW
                                 }
                         }
                     }
-                if (OnlyKingMovable(Table, TableS, 1))
+                if (OnlyKingMovable(CloneATable(Table),CloneATable(TableS), 1))
                 {
                     NumbersofKingMovesToPatGray++;
                 }
@@ -1944,7 +1981,7 @@ namespace RefrigtzW
                     {
                         if (Table[ii, jj] < 0)
                         {
-                            bool[,] TableSS = VeryFye(Table, -1, Color.Brown, ii, jj);
+                            bool[,] TableSS = VeryFye(CloneATable(Table), -1, Color.Brown, ii, jj);
                             for (var iii = 0; iii < 8; iii++)
                                 for (var jjj = 0; jjj < 8; jjj++)
                                 {
@@ -1952,7 +1989,7 @@ namespace RefrigtzW
                                 }
                         }
                     }
-                if (OnlyKingMovable(Table, TableS, -1))
+                if (OnlyKingMovable(CloneATable(Table),CloneATable(TableS), -1))
                 {
                     NumbersofKingMovesToPatBrown++;
                 }
@@ -2026,7 +2063,7 @@ namespace RefrigtzW
                     Color a = Color.Gray;
                     if (Ord == -1)
                         a = Color.Brown;
-                    RefrigtzW.ChessRules A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[i, j], Table, Ord, i, j);
+                    RefrigtzW.ChessRules A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[i, j], CloneATable(Table), Ord, i, j);
                     if (Ord == 1)
                     {
                         //Menen Parameter is Moveble to Second Parameters Location returm Movable.
@@ -2083,12 +2120,12 @@ namespace RefrigtzW
             //if (Ord == 1)
 
             //Foud of Gray King.
-            if (FindGrayKing(Table, ref RowG, ref ColumnG))
-                CheckKing(Table, -1, RowG, ColumnG);
+            if (FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG))
+                CheckKing(CloneATable(Table), -1, RowG, ColumnG);
 
             //Found of Brown King.
-            if (FindBrownKing(Table, ref RowB, ref ColumnB))
-                CheckKing(Table, 1, RowB, ColumnB);
+            if (FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB))
+                CheckKing(CloneATable(Table), 1, RowB, ColumnB);
 
             Ord = DummyOrder;
             //If Gray Check Or brwon Check return Check..
@@ -2122,7 +2159,7 @@ namespace RefrigtzW
                         Color a = Color.Gray;
                         if (Ord == -1)
                             a = Color.Brown;
-                        RefrigtzW.ChessRules A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowK, ColumnK], Table, Ord, RowK, ColumnK);
+                        RefrigtzW.ChessRules A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowK, ColumnK], CloneATable(Table), Ord, RowK, ColumnK);
                         Order = DummyOrder;
                         ///Table[ii, jj] = 0;
                         //Menen Parameter is Moveble to Second Parameters Location returm Movable.
@@ -2139,7 +2176,7 @@ namespace RefrigtzW
                             Table[i, j] = Table[RowK, ColumnK];
                             Table[RowK, ColumnK] = 0;
                             //If Is Check.
-                            if (A.Check(Table, Ord))
+                            if (A.Check(CloneATable(Table), Ord))
                             {
                                 //Move Back.
                                 //If Gray Check.
@@ -2230,7 +2267,7 @@ namespace RefrigtzW
                             Color a = Color.Gray;
                             if (Ord == -1)
                                 a = Color.Brown;
-                            RefrigtzW.ChessRules A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[i, j], Table, Ord, i, j);
+                            RefrigtzW.ChessRules A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[i, j], CloneATable(Table), Ord, i, j);
                             ///Table[ii, jj] = 0;
                             //Menen Parameter is Moveble to Second Parameters Location returm Movable.
                             if (A.Rules(i, j, ii, jj, a, Ord))
@@ -2243,8 +2280,8 @@ namespace RefrigtzW
                                 Table[ii, jj] = Table[i, j];
                                 Table[i, j] = 0;
                                 //If Check.
-                                A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], Table, Ord, ii, jj);
-                                if (A.Check(Table, Ord))
+                                A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[ii, jj], CloneATable(Table), Ord, ii, jj);
+                                if (A.Check(CloneATable(Table), Ord))
                                 {
                                     Order = DummyOrder;
                                     //Move Back.
@@ -2339,7 +2376,7 @@ namespace RefrigtzW
             int RowB = 0, ColumnB = 0;
             int DumnyOrder = Ord;
             //Check Consideration.
-            Check(Table, Ord);
+            Check(CloneATable(Table), Ord);
             //Initiate Local Varibales.
             bool CheckGrayDummy = CheckGray;
             bool CheckBrownDummy = CheckBrown;
@@ -2350,18 +2387,18 @@ namespace RefrigtzW
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
                     Table[i, j] = Tab[i, j];
-            RefrigtzW.ChessRules A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowG, ColumnG], Table, Ord, RowG, ColumnG);
+            RefrigtzW.ChessRules A = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowG, ColumnG], CloneATable(Table), Ord, RowG, ColumnG);
 
             //Found of Gray King.
-            if (FindGrayKing(Table, ref RowG, ref ColumnG))
-                A.CheckMateKing(Table, 1, CheckGrayDummy, CheckBrownDummy, RowG, ColumnG, ref ActMoveG, CheckGray);
+            if (FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG))
+                A.CheckMateKing(CloneATable(Table), 1, CheckGrayDummy, CheckBrownDummy, RowG, ColumnG, ref ActMoveG, CheckGray);
 
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
                     Table[i, j] = Tab[i, j];
             //Found of Gray King.
-            if (FindGrayKing(Table, ref RowG, ref ColumnG))
-                A.CheckMateNotKing(Table, 1, CheckGrayDummy, CheckBrownDummy, ref ActMoveGF);
+            if (FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG))
+                A.CheckMateNotKing(CloneATable(Table), 1, CheckGrayDummy, CheckBrownDummy, ref ActMoveGF);
 
             //Intiate Global Variables.
             CheckGray = CheckGrayDummy;
@@ -2375,19 +2412,19 @@ namespace RefrigtzW
             ActMoveB = true;
             ActMoveBF = true;
 
-            RefrigtzW.ChessRules AA = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowB, ColumnB], Table, Ord, RowB, ColumnB);
+            RefrigtzW.ChessRules AA = new RefrigtzW.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Table[RowB, ColumnB], CloneATable(Table), Ord, RowB, ColumnB);
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
                     Table[i, j] = Tab[i, j];
             //Found of Brown King.
-            if (FindBrownKing(Table, ref RowB, ref ColumnB))
-                AA.CheckMateKing(Table, -1, CheckGrayDummy, CheckBrownDummy, RowB, ColumnB, ref ActMoveB, CheckBrown);
+            if (FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB))
+                AA.CheckMateKing(CloneATable(Table), -1, CheckGrayDummy, CheckBrownDummy, RowB, ColumnB, ref ActMoveB, CheckBrown);
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
                     Table[i, j] = Tab[i, j];
             //Found of Brown King.
-            if (FindBrownKing(Table, ref RowB, ref ColumnB))
-                AA.CheckMateNotKing(Table, -1, CheckGrayDummy, CheckBrownDummy, ref ActMoveBF);
+            if (FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB))
+                AA.CheckMateNotKing(CloneATable(Table), -1, CheckGrayDummy, CheckBrownDummy, ref ActMoveBF);
 
 
             //Initiate Global Varibales.
@@ -2405,12 +2442,12 @@ namespace RefrigtzW
                 //Initiate Global Variable and Return CheckMate.
                 CheckGray = CheckGrayDummy;
                 CheckBrown = CheckBrownDummy;
-                Object On = new Object();
+                /*Object On = new Object();
                 lock (On)
                 {
                     AllDraw.EndOfGame = true;
                     return true;
-                }
+                }*/
             }
             //Initiate Global Variables.
             CheckGray = CheckGrayDummy;
@@ -2839,7 +2876,7 @@ namespace RefrigtzW
             //Return Not Validity.
             /*if (Move && System.Math.Abs(Ki) != 6)
             {
-                if (AchmazCheckByMoveByRule(Table, RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
+                if (AchmazCheckByMoveByRule(CloneATable(Table), RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
                     Move = false;
             }
              */
@@ -2945,7 +2982,7 @@ namespace RefrigtzW
             }
             /*if (Move && System.Math.Abs(Ki) != 6)
             {
-                if (AchmazCheckByMoveByRule(Table, RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
+                if (AchmazCheckByMoveByRule(CloneATable(Table), RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
                     Move = false;
             }
              */
@@ -2972,7 +3009,7 @@ namespace RefrigtzW
             //Return Not Validity.
             /* if (Move)
              {
-                 if (AchmazCheckByMoveByRule(Table, RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
+                 if (AchmazCheckByMoveByRule(CloneATable(Table), RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
                      Move = false;
              }
              */
@@ -3326,7 +3363,7 @@ namespace RefrigtzW
             }
             /*if (Move)
             {
-                if (AchmazCheckByMoveByRule(Table, RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
+                if (AchmazCheckByMoveByRule(CloneATable(Table), RowFirst, ColumnFirst, RowSecond, ColumnSecond, Order))
                     Move = false;
             }
              */

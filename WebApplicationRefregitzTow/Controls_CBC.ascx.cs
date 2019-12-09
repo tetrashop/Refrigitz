@@ -1834,7 +1834,7 @@ namespace WebApplicationRefregitzTow
                 return "d5";
             if (a == 29)
                 return "e5";
-            if (a == 30)
+            if (a == 10)
                 return "f5";
             if (a == 31)
                 return "g5";

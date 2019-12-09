@@ -33,7 +33,7 @@ namespace RefrigtzDLL
         public bool AStarGreedyHuristicT = false;
         public bool ArrangmentsChanged = false;
         public static int MaxHuristicxS = int.MinValue;
-        public float RowS, ColumnS;
+        public float Row, Column;
         public Color color;
         public ThinkingChess[] SoldierThinking = new ThinkingChess[AllDraw.SodierMovments];
         public int[,] Table = null;
@@ -83,11 +83,12 @@ namespace RefrigtzDLL
         }
         public int ReturnHuristic()
         {
+            int HaveKilled = 0;
             //long Time = TimeElapced.TimeNow();Spaces++;
             int a = 0;
             for (var ii = 0; ii < AllDraw.SodierMovments; ii++)
 
-                a += SoldierThinking[ii].ReturnHuristic(-1, -1, Order, false);
+                a += SoldierThinking[ii].ReturnHuristic(-1, -1, Order, false,ref HaveKilled);
 
             ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("ReturnHuristic:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             return a;
@@ -133,9 +134,9 @@ namespace RefrigtzDLL
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.SodierMovments; ii++)
 
-                    SoldierThinking[ii] = new ThinkingChess(1,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, (int)i, (int)j, a, Tab, 4, Ord, TB, Cur, 16, 1);
-                RowS = i;
-                ColumnS = j;
+                    SoldierThinking[ii] = new ThinkingChess(ii,1,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, (int)i, (int)j, a, Tab, 4, Ord, TB, Cur, 16, 1);
+                Row = i;
+                Column = j;
                 color = a;
                 Order = Ord;
                 Current = Cur;
@@ -159,7 +160,7 @@ namespace RefrigtzDLL
             for (var i = 0; i < AllDraw.SodierMovments; i++)
             {
 
-                AA.SoldierThinking[i] = new ThinkingChess(1,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.SoldierThinking[i] = new ThinkingChess(i,1,CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.SoldierThinking[i].Clone(ref AA.SoldierThinking[i]);
 
             }
@@ -167,12 +168,48 @@ namespace RefrigtzDLL
             for (var ii = 0; ii < 8; ii++)
                 for (var jj = 0; jj < 8; jj++)
                     AA.Table[ii, jj] = Tab[ii, jj];
-            AA.RowS = RowS;
-            AA.ColumnS = ColumnS;
+            AA.Row = Row;
+            AA.Column = Column;
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
             ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("Clone:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+        }
+        int[,] CloneATable(int[,] Tab)
+        {
+            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {
+                //Create and new an Object.
+                int[,] Table = new int[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
+            }
+
+        }
+        bool[,] CloneATable(bool[,] Tab)
+        {
+            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {
+                //Create and new an Object.
+                bool[,] Table = new bool[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
+            }
+
         }
         //Drawing Soldiers On the Table Method..
         public void DrawSoldierOnTable(ref Graphics g, int CellW, int CellH)
@@ -190,7 +227,7 @@ namespace RefrigtzDLL
                         S[1] = Image.FromFile(AllDraw.ImagesSubRoot + "SB.png");
                     }
                     //When Conversion Solders Not Occured.
-                    if (!ConvertOperation((int)Row, (int)Column, color, Table, Order, false, Current))
+                    if (!ConvertOperation((int)Row, (int)Column, color, CloneATable(Table), Order, false, Current))
                     {
 
                         //Gray Color.

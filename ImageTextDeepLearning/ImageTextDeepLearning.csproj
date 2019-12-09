@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E472FF55-8392-4B29-8AFD-28CFDD110790}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ImageTextDeepLearning</RootNamespace>
+    <AssemblyName>ImageTextDeepLearning</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Emgu.CV">
+      <HintPath>bin\Debug\Detector\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>bin\Debug\Detector\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>bin\Debug\Detector\Emgu.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBoxImageTextDeepLearning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBoxImageTextDeepLearning.Designer.cs">
+      <DependentUpon>AboutBoxImageTextDeepLearning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Colleralation.cs" />
+    <Compile Include="ConjunctedShape.cs" />
+    <Compile Include="DetectionOfLitteral.cs" />
+    <Compile Include="FormImageTextDeepLearning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormImageTextDeepLearning.Designer.cs">
+      <DependentUpon>FormImageTextDeepLearning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AllKeyboardOfWorldMemmoty.cs" />
+    <Compile Include="ShowContoursForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SmallImageing.cs" />
+    <Compile Include="TakeRoot.cs" />
+    <Compile Include="TemplateEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllKeyboardOfWorld.cs" />
+    <EmbeddedResource Include="AboutBoxImageTextDeepLearning.resx">
+      <DependentUpon>AboutBoxImageTextDeepLearning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormImageTextDeepLearning.resx">
+      <DependentUpon>FormImageTextDeepLearning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ShowContoursForm.resx">
+      <DependentUpon>ShowContoursForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Refrigtz\bin\Debug\All\All\chtc.csproj">
+      <Project>{ac2b4cf6-3294-46d5-9af0-c58ee5b637d4}</Project>
+      <Name>chtc</Name>
+    </ProjectReference>
+    <ProjectReference Include="ContourAnalysisProcessing\ContourAnalysisProcessing.csproj">
+      <Project>{e7bf3470-8f33-4917-9295-7782aae5c475}</Project>
+      <Name>ContourAnalysisProcessing</Name>
+    </ProjectReference>
+    <ProjectReference Include="ContourAnalysis\ContourAnalysis\ContourAnalysis.csproj">
+      <Project>{26c090e4-105d-4681-bfe4-e60752d3dc63}</Project>
+      <Name>ContourAnalysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

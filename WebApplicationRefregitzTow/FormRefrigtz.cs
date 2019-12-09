@@ -345,32 +345,32 @@ namespace RefrigtzW
             Draw.SetRowColumn(0);
             /*for (int i = 0; i < 8; i++)
             {
-                Draw.SolderesOnTable[i] = new DrawSoldier(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,i, 1, Color.Gray, Table, 1, false, i);
+                Draw.SolderesOnTable[i] = new DrawSoldier(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,i, 1, Color.Gray, CloneATable(Table), 1, false, i);
             }
             for (int i = 8; i < 16; i++)
             {
-                Draw.SolderesOnTable[i] = new DrawSoldier(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,i - 8, 6, Color.Brown, Table, -1, false, i);
+                Draw.SolderesOnTable[i] = new DrawSoldier(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,i - 8, 6, Color.Brown, CloneATable(Table), -1, false, i);
             }
-            Draw.ElephantOnTable[0] = new DrawElefant(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,2, 0, Color.Gray, Table, 1, false, 0);
-            Draw.ElephantOnTable[1] = new DrawElefant(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,5, 0, Color.Gray, Table, 1, false, 1);
-            Draw.ElephantOnTable[2] = new DrawElefant(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,2, 7, Color.Brown, Table, -1, false, 2);
-            Draw.ElephantOnTable[3] = new DrawElefant(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,5, 7, Color.Brown, Table, -1, false, 3);
+            Draw.ElephantOnTable[0] = new DrawElefant(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,2, 0, Color.Gray, CloneATable(Table), 1, false, 0);
+            Draw.ElephantOnTable[1] = new DrawElefant(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,5, 0, Color.Gray, CloneATable(Table), 1, false, 1);
+            Draw.ElephantOnTable[2] = new DrawElefant(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,2, 7, Color.Brown, CloneATable(Table), -1, false, 2);
+            Draw.ElephantOnTable[3] = new DrawElefant(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,5, 7, Color.Brown, CloneATable(Table), -1, false, 3);
 
-            Draw.HoursesOnTable[0] = new DrawHourse(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,1, 0, Color.Gray, Table, 1, false, 0);
-            Draw.HoursesOnTable[1] = new DrawHourse(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,6, 0, Color.Gray, Table, 1, false, 1);
-            Draw.HoursesOnTable[2] = new DrawHourse(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,1, 7, Color.Brown, Table, -1, false, 2);
-            Draw.HoursesOnTable[3] = new DrawHourse(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,6, 7, Color.Brown, Table, -1, false, 3);
+            Draw.HoursesOnTable[0] = new DrawHourse(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,1, 0, Color.Gray, CloneATable(Table), 1, false, 0);
+            Draw.HoursesOnTable[1] = new DrawHourse(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,6, 0, Color.Gray, CloneATable(Table), 1, false, 1);
+            Draw.HoursesOnTable[2] = new DrawHourse(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,1, 7, Color.Brown, CloneATable(Table), -1, false, 2);
+            Draw.HoursesOnTable[3] = new DrawHourse(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,6, 7, Color.Brown, CloneATable(Table), -1, false, 3);
 
-            Draw.CastlesOnTable[0] = new DrawCastle(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,0, 0, Color.Gray, Table, 1, false, 0);
-            Draw.CastlesOnTable[1] = new DrawCastle(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,7, 0, Color.Gray, Table, 1, false, 1);
-            Draw.CastlesOnTable[2] = new DrawCastle(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,0, 7, Color.Brown, Table, -1, false, 2);
-            Draw.CastlesOnTable[3] = new DrawCastle(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,7, 7, Color.Brown, Table, -1, false, 3);
+            Draw.CastlesOnTable[0] = new DrawCastle(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,0, 0, Color.Gray, CloneATable(Table), 1, false, 0);
+            Draw.CastlesOnTable[1] = new DrawCastle(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,7, 0, Color.Gray, CloneATable(Table), 1, false, 1);
+            Draw.CastlesOnTable[2] = new DrawCastle(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,0, 7, Color.Brown, CloneATable(Table), -1, false, 2);
+            Draw.CastlesOnTable[3] = new DrawCastle(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,7, 7, Color.Brown, CloneATable(Table), -1, false, 3);
 
-            Draw.if (KingOnTable==null||KingOnTable[i] == null)[0] = new DrawKing(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,3, 0, Color.Gray, Table, 1, false, 0);
-            Draw.if (KingOnTable==null||KingOnTable[i] == null)[1] = new DrawKing(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,3, 7, Color.Brown, Table, -1, false, 1);
+            Draw.if (KingOnTable==null||KingOnTable[i] == null)[0] = new DrawKing(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,3, 0, Color.Gray, CloneATable(Table), 1, false, 0);
+            Draw.if (KingOnTable==null||KingOnTable[i] == null)[1] = new DrawKing(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,3, 7, Color.Brown, CloneATable(Table), -1, false, 1);
 
-            Draw.MinisterOnTable[0] = new DrawMinister(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,4, 0, Color.Gray, Table, 1, false, 0);
-            Draw.MinisterOnTable[1] = new DrawMinister(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,4, 7, Color.Brown, Table, -1, false, 1);
+            Draw.MinisterOnTable[0] = new DrawMinister(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,4, 0, Color.Gray, CloneATable(Table), 1, false, 0);
+            Draw.MinisterOnTable[1] = new DrawMinister(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,4, 7, Color.Brown, CloneATable(Table), -1, false, 1);
             */
 
             AllDraw.TableListAction.Add(Table);
@@ -421,7 +421,7 @@ namespace RefrigtzW
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
                 {
-                    if ((new ChessRules(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,Table[(int)RowClickP, (int)ColumnClickP], Table, Order, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, i, j, a, Table[(int)RowClickP, (int)ColumnClickP]))
+                    if ((new ChessRules(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,Table[(int)RowClickP, (int)ColumnClickP], CloneATable(Table), Order, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, i, j, a, Table[(int)RowClickP, (int)ColumnClickP]))
                     {
                         Tab[i, j] = true;
                     }
@@ -1321,7 +1321,7 @@ namespace RefrigtzW
         public void Load()
         {
             var parallelOptions = new ParallelOptions();
-            parallelOptions.MaxDegreeOfParallelism = Int32.MaxValue;
+            parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount;
 
             MovmentsNumber = 0;
 
@@ -1365,7 +1365,7 @@ namespace RefrigtzW
             //GC.WaitForPendingFinalizers();
             LoadPlaceHolder = true;
             // ttt.LoadPlaceHolder(); 
-            //System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(3000);
             do
             {
                 AllDraw.Root = Root;
@@ -1514,8 +1514,44 @@ namespace RefrigtzW
                 Thread.Sleep(100);
             } while (Clicked);
         }
+        int[,] CloneATable(int[,] Tab)
+        {
+            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {
+                //Create and new an Object.
+                int[,] Table = new int[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
+            }
+
+        }
+        bool[,] CloneATable(bool[,] Tab)
+        {
+            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {
+                //Create and new an Object.
+                bool[,] Table = new bool[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
+            }
+
+        }
         //All Operation of Thinking Handling.
-         
+
         //The State of Alice with Person Thinking.
         void AliceWithPerson()
         {
@@ -1545,7 +1581,7 @@ namespace RefrigtzW
                 int LeafAStarGrteedy = 0;
                 bool FOUND = false;
                 AllDraw THIS = null;
-                Draw.FoundOfCurrentTableNode(Table, OrderPlate, ref THIS, ref FOUND);
+                Draw.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate, ref THIS, ref FOUND);
                 if (FOUND)
                 {
 
@@ -1562,7 +1598,7 @@ namespace RefrigtzW
                     Draw.SetRowColumn(0);
                     RefrigtzW.AllDraw.DepthIterative = 0;
                 }
-                Table = Draw.Initiate(1, 4, a, Table, OrderPlate, false, false, LeafAStarGrteedy);
+                Table = Draw.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, false, LeafAStarGrteedy);
                 //this.//SetBoxText("\r\nThinking Finished!");
                 try
                 {
@@ -1638,7 +1674,7 @@ namespace RefrigtzW
                             }
                             if ((ChessRules.SmallKingCastleGray || ChessRules.BigKingCastleGray) && (!ChessRules.CastleActGray))
                                 ChessRules.CastleActGray = true;
-                            AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,Table, MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
+                            AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,CloneATable(Table), MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                         }
                         else
                         {
@@ -1650,14 +1686,14 @@ namespace RefrigtzW
                             if ((ChessRules.SmallKingCastleBrown || ChessRules.BigKingCastleBrown) && (!ChessRules.CastleActBrown))
                                 ChessRules.CastleActBrown = true;
 
-                            AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,Table, MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
+                            AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHuristic,OnlySelf,AStarGreedyHuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,CloneATable(Table), MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                         }
                         //SetBoxStatistic(AllDraw.SyntaxToWrite);
                         //RefreshBoxStatistic();
                     }
                 }
                 FOUND = false;
-                Draw.FoundOfCurrentTableNode(Table, OrderPlate, ref THIS, ref FOUND);
+                Draw.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate, ref THIS, ref FOUND);
                 if (FOUND)
                 {
 
@@ -1725,13 +1761,13 @@ namespace RefrigtzW
                     if (AllDraw.ActionStringReady)
                     {
                         SetBoxText(AllDraw.ActionString.ToString());
-                        AllDraw.ActionString = new StringBuilder("");
+                        AllDraw.ActionString.Clear();
                         AllDraw.ActionStringReady = false;
                     }
                     if (AllDraw.OutPut.ToString() != "")
                     {
                         SetBoxText(AllDraw.OutPut.ToString());
-                        AllDraw.OutPut = new StringBuilder("");
+                        AllDraw.OutPut.Clear();
 
                     }
                     

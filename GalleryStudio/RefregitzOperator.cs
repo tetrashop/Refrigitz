@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using System.IO;
 namespace GalleryStudio
 {
+    [Serializable]
     public class RefregitzOperator//:RefregizMemmory
     {
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6

@@ -187,7 +187,7 @@ function Menu_HideItems(items) {
     }
     var table = items;
     if ((typeof(table) == "undefined") || (table == null) || !table.tagName || (table.tagName.toLowerCase() != "table")) {
-        table = WebForm_GetElementByTagName(table, "TABLE");
+        table = WebForm_GetElementByTagName(CloneATable(Table), "TABLE");
     }
     if ((typeof(table) == "undefined") || (table == null) || !table.tagName || (table.tagName.toLowerCase() != "table")) {
         return;
@@ -258,7 +258,7 @@ function Menu_HoverDynamic(item) {
     var nodeTable = WebForm_GetElementByTagName(node, "table");
     if (data.hoverClass) {
         nodeTable.hoverClass = data.hoverClass;
-        WebForm_AppendToClassName(nodeTable, data.hoverClass);
+        WebForm_AppendToClassName(nodeCloneATable(Table), data.hoverClass);
     }
     node = nodeTable.rows[0].cells[0].childNodes[0];
     if (data.hoverHyperLinkClass) {
@@ -281,7 +281,7 @@ function Menu_HoverRoot(item) {
     var nodeTable = WebForm_GetElementByTagName(node, "table");
     if (data.staticHoverClass) {
         nodeTable.hoverClass = data.staticHoverClass;
-        WebForm_AppendToClassName(nodeTable, data.staticHoverClass);
+        WebForm_AppendToClassName(nodeCloneATable(Table), data.staticHoverClass);
     }
     node = nodeTable.rows[0].cells[0].childNodes[0];
     if (data.staticHoverHyperLinkClass) {
@@ -470,14 +470,14 @@ function Menu_ResetSiblings(item) {
             }
         }
     }
-    Menu_ResetTopMenus(table, table, 0, true);
+    Menu_ResetTopMenus(CloneATable(Table), CloneATable(Table), 0, true);
 }
-function Menu_ResetTopMenus(table, doNotReset, level, up) {
+function Menu_ResetTopMenus(CloneATable(Table), doNotReset, level, up) {
     var i, child, childNode;
     if (up && table.id == "") {
         var parentTable = table.parentNode.parentNode.parentNode.parentNode;
         if (parentTable.tagName.toLowerCase() == "table") {
-            Menu_ResetTopMenus(parentTable, doNotReset, level + 1, true);
+            Menu_ResetTopMenus(parentCloneATable(Table), doNotReset, level + 1, true);
         }
     }
     else {
@@ -506,7 +506,7 @@ function Menu_ResetTopMenus(table, doNotReset, level, up) {
                 for (var j = 0; j < table.rows[i].cells.length; j++) {
                     var subTable = table.rows[i].cells[j].firstChild;
                     if (subTable && subTable.tagName.toLowerCase() == "table") {
-                        Menu_ResetTopMenus(subTable, doNotReset, level - 1, false);
+                        Menu_ResetTopMenus(subCloneATable(Table), doNotReset, level - 1, false);
                     }
                 }
             }
@@ -534,7 +534,7 @@ function Menu_Unhover(item) {
         item.cells[0];
     var nodeTable = WebForm_GetElementByTagName(node, "table");
     if (nodeTable.hoverClass) {
-        WebForm_RemoveClassName(nodeTable, nodeTable.hoverClass);
+        WebForm_RemoveClassName(nodeCloneATable(Table), nodeTable.hoverClass);
     }
     node = nodeTable.rows[0].cells[0].childNodes[0];
     if (node.hoverHyperLinkClass) {
@@ -577,7 +577,7 @@ function PopOut_Hide(panelId) {
         panel.scrollTop = 0;
         var table = WebForm_GetElementByTagName(panel, "TABLE");
         if (table) {
-            WebForm_SetElementY(table, 0);
+            WebForm_SetElementY(CloneATable(Table), 0);
         }
         if (window.navigator && window.navigator.appName == "Microsoft Internet Explorer" &&
             !window.opera) {
@@ -764,7 +764,7 @@ function PopOut_Scroll(panel, offsetDelta) {
     table.style.position = "relative";
     var tableY = (table.style.top ? parseInt(table.style.top) : 0);
     panel.offset += offsetDelta;
-    WebForm_SetElementY(table, tableY - offsetDelta);
+    WebForm_SetElementY(CloneATable(Table), tableY - offsetDelta);
 }
 function PopOut_SetPanelHeight(element, height, doNotClip) {
     if (element && element.style) {
@@ -790,7 +790,7 @@ function PopOut_Show(panelId, hideScrollers, data) {
             panel.offset = 0;
             var table = WebForm_GetElementByTagName(panel, "TABLE");
             if (table) {
-                WebForm_SetElementY(table, 0);
+                WebForm_SetElementY(CloneATable(Table), 0);
             }
         }
         PopOut_Position(panel, hideScrollers);

@@ -1280,7 +1280,7 @@ $.ui.plugin.add("draggable", "connectToSortable", {
 			var sortable = $.data(this, 'sortable');
 			if (sortable && !sortable.options.disabled) {
 				inst.sortables.push({
-					instance: sortable,
+					instance: sorCloneATable(Table),
 					shouldRevert: sortable.options.revert
 				});
 				sortable.refreshPositions();	// Call the sortable's refreshPositions at drag start to refresh the containerCache since the sortable container cache is used in drag and needs to be up to date (this will ensure it's initialised as well as being kept in step with any changes that might have happened on the page).
@@ -1291,7 +1291,7 @@ $.ui.plugin.add("draggable", "connectToSortable", {
 	},
 	stop: function(event, ui) {
 
-		//If we are still over the sortable, we fake the stop event of the sortable, but also remove helper
+		//If we are still over the sorCloneATable(Table), we fake the stop event of the sorCloneATable(Table), but also remove helper
 		var inst = $(this).data("draggable"),
 			uiSortable = $.extend({}, ui, { item: inst.element });
 
@@ -1379,8 +1379,8 @@ $.ui.plugin.add("draggable", "connectToSortable", {
 
 			} else {
 
-				//If it doesn't intersect with the sortable, and it intersected before,
-				//we fake the drag stop of the sortable, but make sure it doesn't remove the helper by using cancelHelperRemoval
+				//If it doesn't intersect with the sorCloneATable(Table), and it intersected before,
+				//we fake the drag stop of the sorCloneATable(Table), but make sure it doesn't remove the helper by using cancelHelperRemoval
 				if(this.instance.isOver) {
 
 					this.instance.isOver = 0;
@@ -2915,7 +2915,7 @@ $.widget("ui.selectable", $.ui.mouse, {
 
 });
 
-$.extend($.ui.selectable, {
+$.extend($.ui.selecCloneATable(Table), {
 	version: "1.8.24"
 });
 
@@ -3996,7 +3996,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 
 });
 
-$.extend($.ui.sortable, {
+$.extend($.ui.sorCloneATable(Table), {
 	version: "1.8.24"
 });
 
@@ -6991,7 +6991,7 @@ function Datepicker() {
 		maxDate: null, // The latest selectable date, or null for no limit
 		duration: 'fast', // Duration of display/closure
 		beforeShowDay: null, // Function that takes a date and returns an array with
-			// [0] = true if selectable, false if not, [1] = custom CSS class name(s) or '',
+			// [0] = true if selecCloneATable(Table), false if not, [1] = custom CSS class name(s) or '',
 			// [2] = cell title (optional), e.g. $.datepicker.noWeekends
 		beforeShow: null, // Function that takes an input field and
 			// returns a set of custom settings for the date picker

@@ -755,6 +755,42 @@ namespace RefrigtzW
             //Gen Not Found.
             return false;
         }
+        int[,] CloneATable(int[,] Tab)
+        {
+            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {
+                //Create and new an Object.
+                int[,] Table = new int[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
+            }
+
+        }
+        bool[,] CloneATable(bool[,] Tab)
+        {
+            //long Time = TimeElapced.TimeNow();Spaces++;
+            Object O = new Object();
+            lock (O)
+            {
+                //Create and new an Object.
+                bool[,] Table = new bool[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                ////{ AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) AllDraw.OutPut.Append(Space);  AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                return Table;
+            }
+
+        }
         //Table Foundation of Genetic Alogorithm Method.
         public int[,] GenerateTable(List<int[,]> List, int Index, int Order)
         {
@@ -827,7 +863,7 @@ namespace RefrigtzW
                         if (Gen1 == CromosomRow && Gen2 == CromosomColumn)
                             continue;
                         //Rulement of Gen Movments.
-                        if ((new ChessRules(0, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, GeneticTable[CromosomRow, CromosomColumn], GeneticTable, Order, CromosomRow, CromosomColumn)).Rules(CromosomRow, CromosomColumn, Gen1,
+                        if ((new ChessRules(0, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, GeneticTable[CromosomRow, CromosomColumn], CloneATable(GeneticTable), Order, CromosomRow, CromosomColumn)).Rules(CromosomRow, CromosomColumn, Gen1,
                         Gen2, color, GeneticTable[CromosomRow, CromosomColumn]))
                         {
                             //Initiate Global Variables and Syntax.
@@ -841,7 +877,7 @@ namespace RefrigtzW
                             GeneticTable[Gen1, Gen2] = GeneticTable[CromosomRow, CromosomColumn];
                             GeneticTable[CromosomRow, CromosomColumn] = 0;
                             //Table Repeatative Consideration.
-                            if (ThinkingChess.ExistTableInList(GeneticTable, List, 0))
+                            if (ThinkingChess.ExistTableInList(CloneATable(GeneticTable), List, 0))
                             {
                                 GeneticTable[CromosomRow, CromosomColumn] = GeneticTable[Gen1, Gen2];
                                 GeneticTable[Gen1, Gen2] = 0;
@@ -851,7 +887,7 @@ namespace RefrigtzW
                             else
                             {
                                 //Check Consideration.
-                                if ((new ChessRules(0, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, GeneticTable[CromosomRow, CromosomRow], GeneticTable, Order, CromosomRow, CromosomColumn)).Check(GeneticTable, Order))
+                                if ((new ChessRules(0, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, GeneticTable[CromosomRow, CromosomRow], CloneATable(GeneticTable), Order, CromosomRow, CromosomColumn)).Check(CloneATable(GeneticTable), Order))
                                 {
                                     GeneticTable[CromosomRow, CromosomColumn] = GeneticTable[Gen1, Gen2];
                                     GeneticTable[Gen1, Gen2] = 0;

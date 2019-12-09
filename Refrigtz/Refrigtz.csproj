@@ -95,7 +95,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>Refrigtz.ruleset</CodeAnalysisRuleSet>
     <Optimize>false</Optimize>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -183,6 +183,11 @@
       <DependentUpon>AboutBoxChessRefregitz.cs</DependentUpon>
     </Compile>
     <None Include="App.xaml.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="TakeRoot.cs" />
     <Compile Include="XmlSerializer.cs" />
     <Compile Include="ClassLoad.cs" />
@@ -271,6 +276,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
@@ -283,10 +292,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Fakes Include="Fakes\RfregitzD.fakes" />
-    <Fakes Include="Fakes\GalleryStudio.fakes">
-      <SubType>Designer</SubType>
-    </Fakes>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

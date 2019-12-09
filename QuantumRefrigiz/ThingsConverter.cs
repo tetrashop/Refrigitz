@@ -25,7 +25,7 @@ namespace QuantumRefrigiz
         public bool ConvertedToElefant = false;
         public bool ConvertedToHourse = false;
         public int Max;
-        public int Row, Column;
+        public int RowS, ColumnS;
         Color color;
         int Order;
         int Current = 0;
@@ -47,8 +47,8 @@ namespace QuantumRefrigiz
             //Initite Global Variables with Local Parameter.
             //THIS = THI;
             ArrangmentsChanged = Arrangments;
-            Row = i;
-            Column = j;
+            RowS = i;
+            ColumnS = j;
             color = a;
             Order = Ord;
             Current = Cur;
@@ -77,8 +77,8 @@ namespace QuantumRefrigiz
             lock (OOO)
             {
                 //Initiate Global variables with Local One.
-                Row = i;
-                Column = j;
+                RowS = i;
+                ColumnS = j;
                 color = a;
                 Order = Ord;
                 Current = Cur;
@@ -106,17 +106,17 @@ namespace QuantumRefrigiz
                     if (!ArrangmentsChanged)
                     {
                         //Convert State Boolean Variable Consideration.
-                        if (Order == 1 && Column == 7)
+                        if (Order == 1 && ColumnS == 7)
                             Convert = true;
-                        if (Order == -1 && Column == 0)
+                        if (Order == -1 && ColumnS == 0)
                             Convert = true;
                     }
                     else
                     {
                         //Convert State Boolean Variable Consideration.
-                        if (Order == 1 && Column == 0)
+                        if (Order == 1 && ColumnS == 0)
                             Convert = true;
-                        if (Order == -1 && Column == 7)
+                        if (Order == -1 && ColumnS == 7)
                             Convert = true;
                     }
                     //If Converted is Occured the Operation od Set and table reference content occured.
@@ -174,12 +174,12 @@ namespace QuantumRefrigiz
                                 {
                                     // MinisterMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                     //MinisterHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                    Tab[Row, Column] = 5;
+                                    Tab[RowS, ColumnS] = 5;
                                 }
                                 else if (Order == -1)
                                 {
                                     //MinisterHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                    Tab[Row, Column] = -5;
+                                    Tab[RowS, ColumnS] = -5;
                                 }
                                 ConvertedToMinister = true;
                             }
@@ -189,12 +189,12 @@ namespace QuantumRefrigiz
                                 {
                                     //CastleMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                     //CastleHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                    Tab[Row, Column] = 4;
+                                    Tab[RowS, ColumnS] = 4;
                                 }
                                 else if (Order == -1)
                                 {
                                     //CastleHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                    Tab[Row, Column] = -4;
+                                    Tab[RowS, ColumnS] = -4;
                                 }
                                 ConvertedToCastle = true;
                             }
@@ -204,12 +204,12 @@ namespace QuantumRefrigiz
                                 {
                                     //HourseMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                     //HourseHight+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                    Tab[Row, Column] = 3;
+                                    Tab[RowS, ColumnS] = 3;
                                 }
                                 else if (Order == -1)
                                 {
                                     //HourseHight+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                    Tab[Row, Column] = -3;
+                                    Tab[RowS, ColumnS] = -3;
 
                                 }
                                 ConvertedToHourse = true;
@@ -220,12 +220,12 @@ namespace QuantumRefrigiz
                                 {
                                     //ElefantMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                     //ElefantHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                    Tab[Row, Column] = 2;
+                                    Tab[RowS, ColumnS] = 2;
                                 }
                                 else if (Order == -1)
                                 {
                                     //ElefantHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                    Tab[Row, Column] = -2;
+                                    Tab[RowS, ColumnS] = -2;
                                 }
                                 ConvertedToElefant = true;
                             }
@@ -282,12 +282,12 @@ namespace QuantumRefrigiz
                                     {
                                         //  MinisterMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         //MinisterHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = 5;
+                                        Tab[RowS, ColumnS] = 5;
                                     }
                                     else if (Order == -1)
                                     {
                                         //MinisterHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = -5;
+                                        Tab[RowS, ColumnS] = -5;
                                     }
                                     ConvertedToMinister = true;
                                 }
@@ -297,12 +297,12 @@ namespace QuantumRefrigiz
                                     {
                                         //CastleMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         //CastleHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = 4;
+                                        Tab[RowS, ColumnS] = 4;
                                     }
                                     else if (Order == -1)
                                     {
                                         //CastleHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = -4;
+                                        Tab[RowS, ColumnS] = -4;
                                     }
                                     ConvertedToCastle = true;
                                 }
@@ -312,12 +312,12 @@ namespace QuantumRefrigiz
                                     {
                                         //HourseMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         //HourseHight+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = 3;
+                                        Tab[RowS, ColumnS] = 3;
                                     }
                                     else if (Order == -1)
                                     {
                                         //HourseHight+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = -3;
+                                        Tab[RowS, ColumnS] = -3;
 
                                     }
                                     ConvertedToHourse = true;
@@ -328,12 +328,12 @@ namespace QuantumRefrigiz
                                     {
                                         //ElefantMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         //ElefantHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = 2;
+                                        Tab[RowS, ColumnS] = 2;
                                     }
                                     else if (Order == -1)
                                     {
                                         //ElefantHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = -2;
+                                        Tab[RowS, ColumnS] = -2;
                                     }
                                     ConvertedToElefant = true;
                                 }
@@ -393,12 +393,12 @@ namespace QuantumRefrigiz
                                     {
                                         //MinisterMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         //MinisterHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = 5;
+                                        Tab[RowS, ColumnS] = 5;
                                     }
                                     else if (Order == -1)
                                     {
                                         //MinisterHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = -5;
+                                        Tab[RowS, ColumnS] = -5;
                                     }
                                     ConvertedToMinister = true;
                                 }
@@ -408,12 +408,12 @@ namespace QuantumRefrigiz
                                     {
                                         //CastleMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         //CastleHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = 4;
+                                        Tab[RowS, ColumnS] = 4;
                                     }
                                     else if (Order == -1)
                                     {
                                         //CastleHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = -4;
+                                        Tab[RowS, ColumnS] = -4;
                                     }
                                     ConvertedToCastle = true;
                                 }
@@ -423,12 +423,12 @@ namespace QuantumRefrigiz
                                     {
                                         //HourseMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         //HourseHight+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = 3;
+                                        Tab[RowS, ColumnS] = 3;
                                     }
                                     else if (Order == -1)
                                     {
                                         //HourseHight+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = -3;
+                                        Tab[RowS, ColumnS] = -3;
 
                                     }
                                     ConvertedToHourse = true;
@@ -439,12 +439,12 @@ namespace QuantumRefrigiz
                                     {
                                         //ElefantMidle+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         //ElefantHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = 2;
+                                        Tab[RowS, ColumnS] = 2;
                                     }
                                     else if (Order == -1)
                                     {
                                         //ElefantHigh+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
-                                        Tab[Row, Column] = -2;
+                                        Tab[RowS, ColumnS] = -2;
                                     }
                                     ConvertedToElefant = true;
                                 }

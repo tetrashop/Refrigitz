@@ -39,7 +39,7 @@ namespace RefrigtzDLL
             //long Time = TimeElapced.TimeNow();Spaces++;
             bool IS= false;
             Color a = Color.Gray;
-            if (OrderP == -1)
+            if (OrderP== -1)
                 a = Color.Brown;
             String A1 = AllDraw.ActionString.ToString();
             bool A2 = AllDraw.ActionStringReady;

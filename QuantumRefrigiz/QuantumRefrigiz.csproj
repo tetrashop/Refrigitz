@@ -88,6 +88,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Timer.Fakes">
+      <HintPath>FakesAssemblies\Timer.Fakes.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllDraw.cs" />

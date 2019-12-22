@@ -12661,7 +12661,7 @@ namespace Refrigtz
                         RefreshBoxText();
                         FOUND = false;
                         Ord = OrderPlate;
-                        //Draw.ClearAllTablesHuristicsAndMore(Ord);
+                        Draw.ClearAllTablesHuristicsAndMore(Ord);
                         bool Store = Deeperthandeeper;
                         Deeperthandeeper = false;
 
@@ -12808,7 +12808,7 @@ namespace Refrigtz
 
                         Ord = OrderPlate;
 
-                        //DrawQ.ClearAllTablesHuristicsAndMore(Ord);
+                        DrawQ.ClearAllTablesHuristicsAndMore(Ord);
                         bool Store = Deeperthandeeper;
                         Deeperthandeeper = false;
 

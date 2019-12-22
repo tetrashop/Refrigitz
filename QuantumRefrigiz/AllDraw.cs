@@ -4643,7 +4643,7 @@ namespace QuantumRefrigiz
                                 SolderesOnTable[i].SoldierThinkingQuantum[0].HuristicListSolder.Clear();
                                 SolderesOnTable[i].SoldierThinkingQuantum[0].RowColumnSoldier.Clear();
                                 SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Clear();
-                                SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4663,7 +4663,7 @@ namespace QuantumRefrigiz
                                 ElephantOnTable[i].ElefantThinkingQuantum[0].HuristicListElefant.Clear();
                                 ElephantOnTable[i].ElefantThinkingQuantum[0].RowColumnElefant.Clear();
                                 ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant.Clear();
-                                ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4684,7 +4684,7 @@ namespace QuantumRefrigiz
                                 HoursesOnTable[i].HourseThinkingQuantum[0].HuristicListHourse.Clear();
                                 HoursesOnTable[i].HourseThinkingQuantum[0].RowColumnHourse.Clear();
                                 HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse.Clear();
-                                HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4704,7 +4704,7 @@ namespace QuantumRefrigiz
                                 CastlesOnTable[i].CastleThinkingQuantum[0].HuristicListCastle.Clear();
                                 CastlesOnTable[i].CastleThinkingQuantum[0].RowColumnCastle.Clear();
                                 CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle.Clear();
-                                CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4724,7 +4724,7 @@ namespace QuantumRefrigiz
                                 MinisterOnTable[i].MinisterThinkingQuantum[0].HuristicListMinister.Clear();
                                 MinisterOnTable[i].MinisterThinkingQuantum[0].RowColumnMinister.Clear();
                                 MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister.Clear();
-                                MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4744,7 +4744,7 @@ namespace QuantumRefrigiz
                                 KingOnTable[i].KingThinkingQuantum[0].HuristicListKing.Clear();
                                 KingOnTable[i].KingThinkingQuantum[0].RowColumnKing.Clear();
                                 KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing.Clear();
-                                KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4769,7 +4769,7 @@ namespace QuantumRefrigiz
                                 SolderesOnTable[i].SoldierThinkingQuantum[0].HuristicListSolder.Clear();
                                 SolderesOnTable[i].SoldierThinkingQuantum[0].RowColumnSoldier.Clear();
                                 SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Clear();
-                                SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4789,7 +4789,7 @@ namespace QuantumRefrigiz
                                 ElephantOnTable[i].ElefantThinkingQuantum[0].HuristicListElefant.Clear();
                                 ElephantOnTable[i].ElefantThinkingQuantum[0].RowColumnElefant.Clear();
                                 ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant.Clear();
-                                ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4810,7 +4810,7 @@ namespace QuantumRefrigiz
                                 HoursesOnTable[i].HourseThinkingQuantum[0].HuristicListHourse.Clear();
                                 HoursesOnTable[i].HourseThinkingQuantum[0].RowColumnHourse.Clear();
                                 HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse.Clear();
-                                HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4830,7 +4830,7 @@ namespace QuantumRefrigiz
                                 CastlesOnTable[i].CastleThinkingQuantum[0].HuristicListCastle.Clear();
                                 CastlesOnTable[i].CastleThinkingQuantum[0].RowColumnCastle.Clear();
                                 CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle.Clear();
-                                CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4850,7 +4850,7 @@ namespace QuantumRefrigiz
                                 MinisterOnTable[i].MinisterThinkingQuantum[0].HuristicListMinister.Clear();
                                 MinisterOnTable[i].MinisterThinkingQuantum[0].RowColumnMinister.Clear();
                                 MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister.Clear();
-                                MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4870,7 +4870,7 @@ namespace QuantumRefrigiz
                                 KingOnTable[i].KingThinkingQuantum[0].HuristicListKing.Clear();
                                 KingOnTable[i].KingThinkingQuantum[0].RowColumnKing.Clear();
                                 KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing.Clear();
-                                KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }

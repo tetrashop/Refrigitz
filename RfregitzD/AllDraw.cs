@@ -4623,7 +4623,7 @@ namespace RefrigtzDLL
                                 SolderesOnTable[i].SoldierThinking[0].HuristicListSolder.Clear();
                                 SolderesOnTable[i].SoldierThinking[0].RowColumnSoldier.Clear();
                                 SolderesOnTable[i].SoldierThinking[0].PenaltyRegardListSolder.Clear();
-                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4643,7 +4643,7 @@ namespace RefrigtzDLL
                                 ElephantOnTable[i].ElefantThinking[0].HuristicListElefant.Clear();
                                 ElephantOnTable[i].ElefantThinking[0].RowColumnElefant.Clear();
                                 ElephantOnTable[i].ElefantThinking[0].PenaltyRegardListElefant.Clear();
-                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4664,7 +4664,7 @@ namespace RefrigtzDLL
                                 HoursesOnTable[i].HourseThinking[0].HuristicListHourse.Clear();
                                 HoursesOnTable[i].HourseThinking[0].RowColumnHourse.Clear();
                                 HoursesOnTable[i].HourseThinking[0].PenaltyRegardListHourse.Clear();
-                                HoursesOnTable[i].HourseThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                HoursesOnTable[i].HourseThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4684,7 +4684,7 @@ namespace RefrigtzDLL
                                 CastlesOnTable[i].CastleThinking[0].HuristicListCastle.Clear();
                                 CastlesOnTable[i].CastleThinking[0].RowColumnCastle.Clear();
                                 CastlesOnTable[i].CastleThinking[0].PenaltyRegardListCastle.Clear();
-                                CastlesOnTable[i].CastleThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                CastlesOnTable[i].CastleThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4704,7 +4704,7 @@ namespace RefrigtzDLL
                                 MinisterOnTable[i].MinisterThinking[0].HuristicListMinister.Clear();
                                 MinisterOnTable[i].MinisterThinking[0].RowColumnMinister.Clear();
                                 MinisterOnTable[i].MinisterThinking[0].PenaltyRegardListMinister.Clear();
-                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4724,7 +4724,7 @@ namespace RefrigtzDLL
                                 KingOnTable[i].KingThinking[0].HuristicListKing.Clear();
                                 KingOnTable[i].KingThinking[0].RowColumnKing.Clear();
                                 KingOnTable[i].KingThinking[0].PenaltyRegardListKing.Clear();
-                                KingOnTable[i].KingThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                KingOnTable[i].KingThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4749,7 +4749,7 @@ namespace RefrigtzDLL
                                 SolderesOnTable[i].SoldierThinking[0].HuristicListSolder.Clear();
                                 SolderesOnTable[i].SoldierThinking[0].RowColumnSoldier.Clear();
                                 SolderesOnTable[i].SoldierThinking[0].PenaltyRegardListSolder.Clear();
-                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4769,7 +4769,7 @@ namespace RefrigtzDLL
                                 ElephantOnTable[i].ElefantThinking[0].HuristicListElefant.Clear();
                                 ElephantOnTable[i].ElefantThinking[0].RowColumnElefant.Clear();
                                 ElephantOnTable[i].ElefantThinking[0].PenaltyRegardListElefant.Clear();
-                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4790,7 +4790,7 @@ namespace RefrigtzDLL
                                 HoursesOnTable[i].HourseThinking[0].HuristicListHourse.Clear();
                                 HoursesOnTable[i].HourseThinking[0].RowColumnHourse.Clear();
                                 HoursesOnTable[i].HourseThinking[0].PenaltyRegardListHourse.Clear();
-                                HoursesOnTable[i].HourseThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                HoursesOnTable[i].HourseThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4810,7 +4810,7 @@ namespace RefrigtzDLL
                                 CastlesOnTable[i].CastleThinking[0].HuristicListCastle.Clear();
                                 CastlesOnTable[i].CastleThinking[0].RowColumnCastle.Clear();
                                 CastlesOnTable[i].CastleThinking[0].PenaltyRegardListCastle.Clear();
-                                CastlesOnTable[i].CastleThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                CastlesOnTable[i].CastleThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4830,7 +4830,7 @@ namespace RefrigtzDLL
                                 MinisterOnTable[i].MinisterThinking[0].HuristicListMinister.Clear();
                                 MinisterOnTable[i].MinisterThinking[0].RowColumnMinister.Clear();
                                 MinisterOnTable[i].MinisterThinking[0].PenaltyRegardListMinister.Clear();
-                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }
@@ -4850,7 +4850,7 @@ namespace RefrigtzDLL
                                 KingOnTable[i].KingThinking[0].HuristicListKing.Clear();
                                 KingOnTable[i].KingThinking[0].RowColumnKing.Clear();
                                 KingOnTable[i].KingThinking[0].PenaltyRegardListKing.Clear();
-                                KingOnTable[i].KingThinking[0].AStarGreedy.Clear();//[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
+                                KingOnTable[i].KingThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged);
                             }
                         }
                     }

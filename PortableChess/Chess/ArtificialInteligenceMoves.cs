@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
+using System.Drawing;
+
 using RefrigtzChessPortable;
 
 public class ArtificialInteligenceMove
@@ -12,13 +13,15 @@ public class ArtificialInteligenceMove
 	int LevelMul=1;
 	int Order=1;
 	public int x,y,x1,y1;
-	public RefrigtzChessPortable.RefrigtzChessPortableForm t=null;
 
-	bool Idle = false;
+    RefrigtzChessPortable.RefrigtzChessPortableForm t = null;
+
+    bool Idle = false;
 	public static bool IdleProgress=true;
-	public  ArtificialInteligenceMove(){
-		//Awake ();
-
+	public  ArtificialInteligenceMove(RefrigtzChessPortable.RefrigtzChessPortableForm tt)
+    {
+        //Awake ();
+        t = tt;
 		var ttt = new Thread (new ThreadStart (ThinkingIdle));
 		ttt.Start ();
 		
@@ -26,9 +29,19 @@ public class ArtificialInteligenceMove
 			
 	}
 
-	
-	
-	public void ThinkingIdle()
+
+    Color OrderColor(int Ord)
+    {
+        Object O = new Object();
+        lock (O)
+        {
+            Color a = Color.Gray;
+            if (Ord == -1)
+                a = Color.Brown;
+            return a;
+        }
+    }
+    public void ThinkingIdle()
 	{
 		object O=new object();
 		lock(O){
@@ -51,7 +64,7 @@ public class ArtificialInteligenceMove
 															Idle=true;
                             RefrigtzChessPortable.AllDraw.TimeInitiation = (DateTime.Now.Hour * 60 * 60 * 1000 + DateTime.Now.Minute * 60 * 1000 + DateTime.Now.Second * 1000);
                             RefrigtzChessPortable.AllDraw.MaxAStarGreedy = RefrigtzChessPortable.AllDraw.PlatformHelperProcessorCount * LevelMul;
-                            var arrayA =Task.Factory.StartNew(() =>	t.Draw.InitiateAStarGreedyt(RefrigtzChessPortable.AllDraw.MaxAStarGreedy,1, 4, t.Draw.OrderP, CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
+                            var arrayA =Task.Factory.StartNew(() =>	t.Draw.InitiateAStarGreedyt(RefrigtzChessPortable.AllDraw.MaxAStarGreedy,1, 4,OrderColor(t.Draw.OrderP), CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
 							//var arrayA =Task.Factory.StartNew(() =>	t.Play(-1,-1));
                             arrayA.Wait();
 							object i=new object();
@@ -59,7 +72,7 @@ public class ArtificialInteligenceMove
 							lock(i)
 							{
 								bool LoadTree=false;
-								(new RefrigtzChessPortable.TakeRoot()).Save(false, false, ArtificialInteligenceMove.Ret().t, ref LoadTree, false, false, false, false, false, false, false, true);
+								(new RefrigtzChessPortable.TakeRoot()).Save(false, false, t, ref LoadTree, false, false, false, false, false, false, false, true);
 							}
 							RefrigtzChessPortable.AllDraw.Blitz=Blit;
 //							Thread.Sleep(50);
@@ -86,7 +99,7 @@ public class ArtificialInteligenceMove
 						{		RefrigtzChessPortable.AllDraw.CalIdle=1;
 //						        RefrigtzChessPortable.AllDraw.IdleInWork=false;
 
-							Debug.Log("Ready to 1 base");
+							//Debug.Log("Ready to 1 base");
 							ReadyZero=true;
 						}
 						while(RefrigtzChessPortable.AllDraw.CalIdle==1)
@@ -122,36 +135,7 @@ public class ArtificialInteligenceMove
 			return Tabl;
 		}
 	}
-	public bool MoveSelector(int i,int j,int i1,int j1)
-	{
-		object O=new object();
-		lock (O) {
-			if (Order == 1) {
-				object OO = new object ();
-				lock (OO) {
-					t.Play (i, j);
-					t.Play (i1, j1);
-					Order = -1;
-				}
-
-
-
-
-			} else if (Order == -1) {
-				object OO = new object ();
-				lock (OO) {
-					t.Play (-1, -1);
-					x = t.R.CromosomRowFirst;
-					y = t.R.CromosomColumnFirst;
-					x1 = t.R.CromosomRow;
-					y1 = t.R.CromosomColumn;
-
-					Order = -1;
-				}
-			}
-		}
-		return true;
-	}
+	
 }
 
 

@@ -20,7 +20,7 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class RefrigtzChessPortableForm : System.Windows.Forms.Form
     {
-        ArtificialInteligenceMove f = new ArtificialInteligenceMove();
+        ArtificialInteligenceMove f =null;
         public bool LoadP = false;
         static readonly bool UsePenaltyRegardMechnisam = false;
         static readonly bool AStarGreedyHeuristic = false;
@@ -66,7 +66,7 @@ namespace RefrigtzChessPortable
         private int order;
         private int x1;
         private int y1;
-        private Board brd;
+        public Board brd;
         private Image img1;
         private Image img2;
         private Image img3;
@@ -611,6 +611,7 @@ namespace RefrigtzChessPortable
                     MessageBox.Show("Ready...");
                     LoadP = true;
                 }
+                f = new ArtificialInteligenceMove(this);
             }
         }
         void ClickedSimAtClOne(int i, int j)

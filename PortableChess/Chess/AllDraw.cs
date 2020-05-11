@@ -54,13 +54,15 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class AllDraw//: IDisposable
     {
-        float TimeNow = 0;
+         float TimeNow = 0;
         public static bool IdleInWork = true;
         public const float MaxTimeInMillisseconds = 10;//Max 10 second
         public static float TimeInitiation;
 
         public static int CalIdle = 0;
         public static int PlatformHelperProcessorCount = 2;
+
+        public static int CompleteNumber = 300;
 
         public static bool CompleteTreeDo = false;
         public static bool CompleteTreeCancel = false;

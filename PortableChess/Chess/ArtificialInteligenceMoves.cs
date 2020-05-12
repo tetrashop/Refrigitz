@@ -47,9 +47,9 @@ public class ArtificialInteligenceMove
 		lock(O){
 			bool ReadyZero = true;
 			do {
-				if(ArtificialInteligenceMove.tta.t!=null)
+				if(t!=null)
 				{
-					if(ArtificialInteligenceMove.tta.t.LoadP||Idle){
+					if(t.LoadP||Idle){
 						if(RefrigtzChessPortable.AllDraw.CalIdle==0&&ReadyZero)
 						{
 							ReadyZero=false;

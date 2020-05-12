@@ -14,6 +14,7 @@ using System.IO;
 using System.Threading;
 #pragma warning disable CS0105 // The using directive for 'RefrigtzChessPortable' appeared previously in this namespace
 using RefrigtzChessPortable;
+using System.Collections.Concurrent;
 #pragma warning restore CS0105 // The using directive for 'RefrigtzChessPortable' appeared previously in this namespace
 namespace RefrigtzChessPortable
 {
@@ -524,11 +525,7 @@ namespace RefrigtzChessPortable
             pb[6, 6].Image = img31;
             pb[7, 6].Image = img32;
         }
-        [STAThread]
-        static void main()
-        {
-            Application.Run(new RefrigtzChessPortableForm());
-        }
+       
         void ClearTableInitiationPreventionOfMultipleMove()
         {
             for (int i = 0; i < 8; i++)

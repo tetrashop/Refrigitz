@@ -13,6 +13,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using Refrigtz;
+using System.Collections.Concurrent;
+
 namespace Chess
 {
     [Serializable]
@@ -524,11 +526,7 @@ namespace Chess
             pb[6, 6].Image = img31;
             pb[7, 6].Image = img32;
         }
-        [STAThread]
-        static void Main()
-        {
-            Application.Run(new ChessForm());
-        }
+        
         void ClearTableInitiationPreventionOfMultipleMove()
         {
             for (int i = 0; i < 8; i++)

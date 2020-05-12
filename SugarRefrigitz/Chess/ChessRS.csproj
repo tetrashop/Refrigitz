@@ -132,6 +132,7 @@
     <Compile Include="Point.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

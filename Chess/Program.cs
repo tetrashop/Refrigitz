@@ -8,13 +8,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 
-namespace RefrigtzChessPortable
+namespace Chess
 {
     
     
     static class Program
     {
-        //Main Programm.
         static void CoordinationDataStructures()
         {
             /*Not to be outshined, our concurrent collections and synchronization
@@ -99,7 +98,7 @@ namespace RefrigtzChessPortable
             ttap.Start();
             Task ttta = new Task(new Action(CoordinationDataStructures));
             ttta.Start();
-            Application.Run(new RefrigtzChessPortableForm());
+            Application.Run(new ChessForm());
         }
     }
 }

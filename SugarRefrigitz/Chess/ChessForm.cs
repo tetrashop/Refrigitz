@@ -18,6 +18,8 @@ using System.IO;
 using System.Threading;
 using Refrigtz;
 using System.Text;
+using System.Collections.Concurrent;
+
 namespace Chess
 {
     [Serializable]
@@ -557,11 +559,7 @@ namespace Chess
             pb[6, 6].Image = img31;
             pb[7, 6].Image = img32;
         }
-        [STAThread]
-        static void Main()
-        {
-            Application.Run(new ChessForm());
-        }
+       
         void OpAfterAllTinking(ref bool StoreStateCC, ref bool StoreStateCP, ref bool StoreStateGe)
         {
             Object O = new Object();

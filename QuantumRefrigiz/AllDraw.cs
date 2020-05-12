@@ -54,6 +54,7 @@ namespace QuantumRefrigiz
     [Serializable]
     public class AllDraw//: IDisposable
     {
+        public static bool ThinkingRunInBothSide = false;
         public static int CompleteNumber = 300;
         public static bool CompleteTreeDo = false;
         public static bool CompleteTreeCancel = false;
@@ -17959,6 +17960,7 @@ namespace QuantumRefrigiz
         public AllDraw InitiateAStarGreedyt(int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
             )
         {
+            ThinkingRunInBothSide = true;
 
             OrderP = Order;
             SetObjectNumbers(Tab);

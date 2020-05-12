@@ -54,7 +54,8 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class AllDraw//: IDisposable
     {
-         float TimeNow = 0;
+        public static bool ThinkingRunInBothSide = false;
+        float TimeNow = 0;
         public static bool IdleInWork = true;
         public const float MaxTimeInMillisseconds = 10;//Max 10 second
         public static float TimeInitiation;
@@ -17970,6 +17971,7 @@ namespace RefrigtzChessPortable
             )
         {
 
+            ThinkingRunInBothSide = true;
             OrderP = Order;
             SetObjectNumbers(Tab);
             int[,] Table = new int[8, 8];

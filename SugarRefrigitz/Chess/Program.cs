@@ -28,6 +28,7 @@ namespace Chess
             while (true)
 
             {
+                while (!RefrigtzDLL.AllDraw.ThinkingRunInBothSide) { Thread.Sleep(1); }
 
                 var cd = new ConcurrentDictionary<int, int>();
 
@@ -61,6 +62,7 @@ namespace Chess
             while (true)
 
             {
+                while (!RefrigtzDLL.AllDraw.ThinkingRunInBothSide) { Thread.Sleep(1); }
 
                 GC.Collect();
 

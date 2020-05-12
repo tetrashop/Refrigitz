@@ -127,6 +127,7 @@ namespace Refrigtz
             while (true)
 
             {
+                do { Thread.Sleep(1); } while (!RefrigtzDLL.AllDraw.ThinkingRunInBothSide);
 
                 var cd = new ConcurrentDictionary<int, int>();
 
@@ -159,8 +160,15 @@ namespace Refrigtz
 
             while (true)
 
-            {
+            {if (!Refrigtz.FormRefrigtz.Quantum)
+                {
+                    do { Thread.Sleep(1); } while (!RefrigtzDLL.AllDraw.ThinkingRunInBothSide);
 
+                }
+                else
+                {
+                    do { Thread.Sleep(1); } while (!QuantumRefrigiz.AllDraw.ThinkingRunInBothSide);
+                }
                 GC.Collect();
 
                 GC.WaitForPendingFinalizers();

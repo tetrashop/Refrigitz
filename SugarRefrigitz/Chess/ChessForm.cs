@@ -1359,7 +1359,8 @@ namespace Chess
             }
 
         }
-        void P() { Play(-1, -1); }
+        void P() { Play(-1, -1); AllDraw.ThinkingRunInBothSide = false;
+        }
         void ClickedSimAtClOne(int i, int j)
         {
             Object o = new Object();
@@ -2518,9 +2519,10 @@ namespace Chess
                                             }
                                         }
                                         Play(-1, -1);
-                                        
-                                        
-                                        
+
+                                        AllDraw.ThinkingRunInBothSide = false;
+
+
                                     }
                                     else
                                        if (Com && (order == 2))
@@ -2558,6 +2560,9 @@ namespace Chess
                                         AllDraw.OrderPlate = 1; OrderPlate = 1;
 
                                         Play(-1, -1);
+
+                                        AllDraw.ThinkingRunInBothSide = false;
+
                                     }
                                 }
                             }
@@ -2647,9 +2652,10 @@ namespace Chess
                                     }
                                 }
                                 Play(-1, -1);
-                                
-                                
-                                
+
+                                AllDraw.ThinkingRunInBothSide = false;
+
+
                             }
                             else
                               if (Com && (order == 2))
@@ -2666,6 +2672,9 @@ namespace Chess
                                 tt.Abort();
                            
                                 Play(-1, -1);
+
+                                AllDraw.ThinkingRunInBothSide = false;
+
                             }
                         }
                         return 1;

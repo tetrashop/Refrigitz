@@ -29,6 +29,8 @@ namespace RefrigtzChessPortable
             while (true)
 
             {
+                while (!AllDraw.ThinkingRunInBothSide) { Thread.Sleep(1); }
+
 
                 var cd = new ConcurrentDictionary<int, int>();
 
@@ -62,6 +64,7 @@ namespace RefrigtzChessPortable
             while (true)
 
             {
+                while (!AllDraw.ThinkingRunInBothSide) { Thread.Sleep(1); }
 
                 GC.Collect();
 

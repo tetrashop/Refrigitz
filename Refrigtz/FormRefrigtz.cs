@@ -112,7 +112,7 @@ namespace Refrigtz
         String path3 = @"temp";
         String AllDrawReplacement = "";
         bool Sugar = false;
-        public bool Quantum = false;
+        public static bool Quantum = false;
         Double Store = 0;
         Double Count = 1;
         Int64 TimeElapsed = DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000 + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond;

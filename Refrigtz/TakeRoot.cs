@@ -177,6 +177,22 @@ namespace Refrigtz
         }
         public bool Save(bool FOUND,bool Quantum, FormRefrigtz Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
+            object o = new object();
+            lock (o)
+            {
+                if (!Quantum)
+                {
+                    if (!RefrigtzDLL.AllDraw.ChangedInTreeOccured)
+                        return true;
+                }
+                else
+                {
+                    if (!QuantumRefrigiz.AllDraw.ChangedInTreeOccured)
+                        return true;
+
+
+                }
+            }
             /*if (!Quantum)
             {
                 while (Curent.Draw.AStarGreedyString != null)

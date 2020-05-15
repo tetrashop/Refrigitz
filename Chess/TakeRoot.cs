@@ -219,10 +219,18 @@ namespace Refrigtz
             Object OO = new Object();
             lock (OO)
             {
-                
-                
-                
-                
+
+
+                object o = new object();
+                lock (o)
+                {
+                    if (!Quantum)
+                    {
+                        if (!RefrigtzDLL.AllDraw.ChangedInTreeOccured)
+                            return true;
+                    }
+                }
+
                 try
                 {
 

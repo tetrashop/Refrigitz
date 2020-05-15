@@ -52,8 +52,10 @@ namespace RefrigtzDLL
 {
 
     [Serializable]
+   // [HybridRegisterTemplate(Specialize = typeof(AllDraw))]
     public class AllDraw//: IDisposable
     {
+        public static bool ChangedInTreeOccured = false;
         public static bool ThinkingRunInBothSide = false;
         public static int CompleteNumber = 300;
         public static bool CompleteTreeDo = false;
@@ -16668,7 +16670,15 @@ namespace RefrigtzDLL
                                     var array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count != 0)
+                                    {
                                         SolderesOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -16743,7 +16753,15 @@ namespace RefrigtzDLL
                                     var array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count != 0)
+                                    {
                                         ElephantOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -16819,7 +16837,15 @@ namespace RefrigtzDLL
                                     var array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count != 0)
+                                    {
                                         HoursesOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -16896,7 +16922,16 @@ namespace RefrigtzDLL
                                     array.Wait(); array.Dispose();
 
                                     if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count != 0)
+                                    {
                                         CastlesOnTableMove[i] = true;
+
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -16972,7 +17007,15 @@ namespace RefrigtzDLL
                                     var array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count != 0)
+                                    {
                                         MinisterOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -17048,7 +17091,15 @@ namespace RefrigtzDLL
                                     ; var array = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].Thinking(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (KingOnTable[i].KingThinking[0].TableListKing.Count != 0)
+                                    {
                                         KingOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -24315,7 +24366,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
 
             return No;
         }
-
+        
+        
         //Main Initiate Thinking Method.
         public int[,] Initiate(int ii, int jj, Color a, int[,] Table, int Order, bool TB, bool FOUND, int LeafAStarGreedy, bool SetDept = false)
         {
@@ -24323,6 +24375,12 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             Object o = new Object();
             lock (o)
             {
+                object n = new object();
+                lock (n)
+                {
+                    AllDraw.ChangedInTreeOccured = false;
+
+                }
                 LeafSemaphoreIndex = false;
                 if (tH != null)
                     tH.Clear();
@@ -24340,8 +24398,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     NumberOfLeafComputation = -1;
                 ThinkingChess.IsAtLeastOneKillerAtDraw = false;
 
-                var parallelOptions = new ParallelOptions();
-                parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount;
+                //var parallelOptions = new ParallelOptions();
+                //parallelOptions.MaxDegreeOfParallelism = 2; //PlatformHelper.ProcessorCount;
                 SetDeptIgnore = SetDept;
                 int[,] TableHeuristic = null;
                 int Current = ChessRules.CurrentOrder;
@@ -24440,7 +24498,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 lock (OOOO)
                 {
                     //if (MaxAStarGreedy == 0)
-                    MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                    MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
                     MaxAStarGreedy1 = MaxAStarGreedy;
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;

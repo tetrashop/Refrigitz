@@ -54,6 +54,7 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class AllDraw//: IDisposable
     {
+        public static bool ChangedInTreeOccured = false;
         public static bool ThinkingRunInBothSide = false;
         float TimeNow = 0;
         public static bool IdleInWork = true;
@@ -16677,7 +16678,11 @@ namespace RefrigtzChessPortable
                                     var array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count != 0)
+                                    {
                                         SolderesOnTableMove[i] = true;
+                                        AllDraw.ChangedInTreeOccured = true;
+
+                                    }
                                 }
                             }
                         }
@@ -16752,7 +16757,11 @@ namespace RefrigtzChessPortable
                                     var array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count != 0)
+                                    {
                                         ElephantOnTableMove[i] = true;
+                                        AllDraw.ChangedInTreeOccured = true;
+
+                                    }
                                 }
                             }
                         }
@@ -16828,7 +16837,11 @@ namespace RefrigtzChessPortable
                                     var array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count != 0)
+                                    {
                                         HoursesOnTableMove[i] = true;
+                                        AllDraw.ChangedInTreeOccured = true;
+
+                                    }
                                 }
                             }
                         }
@@ -16905,7 +16918,11 @@ namespace RefrigtzChessPortable
                                     array.Wait(); array.Dispose();
 
                                     if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count != 0)
+                                    {
                                         CastlesOnTableMove[i] = true;
+                                        AllDraw.ChangedInTreeOccured = true;
+
+                                    }
                                 }
                             }
                         }
@@ -16981,7 +16998,11 @@ namespace RefrigtzChessPortable
                                     var array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count != 0)
+                                    {
                                         MinisterOnTableMove[i] = true;
+                                        AllDraw.ChangedInTreeOccured = true;
+
+                                    }
                                 }
                             }
                         }
@@ -17057,7 +17078,11 @@ namespace RefrigtzChessPortable
                                     ; var array = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].Thinking(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (KingOnTable[i].KingThinking[0].TableListKing.Count != 0)
+                                    {
                                         KingOnTableMove[i] = true;
+                                        AllDraw.ChangedInTreeOccured = true;
+
+                                    }
                                 }
                             }
                         }
@@ -24331,6 +24356,12 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             Object o = new Object();
             lock (o)
             {
+                object n = new object();
+                lock (n)
+                {
+                    AllDraw.ChangedInTreeOccured = false;
+
+                }
                 RefrigtzChessPortable.AllDraw.TimeInitiation = (DateTime.Now.Hour * 60 * 60 * 1000 + DateTime.Now.Minute * 60 * 1000 + DateTime.Now.Second * 1000);
               
                 LeafSemaphoreIndex = false;
@@ -24350,8 +24381,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     NumberOfLeafComputation = -1;
                 ThinkingRefrigtzChessPortable.IsAtLeastOneKillerAtDraw = false;
 
-                var parallelOptions = new ParallelOptions();
-                parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount;
+                //var parallelOptions = new ParallelOptions();
+                //parallelOptions.MaxDegreeOfParallelism = 2; //PlatformHelper.ProcessorCount;
                 SetDeptIgnore = SetDept;
                 int[,] TableHeuristic = null;
                 int Current = ChessRules.CurrentOrder;
@@ -24450,7 +24481,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 lock (OOOO)
                 {
                     //if (MaxAStarGreedy == 0)
-                    MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                    MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
                     MaxAStarGreedy1 = MaxAStarGreedy;
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;

@@ -54,6 +54,7 @@ namespace QuantumRefrigiz
     [Serializable]
     public class AllDraw//: IDisposable
     {
+        public static bool ChangedInTreeOccured = false;
         public static bool ThinkingRunInBothSide = false;
         public static int CompleteNumber = 300;
         public static bool CompleteTreeDo = false;
@@ -16667,7 +16668,16 @@ namespace QuantumRefrigiz
                                     var array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count != 0)
+                                    {
                                         SolderesOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+
+                                    }
                                 }
                             }
                         }
@@ -16742,7 +16752,15 @@ namespace QuantumRefrigiz
                                     var array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count != 0)
+                                    {
                                         ElephantOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -16818,7 +16836,15 @@ namespace QuantumRefrigiz
                                     var array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count != 0)
+                                    {
                                         HoursesOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -16895,7 +16921,16 @@ namespace QuantumRefrigiz
                                     array.Wait(); array.Dispose();
 
                                     if (CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count != 0)
+                                    {
                                         CastlesOnTableMove[i] = true;
+
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -16971,7 +17006,15 @@ namespace QuantumRefrigiz
                                     var array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count != 0)
+                                    {
                                         MinisterOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -17047,7 +17090,15 @@ namespace QuantumRefrigiz
                                     ; var array = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count != 0)
+                                    {
                                         KingOnTableMove[i] = true;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = true;
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -24321,6 +24372,12 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             Object o = new Object();
             lock (o)
             {
+                object n = new object();
+                lock (n)
+                {
+                    AllDraw.ChangedInTreeOccured = false;
+
+                }
                 LeafSemaphoreIndex = false;
                 if (tH != null)
                     tH.Clear();
@@ -24338,8 +24395,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     NumberOfLeafComputation = -1;
                 ThinkingQuantumChess.IsAtLeastOneKillerAtDraw = false;
 
-                var parallelOptions = new ParallelOptions();
-                parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount;
+                //var parallelOptions = new ParallelOptions();
+                //parallelOptions.MaxDegreeOfParallelism = 2; //PlatformHelper.ProcessorCount;
                 SetDeptIgnore = SetDept;
                 int[,] TableHeuristic = null;
                 int Current = ChessRules.CurrentOrder;
@@ -24438,7 +24495,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 lock (OOOO)
                 {
                     //if (MaxAStarGreedy == 0)
-                    MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                    MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
                     MaxAStarGreedy1 = MaxAStarGreedy;
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;

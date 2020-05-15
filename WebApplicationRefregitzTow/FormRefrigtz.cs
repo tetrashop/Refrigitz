@@ -1404,8 +1404,8 @@ namespace RefrigtzW
         }
         public void Load()
         {
-            var parallelOptions = new ParallelOptions();
-            parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount;
+            //var parallelOptions = new ParallelOptions();
+            //parallelOptions.MaxDegreeOfParallelism = 2; //PlatformHelper.ProcessorCount;
 
             MovmentsNumber = 0;
 
@@ -1469,7 +1469,7 @@ namespace RefrigtzW
                                 aa = Color.Brown;
                             bool B = AllDraw.Blitz;
                             AllDraw.Blitz = false;
-                            RefrigtzW.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                            RefrigtzW.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
 
                             if (Draw.IsAtLeastAllObjectIsNull())
                             {

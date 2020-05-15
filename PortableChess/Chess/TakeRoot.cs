@@ -229,6 +229,14 @@ namespace RefrigtzChessPortable
             Object OO = new Object();
             lock (OO)
             {
+                object o = new object();
+                lock (o)
+                {
+                    
+                        if (!AllDraw.ChangedInTreeOccured)
+                            return true;
+                    
+                }
                 //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
                 //ttt.Start();
                 //ttt.Join();

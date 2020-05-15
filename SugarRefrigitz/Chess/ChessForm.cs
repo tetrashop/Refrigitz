@@ -1279,8 +1279,8 @@ namespace Chess
                 {
                     MessageBox.Show("Wait...");
                   
-                    var parallelOptions = new ParallelOptions();
-                    parallelOptions.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount;
+                    //var parallelOptions = new ParallelOptions();
+                    //parallelOptions.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount;
                     
                     Table = CloneATable(brd.GetTable());
                     RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
@@ -1311,7 +1311,7 @@ namespace Chess
                                 aa = Color.Brown;
                             bool B = AllDraw.Blitz;
                             AllDraw.Blitz = false;
-                            RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                            RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
                             
                             if (Draw.IsAtLeastAllObjectIsNull())
                             {
@@ -1319,6 +1319,12 @@ namespace Chess
                                 Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]));
                                 Draw.SetRowColumn(0);
                                 Draw.IsCurrentDraw = true;
+                            }
+                            object n = new object();
+                            lock (n)
+                            {
+                                AllDraw.ChangedInTreeOccured = false;
+
                             }
                             Draw.InitiateAStarGreedyt(RefrigtzDLL.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
@@ -2440,7 +2446,7 @@ namespace Chess
                                             aa = Color.Brown;
                                         bool B = AllDraw.Blitz;
                                         AllDraw.Blitz = false;
-                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
                                         AllDraw thiB = Draw.AStarGreedyString;
                                         if (Draw.IsAtLeastAllObjectIsNull())
                                         {
@@ -2450,6 +2456,12 @@ namespace Chess
                                             Draw.IsCurrentDraw = true;
                                         }
                                         Draw.AStarGreedyString = thiB;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = false;
+
+                                        }
                                         Draw.InitiateAStarGreedyt(RefrigtzDLL.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
                                         AllDraw.Blitz = B;
                                         System.Threading.Thread tt = new System.Threading.Thread(new System.Threading.ThreadStart(SetDrawFound));
@@ -2541,7 +2553,7 @@ namespace Chess
                                             aa = Color.Brown;
                                         bool B = AllDraw.Blitz;
                                         AllDraw.Blitz = false;
-                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
                                         AllDraw thiB = Draw.AStarGreedyString;
                                         if (Draw.IsAtLeastAllObjectIsNull())
                                         {
@@ -2551,6 +2563,13 @@ namespace Chess
                                             Draw.IsCurrentDraw = true;
                                         }
                                         Draw.AStarGreedyString = thiB;
+                                        object n = new object();
+                                        lock (n)
+                                        {
+                                            AllDraw.ChangedInTreeOccured = false;
+
+                                        }
+
                                         Draw.InitiateAStarGreedyt(RefrigtzDLL.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
                                         AllDraw.Blitz = B;
                                         System.Threading.Thread tt = new System.Threading.Thread(new System.Threading.ThreadStart(SetDrawFound));
@@ -3165,7 +3184,7 @@ namespace Chess
                                     aa = Color.Brown;
                                 bool B = AllDraw.Blitz;
                                 AllDraw.Blitz = false;
-                                RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                                RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
 
                                 if (!FirstS)
                                 {
@@ -3358,6 +3377,12 @@ namespace Chess
                         }
                         Draw.AStarGreedyString = thiB;
 
+                        object n = new object();
+                        lock (n)
+                        {
+                            AllDraw.ChangedInTreeOccured = false;
+
+                        }
 
                         output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(RefrigtzDLL.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
                         output.Wait();

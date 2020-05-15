@@ -225,6 +225,22 @@ namespace Refrigtz
             Object OO = new Object();
             lock (OO)
             {
+                object o = new object();
+                lock (o)
+                {
+                    if (!Quantum)
+                    {
+                        if (!RefrigtzDLL.AllDraw.ChangedInTreeOccured)
+                            return true;
+                    }
+                    else
+                    {
+                        if (!QuantumRefrigiz.AllDraw.ChangedInTreeOccured)
+                            return true;
+
+
+                    }
+                }
                 //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
                 //ttt.Start();
                 //ttt.Join();

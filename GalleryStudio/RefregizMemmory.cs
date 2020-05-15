@@ -99,7 +99,7 @@ namespace GalleryStudio
                     BinaryFormatter Formatters = new BinaryFormatter();
                     DummyFileStream.Seek(0, SeekOrigin.Begin);
 
-                    Console.WriteLine("Loading...");
+                    //Console.WriteLine("Loading...");
                     tt = (RefrigtzDLL.AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
                         return tt;

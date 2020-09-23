@@ -64,7 +64,7 @@ public class ArtificialInteligenceMove
 															Idle=true;
                             RefrigtzChessPortable.AllDraw.TimeInitiation = (DateTime.Now.Hour * 60 * 60 * 1000 + DateTime.Now.Minute * 60 * 1000 + DateTime.Now.Second * 1000);
                             RefrigtzChessPortable.AllDraw.MaxAStarGreedy = RefrigtzChessPortable.AllDraw.PlatformHelperProcessorCount * LevelMul;
-                            var arrayA =Task.Factory.StartNew(() =>	t.Draw.InitiateAStarGreedyt(RefrigtzChessPortable.AllDraw.MaxAStarGreedy,1, 4,OrderColor(t.Draw.OrderP), CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
+                            var arrayA =Task.Factory.StartNew(() =>	t.Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount,1, 4,OrderColor(t.Draw.OrderP), CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
 							//var arrayA =Task.Factory.StartNew(() =>	t.Play(-1,-1));
                             arrayA.Wait();
 							object i=new object();
@@ -78,41 +78,43 @@ public class ArtificialInteligenceMove
 //							Thread.Sleep(50);
 							//LevelMul++;
 							IdleProgress=false;
-							ArtificialInteligenceMove.UpdateIsRunning=true;
+                            ArtificialInteligenceMove.UpdateIsRunning = true;
 
-							RefrigtzChessPortable.AllDraw.CalIdle=1;
-						}
-						if(RefrigtzChessPortable.AllDraw.CalIdle==2)
+                            //RefrigtzChessPortable.AllDraw.CalIdle=1;
+                        }
+                        while (RefrigtzChessPortable.AllDraw.CalIdle==2)
 						{
-					
-							RefrigtzChessPortable.AllDraw.CalIdle=5;
+                            Thread.Sleep(100);
+							//RefrigtzChessPortable.AllDraw.CalIdle=5;
 						}
-//						if(RefrigtzChessPortable.AllDraw.CalIdle==2)
-//						{
-//							Debug.Log("Ready to 5 base");
-//
-//							RefrigtzChessPortable.AllDraw.CalIdle=5;
-//						}
-//						Debug.Log("Ready to 0 base");
+                        //						if(RefrigtzChessPortable.AllDraw.CalIdle==2)
+                        //						{
+                        //							Debug.Log("Ready to 5 base");
+                        //
+                        //							RefrigtzChessPortable.AllDraw.CalIdle=5;
+                        //						}
+                        //						Debug.Log("Ready to 0 base");
 
-						if(RefrigtzChessPortable.AllDraw.CalIdle==5)
+                        /*if(RefrigtzChessPortable.AllDraw.CalIdle==5)
 						{		RefrigtzChessPortable.AllDraw.CalIdle=1;
 //						        RefrigtzChessPortable.AllDraw.IdleInWork=false;
 
 							//Debug.Log("Ready to 1 base");
 							ReadyZero=true;
-						}
-						while(RefrigtzChessPortable.AllDraw.CalIdle==1)
+						}*/
+                  
+                        while (RefrigtzChessPortable.AllDraw.CalIdle==1)
 						{	
 
-							//Thread.Sleep(1);
+							Thread.Sleep(100);
 						}
-						while(ArtificialInteligenceMove.UpdateIsRunning)
+                        /*while(ArtificialInteligenceMove.UpdateIsRunning)
 						{	
 							//Thread.Sleep(1);
-						}
+						}*/
+                        ArtificialInteligenceMove.UpdateIsRunning = false;
 
-						RefrigtzChessPortable.AllDraw.IdleInWork=true;
+                        RefrigtzChessPortable.AllDraw.IdleInWork=true;
 						RefrigtzChessPortable.AllDraw.CalIdle=0;
 						IdleProgress=true;
 //				

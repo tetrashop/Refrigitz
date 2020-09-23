@@ -16530,8 +16530,11 @@ namespace RefrigtzChessPortable
         {
             bool Is = false;
             try
-            { 
-                    if (Kind == 1)
+            {
+                if (CalIdle == 2)
+                    return false;
+
+                if (Kind == 1)
                 {
                     Is = Is || InitiateAStarGreedytSoldier(i, Kind, Order);
                 }
@@ -17484,6 +17487,8 @@ namespace RefrigtzChessPortable
             Object O = new Object();
             lock (O)
             {
+                if (CalIdle == 2)
+                    return true;
                 bool IS = false;
                 if (!CompleteTreeDo)
                 {
@@ -24609,7 +24614,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             FoundATable = true;
                         }
                     }
-
+          
                 return CloneATable(TableHeuristic);
             }
         }

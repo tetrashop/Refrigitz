@@ -1704,7 +1704,8 @@ namespace RefrigtzChessPortable
 
                                         Play(-1, -1);
 
-                                 
+                                        RefrigtzChessPortable.AllDraw.CalIdle = 0;
+
 
                                     }
                                     else
@@ -1786,8 +1787,9 @@ namespace RefrigtzChessPortable
 
                                 Play(-1, -1);
 
+                                RefrigtzChessPortable.AllDraw.CalIdle = 0;
 
-                    
+
                             }
                             else
                               if (Com && (order == 2))

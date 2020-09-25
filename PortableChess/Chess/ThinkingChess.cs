@@ -125,11 +125,11 @@ namespace RefrigtzChessPortable
         public List<bool> KishSelf = new List<bool>();
         public List<bool> KishEnemy = new List<bool>();
         readonly StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'ThinkingRefrigtzChessPortable.Spaces' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'ThinkingRefrigtzChessPortable.Spaces' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'ThinkingRefrigtzChessPortable.Spaces' is assigned but its value is never used
         readonly int Spaces = 0;
 #pragma warning restore CS0414 // The field 'ThinkingRefrigtzChessPortable.Spaces' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'ThinkingRefrigtzChessPortable.Spaces' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'ThinkingRefrigtzChessPortable.Spaces' is assigned but its value is never used
         public int HeuristicAttackValueSup = new int();
         public int HeuristicMovementValueSup = new int();
         public int HeuristicSelfSupportedValueSup = new int();
@@ -1081,8 +1081,8 @@ namespace RefrigtzChessPortable
 
                             if (ab)
                             {
-                         
-                                    HA += RationalRegard;
+
+                                HA += RationalRegard;
 
                                 //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                 //For All Enemy Obejcts.                                             
@@ -1833,7 +1833,7 @@ namespace RefrigtzChessPortable
                                         ValuableEnemyNotSupported = ValuableEnemyNotSupportedA;
 
                                         if (ab)
-                                           continue;
+                                            continue;
                                         EnemyNotSupported = true;
                                         InAttackedNotEnemySupported = false;
                                         var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), i, j, ii, jj, a, Order));
@@ -2112,7 +2112,7 @@ namespace RefrigtzChessPortable
                                             th1.Wait();
                                             th1.Dispose();
                                             if (ab)
-                                             {
+                                            {
                                                 SelfSupported = true;
                                                 S = S && true;
                                                 break;
@@ -3018,7 +3018,7 @@ namespace RefrigtzChessPortable
                             th.Dispose();
                             if (ab)
                             {
-                             
+
                                 //Calculate Local Support Heuristic.
                                 HA += RationalPenalty;
                                 int Supported = new int();
@@ -3149,7 +3149,7 @@ namespace RefrigtzChessPortable
                                         th.Dispose();
                                         if (ab)
                                         {
-                                            
+
                                             //Calculate Local Support Heuristic.
                                             HA += RationalPenalty;
                                             int Supported = new int();
@@ -3326,7 +3326,7 @@ namespace RefrigtzChessPortable
                     th.Dispose();
                     if (ab)
                     {
-                       
+
                         return true;
                     }
                 }
@@ -3485,7 +3485,7 @@ namespace RefrigtzChessPortable
                                             th4.Dispose();
                                             if (ab)
                                             {
-                                             
+
                                                 //For Current Order.
                                                 for (int RowD = 0; RowD < 8; RowD++)
                                                     for (int ColD = 0; ColD < 8; ColD++)
@@ -3589,7 +3589,7 @@ namespace RefrigtzChessPortable
                                             th.Dispose();
                                             if (ab)
                                             {
-                                                
+
                                                 //Take Movments.
                                                 TablCon[ii, jj] = TablCon[i, j];
                                                 TablCon[i, j] = 0;
@@ -3603,7 +3603,7 @@ namespace RefrigtzChessPortable
                                                 th1.Dispose();
                                                 if (ab)
                                                 {
-                                                    
+
                                                     //When Gray is Check.
                                                     if (A.CheckGray)
                                                     {
@@ -3621,7 +3621,7 @@ namespace RefrigtzChessPortable
                                                                     th2.Wait();
                                                                     th2.Dispose();
                                                                     if (ab)
-                                                                    {                                                                        
+                                                                    {
                                                                         //restore and return true.
                                                                         Order = DummyOrder;
                                                                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -3679,7 +3679,7 @@ namespace RefrigtzChessPortable
                                             th.Wait();
                                             th.Dispose();
                                             if (ab)
-                                            {                                               
+                                            {
                                                 //Take movemnts.
                                                 TablCon[ii, jj] = TablCon[i, j];
                                                 TablCon[i, j] = 0;
@@ -3692,7 +3692,7 @@ namespace RefrigtzChessPortable
                                                 th1.Dispose();
                                                 if (ab)
                                                 {
-                                                   //When Current is Check.
+                                                    //When Current is Check.
                                                     if (A.CheckBrown)
                                                     {
                                                         //For Enemy Objecvts.
@@ -3709,7 +3709,7 @@ namespace RefrigtzChessPortable
                                                                     th2.Wait();
                                                                     th2.Dispose();
                                                                     if (ab)
-                                                                    {                                                                      
+                                                                    {
                                                                         //restore and return true.
                                                                         Order = DummyOrder;
                                                                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -3760,7 +3760,7 @@ namespace RefrigtzChessPortable
                     th.Dispose();
                     if (ab)
                     {
-                        
+
                         Tab2[iki, jki] = Tab2[ik, jk];
                         Tab2[ik, jk] = 0;
                         A = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Tab2[iki, jki], Tab2, Order * -1, iki, jki);
@@ -3850,7 +3850,7 @@ namespace RefrigtzChessPortable
                             var th2 = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovment(CloneATable(Tab), Ord, a, Depth1, OrderP, OrderM, KindCheckedSelf1));
                             th2.Wait();
                             th2.Dispose();
-                           
+
                         }
                         if (Is[0] == 1) Is[0] = 1;
                         if (IS[2] == 1) Is[2] = 1;
@@ -4823,7 +4823,7 @@ namespace RefrigtzChessPortable
                             if (S3)
                                 HA += RationalRegard;
                         }
-                    }  }
+                    } }
                 return HA;
             }
         }
@@ -4951,7 +4951,7 @@ namespace RefrigtzChessPortable
             Object O = new Object();
             lock (O)
             {
-//#pragma warning disable CS0219 // The variable 'NIs' is assigned but its value is never used
+                //#pragma warning disable CS0219 // The variable 'NIs' is assigned but its value is never used
 #pragma warning disable CS0219 // The variable 'NIs' is assigned but its value is never used
                 int NIs = 0;
 #pragma warning restore CS0219 // The variable 'NIs' is assigned but its value is never used
@@ -5073,7 +5073,7 @@ namespace RefrigtzChessPortable
                                                 var th2 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), k, p, kkk, ppp, color, Order));
                                                 th2.Wait();
                                                 th2.Dispose();
-                                                if (ab)                                                  
+                                                if (ab)
                                                 {
                                                     int[,] Ta = CloneATable(Tab);
                                                     Ta[kkk, ppp] = Ta[k, p];
@@ -5972,7 +5972,7 @@ namespace RefrigtzChessPortable
                         if (Tab[RowS, ColS] == 4 || Tab[RowD, ColD] == 4)
                             Dis += RationalRegard;
                     }
-                       if ((Tab[3, 4] > ObjectGray && Tab[4, 3] > ObjectGray && Tab[3, 3] > ObjectGray && Tab[4, 4] > ObjectGray) || (IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 25)))
+                    if ((Tab[3, 4] > ObjectGray && Tab[4, 3] > ObjectGray && Tab[3, 3] > ObjectGray && Tab[4, 4] > ObjectGray) || (IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 25)))
                     {
                         var th3 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] == 3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0));
                         th3.Wait();
@@ -5987,8 +5987,8 @@ namespace RefrigtzChessPortable
                             if (ab)
                                 Dis += RationalPenalty;
                             else
-                            
-                        {
+
+                            {
                                 var th5 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] == 3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) == 0));
                                 th5.Wait();
                                 th5.Dispose();
@@ -6002,7 +6002,7 @@ namespace RefrigtzChessPortable
                                     if (ab)
                                         Dis += RationalRegard;
                                 }
-                        }
+                            }
                         }
                     }
                     if (IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 32))
@@ -6201,7 +6201,7 @@ namespace RefrigtzChessPortable
                 {
                     if (ColS < 5)
                     {
-                        
+
                         if (!Is)
                         {
                             bool A = true;
@@ -6219,7 +6219,7 @@ namespace RefrigtzChessPortable
                 {
                     if (ColS > 2)
                     {
-                        
+
                         if (!Is)
                         {
                             bool A = true;
@@ -7583,7 +7583,7 @@ namespace RefrigtzChessPortable
                                         th2.Wait();
                                         th2.Dispose();
 
-                                        
+
                                         //When Enemy is Supported.
                                         if (B)
                                         {
@@ -8040,7 +8040,7 @@ namespace RefrigtzChessPortable
                 th.Dispose();
                 if (ab)
                 {
-                  
+
                     //Initiate Local Variables.
                     for (var RowS = 0; RowS < 8; RowS++)
                         for (var ColS = 0; ColS < 8; ColS++)
@@ -9742,7 +9742,7 @@ namespace RefrigtzChessPortable
                     Object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -9752,7 +9752,7 @@ namespace RefrigtzChessPortable
                         if (!Sup) { NumbersOfAllNode++; }
                     }
                     int Killed = 0;
-                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination,ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
 
 
@@ -9763,7 +9763,7 @@ namespace RefrigtzChessPortable
                         lock (A3)
                         {
                             PenaltyVCar = false;
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled;
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
                             newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -9779,7 +9779,7 @@ namespace RefrigtzChessPortable
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -9894,7 +9894,7 @@ namespace RefrigtzChessPortable
                     Object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -9904,7 +9904,7 @@ namespace RefrigtzChessPortable
                         if (!Sup) { NumbersOfAllNode++; }
                     }
                     int Killed = 0;
-                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination,ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
 
 
@@ -9914,7 +9914,7 @@ namespace RefrigtzChessPortable
                         lock (A3)
                         {
                             PenaltyVCar = false;
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled;
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
                             newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -9930,7 +9930,7 @@ namespace RefrigtzChessPortable
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -10392,7 +10392,7 @@ namespace RefrigtzChessPortable
                     Object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -10402,7 +10402,7 @@ namespace RefrigtzChessPortable
                         if (!Sup) { NumbersOfAllNode++; }
                     }
                     int Killed = 0;
-                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination,ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
 
 
@@ -10412,7 +10412,7 @@ namespace RefrigtzChessPortable
                         lock (A3)
                         {
                             PenaltyVCar = false;
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled;
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
                             newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -10428,7 +10428,7 @@ namespace RefrigtzChessPortable
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
 
@@ -10524,7 +10524,7 @@ namespace RefrigtzChessPortable
                     Object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -10534,7 +10534,7 @@ namespace RefrigtzChessPortable
                         if (!Sup) { NumbersOfAllNode++; }
                     }
                     int Killed = 0;
-                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination,ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
 
 
@@ -10544,7 +10544,7 @@ namespace RefrigtzChessPortable
                         lock (A3)
                         {
                             PenaltyVCar = false;
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled;
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
                             newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -10560,7 +10560,7 @@ namespace RefrigtzChessPortable
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
 
@@ -10656,7 +10656,7 @@ namespace RefrigtzChessPortable
                     Object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -10666,7 +10666,7 @@ namespace RefrigtzChessPortable
                         if (!Sup) { NumbersOfAllNode++; }
                     }
                     int Killed = 0;
-                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination,ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
 
 
@@ -10676,7 +10676,7 @@ namespace RefrigtzChessPortable
                         lock (A3)
                         {
                             PenaltyVCar = false;
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled;
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
                             newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -10692,7 +10692,7 @@ namespace RefrigtzChessPortable
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -11196,6 +11196,13 @@ namespace RefrigtzChessPortable
                         newTask2.Wait();
                         newTask2.Dispose();
                     }
+                    else
+                                if ((kind == 7|| kind == -7) && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListKing != null && PenaltyRegardListKing.Count == TableListKing.Count)
+                    {
+                        var newTask2 = Task.Factory.StartNew(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
+                        newTask2.Wait();
+                        newTask2.Dispose();
+                    }
                 }
                 Object O2 = new Object();
                 lock (O2)
@@ -11531,12 +11538,91 @@ namespace RefrigtzChessPortable
             Object O = new Object();
             lock (O)
             {
-                Killed = 0;
-                if (!Sup)
+                if (Kind == 7 || Kind == -7)
                 {
-                    if (t != null)
+                    if (Kind == 7)
                     {
-                        if ((!t.Convert))
+                        MovableAllObjectsListMethos(CloneATable(TableS), true, RowSource, ColumnSource, RowDestination, ColumnDestination, 1);
+                        Killed = 0;
+
+                        if (RowDestination < RowSource)
+                        {
+                            TableS[RowSource - 1, ColumnDestination] = 4;
+                            TableS[RowSource - 2, ColumnDestination] = 6;
+                            TableS[RowSource, ColumnSource] = 0;
+                            TableS[RowDestination - 2, ColumnDestination] = 0;
+                        }
+                        else
+                        {
+                            TableS[RowSource + 1, ColumnDestination] = 4;
+                            TableS[RowSource + 2, ColumnDestination] = 6;
+                            TableS[RowSource, ColumnSource] = 0;
+                            TableS[RowDestination + 1, ColumnDestination] = 0;
+
+                        }
+                    }
+                    else
+                         if (Kind == -7)
+                    {
+                        MovableAllObjectsListMethos(CloneATable(TableS), true, RowSource, ColumnSource, RowDestination, ColumnDestination, 1);
+                        Killed = 0;
+                        if (RowDestination < RowSource)
+                        {
+                            TableS[RowSource - 1, ColumnDestination] = -4;
+                            TableS[RowSource - 2, ColumnDestination] = -6;
+                            TableS[RowSource, ColumnSource] = 0;
+                            TableS[RowDestination - 2, ColumnDestination] = 0;
+                        }
+                        else
+                        {
+                            TableS[RowSource + 1, ColumnDestination] = -4;
+                            TableS[RowSource + 2, ColumnDestination] = -6;
+                            TableS[RowSource, ColumnSource] = 0;
+                            TableS[RowDestination + 1, ColumnDestination] = 0;
+
+                        }
+                    }
+                }
+                else
+                {
+                    Killed = 0;
+                    if (!Sup)
+                    {
+                        if (t != null)
+                        {
+                            if ((!t.Convert))
+                            {
+                                Object A2 = new object();
+                                lock (A2)
+                                {
+                                    MovableAllObjectsListMethos(CloneATable(TableS), true, RowSource, ColumnSource, RowDestination, ColumnDestination, 1);
+                                    Killed = TableConst[RowDestination, ColumnDestination];
+                                    TableS[RowDestination, ColumnDestination] = TableS[RowSource, ColumnSource];
+                                    TableS[RowSource, ColumnSource] = 0;
+                                }
+                            }
+                            else
+                            {
+                                int con = 1;
+                                if (t.ConvertedToMinister)
+                                    con = 5;
+                                else
+                                if (t.ConvertedToCastle)
+                                    con = 4;
+                                else
+                                if (t.ConvertedToHourse)
+                                    con = 3;
+                                else
+                                if (t.ConvertedToElefant)
+                                    con = 2;
+
+                                MovableAllObjectsListMethos(CloneATable(TableS), true, RowSource, ColumnSource, RowDestination, ColumnDestination, con);
+                                Killed = TableConst[RowDestination, ColumnDestination];
+                                TableS[RowDestination, ColumnDestination] = (Math.Abs(TableS[RowSource, ColumnSource]) / TableS[RowSource, ColumnSource]) * con;
+                                TableS[RowSource, ColumnSource] = 0;
+                            }
+                        }
+                        else
                         {
                             Object A2 = new object();
                             lock (A2)
@@ -11546,37 +11632,6 @@ namespace RefrigtzChessPortable
                                 TableS[RowDestination, ColumnDestination] = TableS[RowSource, ColumnSource];
                                 TableS[RowSource, ColumnSource] = 0;
                             }
-                        }
-                        else
-                        {
-                            int con = 1;
-                            if (t.ConvertedToMinister)
-                                con = 5;
-                            else
-                            if (t.ConvertedToCastle)
-                                con = 4;
-                            else
-                            if (t.ConvertedToHourse)
-                                con = 3;
-                            else
-                            if (t.ConvertedToElefant)
-                                con = 2;
-
-                            MovableAllObjectsListMethos(CloneATable(TableS), true, RowSource, ColumnSource, RowDestination, ColumnDestination, con);
-                            Killed = TableConst[RowDestination, ColumnDestination];
-                            TableS[RowDestination, ColumnDestination] = (Math.Abs(TableS[RowSource, ColumnSource]) / TableS[RowSource, ColumnSource]) * con;
-                            TableS[RowSource, ColumnSource] = 0;
-                        }
-                    }
-                    else
-                    {
-                        Object A2 = new object();
-                        lock (A2)
-                        {
-                            MovableAllObjectsListMethos(CloneATable(TableS), true, RowSource, ColumnSource, RowDestination, ColumnDestination,1);
-                            Killed = TableConst[RowDestination, ColumnDestination];
-                            TableS[RowDestination, ColumnDestination] = TableS[RowSource, ColumnSource];
-                            TableS[RowSource, ColumnSource] = 0;
                         }
                     }
                 }
@@ -11665,7 +11720,7 @@ namespace RefrigtzChessPortable
                         }
                     }
                     else
-                    if (Kind == 6)
+                    if (Kind == 6 || Kind == 7 || Kind == -7)
                     {
                         Object A4 = new object();
                         lock (A4)
@@ -11753,7 +11808,7 @@ namespace RefrigtzChessPortable
 
                 }
                 else
-                if (Kind == 6)
+                  if (Kind == 6 || Kind == 7 || Kind == -7)
                 {
                     int[] AS = new int[2];
                     AS[0] = RowDestination;
@@ -11823,7 +11878,7 @@ namespace RefrigtzChessPortable
                     Object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -11843,7 +11898,7 @@ namespace RefrigtzChessPortable
                         lock (A3)
                         {
                             PenaltyVCar = false;
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled;
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
                             newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -11859,7 +11914,7 @@ namespace RefrigtzChessPortable
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
 
@@ -11930,98 +11985,125 @@ namespace RefrigtzChessPortable
                 int HeuristicKingDangour = new int(); int HeuristicCheckedMate = new int();
                 QuantumAtamata Current = new QuantumAtamata(3, 3, 3);
                 ThinkingAtRun = true; int CheckedM = 0; bool PenaltyVCar = false;
-                Order = DummyOrder;
-                ChessRules.CurrentOrder = DummyCurrentOrder;
-                //When is Brown Castles King.
-
-                if (TableS[RowDestination, ColumnDestination] > 0 && TableS[RowSource, ColumnSource] > 0)
-                {
-                    IsSup.Add(true);
-                    IsSupHu.Add(true);
-                }
-                else
-             if (TableS[RowDestination, ColumnDestination] < 0 && TableS[RowSource, ColumnSource] < 0)
-                {
-                    IsSup.Add(true);
-                    IsSupHu.Add(true);
-                }
-                else
-                {
-                    IsSup.Add(false);
-                    IsSupHu.Add(false);
-                }
-                //Calcuilate Heuristic Before Movment.
-                Object O = new Object();
-                lock (O)
-                {
-                    ThinkingRun = true;
-                }
-                int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled; var newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                bool Sup = false;
+                var newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                 newTask1.Wait(); newTask1.Dispose();
-                LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+
+                if (!Sup)
+                {
+                    ///Add Table to List of Private.
+                    HitNumberKing.Add(TableS[RowDestination, ColumnDestination]);
+                    Object OO = new Object();
+                    lock (OO)
+                    {
+                        ThinkingRun = true;
+                    }
+                }
+                ///Predict Heuristic.
                 Object A = new object();
                 lock (A)
                 {
-                    NumbersOfAllNode++;
+                    int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                    newTask1.Wait(); newTask1.Dispose();
+                    LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+                }
+                Object A1 = new object();
+                lock (A1)
+                {
+                    if (!Sup) { NumbersOfAllNode++; }
                 }
                 int Killed = 0;
-                if (RowDestination < RowSource)
+                newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
+                newTask1.Wait(); newTask1.Dispose();
+
+
+
+                // if (!Sup)
                 {
-                    TableS[RowSource - 1, ColumnDestination] = -4;
-                    TableS[RowSource - 2, ColumnDestination] = -6;
-                    TableS[RowSource, ColumnSource] = 0;
-                    TableS[RowDestination - 2, ColumnDestination] = 0;
+                    Object A3 = new object();
+                    lock (A3)
+                    {
+                        PenaltyVCar = false;
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
+                        newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
+                        newTask1.Wait(); newTask1.Dispose();
+                        LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+                    }
+                }
+                ///Store of Indexes Changes and Table in specific List.
+                newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                newTask1.Wait(); newTask1.Dispose();
+                ///Wehn Predict of Operation Do operate a Predict of this movments.
+                Object A5 = new object();
+                lock (A5)
+                {
+                    //Caused this for Stachostic results.
+                    if (!Sup)
+                    {
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        newTask1.Wait(); newTask1.Dispose();
+                        LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+                    }
+                }
+                //Calculate Heuristic and Add to List and Cal Syntax.
+                if (!Sup)
+                {
+                    String H = "";
+                    Object A6 = new object();
+                    lock (A6)
+                    {
+                        int[] Hu = new int[10];
+                        //if (!(IsSup[j]))
+                        {
+                            //if (IgnoreFromCheckandMateHeuristic)
+
+                            newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                            newTask1.Wait(); newTask1.Dispose();
+                            H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
+                            HeuristicListKing.Add(Hu);
+                        }
+                    }
+                    Object O4 = new Object();
+                    lock (O4)
+                    {
+                        ThinkingLevel++;
+                        ThinkingAtRun = false;
+                    }
                 }
                 else
                 {
-                    TableS[RowSource + 1, ColumnDestination] = -4;
-                    TableS[RowSource + 2, ColumnDestination] = -6;
-                    TableS[RowSource, ColumnSource] = 0;
-                    TableS[RowDestination + 1, ColumnDestination] = 0;
-
-                }
-                PenaltyVCar = false;
-                TmpL = LoseOcuuredatChiled; TmpW = WinOcuuredatChiled;
-                newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
-                newTask1.Wait(); newTask1.Dispose();
-                LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
-                //Store Movments Items. 
-                int[] AS = new int[2];
-                AS[0] = RowDestination;
-                AS[1] = ColumnDestination;
-                RowColumnKing.Add(AS);
-                TableListKing.Add(CloneATable(TableS));
-                IndexKing++;
-                //Calculate Heuristic Sumation and Store in Specific List.
-                int[] Hu = new int[10]; String H = "";
-                Object A6 = new Object();
-                lock (A6)
-                {
-                    //if (IgnoreFromCheckandMateHeuristic)
-
-                    newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                    newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                     newTask1.Wait(); newTask1.Dispose();
-                    H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
-                    HeuristicListKing.Add(Hu);
+                    int[] Hu = new int[10];
+                    newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
+                    newTask1.Wait(); newTask1.Dispose();
+
+                    String H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
+                    newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                    newTask1.Wait(); newTask1.Dispose();
+
+                    ThinkingAtRun = false;
                 }
-                Castle = true;
-                Object O7 = new Object(); SetObjectNumbersInList(TableS);
+
+                Object O7 = new Object();
                 lock (O7)
                 {
                     if (RowDestination < RowSource)
                     {
-                        if (Order == 1)
-                            //else
-                            ThinkingLevel++;
+                        //if (Order == 1)
+                        //else
+                        ThinkingLevel++;
                     }
                     else
                     {
-                        if (Order == 1)
-                            //else
-                            ThinkingLevel++;
+                        //if (Order == 1)
+                        //else
+                        ThinkingLevel++;
                     }
-
                     ThinkingAtRun = false;
+
+                    Castle = true;
+
                 }
             }
             ThinkingAtRun = false;
@@ -14372,89 +14454,107 @@ namespace RefrigtzChessPortable
                 int HeuristicKingDangour = new int(); int HeuristicCheckedMate = new int();
                 QuantumAtamata Current = new QuantumAtamata(3, 3, 3);
                 ThinkingAtRun = true; int CheckedM = 0; bool PenaltyVCar = false;
-                Order = DummyOrder;
-                ChessRules.CurrentOrder = DummyCurrentOrder;
-                //When is Castles Gray King.
-                //Predict Heuristic Caluculatio Before Movments.
-                Object O = new Object();
-                lock (O)
-                {
-                    ThinkingRun = true;
-                }
-                int[] TmpL = LoseOcuuredatChiled;int TmpW = WinOcuuredatChiled;  var newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                bool Sup = false;
+                var newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                 newTask1.Wait(); newTask1.Dispose();
-                LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
 
+                if (!Sup)
+                {
+                    ///Add Table to List of Private.
+                    HitNumberKing.Add(TableS[RowDestination, ColumnDestination]);
+                    Object OO = new Object();
+                    lock (OO)
+                    {
+                        ThinkingRun = true;
+                    }
+                }
+                ///Predict Heuristic.
                 Object A = new object();
                 lock (A)
                 {
-                    NumbersOfAllNode++;
+                    int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                    newTask1.Wait(); newTask1.Dispose();
+                    LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                 }
-                if (TableS[RowDestination, ColumnDestination] > 0 && TableS[RowSource, ColumnSource] > 0)
+                Object A1 = new object();
+                lock (A1)
                 {
-                    IsSup.Add(true);
-                    IsSupHu.Add(true);
-                }
-                else
-             if (TableS[RowDestination, ColumnDestination] < 0 && TableS[RowSource, ColumnSource] < 0)
-                {
-                    IsSup.Add(true);
-                    IsSupHu.Add(true);
-                }
-                else
-                {
-                    IsSup.Add(false);
-                    IsSupHu.Add(false);
+                    if (!Sup) { NumbersOfAllNode++; }
                 }
                 int Killed = 0;
-                if (RowDestination < RowSource)
+                newTask1 = Task.Factory.StartNew(() => KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
+                newTask1.Wait(); newTask1.Dispose();
+
+
+
+                // if (!Sup)
                 {
-                    TableS[RowSource - 1, ColumnDestination] = 4;
-                    TableS[RowSource - 2, ColumnDestination] = 6;
-                    TableS[RowSource, ColumnSource] = 0;
-                    TableS[RowDestination - 2, ColumnDestination] = 0;
+                    Object A3 = new object();
+                    lock (A3)
+                    {
+                        PenaltyVCar = false;
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
+                        newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
+                        newTask1.Wait(); newTask1.Dispose();
+                        LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+                    }
+                }
+                ///Store of Indexes Changes and Table in specific List.
+                newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                newTask1.Wait(); newTask1.Dispose();
+                ///Wehn Predict of Operation Do operate a Predict of this movments.
+                Object A5 = new object();
+                lock (A5)
+                {
+                    //Caused this for Stachostic results.
+                    if (!Sup)
+                    {
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        newTask1.Wait(); newTask1.Dispose();
+                        LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+                    }
+                }
+                //Calculate Heuristic and Add to List and Cal Syntax.
+                if (!Sup)
+                {
+                    String H = "";
+                    Object A6 = new object();
+                    lock (A6)
+                    {
+                        int[] Hu = new int[10];
+                        //if (!(IsSup[j]))
+                        {
+                            //if (IgnoreFromCheckandMateHeuristic)
+
+                            newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                            newTask1.Wait(); newTask1.Dispose();
+                            H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
+                            HeuristicListKing.Add(Hu);
+                        }
+                    }
+                    Object O4 = new Object();
+                    lock (O4)
+                    {
+                        ThinkingLevel++;
+                        ThinkingAtRun = false;
+                    }
                 }
                 else
                 {
-                    TableS[RowSource + 1, ColumnDestination] = 4;
-                    TableS[RowSource + 2, ColumnDestination] = 6;
-                    TableS[RowSource, ColumnSource] = 0;
-                    TableS[RowDestination + 1, ColumnDestination] = 0;
-
-                }
-                PenaltyVCar = false;
-                TmpL = LoseOcuuredatChiled; TmpW = WinOcuuredatChiled;
-                newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, false, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, RowDestination, ColumnDestination, Castle));
-                newTask1.Wait(); newTask1.Dispose();
-
-                LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
-                //Store Movments Items.
-                int[] AS = new int[2];
-                AS[0] = RowDestination;
-                AS[1] = ColumnDestination;
-                RowColumnKing.Add(AS);
-                TableListKing.Add(CloneATable(TableS));
-                IndexKing++;
-                //Calculate Movment Heuristic After Movments.
-                //Caused this for Stachostic results.
-                TmpL = LoseOcuuredatChiled; TmpW = WinOcuuredatChiled;
-                newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
-                newTask1.Wait(); newTask1.Dispose();
-                LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
-
-                String H = "";
-                int[] Hu = new int[10];
-                Object A6 = new Object();
-                lock (A6)
-                {
-                    //if (IgnoreFromCheckandMateHeuristic)
-
-                    newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                    newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                    newTask1.Wait(); newTask1.Dispose();
+                    int[] Hu = new int[10];
+                    newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
                     newTask1.Wait(); newTask1.Dispose();
 
-                    H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
+                    String H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
+                    newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                    newTask1.Wait(); newTask1.Dispose();
+
+                    ThinkingAtRun = false;
                 }
-                Object O7 = new Object(); SetObjectNumbersInList(TableS);
+                
+                Object O7 = new Object(); 
                 lock (O7)
                 {
                     if (RowDestination < RowSource)
@@ -14469,8 +14569,7 @@ namespace RefrigtzChessPortable
                         //else
                         ThinkingLevel++;
                     }
-                    HeuristicListKing.Add(Hu);
-                    ThinkingAtRun = false;
+                     ThinkingAtRun = false;
                 }
             }
             ThinkingAtRun = false;

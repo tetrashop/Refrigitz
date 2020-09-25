@@ -11970,13 +11970,14 @@ namespace RefrigtzChessPortable
                     TableS[RowSource - 1, ColumnDestination] = -4;
                     TableS[RowSource - 2, ColumnDestination] = -6;
                     TableS[RowSource, ColumnSource] = 0;
-
+                    TableS[RowDestination - 2, ColumnDestination] = 0;
                 }
                 else
                 {
                     TableS[RowSource + 1, ColumnDestination] = -4;
                     TableS[RowSource + 2, ColumnDestination] = -6;
                     TableS[RowSource, ColumnSource] = 0;
+                    TableS[RowDestination + 1, ColumnDestination] = 0;
 
                 }
                 PenaltyVCar = false;
@@ -14411,13 +14412,14 @@ namespace RefrigtzChessPortable
                     TableS[RowSource - 1, ColumnDestination] = 4;
                     TableS[RowSource - 2, ColumnDestination] = 6;
                     TableS[RowSource, ColumnSource] = 0;
-
+                    TableS[RowDestination - 2, ColumnDestination] = 0;
                 }
                 else
                 {
                     TableS[RowSource + 1, ColumnDestination] = 4;
                     TableS[RowSource + 2, ColumnDestination] = 6;
                     TableS[RowSource, ColumnSource] = 0;
+                    TableS[RowDestination + 1, ColumnDestination] = 0;
 
                 }
                 PenaltyVCar = false;

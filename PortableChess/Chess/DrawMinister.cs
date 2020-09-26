@@ -12,12 +12,7 @@ namespace RefrigtzChessPortable
         
 
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawMinister.Spaces' is assigned but its value is never used
-#pragma warning disable CS0414 // The field 'DrawMinister.Spaces' is assigned but its value is never used
         int Spaces = 0;
-#pragma warning restore CS0414 // The field 'DrawMinister.Spaces' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'DrawMinister.Spaces' is assigned but its value is never used
-
 
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
@@ -42,7 +37,7 @@ namespace RefrigtzChessPortable
         public int[,] Table = null;
         public int Current = 0;
         public int Order;
-        public ThinkingRefrigtzChessPortable[] MinisterThinking = new ThinkingRefrigtzChessPortable[AllDraw.MinisterMovments];
+        public ThinkingChessPortable[] MinisterThinking = new ThinkingChessPortable[AllDraw.MinisterMovments];
         int CurrentAStarGredyMax = -1;
         static void Log(Exception ex)
         {
@@ -58,9 +53,9 @@ namespace RefrigtzChessPortable
 
                 }
             }
-#pragma warning disable CS0168 // The variable 't' is declared but never used
+
             catch (Exception t) { }
-#pragma warning restore CS0168 // The variable 't' is declared but never used
+
         }
         public void Dispose()
         {
@@ -69,28 +64,7 @@ namespace RefrigtzChessPortable
             
         }
 
-        public bool MaxFound(ref bool MaxNotFound)
-        {
-            
-            int a = ReturnHeuristic();
-            if (MaxHeuristicxM < a)
-            {
-                Object O2 = new Object();
-                lock (O2)
-                {
-                    MaxNotFound = false;
-                    if (ThinkingRefrigtzChessPortable.MaxHeuristicx < MaxHeuristicxM)
-                        ThinkingRefrigtzChessPortable.MaxHeuristicx = a;
-                    MaxHeuristicxM = a;
-                }
-                
-                return true;
-            }
-
-            MaxNotFound = true;
-            
-            return false;
-        }
+        
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
@@ -128,7 +102,7 @@ namespace RefrigtzChessPortable
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.MinisterMovments; ii++)
-                    MinisterThinking[ii] = new ThinkingRefrigtzChessPortable(ii,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 32, Ord, TB, Cur, 2, 5);
+                    MinisterThinking[ii] = new ThinkingChessPortable(ii,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 32, Ord, TB, Cur, 2, 5);
 
                 Row = i;
                 Column = j;
@@ -189,7 +163,7 @@ namespace RefrigtzChessPortable
             for (var i = 0; i < AllDraw.MinisterMovments; i++)
             {
 
-                AA.MinisterThinking[i] = new ThinkingRefrigtzChessPortable(i,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.MinisterThinking[i] = new ThinkingChessPortable(i,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.MinisterThinking[i].Clone(ref AA.MinisterThinking[i]);
 
 

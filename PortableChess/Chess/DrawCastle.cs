@@ -12,11 +12,7 @@ namespace RefrigtzChessPortable
 
 
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
-#pragma warning disable CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
         int Spaces = 0;
-#pragma warning restore CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
 
 
 
@@ -38,7 +34,7 @@ namespace RefrigtzChessPortable
         public static long MaxHeuristicxB = -20000000000000000;
         public float Row, Column;
         public Color color;
-        public ThinkingRefrigtzChessPortable[] CastleThinking = new ThinkingRefrigtzChessPortable[AllDraw.CastleMovments];
+        public ThinkingChessPortable[] CastleThinking = new ThinkingChessPortable[AllDraw.CastleMovments];
         public int[,] Table = null;
         public int Current = 0;
         public int Order;
@@ -58,9 +54,9 @@ namespace RefrigtzChessPortable
 
                 }
             }
-#pragma warning disable CS0168 // The variable 't' is declared but never used
+
             catch (Exception t) { }
-#pragma warning restore CS0168 // The variable 't' is declared but never used
+
         }
         public void Dispose()
         {
@@ -69,29 +65,7 @@ namespace RefrigtzChessPortable
             
 
         }
-        public bool MaxFound(ref bool MaxNotFound)
-        {
-            
-
-            int a = ReturnHeuristic();
-            if (MaxHeuristicxB < a)
-            {
-                MaxNotFound = false;
-                Object O = new Object();
-                lock (O)
-                {
-                    if (ThinkingRefrigtzChessPortable.MaxHeuristicx < MaxHeuristicxB)
-                        ThinkingRefrigtzChessPortable.MaxHeuristicx = a;
-                    MaxHeuristicxB = a;
-                }
-                
-                return true;
-            }
-
-            MaxNotFound = true;
-            
-            return false;
-        }
+        
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
@@ -132,7 +106,7 @@ namespace RefrigtzChessPortable
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.CastleMovments; ii++)
-                    CastleThinking[ii] = new ThinkingRefrigtzChessPortable(ii, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 4);
+                    CastleThinking[ii] = new ThinkingChessPortable(ii, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 4);
 
                 Row = i;
                 Column = j;
@@ -193,7 +167,7 @@ namespace RefrigtzChessPortable
             for (var i = 0; i < AllDraw.CastleMovments; i++)
             {
 
-                AA.CastleThinking[i] = new ThinkingRefrigtzChessPortable(i, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.CastleThinking[i] = new ThinkingChessPortable(i, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.CastleThinking[i].Clone(ref AA.CastleThinking[i]);
 
             }

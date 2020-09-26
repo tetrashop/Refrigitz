@@ -9,7 +9,7 @@ using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.IO;
-namespace GalleryStudio
+namespace RefrigtzChessPortable
 {
 
     [Serializable]
@@ -30,8 +30,8 @@ namespace GalleryStudio
         public bool ArrangmentsT = false;
         string SAllDraw = "";
         public int Kind = 0;
-        //static GalleryStudio.RefregizMemmory Node;
-        public RefrigtzChessPortable.AllDraw Current = null;
+        //static RefregizMemmory Node;
+        public AllDraw Current = null;
          //bool NewListOfNextBegins = true;
 
 
@@ -82,7 +82,7 @@ namespace GalleryStudio
             }
 
         }
-        public RefrigtzChessPortable.AllDraw Load(bool Quantum, int Order)
+        public AllDraw Load(bool Quantum, int Order)
         {
             Object o = new Object();
             lock (o)
@@ -93,16 +93,16 @@ namespace GalleryStudio
                     if (A.Length == 0)
                         return null;
 
-                    RefrigtzChessPortable.AllDraw tt = new RefrigtzChessPortable.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
+                    AllDraw tt = new AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                     FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
                     BinaryFormatter Formatters = new BinaryFormatter();
                     DummyFileStream.Seek(0, SeekOrigin.Begin);
 
                     Console.WriteLine("Loading...");
-                    tt = (RefrigtzChessPortable.AllDraw)Formatters.Deserialize(DummyFileStream);
+                    tt = (AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
                         return tt;
-                    tt = (RefrigtzChessPortable.AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+                    tt = (AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
 
                     DummyFileStream.Flush();
                     DummyFileStream.Close();
@@ -121,7 +121,7 @@ namespace GalleryStudio
             lock (oo)
             {
 
-                //Current = new RefrigtzChessPortable.AllDraw(MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
+                //Current = new AllDraw(MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                 FileStream DummyFileStream = null;
 
 
@@ -143,7 +143,7 @@ namespace GalleryStudio
             }
         }
  
-        public RefrigtzChessPortable.AllDraw AllDrawCurrentAccess
+        public AllDraw AllDrawCurrentAccess
         {
             get
             { return Current; }

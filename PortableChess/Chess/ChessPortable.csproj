@@ -150,7 +150,6 @@
     <Compile Include="Helper.cs" />
     <Compile Include="HermitInterpolation.cs" />
     <Compile Include="Interpolate.cs" />
-    <Compile Include="IsNextEnemyMovementForCheckedMate.cs" />
     <Compile Include="LearningAtamata.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="NetworkQuantumLearningKrinskyAtamata.cs" />

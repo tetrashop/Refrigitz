@@ -8,7 +8,7 @@ using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.IO;
-namespace GalleryStudio
+namespace RefrigtzChessPortable
 {
     [Serializable]
     public class RefregitzOperator//:RefregizMemmory
@@ -28,9 +28,9 @@ namespace GalleryStudio
         public static String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 
         string SAllDraw ="";
-        //static GalleryStudio.RefregizMemmory Node;
-        //RefrigtzChessPortable.AllDraw Current = null;
-        //GalleryStudio.RefregizMemmory Next = null;
+        //static RefregizMemmory Node;
+        //AllDraw Current = null;
+        //RefregizMemmory Next = null;
         //int Kind = -1;
         static void Log(Exception ex)
         {
@@ -86,12 +86,12 @@ namespace GalleryStudio
                 OnlySelfT = OnlySel;
                 AStarGreedyHeuristicT = AStarGreedyHuris;
                 ArrangmentsT = Arrangments;
-                RefrigtzChessPortable.AllDraw Current = new RefrigtzChessPortable.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
+                AllDraw Current = new AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
             }
         }
 
 
-        public RefrigtzChessPortable.AllDraw GetRefregiz(int No)
+        public AllDraw GetRefregiz(int No)
         {
             Object o = new Object();
             lock (o)
@@ -100,14 +100,14 @@ namespace GalleryStudio
                 FileStream DummyFileStream = null;
                 DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.Read);
                 int p = 0;
-                RefrigtzChessPortable.AllDraw Dummy = null;
+                AllDraw Dummy = null;
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
                 
                     while (p <= No)
                     {
                         if (DummyFileStream.Length >= DummyFileStream.Position)
-                            Dummy = (RefrigtzChessPortable.AllDraw)Formatters.Deserialize(DummyFileStream);
+                            Dummy = (AllDraw)Formatters.Deserialize(DummyFileStream);
                         else
                             Dummy = null;
                         p++;

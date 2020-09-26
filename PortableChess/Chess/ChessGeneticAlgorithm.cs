@@ -70,9 +70,9 @@ namespace RefrigtzChessPortable
                     Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); 
                 }
             }
-#pragma warning disable CS0168 // The variable 't' is declared but never used
+
             catch (Exception t) { }
-#pragma warning restore CS0168 // The variable 't' is declared but never used
+
         }
         //Constructor.
         public RefrigtzChessPortableGeneticAlgorithm(bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments)
@@ -635,7 +635,7 @@ namespace RefrigtzChessPortable
                             GeneticTable[Gen1, Gen2] = GeneticTable[CromosomRow, CromosomColumn];
                             GeneticTable[CromosomRow, CromosomColumn] = 0;
                             //Table Repeatative Consideration.
-                            if (ThinkingRefrigtzChessPortable.ExistTableInList(CloneATable(GeneticTable), List, 0))
+                            if (ThinkingChessPortable.ExistTableInList(CloneATable(GeneticTable), List, 0))
                             {
                                 GeneticTable[CromosomRow, CromosomColumn] = GeneticTable[Gen1, Gen2];
                                 GeneticTable[Gen1, Gen2] = 0;

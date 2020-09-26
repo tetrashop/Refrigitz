@@ -12,11 +12,7 @@ namespace RefrigtzChessPortable
 
         
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawHourse.Spaces' is assigned but its value is never used
-#pragma warning disable CS0414 // The field 'DrawHourse.Spaces' is assigned but its value is never used
         int Spaces = 0;
-#pragma warning restore CS0414 // The field 'DrawHourse.Spaces' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'DrawHourse.Spaces' is assigned but its value is never used
 
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
@@ -38,7 +34,7 @@ namespace RefrigtzChessPortable
         public float Row, Column;
         public Color color;
         public int[,] Table = null;
-        public ThinkingRefrigtzChessPortable[] HourseThinking = new ThinkingRefrigtzChessPortable[AllDraw.HourseMovments];
+        public ThinkingChessPortable[] HourseThinking = new ThinkingChessPortable[AllDraw.HourseMovments];
         public int Current = 0;
         public int Order;
         int CurrentAStarGredyMax = -1;
@@ -57,9 +53,9 @@ namespace RefrigtzChessPortable
 
                 }
             }
-#pragma warning disable CS0168 // The variable 't' is declared but never used
+
             catch (Exception t) { }
-#pragma warning restore CS0168 // The variable 't' is declared but never used
+
         }
         public void Dispose()
         {
@@ -67,28 +63,7 @@ namespace RefrigtzChessPortable
             ValuableSelfSupported = null;
             
         }
-        public bool MaxFound(ref bool MaxNotFound)
-        {
-            
-            int a = ReturnHeuristic();
-            if (MaxHeuristicxH < a)
-            {
-                Object O2 = new Object();
-                lock (O2)
-                {
-                    MaxNotFound = false;
-                    if (ThinkingRefrigtzChessPortable.MaxHeuristicx < MaxHeuristicxH)
-                        ThinkingRefrigtzChessPortable.MaxHeuristicx = a;
-                    MaxHeuristicxH = a;
-                }
-                
-                return true;
-            }
-
-            MaxNotFound = true;
-            
-            return false;
-        }
+        
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
@@ -125,7 +100,7 @@ namespace RefrigtzChessPortable
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.HourseMovments; ii++)
-                    HourseThinking[ii] = new ThinkingRefrigtzChessPortable(ii,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 4, 3);
+                    HourseThinking[ii] = new ThinkingChessPortable(ii,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 4, 3);
 
                 Row = i;
                 Column = j;
@@ -186,7 +161,7 @@ namespace RefrigtzChessPortable
             for (var i = 0; i < AllDraw.HourseMovments; i++)
             {
 
-                AA.HourseThinking[i] = new ThinkingRefrigtzChessPortable(i,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.HourseThinking[i] = new ThinkingChessPortable(i,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.HourseThinking[i].Clone(ref AA.HourseThinking[i]);
 
             }

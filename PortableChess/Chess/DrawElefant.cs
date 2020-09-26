@@ -13,11 +13,7 @@ namespace RefrigtzChessPortable
         
 
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawElefant.Spaces' is assigned but its value is never used
-#pragma warning disable CS0414 // The field 'DrawElefant.Spaces' is assigned but its value is never used
         int Spaces = 0;
-#pragma warning restore CS0414 // The field 'DrawElefant.Spaces' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'DrawElefant.Spaces' is assigned but its value is never used
 
 
 
@@ -38,7 +34,7 @@ namespace RefrigtzChessPortable
         public bool ArrangmentsChanged = true;
         public static long MaxHeuristicxE = -20000000000000000;
         public float Row, Column;
-        public ThinkingRefrigtzChessPortable[] ElefantThinking = new ThinkingRefrigtzChessPortable[AllDraw.ElefantMovments];
+        public ThinkingChessPortable[] ElefantThinking = new ThinkingChessPortable[AllDraw.ElefantMovments];
         public int[,] Table = null;
         public Color color;
         public int Current = 0;
@@ -58,9 +54,9 @@ namespace RefrigtzChessPortable
 
                 }
             }
-#pragma warning disable CS0168 // The variable 't' is declared but never used
+
             catch (Exception t) { }
-#pragma warning restore CS0168 // The variable 't' is declared but never used
+
         }
         public void Dispose()
         {
@@ -68,28 +64,7 @@ namespace RefrigtzChessPortable
             ValuableSelfSupported = null;
            
         }
-        public bool MaxFound(ref bool MaxNotFound)
-        {
-            
-            int a = ReturnHeuristic();
-            if (MaxHeuristicxE < a)
-            {
-                Object O2 = new Object();
-                lock (O2)
-                {
-                    MaxNotFound = false;
-                    if (ThinkingRefrigtzChessPortable.MaxHeuristicx < MaxHeuristicxE)
-                        ThinkingRefrigtzChessPortable.MaxHeuristicx = a;
-                    MaxHeuristicxE = a;
-                }
-                
-                return true;
-            }
-
-            MaxNotFound = true;
-            
-            return false;
-        }
+       
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
@@ -131,7 +106,7 @@ namespace RefrigtzChessPortable
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.ElefantMovments; ii++)
-                    ElefantThinking[ii] = new ThinkingRefrigtzChessPortable(ii,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 2);
+                    ElefantThinking[ii] = new ThinkingChessPortable(ii,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 2);
 
                 Row = i;
                 Column = j;
@@ -193,7 +168,7 @@ namespace RefrigtzChessPortable
             for (var i = 0; i < AllDraw.ElefantMovments; i++)
             {
 
-                AA.ElefantThinking[i] = new ThinkingRefrigtzChessPortable(i,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.ElefantThinking[i] = new ThinkingChessPortable(i,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.ElefantThinking[i].Clone(ref AA.ElefantThinking[i]);
 
             }

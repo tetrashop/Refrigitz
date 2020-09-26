@@ -49,7 +49,7 @@ using System.Threading.Tasks;
 namespace RefrigtzChessPortable
 {
     [Serializable]
-    public class ThinkingChessPortable//: IDisposable
+    public class ThinkingRefrigtzChessPortable//: IDisposable
     {
         public static string OutP = "";
         List<List<List<int[]>>> MovableAllObjectsList = new List<List<List<int[]>>>();
@@ -408,9 +408,9 @@ namespace RefrigtzChessPortable
                 return OutP ;
             }
         }
-        public ThinkingChessPortable() { }
+        public ThinkingRefrigtzChessPortable() { }
         //Constructor
-        public ThinkingChessPortable(int iInde, int KindO, int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, int i, int j)
+        public ThinkingRefrigtzChessPortable(int iInde, int KindO, int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, int i, int j)
         {
 
             Object O = new Object();
@@ -541,7 +541,7 @@ namespace RefrigtzChessPortable
             }
         }
         //Constructor
-        public ThinkingChessPortable(int iInde, int KindO, int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, int i, int j, Color a, int[,] Tab, int Ma, int Ord, bool ThinkingBeg, int CurA, int ThingN, int Kin)
+        public ThinkingRefrigtzChessPortable(int iInde, int KindO, int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, int i, int j, Color a, int[,] Tab, int Ma, int Ord, bool ThinkingBeg, int CurA, int ThingN, int Kin)
         {
             Object O = new Object();
             lock (O)
@@ -678,7 +678,7 @@ namespace RefrigtzChessPortable
             }
         }
         ///Clone a Copy.
-        public void Clone(ref ThinkingChessPortable AA)
+        public void Clone(ref ThinkingRefrigtzChessPortable AA)
         {
             Object O = new Object();
             lock (O)
@@ -686,7 +686,7 @@ namespace RefrigtzChessPortable
                 //Assignment Content to New Content Object.
                 //Initaite New Object.
                 if (AA == null)
-                    AA = new ThinkingChessPortable(iIndex, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column//, Kind
+                    AA = new ThinkingRefrigtzChessPortable(iIndex, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column//, Kind
                         );
                 AA.ArrangmentsChanged = ArrangmentsChanged;
                 //When Depth Object is not NULL.
@@ -3456,7 +3456,7 @@ namespace RefrigtzChessPortable
                             for (var RowS = 0; RowS < 8; RowS++)
                                 for (var ColS = 0; ColS < 8; ColS++)
                                     Table[RowS, ColS] = Tab[RowS, ColS];
-                            //Create new ThinkingChessPortable Rule Object.
+                            //Create new ThinkingRefrigtzChessPortable Rule Object.
                             A = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[ii, jj], CloneATable(Table), Order, ii, jj);
                             //Detect int.
                             a = Color.Gray;
@@ -9709,7 +9709,7 @@ namespace RefrigtzChessPortable
             return;
         }
         //specific determination for thinking main method
-        void KingThinkingChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void KingThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object O = new Object();
             lock (O)
@@ -9729,7 +9729,7 @@ namespace RefrigtzChessPortable
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -9863,7 +9863,7 @@ namespace RefrigtzChessPortable
             return AA;
         }
         //specific determination for thinking main method
-        void MinisterThinkingChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void MinisterThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object O11 = new Object();
             lock (O11)
@@ -9883,7 +9883,7 @@ namespace RefrigtzChessPortable
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10359,7 +10359,7 @@ namespace RefrigtzChessPortable
                 return LearningV;
             }
         }
-        void CastlesThinkingChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle
+        void CastlesThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle
         )
         {
             Object O22 = new Object();
@@ -10380,7 +10380,7 @@ namespace RefrigtzChessPortable
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10495,7 +10495,7 @@ namespace RefrigtzChessPortable
             ThinkingAtRun = false;
         }
         //specific determination for thinking main method
-        void HourseThinkingChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void HourseThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object OO = new Object();
             lock (OO)
@@ -10515,7 +10515,7 @@ namespace RefrigtzChessPortable
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10628,7 +10628,7 @@ namespace RefrigtzChessPortable
         }
         //specific determination for thinking main method
         //specific determination for thinking main method
-        void ElephantThinkingChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void ElephantThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object OO = new Object();
             lock (OO)
@@ -10648,7 +10648,7 @@ namespace RefrigtzChessPortable
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -11786,7 +11786,7 @@ namespace RefrigtzChessPortable
                 }
             }
         }
-        bool ThinkingChessPortableRuleThinking(int[,] TableS, int RowSource, int ColumnSource, int RowDestination, int ColumnDestination)
+        bool ThinkingRefrigtzChessPortableRuleThinking(int[,] TableS, int RowSource, int ColumnSource, int RowDestination, int ColumnDestination)
         {
             Object O = new Object();
             lock (O)
@@ -11794,7 +11794,7 @@ namespace RefrigtzChessPortable
                 return (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, TableS[RowSource, ColumnSource], CloneATable(TableS), Order, RowSource, ColumnSource)).Rules(RowSource, ColumnSource, RowDestination, ColumnDestination, color, TableS[RowSource, ColumnSource], false);
             }
         }
-        void SolderThinkingChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void SolderThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object O1 = new Object();
             lock (O1)
@@ -11814,7 +11814,7 @@ namespace RefrigtzChessPortable
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -12361,7 +12361,7 @@ namespace RefrigtzChessPortable
                                 int[,] Tab = CloneATable(Table);
                                 if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] > 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] < 0))
                                 {
-                                    ThinkingChessPortable t = new ThinkingChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
                                     if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
                                     {
                                         int Killed = Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
@@ -12395,7 +12395,7 @@ namespace RefrigtzChessPortable
                                 int[,] Tab = CloneATable(Table);
                                 if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] < 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] > 0))
                                 {
-                                    ThinkingChessPortable t = new ThinkingChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
                                     if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
                                     {
                                         int Killed = Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
@@ -12478,7 +12478,7 @@ namespace RefrigtzChessPortable
                                 int[,] Tab = CloneATable(Table);
                                 if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] > 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] < 0))
                                 {
-                                    ThinkingChessPortable t = new ThinkingChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
                                     if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
                                     {
                                         int Killed = Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
@@ -12510,7 +12510,7 @@ namespace RefrigtzChessPortable
                                 int[,] Tab = CloneATable(Table);
                                 if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] > 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] < 0))
                                 {
-                                    ThinkingChessPortable t = new ThinkingChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
                                     if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
                                     {
                                         int Killed = Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
@@ -12593,7 +12593,7 @@ namespace RefrigtzChessPortable
                                 int[,] Tab = CloneATable(Table);
                                 if ((Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] < 0 && Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] > 0))
                                 {
-                                    ThinkingChessPortable t = new ThinkingChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
                                     if (Scop(AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]))
                                     {
                                         int Killed = Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]);
@@ -12625,7 +12625,7 @@ namespace RefrigtzChessPortable
                                 int[,] Tab = CloneATable(Table);
                                 if ((Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] > 0 && Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] < 0))
                                 {
-                                    ThinkingChessPortable t = new ThinkingChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
                                     if (Scop(AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]))
                                     {
                                         int Killed = Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]);
@@ -12708,7 +12708,7 @@ namespace RefrigtzChessPortable
                                 int[,] Tab = CloneATable(Table);
                                 if ((Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] < 0 && Tab[AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]] > 0))
                                 {
-                                    ThinkingChessPortable t = new ThinkingChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
                                     if (Scop(AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]))
                                     {
                                         int Killed = Math.Abs(Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]]);
@@ -12740,7 +12740,7 @@ namespace RefrigtzChessPortable
                                 int[,] Tab = CloneATable(Table);
                                 if ((Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] > 0 && Tab[AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]] < 0))
                                 {
-                                    ThinkingChessPortable t = new ThinkingChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
                                     if (Scop(AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]))
                                     {
                                         int Killed = Math.Abs(Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]]);
@@ -14570,7 +14570,7 @@ namespace RefrigtzChessPortable
                 {
                     Order = ord;
                     int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                    var newTask = Task.Factory.StartNew(() => SolderThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                    var newTask = Task.Factory.StartNew(() => SolderThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                     newTask.Wait(); newTask.Dispose();
@@ -14641,7 +14641,7 @@ namespace RefrigtzChessPortable
                     {
                         Order = ord;
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => ElephantThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                        var newTask = Task.Factory.StartNew(() => ElephantThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -14702,7 +14702,7 @@ namespace RefrigtzChessPortable
                     if (Scop(ii, jj, ii + 2, jj + 1, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj + 1, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj + 1, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -14728,7 +14728,7 @@ namespace RefrigtzChessPortable
                 if (Scop(ii, jj, ii - 2, jj - 1, 3))
                 {
                     int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                    var newTask = Task.Factory.StartNew(() => HourseThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj - 1, Castle));
+                    var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj - 1, Castle));
 
 
                     newTask.Wait(); newTask.Dispose();
@@ -14755,7 +14755,7 @@ namespace RefrigtzChessPortable
                     if (Scop(ii, jj, ii + 2, jj - 1, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj - 1, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj - 1, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -14780,7 +14780,7 @@ namespace RefrigtzChessPortable
                 if (Scop(ii, jj, ii - 2, jj + 1, 3))
                 {
                     int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                    var newTask = Task.Factory.StartNew(() => HourseThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj + 1, Castle));
+                    var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj + 1, Castle));
 
 
                     newTask.Wait(); newTask.Dispose();
@@ -14807,7 +14807,7 @@ namespace RefrigtzChessPortable
                     if (Scop(ii, jj, ii + 1, jj + 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj + 2, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj + 2, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -14835,7 +14835,7 @@ namespace RefrigtzChessPortable
                     if (Scop(ii, jj, ii - 1, jj - 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj - 2, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj - 2, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -14863,7 +14863,7 @@ namespace RefrigtzChessPortable
                     if (Scop(ii, jj, ii + 1, jj - 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj - 2, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj - 2, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -14890,7 +14890,7 @@ namespace RefrigtzChessPortable
                     if (Scop(ii, jj, ii - 1, jj + 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj + 2, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj + 2, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -15015,7 +15015,7 @@ namespace RefrigtzChessPortable
                         {
                             Order = ord;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            var newTask = Task.Factory.StartNew(() => CastlesThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                            var newTask = Task.Factory.StartNew(() => CastlesThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                             newTask.Wait(); newTask.Dispose();
@@ -15049,7 +15049,7 @@ namespace RefrigtzChessPortable
                         {
                             Order = ord;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            var newTask = Task.Factory.StartNew(() => CastlesThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                            var newTask = Task.Factory.StartNew(() => CastlesThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
                             newTask.Wait(); newTask.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -15093,7 +15093,7 @@ namespace RefrigtzChessPortable
                     {
                         Order = ord;
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => MinisterThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                        var newTask = Task.Factory.StartNew(() => MinisterThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -15217,7 +15217,7 @@ namespace RefrigtzChessPortable
                             {
                                 Order = ord;
                                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                                var newTask = Task.Factory.StartNew(() => KingThinkingChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                                var newTask = Task.Factory.StartNew(() => KingThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                                 newTask.Wait(); newTask.Dispose();
@@ -15584,7 +15584,7 @@ namespace RefrigtzChessPortable
                     int[,] TableS = new int[8, 8];
                     ///"Inizialization of This New Class (Current is Dynamic class Object) is MalFunction (Constant Variable Count).
                     ///Most Dot Net FrameWork Hot Path
-                    ///Create A Clone of Current Table Constant in ThinkingChessPortable Object Tasble.
+                    ///Create A Clone of Current Table Constant in ThinkingRefrigtzChessPortable Object Tasble.
                     ///For Stored Location of Objects.
                     var ii = Row;
                     var jj = Column;
@@ -15622,7 +15622,7 @@ namespace RefrigtzChessPortable
                     ///"Inizialization of This New Class (Current is Dynamic class Object) is MalFunction (Constant Variable Count).
                     QuantumAtamata Current = new QuantumAtamata(3, 3, 3);
                     ///Most Dot Net FrameWork Hot Path
-                    ///Create A Clone of Current Table Constant in ThinkingChessPortable Object Tasble.
+                    ///Create A Clone of Current Table Constant in ThinkingRefrigtzChessPortable Object Tasble.
                     for (var RowS = 0; RowS < 8; RowS++)
                         for (var ColS = 0; ColS < 8; ColS++)
                         {

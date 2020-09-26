@@ -34,7 +34,7 @@ namespace RefrigtzChessPortable
         public static long MaxHeuristicxB = -20000000000000000;
         public float Row, Column;
         public Color color;
-        public ThinkingChessPortable[] CastleThinking = new ThinkingChessPortable[AllDraw.CastleMovments];
+        public ThinkingRefrigtzChessPortable[] CastleThinking = new ThinkingRefrigtzChessPortable[AllDraw.CastleMovments];
         public int[,] Table = null;
         public int Current = 0;
         public int Order;
@@ -106,7 +106,7 @@ namespace RefrigtzChessPortable
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.CastleMovments; ii++)
-                    CastleThinking[ii] = new ThinkingChessPortable(ii, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 4);
+                    CastleThinking[ii] = new ThinkingRefrigtzChessPortable(ii, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 4);
 
                 Row = i;
                 Column = j;
@@ -167,7 +167,7 @@ namespace RefrigtzChessPortable
             for (var i = 0; i < AllDraw.CastleMovments; i++)
             {
 
-                AA.CastleThinking[i] = new ThinkingChessPortable(i, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.CastleThinking[i] = new ThinkingRefrigtzChessPortable(i, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.CastleThinking[i].Clone(ref AA.CastleThinking[i]);
 
             }

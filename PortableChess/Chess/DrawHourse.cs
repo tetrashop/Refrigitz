@@ -34,7 +34,7 @@ namespace RefrigtzChessPortable
         public float Row, Column;
         public Color color;
         public int[,] Table = null;
-        public ThinkingChessPortable[] HourseThinking = new ThinkingChessPortable[AllDraw.HourseMovments];
+        public ThinkingRefrigtzChessPortable[] HourseThinking = new ThinkingRefrigtzChessPortable[AllDraw.HourseMovments];
         public int Current = 0;
         public int Order;
         int CurrentAStarGredyMax = -1;
@@ -100,7 +100,7 @@ namespace RefrigtzChessPortable
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.HourseMovments; ii++)
-                    HourseThinking[ii] = new ThinkingChessPortable(ii,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 4, 3);
+                    HourseThinking[ii] = new ThinkingRefrigtzChessPortable(ii,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 4, 3);
 
                 Row = i;
                 Column = j;
@@ -161,7 +161,7 @@ namespace RefrigtzChessPortable
             for (var i = 0; i < AllDraw.HourseMovments; i++)
             {
 
-                AA.HourseThinking[i] = new ThinkingChessPortable(i,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.HourseThinking[i] = new ThinkingRefrigtzChessPortable(i,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.HourseThinking[i].Clone(ref AA.HourseThinking[i]);
 
             }

@@ -15,27 +15,27 @@ namespace RefrigtzChessPortable
         {
             int i, j;
             square = new int[8, 8];
-            square[0, 0] = 1;//Brown castle
-            square[1, 0] = 2;//Brown knight
-            square[2, 0] = 3;//Brown bishop
-            square[3, 0] = 4;//Brown queen
-            square[4, 0] = 5;//Brown king
-            square[5, 0] = 3;//Brown bishop
-            square[6, 0] = 2;//Brown knight
-            square[7, 0] = 1;//Brown castle
+            square[0, 0] = 1;//Black castle
+            square[1, 0] = 2;//Black knight
+            square[2, 0] = 3;//Black bishop
+            square[3, 0] = 4;//Black queen
+            square[4, 0] = 5;//Black king
+            square[5, 0] = 3;//Black bishop
+            square[6, 0] = 2;//Black knight
+            square[7, 0] = 1;//Black castle
             for (i = 0; i < 8; i++)
             {
-                square[i, 1] = 6;//Brown pawns
-                square[i, 6] = 12;//Gray pawns
+                square[i, 1] = 6;//Black pawns
+                square[i, 6] = 12;//White pawns
             }
-            square[0, 7] = 7;//Gray castle
-            square[1, 7] = 8;//Gray knight
-            square[2, 7] = 9;//Gray bishop
-            square[3, 7] = 10;//Gray queen
-            square[4, 7] = 11;//Gray king
-            square[5, 7] = 9;//Gray bishop
-            square[6, 7] = 8;//Gray knight
-            square[7, 7] = 7;//Gray castle
+            square[0, 7] = 7;//White castle
+            square[1, 7] = 8;//White knight
+            square[2, 7] = 9;//White bishop
+            square[3, 7] = 10;//White queen
+            square[4, 7] = 11;//White king
+            square[5, 7] = 9;//White bishop
+            square[6, 7] = 8;//White knight
+            square[7, 7] = 7;//White castle
             for (i = 0; i < 8; i++)
                 for (j = 2; j < 6; j++)
                     square[i, j] = 0;//Empty
@@ -47,40 +47,40 @@ namespace RefrigtzChessPortable
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
                 {
-                    if (Table[i,j] == -1)
+                    if (Table[i, j] == -1)
                         square[i, j] = 6;
                     else
-                    if (Table[i,j] == 1)
+                    if (Table[i, j] == 1)
                         square[i, j] = 12;
                     else
-                    if (Table[i,j] == 2)
+                    if (Table[i, j] == 2)
                         square[i, j] = 9;
                     else
-                    if (Table[i,j] == -2)
+                    if (Table[i, j] == -2)
                         square[i, j] = 3;
                     else
-                    if (Table[i,j] == -3)
+                    if (Table[i, j] == -3)
                         square[i, j] = 2;
                     else
-                    if (Table[i,j] == 3)
+                    if (Table[i, j] == 3)
                         square[i, j] = 8;
                     else
-                    if (Table[i,j] == 4)
+                    if (Table[i, j] == 4)
                         square[i, j] = 7;
                     else
-                    if (Table[i,j] == -4)
+                    if (Table[i, j] == -4)
                         square[i, j] = 1;
                     else
-                    if (Table[i,j] == 5)
+                    if (Table[i, j] == 5)
                         square[i, j] = 10;
                     else
-                  if (Table[i,j] == -5)
+                  if (Table[i, j] == -5)
                         square[i, j] = 4;
                     else
-                  if (Table[i,j] == -6)
+                  if (Table[i, j] == -6)
                         square[i, j] = 5;
                     else
-                    if (Table[i,j] == 6)
+                    if (Table[i, j] == 6)
                         square[i, j] = 11;
                     else
                         square[i, j] = 0;
@@ -95,42 +95,42 @@ namespace RefrigtzChessPortable
                 for (int j = 0; j < 8; j++)
                 {
                     if (square[i, j] == 6)
-                        Table[i,j] = -1;
+                        Table[i, j] = -1;
                     else
                           if (square[i, j] == 12)
-                        Table[i,j] = 1;
+                        Table[i, j] = 1;
                     else
                           if (square[i, j] == 9)
-                        Table[i,j] = 2;
+                        Table[i, j] = 2;
                     else
                           if (square[i, j] == 2)
-                        Table[i,j] = -3;
+                        Table[i, j] = -3;
                     else
                           if (square[i, j] == 3)
-                        Table[i,j] = -2;
+                        Table[i, j] = -2;
                     else
                           if (square[i, j] == 8)
-                        Table[i,j] = 3;
+                        Table[i, j] = 3;
                     else
                           if (square[i, j] == 7)
-                        Table[i,j] = 4;
+                        Table[i, j] = 4;
                     else
                           if (square[i, j] == 1)
-                        Table[i,j] = -4;
+                        Table[i, j] = -4;
                     else
                           if (square[i, j] == 10)
-                        Table[i,j] = 5;
+                        Table[i, j] = 5;
                     else
                         if (square[i, j] == 4)
-                        Table[i,j] = -5;
+                        Table[i, j] = -5;
                     else
                         if (square[i, j] == 5)
-                        Table[i,j] = -6;
+                        Table[i, j] = -6;
                     else
                           if (square[i, j] == 11)
-                        Table[i,j] = 6;
+                        Table[i, j] = 6;
                     else
-                        Table[i,j] = 0;
+                        Table[i, j] = 0;
                 }
             return Table;
         }
@@ -143,40 +143,40 @@ namespace RefrigtzChessPortable
                 for (int i = 0; i < 8; i++)
                     for (int j = 0; j < 8; j++)
                     {
-                        if (Table[i,j] == -1)
+                        if (Table[i, j] == -1)
                             square[i, j] = 6;
                         else
-                    if (Table[i,j] == 1)
+                    if (Table[i, j] == 1)
                             square[i, j] = 12;
                         else
-                    if (Table[i,j] == 2)
+                    if (Table[i, j] == 2)
                             square[i, j] = 9;
                         else
-                    if (Table[i,j] == -2)
+                    if (Table[i, j] == -2)
                             square[i, j] = 3;
                         else
-                    if (Table[i,j] == -3)
+                    if (Table[i, j] == -3)
                             square[i, j] = 2;
                         else
-                    if (Table[i,j] == 3)
+                    if (Table[i, j] == 3)
                             square[i, j] = 8;
                         else
-                    if (Table[i,j] == 4)
+                    if (Table[i, j] == 4)
                             square[i, j] = 7;
                         else
-                    if (Table[i,j] == -4)
+                    if (Table[i, j] == -4)
                             square[i, j] = 1;
                         else
-                    if (Table[i,j] == 5)
+                    if (Table[i, j] == 5)
                             square[i, j] = 10;
                         else
-                  if (Table[i,j] == -5)
+                  if (Table[i, j] == -5)
                             square[i, j] = 4;
                         else
-                  if (Table[i,j] == -6)
+                  if (Table[i, j] == -6)
                             square[i, j] = 5;
                         else
-                    if (Table[i,j] == 6)
+                    if (Table[i, j] == 6)
                             square[i, j] = 11;
                         else
                             square[i, j] = 0;
@@ -192,9 +192,9 @@ namespace RefrigtzChessPortable
         public int getbcolor(int i, int j)
         {
             if ((i + j) % 2 == 0)
-                return 2;//back color of the board is Gray
+                return 2;//back color of the board is white
             else
-                return 1;//back color of the board is Brown
+                return 1;//back color of the board is black
         }
 
         public void setSquare(int value, int i, int j)
@@ -218,9 +218,9 @@ namespace RefrigtzChessPortable
 
             string str;
             if (color == 1)
-                str = "Gray ";
+                str = "White ";
             else
-                str = "Brown ";
+                str = "Black ";
 
             System.Windows.Forms.MessageBox.Show(str);
             return p;

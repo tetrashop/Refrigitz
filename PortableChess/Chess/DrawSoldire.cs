@@ -40,7 +40,7 @@ namespace RefrigtzChessPortable
         public static int MaxHeuristicxS = int.MinValue;
         public float Row, Column;
         public Color color;
-        public ThinkingChessPortable[] SoldierThinking = new ThinkingChessPortable[AllDraw.SodierMovments];
+        public ThinkingRefrigtzChessPortable[] SoldierThinking = new ThinkingRefrigtzChessPortable[AllDraw.SodierMovments];
         public int[,] Table = null;
         public int Order = 0;
         public int Current = 0;
@@ -122,7 +122,7 @@ namespace RefrigtzChessPortable
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.SodierMovments; ii++)
 
-                    SoldierThinking[ii] = new ThinkingChessPortable(ii,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 4, Ord, TB, Cur, 16, 1);
+                    SoldierThinking[ii] = new ThinkingRefrigtzChessPortable(ii,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 4, Ord, TB, Cur, 16, 1);
                 Row = i;
                 Column = j;
                 color = a;
@@ -149,7 +149,7 @@ namespace RefrigtzChessPortable
             for (var i = 0; i < AllDraw.SodierMovments; i++)
             {
 
-                AA.SoldierThinking[i] = new ThinkingChessPortable(i,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.SoldierThinking[i] = new ThinkingRefrigtzChessPortable(i,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.SoldierThinking[i].Clone(ref AA.SoldierThinking[i]);
 
             }

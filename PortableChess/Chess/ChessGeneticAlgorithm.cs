@@ -635,7 +635,7 @@ namespace RefrigtzChessPortable
                             GeneticTable[Gen1, Gen2] = GeneticTable[CromosomRow, CromosomColumn];
                             GeneticTable[CromosomRow, CromosomColumn] = 0;
                             //Table Repeatative Consideration.
-                            if (ThinkingChessPortable.ExistTableInList(CloneATable(GeneticTable), List, 0))
+                            if (ThinkingRefrigtzChessPortable.ExistTableInList(CloneATable(GeneticTable), List, 0))
                             {
                                 GeneticTable[CromosomRow, CromosomColumn] = GeneticTable[Gen1, Gen2];
                                 GeneticTable[Gen1, Gen2] = 0;

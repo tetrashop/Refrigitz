@@ -36,7 +36,7 @@ namespace RefrigtzChessPortable
         public float Row, Column;
         public Color color;
         public int[,] Table = null;
-        public ThinkingChessPortable[] KingThinking = new ThinkingChessPortable[AllDraw.KingMovments];
+        public ThinkingRefrigtzChessPortable[] KingThinking = new ThinkingRefrigtzChessPortable[AllDraw.KingMovments];
         public int Current = 0;
         public int Order;
         int CurrentAStarGredyMax = -1;
@@ -106,7 +106,7 @@ namespace RefrigtzChessPortable
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.KingMovments; ii++)
-                    KingThinking[ii] = new ThinkingChessPortable(ii, 6, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 2, 6);
+                    KingThinking[ii] = new ThinkingRefrigtzChessPortable(ii, 6, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 2, 6);
 
                 Row = i;
                 Column = j;
@@ -168,7 +168,7 @@ namespace RefrigtzChessPortable
             for (var i = 0; i < AllDraw.KingMovments; i++)
             {
 
-                AA.KingThinking[i] = new ThinkingChessPortable(i, 6, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.KingThinking[i] = new ThinkingRefrigtzChessPortable(i, 6, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.KingThinking[i].Clone(ref AA.KingThinking[i]);
 
             }

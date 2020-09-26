@@ -54,7 +54,9 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class AllDraw//: IDisposable
     {
-        public static Timer Wtime = null;
+        //justicce height
+        static int MaxxLevel = 0, CurrentMaxLevel = 0; public static Timer Wtime = null;
+
         public static Timer Btime = null;
         public static int wtime = 4 * 60 * 1000;
         public static int btime = 4 * 60 * 1000;
@@ -69,7 +71,7 @@ namespace RefrigtzChessPortable
         public const float MaxTimeInMillisseconds = 10;//Max 10 second
         public static float TimeInitiation;
 
-        public static int CalIdle = 1;
+        public static int CalIdle = 0;
         public static int PlatformHelperProcessorCount = 2;
 
         public static int CompleteNumber = 300;
@@ -141,7 +143,7 @@ namespace RefrigtzChessPortable
         public static int TaskEnd = 0;
         public static String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
         public static int OrderPlate = 1;
-        public static bool Blitz = true;
+        public static bool Blitz = false;
         public static int ConvertedKind = -2;
         public static bool ConvertWait = true;
         public static bool Stockfish = false;
@@ -192,7 +194,7 @@ namespace RefrigtzChessPortable
         public static int SignKingDangour = -1;
         public static bool DrawTable = true;
         public static int[,] TableVeryfy = new int[8, 8];
-        public static int MaxAStarGreedy = 2;
+        public static int MaxAStarGreedy = 1;
         public static int[,] TableVeryfyConst = new int[8, 8];
         public static List<int[,]> TableCurrent = new List<int[,]>();
         public static bool NoTableFound = false;
@@ -8637,11 +8639,22 @@ namespace RefrigtzChessPortable
             Object a1 = new Object();
             lock (a1)
             {
+                if (MaxAStarGreedy < MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
+                {
+                    MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
+                }
+
+
                 Object Omm = new Object();
                 lock (Omm)
                 {
-                    if (LeafAStarGreedy >= MaxAStarGreedy)
+                    if (CurrentMaxLevel >= MaxAStarGreedy)
                         return;
+                    else
+                    {
+                        if (CurrentMaxLevel < CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
+                            CurrentMaxLevel = CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
+                    }
                     Object OOOO = new Object();
                     lock (OOOO)
                     {
@@ -17491,22 +17504,43 @@ namespace RefrigtzChessPortable
             }
         }
         //boundry condition determistic method for break
+        //boundry condition determistic method for break
         bool FullBoundryConditions(int Current, int Order, int iAStarGreedy)
         {
             Object O = new Object();
             lock (O)
             {
+                if (CalIdle == 2)
+                    return true;
                 bool IS = false;
                 if (!CompleteTreeDo)
                 {
                     try
                     {
-                        if (iAStarGreedy < 0 //&& iAStarGreedy < MaxDuringLevelThinkingCreation
-                       )
+                        //heigth justice math and logic
+                        if (MaxAStarGreedy <MaxAStarGreedy+ CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
                         {
-                            IS = true;
+                            MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                         }
-                        //Gray
+
+
+                        Object Omm = new Object();
+                        lock (Omm)
+                        {
+                            if (CurrentMaxLevel >= MaxAStarGreedy)
+                                return true;
+                            else
+                            {
+                                if (CurrentMaxLevel < CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
+                                    CurrentMaxLevel = CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
+                            }
+                            /* if (iAStarGreedy < 0 //&& iAStarGreedy < MaxDuringLevelThinkingCreation
+                        )
+                             {
+                                 IS = true;
+                             }*/
+                        }
+                        //gray
                         if (Order == 1)
                         {
                             IS = IS || FullBoundryConditionsGray(Current, Order, iAStarGreedy);

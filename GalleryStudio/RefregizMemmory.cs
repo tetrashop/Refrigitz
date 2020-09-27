@@ -138,7 +138,7 @@ namespace GalleryStudio
                     if (tQ == null)
                         return tQ;
 
-                    tQ = tQ.LoaderECQ(Quantum, Order, DummyFileStream, Formatters);
+                    tQ = tQ.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
 
                     DummyFileStream.Flush();
                     DummyFileStream.Close();
@@ -197,7 +197,7 @@ namespace GalleryStudio
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
 
                 Formatters.Serialize(DummyFileStream, CurrentQ);
-                CurrentQ.RewriteAllDrawRecQ(Formatters, DummyFileStream, Order);
+                CurrentQ.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
 
 
                 DummyFileStream.Flush(); DummyFileStream.Close();

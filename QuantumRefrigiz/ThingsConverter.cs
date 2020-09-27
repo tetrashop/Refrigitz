@@ -8,10 +8,13 @@ namespace QuantumRefrigiz
     [Serializable]
     public class ThingsConverter
     {
+        
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is ASsigned but its value is never used
+//#pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
+#pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
         int Spaces = 0;
-//#pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is ASsigned but its value is never used
+#pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
+//#pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
 
         //Initiate Global Variables.
         public static bool LoadConvertTable = false;
@@ -36,8 +39,7 @@ namespace QuantumRefrigiz
 
         //AllDraw. THIS;
         public ThingsConverter()
-        {
-            //long Time = TimeElapced.TimeNow();
+        { //long Time = TimeElapced.TimeNow();Spaces++;
         }
         //Constructor
         public ThingsConverter(bool Arrangments, int i, int j, Color a, int[,] Tab, int Ord, bool TB, int Cur//,ref AllDraw. THI
@@ -55,24 +57,17 @@ namespace QuantumRefrigiz
 
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ThingsConverter:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
         }
+        //return maximum of six type values 
+        //clone a table
         int[,] CloneATable(int[,] Tab)
         {
-
-            Object O = new Object();
-            lock (O)
-            {
-                //Create and new an Object.
-                int[,] Table = new int[8, 8];
-                //ASsigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
-                        Table[i, j] = Tab[i, j];
-                //Return New Object.
-
-                return Table;
-            }
-
+            int[,] Tabl = new int[8, 8];
+            for (var i = 0; i < 8; i++)
+                for (var j = 0; j < 8; j++)
+                    Tabl[i, j] = Tab[i, j];
+            return Tabl;
         }
+
         public ThingsConverter(bool arrangmentsChanged, int rowSource, int columnSource, Color color, int[,] tableS, int order, int v)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
@@ -184,7 +179,7 @@ namespace QuantumRefrigiz
                             }
                             else
                                 Rand = (new Random()).Next(0, 4);
-                            //If Rand is Equaled the Operation will cuASed automaticcally base on Color..
+                            //If Rand is Equaled the Operation will cuased automaticcally base on Color..
                             if (Rand == 0)
                             {
                                 if (Order == 1)
@@ -292,7 +287,7 @@ namespace QuantumRefrigiz
                                 }
                                 else
                                     Rand = (new Random()).Next(0, 4);
-                                //If Rand is Equaled the Operation will cuASed automaticcally base on Color..
+                                //If Rand is Equaled the Operation will cuased automaticcally base on Color..
                                 if (Rand == 0)
                                 {
                                     if (Order == 1)
@@ -403,7 +398,7 @@ namespace QuantumRefrigiz
                                 }
                                 else
                                     Rand = (new Random()).Next(0, 4);
-                                //If Rand is Equaled the Operation will cuASed automaticcally base on Color..
+                                //If Rand is Equaled the Operation will cuased automaticcally base on Color..
                                 if (Rand == 0)
                                 {
                                     if (Order == 1)

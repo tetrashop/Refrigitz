@@ -40,7 +40,13 @@ namespace QuantumRefrigiz
         public int[,] Table = null;
         public int Current = 0;
         public int Order;
+
+
+
         public ThinkingQuantumChess[] MinisterThinkingQuantum = new ThinkingQuantumChess[AllDraw.MinisterMovments];
+
+
+
         int CurrentAStarGredyMax = -1;
 
         static void Log(Exception ex)

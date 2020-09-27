@@ -167,7 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\GalleryStudio\GalleryStudio.csproj">
-      <Project>{257fbd67-c2d8-4e20-8d14-9a4e27341e1a}</Project>
+      <Project>{9bbdd240-bd25-43ee-b5af-3f9546614587}</Project>
       <Name>GalleryStudio</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\QuantumRefrigiz\QuantumRefrigiz.csproj">

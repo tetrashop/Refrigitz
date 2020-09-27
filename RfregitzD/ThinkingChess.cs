@@ -47,12 +47,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LearningMachine;
-using ImageTextDeepLearning;
+
+
 namespace RefrigtzDLL
 {
     [Serializable]
     public class ThinkingChess//: IDisposable
     {
+        public static string OutP = "";
         List<List<List<int[]>>> MovableAllObjectsList = new List<List<List<int[]>>>();
         public int RemoveOfDisturbIndex = -1;
         int HeuristicDoubleDefenceIndexInOnGameMidle = 0;
@@ -400,6 +402,16 @@ namespace RefrigtzDLL
 
             }
         }
+        public string AsS(int i,int j,int ii,int jj)
+        {
+            object o = new object();
+            lock (o)
+            {
+                OutP = Alphabet(i) + Number(j) + Alphabet(ii) + Number(jj);
+                return OutP ;
+            }
+        }
+        public ThinkingChess() { }
         //Constructor
         public ThinkingChess(int iInde, int KindO, int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, int i, int j)
         {
@@ -8681,7 +8693,7 @@ namespace RefrigtzDLL
                     //The Index out of range exeption is not fixable.
                     if (So != null) if (So[i] != null)
                         {
-                            //When int of items is gray or Brown.
+                            //When int of items is Gray or Brown.
                             if (So[i].color == Color.Gray || So[i].color == Color.Brown)
                             {
                                 if (Mi)
@@ -9041,7 +9053,7 @@ namespace RefrigtzDLL
                     Object OOO = new Object();
                     lock (OOO)
                     {
-                        //gray
+                        //Gray
                         if (Order == -1)
                         {
                             //Repeate for Solder.
@@ -9794,6 +9806,7 @@ namespace RefrigtzDLL
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -9945,6 +9958,7 @@ namespace RefrigtzDLL
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -10444,6 +10458,7 @@ namespace RefrigtzDLL
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -10576,6 +10591,7 @@ namespace RefrigtzDLL
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -10707,6 +10723,9 @@ namespace RefrigtzDLL
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
+
+
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -11875,6 +11894,7 @@ namespace RefrigtzDLL
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -11995,6 +12015,7 @@ namespace RefrigtzDLL
                 TableListKing.Add(CloneATable(TableS));
                 IndexKing++;
                 //Calculate Heuristic Sumation and Store in Specific List.
+                AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                 int[] Hu = new int[10]; String H = "";
                 Object A6 = new Object();
                 lock (A6)
@@ -14444,6 +14465,7 @@ namespace RefrigtzDLL
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
 
                 String H = "";
+                AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                 int[] Hu = new int[10];
                 Object A6 = new Object();
                 lock (A6)
@@ -15327,7 +15349,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListSolder.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15336,7 +15358,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListElefant.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15345,7 +15367,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListHourse.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15354,7 +15376,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListCastle.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15363,7 +15385,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListMinister.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15372,7 +15394,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListKing.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
                         });
                     }
                     FullGameAllow = false;

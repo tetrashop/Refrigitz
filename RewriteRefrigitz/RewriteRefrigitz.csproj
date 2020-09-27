@@ -79,10 +79,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GalleryStudio\GalleryStudio.csproj">
-      <Project>{257fbd67-c2d8-4e20-8d14-9a4e27341e1a}</Project>
-      <Name>GalleryStudio</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Refrigtz\bin\Debug\All\All\All.csproj">
       <Project>{ac2b4cf6-3294-46d5-9af0-c58ee5b637d4}</Project>
       <Name>chtc</Name>

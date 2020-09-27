@@ -40,11 +40,23 @@ namespace QuantumRefrigiz
         public float Row, Column;
         public Color color;
         public int[,] Table = null;
+
+
+
         public ThinkingQuantumChess[] KingThinkingQuantum = new ThinkingQuantumChess[AllDraw.KingMovments];
+
+
+
         public int Current = 0;
         public int Order;
         int CurrentAStarGredyMax = -1;
+
+
+
         public ThinkingQuantumChess thinkingQuantumString = null;
+
+
+
 
         static void Log(Exception ex)
         {

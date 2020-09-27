@@ -37,7 +37,13 @@ namespace QuantumRefrigiz
         public float Row, Column;
         public Color color;
         public int[,] Table = null;
+
+
+
         public ThinkingQuantumChess[] HourseThinkingQuantum = new ThinkingQuantumChess[AllDraw.HourseMovments];
+
+
+
         public int Current = 0;
         public int Order;
         int CurrentAStarGredyMax = -1;

@@ -37,7 +37,13 @@ namespace QuantumRefrigiz
         public static long MaxHeuristicxB = -20000000000000000;
         public float Row, Column;
         public Color color;
+
+
+
         public ThinkingQuantumChess[] CastleThinkingQuantum = new ThinkingQuantumChess[AllDraw.CastleMovments];
+
+
+
         public int[,] Table = null;
         public int Current = 0;
         public int Order;

@@ -46,6 +46,7 @@ using System.Text;
 using System.IO;
 using Chess;
 using System.Diagnostics;
+ 
 namespace Refrigtz
 {
     [Serializable]

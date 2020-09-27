@@ -61,7 +61,13 @@ namespace QuantumRefrigiz
         public static int MaxHeuristicxS = int.MinValue;
         public float Row, Column;
         public Color color;
+
+
+
         public ThinkingQuantumChess[] SoldierThinkingQuantum = new ThinkingQuantumChess[AllDraw.SodierMovments];
+
+
+
         public int[,] Table = null;
         public int Order = 0;
         public int Current = 0;

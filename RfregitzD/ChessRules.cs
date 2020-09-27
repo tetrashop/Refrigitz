@@ -12,9 +12,11 @@ namespace RefrigtzDLL
     {
        
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'ChessRules.Spaces' is assigned but its value is never used
+
+
         int Spaces = 0;
-//#pragma warning restore CS0414 // The field 'ChessRules.Spaces' is assigned but its value is never used
+
+//
 
         public bool IgnoreSelfObject = false;
         public static int ObjectHittedRow = -1;
@@ -88,7 +90,9 @@ namespace RefrigtzDLL
 
                 }
             }
+#pragma warning disable CS0168 // The variable 't' is declared but never used
             catch (Exception t) { }
+#pragma warning restore CS0168 // The variable 't' is declared but never used
         }
         public ChessRules(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool ArrangmentsChanged, int oRDER)
         {
@@ -148,7 +152,7 @@ namespace RefrigtzDLL
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ChessRules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             }
         }
-        //Initiate of Rules of Chess Refregitz.
+        //Initiate of Rules of RefrigtzDLL Refregitz.
         public bool Rules(int RowFirst, //The First Click Row
             int ColumnFirst, //The First Click Column.
             int RowSecond, //The Destination Click Row
@@ -1605,7 +1609,7 @@ namespace RefrigtzDLL
                 }
                 //Separate.
                 if (AllDraw.Less != int.MinValue)
-                    S += " With Heuristic (" +RefrigtzDLL.AllDraw.Less.ToString() + ")--";
+                    S += " With Heuristic (" +AllDraw.Less.ToString() + ")--";
                 else
                     S += " --";
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CreateStatistic:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
@@ -2564,7 +2568,7 @@ namespace RefrigtzDLL
                 return false;
             }
         }
-        //Internal Rule of Chess Method.
+        //Internal Rule of RefrigtzDLL Method.
         private bool Rule(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki, bool SelfHomeStatCP)
         {
             Object O = new Object();

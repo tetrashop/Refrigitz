@@ -36,7 +36,13 @@ namespace QuantumRefrigiz
         public bool ArrangmentsChanged = true;
         public static long MaxHeuristicxE = -20000000000000000;
         public float Row, Column;
+
+
+
         public ThinkingQuantumChess[] ElefantThinkingQuantum = new ThinkingQuantumChess[AllDraw.ElefantMovments];
+
+
+
         public int[,] Table = null;
         public Color color;
         public int Current = 0;

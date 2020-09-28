@@ -120,6 +120,7 @@
     <Compile Include="AboutBoxFaraDars.Designer.cs">
       <DependentUpon>AboutBoxFaraDars.cs</DependentUpon>
     </Compile>
+    <Compile Include="ArtificialInteligenceMoves.cs" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

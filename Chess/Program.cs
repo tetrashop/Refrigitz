@@ -98,7 +98,7 @@ namespace Chess
             ttap.Start();
             Task ttta = new Task(new Action(CoordinationDataStructures));
             ttta.Start();
-            Application.Run(new ChessForm());
+            Application.Run(new RefrigtzDLL.RefrigtzDLLForm());
         }
     }
 }

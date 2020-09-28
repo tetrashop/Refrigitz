@@ -551,10 +551,9 @@ namespace RefrigtzDLL
                     MessageBox.Show("Wait...");
                     //var parallelOptions = new ParallelOptions();
                     //parallelOptions.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount;
-                    RefrigtzDLL.AllDraw.OrderPlateDraw = -1;
+                    RefrigtzDLL.AllDraw.OrderPlateDraw = 1;
                     RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
                     Table = CloneATable(brd.GetTable());
-                    RefrigtzDLL.AllDraw.OrderPlateDraw = -1;
                     RefrigtzDLL.ThinkingChess.TableInitiation = CloneATable(brd.GetTable());
                     //Load AllDraw.asd
                     bool LoadTree = true;
@@ -765,7 +764,7 @@ namespace RefrigtzDLL
                 LoadP = true;
                 RefrigtzDLL.AllDraw.CalIdle = 1;
                 f = new ArtificialInteligenceMove(this);
-                Play(-1, -1);
+                var ah = Task.Factory.StartNew(() => Play(-1, -1));
 
             }
         }

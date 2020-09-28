@@ -143,7 +143,7 @@ namespace RefrigtzDLL
         public static int TaskEnd = 0;
         public static String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
         public static int OrderPlate = 1;
-        public static bool Blitz = true;
+        public static bool Blitz = false;
         public static int ConvertedKind = -2;
         public static bool ConvertWait = true;
         public static bool Stockfish = false;

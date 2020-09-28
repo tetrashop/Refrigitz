@@ -762,6 +762,7 @@ namespace RefrigtzDLL
 
                 MessageBox.Show("Ready...");
                 LoadP = true;
+                RefrigtzDLL.AllDraw.CalIdle = 0;
 
                 f = new ArtificialInteligenceMove(this);
             }

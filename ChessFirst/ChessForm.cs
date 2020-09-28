@@ -141,7 +141,7 @@ namespace RefrigtzDLL
                 //Draw.AStarGreedyString = THIS;
             }
         }
-        void AliceAction(int Order)
+        void BobAction(int Order)
         {
 
 
@@ -166,7 +166,7 @@ namespace RefrigtzDLL
                     Draw.IsCurrentDraw = true;
                 }
                 Draw.AStarGreedyString = Th;
-                Initiate(Color.Brown, -1);
+                Initiate(Color.Gray, 1);
                 AllDraw.Blitz = B;
 
             }
@@ -762,9 +762,10 @@ namespace RefrigtzDLL
 
                 MessageBox.Show("Ready...");
                 LoadP = true;
+                ArtificialInteligenceMove.UpdateIsRunning = true;
                 RefrigtzDLL.AllDraw.CalIdle = 1;
                 f = new ArtificialInteligenceMove(this);
-                var ah = Task.Factory.StartNew(() => Play(-1, -1));
+                 Play(-1, -1);
 
             }
         }
@@ -883,7 +884,7 @@ namespace RefrigtzDLL
 
 
 
-                        var newTask = Task.Factory.StartNew(() => AliceAction(-1));
+                        var newTask = Task.Factory.StartNew(() => BobAction(1));
                         newTask.Wait();
                         newTask.Dispose();
                         if (Draw.TableZero(Table))
@@ -928,7 +929,7 @@ namespace RefrigtzDLL
 
                         RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
                         R = new RefrigtzDLL.ChessGeneticAlgorithm(false, false, false, false, false, false, false, true);
-                        if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, -1, true))
+                        if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, 1, true))
                         {
 
                             int ii = new int();

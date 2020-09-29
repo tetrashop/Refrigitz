@@ -55,7 +55,9 @@ namespace RefrigtzDLL
     public class AllDraw//: IDisposable
     {
         //justicce height
-        static int MaxxLevel = 0, CurrentMaxLevel = 0;
+        static int MaxxLevel = 0;
+        public int CurrentMaxLevel = 0;
+
         public static Timer Wtime = null;
         public static Timer Btime = null;
         public static int wtime = 4 * 60 * 1000;
@@ -8642,22 +8644,37 @@ namespace RefrigtzDLL
                 Object Omm = new Object();
                 lock (Omm)
                 {
-                    if (MaxAStarGreedy < MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
+                    //heigth justice math and logic
+                    /*   if (MaxAStarGreedy < MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
+                       {
+                           MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
+                       }
+                       */
+                    if (MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount)
                     {
-                        MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
+                        MaxAStarGreedy = CurrentMaxLevel;
                     }
-
-
+                    else
+                          if (CurrentMaxLevel >= MaxAStarGreedy)
+                        return;
                     Object Omm1 = new Object();
                     lock (Omm1)
                     {
-                        if (CurrentMaxLevel >= MaxAStarGreedy)
+                        /*if (CurrentMaxLevel >= MaxAStarGreedy)
                             return;
                         else
                         {
+                            //if (CurrentMaxLevel < CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
+                            //CurrentMaxLevel = CurrentMaxLevel + 1;
                             if (CurrentMaxLevel < CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
-                                CurrentMaxLevel = CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
-                        }
+                                 CurrentMaxLevel = CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
+
+                        }*/
+                        /* if (iAStarGreedy < 0 //&& iAStarGreedy < MaxDuringLevelThinkingCreation
+                    )
+                         {
+                             IS = true;
+                         }*/
                     }
                     Object OOOO = new Object();
                     lock (OOOO)
@@ -17519,22 +17536,31 @@ namespace RefrigtzDLL
                     try
                     {
                         //heigth justice math and logic
-                        if (MaxAStarGreedy < MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
+                        /*   if (MaxAStarGreedy < MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
+                           {
+                               MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
+                           }
+                           */
+                        if (MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount)
                         {
-                            MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
+                            MaxAStarGreedy = CurrentMaxLevel;
                         }
-
-
-                        Object Omm = new Object();
-                        lock (Omm)
+                        else
+                         if (CurrentMaxLevel >= MaxAStarGreedy)
+                            return true;
+                        Object Omm1 = new Object();
+                        lock (Omm1)
                         {
-                            if (CurrentMaxLevel >= MaxAStarGreedy)
-                                return true;
+                            /*if (CurrentMaxLevel >= MaxAStarGreedy)
+                                return;
                             else
                             {
+                                //if (CurrentMaxLevel < CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
+                                //CurrentMaxLevel = CurrentMaxLevel + 1;
                                 if (CurrentMaxLevel < CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy))
-                                    CurrentMaxLevel = CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
-                            }
+                                     CurrentMaxLevel = CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
+
+                            }*/
                             /* if (iAStarGreedy < 0 //&& iAStarGreedy < MaxDuringLevelThinkingCreation
                         )
                              {
@@ -21049,9 +21075,10 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 var array1 = Task.Factory.StartNew(() => SolderesOnTable[ik].SoldierThinking[0].AStarGreedy[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy - 1, ii, jj, a, CloneATable(SolderesOnTable[ik].SoldierThinking[0].TableListSolder[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 SolderesOnTable[ik].SoldierThinking[0].AStarGreedy[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                SolderesOnTable[ik].SoldierThinking[0].AStarGreedy[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 if (SolderesOnTable[ik].SoldierThinking[0].AStarGreedyMove.Count > 0)
-                    SolderesOnTable[ik].SoldierThinking[0].AStarGreedyMove[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1] = true;
-            }
+                   SolderesOnTable[ik].SoldierThinking[0].AStarGreedyMove[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1] = true;
+           }
             else if (kind == 2)//elephant 
             {
                 //when verfied is not valied return
@@ -21072,6 +21099,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 var array1 = Task.Factory.StartNew(() => ElephantOnTable[ik].ElefantThinking[0].AStarGreedy[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy - 1, iii, jjj, aa, CloneATable(ElephantOnTable[ik].ElefantThinking[0].TableListElefant[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 ElephantOnTable[ik].ElefantThinking[0].AStarGreedy[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                ElephantOnTable[ik].ElefantThinking[0].AStarGreedy[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 if (ElephantOnTable[ik].ElefantThinking[0].AStarGreedyMove.Count > 0)
                     ElephantOnTable[ik].ElefantThinking[0].AStarGreedyMove[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1] = true;
             }
@@ -21095,6 +21123,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 var array1 = Task.Factory.StartNew(() => HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy - 1, iii, jjj, aa, CloneATable(HoursesOnTable[ik].HourseThinking[0].TableListHourse[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 if (HoursesOnTable[ik].HourseThinking[0].AStarGreedyMove.Count > 0)
                     HoursesOnTable[ik].HourseThinking[0].AStarGreedyMove[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1] = true;
             }
@@ -21118,6 +21147,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 var array1 = Task.Factory.StartNew(() => CastlesOnTable[ik].CastleThinking[0].AStarGreedy[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy - 1, iii, jjj, aa, CloneATable(CastlesOnTable[ik].CastleThinking[0].TableListCastle[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 CastlesOnTable[ik].CastleThinking[0].AStarGreedy[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                CastlesOnTable[ik].CastleThinking[0].AStarGreedy[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 if (CastlesOnTable[ik].CastleThinking[0].AStarGreedyMove.Count > 0)
                     CastlesOnTable[ik].CastleThinking[0].AStarGreedyMove[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1] = true;
             }
@@ -21141,6 +21171,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 var array1 = Task.Factory.StartNew(() => MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy - 1, iii, jjj, aa, CloneATable(MinisterOnTable[ik].MinisterThinking[0].TableListMinister[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel+1;
                 if (MinisterOnTable[ik].MinisterThinking[0].AStarGreedyMove.Count > 0)
                     MinisterOnTable[ik].MinisterThinking[0].AStarGreedyMove[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1] = true;
             }
@@ -21165,6 +21196,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
 
                 array1.Wait(); array1.Dispose();
                 KingOnTable[ik].KingThinking[0].AStarGreedy[KingOnTable[ik].KingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                KingOnTable[ik].KingThinking[0].AStarGreedy[KingOnTable[ik].KingThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 if (KingOnTable[ik].KingThinking[0].AStarGreedyMove.Count > 0)
                     KingOnTable[ik].KingThinking[0].AStarGreedyMove[KingOnTable[ik].KingThinking[0].AStarGreedy.Count - 1] = true;
             }

@@ -884,7 +884,8 @@ namespace RefrigtzDLL
 
                         Table = brd.GetTable();
 
-
+                        if (MovmentsNumber == 0 || MovmentsNumber == 1)
+                            RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
 
                         freezBoard = true;
                         var newTask = Task.Factory.StartNew(() => BobAction(1));

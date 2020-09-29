@@ -21,6 +21,7 @@ namespace RefrigtzDLL
     [Serializable]
     public class ChessForm : System.Windows.Forms.Form
     {
+        bool freezBoard = false;
         ArtificialInteligenceMove f = null;
         public bool LoadP = false;
         static readonly bool UsePenaltyRegardMechnisam = false;
@@ -765,7 +766,7 @@ namespace RefrigtzDLL
                 ArtificialInteligenceMove.UpdateIsRunning = true;
                 RefrigtzDLL.AllDraw.CalIdle = 1;
                 f = new ArtificialInteligenceMove(this);
-                 Play(-1, -1);
+                var array1 = Task.Factory.StartNew(() => Play(-1, -1));
 
             }
         }
@@ -845,6 +846,8 @@ namespace RefrigtzDLL
                     object f = new object();
                     lock (f)
                     {
+                        if (freezBoard)
+                            return 0;
 
                         if (RefrigtzDLL.AllDraw.CalIdle == 0)
                         {
@@ -883,7 +886,7 @@ namespace RefrigtzDLL
 
 
 
-
+                        freezBoard = true;
                         var newTask = Task.Factory.StartNew(() => BobAction(1));
                         newTask.Wait();
                         newTask.Dispose();
@@ -1809,6 +1812,7 @@ namespace RefrigtzDLL
                                 {
                                     if (Com && (order == 1))
                                     {
+                                        freezBoard = false;
                                         MovmentsNumber++;
                                         Table = brd.GetTable();
                                         ClearTableInitiationPreventionOfMultipleMove();
@@ -1891,6 +1895,7 @@ namespace RefrigtzDLL
                             {
                                 if (Com && (order == 1))
                                 {
+                                    freezBoard = false;
                                     MovmentsNumber++;
                                     Table = brd.GetTable();
                                     ClearTableInitiationPreventionOfMultipleMove();

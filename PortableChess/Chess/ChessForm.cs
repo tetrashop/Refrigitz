@@ -605,7 +605,7 @@ namespace RefrigtzChessPortable
 
                                 }
 
-                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                 AllDraw.Blitz = B;
                                 Deeperthandeeper = Store;
@@ -695,7 +695,7 @@ namespace RefrigtzChessPortable
 
                                 }
 
-                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                 AllDraw.Blitz = B;
                                 Deeperthandeeper = Store;
@@ -749,7 +749,7 @@ namespace RefrigtzChessPortable
 
                             }
 
-                            Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                            Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                             AllDraw.Blitz = B;
                             Deeperthandeeper = Store;
@@ -1837,7 +1837,7 @@ namespace RefrigtzChessPortable
                                             AllDraw.ChangedInTreeOccured = false;
 
                                         }
-                                        Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                        Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                         AllDraw.Blitz = B;
 
@@ -1918,7 +1918,7 @@ namespace RefrigtzChessPortable
                                     AllDraw.ChangedInTreeOccured = false;
 
                                 }
-                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
 
 
@@ -2450,7 +2450,7 @@ namespace RefrigtzChessPortable
                                     Draw.AStarGreedyString = thiB;
 
 
-                                    output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 2]), Ord, false, FOUND, 0));
+                                    output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 2]), Ord, false, FOUND, 0));
                                     output.Wait();
                                     output.Dispose();
                                 }
@@ -2469,7 +2469,7 @@ namespace RefrigtzChessPortable
                                     Draw.AStarGreedyString = thiB;
 
 
-                                    output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
+                                    output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
                                     output.Wait();
                                     output.Dispose();
                                 }
@@ -2633,7 +2633,7 @@ namespace RefrigtzChessPortable
                             AllDraw.ChangedInTreeOccured = false;
 
                         }
-                        output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
+                        output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
                         output.Wait();
                         output.Dispose();
                         AllDraw.Blitz = B;

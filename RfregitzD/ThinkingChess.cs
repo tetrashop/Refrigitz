@@ -15349,7 +15349,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListSolder.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15358,7 +15358,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListElefant.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15367,7 +15367,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListHourse.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15376,7 +15376,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListCastle.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15385,7 +15385,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListMinister.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15394,7 +15394,7 @@ namespace RefrigtzDLL
                         Parallel.For(0, TableListKing.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy - 1, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
                         });
                     }
                     FullGameAllow = false;

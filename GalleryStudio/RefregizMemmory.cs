@@ -99,6 +99,7 @@ namespace GalleryStudio
                     BinaryFormatter Formatters = new BinaryFormatter();
                     DummyFileStream.Seek(0, SeekOrigin.Begin);
 
+                    RefrigtzDLL.AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
                     //Console.WriteLine("Loading...");
                     tt = (RefrigtzDLL.AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
@@ -134,6 +135,7 @@ namespace GalleryStudio
 
                     Console.WriteLine("Loading...");
                     DummyFileStream.Seek(0, SeekOrigin.Begin);
+                    RefrigtzDLL.AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
                     tQ = (QuantumRefrigiz.AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tQ == null)
                         return tQ;
@@ -169,6 +171,7 @@ namespace GalleryStudio
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
 
+                Formatters.Serialize(DummyFileStream,RefrigtzDLL.AllDraw.indexStep);
                 Formatters.Serialize(DummyFileStream, Current);
                 Current.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
 
@@ -196,6 +199,7 @@ namespace GalleryStudio
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
 
+                Formatters.Serialize(DummyFileStream, RefrigtzDLL.AllDraw.indexStep);
                 Formatters.Serialize(DummyFileStream, CurrentQ);
                 CurrentQ.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
 

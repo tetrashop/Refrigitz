@@ -99,6 +99,7 @@ namespace RefrigtzChessPortable
                     DummyFileStream.Seek(0, SeekOrigin.Begin);
 
                     Console.WriteLine("Loading...");
+                    AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
                     tt = (AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
                         return tt;
@@ -134,6 +135,7 @@ namespace RefrigtzChessPortable
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
 
+                Formatters.Serialize(DummyFileStream, AllDraw.indexStep);
                 Formatters.Serialize(DummyFileStream, Current);
                 Current.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
 

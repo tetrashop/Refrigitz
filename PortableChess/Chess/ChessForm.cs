@@ -21,6 +21,7 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class RefrigtzChessPortableForm : System.Windows.Forms.Form
     {
+        bool freezBoard = false;
         ArtificialInteligenceMove f = null;
         public bool LoadP = false;
         static readonly bool UsePenaltyRegardMechnisam = false;
@@ -839,28 +840,31 @@ namespace RefrigtzChessPortable
 
                 try
                 {
-                    object f = new object();
+              object f = new object();
                     lock (f)
                     {
+                        if (freezBoard)
+                            return 0;
 
-                        if (RefrigtzChessPortable.AllDraw.CalIdle == 0)
+                        if (AllDraw.CalIdle == 0)
                         {
-                            RefrigtzChessPortable.AllDraw.CalIdle = 2;
+                            AllDraw.CalIdle = 2;
                             return 0;
                         }
                         if (ArtificialInteligenceMove.UpdateIsRunning)
                         {
-                            if (RefrigtzChessPortable.AllDraw.CalIdle == 2)
+                            if (AllDraw.CalIdle == 2)
                             {
-                                RefrigtzChessPortable.AllDraw.CalIdle = 1;
+                                AllDraw.CalIdle = 1;
                                 return 0;
                             }
                         }
                         else
+                            if (!freezBoard)
                             return 0;
 
                     }
-                    bool Com = false;
+                           bool Com = false;
                     int k = 0;
                     int played = 0;
 
@@ -881,6 +885,7 @@ namespace RefrigtzChessPortable
 
 
 
+                        freezBoard = true;
                         var newTask = Task.Factory.StartNew(() => AliceAction(-1));
                         newTask.Wait();
                         newTask.Dispose();
@@ -888,45 +893,49 @@ namespace RefrigtzChessPortable
                         {
                             MessageBox.Show("Board is invalid;");
                             Draw.TableList.Clear();
-                            Draw.TableList.Add(CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]));
+                            Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
                             Draw.SetRowColumn(0);
                             Draw.IsCurrentDraw = true;
-                            RefrigtzChessPortable.ThinkingRefrigtzChessPortable.NoOfMovableAllObjectMove++;
-                            RefrigtzChessPortable.AllDraw.AllowedSupTrue = true;
+                            ThinkingRefrigtzChessPortable.NoOfMovableAllObjectMove++;
+                            AllDraw.AllowedSupTrue = true;
 
                             if (ArtificialInteligenceMove.UpdateIsRunning)
                             {
-                                if (RefrigtzChessPortable.AllDraw.CalIdle == 0)
+                                if (AllDraw.CalIdle == 0)
                                     return 0;
-                                if (RefrigtzChessPortable.AllDraw.CalIdle == 2)
+                                if (AllDraw.CalIdle == 2)
                                 {
-                                    RefrigtzChessPortable.AllDraw.CalIdle = 1;
+                                    AllDraw.CalIdle = 1;
                                     return 0;
                                 }
                             }
                             else
+                            if (!freezBoard)
                                 return 0;
+                            AllDraw.indexStep--;
+
                             goto Again;
                         }
-                        RefrigtzChessPortable.AllDraw.AllowedSupTrue = false;
+                        AllDraw.AllowedSupTrue = false;
 
                         if (ArtificialInteligenceMove.UpdateIsRunning)
                         {
-                            if (RefrigtzChessPortable.AllDraw.CalIdle == 0)
+                            if (AllDraw.CalIdle == 0)
                                 return 0;
-                            if (RefrigtzChessPortable.AllDraw.CalIdle == 2)
+                            if (AllDraw.CalIdle == 2)
                             {
-                                RefrigtzChessPortable.AllDraw.CalIdle = 1;
+                                AllDraw.CalIdle = 1;
                                 return 0;
                             }
                         }
                         else
+                            if (!freezBoard)
                             return 0;
 
 
-                        RefrigtzChessPortable.AllDraw.TableListAction.Add(CloneATable(Table));
-                        R = new RefrigtzChessPortable.RefrigtzChessPortableGeneticAlgorithm(false, false, false, false, false, false, false, true);
-                        if (R.FindGenToModified(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 2], RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1], RefrigtzChessPortable.AllDraw.TableListAction, 0, -1, true))
+                        AllDraw.TableListAction.Add(CloneATable(Table));
+                        R = new RefrigtzChessPortableGeneticAlgorithm(false, false, false, false, false, false, false, true);
+                        if (R.FindGenToModified(AllDraw.TableListAction[AllDraw.TableListAction.Count - 2], AllDraw.TableListAction[AllDraw.TableListAction.Count - 1], AllDraw.TableListAction, 0, -1, true))
                         {
 
                             int ii = new int();
@@ -935,7 +944,7 @@ namespace RefrigtzChessPortable
                             {
 
                                 MessageBox.Show("One or more cromosoms is invalid;");
-                                RefrigtzChessPortable.AllDraw.TableListAction.RemoveAt(RefrigtzChessPortable.AllDraw.TableListAction.Count - 1);
+                                AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
 
 
 
@@ -956,10 +965,10 @@ namespace RefrigtzChessPortable
                             //if (k == 0)
 
                             cl = 0;
-                            if (RefrigtzChessPortable.AllDraw.OrderPlateDraw == 1)
-                                RefrigtzChessPortable.ThinkingRefrigtzChessPortable.NoOfBoardMovedGray++;
+                            if (AllDraw.OrderPlateDraw == 1)
+                                ThinkingRefrigtzChessPortable.NoOfBoardMovedGray++;
                             else
-                                RefrigtzChessPortable.ThinkingRefrigtzChessPortable.NoOfBoardMovedBrown++;
+                                ThinkingRefrigtzChessPortable.NoOfBoardMovedBrown++;
                         }
                         else
                         {
@@ -970,7 +979,7 @@ namespace RefrigtzChessPortable
 
 
 
-                                RefrigtzChessPortable.AllDraw.TableListAction.RemoveAt(RefrigtzChessPortable.AllDraw.TableListAction.Count - 1);
+                                AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
                                 Table = brd.GetTable();
 
 
@@ -1859,6 +1868,7 @@ namespace RefrigtzChessPortable
                               if (Com && (order == 2))
                                     {
 
+                                        freezBoard = false;
                                         MovmentsNumber++;
                                         Table = brd.GetTable();
                                         ClearTableInitiationPreventionOfMultipleMove();
@@ -1943,6 +1953,7 @@ namespace RefrigtzChessPortable
                             {
 
 
+                                freezBoard = false;
                                 Table = brd.GetTable();
                                 MovmentsNumber++;
                                 ClearTableInitiationPreventionOfMultipleMove();

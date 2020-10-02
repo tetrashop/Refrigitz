@@ -885,8 +885,8 @@ namespace RefrigtzDLL
 
                         Table = brd.GetTable();
 
-                        if (MovmentsNumber == 0 || MovmentsNumber == 1)
-                            RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+
+
 
                         freezBoard = true;
                         var newTask = Task.Factory.StartNew(() => BobAction(1));
@@ -915,6 +915,8 @@ namespace RefrigtzDLL
                             else
                             if (!freezBoard)
                                 return 0;
+                            RefrigtzDLL.AllDraw.indexStep--;
+
                             goto Again;
                         }
                         RefrigtzDLL.AllDraw.AllowedSupTrue = false;
@@ -936,7 +938,7 @@ namespace RefrigtzDLL
 
                         RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
                         R = new RefrigtzDLL.ChessGeneticAlgorithm(false, false, false, false, false, false, false, true);
-                        if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, 1, true))
+                        if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, -1, true))
                         {
 
                             int ii = new int();

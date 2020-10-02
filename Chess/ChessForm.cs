@@ -21,6 +21,8 @@ namespace RefrigtzDLL
     [Serializable]
     public class RefrigtzDLLForm : System.Windows.Forms.Form
     {
+        bool freezBoard = false;
+
         ArtificialInteligenceMove f = null;
         public bool LoadP = false;
         static readonly bool UsePenaltyRegardMechnisam = false;
@@ -843,6 +845,8 @@ namespace RefrigtzDLL
                     object f = new object();
                     lock (f)
                     {
+                        if (freezBoard)
+                            return 0;
 
                         if (RefrigtzDLL.AllDraw.CalIdle == 0)
                         {
@@ -858,6 +862,7 @@ namespace RefrigtzDLL
                             }
                         }
                         else
+                            if (!freezBoard)
                             return 0;
 
                     }
@@ -881,7 +886,7 @@ namespace RefrigtzDLL
 
 
 
-
+                        freezBoard = true;
                         var newTask = Task.Factory.StartNew(() => AliceAction(-1));
                         newTask.Wait();
                         newTask.Dispose();
@@ -906,7 +911,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             else
+                            if (!freezBoard)
                                 return 0;
+                            RefrigtzDLL.AllDraw.indexStep--;
+
                             goto Again;
                         }
                         RefrigtzDLL.AllDraw.AllowedSupTrue = false;
@@ -922,6 +930,7 @@ namespace RefrigtzDLL
                             }
                         }
                         else
+                            if (!freezBoard)
                             return 0;
 
 
@@ -1860,6 +1869,7 @@ namespace RefrigtzDLL
                               if (Com && (order == 2))
                                     {
 
+                                        freezBoard = false;
                                         MovmentsNumber++;
                                         Table = brd.GetTable();
                                         ClearTableInitiationPreventionOfMultipleMove();
@@ -1944,6 +1954,7 @@ namespace RefrigtzDLL
                             {
 
 
+                                freezBoard = false;
                                 Table = brd.GetTable();
                                 MovmentsNumber++;
                                 ClearTableInitiationPreventionOfMultipleMove();

@@ -863,6 +863,7 @@ namespace RefrigtzDLL
                             }
                         }
                         else
+                              if (!freezBoard)
                             return 0;
 
                     }

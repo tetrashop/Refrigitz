@@ -1011,6 +1011,8 @@ namespace RefrigtzChessPortable
 
                     if (cl == 0 && k != 0 && played == order)
                     {
+                        freezBoard = false;
+
                         x1 = i;
                         y1 = j;
                         this.pb[i, j].BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;

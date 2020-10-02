@@ -863,6 +863,7 @@ namespace RefrigtzDLL
                             }
                         }
                         else
+                            if (!freezBoard)
                             return 0;
 
                     }
@@ -911,7 +912,8 @@ namespace RefrigtzDLL
                                     return 0;
                                 }
                             }
-                            else
+                            else                                
+                            if (!freezBoard)
                                 return 0;
                             goto Again;
                         }
@@ -927,7 +929,8 @@ namespace RefrigtzDLL
                                 return 0;
                             }
                         }
-                        else
+                        else                           
+                            if (!freezBoard)
                             return 0;
 
 

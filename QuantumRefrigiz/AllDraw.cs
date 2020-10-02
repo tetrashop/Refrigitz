@@ -55,8 +55,7 @@ namespace QuantumRefrigiz
     public class AllDraw//: IDisposable
     {
         //justicce height
-        static int MaxxLevel = 0;
-        public static int indexStep = 1;
+        static int MaxxLevel = 0,indexStep = 1;
         public int CurrentMaxLevel = 0;
         public static Timer Wtime = null;
         public static Timer Btime = null;

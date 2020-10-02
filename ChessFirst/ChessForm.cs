@@ -863,6 +863,7 @@ namespace RefrigtzDLL
                             }
                         }
                         else
+                            if (!freezBoard)
                             return 0;
 
                     }
@@ -912,6 +913,7 @@ namespace RefrigtzDLL
                                 }
                             }
                             else
+                            if (!freezBoard)
                                 return 0;
                             goto Again;
                         }
@@ -928,6 +930,7 @@ namespace RefrigtzDLL
                             }
                         }
                         else
+                            if (!freezBoard)
                             return 0;
 
 
@@ -1876,7 +1879,7 @@ namespace RefrigtzDLL
 
                                         Play(-1, -1);
 
-                                        RefrigtzDLL.AllDraw.CalIdle = 0; 
+                                        RefrigtzDLL.AllDraw.CalIdle = 0;
 
 
 
@@ -1908,7 +1911,7 @@ namespace RefrigtzDLL
                                     tt.Abort();
                                     AllDraw.OrderPlate = 1; OrderPlate = 1;
 
-                                            MessageBox.Show("Move Ready user...");
+                                    MessageBox.Show("Move Ready user...");
 
                                 }
                                 else

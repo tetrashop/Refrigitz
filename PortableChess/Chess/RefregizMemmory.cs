@@ -32,10 +32,10 @@ namespace RefrigtzChessPortable
         public int Kind = 0;
         //static RefregizMemmory Node;
         public AllDraw Current = null;
-         //bool NewListOfNextBegins = true;
+        //bool NewListOfNextBegins = true;
 
 
-        
+
         void SetAllDrawKindString()
         {
             if (AllDrawKind == 4)
@@ -69,7 +69,7 @@ namespace RefrigtzChessPortable
             SetAllDrawKindString();
             SAllDraw = AllDrawKindString;
 
-  
+
             Object o = new Object();
             lock (o)
             {
@@ -99,6 +99,7 @@ namespace RefrigtzChessPortable
                     DummyFileStream.Seek(0, SeekOrigin.Begin);
 
                     Console.WriteLine("Loading...");
+                    AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
                     tt = (AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
                         return tt;
@@ -134,6 +135,7 @@ namespace RefrigtzChessPortable
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
 
+                Formatters.Serialize(DummyFileStream, AllDraw.indexStep);
                 Formatters.Serialize(DummyFileStream, Current);
                 Current.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
 
@@ -142,7 +144,7 @@ namespace RefrigtzChessPortable
 
             }
         }
- 
+
         public AllDraw AllDrawCurrentAccess
         {
             get
@@ -150,6 +152,6 @@ namespace RefrigtzChessPortable
             set
             { Current = value; }
         }
-        
+
     }
 }

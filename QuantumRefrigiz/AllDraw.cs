@@ -55,7 +55,8 @@ namespace QuantumRefrigiz
     public class AllDraw//: IDisposable
     {
         //justicce height
-        static int MaxxLevel = 0,indexStep = 1;
+        static int MaxxLevel = 0;
+        public static int indexStep = 1;
         public int CurrentMaxLevel = 0;
         public static Timer Wtime = null;
         public static Timer Btime = null;
@@ -195,7 +196,7 @@ namespace QuantumRefrigiz
         public static int SignKingDangour = -1;
         public static bool DrawTable = true;
         public static int[,] TableVeryfy = new int[8, 8];
-        public static int MaxAStarGreedy = 0;
+        public static int MaxAStarGreedy = 2;
         public static int[,] TableVeryfyConst = new int[8, 8];
         public static List<int[,]> TableCurrent = new List<int[,]>();
         public static bool NoTableFound = false;
@@ -8698,7 +8699,7 @@ namespace QuantumRefrigiz
                            MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                        }
                        */
-                    if (MaxAStarGreedy < indexStep* PlatformHelper.ProcessorCount)
+                    if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                     {
                         MaxAStarGreedy = CurrentMaxLevel;
                     }
@@ -16624,14 +16625,7 @@ namespace QuantumRefrigiz
                      }
                  }*/
                 if (CalIdle == 2)
-                    return false;
-                if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
-                {
-                    MaxAStarGreedy = CurrentMaxLevel;
-                }
-                else
-                    if (CurrentMaxLevel >= MaxAStarGreedy)
-                    return false;
+                    return true;
                 if (Kind == 1)
                 {
                     Is = Is || InitiateAStarGreedytSoldier(i, Kind, Order);
@@ -17590,7 +17584,7 @@ namespace QuantumRefrigiz
                 {
                     try
                     {
-                        if (MaxAStarGreedy < indexStep* PlatformHelper.ProcessorCount)
+                        if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                         {
                             MaxAStarGreedy = CurrentMaxLevel;
                         }
@@ -17633,7 +17627,7 @@ namespace QuantumRefrigiz
                         {
                             IS = IS || FullBoundryConditionsGray(Current, Order, iAStarGreedy);
                             //when vicrory count satisfied
-                            if ((ThinkingQuantumChess.FoundFirstMating > (PlatformHelper.ProcessorCount))) //|| (SetDeptIgnore))
+                            if ((ThinkingQuantumChess.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
                             {
                                 IS = true;
                             }
@@ -17642,7 +17636,7 @@ namespace QuantumRefrigiz
                         {
                             IS = IS || FullBoundryConditionsBrown(Current, Order, iAStarGreedy);
                             //when victory count satisfied
-                            if ((ThinkingQuantumChess.FoundFirstMating > (PlatformHelper.ProcessorCount))) //|| (SetDeptIgnore))
+                            if ((ThinkingQuantumChess.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
                             {
                                 IS = true;
                             }
@@ -17706,7 +17700,7 @@ namespace QuantumRefrigiz
                         IS = IS || FullBoundryConditionsKing(ikk, Current, Order, iAStarGreedy);
                     }
                     //when victory count satisfied
-                    if ((ThinkingQuantumChess.FoundFirstMating > (PlatformHelper.ProcessorCount))) //|| (SetDeptIgnore))
+                    if ((ThinkingQuantumChess.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
                     {
                         IS = true;
                     }
@@ -17756,7 +17750,7 @@ namespace QuantumRefrigiz
                         IS = IS || FullBoundryConditionsKing(ikk, Current, Order, iAStarGreedy);
                     }
                     //when vicrory count satisfied
-                    if ((ThinkingQuantumChess.FoundFirstMating > (PlatformHelper.ProcessorCount))) //|| (SetDeptIgnore))
+                    if ((ThinkingQuantumChess.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
                     {
                         IS = true;
                     }
@@ -23237,7 +23231,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     }
                 });
                 output.Wait(); output.Dispose();
-               //TH.Add(output);
+                //TH.Add(output);
 
                 //Parallel.ForEach(TH, item => Task.WaitAll(item));
 
@@ -24648,7 +24642,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 lock (OOOO)
                 {
                     //if (MaxAStarGreedy == 0)
-                    MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
+                    MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
                     MaxAStarGreedy1 = MaxAStarGreedy;
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;
@@ -24689,7 +24683,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         UsePenaltyRegardMechnisamT = false;
 
                         RemovePenalltyFromFirstBranches(Order);
-                        MaxAStarGreedy = 0;
+                        MaxAStarGreedy = 1;
                         AStarGreedyiLevelMax = 1;
                         Less = Int32.MinValue;
 

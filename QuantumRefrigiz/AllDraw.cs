@@ -8699,7 +8699,7 @@ namespace QuantumRefrigiz
                            MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                        }
                        */
-                    if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                   if (MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount)// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                     {
                         MaxAStarGreedy = CurrentMaxLevel;
                     }
@@ -17584,7 +17584,7 @@ namespace QuantumRefrigiz
                 {
                     try
                     {
-                        if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                       if (MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount)// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                         {
                             MaxAStarGreedy = CurrentMaxLevel;
                         }
@@ -24736,7 +24736,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             FoundATable = true;
                         }
                     }
-                indexStep++;
+                //indexStep++;//no to axelirity speed
 
                 return CloneATable(TableHeuristic);
             }

@@ -915,7 +915,7 @@ namespace RefrigtzDLL
                             else
                             if (!freezBoard)
                                 return 0;
-                            RefrigtzDLL.AllDraw.indexStep--;
+                            //RefrigtzDLL.AllDraw.indexStep--;//no to axelirity speed
 
                             goto Again;
                         }

@@ -912,7 +912,7 @@ namespace RefrigtzChessPortable
                             else
                             if (!freezBoard)
                                 return 0;
-                            AllDraw.indexStep--;
+                            //AllDraw.indexStep--;//no to axelirity speed
 
                             goto Again;
                         }

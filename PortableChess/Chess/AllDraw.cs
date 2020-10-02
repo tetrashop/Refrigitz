@@ -8648,7 +8648,7 @@ namespace RefrigtzChessPortable
                        MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                    }
                    */
-                if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+               if (MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount)// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                 {
                     MaxAStarGreedy = CurrentMaxLevel;
                 }
@@ -17530,7 +17530,7 @@ namespace RefrigtzChessPortable
                                MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                            }
                            */
-                        if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                       if (MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount)// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                         {
                             MaxAStarGreedy = CurrentMaxLevel;
                         }
@@ -24670,7 +24670,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             FoundATable = true;
                         }
                     }
-                indexStep++;
+                //indexStep++;//no to axelirity speed
 
                 return CloneATable(TableHeuristic);
             }

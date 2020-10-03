@@ -4898,59 +4898,86 @@ namespace RefrigtzDLL
             lock (O)
             {
                 int NIs = 0;
-                if ((ColK - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk, ColK - 1]))
+                if ((ColK - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk);
-                    EmptyC.Add(ColK - 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK - 1]))
+                    {
+                        EmptyR.Add(Rowk);
+                        EmptyC.Add(ColK - 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK + 1 < 8) && !SameSign(Table[Rowk, ColK], Table[Rowk, ColK + 1]))
+                if ((ColK + 1 < 8))
                 {
-                    EmptyR.Add(Rowk);
-                    EmptyC.Add(ColK + 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK + 1]))
+                    {
+                        EmptyR.Add(Rowk);
+                        EmptyC.Add(ColK + 1);
+                        NIs++;
+                    }
                 }
-                if ((Rowk - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK]))
+                if ((Rowk - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk - 1);
-                    EmptyC.Add(ColK);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK]))
+                    {
+                        EmptyR.Add(Rowk - 1);
+                        EmptyC.Add(ColK);
+                        NIs++;
+                    }
                 }
-                if ((Row + 1 < 8) && !SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK]))
+                if ((Row + 1 < 8))
                 {
-                    EmptyR.Add(Rowk + 1);
-                    EmptyC.Add(ColK);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK]))
+                    {
+                        EmptyR.Add(Rowk + 1);
+                        EmptyC.Add(ColK);
+                        NIs++;
+                    }
                 }
-                if ((ColK - 1 >= 0) && (Rowk - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK - 1]))
+                if ((ColK - 1 >= 0) && (Rowk - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk - 1);
-                    EmptyC.Add(ColK - 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK - 1]))
+                    {
+                        EmptyR.Add(Rowk - 1);
+                        EmptyC.Add(ColK - 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK - 1 >= 0) && (Rowk + 1 < 8) && !SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK - 1]))
+                if ((ColK - 1 >= 0) && (Rowk + 1 < 8))
                 {
-                    EmptyR.Add(Rowk + 1);
-                    EmptyC.Add(ColK - 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK - 1]))
+                    {
+                        EmptyR.Add(Rowk + 1);
+                        EmptyC.Add(ColK - 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK + 1 < 8) && (Rowk + 1 < 8) && !SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK + 1]))
+                if ((ColK + 1 < 8) && (Rowk + 1 < 8))
                 {
-                    EmptyR.Add(Rowk + 1);
-                    EmptyC.Add(ColK + 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK + 1]))
+                    {
+                        EmptyR.Add(Rowk + 1);
+                        EmptyC.Add(ColK + 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK + 1 < 8) && (Rowk - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk - 1);
-                    EmptyC.Add(ColK + 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                    {
+                        EmptyR.Add(Rowk - 1);
+                        EmptyC.Add(ColK + 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK + 1 < 8) && (Rowk - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk - 1);
-                    EmptyC.Add(ColK + 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                    {
+                        EmptyR.Add(Rowk - 1);
+                        EmptyC.Add(ColK + 1);
+                        NIs++;
+                    }
                 }
                 return NIs;
             }
@@ -6641,7 +6668,7 @@ namespace RefrigtzDLL
                 {
                     for (int i = 0; i < HeuristicAllReducedMove.Count; i++)
                     {
-                        if (HeuristicAllReducedMove[i][2] == Rows && HeuristicAllReducedMove[i][3] == Cols && HeuristicAllReducedMove[i][0] == Rowd && HeuristicAllReducedMove[i][1] == Cols)
+                        if (HeuristicAllReducedMove[i][2] == Rows && HeuristicAllReducedMove[i][3] == Cols && HeuristicAllReducedMove[i][0] == Rowd && HeuristicAllReducedMove[i][1] == Cold)
                             Is++;
                     }
                 }
@@ -6651,7 +6678,7 @@ namespace RefrigtzDLL
                     {
                         for (int i = HeuristicAllReducedMoveMidel; i < HeuristicAllReducedMove.Count; i++)
                         {
-                            if (HeuristicAllReducedMove[i][2] == Rows && HeuristicAllReducedMove[i][3] == Cols && HeuristicAllReducedMove[i][0] == Rowd && HeuristicAllReducedMove[i][1] == Cols)
+                            if (HeuristicAllReducedMove[i][2] == Rows && HeuristicAllReducedMove[i][3] == Cols && HeuristicAllReducedMove[i][0] == Rowd && HeuristicAllReducedMove[i][1] == Cold)
                                 Is++;
                         }
                     }

@@ -4895,85 +4895,88 @@ namespace RefrigtzChessPortable
             lock (O)
             {
                 int NIs = 0;
-                if ((ColK - 1 >= 0))
+                if (Rowk >= 0 && Rowk < 8 && ColK >= 0 && ColK < 8)
                 {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK - 1]))
+                    if ((ColK - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk);
-                        EmptyC.Add(ColK - 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK - 1]))
+                        {
+                            EmptyR.Add(Rowk);
+                            EmptyC.Add(ColK - 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK + 1 < 8))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK + 1]))
+                    if ((ColK + 1 < 8))
                     {
-                        EmptyR.Add(Rowk);
-                        EmptyC.Add(ColK + 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK + 1]))
+                        {
+                            EmptyR.Add(Rowk);
+                            EmptyC.Add(ColK + 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((Rowk - 1 >= 0))
-                {
-                    if ( !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK]))
+                    if ((Rowk - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk - 1);
-                        EmptyC.Add(ColK);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK]))
+                        {
+                            EmptyR.Add(Rowk - 1);
+                            EmptyC.Add(ColK);
+                            NIs++;
+                        }
                     }
-                }
-                if ((Row + 1 < 8))
-                {
-                    if ( !SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK]))
+                    if ((Row + 1 < 8))
                     {
-                        EmptyR.Add(Rowk + 1);
-                        EmptyC.Add(ColK);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK]))
+                        {
+                            EmptyR.Add(Rowk + 1);
+                            EmptyC.Add(ColK);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK - 1 >= 0) && (Rowk - 1 >= 0))
-                {
-                    if ( !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK - 1]))
+                    if ((ColK - 1 >= 0) && (Rowk - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk - 1);
-                        EmptyC.Add(ColK - 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK - 1]))
+                        {
+                            EmptyR.Add(Rowk - 1);
+                            EmptyC.Add(ColK - 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK - 1 >= 0) && (Rowk + 1 < 8))
-                {
-                    if ( !SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK - 1]))
+                    if ((ColK - 1 >= 0) && (Rowk + 1 < 8))
                     {
-                        EmptyR.Add(Rowk + 1);
-                        EmptyC.Add(ColK - 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK - 1]))
+                        {
+                            EmptyR.Add(Rowk + 1);
+                            EmptyC.Add(ColK - 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK + 1 < 8) && (Rowk + 1 < 8) )
-                {
-                    if ( !SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK + 1]))
+                    if ((ColK + 1 < 8) && (Rowk + 1 < 8))
                     {
-                        EmptyR.Add(Rowk + 1);
-                        EmptyC.Add(ColK + 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK + 1]))
+                        {
+                            EmptyR.Add(Rowk + 1);
+                            EmptyC.Add(ColK + 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
-                {
-                    if ( !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                    if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk - 1);
-                        EmptyC.Add(ColK + 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                        {
+                            EmptyR.Add(Rowk - 1);
+                            EmptyC.Add(ColK + 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                    if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk - 1);
-                        EmptyC.Add(ColK + 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                        {
+                            EmptyR.Add(Rowk - 1);
+                            EmptyC.Add(ColK + 1);
+                            NIs++;
+                        }
                     }
                 }
                 return NIs;

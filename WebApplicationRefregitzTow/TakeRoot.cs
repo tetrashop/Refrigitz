@@ -43,9 +43,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Diagnostics;
 using System.IO;
 using Chess;
+using System.Diagnostics;
+using RefrigtzW;
+
 namespace RefrigtzW
 {
     [Serializable]
@@ -66,7 +68,7 @@ namespace RefrigtzW
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
-                    File.AppendAllText(FormRefrigtz.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); 
+                    File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); 
                 }
             }
             catch (Exception t) { Log(t); }
@@ -158,7 +160,7 @@ namespace RefrigtzW
                 return Found;
             }
         }
-        public bool Load(bool FOUND, bool Quantum, FormRefrigtz Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        public bool Load(bool FOUND, bool Quantum, RefrigtzW.FormRefrigtz Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
             Object OO = new Object();
             lock (OO)
@@ -168,29 +170,30 @@ namespace RefrigtzW
                 //Load Middle Targets.
                 try
                 {
-                    if (File.Exists(FormRefrigtz.AllDrawKindString))
+                    if (File.Exists(RefrigtzW.FormRefrigtz.AllDrawKindString))
                     {
-                        if (FormRefrigtz.MovmentsNumber >= 0)
+                        if (RefrigtzW.FormRefrigtz.MovmentsNumber >= 0)
                         {
                             //if (!Quantum)
                             {
                                 GalleryStudio.RefregizMemmory tr = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                t = (RefrigtzW.AllDraw)tr.Load(Quantum, FormRefrigtz.OrderPlate);
+                                t = (RefrigtzW.AllDraw)tr.Load(Quantum, RefrigtzW.FormRefrigtz.OrderPlate);
                                 if (t != null)
                                 {
                                     Curent.Draw = t;
                                     LoadTree = true;
                                     Curent.Draw = Curent.RootFound();
-                                    Curent.Draw.UpdateLoseAndWinDepenOfKind(FormRefrigtz.OrderPlate);
+                                    //Curent.Draw.UpdateLoseAndWinDepenOfKind(Curent.Draw.OrderP);
 
                                     t = Curent.Draw;
                                     
                                     DrawDrawen = true;
+                                    //System.Windows.Forms.MessageBox.Show("Load Completed.");
                                 }
                             }
                             
                         }
-                        File.Delete(FormRefrigtz.AllDrawKindString);
+                        File.Delete(RefrigtzW.FormRefrigtz.AllDrawKindString);
                     }
                 }
                 catch (Exception t) { Log(t); }
@@ -213,18 +216,23 @@ namespace RefrigtzW
                 
             }
         }
-        
-
-        public bool Save(bool FOUND,bool Quantum, FormRefrigtz Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        public bool Save(bool FOUND,bool Quantum, RefrigtzW.FormRefrigtz Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
-            
             Object OO = new Object();
             lock (OO)
             {
-                
-                
-                
-                
+
+
+                object o = new object();
+                lock (o)
+                {
+                    if (!Quantum)
+                    {
+                        if (!RefrigtzW.AllDraw.ChangedInTreeOccured)
+                            return true;
+                    }
+                }
+
                 try
                 {
 
@@ -239,7 +247,7 @@ namespace RefrigtzW
                             {
                                 Curent.Draw = Curent.RootFound();
                                 rt.AllDrawCurrentAccess = Curent.Draw;
-                                rt.RewriteAllDraw(FormRefrigtz.OrderPlate);
+                                rt.RewriteAllDraw(RefrigtzW.FormRefrigtz.OrderPlate);
                                 RefrigtzW.AllDraw.DrawTable = false;
                                 
                                 
@@ -255,7 +263,7 @@ namespace RefrigtzW
                           if (File.Exists(AllDrawKindString))
                     {
                         
-                        File.Delete(FormRefrigtz.AllDrawKindString);
+                        File.Delete(RefrigtzW.FormRefrigtz.AllDrawKindString);
                         GalleryStudio.RefregizMemmory rt = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
                             );
                         
@@ -263,7 +271,7 @@ namespace RefrigtzW
                         {
                             Curent.Draw = Curent.RootFound();
                             rt.AllDrawCurrentAccess = Curent.Draw;
-                            rt.RewriteAllDraw(FormRefrigtz.OrderPlate);
+                            rt.RewriteAllDraw(RefrigtzW.FormRefrigtz.OrderPlate);
                             RefrigtzW.AllDraw.DrawTable = false;
                             
                             
@@ -276,9 +284,7 @@ namespace RefrigtzW
                     }
                     Curent.Draw = Stote;
                     return true;
-#pragma warning disable CS0162 // Unreachable code detected
                     return true;
-#pragma warning restore CS0162 // Unreachable code detected
                 }
                 catch (Exception t)
                 {

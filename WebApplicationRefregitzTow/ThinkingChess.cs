@@ -46,13 +46,15 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ImageTextDeepLearning;
+
+
 
 namespace RefrigtzW
 {
     [Serializable]
     public class ThinkingChess//: IDisposable
     {
+        public static string OutP = "";
         List<List<List<int[]>>> MovableAllObjectsList = new List<List<List<int[]>>>();
         public int RemoveOfDisturbIndex = -1;
         int HeuristicDoubleDefenceIndexInOnGameMidle = 0;
@@ -400,6 +402,16 @@ namespace RefrigtzW
 
             }
         }
+        public string AsS(int i,int j,int ii,int jj)
+        {
+            object o = new object();
+            lock (o)
+            {
+                OutP = Alphabet(i) + Number(j) + Alphabet(ii) + Number(jj);
+                return OutP ;
+            }
+        }
+        public ThinkingChess() { }
         //Constructor
         public ThinkingChess(int iInde, int KindO, int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, int i, int j)
         {
@@ -4886,59 +4898,86 @@ namespace RefrigtzW
             lock (O)
             {
                 int NIs = 0;
-                if ((ColK - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk, ColK - 1]))
+                if ((ColK - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk);
-                    EmptyC.Add(ColK - 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK - 1]))
+                    {
+                        EmptyR.Add(Rowk);
+                        EmptyC.Add(ColK - 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK + 1 < 8) && !SameSign(Table[Rowk, ColK], Table[Rowk, ColK + 1]))
+                if ((ColK + 1 < 8))
                 {
-                    EmptyR.Add(Rowk);
-                    EmptyC.Add(ColK + 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK + 1]))
+                    {
+                        EmptyR.Add(Rowk);
+                        EmptyC.Add(ColK + 1);
+                        NIs++;
+                    }
                 }
-                if ((Rowk - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK]))
+                if ((Rowk - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk - 1);
-                    EmptyC.Add(ColK);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK]))
+                    {
+                        EmptyR.Add(Rowk - 1);
+                        EmptyC.Add(ColK);
+                        NIs++;
+                    }
                 }
-                if ((Row + 1 < 8) && !SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK]))
+                if ((Row + 1 < 8))
                 {
-                    EmptyR.Add(Rowk + 1);
-                    EmptyC.Add(ColK);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK]))
+                    {
+                        EmptyR.Add(Rowk + 1);
+                        EmptyC.Add(ColK);
+                        NIs++;
+                    }
                 }
-                if ((ColK - 1 >= 0) && (Rowk - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK - 1]))
+                if ((ColK - 1 >= 0) && (Rowk - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk - 1);
-                    EmptyC.Add(ColK - 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK - 1]))
+                    {
+                        EmptyR.Add(Rowk - 1);
+                        EmptyC.Add(ColK - 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK - 1 >= 0) && (Rowk + 1 < 8) && !SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK - 1]))
+                if ((ColK - 1 >= 0) && (Rowk + 1 < 8))
                 {
-                    EmptyR.Add(Rowk + 1);
-                    EmptyC.Add(ColK - 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK - 1]))
+                    {
+                        EmptyR.Add(Rowk + 1);
+                        EmptyC.Add(ColK - 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK + 1 < 8) && (Rowk + 1 < 8) && !SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK + 1]))
+                if ((ColK + 1 < 8) && (Rowk + 1 < 8))
                 {
-                    EmptyR.Add(Rowk + 1);
-                    EmptyC.Add(ColK + 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK + 1]))
+                    {
+                        EmptyR.Add(Rowk + 1);
+                        EmptyC.Add(ColK + 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK + 1 < 8) && (Rowk - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk - 1);
-                    EmptyC.Add(ColK + 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                    {
+                        EmptyR.Add(Rowk - 1);
+                        EmptyC.Add(ColK + 1);
+                        NIs++;
+                    }
                 }
-                if ((ColK + 1 < 8) && (Rowk - 1 >= 0) && !SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
                 {
-                    EmptyR.Add(Rowk - 1);
-                    EmptyC.Add(ColK + 1);
-                    NIs++;
+                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                    {
+                        EmptyR.Add(Rowk - 1);
+                        EmptyC.Add(ColK + 1);
+                        NIs++;
+                    }
                 }
                 return NIs;
             }
@@ -6629,7 +6668,7 @@ namespace RefrigtzW
                 {
                     for (int i = 0; i < HeuristicAllReducedMove.Count; i++)
                     {
-                        if (HeuristicAllReducedMove[i][2] == Rows && HeuristicAllReducedMove[i][3] == Cols && HeuristicAllReducedMove[i][0] == Rowd && HeuristicAllReducedMove[i][1] == Cols)
+                        if (HeuristicAllReducedMove[i][2] == Rows && HeuristicAllReducedMove[i][3] == Cols && HeuristicAllReducedMove[i][0] == Rowd && HeuristicAllReducedMove[i][1] == Cold)
                             Is++;
                     }
                 }
@@ -6639,7 +6678,7 @@ namespace RefrigtzW
                     {
                         for (int i = HeuristicAllReducedMoveMidel; i < HeuristicAllReducedMove.Count; i++)
                         {
-                            if (HeuristicAllReducedMove[i][2] == Rows && HeuristicAllReducedMove[i][3] == Cols && HeuristicAllReducedMove[i][0] == Rowd && HeuristicAllReducedMove[i][1] == Cols)
+                            if (HeuristicAllReducedMove[i][2] == Rows && HeuristicAllReducedMove[i][3] == Cols && HeuristicAllReducedMove[i][0] == Rowd && HeuristicAllReducedMove[i][1] == Cold)
                                 Is++;
                         }
                     }
@@ -8681,7 +8720,7 @@ namespace RefrigtzW
                     //The Index out of range exeption is not fixable.
                     if (So != null) if (So[i] != null)
                         {
-                            //When int of items is gray or Brown.
+                            //When int of items is Gray or Brown.
                             if (So[i].color == Color.Gray || So[i].color == Color.Brown)
                             {
                                 if (Mi)
@@ -9041,7 +9080,7 @@ namespace RefrigtzW
                     Object OOO = new Object();
                     lock (OOO)
                     {
-                        //gray
+                        //Gray
                         if (Order == -1)
                         {
                             //Repeate for Solder.
@@ -9794,6 +9833,7 @@ namespace RefrigtzW
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -9945,6 +9985,7 @@ namespace RefrigtzW
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -10444,6 +10485,7 @@ namespace RefrigtzW
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -10576,6 +10618,7 @@ namespace RefrigtzW
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -10707,6 +10750,9 @@ namespace RefrigtzW
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
+
+
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -11875,6 +11921,7 @@ namespace RefrigtzW
                         Object A6 = new object();
                         lock (A6)
                         {
+                            AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                             int[] Hu = new int[10];
                             //if (!(IsSup[j]))
                             {
@@ -11995,6 +12042,7 @@ namespace RefrigtzW
                 TableListKing.Add(CloneATable(TableS));
                 IndexKing++;
                 //Calculate Heuristic Sumation and Store in Specific List.
+                AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                 int[] Hu = new int[10]; String H = "";
                 Object A6 = new Object();
                 lock (A6)
@@ -14444,6 +14492,7 @@ namespace RefrigtzW
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
 
                 String H = "";
+                AsS(RowSource, ColumnSource, RowDestination, ColumnDestination);
                 int[] Hu = new int[10];
                 Object A6 = new Object();
                 lock (A6)
@@ -15327,7 +15376,7 @@ namespace RefrigtzW
                         Parallel.For(0, TableListSolder.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15336,7 +15385,7 @@ namespace RefrigtzW
                         Parallel.For(0, TableListElefant.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15345,7 +15394,7 @@ namespace RefrigtzW
                         Parallel.For(0, TableListHourse.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15354,7 +15403,7 @@ namespace RefrigtzW
                         Parallel.For(0, TableListCastle.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15363,7 +15412,7 @@ namespace RefrigtzW
                         Parallel.For(0, TableListMinister.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
                         });
                     }
                     else
@@ -15372,7 +15421,7 @@ namespace RefrigtzW
                         Parallel.For(0, TableListKing.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
                         });
                     }
                     FullGameAllow = false;

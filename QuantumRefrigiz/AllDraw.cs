@@ -10704,7 +10704,7 @@ namespace QuantumRefrigiz
                     Is = MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup[j];
                 else
    if (Kind == 6)
-                    Is = KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j];
+                    Is = KingOnTable[i].KingThinkingQuantum[0].IsSup[j];
             }
             return Is;
         }

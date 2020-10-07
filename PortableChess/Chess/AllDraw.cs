@@ -10641,7 +10641,7 @@ namespace RefrigtzChessPortable
                     Is = MinisterOnTable[i].MinisterThinking[0].IsSup[j];
                 else
    if (Kind == 6)
-                    Is = KingOnTable[i].KingThinking[0].IsSupHu[j];
+                    Is = KingOnTable[i].KingThinking[0].IsSup[j];
             }
             return Is;
         }

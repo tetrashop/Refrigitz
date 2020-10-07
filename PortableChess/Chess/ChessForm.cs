@@ -892,11 +892,11 @@ namespace RefrigtzChessPortable
                         if (Draw.TableZero(Table))
                         {
                             MessageBox.Show("Board is invalid;");
-                           // Draw.TableList.Clear();
-                          //  Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
-                           // Draw.SetRowColumn(0);
-                            //Draw.IsCurrentDraw = true;
-                            //ThinkingRefrigtzChessPortable.NoOfMovableAllObjectMove++;
+                            Draw.TableList.Clear();
+                            Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
+                            Draw.SetRowColumn(0);
+                            Draw.IsCurrentDraw = true;
+                            ThinkingRefrigtzChessPortable.NoOfMovableAllObjectMove++;
                             AllDraw.AllowedSupTrue = true;
 
                             if (ArtificialInteligenceMove.UpdateIsRunning)

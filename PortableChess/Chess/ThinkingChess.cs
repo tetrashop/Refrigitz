@@ -4924,7 +4924,7 @@ namespace RefrigtzChessPortable
                             NIs++;
                         }
                     }
-                    if ((Row + 1 < 8))
+                    if ((Rowk + 1 < 8))
                     {
                         if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK]))
                         {

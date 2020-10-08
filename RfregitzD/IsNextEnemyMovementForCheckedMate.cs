@@ -146,7 +146,7 @@ namespace RefrigtzDLL
 
             AllDraw.Blitz = false;
 
-            MaxAStarGreedy = 0;
+            //MaxAStarGreedy = 0;
             int[,] tab = Initiate(0, 0, a, TableIsNextEnemyMovementForCheckedMate, OrderP, false, false, 0, true);
             if (ThinkingChess.FoundFirstSelfMating > 0)
                 IS = true;

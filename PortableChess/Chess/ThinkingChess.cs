@@ -15268,7 +15268,7 @@ namespace RefrigtzChessPortable
             {
                 while (!ThinkingBegin)
                 {
-                    if (AllDraw.NumberOfLeafComputation != -1)
+                    if (AllDraw.NumberOfLeafComputation != -1 && (!AllDraw.AllowedSupTrue))
                         break;
                 }
             }

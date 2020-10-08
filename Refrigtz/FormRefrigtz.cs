@@ -14132,7 +14132,7 @@ namespace Refrigtz
                                 aa = Color.Brown;
                             bool B = RefrigtzDLL.AllDraw.Blitz;
                             RefrigtzDLL.AllDraw.Blitz = false;
-                            RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                            RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
                             //FOUND = false;
                             if (!FirstS)
                             {
@@ -14433,7 +14433,7 @@ namespace Refrigtz
                                 aa = Color.Brown;
                             bool B = QuantumRefrigiz.AllDraw.Blitz;
                             QuantumRefrigiz.AllDraw.Blitz = false;
-                            QuantumRefrigiz.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                            QuantumRefrigiz.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
                             //FOUND = false;
                             if (!FirstS)
                             {

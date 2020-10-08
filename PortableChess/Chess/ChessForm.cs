@@ -892,11 +892,17 @@ namespace RefrigtzChessPortable
                         if (Draw.TableZero(Table))
                         {
                             MessageBox.Show("Board is invalid;");
-                            Draw.TableList.Clear();
+                            if (Draw.TableList.Count == 0)
+                            { Draw.TableList.Clear();
                             Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
                             Draw.SetRowColumn(0);
                             Draw.IsCurrentDraw = true;
                             ThinkingRefrigtzChessPortable.NoOfMovableAllObjectMove++;
+                            }
+                            else
+                            {
+                                AllDraw.AStarGreedyiLevelMax = Draw.CurrentMaxLevel;
+                            }
                             AllDraw.AllowedSupTrue = true;
 
                             if (ArtificialInteligenceMove.UpdateIsRunning)

@@ -589,7 +589,7 @@ namespace RefrigtzDLL
                                     aa = Color.Brown;
                                 bool B = AllDraw.Blitz;
                                 AllDraw.Blitz = false;
-                                RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                                RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
 
                                 if (Draw.IsAtLeastAllObjectIsNull())
                                 {
@@ -679,7 +679,7 @@ namespace RefrigtzDLL
                                     aa = Color.Brown;
                                 bool B = AllDraw.Blitz;
                                 AllDraw.Blitz = false;
-                                RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                                RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
 
                                 if (Draw.IsAtLeastAllObjectIsNull())
                                 {
@@ -733,7 +733,7 @@ namespace RefrigtzDLL
                                 aa = Color.Brown;
                             bool B = AllDraw.Blitz;
                             AllDraw.Blitz = false;
-                            RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                            RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
 
                             if (Draw.IsAtLeastAllObjectIsNull())
                             {
@@ -895,11 +895,20 @@ namespace RefrigtzDLL
                         if (Draw.TableZero(Table))
                         {
                             MessageBox.Show("Board is invalid;");
-                            Draw.TableList.Clear();
-                            Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
-                            Draw.SetRowColumn(0);
-                            Draw.IsCurrentDraw = true;
-                            RefrigtzDLL.ThinkingChess.NoOfMovableAllObjectMove++;
+                            if (Draw.TableList.Count == 0)
+                            {
+                                Draw.TableList.Clear();
+                                Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
+                                Draw.SetRowColumn(0);
+                                Draw.IsCurrentDraw = true;
+                            }
+                            else
+                            {
+                                AllDraw.AStarGreedyiLevelMax = Draw.CurrentMaxLevel;
+                            }
+                                    RefrigtzDLL.ThinkingChess.NoOfMovableAllObjectMove++;
+                        
+                        
                             RefrigtzDLL.AllDraw.AllowedSupTrue = true;
 
                             if (ArtificialInteligenceMove.UpdateIsRunning)
@@ -1851,7 +1860,7 @@ namespace RefrigtzDLL
                                             aa = Color.Brown;
                                         bool B = AllDraw.Blitz;
                                         AllDraw.Blitz = false;
-                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
 
                                         AllDraw thiB = Draw.AStarGreedyString;
                                         if (Draw.IsAtLeastAllObjectIsNull())
@@ -1935,7 +1944,7 @@ namespace RefrigtzDLL
                                         aa = Color.Brown;
                                     bool B = AllDraw.Blitz;
                                     AllDraw.Blitz = false;
-                                    RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                                    RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
 
                                     AllDraw thiB = Draw.AStarGreedyString;
                                     if (Draw.IsAtLeastAllObjectIsNull())
@@ -2454,7 +2463,7 @@ namespace RefrigtzDLL
                                     aa = Color.Brown;
                                 bool B = AllDraw.Blitz;
                                 AllDraw.Blitz = false;
-                                RefrigtzDLL.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                                RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
 
                                 if (!FirstS)
                                 {

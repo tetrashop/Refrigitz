@@ -17561,7 +17561,7 @@ namespace RefrigtzChessPortable
                         {
                             IS = IS || FullBoundryConditionsGray(Current, Order, iAStarGreedy);
                             //when vicrory count satisfied
-                            if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
+                            if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                             {
                                 IS = true;
                             }
@@ -17570,13 +17570,13 @@ namespace RefrigtzChessPortable
                         {
                             IS = IS || FullBoundryConditionsBrown(Current, Order, iAStarGreedy);
                             //when victory count satisfied
-                            if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
+                            if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                             {
                                 IS = true;
                             }
                         }
                         //when nu,bers of computational leafs satisfied 
-                        if (((ThinkingRefrigtzChessPortable.NumbersOfAllNode - AllDraw.NumberOfLeafComputation) > 100) && AllDraw.NumberOfLeafComputation != -1)
+                        if (((ThinkingRefrigtzChessPortable.NumbersOfAllNode - AllDraw.NumberOfLeafComputation) > 100) && AllDraw.NumberOfLeafComputation != -1 && (!AllowedSupTrue))
                             IS = true;
 
 
@@ -17634,7 +17634,7 @@ namespace RefrigtzChessPortable
                         IS = IS || FullBoundryConditionsKing(ikk, Current, Order, iAStarGreedy);
                     }
                     //when victory count satisfied
-                    if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
+                    if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                     {
                         IS = true;
                     }
@@ -17684,7 +17684,7 @@ namespace RefrigtzChessPortable
                         IS = IS || FullBoundryConditionsKing(ikk, Current, Order, iAStarGreedy);
                     }
                     //when vicrory count satisfied
-                    if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
+                    if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                     {
                         IS = true;
                     }
@@ -24875,7 +24875,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 lock (OOOO)
                 {
                     //if (MaxAStarGreedy == 0)
-                    MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                    MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
                     MaxAStarGreedy1 = MaxAStarGreedy;
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;

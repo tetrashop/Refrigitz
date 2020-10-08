@@ -197,7 +197,7 @@ namespace RefrigtzDLL
         public static int SignKingDangour = -1;
         public static bool DrawTable = true;
         public static int[,] TableVeryfy = new int[8, 8];
-        public static int MaxAStarGreedy = 2;
+        public static int MaxAStarGreedy = 0;
         public static int[,] TableVeryfyConst = new int[8, 8];
         public static List<int[,]> TableCurrent = new List<int[,]>();
         public static bool NoTableFound = false;
@@ -17573,7 +17573,7 @@ namespace RefrigtzDLL
                         {
                             IS = IS || FullBoundryConditionsGray(Current, Order, iAStarGreedy);
                             //when vicrory count satisfied
-                            if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
+                            if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                             {
                                 IS = true;
                             }
@@ -17582,13 +17582,13 @@ namespace RefrigtzDLL
                         {
                             IS = IS || FullBoundryConditionsBrown(Current, Order, iAStarGreedy);
                             //when victory count satisfied
-                            if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
+                            if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                             {
                                 IS = true;
                             }
                         }
                         //when nu,bers of computational leafs satisfied 
-                        if (((ThinkingChess.NumbersOfAllNode - AllDraw.NumberOfLeafComputation) > 100) && AllDraw.NumberOfLeafComputation != -1)
+                        if (((ThinkingChess.NumbersOfAllNode - AllDraw.NumberOfLeafComputation) > 100) && AllDraw.NumberOfLeafComputation != -1 && (!AllowedSupTrue))
                             IS = true;
 
 
@@ -17646,7 +17646,7 @@ namespace RefrigtzDLL
                         IS = IS || FullBoundryConditionsKing(ikk, Current, Order, iAStarGreedy);
                     }
                     //when victory count satisfied
-                    if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
+                    if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                     {
                         IS = true;
                     }
@@ -17696,7 +17696,7 @@ namespace RefrigtzDLL
                         IS = IS || FullBoundryConditionsKing(ikk, Current, Order, iAStarGreedy);
                     }
                     //when vicrory count satisfied
-                    if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy))) //|| (SetDeptIgnore))
+                    if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                     {
                         IS = true;
                     }
@@ -24887,7 +24887,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 lock (OOOO)
                 {
                     //if (MaxAStarGreedy == 0)
-                    MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
+                    MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
                     MaxAStarGreedy1 = MaxAStarGreedy;
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;

@@ -18227,7 +18227,7 @@ namespace QuantumRefrigiz
                     FOUND = false;
                     QuantumRefrigiz.AllDraw Leaf = null;
                     Tabl = CloneATable(Table);
-                    int LeafDeep = MaxAStarGreedy;
+                    int LeafDeep = 0;// MaxAStarGreedy;
                     var array1 = Task.Factory.StartNew(() => FoundOfLeafDepenOfKind(ref Leaf, ref FOUND, Order, LeafDeep, 0, 0, 0, 0));
 
                     array1.Wait();

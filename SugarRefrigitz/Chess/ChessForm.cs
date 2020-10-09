@@ -172,7 +172,7 @@ namespace Chess
             {
                 int LeafAStarGrteedy = 0;
                 AllDraw THIS = Draw.AStarGreedyString;
-                Table = Draw.Initiate(1, 4, a, CloneATable(brd.GetTable()), Order, false, FOUND, LeafAStarGrteedy);
+                Table = CloneATable(Draw.Initiate(1, 4, a, CloneATable(brd.GetTable()), Order, false, FOUND, LeafAStarGrteedy));
                 //Draw.AStarGreedyString = THIS;
             }
         }
@@ -1116,9 +1116,9 @@ namespace Chess
             {
                 int LeafAStarGrteedy = 0;
                 if (!Quantum)
-                    Table = Draw.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
+                    Table = CloneATable(Draw.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy));
                 else
-                    Table = DrawQ.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy);
+                    Table = CloneATable(DrawQ.Initiate(1, 4, a, CloneATable(Table), OrderPlate, false, FOUND, LeafAStarGrteedy));
             }
         }
         void OpTableZero(bool Save)
@@ -1517,6 +1517,10 @@ namespace Chess
                     if (i == -1 && j == -1)
                     {
                         Again:
+                        AllDraw.NextRow = -1;
+                        AllDraw.NextColumn = -1;
+                        AllDraw.LastRow = -1;
+                        AllDraw.LastColumn = -1;
                         CoPermit = false;
                         Person = false;
                         
@@ -1556,6 +1560,7 @@ namespace Chess
                         RefrigtzDLL.AllDraw.AllowedSupTrue = false;
 
 
+                        RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
 
 
 
@@ -1567,20 +1572,22 @@ namespace Chess
                             int jj = new int();
                             if (R.CromosomRowFirst == -1 || R.CromosomColumnFirst == -1 || R.CromosomRow == -1 || R.CromosomColumn == -1)
                             {
-                                
-                                MessageBox.Show("One or more cromosoms is invalid by refrigitz;");
-                                RefrigtzDLL.AllDraw.TableListAction.RemoveAt(RefrigtzDLL.AllDraw.TableListAction.Count - 1);
+                                if (AllDraw.LastRow != -1 && AllDraw.LastColumn != -1 && AllDraw.NextRow != -1 && AllDraw.NextColumn != -1)
+                                {
+                                    R.CromosomRowFirst = AllDraw.LastRow;
+                                    R.CromosomColumnFirst = AllDraw.LastColumn;
+                                    R.CromosomRow = AllDraw.NextRow;
+                                    R.CromosomColumn = AllDraw.NextColumn;
 
-                      
-                                
-                                
-                                
-                                
-                                
-                                
-                                Application.Exit();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("One or more cromosoms is invalid;");
+                                    AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
+                                    goto Again;
+                                }
                             }
-                            
+
                             ii = R.CromosomRowFirst;
                             jj = R.CromosomColumnFirst;
                             i = ii;
@@ -2445,7 +2452,6 @@ namespace Chess
 
                                         Table = brd.GetTable();
                                         ClearTableInitiationPreventionOfMultipleMove();
-                                        RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
                                         AllDraw.OrderPlate = OrderPlate;
                                         int Ord = OrderPlate;
                                         Color aa = Color.Gray;

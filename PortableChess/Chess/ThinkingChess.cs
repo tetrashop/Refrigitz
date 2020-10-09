@@ -12017,15 +12017,17 @@ namespace RefrigtzChessPortable
                 int Killed = 0;
                 if (RowDestination < RowSource)
                 {
-                    TableS[RowSource - 1, ColumnDestination] = -4;
-                    TableS[RowSource - 2, ColumnDestination] = -6;
+                    TableS[RowSource - 1, ColumnDestination] = 4;
+                    TableS[RowSource - 2, ColumnDestination] = 6;
+                    TableS[RowSource - 4, ColumnDestination] = 0;
                     TableS[RowSource, ColumnSource] = 0;
 
                 }
                 else
                 {
-                    TableS[RowSource + 1, ColumnDestination] = -4;
-                    TableS[RowSource + 2, ColumnDestination] = -6;
+                    TableS[RowSource + 1, ColumnDestination] = 4;
+                    TableS[RowSource + 2, ColumnDestination] = 6;
+                    TableS[RowSource + 3, ColumnDestination] = 0;
                     TableS[RowSource, ColumnSource] = 0;
 
                 }
@@ -14461,6 +14463,7 @@ namespace RefrigtzChessPortable
                 {
                     TableS[RowSource - 1, ColumnDestination] = 4;
                     TableS[RowSource - 2, ColumnDestination] = 6;
+                    TableS[RowSource - 4, ColumnDestination] = 0;
                     TableS[RowSource, ColumnSource] = 0;
 
                 }
@@ -14468,6 +14471,7 @@ namespace RefrigtzChessPortable
                 {
                     TableS[RowSource + 1, ColumnDestination] = 4;
                     TableS[RowSource + 2, ColumnDestination] = 6;
+                    TableS[RowSource + 3, ColumnDestination] = 0;
                     TableS[RowSource, ColumnSource] = 0;
 
                 }

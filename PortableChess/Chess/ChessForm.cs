@@ -871,6 +871,10 @@ namespace RefrigtzChessPortable
                     if (i == -1 && j == -1)
                     {
                     Again:
+                        AllDraw.NextRow = -1;
+                        AllDraw.NextColumn = -1;
+                        AllDraw.LastRow = -1;
+                        AllDraw.LastColumn = -1;
                         CoPermit = false;
                         Person = false;
 
@@ -948,18 +952,19 @@ namespace RefrigtzChessPortable
                             int jj = new int();
                             if (R.CromosomRowFirst == -1 || R.CromosomColumnFirst == -1 || R.CromosomRow == -1 || R.CromosomColumn == -1)
                             {
+                                if (AllDraw.LastRow != -1 && AllDraw.LastColumn != -1 && AllDraw.NextRow != -1 && AllDraw.NextColumn != -1)
+                                {
+                                    R.CromosomRowFirst = AllDraw.LastRow;
+                                    R.CromosomColumnFirst = AllDraw.LastColumn;
+                                    R.CromosomRow = AllDraw.NextRow;
+                                    R.CromosomColumn = AllDraw.NextColumn;
 
-                                MessageBox.Show("One or more cromosoms is invalid;");
-                                AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
-
-
-
-
-
-
-
-
-                                goto Again;
+                                }
+                                else {
+                                    MessageBox.Show("One or more cromosoms is invalid;");
+                                    AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
+                                    goto Again;
+                                }
                             }
 
                             ii = R.CromosomRowFirst;

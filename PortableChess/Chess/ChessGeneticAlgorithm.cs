@@ -136,6 +136,7 @@ namespace RefrigtzChessPortable
         //Found of Different Home Gen in Tow RefrigtzChessPortable Home Table Method. 
         public bool FindGenToModified(int[,] Cromosom1, int[,] Cromosom2, List<int[,]> List, int Index, int Order, bool and)
         {
+            AllDraw.SodierConversionOcuured = false;
             ChessRules.SmallKingCastleBrown = false;
             ChessRules.SmallKingCastleGray = false;
             ChessRules.BigKingCastleBrown = false;

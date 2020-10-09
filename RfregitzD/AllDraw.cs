@@ -8702,7 +8702,7 @@ namespace RefrigtzDLL
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
-                                Parallel.Invoke(() =>
+                                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                                 {
                                     //soldier
                                     for (var i = 0; i < SodierMidle; i++)
@@ -8866,7 +8866,7 @@ namespace RefrigtzDLL
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
-                                Parallel.Invoke(() =>
+                                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                                 {
                                     //soldier
                                     for (var i = SodierMidle; i < SodierHigh; i++)
@@ -15412,7 +15412,7 @@ namespace RefrigtzDLL
                  {
                      for (var i = 0; i < MaxGrayMidle(); i++)
                      {
-                         //Parallel.Invoke(() =>
+                         //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                          {
                              Object ooo = new Object();
                              lock (ooo)
@@ -15436,7 +15436,7 @@ namespace RefrigtzDLL
                                              {
                                                  //For All Movable Gray Solders.
                                                  for (var j = 0; j < AllDraw.SodierMovments; j++)
-                                                 ////Parallel.For(0, AllDraw.SodierMovments, j =>
+                                                 ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.SodierMovments, j =>
                                                  {
                                                      //Thinking of Gray Solder Operation.
                                                      Object OOO = new Object();
@@ -15480,7 +15480,7 @@ namespace RefrigtzDLL
                                              {
                                                  //For All Possible Movments.
                                                  for (var j = 0; j < AllDraw.MinisterMovments; j++)
-                                                 ////Parallel.For(0, AllDraw.MinisterMovments, j =>
+                                                 ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.MinisterMovments, j =>
                                                  {
                                                      //Thinking of Gray Minister Operational.
                                                      Object OOO = new Object();
@@ -15522,7 +15522,7 @@ namespace RefrigtzDLL
                                              if (KingOnTable[i].KingThinking[0].TableListKing.Count == 0)
                                              {
                                                  //For All Possible Gray King Movments.
-                                                 ////Parallel.For(0, AllDraw.KingMovments, j =>
+                                                 ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.KingMovments, j =>
                                                  for (var j = 0; j < AllDraw.KingMovments; j++)
                                                  {
                                                      //Thinking Of Gray King Operatins.
@@ -15553,10 +15553,10 @@ namespace RefrigtzDLL
                  Object oo = new Object();
                  lock (oo)
                  {
-                     ////Parallel.For(MinBrownMidle(), MaxBrownHigh(), i =>
+                     ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(MinBrownMidle(), MaxBrownHigh(), i =>
                      for (var i = MinBrownMidle(); i < MaxBrownHigh(); i++)
                      {
-                         //Parallel.Invoke(() =>
+                         //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                          {
                              Object ooo = new Object();
                              lock (ooo)
@@ -15580,7 +15580,7 @@ namespace RefrigtzDLL
                                              {
                                                  //For All Movable Gray Solders.
                                                  for (var j = 0; j < AllDraw.SodierMovments; j++)
-                                                 ////Parallel.For(0, AllDraw.SodierMovments, j =>
+                                                 ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.SodierMovments, j =>
                                                  {
                                                      //Thinking of Gray Solder Operation.
                                                      Object OOO = new Object();
@@ -15620,7 +15620,7 @@ namespace RefrigtzDLL
                                              if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count == 0)
                                              {
                                                  //For All Possible Movments.
-                                                 ////Parallel.For(0, AllDraw.ElefantMovments, j =>
+                                                 ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.ElefantMovments, j =>
                                                  for (var j = 0; j < AllDraw.ElefantMovments; j++)
                                                  {
                                                      //Operational Thinking Gray Elephant. 
@@ -15662,7 +15662,7 @@ namespace RefrigtzDLL
                                              {
                                                  //For All Possible Movments.
                                                  for (var j = 0; j < AllDraw.HourseMovments; j++)
-                                                 ////Parallel.For(0, AllDraw.HourseMovments, j =>
+                                                 ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.HourseMovments, j =>
                                                  {
                                                      //Thinking of Gray Hourse Oprational.
                                                      Object OOO = new Object();
@@ -15702,7 +15702,7 @@ namespace RefrigtzDLL
                                              if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count == 0)
                                              {
                                                  //For All Possible Movments.
-                                                 ////Parallel.For(0, AllDraw.CastleMovments, j =>
+                                                 ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.CastleMovments, j =>
                                                  for (var j = 0; j < AllDraw.CastleMovments; j++)
                                                  {
                                                      Object OOO = new Object();
@@ -15744,7 +15744,7 @@ namespace RefrigtzDLL
                                              if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count == 0)
                                              {
                                                  //For All Possible Movments.
-                                                 ////Parallel.For(0, AllDraw.MinisterMovments, j =>
+                                                 ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.MinisterMovments, j =>
                                                  for (var j = 0; j < AllDraw.MinisterMovments; j++)
                                                  {
                                                      //Thinking of Gray Minister Operational.
@@ -16546,7 +16546,7 @@ namespace RefrigtzDLL
             {
 
                 //For Gray Soldeirs Objects. 
-                Parallel.For(0, SodierMidle, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, SodierMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -16727,7 +16727,7 @@ namespace RefrigtzDLL
                         if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count == 0)
                         {
                             //For All Movable Gray Solders.
-                            ////Parallel.For(0, AllDraw.SodierMovments, j =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.SodierMovments, j =>
                             {
                                 //Thinking of Gray Solder Operation.
                                 Object OOO = new Object();
@@ -16763,7 +16763,7 @@ namespace RefrigtzDLL
             Object oo = new Object();
             lock (oo)
             {
-                Parallel.For(0, ElefantMidle, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, ElefantMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -16806,7 +16806,7 @@ namespace RefrigtzDLL
                         if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count == 0)
                         {
                             //For All Possible Movments.
-                            ////Parallel.For(0, AllDraw.ElefantMovments, j =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.ElefantMovments, j =>
                             {
                                 //Operational Thinking Gray Elephant. 
                                 Object OOO = new Object();
@@ -16843,7 +16843,7 @@ namespace RefrigtzDLL
             lock (oo)
             {
                 //For All Gray Hourse Objects.
-                Parallel.For(0, HourseMidle, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, HourseMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -16886,7 +16886,7 @@ namespace RefrigtzDLL
                         if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count == 0)
                         {
                             //For All Possible Movments.
-                            ////Parallel.For(0, AllDraw.HourseMovments, j =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.HourseMovments, j =>
                             {
                                 //Thinking of Gray Hourse Oprational.
                                 Object OOO = new Object();
@@ -16923,7 +16923,7 @@ namespace RefrigtzDLL
             lock (oo)
             {
                 //For All Possible Gray Castles Objects.
-                Parallel.For(0, CastleMidle, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastleMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -16966,7 +16966,7 @@ namespace RefrigtzDLL
                         if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count == 0)
                         {
                             //For All Possible Movments.
-                            ////Parallel.For(0, AllDraw.CastleMovments, j =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.CastleMovments, j =>
                             {
                                 Object OOO = new Object();
                                 lock (OOO)
@@ -17004,7 +17004,7 @@ namespace RefrigtzDLL
             lock (oo)
             {
                 //For All Possible Gray Minister Movments.
-                Parallel.For(0, MinisterMidle, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, MinisterMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -17047,7 +17047,7 @@ namespace RefrigtzDLL
                         if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count == 0)
                         {
                             //For All Possible Movments.
-                            // //Parallel.For(0, AllDraw.MinisterMovments, j =>
+                            // //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.MinisterMovments, j =>
                             {
                                 //Thinking of Gray Minister Operational.
                                 Object OOO = new Object();
@@ -17084,7 +17084,7 @@ namespace RefrigtzDLL
             lock (oo)
             {
                 //For All Possible Gray King Objects.
-                Parallel.For(0, KingMidle, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, KingMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -17127,7 +17127,7 @@ namespace RefrigtzDLL
                         if (KingOnTable[i].KingThinking[0].TableListKing.Count == 0)
                         {
                             //For All Possible Gray King Movments.
-                            ////Parallel.For(0, AllDraw.KingMovments, j =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.KingMovments, j =>
                             {
                                 //Thinking Of Gray King Operatins.
                                 Object OOO = new Object();
@@ -17167,7 +17167,7 @@ namespace RefrigtzDLL
 
 
                 //For Each Objects of Brown Sodiers.
-                Parallel.For(SodierMidle, SodierHigh, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(SodierMidle, SodierHigh, i =>
 
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -17190,7 +17190,7 @@ namespace RefrigtzDLL
 
 
 
-                Parallel.For(ElefantMidle, ElefantHigh, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ElefantMidle, ElefantHigh, i =>
 
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -17212,7 +17212,7 @@ namespace RefrigtzDLL
             {
 
 
-                Parallel.For(HourseMidle, HourseHight, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(HourseMidle, HourseHight, i =>
 
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -17234,7 +17234,7 @@ namespace RefrigtzDLL
             {
 
 
-                Parallel.For(CastleMidle, CastleHigh, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(CastleMidle, CastleHigh, i =>
 
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -17257,7 +17257,7 @@ namespace RefrigtzDLL
 
 
 
-                Parallel.For(MinisterMidle, MinisterHigh, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(MinisterMidle, MinisterHigh, i =>
 
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -17279,7 +17279,7 @@ namespace RefrigtzDLL
 
 
 
-                Parallel.For(KingMidle, KingHigh, i =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(KingMidle, KingHigh, i =>
 
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -17725,7 +17725,7 @@ namespace RefrigtzDLL
                     {
                         //if (!feedCancellationTokenSource.IsCancellationRequested)
                         {
-                            Parallel.Invoke(() =>
+                            ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                             {
                                 //For All Gray Soldier Objects.
                                 Object O = new Object();
@@ -17799,7 +17799,7 @@ namespace RefrigtzDLL
                     {
                         //if (!feedCancellationTokenSource.IsCancellationRequested)
                         {
-                            Parallel.Invoke(() =>
+                            ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                             {
                                 //For All Gray Soldier Objects.
                                 Object O = new Object();
@@ -17933,7 +17933,7 @@ namespace RefrigtzDLL
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                         {
                             //For All Gray Soldier Objects.
                             Object O = new Object();
@@ -18013,7 +18013,7 @@ namespace RefrigtzDLL
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                         {
                             //For All Gray Soldier Objects.
                             Object O = new Object();
@@ -18315,7 +18315,7 @@ namespace RefrigtzDLL
                              ChessRules.CurrentOrder = DummyCurrentOrder;
                              int Ord = Order, iAStarGreedy1 = iAStarGreedy - 1, ii1 = ii, jj1 = jj, ik1 = ik, j1 = j;
 
-                             //Parallel.Invoke(() =>
+                             //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                              {
                                  Do |= this.FullGameThinkingTree(Ord, iAStarGreedy1, ii1, jj1, ik1, j1, false, LeafAStarGreedy);
                              }
@@ -21970,7 +21970,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
                         return false;
                 }
-                //Parallel.For(0, SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Count, j =>
+                //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Count, j =>
                 //operational computation secxistence
                 for (var j = 0; j < SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Count; j++)
                 {
@@ -22126,7 +22126,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[0] = true;
 
-                Parallel.For(0, SodierMidle, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, SodierMidle, ik =>
 
                 {
                     if (SolderesOnTable != null && SolderesOnTable[ik] != null && SolderesOnTable[ik].SoldierThinking != null && SolderesOnTable[ik].SoldierThinking[0] != null
@@ -22166,7 +22166,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         return false;
 
                 }
-                ////Parallel.For(0, ElephantOnTable[ik].ElefantThinking[0].TableListElefant.Count, j =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, ElephantOnTable[ik].ElefantThinking[0].TableListElefant.Count, j =>
                 //operational computation secxistence
                 for (var j = 0; j < ElephantOnTable[ik].ElefantThinking[0].TableListElefant.Count; j++)
                 {
@@ -22321,7 +22321,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[1] = true;
                 //Elephant
-                Parallel.For(0, ElefantMidle, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, ElefantMidle, ik =>
 
                 {
                     if (ElephantOnTable != null && ElephantOnTable[ik] != null && ElephantOnTable[ik].ElefantThinking != null && ElephantOnTable[ik].ElefantThinking[0] != null
@@ -22362,7 +22362,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         return false;
 
                 }
-                ////Parallel.For(0, HoursesOnTable[ik].HourseThinking[0].TableListHourse.Count, j =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, HoursesOnTable[ik].HourseThinking[0].TableListHourse.Count, j =>
                 //operational computation secxistence
                 for (var j = 0; j < HoursesOnTable[ik].HourseThinking[0].TableListHourse.Count; j++)
                 {
@@ -22522,7 +22522,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[2] = true;
                 //Hourse.
-                Parallel.For(0, HourseMidle, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, HourseMidle, ik =>
 
                 {
                     if (HoursesOnTable != null && HoursesOnTable[ik] != null && HoursesOnTable[ik].HourseThinking != null && HoursesOnTable[ik].HourseThinking[0] != null
@@ -22563,7 +22563,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         return false;
 
                 }
-                ////Parallel.For(0, CastlesOnTable[ik].CastleThinking[0].TableListCastle.Count, j =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastlesOnTable[ik].CastleThinking[0].TableListCastle.Count, j =>
                 //operational computation secxistence
                 for (var j = 0; j < CastlesOnTable[ik].CastleThinking[0].TableListCastle.Count; j++)
                 {
@@ -22722,7 +22722,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[3] = true;
                 //Castle.
-                Parallel.For(0, CastleMidle, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastleMidle, ik =>
 
                 {
                     if (CastlesOnTable != null && CastlesOnTable[ik] != null && CastlesOnTable[ik].CastleThinking != null && CastlesOnTable[ik].CastleThinking[0] != null
@@ -22764,7 +22764,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         return false;
 
                 }
-                ////Parallel.For(0, MinisterOnTable[ik].MinisterThinking[0].TableListMinister.Count, j =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, MinisterOnTable[ik].MinisterThinking[0].TableListMinister.Count, j =>
                 //operational computation secxistence
                 for (var j = 0; j < MinisterOnTable[ik].MinisterThinking[0].TableListMinister.Count; j++)
                 {
@@ -22924,7 +22924,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[4] = true;
                 //Minister.
-                Parallel.For(0, MinisterMidle, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, MinisterMidle, ik =>
 
                 {
                     if (MinisterOnTable != null && MinisterOnTable[ik] != null && MinisterOnTable[ik].MinisterThinking != null && MinisterOnTable[ik].MinisterThinking[0] != null
@@ -22968,7 +22968,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 }
                 if (KingOnTable[ik].KingThinking[0].TableListKing.Count == 0)
                     return Do;
-                // //Parallel.For(0, KingOnTable[ik].KingThinking[0].TableListKing.Count, j =>
+                // //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, KingOnTable[ik].KingThinking[0].TableListKing.Count, j =>
                 //operational computation secxistence
                 for (var j = 0; j < KingOnTable[ik].KingThinking[0].TableListKing.Count; j++)
                 {
@@ -23126,7 +23126,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
 
                 //King.
                 ThinkingAllowed[5] = true;
-                Parallel.For(0, KingMidle, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, KingMidle, ik =>
 
                 {
                     if (KingOnTable != null && KingOnTable[ik] != null && KingOnTable[ik].KingThinking != null && KingOnTable[ik].KingThinking[0] != null
@@ -23155,7 +23155,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             lock (O1)
             {
                 ThinkingAllowed[6] = true;
-                Parallel.For(SodierMidle, SodierHigh, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(SodierMidle, SodierHigh, ik =>
 
                 {
                     if (SolderesOnTable != null && SolderesOnTable[ik] != null && SolderesOnTable[ik].SoldierThinking != null && SolderesOnTable[ik].SoldierThinking[0] != null
@@ -23185,7 +23185,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[7] = true;
                 //Elephant
-                Parallel.For(ElefantMidle, ElefantHigh, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ElefantMidle, ElefantHigh, ik =>
 
                 {
                     if (ElephantOnTable != null && ElephantOnTable[ik] != null && ElephantOnTable[ik].ElefantThinking != null && ElephantOnTable[ik].ElefantThinking[0] != null
@@ -23214,7 +23214,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[8] = true;
                 //Hourse.
-                Parallel.For(HourseMidle, HourseHight, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(HourseMidle, HourseHight, ik =>
 
                 {
                     if (HoursesOnTable != null && HoursesOnTable[ik] != null && HoursesOnTable[ik].HourseThinking != null && HoursesOnTable[ik].HourseThinking[0] != null
@@ -23243,7 +23243,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[9] = true;
                 //Castles.
-                Parallel.For(CastleMidle, CastleHigh, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(CastleMidle, CastleHigh, ik =>
 
                 {
                     if (CastlesOnTable != null && CastlesOnTable[ik] != null && CastlesOnTable[ik].CastleThinking != null && CastlesOnTable[ik].CastleThinking[0] != null
@@ -23272,7 +23272,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[10] = true;
                 //Minister.
-                Parallel.For(MinisterMidle, MinisterHigh, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(MinisterMidle, MinisterHigh, ik =>
 
                 {
                     if (MinisterOnTable != null && MinisterOnTable[ik] != null && MinisterOnTable[ik].MinisterThinking != null && MinisterOnTable[ik].MinisterThinking[0] != null
@@ -23301,7 +23301,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[11] = true;
                 //King.
-                Parallel.For(KingMidle, KingHigh, ik =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(KingMidle, KingHigh, ik =>
 
                 {
                     if (KingOnTable != null && KingOnTable[ik] != null && KingOnTable[ik].KingThinking != null && KingOnTable[ik].KingThinking[0] != null
@@ -23332,7 +23332,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                         {
                             Object O1 = new Object();
                             lock (O1)
@@ -23478,7 +23478,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 output.Wait(); output.Dispose();
                 //TH.Add(output);
 
-                //Parallel.ForEach(TH, item => Task.WaitAll(item));
+                //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.ForEach(TH, item => Task.WaitAll(item));
 
 
                 TH.Clear();
@@ -23498,7 +23498,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                         {
                             Object O1 = new Object();
                             lock (O1)
@@ -23644,7 +23644,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 output.Wait(); output.Dispose();
                 //TH.Add(output);
 
-                //Parallel.ForEach(TH, item => Task.WaitAll(item));
+                //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.ForEach(TH, item => Task.WaitAll(item));
 
 
                 TH.Clear();
@@ -23733,9 +23733,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.For(0, MaxGrayMidle(), i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, MaxGrayMidle(), i =>
                         {
-                            Parallel.Invoke(() =>
+                            ParallelOptions poo = new ParallelOptions();       poo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                             {
                                 Object ooo = new Object();
                                 lock (ooo)
@@ -23915,9 +23915,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.For(MinBrownMidle(), MaxGrayMidle(), i =>
+                        ParallelOptions ppo = new ParallelOptions();       ppo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(MinBrownMidle(), MaxGrayMidle(), i =>
                         {
-                            Parallel.Invoke(() =>
+                            ParallelOptions ppoo = new ParallelOptions();       ppoo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                             {
                                 Object ooo = new Object();
                                 lock (ooo)

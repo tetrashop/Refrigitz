@@ -990,10 +990,10 @@ namespace RefrigtzDLL
                                     Supported = 0;
                                     SupportedS = 0;
                                     //For All Enemy Obejcts.                                             
-                                    ////Parallel.For(0, 8, g =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                     for (int g = 0; g < 8; g++)
                                     {
-                                        ////Parallel.For(0, 8, h =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                         for (int h = 0; h < 8; h++)
                                         {
                                             //Ignore Of Self Objects.
@@ -1100,16 +1100,16 @@ namespace RefrigtzDLL
 
                                 //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                 //For All Enemy Obejcts.                                             
-                                ////Parallel.For(0, 8, g =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                 int Supported = new int();
                                 int SupportedS = new int();
                                 Supported = 0;
                                 SupportedS = 0;
                                 //For All Enemy Obejcts.                                             
-                                ////Parallel.For(0, 8, g =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                 for (int g = 0; g < 8; g++)
                                 {
-                                    ////Parallel.For(0, 8, h =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                     for (int h = 0; h < 8; h++)
                                     {
                                         //Ignore Of Self Objects.
@@ -1298,10 +1298,10 @@ namespace RefrigtzDLL
                                         Supported = 0;
                                         SupportedS = 0;
                                         //For All Enemy Obejcts.                                             
-                                        ////Parallel.For(0, 8, g =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                         for (int g = 0; g < 8; g++)
                                         {
-                                            ////Parallel.For(0, 8, h =>
+                                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                             for (int h = 0; h < 8; h++)
                                             {
                                                 //Ignore Of Self Objects.
@@ -1412,10 +1412,10 @@ namespace RefrigtzDLL
                                     Supported = 0;
                                     SupportedS = 0;
                                     //For All Enemy Obejcts.                                             
-                                    ////Parallel.For(0, 8, g =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                     for (int g = 0; g < 8; g++)
                                     {
-                                        ////Parallel.For(0, 8, h =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                         for (int h = 0; h < 8; h++)
                                         {
                                             //Ignore Of Self Objects.
@@ -1718,10 +1718,10 @@ namespace RefrigtzDLL
                 {
                     EnemyNotSupported = true;
                     //Enemy
-                    ////Parallel.For(0, 8, RowS =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowS =>
                     for (var RowS = 0; RowS < 8; RowS++)
                     {
-                        ////Parallel.For(0, 8, ColS =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColS =>
                         for (var ColS = 0; ColS < 8; ColS++)
                         {
                             if (!EnemyNotSupported)
@@ -1729,13 +1729,13 @@ namespace RefrigtzDLL
                             int Order1 = new int();
                             Order1 = Ord;
                             int[,] Tab = new int[8, 8];
-                            ////Parallel.For(0, 8, ik =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ik =>
                             for (var ik = 0; ik < 8; ik++)
                             {
                                 if (!EnemyNotSupported)
                                     continue;
                                 for (var jk = 0; jk < 8; jk++)
-                                ////Parallel.For(0, 8, jk =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jk =>
                                 {
                                     Object O3 = new Object();
                                     lock (O3)
@@ -1974,11 +1974,11 @@ namespace RefrigtzDLL
                         AttackCount = 0;
                         //For All Self
                         for (var RowS = 0; RowS < 8; RowS++)
-                        ////Parallel.For(0, 8, RowS =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowS =>
                         {
                             //if (AttackCount > 1)
                             for (var ColS = 0; ColS < 8; ColS++)
-                            ////Parallel.For(0, 8, ColS =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColS =>
                             {
                                 if (AttackCount > 1)
                                     continue;
@@ -1999,12 +1999,12 @@ namespace RefrigtzDLL
                                 {
                                     bool Supporte = false;
                                     //For All Self
-                                    ////Parallel.For(0, 8, RowD =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowD =>
                                     for (int RowD = 0; RowD < 8; RowD++)
                                     {
                                         if (AttackCount > 1)
                                             continue;
-                                        ////Parallel.For(0, 8, ColD =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColD =>
                                         for (int ColD = 0; ColD < 8; ColD++)
                                         {
                                             if (AttackCount > 1)
@@ -2662,7 +2662,7 @@ namespace RefrigtzDLL
             {
                 int HAS = 0;
                 int HAE = 0;
-                Parallel.Invoke(() =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                 {
                     var th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
                     th.Wait();
@@ -2753,11 +2753,11 @@ namespace RefrigtzDLL
                                 Supported = 0;
                                 SupportedE = 0;
                                 //For All Self Obejcts.                                             
-                                ////Parallel.For(0, 8, g =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                 for (int g = 0; g < 8; g++)
                                 {
                                     //if (Supported)
-                                    ////Parallel.For(0, 8, h =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                     for (int h = 0; h < 8; h++)
                                     {
                                         Object O2 = new Object();
@@ -2884,11 +2884,11 @@ namespace RefrigtzDLL
                                             Supported = 0;
                                             SupportedE = 0;
                                             //For All Self Obejcts.                                             
-                                            ////Parallel.For(0, 8, g =>
+                                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                             for (int g = 0; g < 8; g++)
                                             {
                                                 //if (Supported)
-                                                ////Parallel.For(0, 8, h =>
+                                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                                 for (int h = 0; h < 8; h++)
                                                 {
                                                     Object O2 = new Object();
@@ -3040,11 +3040,11 @@ namespace RefrigtzDLL
                                 Supported = 0;
                                 SupportedE = 0;
                                 //For All Self Obejcts.                                             
-                                ////Parallel.For(0, 8, g =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                 for (int g = 0; g < 8; g++)
                                 {
                                     //if (Supported)
-                                    ////Parallel.For(0, 8, h =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                     for (int h = 0; h < 8; h++)
                                     {
                                         Object O2 = new Object();
@@ -3171,11 +3171,11 @@ namespace RefrigtzDLL
                                             Supported = 0;
                                             SupportedE = 0;
                                             //For All Self Obejcts.                                             
-                                            ////Parallel.For(0, 8, g =>
+                                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                             for (int g = 0; g < 8; g++)
                                             {
                                                 //if (Supported)
-                                                ////Parallel.For(0, 8, h =>
+                                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                                 for (int h = 0; h < 8; h++)
                                                 {
                                                     Object O2 = new Object();
@@ -3984,8 +3984,8 @@ namespace RefrigtzDLL
                     //For All Enemies.
                     for (var ik = 0; ik < 8; ik++)
                         for (var jk = 0; jk < 8; jk++)
-                        ////Parallel.For(0, 8, ik =>
-                        ////Parallel.For(0, 8, jk =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ik =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jk =>
                         {
                             //Ignore of Current
                             if (Order == 1 && Tabl[ik, jk] >= 0)
@@ -3998,8 +3998,8 @@ namespace RefrigtzDLL
                                     //For Current Home
                                     for (var iki = ik - 2; iki < ik + 3; iki++)
                                         for (var jki = jk - 2; jki < jk + 3; jki++)
-                                        ////Parallel.For(ik - 2, ik + 3, iki =>
-                                        ////Parallel.For(jk - 2, jk + 3, jki =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ik - 2, ik + 3, iki =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jk - 2, jk + 3, jki =>
                                         // init subtotal
                                         {
                                             if (!Scop(ik, jk, iki, jki, 1))
@@ -4030,7 +4030,7 @@ namespace RefrigtzDLL
                                 case 2:
 
                                     //For Current Home
-                                    ////Parallel.For(0, 8, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iki =>
                                     for (var iki = 0; iki < 8; iki++)
                                     {
                                         var jki = iki + jk - ik;
@@ -4059,7 +4059,7 @@ namespace RefrigtzDLL
                                         }
                                     }
                                     //For Current Home
-                                    ////Parallel.For(0, 8, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iki =>
                                     for (var iki = 0; iki < 8; iki++)
                                     {
                                         var jki = iki * -1 + jk + ik;
@@ -4090,8 +4090,8 @@ namespace RefrigtzDLL
                                     break;
                                 case 3:
                                     //For Current Home
-                                    ////Parallel.For(ik - 2, ik + 3, iki =>
-                                    ////Parallel.For(jk - 2, jk + 3, jki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ik - 2, ik + 3, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jk - 2, jk + 3, jki =>
                                     for (var iki = ik - 2; iki < ik + 3; iki++)
                                         for (var jki = jk - 2; jki < jk + 3; jki++)
                                         {
@@ -4121,7 +4121,7 @@ namespace RefrigtzDLL
                                     break;
                                 case 4:
                                     //For Current Home
-                                    ////Parallel.For(0, 8, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iki =>
                                     for (var iki = 0; iki < 8; iki++)
                                     {
                                         var jki = jk;
@@ -4150,7 +4150,7 @@ namespace RefrigtzDLL
                                         }
                                     }
                                     //For Current Home
-                                    ////Parallel.For(0, 8, jki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jki =>
                                     for (var jki = 0; jki < 8; jki++)
                                     {
                                         var iki = ik;
@@ -4183,8 +4183,8 @@ namespace RefrigtzDLL
                                 case 5:
 
                                     //For Current Home
-                                    ////Parallel.For(0, 8, iki =>
-                                    ////Parallel.For(0, 8, jki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jki =>
                                     for (var iki = 0; iki < 8; iki++)
                                         for (var jki = 0; jki < 8; jki++)
                                         {
@@ -4216,8 +4216,8 @@ namespace RefrigtzDLL
                                     break;
                                 case 6:
                                     //For Current Home
-                                    ////Parallel.For(ik - 1, ik + 2, iki =>
-                                    ////Parallel.For(jk - 1, jk + 2, jki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ik - 1, ik + 2, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jk - 1, jk + 2, jki =>
                                     for (var iki = ik - 1; iki < ik + 2; iki++)
                                         for (var jki = jk - 1; jki < jk + 2; jki++)
                                         {
@@ -4317,12 +4317,12 @@ namespace RefrigtzDLL
                         TabS[RowS, ColS] = TabS[ii, jj];
                         TabS[ii, jj] = 0;
                         //For Self Objects.
-                        ////Parallel.For(0, 8, RowD =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowD =>
                         for (int RowD = 0; RowD < 8; RowD++)
                         {
                             if (!Attacked || NumberOfCurrentEnemyAttackSuchObject > 1)
                                 continue;
-                            ////Parallel.For(0, 8, ColD =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColD =>
                             for (int ColD = 0; ColD < 8; ColD++)
                             {
                                 if (!Attacked || NumberOfCurrentEnemyAttackSuchObject > 1)
@@ -4334,10 +4334,10 @@ namespace RefrigtzDLL
                                 //Show the Attacked.
                                 Attacked = true;
                                 //For Self Objects and Empty.
-                                ////Parallel.For(0, 8, iiiii =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iiiii =>
                                 for (int iiiii = 0; iiiii < 8; iiiii++)
                                 {
-                                    ////Parallel.For(0, 8, jjjjj =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jjjjj =>
                                     for (int jjjjj = 0; jjjjj < 8; jjjjj++)
                                     {
                                         //Ignore of Enemy Objects.
@@ -6513,13 +6513,13 @@ namespace RefrigtzDLL
                 {
                     var output = Task.Factory.StartNew(() =>
                     {
-                        Parallel.For(0, 8, RowS =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowS =>
                         {
-                            Parallel.For(0, 8, ColS =>
+                            ParallelOptions poo = new ParallelOptions();       poo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColS =>
                             {
-                                Parallel.For(0, 8, RowD =>
+                                ParallelOptions poooo = new ParallelOptions();       poooo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowD =>
                                 {
-                                    Parallel.For(0, 8, ColD =>
+                                    ParallelOptions pooooo = new ParallelOptions();       pooooo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColD =>
                                     {
                                         if (IsDistributedObjectAttackNonDistributedEnemyObject(Before, CloneATable(Table), Ord, aa, RowS, ColS, RowD, ColD))
                                         {
@@ -6527,7 +6527,7 @@ namespace RefrigtzDLL
                                             return;
                                         }
 
-                                        Parallel.Invoke(() =>
+                                        ParallelOptions poooooo = new ParallelOptions();       poooooo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                                         {
                                             Object OO = new Object();
                                             lock (OO)
@@ -7118,18 +7118,18 @@ namespace RefrigtzDLL
                 Object O1 = new Object();
                 lock (O1)
                 {
-                    Parallel.For(0, 8, RowS =>
+                    ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowS =>
                     {
-                        Parallel.For(0, 8, ColS =>
+                        ParallelOptions poo = new ParallelOptions();       poo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColS =>
                         {
-                            Parallel.For(0, 8, RowD =>
+                            ParallelOptions pooo = new ParallelOptions();       pooo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowD =>
                             {
-                                Parallel.For(0, 8, ColD =>
+                                ParallelOptions poooo = new ParallelOptions();       poooo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColD =>
                                 {
 
                                     var output = Task.Factory.StartNew(() =>
                                     {
-                                        Parallel.Invoke(() =>
+                                        ParallelOptions pooooo = new ParallelOptions();       pooooo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                                         {
 
                                             Object OO = new Object();
@@ -7515,7 +7515,7 @@ namespace RefrigtzDLL
             {
                 int HAS = 0;
                 int HAE = 0;
-                Parallel.Invoke(() =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                 {
                     var th = Task.Factory.StartNew(() => HAS = HeuristicMovmentSelf(Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
                     th.Wait();
@@ -7595,9 +7595,9 @@ namespace RefrigtzDLL
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
                             for (int g = 0; g < 8; g++)
-                            ////Parallel.For(0, 8, g =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                             {
-                                ////Parallel.For(0, 8, h =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                 for (int h = 0; h < 8; h++)
                                 {
                                     Object O2 = new Object();
@@ -7711,9 +7711,9 @@ namespace RefrigtzDLL
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
                             for (int g = 0; g < 8; g++)
-                            ////Parallel.For(0, 8, g =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                             {
-                                ////Parallel.For(0, 8, h =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                 for (int h = 0; h < 8; h++)
                                 {
                                     Object O2 = new Object();
@@ -7845,9 +7845,9 @@ namespace RefrigtzDLL
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
                             for (int g = 0; g < 8; g++)
-                            ////Parallel.For(0, 8, g =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                             {
-                                ////Parallel.For(0, 8, h =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                 for (int h = 0; h < 8; h++)
                                 {
                                     Object O2 = new Object();
@@ -7958,9 +7958,9 @@ namespace RefrigtzDLL
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
                             for (int g = 0; g < 8; g++)
-                            ////Parallel.For(0, 8, g =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                             {
-                                ////Parallel.For(0, 8, h =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                 for (int h = 0; h < 8; h++)
                                 {
                                     Object O2 = new Object();
@@ -10169,27 +10169,27 @@ namespace RefrigtzDLL
                 Object O = new Object();
                 lock (O)
                 {
-                    ////Parallel.For(0, 8, i =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                     for (var i = 0; i < 8; i++)
                     {
                         if ((LearningV[0] || LearningV[1] || LearningV[2]))
                             continue;
-                        ////Parallel.For(0, 8, j =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, j =>
                         for (var j = 0; j < 8; j++)
                         {
                             if ((LearningV[0] || LearningV[1] || LearningV[2]))
                                 continue;
-                            ////Parallel.For(0, 8, RowS =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowS =>
                             for (var RowS = 0; RowS < 8; RowS++)
                             {
                                 if ((LearningV[0] || LearningV[1] || LearningV[2]))
                                     continue;
-                                ////Parallel.For(0, 8, ColS =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColS =>
                                 for (var ColS = 0; ColS < 8; ColS++)
                                 {
                                     if ((LearningV[0] || LearningV[1] || LearningV[2]))
                                         continue;
-                                    //Parallel.Invoke(() =>
+                                    //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                                     {
                                         Object O1 = new Object();
                                         lock (O1)
@@ -12141,7 +12141,7 @@ namespace RefrigtzDLL
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                         {
                             Object O = new Object();
                             lock (O)
@@ -12176,7 +12176,7 @@ namespace RefrigtzDLL
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                         {
                             Object O = new Object();
                             lock (O)
@@ -12883,7 +12883,7 @@ namespace RefrigtzDLL
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = 0; i < 8; i++)
                 {
                     Object O = new Object();
@@ -12984,7 +12984,7 @@ namespace RefrigtzDLL
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = 0; i < 8; i++)
                 {
                     Object O = new Object();
@@ -13047,7 +13047,7 @@ namespace RefrigtzDLL
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = RowS - 3; i < RowS + 4; i++)
                 {
                     for (var j = ColS - 3; j < ColS + 4; j++)
@@ -13081,7 +13081,7 @@ namespace RefrigtzDLL
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = RowS - 3; i < RowS + 4; i++)
                 {
                     for (var j = ColS - 3; j < ColS + 4; j++)
@@ -13203,7 +13203,7 @@ namespace RefrigtzDLL
                     }
                 }
                 //=============================================
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
 
 
                 for (var i = ii - 1; i < ii + 2; i++)
@@ -13314,7 +13314,7 @@ namespace RefrigtzDLL
                     }
                 }
                 //=============================================
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
 
 
                 for (var i = ii - 1; i < ii + 2; i++)
@@ -13416,7 +13416,7 @@ namespace RefrigtzDLL
             {
                 var tth = Task.Factory.StartNew(() =>
                 {
-                    Parallel.Invoke(() =>
+                    ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                     {
                         var tth1 = Task.Factory.StartNew(() => EleRedAchmaz = AchMazReducedElephasnt(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
                         tth1.Wait();
@@ -13453,7 +13453,7 @@ namespace RefrigtzDLL
             }
             var ttttth = Task.Factory.StartNew(() =>
             {
-                Parallel.Invoke(() =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                 {
                     var tth1 = Task.Factory.StartNew(() => AchmazPure.Add(CollectionSummation(EleAchmaz, HourAchmaz, CastAchmaz, MiniAchmaz, KingAchmaz)));
                     tth1.Wait();
@@ -14629,10 +14629,10 @@ namespace RefrigtzDLL
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(ii - 2, ii + 3, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ii - 2, ii + 3, i =>
                 for (var i = ii - 2; i < ii + 3; i++)
                 {
-                    ////Parallel.For(jj - 2, jj + 3, j =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jj - 2, jj + 3, j =>
                     for (var j = jj - 2; j < jj + 3; j++)
                     {
                         int[,] TableS = new int[8, 8];
@@ -14696,9 +14696,9 @@ namespace RefrigtzDLL
                 Object O1 = new Object();
                 lock (O1)
                 {
-                    ////Parallel.For(0, 8, i =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                     for (var i = 0; i < 8; i++)
-                    {////Parallel.For(0, 8, i =>
+                    {////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                         for (var j = 0; j < 8; j++)
                         {
                             Object O = new Object();
@@ -15036,7 +15036,7 @@ namespace RefrigtzDLL
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = 0; i < 8; i++)
                 {
                     Object O = new Object();
@@ -15069,7 +15069,7 @@ namespace RefrigtzDLL
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, j =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, j =>
                 for (var j = 0; j < 8; j++)
                 {
                     Object O = new Object();
@@ -15147,10 +15147,10 @@ namespace RefrigtzDLL
             lock (O1)
             {
                 int[,] TableS = new int[8, 8];
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = 0; i < 8; i++)
                 {
-                    ////Parallel.For(0, 8, j =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, j =>
                     for (var j = 0; j < 8; j++)
                     {
                         TableS = CloneATable(TableConst);
@@ -15237,10 +15237,10 @@ namespace RefrigtzDLL
                 Object O = new Object();
                 lock (O)
                 {
-                    ////Parallel.For(ii - 1, ii + 2, i =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ii - 1, ii + 2, i =>
                     for (var i = ii - 1; i < ii + 2; i++)
                     {
-                        ////Parallel.For(jj - 1, jj + 2, j =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jj - 1, jj + 2, j =>
                         for (var j = jj - 1; j < jj + 2; j++)
                         {
 
@@ -15380,7 +15380,7 @@ namespace RefrigtzDLL
                     FullGameAllow = true;
                     if (Kind == 1)
                     {
-                        Parallel.For(0, TableListSolder.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListSolder.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
                             AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
@@ -15389,7 +15389,7 @@ namespace RefrigtzDLL
                     else
                     if (Kind == 2)
                     {
-                        Parallel.For(0, TableListElefant.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListElefant.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
                             AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
@@ -15398,7 +15398,7 @@ namespace RefrigtzDLL
                     else
                     if (Kind == 3)
                     {
-                        Parallel.For(0, TableListHourse.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListHourse.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
                             AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
@@ -15407,7 +15407,7 @@ namespace RefrigtzDLL
                     else
                     if (Kind == 4)
                     {
-                        Parallel.For(0, TableListCastle.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListCastle.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
                             AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
@@ -15416,7 +15416,7 @@ namespace RefrigtzDLL
                     else
                     if (Kind == 5)
                     {
-                        Parallel.For(0, TableListMinister.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListMinister.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
                             AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
@@ -15425,7 +15425,7 @@ namespace RefrigtzDLL
                     else
                         if (Kind == 6)
                     {
-                        Parallel.For(0, TableListKing.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListKing.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
                             AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);

@@ -399,13 +399,13 @@ namespace RefrigtzChessPortable
 
             }
         }
-        public string AsS(int i,int j,int ii,int jj)
+        public string AsS(int i, int j, int ii, int jj)
         {
             object o = new object();
             lock (o)
             {
                 OutP = Alphabet(i) + Number(j) + Alphabet(ii) + Number(jj);
-                return OutP ;
+                return OutP;
             }
         }
         public ThinkingRefrigtzChessPortable() { }
@@ -2659,19 +2659,19 @@ namespace RefrigtzChessPortable
             {
                 int HAS = 0;
                 int HAE = 0;
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
-                {
-                    var th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
-                    th.Wait();
-                    th.Dispose();
-                }
-                , () =>
-                {
-                    var th = Task.Factory.StartNew(() => HAS = HAE = HeuristicEnemySupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
-                    th.Wait();
-                    th.Dispose();
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+{
+var th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
+th.Wait();
+th.Dispose();
+}
+, () =>
+{
+var th = Task.Factory.StartNew(() => HAS = HAE = HeuristicEnemySupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
+th.Wait();
+th.Dispose();
 
-                });
+});
                 return HAS + (HAE);
             }
         }
@@ -6510,116 +6510,116 @@ namespace RefrigtzChessPortable
                 {
                     var output = Task.Factory.StartNew(() =>
                     {
-                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowS =>
-                        {
-                            ParallelOptions poo = new ParallelOptions();       poo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColS =>
-                            {
-                                ParallelOptions pooo = new ParallelOptions();       pooo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowD =>
-                                {
-                                    ParallelOptions poooo = new ParallelOptions();       poooo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColD =>
-                                    {
-                                        if (IsDistributedObjectAttackNonDistributedEnemyObject(Before, CloneATable(Table), Ord, aa, RowS, ColS, RowD, ColD))
-                                        {
-                                            HA += RationalPenalty;
-                                            return;
-                                        }
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
+{
+    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
+    {
+        ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
+        {
+            ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+            {
+                if (IsDistributedObjectAttackNonDistributedEnemyObject(Before, CloneATable(Table), Ord, aa, RowS, ColS, RowD, ColD))
+                {
+                    HA += RationalPenalty;
+                    return;
+                }
 
-                                        ParallelOptions pooooo = new ParallelOptions();       pooooo.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
-                                        {
-                                            Object OO = new Object();
-                                            lock (OO)
-                                            {
-                                                if (HeuristicA[0] == 0)
-                                                {
-                                                    bool ab = false;
-                                                    var th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
-                                                    th.Wait();
-                                                    th.Dispose();
-                                                    if (ab)
-                                                    {
-                                                        var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                                        th1.Wait();
-                                                        th1.Dispose();
-                                                        if (ab)
-                                                        {
-                                                            if (HeuristicA[0] == 0)
-                                                                HeuristicA[0] = RationalPenalty;
-                                                            HeuristicB[0] += RationalPenalty;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        , () =>
-                                        {
-                                            if (HeuristicA[2] == 0)
-                                            {
-                                                bool ab = false;
-                                                var th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
-                                                th.Wait();
-                                                th.Dispose();
-                                                if (ab)
-                                                {
-                                                    var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                                    th1.Wait();
-                                                    th1.Dispose();
-                                                    if (ab)
-                                                    {
-                                                        if (HeuristicA[2] == 0)
-                                                            HeuristicA[2] = RationalPenalty;
-                                                        HeuristicB[2] += RationalPenalty;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        , () =>
-                                        {
-                                            if (HeuristicA[1] == 0)
-                                            {
-                                                bool ab = false;
-                                                var th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], false, false));
-                                                th.Wait();
-                                                th.Dispose();
-                                                if (ab)
-                                                {
-                                                    var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                                    th1.Wait();
-                                                    th1.Dispose();
-                                                    if (ab)
-                                                    {
-                                                        if (HeuristicA[1] == 0)
-                                                            HeuristicA[1] = RationalRegard;
-                                                        HeuristicB[1] += RationalRegard;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                         , () =>
-                                         {
-                                             if (HeuristicA[3] == 0)
-                                             {
-                                                 bool ab = false;
-                                                 var th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], true, false));
-                                                 th.Wait();
-                                                 th.Dispose();
-                                                 if (ab)
-                                                 {
-                                                     var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                                     th1.Wait();
-                                                     th1.Dispose();
-                                                     if (ab)
-                                                     {
-                                                         if (HeuristicA[3] == 0)
-                                                             HeuristicA[3] = RationalRegard;
-                                                         HeuristicB[3] += RationalRegard;
-                                                     }
-                                                 }
-                                             }
-                                         });
-                                    });
-                                });
-                            });
-                        });
+                ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                {
+                    Object OO = new Object();
+                    lock (OO)
+                    {
+                        if (HeuristicA[0] == 0)
+                        {
+                            bool ab = false;
+                            var th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
+                            th.Wait();
+                            th.Dispose();
+                            if (ab)
+                            {
+                                var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                                th1.Wait();
+                                th1.Dispose();
+                                if (ab)
+                                {
+                                    if (HeuristicA[0] == 0)
+                                        HeuristicA[0] = RationalPenalty;
+                                    HeuristicB[0] += RationalPenalty;
+                                }
+                            }
+                        }
+                    }
+                }
+                , () =>
+                {
+                    if (HeuristicA[2] == 0)
+                    {
+                        bool ab = false;
+                        var th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
+                        th.Wait();
+                        th.Dispose();
+                        if (ab)
+                        {
+                            var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                            th1.Wait();
+                            th1.Dispose();
+                            if (ab)
+                            {
+                                if (HeuristicA[2] == 0)
+                                    HeuristicA[2] = RationalPenalty;
+                                HeuristicB[2] += RationalPenalty;
+                            }
+                        }
+                    }
+                }
+                , () =>
+                {
+                    if (HeuristicA[1] == 0)
+                    {
+                        bool ab = false;
+                        var th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], false, false));
+                        th.Wait();
+                        th.Dispose();
+                        if (ab)
+                        {
+                            var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                            th1.Wait();
+                            th1.Dispose();
+                            if (ab)
+                            {
+                                if (HeuristicA[1] == 0)
+                                    HeuristicA[1] = RationalRegard;
+                                HeuristicB[1] += RationalRegard;
+                            }
+                        }
+                    }
+                }
+                 , () =>
+                 {
+                     if (HeuristicA[3] == 0)
+                     {
+                         bool ab = false;
+                         var th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], true, false));
+                         th.Wait();
+                         th.Dispose();
+                         if (ab)
+                         {
+                             var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                             th1.Wait();
+                             th1.Dispose();
+                             if (ab)
+                             {
+                                 if (HeuristicA[3] == 0)
+                                     HeuristicA[3] = RationalRegard;
+                                 HeuristicB[3] += RationalRegard;
+                             }
+                         }
+                     }
+                 });
+            });
+        });
+    });
+});
                     });
 
                     output.Wait(); output.Dispose();
@@ -7120,6 +7120,223 @@ namespace RefrigtzChessPortable
             }
             return true;
         }
+        bool HeuristicExchangHeuristicAllReducedAttacked(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try {
+
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowD, ColD, RowS, ColS, ref HeuristicAllReducedAttacked);
+                                return true;
+                            }
+                        }
+
+                    }
+
+
+
+                }
+                catch (Exception d)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllReducedSupport(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowD, ColD, RowS, ColS, ref HeuristicAllReducedSupport);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception d)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllReducedMove(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, true));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowD, ColD, RowS, ColS, ref HeuristicAllReducedMove);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception d)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllAttacked(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], false, false));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowS, ColS, RowD, ColD, ref HeuristicAllAttacked);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception d)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllSupport(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, false));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+                        var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowS, ColS, RowD, ColD, ref HeuristicAllSupport);
+                                return true;
+                            }
+                        }
+
+                    }
+                }
+                catch (Exception d)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllMove(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, true));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowS, ColS, RowD, ColD, ref HeuristicAllMove);
+                                return true;
+                            }
+                        }
+
+                    }
+                }
+                catch (Exception d)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
         //create heuristic and lists of move and reduced move and attack and reduced attack and support and reduced support
         public int[] HeuristicExchange(bool Before, int Killed, int[,] Table, Color aa, int Ord, int Ros, int Cos, int Rod, int Cod)
         {
@@ -7134,200 +7351,89 @@ namespace RefrigtzChessPortable
                 int DumOrd = Ord;
                 int DummyOrd = Ord;
                 int DummyCurrentOrd = ChessRules.CurrentOrder;
+
+
                 ///When AStarGreedy Exchange is Not Assigned.
                 Object O1 = new Object();
                 lock (O1)
                 {
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount;
+                    var output = Task.Factory.StartNew(() =>
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
+
+                        ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
+                {
+                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
+                    {
+                        ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
                         {
-                            ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
-                            {
-                                ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
-                                {
+                            ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+                             {
 
-                                    var output = Task.Factory.StartNew(() =>
-                                    {
-                                        ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-                                        {
+                                 ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                                 {
+                                     if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                                         Exchange[ReducedAttacked]++;
 
-                                            Object OO = new Object();
-                                            lock (OO)
-                                            {
-                                                bool ab = false;
-                                                var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
-                                                th.Wait();
-                                                th.Dispose();
-                                                if (ab)
-                                                {
 
-                                                    var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                                    th1.Wait();
-                                                    th1.Dispose();
-                                                    if (ab)
-                                                    {
-                                                        Object OOO = new Object();
-                                                        lock (OOO)
-                                                        {
-                                                            AssignAAndList(RowD, ColD, RowS, ColS, ref HeuristicAllReducedAttacked);
-                                                            Exchange[ReducedAttacked]++;
-                                                        }
-                                                    }
-                                                }
+                                 }
+                            , () =>
+{
 
-                                            }
-                                        }
-                        , () =>
-                        {
-                            Object OO = new Object();
-                            lock (OO)
-                            {
-                                bool ab = false;
-                                var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
-                                th.Wait();
-                                th.Dispose();
-                                if (ab)
-                                {
 
-                                    var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                    th1.Wait();
-                                    th1.Dispose();
-                                    if (ab)
-                                    {
 
-                                        Object OOO = new Object();
-                                        lock (OOO)
-                                        {
-                                            AssignAAndList(RowD, ColD, RowS, ColS, ref HeuristicAllReducedSupport);
-                                            Exchange[ReducedSupport]++;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        , () =>
-                        {
-                            Object OO = new Object();
-                            lock (OO)
-                            {
-                                bool ab = false;
-                                var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, true));
-                                th.Wait();
-                                th.Dispose();
-                                if (ab)
-                                {
 
-                                    var th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                    th1.Wait();
-                                    th1.Dispose();
-                                    if (ab)
-                                    {
-                                        Object OOO = new Object();
-                                        lock (OOO)
-                                        {
-                                            AssignAAndList(RowD, ColD, RowS, ColS, ref HeuristicAllReducedMove);
-                                            Exchange[ReducedMove]++;
-                                        }
-                                    }
-                                }
-                            }
-                        }, () =>
-                        {
+    if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
+        Exchange[ReducedSupport]++;
+}
+                                     , () =>
+{
 
-                            Object OO = new Object();
-                            lock (OO)
-                            {
-                                bool ab = false;
-                                var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], false, false));
-                                th.Wait();
-                                th.Dispose();
-                                if (ab)
-                                {
 
-                                    var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                    th1.Wait();
-                                    th1.Dispose();
-                                    if (ab)
-                                    {
-                                        Object OOO = new Object();
-                                        lock (OOO)
-                                        {
-                                            AssignAAndList(RowS, ColS, RowD, ColD, ref HeuristicAllAttacked);
-                                            Exchange[ToAttacked]++;
-                                        }
-                                    }
-                                }
-                            }
-                        }, () =>
-                        {
-                            Object OO = new Object();
-                            lock (OO)
-                            {
-                                bool ab = false;
-                                var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, false));
-                                th.Wait();
-                                th.Dispose();
-                                if (ab)
-                                {
-                                    var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                    th1.Wait();
-                                    th1.Dispose();
-                                    if (ab)
-                                    {
-                                        Object OOO = new Object();
-                                        lock (OOO)
-                                        {
-                                            AssignAAndList(RowS, ColS, RowD, ColD, ref HeuristicAllSupport);
-                                            Exchange[ToSupport]++;
-                                        }
-                                    }
-                                }
-                            }
-                        }, () =>
-                        {
-                            Object OO = new Object();
-                            lock (OO)
-                            {
-                                bool ab = false;
-                                var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, true));
-                                th.Wait();
-                                th.Dispose();
-                                if (ab)
-                                {
 
-                                    var th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                    th1.Wait();
-                                    th1.Dispose();
-                                    if (ab)
-                                    {
-                                        Object OOO = new Object();
-                                        lock (OOO)
-                                        {
-                                            AssignAAndList(RowS, ColS, RowD, ColD, ref HeuristicAllMove);
-                                            Exchange[ToMoved]++;
-                                        }
-                                    }
-                                }
-                            }
+    if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
+        Exchange[ReducedMove]++;
+
+}, () =>
+{
+
+
+
+    if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+        Exchange[ToAttacked]++;
+
+
+}, () =>
+   {
+
+       if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
+           Exchange[ToSupport]++;
+
+   }, () =>
+
+
+      {
+
+          if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
+              Exchange[ToMoved]++;
+
+
+
+
+      });
+
+                             });
+
                         });
-
-
-
-
-
-                                    });
-
-
-
-                                    output.Wait(); output.Dispose();
-                                });
-                            });
-                        });
+                    });
+                });
                     });
 
 
+                    output.Wait(); output.Dispose();
+
                 }
+
                 //When situation is closed
                 int A1 = 0;
                 var H1 = Task.Factory.StartNew(() => A1 = IsSupportLessThanReducedSupport(Exchange[ToSupport], Exchange[ReducedSupport]));

@@ -1,4 +1,4 @@
-﻿//CdnPath=http://ajax.aspnetcdn.com/ajax/4.5/6/MenuStandards.js
+﻿//CdnPath=http://ajax.aspnetcdn.com/ajax/4.5.1/1/MenuStandards.js
 if (!window.Sys) { window.Sys = {}; }
 if (!Sys.WebForms) { Sys.WebForms = {}; }
 Sys.WebForms.Menu = function(options) {
@@ -143,7 +143,7 @@ Sys.WebForms.Menu.prototype = {
     },
     isRoot: function() { return this.rootMenu === this; },
     isStatic: function() { return this.displayMode === 'static'; },
-    LastChild: function() { return this.items[this.items.length - 1]; },
+    lastChild: function() { return this.items[this.items.length - 1]; },
     show: function() { this.element.style.display = 'block'; }
 };
 if (Sys.WebForms.Menu.registerClass) {
@@ -192,13 +192,13 @@ Sys.WebForms.MenuItem.prototype = {
     applyUp: function(fn, condition) {
         condition = condition || function(menuItem) { return menuItem; };
         var menuItem = this;
-        var LastMenuItem = null;
+        var lastMenuItem = null;
         while (condition(menuItem)) {
             fn(menuItem);
-            LastMenuItem = menuItem;
+            lastMenuItem = menuItem;
             menuItem = menuItem.parentMenu.parentMenuItem;
         }
-        return LastMenuItem;
+        return lastMenuItem;
     },
     blur: function() { this.setTabIndex(-1); },
     doDispose: function() {
@@ -363,7 +363,7 @@ Sys.WebForms.MenuItem.prototype = {
             if (horizontal && this.parentMenu.depth === 2) {
                 var previousItem = this.parentMenu.parentMenuItem.previousSibling;
                 if (!previousItem) {
-                    previousItem = this.parentMenu.rootMenu.LastChild();
+                    previousItem = this.parentMenu.rootMenu.lastChild();
                 }
                 this.topLevelMenuItem.childMenu.hide();
                 this.container.navigateTo(previousItem);
@@ -384,14 +384,14 @@ Sys.WebForms.MenuItem.prototype = {
         if (previousMenuItem) {
             var childMenu = previousMenuItem.childMenu;
             if (childMenu && childMenu.isRoot()) {
-                previousMenuItem = childMenu.LastChild();
+                previousMenuItem = childMenu.lastChild();
             }
         }
         if (!previousMenuItem && this.parentMenu.isRoot()) {
             previousMenuItem = this.parentMenu.parentMenuItem;
         }
         if (!previousMenuItem) {
-            previousMenuItem = this.parentMenu.LastChild();
+            previousMenuItem = this.parentMenu.lastChild();
         }
         if (previousMenuItem) {
             this.container.navigateTo(previousMenuItem);

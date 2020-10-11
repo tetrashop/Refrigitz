@@ -46,9 +46,6 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-
-
 namespace RefrigtzW
 {
     [Serializable]
@@ -116,12 +113,12 @@ namespace RefrigtzW
         int RationalRegard = 10;
         int RationalPenalty = -10;
 
-#pragma warning disable CS0414 // The field 'ThinkingChess.RationalWin' is assigned but its value is never used
+#pragma warning disable CS0414 // The field 'RationalWin' is assigned but its value is never used
         int RationalWin = 1000;
-#pragma warning restore CS0414 // The field 'ThinkingChess.RationalWin' is assigned but its value is never used
-#pragma warning disable CS0414 // The field 'ThinkingChess.RationalLose' is assigned but its value is never used
+#pragma warning restore CS0414 // The field 'RationalWin' is assigned but its value is never used
+#pragma warning disable CS0414 // The field 'RationalLose' is assigned but its value is never used
         int RationalLose = -1000;
-#pragma warning restore CS0414 // The field 'ThinkingChess.RationalLose' is assigned but its value is never used
+#pragma warning restore CS0414 // The field 'RationalLose' is assigned but its value is never used
 
         public static bool FullGameAllow = false;
         readonly int iIndex = -1;
@@ -129,11 +126,11 @@ namespace RefrigtzW
         public List<bool> KishSelf = new List<bool>();
         public List<bool> KishEnemy = new List<bool>();
         readonly StringBuilder Space = new StringBuilder("&nbsp;");
-        //#pragma warning disable CS0414 // The field 'ThinkingChess.Spaces' is assigned but its value is never used
-#pragma warning disable CS0414 // The field 'ThinkingChess.Spaces' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'Spaces' is assigned but its value is never used
+#pragma warning disable CS0414 // The field 'Spaces' is assigned but its value is never used
         readonly int Spaces = 0;
-#pragma warning restore CS0414 // The field 'ThinkingChess.Spaces' is assigned but its value is never used
-        //#pragma warning restore CS0414 // The field 'ThinkingChess.Spaces' is assigned but its value is never used
+#pragma warning restore CS0414 // The field 'Spaces' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'Spaces' is assigned but its value is never used
         public int HeuristicAttackValueSup = new int();
         public int HeuristicMovementValueSup = new int();
         public int HeuristicSelfSupportedValueSup = new int();
@@ -275,9 +272,11 @@ namespace RefrigtzW
                     Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
                 }
             }
+
 #pragma warning disable CS0168 // The variable 't' is declared but never used
             catch (Exception t) { }
 #pragma warning restore CS0168 // The variable 't' is declared but never used
+
         }
         //create a tow dimension list of all object boundry
         void SetObjectNumbersInList(int[,] Tab)
@@ -385,9 +384,9 @@ namespace RefrigtzW
         [field: NonSerialized]
         private readonly CancellationTokenSource feedCancellationTokenSource =
             new CancellationTokenSource();
-#pragma warning disable CS0169 // The field 'ThinkingChess.feedTask' is never used
+#pragma warning disable CS0169 // The field 'feedTask' is never used
         [field: NonSerialized] private readonly Task feedTask;
-#pragma warning restore CS0169 // The field 'ThinkingChess.feedTask' is never used
+#pragma warning restore CS0169 // The field 'feedTask' is never used
 
         public void Dispose()
         {
@@ -402,13 +401,13 @@ namespace RefrigtzW
 
             }
         }
-        public string AsS(int i,int j,int ii,int jj)
+        public string AsS(int i, int j, int ii, int jj)
         {
             object o = new object();
             lock (o)
             {
                 OutP = Alphabet(i) + Number(j) + Alphabet(ii) + Number(jj);
-                return OutP ;
+                return OutP;
             }
         }
         public ThinkingChess() { }
@@ -990,10 +989,10 @@ namespace RefrigtzW
                                     Supported = 0;
                                     SupportedS = 0;
                                     //For All Enemy Obejcts.                                             
-                                    ////Parallel.For(0, 8, g =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                     for (int g = 0; g < 8; g++)
                                     {
-                                        ////Parallel.For(0, 8, h =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                         for (int h = 0; h < 8; h++)
                                         {
                                             //Ignore Of Self Objects.
@@ -1100,16 +1099,16 @@ namespace RefrigtzW
 
                                 //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                 //For All Enemy Obejcts.                                             
-                                ////Parallel.For(0, 8, g =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                 int Supported = new int();
                                 int SupportedS = new int();
                                 Supported = 0;
                                 SupportedS = 0;
                                 //For All Enemy Obejcts.                                             
-                                ////Parallel.For(0, 8, g =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                 for (int g = 0; g < 8; g++)
                                 {
-                                    ////Parallel.For(0, 8, h =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                     for (int h = 0; h < 8; h++)
                                     {
                                         //Ignore Of Self Objects.
@@ -1298,10 +1297,10 @@ namespace RefrigtzW
                                         Supported = 0;
                                         SupportedS = 0;
                                         //For All Enemy Obejcts.                                             
-                                        ////Parallel.For(0, 8, g =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                         for (int g = 0; g < 8; g++)
                                         {
-                                            ////Parallel.For(0, 8, h =>
+                                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                             for (int h = 0; h < 8; h++)
                                             {
                                                 //Ignore Of Self Objects.
@@ -1412,10 +1411,10 @@ namespace RefrigtzW
                                     Supported = 0;
                                     SupportedS = 0;
                                     //For All Enemy Obejcts.                                             
-                                    ////Parallel.For(0, 8, g =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                     for (int g = 0; g < 8; g++)
                                     {
-                                        ////Parallel.For(0, 8, h =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                         for (int h = 0; h < 8; h++)
                                         {
                                             //Ignore Of Self Objects.
@@ -1718,10 +1717,10 @@ namespace RefrigtzW
                 {
                     EnemyNotSupported = true;
                     //Enemy
-                    ////Parallel.For(0, 8, RowS =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowS =>
                     for (var RowS = 0; RowS < 8; RowS++)
                     {
-                        ////Parallel.For(0, 8, ColS =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColS =>
                         for (var ColS = 0; ColS < 8; ColS++)
                         {
                             if (!EnemyNotSupported)
@@ -1729,13 +1728,13 @@ namespace RefrigtzW
                             int Order1 = new int();
                             Order1 = Ord;
                             int[,] Tab = new int[8, 8];
-                            ////Parallel.For(0, 8, ik =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ik =>
                             for (var ik = 0; ik < 8; ik++)
                             {
                                 if (!EnemyNotSupported)
                                     continue;
                                 for (var jk = 0; jk < 8; jk++)
-                                ////Parallel.For(0, 8, jk =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jk =>
                                 {
                                     Object O3 = new Object();
                                     lock (O3)
@@ -1974,11 +1973,11 @@ namespace RefrigtzW
                         AttackCount = 0;
                         //For All Self
                         for (var RowS = 0; RowS < 8; RowS++)
-                        ////Parallel.For(0, 8, RowS =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowS =>
                         {
                             //if (AttackCount > 1)
                             for (var ColS = 0; ColS < 8; ColS++)
-                            ////Parallel.For(0, 8, ColS =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColS =>
                             {
                                 if (AttackCount > 1)
                                     continue;
@@ -1999,12 +1998,12 @@ namespace RefrigtzW
                                 {
                                     bool Supporte = false;
                                     //For All Self
-                                    ////Parallel.For(0, 8, RowD =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowD =>
                                     for (int RowD = 0; RowD < 8; RowD++)
                                     {
                                         if (AttackCount > 1)
                                             continue;
-                                        ////Parallel.For(0, 8, ColD =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColD =>
                                         for (int ColD = 0; ColD < 8; ColD++)
                                         {
                                             if (AttackCount > 1)
@@ -2662,19 +2661,19 @@ namespace RefrigtzW
             {
                 int HAS = 0;
                 int HAE = 0;
-                Parallel.Invoke(() =>
-                {
-                    var th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
-                    th.Wait();
-                    th.Dispose();
-                }
-                , () =>
-                {
-                    var th = Task.Factory.StartNew(() => HAS = HAE = HeuristicEnemySupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
-                    th.Wait();
-                    th.Dispose();
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+{
+var th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
+th.Wait();
+th.Dispose();
+}
+, () =>
+{
+var th = Task.Factory.StartNew(() => HAS = HAE = HeuristicEnemySupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
+th.Wait();
+th.Dispose();
 
-                });
+});
                 return HAS + (HAE);
             }
         }
@@ -2753,11 +2752,11 @@ namespace RefrigtzW
                                 Supported = 0;
                                 SupportedE = 0;
                                 //For All Self Obejcts.                                             
-                                ////Parallel.For(0, 8, g =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                 for (int g = 0; g < 8; g++)
                                 {
                                     //if (Supported)
-                                    ////Parallel.For(0, 8, h =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                     for (int h = 0; h < 8; h++)
                                     {
                                         Object O2 = new Object();
@@ -2884,11 +2883,11 @@ namespace RefrigtzW
                                             Supported = 0;
                                             SupportedE = 0;
                                             //For All Self Obejcts.                                             
-                                            ////Parallel.For(0, 8, g =>
+                                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                             for (int g = 0; g < 8; g++)
                                             {
                                                 //if (Supported)
-                                                ////Parallel.For(0, 8, h =>
+                                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                                 for (int h = 0; h < 8; h++)
                                                 {
                                                     Object O2 = new Object();
@@ -3040,11 +3039,11 @@ namespace RefrigtzW
                                 Supported = 0;
                                 SupportedE = 0;
                                 //For All Self Obejcts.                                             
-                                ////Parallel.For(0, 8, g =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                 for (int g = 0; g < 8; g++)
                                 {
                                     //if (Supported)
-                                    ////Parallel.For(0, 8, h =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                     for (int h = 0; h < 8; h++)
                                     {
                                         Object O2 = new Object();
@@ -3171,11 +3170,11 @@ namespace RefrigtzW
                                             Supported = 0;
                                             SupportedE = 0;
                                             //For All Self Obejcts.                                             
-                                            ////Parallel.For(0, 8, g =>
+                                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                                             for (int g = 0; g < 8; g++)
                                             {
                                                 //if (Supported)
-                                                ////Parallel.For(0, 8, h =>
+                                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                                 for (int h = 0; h < 8; h++)
                                                 {
                                                     Object O2 = new Object();
@@ -3459,7 +3458,7 @@ namespace RefrigtzW
                             for (var RowS = 0; RowS < 8; RowS++)
                                 for (var ColS = 0; ColS < 8; ColS++)
                                     Table[RowS, ColS] = Tab[RowS, ColS];
-                            //Create New RefrigtzW Rule Object.
+                            //Create new ThinkingChess Rule Object.
                             A = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[ii, jj], CloneATable(Table), Order, ii, jj);
                             //Detect int.
                             a = Color.Gray;
@@ -3984,8 +3983,8 @@ namespace RefrigtzW
                     //For All Enemies.
                     for (var ik = 0; ik < 8; ik++)
                         for (var jk = 0; jk < 8; jk++)
-                        ////Parallel.For(0, 8, ik =>
-                        ////Parallel.For(0, 8, jk =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ik =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jk =>
                         {
                             //Ignore of Current
                             if (Order == 1 && Tabl[ik, jk] >= 0)
@@ -3998,8 +3997,8 @@ namespace RefrigtzW
                                     //For Current Home
                                     for (var iki = ik - 2; iki < ik + 3; iki++)
                                         for (var jki = jk - 2; jki < jk + 3; jki++)
-                                        ////Parallel.For(ik - 2, ik + 3, iki =>
-                                        ////Parallel.For(jk - 2, jk + 3, jki =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ik - 2, ik + 3, iki =>
+                                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jk - 2, jk + 3, jki =>
                                         // init subtotal
                                         {
                                             if (!Scop(ik, jk, iki, jki, 1))
@@ -4030,7 +4029,7 @@ namespace RefrigtzW
                                 case 2:
 
                                     //For Current Home
-                                    ////Parallel.For(0, 8, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iki =>
                                     for (var iki = 0; iki < 8; iki++)
                                     {
                                         var jki = iki + jk - ik;
@@ -4059,7 +4058,7 @@ namespace RefrigtzW
                                         }
                                     }
                                     //For Current Home
-                                    ////Parallel.For(0, 8, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iki =>
                                     for (var iki = 0; iki < 8; iki++)
                                     {
                                         var jki = iki * -1 + jk + ik;
@@ -4090,8 +4089,8 @@ namespace RefrigtzW
                                     break;
                                 case 3:
                                     //For Current Home
-                                    ////Parallel.For(ik - 2, ik + 3, iki =>
-                                    ////Parallel.For(jk - 2, jk + 3, jki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ik - 2, ik + 3, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jk - 2, jk + 3, jki =>
                                     for (var iki = ik - 2; iki < ik + 3; iki++)
                                         for (var jki = jk - 2; jki < jk + 3; jki++)
                                         {
@@ -4121,7 +4120,7 @@ namespace RefrigtzW
                                     break;
                                 case 4:
                                     //For Current Home
-                                    ////Parallel.For(0, 8, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iki =>
                                     for (var iki = 0; iki < 8; iki++)
                                     {
                                         var jki = jk;
@@ -4150,7 +4149,7 @@ namespace RefrigtzW
                                         }
                                     }
                                     //For Current Home
-                                    ////Parallel.For(0, 8, jki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jki =>
                                     for (var jki = 0; jki < 8; jki++)
                                     {
                                         var iki = ik;
@@ -4183,8 +4182,8 @@ namespace RefrigtzW
                                 case 5:
 
                                     //For Current Home
-                                    ////Parallel.For(0, 8, iki =>
-                                    ////Parallel.For(0, 8, jki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jki =>
                                     for (var iki = 0; iki < 8; iki++)
                                         for (var jki = 0; jki < 8; jki++)
                                         {
@@ -4216,8 +4215,8 @@ namespace RefrigtzW
                                     break;
                                 case 6:
                                     //For Current Home
-                                    ////Parallel.For(ik - 1, ik + 2, iki =>
-                                    ////Parallel.For(jk - 1, jk + 2, jki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ik - 1, ik + 2, iki =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jk - 1, jk + 2, jki =>
                                     for (var iki = ik - 1; iki < ik + 2; iki++)
                                         for (var jki = jk - 1; jki < jk + 2; jki++)
                                         {
@@ -4317,12 +4316,12 @@ namespace RefrigtzW
                         TabS[RowS, ColS] = TabS[ii, jj];
                         TabS[ii, jj] = 0;
                         //For Self Objects.
-                        ////Parallel.For(0, 8, RowD =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowD =>
                         for (int RowD = 0; RowD < 8; RowD++)
                         {
                             if (!Attacked || NumberOfCurrentEnemyAttackSuchObject > 1)
                                 continue;
-                            ////Parallel.For(0, 8, ColD =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColD =>
                             for (int ColD = 0; ColD < 8; ColD++)
                             {
                                 if (!Attacked || NumberOfCurrentEnemyAttackSuchObject > 1)
@@ -4334,10 +4333,10 @@ namespace RefrigtzW
                                 //Show the Attacked.
                                 Attacked = true;
                                 //For Self Objects and Empty.
-                                ////Parallel.For(0, 8, iiiii =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, iiiii =>
                                 for (int iiiii = 0; iiiii < 8; iiiii++)
                                 {
-                                    ////Parallel.For(0, 8, jjjjj =>
+                                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, jjjjj =>
                                     for (int jjjjj = 0; jjjjj < 8; jjjjj++)
                                     {
                                         //Ignore of Enemy Objects.
@@ -4898,85 +4897,88 @@ namespace RefrigtzW
             lock (O)
             {
                 int NIs = 0;
-                if ((ColK - 1 >= 0))
+                if (Rowk >= 0 && Rowk < 8 && ColK >= 0 && ColK < 8)
                 {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK - 1]))
+                    if ((ColK - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk);
-                        EmptyC.Add(ColK - 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK - 1]))
+                        {
+                            EmptyR.Add(Rowk);
+                            EmptyC.Add(ColK - 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK + 1 < 8))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK + 1]))
+                    if ((ColK + 1 < 8))
                     {
-                        EmptyR.Add(Rowk);
-                        EmptyC.Add(ColK + 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk, ColK + 1]))
+                        {
+                            EmptyR.Add(Rowk);
+                            EmptyC.Add(ColK + 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((Rowk - 1 >= 0))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK]))
+                    if ((Rowk - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk - 1);
-                        EmptyC.Add(ColK);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK]))
+                        {
+                            EmptyR.Add(Rowk - 1);
+                            EmptyC.Add(ColK);
+                            NIs++;
+                        }
                     }
-                }
-                if ((Row + 1 < 8))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK]))
+                    if ((Rowk + 1 < 8))
                     {
-                        EmptyR.Add(Rowk + 1);
-                        EmptyC.Add(ColK);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK]))
+                        {
+                            EmptyR.Add(Rowk + 1);
+                            EmptyC.Add(ColK);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK - 1 >= 0) && (Rowk - 1 >= 0))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK - 1]))
+                    if ((ColK - 1 >= 0) && (Rowk - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk - 1);
-                        EmptyC.Add(ColK - 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK - 1]))
+                        {
+                            EmptyR.Add(Rowk - 1);
+                            EmptyC.Add(ColK - 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK - 1 >= 0) && (Rowk + 1 < 8))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK - 1]))
+                    if ((ColK - 1 >= 0) && (Rowk + 1 < 8))
                     {
-                        EmptyR.Add(Rowk + 1);
-                        EmptyC.Add(ColK - 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK - 1]))
+                        {
+                            EmptyR.Add(Rowk + 1);
+                            EmptyC.Add(ColK - 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK + 1 < 8) && (Rowk + 1 < 8))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK + 1]))
+                    if ((ColK + 1 < 8) && (Rowk + 1 < 8))
                     {
-                        EmptyR.Add(Rowk + 1);
-                        EmptyC.Add(ColK + 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk + 1, ColK + 1]))
+                        {
+                            EmptyR.Add(Rowk + 1);
+                            EmptyC.Add(ColK + 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                    if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk - 1);
-                        EmptyC.Add(ColK + 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                        {
+                            EmptyR.Add(Rowk - 1);
+                            EmptyC.Add(ColK + 1);
+                            NIs++;
+                        }
                     }
-                }
-                if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
-                {
-                    if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                    if ((ColK + 1 < 8) && (Rowk - 1 >= 0))
                     {
-                        EmptyR.Add(Rowk - 1);
-                        EmptyC.Add(ColK + 1);
-                        NIs++;
+                        if (!SameSign(Table[Rowk, ColK], Table[Rowk - 1, ColK + 1]))
+                        {
+                            EmptyR.Add(Rowk - 1);
+                            EmptyC.Add(ColK + 1);
+                            NIs++;
+                        }
                     }
                 }
                 return NIs;
@@ -6050,7 +6052,7 @@ namespace RefrigtzW
                     if (IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 32))
                     {
                         int Cor = 0;
-                        var H2 = Task.Factory.StartNew(() => Cor = ImageTextDeepLearning.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
+                        var H2 = Task.Factory.StartNew(() => Cor = RefrigtzW.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
                         H2.Wait();
                         H2.Dispose();
 
@@ -6107,7 +6109,7 @@ namespace RefrigtzW
                         if (!ab)
                         {
                             int Cor = 0;
-                            var H3 = Task.Factory.StartNew(() => Cor = ImageTextDeepLearning.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
+                            var H3 = Task.Factory.StartNew(() => Cor = RefrigtzW.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
                             H3.Wait();
                             H3.Dispose();
 
@@ -6165,7 +6167,7 @@ namespace RefrigtzW
                     if (ab)
                     {
                         int Cor = 0;
-                        var H4 = Task.Factory.StartNew(() => Cor = ImageTextDeepLearning.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
+                        var H4 = Task.Factory.StartNew(() => Cor = RefrigtzW.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
                         H4.Wait();
                         H4.Dispose();
                         if (Cor > Colleralation)
@@ -6212,7 +6214,7 @@ namespace RefrigtzW
                         if (!IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 32))
                         {
                             int Cor = 0;
-                            var H5 = Task.Factory.StartNew(() => Cor = ImageTextDeepLearning.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
+                            var H5 = Task.Factory.StartNew(() => Cor = RefrigtzW.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
                             H5.Wait();
                             H5.Dispose();
 
@@ -6510,116 +6512,116 @@ namespace RefrigtzW
                 {
                     var output = Task.Factory.StartNew(() =>
                     {
-                        Parallel.For(0, 8, RowS =>
-                        {
-                            Parallel.For(0, 8, ColS =>
-                            {
-                                Parallel.For(0, 8, RowD =>
-                                {
-                                    Parallel.For(0, 8, ColD =>
-                                    {
-                                        if (IsDistributedObjectAttackNonDistributedEnemyObject(Before, CloneATable(Table), Ord, aa, RowS, ColS, RowD, ColD))
-                                        {
-                                            HA += RationalPenalty;
-                                            return;
-                                        }
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
+{
+    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
+    {
+        ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
+        {
+            ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+            {
+                if (IsDistributedObjectAttackNonDistributedEnemyObject(Before, CloneATable(Table), Ord, aa, RowS, ColS, RowD, ColD))
+                {
+                    HA += RationalPenalty;
+                    return;
+                }
 
-                                        Parallel.Invoke(() =>
-                                        {
-                                            Object OO = new Object();
-                                            lock (OO)
-                                            {
-                                                if (HeuristicA[0] == 0)
-                                                {
-                                                    bool ab = false;
-                                                    var th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
-                                                    th.Wait();
-                                                    th.Dispose();
-                                                    if (ab)
-                                                    {
-                                                        var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                                        th1.Wait();
-                                                        th1.Dispose();
-                                                        if (ab)
-                                                        {
-                                                            if (HeuristicA[0] == 0)
-                                                                HeuristicA[0] = RationalPenalty;
-                                                            HeuristicB[0] += RationalPenalty;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        , () =>
-                                        {
-                                            if (HeuristicA[2] == 0)
-                                            {
-                                                bool ab = false;
-                                                var th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
-                                                th.Wait();
-                                                th.Dispose();
-                                                if (ab)
-                                                {
-                                                    var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                                    th1.Wait();
-                                                    th1.Dispose();
-                                                    if (ab)
-                                                    {
-                                                        if (HeuristicA[2] == 0)
-                                                            HeuristicA[2] = RationalPenalty;
-                                                        HeuristicB[2] += RationalPenalty;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        , () =>
-                                        {
-                                            if (HeuristicA[1] == 0)
-                                            {
-                                                bool ab = false;
-                                                var th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], false, false));
-                                                th.Wait();
-                                                th.Dispose();
-                                                if (ab)
-                                                {
-                                                    var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                                    th1.Wait();
-                                                    th1.Dispose();
-                                                    if (ab)
-                                                    {
-                                                        if (HeuristicA[1] == 0)
-                                                            HeuristicA[1] = RationalRegard;
-                                                        HeuristicB[1] += RationalRegard;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                         , () =>
-                                         {
-                                             if (HeuristicA[3] == 0)
-                                             {
-                                                 bool ab = false;
-                                                 var th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], true, false));
-                                                 th.Wait();
-                                                 th.Dispose();
-                                                 if (ab)
-                                                 {
-                                                     var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                                     th1.Wait();
-                                                     th1.Dispose();
-                                                     if (ab)
-                                                     {
-                                                         if (HeuristicA[3] == 0)
-                                                             HeuristicA[3] = RationalRegard;
-                                                         HeuristicB[3] += RationalRegard;
-                                                     }
-                                                 }
-                                             }
-                                         });
-                                    });
-                                });
-                            });
-                        });
+                ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                {
+                    Object OO = new Object();
+                    lock (OO)
+                    {
+                        if (HeuristicA[0] == 0)
+                        {
+                            bool ab = false;
+                            var th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
+                            th.Wait();
+                            th.Dispose();
+                            if (ab)
+                            {
+                                var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                                th1.Wait();
+                                th1.Dispose();
+                                if (ab)
+                                {
+                                    if (HeuristicA[0] == 0)
+                                        HeuristicA[0] = RationalPenalty;
+                                    HeuristicB[0] += RationalPenalty;
+                                }
+                            }
+                        }
+                    }
+                }
+                , () =>
+                {
+                    if (HeuristicA[2] == 0)
+                    {
+                        bool ab = false;
+                        var th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
+                        th.Wait();
+                        th.Dispose();
+                        if (ab)
+                        {
+                            var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                            th1.Wait();
+                            th1.Dispose();
+                            if (ab)
+                            {
+                                if (HeuristicA[2] == 0)
+                                    HeuristicA[2] = RationalPenalty;
+                                HeuristicB[2] += RationalPenalty;
+                            }
+                        }
+                    }
+                }
+                , () =>
+                {
+                    if (HeuristicA[1] == 0)
+                    {
+                        bool ab = false;
+                        var th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], false, false));
+                        th.Wait();
+                        th.Dispose();
+                        if (ab)
+                        {
+                            var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                            th1.Wait();
+                            th1.Dispose();
+                            if (ab)
+                            {
+                                if (HeuristicA[1] == 0)
+                                    HeuristicA[1] = RationalRegard;
+                                HeuristicB[1] += RationalRegard;
+                            }
+                        }
+                    }
+                }
+                 , () =>
+                 {
+                     if (HeuristicA[3] == 0)
+                     {
+                         bool ab = false;
+                         var th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], true, false));
+                         th.Wait();
+                         th.Dispose();
+                         if (ab)
+                         {
+                             var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                             th1.Wait();
+                             th1.Dispose();
+                             if (ab)
+                             {
+                                 if (HeuristicA[3] == 0)
+                                     HeuristicA[3] = RationalRegard;
+                                 HeuristicB[3] += RationalRegard;
+                             }
+                         }
+                     }
+                 });
+            });
+        });
+    });
+});
                     });
 
                     output.Wait(); output.Dispose();
@@ -7097,6 +7099,258 @@ namespace RefrigtzW
                 return HH;
             }
         }
+        bool AssignAAndList(int ros, int cos, int rod, int cod, ref List<int[]> T)
+        {
+            object o = new object();
+            lock (o)
+            {
+                try
+                {
+                    int[] A = new int[5];
+                    A[0] = ros;
+                    A[1] = cos;
+                    A[2] = rod;
+                    A[3] = cod;
+                    A[4] = SignBeforNext(ros, cos, rod, cod);
+                    T.Add(A);
+                }
+                catch (Exception g)
+                {
+                    Log(g);
+                    return false;
+                }
+            }
+            return true;
+        }
+        bool HeuristicExchangHeuristicAllReducedAttacked(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try {
+
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowD, ColD, RowS, ColS, ref HeuristicAllReducedAttacked);
+                                return true;
+                            }
+                        }
+
+                    }
+
+
+
+                }
+#pragma warning disable CS0168 // The variable 'd' is declared but never used
+                catch (Exception d)
+#pragma warning restore CS0168 // The variable 'd' is declared but never used
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllReducedSupport(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowD, ColD, RowS, ColS, ref HeuristicAllReducedSupport);
+                                return true;
+                            }
+                        }
+                    }
+                }
+#pragma warning disable CS0168 // The variable 'd' is declared but never used
+                catch (Exception d)
+#pragma warning restore CS0168 // The variable 'd' is declared but never used
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllReducedMove(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, true));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowD, ColD, RowS, ColS, ref HeuristicAllReducedMove);
+                                return true;
+                            }
+                        }
+                    }
+                }
+#pragma warning disable CS0168 // The variable 'd' is declared but never used
+                catch (Exception d)
+#pragma warning restore CS0168 // The variable 'd' is declared but never used
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllAttacked(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], false, false));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowS, ColS, RowD, ColD, ref HeuristicAllAttacked);
+                                return true;
+                            }
+                        }
+                    }
+                }
+#pragma warning disable CS0168 // The variable 'd' is declared but never used
+                catch (Exception d)
+#pragma warning restore CS0168 // The variable 'd' is declared but never used
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllSupport(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, false));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+                        var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowS, ColS, RowD, ColD, ref HeuristicAllSupport);
+                                return true;
+                            }
+                        }
+
+                    }
+                }
+#pragma warning disable CS0168 // The variable 'd' is declared but never used
+                catch (Exception d)
+#pragma warning restore CS0168 // The variable 'd' is declared but never used
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        bool HeuristicExchangeHeuristicAllMove(int Ord, int RowS, int ColS, int RowD, int ColD, int[,] Table)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                try
+                {
+                    bool ab = false;
+                    var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, true));
+                    th.Wait();
+                    th.Dispose();
+                    if (ab)
+                    {
+
+                        var th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                        th1.Wait();
+                        th1.Dispose();
+                        if (ab)
+                        {
+                            Object OOO = new Object();
+                            lock (OOO)
+                            {
+                                AssignAAndList(RowS, ColS, RowD, ColD, ref HeuristicAllMove);
+                                return true;
+                            }
+                        }
+
+                    }
+                }
+#pragma warning disable CS0168 // The variable 'd' is declared but never used
+                catch (Exception d)
+#pragma warning restore CS0168 // The variable 'd' is declared but never used
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
         //create heuristic and lists of move and reduced move and attack and reduced attack and support and reduced support
         public int[] HeuristicExchange(bool Before, int Killed, int[,] Table, Color aa, int Ord, int Ros, int Cos, int Rod, int Cod)
         {
@@ -7111,236 +7365,89 @@ namespace RefrigtzW
                 int DumOrd = Ord;
                 int DummyOrd = Ord;
                 int DummyCurrentOrd = ChessRules.CurrentOrder;
+
+
                 ///When AStarGreedy Exchange is Not Assigned.
                 Object O1 = new Object();
                 lock (O1)
                 {
-                    Parallel.For(0, 8, RowS =>
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount;
+                    var output = Task.Factory.StartNew(() =>
                     {
-                        Parallel.For(0, 8, ColS =>
+
+                        ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
+                {
+                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
+                    {
+                        ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
                         {
-                            Parallel.For(0, 8, RowD =>
-                            {
-                                Parallel.For(0, 8, ColD =>
-                                {
+                            ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+                             {
 
-                                    var output = Task.Factory.StartNew(() =>
-                                    {
-                                        Parallel.Invoke(() =>
-                                        {
+                                 ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                                 {
+                                     if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                                         Exchange[ReducedAttacked]++;
 
-                                            Object OO = new Object();
-                                            lock (OO)
-                                            {
-                                                bool ab = false;
-                                                var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
-                                                th.Wait();
-                                                th.Dispose();
-                                                if (ab)
-                                                {
 
-                                                    var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                                    th1.Wait();
-                                                    th1.Dispose();
-                                                    if (ab)
-                                                    {
-                                                        Object OOO = new Object();
-                                                        lock (OOO)
-                                                        {
-                                                            int[] A = new int[5];
-                                                            A[0] = RowD;
-                                                            A[1] = ColD;
-                                                            A[2] = RowS;
-                                                            A[3] = ColS;
-                                                            A[4] = SignBeforNext(RowD, ColD, RowS, ColS);
-                                                            HeuristicAllReducedAttacked.Add(A);
-                                                            Exchange[ReducedAttacked]++;
-                                                        }
-                                                    }
-                                                }
-
-                                            }
-                                        }
-                                                , () =>
-                                                {
-                                                    Object OO = new Object();
-                                                    lock (OO)
-                                                    {
-                                                        bool ab = false;
-                                                        var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
-                                                        th.Wait();
-                                                        th.Dispose();
-                                                        if (ab)
-                                                        {
-
-                                                            var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                                            th1.Wait();
-                                                            th1.Dispose();
-                                                            if (ab)
-                                                            {
-
-                                                                Object OOO = new Object();
-                                                                lock (OOO)
-                                                                {
-                                                                    int[] A = new int[5];
-                                                                    A[0] = RowD;
-                                                                    A[1] = ColD;
-                                                                    A[2] = RowS;
-                                                                    A[3] = ColS;
-                                                                    A[4] = SignBeforNext(RowD, ColD, RowS, ColS);
-                                                                    HeuristicAllReducedSupport.Add(A);
-                                                                    Exchange[ReducedSupport]++;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                , () =>
-                                                {
-                                                    Object OO = new Object();
-                                                    lock (OO)
-                                                    {
-                                                        bool ab = false;
-                                                        var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, true));
-                                                        th.Wait();
-                                                        th.Dispose();
-                                                        if (ab)
-                                                        {
-
-                                                            var th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
-                                                            th1.Wait();
-                                                            th1.Dispose();
-                                                            if (ab)
-                                                            {
-                                                                Object OOO = new Object();
-                                                                lock (OOO)
-                                                                {
-                                                                    int[] A = new int[5];
-                                                                    A[0] = RowD;
-                                                                    A[1] = ColD;
-                                                                    A[2] = RowS;
-                                                                    A[3] = ColS;
-                                                                    A[4] = SignBeforNext(RowD, ColD, RowS, ColS);
-                                                                    HeuristicAllReducedMove.Add(A);
-                                                                    Exchange[ReducedMove]++;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }, () =>
-                                                {
-
-                                                    Object OO = new Object();
-                                                    lock (OO)
-                                                    {
-                                                        bool ab = false;
-                                                        var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], false, false));
-                                                        th.Wait();
-                                                        th.Dispose();
-                                                        if (ab)
-                                                        {
-
-                                                            var th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                                            th1.Wait();
-                                                            th1.Dispose();
-                                                            if (ab)
-                                                            {
-                                                                Object OOO = new Object();
-                                                                lock (OOO)
-                                                                {
-                                                                    int[] A = new int[5];
-                                                                    A[0] = RowS;
-                                                                    A[1] = ColS;
-                                                                    A[2] = RowD;
-                                                                    A[3] = ColD;
-                                                                    A[4] = SignBeforNext(RowS, ColS, RowD, ColD);
-                                                                    HeuristicAllAttacked.Add(A);
-                                                                    Exchange[ToAttacked]++;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }, () =>
-                                                {
-                                                    Object OO = new Object();
-                                                    lock (OO)
-                                                    {
-                                                        bool ab = false;
-                                                        var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, false));
-                                                        th.Wait();
-                                                        th.Dispose();
-                                                        if (ab)
-                                                        {
-                                                            var th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                                            th1.Wait();
-                                                            th1.Dispose();
-                                                            if (ab)
-                                                            {
-                                                                Object OOO = new Object();
-                                                                lock (OOO)
-                                                                {
-                                                                    int[] A = new int[5];
-                                                                    A[0] = RowS;
-                                                                    A[1] = ColS;
-                                                                    A[2] = RowD;
-                                                                    A[3] = ColD;
-                                                                    A[4] = SignBeforNext(RowS, ColS, RowD, ColD);
-                                                                    HeuristicAllSupport.Add(A);
-                                                                    Exchange[ToSupport]++;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }, () =>
-                                                {
-                                                    Object OO = new Object();
-                                                    lock (OO)
-                                                    {
-                                                        bool ab = false;
-                                                        var th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, true));
-                                                        th.Wait();
-                                                        th.Dispose();
-                                                        if (ab)
-                                                        {
-
-                                                            var th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
-                                                            th1.Wait();
-                                                            th1.Dispose();
-                                                            if (ab)
-                                                            {
-                                                                Object OOO = new Object();
-                                                                lock (OOO)
-                                                                {
-                                                                    int[] A = new int[5];
-                                                                    A[0] = RowS;
-                                                                    A[1] = ColS;
-                                                                    A[2] = RowD;
-                                                                    A[3] = ColD;
-                                                                    A[4] = SignBeforNext(RowS, ColS, RowD, ColD);
-                                                                    HeuristicAllMove.Add(A);
-                                                                    Exchange[ToMoved]++;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                });
+                                 }
+                            , () =>
+{
 
 
 
 
+    if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
+        Exchange[ReducedSupport]++;
+}
+                                     , () =>
+{
 
-                                    });
+
+
+    if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
+        Exchange[ReducedMove]++;
+
+}, () =>
+{
 
 
 
-                                    output.Wait(); output.Dispose();
-                                });
-                            });
+    if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+        Exchange[ToAttacked]++;
+
+
+}, () =>
+   {
+
+       if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
+           Exchange[ToSupport]++;
+
+   }, () =>
+
+
+      {
+
+          if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
+              Exchange[ToMoved]++;
+
+
+
+
+      });
+
+                             });
+
                         });
+                    });
+                });
                     });
 
 
+                    output.Wait(); output.Dispose();
+
                 }
+
                 //When situation is closed
                 int A1 = 0;
                 var H1 = Task.Factory.StartNew(() => A1 = IsSupportLessThanReducedSupport(Exchange[ToSupport], Exchange[ReducedSupport]));
@@ -7512,7 +7619,7 @@ namespace RefrigtzW
             {
                 int HAS = 0;
                 int HAE = 0;
-                Parallel.Invoke(() =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                 {
                     var th = Task.Factory.StartNew(() => HAS = HeuristicMovmentSelf(Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
                     th.Wait();
@@ -7592,9 +7699,9 @@ namespace RefrigtzW
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
                             for (int g = 0; g < 8; g++)
-                            ////Parallel.For(0, 8, g =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                             {
-                                ////Parallel.For(0, 8, h =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                 for (int h = 0; h < 8; h++)
                                 {
                                     Object O2 = new Object();
@@ -7708,9 +7815,9 @@ namespace RefrigtzW
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
                             for (int g = 0; g < 8; g++)
-                            ////Parallel.For(0, 8, g =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                             {
-                                ////Parallel.For(0, 8, h =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                 for (int h = 0; h < 8; h++)
                                 {
                                     Object O2 = new Object();
@@ -7842,9 +7949,9 @@ namespace RefrigtzW
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
                             for (int g = 0; g < 8; g++)
-                            ////Parallel.For(0, 8, g =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                             {
-                                ////Parallel.For(0, 8, h =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                 for (int h = 0; h < 8; h++)
                                 {
                                     Object O2 = new Object();
@@ -7955,9 +8062,9 @@ namespace RefrigtzW
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
                             for (int g = 0; g < 8; g++)
-                            ////Parallel.For(0, 8, g =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, g =>
                             {
-                                ////Parallel.For(0, 8, h =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, h =>
                                 for (int h = 0; h < 8; h++)
                                 {
                                     Object O2 = new Object();
@@ -9759,7 +9866,7 @@ namespace RefrigtzW
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = RefrigtzWRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -9913,7 +10020,7 @@ namespace RefrigtzW
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = RefrigtzWRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10166,27 +10273,27 @@ namespace RefrigtzW
                 Object O = new Object();
                 lock (O)
                 {
-                    ////Parallel.For(0, 8, i =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                     for (var i = 0; i < 8; i++)
                     {
                         if ((LearningV[0] || LearningV[1] || LearningV[2]))
                             continue;
-                        ////Parallel.For(0, 8, j =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, j =>
                         for (var j = 0; j < 8; j++)
                         {
                             if ((LearningV[0] || LearningV[1] || LearningV[2]))
                                 continue;
-                            ////Parallel.For(0, 8, RowS =>
+                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, RowS =>
                             for (var RowS = 0; RowS < 8; RowS++)
                             {
                                 if ((LearningV[0] || LearningV[1] || LearningV[2]))
                                     continue;
-                                ////Parallel.For(0, 8, ColS =>
+                                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, ColS =>
                                 for (var ColS = 0; ColS < 8; ColS++)
                                 {
                                     if ((LearningV[0] || LearningV[1] || LearningV[2]))
                                         continue;
-                                    //Parallel.Invoke(() =>
+                                    //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                                     {
                                         Object O1 = new Object();
                                         lock (O1)
@@ -10410,7 +10517,7 @@ namespace RefrigtzW
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = RefrigtzWRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10545,7 +10652,7 @@ namespace RefrigtzW
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = RefrigtzWRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10678,7 +10785,7 @@ namespace RefrigtzW
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = RefrigtzWRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -11816,7 +11923,7 @@ namespace RefrigtzW
                 }
             }
         }
-        bool RefrigtzWRuleThinking(int[,] TableS, int RowSource, int ColumnSource, int RowDestination, int ColumnDestination)
+        bool ThinkingChessRuleThinking(int[,] TableS, int RowSource, int ColumnSource, int RowDestination, int ColumnDestination)
         {
             Object O = new Object();
             lock (O)
@@ -11844,7 +11951,7 @@ namespace RefrigtzW
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = RefrigtzWRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -12017,15 +12124,17 @@ namespace RefrigtzW
                 int Killed = 0;
                 if (RowDestination < RowSource)
                 {
-                    TableS[RowSource - 1, ColumnDestination] = -4;
-                    TableS[RowSource - 2, ColumnDestination] = -6;
+                    TableS[RowSource - 1, ColumnDestination] = 4;
+                    TableS[RowSource - 2, ColumnDestination] = 6;
+                    TableS[RowSource - 4, ColumnDestination] = 0;
                     TableS[RowSource, ColumnSource] = 0;
 
                 }
                 else
                 {
-                    TableS[RowSource + 1, ColumnDestination] = -4;
-                    TableS[RowSource + 2, ColumnDestination] = -6;
+                    TableS[RowSource + 1, ColumnDestination] = 4;
+                    TableS[RowSource + 2, ColumnDestination] = 6;
+                    TableS[RowSource + 3, ColumnDestination] = 0;
                     TableS[RowSource, ColumnSource] = 0;
 
                 }
@@ -12136,7 +12245,7 @@ namespace RefrigtzW
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                         {
                             Object O = new Object();
                             lock (O)
@@ -12171,7 +12280,7 @@ namespace RefrigtzW
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                         {
                             Object O = new Object();
                             lock (O)
@@ -12878,7 +12987,7 @@ namespace RefrigtzW
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = 0; i < 8; i++)
                 {
                     Object O = new Object();
@@ -12979,7 +13088,7 @@ namespace RefrigtzW
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = 0; i < 8; i++)
                 {
                     Object O = new Object();
@@ -13042,7 +13151,7 @@ namespace RefrigtzW
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = RowS - 3; i < RowS + 4; i++)
                 {
                     for (var j = ColS - 3; j < ColS + 4; j++)
@@ -13076,7 +13185,7 @@ namespace RefrigtzW
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = RowS - 3; i < RowS + 4; i++)
                 {
                     for (var j = ColS - 3; j < ColS + 4; j++)
@@ -13198,7 +13307,7 @@ namespace RefrigtzW
                     }
                 }
                 //=============================================
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
 
 
                 for (var i = ii - 1; i < ii + 2; i++)
@@ -13309,7 +13418,7 @@ namespace RefrigtzW
                     }
                 }
                 //=============================================
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
 
 
                 for (var i = ii - 1; i < ii + 2; i++)
@@ -13411,7 +13520,7 @@ namespace RefrigtzW
             {
                 var tth = Task.Factory.StartNew(() =>
                 {
-                    Parallel.Invoke(() =>
+                    ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                     {
                         var tth1 = Task.Factory.StartNew(() => EleRedAchmaz = AchMazReducedElephasnt(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
                         tth1.Wait();
@@ -13448,7 +13557,7 @@ namespace RefrigtzW
             }
             var ttttth = Task.Factory.StartNew(() =>
             {
-                Parallel.Invoke(() =>
+                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                 {
                     var tth1 = Task.Factory.StartNew(() => AchmazPure.Add(CollectionSummation(EleAchmaz, HourAchmaz, CastAchmaz, MiniAchmaz, KingAchmaz)));
                     tth1.Wait();
@@ -14461,6 +14570,7 @@ namespace RefrigtzW
                 {
                     TableS[RowSource - 1, ColumnDestination] = 4;
                     TableS[RowSource - 2, ColumnDestination] = 6;
+                    TableS[RowSource - 4, ColumnDestination] = 0;
                     TableS[RowSource, ColumnSource] = 0;
 
                 }
@@ -14468,6 +14578,7 @@ namespace RefrigtzW
                 {
                     TableS[RowSource + 1, ColumnDestination] = 4;
                     TableS[RowSource + 2, ColumnDestination] = 6;
+                    TableS[RowSource + 3, ColumnDestination] = 0;
                     TableS[RowSource, ColumnSource] = 0;
 
                 }
@@ -14622,10 +14733,10 @@ namespace RefrigtzW
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(ii - 2, ii + 3, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ii - 2, ii + 3, i =>
                 for (var i = ii - 2; i < ii + 3; i++)
                 {
-                    ////Parallel.For(jj - 2, jj + 3, j =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jj - 2, jj + 3, j =>
                     for (var j = jj - 2; j < jj + 3; j++)
                     {
                         int[,] TableS = new int[8, 8];
@@ -14689,9 +14800,9 @@ namespace RefrigtzW
                 Object O1 = new Object();
                 lock (O1)
                 {
-                    ////Parallel.For(0, 8, i =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                     for (var i = 0; i < 8; i++)
-                    {////Parallel.For(0, 8, i =>
+                    {////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                         for (var j = 0; j < 8; j++)
                         {
                             Object O = new Object();
@@ -15029,7 +15140,7 @@ namespace RefrigtzW
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = 0; i < 8; i++)
                 {
                     Object O = new Object();
@@ -15062,7 +15173,7 @@ namespace RefrigtzW
             Object O1 = new Object();
             lock (O1)
             {
-                ////Parallel.For(0, 8, j =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, j =>
                 for (var j = 0; j < 8; j++)
                 {
                     Object O = new Object();
@@ -15140,10 +15251,10 @@ namespace RefrigtzW
             lock (O1)
             {
                 int[,] TableS = new int[8, 8];
-                ////Parallel.For(0, 8, i =>
+                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = 0; i < 8; i++)
                 {
-                    ////Parallel.For(0, 8, j =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, j =>
                     for (var j = 0; j < 8; j++)
                     {
                         TableS = CloneATable(TableConst);
@@ -15230,10 +15341,10 @@ namespace RefrigtzW
                 Object O = new Object();
                 lock (O)
                 {
-                    ////Parallel.For(ii - 1, ii + 2, i =>
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ii - 1, ii + 2, i =>
                     for (var i = ii - 1; i < ii + 2; i++)
                     {
-                        ////Parallel.For(jj - 1, jj + 2, j =>
+                        ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(jj - 1, jj + 2, j =>
                         for (var j = jj - 1; j < jj + 2; j++)
                         {
 
@@ -15373,55 +15484,55 @@ namespace RefrigtzW
                     FullGameAllow = true;
                     if (Kind == 1)
                     {
-                        Parallel.For(0, TableListSolder.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListSolder.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
                         });
                     }
                     else
                     if (Kind == 2)
                     {
-                        Parallel.For(0, TableListElefant.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListElefant.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
                         });
                     }
                     else
                     if (Kind == 3)
                     {
-                        Parallel.For(0, TableListHourse.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListHourse.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
                         });
                     }
                     else
                     if (Kind == 4)
                     {
-                        Parallel.For(0, TableListCastle.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListCastle.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
                         });
                     }
                     else
                     if (Kind == 5)
                     {
-                        Parallel.For(0, TableListMinister.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListMinister.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
                         });
                     }
                     else
                         if (Kind == 6)
                     {
-                        Parallel.For(0, TableListKing.Count, i =>
+                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, TableListKing.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
-                            AStarGreedy[i].InitiateAStarGreedyt(0, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
                         });
                     }
                     FullGameAllow = false;

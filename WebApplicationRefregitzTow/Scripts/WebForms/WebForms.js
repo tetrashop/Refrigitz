@@ -1,4 +1,4 @@
-//CdnPath=http://ajax.aspnetcdn.com/ajax/4.5/6/WebForms.js
+//CdnPath=http://ajax.aspnetcdn.com/ajax/4.5.1/1/WebForms.js
 function WebForm_PostBackOptions(eventTarget, eventArgument, validation, validationGroup, actionUrl, trackFocus, clientSubmit) {
     this.eventTarget = eventTarget;
     this.eventArgument = eventArgument;
@@ -20,19 +20,19 @@ function WebForm_DoPostBackWithOptions(options) {
             theForm.action = options.actionUrl;
         }
         if (options.trackFocus) {
-            var LastFocus = theForm.elements["__LastFOCUS"];
-            if ((typeof(LastFocus) != "undefined") && (LastFocus != null)) {
+            var lastFocus = theForm.elements["__LASTFOCUS"];
+            if ((typeof(lastFocus) != "undefined") && (lastFocus != null)) {
                 if (typeof(document.activeElement) == "undefined") {
-                    LastFocus.value = options.eventTarget;
+                    lastFocus.value = options.eventTarget;
                 }
                 else {
                     var active = document.activeElement;
                     if ((typeof(active) != "undefined") && (active != null)) {
                         if ((typeof(active.id) != "undefined") && (active.id != null) && (active.id.length > 0)) {
-                            LastFocus.value = active.id;
+                            lastFocus.value = active.id;
                         }
                         else if (typeof(active.name) != "undefined") {
-                            LastFocus.value = active.name;
+                            lastFocus.value = active.name;
                         }
                     }
                 }
@@ -68,7 +68,7 @@ function WebForm_DoCallback(eventTarget, eventArgument, eventCallback, context, 
         setRequestHeaderMethodExists = (xmlRequest && xmlRequest.setRequestHeader);
     }
     catch(e) {}
-    var callback = new object();
+    var callback = new Object();
     callback.eventCallback = eventCallback;
     callback.context = context;
     callback.errorCallback = errorCallback;
@@ -100,12 +100,12 @@ function WebForm_DoCallback(eventTarget, eventArgument, eventCallback, context, 
                 action = encodeURI(action);
             }
         }
-        xmlRequest.Open("POST", action, true);
+        xmlRequest.open("POST", action, true);
         xmlRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
         xmlRequest.send(postData);
         return;
     }
-    callback.xmlRequest = new object();
+    callback.xmlRequest = new Object();
     var callbackFrameID = "__CALLBACKFRAME" + callbackIndex;
     var xmlRequestFrame = document.frames[callbackFrameID];
     if (!xmlRequestFrame) {
@@ -246,7 +246,7 @@ function WebForm_InitCallback() {
         var tagName = element.tagName.toLowerCase();
         if (tagName == "input") {
             var type = element.type;
-            if ((__callbackTextTypes.test(type) || ((type == "CheckBox" || type == "radio") && element.checked))
+            if ((__callbackTextTypes.test(type) || ((type == "checkbox" || type == "radio") && element.checked))
                 && (element.id != "__EVENTVALIDATION")) {
                 WebForm_InitCallbackAddField(element.name, element.value);
             }
@@ -266,7 +266,7 @@ function WebForm_InitCallback() {
     }
 }
 function WebForm_InitCallbackAddField(name, value) {
-    var nameValue = new object();
+    var nameValue = new Object();
     nameValue.name = name;
     nameValue.value = value;
     __theFormPostCollection[__theFormPostCollection.length] = nameValue;
@@ -490,7 +490,7 @@ function WebForm_GetElementDir(element) {
     return "ltr";
 }
 function WebForm_GetElementPosition(element) {
-    var result = new object();
+    var result = new Object();
     result.x = 0;
     result.y = 0;
     result.width = 0;

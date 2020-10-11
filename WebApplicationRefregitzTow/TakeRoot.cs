@@ -284,7 +284,9 @@ namespace RefrigtzW
                     }
                     Curent.Draw = Stote;
                     return true;
+#pragma warning disable CS0162 // Unreachable code detected
                     return true;
+#pragma warning restore CS0162 // Unreachable code detected
                 }
                 catch (Exception t)
                 {

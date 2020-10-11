@@ -1,4 +1,4 @@
-//CdnPath=http://ajax.aspnetcdn.com/ajax/4.5/6/TreeView.js
+//CdnPath=http://ajax.aspnetcdn.com/ajax/4.5.1/1/TreeView.js
 function TreeView_HoverNode(data, node) {
     if (!data) {
         return;
@@ -32,7 +32,7 @@ function TreeView_PopulateNode(data, index, node, selectNode, selectImageNode, l
     if (!data) {
         return;
     }
-    var context = new object();
+    var context = new Object();
     context.data = data;
     context.node = node;
     context.selectNode = selectNode;
@@ -42,11 +42,11 @@ function TreeView_PopulateNode(data, index, node, selectNode, selectImageNode, l
     context.isChecked = "f";
     var tr = WebForm_GetParentByTagName(node, "TR");
     if (tr) {
-        var CheckBox = tr.getElementsByTagName("INPUT");
-        if (CheckBox && (CheckBox.length > 0)) {
-            for (var i = 0; i < CheckBox.length; i++) {
-                if (CheckBox[i].type.toLowerCase() == "CheckBox") {
-                    if (CheckBox[i].checked) {
+        var checkbox = tr.getElementsByTagName("INPUT");
+        if (checkbox && (checkbox.length > 0)) {
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].type.toLowerCase() == "checkbox") {
+                    if (checkbox[i].checked) {
                         context.isChecked = "t";
                     }
                     break;
@@ -54,7 +54,7 @@ function TreeView_PopulateNode(data, index, node, selectNode, selectImageNode, l
             }
         }
     }
-    var param = index + "|" + data.LastIndex + "|" + databound + context.isChecked + parentIsLast + "|" +
+    var param = index + "|" + data.lastIndex + "|" + databound + context.isChecked + parentIsLast + "|" +
         text.length + "|" + text + datapath.length + "|" + datapath + path;
     TreeView_PopulateNodeDoCallBack(context, param);
 }
@@ -62,9 +62,9 @@ function TreeView_ProcessNodeData(result, context) {
     var treeNode = context.node;
     if (result.length > 0) {
         var ci =  result.indexOf("|", 0);
-        context.data.LastIndex = result.substring(0, ci);
+        context.data.lastIndex = result.substring(0, ci);
         ci = result.indexOf("|", ci + 1);
-        var newExpandState = result.substring(context.data.LastIndex.length + 1, ci);
+        var newExpandState = result.substring(context.data.lastIndex.length + 1, ci);
         context.data.expandState.value += newExpandState;
         var chunk = result.substr(ci + 1);
         var newChildren, table;

@@ -1,4 +1,4 @@
-//CdnPath=http://ajax.aspnetcdn.com/ajax/4.5/6/WebParts.js
+//CdnPath=http://ajax.aspnetcdn.com/ajax/4.5.1/1/WebParts.js
 var __wpm = null;
 function Point(x, y) {
     this.x = x;
@@ -192,7 +192,7 @@ function Zone_GetParentZoneElement(containedElement) {
 function Zone_AddWebPart(webPartElement, webPartTitleElement, allowZoneChange) {
     var webPart = null;
     var zoneIndex = this.webParts.length;
-    if (this.allowLayoutChange && __wpm.IsDragDrOpenabled()) {
+    if (this.allowLayoutChange && __wpm.IsDragDropEnabled()) {
         webPart = new WebPart(webPartElement, webPartTitleElement, this, zoneIndex, allowZoneChange);
     }
     else {
@@ -254,7 +254,7 @@ function Zone_GetWebPartIndex(location) {
     return webPartsCount;
 }
 function Zone_UpdatePosition() {
-    var topLeft = __wpTranslateOffset(0, 0, this.webPartCloneATable(Table), null, false);
+    var topLeft = __wpTranslateOffset(0, 0, this.webPartTable, null, false);
     this.webPartTableLeft = topLeft.x;
     this.webPartTableTop = topLeft.y;
     this.webPartTableRight = (this.webPartTable != null) ? topLeft.x + this.webPartTable.offsetWidth : topLeft.x;
@@ -401,7 +401,7 @@ function WebPartManager() {
     this.menu = null;
     this.draggedWebPart = null;
     this.AddZone = WebPartManager_AddZone;
-    this.IsDragDrOpenabled = WebPartManager_IsDragDrOpenabled;
+    this.IsDragDropEnabled = WebPartManager_IsDragDropEnabled;
     this.DragDrop = WebPartManager_DragDrop;
     this.InitiateWebPartDragDrop = WebPartManager_InitiateWebPartDragDrop;
     this.CompleteWebPartDragDrop = WebPartManager_CompleteWebPartDragDrop;
@@ -428,7 +428,7 @@ function WebPartManager_AddZone(zoneElement, uniqueID, isVertical, allowLayoutCh
     this.zones[zoneIndex] = zone;
     return zone;
 }
-function WebPartManager_IsDragDrOpenabled() {
+function WebPartManager_IsDragDropEnabled() {
     return ((typeof(this.overlayContainerElement) != "undefined") && (this.overlayContainerElement != null));
 }
 function WebPartManager_DragDrop() {
@@ -616,7 +616,7 @@ function WebPartManager_ShowHelp(helpUrl, helpMode) {
             window.showModalDialog(helpUrl, null, dialogInfo);
         }
         else {
-            window.Open(helpUrl, null, "scrollbars=yes,resizable=yes,status=no,toolbar=no,menubar=no,location=no");
+            window.open(helpUrl, null, "scrollbars=yes,resizable=yes,status=no,toolbar=no,menubar=no,location=no");
         }
     }
     else if (helpMode == 2) {

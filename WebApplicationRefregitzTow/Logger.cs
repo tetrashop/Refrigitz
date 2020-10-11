@@ -16,9 +16,11 @@ namespace Chess
 
         public Logger(string logPath)
         {
-            string tem =  get(logPath);
-            if (!Directory.Exists(tem))
-                Directory.CreateDirectory(tem);
+            if (logPath.Contains("\\"))
+            {
+                string tem = get(logPath);
+                if (!Directory.Exists(tem))
+                    Directory.CreateDirectory(tem); }
             using (file = File.Open(logPath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
             {
                 writer = new StreamWriter(file);
@@ -33,6 +35,8 @@ namespace Chess
                 if (aa[i] == '\\')
                     j = i;
             }
+            if (j == 0)
+                return a;
             return aa.Substring(0, j);
         }
         // Log is thread safe, it can be called from many threads

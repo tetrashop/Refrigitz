@@ -119,10 +119,12 @@ namespace RefrigtzW
                 SetAllDrawKindString();
 
                 bool Found = false;
-                String P = Path.GetFullPath(path3);
-                AllDrawReplacement = Path.Combine(P, AllDrawKindString);
+                String P = System.Web.HttpRuntime.AppDomainAppPath + path3 + "\\";
+                AllDrawReplacement = P + AllDrawKindString;
                 Logger y = new Logger(AllDrawReplacement);
-                
+
+                String PP = System.Web.HttpRuntime.AppDomainAppPath;
+                AllDrawKindString = PP + AllDrawKindString;
                 y = new Logger(AllDrawKindString);
                 
                 if (File.Exists(AllDrawKindString))

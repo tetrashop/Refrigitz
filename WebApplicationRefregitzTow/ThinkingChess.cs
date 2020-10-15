@@ -13380,7 +13380,7 @@ th.Dispose();
                             continue;
                         if (Order == -1 && Tabl[i, j] != -6)
                             continue;
-                        List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
                         if (Exist.Count >= 1)
                         {
 
@@ -13407,7 +13407,7 @@ th.Dispose();
                                 continue;
                             if (Order == -1 && Tabl[i, j] != -6)
                                 continue;
-                            List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                            List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
                             if (Exist.Count >= 1)
                             {
 
@@ -13435,7 +13435,7 @@ th.Dispose();
                             continue;
                         if (Order == -1 && Tabl[i, j] != -6)
                             continue;
-                        List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
                         if (Exist.Count >= 1)
                         {
 
@@ -13464,7 +13464,7 @@ th.Dispose();
                             continue;
                         if (Order == -1 && Tabl[i, j] != -6)
                             continue;
-                        List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
                         if (Exist.Count >= 1)
                         {
 

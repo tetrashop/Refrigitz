@@ -1462,4 +1462,20 @@ System.IndexOutOfRangeException: Colleralation
    at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
    at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
    at System.Data.OleDb.OleDbCommand.ExecuteReader()
-   at RefrigtzW.FormRefrigtz.ReadTable(Int32 Movment, Int32& MoveNumber) in C:\Users\TechnologyLover\source\repos\tetrashop\Refrigitz\WebApplicationRefregitzTow\FormRefrigtz.cs:line 659: On10/11/2020 9:07:03 PM
+   at RefrigtzW.FormRefrigtz.ReadTable(Int32 Movment, Int32& MoveNumber) in C:\Users\TechnologyLover\source\repos\tetrashop\Refrigitz\WebApplicationRefregitzTow\FormRefrigtz.cs:line 659: On10/11/2020 9:07:03 PMSystem.Data.OleDb.OleDbException (0x80040E37): The Microsoft Access database engine cannot find the input table or query 'Table00000001'. Make sure it exists and that its name is spelled correctly.
+   at System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   at System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   at System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   at System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader()
+   at RefrigtzW.FormRefrigtz.ReadTable(Int32 Movment, Int32& MoveNumber) in C:\Users\TechnologyLover\source\repos\tetrashop\Refrigitz\WebApplicationRefregitzTow\FormRefrigtz.cs:line 544: On10/11/2020 9:11:34 PMSystem.Data.OleDb.OleDbException (0x80040E37): The Microsoft Access database engine cannot find the input table or query 'Table00000001'. Make sure it exists and that its name is spelled correctly.
+   at System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   at System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   at System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   at System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader()
+   at RefrigtzW.FormRefrigtz.ReadTable(Int32 Movment, Int32& MoveNumber) in C:\Users\TechnologyLover\source\repos\tetrashop\Refrigitz\WebApplicationRefregitzTow\FormRefrigtz.cs:line 659: On10/11/2020 9:11:40 PM

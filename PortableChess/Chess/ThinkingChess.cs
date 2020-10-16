@@ -491,6 +491,14 @@ namespace RefrigtzChessPortable
                     HeuristicListKing = new List<int[]>();
                     PenaltyRegardListKing = new List<QuantumAtamata>();
                 }
+                else if (KindO == 7||KindO==-7)
+                {
+                    TableListCastling = new List<int[,]>();
+                    RowColumnCastling = new List<int[]>();
+                    HitNumberKing = new List<int>();
+                    HeuristicListCastling = new List<int[]>();
+                    PenaltyRegardListCastling = new List<QuantumAtamata>();
+                }
                 KillerAtThinking = new List<int>();
                 AStarGreedy = new List<AllDraw>();
                 //Network  QuantumAtamata Book Initiate For Every Clone.
@@ -622,6 +630,14 @@ namespace RefrigtzChessPortable
                     HitNumberKing = new List<int>();
                     HeuristicListKing = new List<int[]>();
                     PenaltyRegardListKing = new List<QuantumAtamata>();
+                }
+                else if (KindO == 7 || KindO == -7)
+                {
+                    TableListCastling = new List<int[,]>();
+                    RowColumnCastling = new List<int[]>();
+                    HitNumberKing = new List<int>();
+                    HeuristicListCastling = new List<int[]>();
+                    PenaltyRegardListCastling = new List<QuantumAtamata>();
                 }
                 KillerAtThinking = new List<int>();
                 AStarGreedy = new List<AllDraw>();

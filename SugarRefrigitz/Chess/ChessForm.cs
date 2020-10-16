@@ -1584,6 +1584,10 @@ namespace Chess
                                 {
                                     MessageBox.Show("One or more cromosoms is invalid;");
                                     AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
+                                    Draw.TableList.Clear();
+                                    Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
+                                    Draw.SetRowColumn(0);
+                                    Draw.IsCurrentDraw = true;
                                     goto Again;
                                 }
                             }
@@ -2499,13 +2503,17 @@ namespace Chess
                                                 
                                                 MessageBox.Show("One or more cromosoms is invalid;");
                                                 RefrigtzDLL.AllDraw.TableListAction.RemoveAt(RefrigtzDLL.AllDraw.TableListAction.Count - 1);
+                                                Draw.TableList.Clear();
+                                                Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
+                                                Draw.SetRowColumn(0);
+                                                Draw.IsCurrentDraw = true;
 
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
+
+
+
+
+
+
                                                 Application.Exit();
                                             }
                                            

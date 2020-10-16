@@ -28,7 +28,7 @@ namespace RefrigtzW
         public static Image[] S = new Image[2];
         public bool MovementsAStarGreedyHeuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
-        public bool UsePenaltyRegardMechnisamT = true;
+        public bool UsePenaltyRegardMechnisamT = false;
         public bool BestMovmentsT = false;
         public bool PredictHeuristicT = true;
         public bool OnlySelfT = false;

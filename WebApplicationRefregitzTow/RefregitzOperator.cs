@@ -19,7 +19,7 @@ namespace GalleryStudio
 
         public bool MovementsAStarGreedyHeuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
-        public bool UsePenaltyRegardMechnisamT = true;
+        public bool UsePenaltyRegardMechnisamT = false;
         public bool BestMovmentsT = false;
         public bool PredictHeuristicT = true;
         public bool OnlySelfT = false;

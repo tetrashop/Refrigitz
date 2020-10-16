@@ -143,6 +143,7 @@
     <Compile Include="DrawCastle.cs" />
     <Compile Include="DrawElefant.cs" />
     <Compile Include="DrawHourse.cs" />
+    <Compile Include="DrawCastling.cs" />
     <Compile Include="DrawKing.cs" />
     <Compile Include="DrawMinister.cs" />
     <Compile Include="DrawSoldire.cs" />

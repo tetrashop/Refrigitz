@@ -215,6 +215,7 @@ namespace RefrigtzChessPortable
         public int IndexCastle = 0;
         public int IndexMinister = 0;
         public int IndexKing = 0;
+        public int IndexCastling = 0;
 
         public List<int[]> RowColumnSoldier = null;
         public List<int[]> RowColumnElefant = null;
@@ -222,6 +223,7 @@ namespace RefrigtzChessPortable
         public List<int[]> RowColumnCastle = null;
         public List<int[]> RowColumnMinister = null;
         public List<int[]> RowColumnKing = null;
+        public List<int[]> RowColumnCastling = null;
         public int[,] TableT;
         public List<int> HitNumberSoldier = null;
         public List<int> HitNumberElefant = null;
@@ -229,6 +231,7 @@ namespace RefrigtzChessPortable
         public List<int> HitNumberCastle = null;
         public List<int> HitNumberMinister = null;
         public List<int> HitNumberKing = null;
+        public List<int> HitNumberCastling = null;
         public int[,] TableConst;
         public List<int[,]> TableListSolder = null;
         public List<int[,]> TableListElefant = null;
@@ -236,12 +239,15 @@ namespace RefrigtzChessPortable
         public List<int[,]> TableListCastle = null;
         public List<int[,]> TableListMinister = null;
         public List<int[,]> TableListKing = null;
+        public List<int[,]> TableListCastling = null;
+
         public List<int[]> HeuristicListSolder = null;
         public List<int[]> HeuristicListElefant = null;
         public List<int[]> HeuristicListHourse = null;
         public List<int[]> HeuristicListCastle = null;
         public List<int[]> HeuristicListMinister = null;
         public List<int[]> HeuristicListKing = null;
+        public List<int[]> HeuristicListCastling = null;
         public List<int> KillerAtThinking = null;
         public List<QuantumAtamata> PenaltyRegardListSolder = null;
         public List<QuantumAtamata> PenaltyRegardListElefant = null;
@@ -249,6 +255,8 @@ namespace RefrigtzChessPortable
         public List<QuantumAtamata> PenaltyRegardListCastle = null;
         public List<QuantumAtamata> PenaltyRegardListMinister = null;
         public List<QuantumAtamata> PenaltyRegardListKing = null;
+        public List<QuantumAtamata> PenaltyRegardListCastling = null;
+
         public int Max;
         public int Row, Column;
         public Color color;

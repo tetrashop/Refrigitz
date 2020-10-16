@@ -10637,6 +10637,9 @@ namespace RefrigtzDLL
                 else
        if (Kind == 6)
                     Is = KingOnTable[i].KingThinking[0].IsSupHu[j];
+                else
+                if (Math.Abs(Kind) == 7)
+                    Is = KingOnTable[i].KingThinking[0].IsSupHu[j];
             }
             else
             {
@@ -10656,6 +10659,9 @@ namespace RefrigtzDLL
                     Is = MinisterOnTable[i].MinisterThinking[0].IsSup[j];
                 else
    if (Kind == 6)
+                    Is = KingOnTable[i].KingThinking[0].IsSup[j];
+                else
+                if (Math.Abs(Kind) == 7)
                     Is = KingOnTable[i].KingThinking[0].IsSup[j];
             }
             return Is;

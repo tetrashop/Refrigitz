@@ -10685,6 +10685,9 @@ namespace QuantumRefrigiz
                 else
        if (Kind == 6)
                     Is = KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j];
+                else
+                if (Math.Abs(Kind) == 7)
+                    Is = KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j];
             }
             else
             {
@@ -10704,6 +10707,9 @@ namespace QuantumRefrigiz
                     Is = MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup[j];
                 else
    if (Kind == 6)
+                    Is = KingOnTable[i].KingThinkingQuantum[0].IsSup[j];
+                else
+                if (Math.Abs(Kind) == 7)
                     Is = KingOnTable[i].KingThinkingQuantum[0].IsSup[j];
             }
             return Is;
@@ -17627,7 +17633,7 @@ namespace QuantumRefrigiz
                         {
                             IS = IS || FullBoundryConditionsGray(Current, Order, iAStarGreedy);
                             //when vicrory count satisfied
-                            if ((ThinkingQuantumChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
+                            if ((ThinkingQuantumChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))!AllowedSupTrue
                             {
                                 IS = true;
                             }

@@ -1223,6 +1223,18 @@ namespace RefrigtzChessPortable
                             }
                         //Make Empty Remaining.
                     }
+                    if (OrderP == 1)
+                    {
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, 7));
+                        ah.Wait();
+                        ah.Dispose();
+                    }
+                    else
+                    {
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, -7));
+                        ah.Wait();
+                        ah.Dispose();
+                    }
                     SetObjectNumbers(TableList[0]);
                     for (var i = So1; i < SodierMidle; i++)
                         SolderesOnTable[i] = null;
@@ -1601,6 +1613,22 @@ namespace RefrigtzChessPortable
                                 }
                             }
                         //Make Empty Remaining.
+                    }
+                    if (OrderP == 1)
+                    {
+                        CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, -2, -2, Color.Gray, CloneATable(TableList[index]), -1, false, 0);
+
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, 7));
+                        ah.Wait();
+                        ah.Dispose();
+                    }
+                    else
+                    {
+                        CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, -2, -2, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
+
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, -7));
+                        ah.Wait();
+                        ah.Dispose();
                     }
                     SetObjectNumbers(TableList[0]);
                     for (var i = So1; i < SodierMidle; i++)

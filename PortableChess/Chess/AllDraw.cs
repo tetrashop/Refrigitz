@@ -1616,7 +1616,7 @@ namespace RefrigtzChessPortable
                     }
                     if (OrderP == 1)
                     {
-                        CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, -2, -2, Color.Gray, CloneATable(TableList[index]), -1, false, 0);
+                        CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Gray, CloneATable(TableList[index]), -1, false, 0);
 
                         var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, 7));
                         ah.Wait();
@@ -1624,7 +1624,7 @@ namespace RefrigtzChessPortable
                     }
                     else
                     {
-                        CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, -2, -2, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
+                        CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
 
                         var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, -7));
                         ah.Wait();

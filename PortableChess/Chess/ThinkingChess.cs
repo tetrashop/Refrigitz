@@ -9172,6 +9172,30 @@ th.Dispose();
                             }
                         }
                     }
+                }//when is king
+                for (j = 0; HeuristicListCastling != null && j < HeuristicListCastling.Count; j++)
+                {
+                    {
+                        Heuristic += HeuristicListCastling[j][0] +
+        HeuristicListCastling[j][1] +
+        HeuristicListCastling[j][2] +
+        HeuristicListCastling[j][3] +
+        HeuristicListCastling[j][4] +
+        HeuristicListCastling[j][5] +
+        HeuristicListCastling[j][6] +
+        HeuristicListCastling[j][7] +
+        HeuristicListCastling[j][8] +
+        HeuristicListCastling[j][9];
+                        Object O1 = new Object();
+                        lock (O1)
+                        {
+                            if (AllDraw.NumberOfLeafComputation == -1 && AllDraw.FirstTraversalTree)
+                            {
+                                //if (Order == 1)
+                                //else
+                            }
+                        }
+                    }
                 }
             }
             else
@@ -9264,6 +9288,16 @@ th.Dispose();
                                 th.Dispose();
                                 BOUND = bo;
                                 HaveKilled = hav;
+                            } //Repeate for King.
+                            for (int m = 0; m <1; m++)
+                            {
+                                int bo = BOUND;
+                                int hav = HaveKilled;
+                                var th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperCastling(k, m, iAstarGready, ii, j, Order, ref hav, ref bo));
+                                th.Wait();
+                                th.Dispose();
+                                BOUND = bo;
+                                HaveKilled = hav;
                             }
                         }
                         else
@@ -9323,11 +9357,11 @@ th.Dispose();
                                 HaveKilled = hav;
                             }
                             //Repeate for King.
-                            for (int m = AStarGreedy[k].KingMidle; m < AStarGreedy[k].KingHigh; m++)
+                            for (int m = 0; m < 1; m++)
                             {
                                 int bo = BOUND;
                                 int hav = HaveKilled;
-                                var th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperKing(k, m, iAstarGready, ii, j, Order, ref hav, ref bo));
+                                var th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperCastling(k, m, iAstarGready, ii, j, Order, ref hav, ref bo));
                                 th.Wait();
                                 th.Dispose();
                                 BOUND = bo;
@@ -9351,6 +9385,22 @@ th.Dispose();
             {
                 int hav = HaveKilled;
                 var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHeuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref hav));
+                th.Wait();
+                th.Dispose();
+                HaveKilled = hav;
+            }
+            return Heuristic;
+        }
+        //deeper for specific object
+        public int ReturnHeuristicCalculartorDeeperCastling(int k, int m, int iAstarGready, int ii, int j, int Order, ref int HaveKilled, ref int BOUND)
+        {
+            int Heuristic = 0;
+            if (AStarGreedy[k].CastlingOnTable == null || AStarGreedy[k].CastlingOnTable[m] == null || AStarGreedy[k].CastlingOnTable[m].CastlingThinking == null || AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0] == null || AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0].TableListCastling == null)
+                return Heuristic;
+            for (var jj = 0; jj < AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0].TableListCastling.Count; jj++)
+            {
+                int hav = HaveKilled;
+                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0].ReturnHeuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref hav));
                 th.Wait();
                 th.Dispose();
                 HaveKilled = hav;
@@ -9534,6 +9584,21 @@ th.Dispose();
                         HeuristicListKing[j][7] +
                         HeuristicListKing[j][8] +
                         HeuristicListKing[j][9];
+                }
+                else
+                //When King Kind.
+                if (System.Math.Abs(Kind) == 7 && HeuristicListCastling.Count > 0)
+                {
+                    Heuristic += HeuristicListCastling[j][0] +
+                        HeuristicListCastling[j][1] +
+                        HeuristicListCastling[j][2] +
+                        HeuristicListCastling[j][3] +
+                        HeuristicListCastling[j][4] +
+                        HeuristicListCastling[j][5] +
+                        HeuristicListCastling[j][6] +
+                        HeuristicListCastling[j][7] +
+                        HeuristicListCastling[j][8] +
+                        HeuristicListCastling[j][9];
                 }
             }
             else

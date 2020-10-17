@@ -96,6 +96,7 @@
     <Compile Include="CodeClass.cs" />
     <Compile Include="Colleralation.cs" />
     <Compile Include="DrawCastle.cs" />
+    <Compile Include="DrawCastling.cs" />
     <Compile Include="DrawElefant.cs" />
     <Compile Include="DrawHourse.cs" />
     <Compile Include="DrawKing.cs" />

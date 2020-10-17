@@ -570,7 +570,7 @@ namespace Chess
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = false;
                 else
-                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = false;
+                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = false;
                 
                 if (OrderPlate == 1)
                 {
@@ -1166,7 +1166,7 @@ namespace Chess
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = true;
                 else
-                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = true;
+                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = true;
                 Begin2:
                 Color a = Color.Gray;
                 bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;

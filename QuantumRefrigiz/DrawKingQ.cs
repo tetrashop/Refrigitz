@@ -53,7 +53,7 @@ namespace QuantumRefrigiz
 
 
 
-        public ThinkingQuantumChess thinkingQuantumString = null;
+        public ThinkingQuantumChess ThinkingQuantumString = null;
 
 
 

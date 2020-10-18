@@ -5329,6 +5329,19 @@ namespace RefrigtzChessPortable
                         }
                     }
                 }
+                for (int i = 0; CastlingOnTable != null && i < 1; i++)
+                {
+                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                    {
+                        for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        {
+                            //when is not validity
+                            var ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
+                            ah.Wait();
+                            ah.Dispose();
+                        }
+                    }
+                }
             }
         }
         public void ClearAllTablesHeuristicsAndMoreBrown(int Order)
@@ -5414,6 +5427,19 @@ namespace RefrigtzChessPortable
                         {
                             //when is not validity
                             var ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreKing(Order, i, j));
+                            ah.Wait();
+                            ah.Dispose();
+                        }
+                    }
+                }
+                for (int i = 0; CastlingOnTable != null && i < 1; i++)
+                {
+                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                    {
+                        for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        {
+                            //when is not validity
+                            var ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5586,7 +5612,30 @@ namespace RefrigtzChessPortable
                 }
             }
         }
-        //when there is a colision in lists of current return true and remove extra lists
+        public void ClearAllTablesHeuristicsAndMoreCastling(int Order, int i, int j)
+        {
+            Object O = new Object();
+            lock (O)
+            {
+                bool ac = false;
+                var ah = Task.Factory.StartNew(() => ac = IsNonValidityAllTablesHeuristicsAndMore(7, Order, i, j));
+                ah.Wait();
+                ah.Dispose();
+                if (ac)
+                {
+                    //clear all lists
+                    CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
+                    CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
+                    CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
+                    CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Clear();
+                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged);
+                    else
+                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
+                }
+            }
+        }
+     //when there is a colision in lists of current return true and remove extra lists
         bool A_B_C_D_E_ISNonEqual(int a, int b, int c, int d, int e, int i, int j, int Kind)
         {
             bool Is = false;
@@ -7273,6 +7322,21 @@ namespace RefrigtzChessPortable
                         AllDraw le = Leaf;
                         bool fou = Found;
                         var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindKing(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        ah.Wait();
+                        ah.Dispose();
+                        Leaf = le;
+                        Found = fou;
+                    }
+                    if (UniqueLeafDetection)
+                    {
+                        if (Found)
+                            return Leaf;
+                    }
+                    for (var i = 0; i < 1; i++)
+                    {
+                        AllDraw le = Leaf;
+                        bool fou = Found;
+                        var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindCastling(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -19053,6 +19117,10 @@ namespace RefrigtzChessPortable
                     {
                         IS = IS || FullBoundryConditionsKing(ikk, Current, Order, iAStarGreedy);
                     }
+                    for (int ikk = 0; ikk < 1; ikk++)
+                    {
+                        IS = IS || FullBoundryConditionsCastling(ikk, Current, Order, iAStarGreedy);
+                    }
                     //when victory count satisfied
                     if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                     {
@@ -19102,6 +19170,10 @@ namespace RefrigtzChessPortable
                     for (int ikk = 0; ikk < KingMidle; ikk++)
                     {
                         IS = IS || FullBoundryConditionsKing(ikk, Current, Order, iAStarGreedy);
+                    }
+                    for (int ikk = 0; ikk < 1; ikk++)
+                    {
+                        IS = IS || FullBoundryConditionsCastling(ikk, Current, Order, iAStarGreedy);
                     }
                     //when vicrory count satisfied
                     if ((ThinkingRefrigtzChessPortable.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
@@ -23242,6 +23314,28 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         }
                     }
                 }
+                for (int ik = 0; ik < 1; ik++)
+                {
+                    if (CastlingOnTable != null
+)
+                    {
+                        if (CastlingOnTable[ik] != null
+  )
+                        {
+                            if (CastlingOnTable[ik].CastlingThinking != null
+                     )
+                            {
+                                if (CastlingOnTable[ik].CastlingThinking[0] != null
+                             )
+                                {    //non learning autamata victory leafs
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
+                                    CastlingOnTable[ik].CastlingThinking[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
+                                }
+                            }
+                        }
+                    }
+                }
             }
             else
             {
@@ -23383,6 +23477,28 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     }
 
                 }
+                for (int ik = 0; ik < 1; ik++)
+                {
+                    if (CastlingOnTable != null
+)
+                    {
+                        if (CastlingOnTable[ik] != null
+  )
+                        {
+                            if (CastlingOnTable[ik].CastlingThinking != null
+                     )
+                            {
+                                if (CastlingOnTable[ik].CastlingThinking[0] != null
+                             )
+                                {    //non learning autamata victory leafs
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
+                                    CastlingOnTable[ik].CastlingThinking[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
+                                }
+                            }
+                        }
+                    }
+                }
             }
             int Sum = 0;
             //if (this.AStarGreedyString != null)
@@ -23419,6 +23535,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (this.KingOnTable != null && this.KingOnTable[i] != null)
                             Sum += this.KingOnTable[i].WinOcuuredatChiled;
                     }
+
+                    for (var i = 0; i < 1; i++)
+                    {
+                        if (this.CastlingOnTable != null && this.CastlingOnTable[i] != null)
+                            Sum += this.CastlingOnTable[i].WinOcuuredatChiled;
+                    }
+
                 }
                 else
                 {
@@ -23451,6 +23574,11 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     {
                         if (this.KingOnTable != null && this.KingOnTable[i] != null)
                             Sum += this.KingOnTable[i].WinOcuuredatChiled;
+                    }
+                    for (var i = 0; i < 1; i++)
+                    {
+                        if (this.CastlingOnTable != null && this.CastlingOnTable[i] != null)
+                            Sum += this.CastlingOnTable[i].WinOcuuredatChiled;
                     }
                 }
             }
@@ -23586,6 +23714,28 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         }
                     }
                 }
+                for (int ik = 0; ik < 1; ik++)
+                {
+                    if (CastlingOnTable != null
+)
+                    {
+                        if (CastlingOnTable[ik] != null
+  )
+                        {
+                            if (CastlingOnTable[ik].CastlingThinking != null
+                     )
+                            {
+                                if (CastlingOnTable[ik].CastlingThinking[0] != null
+                             )
+                                {    //non learning autamata victory leafs
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
+                                }
+                            }
+                        }
+                    }
+
+                }
             }
             else
             {
@@ -23720,8 +23870,30 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             }
                         }
 
+                }
+                for (int ik = 0; ik < 1; ik++)
+                {
+                    if (CastlingOnTable != null
+)
+                    {
+                        if (CastlingOnTable[ik] != null
+  )
+                        {
+                            if (CastlingOnTable[ik].CastlingThinking != null
+                     )
+                            {
+                                if (CastlingOnTable[ik].CastlingThinking[0] != null
+                             )
+                                {    //non learning autamata victory leafs
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
+                                }
+                            }
+                        }
                     }
-                
+
+                }
+
             }
             int Sum = 0;
             //if (this.AStarGreedyString != null)
@@ -26583,6 +26755,25 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             }
 
         }
+        void CheckedMateConfiguratiioncastling(int Order, int i, bool Regrad)
+        {
+
+            for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Count; j++)
+            {
+                if (CastlingOnTable[i].CastlingThinking[0].LearningVarsObject.Count == CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Count)
+                    if (CastlingOnTable[i].CastlingThinking[0].LearningVarsObject[j][1] && (!CastlingOnTable[i].CastlingThinking[0].LearningVarsObject[j][4]))
+                    {
+                        CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate();
+                        //if(Regrad)
+
+                        //else
+                        if (!Regrad)
+                            CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
+                        CastlingOnTable[i].CastlingThinking[0].HeuristicPenaltyValuePerform(CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j], Order, ref CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0], true);
+                    }
+            }
+
+        }
         //specific learning autamata network oparational
         void CheckedMateConfiguratiion(int Order)
         {
@@ -26613,6 +26804,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         for (var i = 0; i < KingMidle; i++)
                             if (KingOnTable != null && KingOnTable[i] != null)
                                 CheckedMateConfiguratiionking(Order, i, true);
+                        for (var i = 0; i < 1; i++)
+                            if (CastlingOnTable != null && CastlingOnTable[i] != null)
+                                CheckedMateConfiguratiioncastling(Order, i, true);
                     }
                     else
                     {
@@ -26634,6 +26828,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         for (var i = KingMidle; i < KingHigh; i++)
                             if (KingOnTable != null && KingOnTable[i] != null)
                                 CheckedMateConfiguratiionking(Order, i, true);
+                        for (var i = 0; i < 1; i++)
+                            if (CastlingOnTable != null && CastlingOnTable[i] != null)
+                                CheckedMateConfiguratiioncastling(Order, i, true);
                     }
 
                 }
@@ -26659,6 +26856,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         for (var i = 0; i < KingMidle; i++)
                             if (KingOnTable != null && KingOnTable[i] != null)
                                 CheckedMateConfiguratiionking(Order, i, false);
+                        for (var i = 0; i < 1; i++)
+                            if (CastlingOnTable != null && CastlingOnTable[i] != null)
+                                CheckedMateConfiguratiioncastling(Order, i, false);
                     }
                     else
                     {
@@ -26680,6 +26880,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         for (var i = KingMidle; i < KingHigh; i++)
                             if (KingOnTable != null && KingOnTable[i] != null)
                                 CheckedMateConfiguratiionking(Order, i, false);
+                        for (var i = 0; i < 1; i++)
+                            if (CastlingOnTable != null && CastlingOnTable[i] != null)
+                                CheckedMateConfiguratiioncastling(Order, i, false);
                     }
                 }
             }

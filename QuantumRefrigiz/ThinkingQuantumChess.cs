@@ -47,6 +47,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LearningMachine;
+
 namespace QuantumRefrigiz
 {
     [Serializable]
@@ -11020,6 +11021,9 @@ th.Dispose();
                 else
                                     if (kind == 6 && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListKing.Count == TableListKing.Count)
                     Equality = true;
+                else
+                                    if ((kind == 7 || kind == -7) && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListCastling.Count == TableListCastling.Count)
+                    Equality = true;
                 return Equality;
             }
         }
@@ -11046,6 +11050,9 @@ th.Dispose();
                     Equality = true;
                 else
                                      if (kind == 6 && Current.IsPenaltyAction() != 0 && UsePenaltyRegardMechnisamT && PenaltyRegardListKing != null && PenaltyRegardListKing.Count == TableListKing.Count)
+                    Equality = true;
+                else
+                                     if ((kind == 7||kind==-7) && Current.IsPenaltyAction() != 0 && UsePenaltyRegardMechnisamT && PenaltyRegardListCastling != null && PenaltyRegardListCastling.Count == TableListCastling.Count)
                     Equality = true;
                 return Equality;
             }
@@ -11080,6 +11087,10 @@ th.Dispose();
                                 if (kind == 6)
                     //King.
                     PenaltyRegardListKing.Add(Current);
+                else
+                                if (kind == 7||kind==-7)
+                    //King.
+                    PenaltyRegardListCastling.Add(Current);
             }
 
         }
@@ -11113,6 +11124,10 @@ th.Dispose();
                                 if (kind == 6)
                     //King.
                     PenaltyRegardListKing.RemoveAt(PenaltyRegardListKing.Count - 1);
+                else
+                                if (kind == 7||kind==-7)
+                    //King.
+                    PenaltyRegardListCastling.RemoveAt(PenaltyRegardListCastling.Count - 1);
             }
         }
         //learning autamata maib method
@@ -14617,7 +14632,7 @@ th.Dispose();
             Is = Total - Is;
             return Is;
         }
-        //specific determination for ThinkingQuantum main method
+        //specific determination for ThinkingQuantumQuantum main method
         void CastleThinkingQuantumGray(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object O1 = new Object();
@@ -15564,6 +15579,20 @@ th.Dispose();
                 }
             }
             else if (kind == 6)//king
+            {
+                //when valid do create of deeper node and string making
+                if (TableListKing.Count > AStarGreedy.Count)
+                {
+                    if (AStarGreedy.Count == 0)
+                        AStarGreedy = new List<AllDraw>();
+                    AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    AStarGreedy[AStarGreedy.Count - 1].TableList.Clear();
+                    AStarGreedy[AStarGreedy.Count - 1].TableList.Add(CloneATable(TableListKing[j]));
+                    AStarGreedy[AStarGreedy.Count - 1].SetRowColumn(0);
+                    AStarGreedy[AStarGreedy.Count - 1].AStarGreedyString = THIS;
+                }
+            }
+            else if (kind == 7||kind==-7)//king
             {
                 //when valid do create of deeper node and string making
                 if (TableListKing.Count > AStarGreedy.Count)

@@ -9945,7 +9945,7 @@ th.Dispose();
             return;
         }
         //specific determination for thinking main method
-        void KingThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void KingThinkingChess(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object O = new Object();
             lock (O)
@@ -9965,7 +9965,7 @@ th.Dispose();
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10099,7 +10099,7 @@ th.Dispose();
             return AA;
         }
         //specific determination for thinking main method
-        void MinisterThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void MinisterThinkingChess(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object O11 = new Object();
             lock (O11)
@@ -10119,7 +10119,7 @@ th.Dispose();
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10595,7 +10595,7 @@ th.Dispose();
                 return LearningV;
             }
         }
-        void CastlesThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle
+        void CastlesThinkingChess(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle
         )
         {
             Object O22 = new Object();
@@ -10616,7 +10616,7 @@ th.Dispose();
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10731,7 +10731,7 @@ th.Dispose();
             ThinkingAtRun = false;
         }
         //specific determination for thinking main method
-        void HourseThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void HourseThinkingChess(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object OO = new Object();
             lock (OO)
@@ -10751,7 +10751,7 @@ th.Dispose();
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10864,7 +10864,7 @@ th.Dispose();
         }
         //specific determination for thinking main method
         //specific determination for thinking main method
-        void ElephantThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void ElephantThinkingChess(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object OO = new Object();
             lock (OO)
@@ -10884,7 +10884,7 @@ th.Dispose();
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -11021,6 +11021,9 @@ th.Dispose();
                 else
                                     if (kind == 6 && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListKing.Count == TableListKing.Count)
                     Equality = true;
+                else
+                                    if ((kind == 7 || kind == -7) && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListCastling.Count == TableListCastling.Count)
+                    Equality = true;
                 return Equality;
             }
         }
@@ -11047,6 +11050,9 @@ th.Dispose();
                     Equality = true;
                 else
                                      if (kind == 6 && Current.IsPenaltyAction() != 0 && UsePenaltyRegardMechnisamT && PenaltyRegardListKing != null && PenaltyRegardListKing.Count == TableListKing.Count)
+                    Equality = true;
+                else
+                                     if ((kind == 7||kind==-7) && Current.IsPenaltyAction() != 0 && UsePenaltyRegardMechnisamT && PenaltyRegardListCastling != null && PenaltyRegardListCastling.Count == TableListCastling.Count)
                     Equality = true;
                 return Equality;
             }
@@ -11081,6 +11087,10 @@ th.Dispose();
                                 if (kind == 6)
                     //King.
                     PenaltyRegardListKing.Add(Current);
+                else
+                                if (kind == 7||kind==-7)
+                    //King.
+                    PenaltyRegardListCastling.Add(Current);
             }
 
         }
@@ -11114,6 +11124,10 @@ th.Dispose();
                                 if (kind == 6)
                     //King.
                     PenaltyRegardListKing.RemoveAt(PenaltyRegardListKing.Count - 1);
+                else
+                                if (kind == 7||kind==-7)
+                    //King.
+                    PenaltyRegardListCastling.RemoveAt(PenaltyRegardListCastling.Count - 1);
             }
         }
         //learning autamata maib method
@@ -12029,7 +12043,7 @@ th.Dispose();
                 }
             }
         }
-        bool ThinkingRefrigtzChessPortableRuleThinking(int[,] TableS, int RowSource, int ColumnSource, int RowDestination, int ColumnDestination)
+        bool ThinkingChessRuleThinking(int[,] TableS, int RowSource, int ColumnSource, int RowDestination, int ColumnDestination)
         {
             Object O = new Object();
             lock (O)
@@ -12037,7 +12051,7 @@ th.Dispose();
                 return (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, TableS[RowSource, ColumnSource], CloneATable(TableS), Order, RowSource, ColumnSource)).Rules(RowSource, ColumnSource, RowDestination, ColumnDestination, color, TableS[RowSource, ColumnSource], false);
             }
         }
-        void SolderThinkingRefrigtzChessPortable(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
+        void SolderThinkingChess(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)
         {
             Object O1 = new Object();
             lock (O1)
@@ -12057,7 +12071,7 @@ th.Dispose();
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                var th = Task.Factory.StartNew(() => ab = ThinkingRefrigtzChessPortableRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                var th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -14817,7 +14831,7 @@ th.Dispose();
                 {
                     Order = ord;
                     int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                    var newTask = Task.Factory.StartNew(() => SolderThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                    var newTask = Task.Factory.StartNew(() => SolderThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                     newTask.Wait(); newTask.Dispose();
@@ -14888,7 +14902,7 @@ th.Dispose();
                     {
                         Order = ord;
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => ElephantThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                        var newTask = Task.Factory.StartNew(() => ElephantThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -14949,7 +14963,7 @@ th.Dispose();
                     if (Scop(ii, jj, ii + 2, jj + 1, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj + 1, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj + 1, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -14975,7 +14989,7 @@ th.Dispose();
                 if (Scop(ii, jj, ii - 2, jj - 1, 3))
                 {
                     int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                    var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj - 1, Castle));
+                    var newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj - 1, Castle));
 
 
                     newTask.Wait(); newTask.Dispose();
@@ -15002,7 +15016,7 @@ th.Dispose();
                     if (Scop(ii, jj, ii + 2, jj - 1, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj - 1, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj - 1, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -15027,7 +15041,7 @@ th.Dispose();
                 if (Scop(ii, jj, ii - 2, jj + 1, 3))
                 {
                     int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                    var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj + 1, Castle));
+                    var newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj + 1, Castle));
 
 
                     newTask.Wait(); newTask.Dispose();
@@ -15054,7 +15068,7 @@ th.Dispose();
                     if (Scop(ii, jj, ii + 1, jj + 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj + 2, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj + 2, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -15082,7 +15096,7 @@ th.Dispose();
                     if (Scop(ii, jj, ii - 1, jj - 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj - 2, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj - 2, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -15110,7 +15124,7 @@ th.Dispose();
                     if (Scop(ii, jj, ii + 1, jj - 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj - 2, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj - 2, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -15137,7 +15151,7 @@ th.Dispose();
                     if (Scop(ii, jj, ii - 1, jj + 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => HourseThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj + 2, Castle));
+                        var newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj + 2, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -15262,7 +15276,7 @@ th.Dispose();
                         {
                             Order = ord;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            var newTask = Task.Factory.StartNew(() => CastlesThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                            var newTask = Task.Factory.StartNew(() => CastlesThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                             newTask.Wait(); newTask.Dispose();
@@ -15296,7 +15310,7 @@ th.Dispose();
                         {
                             Order = ord;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            var newTask = Task.Factory.StartNew(() => CastlesThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                            var newTask = Task.Factory.StartNew(() => CastlesThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
                             newTask.Wait(); newTask.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -15340,7 +15354,7 @@ th.Dispose();
                     {
                         Order = ord;
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => MinisterThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                        var newTask = Task.Factory.StartNew(() => MinisterThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                         newTask.Wait(); newTask.Dispose();
@@ -15464,7 +15478,7 @@ th.Dispose();
                             {
                                 Order = ord;
                                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                                var newTask = Task.Factory.StartNew(() => KingThinkingRefrigtzChessPortable(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                                var newTask = Task.Factory.StartNew(() => KingThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
 
                                 newTask.Wait(); newTask.Dispose();
@@ -15565,6 +15579,20 @@ th.Dispose();
                 }
             }
             else if (kind == 6)//king
+            {
+                //when valid do create of deeper node and string making
+                if (TableListKing.Count > AStarGreedy.Count)
+                {
+                    if (AStarGreedy.Count == 0)
+                        AStarGreedy = new List<AllDraw>();
+                    AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    AStarGreedy[AStarGreedy.Count - 1].TableList.Clear();
+                    AStarGreedy[AStarGreedy.Count - 1].TableList.Add(CloneATable(TableListKing[j]));
+                    AStarGreedy[AStarGreedy.Count - 1].SetRowColumn(0);
+                    AStarGreedy[AStarGreedy.Count - 1].AStarGreedyString = THIS;
+                }
+            }
+            else if (kind == 7||kind==-7)//king
             {
                 //when valid do create of deeper node and string making
                 if (TableListKing.Count > AStarGreedy.Count)

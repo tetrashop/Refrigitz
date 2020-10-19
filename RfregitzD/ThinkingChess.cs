@@ -13748,35 +13748,35 @@ th.Dispose();
 
             List<int[]> Co1 = new List<int[]>();
             CollectionSummation(A, -4, ref Co1);
-
+            CollectionSummation(B, -4, ref Co1);
             CollectionSummation(C, -4, ref Co1);
             CollectionSummation(D, -4, ref Co1);
 
             if (Co1.Count > 0) Col.Add(Co1);
             List<int[]> Co2 = new List<int[]>();
             CollectionSummation(A, -3, ref Co2);
-
+            CollectionSummation(B, -3, ref Co2);
             CollectionSummation(C, -3, ref Co2);
             CollectionSummation(D, -3, ref Co2);
 
             if (Co2.Count > 0) Col.Add(Co2);
             List<int[]> Co3 = new List<int[]>();
             CollectionSummation(A, -2, ref Co3);
-
+            CollectionSummation(B, -2, ref Co3);
             CollectionSummation(C, -2, ref Co3);
             CollectionSummation(D, -2, ref Co3);
 
             if (Co3.Count > 0) Col.Add(Co3);
             List<int[]> Co4 = new List<int[]>();
             CollectionSummation(A, -1, ref Co4);
-
+            CollectionSummation(B, -1, ref Co4);
             CollectionSummation(C, -1, ref Co4);
             CollectionSummation(D, -1, ref Co4);
 
             if (Co4.Count > 0) Col.Add(Co4);
             List<int[]> Co5 = new List<int[]>();
             CollectionSummation(A, 1, ref Co5);
-
+            CollectionSummation(B, 1, ref Co5);
             CollectionSummation(C, 1, ref Co5);
             CollectionSummation(D, 1, ref Co5);
 
@@ -13784,7 +13784,7 @@ th.Dispose();
 
             List<int[]> Co6 = new List<int[]>();
             CollectionSummation(A, 2, ref Co6);
-
+            CollectionSummation(B, 2, ref Co6);
             CollectionSummation(C, 2, ref Co6);
             CollectionSummation(D, 2, ref Co6);
 
@@ -13792,7 +13792,7 @@ th.Dispose();
 
             List<int[]> Co7 = new List<int[]>();
             CollectionSummation(A, 3, ref Co7);
-
+            CollectionSummation(B, 3, ref Co7);
             CollectionSummation(C, 3, ref Co7);
             CollectionSummation(D, 3, ref Co7);
 
@@ -13800,7 +13800,7 @@ th.Dispose();
 
             List<int[]> Co8 = new List<int[]>();
             CollectionSummation(A, 4, ref Co8);
-
+            CollectionSummation(B, 4, ref Co8);
             CollectionSummation(C, 4, ref Co8);
             CollectionSummation(D, 4, ref Co8);
 

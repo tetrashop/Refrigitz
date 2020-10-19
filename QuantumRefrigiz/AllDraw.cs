@@ -1620,21 +1620,24 @@ namespace QuantumRefrigiz
                             }
                         //Make Empty Remaining.
                     }
-                    if (OrderP == 1)
+                    if (CastlingBoundryCondition())
                     {
-                        CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Gray, CloneATable(TableList[index]), -1, false, 0);
+                        if (OrderP == 1)
+                        {
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Gray, CloneATable(TableList[index]), -1, false, 0);
 
-                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(0, OrderP, 7));
-                        ah.Wait();
-                        ah.Dispose();
-                    }
-                    else
-                    {
-                        CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
+                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(0, OrderP, 7));
+                            ah.Wait();
+                            ah.Dispose();
+                        }
+                        else
+                        {
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
 
-                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(0, OrderP, -7));
-                        ah.Wait();
-                        ah.Dispose();
+                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(0, OrderP, -7));
+                            ah.Wait();
+                            ah.Dispose();
+                        }
                     }
                     SetObjectNumbers(TableList[0]);
                     for (var i = So1; i < SodierMidle; i++)
@@ -1674,6 +1677,23 @@ namespace QuantumRefrigiz
                 OrderP = Dummy;
                 SetObjectNumbers(Tabl);
             }
+        }
+        bool CastlingBoundryCondition()
+        {
+            if (CastlingOnTable == null)
+                return true;
+            if (CastlingOnTable[0] == null)
+                return true;
+            if (CastlingOnTable[0].CastlingThinkingQuantum == null)
+                return true;
+            if (CastlingOnTable[0].CastlingThinkingQuantum[0] == null)
+                return true;
+            if (CastlingOnTable[0].CastlingThinkingQuantum[0].AStarGreedy == null)
+                return true;
+            if (CastlingOnTable[0].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
+                return true;
+
+            return false;
         }
         public bool SetRowColumn()
         {

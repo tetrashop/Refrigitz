@@ -27308,162 +27308,328 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
         int UniqueCapableMoveIsTruSup(int Kind, int Order, int ii, int jj)
         {
             int No = 0;
-            if (Order == 1)
+            if (!AllowedSupTrue)
             {
-                if (Kind == 1)
+                if (Order == 1)
                 {
-                    for (int i = 0; i < SodierMidle; i++)
+                    if (Kind == 1)
                     {
-                        for (int j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = 0; i < SodierMidle; i++)
                         {
-                            if (!SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 2)
+                    {
+                        for (int i = 0; i < ElefantMidle; i++)
+                        {
+                            for (int j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 3)
+                    {
+                        for (int i = 0; i < HourseMidle; i++)
+                        {
+                            for (int j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 4)
+                    {
+                        for (int i = 0; i < CastleMidle; i++)
+                        {
+                            for (int j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 5)
+                    {
+                        for (int i = 0; i < MinisterMidle; i++)
+                        {
+                            for (int j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 6)
+                    {
+                        for (int i = 0; i < KingMidle; i++)
+                        {
+                            for (int j = 0; j < KingOnTable[i].KingThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 7 || Kind == -7)
+                    {
+                        for (int i = 0; i < 1; i++)
+                        {
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
                         }
                     }
                 }
-                else if (Kind == 2)
+                else
                 {
-                    for (int i = 0; i < ElefantMidle; i++)
+                    if (Kind == 1)
                     {
-                        for (int j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = SodierMidle; i < SodierHigh; i++)
                         {
-                            if (!ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 3)
-                {
-                    for (int i = 0; i < HourseMidle; i++)
+                    else if (Kind == 2)
                     {
-                        for (int j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = ElefantMidle; i < ElefantHigh; i++)
                         {
-                            if (!HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 4)
-                {
-                    for (int i = 0; i < CastleMidle; i++)
+                    else if (Kind == 3)
                     {
-                        for (int j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = HourseMidle; i < HourseHight; i++)
                         {
-                            if (!CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 5)
-                {
-                    for (int i = 0; i < MinisterMidle; i++)
+                    else if (Kind == 4)
                     {
-                        for (int j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = CastleMidle; i < CastleHigh; i++)
                         {
-                            if (!MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 6)
-                {
-                    for (int i = 0; i < KingMidle; i++)
+                    else if (Kind == 5)
                     {
-                        for (int j = 0; j < KingOnTable[i].KingThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = MinisterMidle; i < MinisterHigh; i++)
                         {
-                            if (!KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 7 || Kind == -7)
-                {
-                    for (int i = 0; i < 1; i++)
+                    else if (Kind == 6)
                     {
-                        for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = KingMidle; i < KingHigh; i++)
                         {
-                            if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < KingOnTable[i].KingThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 7 || Kind == -7)
+                    {
+                        for (int i = 0; i < 1; i++)
+                        {
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Count; j++)
+                            {
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu[j])
+                                    No++;
+                            }
                         }
                     }
                 }
             }
             else
             {
-                if (Kind == 1)
+                if (Order == 1)
                 {
-                    for (int i = SodierMidle; i < SodierHigh; i++)
+                    if (Kind == 1)
                     {
-                        for (int j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = 0; i < SodierMidle; i++)
                         {
-                            if (!SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 2)
+                    {
+                        for (int i = 0; i < ElefantMidle; i++)
+                        {
+                            for (int j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 3)
+                    {
+                        for (int i = 0; i < HourseMidle; i++)
+                        {
+                            for (int j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!HoursesOnTable[i].HourseThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 4)
+                    {
+                        for (int i = 0; i < CastleMidle; i++)
+                        {
+                            for (int j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!CastlesOnTable[i].CastleThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 5)
+                    {
+                        for (int i = 0; i < MinisterMidle; i++)
+                        {
+                            for (int j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 6)
+                    {
+                        for (int i = 0; i < KingMidle; i++)
+                        {
+                            for (int j = 0; j < KingOnTable[i].KingThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!KingOnTable[i].KingThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 7 || Kind == -7)
+                    {
+                        for (int i = 0; i < 1; i++)
+                        {
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
                         }
                     }
                 }
-                else if (Kind == 2)
+                else
                 {
-                    for (int i = ElefantMidle; i < ElefantHigh; i++)
+                    if (Kind == 1)
                     {
-                        for (int j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = SodierMidle; i < SodierHigh; i++)
                         {
-                            if (!ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 3)
-                {
-                    for (int i = HourseMidle; i < HourseHight; i++)
+                    else if (Kind == 2)
                     {
-                        for (int j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = ElefantMidle; i < ElefantHigh; i++)
                         {
-                            if (!HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 4)
-                {
-                    for (int i = CastleMidle; i < CastleHigh; i++)
+                    else if (Kind == 3)
                     {
-                        for (int j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = HourseMidle; i < HourseHight; i++)
                         {
-                            if (!CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!HoursesOnTable[i].HourseThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 5)
-                {
-                    for (int i = MinisterMidle; i < MinisterHigh; i++)
+                    else if (Kind == 4)
                     {
-                        for (int j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = CastleMidle; i < CastleHigh; i++)
                         {
-                            if (!MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!CastlesOnTable[i].CastleThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 6)
-                {
-                    for (int i = KingMidle; i < KingHigh; i++)
+                    else if (Kind == 5)
                     {
-                        for (int j = 0; j < KingOnTable[i].KingThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = MinisterMidle; i < MinisterHigh; i++)
                         {
-                            if (!KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
                         }
                     }
-                }
-                else if (Kind == 7||Kind==-7)
-                {
-                    for (int i = 0; i < 1; i++)
+                    else if (Kind == 6)
                     {
-                        for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Count; j++)
+                        for (int i = KingMidle; i < KingHigh; i++)
                         {
-                            if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu[j])
-                                No++;
+                            for (int j = 0; j < KingOnTable[i].KingThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!KingOnTable[i].KingThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
+                        }
+                    }
+                    else if (Kind == 7 || Kind == -7)
+                    {
+                        for (int i = 0; i < 1; i++)
+                        {
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup.Count; j++)
+                            {
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j])
+                                    No++;
+                            }
                         }
                     }
                 }

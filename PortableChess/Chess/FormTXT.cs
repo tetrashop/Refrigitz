@@ -13,13 +13,13 @@ namespace Refrigtz
     [Serializable]
     public partial class FormTXT : Form
     {
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        RefrigtzDLL.AllDraw D = null;
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        RefrigtzChessPortable.AllDraw D = null;
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         Thread t = null;
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        public FormTXT(RefrigtzDLL.AllDraw TG)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        public FormTXT(RefrigtzChessPortable.AllDraw TG)
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             InitializeComponent();
             Object O = new Object();
@@ -70,9 +70,9 @@ namespace Refrigtz
         {
 
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        public void CreateTree(RefrigtzDLL.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        public void CreateTree(RefrigtzChessPortable.AllDraw Draw)
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -89,6 +89,7 @@ namespace Refrigtz
                 PopulateTreeViewC(0, null, Draw);
                 PopulateTreeViewM(0, null, Draw);
                 PopulateTreeViewK(0, null, Draw);
+                PopulateTreeViewA(0, null, Draw);
                 Invoke((MethodInvoker)delegate ()
                 {
                     treeViewRefregitzDraw.EndUpdate();
@@ -191,9 +192,9 @@ namespace Refrigtz
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheM:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             return AA;
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        string MoveS(RefrigtzDLL.ThinkingChess t, int kind, int j)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        string MoveS(RefrigtzChessPortable.ThinkingRefrigtzChessPortable t, int kind, int j)
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -243,9 +244,9 @@ namespace Refrigtz
                 return move;
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        private void PopulateTreeViewS(int parentId, TreeNode parentNode, RefrigtzDLL.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        private void PopulateTreeViewS(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         { Object O = new Object();
             lock (O)
             {
@@ -359,10 +360,10 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
                                    if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                                    tt.BackColor = Color.Orange;
                                 else
                        if (Draw.SolderesOnTable[i].SoldierThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -407,17 +408,18 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j]);
                                 }
-                                
+
                             }
                         }
                     }
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        private void PopulateTreeViewE(int parentId, TreeNode parentNode, RefrigtzDLL.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        private void PopulateTreeViewE(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -510,10 +512,10 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
                                  if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                                    tt.BackColor = Color.Orange;
                                 else
                            if (Draw.ElephantOnTable[i].ElefantThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -583,6 +585,7 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j]);
                                 }
                             }
 
@@ -591,9 +594,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        private void PopulateTreeViewH(int parentId, TreeNode parentNode, RefrigtzDLL.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        private void PopulateTreeViewH(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         { Object O = new Object();
             lock (O)
             {
@@ -685,10 +688,10 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
                              if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                                    tt.BackColor = Color.Orange;
                                 else
                          if (Draw.HoursesOnTable[i].HourseThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -760,6 +763,7 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j]);
                                 }
                             }
                         }
@@ -767,9 +771,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        private void PopulateTreeViewC(int parentId, TreeNode parentNode, RefrigtzDLL.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        private void PopulateTreeViewC(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -861,11 +865,11 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
                                if (Draw.IsCurrentDraw)
 
-                                    tt.BackColor = Color.DeepPink;
+                                    tt.BackColor = Color.Orange;
                                 else
                       if (Draw.CastlesOnTable[i].CastleThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -936,6 +940,7 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j]);
                                 }
                             }
                         }
@@ -944,9 +949,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        int ReturnbCal(RefrigtzDLL.ThinkingChess t, int Kind, int j)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        int ReturnbCal(RefrigtzChessPortable.ThinkingRefrigtzChessPortable t, int Kind, int j)
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -1036,9 +1041,9 @@ namespace Refrigtz
                 return int.MinValue;
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        private void PopulateTreeViewM(int parentId, TreeNode parentNode, RefrigtzDLL.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        private void PopulateTreeViewM(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
+//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -1131,10 +1136,10 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
                                if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                                    tt.BackColor = Color.Orange;
                                 else
                          if (Draw.MinisterOnTable[i].MinisterThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -1205,6 +1210,7 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j]);
                                 }
                             }
                         }
@@ -1212,7 +1218,7 @@ namespace Refrigtz
                 }
             }
         }
-        private void PopulateTreeViewK(int parentId, TreeNode parentNode, RefrigtzDLL.AllDraw Draw)
+        private void PopulateTreeViewK(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
         //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
@@ -1308,10 +1314,10 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.KingOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
                                 if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                                    tt.BackColor = Color.Orange;
                                 else
                         if (Draw.KingOnTable[i].KingThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -1384,6 +1390,185 @@ namespace Refrigtz
                                     PopulateTreeViewM(j, AstarGreedy, Draw.KingOnTable[i].KingThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.KingOnTable[i].KingThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewA(j, AstarGreedy, Draw.KingOnTable[i].KingThinking[0].AStarGreedy[j]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void PopulateTreeViewA(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        {
+            Object O = new Object();
+            lock (O)
+            {
+                bool Call = true;
+
+
+                if (Draw == null)
+                    return;
+
+                TreeNode childNode = new TreeNode();
+                for (int i = 0; i < 1; i++)
+                {
+                    if (Draw.CastlingOnTable == null)
+                    {
+                        Call = false;
+                        TreeNode t = new TreeNode();
+                        t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                        t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                        t.Tag = parentId;
+                        if (parentNode == null)
+                        {
+                            Invoke((MethodInvoker)delegate ()
+                            {
+                                treeViewRefregitzDraw.Nodes.Add(t);
+                            });
+                            childNode = t;
+                        }
+                        else
+                        {
+                            Invoke((MethodInvoker)delegate ()
+                            {
+                                parentNode.Nodes.Add(t);
+                            });
+                            childNode = t;
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        if (Draw.CastlingOnTable[i] == null)
+                        {
+                            Call = false;
+
+                            TreeNode t = new TreeNode();
+                            t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                            t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                            t.Tag = parentId;
+                            if (parentNode == null)
+                            {
+                                Invoke((MethodInvoker)delegate ()
+                                {
+                                    treeViewRefregitzDraw.Nodes.Add(t);
+                                });
+                                childNode = t;
+                            }
+                            else
+                            {
+                                Invoke((MethodInvoker)delegate ()
+                                {
+                                    parentNode.Nodes.Add(t);
+                                });
+                                childNode = t;
+                            }
+
+                        }
+                        else
+                        {
+                            TreeNode t = new TreeNode();
+                            t.Text = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                            t.Name = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                            t.Tag = parentId;
+                                      if (parentNode == null)
+                            {
+                                Invoke((MethodInvoker)delegate ()
+                                {
+                                    treeViewRefregitzDraw.Nodes.Add(t);
+                                });
+                                childNode = t;
+                            }
+                            else
+                            {
+                                Invoke((MethodInvoker)delegate ()
+                                {
+                                    parentNode.Nodes.Add(t);
+                                });
+
+                                childNode = t;
+                            }
+                            TreeNode HeuristicCastling = new TreeNode();
+                            for (int j = 0; Draw.CastlingOnTable[i].CastlingThinking != null && Draw.CastlingOnTable[i].CastlingThinking[0] != null && Draw.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling != null && j < Draw.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
+                            {
+                                TreeNode tt = new TreeNode();
+                                if (Draw.CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                    tt.BackColor = Color.RosyBrown;
+                                else
+                                if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
+                                else
+                        if (Draw.CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf[j])
+                                    tt.BackColor = Color.Red;
+                                else
+                      if (Draw.CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy[j])
+                                    tt.BackColor = Color.Green;
+
+                                if (Draw.CastlingOnTable[i].CastlingThinking[0].KishEnemy[j])
+                                    tt.BackColor = Color.Blue;
+                                else
+                          if (Draw.CastlingOnTable[i].CastlingThinking[0].KishSelf[j])
+                                    tt.BackColor = Color.Yellow;
+                                else
+                                if (Draw.HaveKilled > 0)
+                                    tt.BackColor = Color.Gray;
+                                else if (Draw.HaveKilled < 0)
+                                    tt.BackColor = Color.Brown;
+                                tt.Text = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 6, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 6, j).ToString();
+                                tt.Name = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 6, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 6, j).ToString();
+                                tt.Tag = j;
+
+
+                                if (childNode == null)
+                                {
+                                    Invoke((MethodInvoker)delegate ()
+                                    {
+                                        treeViewRefregitzDraw.Nodes.Add(tt);
+                                    });
+                                    HeuristicCastling = tt;
+                                }
+                                else
+                                {
+                                    Invoke((MethodInvoker)delegate ()
+                                    {
+                                        childNode.Nodes.Add(tt);
+                                    });
+                                    HeuristicCastling = tt;
+                                }
+                            }
+                            TreeNode AstarGreedy = new TreeNode();
+                            for (int j = 0; Draw.CastlingOnTable[i].CastlingThinking != null && Draw.CastlingOnTable[i].CastlingThinking[0] != null && Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && j < Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; j++)
+                            {
+                                TreeNode tt = new TreeNode();
+                                tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].OrderP.ToString();
+                                tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].OrderP.ToString();
+                                tt.Tag = j;
+
+                                if (childNode == null)
+                                {
+                                    Invoke((MethodInvoker)delegate ()
+                                    {
+                                        treeViewRefregitzDraw.Nodes.Add(tt);
+                                    });
+                                    AstarGreedy = tt;
+                                }
+                                else
+                                {
+                                    Invoke((MethodInvoker)delegate ()
+                                    {
+                                        childNode.Nodes.Add(tt);
+                                    });
+                                    AstarGreedy = tt;
+                                }
+                                if (Call)
+                                {
+                                    PopulateTreeViewS(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewE(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewH(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewC(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewM(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewK(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
                                 }
                             }
                         }

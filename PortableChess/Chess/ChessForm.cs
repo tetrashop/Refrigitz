@@ -105,6 +105,8 @@ namespace RefrigtzChessPortable
         [field: NonSerialized]
         private readonly CancellationTokenSource feedCancellationTokenSource =
             new CancellationTokenSource();
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem treeViewToolStripMenuItem;
 #pragma warning disable CS0169 // The field 'RefrigtzChessPortableForm.feedTask' is never used
         [field: NonSerialized] private readonly Task feedTask;
 #pragma warning restore CS0169 // The field 'RefrigtzChessPortableForm.feedTask' is never used
@@ -870,6 +872,8 @@ namespace RefrigtzChessPortable
 
                     if (i == -1 && j == -1)
                     {
+                        AllDraw.AllowedSupTrue = false;
+
                     Again:
                         AllDraw.NextRow = -1;
                         AllDraw.NextColumn = -1;
@@ -2288,12 +2292,15 @@ namespace RefrigtzChessPortable
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -2313,16 +2320,31 @@ namespace RefrigtzChessPortable
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.AboutToolStripMenuItem.Text = "درباره";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // AboutHelpToolStripMenuItem
             // 
             this.AboutHelpToolStripMenuItem.Name = "AboutHelpToolStripMenuItem";
-            this.AboutHelpToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.AboutHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.AboutHelpToolStripMenuItem.Text = "درباره یاری ";
             this.AboutHelpToolStripMenuItem.Click += new System.EventHandler(this.AboutHelpToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.treeViewToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
+            this.toolStripMenuItem1.Text = "View";
+            // 
+            // treeViewToolStripMenuItem
+            // 
+            this.treeViewToolStripMenuItem.Name = "treeViewToolStripMenuItem";
+            this.treeViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.treeViewToolStripMenuItem.Text = "Tree View";
+            this.treeViewToolStripMenuItem.Click += new System.EventHandler(this.treeViewToolStripMenuItem_Click);
             // 
             // RefrigtzChessPortableForm
             // 
@@ -2337,6 +2359,7 @@ namespace RefrigtzChessPortable
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2828,6 +2851,20 @@ namespace RefrigtzChessPortable
                 FOUND = false;
                 RefrigtzChessPortable.AllDraw THIS = null;
                 SetDrawFounding(ref FOUND, ref THIS, false);
+            }
+        }
+
+        private void treeViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Object O = new Object();
+            lock (O)
+            {
+                try
+                {
+                  Refrigtz.FormTXT t = new Refrigtz.FormTXT(Draw);
+                    t.Show();
+                }
+                catch (Exception t) { Log(t); }
             }
         }
     }

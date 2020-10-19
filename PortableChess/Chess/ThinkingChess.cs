@@ -14399,6 +14399,11 @@ th.Dispose();
                             if ((16 - ColleralationGray) + IsSC >= TotalS)
                                 GoldenFinished = true;
                             HAchmaz = (RationalPenalty * (AchmazReducedBefore(Before, CloneATable(TableS)))) + (RationalRegard * (AchmazPuredBefore(Before, CloneATable(TableS))));
+                            if (HAchmaz > 0)
+                                WinOcuuredatChiled = 7;
+                            else
+                         if (HAchmaz < 0)
+                                LoseOcuuredatChiled[0] = -7;
                         }
                         else
                         {

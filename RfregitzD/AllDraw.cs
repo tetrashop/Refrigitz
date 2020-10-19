@@ -19265,7 +19265,7 @@ namespace RefrigtzDLL
 
                     if (FullBoundryConditionsSoldierIgnore(ikk, Current, Order, iAStarGreedy))
                         return false;
-                    if (SolderesOnTable[ikk].LoseOcuuredatChiled[0] < -1 && (!AllowedSupTrue))
+                    if (SolderesOnTable[ikk].LoseOcuuredatChiled[0] < 0 && (!AllowedSupTrue))
                     {
                         IS = true;
                     }
@@ -19286,7 +19286,7 @@ namespace RefrigtzDLL
                 {
                     if (FullBoundryConditionsElephantIgnore(ikk, Current, Order, iAStarGreedy))
                         return false;
-                    if (ElephantOnTable[ikk].LoseOcuuredatChiled[0] < -1 && (!AllowedSupTrue))
+                    if (ElephantOnTable[ikk].LoseOcuuredatChiled[0] < 0 && (!AllowedSupTrue))
                     {
                         IS = true;
                     }
@@ -19307,7 +19307,7 @@ namespace RefrigtzDLL
                 {
                     if (FullBoundryConditionsHourseIgnore(ikk, Current, Order, iAStarGreedy))
                         return false;
-                    if (HoursesOnTable[ikk].LoseOcuuredatChiled[0] < -1 && (!AllowedSupTrue))
+                    if (HoursesOnTable[ikk].LoseOcuuredatChiled[0] < 0 && (!AllowedSupTrue))
                     {
                         IS = true;
                     }
@@ -19327,7 +19327,7 @@ namespace RefrigtzDLL
                 {
                     if (FullBoundryConditionsCastleIgnore(ikk, Current, Order, iAStarGreedy))
                         return false;
-                    if (CastlesOnTable[ikk].LoseOcuuredatChiled[0] < -1 && (!AllowedSupTrue))
+                    if (CastlesOnTable[ikk].LoseOcuuredatChiled[0] < 0 && (!AllowedSupTrue))
                     {
                         IS = true;
                     }
@@ -19348,7 +19348,7 @@ namespace RefrigtzDLL
                 {
                     if (FullBoundryConditionsMinisterIgnore(ikk, Current, Order, iAStarGreedy))
                         return false;
-                    if (MinisterOnTable[ikk].LoseOcuuredatChiled[0] < -1 && (!AllowedSupTrue))
+                    if (MinisterOnTable[ikk].LoseOcuuredatChiled[0] < 0 && (!AllowedSupTrue))
                     {
                         IS = true;
                     }
@@ -19368,7 +19368,7 @@ namespace RefrigtzDLL
                 {
                     if (FullBoundryConditionsKingIgnore(ikk, Current, Order, iAStarGreedy))
                         return false;
-                    if (KingOnTable[ikk].LoseOcuuredatChiled[0] < -1 && (!AllowedSupTrue))
+                    if (KingOnTable[ikk].LoseOcuuredatChiled[0] < 0 && (!AllowedSupTrue))
                     {
                         IS = true;
                     }
@@ -19387,7 +19387,7 @@ namespace RefrigtzDLL
                 {
                     if (FullBoundryConditionsCastlingIgnore(ikk, Current, Order, iAStarGreedy))
                         return false;
-                    if (CastlingOnTable[ikk].LoseOcuuredatChiled[0] < -1 && (!AllowedSupTrue))
+                    if (CastlingOnTable[ikk].LoseOcuuredatChiled[0] < 0 && (!AllowedSupTrue))
                     {
                         IS = true;
                     }

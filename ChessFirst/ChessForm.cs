@@ -873,6 +873,8 @@ namespace RefrigtzDLL
 
                     if (i == -1 && j == -1)
                     {
+                        AllDraw.AllowedSupTrue = false;
+
                     Again:
                         AllDraw.NextRow = -1;
                         AllDraw.NextColumn = -1;

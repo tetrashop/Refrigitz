@@ -1516,7 +1516,9 @@ namespace Chess
 
                     if (i == -1 && j == -1)
                     {
-                        Again:
+                        AllDraw.AllowedSupTrue = false;
+
+                    Again:
                         AllDraw.NextRow = -1;
                         AllDraw.NextColumn = -1;
                         AllDraw.LastRow = -1;

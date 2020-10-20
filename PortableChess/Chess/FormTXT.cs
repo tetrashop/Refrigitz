@@ -234,6 +234,12 @@ namespace Refrigtz
                     RowDestination = t.RowColumnKing[j][0];
                     ColumnDestination = t.RowColumnKing[j][1];
                 }
+                else
+          if (kind == 7|| kind == -7)
+                {
+                    RowDestination = t.RowColumnCastling[j][0];
+                    ColumnDestination = t.RowColumnCastling[j][1];
+                }
                 string move = Alphabet(t.Row) + Number(t.Column) + Alphabet(RowDestination) + Number(ColumnDestination);
                 if (t.IsThereMateOfSelf[j] || t.IsThereMateOfEnemy[j])
                     move += "++";

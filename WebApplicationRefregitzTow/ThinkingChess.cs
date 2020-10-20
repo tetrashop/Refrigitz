@@ -495,7 +495,7 @@ namespace RefrigtzW
                 {
                     TableListCastling = new List<int[,]>();
                     RowColumnCastling = new List<int[]>();
-                    HitNumberKing = new List<int>();
+                    HitNumberCastling = new List<int>();
                     HeuristicListCastling = new List<int[]>();
                     PenaltyRegardListCastling = new List<QuantumAtamata>();
                 }
@@ -635,7 +635,7 @@ namespace RefrigtzW
                 {
                     TableListCastling = new List<int[,]>();
                     RowColumnCastling = new List<int[]>();
-                    HitNumberKing = new List<int>();
+                    HitNumberCastling = new List<int>();
                     HeuristicListCastling = new List<int[]>();
                     PenaltyRegardListCastling = new List<QuantumAtamata>();
                 }
@@ -15412,7 +15412,7 @@ th.Dispose();
             Object O = new Object();
             lock (O)
             {
-                for (var i = ii - 2; i < ii + 2; i++)
+                for (var i = ii - 2; i < ii + 3; i++)
                 {
 
 
@@ -15443,7 +15443,7 @@ th.Dispose();
             Object O = new Object();
             lock (O)
             {
-                for (var i = ii - 2; i < ii + 2; i++)
+                for (var i = ii - 2; i < ii + 3; i++)
                 {
 
                     ///Initiate a Local Variables.

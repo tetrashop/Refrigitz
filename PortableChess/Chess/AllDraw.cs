@@ -1227,15 +1227,15 @@ namespace RefrigtzChessPortable
                             }
                         //Make Empty Remaining.
                     }
-                    if (OrderP == 1)
+                    if (Dummy == 1)
                     {
-                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, 7));
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                         ah.Wait();
                         ah.Dispose();
                     }
                     else
                     {
-                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, -7));
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                         ah.Wait();
                         ah.Dispose();
                     }
@@ -1622,19 +1622,19 @@ namespace RefrigtzChessPortable
                     }
                     if (CastlingBoundryCondition())
                     {
-                        if (OrderP == 1)
+                        if (Dummy == 1)
                         {
-                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Gray, CloneATable(TableList[index]), -1, false, 0);
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column, Color.Gray, CloneATable(TableList[index]), 1, false, 0);
 
-                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, 7));
+                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                             ah.Wait();
                             ah.Dispose();
                         }
                         else
                         {
-                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[1].Row, KingOnTable[1].Column, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
 
-                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, -7));
+                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                             ah.Wait();
                             ah.Dispose();
                         }

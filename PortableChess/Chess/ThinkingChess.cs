@@ -495,7 +495,7 @@ namespace RefrigtzChessPortable
                 {
                     TableListCastling = new List<int[,]>();
                     RowColumnCastling = new List<int[]>();
-                    HitNumberKing = new List<int>();
+                    HitNumberCastling = new List<int>();
                     HeuristicListCastling = new List<int[]>();
                     PenaltyRegardListCastling = new List<QuantumAtamata>();
                 }
@@ -635,7 +635,7 @@ namespace RefrigtzChessPortable
                 {
                     TableListCastling = new List<int[,]>();
                     RowColumnCastling = new List<int[]>();
-                    HitNumberKing = new List<int>();
+                    HitNumberCastling = new List<int>();
                     HeuristicListCastling = new List<int[]>();
                     PenaltyRegardListCastling = new List<QuantumAtamata>();
                 }

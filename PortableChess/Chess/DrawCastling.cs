@@ -108,12 +108,12 @@ namespace RefrigtzChessPortable
                 if (Order == 1)
                 {
                     for (var ii = 0; ii < AllDraw.KingMovments; ii++)
-                        CastlingThinking[ii] = new ThinkingRefrigtzChessPortable(ii, 7, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 2, 6);
+                        CastlingThinking[ii] = new ThinkingRefrigtzChessPortable(ii, 7, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 2, 7);
                 }
                 else
                 {
                     for (var ii = 0; ii < AllDraw.KingMovments; ii++)
-                        CastlingThinking[ii] = new ThinkingRefrigtzChessPortable(ii, -7, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 2, 6);
+                        CastlingThinking[ii] = new ThinkingRefrigtzChessPortable(ii, -7, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 2, -7);
                 }
                 Row = i;
                 Column = j;

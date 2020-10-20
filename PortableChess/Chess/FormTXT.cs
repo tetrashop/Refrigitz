@@ -1617,21 +1617,7 @@ namespace Refrigtz
         }
         private void treeViewRefregitzDraw_MouseClick(object sender, MouseEventArgs e)
         {
-            //treeViewRefregitzDraw.Update();
-            Object O = new Object();
-            lock (O)
-            {
-                if (t == null)
-                {
-                    t = new Thread(new ThreadStart(Create));
-                    t.Start();
-                }
-                if (t != null && (!t.IsAlive))
-                {
-                    t = new Thread(new ThreadStart(Create));
-                    t.Start();
-                }
-            }
+
         }
 
         private void FormTXT_MouseClick(object sender, MouseEventArgs e)

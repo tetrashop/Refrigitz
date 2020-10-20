@@ -58,19 +58,18 @@ namespace Refrigtz
             this.treeViewRefregitzDraw.BindingContextChanged += new System.EventHandler(this.treeViewRefregitzDraw_BindingContextChanged);
             this.treeViewRefregitzDraw.ContextMenuStripChanged += new System.EventHandler(this.treeViewRefregitzDraw_ContextMenuStripChanged);
             this.treeViewRefregitzDraw.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.treeViewRefregitzDraw_ControlAdded);
-            this.treeViewRefregitzDraw.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeViewRefregitzDraw_MouseClick);
             // 
             // contextMenuStripRefrigitzTree
             // 
             this.contextMenuStripRefrigitzTree.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showTreeToolStripMenuItem});
             this.contextMenuStripRefrigitzTree.Name = "contextMenuStripRefrigitzTree";
-            this.contextMenuStripRefrigitzTree.Size = new System.Drawing.Size(126, 26);
+            this.contextMenuStripRefrigitzTree.Size = new System.Drawing.Size(125, 26);
             // 
             // showTreeToolStripMenuItem
             // 
             this.showTreeToolStripMenuItem.Name = "showTreeToolStripMenuItem";
-            this.showTreeToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.showTreeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.showTreeToolStripMenuItem.Text = "ShowTree";
             // 
             // backgroundWorkertreeView

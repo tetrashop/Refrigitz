@@ -14401,11 +14401,16 @@ th.Dispose();
                             if ((16 - ColleralationGray) + IsSC >= TotalS)
                                 GoldenFinished = true;
                             HAchmaz = (RationalPenalty * (AchmazReducedBefore(Before, CloneATable(TableS)))) + (RationalRegard * (AchmazPuredBefore(Before, CloneATable(TableS))));
-                            if (HAchmaz > 0)
-                                WinOcuuredatChiled = 7;
-                            else
-                      if (HAchmaz < 0)
-                                LoseOcuuredatChiled[0] = -7;
+                            /* if (HAchmaz > 0)
+                                   {
+                                       //IsSup[IsSup.Count - 1] = false;
+                                   }
+                                   else*/
+                            if (HAchmaz < 0)
+                            {
+                                IsSupHu[IsSupHu.Count - 1] = true;
+                                //IsSup[IsSup.Count - 1] = true;
+                            }
                         }
                         else
                         {
@@ -14415,13 +14420,18 @@ th.Dispose();
                             if ((16 - ColleralationBrown) + IsSC >= TotalS)
                                 GoldenFinished = true;
                             HAchmaz = (RationalPenalty * (AchmazReducedAfter(Before, CloneATable(TableS)))) + (RationalRegard * (AchmazPuredAfter(Before, CloneATable(TableS))));
-                        }
-                        if (HAchmaz > 0)
-                            WinOcuuredatChiled = 7;
-                        else
+                            /* if (HAchmaz > 0)
+                                   {
+                                       //IsSup[IsSup.Count - 1] = false;
+                                   }
+                                   else*/
                             if (HAchmaz < 0)
-                            LoseOcuuredatChiled[0] = -7;
-                    }
+                            {
+                                IsSupHu[IsSupHu.Count - 1] = true;
+                                //IsSup[IsSup.Count - 1] = true;
+                            }
+                        }
+                     }
                     if (Before)
                     {
                         HeuristicReducedAttackValue = (Heuristic[0] * SignOrderToPlate(Order));

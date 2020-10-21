@@ -585,6 +585,8 @@ namespace QuantumRefrigiz
                 CastlesOnTable = null;
                 MinisterOnTable = null;
                 KingOnTable = null;
+                CastlingOnTable = null;
+
                 MaxHeuristicAStarGreedytBackWard.Clear();
                 //Initiayte Locally Variables.
                 TableList = new List<int[,]>();

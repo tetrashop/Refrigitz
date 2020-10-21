@@ -15615,7 +15615,7 @@ th.Dispose();
                         AStarGreedy = new List<AllDraw>();
                     AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
                     AStarGreedy[AStarGreedy.Count - 1].TableList.Clear();
-                    AStarGreedy[AStarGreedy.Count - 1].TableList.Add(CloneATable(TableListKing[j]));
+                    AStarGreedy[AStarGreedy.Count - 1].TableList.Add(CloneATable(TableListCastling[j]));
                     AStarGreedy[AStarGreedy.Count - 1].SetRowColumn(0);
                     AStarGreedy[AStarGreedy.Count - 1].AStarGreedyString = THIS;
                 }

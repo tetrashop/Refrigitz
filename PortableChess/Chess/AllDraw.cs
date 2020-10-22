@@ -1328,6 +1328,7 @@ namespace RefrigtzChessPortable
                     CastlesOnTable = new DrawCastle[CastleHigh];
                     MinisterOnTable = new DrawMinister[MinisterHigh];
                     KingOnTable = new DrawKing[KingHigh];
+                    CastlingOnTable = new DrawCastling[1];
                     AllDraw.SodierConversionOcuured = false;
                     //When Table Exist.
                     if (TableList.Count > 0)

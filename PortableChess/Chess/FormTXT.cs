@@ -1044,6 +1044,20 @@ namespace Refrigtz
         t.HeuristicListKing[j][8] +
         t.HeuristicListKing[j][9];
                 }
+                else
+                    if (Kind == 7||Kind==-7)
+                {
+                    return t.HeuristicListCastle[j][0] +
+        t.HeuristicListCastle[j][1] +
+        t.HeuristicListCastle[j][2] +
+        t.HeuristicListCastle[j][3] +
+        t.HeuristicListCastle[j][4] +
+        t.HeuristicListCastle[j][5] +
+        t.HeuristicListCastle[j][6] +
+        t.HeuristicListCastle[j][7] +
+        t.HeuristicListCastle[j][8] +
+        t.HeuristicListCastle[j][9];
+                }
                 return int.MinValue;
             }
         }
@@ -1520,8 +1534,8 @@ namespace Refrigtz
                                     tt.BackColor = Color.Gray;
                                 else if (Draw.HaveKilled < 0)
                                     tt.BackColor = Color.Brown;
-                                tt.Text = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 6, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 6, j).ToString();
-                                tt.Name = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 6, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 6, j).ToString();
+                                tt.Text = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString();
+                                tt.Name = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString();
                                 tt.Tag = j;
 
 

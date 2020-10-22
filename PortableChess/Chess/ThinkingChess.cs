@@ -653,6 +653,7 @@ namespace RefrigtzChessPortable
                 IndexCastle = 0;
                 IndexMinister = 0;
                 IndexKing = 0;
+                IndexCastling = 0;
                 TableConst = CloneATable(Tab);
                 Order = Ord;
                 ThinkingBegin = ThinkingBeg;
@@ -748,6 +749,9 @@ namespace RefrigtzChessPortable
                 for (var j = 0; j < RowColumnMinister.Count; j++)
                     //Add a Clone To Minister New index List.
                     AA.RowColumnMinister.Add(CloneAList(RowColumnMinister[j], 2));
+                for (var j = 0; j < RowColumnCastling.Count; j++)
+                    //Add a Clone To New King Object List.
+                    AA.RowColumnCastling.Add(CloneAList(RowColumnCastling[j], 2));
                 //Assgine thread.
                 //Create and Initiate new Table Object.
                 AA.TableT = new int[8, 8];
@@ -791,6 +795,9 @@ namespace RefrigtzChessPortable
                 for (var i = 0; i < TableListSolder.Count; i++)
                     //Add a Clone of Table item to New Table List Movments.
                     AA.TableListSolder.Add(CloneATable(TableListSolder[i]));
+                for (var i = 0; i < TableListCastling.Count; i++)
+                    //Add a Clone To New King Table List.
+                    AA.TableListCastling.Add(CloneATable(TableListCastling[i]));
                 //For All Solder Husrist List Count.
                 for (var i = 0; i < HeuristicListSolder.Count; i++)
                     //Ad a Clone of Hueristic Solders To New List.
@@ -815,6 +822,9 @@ namespace RefrigtzChessPortable
                 for (var i = 0; i < HeuristicListKing.Count; i++)
                     //Add a Clone of Copy to New King Hursitic List.
                     AA.HeuristicListKing.Add(CloneAList(HeuristicListKing[i], 4));
+                for (var i = 0; i < HeuristicListCastling.Count; i++)
+                    //Add a Clone of Copy to New King Hursitic List.
+                    AA.HeuristicListCastling.Add(CloneAList(HeuristicListCastling[i], 4));
                 //Initiate and create Penalty Solder List.
                 AA.PenaltyRegardListSolder = new List<QuantumAtamata>();
                 //For All Solder Penalty List Count.
@@ -886,6 +896,20 @@ namespace RefrigtzChessPortable
                     }
                 }
                 else
+                if (Kind == 7||Kind==-7)
+                {
+                    //Initaite and Create King Penalty List Object.
+                    AA.PenaltyRegardListCastling = new List<QuantumAtamata>();
+                    //For All Solder King List Count.
+                    for (var i = 0; i < PenaltyRegardListCastling.Count; i++)
+                    {
+                        //Initiate a new  QuantumAtamata Object
+                        //Clone a Copy Of Penalty King.
+                        //Add New Object Create to New Penalty King List.
+                        AA.PenaltyRegardListCastling.Add(PenaltyRegardListCastling[i]);
+                    }
+                }
+                else
                 if (Kind == 6)
                 {
                     //Initaite and Create King Penalty List Object.
@@ -915,6 +939,7 @@ namespace RefrigtzChessPortable
                 AA.IndexElefant = IndexElefant;
                 AA.IndexHourse = IndexHourse;
                 AA.IndexKing = IndexKing;
+                AA.IndexCastling = IndexCastling;
                 AA.IndexMinister = IndexMinister;
                 AA.IndexSoldier = IndexSoldier;
                 AA.IsCheck = IsCheck;

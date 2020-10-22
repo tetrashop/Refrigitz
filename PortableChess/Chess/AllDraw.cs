@@ -1633,7 +1633,7 @@ namespace RefrigtzChessPortable
                     {
                         if (Dummy == 1)
                         {
-                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column, Color.Gray, CloneATable(TableList[index]), 1, false, 0);
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column, a, CloneATable(TableList[index]), 1, false, 0);
 
                             var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                             ah.Wait();
@@ -1641,7 +1641,7 @@ namespace RefrigtzChessPortable
                         }
                         else
                         {
-                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[1].Row, KingOnTable[1].Column, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column, a, CloneATable(TableList[index]), -1, false, 0);
 
                             var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                             ah.Wait();

@@ -150,11 +150,12 @@ namespace RefrigtzW
             {
                 for (var i = 0; i < 8; i++)
                 {
+                    //Gray Order.
                     if (Cromosom1[j, i] == 0 && Cromosom2[j, i] == 0)
                         continue;
 
                     //Gray Order.
-                    
+
                     if (!ArrangmentsChanged)
                     {
                         {
@@ -232,8 +233,8 @@ namespace RefrigtzW
                                 //Small Gray Castles King.
                                 if (j == DistantColumnSmall && Cromosom2[SmallCastleCastleColumnAfter, DistantRowUp] == KingGray && Cromosom2[SmallCastleCastleColumnAfter, DistantRowUp] == CastleGray && Cromosom1[SmallCastleKingColumnBefore, DistantRowUp] == KingGray && Cromosom1[SmallCastleCastleColumnBefore, DistantRowUp] == CastleGray)
                                 {
-                                    CromosomRowFirst = SmallCastleKingColumnBefore;
-                                    CromosomColumnFirst = i;
+                                    //CromosomRowFirst = SmallCastleKingColumnBefore;
+                                    //CromosomColumnFirst = i;
                                     CromosomRow = SmallCastleCastleColumnAfter;
                                     CromosomColumn = i;
                                     Find = true;
@@ -244,10 +245,10 @@ namespace RefrigtzW
                                 else //Big Brjges King Gray.
                                     if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowUp] == CastleGray && Cromosom2[BigCastleKingColumnAfter, DistantRowUp] == KingGray && Cromosom1[BigCastleCastleColumnBefore, DistantRowUp] == CastleGray && Cromosom1[BigCastleKingColumnBefore, DistantRowUp] == KingGray)
                                 {
-                                     CromosomRowFirst = DistantRowUp;
-                                     CromosomColumnFirst = i;
-                                     CromosomRow = DistantRowUp;
-                                     CromosomColumn = i;
+                                    //CromosomRowFirst = DistantRowUp;
+                                    //CromosomColumnFirst = i;
+                                    CromosomRow = SmallCastleCastleColumnBefore;
+                                    CromosomColumn = i;
                                     Find = true;
                                     FindNumber++;
                                     ChessRules.BigKingCastleGray = true;
@@ -263,9 +264,9 @@ namespace RefrigtzW
                                     Object O = new Object();
                                     lock (O)
                                     {
-                                        CromosomRowFirst = DistantRowBelow;
-                                        CromosomColumnFirst = i;
-                                        CromosomRow = DistantRowBelow;
+                                        //CromosomRowFirst = DistantRowBelow;
+                                        //CromosomColumnFirst = i;
+                                        CromosomRow = BigCastleKingColumnAfter;
                                         CromosomColumn = i;
                                         Find = true;
                                         FindNumber++;
@@ -279,10 +280,10 @@ namespace RefrigtzW
                                     Object O = new Object();
                                     lock (O)
                                     {
-                                          CromosomRowFirst = DistantRowBelow;
-                                          CromosomColumnFirst = i;
-                                          CromosomRow = DistantRowBelow;
-                                          CromosomColumn = i;
+                                        CromosomRowFirst = BigCastleKingColumnBefore;
+                                        CromosomColumnFirst = i;
+                                        //CromosomRow = DistantRowBelow;
+                                        //CromosomColumn = i;
                                         Find = true;
                                         FindNumber++;
                                         ChessRules.BigKingCastleBrown = true;
@@ -371,10 +372,10 @@ namespace RefrigtzW
                                 //Small Gray Castles King.
                                 if (j == DistantColumnSmall && Cromosom2[SmallCastleKingColumnAfter, DistantRowBelow] == KingGray && Cromosom2[SmallCastleCastleColumnAfter, DistantRowBelow] == CastleGray && Cromosom1[SmallCastleKingColumnBefore, DistantRowBelow] == KingGray && Cromosom1[SmallCastleCastleColumnBefore, DistantRowBelow] == CastleGray)
                                 {
-                                     CromosomRowFirst = DistantRowBelow;
-                                     CromosomColumnFirst = i;
-                                     CromosomRow = DistantRowBelow;
-                                     CromosomColumn = i;
+                                    //CromosomRowFirst = DistantRowBelow;
+                                    //CromosomColumnFirst = i;
+                                    CromosomRow = SmallCastleCastleColumnAfter;
+                                    CromosomColumn = i;
                                     Find = true;
                                     FindNumber++;
                                     ChessRules.SmallKingCastleGray = true;
@@ -383,10 +384,11 @@ namespace RefrigtzW
                                 else //Big Brjges King Gray.
                                     if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowBelow] == CastleGray && Cromosom2[BigCastleKingColumnAfter, DistantRowBelow] == KingGray && Cromosom1[BigCastleCastleColumnBefore, DistantRowBelow] == CastleGray && Cromosom1[BigCastleKingColumnBefore, DistantRowBelow] == KingGray)
                                 {
-                                        CromosomRowFirst = DistantRowBelow;
-                                        CromosomColumnFirst = i;
-                                        CromosomRow = DistantRowBelow;
-                                        CromosomColumn = i;
+
+                                    CromosomRowFirst = SmallCastleCastleColumnBefore;
+                                    CromosomColumnFirst = i;
+                                    //CromosomRow = SmallCastleCastleColumnAfter;
+                                    //CromosomColumn = i;
                                     Find = true;
                                     FindNumber++;
                                     ChessRules.BigKingCastleGray = true;
@@ -402,10 +404,10 @@ namespace RefrigtzW
                                     Object O = new Object();
                                     lock (O)
                                     {
-                                         CromosomRowFirst = DistantRowUp;
-                                         CromosomColumnFirst = i;
-                                         CromosomRow = DistantRowUp;
-                                         CromosomColumn = i;
+                                        //CromosomRowFirst = DistantRowUp;
+                                        //CromosomColumnFirst = i;
+                                        CromosomRow = BigCastleKingColumnAfter;
+                                        CromosomColumn = i;
                                         Find = true;
                                         FindNumber++;
                                         ChessRules.SmallKingCastleBrown = true;
@@ -418,10 +420,10 @@ namespace RefrigtzW
                                     Object O = new Object();
                                     lock (O)
                                     {
-                                           CromosomRowFirst = DistantRowUp;
-                                           CromosomColumnFirst = i;
-                                           CromosomRow = DistantRowUp;
-                                           CromosomColumn = i;
+                                        CromosomRowFirst = BigCastleKingColumnBefore;
+                                        CromosomColumnFirst = i;
+                                        //CromosomRow = DistantRowUp;
+                                        //CromosomColumn = i;
                                         Find = true;
                                         FindNumber++;
                                         ChessRules.BigKingCastleBrown = true;
@@ -434,6 +436,7 @@ namespace RefrigtzW
                         }
                     }
 
+
                     //When To Same Locatjon Tbles are Different jn Gen.
                     if (Cromosom1[j, i] != Cromosom2[j, i])
                     {
@@ -445,7 +448,7 @@ namespace RefrigtzW
                                 CromosomColumn = i;
                                 Find = true;
                                 FindNumber++;
-                                
+
                             }
 
                             else
@@ -455,7 +458,7 @@ namespace RefrigtzW
                                 CromosomColumnFirst = i;
                                 Find = true;
                                 FindNumber++;
-                                
+
                             }
                         }
                         else
@@ -464,9 +467,9 @@ namespace RefrigtzW
                             {
                                 CromosomRow = j;
                                 CromosomColumn = i;
-                               Find = true;
+                                Find = true;
                                 FindNumber++;
-                                
+
                             }
 
                             else
@@ -476,15 +479,19 @@ namespace RefrigtzW
                                 CromosomColumnFirst = i;
                                 Find = true;
                                 FindNumber++;
-                                
+
                             }
                         }
                     }
+                    //Store Locatjon of Gen and Calculate Gen Numbers.
 
                 }
+
+
             }
+
             Hit = HitSet(Order, Cromosom1, Cromosom2);
-            
+
             //If Gen Foundatjon js Valjd. 
             if (((FindNumber >= 1) && Find) || Brj || AllDraw.SodierConversionOcuured)
                 return Find;

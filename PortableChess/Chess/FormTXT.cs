@@ -1047,16 +1047,16 @@ namespace Refrigtz
                 else
                     if (Kind == 7||Kind==-7)
                 {
-                    return t.HeuristicListCastle[j][0] +
-        t.HeuristicListCastle[j][1] +
-        t.HeuristicListCastle[j][2] +
-        t.HeuristicListCastle[j][3] +
-        t.HeuristicListCastle[j][4] +
-        t.HeuristicListCastle[j][5] +
-        t.HeuristicListCastle[j][6] +
-        t.HeuristicListCastle[j][7] +
-        t.HeuristicListCastle[j][8] +
-        t.HeuristicListCastle[j][9];
+                    return t.HeuristicListCastling[j][0] +
+        t.HeuristicListCastling[j][1] +
+        t.HeuristicListCastling[j][2] +
+        t.HeuristicListCastling[j][3] +
+        t.HeuristicListCastling[j][4] +
+        t.HeuristicListCastling[j][5] +
+        t.HeuristicListCastling[j][6] +
+        t.HeuristicListCastling[j][7] +
+        t.HeuristicListCastling[j][8] +
+        t.HeuristicListCastling[j][9];
                 }
                 return int.MinValue;
             }

@@ -38,7 +38,7 @@ namespace RefrigtzW
         public static double MaxHeuristicxB = -20000000000000000;
         public float Row, Column;
         public Color color;
-        public ThinkingChess[] CastleThinking = new ThinkingChess[AllDraw.CastleMovments];
+        public ThinkingRefrigtzW[] CastleThinking = new ThinkingRefrigtzW[AllDraw.CastleMovments];
         public int[,] Table = null;
         public int Current = 0;
         public int Order;
@@ -81,8 +81,8 @@ namespace RefrigtzW
                 Object O = new Object();
                 lock (O)
                 {
-                    if (ThinkingChess.MaxHeuristicx < MaxHeuristicxB)
-                        ThinkingChess.MaxHeuristicx = a;
+                    if (ThinkingRefrigtzW.MaxHeuristicx < MaxHeuristicxB)
+                        ThinkingRefrigtzW.MaxHeuristicx = a;
                     MaxHeuristicxB = a;
                 }
                 
@@ -133,7 +133,7 @@ namespace RefrigtzW
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.CastleMovments; ii++)
-                    CastleThinking[ii] = new ThinkingChess(ii,4,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 4);
+                    CastleThinking[ii] = new ThinkingRefrigtzW(ii,4,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 4);
 
                 Row = i;
                 Column = j;
@@ -194,7 +194,7 @@ namespace RefrigtzW
             for (var i = 0; i < AllDraw.CastleMovments; i++)
             {
 
-                AA.CastleThinking[i] = new ThinkingChess(i,4,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.CastleThinking[i] = new ThinkingRefrigtzW(i,4,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.CastleThinking[i].Clone(ref AA.CastleThinking[i]);
 
             }

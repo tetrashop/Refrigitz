@@ -68,7 +68,7 @@ namespace QuantumRefrigiz
         public static int TimeMax = 0;
 
         public static bool ChangedInTreeOccured = false;
-        public static bool ThinkingQuantumRunInBothSide = false;
+        public static bool ThinkingRunInBothSide = false;
         float TimeNow = 0;
         public static bool IdleInWork = true;
         public const float MaxTimeInMillisseconds = 10;//Max 10 second
@@ -113,7 +113,7 @@ namespace QuantumRefrigiz
         bool OnlyWin = false;
         public static bool LeafSemaphoreIndex = false;
         //Initiate Variables. 
-        bool[] ThinkingQuantumAllowed = { false, false, false, false, false, false, false, false, false, false, false, false,  false, false };
+        bool[] ThinkingAllowed = { false, false, false, false, false, false, false, false, false, false, false, false,  false, false };
 
         [field: NonSerialized] List<Task> tH = new List<Task>();
         [field: NonSerialized] List<Task> TH = new List<Task>();
@@ -168,8 +168,8 @@ namespace QuantumRefrigiz
         const int ThresholdBlitz = 10000;
         const int ThresholdFullGame = 20000;
         public bool SetRowColumnFinished = false;
-        public static int MinThinkingQuantumTreeDepth = Int32.MaxValue;
-        static int MaxDuringLevelThinkingQuantumCreation = 0;
+        public static int MinThinkingTreeDepth = Int32.MaxValue;
+        static int MaxDuringLevelThinkingCreation = 0;
         public int MaxHeuristicxT = Int32.MinValue;
         public bool MovementsAStarGreedyHeuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
@@ -585,8 +585,7 @@ namespace QuantumRefrigiz
                 CastlesOnTable = null;
                 MinisterOnTable = null;
                 KingOnTable = null;
-                CastlingOnTable = null;
-
+                CastlingOnTable = null; 
                 MaxHeuristicAStarGreedytBackWard.Clear();
                 //Initiayte Locally Variables.
                 TableList = new List<int[,]>();
@@ -692,6 +691,14 @@ namespace QuantumRefrigiz
                     KingOnTable[i].Clone(ref AA.KingOnTable[i]);
 
                 }
+                AA.CastlingOnTable = new DrawCastling[1];
+                for (var i = 0; i < 1; i++)
+                {
+                    CastlingOnTable[i].Clone(ref AA.CastlingOnTable[i]);
+
+                }
+                
+
                 AA.AStarGreedy = AStarGreedy;
                 if (AA.TableList.Count > 0)
                     AA.TableList.Clear();
@@ -808,60 +815,60 @@ namespace QuantumRefrigiz
                 Object OOOO = new Object();
                 lock (OOOO)
                 {
-                    MaxDuringLevelThinkingQuantumCreation = System.Convert.ToInt32(AllDraw.THIScomboBoxMaxLevelText);
+                    MaxDuringLevelThinkingCreation = System.Convert.ToInt32(AllDraw.THIScomboBoxMaxLevelText);
                 }
             }
 
         }
-        //Check For ThinkingQuantum Of Current Item Movments Finished.
-        public bool AllCurrentAStarGreedyThinkingQuantumFinished(AllDraw Dum, int i, int j, int Kind)
+        //Check For Thinking Of Current Item Movments Finished.
+        public bool AllCurrentAStarGreedyThinkingFinished(AllDraw Dum, int i, int j, int Kind)
         {
 
             Object a = new Object();
             lock (a)
             {
-                //For All kind of Current ThinkingQuantum depend of current type consider finshing state ThinkingQuantum.
+                //For All kind of Current Thinking depend of current type consider finshing state Thinking.
                 bool Finished = false;
                 {
                     //For Soldier
                     if (Kind == 1)
                     {
-                        if (Dum.SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantumFinished)
+                        if (Dum.SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingFinished)
                             return true;
                     }
                     //For Elephant
                     else if (Kind == 2)
                     {
-                        if (Dum.ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantumFinished)
+                        if (Dum.ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingFinished)
                             return true;
                     }
                     //For Hourse.
                     else if (Kind == 3)
                     {
-                        if (Dum.HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantumFinished)
+                        if (Dum.HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingFinished)
                             return true;
                     }
                     //For Castles.
                     else if (Kind == 4)
                     {
-                        if (Dum.CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingQuantumFinished)
+                        if (Dum.CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingFinished)
                             return true;
                     }
                     //For Minsters.
                     else if (Kind == 5)
                     {
-                        if (Dum.MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantumFinished)
+                        if (Dum.MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingFinished)
                             return true;
                     }
                     //For Kings.
                     else if (Kind == 6)
                     {
-                        if (Dum.KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantumFinished)
+                        if (Dum.KingOnTable[i].KingThinkingQuantum[0].ThinkingFinished)
                             return true;
                     }
                     else if (Kind == 7||Kind==-7)
                     {
-                        if (Dum.CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingQuantumFinished)
+                        if (Dum.CastlingOnTable[i].CastlingThinking[0].ThinkingFinished)
                             return true;
                     }
                 }
@@ -949,7 +956,7 @@ namespace QuantumRefrigiz
                                         //Construct Soder Gray.
                                         SolderesOnTable[So1].Row = Row;
                                         SolderesOnTable[So1].Column = Column;
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(So1, OrderP, 1));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(So1, OrderP, 1));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increase So1.
@@ -966,7 +973,7 @@ namespace QuantumRefrigiz
                                         //Construct Soldeir Brown.
                                         SolderesOnTable[So2].Row = Row;
                                         SolderesOnTable[So2].Column = Column;
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(So2, OrderP, 1));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(So2, OrderP, 1));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increase So2.
@@ -996,7 +1003,7 @@ namespace QuantumRefrigiz
                                         ElephantOnTable[El1].Row = Row;
                                         ElephantOnTable[El1].Column = Column;
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(El1, OrderP, 2));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(El1, OrderP, 2));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1016,8 +1023,8 @@ namespace QuantumRefrigiz
                                         ElephantOnTable[El2].Row = Row;
                                         ElephantOnTable[El2].Column = Column;
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(El2, OrderP, 2);
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(El2, OrderP, 2));
+                                        BlitzNotValidFullGameThinkingTreePartThree(El2, OrderP, 2);
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(El2, OrderP, 2));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1049,7 +1056,7 @@ namespace QuantumRefrigiz
                                         HoursesOnTable[Ho1].Row = Row;
                                         HoursesOnTable[Ho1].Column = Column;
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Ho1, OrderP, 3));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ho1, OrderP, 3));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1067,7 +1074,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Brown Hourse.
                                         HoursesOnTable[Ho2].Row = Row;
                                         HoursesOnTable[Ho2].Column = Column;
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Ho2, OrderP, 3));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ho2, OrderP, 3));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1098,7 +1105,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Gray Castles.
                                         CastlesOnTable[Br1].Row = Row;
                                         CastlesOnTable[Br1].Column = Column;
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Br1, OrderP, 4));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Br1, OrderP, 4));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1116,7 +1123,7 @@ namespace QuantumRefrigiz
                                         //Construction Draw of New Brown Castles.
                                         CastlesOnTable[Br2].Row = Row;
                                         CastlesOnTable[Br2].Column = Column;
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Br2, OrderP, 4));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Br2, OrderP, 4));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1148,7 +1155,7 @@ namespace QuantumRefrigiz
                                         //construction of new draw Gray Minster.
                                         MinisterOnTable[Mi1].Row = Row;
                                         MinisterOnTable[Mi1].Column = Column;
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Mi1, OrderP, 5));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Mi1, OrderP, 5));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1166,7 +1173,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Brown Minster.
                                         MinisterOnTable[Mi2].Row = Row;
                                         MinisterOnTable[Mi2].Column = Column;
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Mi2, OrderP, 5));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Mi2, OrderP, 5));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1197,7 +1204,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Gray King.
                                         KingOnTable[Ki1].Row = Row;
                                         KingOnTable[Ki1].Column = Column;
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Ki1, OrderP, 6));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ki1, OrderP, 6));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1215,7 +1222,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw King Brown Object.
                                         KingOnTable[Ki2].Row = Row;
                                         KingOnTable[Ki2].Column = Column;
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Ki2, OrderP, 6));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ki2, OrderP, 6));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1229,15 +1236,15 @@ namespace QuantumRefrigiz
                             }
                         //Make Empty Remaining.
                     }
-                    if (OrderP == 1)
+                    if (Dummy == 1)
                     {
-                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(0, OrderP, 7));
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                         ah.Wait();
                         ah.Dispose();
                     }
                     else
                     {
-                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(0, OrderP, -7));
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                         ah.Wait();
                         ah.Dispose();
                     }
@@ -1321,6 +1328,7 @@ namespace QuantumRefrigiz
                     CastlesOnTable = new DrawCastleQ[CastleHigh];
                     MinisterOnTable = new DrawMinisterQ[MinisterHigh];
                     KingOnTable = new DrawKingQ[KingHigh];
+                    CastlingOnTable = new DrawCastling[1];
                     AllDraw.SodierConversionOcuured = false;
                     //When Table Exist.
                     if (TableList.Count > 0)
@@ -1351,7 +1359,7 @@ namespace QuantumRefrigiz
                                         //Construct Soder Gray.
                                         SolderesOnTable[So1] = new DrawSoldierQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, So1);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(So1, OrderP, 1));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(So1, OrderP, 1));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increase So1.
@@ -1368,7 +1376,7 @@ namespace QuantumRefrigiz
                                         //Construct Soldeir Brown.
                                         SolderesOnTable[So2] = new DrawSoldierQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, So2);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(So2, OrderP, 1));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(So2, OrderP, 1));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increase So2.
@@ -1397,7 +1405,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Object.
                                         ElephantOnTable[El1] = new DrawElefantQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, El1);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(El1, OrderP, 2));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(El1, OrderP, 2));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increament of Gray Index.
@@ -1414,7 +1422,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Brown Elephant Object. 
                                         ElephantOnTable[El2] = new DrawElefantQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, El2);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(El2, OrderP, 2));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(El2, OrderP, 2));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increament of Index.
@@ -1444,7 +1452,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Brown Hourse.
                                         HoursesOnTable[Ho1] = new DrawHourseQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Ho1);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Ho1, OrderP, 3));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ho1, OrderP, 3));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increament of Index.
@@ -1461,7 +1469,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Brown Hourse.
                                         HoursesOnTable[Ho2] = new DrawHourseQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Ho2);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Ho2, OrderP, 3));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ho2, OrderP, 3));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increament of Index.
@@ -1491,7 +1499,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Gray Castles.
                                         CastlesOnTable[Br1] = new DrawCastleQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Br1);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Br1, OrderP, 4));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Br1, OrderP, 4));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1509,7 +1517,7 @@ namespace QuantumRefrigiz
                                         //Construction Draw of New Brown Castles.
                                         CastlesOnTable[Br2] = new DrawCastleQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Br2);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Br2, OrderP, 4));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Br2, OrderP, 4));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1541,7 +1549,7 @@ namespace QuantumRefrigiz
                                         //construction of new draw Gray Minster.
                                         MinisterOnTable[Mi1] = new DrawMinisterQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Mi1);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Mi1, OrderP, 5));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Mi1, OrderP, 5));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1559,7 +1567,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Brown Minster.
                                         MinisterOnTable[Mi2] = new DrawMinisterQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Mi2);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Mi2, OrderP, 5));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Mi2, OrderP, 5));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1590,7 +1598,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Gray King.
                                         KingOnTable[Ki1] = new DrawKingQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Ki1);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Ki1, OrderP, 6));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ki1, OrderP, 6));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1608,7 +1616,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw King Brown Object.
                                         KingOnTable[Ki2] = new DrawKingQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Ki2);
                                         //satisfied of created deeper three
-                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(Ki2, OrderP, 6));
+                                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ki2, OrderP, 6));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1624,19 +1632,19 @@ namespace QuantumRefrigiz
                     }
                     if (CastlingBoundryCondition())
                     {
-                        if (OrderP == 1)
+                        if (Dummy == 1)
                         {
-                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Gray, CloneATable(TableList[index]), -1, false, 0);
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column,Color.Gray, CloneATable(TableList[index]), 1, false, 0);
 
-                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(0, OrderP, 7));
+                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                             ah.Wait();
                             ah.Dispose();
                         }
                         else
                         {
-                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[1].Row, KingOnTable[1].Column, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
 
-                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(0, OrderP, -7));
+                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -1686,14 +1694,14 @@ namespace QuantumRefrigiz
                 return true;
             if (CastlingOnTable[0] == null)
                 return true;
-            if (CastlingOnTable[0].CastlingThinkingQuantum == null)
-                return true;
-            if (CastlingOnTable[0].CastlingThinkingQuantum[0] == null)
-                return true;
-            if (CastlingOnTable[0].CastlingThinkingQuantum[0].AStarGreedy == null)
-                return true;
-            if (CastlingOnTable[0].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
-                return true;
+           // if (CastlingOnTable[0].CastlingThinking == null)
+           //     return true;
+            //if (CastlingOnTable[0].CastlingThinking[0] == null)
+              //  return true;
+            //if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy == null)
+            //    return true;
+            //if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy.Count==0)
+              //  return true;
 
             return false;
         }
@@ -2276,11 +2284,11 @@ namespace QuantumRefrigiz
                             Order = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
 
                             //When there is Brown checked mate.
-                            if (A.CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy == -1)
+                            if (A.CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2290,7 +2298,7 @@ namespace QuantumRefrigiz
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy == 1)
+                                if (A.CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2299,8 +2307,8 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             Order = CDummy;
                         }
                 }
@@ -2478,11 +2486,11 @@ namespace QuantumRefrigiz
                             Order = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
 
                             //When there is Brown checked mate.
-                            if (A.CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy == -1)
+                            if (A.CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2492,7 +2500,7 @@ namespace QuantumRefrigiz
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy == 1)
+                                if (A.CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2501,8 +2509,8 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             Order = CDummy;
                         }
                 }
@@ -2918,18 +2926,18 @@ namespace QuantumRefrigiz
                             }
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
 
                             //Gray Castling Rules.
-                            AA = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])[CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][0], CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][1]]
-                            , CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])
+                            AA = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])[CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][0], CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][1]]
+                            , CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])
                             , Order
-                            , CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][0]
-                            , CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][1]);
+                            , CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][0]
+                            , CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][1]);
                             //When CheckMate Occured in Castling Gray.
                             bool ac = false;
-                            var ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]), Order));
+                            var ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -2940,7 +2948,7 @@ namespace QuantumRefrigiz
                                     //Penalty Ignore.
                                     Do = -1;
                                     //Superposition.
-                                    CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy = -1;
+                                    CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
                                     var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
@@ -2954,7 +2962,7 @@ namespace QuantumRefrigiz
                                         //Regard Setting.
                                         Do = 1;
                                         //Superpoistion.
-                                        CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy = 1;
+                                        CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = 1;
                                         //Regard Subbranchs.
                                         var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
@@ -2967,11 +2975,11 @@ namespace QuantumRefrigiz
                                 Order *= -1;
                                 ChessRules.CurrentOrder *= -1;
                                 //For Castling Gray Subbranchs.
-                                for (var ii = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                                for (var ii = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                                 {
                                     int D = Do;
 
-                                    var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3376,18 +3384,18 @@ namespace QuantumRefrigiz
                             }
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
 
                             //Gray Castling Rules.
-                            AA = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])[CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][0], CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][1]]
-                            , CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])
+                            AA = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])[CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][0], CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][1]]
+                            , CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])
                             , Order
-                            , CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][0]
-                            , CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][1]);
+                            , CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][0]
+                            , CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][1]);
                             //When CheckMate Occured in Castling Gray.
                             bool ac = false;
-                            var ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]), Order));
+                            var ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3398,7 +3406,7 @@ namespace QuantumRefrigiz
                                     //Penalty Ignore.
                                     Do = -1;
                                     //Superposition.
-                                    CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy = -1;
+                                    CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
                                     var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
@@ -3412,7 +3420,7 @@ namespace QuantumRefrigiz
                                         //Regard Setting.
                                         Do = 1;
                                         //Superpoistion.
-                                        CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy = 1;
+                                        CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = 1;
                                         //Regard Subbranchs.
                                         var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
@@ -3425,11 +3433,11 @@ namespace QuantumRefrigiz
                                 Order *= -1;
                                 ChessRules.CurrentOrder *= -1;
                                 //For Castling Gray Subbranchs.
-                                for (var ii = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                                for (var ii = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                                 {
                                     int D = Do;
 
-                                    var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3555,15 +3563,15 @@ namespace QuantumRefrigiz
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //make penalty  
-                            A.CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
+                            A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
                             //for deeper chiled
                             Order *= -1; ChessRules.CurrentOrder *= -1;
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order));
+                                var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3670,15 +3678,15 @@ namespace QuantumRefrigiz
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //make penalty  
-                            A.CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
+                            A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
                             //for deeper chiled
                             Order *= -1; ChessRules.CurrentOrder *= -1;
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order));
+                                var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3805,17 +3813,17 @@ namespace QuantumRefrigiz
 
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].Initiate());
+                            var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
-                            for (int k = 0; k < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; k++)
+                            for (int k = 0; k < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; k++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3928,17 +3936,17 @@ namespace QuantumRefrigiz
                             }
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].Initiate());
+                            var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
-                            for (int k = 0; k < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; k++)
+                            for (int k = 0; k < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; k++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3994,7 +4002,7 @@ namespace QuantumRefrigiz
                 else
                    if (Kind == 7 || Kind == -7)
                 {
-                    if (i < 1 || i >= 0)
+                    if (i < 0 || i > 0)
                         Is = false;
                 }
             }
@@ -4036,9 +4044,9 @@ namespace QuantumRefrigiz
                         Is = false;
                 }
                 else
-                   if (Kind == 7|| Kind == -7)
+                   if (Kind == 7 || Kind == -7)
                 {
-                    if (i < 1 || i >= 0)
+                    if (i < 0 || i > 0)
                         Is = false;
                 }
             }
@@ -4167,7 +4175,24 @@ namespace QuantumRefrigiz
 
                 }
             }
+            var ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 7, Order));
+            ah7.Wait();
+            ah7.Dispose();
+            if (ac && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+            {
+                if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                {
+                    AllDraw This = THIS;
+                    bool fou = Found;
+                    var ah8 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                    ah8.Wait();
+                    ah8.Dispose();
+                    THIS = This;
+                    Found = fou;
 
+                }
+            }
+            
             return THIS;
         }
         //when current alldraw is equal of table state return node and set true
@@ -4450,14 +4475,14 @@ namespace QuantumRefrigiz
                     }
                     for (var i = 0; i < 1; i++)
                     {
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4475,7 +4500,7 @@ namespace QuantumRefrigiz
                             else
                             {
 
-                                //CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].
+                                //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
                                 var ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
@@ -4742,14 +4767,14 @@ namespace QuantumRefrigiz
                     }
                     for (var i = 0; i < 1; i++)
                     {
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, -7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4767,7 +4792,7 @@ namespace QuantumRefrigiz
                             else
                             {
 
-                                //CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].
+                                //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
                                 var ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
@@ -5049,14 +5074,14 @@ namespace QuantumRefrigiz
                     }
                     for (var i = 0; i < 1; i++)
                     {
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5074,7 +5099,7 @@ namespace QuantumRefrigiz
                             else
                             {
 
-                                //CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].
+                                //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
                                 var ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
@@ -5341,14 +5366,14 @@ namespace QuantumRefrigiz
                     }
                     for (var i = 0; i < 1; i++)
                     {
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, -7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5366,7 +5391,7 @@ namespace QuantumRefrigiz
                             else
                             {
 
-                                //CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].
+                                //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
                                 var ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
@@ -5507,7 +5532,7 @@ namespace QuantumRefrigiz
                 {
                     for (int i = 0; CastlingOnTable != null && i < 1; i++)
                     {
-                        if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
+                        if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                         {
                             Is = true;
                         }
@@ -5582,7 +5607,7 @@ namespace QuantumRefrigiz
                 {
                     for (int i = 0; CastlingOnTable != null && i < 1; i++)
                     {
-                        if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
+                        if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                         {
                             Is = true;
                         }
@@ -5683,9 +5708,9 @@ namespace QuantumRefrigiz
                 }
                 for (int i = 0; CastlingOnTable != null && i < 1; i++)
                 {
-                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
+                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                     {
-                        for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //when is not validity
                             var ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
@@ -5786,9 +5811,9 @@ namespace QuantumRefrigiz
                 }
                 for (int i = 0; CastlingOnTable != null && i < 1; i++)
                 {
-                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
+                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                     {
-                        for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //when is not validity
                             var ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
@@ -5976,14 +6001,14 @@ namespace QuantumRefrigiz
                 if (ac)
                 {
                     //clear all lists
-                    CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Clear();
-                    CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Clear();
-                    CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling.Clear();
-                    CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Clear();
-                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j)
-                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged);
+                    CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
+                    CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
+                    CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
+                    CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Clear();
+                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged);
                     else
-                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
                 }
             }
         }
@@ -6052,9 +6077,9 @@ namespace QuantumRefrigiz
                          if (Kind == 7 || Kind == -7)
                 {
                     //remove extra
-                    for (int h = a; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; h++)
+                    for (int h = a; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h++)
                     {
-                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.RemoveAt(h);
+                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy.RemoveAt(h);
                     }
                 }
             }
@@ -6110,7 +6135,7 @@ namespace QuantumRefrigiz
                                     if (Kind == 7 || Kind == -7)
                 {
                     //when current alldraw lists is collision of stored lists tables state return true
-                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]))))
+                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]))))
                         Is = true;
                 }
             }
@@ -6157,7 +6182,7 @@ namespace QuantumRefrigiz
                         e = -1;
                     else
                         e = ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 2));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6177,7 +6202,7 @@ namespace QuantumRefrigiz
                         e = -1;
                     else
                         e = HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 3));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6198,7 +6223,7 @@ namespace QuantumRefrigiz
                     else
                         e = CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count;
                     //if (a == b && b == c && d == c && a > 0)
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 4));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6218,7 +6243,7 @@ namespace QuantumRefrigiz
                         e = -1;
                     else
                         e = MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 5));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6238,7 +6263,7 @@ namespace QuantumRefrigiz
                         e = -1;
                     else
                         e = KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 6));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6246,19 +6271,19 @@ namespace QuantumRefrigiz
             else if (Kind == 7 || Kind == -7)
             {
                 //when there is
-                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
+                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                 {
                     //calculate of lists count and dynamic micprogramming
-                    int a = CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count;
-                    int b = CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count;
-                    int c = CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling.Count;
-                    int d = CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Count;
+                    int a = CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count;
+                    int b = CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count;
+                    int c = CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Count;
+                    int d = CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Count;
                     int e = 0;
-                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j)
+                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
                         e = -1;
                     else
-                        e = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                        e = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count;
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 7));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6275,7 +6300,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 1));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 1));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6293,7 +6318,7 @@ namespace QuantumRefrigiz
                 for (int h = SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 1));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 1));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6392,7 +6417,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 2));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 2));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6410,7 +6435,7 @@ namespace QuantumRefrigiz
                 for (int h = ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 2));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 2));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6509,7 +6534,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 3));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 3));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6527,7 +6552,7 @@ namespace QuantumRefrigiz
                 for (int h = HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 3));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 3));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6626,7 +6651,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 4));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 4));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6644,7 +6669,7 @@ namespace QuantumRefrigiz
                 for (int h = CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 4));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 4));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6743,7 +6768,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 5));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 5));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6761,7 +6786,7 @@ namespace QuantumRefrigiz
                 for (int h = MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 5));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 5));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6860,7 +6885,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 6));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 6));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6878,7 +6903,7 @@ namespace QuantumRefrigiz
                 for (int h = KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 6));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 6));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6907,46 +6932,46 @@ namespace QuantumRefrigiz
             //if (IsSupHuTrue(i, j, 0, 6))
 
             //when is null creation enough but empty and create deeper node 
-            if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
+            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0)
             {
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 7));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 7));
                     ah.Wait();
                     ah.Dispose();
                 }
-                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Clear();
-                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]));
-                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].SetRowColumn(0);
-                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
-                THIS = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
+                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Clear();
+                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]));
+                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].SetRowColumn(0);
+                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
+                THIS = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
                 Found = true;
                 return true;
             }//when is not deeper null and is less than j index create empty but create deeper node table
             else
-                                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count < j + 1)
+                                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count < j + 1)
             {
-                for (int h = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
+                for (int h = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 7));
+                    var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 7));
                     ah.Wait();
                     ah.Dispose();
                 }
-                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Clear();
-                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]));
-                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].SetRowColumn(0);
-                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
-                THIS = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
+                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Clear();
+                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]));
+                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].SetRowColumn(0);
+                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
+                THIS = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
                 Found = true;
                 return true;
             }//when is enough and determine about creation of empty deeper than deeper or return exist
             else
             {
-                if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j)
+                if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
                 {
-                    THIS = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
+                    THIS = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
                     Found = true;
                     return true;
                 }
@@ -7028,15 +7053,15 @@ namespace QuantumRefrigiz
             {
                 for (int i = 0; CastlingOnTable != null && i < 1; i++)
                 {
-                    for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > j; j++)
+                    for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > j; j++)
                     {
                         bool ac = false;
-                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 6));
+                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                         ah.Wait();
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -7059,15 +7084,15 @@ namespace QuantumRefrigiz
             {
                 for (int i = 0; CastlingOnTable != null && i < 1; i++)
                 {
-                    for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > j; j++)
+                    for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > j; j++)
                     {
                         bool ac = false;
-                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 6));
+                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, -7));
                         ah.Wait();
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -7514,7 +7539,7 @@ namespace QuantumRefrigiz
                 //when found return recursive
                 if (Found)
                     return Leaf;
-                for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                 {
                     bool ac = false;
                     var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
@@ -7523,24 +7548,24 @@ namespace QuantumRefrigiz
                     if (ac)
                         continue;
                     //when leaf found set refer bool and alldraw refer objects
-                    if ((!CastlingOnTableMove[i]) && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j// && Kind == 1
+                    if ((!CastlingOnTableMove[i]) && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j// && Kind == 1
                     )
                     {
 
                         if (Order == 1)
                         {
-                            for (var k = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && k < 1; k++)
+                            for (var k = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && k < 1; k++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].CastlingOnTableMove[k])
+                                if (!CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].CastlingOnTableMove[k])
                                 {
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
-                                    CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
-                                    Leaf = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
+                                    CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
+                                    Leaf = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
                                     Found = true;
                                     return Leaf;
                                 }
@@ -7548,18 +7573,18 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            for (var k = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && k < 1; k++)
+                            for (var k = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && k < 1; k++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].CastlingOnTableMove[k])
+                                if (!CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].CastlingOnTableMove[k])
                                 {
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
-                                    CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
-                                    Leaf = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
+                                    CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
+                                    Leaf = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
                                     Found = true;
                                     return Leaf;
                                 }
@@ -7567,8 +7592,8 @@ namespace QuantumRefrigiz
                         }
                     }
                     else//deeper
-                        for (var ii = 0; ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
-                            CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].FoundOfLeafDepenOfKind(ref Leaf, ref Found, Order * -1, LeafDeep++, ik, jk, iii, jjj);
+                        for (var ii = 0; ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                            CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].FoundOfLeafDepenOfKind(ref Leaf, ref Found, Order * -1, LeafDeep++, ik, jk, iii, jjj);
 
                 }
 
@@ -7960,10 +7985,10 @@ namespace QuantumRefrigiz
 
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //when is victory
-                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereMateOfEnemy[j] //&& CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0 
+                            if (CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy[j] //&& CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0 
                                 && (Kind == 7 || Kind == -7))
                             {
                                 Found = true;
@@ -7971,10 +7996,10 @@ namespace QuantumRefrigiz
                                 return true;
                             }
                             else//deeper
-                                for (var ii = 0; ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                                for (var ii = 0; ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                                 {
                                     bool fou = Found;
-                                    var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                    var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                     ah.Wait();
                                     ah.Dispose();
                                     Found = fou;
@@ -8117,10 +8142,10 @@ namespace QuantumRefrigiz
                                 }
                         }//king
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //when is victory
-                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereMateOfEnemy[j] //&& CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0 
+                            if (CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy[j] //&& CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0 
                                 && (Kind == 7 || Kind == -7))
                             {
                                 Found = true;
@@ -8128,10 +8153,10 @@ namespace QuantumRefrigiz
                                 return true;
                             }
                             else//deeper
-                                for (var ii = 0; ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                                for (var ii = 0; ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                                 {
                                     bool fou = Found;
-                                    var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                    var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                     ah.Wait();
                                     ah.Dispose();
                                     Found = fou;
@@ -8142,7 +8167,7 @@ namespace QuantumRefrigiz
                 return Found;
             }
         }
-        //Retrun determined consideration of lists of ThinkingQuantum chess class list collisions.
+        //Retrun determined consideration of lists of Thinking chess class list collisions.
 
         //3 for empty and contained compuatations
         //4 a star is not emplty and contaied computation
@@ -8292,16 +8317,16 @@ namespace QuantumRefrigiz
             else if (Kind == 7||Kind==-7)
             {
                 //determine nodes is coorectly existence
-                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
+                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                 {
                     //deeper count
-                    e = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count;
+                    e = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count;
                     //when deeper count exist and index is not more than count of deeper
                     if (e > 0 && j < e)
                         //alldraw table list count
-                        d = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Count;
+                        d = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Count;
                     //alldraw tabale list and deeper count not staisfy validity or when there is not equallity retunr true
-                    if (d > 0 && e > j && (!ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]))))
+                    if (d > 0 && e > j && (!ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]))))
                         Is = true;
                 }
             }
@@ -8330,6 +8355,8 @@ namespace QuantumRefrigiz
             if (MinisterOnTable == null)
                 Is = true;
             if (KingOnTable == null)
+                Is = true;
+            if (CastlingOnTable == null)
                 Is = true;
             return Is;
 
@@ -8553,17 +8580,17 @@ namespace QuantumRefrigiz
             }
             else if (Kind == 7|| Kind == -7)
             {
-                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
+                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                 {
                     //lists count
-                    int a = CastlingOnTable[i].CastlingThinkingQuantum[0].TableListKing.Count;
-                    e = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count;
+                    int a = CastlingOnTable[i].CastlingThinking[0].TableListKing.Count;
+                    e = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count;
                     //when table state exist and there is equliity between lists and deeper count
-                    if (a == e && e > j && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Count > 0)
+                    if (a == e && e > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Count > 0)
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])));
+                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -8575,9 +8602,9 @@ namespace QuantumRefrigiz
                         if (e > a)
                         {
                             //remove extra
-                            for (int h = a; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; h++)
+                            for (int h = a; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h++)
                             {
-                                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.RemoveAt(h);
+                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy.RemoveAt(h);
                             }
                         }
                         //when deeper dose not exist return true
@@ -8753,7 +8780,7 @@ namespace QuantumRefrigiz
                                     if (ac)
                                         return;
                                 }
-                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingQuantumTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                 ah4.Wait();
                                 ah4.Dispose();
 
@@ -8791,7 +8818,7 @@ namespace QuantumRefrigiz
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(2, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
                     //determine about situation of deeper against other lists computation in 4 state
@@ -8911,7 +8938,7 @@ namespace QuantumRefrigiz
                                 if (Order == -1)
                                     a = Color.Brown;
 
-                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingQuantumTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                 ah4.Wait();
                                 ah4.Dispose();
 
@@ -8948,7 +8975,7 @@ namespace QuantumRefrigiz
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(3, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
                     //determine about situation of deeper against other lists computation in 4 state
@@ -9067,7 +9094,7 @@ namespace QuantumRefrigiz
                                 if (Order == -1)
                                     a = Color.Brown;
 
-                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingQuantumTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                 ah4.Wait();
                                 ah4.Dispose();
 
@@ -9106,7 +9133,7 @@ namespace QuantumRefrigiz
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(4, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
 
@@ -9223,7 +9250,7 @@ namespace QuantumRefrigiz
                                     a = Color.Brown;
                                 int Ord = Order, iAStarGreedy1 = 0, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
 
-                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingQuantumTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                 ah4.Wait();
                                 ah4.Dispose();
 
@@ -9261,13 +9288,13 @@ namespace QuantumRefrigiz
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(5, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
 
                     //determine about situation of deeper against other lists computation in 4 state
                     int Is = 0;
-                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 3));
+                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 5));
                     ah3.Wait();
                     ah3.Dispose();
                     if (!IA)
@@ -9374,7 +9401,7 @@ namespace QuantumRefrigiz
                                 if (Order == -1)
                                     a = Color.Brown;
 
-                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingQuantumTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                 ah4.Wait();
                                 ah4.Dispose();
 
@@ -9411,13 +9438,13 @@ namespace QuantumRefrigiz
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(6, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
 
                     //determine about situation of deeper against other lists computation in 4 state
                     int Is = 0;
-                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 3));
+                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 6));
                     ah3.Wait();
                     ah3.Dispose();
                     if (!IA)
@@ -9533,7 +9560,7 @@ namespace QuantumRefrigiz
                                 if (Order == -1)
                                     a = Color.Brown;
 
-                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingQuantumTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                 ah4.Wait();
                                 ah4.Dispose();
 
@@ -9549,14 +9576,14 @@ namespace QuantumRefrigiz
             Object P = new Object();
             lock (P)
             {
-                for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null
+                for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null
            ; j++)
                 {
                     Object OOOOO = new Object();
                     lock (OOOOO)
                     {
                         bool ac = false;
-                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 6));
+                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                         ah.Wait();
                         ah.Dispose();
                         if (ac)
@@ -9570,13 +9597,13 @@ namespace QuantumRefrigiz
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(7, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
 
                     //determine about situation of deeper against other lists computation in 4 state
                     int Is = 0;
-                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 3));
+                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 7));
                     ah3.Wait();
                     ah3.Dispose();
                     if (!IA)
@@ -9601,20 +9628,20 @@ namespace QuantumRefrigiz
                         var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
-                        for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                        for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
                         {
-                            CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
-                            CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
+                            CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h].AStarGreedyString = this;
+                            CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
                         }
-                        for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                            CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
+                        for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
+                            CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
                     }
                     else
                     {
                         //when is suitable for leafer 
                         if (Is == 2)
                         {
-                            for (var iii = 0; iii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].TableList != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].TableList.Count > 0; iii++)
+                            for (var iii = 0; iii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].TableList != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].TableList.Count > 0; iii++)
                             {
                                 Object OOOO = new Object();
                                 lock (OOOO)
@@ -9631,13 +9658,13 @@ namespace QuantumRefrigiz
                                 }
 
 
-                                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].FoundOfLeafDepenOfKindFullGame(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].TableList[0]), Order * -1, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy);
-                                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].AStarGreedyString = this;
+                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].FoundOfLeafDepenOfKindFullGame(CloneATable(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].TableList[0]), Order * -1, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy);
+                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].AStarGreedyString = this;
                             }
-                            for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                                CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
-                            for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                                CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
+                            for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
+                                CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
+                            for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
+                                CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
 
                         }
                         else if (Is == 3)//when is suitable for deeper
@@ -9662,13 +9689,13 @@ namespace QuantumRefrigiz
                                 var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
-                                for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                                for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
                                 {
-                                    CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
-                                    CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
+                                    CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h].AStarGreedyString = this;
+                                    CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
                                 }
-                                for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                                    CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
+                                for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
+                                    CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
                             }
                         }
                         else//otherwise
@@ -9692,7 +9719,7 @@ namespace QuantumRefrigiz
                                 if (Order == -1)
                                     a = Color.Brown;
 
-                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingQuantumTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                var ah4 = Task.Factory.StartNew(() => this.FullGameThinkingTree(Order, iAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                 ah4.Wait();
                                 ah4.Dispose();
 
@@ -9735,7 +9762,7 @@ namespace QuantumRefrigiz
                              CurrentMaxLevel = CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                     
                     }*/
-                    /* if (iAStarGreedy < 0 //&& iAStarGreedy < MaxDuringLevelThinkingQuantumCreation
+                    /* if (iAStarGreedy < 0 //&& iAStarGreedy < MaxDuringLevelThinkingCreation
                 )
                      {
                          IS = true;
@@ -10281,17 +10308,17 @@ namespace QuantumRefrigiz
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //make regard
-                            var ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
+                            var ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             //deeper call
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order));
+                                var ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -10419,17 +10446,17 @@ namespace QuantumRefrigiz
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
                                  for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //make regard
-                            var ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
+                            var ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             //deeper call
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order));
+                                var ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11775,7 +11802,7 @@ namespace QuantumRefrigiz
                     Is = KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j];
                 else
                 if (Math.Abs(Kind) == 7)
-                    Is = KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j];
+                    Is = CastlingOnTable[i].CastlingThinking[0].IsSupHu[j];
             }
             else
             {
@@ -11798,7 +11825,7 @@ namespace QuantumRefrigiz
                     Is = KingOnTable[i].KingThinkingQuantum[0].IsSup[j];
                 else
                 if (Math.Abs(Kind) == 7)
-                    Is = KingOnTable[i].KingThinkingQuantum[0].IsSup[j];
+                    Is = CastlingOnTable[i].CastlingThinking[0].IsSup[j];
             }
             return Is;
         }
@@ -11839,7 +11866,7 @@ namespace QuantumRefrigiz
             else//king
                 if (Kind == 7 || Kind == -7)
             {
-                Less = CastlingOnTable[i].CastlingThinkingQuantum[k].ReturnHeuristic(i, j, Order, AA, ref HaveKilled);
+                Less = CastlingOnTable[i].CastlingThinking[k].ReturnHeuristic(i, j, Order, AA, ref HaveKilled);
             }
         }
         //index of tables that verified existence havbeen saved into refer var
@@ -11878,7 +11905,7 @@ namespace QuantumRefrigiz
             else//king
                 if (Kind == 7 || Kind == -7)
             {
-                TableHeuristic = CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[k].TableListCastling[j]);
+                TableHeuristic = CloneATable(CastlingOnTable[i].CastlingThinking[k].TableListCastling[j]);
             }
         }
         //same of befor verified existence of begin move and end move location saved in unique results of Last best movments
@@ -11935,10 +11962,10 @@ namespace QuantumRefrigiz
             else//king
                  if (Kind == 7||Kind==-7)
             {
-                AllDraw.LastRowQ = CastlingOnTable[i].CastlingThinkingQuantum[k].Row;
-                AllDraw.LastColumnQ = CastlingOnTable[i].CastlingThinkingQuantum[k].Column;
-                AllDraw.NextRowQ = CastlingOnTable[i].CastlingThinkingQuantum[k].RowColumnCastling[j][0];
-                AllDraw.NextColumnQ = CastlingOnTable[i].CastlingThinkingQuantum[k].RowColumnCastling[j][1];
+                AllDraw.LastRowQ = CastlingOnTable[i].CastlingThinking[k].Row;
+                AllDraw.LastColumnQ = CastlingOnTable[i].CastlingThinking[k].Column;
+                AllDraw.NextRowQ = CastlingOnTable[i].CastlingThinking[k].RowColumnCastling[j][0];
+                AllDraw.NextColumnQ = CastlingOnTable[i].CastlingThinking[k].RowColumnCastling[j][1];
             }
         }
         //when branches(chield) of tree has heuristic less than current found 
@@ -12038,7 +12065,7 @@ namespace QuantumRefrigiz
                 bool ac = false;
                 int HaKild = HaveKilled;
                 int Le = Less;
-                var ah = Task.Factory.StartNew(() => ac = Le < CastlingOnTable[i].CastlingThinkingQuantum[k].ReturnHeuristic(i, j, Order, AA, ref HaKild));
+                var ah = Task.Factory.StartNew(() => ac = Le < CastlingOnTable[i].CastlingThinking[k].ReturnHeuristic(i, j, Order, AA, ref HaKild));
                 ah.Wait();
                 ah.Dispose();
                 HaveKilled = HaKild;
@@ -12290,7 +12317,7 @@ namespace QuantumRefrigiz
             else//king
             if (Kind == 7|| Kind == -7)
             {
-                if ((CastlingOnTable[i].CastlingThinkingQuantum[k].PenaltyRegardListCastling[j].IsPenaltyAction() != 0 && CastlingOnTable[i].CastlingThinkingQuantum[k].PenaltyRegardListCastling[j].IsRewardAction() == 1 && AStarGreedyi == 1) || ((Do == 1 || AA) && UsePenaltyRegardMechnisamT) || CastlingOnTable[i].WinOcuuredatChiled >= 1 || CastlingOnTable[i].WinOcuuredatChiled >= 2 || CastlingOnTable[i].WinOcuuredatChiled >= 3)
+                if ((CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsPenaltyAction() != 0 && CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsRewardAction() == 1 && AStarGreedyi == 1) || ((Do == 1 || AA) && UsePenaltyRegardMechnisamT) || CastlingOnTable[i].WinOcuuredatChiled >= 1 || CastlingOnTable[i].WinOcuuredatChiled >= 2 || CastlingOnTable[i].WinOcuuredatChiled >= 3)
                 {
                     Object On = new Object();
                     lock (On)
@@ -12316,7 +12343,7 @@ namespace QuantumRefrigiz
                         AA = AAA;
                     }
                     RegardOccurred = true;
-                    StringHeuristics(7, 2, AA, Do, KingOnTable[i].WinOcuuredatChiled, KingOnTable[i].LoseOcuuredatChiled);
+                    StringHeuristics(7, 2, AA, Do, CastlingOnTable[i].WinOcuuredatChiled, CastlingOnTable[i].LoseOcuuredatChiled);
                     //if (KingOnTable[i].WinOcuuredatChiled >= 1 || KingOnTable[i].WinOcuuredatChiled >= 2 || KingOnTable[i].WinOcuuredatChiled >= 3)
 
                     //if (((Do == 1 || AA)&&UsePenaltyRegardMechnisamT))
@@ -12527,8 +12554,10 @@ namespace QuantumRefrigiz
                             MaxLess4 = -1;
                         if (MaxLess1 > MaxLess5)
                             MaxLess5 = -1;
-                        if (MaxLess1 > MaxLess6)
+                        if (MaxLess2 > MaxLess6)
                             MaxLess6 = -1;
+                        if (MaxLess2 > MaxLess7)
+                            MaxLess7 = -1;
                         if (AStarGreedyi == 1)
                         {
                             OutputHeuristic(Order);
@@ -12652,6 +12681,8 @@ namespace QuantumRefrigiz
                         MaxLess5 = -1;
                     if (MaxLess2 > MaxLess6)
                         MaxLess6 = -1;
+                    if (MaxLess2 > MaxLess7)
+                        MaxLess7 = -1;
                     if (AStarGreedyi == 1)
                     {
                         OutputHeuristic(Order);
@@ -12756,6 +12787,8 @@ namespace QuantumRefrigiz
                         MaxLess5 = -1;
                     if (MaxLess3 > MaxLess6)
                         MaxLess6 = -1;
+                    if (MaxLess3 > MaxLess7)
+                        MaxLess7 = -1;
                     if (AStarGreedyi == 1)
                     {
                         OutputHeuristic(Order);
@@ -12857,6 +12890,8 @@ namespace QuantumRefrigiz
                         MaxLess5 = -1;
                     if (MaxLess4 > MaxLess6)
                         MaxLess6 = -1;
+                    if (MaxLess4 > MaxLess7)
+                        MaxLess7 = -1;
 
                     if (AStarGreedyi == 1)
                     {
@@ -12962,6 +12997,8 @@ namespace QuantumRefrigiz
                         MaxLess4 = -1;
                     if (MaxLess5 > MaxLess6)
                         MaxLess6 = -1;
+                    if (MaxLess5 > MaxLess7)
+                        MaxLess7 = -1;
 
                     if (AStarGreedyi == 1)
                     {
@@ -13063,6 +13100,8 @@ namespace QuantumRefrigiz
                         MaxLess4 = -1;
                     if (MaxLess6 > MaxLess5)
                         MaxLess5 = -1;
+                    if (MaxLess6 > MaxLess7)
+                        MaxLess7 = -1;
 
                     if (AStarGreedyi == 1)
                     {
@@ -13104,7 +13143,7 @@ namespace QuantumRefrigiz
                 bool AAA = AA;
                 int Le = Less;
                 int Havk = HaveKilled;
-                var ah = Task.Factory.StartNew(() => ac = CastlingOnTable[i].CastlingThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
+                var ah = Task.Factory.StartNew(() => ac = CastlingOnTable[i].CastlingThinking[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
                 ah.Wait();
                 ah.Dispose();
                 AA = AAA;
@@ -13119,7 +13158,7 @@ namespace QuantumRefrigiz
                     }
                     //retrive table of current Heuristic.
                     //retrive table of current Heuristic.
-                    int[,] TableS = CastlingOnTable[i].CastlingThinkingQuantum[k].TableListKing[j];
+                    int[,] TableS = CastlingOnTable[i].CastlingThinking[k].TableListCastling[j];
                     //checked for Legal Movments ArgumentOutOfRangeException curnt game.
                     if (DynamicAStarGreedytPrograming && !CurrentTableHeuristic && AStarGreedyi == 1)
                     {
@@ -13145,7 +13184,7 @@ namespace QuantumRefrigiz
 
                     AAA = AA;
                     Havk = HaveKilled;
-                    var ah3 = Task.Factory.StartNew(() => MaxLess6 = CastlingOnTable[RW6].CastlingThinkingQuantum[CL6].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                    var ah3 = Task.Factory.StartNew(() => MaxLess7 = CastlingOnTable[RW7].CastlingThinking[CL7].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                     ah3.Wait();
                     ah3.Dispose();
                     AA = AAA;
@@ -13158,17 +13197,19 @@ namespace QuantumRefrigiz
                     }
                     if (!KillerForce(HaveKilled))
                         return true;
-                    if (MaxLess6 > MaxLess1)
+                    if (MaxLess7 > MaxLess1)
                         MaxLess1 = -1;
-                    if (MaxLess6 > MaxLess2)
+                    if (MaxLess7 > MaxLess2)
                         MaxLess2 = -1;
-                    if (MaxLess6 > MaxLess3)
+                    if (MaxLess7 > MaxLess3)
                         MaxLess3 = -1;
-                    if (MaxLess6 > MaxLess4)
+                    if (MaxLess7 > MaxLess4)
                         MaxLess4 = -1;
-                    if (MaxLess6 > MaxLess5)
+                    if (MaxLess7 > MaxLess5)
                         MaxLess5 = -1;
-
+                    if (MaxLess7 > MaxLess5)
+                        MaxLess6 = -1;
+                   
                     if (AStarGreedyi == 1)
                     {
                         OutputHeuristic(Order);
@@ -13294,7 +13335,7 @@ namespace QuantumRefrigiz
             else
        if (Kind == 7 || Kind == -7)
             {
-                if ((CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled[j] <= -1 || CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled[j] <= -2 || CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                if ((CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -1 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -2 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
                     return true;
                 if (!AllowedSupTrue)
                 {
@@ -13437,7 +13478,7 @@ namespace QuantumRefrigiz
             {
                 bool A = false;
 
-                A = A || CastlingOnTable[i].CastlingThinkingQuantum[0].WinChiled[j] >= 1 || CastlingOnTable[i].CastlingThinkingQuantum[0].WinChiled[j] >= 2 || CastlingOnTable[i].CastlingThinkingQuantum[0].WinChiled[j] >= 3;
+                A = A || CastlingOnTable[i].CastlingThinking[0].WinChiled[j] >= 1 || CastlingOnTable[i].CastlingThinking[0].WinChiled[j] >= 2 || CastlingOnTable[i].CastlingThinking[0].WinChiled[j] >= 3;
 
                 Is = A;
 
@@ -14341,10 +14382,10 @@ namespace QuantumRefrigiz
                 int Do = 0;
                 for (int k = 0; k < 1; k++)
                 {
-                    for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[k] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && j < CastlingOnTable[i].CastlingThinkingQuantum[k].TableListCastling.Count; j++)
+                    for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[k] != null && CastlingOnTable[i].CastlingThinking != null && j < CastlingOnTable[i].CastlingThinking[k].TableListCastling.Count; j++)
                     {
                         bool ac = false;
-                        var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 6));
+                        var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -14353,14 +14394,14 @@ namespace QuantumRefrigiz
                             //For Penalty Reagrad Mechanisam of Current Check CheckMate Current Movments.
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
                             //)
-                            if (CastlingOnTable[i].CastlingThinkingQuantum[k].PenaltyRegardListCastling[j].IsPenaltyAction() == 0)
+                            if (CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsPenaltyAction() == 0)
                                 continue;
                             int CDummy = ChessRules.CurrentOrder;
                             int COrder = Order;
-                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j] != null)
+                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -14370,7 +14411,7 @@ namespace QuantumRefrigiz
                             Do = 0;
                             StringHeuristics(6, 1, AA, Do, CastlingOnTable[i].WinOcuuredatChiled, CastlingOnTable[i].LoseOcuuredatChiled);
 
-                            var ah3 = Task.Factory.StartNew(() => ac = Lose(6, i, j, Order));
+                            var ah3 = Task.Factory.StartNew(() => ac = Lose(7, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
@@ -14397,7 +14438,7 @@ namespace QuantumRefrigiz
                             {
                                 //When There is No Movments in Such Order Enemy continue.
                                 if (Order != AllDraw.OrderPlateDraw)
-                                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].ReturnHeuristic(i, j, Order, AA, ref HaveKilled) > Less)
+                                    if (CastlingOnTable[i].CastlingThinking[0].ReturnHeuristic(i, j, Order, AA, ref HaveKilled) > Less)
                                         continue;
                                 //When There is greater Heuristic Movments.
                                 Ac = Act;
@@ -14405,7 +14446,7 @@ namespace QuantumRefrigiz
                                 bool CuTH = CurrentTableHeuristic;
                                 AAA = AA;
                                 D = Do;
-                                var ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 6, ref D, AStarGreedyi, Order));
+                                var ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 7, ref D, AStarGreedyi, Order));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 Act = ac;
@@ -14537,7 +14578,7 @@ namespace QuantumRefrigiz
                 int Do = 0;
                 for (int k = 0; k < 1; k++)
                 {
-                    for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[k] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && j < CastlingOnTable[i].CastlingThinkingQuantum[k].TableListCastling.Count; j++)
+                    for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[k] != null && CastlingOnTable[i].CastlingThinking != null && j < CastlingOnTable[i].CastlingThinking[k].TableListCastling.Count; j++)
                     {
                         bool ac = false;
                         var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, kin));
@@ -14549,14 +14590,14 @@ namespace QuantumRefrigiz
                             //For Penalty Reagrad Mechanisam of Current Check CheckMate Current Movments.
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
                             //)
-                            if (CastlingOnTable[i].CastlingThinkingQuantum[k].PenaltyRegardListCastling[j].IsPenaltyAction() == 0)
+                            if (CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsPenaltyAction() == 0)
                                 continue;
                             int CDummy = ChessRules.CurrentOrder;
                             int COrder = Order;
-                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j] != null)
+                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -14593,7 +14634,7 @@ namespace QuantumRefrigiz
                             {
                                 //When There is No Movments in Such Order Enemy continue.
                                 if (Order != AllDraw.OrderPlateDraw)
-                                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].ReturnHeuristic(i, j, Order, AA, ref HaveKilled) > Less)
+                                    if (CastlingOnTable[i].CastlingThinking[0].ReturnHeuristic(i, j, Order, AA, ref HaveKilled) > Less)
                                         continue;
                                 //When There is greater Heuristic Movments.
                                 Ac = Act;
@@ -16354,7 +16395,7 @@ namespace QuantumRefrigiz
 
             }
         }
-        //AStarGreedy First Initiat ThinkingQuantum Main Method.
+        //AStarGreedy First Initiat Thinking Main Method.
         public AllDraw InitiateAStarGreedytOneNode(int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, int iIndex, int KindIndex, int LeafAStarGreedy
             )
         {
@@ -16405,18 +16446,18 @@ namespace QuantumRefrigiz
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
                         //If Solders Not Exist Continue and Traversal Back.
-                        //If There is no ThinkingQuantum Movments on Current Object  
+                        //If There is no Thinking Movments on Current Object  
 
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
                         {
-                            //ThinkingQuantum of Gray Solder Operation.
-                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Thinking of Gray Solder Operation.
+                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingBegin = true;
+                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = SolderesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = SolderesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => SolderesOnTable[iIndex].SoldierThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             SolderesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16428,12 +16469,12 @@ namespace QuantumRefrigiz
                         else if (ASS)
                         //If There is A Soldeir Movments.                                   
                         {
-                            //ThinkingQuantum of Gray Soldeir Operations.
-                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Thinking of Gray Soldeir Operations.
+                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingBegin = true;
+                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = SolderesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = SolderesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => SolderesOnTable[iIndex].SoldierThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             SolderesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16453,28 +16494,28 @@ namespace QuantumRefrigiz
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
                         {
-                            //Operational ThinkingQuantum Gray Elephant. 
-                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Operational Thinking Gray Elephant. 
+                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingBegin = true;
+                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = ElephantOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = ElephantOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => ElephantOnTable[iIndex].ElefantThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             ElephantOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
                             ElephantOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
                             ElephantOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             ElephantOnTable[iIndex].WinOcuuredatChiled = Win;
-                        }//If There is Movment ThinkingQuantum Gary Elphant Object List.
+                        }//If There is Movment Thinking Gary Elphant Object List.
                         else if (ASS)
                         {
-                            //For Every Gray Elephant ThinkingQuantum Movments.
-                            //Gray Elephant Object ThinkingQuantum Operations.
-                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //For Every Gray Elephant Thinking Movments.
+                            //Gray Elephant Object Thinking Operations.
+                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingBegin = true;
+                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = ElephantOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = ElephantOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => ElephantOnTable[iIndex].ElefantThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             ElephantOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16493,12 +16534,12 @@ namespace QuantumRefrigiz
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
                         {
-                            //ThinkingQuantum of Gray Hourse Oprational.
-                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Thinking of Gray Hourse Oprational.
+                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingBegin = true;
+                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = HoursesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = HoursesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => HoursesOnTable[iIndex].HourseThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             HoursesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16506,15 +16547,15 @@ namespace QuantumRefrigiz
                             HoursesOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             HoursesOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//If Table List Exist int The ThinkingQuantum.
+                        else if (ASS)//If Table List Exist int The Thinking.
                         {
-                            //ThinkingQuantum Operation of Gray Hourse.
+                            //Thinking Operation of Gray Hourse.
                             HoursesOnTable[iIndex].HourseThinkingQuantum[0].TableT = HoursesOnTable[iIndex].HourseThinkingQuantum[0].TableListHourse[j];
-                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingBegin = true;
+                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = HoursesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = HoursesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => HoursesOnTable[iIndex].HourseThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             HoursesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16533,13 +16574,13 @@ namespace QuantumRefrigiz
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
                         {
-                            //When There is Possible ThinkingQuantum Castle of Gray Table
-                            //ThinkingQuantum of Gray Castles Operational.
-                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //When There is Possible Thinking Castle of Gray Table
+                            //Thinking of Gray Castles Operational.
+                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingBegin = true;
+                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = CastlesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = CastlesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => CastlesOnTable[iIndex].CastleThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             CastlesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16549,12 +16590,12 @@ namespace QuantumRefrigiz
                         }
                         else if (ASS)
                         {
-                            //When There is Possible ThinkingQuantum Castle of Gray Table
-                            //ThinkingQuantum of Gray Castles  Objective Movments.
+                            //When There is Possible Thinking Castle of Gray Table
+                            //Thinking of Gray Castles  Objective Movments.
                             CastlesOnTable[iIndex].CastleThinkingQuantum[0].TableT = CastlesOnTable[iIndex].CastleThinkingQuantum[0].TableListCastle[j];
-                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantumFinished = false;
-                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref CastlesOnTable[iIndex].LoseOcuuredatChiled, ref CastlesOnTable[iIndex].WinOcuuredatChiled);
+                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingBegin = true;
+                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingFinished = false;
+                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[iIndex].LoseOcuuredatChiled, ref CastlesOnTable[iIndex].WinOcuuredatChiled);
                         }
                     }
                     if (KindIndex == 5)
@@ -16564,13 +16605,13 @@ namespace QuantumRefrigiz
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
-                        {//When There is Table Gray Minister Count of ThinkingQuantum.
-                         //ThinkingQuantum of Gray Minister Operational.
-                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantumFinished = false;
+                        {//When There is Table Gray Minister Count of Thinking.
+                         //Thinking of Gray Minister Operational.
+                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingBegin = true;
+                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = MinisterOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = MinisterOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             MinisterOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16578,15 +16619,15 @@ namespace QuantumRefrigiz
                             MinisterOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             MinisterOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//When There is Table Gray Minister Count of ThinkingQuantum.
+                        else if (ASS)//When There is Table Gray Minister Count of Thinking.
                         {
-                            //ThinkingQuantum.
+                            //Thinking.
                             MinisterOnTable[iIndex].Table = MinisterOnTable[iIndex].MinisterThinkingQuantum[0].TableListMinister[j];
-                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingBegin = true;
+                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = MinisterOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = MinisterOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             MinisterOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16603,13 +16644,13 @@ namespace QuantumRefrigiz
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
-                        {//When ThinkingQuantum Gray King Count of Existing Operations.
-                         //ThinkingQuantum Of Gray King Operatins.
-                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantumFinished = false;
+                        {//When Thinking Gray King Count of Existing Operations.
+                         //Thinking Of Gray King Operatins.
+                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingBegin = true;
+                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = KingOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = KingOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             KingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16617,20 +16658,58 @@ namespace QuantumRefrigiz
                             KingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             KingOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//When ThinkingQuantum Gray King Count of Existing Operations.
+                        else if (ASS)//When Thinking Gray King Count of Existing Operations.
                         {
-                            //Gray King ThinkingQuantum Operations.                                        
-                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Gray King Thinking Operations.                                        
+                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingBegin = true;
+                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = KingOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = KingOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             KingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
                             KingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
                             KingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             KingOnTable[iIndex].WinOcuuredatChiled = Win;
+                        }
+                    }
+                    if (KindIndex == 7||KindIndex==-7)
+                    {
+
+                        Order = DummyOrder;
+                        ChessRules.CurrentOrder = DummyCurrentOrder;
+                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
+                        { ASS = AllDraw.Blitz; }
+                        if (!ASS)
+                        {//When Thinking Gray King Count of Existing Operations.
+                         //Thinking Of Gray King Operatins.
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            ah1.Wait();
+                            ah1.Dispose();
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            CastlingOnTable[iIndex].WinOcuuredatChiled = Win;
+                        }
+                        else if (ASS)//When Thinking Gray Castling Count of Existing Operations.
+                        {
+                            //Gray Castling Thinking Operations.                                        
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            ah1.Wait();
+                            ah1.Dispose();
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            CastlingOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
                     }
                 }
@@ -16642,15 +16721,15 @@ namespace QuantumRefrigiz
                         ChessRules.CurrentOrder = DummyCurrentOrder;
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
-                        if (!ASS)//When There is Current Brown Existing Objective ThinkingQuantum Movments.
+                        if (!ASS)//When There is Current Brown Existing Objective Thinking Movments.
                         {
                             //Wheen Brown King Object There is Not Continue Traversal Back.
-                            //ThinkingQuantum Operations of Brown Current Objects.
-                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Thinking Operations of Brown Current Objects.
+                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingBegin = true;
+                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = SolderesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = SolderesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => SolderesOnTable[iIndex].SoldierThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             SolderesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16658,14 +16737,14 @@ namespace QuantumRefrigiz
                             SolderesOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             SolderesOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//When There is Current Brown Existing Objective ThinkingQuantum Movments.
+                        else if (ASS)//When There is Current Brown Existing Objective Thinking Movments.
                         {
-                            //ThinkingQuantum of ThinkingQuantum Brown CurrentTable Objective Operations.
-                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Thinking of Thinking Brown CurrentTable Objective Operations.
+                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingBegin = true;
+                            SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = SolderesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = SolderesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => SolderesOnTable[iIndex].SoldierThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => SolderesOnTable[iIndex].SoldierThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             SolderesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16679,15 +16758,15 @@ namespace QuantumRefrigiz
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
-                        {//When There is Current Brown Existing Objective ThinkingQuantum Movments.
+                        {//When There is Current Brown Existing Objective Thinking Movments.
                             Order = DummyOrder;
                             ChessRules.CurrentOrder = DummyCurrentOrder;
-                            //ThinkingQuantum Operations of Brown Current Objects.
-                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Thinking Operations of Brown Current Objects.
+                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingBegin = true;
+                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = ElephantOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = ElephantOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => ElephantOnTable[iIndex].ElefantThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             ElephantOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16695,15 +16774,15 @@ namespace QuantumRefrigiz
                             ElephantOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             ElephantOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//When There is Current Brown Existing Objective ThinkingQuantum Movments.
+                        else if (ASS)//When There is Current Brown Existing Objective Thinking Movments.
                         {
                             //Inititae Local Varibale By Global Gray Elephant Objects Varibales.
-                            //ThinkingQuantum of ThinkingQuantum Brown CurrentTable Objective Operations.                                                   
-                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Thinking of Thinking Brown CurrentTable Objective Operations.                                                   
+                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingBegin = true;
+                            ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = ElephantOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = ElephantOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => ElephantOnTable[iIndex].ElefantThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => ElephantOnTable[iIndex].ElefantThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             ElephantOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16720,14 +16799,14 @@ namespace QuantumRefrigiz
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
-                        {//When There is Current Brown Existing Objective ThinkingQuantum Movments.
-                         //ThinkingQuantum Operations of Brown Current Objects.
+                        {//When There is Current Brown Existing Objective Thinking Movments.
+                         //Thinking Operations of Brown Current Objects.
 
-                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingBegin = true;
+                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = HoursesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = HoursesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => HoursesOnTable[iIndex].HourseThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             HoursesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16735,14 +16814,14 @@ namespace QuantumRefrigiz
                             HoursesOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             HoursesOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//When There is Current Brown Existing Objective ThinkingQuantum Movments.
+                        else if (ASS)//When There is Current Brown Existing Objective Thinking Movments.
                         {
 
-                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingBegin = true;
+                            HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = HoursesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = HoursesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => HoursesOnTable[iIndex].HourseThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => HoursesOnTable[iIndex].HourseThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             HoursesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16762,13 +16841,13 @@ namespace QuantumRefrigiz
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
-                        {//When There is Current Brown Existing Objective ThinkingQuantum Movments.
-                         //ThinkingQuantum Operations of Brown Current Objects.
-                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantumFinished = false;
+                        {//When There is Current Brown Existing Objective Thinking Movments.
+                         //Thinking Operations of Brown Current Objects.
+                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingBegin = true;
+                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = CastlesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = CastlesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => CastlesOnTable[iIndex].CastleThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             CastlesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16776,14 +16855,14 @@ namespace QuantumRefrigiz
                             CastlesOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             CastlesOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//When There is Current Brown Existing Objective ThinkingQuantum Movments.
+                        else if (ASS)//When There is Current Brown Existing Objective Thinking Movments.
                         {
-                            //ThinkingQuantum of ThinkingQuantum Brown CurrentTable Objective Operations.        
-                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            //Thinking of Thinking Brown CurrentTable Objective Operations.        
+                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingBegin = true;
+                            CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = CastlesOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = CastlesOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => CastlesOnTable[iIndex].CastleThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => CastlesOnTable[iIndex].CastleThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             CastlesOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16799,13 +16878,13 @@ namespace QuantumRefrigiz
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
-                        {//When There is Current Brown Existing Objective ThinkingQuantum Movments.
-                         //ThinkingQuantum Operations of Brown Current Objects.
-                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantumFinished = false;
+                        {//When There is Current Brown Existing Objective Thinking Movments.
+                         //Thinking Operations of Brown Current Objects.
+                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingBegin = true;
+                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = MinisterOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = MinisterOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             MinisterOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16813,14 +16892,14 @@ namespace QuantumRefrigiz
                             MinisterOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
                             MinisterOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//When There is Current Brown Existing Objective ThinkingQuantum Movments.
+                        else if (ASS)//When There is Current Brown Existing Objective Thinking Movments.
                         {
 
-                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantumFinished = false;
+                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingBegin = true;
+                            MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = MinisterOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = MinisterOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             MinisterOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16832,43 +16911,79 @@ namespace QuantumRefrigiz
                     //Progressing.
                     if (KindIndex == -6)
                     {
+
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
-                        {//When There is Current Brown Existing Objective ThinkingQuantum Movments.
-                         //ThinkingQuantum Operations of Brown Current Objects.
-                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantumFinished = false;
-                            int[] Lose = MinisterOnTable[iIndex].LoseOcuuredatChiled;
-                            int Win = MinisterOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                        {//When Thinking Gray King Count of Existing Operations.
+                         //Thinking Of Gray King Operatins.
+                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingBegin = true;
+                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingFinished = false;
+                            int[] Lose = KingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = KingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
-                            MinisterOnTable[iIndex].WinOcuuredatChiled = Win;
+                            KingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            KingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            KingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            KingOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//When There is Current Brown Existing Objective ThinkingQuantum Movments.
+                        else if (ASS)//When Thinking Gray King Count of Existing Operations.
                         {
-                            //ThinkingQuantum of ThinkingQuantum Brown CurrentTable Objective Operations.       
-                            KingOnTable[iIndex].KingThinkingQuantum[0].TableT = KingOnTable[iIndex].KingThinkingQuantum[0].TableListKing[j];
-                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantumBegin = true;
-                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingQuantumFinished = false;
-                            int[] Lose = MinisterOnTable[iIndex].LoseOcuuredatChiled;
-                            int Win = MinisterOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref Lose, ref Win));
+                            //Gray King Thinking Operations.                                        
+                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingBegin = true;
+                            KingOnTable[iIndex].KingThinkingQuantum[0].ThinkingFinished = false;
+                            int[] Lose = KingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = KingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
-                            MinisterOnTable[iIndex].WinOcuuredatChiled = Win;
-
+                            KingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            KingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            KingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            KingOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
+                    }
+                    if (KindIndex == 7 || KindIndex == -7)
+                    {
 
+                        Order = DummyOrder;
+                        ChessRules.CurrentOrder = DummyCurrentOrder;
+                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
+                        { ASS = AllDraw.Blitz; }
+                        if (!ASS)
+                        {//When Thinking Gray King Count of Existing Operations.
+                         //Thinking Of Gray King Operatins.
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            ah1.Wait();
+                            ah1.Dispose();
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            CastlingOnTable[iIndex].WinOcuuredatChiled = Win;
+                        }
+                        else if (ASS)//When Thinking Gray Castling Count of Existing Operations.
+                        {
+                            //Gray Castling Thinking Operations.                                        
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            ah1.Wait();
+                            ah1.Dispose();
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            CastlingOnTable[iIndex].WinOcuuredatChiled = Win;
+                        }
                     }
 
 
@@ -16939,7 +17054,18 @@ namespace QuantumRefrigiz
                     KingOnTable[iIndex].KingThinkingQuantum[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Clear();
                     KingOnTable[iIndex].KingThinkingQuantum[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(Tab));
                     KingOnTable[iIndex].KingThinkingQuantum[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].SetRowColumn(0);
-                    var H = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinkingQuantum[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order * -1, false, FOUND, LeafAStarGreedy));
+                    var H = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinkingQuantum[0].AStarGreedy[KingOnTable[iIndex].KingThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order * -1, false, FOUND, LeafAStarGreedy));
+                    H.Wait();
+                    H.Dispose();
+                }
+                else
+                                    if (KindIndex == 7 || KindIndex == -6)
+                {
+                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Clear();
+                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(Tab));
+                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].SetRowColumn(0);
+                    var H = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order * -1, false, FOUND, LeafAStarGreedy));
                     H.Wait();
                     H.Dispose();
                 }
@@ -17052,22 +17178,22 @@ namespace QuantumRefrigiz
                                              //Initiate of Local Variables By Global Objective Gray Current Solder.
                                              int ik = (int)SolderesOnTable[i].Row;
                                              int jk = (int)SolderesOnTable[i].Column;
-                                             //Construction of ThinkingQuantum Gray Soldier By Local Variables.
-                                             //If There is no ThinkingQuantum Movments on Current Object  
+                                             //Construction of Thinking Gray Soldier By Local Variables.
+                                             //If There is no Thinking Movments on Current Object  
                                              if (SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count == 0)
                                              {
                                                  //For All Movable Gray Solders.
                                                  for (var j = 0; j < AllDraw.SodierMovments; j++)
                                                  ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.SodierMovments, j =>
                                                  {
-                                                     //ThinkingQuantum of Gray Solder Operation.
+                                                     //Thinking of Gray Solder Operation.
                                                      Object OOO = new Object();
                                                      lock (OOO)
                                                      {
-                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantumFinished = false;
+                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingBegin = true;
+                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingFinished = false;
                                                          SolderesOnTable[i].SoldierThinkingQuantum[0].Kind = 1;
-                                                         SolderesOnTable[i].SoldierThinkingQuantum[j].ThinkingQuantum(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled);
+                                                         SolderesOnTable[i].SoldierThinkingQuantum[j].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled);
 
                                                      }
                                                  }
@@ -17096,22 +17222,22 @@ namespace QuantumRefrigiz
                                              //Inititate Local Variables By Global Varibales.
                                              int ik = (int)MinisterOnTable[i].Row;
                                              int jk = (int)MinisterOnTable[i].Column;
-                                             //Construction of ThinkingQuantum Objects Gray Minister.
-                                             //If There is Not Minister Of Gray In The ThinkingQuantum Table List.   
+                                             //Construction of Thinking Objects Gray Minister.
+                                             //If There is Not Minister Of Gray In The Thinking Table List.   
                                              if (MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count == 0)
                                              {
                                                  //For All Possible Movments.
                                                  for (var j = 0; j < AllDraw.MinisterMovments; j++)
                                                  ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.MinisterMovments, j =>
                                                  {
-                                                     //ThinkingQuantum of Gray Minister Operational.
+                                                     //Thinking of Gray Minister Operational.
                                                      Object OOO = new Object();
                                                      lock (OOO)
                                                      {
-                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantumFinished = false;
+                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingBegin = true;
+                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingFinished = false;
                                                          MinisterOnTable[i].MinisterThinkingQuantum[0].Kind = 5;
-                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled);
+                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled);
                                                      }
                                                  }
                                              }
@@ -17139,22 +17265,22 @@ namespace QuantumRefrigiz
                                              //Initiate Local varibale By Global Objective Varibales.
                                              int ik = (int)(int)KingOnTable[i].Row;
                                              int jk = (int)KingOnTable[i].Column;
-                                             //Construction of Gray King ThinkingQuantum Objects.
-                                             //When There is Not ThinkingQuantum Table Gray King Movments.
+                                             //Construction of Gray King Thinking Objects.
+                                             //When There is Not Thinking Table Gray King Movments.
                                              if (KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count == 0)
                                              {
                                                  //For All Possible Gray King Movments.
                                                  ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.KingMovments, j =>
                                                  for (var j = 0; j < AllDraw.KingMovments; j++)
                                                  {
-                                                     //ThinkingQuantum Of Gray King Operatins.
+                                                     //Thinking Of Gray King Operatins.
                                                      Object OOO = new Object();
                                                      lock (OOO)
                                                      {
-                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantumFinished = false;
+                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingBegin = true;
+                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingFinished = false;
                                                          KingOnTable[i].KingThinkingQuantum[0].Kind = 6;
-                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled);
+                                                         KingOnTable[i].KingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled);
                                                      }
                                                  }
                                              }
@@ -17196,22 +17322,22 @@ namespace QuantumRefrigiz
                                              //Initiate of Local Variables By Global Objective Gray Current Solder.
                                              int ik = (int)SolderesOnTable[i].Row;
                                              int jk = (int)SolderesOnTable[i].Column;
-                                             //Construction of ThinkingQuantum Gray Soldier By Local Variables.
-                                             //If There is no ThinkingQuantum Movments on Current Object  
+                                             //Construction of Thinking Gray Soldier By Local Variables.
+                                             //If There is no Thinking Movments on Current Object  
                                              if (SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count == 0)
                                              {
                                                  //For All Movable Gray Solders.
                                                  for (var j = 0; j < AllDraw.SodierMovments; j++)
                                                  ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.SodierMovments, j =>
                                                  {
-                                                     //ThinkingQuantum of Gray Solder Operation.
+                                                     //Thinking of Gray Solder Operation.
                                                      Object OOO = new Object();
                                                      lock (OOO)
                                                      {
-                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantumFinished = false;
+                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingBegin = true;
+                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingFinished = false;
                                                          SolderesOnTable[i].SoldierThinkingQuantum[0].Kind = 1;
-                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled);
+                                                         SolderesOnTable[i].SoldierThinkingQuantum[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled);
                                                      }
                                                  }
                                              }
@@ -17237,22 +17363,22 @@ namespace QuantumRefrigiz
                                              //Inititae Local Varibale By Global Gray Elephant Objects Varibales.
                                              int ik = (int)ElephantOnTable[i].Row;
                                              int jk = (int)ElephantOnTable[i].Column;
-                                             //Construction of ThinkingQuantum Objects By Local Varibales.
-                                             //If There is Not ThinkingQuantum Objetive List Elephant Gray. 
+                                             //Construction of Thinking Objects By Local Varibales.
+                                             //If There is Not Thinking Objetive List Elephant Gray. 
                                              if (ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count == 0)
                                              {
                                                  //For All Possible Movments.
                                                  ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.ElefantMovments, j =>
                                                  for (var j = 0; j < AllDraw.ElefantMovments; j++)
                                                  {
-                                                     //Operational ThinkingQuantum Gray Elephant. 
+                                                     //Operational Thinking Gray Elephant. 
                                                      Object OOO = new Object();
                                                      lock (OOO)
                                                      {
-                                                         ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                                         ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantumFinished = false;
+                                                         ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingBegin = true;
+                                                         ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingFinished = false;
                                                          ElephantOnTable[i].ElefantThinkingQuantum[0].Kind = 2;
-                                                         ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled);
+                                                         ElephantOnTable[i].ElefantThinkingQuantum[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled);
                                                      }
                                                  }
                                              }
@@ -17278,7 +17404,7 @@ namespace QuantumRefrigiz
                                              //Initiate of Local Variables By Global Gray Hourse Objectives.
                                              int ik = (int)HoursesOnTable[i].Row;
                                              int jk = (int)HoursesOnTable[i].Column;
-                                             //Construction of Gray Hourse ThinkingQuantum Objects..
+                                             //Construction of Gray Hourse Thinking Objects..
                                              //When There is Not HourseList Count. 
                                              if (HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count == 0)
                                              {
@@ -17286,14 +17412,14 @@ namespace QuantumRefrigiz
                                                  for (var j = 0; j < AllDraw.HourseMovments; j++)
                                                  ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.HourseMovments, j =>
                                                  {
-                                                     //ThinkingQuantum of Gray Hourse Oprational.
+                                                     //Thinking of Gray Hourse Oprational.
                                                      Object OOO = new Object();
                                                      lock (OOO)
                                                      {
-                                                         HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                                         HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantumFinished = false;
+                                                         HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingBegin = true;
+                                                         HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingFinished = false;
                                                          HoursesOnTable[i].HourseThinkingQuantum[0].Kind = 3;
-                                                         HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled);
+                                                         HoursesOnTable[i].HourseThinkingQuantum[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled);
                                                      }
                                                  }
                                              }
@@ -17319,8 +17445,8 @@ namespace QuantumRefrigiz
                                              //Initaiate of Local Varibales By Global Varoiables.
                                              int ik = (int)CastlesOnTable[i].Row;
                                              int jk = (int)CastlesOnTable[i].Column;
-                                             //Construction of ThinkingQuantum Variables By Local Variables.
-                                             //When Count of Table Castles of ThinkingQuantum Not Exist Do Operational.
+                                             //Construction of Thinking Variables By Local Variables.
+                                             //When Count of Table Castles of Thinking Not Exist Do Operational.
                                              if (CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count == 0)
                                              {
                                                  //For All Possible Movments.
@@ -17330,11 +17456,11 @@ namespace QuantumRefrigiz
                                                      Object OOO = new Object();
                                                      lock (OOO)
                                                      {
-                                                         //ThinkingQuantum of Gray Castles Operational.
-                                                         CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                                         CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingQuantumFinished = false;
+                                                         //Thinking of Gray Castles Operational.
+                                                         CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingBegin = true;
+                                                         CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingFinished = false;
                                                          CastlesOnTable[i].CastleThinkingQuantum[0].Kind = 4;
-                                                         CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled);
+                                                         CastlesOnTable[i].CastleThinkingQuantum[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled);
                                                      }
                                                  }
                                              }
@@ -17361,22 +17487,22 @@ namespace QuantumRefrigiz
                                              //Inititate Local Variables By Global Varibales.
                                              int ik = (int)MinisterOnTable[i].Row;
                                              int jk = (int)MinisterOnTable[i].Column;
-                                             //Construction of ThinkingQuantum Objects Gray Minister.
-                                             //If There is Not Minister Of Gray In The ThinkingQuantum Table List.   
+                                             //Construction of Thinking Objects Gray Minister.
+                                             //If There is Not Minister Of Gray In The Thinking Table List.   
                                              if (MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count == 0)
                                              {
                                                  //For All Possible Movments.
                                                  ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.MinisterMovments, j =>
                                                  for (var j = 0; j < AllDraw.MinisterMovments; j++)
                                                  {
-                                                     //ThinkingQuantum of Gray Minister Operational.
+                                                     //Thinking of Gray Minister Operational.
                                                      Object OOO = new Object();
                                                      lock (OOO)
                                                      {
-                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantumFinished = false;
+                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingBegin = true;
+                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingFinished = false;
                                                          MinisterOnTable[i].MinisterThinkingQuantum[0].Kind = 5;
-                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled);
+                                                         MinisterOnTable[i].MinisterThinkingQuantum[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled);
                                                      }
                                                  }
                                              }
@@ -17403,21 +17529,21 @@ namespace QuantumRefrigiz
                                              //Initiate Local varibale By Global Objective Varibales.
                                              int ik = (int)(int)KingOnTable[i].Row;
                                              int jk = (int)KingOnTable[i].Column;
-                                             //Construction of Gray King ThinkingQuantum Objects.
-                                             //When There is Not ThinkingQuantum Table Gray King Movments.
+                                             //Construction of Gray King Thinking Objects.
+                                             //When There is Not Thinking Table Gray King Movments.
                                              if (KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count == 0)
                                              {
                                                  //For All Possible Gray King Movments.
                                                  for (var j = 0; j < AllDraw.KingMovments; j++)
                                                  {
-                                                     //ThinkingQuantum Of Gray King Operatins.
+                                                     //Thinking Of Gray King Operatins.
                                                      Object OOO = new Object();
                                                      lock (OOO)
                                                      {
-                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantumFinished = false;
+                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingBegin = true;
+                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingFinished = false;
                                                          KingOnTable[i].KingThinkingQuantum[0].Kind = 6;
-                                                         KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled);
+                                                         KingOnTable[i].KingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled);
                                                      }
                                                  }
                                              }
@@ -17586,9 +17712,9 @@ namespace QuantumRefrigiz
         }
         bool ServeBoundryConditionsCasttling(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= 0)
+            if (Order == 1 && i > 0)
                 return true;
-            if (Order == -1 && i >= 0)
+            if (Order == -1 && i > 0)
                 return true;
             if (CastlingOnTable == null)
                 return true;
@@ -18177,35 +18303,35 @@ namespace QuantumRefrigiz
                     {
                         if (CastlingOnTable == null || CastlingOnTable[i] == null)
                             continue;
-                        for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
+                        for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
                         {
-                            if (!(CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j]))
+                            if (!(CastlingOnTable[i].CastlingThinking[0].IsSup[j]))
                                 continue;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup;
 
 
 
                         }
                     }
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup = 0;
 
                 }
                 else//Brown
@@ -18214,46 +18340,46 @@ namespace QuantumRefrigiz
                     {
                         if (CastlingOnTable == null || CastlingOnTable[i] == null)
                             continue;
-                        for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
+                        for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
                         {
-                            if (!(CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j]))
+                            if (!(CastlingOnTable[i].CastlingThinking[0].IsSup[j]))
                                 continue;
 
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup;
+                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup;
 
 
 
                         }
                     }
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup = 0;
+                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup = 0;
 
                 }
             }
 
         }
-        void ThinkingQuantumAllowedSemaphore(int i)
+        void ThinkingAllowedSemaphore(int i)
         {
-            if (ThinkingQuantumAllowed == null)
-                ThinkingQuantumAllowed = new bool[14];
-            do { } while (!ThinkingQuantumAllowed[i - 1]);
+            if (ThinkingAllowed == null)
+                ThinkingAllowed = new bool[14];
+            do { } while (!ThinkingAllowed[i - 1]);
 
         }
         //main initiation of soldier Gray
@@ -18419,9 +18545,9 @@ namespace QuantumRefrigiz
         }
         bool InitiateAStarGreedytCastling(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= 0)
+            if (Order == 1 && i > 0)
                 return false;
-            if (Order == -1 && i >= 0)
+            if (Order == -1 && i > 0)
                 return false;
 
             if (CastlingOnTable != null)
@@ -18458,21 +18584,21 @@ namespace QuantumRefrigiz
                         //Initiate of Local Variables By Global Objective Gray Current Solder.
                         int ik = (int)SolderesOnTable[i].Row;
                         int jk = (int)SolderesOnTable[i].Column;
-                        //Construction of ThinkingQuantum Gray Soldier By Local Variables.
+                        //Construction of Thinking Gray Soldier By Local Variables.
                         //if (SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count == 0)
-                        //If There is no ThinkingQuantum Movments on Current Object  
+                        //If There is no Thinking Movments on Current Object  
                         if (SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count == 0)
                         {
                             //For All Movable Gray Solders.
                             ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.SodierMovments, j =>
                             {
-                                //ThinkingQuantum of Gray Solder Operation.
+                                //Thinking of Gray Solder Operation.
                                 Object OOO = new Object();
                                 lock (OOO)
                                 {
-                                    SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                    SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantumFinished = false;
-                                    var array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
+                                    SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingBegin = true;
+                                    SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingFinished = false;
+                                    var array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count != 0)
                                     {
@@ -18485,8 +18611,8 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantumBegin = false;
-                            SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingQuantumFinished = true;
+                            SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingBegin = false;
+                            SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingFinished = true;
                         }
                     }
                 }
@@ -18537,21 +18663,21 @@ namespace QuantumRefrigiz
                         //Inititae Local Varibale By Global Gray Elephant Objects Varibales.
                         int ik = (int)ElephantOnTable[i].Row;
                         int jk = (int)ElephantOnTable[i].Column;
-                        //Construction of ThinkingQuantum Objects By Local Varibales.
+                        //Construction of Thinking Objects By Local Varibales.
                         //if (ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count == 0)
-                        //If There is Not ThinkingQuantum Objetive List Elephant Gray. 
+                        //If There is Not Thinking Objetive List Elephant Gray. 
                         if (ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count == 0)
                         {
                             //For All Possible Movments.
                             ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.ElefantMovments, j =>
                             {
-                                //Operational ThinkingQuantum Gray Elephant. 
+                                //Operational Thinking Gray Elephant. 
                                 Object OOO = new Object();
                                 lock (OOO)
                                 {
-                                    ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                    ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantumFinished = false;
-                                    var array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
+                                    ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingBegin = true;
+                                    ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingFinished = false;
+                                    var array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count != 0)
                                     {
@@ -18564,8 +18690,8 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantumBegin = false;
-                            ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingQuantumFinished = true;
+                            ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingBegin = false;
+                            ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingFinished = true;
                         }
                     }
                 }
@@ -18617,7 +18743,7 @@ namespace QuantumRefrigiz
                         //Initiate of Local Variables By Global Gray Hourse Objectives.
                         int ik = (int)HoursesOnTable[i].Row;
                         int jk = (int)HoursesOnTable[i].Column;
-                        //Construction of Gray Hourse ThinkingQuantum Objects..
+                        //Construction of Gray Hourse Thinking Objects..
                         //if (HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count == 0)
                         //When There is Not HourseList Count. 
                         if (HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count == 0)
@@ -18625,13 +18751,13 @@ namespace QuantumRefrigiz
                             //For All Possible Movments.
                             ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.HourseMovments, j =>
                             {
-                                //ThinkingQuantum of Gray Hourse Oprational.
+                                //Thinking of Gray Hourse Oprational.
                                 Object OOO = new Object();
                                 lock (OOO)
                                 {
-                                    HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                    HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantumFinished = false;
-                                    var array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
+                                    HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingBegin = true;
+                                    HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingFinished = false;
+                                    var array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count != 0)
                                     {
@@ -18644,8 +18770,8 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantumBegin = false;
-                            HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingQuantumFinished = true;
+                            HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingBegin = false;
+                            HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingFinished = true;
                         }
                     }
                 }
@@ -18697,9 +18823,9 @@ namespace QuantumRefrigiz
                         //Initaiate of Local Varibales By Global Varoiables.
                         int ik = (int)CastlesOnTable[i].Row;
                         int jk = (int)CastlesOnTable[i].Column;
-                        //Construction of ThinkingQuantum Variables By Local Variables.
+                        //Construction of Thinking Variables By Local Variables.
                         //if (CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count == 0)
-                        //When Count of Table Castles of ThinkingQuantum Not Exist Do Operational.
+                        //When Count of Table Castles of Thinking Not Exist Do Operational.
                         if (CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count == 0)
                         {
                             //For All Possible Movments.
@@ -18708,10 +18834,10 @@ namespace QuantumRefrigiz
                                 Object OOO = new Object();
                                 lock (OOO)
                                 {
-                                    //ThinkingQuantum of Gray Castles Operational.
-                                    CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                    CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingQuantumFinished = false;
-                                    var array = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled));
+                                    //Thinking of Gray Castles Operational.
+                                    CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingBegin = true;
+                                    CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingFinished = false;
+                                    var array = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
 
                                     if (CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count != 0)
@@ -18725,8 +18851,8 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingQuantumBegin = false;
-                            CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingQuantumFinished = true;
+                            CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingBegin = false;
+                            CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingFinished = true;
                         }
                     }
                 }
@@ -18778,21 +18904,21 @@ namespace QuantumRefrigiz
                         //Inititate Local Variables By Global Varibales.
                         int ik = (int)MinisterOnTable[i].Row;
                         int jk = (int)MinisterOnTable[i].Column;
-                        //Construction of ThinkingQuantum Objects Gray Minister.
+                        //Construction of Thinking Objects Gray Minister.
                         //if (MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count == 0)
-                        //If There is Not Minister Of Gray In The ThinkingQuantum Table List.   
+                        //If There is Not Minister Of Gray In The Thinking Table List.   
                         if (MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count == 0)
                         {
                             //For All Possible Movments.
                             // //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.MinisterMovments, j =>
                             {
-                                //ThinkingQuantum of Gray Minister Operational.
+                                //Thinking of Gray Minister Operational.
                                 Object OOO = new Object();
                                 lock (OOO)
                                 {
-                                    MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                    MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantumFinished = false;
-                                    var array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
+                                    MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingBegin = true;
+                                    MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingFinished = false;
+                                    var array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count != 0)
                                     {
@@ -18805,8 +18931,8 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantumBegin = false;
-                            MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingQuantumFinished = true;
+                            MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingBegin = false;
+                            MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingFinished = true;
                         }
                     }
                 }
@@ -18874,21 +19000,21 @@ namespace QuantumRefrigiz
                         //Initiate Local varibale By Global Objective Varibales.
                         int ik = (int)(int)KingOnTable[i].Row;
                         int jk = (int)KingOnTable[i].Column;
-                        //Construction of Gray King ThinkingQuantum Objects.
+                        //Construction of Gray King Thinking Objects.
                         //if (KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count == 0)
-                        //When There is Not ThinkingQuantum Table Gray King Movments.
+                        //When There is Not Thinking Table Gray King Movments.
                         if (KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count == 0)
                         {
                             //For All Possible Gray King Movments.
                             ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.KingMovments, j =>
                             {
-                                //ThinkingQuantum Of Gray King Operatins.
+                                //Thinking Of Gray King Operatins.
                                 Object OOO = new Object();
                                 lock (OOO)
                                 {
-                                    KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                    KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantumFinished = false;
-                                    ; var array = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
+                                    KingOnTable[i].KingThinkingQuantum[0].ThinkingBegin = true;
+                                    KingOnTable[i].KingThinkingQuantum[0].ThinkingFinished = false;
+                                    ; var array = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count != 0)
                                     {
@@ -18901,8 +19027,8 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantumBegin = false;
-                            KingOnTable[i].KingThinkingQuantum[0].ThinkingQuantumFinished = true;
+                            KingOnTable[i].KingThinkingQuantum[0].ThinkingBegin = false;
+                            KingOnTable[i].KingThinkingQuantum[0].ThinkingFinished = true;
                         }
                     }
                 }
@@ -18937,23 +19063,23 @@ namespace QuantumRefrigiz
                         //Initiate Local varibale By Global Objective Varibales.
                         int ik = (int)(int)CastlingOnTable[i].Row;
                         int jk = (int)CastlingOnTable[i].Column;
-                        //Construction of Gray Castling ThinkingQuantum Objects.
-                        //if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count == 0)
-                        //When There is Not ThinkingQuantum Table Gray Castling Movments.
-                        if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count == 0)
+                        //Construction of Gray Castling Thinking Objects.
+                        //if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count == 0)
+                        //When There is Not Thinking Table Gray Castling Movments.
+                        if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count == 0)
                         {
                             //For All Possible Gray Castling Movments.
                             ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.CastlingMovments, j =>
                             {
-                                //ThinkingQuantum Of Gray Castling Operatins.
+                                //Thinking Of Gray Castling Operatins.
                                 Object OOO = new Object();
                                 lock (OOO)
                                 {
-                                    CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingQuantumBegin = true;
-                                    CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingQuantumFinished = false;
-                                    ; var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingQuantum(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
+                                    CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = true;
+                                    CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = false;
+                                    var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
-                                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count != 0)
+                                    if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count != 0)
                                     {
                                         CastlingOnTableMove[i] = true;
                                         AllDraw.ChangedInTreeOccured = true;
@@ -18964,8 +19090,8 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingQuantumBegin = false;
-                            CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingQuantumFinished = true;
+                            CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = false;
+                            CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = true;
                         }
                     }
                 }
@@ -19438,7 +19564,7 @@ namespace QuantumRefrigiz
                                      CurrentMaxLevel = CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
 
                             }*/
-                            /* if (iAStarGreedy < 0 //&& iAStarGreedy < MaxDuringLevelThinkingQuantumCreation
+                            /* if (iAStarGreedy < 0 //&& iAStarGreedy < MaxDuringLevelThinkingCreation
                         )
                              {
                                  IS = true;
@@ -19590,8 +19716,8 @@ namespace QuantumRefrigiz
                 return IS;
             }
         }
-        //AStarGreedy First Initiat ThinkingQuantum Main Method.
-        void AstarGreedyThinkingQuantum(int Order, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int i, int j, int ii, int jj, int[,] Table, Color a, bool TB, bool FOUND, int LeafAStarGreedy)
+        //AStarGreedy First Initiat Thinking Main Method.
+        void AstarGreedyThinking(int Order, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int i, int j, int ii, int jj, int[,] Table, Color a, bool TB, bool FOUND, int LeafAStarGreedy)
         {
 
             Object o = new Object();
@@ -19749,17 +19875,17 @@ namespace QuantumRefrigiz
 
         }
         //initiation setdrawfounding tow stage computational method 
-        public bool InitiateAStarGreedytCreationThinkingQuantum(int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+        public bool InitiateAStarGreedytCreationThinking(int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
      )
         {
 
             Object o = new Object();
             lock (o)
             {
-                if (ThinkingQuantumAllowed == null)
-                    ThinkingQuantumAllowed = new bool[4];
+                if (ThinkingAllowed == null)
+                    ThinkingAllowed = new bool[4];
                 for (int iii = 0; iii < 14; iii++)
-                    ThinkingQuantumAllowed[iii] = true;
+                    ThinkingAllowed[iii] = true;
                 int DummyOrder = new int();
                 DummyOrder = Order;
                 int DummyCurrentOrder = new int();
@@ -19786,14 +19912,14 @@ namespace QuantumRefrigiz
                 //If Order is Gray.
                 if (Order == 1)
                 {
-                    var array1 = Task.Factory.StartNew(() => InitiateAStarGreedytCreationThinkingQuantumGray(DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, i, j, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                    var array1 = Task.Factory.StartNew(() => InitiateAStarGreedytCreationThinkingGray(DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, i, j, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
 
                     array1.Wait();
                     array1.Dispose();
                 }
                 else//Brown Order Considarations.
                 {
-                    var array1 = Task.Factory.StartNew(() => InitiateAStarGreedytCreationThinkingQuantumBrown(DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, i, j, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                    var array1 = Task.Factory.StartNew(() => InitiateAStarGreedytCreationThinkingBrown(DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, i, j, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
 
                     array1.Wait();
                     array1.Dispose();
@@ -19802,7 +19928,7 @@ namespace QuantumRefrigiz
 
             return true;
         }
-        public bool InitiateAStarGreedytCreationThinkingQuantumGray(int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, int i, int j, Color a, int[,] Table, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+        public bool InitiateAStarGreedytCreationThinkingGray(int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, int i, int j, Color a, int[,] Table, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
 )
         {
             Object o = new Object();
@@ -19891,7 +20017,7 @@ namespace QuantumRefrigiz
             }
             return true;
         }
-        public bool InitiateAStarGreedytCreationThinkingQuantumBrown(int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, int i, int j, Color a, int[,] Table, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+        public bool InitiateAStarGreedytCreationThinkingBrown(int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, int i, int j, Color a, int[,] Table, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
 )
         {
             Object o = new Object();
@@ -19986,7 +20112,7 @@ namespace QuantumRefrigiz
             )
         {
 
-            ThinkingQuantumRunInBothSide = true;
+            ThinkingRunInBothSide = true;
             OrderP = Order;
             SetObjectNumbers(Tab);
             int[,] Table = new int[8, 8];
@@ -20033,9 +20159,9 @@ namespace QuantumRefrigiz
                 CurrentAStarGredyMax = AStarGreedyiLevelMax - iAStarGreedy;
             }
             bool Do = false;
-            if (iAStarGreedy >= 0 && iAStarGreedy < MaxDuringLevelThinkingQuantumCreation)
+            if (iAStarGreedy >= 0 && iAStarGreedy < MaxDuringLevelThinkingCreation)
             {
-                MaxDuringLevelThinkingQuantumCreation = iAStarGreedy;
+                MaxDuringLevelThinkingCreation = iAStarGreedy;
                 Object O = new Object();
                 DepthIterative++;
                 lock (O)
@@ -20053,7 +20179,7 @@ namespace QuantumRefrigiz
                 lock (o)
                 {
 
-                    var array1 = Task.Factory.StartNew(() => InitiateAStarGreedytCreationThinkingQuantum(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                    var array1 = Task.Factory.StartNew(() => InitiateAStarGreedytCreationThinking(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
 
                     array1.Wait();
                     array1.Dispose();
@@ -20095,7 +20221,7 @@ namespace QuantumRefrigiz
                         ChessRules.CurrentOrder = DummyCurrentOrder;
                         int Ord = Order, iAStarGreedy1 = iAStarGreedy, ii1 = ii, jj1 = jj, ik1 = ik, j1 = j;
 
-                        var array1 = Task.Factory.StartNew(() => Do = this.FullGameThinkingQuantumTree(Ord, iAStarGreedy1 - 1, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
+                        var array1 = Task.Factory.StartNew(() => Do = this.FullGameThinkingTree(Ord, iAStarGreedy1 - 1, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
 
 
                         array1.Wait();
@@ -20103,14 +20229,14 @@ namespace QuantumRefrigiz
                         if (NumberOfnewMove == 0)
                         {
                             UsedRestrictedMoveBlitzAndFull = false;
-                            array1 = Task.Factory.StartNew(() => Do = this.FullGameThinkingQuantumTree(Ord, iAStarGreedy1, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
+                            array1 = Task.Factory.StartNew(() => Do = this.FullGameThinkingTree(Ord, iAStarGreedy1, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
                             array1.Wait();
                             array1.Dispose();
                         }
-                        var array11 = Task.Factory.StartNew(() => FullGameThinkingQuantumTreeWin(Order));
+                        var array11 = Task.Factory.StartNew(() => FullGameThinkingTreeWin(Order));
                         array11.Wait();
                         array11.Dispose();
-                        array11 = Task.Factory.StartNew(() => FullGameThinkingQuantumTreeLose(Order));
+                        array11 = Task.Factory.StartNew(() => FullGameThinkingTreeLose(Order));
                         array11.Wait();
                         array11.Dispose();
 
@@ -20121,8 +20247,8 @@ namespace QuantumRefrigiz
             lock (Om)
             {
                 if (!Do)
-                    if (iAStarGreedy < MinThinkingQuantumTreeDepth)
-                        MinThinkingQuantumTreeDepth = iAStarGreedy;
+                    if (iAStarGreedy < MinThinkingTreeDepth)
+                        MinThinkingTreeDepth = iAStarGreedy;
             }
             tH.Clear();
 
@@ -20176,9 +20302,9 @@ namespace QuantumRefrigiz
                      }
                      CurrentAStarGredyMax = AStarGreedyiLevelMax - iAStarGreedy;
 
-                     if (iAStarGreedy >= 0 && iAStarGreedy < MaxDuringLevelThinkingQuantumCreation)
+                     if (iAStarGreedy >= 0 && iAStarGreedy < MaxDuringLevelThinkingCreation)
                      {
-                         MaxDuringLevelThinkingQuantumCreation = iAStarGreedy;
+                         MaxDuringLevelThinkingCreation = iAStarGreedy;
                          Object O = new Object();
                          DepthIterative++;
                          lock (O)
@@ -20220,7 +20346,7 @@ namespace QuantumRefrigiz
 
                              //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
                              {
-                                 Do |= this.FullGameThinkingQuantumTree(Ord, iAStarGreedy1, ii1, jj1, ik1, j1, false, LeafAStarGreedy);
+                                 Do |= this.FullGameThinkingTree(Ord, iAStarGreedy1, ii1, jj1, ik1, j1, false, LeafAStarGreedy);
                              }
                          }
                      }
@@ -20228,8 +20354,8 @@ namespace QuantumRefrigiz
                      lock (Om)
                      {
                          if (!Do)
-                             if (iAStarGreedy < MinThinkingQuantumTreeDepth)
-                                 MinThinkingQuantumTreeDepth = iAStarGreedy;
+                             if (iAStarGreedy < MinThinkingTreeDepth)
+                                 MinThinkingTreeDepth = iAStarGreedy;
                      }
 
                      return this;
@@ -20277,8 +20403,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 if (Kind == 6 && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count > 0)
                 KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Clear();
             else//king
-                if ((Kind == 7|| Kind == -7) && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > 0)
-                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Clear();
+                if ((Kind == 7|| Kind == -7) && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > 0)
+                CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Clear();
         }
         //deterministic of calculated computational deeper
         bool IsThereCalculatedAStarGreedyNode()
@@ -20390,9 +20516,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 //king
                 for (int i = 0; i < 1; i++)
                 {
-                    if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null)
+                    if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null)
                     {
-                        if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListKing.Count > 0)
+                        if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                         {
                             Is = true;
                             break;
@@ -20498,9 +20624,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 }
             }else
             if (Kind == 7 || Kind == -7)
-                if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling!= null)
+                if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling!= null)
                 {
-                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListKing.Count > 0)
+                    if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                     {
                         Is = true;
                     }
@@ -20571,10 +20697,10 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else//king
             if (Kind == 7 || Kind == -7)
             {
-                if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null)
+                if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
                 {
-                    for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; j++)
-                        Is = Is && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].IsThereCalculatedAStarGreedyNode();
+                    for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; j++)
+                        Is = Is && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsThereCalculatedAStarGreedyNode();
                 }
             }
             return Is;
@@ -20624,13 +20750,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 else//king
                 if (Kind == 7 || Kind == -7)
                 {
-                    if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j)
-                        Is = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].IsThereCalculatedAStarGreedyNode();
+                    if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                        Is = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsThereCalculatedAStarGreedyNode();
                 }
             }
             return (!Is);
         }
-        bool BlitzGameThinkingQuantumTreeBoundryConditions(int ik, int Kind)
+        bool BlitzGameThinkingTreeBoundryConditions(int ik, int Kind)
         {
             if (Kind == 1)
             {
@@ -20722,11 +20848,11 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return true;
                 if (CastlingOnTable[ik] == null)
                     return true;
-                if (CastlingOnTable[ik].CastlingThinkingQuantum == null)
+                if (CastlingOnTable[ik].CastlingThinking == null)
                     return true;
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] == null)
+                if (CastlingOnTable[ik].CastlingThinking[0] == null)
                     return true;
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].HeuristicListCastling == null)
+                if (CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling == null)
                     return true;
             }
             return false;
@@ -20790,22 +20916,22 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else
             if (Kind == 7 || Kind == -7)
             {
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedyMove.Count > j)
+                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedyMove.Count > j)
                 {
-                    if ((CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedyMove[j] && UsedRestrictedMoveBlitzAndFull))
+                    if ((CastlingOnTable[ik].CastlingThinking[0].AStarGreedyMove[j] && UsedRestrictedMoveBlitzAndFull))
                         return true;
                 }
             }
             return false;
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeSolderGray(ref int PreviousLessS, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeSolderGray(ref int PreviousLessS, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Soldeir
             for (ik = 0; ik < SodierMidle; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 1));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 1));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -20877,13 +21003,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeElephantGray(ref int PreviousLessE, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeElephantGray(ref int PreviousLessE, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Elephant
             for (ik = 0; ik < ElefantMidle; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 2));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 2));
                 ah.Wait();
                 ah.Dispose();
                 if (ac) continue;
@@ -20953,13 +21079,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeHourseGray(ref int PreviousLessH, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeHourseGray(ref int PreviousLessH, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Hourse.
             for (ik = 0; ik < HourseMidle; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 3));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 3));
                 ah.Wait();
                 ah.Dispose();
                 if (ac) continue;
@@ -21029,13 +21155,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeCastleGray(ref int PreviousLessB, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeCastleGray(ref int PreviousLessB, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Castle.
             for (ik = 0; ik < CastleMidle; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 4));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 4));
                 ah.Wait();
                 ah.Dispose();
                 if (ac) continue;
@@ -21106,13 +21232,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeMinisterGray(ref int PreviousLessM, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeMinisterGray(ref int PreviousLessM, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Minister.
             for (ik = 0; ik < MinisterMidle; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 5));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 5));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -21183,13 +21309,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeKingGray(ref int PreviousLessK, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeKingGray(ref int PreviousLessK, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //King.
             for (ik = 0; ik < KingMidle; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 6));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 6));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -21260,35 +21386,35 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeCastlingGray(ref int PreviousLessK, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeCastlingGray(ref int PreviousLessK, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Castling.
             for (ik = 0; ik < 1; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 7));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 7));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
                     continue;
                 //when there is computational lists
-                for (j = 0; j < CastlingOnTable[ik].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
+                for (j = 0; j < CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Count; j++)
                 {
                     //when node is serving node continue
-                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].IsSupHu[j]
+                    if (CastlingOnTable[ik].CastlingThinking[0].IsSupHu[j]
                       )
                         continue;
                     Object O = new Object();
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        var ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 6, ik, j));
+                        var ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 7, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
                             continue;
                         //when node have Castlings dangoures ignore and continue.
-                        var ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]), Order, ik, j, 0));
+                        var ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order, ik, j, 0));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -21297,7 +21423,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(7, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -21306,7 +21432,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 int pre = PreviousLessK;
-                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -21316,7 +21442,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) > PreviousLessK || (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) > PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -21325,7 +21451,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 int pre = PreviousLessK;
-                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -21337,7 +21463,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameTreeCreationThinkingQuantumTreeSolder(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameTreeCreationThinkingTreeSolder(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             List<Task> tHA = new List<Task>();
             Object O1 = new Object();
@@ -21359,7 +21485,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameTreeCreationThinkingQuantumTreeElephant(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameTreeCreationThinkingTreeElephant(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             List<Task> tHA = new List<Task>();
             Object O1 = new Object();
@@ -21381,7 +21507,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameTreeCreationThinkingQuantumTreeHourse(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameTreeCreationThinkingTreeHourse(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             List<Task> tHA = new List<Task>();
             Object O1 = new Object();
@@ -21403,7 +21529,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameTreeCreationThinkingQuantumTreeCastle(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameTreeCreationThinkingTreeCastle(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             List<Task> tHA = new List<Task>();
             Object O1 = new Object();
@@ -21425,7 +21551,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameTreeCreationThinkingQuantumTreeMinister(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameTreeCreationThinkingTreeMinister(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             List<Task> tHA = new List<Task>();
             Object O1 = new Object();
@@ -21447,7 +21573,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameTreeCreationThinkingQuantumTreeKing(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameTreeCreationThinkingTreeKing(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             Object O1 = new Object();
             lock (O1)
@@ -21467,7 +21593,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 }
             }
         }//blitz for determination about best movment of every objects
-        void BlitzGameTreeCreationThinkingQuantumTreeCastling(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameTreeCreationThinkingTreeCastling(Color a, int[] Index, int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             Object O1 = new Object();
             lock (O1)
@@ -21475,25 +21601,25 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 //when do permite
                 if (Index[6] != -1)
                 {
-                    if (CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
-                    CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Clear();
-                    CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].TableListCastling[jIndex[6]]));
-                    CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].SetRowColumn(0);
-                    CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
-                    var H = Task.Factory.StartNew(() => CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].RowColumnCastling[jIndex[6]][0], CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].RowColumnCastling[jIndex[6]][1], a, CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].TableListCastling[jIndex[6]], Order, false, FOUND, LeafAStarGreedy));
+                    if (CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].TableList.Clear();
+                    CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(CastlingOnTable[Index[6]].CastlingThinking[0].TableListCastling[jIndex[6]]));
+                    CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].SetRowColumn(0);
+                    CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                    var H = Task.Factory.StartNew(() => CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, CastlingOnTable[Index[6]].CastlingThinking[0].RowColumnCastling[jIndex[6]][0], CastlingOnTable[Index[6]].CastlingThinking[0].RowColumnCastling[jIndex[6]][1], a, CastlingOnTable[Index[6]].CastlingThinking[0].TableListCastling[jIndex[6]], Order, false, FOUND, LeafAStarGreedy));
                     H.Wait();
                     H.Dispose();
                 }
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeSolderBrown(ref int PreviousLessS, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeSolderBrown(ref int PreviousLessS, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             for (ik = SodierMidle; ik < SodierHigh; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 1));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 1));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -21561,13 +21687,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeElephantBrown(ref int PreviousLessE, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeElephantBrown(ref int PreviousLessE, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Elephant
             for (ik = ElefantMidle; ik < ElefantHigh; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 2));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 2));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -21634,13 +21760,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeHourseBrown(ref int PreviousLessH, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeHourseBrown(ref int PreviousLessH, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Hourse.
             for (ik = HourseMidle; ik < HourseHight; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 3));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 3));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -21739,13 +21865,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 lock (O)
                 {
 
-                    BlitzGameThinkingQuantumTreeSolderGray(ref PS, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeElephantGray(ref PE, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeHourseGray(ref PH, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeCastleGray(ref PB, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeMinisterGray(ref PM, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeKingGray(ref PK, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeCastlingGray(ref PA, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeSolderGray(ref PS, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeElephantGray(ref PE, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeHourseGray(ref PH, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeCastleGray(ref PB, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeMinisterGray(ref PM, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeKingGray(ref PK, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeCastlingGray(ref PA, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
 
                     if (AllIndexIsNull(index))
                     {
@@ -21767,13 +21893,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jindex[h] = -1;
                         }
                         UsedRestrictedMoveBlitzAndFull = false;
-                        BlitzGameThinkingQuantumTreeSolderGray(ref PS, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeElephantGray(ref PE, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeHourseGray(ref PH, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeCastleGray(ref PB, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeMinisterGray(ref PM, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeKingGray(ref PK, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeCastlingGray(ref PA, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeSolderGray(ref PS, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeElephantGray(ref PE, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeHourseGray(ref PH, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeCastleGray(ref PB, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeMinisterGray(ref PM, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeKingGray(ref PK, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeCastlingGray(ref PA, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
                     }
                 }
             }
@@ -21782,13 +21908,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 Object O = new Object();
                 lock (O)
                 {
-                    BlitzGameThinkingQuantumTreeSolderBrown(ref PS, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeElephantBrown(ref PE, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeHourseBrown(ref PH, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeCastleBrown(ref PB, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeMinisterBrown(ref PM, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeKingBrown(ref PK, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                    BlitzGameThinkingQuantumTreeCastlingBrown(ref PA, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeSolderBrown(ref PS, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeElephantBrown(ref PE, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeHourseBrown(ref PH, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeCastleBrown(ref PB, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeMinisterBrown(ref PM, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeKingBrown(ref PK, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                    BlitzGameThinkingTreeCastlingBrown(ref PA, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
                     if (AllIndexIsNull(index))
                     {
                         Kind = -1;
@@ -21809,13 +21935,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jindex[h] = -1;
                         }
                         UsedRestrictedMoveBlitzAndFull = false;
-                        BlitzGameThinkingQuantumTreeSolderBrown(ref PS, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeElephantBrown(ref PE, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeHourseBrown(ref PH, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeCastleBrown(ref PB, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeMinisterBrown(ref PM, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeKingBrown(ref PK, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
-                        BlitzGameThinkingQuantumTreeCastlingBrown(ref PA, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeSolderBrown(ref PS, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeElephantBrown(ref PE, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeHourseBrown(ref PH, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeCastleBrown(ref PB, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeMinisterBrown(ref PM, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeKingBrown(ref PK, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
+                        BlitzGameThinkingTreeCastlingBrown(ref PA, ref index, ref jindex, Order, 0, 0, 0, false, LeafAStarGreedy);
                     }
                 }
             }
@@ -21844,13 +21970,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return System.Math.Abs(Kind);
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeCastleBrown(ref int PreviousLessB, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeCastleBrown(ref int PreviousLessB, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Castles.
             for (ik = CastleMidle; ik < CastleHigh; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 4));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 4));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -21919,13 +22045,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeMinisterBrown(ref int PreviousLessM, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeMinisterBrown(ref int PreviousLessM, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Minister.
             for (ik = MinisterMidle; ik < MinisterHigh; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 5));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 5));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -21994,13 +22120,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeKingBrown(ref int PreviousLessK, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeKingBrown(ref int PreviousLessK, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //King.
             for (ik = KingMidle; ik < KingHigh; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, 6));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 6));
                 ah.Wait();
                 ah.Dispose();
                 if (ac) continue;
@@ -22067,35 +22193,35 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //blitz for determination about best movment of every objects
-        void BlitzGameThinkingQuantumTreeCastlingBrown(ref int PreviousLessK, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTreeCastlingBrown(ref int PreviousLessK, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
             //Castling.
             for (ik = 0; ik < 1; ik++)
             {
                 bool ac = false;
-                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingQuantumTreeBoundryConditions(ik, -7));
+                var ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, -7));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
                     continue;
                 //when there is computational lists
-                for (j = 0; j < CastlingOnTable[ik].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
+                for (j = 0; j < CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Count; j++)
                 {
                     //when node is serving node continue
-                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].IsSupHu[j]
+                    if (CastlingOnTable[ik].CastlingThinking[0].IsSupHu[j]
                       )
                         continue;
                     Object O = new Object();
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        var ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 6, ik, j));
+                        var ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 7, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
                             continue;
                         //when node have Castlings dangoures ignore and continue.
-                        var ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]), Order, ik, j, 0));
+                        var ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order, ik, j, 0));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -22104,7 +22230,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(7, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -22113,7 +22239,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 int pre = PreviousLessK;
-                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -22123,7 +22249,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) > PreviousLessK || (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) > PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -22132,7 +22258,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 int pre = PreviousLessK;
-                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -22143,7 +22269,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 }
             }
         }
-        void BlitzGameThinkingQuantumTree(int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
+        void BlitzGameThinkingTree(int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
         {
 
             //Initiatye Variables.
@@ -22176,19 +22302,19 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 lock (O1)
                 {
                     Index[0] = -1;
-                    BlitzGameThinkingQuantumTreeSolderGray(ref PreviousLessS, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeSolderGray(ref PreviousLessS, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[1] = -1;
-                    BlitzGameThinkingQuantumTreeElephantGray(ref PreviousLessE, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeElephantGray(ref PreviousLessE, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[2] = -1;
-                    BlitzGameThinkingQuantumTreeHourseGray(ref PreviousLessH, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeHourseGray(ref PreviousLessH, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[3] = -1;
-                    BlitzGameThinkingQuantumTreeCastleGray(ref PreviousLessB, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeCastleGray(ref PreviousLessB, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[4] = -1;
-                    BlitzGameThinkingQuantumTreeMinisterGray(ref PreviousLessM, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeMinisterGray(ref PreviousLessM, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[5] = -1;
-                    BlitzGameThinkingQuantumTreeKingGray(ref PreviousLessK, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeKingGray(ref PreviousLessK, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[6] = -1;
-                    BlitzGameThinkingQuantumTreeCastlingGray(ref PreviousLessA, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeCastlingGray(ref PreviousLessA, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                 }
                 int JI = -1;
                 Object O2 = new Object();
@@ -22202,7 +22328,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     if (JI != -1)
                     {
                         if (JI == 0)
-                            BlitzGameTreeCreationThinkingQuantumTreeSolder(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeSolder(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22214,7 +22340,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                         if (JI == 1)
-                            BlitzGameTreeCreationThinkingQuantumTreeElephant(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeElephant(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22226,7 +22352,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                         if (JI == 2)
-                            BlitzGameTreeCreationThinkingQuantumTreeHourse(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeHourse(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22238,7 +22364,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                         if (JI == 3)
-                            BlitzGameTreeCreationThinkingQuantumTreeCastle(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeCastle(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22250,7 +22376,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                         if (JI == 4)
-                            BlitzGameTreeCreationThinkingQuantumTreeMinister(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeMinister(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22262,7 +22388,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                         if (JI == 5)
-                            BlitzGameTreeCreationThinkingQuantumTreeKing(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeKing(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
 
@@ -22273,7 +22399,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                         if (JI == 6)
-                            BlitzGameTreeCreationThinkingQuantumTreeCastling(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeCastling(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     }
                 }
             }
@@ -22284,19 +22410,19 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 lock (O1)
                 {
                     Index[0] = -1;
-                    BlitzGameThinkingQuantumTreeSolderBrown(ref PreviousLessS, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeSolderBrown(ref PreviousLessS, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[1] = -1;
-                    BlitzGameThinkingQuantumTreeElephantBrown(ref PreviousLessE, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeElephantBrown(ref PreviousLessE, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[2] = -1;
-                    BlitzGameThinkingQuantumTreeHourseBrown(ref PreviousLessH, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeHourseBrown(ref PreviousLessH, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[3] = -1;
-                    BlitzGameThinkingQuantumTreeCastleBrown(ref PreviousLessB, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeCastleBrown(ref PreviousLessB, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[4] = -1;
-                    BlitzGameThinkingQuantumTreeMinisterBrown(ref PreviousLessM, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeMinisterBrown(ref PreviousLessM, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[5] = -1;
-                    BlitzGameThinkingQuantumTreeKingBrown(ref PreviousLessK, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeKingBrown(ref PreviousLessK, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     Index[6] = -1;
-                    BlitzGameThinkingQuantumTreeCastlingBrown(ref PreviousLessA, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                    BlitzGameThinkingTreeCastlingBrown(ref PreviousLessA, ref Index, ref jIndex, Order, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                 }
                 int JI = -1;
                 Object O2 = new Object();
@@ -22309,7 +22435,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 {
                     if (JI != -1)
                     {
-                        BlitzGameTreeCreationThinkingQuantumTreeSolder(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                        BlitzGameTreeCreationThinkingTreeSolder(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22318,7 +22444,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             a = Color.Gray;
                         else
                             a = Color.Brown;
-                        BlitzGameTreeCreationThinkingQuantumTreeElephant(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                        BlitzGameTreeCreationThinkingTreeElephant(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22328,7 +22454,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                             a = Color.Brown;
                         if (JI == 2)
-                            BlitzGameTreeCreationThinkingQuantumTreeHourse(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeHourse(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22338,7 +22464,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                             a = Color.Brown;
                         if (JI == 3)
-                            BlitzGameTreeCreationThinkingQuantumTreeCastle(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeCastle(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22350,7 +22476,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                         if (JI == 4)
-                            BlitzGameTreeCreationThinkingQuantumTreeMinister(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeMinister(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                         //Initiatye Variables.
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22360,7 +22486,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                             a = Color.Brown;
                         if (JI == 5)
-                            BlitzGameTreeCreationThinkingQuantumTreeKing(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeKing(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
 
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -22372,7 +22498,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                         if (JI == 6)
-                            BlitzGameTreeCreationThinkingQuantumTreeCastling(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
+                            BlitzGameTreeCreationThinkingTreeCastling(a, Index, jIndex, Order * -1, iAStarGreedy, ik, j, FOUND, LeafAStarGreedy);
                     }
                 }
             }
@@ -22735,7 +22861,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             Sum = A.CastlingOnTable[i].LoseOcuuredatChiled[0];
                         if (Sum == 5)
                         {
-                            if (IsMovableLoseOcuuredatChiled(CloneATable(TableList[0]), 6, Order, i))
+                            if (IsMovableLoseOcuuredatChiled(CloneATable(TableList[0]), 7, Order, i))
                             {
                                 A.CastlingOnTable[i].WinOcuuredatChiled = Sum = 5;
                                 return 5;
@@ -22843,7 +22969,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             Sum = A.CastlingOnTable[i].LoseOcuuredatChiled[0];
                         if (Sum == 5)
                         {
-                            if (IsMovableLoseOcuuredatChiled(CloneATable(TableList[0]), 6, Order, i))
+                            if (IsMovableLoseOcuuredatChiled(CloneATable(TableList[0]), 7, Order, i))
                             {
                                 A.CastlingOnTable[i].WinOcuuredatChiled = Sum = 5;
                                 return 5;
@@ -22854,53 +22980,53 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
             return Sum;
         }
-        //Semaphore determination about ThinkingQuantum operational completed.
-        bool ReturnFullGameThinkingQuantumTreeSemaphore(int ik, int kind)
+        //Semaphore determination about Thinking operational completed.
+        bool ReturnFullGameThinkingTreeSemaphore(int ik, int kind)
         {
 
             //soldier
             if (kind == 1)
             {
-                if (SolderesOnTable[ik].SoldierThinkingQuantum[0].ThinkingQuantumBegin && (!SolderesOnTable[ik].SoldierThinkingQuantum[0].ThinkingQuantumFinished))
+                if (SolderesOnTable[ik].SoldierThinkingQuantum[0].ThinkingBegin && (!SolderesOnTable[ik].SoldierThinkingQuantum[0].ThinkingFinished))
                     return true;
             }
             else//elephant
                 if (kind == 2)
             {
-                if (ElephantOnTable[ik].ElefantThinkingQuantum[0].ThinkingQuantumBegin && (!ElephantOnTable[ik].ElefantThinkingQuantum[0].ThinkingQuantumFinished))
+                if (ElephantOnTable[ik].ElefantThinkingQuantum[0].ThinkingBegin && (!ElephantOnTable[ik].ElefantThinkingQuantum[0].ThinkingFinished))
                     return true;
             }
             else if (kind == 3)//hourse
             {
-                if (HoursesOnTable[ik].HourseThinkingQuantum[0].ThinkingQuantumBegin && (!HoursesOnTable[ik].HourseThinkingQuantum[0].ThinkingQuantumFinished))
+                if (HoursesOnTable[ik].HourseThinkingQuantum[0].ThinkingBegin && (!HoursesOnTable[ik].HourseThinkingQuantum[0].ThinkingFinished))
                     return true;
             }
             else if (kind == 4)//Castle
             {
-                if (CastlesOnTable[ik].CastleThinkingQuantum[0].ThinkingQuantumBegin && (!CastlesOnTable[ik].CastleThinkingQuantum[0].ThinkingQuantumFinished))
+                if (CastlesOnTable[ik].CastleThinkingQuantum[0].ThinkingBegin && (!CastlesOnTable[ik].CastleThinkingQuantum[0].ThinkingFinished))
                     return true;
             }
             else
                 if (kind == 5)//minister
             {
-                if (MinisterOnTable[ik].MinisterThinkingQuantum[0].ThinkingQuantumBegin && (!MinisterOnTable[ik].MinisterThinkingQuantum[0].ThinkingQuantumFinished))
+                if (MinisterOnTable[ik].MinisterThinkingQuantum[0].ThinkingBegin && (!MinisterOnTable[ik].MinisterThinkingQuantum[0].ThinkingFinished))
                     return true;
             }
             else if (kind == 6)//king
             {
-                if (KingOnTable[ik].KingThinkingQuantum[0].ThinkingQuantumBegin && (!KingOnTable[ik].KingThinkingQuantum[0].ThinkingQuantumFinished))
+                if (KingOnTable[ik].KingThinkingQuantum[0].ThinkingBegin && (!KingOnTable[ik].KingThinkingQuantum[0].ThinkingFinished))
                     return true;
             }
             else if (kind == 7 || kind == -7)//king
             {
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].ThinkingQuantumBegin && (!CastlingOnTable[ik].CastlingThinkingQuantum[0].ThinkingQuantumFinished))
+                if (CastlingOnTable[ik].CastlingThinking[0].ThinkingBegin && (!CastlingOnTable[ik].CastlingThinking[0].ThinkingFinished))
                     return true;
             }
 
             return false;
         }
         //determination about learning autamata semaphores permit of operational computational 
-        bool ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(int ik, int kind, bool Penalty, int j)
+        bool ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(int ik, int kind, bool Penalty, int j)
         {
 
             //when is learning autamata
@@ -22941,7 +23067,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 }
                 else if (kind == 7 || kind == -7)//king
                 {
-                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListKing[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
+                    if (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
                         return true;
                 }
             }
@@ -22981,7 +23107,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 }
                 else if (kind == 7||kind==-7)//king
                 {
-                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListKing[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
+                    if (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
                         return true;
                 }
             }
@@ -22989,7 +23115,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return false;
         }
         //determiniation about deeper increamental of a part
-        void BlitzNotValidFullGameThinkingQuantumTreePartOne(int ik, int Order, int kind)
+        void BlitzNotValidFullGameThinkingTreePartOne(int ik, int Order, int kind)
         {
 
             //soldier
@@ -23062,18 +23188,18 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else if (kind == 7||kind==-7)//king
             {
                 //when valid 
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count)
+                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count)
                 {
-                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                    if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 }
             }
 
         }
         //determiniation about deeper increamental of a part
-        void BlitzNotValidFullGameThinkingQuantumTreePartTow(int ik, int Order, int kind)
+        void BlitzNotValidFullGameThinkingTreePartTow(int ik, int Order, int kind)
         {
 
             if (kind == 1)//soldier
@@ -23145,18 +23271,18 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else if (kind == 7 || kind == -7)//king
             {
                 //when valid 
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count)
+                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count)
                 {
-                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                    if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 }
             }
 
         }
         //determiniation about deeper increamental of a part
-        void BlitzNotValidFullGameThinkingQuantumTreePartThree(int ik, int Order, int kind)
+        void BlitzNotValidFullGameThinkingTreePartThree(int ik, int Order, int kind)
         {
 
 
@@ -23230,18 +23356,18 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else if (kind == 7 || kind == -7)//king
             {
                 //when valid 
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count)
+                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count)
                 {
-                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                    if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 }
             }
 
         }
         //operantinal of creation of current deeper node and set string making
-        void FullGameThinkingQuantumTreeInitialization(int ik, int j, int Order, int kind)
+        void FullGameThinkingTreeInitialization(int ik, int j, int Order, int kind)
         {
 
             //soldier
@@ -23332,21 +23458,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else if (kind == 7||kind==-7)//king
             {
                 //when valid do create of deeper node and string making
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count == CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count)
+                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count == CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count)
                 {
-                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Clear();
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]));
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].SetRowColumn(0);
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].SetRowColumnFinishedWait();
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
+                    if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].TableList.Clear();
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]));
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].SetRowColumn(0);
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].SetRowColumnFinishedWait();
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
                 }
             }
 
         }
         //main operation of full game deeper created compuational to deeper need.
-        void OpOfFullGameThinkingQuantumTree(int ik, int j, int Order, int iAStarGreedy, int ii, int jj, Color a, int kind, bool FOUND, int LeafAStarGreedy)
+        void OpOfFullGameThinkingTree(int ik, int j, int Order, int iAStarGreedy, int ii, int jj, Color a, int kind, bool FOUND, int LeafAStarGreedy)
         {
             if (UsedRestrictedBlitzMoveAstarGreedy(kind, ik, j))
                 return;
@@ -23503,27 +23629,27 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 //if (!IsNotAStarGreedyConanaied(ik, j, 6))
 
                 //minitor
-                OutPutAction = " " + Alphabet(CastlingOnTable[ik].CastlingThinkingQuantum[0].Row) + Number(CastlingOnTable[ik].CastlingThinkingQuantum[0].Column) + Alphabet(CastlingOnTable[ik].CastlingThinkingQuantum[0].RowColumnCastling[j][0]) + Number(CastlingOnTable[ik].CastlingThinkingQuantum[0].RowColumnCastling[j][1]);
+                OutPutAction = " " + Alphabet(CastlingOnTable[ik].CastlingThinking[0].Row) + Number(CastlingOnTable[ik].CastlingThinking[0].Column) + Alphabet(CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling[j][0]) + Number(CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling[j][1]);
                 //if (Order == 1)
                 //else
 
                 //operational 
                 PerceptionCount++;
-                var iii = CastlingOnTable[ik].CastlingThinkingQuantum[0].RowColumnCastling[j][0];
-                var jjj = CastlingOnTable[ik].CastlingThinkingQuantum[0].RowColumnCastling[j][1];
+                var iii = CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling[j][0];
+                var jjj = CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling[j][1];
                 Color aa = a;
-                int[,] Tab = CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]);
+                int[,] Tab = CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]);
                 int Ord = Order;
-                var array1 = Task.Factory.StartNew(() => CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(0, iii, jjj, aa, CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
+                var array1 = Task.Factory.StartNew(() => CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(0, iii, jjj, aa, CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
 
                 array1.Wait(); array1.Dispose();
-                CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
-                CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedyMove.Count > 0)
-                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedyMove[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1] = true;
+                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
+                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedyMove.Count > 0)
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedyMove[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1] = true;
             }
         }
-        bool ReturnFullGameThinkingQuantumTreeIligalSemaphore(int ik, int kind)
+        bool ReturnFullGameThinkingTreeIligalSemaphore(int ik, int kind)
         {
             if (kind == 1)
             {
@@ -23559,20 +23685,20 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
             else if (kind == 7|| kind == -7)//king
             {
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count == 0)
+                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count == 0)
                     return true;
             }
             return false;
         }
         //decicion for deeper satisfied boundry condition of full game methods group
-        void ReturnFullGameThinkingQuantumTreeSemaphoreAs(int Order, int iAStarGreedy, int ik, int Kind)
+        void ReturnFullGameThinkingTreeSemaphoreAs(int Order, int iAStarGreedy, int ik, int Kind)
         {
             Object OO1 = new Object();
             lock (OO1)
             {
                 TaskBegin++;
                 //main decistion
-                while (ReturnFullGameThinkingQuantumTreeSemaphore(ik, Kind))
+                while (ReturnFullGameThinkingTreeSemaphore(ik, Kind))
                 {
                     //when search finished stop and return
                     if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
@@ -23581,7 +23707,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             }
         }
-        public int FullGameThinkingQuantumTreeWin(int Order)
+        public int FullGameThinkingTreeWin(int Order)
         {
 
             if (Order == 1)
@@ -23601,7 +23727,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                            )
                                 {   //non learning autamata victory leafs
                                     for (int h = 0; h < SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count && SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy != null; h++)
-                                        SolderesOnTable[ik].WinOcuuredatChiled += SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        SolderesOnTable[ik].WinOcuuredatChiled += SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     SolderesOnTable[ik].SoldierThinkingQuantum[0].TowDistrurbProperUse(ref SolderesOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23623,7 +23749,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
-                                        ElephantOnTable[ik].WinOcuuredatChiled += ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        ElephantOnTable[ik].WinOcuuredatChiled += ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     ElephantOnTable[ik].ElefantThinkingQuantum[0].TowDistrurbProperUse(ref ElephantOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23644,7 +23770,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {     //non learning autamata victory leafs
                                     for (int h = 0; h < HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy != null; h++)
-                                        HoursesOnTable[ik].WinOcuuredatChiled += HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        HoursesOnTable[ik].WinOcuuredatChiled += HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
 
                                     HoursesOnTable[ik].HourseThinkingQuantum[0].TowDistrurbProperUse(ref HoursesOnTable[ik].LoseOcuuredatChiled);
                                 }
@@ -23667,7 +23793,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy != null; h++)
-                                        CastlesOnTable[ik].WinOcuuredatChiled += CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        CastlesOnTable[ik].WinOcuuredatChiled += CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     CastlesOnTable[ik].CastleThinkingQuantum[0].TowDistrurbProperUse(ref CastlesOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23689,7 +23815,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
-                                        MinisterOnTable[ik].WinOcuuredatChiled += MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        MinisterOnTable[ik].WinOcuuredatChiled += MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     MinisterOnTable[ik].MinisterThinkingQuantum[0].TowDistrurbProperUse(ref MinisterOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23711,7 +23837,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {    //non learning autamata victory leafs
                                     for (int h = 0; h < KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy != null; h++)
-                                        KingOnTable[ik].WinOcuuredatChiled += KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        KingOnTable[ik].WinOcuuredatChiled += KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     KingOnTable[ik].KingThinkingQuantum[0].TowDistrurbProperUse(ref KingOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23726,15 +23852,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (CastlingOnTable[ik] != null
   )
                         {
-                            if (CastlingOnTable[ik].CastlingThinkingQuantum != null
+                            if (CastlingOnTable[ik].CastlingThinking != null
                      )
                             {
-                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
+                                if (CastlingOnTable[ik].CastlingThinking[0] != null
                              )
                                 {    //non learning autamata victory leafs
-                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
-                                    CastlingOnTable[ik].CastlingThinkingQuantum[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
+                                    CastlingOnTable[ik].CastlingThinking[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
                         }
@@ -23758,7 +23884,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                            )
                                 {   //non learning autamata victory leafs
                                     for (int h = 0; h < SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count && SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy != null; h++)
-                                        SolderesOnTable[ik].WinOcuuredatChiled += SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        SolderesOnTable[ik].WinOcuuredatChiled += SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     SolderesOnTable[ik].SoldierThinkingQuantum[0].TowDistrurbProperUse(ref SolderesOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23781,7 +23907,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
-                                        ElephantOnTable[ik].WinOcuuredatChiled += ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        ElephantOnTable[ik].WinOcuuredatChiled += ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     ElephantOnTable[ik].ElefantThinkingQuantum[0].TowDistrurbProperUse(ref ElephantOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23803,7 +23929,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {     //non learning autamata victory leafs
                                     for (int h = 0; h < HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy != null; h++)
-                                        HoursesOnTable[ik].WinOcuuredatChiled += HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        HoursesOnTable[ik].WinOcuuredatChiled += HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
 
                                     HoursesOnTable[ik].HourseThinkingQuantum[0].TowDistrurbProperUse(ref HoursesOnTable[ik].LoseOcuuredatChiled);
                                 }
@@ -23828,7 +23954,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy != null; h++)
-                                        CastlesOnTable[ik].WinOcuuredatChiled += CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        CastlesOnTable[ik].WinOcuuredatChiled += CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     CastlesOnTable[ik].CastleThinkingQuantum[0].TowDistrurbProperUse(ref CastlesOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23851,7 +23977,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
-                                        MinisterOnTable[ik].WinOcuuredatChiled += MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        MinisterOnTable[ik].WinOcuuredatChiled += MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     MinisterOnTable[ik].MinisterThinkingQuantum[0].TowDistrurbProperUse(ref MinisterOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23873,7 +23999,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {    //non learning autamata victory leafs
                                     for (int h = 0; h < KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy != null; h++)
-                                        KingOnTable[ik].WinOcuuredatChiled += KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                        KingOnTable[ik].WinOcuuredatChiled += KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
                                     KingOnTable[ik].KingThinkingQuantum[0].TowDistrurbProperUse(ref KingOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
@@ -23889,15 +24015,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (CastlingOnTable[ik] != null
   )
                         {
-                            if (CastlingOnTable[ik].CastlingThinkingQuantum != null
+                            if (CastlingOnTable[ik].CastlingThinking != null
                      )
                             {
-                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
+                                if (CastlingOnTable[ik].CastlingThinking[0] != null
                              )
                                 {    //non learning autamata victory leafs
-                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
-                                    CastlingOnTable[ik].CastlingThinkingQuantum[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingTreeWin(Order * -1);
+                                    CastlingOnTable[ik].CastlingThinking[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
                         }
@@ -23988,7 +24114,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
             return Sum;
         }
-        public int FullGameThinkingQuantumTreeLose(int Order)
+        public int FullGameThinkingTreeLose(int Order)
         {
             if (Order == 1)
             {
@@ -24007,7 +24133,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                            )
                                 {   //non learning autamata victory leafs
                                     for (int h = 0; h < SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count && SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy != null; h++)
-                                        SolderesOnTable[ik].LoseOcuuredatChiled[0] += SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        SolderesOnTable[ik].LoseOcuuredatChiled[0] += SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24028,7 +24154,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
-                                        ElephantOnTable[ik].LoseOcuuredatChiled[0] += ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        ElephantOnTable[ik].LoseOcuuredatChiled[0] += ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24048,7 +24174,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {     //non learning autamata victory leafs
                                     for (int h = 0; h < HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy != null; h++)
-                                        HoursesOnTable[ik].LoseOcuuredatChiled[0] += HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        HoursesOnTable[ik].LoseOcuuredatChiled[0] += HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
 
                                 }
                             }
@@ -24070,7 +24196,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy != null; h++)
-                                        CastlesOnTable[ik].LoseOcuuredatChiled[0] += CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        CastlesOnTable[ik].LoseOcuuredatChiled[0] += CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24091,7 +24217,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
-                                        MinisterOnTable[ik].LoseOcuuredatChiled[0] += MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        MinisterOnTable[ik].LoseOcuuredatChiled[0] += MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24112,7 +24238,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {    //non learning autamata victory leafs
                                     for (int h = 0; h < KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy != null; h++)
-                                        KingOnTable[ik].LoseOcuuredatChiled[0] += KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        KingOnTable[ik].LoseOcuuredatChiled[0] += KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24126,14 +24252,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (CastlingOnTable[ik] != null
   )
                         {
-                            if (CastlingOnTable[ik].CastlingThinkingQuantum != null
+                            if (CastlingOnTable[ik].CastlingThinking != null
                      )
                             {
-                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
+                                if (CastlingOnTable[ik].CastlingThinking[0] != null
                              )
                                 {    //non learning autamata victory leafs
-                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24158,7 +24284,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                            )
                                 {   //non learning autamata victory leafs
                                     for (int h = 0; h < SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count && SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy != null; h++)
-                                        SolderesOnTable[ik].LoseOcuuredatChiled[0] += SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        SolderesOnTable[ik].LoseOcuuredatChiled[0] += SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24180,7 +24306,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
-                                        ElephantOnTable[ik].LoseOcuuredatChiled[0] += ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        ElephantOnTable[ik].LoseOcuuredatChiled[0] += ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24201,7 +24327,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {     //non learning autamata victory leafs
                                     for (int h = 0; h < HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy != null; h++)
-                                        HoursesOnTable[ik].LoseOcuuredatChiled[0] += HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        HoursesOnTable[ik].LoseOcuuredatChiled[0] += HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
 
                                 }
                             }
@@ -24225,7 +24351,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy != null; h++)
-                                        CastlesOnTable[ik].LoseOcuuredatChiled[0] += CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        CastlesOnTable[ik].LoseOcuuredatChiled[0] += CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24247,7 +24373,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                              )
                                 {      //non learning autamata victory leafs
                                     for (int h = 0; h < MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
-                                        MinisterOnTable[ik].LoseOcuuredatChiled[0] += MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                        MinisterOnTable[ik].LoseOcuuredatChiled[0] += MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24268,7 +24394,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                  )
                                     {    //non learning autamata victory leafs
                                         for (int h = 0; h < KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy != null; h++)
-                                            KingOnTable[ik].LoseOcuuredatChiled[0] += KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                            KingOnTable[ik].LoseOcuuredatChiled[0] += KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                     }
                                 }
                             }
@@ -24283,14 +24409,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (CastlingOnTable[ik] != null
   )
                         {
-                            if (CastlingOnTable[ik].CastlingThinkingQuantum != null
+                            if (CastlingOnTable[ik].CastlingThinking != null
                      )
                             {
-                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
+                                if (CastlingOnTable[ik].CastlingThinking[0] != null
                              )
                                 {    //non learning autamata victory leafs
-                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -24386,17 +24512,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Sum;
         }
         //deeper for soldier
-        bool FullGameThinkingQuantumTreeSoldier(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeSoldier(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                if (ReturnFullGameThinkingQuantumTreeIligalSemaphore(ik, 1))
+                if (ReturnFullGameThinkingTreeIligalSemaphore(ik, 1))
                     return false;
                 //semaphore
-                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingQuantumTreeSemaphoreAs(Order, iAStarGreedy, ik, 1));
+                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, iAStarGreedy, ik, 1));
 
                 array.Wait(); array.Dispose();
                 Object OOOO = new Object();
@@ -24432,7 +24558,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 1, true, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 1, true, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -24445,26 +24571,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[0])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 1);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 1);
                                             continue;
                                         }
                                         else//computational lists semaphore
                                         if (j != jindex[0])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 1);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 1);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 1);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 1);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 1);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 1);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -24478,7 +24604,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                     lock (O)
                                     {
                                         //do deeper
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 1, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 1, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -24487,7 +24613,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 1, false, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 1, false, j)
                             )
                             {
                                 //when do permite
@@ -24501,26 +24627,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[0])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 1);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 1);
                                             continue;
                                         }
                                         else//computational lists semaphore
                                         if (j != jindex[0])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 1);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 1);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 1);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 1);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 1);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 1);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -24534,7 +24660,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                     lock (O)
                                     {
                                         //do deeper
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 1, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 1, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -24553,14 +24679,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             //Elephant
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeSoldierGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeSoldierGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[0] = true;
+                ThinkingAllowed[0] = true;
 
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, SodierMidle, ik =>
 
@@ -24571,7 +24697,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeSoldier(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -24581,17 +24707,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             return Do;
         }
-        bool FullGameThinkingQuantumTreeElephant(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeElephant(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                if (ReturnFullGameThinkingQuantumTreeIligalSemaphore(ik, 2))
+                if (ReturnFullGameThinkingTreeIligalSemaphore(ik, 2))
                     return false;
                 //semaphore
-                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingQuantumTreeSemaphoreAs(Order, iAStarGreedy, ik, 2));
+                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, iAStarGreedy, ik, 2));
                 array.Wait(); array.Dispose();
                 Object OOOO = new Object();
                 lock (OOOO)
@@ -24628,7 +24754,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 2, true, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 2, true, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -24641,26 +24767,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[1])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 2);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 2);
                                             continue;
                                         }
                                         else
                                             if (j != jindex[1])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 2);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 2);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 2);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 2);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 2);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 2);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -24673,7 +24799,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         lock (O)
                                         {
                                             //do deeper
-                                            OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 2, FOUND, LeafAStarGreedy);
+                                            OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 2, FOUND, LeafAStarGreedy);
                                             Do = true;
                                         }
                                     }
@@ -24683,7 +24809,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 2, false, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 2, false, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -24696,26 +24822,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[1])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 2);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 2);
                                             continue;
                                         }
                                         else
                                             if (j != jindex[1])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 2);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 2);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 2);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 2);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 2);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 2);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -24728,7 +24854,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         lock (O)
                                         {
                                             //do deeper
-                                            OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 2, FOUND, LeafAStarGreedy);
+                                            OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 2, FOUND, LeafAStarGreedy);
                                             Do = true;
                                         }
                                     }
@@ -24748,14 +24874,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeElephantGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeElephantGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[1] = true;
+                ThinkingAllowed[1] = true;
                 //Elephant
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, ElefantMidle, ik =>
 
@@ -24766,7 +24892,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeElephant(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeElephant(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -24776,17 +24902,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             return Do;
         }
-        bool FullGameThinkingQuantumTreeHourse(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeHourse(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                if (ReturnFullGameThinkingQuantumTreeIligalSemaphore(ik, 3))
+                if (ReturnFullGameThinkingTreeIligalSemaphore(ik, 3))
                     return false;
                 //semaphore
-                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingQuantumTreeSemaphoreAs(Order, iAStarGreedy, ik, 3));
+                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, iAStarGreedy, ik, 3));
                 array.Wait(); array.Dispose();
 
                 Object OOOO = new Object();
@@ -24825,7 +24951,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 3, true, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 3, true, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -24838,26 +24964,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[2])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 3);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 3);
                                             continue;
                                         }
                                         else
                                             if (j != jindex[2])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 3);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 3);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 3);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 3);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 3);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 3);
 
                                 Object O3 = new Object();
                                 lock (O3)
@@ -24872,7 +24998,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                     lock (O)
                                     {
                                         //do deeper
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 3, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 3, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -24880,7 +25006,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             else
                             {
                                 //when certification for continued of code satisfied
-                                if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 3, false, j)
+                                if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 3, false, j)
                                 )
                                 {
                                     //when blitz game (limited game)
@@ -24893,26 +25019,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             if (ik != Index[2])
                                             {
                                                 //satisfied of created deeper one
-                                                BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 3);
+                                                BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 3);
                                                 continue;
                                             }
                                             else
                                                 if (j != jindex[2])
                                             {
                                                 //satisfied of created deeper tow
-                                                BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 3);
+                                                BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 3);
                                                 continue;
                                             }
                                         }
                                         else
                                         {
                                             //satisfied of created deeper three
-                                            BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 3);
+                                            BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 3);
                                             continue;
                                         }
                                     }
                                     else
-                                        BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 3);
+                                        BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 3);
 
                                     Object O3 = new Object();
                                     lock (O3)
@@ -24929,7 +25055,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         lock (O)
                                         {
                                             //do deeper
-                                            OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 3, FOUND, LeafAStarGreedy);
+                                            OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 3, FOUND, LeafAStarGreedy);
                                             Do = true;
                                         }
                                     }
@@ -24949,14 +25075,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeHourseGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeHourseGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[2] = true;
+                ThinkingAllowed[2] = true;
                 //Hourse.
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, HourseMidle, ik =>
 
@@ -24967,7 +25093,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeHourse(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeHourse(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
 
@@ -24978,17 +25104,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             return Do;
         }
-        bool FullGameThinkingQuantumTreeCastle(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeCastle(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                if (ReturnFullGameThinkingQuantumTreeIligalSemaphore(ik, 4))
+                if (ReturnFullGameThinkingTreeIligalSemaphore(ik, 4))
                     return false;
                 //semaphore
-                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingQuantumTreeSemaphoreAs(Order, iAStarGreedy, ik, 4));
+                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, iAStarGreedy, ik, 4));
                 array.Wait(); array.Dispose();
                 Object OOOO = new Object();
                 lock (OOOO)
@@ -25025,7 +25151,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 4, true, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 4, true, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -25038,26 +25164,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[3])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 4);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 4);
                                             continue;
                                         }
                                         else
                                             if (j != jindex[0])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 4);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 4);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 4);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 4);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 4);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 4);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -25073,7 +25199,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                     lock (O)
                                     {
                                         //do deeper
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 4, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 4, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -25082,7 +25208,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 4, false, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 4, false, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -25095,26 +25221,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[3])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 4);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 4);
                                             continue;
                                         }
                                         else
                                             if (j != jindex[0])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 4);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 4);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 4);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 4);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 4);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 4);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -25130,7 +25256,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                     lock (O)
                                     {
                                         //do deeper
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 4, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 4, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -25149,14 +25275,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeCastleGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeCastleGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[3] = true;
+                ThinkingAllowed[3] = true;
                 //Castle.
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastleMidle, ik =>
 
@@ -25167,7 +25293,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeCastle(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastle(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
 
@@ -25178,17 +25304,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             return Do;
         }
-        bool FullGameThinkingQuantumTreeMinister(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeMinister(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                if (ReturnFullGameThinkingQuantumTreeIligalSemaphore(ik, 5))
+                if (ReturnFullGameThinkingTreeIligalSemaphore(ik, 5))
                     return false;
                 //semaphore
-                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingQuantumTreeSemaphoreAs(Order, iAStarGreedy, ik, 5));
+                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, iAStarGreedy, ik, 5));
                 array.Wait(); array.Dispose();
 
                 Object OOOO = new Object();
@@ -25228,7 +25354,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 5, true, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 5, true, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -25241,26 +25367,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[4])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 5);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 5);
                                             continue;
                                         }
                                         else
                                              if (j != jindex[4])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 5);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 5);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 5);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 5);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 5);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 5);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -25276,7 +25402,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                     lock (O)
                                     {
                                         //do deeper
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 5, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 5, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -25285,7 +25411,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 5, false, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 5, false, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -25298,26 +25424,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[4])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 5);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 5);
                                             continue;
                                         }
                                         else
                                              if (j != jindex[4])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 5);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 5);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 5);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 5);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 5);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 5);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -25332,7 +25458,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                     lock (O)
                                     {
                                         //do deeper
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 5, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 5, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -25351,14 +25477,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeMinisterGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeMinisterGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[4] = true;
+                ThinkingAllowed[4] = true;
                 //Minister.
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, MinisterMidle, ik =>
 
@@ -25369,7 +25495,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeMinister(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeMinister(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -25379,17 +25505,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             return Do;
         }
-        bool FullGameThinkingQuantumTreeKing(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeKing(int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                if (ReturnFullGameThinkingQuantumTreeIligalSemaphore(ik, 6))
+                if (ReturnFullGameThinkingTreeIligalSemaphore(ik, 6))
                     return false;
                 //semaphore
-                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingQuantumTreeSemaphoreAs(Order, iAStarGreedy, ik, 6));
+                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, iAStarGreedy, ik, 6));
                 array.Wait(); array.Dispose();
 
                 Object OOOO = new Object();
@@ -25430,7 +25556,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 6, true, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 6, true, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -25443,26 +25569,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[5])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 6);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 6);
                                             continue;
                                         }
                                         else
                                              if (j != jindex[5])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 6);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 6);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 6);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 6);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 6);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 6);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -25478,7 +25604,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                     lock (O)
                                     {
                                         //do deeper
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 6, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 6, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -25487,7 +25613,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, 6, false, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, 6, false, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -25500,26 +25626,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[5])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 6);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 6);
                                             continue;
                                         }
                                         else
                                              if (j != jindex[5])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, 6);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, 6);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, 6);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, 6);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, 6);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, 6);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -25533,7 +25659,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                     Object O = new Object();
                                     lock (O)
                                     {
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 6, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 6, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -25551,17 +25677,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             return Do;
         }
-        bool FullGameThinkingQuantumTreeCastling(int kin,int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeCastling(int kin,int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                if (ReturnFullGameThinkingQuantumTreeIligalSemaphore(ik, kin))
+                if (ReturnFullGameThinkingTreeIligalSemaphore(ik, kin))
                     return false;
                 //semaphore
-                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingQuantumTreeSemaphoreAs(Order, iAStarGreedy, ik, kin));
+                var array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, iAStarGreedy, ik, kin));
                 array.Wait(); array.Dispose();
 
                 Object OOOO = new Object();
@@ -25574,16 +25700,16 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                 }
-                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count == 0)
+                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count == 0)
                     return Do;
-                // //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count, j =>
+                // //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count, j =>
                 //operational computation secxistence
-                for (var j = 0; j < CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                for (var j = 0; j < CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count; j++)
                 {
                     Object OOOOO = new Object();
                     lock (OOOOO)
                     {
-                        if (IsSupHuTrue(ik, j, 0, 6))
+                        if (IsSupHuTrue(ik, j, 0, kin))
                             continue;
                         //when search finished stop and return
                         if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
@@ -25593,73 +25719,16 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (ooo)
                     {
                         //when node have kings dangoures ignore and continue.
-                        if (CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]), Order, ik, j, 0))
+                        if (CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (CastlingOnTable[ik].CastlingThinkingQuantum[0].IsSupHu[j])
+                        if (CastlingOnTable[ik].CastlingThinking[0].IsSupHu[j])
                             continue;
                         //when is self
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, kin, true, j)
-                            )
-                            {
-                                //when blitz game (limited game)
-                                if (AllDraw.Blitz)
-                                {
-                                    //when do permite
-                                    if (Index[kin] != -1)
-                                    {
-                                        //object kind semaphore
-                                        if (ik != Index[6])
-                                        {
-                                            //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, kin);
-                                            continue;
-                                        }
-                                        else
-                                             if (j != jindex[6])
-                                        {
-                                            //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, kin);
-                                            continue;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, kin);
-                                        continue;
-                                    }
-                                }
-                                else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, kin);
-                                Object O3 = new Object();
-                                lock (O3)
-                                {
-                                    //initiate for satisfied full game primary conditions
-
-                                }
-
-
-                                //when deeper is valid
-                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count > 0)
-                                {
-                                    Object O = new Object();
-                                    lock (O)
-                                    {
-                                        //do deeper
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, 6, FOUND, LeafAStarGreedy);
-                                        Do = true;
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingQuantumTree(ik, kin ,false, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, kin, true, j)
                             )
                             {
                                 //when blitz game (limited game)
@@ -25672,26 +25741,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         if (ik != Index[6])
                                         {
                                             //satisfied of created deeper one
-                                            BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, kin);
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, kin);
                                             continue;
                                         }
                                         else
                                              if (j != jindex[6])
                                         {
                                             //satisfied of created deeper tow
-                                            BlitzNotValidFullGameThinkingQuantumTreePartTow(ik, Order, kin);
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, kin);
                                             continue;
                                         }
                                     }
                                     else
                                     {
                                         //satisfied of created deeper three
-                                        BlitzNotValidFullGameThinkingQuantumTreePartThree(ik, Order, kin);
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, kin);
                                         continue;
                                     }
                                 }
                                 else
-                                    BlitzNotValidFullGameThinkingQuantumTreePartOne(ik, Order, kin);
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, kin);
                                 Object O3 = new Object();
                                 lock (O3)
                                 {
@@ -25700,12 +25769,69 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 }
 
 
-                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count > 0)
+                                //when deeper is valid
+                                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count > 0)
                                 {
                                     Object O = new Object();
                                     lock (O)
                                     {
-                                        OpOfFullGameThinkingQuantumTree(ik, j, Order, iAStarGreedy, ii, jj, a, kin, FOUND, LeafAStarGreedy);
+                                        //do deeper
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, kin, FOUND, LeafAStarGreedy);
+                                        Do = true;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //when certification for continued of code satisfied
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, kin ,false, j)
+                            )
+                            {
+                                //when blitz game (limited game)
+                                if (AllDraw.Blitz)
+                                {
+                                    //when do permite
+                                    if (Index[6] != -1)
+                                    {
+                                        //object kind semaphore
+                                        if (ik != Index[6])
+                                        {
+                                            //satisfied of created deeper one
+                                            BlitzNotValidFullGameThinkingTreePartOne(ik, Order, kin);
+                                            continue;
+                                        }
+                                        else
+                                             if (j != jindex[6])
+                                        {
+                                            //satisfied of created deeper tow
+                                            BlitzNotValidFullGameThinkingTreePartTow(ik, Order, kin);
+                                            continue;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //satisfied of created deeper three
+                                        BlitzNotValidFullGameThinkingTreePartThree(ik, Order, kin);
+                                        continue;
+                                    }
+                                }
+                                else
+                                    BlitzNotValidFullGameThinkingTreePartOne(ik, Order, kin);
+                                Object O3 = new Object();
+                                lock (O3)
+                                {
+                                    //initiate for satisfied full game primary conditions
+
+                                }
+
+
+                                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count > 0)
+                                {
+                                    Object O = new Object();
+                                    lock (O)
+                                    {
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, kin, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -25724,7 +25850,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeKingGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeKingGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
@@ -25733,7 +25859,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             {
 
                 //King.
-                ThinkingQuantumAllowed[5] = true;
+                ThinkingAllowed[5] = true;
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, KingMidle, ik =>
 
                 {
@@ -25743,7 +25869,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeKing(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeKing(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
 
@@ -25754,7 +25880,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             return Do;
         }
-        bool FullGameThinkingQuantumTreeCastlingGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeCastlingGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
@@ -25763,17 +25889,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             {
 
                 //Castling.
-                ThinkingQuantumAllowed[6] = true;
+                ThinkingAllowed[6] = true;
                 ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
 
                 {
-                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinkingQuantum != null && CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
+                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
                         )
                     {
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeCastling(7,ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastling(7,ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
 
@@ -25785,14 +25911,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeSoldierBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeSoldierBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[7] = true;
+                ThinkingAllowed[7] = true;
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(SodierMidle, SodierHigh, ik =>
 
                 {
@@ -25803,7 +25929,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeSoldier(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -25814,14 +25940,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeElephantBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeElephantBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[8] = true;
+                ThinkingAllowed[8] = true;
                 //Elephant
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(ElefantMidle, ElefantHigh, ik =>
 
@@ -25832,7 +25958,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeElephant(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeElephant(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -25843,14 +25969,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeHourseBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeHourseBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[9] = true;
+                ThinkingAllowed[9] = true;
                 //Hourse.
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(HourseMidle, HourseHight, ik =>
 
@@ -25861,7 +25987,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeHourse(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeHourse(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -25872,14 +25998,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeCastleBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeCastleBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[10] = true;
+                ThinkingAllowed[10] = true;
                 //Castles.
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(CastleMidle, CastleHigh, ik =>
 
@@ -25890,7 +26016,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeCastle(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastle(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -25901,14 +26027,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeMinisterBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeMinisterBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[11] = true;
+                ThinkingAllowed[11] = true;
                 //Minister.
                 ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(MinisterMidle, MinisterHigh, ik =>
 
@@ -25919,7 +26045,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeMinister(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeMinister(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -25930,14 +26056,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //collection objects calling full game specific game 
-        bool FullGameThinkingQuantumTreeKingBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeKingBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[12] = true;
+                ThinkingAllowed[12] = true;
                 //King.
                 ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(KingMidle, KingHigh, ik =>
 
@@ -25948,7 +26074,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeKing(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeKing(ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -25958,25 +26084,25 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             return Do;
         }
-        bool FullGameThinkingQuantumTreeCastlingBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeCastlingBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
             Object O1 = new Object();
             lock (O1)
             {
-                ThinkingQuantumAllowed[13] = true;
+                ThinkingAllowed[13] = true;
                 //Castling.
                 ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
 
                 {
-                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinkingQuantum != null && CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
+                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
                         )
                     {
                         Object O = new Object();
                         lock (O)
                         {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeCastling(-7,ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastling(-7,ik, a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
@@ -25986,7 +26112,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
             return Do;
         }
-        public bool FullGameThinkingQuantumTreeGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        public bool FullGameThinkingTreeGray(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
             Object OOOOO = new Object();
             lock (OOOOO)
@@ -26012,7 +26138,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a1 = a;
                                 int iAStarGreedy1 = iAStarGreedy;
 
-                                var array1 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeSoldierGray(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
+                                var array1 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeSoldierGray(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
                                 array1.Wait(); array1.Dispose();
 
 
@@ -26035,7 +26161,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a2 = a;
                                 int iAStarGreedy2 = iAStarGreedy;
 
-                                var array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeElephantGray(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
+                                var array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeElephantGray(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
                                 array2.Wait(); array2.Dispose();
 
 
@@ -26059,7 +26185,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a3 = a;
                                 int iAStarGreedy3 = iAStarGreedy;
 
-                                var array3 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeHourseGray(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
+                                var array3 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeHourseGray(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
                                 array3.Wait(); array3.Dispose();
 
 
@@ -26083,7 +26209,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a4 = a;
                                 int iAStarGreedy4 = iAStarGreedy;
 
-                                var array4 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeCastleGray(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
+                                var array4 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastleGray(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
                                 array4.Wait(); array4.Dispose();
 
 
@@ -26107,7 +26233,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a5 = a;
                                 int iAStarGreedy5 = iAStarGreedy;
 
-                                var array5 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeMinisterGray(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
+                                var array5 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeMinisterGray(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
                                 array5.Wait(); array5.Dispose();
 
 
@@ -26131,7 +26257,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a6 = a;
                                 int iAStarGreedy6 = iAStarGreedy;
 
-                                var array6 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeKingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+                                var array6 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeKingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
                                 array6.Wait(); array6.Dispose();
 
 
@@ -26154,7 +26280,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a6 = a;
                                 int iAStarGreedy6 = iAStarGreedy;
 
-                                var array7 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeCastlingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+                                var array7 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastlingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
                                 array7.Wait(); array7.Dispose();
 
 
@@ -26175,7 +26301,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
         }
         //full game main method for deeper decicion and making
-        public bool FullGameThinkingQuantumTreeBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        public bool FullGameThinkingTreeBrown(Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
             Object OOOOO = new Object();
             lock (OOOOO)
@@ -26201,7 +26327,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a1 = a;
                                 int iAStarGreedy1 = iAStarGreedy;
 
-                                var array1 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeSoldierBrown(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
+                                var array1 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeSoldierBrown(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
                                 array1.Wait(); array1.Dispose();
 
 
@@ -26224,7 +26350,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a2 = a;
                                 int iAStarGreedy2 = iAStarGreedy;
 
-                                var array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeElephantBrown(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
+                                var array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeElephantBrown(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
                                 array2.Wait(); array2.Dispose();
 
 
@@ -26248,7 +26374,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a3 = a;
                                 int iAStarGreedy3 = iAStarGreedy;
 
-                                var array3 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeHourseBrown(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
+                                var array3 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeHourseBrown(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
                                 array3.Wait(); array3.Dispose();
 
 
@@ -26272,7 +26398,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a4 = a;
                                 int iAStarGreedy4 = iAStarGreedy;
 
-                                var array4 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeCastleBrown(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
+                                var array4 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastleBrown(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
                                 array4.Wait(); array4.Dispose();
 
 
@@ -26296,7 +26422,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a5 = a;
                                 int iAStarGreedy5 = iAStarGreedy;
 
-                                var array5 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeMinisterBrown(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
+                                var array5 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeMinisterBrown(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
                                 array5.Wait(); array5.Dispose();
 
 
@@ -26320,7 +26446,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a6 = a;
                                 int iAStarGreedy6 = iAStarGreedy;
 
-                                var array6 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeKingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+                                var array6 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeKingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
                                 array6.Wait(); array6.Dispose();
 
 
@@ -26343,7 +26469,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 Color a6 = a;
                                 int iAStarGreedy6 = iAStarGreedy;
 
-                                var array7 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingQuantumTreeCastlingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+                                var array7 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastlingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
                                 array7.Wait(); array7.Dispose();
 
 
@@ -26365,7 +26491,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
         }
 
         //full game main method for deeper decicion and making
-        public bool FullGameThinkingQuantumTree(int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        public bool FullGameThinkingTree(int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
@@ -26399,7 +26525,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
                 //Soldeir
                 //Initiatye Variables.               
-                var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeGray(a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeGray(a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
 
                 array.Wait(); array.Dispose();
 
@@ -26407,7 +26533,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             //For Brown Order Blitz Game Calculate Maximum Table Inclusive AStarGreedy First Game Search.
             else
             {
-                var array = Task.Factory.StartNew(() => Do = FullGameThinkingQuantumTreeBrown(a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeBrown(a, Order, iAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
 
                 array.Wait(); array.Dispose();
             }
@@ -26415,7 +26541,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             return Do;
         }
         //full game decicion making second method
-        bool FullGameThinkingQuantumTreeObject(int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeObject(int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             //
@@ -26466,7 +26592,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             Color a1 = a;
                                             int iAStarGreedy1 = iAStarGreedy;
                                             int i1 = i;
-                                            Do |= FullGameThinkingQuantumTreeSoldier(i1, a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
+                                            Do |= FullGameThinkingTreeSoldier(i1, a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
 
 
 
@@ -26496,7 +26622,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             Color a2 = a;
                                             int iAStarGreedy2 = iAStarGreedy;
                                             int i2 = i;
-                                            Do |= this.FullGameThinkingQuantumTreeElephant(i2, a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
+                                            Do |= this.FullGameThinkingTreeElephant(i2, a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
                                             //Initiatye Variables.
                                             Order = DummyOrder;
                                             ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -26524,7 +26650,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             Color a3 = a;
                                             int iAStarGreedy3 = iAStarGreedy;
                                             int i3 = i;
-                                            Do |= this.FullGameThinkingQuantumTreeHourse(i3, a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
+                                            Do |= this.FullGameThinkingTreeHourse(i3, a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
                                             //Initiatye Variables.
                                             Order = DummyOrder;
                                             ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -26552,7 +26678,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             Color a4 = a;
                                             int iAStarGreedy4 = iAStarGreedy;
                                             int i4 = i;
-                                            Do |= this.FullGameThinkingQuantumTreeCastle(i4, a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
+                                            Do |= this.FullGameThinkingTreeCastle(i4, a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
                                             //Initiatye Variables.
                                             Order = DummyOrder;
                                             ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -26580,7 +26706,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             Color a5 = a;
                                             int iAStarGreedy5 = iAStarGreedy;
                                             int i5 = i;
-                                            Do |= this.FullGameThinkingQuantumTreeMinister(i5, a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
+                                            Do |= this.FullGameThinkingTreeMinister(i5, a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
                                             //Initiatye Variables.
                                             Order = DummyOrder;
                                             ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -26608,7 +26734,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             Color a6 = a;
                                             int iAStarGreedy6 = iAStarGreedy;
                                             int i6 = i;
-                                            Do |= this.FullGameThinkingQuantumTreeKing(i6, a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
+                                            Do |= this.FullGameThinkingTreeKing(i6, a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
                                             Order = DummyOrder;
                                             ChessRules.CurrentOrder = DummyCurrentOrder;
                                         }
@@ -26648,7 +26774,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                             Color a1 = a;
                                             int iAStarGreedy1 = iAStarGreedy;
                                             int i1 = i;
-                                            Do |= this.FullGameThinkingQuantumTreeSoldier(i1, a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
+                                            Do |= this.FullGameThinkingTreeSoldier(i1, a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
                                             Order = DummyOrder;
                                             ChessRules.CurrentOrder = DummyCurrentOrder;
                                         }
@@ -26670,7 +26796,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         Color a2 = a;
                                         int iAStarGreedy2 = iAStarGreedy;
                                         int i2 = i;
-                                        Do |= this.FullGameThinkingQuantumTreeElephant(i2, a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
+                                        Do |= this.FullGameThinkingTreeElephant(i2, a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
                                         //Initiatye Variables.
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -26692,7 +26818,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         Color a3 = a;
                                         int iAStarGreedy3 = iAStarGreedy;
                                         int i3 = i;
-                                        Do |= this.FullGameThinkingQuantumTreeHourse(i3, a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
+                                        Do |= this.FullGameThinkingTreeHourse(i3, a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
                                         //Initiatye Variables.
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -26714,7 +26840,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         Color a4 = a;
                                         int iAStarGreedy4 = iAStarGreedy;
                                         int i4 = i;
-                                        Do |= this.FullGameThinkingQuantumTreeCastle(i4, a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
+                                        Do |= this.FullGameThinkingTreeCastle(i4, a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
                                         //Initiatye Variables.
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -26736,7 +26862,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         Color a5 = a;
                                         int iAStarGreedy5 = iAStarGreedy;
                                         int i5 = i;
-                                        Do |= this.FullGameThinkingQuantumTreeMinister(i5, a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
+                                        Do |= this.FullGameThinkingTreeMinister(i5, a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
                                         //Initiatye Variables.
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -26762,7 +26888,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                         Color a6 = a;
                                         int iAStarGreedy6 = iAStarGreedy;
                                         int i6 = i;
-                                        Do |= this.FullGameThinkingQuantumTreeKing(i6, a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
+                                        Do |= this.FullGameThinkingTreeKing(i6, a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
                                     }
@@ -26898,7 +27024,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 p[5].Add(MaxHeuristicAStarGreedytBackWard[0][22]);
             }
 
-            //not found
+            //not foundQ
             return p;
         }
         //Copying of Items of Enemy Non Move and Current Moved.
@@ -27172,18 +27298,18 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
         void CheckedMateConfiguratiioncastling(int Order, int i, bool Regrad)
         {
 
-            for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Count; j++)
+            for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Count; j++)
             {
-                if (CastlingOnTable[i].CastlingThinkingQuantum[0].LearningVarsObject.Count == CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Count)
-                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].LearningVarsObject[j][1] && (!CastlingOnTable[i].CastlingThinkingQuantum[0].LearningVarsObject[j][4]))
+                if (CastlingOnTable[i].CastlingThinking[0].LearningVarsObject.Count == CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Count)
+                    if (CastlingOnTable[i].CastlingThinking[0].LearningVarsObject[j][1] && (!CastlingOnTable[i].CastlingThinking[0].LearningVarsObject[j][4]))
                     {
-                        CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].Initiate();
+                        CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate();
                         //if(Regrad)
 
                         //else
                         if (!Regrad)
-                            CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
-                        CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicPenaltyValuePerform(CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j], Order, ref CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0], true);
+                            CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
+                        CastlingOnTable[i].CastlingThinking[0].HeuristicPenaltyValuePerform(CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j], Order, ref CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0], true);
                     }
             }
 
@@ -27384,9 +27510,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     {
                         for (int i = 0; i < 1; i++)
                         {
-                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Count; j++)
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].IsSupHu.Count; j++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu[j])
+                                if (!CastlingOnTable[i].CastlingThinking[0].IsSupHu[j])
                                     No++;
                             }
                         }
@@ -27464,9 +27590,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     {
                         for (int i = 0; i < 1; i++)
                         {
-                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Count; j++)
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].IsSupHu.Count; j++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu[j])
+                                if (!CastlingOnTable[i].CastlingThinking[0].IsSupHu[j])
                                     No++;
                             }
                         }
@@ -27547,9 +27673,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     {
                         for (int i = 0; i < 1; i++)
                         {
-                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup.Count; j++)
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].IsSup.Count; j++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j])
+                                if (!CastlingOnTable[i].CastlingThinking[0].IsSup[j])
                                     No++;
                             }
                         }
@@ -27627,9 +27753,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     {
                         for (int i = 0; i < 1; i++)
                         {
-                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup.Count; j++)
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].IsSup.Count; j++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j])
+                                if (!CastlingOnTable[i].CastlingThinking[0].IsSup[j])
                                     No++;
                             }
                         }
@@ -27686,15 +27812,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
             else if (Kind == 7||Kind==-7)
             {
-                CastlingOnTable[i].CastlingThinkingQuantum[0].TowDistrurbProperUsePreferNotToClose(ref CastlingOnTable[i].LoseOcuuredatChiled, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]));
-                if ((CastlingOnTable[i].CastlingThinkingQuantum[0].RemoveOfDisturbIndex == j) && (CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled[j] < 0 || CastlingOnTable[i].LoseOcuuredatChiled[0] < 0))
+                CastlingOnTable[i].CastlingThinking[0].TowDistrurbProperUsePreferNotToClose(ref CastlingOnTable[i].LoseOcuuredatChiled, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]));
+                if ((CastlingOnTable[i].CastlingThinking[0].RemoveOfDisturbIndex == j) && (CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] < 0 || CastlingOnTable[i].LoseOcuuredatChiled[0] < 0))
                     No = true;
             }
 
             return No;
         }
 
-        //Main Initiate ThinkingQuantum Method.
+        //Main Initiate Thinking Method.
         public int[,] Initiate(int ii, int jj, Color a, int[,] Table, int Order, bool TB, bool FOUND, int LeafAStarGreedy, bool SetDept = false)
         {
 
@@ -27751,13 +27877,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         lock (OO1)
                         {
                             if (AllDraw.THIScomboBoxMaxLevelText != "")
-                                MaxDuringLevelThinkingQuantumCreation = System.Convert.ToInt32(AllDraw.THIScomboBoxMaxLevelText);
+                                MaxDuringLevelThinkingCreation = System.Convert.ToInt32(AllDraw.THIScomboBoxMaxLevelText);
                         }
                     }
                     Object Om1 = new Object();
                     lock (Om1)
                     {
-                        MinThinkingQuantumTreeDepth = 0;
+                        MinThinkingTreeDepth = 0;
                     }
                     ThinkingQuantumChess.FoundFirstMating = 0;
                     ThinkingQuantumChess.FoundFirstSelfMating = 0;
@@ -27804,9 +27930,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (OOO)
                     {
                         if (!SetDept)
-                            MaxAStarGreedy = System.Convert.ToInt32(AllDraw.MaxDuringLevelThinkingQuantumCreation);
+                            MaxAStarGreedy = System.Convert.ToInt32(AllDraw.MaxDuringLevelThinkingCreation);
                         AllDraw.AStarGreedyiLevelMax = MaxAStarGreedy;
-                        AStarGreedyiLevelMax = System.Convert.ToInt32(AllDraw.MaxDuringLevelThinkingQuantumCreation);
+                        AStarGreedyiLevelMax = System.Convert.ToInt32(AllDraw.MaxDuringLevelThinkingCreation);
                         AllDraw.MaxAStarGreedyHeuristicProgress = 6;
                         for (var i = 0; i <= MaxAStarGreedy; i++)
                             AllDraw.MaxAStarGreedyHeuristicProgress += AllDraw.MaxAStarGreedyHeuristicProgress * 6;
@@ -27839,7 +27965,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 Object Om = new Object();
                 lock (Om)
                 {
-                    MinThinkingQuantumTreeDepth = MaxAStarGreedy - MinThinkingQuantumTreeDepth;
+                    MinThinkingTreeDepth = MaxAStarGreedy - MinThinkingTreeDepth;
                     //Initaite Local Varibales.
                     Tab = new int[8, 8];
                     Less = Int32.MinValue;
@@ -28284,8 +28410,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
 
-                if (Tag.Contains("ThinkingQuantum"))
-                    Tag = Tag.Replace("ThinkingQuantum", "<font Color=\"Green\">" + "ThinkingQuantum" + "</font>");
+                if (Tag.Contains("Thinking"))
+                    Tag = Tag.Replace("Thinking", "<font Color=\"Green\">" + "Thinking" + "</font>");
                 if (Tag.Contains("Perception"))
                     Tag = Tag.Replace("Perception", "<font Color=\"Green\">" + "Perception" + "</font>");
                 if (Tag.Contains("Bob"))
@@ -28449,19 +28575,19 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     if (Node.CastlingOnTable[i] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum == null)
+                    if (Node.CastlingOnTable[i].CastlingThinking == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
+                    if (Node.CastlingOnTable[i].CastlingThinking[0] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
+                    if (Node.CastlingOnTable[i].CastlingThinking[0] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
+                    if (Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0)
                         continue;
-                    Formatters.Serialize(DummyFileStream, Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count);
-                    for (int j = 0; j < Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; j++)
+                    Formatters.Serialize(DummyFileStream, Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count);
+                    for (int j = 0; j < Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; j++)
                     {
-                        Formatters.Serialize(DummyFileStream, Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j]);
-                        Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].RewriteAllDrawRec(Formatters, DummyFileStream, Order * -1);
+                        Formatters.Serialize(DummyFileStream, Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                        Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].RewriteAllDrawRec(Formatters, DummyFileStream, Order * -1);
                     }
                 }
             }
@@ -28642,23 +28768,23 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     if (Node.CastlingOnTable[i] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum == null)
+                    if (Node.CastlingOnTable[i].CastlingThinking == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
+                    if (Node.CastlingOnTable[i].CastlingThinking[0] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
+                    if (Node.CastlingOnTable[i].CastlingThinking[0] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
+                    if (Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0)
                         continue;
                     int count = (Int32)Formatters.Deserialize(DummyFileStream);
-                    Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Clear();
+                    Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Clear();
                     for (int j = 0; j < count; j++)
                     {
                         if (DummyFileStream.Position < DummyFileStream.Length)
                         {
-                            Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Add((AllDraw)Formatters.Deserialize(DummyFileStream));
-                            Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].LoaderEC(Quantum, Order * -1, DummyFileStream, Formatters);
-                            Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = Node;
+                            Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Add((AllDraw)Formatters.Deserialize(DummyFileStream));
+                            Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].LoaderEC(Quantum, Order * -1, DummyFileStream, Formatters);
+                            Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = Node;
                         }
                     }
                 }
@@ -28752,9 +28878,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return false;
                 if (CastlingOnTable[i] == null)
                     return false;
-                if (CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
+                if (CastlingOnTable[i].CastlingThinking[0] == null)
                     return false;
-                if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling == null)
+                if (CastlingOnTable[i].CastlingThinking[0].TableListCastling == null)
                     return false;
             }
             return true;
@@ -28925,23 +29051,23 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             lock (a)
             {
                 //when found return recursive
-                for (var j = 0; UpdateLoseAndWinDepenOfKindBoundryCondition(7, i, j) && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
+                for (var j = 0; UpdateLoseAndWinDepenOfKindBoundryCondition(7, i, j) && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                 {
                     if (IsSupHuTrue(i, j, 0, 7))
                         continue;
                     //deeper
-                    for (var ii = 0; ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
-                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].UpdateLoseAndWinDepenOfKind(Order * -1);
+                    for (var ii = 0; ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].UpdateLoseAndWinDepenOfKind(Order * -1);
                     if (CastlingOnTable[i].WinOcuuredatChiled == 0)
                     {
                         //non learning autamata victory leafs
-                        for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                            CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
+                        for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
+                            CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
                     }
                     if (CastlingOnTable[i].LoseOcuuredatChiled[0] == 0)
                     {   //non learning autamata victom leafs
-                        for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
-                            CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
+                        for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
+                            CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
                     }
                 }
             }
@@ -29137,7 +29263,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else
             if (Kind == 7||Kind==-7)
             {
-                if (ServeBoundryConditionsKing(i, Kind, Order))
+                if (ServeBoundryConditionsCasttling(i, Kind, Order))
                     return false;
                 if (CastlingOnTable[i].LoseOcuuredatChiled[0] == 5)
                 {

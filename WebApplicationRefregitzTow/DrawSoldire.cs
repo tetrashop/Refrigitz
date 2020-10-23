@@ -37,7 +37,7 @@ namespace RefrigtzW
         public static double MaxHeuristicxS = int.MinValue;
         public float Row, Column;
         public Color color;
-        public ThinkingChess[] SoldierThinking = new ThinkingChess[AllDraw.SodierMovments];
+        public ThinkingRefrigtzW[] SoldierThinking = new ThinkingRefrigtzW[AllDraw.SodierMovments];
         public int[,] Table = null;
         public int Order = 0;
         public int Current = 0;
@@ -71,8 +71,8 @@ namespace RefrigtzW
                 lock (O2)
                 {
                     MaxNotFound = false;
-                    if (ThinkingChess.MaxHeuristicx < MaxHeuristicxS)
-                        ThinkingChess.MaxHeuristicx = a;
+                    if (ThinkingRefrigtzW.MaxHeuristicx < MaxHeuristicxS)
+                        ThinkingRefrigtzW.MaxHeuristicx = a;
                     MaxHeuristicxS = a;
                 }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("MaxFound:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
@@ -124,7 +124,7 @@ namespace RefrigtzW
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.SodierMovments; ii++)
 
-                    SoldierThinking[ii] = new ThinkingChess(ii,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 4, Ord, TB, Cur, 16, 1);
+                    SoldierThinking[ii] = new ThinkingRefrigtzW(ii,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 4, Ord, TB, Cur, 16, 1);
                 Row = i;
                 Column = j;
                 color = a;
@@ -186,7 +186,7 @@ namespace RefrigtzW
             for (var i = 0; i < AllDraw.SodierMovments; i++)
             {
 
-                AA.SoldierThinking[i] = new ThinkingChess(i,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.SoldierThinking[i] = new ThinkingRefrigtzW(i,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.SoldierThinking[i].Clone(ref AA.SoldierThinking[i]);
 
             }

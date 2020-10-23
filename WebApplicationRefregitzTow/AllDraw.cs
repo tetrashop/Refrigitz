@@ -585,6 +585,7 @@ namespace RefrigtzW
                 CastlesOnTable = null;
                 MinisterOnTable = null;
                 KingOnTable = null;
+                CastlingOnTable = null; 
                 MaxHeuristicAStarGreedytBackWard.Clear();
                 //Initiayte Locally Variables.
                 TableList = new List<int[,]>();
@@ -690,6 +691,14 @@ namespace RefrigtzW
                     KingOnTable[i].Clone(ref AA.KingOnTable[i]);
 
                 }
+                AA.CastlingOnTable = new DrawCastling[1];
+                for (var i = 0; i < 1; i++)
+                {
+                    CastlingOnTable[i].Clone(ref AA.CastlingOnTable[i]);
+
+                }
+                
+
                 AA.AStarGreedy = AStarGreedy;
                 if (AA.TableList.Count > 0)
                     AA.TableList.Clear();
@@ -1227,15 +1236,15 @@ namespace RefrigtzW
                             }
                         //Make Empty Remaining.
                     }
-                    if (OrderP == 1)
+                    if (Dummy == 1)
                     {
-                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, 7));
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                         ah.Wait();
                         ah.Dispose();
                     }
                     else
                     {
-                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, -7));
+                        var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                         ah.Wait();
                         ah.Dispose();
                     }
@@ -1319,6 +1328,7 @@ namespace RefrigtzW
                     CastlesOnTable = new DrawCastle[CastleHigh];
                     MinisterOnTable = new DrawMinister[MinisterHigh];
                     KingOnTable = new DrawKing[KingHigh];
+                    CastlingOnTable = new DrawCastling[1];
                     AllDraw.SodierConversionOcuured = false;
                     //When Table Exist.
                     if (TableList.Count > 0)
@@ -1622,19 +1632,19 @@ namespace RefrigtzW
                     }
                     if (CastlingBoundryCondition())
                     {
-                        if (OrderP == 1)
+                        if (Dummy == 1)
                         {
-                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Gray, CloneATable(TableList[index]), -1, false, 0);
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column,Color.Gray, CloneATable(TableList[index]), 1, false, 0);
 
-                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, 7));
+                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                             ah.Wait();
                             ah.Dispose();
                         }
                         else
                         {
-                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 0, 0, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[1].Row, KingOnTable[1].Column, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
 
-                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, OrderP, -7));
+                            var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -1684,14 +1694,14 @@ namespace RefrigtzW
                 return true;
             if (CastlingOnTable[0] == null)
                 return true;
-            if (CastlingOnTable[0].CastlingThinking == null)
-                return true;
-            if (CastlingOnTable[0].CastlingThinking[0] == null)
-                return true;
-            if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy == null)
-                return true;
-            if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy.Count == 0)
-                return true;
+           // if (CastlingOnTable[0].CastlingThinking == null)
+           //     return true;
+            //if (CastlingOnTable[0].CastlingThinking[0] == null)
+              //  return true;
+            //if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy == null)
+            //    return true;
+            //if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy.Count==0)
+              //  return true;
 
             return false;
         }
@@ -3992,7 +4002,7 @@ namespace RefrigtzW
                 else
                    if (Kind == 7 || Kind == -7)
                 {
-                    if (i < 1 || i >= 0)
+                    if (i < 0 || i > 0)
                         Is = false;
                 }
             }
@@ -4034,9 +4044,9 @@ namespace RefrigtzW
                         Is = false;
                 }
                 else
-                   if (Kind == 7|| Kind == -7)
+                   if (Kind == 7 || Kind == -7)
                 {
-                    if (i < 1 || i >= 0)
+                    if (i < 0 || i > 0)
                         Is = false;
                 }
             }
@@ -4165,7 +4175,24 @@ namespace RefrigtzW
 
                 }
             }
+            var ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 7, Order));
+            ah7.Wait();
+            ah7.Dispose();
+            if (ac && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+            {
+                if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                {
+                    AllDraw This = THIS;
+                    bool fou = Found;
+                    var ah8 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                    ah8.Wait();
+                    ah8.Dispose();
+                    THIS = This;
+                    Found = fou;
 
+                }
+            }
+            
             return THIS;
         }
         //when current alldraw is equal of table state return node and set true
@@ -4179,7 +4206,7 @@ namespace RefrigtzW
                 bool ac = false;
                 AllDraw This = THIS;
                 bool fou = Found;
-                var ah = Task.Factory.StartNew(() => ac = (TableList.Count > 0 && ThinkingChess.TableEqual(TableList[0], Tab)) || FoundOfCurrentTableNodeFirstLevel(CloneATable(Tab), Order, ref This, ref fou));
+                var ah = Task.Factory.StartNew(() => ac = (TableList.Count > 0 && ThinkingRefrigtzW.TableEqual(TableList[0], Tab)) || FoundOfCurrentTableNodeFirstLevel(CloneATable(Tab), Order, ref This, ref fou));
                 ah.Wait();
                 ah.Dispose();
                 THIS = This;
@@ -4207,7 +4234,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4249,7 +4276,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4291,7 +4318,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4333,7 +4360,7 @@ namespace RefrigtzW
                             if (ac)
                                 continue;
 
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4374,7 +4401,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4415,7 +4442,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4455,7 +4482,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4499,7 +4526,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4541,7 +4568,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4583,7 +4610,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4625,7 +4652,7 @@ namespace RefrigtzW
                             if (ac)
                                 continue;
 
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4666,7 +4693,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4707,7 +4734,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4747,7 +4774,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4806,7 +4833,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4848,7 +4875,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4890,7 +4917,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4932,7 +4959,7 @@ namespace RefrigtzW
                             if (ac)
                                 continue;
 
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4973,7 +5000,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5014,7 +5041,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5054,7 +5081,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5098,7 +5125,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5140,7 +5167,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5182,7 +5209,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5224,7 +5251,7 @@ namespace RefrigtzW
                             if (ac)
                                 continue;
 
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5265,7 +5292,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5306,7 +5333,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5346,7 +5373,7 @@ namespace RefrigtzW
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -6066,49 +6093,49 @@ namespace RefrigtzW
                 if (Kind == 1)
                 {
                     //when current alldraw lists is collision of stored lists tables state return true
-                    if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingChess.TableEqual(SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].TableList[0], CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j]))))
+                    if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].TableList[0], CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j]))))
                         Is = true;
                 }
                 else//elephant
                                     if (Kind == 2)
                 {
                     //when current alldraw lists is collision of stored lists tables state return true
-                    if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingChess.TableEqual(ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].TableList[0], CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j]))))
+                    if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].TableList[0], CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j]))))
                         Is = true;
                 }
                 else//hourse
                                     if (Kind == 3)
                 {
                     //when current alldraw lists is collision of stored lists tables state return true
-                    if (HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingChess.TableEqual(HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].TableList[0], CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j]))))
+                    if (HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].TableList[0], CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j]))))
                         Is = true;
                 }
                 else//Castle
                                     if (Kind == 4)
                 {
                     //when current alldraw lists is collision of stored lists tables state return true
-                    if (CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingChess.TableEqual(CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlesOnTable[i].CastleThinking[0].TableListCastle[j]))))
+                    if (CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlesOnTable[i].CastleThinking[0].TableListCastle[j]))))
                         Is = true;
                 }
                 else//minster
                                     if (Kind == 5)
                 {
                     //when current alldraw lists is collision of stored lists tables state return true
-                    if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingChess.TableEqual(MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].TableList[0], CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]))))
+                    if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].TableList[0], CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]))))
                         Is = true;
                 }
                 else//king
                                     if (Kind == 6)
                 {
                     //when current alldraw lists is collision of stored lists tables state return true
-                    if (KingOnTable[i].KingThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingChess.TableEqual(KingOnTable[i].KingThinking[0].AStarGreedy[j].TableList[0], CloneATable(KingOnTable[i].KingThinking[0].TableListKing[j]))))
+                    if (KingOnTable[i].KingThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].AStarGreedy[j].TableList[0], CloneATable(KingOnTable[i].KingThinking[0].TableListKing[j]))))
                         Is = true;
                 }
                 else//king
                                     if (Kind == 7 || Kind == -7)
                 {
                     //when current alldraw lists is collision of stored lists tables state return true
-                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]))))
+                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]))))
                         Is = true;
                 }
             }
@@ -6155,7 +6182,7 @@ namespace RefrigtzW
                         e = -1;
                     else
                         e = ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 2));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6175,7 +6202,7 @@ namespace RefrigtzW
                         e = -1;
                     else
                         e = HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 3));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6196,7 +6223,7 @@ namespace RefrigtzW
                     else
                         e = CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count;
                     //if (a == b && b == c && d == c && a > 0)
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 4));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6216,7 +6243,7 @@ namespace RefrigtzW
                         e = -1;
                     else
                         e = MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 5));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6236,7 +6263,7 @@ namespace RefrigtzW
                         e = -1;
                     else
                         e = KingOnTable[i].KingThinking[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 6));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6256,7 +6283,7 @@ namespace RefrigtzW
                         e = -1;
                     else
                         e = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count;
-                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 1));
+                    var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 7));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6329,7 +6356,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6359,7 +6386,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6446,7 +6473,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6476,7 +6503,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6563,7 +6590,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6593,7 +6620,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6680,7 +6707,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6710,7 +6737,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6797,7 +6824,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6827,7 +6854,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6966,7 +6993,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -6997,7 +7024,7 @@ namespace RefrigtzW
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -7029,12 +7056,12 @@ namespace RefrigtzW
                     for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > j; j++)
                     {
                         bool ac = false;
-                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 6));
+                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                         ah.Wait();
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -7060,12 +7087,12 @@ namespace RefrigtzW
                     for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > j; j++)
                     {
                         bool ac = false;
-                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 6));
+                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, -7));
                         ah.Wait();
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -8203,7 +8230,7 @@ namespace RefrigtzW
                         //alldraw table list count
                         d = SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].TableList.Count;
                     //alldraw tabale list and deeper count not staisfy validity or when there is not equallity retunr true
-                    if (d > 0 && e > j && (!ThinkingChess.TableEqual(SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].TableList[0], CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j]))))
+                    if (d > 0 && e > j && (!ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].TableList[0], CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j]))))
                         Is = true;
                 }
             }
@@ -8219,7 +8246,7 @@ namespace RefrigtzW
                         //alldraw table list count
                         d = ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].TableList.Count;
                     //alldraw tabale list and deeper count not staisfy validity or when there is not equallity retunr true
-                    if (d > 0 && e > j && (!ThinkingChess.TableEqual(ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].TableList[0], CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j]))))
+                    if (d > 0 && e > j && (!ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].TableList[0], CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j]))))
                         Is = true;
                 }
             }
@@ -8235,7 +8262,7 @@ namespace RefrigtzW
                         //alldraw table list count
                         d = HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].TableList.Count;
                     //alldraw tabale list and deeper count not staisfy validity or when there is not equallity retunr true
-                    if (d > 0 && e > j && (!ThinkingChess.TableEqual(HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].TableList[0], CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j]))))
+                    if (d > 0 && e > j && (!ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].TableList[0], CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j]))))
                         Is = true;
                 }
             }
@@ -8251,7 +8278,7 @@ namespace RefrigtzW
                         //alldraw table list count
                         d = CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].TableList.Count;
                     //alldraw tabale list and deeper count not staisfy validity or when there is not equallity retunr true
-                    if (d > 0 && e > j && (!ThinkingChess.TableEqual(CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlesOnTable[i].CastleThinking[0].TableListCastle[j]))))
+                    if (d > 0 && e > j && (!ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlesOnTable[i].CastleThinking[0].TableListCastle[j]))))
                         Is = true;
                 }
             }
@@ -8267,7 +8294,7 @@ namespace RefrigtzW
                         //alldraw table list count
                         d = MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].TableList.Count;
                     //alldraw tabale list and deeper count not staisfy validity or when there is not equallity retunr true
-                    if (d > 0 && e > j && (!ThinkingChess.TableEqual(MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].TableList[0], CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]))))
+                    if (d > 0 && e > j && (!ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].TableList[0], CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]))))
                         Is = true;
                 }
             }
@@ -8283,7 +8310,7 @@ namespace RefrigtzW
                         //alldraw table list count
                         d = KingOnTable[i].KingThinking[0].AStarGreedy[j].TableList.Count;
                     //alldraw tabale list and deeper count not staisfy validity or when there is not equallity retunr true
-                    if (d > 0 && e > j && (!ThinkingChess.TableEqual(KingOnTable[i].KingThinking[0].AStarGreedy[j].TableList[0], CloneATable(KingOnTable[i].KingThinking[0].TableListCastling[j]))))
+                    if (d > 0 && e > j && (!ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].AStarGreedy[j].TableList[0], CloneATable(KingOnTable[i].KingThinking[0].TableListCastling[j]))))
                         Is = true;
                 }
             }
@@ -8299,7 +8326,7 @@ namespace RefrigtzW
                         //alldraw table list count
                         d = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Count;
                     //alldraw tabale list and deeper count not staisfy validity or when there is not equallity retunr true
-                    if (d > 0 && e > j && (!ThinkingChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]))))
+                    if (d > 0 && e > j && (!ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]))))
                         Is = true;
                 }
             }
@@ -8329,6 +8356,8 @@ namespace RefrigtzW
                 Is = true;
             if (KingOnTable == null)
                 Is = true;
+            if (CastlingOnTable == null)
+                Is = true;
             return Is;
 
         }
@@ -8350,7 +8379,7 @@ namespace RefrigtzW
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].TableList[0], CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j])));
+                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].TableList[0], CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -8386,7 +8415,7 @@ namespace RefrigtzW
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].TableList[0], CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j])));
+                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].TableList[0], CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -8421,7 +8450,7 @@ namespace RefrigtzW
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].TableList[0], CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j])));
+                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].TableList[0], CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -8456,7 +8485,7 @@ namespace RefrigtzW
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlesOnTable[i].CastleThinking[0].TableListCastle[j])));
+                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlesOnTable[i].CastleThinking[0].TableListCastle[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -8491,7 +8520,7 @@ namespace RefrigtzW
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].TableList[0], CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j])));
+                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].TableList[0], CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -8526,7 +8555,7 @@ namespace RefrigtzW
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(KingOnTable[i].KingThinking[0].AStarGreedy[j].TableList[0], CloneATable(KingOnTable[i].KingThinking[0].TableListKing[j])));
+                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].AStarGreedy[j].TableList[0], CloneATable(KingOnTable[i].KingThinking[0].TableListKing[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -8561,7 +8590,7 @@ namespace RefrigtzW
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])));
+                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -8789,7 +8818,7 @@ namespace RefrigtzW
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(2, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
                     //determine about situation of deeper against other lists computation in 4 state
@@ -8946,7 +8975,7 @@ namespace RefrigtzW
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(3, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
                     //determine about situation of deeper against other lists computation in 4 state
@@ -9104,7 +9133,7 @@ namespace RefrigtzW
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(4, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
 
@@ -9259,13 +9288,13 @@ namespace RefrigtzW
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(5, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
 
                     //determine about situation of deeper against other lists computation in 4 state
                     int Is = 0;
-                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 3));
+                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 5));
                     ah3.Wait();
                     ah3.Dispose();
                     if (!IA)
@@ -9409,13 +9438,13 @@ namespace RefrigtzW
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(6, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
 
                     //determine about situation of deeper against other lists computation in 4 state
                     int Is = 0;
-                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 3));
+                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 6));
                     ah3.Wait();
                     ah3.Dispose();
                     if (!IA)
@@ -9554,7 +9583,7 @@ namespace RefrigtzW
                     lock (OOOOO)
                     {
                         bool ac = false;
-                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 6));
+                        var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                         ah.Wait();
                         ah.Dispose();
                         if (ac)
@@ -9568,13 +9597,13 @@ namespace RefrigtzW
                     }
                     //determine about validity of list on current and deeper return true when successfull
                     bool IA = false;
-                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                    var ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(7, Order, i, j));
                     ah2.Wait();
                     ah2.Dispose();
 
                     //determine about situation of deeper against other lists computation in 4 state
                     int Is = 0;
-                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 3));
+                    var ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 7));
                     ah3.Wait();
                     ah3.Dispose();
                     if (!IA)
@@ -11773,7 +11802,7 @@ namespace RefrigtzW
                     Is = KingOnTable[i].KingThinking[0].IsSupHu[j];
                 else
                 if (Math.Abs(Kind) == 7)
-                    Is = KingOnTable[i].KingThinking[0].IsSupHu[j];
+                    Is = CastlingOnTable[i].CastlingThinking[0].IsSupHu[j];
             }
             else
             {
@@ -11796,7 +11825,7 @@ namespace RefrigtzW
                     Is = KingOnTable[i].KingThinking[0].IsSup[j];
                 else
                 if (Math.Abs(Kind) == 7)
-                    Is = KingOnTable[i].KingThinking[0].IsSup[j];
+                    Is = CastlingOnTable[i].CastlingThinking[0].IsSup[j];
             }
             return Is;
         }
@@ -12314,7 +12343,7 @@ namespace RefrigtzW
                         AA = AAA;
                     }
                     RegardOccurred = true;
-                    StringHeuristics(7, 2, AA, Do, KingOnTable[i].WinOcuuredatChiled, KingOnTable[i].LoseOcuuredatChiled);
+                    StringHeuristics(7, 2, AA, Do, CastlingOnTable[i].WinOcuuredatChiled, CastlingOnTable[i].LoseOcuuredatChiled);
                     //if (KingOnTable[i].WinOcuuredatChiled >= 1 || KingOnTable[i].WinOcuuredatChiled >= 2 || KingOnTable[i].WinOcuuredatChiled >= 3)
 
                     //if (((Do == 1 || AA)&&UsePenaltyRegardMechnisamT))
@@ -12509,7 +12538,7 @@ namespace RefrigtzW
                         AA = AAA;
                         HaveKilled = Havk;
 
-                        if (ThinkingChess.IsAtLeastOneKillerAtDraw)
+                        if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                         {
                             if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
                                 return true;
@@ -12525,8 +12554,10 @@ namespace RefrigtzW
                             MaxLess4 = -1;
                         if (MaxLess1 > MaxLess5)
                             MaxLess5 = -1;
-                        if (MaxLess1 > MaxLess6)
+                        if (MaxLess2 > MaxLess6)
                             MaxLess6 = -1;
+                        if (MaxLess2 > MaxLess7)
+                            MaxLess7 = -1;
                         if (AStarGreedyi == 1)
                         {
                             OutputHeuristic(Order);
@@ -12633,7 +12664,7 @@ namespace RefrigtzW
                     AA = AAA;
                     HaveKilled = Havk;
 
-                    if (ThinkingChess.IsAtLeastOneKillerAtDraw)
+                    if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
                         if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
                             return true;
@@ -12650,6 +12681,8 @@ namespace RefrigtzW
                         MaxLess5 = -1;
                     if (MaxLess2 > MaxLess6)
                         MaxLess6 = -1;
+                    if (MaxLess2 > MaxLess7)
+                        MaxLess7 = -1;
                     if (AStarGreedyi == 1)
                     {
                         OutputHeuristic(Order);
@@ -12737,7 +12770,7 @@ namespace RefrigtzW
                     AA = AAA;
                     HaveKilled = Havk;
 
-                    if (ThinkingChess.IsAtLeastOneKillerAtDraw)
+                    if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
                         if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
                             return true;
@@ -12754,6 +12787,8 @@ namespace RefrigtzW
                         MaxLess5 = -1;
                     if (MaxLess3 > MaxLess6)
                         MaxLess6 = -1;
+                    if (MaxLess3 > MaxLess7)
+                        MaxLess7 = -1;
                     if (AStarGreedyi == 1)
                     {
                         OutputHeuristic(Order);
@@ -12838,7 +12873,7 @@ namespace RefrigtzW
                     AA = AAA;
                     HaveKilled = Havk;
 
-                    if (ThinkingChess.IsAtLeastOneKillerAtDraw)
+                    if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
                         if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
                             return true;
@@ -12855,6 +12890,8 @@ namespace RefrigtzW
                         MaxLess5 = -1;
                     if (MaxLess4 > MaxLess6)
                         MaxLess6 = -1;
+                    if (MaxLess4 > MaxLess7)
+                        MaxLess7 = -1;
 
                     if (AStarGreedyi == 1)
                     {
@@ -12942,7 +12979,7 @@ namespace RefrigtzW
                     AA = AAA;
                     HaveKilled = Havk;
 
-                    if (ThinkingChess.IsAtLeastOneKillerAtDraw)
+                    if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
                         if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
                             return true;
@@ -12960,6 +12997,8 @@ namespace RefrigtzW
                         MaxLess4 = -1;
                     if (MaxLess5 > MaxLess6)
                         MaxLess6 = -1;
+                    if (MaxLess5 > MaxLess7)
+                        MaxLess7 = -1;
 
                     if (AStarGreedyi == 1)
                     {
@@ -13044,7 +13083,7 @@ namespace RefrigtzW
                     AA = AAA;
                     HaveKilled = Havk;
 
-                    if (ThinkingChess.IsAtLeastOneKillerAtDraw)
+                    if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
                         if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
                             return true;
@@ -13061,6 +13100,8 @@ namespace RefrigtzW
                         MaxLess4 = -1;
                     if (MaxLess6 > MaxLess5)
                         MaxLess5 = -1;
+                    if (MaxLess6 > MaxLess7)
+                        MaxLess7 = -1;
 
                     if (AStarGreedyi == 1)
                     {
@@ -13117,7 +13158,7 @@ namespace RefrigtzW
                     }
                     //retrive table of current Heuristic.
                     //retrive table of current Heuristic.
-                    int[,] TableS = CastlingOnTable[i].CastlingThinking[k].TableListKing[j];
+                    int[,] TableS = CastlingOnTable[i].CastlingThinking[k].TableListCastling[j];
                     //checked for Legal Movments ArgumentOutOfRangeException curnt game.
                     if (DynamicAStarGreedytPrograming && !CurrentTableHeuristic && AStarGreedyi == 1)
                     {
@@ -13143,30 +13184,32 @@ namespace RefrigtzW
 
                     AAA = AA;
                     Havk = HaveKilled;
-                    var ah3 = Task.Factory.StartNew(() => MaxLess6 = CastlingOnTable[RW6].CastlingThinking[CL6].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                    var ah3 = Task.Factory.StartNew(() => MaxLess7 = CastlingOnTable[RW7].CastlingThinking[CL7].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                     ah3.Wait();
                     ah3.Dispose();
                     AA = AAA;
                     HaveKilled = Havk;
 
-                    if (ThinkingChess.IsAtLeastOneKillerAtDraw)
+                    if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
                         if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
                     if (!KillerForce(HaveKilled))
                         return true;
-                    if (MaxLess6 > MaxLess1)
+                    if (MaxLess7 > MaxLess1)
                         MaxLess1 = -1;
-                    if (MaxLess6 > MaxLess2)
+                    if (MaxLess7 > MaxLess2)
                         MaxLess2 = -1;
-                    if (MaxLess6 > MaxLess3)
+                    if (MaxLess7 > MaxLess3)
                         MaxLess3 = -1;
-                    if (MaxLess6 > MaxLess4)
+                    if (MaxLess7 > MaxLess4)
                         MaxLess4 = -1;
-                    if (MaxLess6 > MaxLess5)
+                    if (MaxLess7 > MaxLess5)
                         MaxLess5 = -1;
-
+                    if (MaxLess7 > MaxLess5)
+                        MaxLess6 = -1;
+                   
                     if (AStarGreedyi == 1)
                     {
                         OutputHeuristic(Order);
@@ -13208,7 +13251,7 @@ namespace RefrigtzW
         //determined verified victom occured
         bool KiilledForce(int HaveKiller)
         {
-            if (ThinkingChess.IsAtLeastOneKillerAtDraw)
+            if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
             {
                 if (HaveKilled > 0)
                     return true;
@@ -13218,7 +13261,7 @@ namespace RefrigtzW
         //detrmined verfied ingured occured
         bool KillerForce(int HaveKiller)
         {
-            return ((ThinkingChess.IsAtLeastOneKillerAtDraw) || (!(HaveKiller > 0)));
+            return ((ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw) || (!(HaveKiller > 0)));
         }
         //determine when there is lose or checked self
         bool Lose(int Kind, int i, int j, int Order)
@@ -14342,7 +14385,7 @@ namespace RefrigtzW
                     for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[k] != null && CastlingOnTable[i].CastlingThinking != null && j < CastlingOnTable[i].CastlingThinking[k].TableListCastling.Count; j++)
                     {
                         bool ac = false;
-                        var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 6));
+                        var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -14368,7 +14411,7 @@ namespace RefrigtzW
                             Do = 0;
                             StringHeuristics(6, 1, AA, Do, CastlingOnTable[i].WinOcuuredatChiled, CastlingOnTable[i].LoseOcuuredatChiled);
 
-                            var ah3 = Task.Factory.StartNew(() => ac = Lose(6, i, j, Order));
+                            var ah3 = Task.Factory.StartNew(() => ac = Lose(7, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
@@ -14403,7 +14446,7 @@ namespace RefrigtzW
                                 bool CuTH = CurrentTableHeuristic;
                                 AAA = AA;
                                 D = Do;
-                                var ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 6, ref D, AStarGreedyi, Order));
+                                var ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 7, ref D, AStarGreedyi, Order));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 Act = ac;
@@ -16248,7 +16291,7 @@ namespace RefrigtzW
                 Object OO = new Object();
                 lock (OO)
                 {
-                    ThinkingChess.NotSolvedKingDanger = false;
+                    ThinkingRefrigtzW.NotSolvedKingDanger = false;
                 }
                 LoopHeuristicIndex = 0;
                 //For One time.
@@ -16370,8 +16413,8 @@ namespace RefrigtzW
                 Object O = new Object();
                 lock (O)
                 {
-                    ThinkingChess.BeginThread = 0;
-                    ThinkingChess.EndThread = 0;
+                    ThinkingRefrigtzW.BeginThread = 0;
+                    ThinkingRefrigtzW.EndThread = 0;
                 }
                 //Initiate of global Variables Byte Local Variables.
                 int DummyOrder = new int();
@@ -16631,6 +16674,44 @@ namespace RefrigtzW
                             KingOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
                     }
+                    if (KindIndex == 7||KindIndex==-7)
+                    {
+
+                        Order = DummyOrder;
+                        ChessRules.CurrentOrder = DummyCurrentOrder;
+                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
+                        { ASS = AllDraw.Blitz; }
+                        if (!ASS)
+                        {//When Thinking Gray King Count of Existing Operations.
+                         //Thinking Of Gray King Operatins.
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            ah1.Wait();
+                            ah1.Dispose();
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            CastlingOnTable[iIndex].WinOcuuredatChiled = Win;
+                        }
+                        else if (ASS)//When Thinking Gray Castling Count of Existing Operations.
+                        {
+                            //Gray Castling Thinking Operations.                                        
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            ah1.Wait();
+                            ah1.Dispose();
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            CastlingOnTable[iIndex].WinOcuuredatChiled = Win;
+                        }
+                    }
                 }
                 else//Brown Order Considarations.
                 {
@@ -16830,43 +16911,79 @@ namespace RefrigtzW
                     //Progressing.
                     if (KindIndex == -6)
                     {
+
                         Order = DummyOrder;
                         ChessRules.CurrentOrder = DummyCurrentOrder;
                         bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                         { ASS = AllDraw.Blitz; }
                         if (!ASS)
-                        {//When There is Current Brown Existing Objective Thinking Movments.
-                         //Thinking Operations of Brown Current Objects.
+                        {//When Thinking Gray King Count of Existing Operations.
+                         //Thinking Of Gray King Operatins.
                             KingOnTable[iIndex].KingThinking[0].ThinkingBegin = true;
                             KingOnTable[iIndex].KingThinking[0].ThinkingFinished = false;
-                            int[] Lose = MinisterOnTable[iIndex].LoseOcuuredatChiled;
-                            int Win = MinisterOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            int[] Lose = KingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = KingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
-                            MinisterOnTable[iIndex].WinOcuuredatChiled = Win;
+                            KingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            KingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            KingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            KingOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
-                        else if (ASS)//When There is Current Brown Existing Objective Thinking Movments.
+                        else if (ASS)//When Thinking Gray King Count of Existing Operations.
                         {
-                            //Thinking of Thinking Brown CurrentTable Objective Operations.       
-                            KingOnTable[iIndex].KingThinking[0].TableT = KingOnTable[iIndex].KingThinking[0].TableListKing[j];
+                            //Gray King Thinking Operations.                                        
                             KingOnTable[iIndex].KingThinking[0].ThinkingBegin = true;
                             KingOnTable[iIndex].KingThinking[0].ThinkingFinished = false;
-                            int[] Lose = MinisterOnTable[iIndex].LoseOcuuredatChiled;
-                            int Win = MinisterOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => MinisterOnTable[iIndex].MinisterThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            int[] Lose = KingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = KingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
-                            MinisterOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
-                            MinisterOnTable[iIndex].WinOcuuredatChiled = Win;
-
+                            KingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            KingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            KingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            KingOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
+                    }
+                    if (KindIndex == 7 || KindIndex == -7)
+                    {
 
+                        Order = DummyOrder;
+                        ChessRules.CurrentOrder = DummyCurrentOrder;
+                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
+                        { ASS = AllDraw.Blitz; }
+                        if (!ASS)
+                        {//When Thinking Gray King Count of Existing Operations.
+                         //Thinking Of Gray King Operatins.
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            ah1.Wait();
+                            ah1.Dispose();
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            CastlingOnTable[iIndex].WinOcuuredatChiled = Win;
+                        }
+                        else if (ASS)//When Thinking Gray Castling Count of Existing Operations.
+                        {
+                            //Gray Castling Thinking Operations.                                        
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
+                            int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            ah1.Wait();
+                            ah1.Dispose();
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[1] = Lose[1];
+                            CastlingOnTable[iIndex].LoseOcuuredatChiled[2] = Lose[2];
+                            CastlingOnTable[iIndex].WinOcuuredatChiled = Win;
+                        }
                     }
 
 
@@ -16937,7 +17054,18 @@ namespace RefrigtzW
                     KingOnTable[iIndex].KingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinking[0].AStarGreedy.Count - 1].TableList.Clear();
                     KingOnTable[iIndex].KingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinking[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(Tab));
                     KingOnTable[iIndex].KingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinking[0].AStarGreedy.Count - 1].SetRowColumn(0);
-                    var H = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order * -1, false, FOUND, LeafAStarGreedy));
+                    var H = Task.Factory.StartNew(() => KingOnTable[iIndex].KingThinking[0].AStarGreedy[KingOnTable[iIndex].KingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order * -1, false, FOUND, LeafAStarGreedy));
+                    H.Wait();
+                    H.Dispose();
+                }
+                else
+                                    if (KindIndex == 7 || KindIndex == -6)
+                {
+                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinking[0].AStarGreedy.Count - 1].TableList.Clear();
+                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinking[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(Tab));
+                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinking[0].AStarGreedy.Count - 1].SetRowColumn(0);
+                    var H = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order * -1, false, FOUND, LeafAStarGreedy));
                     H.Wait();
                     H.Dispose();
                 }
@@ -17584,9 +17712,9 @@ namespace RefrigtzW
         }
         bool ServeBoundryConditionsCasttling(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= 0)
+            if (Order == 1 && i > 0)
                 return true;
-            if (Order == -1 && i >= 0)
+            if (Order == -1 && i > 0)
                 return true;
             if (CastlingOnTable == null)
                 return true;
@@ -18417,9 +18545,9 @@ namespace RefrigtzW
         }
         bool InitiateAStarGreedytCastling(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= 0)
+            if (Order == 1 && i > 0)
                 return false;
-            if (Order == -1 && i >= 0)
+            if (Order == -1 && i > 0)
                 return false;
 
             if (CastlingOnTable != null)
@@ -18949,7 +19077,7 @@ namespace RefrigtzW
                                 {
                                     CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = true;
                                     CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = false;
-                                    ; var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
+                                    var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
                                     if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count != 0)
                                     {
@@ -19447,7 +19575,7 @@ namespace RefrigtzW
                         {
                             IS = IS || FullBoundryConditionsGray(Current, Order, iAStarGreedy);
                             //when vicrory count satisfied
-                            if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
+                            if ((ThinkingRefrigtzW.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                             {
                                 IS = true;
                             }
@@ -19456,13 +19584,13 @@ namespace RefrigtzW
                         {
                             IS = IS || FullBoundryConditionsBrown(Current, Order, iAStarGreedy);
                             //when victory count satisfied
-                            if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
+                            if ((ThinkingRefrigtzW.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                             {
                                 IS = true;
                             }
                         }
                         //when nu,bers of computational leafs satisfied 
-                        if (((ThinkingChess.NumbersOfAllNode - AllDraw.NumberOfLeafComputation) > 100) && AllDraw.NumberOfLeafComputation != -1 && (!AllowedSupTrue))
+                        if (((ThinkingRefrigtzW.NumbersOfAllNode - AllDraw.NumberOfLeafComputation) > 100) && AllDraw.NumberOfLeafComputation != -1 && (!AllowedSupTrue))
                             IS = true;
 
 
@@ -19471,7 +19599,7 @@ namespace RefrigtzW
                 }
                 else
                 {
-                    if (ThinkingChess.NumbersOfAllNode > CompleteNumber)
+                    if (ThinkingRefrigtzW.NumbersOfAllNode > CompleteNumber)
                         return true;
                     if (CompleteTreeCancel)
                         return true;
@@ -19524,7 +19652,7 @@ namespace RefrigtzW
                         IS = IS || FullBoundryConditionsCastling(ikk, Current, Order, iAStarGreedy);
                     }
                     //when victory count satisfied
-                    if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
+                    if ((ThinkingRefrigtzW.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                     {
                         IS = true;
                     }
@@ -19578,7 +19706,7 @@ namespace RefrigtzW
                         IS = IS || FullBoundryConditionsCastling(ikk, Current, Order, iAStarGreedy);
                     }
                     //when vicrory count satisfied
-                    if ((ThinkingChess.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
+                    if ((ThinkingRefrigtzW.FoundFirstMating > (MaxAStarGreedy)) && (!AllowedSupTrue)) //|| (SetDeptIgnore))
                     {
                         IS = true;
                     }
@@ -19994,8 +20122,8 @@ namespace RefrigtzW
             Object oo = new Object();
             lock (oo)
             {
-                ThinkingChess.BeginThread = 0;
-                ThinkingChess.EndThread = 0;
+                ThinkingRefrigtzW.BeginThread = 0;
+                ThinkingRefrigtzW.EndThread = 0;
             }
             //Initiate of global Variables Byte Local Variables.
             int DummyOrder = new int();
@@ -20083,7 +20211,7 @@ namespace RefrigtzW
             }
             else
             {
-                if (!Deeperthandeeper || ThinkingChess.FullGameAllow)
+                if (!Deeperthandeeper || ThinkingRefrigtzW.FullGameAllow)
                 {
                     Object O = new Object();
                     lock (O)
@@ -20143,8 +20271,8 @@ namespace RefrigtzW
                      Object oo = new Object();
                      lock (oo)
                      {
-                         ThinkingChess.BeginThread = 0;
-                         ThinkingChess.EndThread = 0;
+                         ThinkingRefrigtzW.BeginThread = 0;
+                         ThinkingRefrigtzW.EndThread = 0;
                      }
                      //Initiate of global Variables Byte Local Variables.
                      int DummyOrder = new int();
@@ -20390,7 +20518,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null)
                     {
-                        if (CastlingOnTable[i].CastlingThinking[0].TableListKing.Count > 0)
+                        if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                         {
                             Is = true;
                             break;
@@ -20498,7 +20626,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             if (Kind == 7 || Kind == -7)
                 if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling!= null)
                 {
-                    if (CastlingOnTable[i].CastlingThinking[0].TableListKing.Count > 0)
+                    if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                     {
                         Is = true;
                     }
@@ -21280,7 +21408,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        var ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 6, ik, j));
+                        var ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 7, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
@@ -21295,7 +21423,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(7, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -22087,7 +22215,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        var ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 6, ik, j));
+                        var ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 7, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
@@ -22102,7 +22230,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(7, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -22733,7 +22861,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             Sum = A.CastlingOnTable[i].LoseOcuuredatChiled[0];
                         if (Sum == 5)
                         {
-                            if (IsMovableLoseOcuuredatChiled(CloneATable(TableList[0]), 6, Order, i))
+                            if (IsMovableLoseOcuuredatChiled(CloneATable(TableList[0]), 7, Order, i))
                             {
                                 A.CastlingOnTable[i].WinOcuuredatChiled = Sum = 5;
                                 return 5;
@@ -22841,7 +22969,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                             Sum = A.CastlingOnTable[i].LoseOcuuredatChiled[0];
                         if (Sum == 5)
                         {
-                            if (IsMovableLoseOcuuredatChiled(CloneATable(TableList[0]), 6, Order, i))
+                            if (IsMovableLoseOcuuredatChiled(CloneATable(TableList[0]), 7, Order, i))
                             {
                                 A.CastlingOnTable[i].WinOcuuredatChiled = Sum = 5;
                                 return 5;
@@ -22939,7 +23067,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 }
                 else if (kind == 7 || kind == -7)//king
                 {
-                    if (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListKing[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
+                    if (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
                         return true;
                 }
             }
@@ -22979,7 +23107,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 }
                 else if (kind == 7||kind==-7)//king
                 {
-                    if (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListKing[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
+                    if (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
                         return true;
                 }
             }
@@ -25581,7 +25709,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     Object OOOOO = new Object();
                     lock (OOOOO)
                     {
-                        if (IsSupHuTrue(ik, j, 0, 6))
+                        if (IsSupHuTrue(ik, j, 0, kin))
                             continue;
                         //when search finished stop and return
                         if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
@@ -25607,7 +25735,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                                 if (AllDraw.Blitz)
                                 {
                                     //when do permite
-                                    if (Index[kin] != -1)
+                                    if (Index[6] != -1)
                                     {
                                         //object kind semaphore
                                         if (ik != Index[6])
@@ -25648,7 +25776,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                                     lock (O)
                                     {
                                         //do deeper
-                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, 6, FOUND, LeafAStarGreedy);
+                                        OpOfFullGameThinkingTree(ik, j, Order, iAStarGreedy, ii, jj, a, kin, FOUND, LeafAStarGreedy);
                                         Do = true;
                                     }
                                 }
@@ -27193,7 +27321,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             Object O = new Object();
             lock (O)
             {
-                if (ThinkingChess.LearningVarsCheckedMateOccured && ThinkingChess.LearningVarsCheckedMateOccuredOneCheckedMate)
+                if (ThinkingRefrigtzW.LearningVarsCheckedMateOccured && ThinkingRefrigtzW.LearningVarsCheckedMateOccuredOneCheckedMate)
                 {
                     if (Order == 1)
                     {
@@ -27716,13 +27844,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     TH.Clear();
                 else
                     TH = new List<Task>();
-                ThinkingChess.Colleralation = int.MinValue;
-                ThinkingChess.DeColleralation = int.MaxValue;
+                ThinkingRefrigtzW.Colleralation = int.MinValue;
+                ThinkingRefrigtzW.DeColleralation = int.MaxValue;
                 if (FOUND && (!FirstTraversalTree))
-                    NumberOfLeafComputation = ThinkingChess.NumbersOfAllNode;
+                    NumberOfLeafComputation = ThinkingRefrigtzW.NumbersOfAllNode;
                 else
                     NumberOfLeafComputation = -1;
-                ThinkingChess.IsAtLeastOneKillerAtDraw = false;
+                ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw = false;
 
                 //var parallelOptions = new ParallelOptions();
                 //parallelOptions.MaxDegreeOfParallelism = 2; //PlatformHelper.ProcessorCount;
@@ -27734,8 +27862,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 lock (O)
                 {
                     AllDraw.ActionStringReady = false;
-                    ThinkingChess.LearningVarsCheckedMateOccured = false;
-                    ThinkingChess.LearningVarsCheckedMateOccuredOneCheckedMate = false;
+                    ThinkingRefrigtzW.LearningVarsCheckedMateOccured = false;
+                    ThinkingRefrigtzW.LearningVarsCheckedMateOccuredOneCheckedMate = false;
                     RegardOccurred = false;
                     Object OO21 = new Object();
                     lock (OO21)
@@ -27757,8 +27885,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     {
                         MinThinkingTreeDepth = 0;
                     }
-                    ThinkingChess.FoundFirstMating = 0;
-                    ThinkingChess.FoundFirstSelfMating = 0;
+                    ThinkingRefrigtzW.FoundFirstMating = 0;
+                    ThinkingRefrigtzW.FoundFirstSelfMating = 0;
                     //Monitor Log File Appending First Line. 
                     Object On = new Object();
                     lock (On)
@@ -27791,7 +27919,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     Object O7 = new Object();
                     lock (O7)
                     {
-                        ThinkingChess.NotSolvedKingDanger = false;
+                        ThinkingRefrigtzW.NotSolvedKingDanger = false;
                         LoopHeuristicIndex = 0;
                         Less = Int32.MinValue;
                     }
@@ -29135,7 +29263,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             else
             if (Kind == 7||Kind==-7)
             {
-                if (ServeBoundryConditionsKing(i, Kind, Order))
+                if (ServeBoundryConditionsCasttling(i, Kind, Order))
                     return false;
                 if (CastlingOnTable[i].LoseOcuuredatChiled[0] == 5)
                 {

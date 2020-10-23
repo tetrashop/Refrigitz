@@ -642,7 +642,7 @@ namespace RefrigtzW
                             GeneticTable[Gen1, Gen2] = GeneticTable[CromosomRow, CromosomColumn];
                             GeneticTable[CromosomRow, CromosomColumn] = 0;
                             //Table Repeatative Consideration.
-                            if (ThinkingChess.ExistTableInList(CloneATable(GeneticTable), List, 0))
+                            if (ThinkingRefrigtzW.ExistTableInList(CloneATable(GeneticTable), List, 0))
                             {
                                 GeneticTable[CromosomRow, CromosomColumn] = GeneticTable[Gen1, Gen2];
                                 GeneticTable[Gen1, Gen2] = 0;

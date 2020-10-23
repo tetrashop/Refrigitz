@@ -42,7 +42,7 @@ namespace RefrigtzW
         public int[,] Table = null;
         public int Current = 0;
         public int Order;
-        public ThinkingChess[] MinisterThinking = new ThinkingChess[AllDraw.MinisterMovments];
+        public ThinkingRefrigtzW[] MinisterThinking = new ThinkingRefrigtzW[AllDraw.MinisterMovments];
         int CurrentAStarGredyMax = -1;
         static void Log(Exception ex)
         {
@@ -80,8 +80,8 @@ namespace RefrigtzW
                 lock (O2)
                 {
                     MaxNotFound = false;
-                    if (ThinkingChess.MaxHeuristicx < MaxHeuristicxM)
-                        ThinkingChess.MaxHeuristicx = a;
+                    if (ThinkingRefrigtzW.MaxHeuristicx < MaxHeuristicxM)
+                        ThinkingRefrigtzW.MaxHeuristicx = a;
                     MaxHeuristicxM = a;
                 }
                 
@@ -129,7 +129,7 @@ namespace RefrigtzW
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.MinisterMovments; ii++)
-                    MinisterThinking[ii] = new ThinkingChess(ii,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 32, Ord, TB, Cur, 2, 5);
+                    MinisterThinking[ii] = new ThinkingRefrigtzW(ii,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 32, Ord, TB, Cur, 2, 5);
 
                 Row = i;
                 Column = j;
@@ -190,7 +190,7 @@ namespace RefrigtzW
             for (var i = 0; i < AllDraw.MinisterMovments; i++)
             {
 
-                AA.MinisterThinking[i] = new ThinkingChess(i,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.MinisterThinking[i] = new ThinkingRefrigtzW(i,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.MinisterThinking[i].Clone(ref AA.MinisterThinking[i]);
 
 

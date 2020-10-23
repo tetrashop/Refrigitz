@@ -38,7 +38,7 @@ namespace RefrigtzW
         public bool ArrangmentsChanged = true;
         public static double MaxHeuristicxE = -20000000000000000;
         public float Row, Column;
-        public ThinkingChess[] ElefantThinking = new ThinkingChess[AllDraw.ElefantMovments];
+        public ThinkingRefrigtzW[] ElefantThinking = new ThinkingRefrigtzW[AllDraw.ElefantMovments];
         public int[,] Table = null;
         public Color color;
         public int Current = 0;
@@ -79,8 +79,8 @@ namespace RefrigtzW
                 lock (O2)
                 {
                     MaxNotFound = false;
-                    if (ThinkingChess.MaxHeuristicx < MaxHeuristicxE)
-                        ThinkingChess.MaxHeuristicx = a;
+                    if (ThinkingRefrigtzW.MaxHeuristicx < MaxHeuristicxE)
+                        ThinkingRefrigtzW.MaxHeuristicx = a;
                     MaxHeuristicxE = a;
                 }
                 
@@ -132,7 +132,7 @@ namespace RefrigtzW
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.ElefantMovments; ii++)
-                    ElefantThinking[ii] = new ThinkingChess(ii,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 2);
+                    ElefantThinking[ii] = new ThinkingRefrigtzW(ii,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 2);
 
                 Row = i;
                 Column = j;
@@ -194,7 +194,7 @@ namespace RefrigtzW
             for (var i = 0; i < AllDraw.ElefantMovments; i++)
             {
 
-                AA.ElefantThinking[i] = new ThinkingChess(i,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.ElefantThinking[i] = new ThinkingRefrigtzW(i,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.ElefantThinking[i].Clone(ref AA.ElefantThinking[i]);
 
             }

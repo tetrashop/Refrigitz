@@ -463,7 +463,7 @@ namespace RefrigtzW
                     for (int j = 0; j < 8; j++)
                         Table[i, j] *= -1;
             }
-            RefrigtzW.ThinkingChess.LearniningTable = new RefrigtzW.NetworkQuantumLearningKrinskyAtamata(8, 8, 8);
+            RefrigtzW.ThinkingRefrigtzW.LearniningTable = new RefrigtzW.NetworkQuantumLearningKrinskyAtamata(8, 8, 8);
             Draw.TableList.Clear();
             Draw.TableList.Add(CloneATable(Table));
             Draw.SetRowColumn(0);
@@ -1218,7 +1218,7 @@ namespace RefrigtzW
                     int temp = 0;
                     temp = oleDbCmd.ExecuteNonQuery();
 
-                    oleDbCmd.CommandText = "Insert into Configuration (ArrangmentsChanged,GrayTimer,BrownTimer,BobSection,AliceSection,StateCP,StateCC,StateGe,Blitz,Person,SettingPRFALSE,Colleralation) values(" + System.Convert.ToInt32(ArrangmentsChanged).ToString() + "," + GrayTimer.Times.ToString() + "," + BrownTimer.Times.ToString() + "," + System.Convert.ToInt32(BobSection).ToString() + "," + System.Convert.ToInt32(AliceSection).ToString() + "," + System.Convert.ToInt32(StateCP).ToString() + "," + System.Convert.ToInt32(StateCC).ToString() + "," + System.Convert.ToInt32(StateGe).ToString() + "," + System.Convert.ToInt32(Blitz).ToString() + "," + System.Convert.ToInt32(Person).ToString() + "," + System.Convert.ToInt32(SettingPRFALSE).ToString() + "," + ThinkingChess.Colleralation.ToString() + ")";
+                    oleDbCmd.CommandText = "Insert into Configuration (ArrangmentsChanged,GrayTimer,BrownTimer,BobSection,AliceSection,StateCP,StateCC,StateGe,Blitz,Person,SettingPRFALSE,Colleralation) values(" + System.Convert.ToInt32(ArrangmentsChanged).ToString() + "," + GrayTimer.Times.ToString() + "," + BrownTimer.Times.ToString() + "," + System.Convert.ToInt32(BobSection).ToString() + "," + System.Convert.ToInt32(AliceSection).ToString() + "," + System.Convert.ToInt32(StateCP).ToString() + "," + System.Convert.ToInt32(StateCC).ToString() + "," + System.Convert.ToInt32(StateGe).ToString() + "," + System.Convert.ToInt32(Blitz).ToString() + "," + System.Convert.ToInt32(Person).ToString() + "," + System.Convert.ToInt32(SettingPRFALSE).ToString() + "," + ThinkingRefrigtzW.Colleralation.ToString() + ")";
 
                     temp = oleDbCmd.ExecuteNonQuery();
 
@@ -1277,7 +1277,7 @@ namespace RefrigtzW
                         Blitz = System.Convert.ToBoolean(dr["Blitz"]);
                         Person = System.Convert.ToBoolean(dr["Person"]);
                         SettingPRFALSE = System.Convert.ToBoolean(dr["SettingPRFALSE"]);
-                        ThinkingChess.Colleralation = System.Convert.ToInt32(dr["Colleralation"]);
+                        ThinkingRefrigtzW.Colleralation = System.Convert.ToInt32(dr["Colleralation"]);
                     }
 
                 }
@@ -1313,7 +1313,7 @@ namespace RefrigtzW
                 {
                     TimersSet = false;
 
-                    oleDbCmd.CommandText = "Update Configuration Set ArrangmentsChanged=" + System.Convert.ToString(System.Convert.ToInt32(ArrangmentsChanged)) + ",GrayTimer=" + GrayTimer.Times.ToString() + ",BrownTimer=" + BrownTimer.Times.ToString() + ",BobSection = " + System.Convert.ToUInt32(BobSection).ToString() + ",AliceSection =" + System.Convert.ToUInt32(AliceSection).ToString() + ",StateCP = " + System.Convert.ToUInt32(StateCP).ToString() + ",StateCC = " + System.Convert.ToUInt32(StateCC).ToString() + ",StateGe=" + System.Convert.ToUInt32(StateGe).ToString() + ",Blitz=" + System.Convert.ToUInt32(Blitz).ToString() + ",Person=" + System.Convert.ToUInt32(Person).ToString() + ",SettingPRFALSE=" + System.Convert.ToUInt32(SettingPRFALSE).ToString() + ",Colleralation='" + ThinkingChess.Colleralation.ToString() + "'";
+                    oleDbCmd.CommandText = "Update Configuration Set ArrangmentsChanged=" + System.Convert.ToString(System.Convert.ToInt32(ArrangmentsChanged)) + ",GrayTimer=" + GrayTimer.Times.ToString() + ",BrownTimer=" + BrownTimer.Times.ToString() + ",BobSection = " + System.Convert.ToUInt32(BobSection).ToString() + ",AliceSection =" + System.Convert.ToUInt32(AliceSection).ToString() + ",StateCP = " + System.Convert.ToUInt32(StateCP).ToString() + ",StateCC = " + System.Convert.ToUInt32(StateCC).ToString() + ",StateGe=" + System.Convert.ToUInt32(StateGe).ToString() + ",Blitz=" + System.Convert.ToUInt32(Blitz).ToString() + ",Person=" + System.Convert.ToUInt32(Person).ToString() + ",SettingPRFALSE=" + System.Convert.ToUInt32(SettingPRFALSE).ToString() + ",Colleralation='" + ThinkingRefrigtzW.Colleralation.ToString() + "'";
 
                     int temp = oleDbCmd.ExecuteNonQuery();
                     TimersSet = true;
@@ -1445,7 +1445,7 @@ namespace RefrigtzW
                 {
                     RefrigtzW.AllDraw.OrderPlateDraw = -1;
                     RefrigtzW.AllDraw.TableListAction.Add(CloneATable(Table));
-                    RefrigtzW.ThinkingChess.TableInitiation = CloneATable(Table);
+                    RefrigtzW.ThinkingRefrigtzW.TableInitiation = CloneATable(Table);
                     if (DrawManagement())
                     {
                         //Load AllDraw.asd
@@ -1662,7 +1662,7 @@ namespace RefrigtzW
         void AliceWithPerson()
         {
 
-            ThinkingChess.ThinkingRun = true;
+            ThinkingRefrigtzW.ThinkingRun = true;
 
             try
             {
@@ -1832,7 +1832,7 @@ namespace RefrigtzW
                 StateCC = StoreStateCC;
                 StateCP = StoreStateCP;
                 StateGe = StoreStateGe;
-                ThinkingChess.ThinkingRun = false;
+                ThinkingRefrigtzW.ThinkingRun = false;
                 if (SettingPRFALSE)
                 {
                     SettingPRFALSE = false;

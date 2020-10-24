@@ -20940,7 +20940,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < SolderesOnTable[ik].SoldierThinking[0].HeuristicListSolder.Count; j++)
                 {
                     //when node is serving node continue
-                    if (SolderesOnTable[ik].SoldierThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,1)
                       )
                         continue;
                     Object O = new Object();
@@ -21017,7 +21017,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < ElephantOnTable[ik].ElefantThinking[0].HeuristicListElefant.Count; j++)
                 {
                     //when node is serving node continue
-                    if (ElephantOnTable[ik].ElefantThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,2)
                )
                         continue;
                     Object O = new Object();
@@ -21169,7 +21169,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < CastlesOnTable[ik].CastleThinking[0].HeuristicListCastle.Count; j++)
                 {
                     //when node is serving node continue
-                    if (CastlesOnTable[ik].CastleThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,4)
                  )
                         continue;
                     Object O = new Object();
@@ -21247,7 +21247,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < MinisterOnTable[ik].MinisterThinking[0].HeuristicListMinister.Count; j++)
                 {
                     //when node is serving node continue
-                    if (MinisterOnTable[ik].MinisterThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,5)
                       )
                         continue;
                     //when node is empty deeper and there is not computatiional node continue
@@ -21324,7 +21324,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < KingOnTable[ik].KingThinking[0].HeuristicListKing.Count; j++)
                 {
                     //when node is serving node continue
-                    if (KingOnTable[ik].KingThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,6)
                       )
                         continue;
                     Object O = new Object();
@@ -21401,7 +21401,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Count; j++)
                 {
                     //when node is serving node continue
-                    if (CastlingOnTable[ik].CastlingThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,7)
                       )
                         continue;
                     Object O = new Object();
@@ -21629,7 +21629,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < SolderesOnTable[ik].SoldierThinking[0].HeuristicListSolder.Count; j++)
                 {
                     //when node is serving node continue
-                    if (SolderesOnTable[ik].SoldierThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,1)
                    )
                         continue;
                     //when node is empty deeper and there is not computatiional node continue
@@ -21702,7 +21702,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < ElephantOnTable[ik].ElefantThinking[0].HeuristicListElefant.Count; j++)
                 {
                     //when node is serving node continue
-                    if (ElephantOnTable[ik].ElefantThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,2)
                  )
                         continue;
                     //when node is empty deeper and there is not computatiional node continue
@@ -21985,7 +21985,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < CastlesOnTable[ik].CastleThinking[0].HeuristicListCastle.Count; j++)
                 {
                     //when node is serving node continue
-                    if (CastlesOnTable[ik].CastleThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,4)
                     )
                         continue;
                     //when node is empty deeper and there is not computatiional node continue
@@ -22060,7 +22060,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < MinisterOnTable[ik].MinisterThinking[0].HeuristicListMinister.Count; j++)
                 {
                     //when node is serving node continue
-                    if (MinisterOnTable[ik].MinisterThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,5)
                       )
                         continue;
                     //when node is empty deeper and there is not computatiional node continue
@@ -22134,7 +22134,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < KingOnTable[ik].KingThinking[0].HeuristicListKing.Count; j++)
                 {
                     //when node is serving node continue
-                    if (KingOnTable[ik].KingThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,6)
                      )
                         continue;
                     //when node is empty deeper and there is not computatiional node continue
@@ -22208,7 +22208,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 for (j = 0; j < CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Count; j++)
                 {
                     //when node is serving node continue
-                    if (CastlingOnTable[ik].CastlingThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,7)
                       )
                         continue;
                     Object O = new Object();
@@ -24552,7 +24552,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(SolderesOnTable[ik].SoldierThinking[0].TableListSolder[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (SolderesOnTable[ik].SoldierThinking[0].IsSupHu[j])
+                        if (IsSupHuTrue(ik,j,0,1))
                             continue;
                         //self do
                         if (Order != AllDraw.OrderPlateDraw)
@@ -24748,7 +24748,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(ElephantOnTable[ik].ElefantThinking[0].TableListElefant[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (ElephantOnTable[ik].ElefantThinking[0].IsSupHu[j])
+                        if (IsSupHuTrue(ik,j,0,2))
                             continue;
                         //self do
                         if (Order != AllDraw.OrderPlateDraw)
@@ -25142,7 +25142,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     if (CheckeHuristci(CloneATable(CastlesOnTable[ik].CastleThinking[0].TableListCastle[j]), Order, ik, j, 0))
                         continue;
                     //sereved continuce
-                    if (CastlesOnTable[ik].CastleThinking[0].IsSupHu[j])
+                    if (IsSupHuTrue(ik,j,0,4))
                         continue;
                     Object ooo = new Object();
                     lock (ooo)
@@ -25346,7 +25346,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(MinisterOnTable[ik].MinisterThinking[0].TableListMinister[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (MinisterOnTable[ik].MinisterThinking[0].IsSupHu[j])
+                        if (IsSupHuTrue(ik,j,0,5))
                             continue;
 
 
@@ -25550,7 +25550,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(KingOnTable[ik].KingThinking[0].TableListKing[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (KingOnTable[ik].KingThinking[0].IsSupHu[j])
+                        if (IsSupHuTrue(ik,j,0,6))
                             continue;
                         //when is self
                         if (Order != AllDraw.OrderPlateDraw)
@@ -25722,7 +25722,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (CastlingOnTable[ik].CastlingThinking[0].IsSupHu[j])
+                        if (IsSupHuTrue(ik,j,0,7))
                             continue;
                         //when is self
                         if (Order != AllDraw.OrderPlateDraw)

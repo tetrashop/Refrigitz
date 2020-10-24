@@ -21401,7 +21401,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 for (j = 0; j < CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Count; j++)
                 {
                     //when node is serving node continue
-                    if (CastlingOnTable[ik].CastlingThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,7)
                       )
                         continue;
                     Object O = new Object();
@@ -22208,7 +22208,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 for (j = 0; j < CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Count; j++)
                 {
                     //when node is serving node continue
-                    if (CastlingOnTable[ik].CastlingThinking[0].IsSupHu[j]
+                    if (IsSupHuTrue(ik,j,0,7)
                       )
                         continue;
                     Object O = new Object();
@@ -25722,7 +25722,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (CastlingOnTable[ik].CastlingThinking[0].IsSupHu[j])
+                        if (IsSupHuTrue(ik,j,0,7))
                             continue;
                         //when is self
                         if (Order != AllDraw.OrderPlateDraw)

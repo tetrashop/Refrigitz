@@ -15478,25 +15478,27 @@ th.Dispose();
             Object O = new Object();
             lock (O)
             {
-                for (var i = ii - 2; i < ii + 2; i++)
+                for (var i = ii - 2; i <= ii + 2; i++)
                 {
 
 
                     ///Initiate a Local Variables.
                     int[,] TableS = CloneATable(TableConst);
 
-                    ///"Inizialization of This New Class (Current is Dynamic class Object) is MalFunction (Constant Variable Count).
-                    QuantumAtamata Current = new QuantumAtamata(3, 3, 3);
+                    if (Scop(ii, jj, i, jj, -7) && System.Math.Abs(TableS[ii, jj]) == 6 && System.Math.Abs(Kind) == 7)
+                    {  ///"Inizialization of This New Class (Current is Dynamic class Object) is MalFunction (Constant Variable Count).
+                        QuantumAtamata Current = new QuantumAtamata(3, 3, 3);
 
-                    ///Calculate of Castles of Brown.
-                    if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, -7, CloneATable(TableS), Order, ii, jj)).Rules(ii, jj, i, jj, color, -7) && (ChessRules.CastleKingAllowedBrown))
-                    {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => CastleThinkingBrown(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));
+                        ///Calculate of Castles of Brown.
+                        if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, -7, CloneATable(TableS), Order, ii, jj)).Rules(ii, jj, i, jj, color, -7) && (ChessRules.CastleKingAllowedBrown))
+                        {
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
+                            var newTask = Task.Factory.StartNew(() => CastleThinkingBrown(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));
 
 
-                        newTask.Wait(); newTask.Dispose();
-                        LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+                            newTask.Wait(); newTask.Dispose();
+                            LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+                        }
                     }
                     ThinkingAtRun = false;
                 }
@@ -15509,23 +15511,25 @@ th.Dispose();
             Object O = new Object();
             lock (O)
             {
-                for (var i = ii - 2; i < ii + 2; i++)
+                for (var i = ii - 2; i <= ii + 2; i++)
                 {
 
                     ///Initiate a Local Variables.
                     int[,] TableS = CloneATable(TableConst);
 
-                    ///"Inizialization of This New Class (Current is Dynamic class Object) is MalFunction (Constant Variable Count).
-                    QuantumAtamata Current = new QuantumAtamata(3, 3, 3);
+                    if (Scop(ii, jj, i, jj, -7) && System.Math.Abs(TableS[ii, jj]) == 6 && System.Math.Abs(Kind) == 7)
+                    {  ///"Inizialization of This New Class (Current is Dynamic class Object) is MalFunction (Constant Variable Count).
+                        QuantumAtamata Current = new QuantumAtamata(3, 3, 3);
 
-                    if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 7, CloneATable(TableS), Order, ii, jj)).Rules(ii, jj, i, jj, color, 7) && (ChessRules.CastleKingAllowedGray))
-                    {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        var newTask = Task.Factory.StartNew(() => CastleThinkingGray(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));
+                        if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 7, CloneATable(TableS), Order, ii, jj)).Rules(ii, jj, i, jj, color, 7) && (ChessRules.CastleKingAllowedGray))
+                        {
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
+                            var newTask = Task.Factory.StartNew(() => CastleThinkingGray(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));
 
 
-                        newTask.Wait(); newTask.Dispose();
-                        LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+                            newTask.Wait(); newTask.Dispose();
+                            LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
+                        }
                     }
                     ThinkingAtRun = false;
                 }

@@ -7413,93 +7413,93 @@ th.Dispose();
                     {
 
                         ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
-                           {
-                               ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
-                               {
-                                   ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
-                                   {
-                                       ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+                        {
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
+                            {
+                                ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
+                                {
+                                    ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+                                    {
+
+                                        ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                                         {
 
-                                            ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                                            Object O11 = new Object();
+                                            lock (O11)
+                                            {
+                                                if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                                                    Exchange[ReducedAttacked]++;
+
+
+
+                                            }
+                                        }
+                                        , () =>
+                                        {
+                                            Object O11 = new Object();
+                                            lock (O11)
                                             {
 
-                                                Object O11 = new Object();
-                                                lock (O11)
-                                                {
-                                                    if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
-                                                        Exchange[ReducedAttacked]++;
 
 
-
-                                                }
+                                                if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
+                                                    Exchange[ReducedSupport]++;
                                             }
-                                            , () =>
+                                        }
+                                      , () =>
+
+                                      {
+                                          Object O11 = new Object();
+                                          lock (O11)
                                           {
-                                              Object O11 = new Object();
-                                              lock (O11)
-                                              {
 
-
-
-                                                  if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
-                                                      Exchange[ReducedSupport]++;
-                                              }
+                                              if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
+                                                  Exchange[ReducedMove]++;
                                           }
-                                          , () =>
+                                      }
+                                           , () =>
+
+                                           {
+
+                                               Object O11 = new Object();
+                                               lock (O11)
+                                               {
+                                                   if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                                                       Exchange[ToAttacked]++;
+                                               }
+
+                                           }
+                                           , () =>
+                                           {
+                                               Object O11 = new Object();
+                                               lock (O11)
+                                               {
+
+                                                   if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
+                                                       Exchange[ToSupport]++;
+                                               }
+                                           }
+                                             , () =>
 
                                              {
+
                                                  Object O11 = new Object();
                                                  lock (O11)
                                                  {
 
-                                                     if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
-                                                         Exchange[ReducedMove]++;
+                                                     if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
+                                                         Exchange[ToMoved]++;
+
+
                                                  }
-                                             }
-                                               , () =>
 
-                                               {
+                                             });
 
-                                                   Object O11 = new Object();
-                                                   lock (O11)
-                                                   {
-                                                       if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
-                                                           Exchange[ToAttacked]++;
-                                                   }
+                                    });
 
-                                               }
-                                               , () =>
-                                               {
-                                                   Object O11 = new Object();
-                                                   lock (O11)
-                                                   {
-
-                                                       if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
-                                                           Exchange[ToSupport]++;
-                                                   }
-                                               }
-                                                 , () =>
-
-                                                   {
-
-                                                       Object O11 = new Object();
-                                                       lock (O11)
-                                                       {
-
-                                                           if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
-                                                               Exchange[ToMoved]++;
-
-
-                                                       }
-
-                                                   });
-
-                                        });
-
-                                   });
-                               });
-                           });
+                                });
+                            });
+                        });
                     });
 
 
@@ -7508,6 +7508,40 @@ th.Dispose();
                 }
 
                 //When situation is closed
+                ExchangeA(Ord, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked);
+                //when situation is closed and restriction
+                ExchangeB(Ord, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked);
+                //Closed space remove
+                int A1 = (Exchange[ToAttacked] + Exchange[ToSupport] + Exchange[ToMoved]);
+                //penalties
+                int A2 = A1 + (Exchange[ReducedAttacked] + Exchange[ReducedSupport] + Exchange[ReducedMove]);
+                ExchangeSeed[2] = (int)(((double)RationalPenalty) * ((((double)(A2)) / 64.0)));
+
+                //When victorian of self on enemy to consideration of weaker self traversal object at active enemy strong traversal
+                ExchangeC(Ord, aa, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, Table, Ros, Cos, Rod, Cod);
+                //Simplification of mathematic method when we have victories
+                double ExchangedOfGameSimplification = (double)(Exchange[ToSupport] - Exchange[ReducedSupport] + Exchange[ToAttacked] - Exchange[ReducedSupport]);
+                double MAX = 64.0;
+                ExchangeSeed[2] += (int)(((double)(RationalRegard)) * (ExchangedOfGameSimplification / MAX));
+                //Remove of most impressive defensive enemy Objects
+                ExchangeD(Before, Ord, MAX, aa, ref ExchangeSeed, Exchange, RemobeActiveDenfesiveObjectsOfEnemy, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, Table, Ros, Cos, Rod, Cod);
+                //Safty before Attack
+                var H7 = Task.Factory.StartNew(() => ExchangeSeed[2] += (RationalPenalty * (NoOfExistInReducedMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedSupportList(Before, Ros, Cos, Rod, Cod))) + (RationalRegard * (NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInSupportList(Before, Ros, Cos, Rod, Cod))));
+                H7.Wait();
+                H7.Dispose();
+                Ord = DummyOrd;
+                ChessRules.CurrentOrder = DummyCurrentOrd;
+                Ord = DumOrd;
+                //Initiate to Begin Call Ords.
+                return ExchangeSeed;
+
+            }
+        }
+        void ExchangeA(int Ord, ref int[] ExchangeSeed, int[] Exchange, int ToSupport, int ReducedSupport, int ReducedAttacked)
+        {
+            Object o = new Object();
+            lock (o)
+            {
                 int A1 = 0;
                 var H1 = Task.Factory.StartNew(() => A1 = IsSupportLessThanReducedSupport(Exchange[ToSupport], Exchange[ReducedSupport]));
                 H1.Wait();
@@ -7534,7 +7568,14 @@ th.Dispose();
                         }
                     }
                 }
-                //when situation is closed and restriction
+            }
+        }
+        void ExchangeB(int Ord, ref int[] ExchangeSeed, int[] Exchange, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                int A1 = 0;
                 var H2 = Task.Factory.StartNew(() => A1 = IsAttackLessThanReducedAttack(Exchange[ToAttacked], Exchange[ReducedAttacked]));
                 H2.Wait();
                 H2.Dispose();
@@ -7543,14 +7584,13 @@ th.Dispose();
                 else
                 if (A1 < 0 && Exchange[ReducedAttacked] == 0)
                     ExchangeSeed[1] = RationalRegard;
-
-                //Closed space remove
-                A1 = (Exchange[ToAttacked] + Exchange[ToSupport] + Exchange[ToMoved]);
-                //penalties
-                int A2 = A1 + (Exchange[ReducedAttacked] + Exchange[ReducedSupport] + Exchange[ReducedMove]);
-                ExchangeSeed[2] = (int)(((double)RationalPenalty) * ((((double)(A2)) / 64.0)));
-
-                //When victorian of self on enemy to consideration of weaker self traversal object at active enemy strong traversal
+            }
+        }
+        void ExchangeC(int Ord, Color aa, ref int[] ExchangeSeed, int[] Exchange, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked, int[,] Table, int Ros, int Cos, int Rod, int Cod)
+        {
+            Object o = new Object();
+            lock (o)
+            {
                 if (ExchangeSeed[0] + ExchangeSeed[1] + ExchangeSeed[2] >= 0)
                 {
                     if (Exchange[ToSupport] - Exchange[ReducedSupport] + Exchange[ToAttacked] - Exchange[ReducedAttacked] > 0)
@@ -7582,11 +7622,14 @@ th.Dispose();
                     }
 
                 }
-                //Simplification of mathematic method when we have victories
-                double ExchangedOfGameSimplification = (double)(Exchange[ToSupport] - Exchange[ReducedSupport] + Exchange[ToAttacked] - Exchange[ReducedSupport]);
-                double MAX = 64.0;
-                ExchangeSeed[2] += (int)(((double)(RationalRegard)) * (ExchangedOfGameSimplification / MAX));
-                //Remove of most impressive defensive enemy Objects
+            }
+        }
+        void ExchangeD(bool Before, int Ord, double MAX, Color aa, ref int[] ExchangeSeedA, int[] Exchange, int[,] RemobeActiveDenfesiveObjectsOfEnemy, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked, int[,] Table, int Ros, int Cos, int Rod, int Cod)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                int[] ExchangeSeed = ExchangeSeedA;
                 double Defen = (double)(RemobeActiveDenfesiveObjectsOfEnemy[Ros, Cos] - RemobeActiveDenfesiveObjectsOfEnemy[Rod, Cod]);
                 ExchangeSeed[2] += (int)(((double)(RationalRegard)) * (Defen / MAX) * 4);
                 var H4 = Task.Factory.StartNew(() => ExchangeSeed[2] += HeuristicPromotion(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
@@ -7598,15 +7641,7 @@ th.Dispose();
                 var H6 = Task.Factory.StartNew(() => ExchangeSeed[2] += HeuristicHourseCloseBaseOfWeakHourseIsWhereIsHomeStrong(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
                 H6.Wait();
                 H6.Dispose();
-                //Safty before Attack
-                var H7 = Task.Factory.StartNew(() => ExchangeSeed[2] += (RationalPenalty * (NoOfExistInReducedMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedSupportList(Before, Ros, Cos, Rod, Cod))) + (RationalRegard * (NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInSupportList(Before, Ros, Cos, Rod, Cod))));
-                H7.Wait();
-                H7.Dispose();
-                Ord = DummyOrd;
-                ChessRules.CurrentOrder = DummyCurrentOrd;
-                Ord = DumOrd;
-                //Initiate to Begin Call Ords.
-                return ExchangeSeed;
+                ExchangeSeedA = ExchangeSeed;
 
             }
         }

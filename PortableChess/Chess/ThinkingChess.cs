@@ -7411,93 +7411,93 @@ th.Dispose();
                     {
 
                         ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
-                           {
-                               ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
-                               {
-                                   ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
-                                   {
-                                       ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+                        {
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
+                            {
+                                ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
+                                {
+                                    ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+                                    {
+
+                                        ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                                         {
 
-                                            ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                                            Object O11 = new Object();
+                                            lock (O11)
+                                            {
+                                                if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                                                    Exchange[ReducedAttacked]++;
+
+
+
+                                            }
+                                        }
+                                        , () =>
+                                        {
+                                            Object O11 = new Object();
+                                            lock (O11)
                                             {
 
-                                                Object O11 = new Object();
-                                                lock (O11)
-                                                {
-                                                    if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
-                                                        Exchange[ReducedAttacked]++;
 
 
-
-                                                }
+                                                if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
+                                                    Exchange[ReducedSupport]++;
                                             }
-                                            , () =>
+                                        }
+                                      , () =>
+
+                                      {
+                                          Object O11 = new Object();
+                                          lock (O11)
                                           {
-                                              Object O11 = new Object();
-                                              lock (O11)
-                                              {
 
-
-
-                                                  if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
-                                                      Exchange[ReducedSupport]++;
-                                              }
+                                              if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
+                                                  Exchange[ReducedMove]++;
                                           }
-                                          , () =>
+                                      }
+                                           , () =>
+
+                                           {
+
+                                               Object O11 = new Object();
+                                               lock (O11)
+                                               {
+                                                   if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                                                       Exchange[ToAttacked]++;
+                                               }
+
+                                           }
+                                           , () =>
+                                           {
+                                               Object O11 = new Object();
+                                               lock (O11)
+                                               {
+
+                                                   if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
+                                                       Exchange[ToSupport]++;
+                                               }
+                                           }
+                                             , () =>
 
                                              {
+
                                                  Object O11 = new Object();
                                                  lock (O11)
                                                  {
 
-                                                     if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
-                                                         Exchange[ReducedMove]++;
+                                                     if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
+                                                         Exchange[ToMoved]++;
+
+
                                                  }
-                                             }
-                                               , () =>
 
-                                               {
+                                             });
 
-                                                   Object O11 = new Object();
-                                                   lock (O11)
-                                                   {
-                                                       if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
-                                                           Exchange[ToAttacked]++;
-                                                   }
+                                    });
 
-                                               }
-                                               , () =>
-                                               {
-                                                   Object O11 = new Object();
-                                                   lock (O11)
-                                                   {
-
-                                                       if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
-                                                           Exchange[ToSupport]++;
-                                                   }
-                                               }
-                                                 , () =>
-
-                                                   {
-
-                                                       Object O11 = new Object();
-                                                       lock (O11)
-                                                       {
-
-                                                           if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
-                                                               Exchange[ToMoved]++;
-
-
-                                                       }
-
-                                                   });
-
-                                        });
-
-                                   });
-                               });
-                           });
+                                });
+                            });
+                        });
                     });
 
 
@@ -7506,6 +7506,40 @@ th.Dispose();
                 }
 
                 //When situation is closed
+                ExchangeA(Ord, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked);
+                //when situation is closed and restriction
+                ExchangeB(Ord, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked);
+                //Closed space remove
+                int A1 = (Exchange[ToAttacked] + Exchange[ToSupport] + Exchange[ToMoved]);
+                //penalties
+                int A2 = A1 + (Exchange[ReducedAttacked] + Exchange[ReducedSupport] + Exchange[ReducedMove]);
+                ExchangeSeed[2] = (int)(((double)RationalPenalty) * ((((double)(A2)) / 64.0)));
+
+                //When victorian of self on enemy to consideration of weaker self traversal object at active enemy strong traversal
+                ExchangeC(Ord, aa, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, Table, Ros, Cos, Rod, Cod);
+                //Simplification of mathematic method when we have victories
+                double ExchangedOfGameSimplification = (double)(Exchange[ToSupport] - Exchange[ReducedSupport] + Exchange[ToAttacked] - Exchange[ReducedSupport]);
+                double MAX = 64.0;
+                ExchangeSeed[2] += (int)(((double)(RationalRegard)) * (ExchangedOfGameSimplification / MAX));
+                //Remove of most impressive defensive enemy Objects
+                ExchangeD(Before, Ord, MAX, aa, ref ExchangeSeed, Exchange, RemobeActiveDenfesiveObjectsOfEnemy, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, Table, Ros, Cos, Rod, Cod);
+                //Safty before Attack
+                var H7 = Task.Factory.StartNew(() => ExchangeSeed[2] += (RationalPenalty * (NoOfExistInReducedMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedSupportList(Before, Ros, Cos, Rod, Cod))) + (RationalRegard * (NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInSupportList(Before, Ros, Cos, Rod, Cod))));
+                H7.Wait();
+                H7.Dispose();
+                Ord = DummyOrd;
+                ChessRules.CurrentOrder = DummyCurrentOrd;
+                Ord = DumOrd;
+                //Initiate to Begin Call Ords.
+                return ExchangeSeed;
+
+            }
+        }
+        void ExchangeA(int Ord, ref int[] ExchangeSeed, int[] Exchange, int ToSupport, int ReducedSupport, int ReducedAttacked)
+        {
+            Object o = new Object();
+            lock (o)
+            {
                 int A1 = 0;
                 var H1 = Task.Factory.StartNew(() => A1 = IsSupportLessThanReducedSupport(Exchange[ToSupport], Exchange[ReducedSupport]));
                 H1.Wait();
@@ -7532,7 +7566,14 @@ th.Dispose();
                         }
                     }
                 }
-                //when situation is closed and restriction
+            }
+        }
+        void ExchangeB(int Ord, ref int[] ExchangeSeed, int[] Exchange, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                int A1 = 0;
                 var H2 = Task.Factory.StartNew(() => A1 = IsAttackLessThanReducedAttack(Exchange[ToAttacked], Exchange[ReducedAttacked]));
                 H2.Wait();
                 H2.Dispose();
@@ -7541,14 +7582,13 @@ th.Dispose();
                 else
                 if (A1 < 0 && Exchange[ReducedAttacked] == 0)
                     ExchangeSeed[1] = RationalRegard;
-
-                //Closed space remove
-                A1 = (Exchange[ToAttacked] + Exchange[ToSupport] + Exchange[ToMoved]);
-                //penalties
-                int A2 = A1 + (Exchange[ReducedAttacked] + Exchange[ReducedSupport] + Exchange[ReducedMove]);
-                ExchangeSeed[2] = (int)(((double)RationalPenalty) * ((((double)(A2)) / 64.0)));
-
-                //When victorian of self on enemy to consideration of weaker self traversal object at active enemy strong traversal
+            }
+        }
+        void ExchangeC(int Ord, Color aa, ref int[] ExchangeSeed, int[] Exchange, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked, int[,] Table, int Ros, int Cos, int Rod, int Cod)
+        {
+            Object o = new Object();
+            lock (o)
+            {
                 if (ExchangeSeed[0] + ExchangeSeed[1] + ExchangeSeed[2] >= 0)
                 {
                     if (Exchange[ToSupport] - Exchange[ReducedSupport] + Exchange[ToAttacked] - Exchange[ReducedAttacked] > 0)
@@ -7580,11 +7620,14 @@ th.Dispose();
                     }
 
                 }
-                //Simplification of mathematic method when we have victories
-                double ExchangedOfGameSimplification = (double)(Exchange[ToSupport] - Exchange[ReducedSupport] + Exchange[ToAttacked] - Exchange[ReducedSupport]);
-                double MAX = 64.0;
-                ExchangeSeed[2] += (int)(((double)(RationalRegard)) * (ExchangedOfGameSimplification / MAX));
-                //Remove of most impressive defensive enemy Objects
+            }
+        }
+        void ExchangeD(bool Before, int Ord, double MAX, Color aa, ref int[] ExchangeSeedA, int[] Exchange, int[,] RemobeActiveDenfesiveObjectsOfEnemy, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked, int[,] Table, int Ros, int Cos, int Rod, int Cod)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                int[] ExchangeSeed = ExchangeSeedA;
                 double Defen = (double)(RemobeActiveDenfesiveObjectsOfEnemy[Ros, Cos] - RemobeActiveDenfesiveObjectsOfEnemy[Rod, Cod]);
                 ExchangeSeed[2] += (int)(((double)(RationalRegard)) * (Defen / MAX) * 4);
                 var H4 = Task.Factory.StartNew(() => ExchangeSeed[2] += HeuristicPromotion(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
@@ -7596,15 +7639,7 @@ th.Dispose();
                 var H6 = Task.Factory.StartNew(() => ExchangeSeed[2] += HeuristicHourseCloseBaseOfWeakHourseIsWhereIsHomeStrong(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
                 H6.Wait();
                 H6.Dispose();
-                //Safty before Attack
-                var H7 = Task.Factory.StartNew(() => ExchangeSeed[2] += (RationalPenalty * (NoOfExistInReducedMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedSupportList(Before, Ros, Cos, Rod, Cod))) + (RationalRegard * (NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInSupportList(Before, Ros, Cos, Rod, Cod))));
-                H7.Wait();
-                H7.Dispose();
-                Ord = DummyOrd;
-                ChessRules.CurrentOrder = DummyCurrentOrd;
-                Ord = DumOrd;
-                //Initiate to Begin Call Ords.
-                return ExchangeSeed;
+                ExchangeSeedA = ExchangeSeed;
 
             }
         }
@@ -14531,30 +14566,55 @@ th.Dispose();
         //find of "FindMostHeuristicAllReducedSupportIsCurrent" in board
         int[] MostOfFindMostHeuristicAllReducedSupportInList(bool Before, int RowS, int ColS)
         {
-            int[] IsNo = FindMostHeuristicAllReducedSupportIsCurrent(Before, RowS, ColS);
-
-            for (int ii = 0; ii < 8; ii++)
+            Object O = new Object();
+            lock (O)
             {
-                for (int jj = 0; jj < 8; jj++)
+                int[] IsNo = FindMostHeuristicAllReducedSupportIsCurrent(Before, RowS, ColS);
+
+                for (int ii = 0; ii < 8; ii++)
                 {
-                    int[] Is = FindMostHeuristicAllReducedSupportIsCurrent(Before, ii, jj);
-                    if (Is[0] > IsNo[0])
+                    for (int jj = 0; jj < 8; jj++)
                     {
-                        return null;
+                        int[] Is = FindMostHeuristicAllReducedSupportIsCurrent(Before, ii, jj);
+                        if (Is[0] > IsNo[0])
+                        {
+                            return null;
+                        }
                     }
                 }
+                return IsNo;
             }
-            return IsNo;
         }
         //find of most supported objects in enemy
         int[] FindMostHeuristicAllReducedSupportIsCurrent(bool Before, int RowS, int ColS)
         {
-            int[] IsNo = new int[2];
-            if (!Before)
+            Object O = new Object();
+            lock (O)
             {
-                if (HeuristicAllReducedSupportMidel > 0 && HeuristicAllReducedSupportMidel < HeuristicAllReducedSupport.Count)
+                int[] IsNo = new int[2];
+                if (!Before)
                 {
-                    for (int i = HeuristicAllReducedSupportMidel; i < HeuristicAllReducedSupport.Count; i++)
+                    if (HeuristicAllReducedSupportMidel > 0 && HeuristicAllReducedSupportMidel < HeuristicAllReducedSupport.Count)
+                    {
+                        for (int i = HeuristicAllReducedSupportMidel; i < HeuristicAllReducedSupport.Count; i++)
+                        {
+                            if (HeuristicAllReducedSupport[i][2] == RowS && HeuristicAllReducedSupport[i][3] == ColS)
+                            {
+                                for (int ii = 0; ii < 8; ii++)
+                                {
+                                    for (int jj = 0; jj < 8; jj++)
+                                    {
+                                        IsNo[0] += NoOfExistInReducedSupportList(Before, RowS, ColS, ii, jj);
+                                    }
+                                }
+                                IsNo[1] = i;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < HeuristicAllReducedSupport.Count; i++)
                     {
                         if (HeuristicAllReducedSupport[i][2] == RowS && HeuristicAllReducedSupport[i][3] == ColS)
                         {
@@ -14569,147 +14629,150 @@ th.Dispose();
                         }
                     }
                 }
+                return IsNo;
             }
-            else
-            {
-                for (int i = 0; i < HeuristicAllReducedSupport.Count; i++)
-                {
-                    if (HeuristicAllReducedSupport[i][2] == RowS && HeuristicAllReducedSupport[i][3] == ColS)
-                    {
-                        for (int ii = 0; ii < 8; ii++)
-                        {
-                            for (int jj = 0; jj < 8; jj++)
-                            {
-                                IsNo[0] += NoOfExistInReducedSupportList(Before, RowS, ColS, ii, jj);
-                            }
-                        }
-                        IsNo[1] = i;
-                    }
-                }
-            }
-            return IsNo;
         }
         //determine if source objects is movable on board
         bool ObjectMovable(int Row, int Col, int[,] Tab, int Order, Color a)
         {
-            bool Is = false;
-            for (int i = 0; i < 8; i++)
+            Object O = new Object();
+            lock (O)
             {
-                for (int j = 0; j < 8; j++)
+                bool Is = false;
+                for (int i = 0; i < 8; i++)
                 {
-                    if (Movable(CloneATable(Tab), Row, Col, i, j, a, Order))
+                    for (int j = 0; j < 8; j++)
                     {
-                        return true;
-                    }
-                    if (Attack(CloneATable(Tab), Row, Col, i, j, a, Order))
-                    {
-                        return true;
+                        if (Movable(CloneATable(Tab), Row, Col, i, j, a, Order))
+                        {
+                            return true;
+                        }
+                        if (Attack(CloneATable(Tab), Row, Col, i, j, a, Order))
+                        {
+                            return true;
+                        }
                     }
                 }
+                return Is;
             }
-            return Is;
         }
         //when exist "s" in list A
         bool Exist(List<int[]> A, int[] s)
         {
-            bool Is = false;
-            for (int h = 0; h < A.Count; h++)
+            Object O = new Object();
+            lock (O)
             {
-                if (A[h][0] == s[0] && A[h][1] == s[1])
+                bool Is = false;
+                for (int h = 0; h < A.Count; h++)
                 {
-                    Is = true;
-                    break;
+                    if (A[h][0] == s[0] && A[h][1] == s[1])
+                    {
+                        Is = true;
+                        break;
+                    }
                 }
+                return Is;
             }
-            return Is;
         }
         //when exist complete "s" in list A
         bool ExistFull(List<int[]> A, int[] s)
         {
-            bool Is = false;
-            for (int h = 0; h < A.Count; h++)
+            Object O = new Object();
+            lock (O)
             {
-                if (A[h][0] == s[0] && A[h][1] == s[1] && A[h][2] == s[2] && A[h][3] == s[3])
+                bool Is = false;
+                for (int h = 0; h < A.Count; h++)
                 {
-                    Is = true;
-                    break;
+                    if (A[h][0] == s[0] && A[h][1] == s[1] && A[h][2] == s[2] && A[h][3] == s[3])
+                    {
+                        Is = true;
+                        break;
+                    }
                 }
+                return Is;
             }
-            return Is;
         }
         //when exist complete "s" list in list A
         bool ExistFullDoubleList(List<List<int[]>> A, List<int[]> s)
         {
-            bool Is = true;
-            for (int t = 0; t < s.Count; t++)
+            Object O = new Object();
+            lock (O)
             {
-                bool IsI = false;
-                for (int h = 0; h < A.Count; h++)
+                bool Is = true;
+                for (int t = 0; t < s.Count; t++)
                 {
-                    if (ExistFull(A[h], s[t]))
+                    bool IsI = false;
+                    for (int h = 0; h < A.Count; h++)
                     {
-                        IsI = true;
+                        if (ExistFull(A[h], s[t]))
+                        {
+                            IsI = true;
+                        }
                     }
+                    Is = IsI && Is;
                 }
-                Is = IsI && Is;
+                return Is;
             }
-            return Is;
         }
         //return number of un movable objects on board
         int NoOfObjectNotMovable(int[,] Tab, int Order, Color a, ref int Total, ref int Is)
         {
-            List<int[]> IsThere = new List<int[]>();
-            for (int Row = 0; Row < 8; Row++)
+            Object O = new Object();
+            lock (O)
             {
-                for (int Col = 0; Col < 8; Col++)
+                List<int[]> IsThere = new List<int[]>();
+                for (int Row = 0; Row < 8; Row++)
                 {
-                    if (Order == 1 && Tab[Row, Col] > 0)
+                    for (int Col = 0; Col < 8; Col++)
                     {
-                        for (int i = 0; i < 8; i++)
+                        if (Order == 1 && Tab[Row, Col] > 0)
                         {
-                            for (int j = 0; j < 8; j++)
+                            for (int i = 0; i < 8; i++)
                             {
-                                if (Movable(CloneATable(Tab), Row, Col, i, j, a, Order) && ((TableInitiationPreventionOfMultipleMove[Row, Col] == 0 && TableInitiation[Row, Col] == Tab[Row, Col])))
+                                for (int j = 0; j < 8; j++)
                                 {
-                                    int[] ij = new int[2];
-                                    ij[0] = Row;
-                                    ij[1] = Col;
-                                    if (!(Exist(IsThere, ij)))
+                                    if (Movable(CloneATable(Tab), Row, Col, i, j, a, Order) && ((TableInitiationPreventionOfMultipleMove[Row, Col] == 0 && TableInitiation[Row, Col] == Tab[Row, Col])))
                                     {
-                                        IsThere.Add(ij);
-                                        Is++;
+                                        int[] ij = new int[2];
+                                        ij[0] = Row;
+                                        ij[1] = Col;
+                                        if (!(Exist(IsThere, ij)))
+                                        {
+                                            IsThere.Add(ij);
+                                            Is++;
+                                        }
                                     }
-                                }
 
+                                }
                             }
+                            Total++;
                         }
-                        Total++;
-                    }
-                    if (Order == -1 && Tab[Row, Col] < 0)
-                    {
-                        for (int i = 0; i < 8; i++)
+                        if (Order == -1 && Tab[Row, Col] < 0)
                         {
-                            for (int j = 0; j < 8; j++)
+                            for (int i = 0; i < 8; i++)
                             {
-                                if (Movable(CloneATable(Tab), Row, Col, i, j, a, Order) && ((TableInitiationPreventionOfMultipleMove[Row, Col] == 0 && TableInitiation[Row, Col] == Tab[Row, Col])))
+                                for (int j = 0; j < 8; j++)
                                 {
-                                    int[] ij = new int[2];
-                                    ij[0] = Row;
-                                    ij[1] = Col;
-                                    if (!(Exist(IsThere, ij)))
+                                    if (Movable(CloneATable(Tab), Row, Col, i, j, a, Order) && ((TableInitiationPreventionOfMultipleMove[Row, Col] == 0 && TableInitiation[Row, Col] == Tab[Row, Col])))
                                     {
-                                        IsThere.Add(ij);
-                                        Is++;
+                                        int[] ij = new int[2];
+                                        ij[0] = Row;
+                                        ij[1] = Col;
+                                        if (!(Exist(IsThere, ij)))
+                                        {
+                                            IsThere.Add(ij);
+                                            Is++;
+                                        }
                                     }
                                 }
                             }
+                            Total++;
                         }
-                        Total++;
                     }
                 }
+                Is = Total - Is;
+                return Is;
             }
-            Is = Total - Is;
-            return Is;
         }
         //specific determination for ThinkingQuantum main method
         void CastleThinkingGray(ref int[] LoseOcuuredatChiled, ref int WinOcuuredatChiled, int DummyOrder, int DummyCurrentOrder, int[,] TableS, int RowSource, int ColumnSource, bool DoEnemySelf, bool PenRegStrore, bool EnemyCheckMateActionsString, int RowDestination, int ColumnDestination, bool Castle)

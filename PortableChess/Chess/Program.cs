@@ -98,11 +98,11 @@ namespace RefrigtzChessPortable
         [STAThread]
         static void Main()
         {
-            Task ttap = new Task(new Action(TaskParallelLibrary));
+           /* Task ttap = new Task(new Action(TaskParallelLibrary));
             ttap.Start();
             Task ttta = new Task(new Action(CoordinationDataStructures));
             ttta.Start();
-            Application.Run(new RefrigtzChessPortableForm());
+          */  Application.Run(new RefrigtzChessPortableForm());
         }
     }
 }

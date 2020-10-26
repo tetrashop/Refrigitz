@@ -9123,7 +9123,7 @@ th.Dispose();
                 }
             }
             //when there is not served layer
-            bool A = (!(IsSup[j])) || (AllDraw.AllowedSupTrue); if (A && j < IsSup.Count && j >= 0)
+            bool A = !IsSupHuTrue(j); if (A  && j >= 0)
             {
                 //when there is computations
                 for (j = 0; HeuristicListSolder != null && j < HeuristicListSolder.Count; j++)
@@ -9588,7 +9588,7 @@ th.Dispose();
         public int ReturnHeuristicCalculartorSurface(int iAstarGready, int ii, int j, int Order, ref int HaveKilled, ref int BOUND)
         {
             int Heuristic = 0;
-            bool A = (!(IsSup[j])) || (AllDraw.AllowedSupTrue); if (A && j < IsSup.Count && j >= 0)
+            bool A = !IsSupHuTrue(j); if (A  && j >= 0)
             {
                 //When Solder Kind.
                 if (System.Math.Abs(Kind) == 1 && HeuristicListSolder.Count > 0)
@@ -16800,6 +16800,20 @@ th.Dispose();
                 }
                 return Is;
             }
+        }
+        bool IsSupHuTrue(int j)
+        {
+            bool Is = false;
+            if (!AllDraw.AllowedSupTrue)
+            {
+                Is = IsSupHu[j];
+            }
+            else
+            {
+
+                Is = IsSup[j];
+            }
+            return Is;
         }
     }
 }

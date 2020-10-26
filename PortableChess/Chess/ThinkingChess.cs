@@ -14173,6 +14173,12 @@ th.Dispose();
             return Is;
         }
         //heuristic main method
+        /********************************************************************************
+         complexity of achmaz is O((m^n)*(n^d))*********************************************
+         m: avarage state complexity for on state (0<=m<=1026)***************************
+         n: avarages every chiles node number of a parent********************************
+         d: heighth of tree**************************************************************        
+         ********************************************************************************/
         public void CalculateHeuristics(int[] LoseOcuuredatChiled, int WinOcuuredatChiled, bool Before, int Order, int Killed, int[,] TableS, int RowS, int ColS, int RowD, int ColD, Color color
             , ref int HeuristicAttackValue
                 , ref int HeuristicMovementValue

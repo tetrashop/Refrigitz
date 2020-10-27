@@ -12646,803 +12646,601 @@ th.Dispose();
         }
         void SetSupHuTrue()
         {
-            IsSupHu[IsSupHu.Count - 1] = true;
+            Object OO = new Object();
+            lock (OO)
+            {
+                IsSupHu[IsSupHu.Count - 1] = true;
+            }
         }
         void ClearSupHuTrue()
         {
-            if (IsSup[IsSup.Count - 1] != true)
+            Object OO = new Object();
+            lock (OO)
             {
-                IsSupHu[IsSupHu.Count - 1] = false;
-                IsSup[IsSup.Count - 1] = false;
+                if (IsSup[IsSup.Count - 1] != true)
+                {
+                    IsSupHu[IsSupHu.Count - 1] = false;
+                    IsSup[IsSup.Count - 1] = false;
+                }
             }
         }
         bool DisturbeOnHugeTraversalExchangePrevention(bool Before, int[,] TableS, int Order)
         {
-            bool Is = false;
-            if (!Before)
+            Object OO = new Object();
+            lock (OO)
             {
-                if (HeuristicAllReducedAttackedMidel > 0 && HeuristicAllReducedAttackedMidel < HeuristicAllReducedAttacked.Count)
+                bool Is = false;
+                if (!Before)
                 {
-                    for (int i = HeuristicAllReducedAttackedMidel; i < HeuristicAllReducedAttacked.Count; i++)
+                    if (HeuristicAllReducedAttackedMidel > 0 && HeuristicAllReducedAttackedMidel < HeuristicAllReducedAttacked.Count)
                     {
-                        if (Order == 1)
+                        for (int i = HeuristicAllReducedAttackedMidel; i < HeuristicAllReducedAttacked.Count; i++)
                         {
-                            if (((System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]]))
-                            //|| (System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > 0 && NoOfExistInSupportList(Before, HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]) == 0)
-                            ) && TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]] < 0)
+                            if (Order == 1)
                             {
-                                HeuristicReducedAttackedIndexInOnGame.Add(i);
-                                return true;
+                                if (((System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]]))
+                                //|| (System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > 0 && NoOfExistInSupportList(Before, HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]) == 0)
+                                ) && TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]] < 0)
+                                {
+                                    HeuristicReducedAttackedIndexInOnGame.Add(i);
+                                    return true;
+                                }
                             }
-                        }
-                        else
-                        {
-                            if (((System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]]))
-                            //|| (System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > 0 && NoOfExistInSupportList(Before, HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]) == 0)
-                            ) && TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]] > 0)
+                            else
                             {
-                                HeuristicReducedAttackedIndexInOnGame.Add(i);
-                                return true;
+                                if (((System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]]))
+                                //|| (System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > 0 && NoOfExistInSupportList(Before, HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]) == 0)
+                                ) && TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]] > 0)
+                                {
+                                    HeuristicReducedAttackedIndexInOnGame.Add(i);
+                                    return true;
+                                }
                             }
                         }
                     }
                 }
+                return Is;
             }
-            return Is;
         }
         bool DisturbeOnNonSupportedTraversalExchangePrevention(int Killded, bool Before, int[,] TableS, int Order)
         {
-            bool Is = false;
-            if (!Before)
+            Object OO = new Object();
+            lock (OO)
             {
-                if (HeuristicAllReducedAttackedMidel > 0 && HeuristicAllReducedAttackedMidel < HeuristicAllReducedAttacked.Count)
+                bool Is = false;
+                if (!Before)
                 {
-                    for (int i = HeuristicAllReducedAttackedMidel; i < HeuristicAllReducedAttacked.Count; i++)
+                    if (HeuristicAllReducedAttackedMidel > 0 && HeuristicAllReducedAttackedMidel < HeuristicAllReducedAttacked.Count)
                     {
-                        if (Order == 1)
+                        for (int i = HeuristicAllReducedAttackedMidel; i < HeuristicAllReducedAttacked.Count; i++)
                         {
-                            List<int[]> Valuable = new List<int[]>();
-                            bool DD = InAttackEnemyThatIsNotSupported(Killded, CloneATable(TableS), Order, OrderColor(Order), HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1], HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]);
-                            if (DD || (System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]]) && TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]] < 0))
+                            if (Order == 1)
                             {
-                                HeuristicReducedAttackedIndexInOnGame.Add(i);
-                                return true;
+                                List<int[]> Valuable = new List<int[]>();
+                                bool DD = InAttackEnemyThatIsNotSupported(Killded, CloneATable(TableS), Order, OrderColor(Order), HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1], HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]);
+                                if (DD || (System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]]) && TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]] < 0))
+                                {
+                                    HeuristicReducedAttackedIndexInOnGame.Add(i);
+                                    return true;
+                                }
                             }
-                        }
-                        else
-                        {
-                            List<int[]> Valuable = new List<int[]>();
-                            bool DD = InAttackEnemyThatIsNotSupported(Killded, CloneATable(TableS), Order, OrderColor(Order), HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1], HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]);
-                            if (DD || (System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]]) && TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]] > 0))
+                            else
                             {
-                                HeuristicReducedAttackedIndexInOnGame.Add(i);
-                                return true;
+                                List<int[]> Valuable = new List<int[]>();
+                                bool DD = InAttackEnemyThatIsNotSupported(Killded, CloneATable(TableS), Order, OrderColor(Order), HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1], HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]);
+                                if (DD || (System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][2], HeuristicAllReducedAttacked[i][3]]) > System.Math.Abs(TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]]) && TableS[HeuristicAllReducedAttacked[i][0], HeuristicAllReducedAttacked[i][1]] > 0))
+                                {
+                                    HeuristicReducedAttackedIndexInOnGame.Add(i);
+                                    return true;
+                                }
                             }
                         }
                     }
                 }
+                return Is;
             }
-            return Is;
         }
         //recursive of found achmaz detection to be tow objects at line of source attacked or reduced attack
         int AchmazPuredBefore(bool Before, int[,] Table, int Level = 1)
         {
-            if (!Before)
-                return 0;
-            if (Level == 0)
-                return 0;
-            int No = 0;
-            if (Level == 1)
+            Object OO = new Object();
+            lock (OO)
             {
-                if (Order == 1)
+                if (!Before)
+                    return 0;
+                if (Level == 0)
+                    return 0;
+                int No = 0;
+                if (Level == 1)
                 {
-                    if (AchmazPure.Count > 0)
+                    if (Order == 1)
                     {
-                        for (int i = 0; i < AchmazPure[0].Count; i++)
+                        if (AchmazPure.Count > 0)
                         {
-                            for (int j = 0; j < AchmazPure[0][i].Count; j++)
+                            for (int i = 0; i < AchmazPure[0].Count; i++)
                             {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] > 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] < 0))
+                                for (int j = 0; j < AchmazPure[0][i].Count; j++)
                                 {
-                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
-                                    if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] > 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] < 0))
                                     {
-                                        int Killed = Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
-                                        Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
-                                        var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]));
-                                        th1.Wait();
-                                        th1.Dispose();
-                                        var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3], Order));
-                                        th2.Wait();
-                                        th2.Dispose();
-                                        var th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
-                                        th3.Wait();
-                                        th3.Dispose();
+                                        ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                        if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
+                                        {
+                                            int Killed = Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
+                                            Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
+                                            var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]));
+                                            th1.Wait();
+                                            th1.Dispose();
+                                            var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3], Order));
+                                            th2.Wait();
+                                            th2.Dispose();
+                                            var th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
+                                            th3.Wait();
+                                            th3.Dispose();
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (AchmazPure.Count > 0)
+                        {
+                            for (int i = 0; i < AchmazPure[0].Count; i++)
+                            {
+                                for (int j = 0; j < AchmazPure[0][i].Count; j++)
+                                {
+                                    if (AchmazPure[0][i].Count <= 1)
+                                        continue;
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] < 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] > 0))
+                                    {
+                                        ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                        if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
+                                        {
+                                            int Killed = Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
+                                            Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
+                                            var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]));
+                                            th1.Wait();
+                                            th1.Dispose();
+                                            var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3], Order));
+                                            th2.Wait();
+                                            th2.Dispose();
+                                            var th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
+                                            th3.Wait();
+                                            th3.Dispose();
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+                else if (Level == 2)
+                {
+                    if (Order == 1)
+                    {
+                        if (AchmazPure.Count > 0)
+                        {
+                            for (int i = 0; i < AchmazPure[0].Count; i++)
+                            {
+                                for (int j = 0; j < AchmazPure[0][i].Count; j++)
+                                {
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] > 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] < 0))
+                                    {
+                                        return 1;
                                     }
                                 }
-
                             }
                         }
                     }
-                }
-                else
-                {
-                    if (AchmazPure.Count > 0)
+                    else
                     {
-                        for (int i = 0; i < AchmazPure[0].Count; i++)
+                        if (AchmazPure.Count > 0)
                         {
-                            for (int j = 0; j < AchmazPure[0][i].Count; j++)
+                            for (int i = 0; i < AchmazPure[0].Count; i++)
                             {
-                                if (AchmazPure[0][i].Count <= 1)
-                                    continue;
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] < 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] > 0))
+                                for (int j = 0; j < AchmazPure[0][i].Count; j++)
                                 {
-                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
-                                    if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] < 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] > 0))
                                     {
-                                        int Killed = Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
-                                        Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
-                                        var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]));
-                                        th1.Wait();
-                                        th1.Dispose();
-                                        var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3], Order));
-                                        th2.Wait();
-                                        th2.Dispose();
-                                        var th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
-                                        th3.Wait();
-                                        th3.Dispose();
+                                        return 1;
                                     }
                                 }
-
                             }
                         }
                     }
-
                 }
+                return No;
             }
-            else if (Level == 2)
-            {
-                if (Order == 1)
-                {
-                    if (AchmazPure.Count > 0)
-                    {
-                        for (int i = 0; i < AchmazPure[0].Count; i++)
-                        {
-                            for (int j = 0; j < AchmazPure[0][i].Count; j++)
-                            {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] > 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] < 0))
-                                {
-                                    return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (AchmazPure.Count > 0)
-                    {
-                        for (int i = 0; i < AchmazPure[0].Count; i++)
-                        {
-                            for (int j = 0; j < AchmazPure[0][i].Count; j++)
-                            {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazPure[0][i][j][0], AchmazPure[0][i][j][1]] < 0 && Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] > 0))
-                                {
-                                    return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return No;
         }
         //recursive of found achmaz detection to be tow objects at line of source attacked or reduced attack
         int AchmazPuredAfter(bool Before, int[,] Table, int Level = 1)
         {
-            if (Before)
-                return 0;
-            if (Level == 0)
-                return 0;
-            int No = 0;
-            if (Level == 1)
+            Object OO = new Object();
+            lock (OO)
             {
-                if (Order == 1)
+                if (Before)
+                    return 0;
+                if (Level == 0)
+                    return 0;
+                int No = 0;
+                if (Level == 1)
                 {
-                    if (AchmazPure.Count > 1)
+                    if (Order == 1)
                     {
-                        for (int i = 0; i < AchmazPure[1].Count; i++)
+                        if (AchmazPure.Count > 1)
                         {
-                            for (int j = 0; j < AchmazPure[1][i].Count; j++)
+                            for (int i = 0; i < AchmazPure[1].Count; i++)
                             {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] > 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] < 0))
+                                for (int j = 0; j < AchmazPure[1][i].Count; j++)
                                 {
-                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
-                                    if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] > 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] < 0))
                                     {
-                                        int Killed = Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
-                                        Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
-                                        var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]));
-                                        th1.Wait();
-                                        th1.Dispose();
-                                        var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3], Order));
-                                        th2.Wait();
-                                        th2.Dispose();
-                                        var th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
-                                        th3.Wait();
-                                        th3.Dispose();
+                                        ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                        if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
+                                        {
+                                            int Killed = Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
+                                            Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
+                                            var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]));
+                                            th1.Wait();
+                                            th1.Dispose();
+                                            var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3], Order));
+                                            th2.Wait();
+                                            th2.Dispose();
+                                            var th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
+                                            th3.Wait();
+                                            th3.Dispose();
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (AchmazPure.Count > 1)
+                        {
+                            for (int i = 0; i < AchmazPure[1].Count; i++)
+                            {
+                                for (int j = 0; j < AchmazPure[1][i].Count; j++)
+                                {
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] > 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] < 0))
+                                    {
+                                        ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                        if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
+                                        {
+                                            int Killed = Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
+                                            Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
+                                            var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]));
+                                            th1.Wait();
+                                            th1.Dispose();
+                                            var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3], Order));
+                                            th2.Wait();
+                                            th2.Dispose();
+                                            var th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
+                                            th3.Wait();
+                                            th3.Dispose();
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+                else if (Level == 2)
+                {
+                    if (Order == 1)
+                    {
+                        if (AchmazPure.Count > 0)
+                        {
+                            for (int i = 0; i < AchmazPure[0].Count; i++)
+                            {
+                                for (int j = 0; j < AchmazPure[0][i].Count; j++)
+                                {
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] > 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] < 0))
+                                    {
+                                        return 1;
                                     }
                                 }
-
                             }
                         }
                     }
-                }
-                else
-                {
-                    if (AchmazPure.Count > 1)
+                    else
                     {
-                        for (int i = 0; i < AchmazPure[1].Count; i++)
+                        if (AchmazPure.Count > 0)
                         {
-                            for (int j = 0; j < AchmazPure[1][i].Count; j++)
+                            for (int i = 0; i < AchmazPure[0].Count; i++)
                             {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] > 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] < 0))
+                                for (int j = 0; j < AchmazPure[0][i].Count; j++)
                                 {
-                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
-                                    if (Scop(AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]))
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] < 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] > 0))
                                     {
-                                        int Killed = Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
-                                        Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
-                                        var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]));
-                                        th1.Wait();
-                                        th1.Dispose();
-                                        var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3], Order));
-                                        th2.Wait();
-                                        th2.Dispose();
-                                        var th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
-                                        th3.Wait();
-                                        th3.Dispose();
+                                        return 1;
                                     }
                                 }
-
                             }
                         }
                     }
-
                 }
+                return No;
             }
-            else if (Level == 2)
-            {
-                if (Order == 1)
-                {
-                    if (AchmazPure.Count > 0)
-                    {
-                        for (int i = 0; i < AchmazPure[0].Count; i++)
-                        {
-                            for (int j = 0; j < AchmazPure[0][i].Count; j++)
-                            {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] > 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] < 0))
-                                {
-                                    return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (AchmazPure.Count > 0)
-                    {
-                        for (int i = 0; i < AchmazPure[0].Count; i++)
-                        {
-                            for (int j = 0; j < AchmazPure[0][i].Count; j++)
-                            {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazPure[1][i][j][0], AchmazPure[1][i][j][1]] < 0 && Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]] > 0))
-                                {
-                                    return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return No;
         }
         //recursive of found achmaz detection to be tow objects at line of source attacked or reduced attack
         int AchmazReducedBefore(bool Before, int[,] Table, int Level = 1)
         {
-            if (!Before)
-                return 0;
-            if (Level == 0)
-                return 0;
-            int No = 0;
-            if (Level == 1)
+            Object OO = new Object();
+            lock (OO)
             {
-                if (Order == 1)
+                if (!Before)
+                    return 0;
+                if (Level == 0)
+                    return 0;
+                int No = 0;
+                if (Level == 1)
                 {
-                    if (AchmazReduced.Count > 0)
+                    if (Order == 1)
                     {
-                        for (int i = 0; i < AchmazReduced[0].Count; i++)
+                        if (AchmazReduced.Count > 0)
                         {
-                            for (int j = 0; j < AchmazReduced[0][i].Count; j++)
+                            for (int i = 0; i < AchmazReduced[0].Count; i++)
                             {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] < 0 && Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] > 0))
+                                for (int j = 0; j < AchmazReduced[0][i].Count; j++)
                                 {
-                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
-                                    if (Scop(AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]))
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] < 0 && Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] > 0))
                                     {
-                                        int Killed = Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]);
-                                        Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] = 0;
-                                        var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]), CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
-                                        th1.Wait();
-                                        th1.Dispose();
-                                        var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], Order));
-                                        th2.Wait();
-                                        th2.Dispose();
-                                        var th3 = Task.Factory.StartNew(() => No += t.AchmazReducedBefore(Before, CloneATable(Tab), 2));
-                                        th3.Wait();
-                                        th3.Dispose();
+                                        ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                        if (Scop(AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]))
+                                        {
+                                            int Killed = Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]);
+                                            Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] = 0;
+                                            var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]), CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
+                                            th1.Wait();
+                                            th1.Dispose();
+                                            var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], Order));
+                                            th2.Wait();
+                                            th2.Dispose();
+                                            var th3 = Task.Factory.StartNew(() => No += t.AchmazReducedBefore(Before, CloneATable(Tab), 2));
+                                            th3.Wait();
+                                            th3.Dispose();
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (AchmazReduced.Count > 0)
+                        {
+                            for (int i = 0; i < AchmazReduced[0].Count; i++)
+                            {
+                                for (int j = 0; j < AchmazReduced[0][i].Count; j++)
+                                {
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] > 0 && Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] < 0))
+                                    {
+                                        ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                        if (Scop(AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]))
+                                        {
+                                            int Killed = Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]);
+                                            Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] = 0;
+                                            var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]), CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
+                                            th1.Wait();
+                                            th1.Dispose();
+                                            var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], Order));
+                                            th2.Wait();
+                                            th2.Dispose();
+                                            var th3 = Task.Factory.StartNew(() => No += t.AchmazReducedBefore(Before, CloneATable(Tab), 2));
+                                            th3.Wait();
+                                            th3.Dispose();
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+                else if (Level == 2)
+                {
+                    if (Order == 1)
+                    {
+                        if (AchmazReduced.Count > 0)
+                        {
+                            for (int i = 0; i < AchmazReduced[0].Count; i++)
+                            {
+                                for (int j = 0; j < AchmazReduced[0][i].Count; j++)
+                                {
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] < 0 && Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] > 0))
+                                    {
+                                        return 1;
                                     }
                                 }
-
                             }
                         }
                     }
-                }
-                else
-                {
-                    if (AchmazReduced.Count > 0)
+                    else
                     {
-                        for (int i = 0; i < AchmazReduced[0].Count; i++)
+                        if (AchmazReduced.Count > 0)
                         {
-                            for (int j = 0; j < AchmazReduced[0][i].Count; j++)
+                            for (int i = 0; i < AchmazReduced[0].Count; i++)
                             {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] > 0 && Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] < 0))
+                                for (int j = 0; j < AchmazReduced[0][i].Count; j++)
                                 {
-                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
-                                    if (Scop(AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]))
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] > 0 && Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] < 0))
                                     {
-                                        int Killed = Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]);
-                                        Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] = 0;
-                                        var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]), CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
-                                        th1.Wait();
-                                        th1.Dispose();
-                                        var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], Order));
-                                        th2.Wait();
-                                        th2.Dispose();
-                                        var th3 = Task.Factory.StartNew(() => No += t.AchmazReducedBefore(Before, CloneATable(Tab), 2));
-                                        th3.Wait();
-                                        th3.Dispose();
+                                        return 1;
                                     }
                                 }
-
                             }
                         }
                     }
-
                 }
+                return No;
             }
-            else if (Level == 2)
-            {
-                if (Order == 1)
-                {
-                    if (AchmazReduced.Count > 0)
-                    {
-                        for (int i = 0; i < AchmazReduced[0].Count; i++)
-                        {
-                            for (int j = 0; j < AchmazReduced[0][i].Count; j++)
-                            {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] < 0 && Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] > 0))
-                                {
-                                    return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (AchmazReduced.Count > 0)
-                    {
-                        for (int i = 0; i < AchmazReduced[0].Count; i++)
-                        {
-                            for (int j = 0; j < AchmazReduced[0][i].Count; j++)
-                            {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] > 0 && Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] < 0))
-                                {
-                                    return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return No;
         }
         //recursive of found achmaz detection to be tow objects at line of source attacked or reduced attack
         int AchmazReducedAfter(bool Before, int[,] Table, int Level = 1)
         {
-            if (Before)
-                return 0;
-            if (Level == 0)
-                return 0;
-            int No = 0;
-            if (Level == 1)
+            Object OO = new Object();
+            lock (OO)
             {
-                if (Order == 1)
+                if (Before)
+                    return 0;
+                if (Level == 0)
+                    return 0;
+                int No = 0;
+                if (Level == 1)
                 {
-                    if (AchmazReduced.Count > 1)
+                    if (Order == 1)
                     {
-                        for (int i = 0; i < AchmazReduced[1].Count; i++)
+                        if (AchmazReduced.Count > 1)
                         {
-                            for (int j = 0; j < AchmazReduced[1][i].Count; j++)
+                            for (int i = 0; i < AchmazReduced[1].Count; i++)
                             {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] < 0 && Tab[AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]] > 0))
+                                for (int j = 0; j < AchmazReduced[1][i].Count; j++)
                                 {
-                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
-                                    if (Scop(AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]))
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] < 0 && Tab[AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]] > 0))
                                     {
-                                        int Killed = Math.Abs(Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]]);
-                                        Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] = 0;
-                                        var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
-                                        th1.Wait();
-                                        th1.Dispose();
-                                        var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1], AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], Order * -1));
-                                        th2.Wait();
-                                        th2.Dispose();
-                                        var th3 = Task.Factory.StartNew(() => No += t.AchmazReducedAfter(Before, CloneATable(Tab), 2));
-                                        th3.Wait();
-                                        th3.Dispose();
+                                        ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                        if (Scop(AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]))
+                                        {
+                                            int Killed = Math.Abs(Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]]);
+                                            Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] = 0;
+                                            var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
+                                            th1.Wait();
+                                            th1.Dispose();
+                                            var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1], AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], Order * -1));
+                                            th2.Wait();
+                                            th2.Dispose();
+                                            var th3 = Task.Factory.StartNew(() => No += t.AchmazReducedAfter(Before, CloneATable(Tab), 2));
+                                            th3.Wait();
+                                            th3.Dispose();
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (AchmazReduced.Count > 1)
+                        {
+                            for (int i = 0; i < AchmazReduced[1].Count; i++)
+                            {
+                                for (int j = 0; j < AchmazReduced[1][i].Count; j++)
+                                {
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] > 0 && Tab[AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]] < 0))
+                                    {
+                                        ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
+                                        if (Scop(AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]))
+                                        {
+                                            int Killed = Math.Abs(Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]]);
+                                            Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] = 0;
+                                            var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
+                                            th1.Wait();
+                                            th1.Dispose();
+                                            var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1], AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], Order * -1));
+                                            th2.Wait();
+                                            th2.Dispose();
+                                            var th3 = Task.Factory.StartNew(() => No += t.AchmazReducedAfter(Before, CloneATable(Tab), 2));
+                                            th3.Wait();
+                                            th3.Dispose();
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+                else if (Level == 2)
+                {
+                    if (Order == 1)
+                    {
+                        if (AchmazReduced.Count > 0)
+                        {
+                            for (int i = 0; i < AchmazReduced[0].Count; i++)
+                            {
+                                for (int j = 0; j < AchmazReduced[0][i].Count; j++)
+                                {
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] < 0 && Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] > 0))
+                                    {
+                                        return 1;
                                     }
                                 }
-
                             }
                         }
                     }
-                }
-                else
-                {
-                    if (AchmazReduced.Count > 1)
+                    else
                     {
-                        for (int i = 0; i < AchmazReduced[1].Count; i++)
+                        if (AchmazReduced.Count > 0)
                         {
-                            for (int j = 0; j < AchmazReduced[1][i].Count; j++)
+                            for (int i = 0; i < AchmazReduced[0].Count; i++)
                             {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] > 0 && Tab[AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]] < 0))
+                                for (int j = 0; j < AchmazReduced[0][i].Count; j++)
                                 {
-                                    ThinkingRefrigtzChessPortable t = new ThinkingRefrigtzChessPortable(0, Kind, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], OrderColor(Order), CloneATable(Table), 0, Order, false, 0, 0, Kind);
-                                    if (Scop(AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]))
+                                    int[,] Tab = CloneATable(Table);
+                                    if ((Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] > 0 && Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] < 0))
                                     {
-                                        int Killed = Math.Abs(Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]]);
-                                        Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] = 0;
-                                        var th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
-                                        th1.Wait();
-                                        th1.Dispose();
-                                        var th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1], AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], Order * -1));
-                                        th2.Wait();
-                                        th2.Dispose();
-                                        var th3 = Task.Factory.StartNew(() => No += t.AchmazReducedAfter(Before, CloneATable(Tab), 2));
-                                        th3.Wait();
-                                        th3.Dispose();
+                                        return 1;
                                     }
                                 }
-
                             }
                         }
                     }
-
                 }
+                return No;
             }
-            else if (Level == 2)
-            {
-                if (Order == 1)
-                {
-                    if (AchmazReduced.Count > 0)
-                    {
-                        for (int i = 0; i < AchmazReduced[0].Count; i++)
-                        {
-                            for (int j = 0; j < AchmazReduced[0][i].Count; j++)
-                            {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] < 0 && Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] > 0))
-                                {
-                                    return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (AchmazReduced.Count > 0)
-                    {
-                        for (int i = 0; i < AchmazReduced[0].Count; i++)
-                        {
-                            for (int j = 0; j < AchmazReduced[0][i].Count; j++)
-                            {
-                                int[,] Tab = CloneATable(Table);
-                                if ((Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] > 0 && Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]] < 0))
-                                {
-                                    return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return No;
         }
 
         //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
         List<List<int[]>> AchMazReducedElephasnt(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
         {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-
-            for (var i = 0; i < 8; i++)
-            {
-                for (var j = 0; j < 8; j++)
-                {
-                    Object O = new Object();
-                    lock (O)
-                    {
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        if (Order == 1 && Tabl[i, j] != -2)
-                            continue;
-                        if (Order == -1 && Tabl[i, j] != 2)
-                            continue;
-                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
-                        {
-
-                            Existence.Add(Exist);
-                        }
-
-                    }
-                }
-            }
-            //===============================
-
-
-            return Existence;
-        }
-        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
-        List<List<int[]>> AchMazReducedCastle(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
-        {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-
-            Object O1 = new Object();
-            lock (O1)
-            {
-                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
-                for (var i = 0; i < 8; i++)
-                {
-                    Object O = new Object();
-                    lock (O)
-                    {
-
-                        var j = jj;
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        if (Order == 1 && Tabl[i, j] != -4)
-                            continue;
-                        if (Order == -1 && Tabl[i, j] != 4)
-                            continue;
-                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
-                        {
-
-                            Existence.Add(Exist);
-                        }
-
-                    }
-                }
-            }
-            //===============================
-
             Object OO = new Object();
             lock (OO)
             {
-                for (var j = 0; j < 8; j++)
-                {
-                    Object O = new Object();
-                    lock (O)
-                    {
+                List<List<int[]>> Existence = new List<List<int[]>>();
 
-                        var i = ii;
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        if (Order == 1 && Tabl[i, j] != -4)
-                            continue;
-                        if (Order == -1 && Tabl[i, j] != 4)
-                            continue;
-                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, i, j, RowS, ColS);
-                        if (Exist.Count >= 1)
-                        {
+                int ii = RowS, jj = ColS;
 
-                            Existence.Add(Exist);
-                        }
-
-                    }
-                }
-            }
-
-            return Existence;
-        }
-        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
-        List<List<int[]>> AchMazElephasnt(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
-        {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-            if (Order == 1 && Tabl[RowS, ColS] != 2)
-                return Existence;
-            if (Order == -1 && Tabl[RowS, ColS] != -2)
-                return Existence;
-            for (var i = 0; i < 8; i++)
-            {
-                for (var j = 0; j < 8; j++)
-                {
-                    Object O = new Object();
-                    lock (O)
-                    {
-
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
-                        {
-
-                            Existence.Add(Exist);
-                        }
-
-                    }
-                }
-            }
-            //===============================
-            return Existence;
-        }
-        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
-        List<List<int[]>> AchMazCastle(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
-        {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-            if (Order == 1 && Tabl[RowS, ColS] != 4)
-                return Existence;
-            if (Order == -1 && Tabl[RowS, ColS] != -4)
-                return Existence;
-            Object O1 = new Object();
-            lock (O1)
-            {
-                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
                 for (var i = 0; i < 8; i++)
                 {
-                    Object O = new Object();
-                    lock (O)
-                    {
-
-                        var j = jj;
-
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
-                        {
-
-                            Existence.Add(Exist);
-                        }
-
-                    }
-                }
-
-            }
-            //===============================
-            Object OO = new Object();
-            lock (OO)
-            {
-
-                for (var j = 0; j < 8; j++)
-                {
-                    Object O = new Object();
-                    lock (O)
-                    {
-
-                        var i = ii;
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
-                        {
-
-                            Existence.Add(Exist);
-                        }
-
-                    }
-                }
-
-            }
-
-            return Existence;
-        }
-        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
-        List<List<int[]>> AchMazHourse(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
-        {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-            if (Order == 1 && Tabl[RowS, ColS] != 3)
-                return Existence;
-            if (Order == -1 && Tabl[RowS, ColS] != -3)
-                return Existence;
-            Object O1 = new Object();
-            lock (O1)
-            {
-                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
-                for (var i = RowS - 3; i < RowS + 4; i++)
-                {
-                    for (var j = ColS - 3; j < ColS + 4; j++)
+                    for (var j = 0; j < 8; j++)
                     {
                         Object O = new Object();
                         lock (O)
                         {
                             if (!Scop(ii, jj, i, j))
                                 continue;
-                            List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
-                            if (Exist.Count >= 1)
-                            {
-
-                                Existence.Add(Exist);
-                            }
-
-                        }
-                    }
-                }
-            }
-
-
-            return Existence;
-        }
-        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
-        List<List<int[]>> AchMazReducedHourse(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
-        {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-            Object O1 = new Object();
-            lock (O1)
-            {
-                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
-                for (var i = RowS - 3; i < RowS + 4; i++)
-                {
-                    for (var j = ColS - 3; j < ColS + 4; j++)
-                    {
-                        Object O = new Object();
-                        lock (O)
-                        {
-                            if (!Scop(ii, jj, i, j))
+                            if (Order == 1 && Tabl[i, j] != -2)
                                 continue;
-                            if (Order == 1 && Tabl[i, j] != 3)
-                                continue;
-                            if (Order == -1 && Tabl[i, j] != -3)
+                            if (Order == -1 && Tabl[i, j] != 2)
                                 continue;
                             List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
                             if (Exist.Count >= 1)
@@ -13454,25 +13252,95 @@ th.Dispose();
                         }
                     }
                 }
+                //===============================
+
+
+                return Existence;
             }
-            //===============================
-
-
-            return Existence;
         }
         //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
-        List<List<int[]>> AchMazMinister(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
+        List<List<int[]>> AchMazReducedCastle(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
         {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-            if (Order == 1 && Tabl[RowS, ColS] != 5)
-                return Existence;
-            if (Order == -1 && Tabl[RowS, ColS] != -5)
-                return Existence;
-            Object O1 = new Object();
-            lock (O1)
+            Object OOk = new Object();
+            lock (OOk)
             {
+                List<List<int[]>> Existence = new List<List<int[]>>();
+
+                int ii = RowS, jj = ColS;
+
+                Object O1 = new Object();
+                lock (O1)
+                {
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
+                    for (var i = 0; i < 8; i++)
+                    {
+                        Object O = new Object();
+                        lock (O)
+                        {
+
+                            var j = jj;
+                            if (!Scop(ii, jj, i, j))
+                                continue;
+                            if (Order == 1 && Tabl[i, j] != -4)
+                                continue;
+                            if (Order == -1 && Tabl[i, j] != 4)
+                                continue;
+                            List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
+                            if (Exist.Count >= 1)
+                            {
+
+                                Existence.Add(Exist);
+                            }
+
+                        }
+                    }
+                }
+                //===============================
+
+                Object OO = new Object();
+                lock (OO)
+                {
+                    for (var j = 0; j < 8; j++)
+                    {
+                        Object O = new Object();
+                        lock (O)
+                        {
+
+                            var i = ii;
+                            if (!Scop(ii, jj, i, j))
+                                continue;
+                            if (Order == 1 && Tabl[i, j] != -4)
+                                continue;
+                            if (Order == -1 && Tabl[i, j] != 4)
+                                continue;
+                            List<int[]> Exist = ListOfExistInReducedAttackList(Before, i, j, RowS, ColS);
+                            if (Exist.Count >= 1)
+                            {
+
+                                Existence.Add(Exist);
+                            }
+
+                        }
+                    }
+                }
+
+                return Existence;
+            }
+
+        }
+        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
+        List<List<int[]>> AchMazElephasnt(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                List<List<int[]>> Existence = new List<List<int[]>>();
+
+                int ii = RowS, jj = ColS;
+                if (Order == 1 && Tabl[RowS, ColS] != 2)
+                    return Existence;
+                if (Order == -1 && Tabl[RowS, ColS] != -2)
+                    return Existence;
                 for (var i = 0; i < 8; i++)
                 {
                     for (var j = 0; j < 8; j++)
@@ -13493,44 +13361,262 @@ th.Dispose();
                         }
                     }
                 }
+                //===============================
+                return Existence;
             }
+        }
+        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
+        List<List<int[]>> AchMazCastle(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
+        {
+            Object OOk = new Object();
+            lock (OOk)
+            {
+                List<List<int[]>> Existence = new List<List<int[]>>();
 
-            return Existence;
+                int ii = RowS, jj = ColS;
+                if (Order == 1 && Tabl[RowS, ColS] != 4)
+                    return Existence;
+                if (Order == -1 && Tabl[RowS, ColS] != -4)
+                    return Existence;
+                Object O1 = new Object();
+                lock (O1)
+                {
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
+                    for (var i = 0; i < 8; i++)
+                    {
+                        Object O = new Object();
+                        lock (O)
+                        {
+
+                            var j = jj;
+
+                            if (!Scop(ii, jj, i, j))
+                                continue;
+                            List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                            if (Exist.Count >= 1)
+                            {
+
+                                Existence.Add(Exist);
+                            }
+
+                        }
+                    }
+
+                }
+                //===============================
+                Object OO = new Object();
+                lock (OO)
+                {
+
+                    for (var j = 0; j < 8; j++)
+                    {
+                        Object O = new Object();
+                        lock (O)
+                        {
+
+                            var i = ii;
+                            if (!Scop(ii, jj, i, j))
+                                continue;
+                            List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                            if (Exist.Count >= 1)
+                            {
+
+                                Existence.Add(Exist);
+                            }
+
+                        }
+                    }
+
+                }
+
+                return Existence;
+            }
+        }
+        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
+        List<List<int[]>> AchMazHourse(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                List<List<int[]>> Existence = new List<List<int[]>>();
+
+                int ii = RowS, jj = ColS;
+                if (Order == 1 && Tabl[RowS, ColS] != 3)
+                    return Existence;
+                if (Order == -1 && Tabl[RowS, ColS] != -3)
+                    return Existence;
+                Object O1 = new Object();
+                lock (O1)
+                {
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
+                    for (var i = RowS - 3; i < RowS + 4; i++)
+                    {
+                        for (var j = ColS - 3; j < ColS + 4; j++)
+                        {
+                            Object O = new Object();
+                            lock (O)
+                            {
+                                if (!Scop(ii, jj, i, j))
+                                    continue;
+                                List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                                if (Exist.Count >= 1)
+                                {
+
+                                    Existence.Add(Exist);
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+
+                return Existence;
+            }
+        }
+        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
+        List<List<int[]>> AchMazReducedHourse(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                List<List<int[]>> Existence = new List<List<int[]>>();
+
+                int ii = RowS, jj = ColS;
+                Object O1 = new Object();
+                lock (O1)
+                {
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
+                    for (var i = RowS - 3; i < RowS + 4; i++)
+                    {
+                        for (var j = ColS - 3; j < ColS + 4; j++)
+                        {
+                            Object O = new Object();
+                            lock (O)
+                            {
+                                if (!Scop(ii, jj, i, j))
+                                    continue;
+                                if (Order == 1 && Tabl[i, j] != 3)
+                                    continue;
+                                if (Order == -1 && Tabl[i, j] != -3)
+                                    continue;
+                                List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
+                                if (Exist.Count >= 1)
+                                {
+
+                                    Existence.Add(Exist);
+                                }
+
+                            }
+                        }
+                    }
+                }
+                //===============================
+
+
+                return Existence;
+            }
+        }
+        //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
+        List<List<int[]>> AchMazMinister(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                List<List<int[]>> Existence = new List<List<int[]>>();
+
+                int ii = RowS, jj = ColS;
+                if (Order == 1 && Tabl[RowS, ColS] != 5)
+                    return Existence;
+                if (Order == -1 && Tabl[RowS, ColS] != -5)
+                    return Existence;
+                Object O1 = new Object();
+                lock (O1)
+                {
+                    for (var i = 0; i < 8; i++)
+                    {
+                        for (var j = 0; j < 8; j++)
+                        {
+                            Object O = new Object();
+                            lock (O)
+                            {
+
+                                if (!Scop(ii, jj, i, j))
+                                    continue;
+                                List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                                if (Exist.Count >= 1)
+                                {
+
+                                    Existence.Add(Exist);
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                return Existence;
+            }
         }
         //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
         List<List<int[]>> AchMazKing(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
         {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-            if (Order == 1 && Tabl[RowS, ColS] != 6)
-                return Existence;
-            if (Order == -1 && Tabl[RowS, ColS] != -6)
-                return Existence;
-            Object O1 = new Object();
-            lock (O1)
+            Object OOk = new Object();
+            lock (OOk)
             {
-                for (var i = ii - 1; i < ii + 2; i++)
+                List<List<int[]>> Existence = new List<List<int[]>>();
+
+                int ii = RowS, jj = ColS;
+                if (Order == 1 && Tabl[RowS, ColS] != 6)
+                    return Existence;
+                if (Order == -1 && Tabl[RowS, ColS] != -6)
+                    return Existence;
+                Object O1 = new Object();
+                lock (O1)
                 {
-                    Object O = new Object();
-                    lock (O)
+                    for (var i = ii - 1; i < ii + 2; i++)
                     {
-                        var j = i + ii - jj;
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
+                        Object O = new Object();
+                        lock (O)
                         {
+                            var j = i + ii - jj;
+                            if (!Scop(ii, jj, i, j))
+                                continue;
+                            List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                            if (Exist.Count >= 1)
+                            {
 
-                            Existence.Add(Exist);
+                                Existence.Add(Exist);
+                            }
+
                         }
-
                     }
-                }
-                //===============================
-                Object OOOo1 = new Object();
-                lock (OOOo1)
-                {
+                    //===============================
+                    Object OOOo1 = new Object();
+                    lock (OOOo1)
+                    {
+
+
+                        for (var i = ii - 1; i < ii + 2; i++)
+                        {
+                            Object O = new Object();
+                            lock (O)
+                            {
+                                var j = i * -1 + ii - jj;
+                                if (!Scop(ii, jj, i, j))
+                                    continue;
+                                List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                                if (Exist.Count >= 1)
+                                {
+
+                                    Existence.Add(Exist);
+                                }
+
+                            }
+                        }
+                    }
+                    //=============================================
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
 
 
                     for (var i = ii - 1; i < ii + 2; i++)
@@ -13538,7 +13624,8 @@ th.Dispose();
                         Object O = new Object();
                         lock (O)
                         {
-                            var j = i * -1 + ii - jj;
+
+                            var j = jj;
                             if (!Scop(ii, jj, i, j))
                                 continue;
                             List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
@@ -13551,93 +13638,100 @@ th.Dispose();
                         }
                     }
                 }
-                //=============================================
-                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
-
-
-                for (var i = ii - 1; i < ii + 2; i++)
+                //===============================
+                Object OO = new Object();
+                lock (OO)
                 {
-                    Object O = new Object();
-                    lock (O)
-                    {
 
-                        var j = jj;
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
+
+                    for (var j = ii - 1; j < ii + 2; j++)
+                    {
+                        Object O = new Object();
+                        lock (O)
                         {
 
-                            Existence.Add(Exist);
-                        }
+                            var i = ii;
+                            if (!Scop(ii, jj, i, j))
+                                continue;
+                            List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
+                            if (Exist.Count >= 1)
+                            {
 
+                                Existence.Add(Exist);
+                            }
+
+                        }
                     }
                 }
+
+
+                return Existence;
             }
-            //===============================
-            Object OO = new Object();
-            lock (OO)
-            {
-
-
-                for (var j = ii - 1; j < ii + 2; j++)
-                {
-                    Object O = new Object();
-                    lock (O)
-                    {
-
-                        var i = ii;
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        List<int[]> Exist = ListOfExistInAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
-                        {
-
-                            Existence.Add(Exist);
-                        }
-
-                    }
-                }
-            }
-
-
-            return Existence;
         }
         //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
         List<List<int[]>> AchMazReducedKing(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
         {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-
-            Object O1 = new Object();
-            lock (O1)
+            Object OOk = new Object();
+            lock (OOk)
             {
-                for (var i = ii - 1; i < ii + 2; i++)
+                List<List<int[]>> Existence = new List<List<int[]>>();
+
+                int ii = RowS, jj = ColS;
+
+                Object O1 = new Object();
+                lock (O1)
                 {
-                    Object O = new Object();
-                    lock (O)
+                    for (var i = ii - 1; i < ii + 2; i++)
                     {
-                        var j = i + ii - jj;
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        if (Order == 1 && Tabl[i, j] != 6)
-                            continue;
-                        if (Order == -1 && Tabl[i, j] != -6)
-                            continue;
-                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
+                        Object O = new Object();
+                        lock (O)
                         {
+                            var j = i + ii - jj;
+                            if (!Scop(ii, jj, i, j))
+                                continue;
+                            if (Order == 1 && Tabl[i, j] != 6)
+                                continue;
+                            if (Order == -1 && Tabl[i, j] != -6)
+                                continue;
+                            List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
+                            if (Exist.Count >= 1)
+                            {
 
-                            Existence.Add(Exist);
+                                Existence.Add(Exist);
+                            }
+
                         }
-
                     }
-                }
-                //===============================
-                Object OOOo1 = new Object();
-                lock (OOOo1)
-                {
+                    //===============================
+                    Object OOOo1 = new Object();
+                    lock (OOOo1)
+                    {
+
+
+                        for (var i = ii - 1; i < ii + 2; i++)
+                        {
+                            Object O = new Object();
+                            lock (O)
+                            {
+                                var j = i * -1 + ii - jj;
+                                if (!Scop(ii, jj, i, j))
+                                    continue;
+                                if (Order == 1 && Tabl[i, j] != 6)
+                                    continue;
+                                if (Order == -1 && Tabl[i, j] != -6)
+                                    continue;
+                                List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
+                                if (Exist.Count >= 1)
+                                {
+
+                                    Existence.Add(Exist);
+                                }
+
+                            }
+                        }
+                    }
+                    //=============================================
+                    ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
 
 
                     for (var i = ii - 1; i < ii + 2; i++)
@@ -13645,7 +13739,38 @@ th.Dispose();
                         Object O = new Object();
                         lock (O)
                         {
-                            var j = i * -1 + ii - jj;
+
+                            var j = jj;
+                            if (!Scop(ii, jj, i, j))
+                                continue;
+
+                            if (Order == 1 && Tabl[i, j] != 6)
+                                continue;
+                            if (Order == -1 && Tabl[i, j] != -6)
+                                continue;
+                            List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
+                            if (Exist.Count >= 1)
+                            {
+
+                                Existence.Add(Exist);
+                            }
+
+                        }
+                    }
+                }
+                //===============================
+                Object OO = new Object();
+                lock (OO)
+                {
+
+
+                    for (var j = ii - 1; j < ii + 2; j++)
+                    {
+                        Object O = new Object();
+                        lock (O)
+                        {
+
+                            var i = ii;
                             if (!Scop(ii, jj, i, j))
                                 continue;
                             if (Order == 1 && Tabl[i, j] != 6)
@@ -13662,399 +13787,358 @@ th.Dispose();
                         }
                     }
                 }
-                //=============================================
-                ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, 8, i =>
 
 
-                for (var i = ii - 1; i < ii + 2; i++)
-                {
-                    Object O = new Object();
-                    lock (O)
-                    {
-
-                        var j = jj;
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-
-                        if (Order == 1 && Tabl[i, j] != 6)
-                            continue;
-                        if (Order == -1 && Tabl[i, j] != -6)
-                            continue;
-                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
-                        {
-
-                            Existence.Add(Exist);
-                        }
-
-                    }
-                }
+                return Existence;
             }
-            //===============================
-            Object OO = new Object();
-            lock (OO)
-            {
-
-
-                for (var j = ii - 1; j < ii + 2; j++)
-                {
-                    Object O = new Object();
-                    lock (O)
-                    {
-
-                        var i = ii;
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        if (Order == 1 && Tabl[i, j] != 6)
-                            continue;
-                        if (Order == -1 && Tabl[i, j] != -6)
-                            continue;
-                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
-                        {
-
-                            Existence.Add(Exist);
-                        }
-
-                    }
-                }
-            }
-
-
-            return Existence;
         }
         //method of list of reduced attack or attack by lists of method found lists by every specified objects on board.
         List<List<int[]>> AchMazReducedMinister(int[,] Tabl, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
         {
-            List<List<int[]>> Existence = new List<List<int[]>>();
-
-            int ii = RowS, jj = ColS;
-
-            for (var i = 0; i < 8; i++)
+            Object OO = new Object();
+            lock (OO)
             {
-                for (var j = 0; j < 8; j++)
+                List<List<int[]>> Existence = new List<List<int[]>>();
+
+                int ii = RowS, jj = ColS;
+
+                for (var i = 0; i < 8; i++)
                 {
-                    Object O = new Object();
-                    lock (O)
+                    for (var j = 0; j < 8; j++)
                     {
-                        if (!Scop(ii, jj, i, j))
-                            continue;
-                        if (Order == 1 && Tabl[i, j] != -5)
-                            continue;
-                        if (Order == -1 && Tabl[i, j] != 5)
-                            continue;
-                        List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
-                        if (Exist.Count >= 1)
+                        Object O = new Object();
+                        lock (O)
                         {
+                            if (!Scop(ii, jj, i, j))
+                                continue;
+                            if (Order == 1 && Tabl[i, j] != -5)
+                                continue;
+                            if (Order == -1 && Tabl[i, j] != 5)
+                                continue;
+                            List<int[]> Exist = ListOfExistInReducedAttackList(Before, RowS, ColS, i, j);
+                            if (Exist.Count >= 1)
+                            {
 
-                            Existence.Add(Exist);
+                                Existence.Add(Exist);
+                            }
+
                         }
-
                     }
                 }
-            }
 
-            return Existence;
+                return Existence;
+            }
         }
 
         //calculation first level of achmaz by sub metods possible
         void Achmaz(int[,] Table, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
         {
-            List<List<int[]>> EleRedAchmaz = null, EleAchmaz = null, HourAchmaz = null, HourRedAchmaz = null, CastRedAchmaz = null, CastAchmaz = null, MiniRedAchmaz = null, MiniAchmaz = null, KingRedAchmaz = null, KingAchmaz = null;
-            //if (System.Math.Abs(Table[RowS, ColS]) == 2 || System.Math.Abs(Table[RowD, ColD]) == 2)
+            Object O1 = new Object();
+            lock (O1)
             {
-                var tth = Task.Factory.StartNew(() =>
+                List<List<int[]>> EleRedAchmaz = null, EleAchmaz = null, HourAchmaz = null, HourRedAchmaz = null, CastRedAchmaz = null, CastAchmaz = null, MiniRedAchmaz = null, MiniAchmaz = null, KingRedAchmaz = null, KingAchmaz = null;
+                //if (System.Math.Abs(Table[RowS, ColS]) == 2 || System.Math.Abs(Table[RowD, ColD]) == 2)
                 {
-                    ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
+                    var tth = Task.Factory.StartNew(() =>
                     {
-                        var tth1 = Task.Factory.StartNew(() => EleRedAchmaz = AchMazReducedElephasnt(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+{
+                            var tth1 = Task.Factory.StartNew(() => EleRedAchmaz = AchMazReducedElephasnt(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                            tth1.Wait();
+                            tth1.Dispose();
+                        }, () =>
+                        {
+                            var tth2 = Task.Factory.StartNew(() => EleAchmaz = AchMazElephasnt(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                            tth2.Wait();
+                            tth2.Dispose();
+                        }, () =>
+                        {
+                            var tth1 = Task.Factory.StartNew(() => CastRedAchmaz = AchMazReducedCastle(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                            tth1.Wait();
+                            tth1.Dispose();
+                        }, () =>
+                        {
+                            var tth2 = Task.Factory.StartNew(() => CastAchmaz = AchMazCastle(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                            tth2.Wait();
+                            tth2.Dispose();
+                        }, () =>
+                        {
+                            var tth1 = Task.Factory.StartNew(() => MiniRedAchmaz = AchMazReducedMinister(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                            tth1.Wait();
+                            tth1.Dispose();
+                        }, () =>
+                        {
+                            var tth2 = Task.Factory.StartNew(() => MiniAchmaz = AchMazMinister(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                            tth2.Wait();
+                            tth2.Dispose();
+                        });
+                    });
+                    tth.Wait();
+                    tth.Dispose();
+                }
+                var ttttth = Task.Factory.StartNew(() =>
+                {
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+{
+                        var tth1 = Task.Factory.StartNew(() => AchmazPure.Add(CollectionSummation(EleAchmaz, HourAchmaz, CastAchmaz, MiniAchmaz, KingAchmaz)));
                         tth1.Wait();
                         tth1.Dispose();
                     }, () =>
                     {
-                        var tth2 = Task.Factory.StartNew(() => EleAchmaz = AchMazElephasnt(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
-                        tth2.Wait();
-                        tth2.Dispose();
-                    }, () =>
-                    {
-                        var tth1 = Task.Factory.StartNew(() => CastRedAchmaz = AchMazReducedCastle(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
-                        tth1.Wait();
-                        tth1.Dispose();
-                    }, () =>
-                    {
-                        var tth2 = Task.Factory.StartNew(() => CastAchmaz = AchMazCastle(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
-                        tth2.Wait();
-                        tth2.Dispose();
-                    }, () =>
-                    {
-                        var tth1 = Task.Factory.StartNew(() => MiniRedAchmaz = AchMazReducedMinister(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
-                        tth1.Wait();
-                        tth1.Dispose();
-                    }, () =>
-                    {
-                        var tth2 = Task.Factory.StartNew(() => MiniAchmaz = AchMazMinister(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                        var tth2 = Task.Factory.StartNew(() => AchmazReduced.Add(CollectionSummation(EleRedAchmaz, HourRedAchmaz, CastRedAchmaz, MiniRedAchmaz, KingRedAchmaz)));
                         tth2.Wait();
                         tth2.Dispose();
                     });
                 });
-                tth.Wait();
-                tth.Dispose();
+                ttttth.Wait();
+                ttttth.Dispose();
             }
-            var ttttth = Task.Factory.StartNew(() =>
-            {
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
-                {
-                    var tth1 = Task.Factory.StartNew(() => AchmazPure.Add(CollectionSummation(EleAchmaz, HourAchmaz, CastAchmaz, MiniAchmaz, KingAchmaz)));
-                    tth1.Wait();
-                    tth1.Dispose();
-                }, () =>
-                {
-                    var tth2 = Task.Factory.StartNew(() => AchmazReduced.Add(CollectionSummation(EleRedAchmaz, HourRedAchmaz, CastRedAchmaz, MiniRedAchmaz, KingRedAchmaz)));
-                    tth2.Wait();
-                    tth2.Dispose();
-                });
-            });
-            ttttth.Wait();
-            ttttth.Dispose();
 
         }
         //creation of colldection of achmaz lists depend of region of source objects
         List<List<int[]>> CollectionSortation(List<List<int[]>> A)
         {
-            List<List<int[]>> Col = new List<List<int[]>>();
+            Object O1 = new Object();
+            lock (O1)
+            {
+                List<List<int[]>> Col = new List<List<int[]>>();
 
-            List<int[]> Co = new List<int[]>();
-            CollectionSummation(A, -4, ref Co);
-            if (Co.Count > 0) Col.Add(Co);
-            Co = new List<int[]>();
-            CollectionSummation(A, -3, ref Co);
-            if (Co.Count > 0) Col.Add(Co);
-            Co = new List<int[]>();
-            CollectionSummation(A, -2, ref Co);
-            if (Co.Count > 0) Col.Add(Co);
-            Co = new List<int[]>();
-            CollectionSummation(A, -1, ref Co);
-            if (Co.Count > 0) Col.Add(Co);
-            Co = new List<int[]>();
-            CollectionSummation(A, 1, ref Co);
-            if (Co.Count > 0) Col.Add(Co);
+                List<int[]> Co = new List<int[]>();
+                CollectionSummation(A, -4, ref Co);
+                if (Co.Count > 0) Col.Add(Co);
+                Co = new List<int[]>();
+                CollectionSummation(A, -3, ref Co);
+                if (Co.Count > 0) Col.Add(Co);
+                Co = new List<int[]>();
+                CollectionSummation(A, -2, ref Co);
+                if (Co.Count > 0) Col.Add(Co);
+                Co = new List<int[]>();
+                CollectionSummation(A, -1, ref Co);
+                if (Co.Count > 0) Col.Add(Co);
+                Co = new List<int[]>();
+                CollectionSummation(A, 1, ref Co);
+                if (Co.Count > 0) Col.Add(Co);
 
-            Co = new List<int[]>();
-            CollectionSummation(A, 2, ref Co);
-            if (Co.Count > 0) Col.Add(Co);
+                Co = new List<int[]>();
+                CollectionSummation(A, 2, ref Co);
+                if (Co.Count > 0) Col.Add(Co);
 
-            Co = new List<int[]>();
-            CollectionSummation(A, 3, ref Co);
-            if (Co.Count > 0) Col.Add(Co);
+                Co = new List<int[]>();
+                CollectionSummation(A, 3, ref Co);
+                if (Co.Count > 0) Col.Add(Co);
 
-            Co = new List<int[]>();
-            CollectionSummation(A, 4, ref Co);
-            if (Co.Count > 0) Col.Add(Co);
-            return Col;
+                Co = new List<int[]>();
+                CollectionSummation(A, 4, ref Co);
+                if (Co.Count > 0) Col.Add(Co);
+                return Col;
+            }
         }
         //creation of one region of collection of achmaz method
         void CollectionSummation(List<List<int[]>> A, int Sum, ref List<int[]> Co)
         {
-            if (A == null)
-                return;
-            for (int i = 0; i < A.Count; i++)
+            Object O1 = new Object();
+            lock (O1)
             {
-                for (int j = 0; j < A[i].Count; j++)
+                if (A == null)
+                    return;
+                for (int i = 0; i < A.Count; i++)
                 {
-                    if (A[i][j][4] == Sum && (!Exist(Co, A[i][j])))
-                        Co.Add(A[i][j]);
+                    for (int j = 0; j < A[i].Count; j++)
+                    {
+                        if (A[i][j][4] == Sum && (!Exist(Co, A[i][j])))
+                            Co.Add(A[i][j]);
+                    }
                 }
             }
         }
         //collection of regionns redistributed from achmaz methods
         List<List<int[]>> CollectionSummation(List<List<int[]>> A, List<List<int[]>> B, List<List<int[]>> C, List<List<int[]>> D, List<List<int[]>> E)
         {
-            List<List<int[]>> Col = new List<List<int[]>>();
+            Object O1 = new Object();
+            lock (O1)
+            {
+                List<List<int[]>> Col = new List<List<int[]>>();
 
-            List<int[]> Co1 = new List<int[]>();
-            CollectionSummation(A, -4, ref Co1);
-            CollectionSummation(B, -4, ref Co1);
-            CollectionSummation(C, -4, ref Co1);
-            CollectionSummation(D, -4, ref Co1);
+                List<int[]> Co1 = new List<int[]>();
+                CollectionSummation(A, -4, ref Co1);
+                CollectionSummation(B, -4, ref Co1);
+                CollectionSummation(C, -4, ref Co1);
+                CollectionSummation(D, -4, ref Co1);
 
-            if (Co1.Count > 0) Col.Add(Co1);
-            List<int[]> Co2 = new List<int[]>();
-            CollectionSummation(A, -3, ref Co2);
-            CollectionSummation(B, -3, ref Co2);
-            CollectionSummation(C, -3, ref Co2);
-            CollectionSummation(D, -3, ref Co2);
+                if (Co1.Count > 0) Col.Add(Co1);
+                List<int[]> Co2 = new List<int[]>();
+                CollectionSummation(A, -3, ref Co2);
+                CollectionSummation(B, -3, ref Co2);
+                CollectionSummation(C, -3, ref Co2);
+                CollectionSummation(D, -3, ref Co2);
 
-            if (Co2.Count > 0) Col.Add(Co2);
-            List<int[]> Co3 = new List<int[]>();
-            CollectionSummation(A, -2, ref Co3);
-            CollectionSummation(B, -2, ref Co3);
-            CollectionSummation(C, -2, ref Co3);
-            CollectionSummation(D, -2, ref Co3);
+                if (Co2.Count > 0) Col.Add(Co2);
+                List<int[]> Co3 = new List<int[]>();
+                CollectionSummation(A, -2, ref Co3);
+                CollectionSummation(B, -2, ref Co3);
+                CollectionSummation(C, -2, ref Co3);
+                CollectionSummation(D, -2, ref Co3);
 
-            if (Co3.Count > 0) Col.Add(Co3);
-            List<int[]> Co4 = new List<int[]>();
-            CollectionSummation(A, -1, ref Co4);
-            CollectionSummation(B, -1, ref Co4);
-            CollectionSummation(C, -1, ref Co4);
-            CollectionSummation(D, -1, ref Co4);
+                if (Co3.Count > 0) Col.Add(Co3);
+                List<int[]> Co4 = new List<int[]>();
+                CollectionSummation(A, -1, ref Co4);
+                CollectionSummation(B, -1, ref Co4);
+                CollectionSummation(C, -1, ref Co4);
+                CollectionSummation(D, -1, ref Co4);
 
-            if (Co4.Count > 0) Col.Add(Co4);
-            List<int[]> Co5 = new List<int[]>();
-            CollectionSummation(A, 1, ref Co5);
-            CollectionSummation(B, 1, ref Co5);
-            CollectionSummation(C, 1, ref Co5);
-            CollectionSummation(D, 1, ref Co5);
+                if (Co4.Count > 0) Col.Add(Co4);
+                List<int[]> Co5 = new List<int[]>();
+                CollectionSummation(A, 1, ref Co5);
+                CollectionSummation(B, 1, ref Co5);
+                CollectionSummation(C, 1, ref Co5);
+                CollectionSummation(D, 1, ref Co5);
 
-            if (Co5.Count > 0) Col.Add(Co5);
+                if (Co5.Count > 0) Col.Add(Co5);
 
-            List<int[]> Co6 = new List<int[]>();
-            CollectionSummation(A, 2, ref Co6);
-            CollectionSummation(B, 2, ref Co6);
-            CollectionSummation(C, 2, ref Co6);
-            CollectionSummation(D, 2, ref Co6);
+                List<int[]> Co6 = new List<int[]>();
+                CollectionSummation(A, 2, ref Co6);
+                CollectionSummation(B, 2, ref Co6);
+                CollectionSummation(C, 2, ref Co6);
+                CollectionSummation(D, 2, ref Co6);
 
-            if (Co6.Count > 0) Col.Add(Co6);
+                if (Co6.Count > 0) Col.Add(Co6);
 
-            List<int[]> Co7 = new List<int[]>();
-            CollectionSummation(A, 3, ref Co7);
-            CollectionSummation(B, 3, ref Co7);
-            CollectionSummation(C, 3, ref Co7);
-            CollectionSummation(D, 3, ref Co7);
+                List<int[]> Co7 = new List<int[]>();
+                CollectionSummation(A, 3, ref Co7);
+                CollectionSummation(B, 3, ref Co7);
+                CollectionSummation(C, 3, ref Co7);
+                CollectionSummation(D, 3, ref Co7);
 
-            if (Co7.Count > 0) Col.Add(Co7);
+                if (Co7.Count > 0) Col.Add(Co7);
 
-            List<int[]> Co8 = new List<int[]>();
-            CollectionSummation(A, 4, ref Co8);
-            CollectionSummation(B, 4, ref Co8);
-            CollectionSummation(C, 4, ref Co8);
-            CollectionSummation(D, 4, ref Co8);
+                List<int[]> Co8 = new List<int[]>();
+                CollectionSummation(A, 4, ref Co8);
+                CollectionSummation(B, 4, ref Co8);
+                CollectionSummation(C, 4, ref Co8);
+                CollectionSummation(D, 4, ref Co8);
 
-            if (Co8.Count > 0) Col.Add(Co8);
+                if (Co8.Count > 0) Col.Add(Co8);
 
-            return Col;
+                return Col;
+            }
         }
         //determine sign of 8th regions
         int SignBeforNext(int Row, int Col, int i, int j)
         {
-            int Sign = 0;
-            if (Row < i && Col > j)
-                Sign = -4;
-            if (Row > i && Col > j)
-                Sign = 4;
-            if (Row > i && Col < j)
-                Sign = 3;
-            if (Row < i && Col > j)
-                Sign = -3;
-            if (Row == i && Col < j)
-                Sign = -2;
-            if (Row == i && Col > j)
-                Sign = 2;
-            if (Row > i && Col == j)
-                Sign = 1;
-            if (Row < i && Col == j)
-                Sign = -1;
-            return Sign;
+            Object O1 = new Object();
+            lock (O1)
+            {
+                int Sign = 0;
+                if (Row < i && Col > j)
+                    Sign = -4;
+                if (Row > i && Col > j)
+                    Sign = 4;
+                if (Row > i && Col < j)
+                    Sign = 3;
+                if (Row < i && Col > j)
+                    Sign = -3;
+                if (Row == i && Col < j)
+                    Sign = -2;
+                if (Row == i && Col > j)
+                    Sign = 2;
+                if (Row > i && Col == j)
+                    Sign = 1;
+                if (Row < i && Col == j)
+                    Sign = -1;
+                return Sign;
+            }
         }
         //calculate sum of achmazin pure and reduced and beforand after
         int SumAbsSrcPure(bool Before, int[,] Tab)
         {
-            int Sum = 0;
-            if (AchmazPure.Count == 1)
+            Object O1 = new Object();
+            lock (O1)
             {
-                for (int i = 0; i < AchmazPure[0].Count; i++)
+                int Sum = 0;
+                if (AchmazPure.Count == 1)
                 {
-                    for (int j = 0; j < AchmazPure[0][i].Count; j++)
+                    for (int i = 0; i < AchmazPure[0].Count; i++)
                     {
-                        Sum += System.Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
+                        for (int j = 0; j < AchmazPure[0][i].Count; j++)
+                        {
+                            Sum += System.Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
+                        }
                     }
                 }
+                return Sum;
             }
-            return Sum;
         }
         //calculate sum of achmazin pure and reduced and beforand after
         int SumAbsSrcReduced(bool Before, int[,] Tab)
         {
-            int Sum = 0;
-            if (AchmazReduced.Count == 1)
+            Object O1 = new Object();
+            lock (O1)
             {
-                for (int i = 0; i < AchmazReduced[0].Count; i++)
+                int Sum = 0;
+                if (AchmazReduced.Count == 1)
                 {
-                    for (int j = 0; j < AchmazReduced[0][i].Count; j++)
+                    for (int i = 0; i < AchmazReduced[0].Count; i++)
                     {
-                        Sum += System.Math.Abs(Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]]);
+                        for (int j = 0; j < AchmazReduced[0][i].Count; j++)
+                        {
+                            Sum += System.Math.Abs(Tab[AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1]]);
+                        }
                     }
                 }
+                return Sum;
             }
-            return Sum;
         }
         //calculate sum of achmazin pure and reduced and beforand after
         int SumAbsDesPure(bool Before, int[,] Tab)
         {
-            int Sum = 0;
-            if (AchmazPure.Count == 2)
+            Object O1 = new Object();
+            lock (O1)
             {
-                for (int i = 0; i < AchmazPure[1].Count; i++)
+                int Sum = 0;
+                if (AchmazPure.Count == 2)
                 {
-                    for (int j = 0; j < AchmazPure[1][i].Count; j++)
+                    for (int i = 0; i < AchmazPure[1].Count; i++)
                     {
-                        Sum += System.Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
+                        for (int j = 0; j < AchmazPure[1][i].Count; j++)
+                        {
+                            Sum += System.Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
+                        }
                     }
+
                 }
 
+                return Sum;
             }
-
-            return Sum;
         }
         //calculate sum of achmazin pure and reduced and beforand after
         int SumAbsDesReduced(bool Before, int[,] Tab)
         {
-            int Sum = 0;
-            if (AchmazReduced.Count == 2)
+            Object O1 = new Object();
+            lock (O1)
             {
-                for (int i = 0; i < AchmazReduced[1].Count; i++)
+                int Sum = 0;
+                if (AchmazReduced.Count == 2)
                 {
-                    for (int j = 0; j < AchmazReduced[1][i].Count; j++)
+                    for (int i = 0; i < AchmazReduced[1].Count; i++)
                     {
-                        Sum += System.Math.Abs(Tab[AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]]);
+                        for (int j = 0; j < AchmazReduced[1][i].Count; j++)
+                        {
+                            Sum += System.Math.Abs(Tab[AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1]]);
+                        }
                     }
                 }
-            }
 
-            return Sum;
+                return Sum;
+            }
         }
         //heuristic creation of double attacked
         int DoubleAttack(int[,] Table, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
         {
-            int DD = 0;
-            List<List<int[]>> DDL = new List<List<int[]>>();
-            for (int RowSS = 0; RowSS < 8; RowSS++)
+            Object O1 = new Object();
+            lock (O1)
             {
-                for (int ColSS = 0; ColSS < 8; ColSS++)
-                {
-                    for (int RowDD = 0; RowDD < 8; RowDD++)
-                    {
-                        for (int ColDD = 0; ColDD < 8; ColDD++)
-                        {
-                            List<int[]> DDA = ListOfExistInAttackList(Before, RowSS, ColSS, RowDD, ColDD);
-                            if (DDA.Count > 0)
-                                DDL.Add(DDA);
-                        }
-                    }
-                }
-            }
-            List<int[]> DDE = new List<int[]>();
-            for (int i = 0; i < DDL.Count; i++)
-            {
-                for (int j = 0; j < DDL[i].Count; j++)
-                {
-                    if (!ExistFull(DDE, DDL[i][j]))
-                    {
-                        DDE.Add(DDL[i][j]);
-                    }
-                }
-            }
-            if (DDE.Count > 1)
-            {
+                int DD = 0;
+                List<List<int[]>> DDL = new List<List<int[]>>();
                 for (int RowSS = 0; RowSS < 8; RowSS++)
                 {
                     for (int ColSS = 0; ColSS < 8; ColSS++)
@@ -14063,115 +14147,173 @@ th.Dispose();
                         {
                             for (int ColDD = 0; ColDD < 8; ColDD++)
                             {
-                                for (int i = 0; i < DDE.Count; i++)
+                                List<int[]> DDA = ListOfExistInAttackList(Before, RowSS, ColSS, RowDD, ColDD);
+                                if (DDA.Count > 0)
+                                    DDL.Add(DDA);
+                            }
+                        }
+                    }
+                }
+                List<int[]> DDE = new List<int[]>();
+                for (int i = 0; i < DDL.Count; i++)
+                {
+                    for (int j = 0; j < DDL[i].Count; j++)
+                    {
+                        if (!ExistFull(DDE, DDL[i][j]))
+                        {
+                            DDE.Add(DDL[i][j]);
+                        }
+                    }
+                }
+                if (DDE.Count > 1)
+                {
+                    for (int RowSS = 0; RowSS < 8; RowSS++)
+                    {
+                        for (int ColSS = 0; ColSS < 8; ColSS++)
+                        {
+                            for (int RowDD = 0; RowDD < 8; RowDD++)
+                            {
+                                for (int ColDD = 0; ColDD < 8; ColDD++)
                                 {
-                                    if (DDE[i][0] == RowSS && DDE[i][1] == ColSS && DDE[i][2] == RowDD && DDE[i][3] == ColDD)
-                                        DD += System.Math.Abs(Table[DDE[i][2], DDE[i][3]]);
+                                    for (int i = 0; i < DDE.Count; i++)
+                                    {
+                                        if (DDE[i][0] == RowSS && DDE[i][1] == ColSS && DDE[i][2] == RowDD && DDE[i][3] == ColDD)
+                                            DD += System.Math.Abs(Table[DDE[i][2], DDE[i][3]]);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
 
-            DD = (RationalRegard) * (DD);
-            return DD;
+                DD = (RationalRegard) * (DD);
+                return DD;
+            }
         }
         //heuristic creation of double defence
         int DoubleDefence(int[,] Table, bool Before, int RowS, int ColS, int RowD, int ColD, int Order)
         {
-            int DD = 0;
-            List<List<int[]>> DDL = new List<List<int[]>>();
-            for (int RowSS = 0; RowSS < 8; RowSS++)
+            Object O1 = new Object();
+            lock (O1)
             {
-                for (int ColSS = 0; ColSS < 8; ColSS++)
+                int DD = 0;
+                List<List<int[]>> DDL = new List<List<int[]>>();
+                for (int RowSS = 0; RowSS < 8; RowSS++)
+                {
+                    for (int ColSS = 0; ColSS < 8; ColSS++)
+                    {
+                        for (int RowDD = 0; RowDD < 8; RowDD++)
+                        {
+                            for (int ColDD = 0; ColDD < 8; ColDD++)
+                            {
+                                List<int[]> DDA = ListOfExistInReducedAttackList(Before, RowSS, ColSS, RowDD, ColDD);
+                                if (DDA.Count > 0)
+                                    DDL.Add(DDA);
+                            }
+                        }
+                    }
+                }
+                List<int[]> DDE = new List<int[]>();
+                for (int i = 0; i < DDL.Count; i++)
+                {
+                    for (int j = 0; j < DDL[i].Count; j++)
+                    {
+                        if (!ExistFull(DDE, DDL[i][j]))
+                        {
+                            DDE.Add(DDL[i][j]);
+                        }
+                    }
+                }
+                if (DDE.Count > 1)
                 {
                     for (int RowDD = 0; RowDD < 8; RowDD++)
                     {
                         for (int ColDD = 0; ColDD < 8; ColDD++)
                         {
-                            List<int[]> DDA = ListOfExistInReducedAttackList(Before, RowSS, ColSS, RowDD, ColDD);
-                            if (DDA.Count > 0)
-                                DDL.Add(DDA);
-                        }
-                    }
-                }
-            }
-            List<int[]> DDE = new List<int[]>();
-            for (int i = 0; i < DDL.Count; i++)
-            {
-                for (int j = 0; j < DDL[i].Count; j++)
-                {
-                    if (!ExistFull(DDE, DDL[i][j]))
-                    {
-                        DDE.Add(DDL[i][j]);
-                    }
-                }
-            }
-            if (DDE.Count > 1)
-            {
-                for (int RowDD = 0; RowDD < 8; RowDD++)
-                {
-                    for (int ColDD = 0; ColDD < 8; ColDD++)
-                    {
-                        List<int[]> DDEE = new List<int[]>();
-                        for (int RowSS = 0; RowSS < 8; RowSS++)
-                        {
-                            for (int ColSS = 0; ColSS < 8; ColSS++)
+                            List<int[]> DDEE = new List<int[]>();
+                            for (int RowSS = 0; RowSS < 8; RowSS++)
                             {
-                                for (int i = 0; i < DDE.Count; i++)
+                                for (int ColSS = 0; ColSS < 8; ColSS++)
                                 {
-                                    if (DDE[i][0] == RowDD && DDE[i][1] == ColDD && DDE[i][2] == RowSS && DDE[i][3] == ColSS)
+                                    for (int i = 0; i < DDE.Count; i++)
                                     {
-                                        int[] SS = new int[4];
-                                        SS[0] = RowDD;
-                                        SS[1] = ColDD;
-                                        SS[2] = RowSS;
-                                        SS[3] = ColSS;
-                                        if (!ExistFull(DDEE, SS))
+                                        if (DDE[i][0] == RowDD && DDE[i][1] == ColDD && DDE[i][2] == RowSS && DDE[i][3] == ColSS)
                                         {
-                                            DDEE.Add(SS);
-                                            DD += System.Math.Abs(Table[DDE[i][0], DDE[i][1]]);
+                                            int[] SS = new int[4];
+                                            SS[0] = RowDD;
+                                            SS[1] = ColDD;
+                                            SS[2] = RowSS;
+                                            SS[3] = ColSS;
+                                            if (!ExistFull(DDEE, SS))
+                                            {
+                                                DDEE.Add(SS);
+                                                DD += System.Math.Abs(Table[DDE[i][0], DDE[i][1]]);
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                        if (DDEE.Count > 1)
-                        {
-                            if (!ExistFullDoubleList(HeuristicDoubleDefenceIndexInOnGame, DDEE))
-                                HeuristicDoubleDefenceIndexInOnGame.Add(DDEE);
+                            if (DDEE.Count > 1)
+                            {
+                                if (!ExistFullDoubleList(HeuristicDoubleDefenceIndexInOnGame, DDEE))
+                                    HeuristicDoubleDefenceIndexInOnGame.Add(DDEE);
+                            }
                         }
                     }
                 }
+                if (HeuristicDoubleDefenceIndexInOnGame.Count == 0)
+                    DD = 0;
+                DD = (RationalPenalty) * (DD);
+                return DD;
             }
-            if (HeuristicDoubleDefenceIndexInOnGame.Count == 0)
-                DD = 0;
-            DD = (RationalPenalty) * (DD);
-            return DD;
         }
         //when after of move
         bool MidleIndex()
         {
-            bool Is = true;
-            if (HeuristicAllAttackedMidel != 0)
-                return false;
-            if (HeuristicAllMoveMidel != 0)
-                return false;
-            if (HeuristicAllReducedAttackedMidel != 0)
-                return false;
-            if (HeuristicAllReducedMoveMidel != 0)
-                return false;
-            if (HeuristicAllReducedSupportMidel != 0)
-                return false;
-            if (HeuristicAllSupportMidel != 0)
-                return false;
-            if (HeuristicReducedAttackedIndexInOnGameMidle != 0)
-                return false;
-            if (HeuristicDoubleDefenceIndexInOnGameMidle != 0)
-                return false;
-            return Is;
+            Object OO = new Object();
+            lock (OO)
+            {
+                bool Is = true;
+                if (HeuristicAllAttackedMidel != 0)
+                    return false;
+                if (HeuristicAllMoveMidel != 0)
+                    return false;
+                if (HeuristicAllReducedAttackedMidel != 0)
+                    return false;
+                if (HeuristicAllReducedMoveMidel != 0)
+                    return false;
+                if (HeuristicAllReducedSupportMidel != 0)
+                    return false;
+                if (HeuristicAllSupportMidel != 0)
+                    return false;
+                if (HeuristicReducedAttackedIndexInOnGameMidle != 0)
+                    return false;
+                if (HeuristicDoubleDefenceIndexInOnGameMidle != 0)
+                    return false;
+                return Is;
+            }
         }
+        
+        bool IsSupHuTrue()
+        {
+
+            Object o = new Object();
+            lock (o)
+            {
+                bool Is = false;
+
+                if (!AllDraw.AllowedSupTrue)
+                {
+                    Is = IsSupHu[IsSupHu.Count-1];
+                }
+                else
+                {
+                    Is = IsSup[IsSup.Count-1];
+
+                }
+                return Is;
+            }
+       }
         //heuristic main method
         /********************************************************************************
          complexity of achmaz is O((m^n)*(n^d))*********************************************
@@ -14261,7 +14403,7 @@ th.Dispose();
                 Object O1 = new Object();
                 lock (O1)
                 {
-                    if (!IsSupHu[IsSupHu.Count - 1])
+                    if (!IsSupHuTrue())
                     {
                         if (Before)
                         {
@@ -14371,7 +14513,7 @@ th.Dispose();
                             }
                             if (HDoubleAttack > 0)
                             {
-                                if (!IsSupHu[IsSupHu.Count - 1])
+                                if (!IsSupHuTrue())
                                     WinOcuuredatChiled = 5;
                             }
                         }
@@ -14395,7 +14537,7 @@ th.Dispose();
                                 }
                                 else
                                 {
-                                    if (TableInitiationPreventionOfMultipleMove[RowS, ColS] == NoOfMovableAllObjectMove && IsSupHu[IsSupHu.Count - 1] && IsS)
+                                    if (TableInitiationPreventionOfMultipleMove[RowS, ColS] == NoOfMovableAllObjectMove && IsSupHuTrue() && IsS)
                                     {
                                         TableInitiationPreventionOfMultipleMove[RowS, ColS] = NoOfMovableAllObjectMove - 1;
                                         IsS = false;
@@ -14431,7 +14573,7 @@ th.Dispose();
                                 else
                                 {
                                     if (Order == AllDraw.OrderPlateDraw)
-                                    {//if (TableInitiationPreventionOfMultipleMove[RowS, ColS] == NoOfMovableAllObjectMove && IsSupHu[IsSupHu.Count - 1] && (!IsS))
+                                    {//if (TableInitiationPreventionOfMultipleMove[RowS, ColS] == NoOfMovableAllObjectMove && IsSupHuTrue() && (!IsS))
 
                                         //Empire more
                                         if (A)
@@ -14510,7 +14652,7 @@ th.Dispose();
                             }
                             if (HDoubleAttack > 0)
                             {
-                                if (!IsSupHu[IsSupHu.Count - 1])
+                                if (!IsSupHuTrue())
                                 {
                                     WinOcuuredatChiled = 5;
                                 }
@@ -14519,7 +14661,7 @@ th.Dispose();
                             }
                         }
                     }
-                    if (!IsSupHu[IsSupHu.Count - 1] && IsSupHu.Count > 0 && (Order == AllDraw.OrderPlateDraw))
+                    if (!IsSupHuTrue()  && (Order == AllDraw.OrderPlateDraw))
                     {
                         H1 = Task.Factory.StartNew(() => Achmaz(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
                         H1.Wait();

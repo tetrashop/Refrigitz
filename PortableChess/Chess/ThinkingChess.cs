@@ -13871,6 +13871,16 @@ th.Dispose();
                             var tth2 = Task.Factory.StartNew(() => MiniAchmaz = AchMazMinister(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
                             tth2.Wait();
                             tth2.Dispose();
+                        }, () =>
+                        {
+                            var tth1 = Task.Factory.StartNew(() => KingRedAchmaz = AchMazReducedKing(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                            tth1.Wait();
+                            tth1.Dispose();
+                        }, () =>
+                        {
+                            var tth2 = Task.Factory.StartNew(() => KingAchmaz = AchMazKing(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
+                            tth2.Wait();
+                            tth2.Dispose();
                         });
                     });
                     tth.Wait();

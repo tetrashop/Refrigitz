@@ -14845,23 +14845,28 @@ th.Dispose();
             return Is;
         }
         //when exist complete "s" list in list A
-        bool ExistFullDoubleList(List<List<int[]>> A, List<int[]> s)
+          bool ExistFullDoubleList(List<List<int[]>> A, List<int[]> s)
         {
-            bool Is = true;
-            for (int t = 0; t < s.Count; t++)
+            Object O = new Object();
+            lock (O)
             {
-                bool IsI = false;
-                for (int h = 0; h < A.Count; h++)
+                bool Is = false;
+                for (int t = 0; t < s.Count; t++)
                 {
-                    if (ExistFull(A[h], s[t]))
+                    bool IsI = false;
+                    for (int h = 0; h < A.Count; h++)
                     {
-                        IsI = true;
+                        if (ExistFull(A[h], s[t]))
+                        {
+                            IsI = true;
+                        }
                     }
+                    Is = IsI || Is;
                 }
-                Is = IsI && Is;
+                return Is;
             }
-            return Is;
         }
+    
         //return number of un movable objects on board
         int NoOfObjectNotMovable(int[,] Tab, int Order, Color a, ref int Total, ref int Is)
         {

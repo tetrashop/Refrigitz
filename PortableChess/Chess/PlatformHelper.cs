@@ -29,6 +29,7 @@ namespace System.Threading
                 if ((num2 == 0) || ((tickCount - s_LastProcessorCountRefreshTicks) >= 0x7530))
                 {
                     s_ProcessorCount = num2 = Environment.ProcessorCount;
+
                     s_LastProcessorCountRefreshTicks = tickCount;
                 }
                 return num2;

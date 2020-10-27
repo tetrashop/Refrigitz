@@ -14883,7 +14883,7 @@ th.Dispose();
             Object O = new Object();
             lock (O)
             {
-                bool Is = true;
+                bool Is = false;
                 for (int t = 0; t < s.Count; t++)
                 {
                     bool IsI = false;
@@ -14894,7 +14894,7 @@ th.Dispose();
                             IsI = true;
                         }
                     }
-                    Is = IsI && Is;
+                    Is = IsI || Is;
                 }
                 return Is;
             }

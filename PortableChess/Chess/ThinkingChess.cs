@@ -17005,17 +17005,21 @@ th.Dispose();
         }
         bool IsSupHuTrue(int j)
         {
-            bool Is = false;
-            if (!AllDraw.AllowedSupTrue)
+            Object O = new Object();
+            lock (O)
             {
-                Is = IsSupHu[j];
-            }
-            else
-            {
+                bool Is = false;
+                if (!AllDraw.AllowedSupTrue)
+                {
+                    Is = IsSupHu[j];
+                }
+                else
+                {
 
-                Is = IsSup[j];
+                    Is = IsSup[j];
+                }
+                return Is;
             }
-            return Is;
         }
     }
 }

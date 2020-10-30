@@ -7607,9 +7607,11 @@ namespace RefrigtzW
             Object a = new Object();
             lock (a)
             {
-                if (LeafDeep > MaxAStarGreedy)
+                // if (LeafDeep > MaxAStarGreedy)
+                //  return Leaf;
+                if (FullBoundryConditions(CurrentAStarGredyMax, Order, 0))
                     return Leaf;
-                LeafDeep++;
+                //LeafDeep++;
                 //when found return recursive
                 if (UniqueLeafDetection)
                 {
@@ -8846,7 +8848,7 @@ namespace RefrigtzW
                         FullGameFound = true;
 
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null; h++)
@@ -27998,8 +28000,11 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         Less = Int32.MinValue;
 
 
+                        AllowedSupTrue = true;
+
                         TableHeuristic = HeuristicAStarGreedySearch(0, a, Order, false);
 
+                        AllowedSupTrue = false;
                         UsePenaltyRegardMechnisamT = aa;
                     }
 
@@ -28010,21 +28015,27 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     //If Table Found.
                     if (TableHeuristic != null)
                     {
-                        Object OOOOO = new Object();
-                        lock (OOOOO)
+                        Object OOoOO = new Object();
+                        lock (OOoOO)
                         {
-                            Ord = Order;
-                            if (Ord == 1)
-                            {
 
-                            }
-                            else
-                            {
 
-                            }
+                            bool aa = UsePenaltyRegardMechnisamT;
+                            UsePenaltyRegardMechnisamT = false;
+
+                            RemovePenalltyFromFirstBranches(Order);
+                            MaxAStarGreedy = 1;
+                            AStarGreedyiLevelMax = 1;
+                            Less = Int32.MinValue;
+
+
+                            AllowedSupTrue = true;
+
+                            TableHeuristic = HeuristicAStarGreedySearch(0, a, Order, false);
+
+                            AllowedSupTrue = false;
+                            UsePenaltyRegardMechnisamT = aa;
                         }
-                        Order = DummyOrder;
-                        ChessRules.CurrentOrder = Current;
                     }
                     else
                     {

@@ -13271,77 +13271,77 @@ namespace QuantumRefrigiz
             bool Is = false;
             if (Kind == 1)
             {
-                if ((SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] <= -1 || SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] <= -2 || SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                if ((SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] <= -1 || SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] <= -2 || SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
                 if (!AllowedSupTrue)
                 {
-                    if ((SolderesOnTable[i].LoseOcuuredatChiled[0] <= -1 || SolderesOnTable[i].LoseOcuuredatChiled[0] <= -2 || SolderesOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                    if ((SolderesOnTable[i].LoseOcuuredatChiled[0] <= -1 || SolderesOnTable[i].LoseOcuuredatChiled[0] <= -2 || SolderesOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                         return true;
                 }
             }
             else
         if (Kind == 2)
             {
-                if ((ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] <= -1 || ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] <= -2 || ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                if ((ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] <= -1 || ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] <= -2 || ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
                 if (!AllowedSupTrue)
                 {
-                    if ((ElephantOnTable[i].LoseOcuuredatChiled[0] <= -1 || ElephantOnTable[i].LoseOcuuredatChiled[0] <= -2 || ElephantOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                    if ((ElephantOnTable[i].LoseOcuuredatChiled[0] <= -1 || ElephantOnTable[i].LoseOcuuredatChiled[0] <= -2 || ElephantOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                         return true;
                 }
             }
             else
         if (Kind == 3)
             {
-                if ((HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] <= -1 || HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] <= -2 || HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                if ((HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] <= -1 || HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] <= -2 || HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
                 if (!AllowedSupTrue)
                 {
-                    if ((HoursesOnTable[i].LoseOcuuredatChiled[0] <= -1 || HoursesOnTable[i].LoseOcuuredatChiled[0] <= -2 || HoursesOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                    if ((HoursesOnTable[i].LoseOcuuredatChiled[0] <= -1 || HoursesOnTable[i].LoseOcuuredatChiled[0] <= -2 || HoursesOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                         return true;
                 }
             }
             else
         if (Kind == 4)
             {
-                if ((CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] <= -1 || CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] <= -2 || CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                if ((CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] <= -1 || CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] <= -2 || CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
                 if (!AllowedSupTrue)
                 {
-                    if ((CastlesOnTable[i].LoseOcuuredatChiled[0] <= -1 || CastlesOnTable[i].LoseOcuuredatChiled[0] <= -2 || CastlesOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                    if ((CastlesOnTable[i].LoseOcuuredatChiled[0] <= -1 || CastlesOnTable[i].LoseOcuuredatChiled[0] <= -2 || CastlesOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                         return true;
                 }
             }
             else
         if (Kind == 5)
             {
-                if ((MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] <= -1 || MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] <= -2 || MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                if ((MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] <= -1 || MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] <= -2 || MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
                 if (!AllowedSupTrue)
                 {
-                    if ((MinisterOnTable[i].LoseOcuuredatChiled[0] <= -1 || MinisterOnTable[i].LoseOcuuredatChiled[0] <= -2 || MinisterOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                    if ((MinisterOnTable[i].LoseOcuuredatChiled[0] <= -1 || MinisterOnTable[i].LoseOcuuredatChiled[0] <= -2 || MinisterOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                         return true;
                 }
             }
             else
         if (Kind == 6)
             {
-                if ((KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] <= -1 || KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] <= -2 || KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                if ((KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] <= -1 || KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] <= -2 || KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
                 if (!AllowedSupTrue)
                 {
-                    if ((KingOnTable[i].LoseOcuuredatChiled[0] <= -1 || KingOnTable[i].LoseOcuuredatChiled[0] <= -2 || KingOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                    if ((KingOnTable[i].LoseOcuuredatChiled[0] <= -1 || KingOnTable[i].LoseOcuuredatChiled[0] <= -2 || KingOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                         return true;
                 }
             }
             else
        if (Kind == 7 || Kind == -7)
             {
-                if ((CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -1 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -2 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                if ((CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -1 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -2 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
                 if (!AllowedSupTrue)
                 {
-                    if ((CastlingOnTable[i].LoseOcuuredatChiled[0] <= -1 || CastlingOnTable[i].LoseOcuuredatChiled[0] <= -2 || CastlingOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != 1)
+                    if ((CastlingOnTable[i].LoseOcuuredatChiled[0] <= -1 || CastlingOnTable[i].LoseOcuuredatChiled[0] <= -2 || CastlingOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                         return true;
                 }
             }
@@ -18405,158 +18405,183 @@ namespace QuantumRefrigiz
         }
         bool InitiateAStarGreedyt(int i, int Kind, int Order)
         {
-            bool Is = false;
-            try
+            Object oo = new Object();
+            lock (oo)
             {
-                /* if (OrderPlateDraw == 1)
-                 {
-                     if (Wtime != null)
+                bool Is = false;
+                try
+                {
+                    /* if (OrderPlateDraw == 1)
                      {
-                         if (Wtime.EndTime)
-                             return true;
+                         if (Wtime != null)
+                         {
+                             if (Wtime.EndTime)
+                                 return true;
+                         }
                      }
-                 }
-                 else {
-                     if (Btime != null)
-                     {
-                         if (Btime.EndTime)
-                             return true;
-                     }
-                 }*/
-                if (CalIdle == 2)
-                    return true;
-                if (Kind == 1)
-                {
-                    Is = Is || InitiateAStarGreedytSoldier(i, Kind, Order);
+                     else {
+                         if (Btime != null)
+                         {
+                             if (Btime.EndTime)
+                                 return true;
+                         }
+                     }*/
+                    if (CalIdle == 2)
+                        return true;
+                    if (Kind == 1)
+                    {
+                        Is = Is || InitiateAStarGreedytSoldier(i, Kind, Order);
+                    }
+                    else
+     if (Kind == 2)
+                    {
+                        Is = Is || InitiateAStarGreedytElephant(i, Kind, Order);
+                    }
+                    else
+     if (Kind == 3)
+                    {
+                        Is = Is || InitiateAStarGreedytHourse(i, Kind, Order);
+                    }
+                    else
+     if (Kind == 4)
+                    {
+                        Is = Is || InitiateAStarGreedytCastle(i, Kind, Order);
+                    }
+                    else
+     if (Kind == 5)
+                    {
+                        Is = Is || InitiateAStarGreedytMinidter(i, Kind, Order);
+                    }
+                    else
+     if (Kind == 6)
+                    {
+                        Is = Is || InitiateAStarGreedytKing(i, Kind, Order);
+                    }
+                    else
+     if (Kind == 7 || Kind == -7)
+                    {
+                        Is = Is || InitiateAStarGreedytCastling(i, Kind, Order);
+                    }
                 }
-                else
- if (Kind == 2)
-                {
-                    Is = Is || InitiateAStarGreedytElephant(i, Kind, Order);
-                }
-                else
- if (Kind == 3)
-                {
-                    Is = Is || InitiateAStarGreedytHourse(i, Kind, Order);
-                }
-                else
- if (Kind == 4)
-                {
-                    Is = Is || InitiateAStarGreedytCastle(i, Kind, Order);
-                }
-                else
- if (Kind == 5)
-                {
-                    Is = Is || InitiateAStarGreedytMinidter(i, Kind, Order);
-                }
-                else
- if (Kind == 6)
-                {
-                    Is = Is || InitiateAStarGreedytKing(i, Kind, Order);
-                }
-                else
- if (Kind == 7 || Kind == -7)
-                {
-                    Is = Is || InitiateAStarGreedytCastling(i, Kind, Order);
-                }
-            }
 #pragma warning disable CS0168 // The variable 't' is declared but never used
-            catch (Exception t)
+                catch (Exception t)
 #pragma warning restore CS0168 // The variable 't' is declared but never used
-            {
+                {
 
+                }
+                return Is;
             }
-            return Is;
 
         }
         bool InitiateAStarGreedytSoldier(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= SodierMidle)
+            Object oo = new Object();
+            lock (oo)
+            {
+                if (Order == 1 && i >= SodierMidle)
+                    return false;
+                if (Order == -1 && i >= SodierHigh)
+                    return false;
+                if (SolderesOnTable != null)
+                    if (SolderesOnTable[i] != null)
+                        return true;
                 return false;
-            if (Order == -1 && i >= SodierHigh)
-                return false;
-            if (SolderesOnTable != null)
-                if (SolderesOnTable[i] != null)
-                    return true;
-            return false;
-
+            }
         }
         bool InitiateAStarGreedytElephant(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= ElefantMidle)
+            Object oo = new Object();
+            lock (oo)
+            {
+                if (Order == 1 && i >= ElefantMidle)
+                    return false;
+                if (Order == -1 && i >= ElefantHigh)
+                    return false;
+                if (ElephantOnTable != null)
+                    if (ElephantOnTable[i] != null)
+                        return true;
                 return false;
-            if (Order == -1 && i >= ElefantHigh)
-                return false;
-            if (ElephantOnTable != null)
-                if (ElephantOnTable[i] != null)
-                    return true;
-            return false;
-
+            }
         }
         bool InitiateAStarGreedytHourse(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= HourseMidle)
-                return false;
-            if (Order == -1 && i >= HourseHight)
-                return false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                if (Order == 1 && i >= HourseMidle)
+                    return false;
+                if (Order == -1 && i >= HourseHight)
+                    return false;
 
-            if (HoursesOnTable != null)
-                if (HoursesOnTable[i] != null)
-                    return true;
-            return false;
-
+                if (HoursesOnTable != null)
+                    if (HoursesOnTable[i] != null)
+                        return true;
+                return false;
+            }
         }
         bool InitiateAStarGreedytCastle(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= CastleMidle)
-                return false;
-            if (Order == -1 && i >= CastleHigh)
-                return false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                if (Order == 1 && i >= CastleMidle)
+                    return false;
+                if (Order == -1 && i >= CastleHigh)
+                    return false;
 
-            if (CastlesOnTable != null)
-                if (CastlesOnTable[i] != null)
-                    return true;
-            return false;
-
+                if (CastlesOnTable != null)
+                    if (CastlesOnTable[i] != null)
+                        return true;
+                return false;
+            }
         }
         bool InitiateAStarGreedytMinidter(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= MinisterMidle)
-                return false;
-            if (Order == -1 && i >= MinisterHigh)
-                return false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                if (Order == 1 && i >= MinisterMidle)
+                    return false;
+                if (Order == -1 && i >= MinisterHigh)
+                    return false;
 
-            if (MinisterOnTable != null)
-                if (MinisterOnTable[i] != null)
-                    return true;
-            return false;
-
+                if (MinisterOnTable != null)
+                    if (MinisterOnTable[i] != null)
+                        return true;
+                return false;
+            }
         }
         bool InitiateAStarGreedytKing(int i, int Kind, int Order)
         {
-            if (Order == 1 && i >= KingMidle)
-                return false;
-            if (Order == -1 && i >= KingHigh)
-                return false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                if (Order == 1 && i >= KingMidle)
+                    return false;
+                if (Order == -1 && i >= KingHigh)
+                    return false;
 
-            if (KingOnTable != null)
-                if (KingOnTable[i] != null)
-                    return true;
-            return false;
-
+                if (KingOnTable != null)
+                    if (KingOnTable[i] != null)
+                        return true;
+                return false;
+            }
         }
         bool InitiateAStarGreedytCastling(int i, int Kind, int Order)
         {
-            if (Order == 1 && i > 0)
+            Object oo = new Object();
+            lock (oo)
+            {
+                if (Order == 1 && i > 0)
+                    return false;
+                if (Order == -1 && i > 0)
+                    return false;
+                
+                if (CastlingOnTable != null)
+                    if (CastlingOnTable[i] != null)
+                        return true;
                 return false;
-            if (Order == -1 && i > 0)
-                return false;
-
-            if (CastlingOnTable != null)
-                if (CastlingOnTable[i] != null)
-                    return true;
-            return false;
-
+            }
         }
         AllDraw InitiateAStarGreedytSodler(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
              )
@@ -27767,7 +27792,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             if (No == 0)
             {
                 if (IgnoreOfLoseForKingReducedAttackDisturbingDouble(Kind, Order, ii, jj))
-                    No = 1;
+                    No = -1;
             }
             return No;
         }

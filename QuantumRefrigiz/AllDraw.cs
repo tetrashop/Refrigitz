@@ -20234,6 +20234,12 @@ namespace QuantumRefrigiz
 
                     array1.Wait();
                     array1.Dispose();
+                    var array11 = Task.Factory.StartNew(() => FullGameThinkingTreeWin(Order));
+                    array11.Wait();
+                    array11.Dispose();
+                    array11 = Task.Factory.StartNew(() => FullGameThinkingTreeLose(Order));
+                    array11.Wait();
+                    array11.Dispose();
                 }
             }
             else

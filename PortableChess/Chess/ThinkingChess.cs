@@ -16641,6 +16641,17 @@ th.Dispose();
                         return j;
                 }
             }
+            else
+            if (Kind == 7 || Kind == -7)
+            {
+                for (int j = 0; j < RowColumnKing.Count; j++)
+                {
+                    if (IsSup[j])
+                        continue;
+                    if (NoOfExistInReducedAttackList(false, RowColumnKing[j][0], RowColumnKing[j][1], RowD, ColD) == 0)
+                        return j;
+                }
+            }
             return -1;
         }
         int IndexOfIsSupTRUE(int Kind, List<int[]> Row)
@@ -16735,6 +16746,22 @@ th.Dispose();
                         if (IsSup[j])
                             continue;
                         if (NoOfExistInReducedAttackList(false, RowColumnKing[j][0], RowColumnKing[j][1], Row[i][0], Row[i][1]) != 0)
+                            Is = true;
+                        else
+                            jj = j;
+                    }
+                }
+            }
+            else
+            if (Kind == 7 || Kind == -7)
+            {
+                for (int j = 0; j < RowColumnCastling.Count; j++)
+                {
+                    for (int i = 0; i < Row.Count; i++)
+                    {
+                        if (IsSup[j])
+                            continue;
+                        if (NoOfExistInReducedAttackList(false, RowColumnCastling[j][0], RowColumnCastling[j][1], Row[i][0], Row[i][1]) != 0)
                             Is = true;
                         else
                             jj = j;

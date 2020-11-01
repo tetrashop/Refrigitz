@@ -24587,8 +24587,16 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(SolderesOnTable[ik].SoldierThinking[0].TableListSolder[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (IsSupHuTrue(ik,j,0,1))
+                        if (IsSupHuTrue(ik, j, 0, 1))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(1, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
                         //self do
                         if (Order != AllDraw.OrderPlateDraw)
                         {
@@ -24723,7 +24731,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[0] = true;
 
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, SodierMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, ik =>
 
                 {
                     if (SolderesOnTable != null && SolderesOnTable[ik] != null && SolderesOnTable[ik].SoldierThinking != null && SolderesOnTable[ik].SoldierThinking[0] != null
@@ -24783,8 +24791,16 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(ElephantOnTable[ik].ElefantThinking[0].TableListElefant[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (IsSupHuTrue(ik,j,0,2))
+                        if (IsSupHuTrue(ik, j, 0, 2))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(2, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
                         //self do
                         if (Order != AllDraw.OrderPlateDraw)
                         {
@@ -24918,7 +24934,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[1] = true;
                 //Elephant
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, ElefantMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, ik =>
 
                 {
                     if (ElephantOnTable != null && ElephantOnTable[ik] != null && ElephantOnTable[ik].ElefantThinking != null && ElephantOnTable[ik].ElefantThinking[0] != null
@@ -24968,6 +24984,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     {
                         if (IsSupHuTrue(ik, j, 0, 3))
                             continue;
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(3, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
+
                         //when search finished stop and return
                         if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
                             return false;
@@ -25119,7 +25143,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[2] = true;
                 //Hourse.
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, HourseMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, ik =>
 
                 {
                     if (HoursesOnTable != null && HoursesOnTable[ik] != null && HoursesOnTable[ik].HourseThinking != null && HoursesOnTable[ik].HourseThinking[0] != null
@@ -25166,6 +25190,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     if (IsSupHuTrue(ik, j, 0, 4))
                         continue;
+
+                    bool ac = false;
+                    var ah3 = Task.Factory.StartNew(() => ac = Lose(4, ik, j, Order));
+                    ah3.Wait();
+                    ah3.Dispose();
+                    if (ac)
+                        continue;
+
                     Object OOOOO = new Object();
                     lock (OOOOO)
                     {
@@ -25177,7 +25209,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     if (CheckeHuristci(CloneATable(CastlesOnTable[ik].CastleThinking[0].TableListCastle[j]), Order, ik, j, 0))
                         continue;
                     //sereved continuce
-                    if (IsSupHuTrue(ik,j,0,4))
+                    if (IsSupHuTrue(ik, j, 0, 4))
                         continue;
                     Object ooo = new Object();
                     lock (ooo)
@@ -25319,7 +25351,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[3] = true;
                 //Castle.
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastleMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, ik =>
 
                 {
                     if (CastlesOnTable != null && CastlesOnTable[ik] != null && CastlesOnTable[ik].CastleThinking != null && CastlesOnTable[ik].CastleThinking[0] != null
@@ -25370,6 +25402,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     {
                         if (IsSupHuTrue(ik, j, 0, 5))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(5, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
+
                         //when search finished stop and return
                         if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
                             return false;
@@ -25381,7 +25422,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(MinisterOnTable[ik].MinisterThinking[0].TableListMinister[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (IsSupHuTrue(ik,j,0,5))
+                        if (IsSupHuTrue(ik, j, 0, 5))
                             continue;
 
 
@@ -25521,7 +25562,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[4] = true;
                 //Minister.
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, MinisterMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MinisterMidle, ik =>
 
                 {
                     if (MinisterOnTable != null && MinisterOnTable[ik] != null && MinisterOnTable[ik].MinisterThinking != null && MinisterOnTable[ik].MinisterThinking[0] != null
@@ -25574,6 +25615,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     {
                         if (IsSupHuTrue(ik, j, 0, 6))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(6 ,ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
+
                         //when search finished stop and return
                         if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
                             return false;
@@ -25585,7 +25635,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(KingOnTable[ik].KingThinking[0].TableListKing[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (IsSupHuTrue(ik,j,0,6))
+                        if (IsSupHuTrue(ik, j, 0, 6))
                             continue;
                         //when is self
                         if (Order != AllDraw.OrderPlateDraw)
@@ -25712,7 +25762,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
 
             return Do;
         }
-        bool FullGameThinkingTreeCastling(int kin,int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
+        bool FullGameThinkingTreeCastling(int kin, int ik, Color a, int Order, int iAStarGreedy, int ii, int jj, int ik1, int j1, bool FOUND, int LeafAStarGreedy)
         {
 
             bool Do = false;
@@ -25757,8 +25807,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         if (CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
-                        if (IsSupHuTrue(ik,j,0,7))
+                        if (IsSupHuTrue(ik, j, 0, 7))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(7, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
+
                         //when is self
                         if (Order != AllDraw.OrderPlateDraw)
                         {
@@ -25820,7 +25879,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         else
                         {
                             //when certification for continued of code satisfied
-                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, kin ,false, j)
+                            if (ReturnConsiderationOfPermitForValidationOfLearningInFullGameThinkingTree(ik, kin, false, j)
                             )
                             {
                                 //when blitz game (limited game)

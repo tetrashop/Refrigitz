@@ -9902,6 +9902,12 @@ th.Dispose();
                     if (System.Math.Abs(i - ii) <= 1 && System.Math.Abs(j - jj) <= 1)
                         Validity = true;
                 }
+                else
+              if (Kind == 7||Kind==-7)//Castling
+                {
+                    if (System.Math.Abs(i - ii) ==  2 && System.Math.Abs(j - jj) == 0)
+                        Validity = true;
+                }
 
                 return Validity;
             }
@@ -12059,6 +12065,21 @@ th.Dispose();
                             RowColumnKing.Add(AS);
 
                             TableListKing.Add(CloneATable(TableS));
+                            IndexKing++;
+                        }
+                    }
+                    else
+                    if (Kind == 7 || Kind == -7)
+                    {
+                        Object A4 = new object();
+                        lock (A4)
+                        {
+                            int[] AS = new int[2];
+                            AS[0] = RowDestination;
+                            AS[1] = ColumnDestination;
+                            RowColumnCastling.Add(AS);
+
+                            TableListCastling.Add(CloneATable(TableS));
                             IndexKing++;
                         }
                     }
@@ -15997,6 +16018,15 @@ th.Dispose();
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
                             AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
+                        });
+                    }
+                    else
+                        if (Kind == 7 || Kind==-7)
+                    {
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, TableListCastling.Count, i =>
+                        {
+                            FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
+                            AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListCastling[i], Order * -1, false, false, 0);
                         });
                     }
                     FullGameAllow = false;

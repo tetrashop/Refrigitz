@@ -8344,23 +8344,42 @@ namespace RefrigtzChessPortable
         }
         public bool IsAtLeastAllObjectIsNull()
         {
-            bool Is = false;
-            //Soldier
-            if (SolderesOnTable == null)
-                Is = true;
-            if (ElephantOnTable == null)
-                Is = true;
-            if (HoursesOnTable == null)
-                Is = true;
-            if (CastlesOnTable == null)
-                Is = true;
-            if (MinisterOnTable == null)
-                Is = true;
-            if (KingOnTable == null)
-                Is = true;
-            if (CastlingOnTable == null)
-                Is = true;
-            return Is;
+            Object o = new Object();
+            lock (o)
+            {
+                bool Is = false;
+                //Soldier
+                if (SolderesOnTable == null)
+                    Is = true;
+                else
+                    return false;
+                if (ElephantOnTable == null)
+                    Is = true;
+                else
+                    return false;
+                if (HoursesOnTable == null)
+                    Is = true;
+                else
+                    return false;
+                if (CastlesOnTable == null)
+                    Is = true;
+                else
+                    return false;
+                if (MinisterOnTable == null)
+                    Is = true;
+                else
+                    return false;
+                if (KingOnTable == null)
+                    Is = true;
+                else
+                    return false;
+                if (CastlingOnTable == null)
+                    Is = true;
+                else
+                    return false;
+
+                return Is;
+            }
 
         }
         //When there is computatinoal deeper and there is colosion in lists return true otherwise return false
@@ -24589,6 +24608,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         //sereved continuce
                         if (IsSupHuTrue(ik,j,0,1))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(1, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
                         //self do
                         if (Order != AllDraw.OrderPlateDraw)
                         {
@@ -24785,6 +24812,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         //sereved continuce
                         if (IsSupHuTrue(ik,j,0,2))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(2, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
                         //self do
                         if (Order != AllDraw.OrderPlateDraw)
                         {
@@ -24968,6 +25003,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     {
                         if (IsSupHuTrue(ik, j, 0, 3))
                             continue;
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(3, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
+
                         //when search finished stop and return
                         if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
                             return false;
@@ -25166,6 +25209,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     if (IsSupHuTrue(ik, j, 0, 4))
                         continue;
+
+                    bool ac = false;
+                    var ah3 = Task.Factory.StartNew(() => ac = Lose(4, ik, j, Order));
+                    ah3.Wait();
+                    ah3.Dispose();
+                    if (ac)
+                        continue;
+
                     Object OOOOO = new Object();
                     lock (OOOOO)
                     {
@@ -25370,6 +25421,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     {
                         if (IsSupHuTrue(ik, j, 0, 5))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(5, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
+
                         //when search finished stop and return
                         if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
                             return false;
@@ -25574,6 +25634,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     {
                         if (IsSupHuTrue(ik, j, 0, 6))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(6, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
+
                         //when search finished stop and return
                         if (FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy))
                             return false;
@@ -25759,6 +25828,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                         //sereved continuce
                         if (IsSupHuTrue(ik,j,0,7))
                             continue;
+
+                        bool ac = false;
+                        var ah3 = Task.Factory.StartNew(() => ac = Lose(7, ik, j, Order));
+                        ah3.Wait();
+                        ah3.Dispose();
+                        if (ac)
+                            continue;
+
+
                         //when is self
                         if (Order != AllDraw.OrderPlateDraw)
                         {

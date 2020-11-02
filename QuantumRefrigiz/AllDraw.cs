@@ -4002,7 +4002,7 @@ namespace QuantumRefrigiz
                 else
                    if (Kind == 7 || Kind == -7)
                 {
-                    if (i < 0 || i > 0)
+                    if (i < 0 || i > 1)
                         Is = false;
                 }
             }
@@ -4046,7 +4046,7 @@ namespace QuantumRefrigiz
                 else
                    if (Kind == 7 || Kind == -7)
                 {
-                    if (i < 0 || i > 0)
+                    if (i < 0 || i > 1)
                         Is = false;
                 }
             }

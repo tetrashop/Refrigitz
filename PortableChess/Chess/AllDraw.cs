@@ -4002,7 +4002,7 @@ namespace RefrigtzChessPortable
                 else
                    if (Kind == 7 || Kind == -7)
                 {
-                    if (i < 0 || i > 1)
+                    if (i < 0 || i > 0)
                         Is = false;
                 }
             }
@@ -4046,7 +4046,7 @@ namespace RefrigtzChessPortable
                 else
                    if (Kind == 7 || Kind == -7)
                 {
-                    if (i < 0 || i > 1)
+                    if (i < 0 || i > 0)
                         Is = false;
                 }
             }

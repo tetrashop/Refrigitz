@@ -54,6 +54,8 @@ namespace QuantumRefrigiz
     [Serializable]
     public class AllDraw//: IDisposable
     {
+        public static int StoreInitMaxAStarGreedy = 0;
+        public static bool SStopInitMaxAStarGreedy = false;
         //justicce height
         static int MaxxLevel = 0;
         public static int indexStep = 1;
@@ -9763,7 +9765,7 @@ namespace QuantumRefrigiz
                        MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                    }
                    */
-               if (MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount)// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+               if ((MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount) && ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) ||SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                 {
                     MaxAStarGreedy = CurrentMaxLevel;
                 }
@@ -19590,7 +19592,7 @@ namespace QuantumRefrigiz
                                MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                            }
                            */
-                       if (MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount)// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                       if ((MaxAStarGreedy < CurrentMaxLevel + PlatformHelper.ProcessorCount) && ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) ||SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                         {
                             MaxAStarGreedy = CurrentMaxLevel;
                         }
@@ -27952,7 +27954,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 lock (n)
                 {
                     //due to resource leak of in leak depth
-                    MaxAStarGreedy = CurrentMaxLevel;
+                    StoreInitMaxAStarGreedy = CurrentMaxLevel;
                     AllDraw.ChangedInTreeOccured = false;
 
                 }

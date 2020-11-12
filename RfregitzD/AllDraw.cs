@@ -27923,7 +27923,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 object n = new object();
                 lock (n)
-                {
+                {   //due to resource leak of in leak depth
+                    MaxAStarGreedy = CurrentMaxLevel;
                     AllDraw.ChangedInTreeOccured = false;
 
                 }

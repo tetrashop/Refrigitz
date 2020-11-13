@@ -1909,6 +1909,9 @@ namespace RefrigtzW
             {
                 if (Draw == null)
                     return;
+
+                RefrigtzW.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel;
+
                 int Dummy = OrderPlate;
                 RefrigtzW.AllDraw THISB = Draw.AStarGreedyString;
                 RefrigtzW.AllDraw THISStore = Draw;

@@ -8696,7 +8696,7 @@ namespace QuantumRefrigiz
                         FullGameFound = true;
 
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count && SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy != null; h++)
@@ -8756,7 +8756,7 @@ namespace QuantumRefrigiz
                             {
                                 int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
 
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count && SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy != null; h++)
@@ -8869,7 +8869,7 @@ namespace QuantumRefrigiz
                         FullGameFound = true;
 
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
@@ -8928,7 +8928,7 @@ namespace QuantumRefrigiz
                             {
                                 int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
 
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9026,7 +9026,7 @@ namespace QuantumRefrigiz
                         FullGameFound = true;
 
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9084,7 +9084,7 @@ namespace QuantumRefrigiz
                             lock (O1)
                             {
 
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9183,7 +9183,7 @@ namespace QuantumRefrigiz
                         FullGameFound = true;
 
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9239,7 +9239,7 @@ namespace QuantumRefrigiz
                             lock (O1)
                             {
 
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9338,7 +9338,7 @@ namespace QuantumRefrigiz
                         FullGameFound = true;
 
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9391,7 +9391,7 @@ namespace QuantumRefrigiz
                             }
 
 
-                            var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();
                             for (int h = 0; h < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9489,7 +9489,7 @@ namespace QuantumRefrigiz
                         FullGameFound = true;
 
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9550,7 +9550,7 @@ namespace QuantumRefrigiz
                             {
                                 int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
 
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9648,7 +9648,7 @@ namespace QuantumRefrigiz
                         FullGameFound = true;
 
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
@@ -9709,7 +9709,7 @@ namespace QuantumRefrigiz
                             {
                                 int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
 
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy - LeafAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(0, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
@@ -13292,8 +13292,10 @@ namespace QuantumRefrigiz
             bool Is = false;
             if (Kind == 1)
             {
+
                 if ((SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] <= -1 || SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] <= -2 || SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
+
                 if (!AllowedSupTrue)
                 {
                     if ((SolderesOnTable[i].LoseOcuuredatChiled[0] <= -1 || SolderesOnTable[i].LoseOcuuredatChiled[0] <= -2 || SolderesOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
@@ -13303,8 +13305,10 @@ namespace QuantumRefrigiz
             else
         if (Kind == 2)
             {
+
                 if ((ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] <= -1 || ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] <= -2 || ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
+
                 if (!AllowedSupTrue)
                 {
                     if ((ElephantOnTable[i].LoseOcuuredatChiled[0] <= -1 || ElephantOnTable[i].LoseOcuuredatChiled[0] <= -2 || ElephantOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
@@ -13314,8 +13318,10 @@ namespace QuantumRefrigiz
             else
         if (Kind == 3)
             {
+
                 if ((HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] <= -1 || HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] <= -2 || HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
+
                 if (!AllowedSupTrue)
                 {
                     if ((HoursesOnTable[i].LoseOcuuredatChiled[0] <= -1 || HoursesOnTable[i].LoseOcuuredatChiled[0] <= -2 || HoursesOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
@@ -13327,6 +13333,7 @@ namespace QuantumRefrigiz
             {
                 if ((CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] <= -1 || CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] <= -2 || CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
+
                 if (!AllowedSupTrue)
                 {
                     if ((CastlesOnTable[i].LoseOcuuredatChiled[0] <= -1 || CastlesOnTable[i].LoseOcuuredatChiled[0] <= -2 || CastlesOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
@@ -13336,8 +13343,10 @@ namespace QuantumRefrigiz
             else
         if (Kind == 5)
             {
+
                 if ((MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] <= -1 || MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] <= -2 || MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
+
                 if (!AllowedSupTrue)
                 {
                     if ((MinisterOnTable[i].LoseOcuuredatChiled[0] <= -1 || MinisterOnTable[i].LoseOcuuredatChiled[0] <= -2 || MinisterOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
@@ -13347,8 +13356,10 @@ namespace QuantumRefrigiz
             else
         if (Kind == 6)
             {
+
                 if ((KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] <= -1 || KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] <= -2 || KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
+
                 if (!AllowedSupTrue)
                 {
                     if ((KingOnTable[i].LoseOcuuredatChiled[0] <= -1 || KingOnTable[i].LoseOcuuredatChiled[0] <= -2 || KingOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
@@ -13358,8 +13369,10 @@ namespace QuantumRefrigiz
             else
        if (Kind == 7 || Kind == -7)
             {
+
                 if ((CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -1 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -2 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
+
                 if (!AllowedSupTrue)
                 {
                     if ((CastlingOnTable[i].LoseOcuuredatChiled[0] <= -1 || CastlingOnTable[i].LoseOcuuredatChiled[0] <= -2 || CastlingOnTable[i].LoseOcuuredatChiled[0] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
@@ -28077,7 +28090,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 lock (OOOO)
                 {
                     //if (MaxAStarGreedy == 0)
-                    MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount;
+                    //MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount;
                     MaxAStarGreedy1 = MaxAStarGreedy;
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;

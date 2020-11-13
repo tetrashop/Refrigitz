@@ -14174,11 +14174,15 @@ th.Dispose();
                 {
                     for (int ColSS = 0; ColSS < 8; ColSS++)
                     {
+                        if (Order == -1 && Table[RowSS, ColSS] >= 0)
+                            continue;
+                        if (Order == 1 && Table[RowSS, ColSS] <= 0)
+                            continue;
                         for (int RowDD = 0; RowDD < 8; RowDD++)
                         {
                             for (int ColDD = 0; ColDD < 8; ColDD++)
                             {
-                                List<int[]> DDA = ListOfExistInAttackList(Before, RowSS, ColSS, RowDD, ColDD);
+                               List<int[]> DDA = ListOfExistInAttackList(Before, RowSS, ColSS, RowDD, ColDD);
                                 if (DDA.Count > 0)
                                     DDL.Add(DDA);
                             }
@@ -14233,6 +14237,10 @@ th.Dispose();
                 {
                     for (int ColSS = 0; ColSS < 8; ColSS++)
                     {
+                        if (Order == 1 && Table[RowSS, ColSS] >= 0)
+                            continue;
+                        if (Order == -1 && Table[RowSS, ColSS] <= 0)
+                            continue;
                         for (int RowDD = 0; RowDD < 8; RowDD++)
                         {
                             for (int ColDD = 0; ColDD < 8; ColDD++)
@@ -14438,9 +14446,18 @@ th.Dispose();
                     {
                         if (Before)
                         {
-                            if (Order == AllDraw.OrderPlateDraw)
+                            if (Order == 1)
                             {
-                                if ((System.Math.Abs(TableS[RowS, ColS]) > System.Math.Abs(TableS[RowD, ColD])) && TableS[RowD, ColD] != 0 && NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0)
+                                if ((System.Math.Abs(TableS[RowS, ColS]) > System.Math.Abs(TableS[RowD, ColD])) && TableS[RowD, ColD] > 0 && NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0)
+                                {
+                                    //if (Before)
+                                    SetSupHuTrue();
+                                    IsS = true;
+                                }
+                            }
+                            else
+                            {
+                                if ((System.Math.Abs(TableS[RowS, ColS]) > System.Math.Abs(TableS[RowD, ColD])) && TableS[RowD, ColD] > 0 && NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0)
                                 {
                                     //if (Before)
                                     SetSupHuTrue();
@@ -14457,7 +14474,7 @@ th.Dispose();
                                     if (Order == AllDraw.OrderPlateDraw)
                                     {
                                         B = NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) > 0 && (System.Math.Abs(TableS[RowD, ColD]) != 0 && System.Math.Abs(TableS[RowS, ColS]) > 1);
-                                        C = HeuristicCheckedMate != 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
+                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
                                     }
                                 }
                                 else
@@ -14466,7 +14483,7 @@ th.Dispose();
                                     if (Order == AllDraw.OrderPlateDraw)
                                     {
                                         B = NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) > 0 && (System.Math.Abs(TableS[RowD, ColD]) != 0 && System.Math.Abs(TableS[RowS, ColS]) > 1);
-                                        C = HeuristicCheckedMate != 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
+                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
                                     }
                                 }
                                 if (A && ((B) || (C)))
@@ -14477,11 +14494,12 @@ th.Dispose();
                                 //Every objects one move at game begin
                                 int Total = 0;
                                 int Is = 0;
-                                NoOfObjectNotMovable(CloneATable(TableS), Order, OrderColor(Order), ref Total, ref Is);
+                                int NoOfBoardMoved = NoOfObjectNotMovable(CloneATable(TableS), Order, OrderColor(Order), ref Total, ref Is);
                                 if (Order == 1)
                                 {
                                     if (
-                                            //((NoOfBoardMoved + Is >= Total) && 
+                                            //(
+                                            (NoOfBoardMoved + Is >= Total) && 
                                             TableInitiationPreventionOfMultipleMove[RowS, ColS] >= NoOfMovableAllObjectMove
                                     //)&& A && TableS[RowS, ColS] < 0 && TableS[RowD, ColD] >= 0
                                     )
@@ -14493,7 +14511,8 @@ th.Dispose();
                                 else
                                 {
                                     if (
-                                            //((NoOfBoardMoved + Is >= Total) && 
+                                            //(
+                                            (NoOfBoardMoved + Is >= Total) && 
                                             TableInitiationPreventionOfMultipleMove[RowS, ColS] >= NoOfMovableAllObjectMove
                                     //)&& A && TableS[RowS, ColS] < 0 && TableS[RowD, ColD] >= 0
                                     )
@@ -14584,7 +14603,7 @@ th.Dispose();
                                     if (Order == AllDraw.OrderPlateDraw)
                                     {
                                         B = NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) > 0 && (Killed != 0 && Killed < TableS[RowD, ColD]);
-                                        C = HeuristicCheckedMate != 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
+                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
                                     }
                                 }
                                 else
@@ -14593,7 +14612,7 @@ th.Dispose();
                                     if (Order == AllDraw.OrderPlateDraw)
                                     {
                                         B = NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) > 0 && (Killed != 0 && Killed < TableS[RowD, ColD]);
-                                        C = HeuristicCheckedMate != 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
+                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
                                     }
                                 }
                                 if (A && ((B) || (C)))
@@ -14640,14 +14659,15 @@ th.Dispose();
                                         //Every objects one move at game begin
                                         int Total = 0;
                                         int Is = 0;
-                                        NoOfObjectNotMovable(CloneATable(TableS), Order, OrderColor(Order), ref Total, ref Is);
+                                        int NoOfBoardMoved = NoOfObjectNotMovable(CloneATable(TableS), Order, OrderColor(Order), ref Total, ref Is);
                                         if (Order == 1)
                                         {
                                             if (
-                                                 //((NoOfBoardMoved + Is >= Total) && 
-                                                 TableInitiationPreventionOfMultipleMove[RowS, ColS] >= NoOfMovableAllObjectMove
-                                         //)&& A && TableS[RowS, ColS] == 0 && TableS[RowD, ColD] > 0
-                                         )
+                                                    //(
+                                                    (NoOfBoardMoved + Is >= Total) &&
+                                                    TableInitiationPreventionOfMultipleMove[RowS, ColS] >= NoOfMovableAllObjectMove
+                                            //)&& A && TableS[RowS, ColS] < 0 && TableS[RowD, ColD] >= 0
+                                            )
                                             {
                                                 IsS = true;
                                                 SetSupHuTrue();
@@ -14656,10 +14676,11 @@ th.Dispose();
                                         else
                                         {
                                             if (
-                                                  //((NoOfBoardMoved + Is >= Total) && 
-                                                  TableInitiationPreventionOfMultipleMove[RowS, ColS] >= NoOfMovableAllObjectMove
-                                          //)&& A && TableS[RowS, ColS] == 0 && TableS[RowD, ColD] < 0
-                                          )
+                                                    //(
+                                                    (NoOfBoardMoved + Is >= Total) &&
+                                                    TableInitiationPreventionOfMultipleMove[RowS, ColS] >= NoOfMovableAllObjectMove
+                                            //)&& A && TableS[RowS, ColS] < 0 && TableS[RowD, ColD] >= 0
+                                            )
                                             {
                                                 IsS = true;
                                                 SetSupHuTrue();

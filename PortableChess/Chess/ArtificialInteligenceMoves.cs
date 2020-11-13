@@ -63,7 +63,7 @@ public class ArtificialInteligenceMove
 							AllDraw.Blitz=false;
 															Idle=true;
                             AllDraw.TimeInitiation = (DateTime.Now.Hour * 60 * 60 * 1000 + DateTime.Now.Minute * 60 * 1000 + DateTime.Now.Second * 1000);
-                            AllDraw.MaxAStarGreedy = 0; // AllDraw.PlatformHelperProcessorCount * LevelMul;
+                            //AllDraw.MaxAStarGreedy = 0; // AllDraw.PlatformHelperProcessorCount * LevelMul;
                             var arrayA =Task.Factory.StartNew(() =>	t.Draw.InitiateAStarGreedyt(0,1, 4,OrderColor(t.Draw.OrderP), CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
 							//var arrayA =Task.Factory.StartNew(() =>	t.Play(-1,-1));
                             arrayA.Wait();

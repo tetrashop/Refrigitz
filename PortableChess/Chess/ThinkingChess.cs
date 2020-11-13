@@ -14182,7 +14182,7 @@ th.Dispose();
                         {
                             for (int ColDD = 0; ColDD < 8; ColDD++)
                             {
-                               List<int[]> DDA = ListOfExistInAttackList(Before, RowSS, ColSS, RowDD, ColDD);
+                                List<int[]> DDA = ListOfExistInAttackList(Before, RowSS, ColSS, RowDD, ColDD);
                                 if (DDA.Count > 0)
                                     DDL.Add(DDA);
                             }
@@ -14213,7 +14213,7 @@ th.Dispose();
                                     for (int i = 0; i < DDE.Count; i++)
                                     {
                                         if (DDE[i][0] == RowSS && DDE[i][1] == ColSS && DDE[i][2] == RowDD && DDE[i][3] == ColDD)
-                                            DD += System.Math.Abs(Table[DDE[i][2], DDE[i][3]]);
+                                            DD++;
                                     }
                                 }
                             }
@@ -14221,6 +14221,8 @@ th.Dispose();
                     }
                 }
 
+                if (DD <= 1)
+                    DD = 0;
                 DD = (RationalRegard) * (DD);
                 return DD;
             }
@@ -14286,7 +14288,7 @@ th.Dispose();
                                             if (!ExistFull(DDEE, SS))
                                             {
                                                 DDEE.Add(SS);
-                                                DD += System.Math.Abs(Table[DDE[i][0], DDE[i][1]]);
+                                                DD++;
                                             }
                                         }
                                     }
@@ -14301,6 +14303,8 @@ th.Dispose();
                     }
                 }
                 if (HeuristicDoubleDefenceIndexInOnGame.Count == 0)
+                    DD = 0;
+                if (DD <= 1)
                     DD = 0;
                 DD = (RationalPenalty) * (DD);
                 return DD;

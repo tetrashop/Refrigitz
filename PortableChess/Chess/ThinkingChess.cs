@@ -14452,7 +14452,7 @@ th.Dispose();
                         {
                             if (Order == 1)
                             {
-                                if ((System.Math.Abs(TableS[RowS, ColS]) > System.Math.Abs(TableS[RowD, ColD])) && TableS[RowD, ColD] > 0 && NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0)
+                                if ((System.Math.Abs(TableS[RowS, ColS]) > System.Math.Abs(TableS[RowD, ColD])) && TableS[RowD, ColD] > 0 && NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0)
                                 {
                                     //if (Before)
                                     SetSupHuTrue();
@@ -14461,7 +14461,7 @@ th.Dispose();
                             }
                             else
                             {
-                                if ((System.Math.Abs(TableS[RowS, ColS]) > System.Math.Abs(TableS[RowD, ColD])) && TableS[RowD, ColD] > 0 && NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0)
+                                if ((System.Math.Abs(TableS[RowS, ColS]) > System.Math.Abs(TableS[RowD, ColD])) && TableS[RowD, ColD] > 0 && NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0)
                                 {
                                     //if (Before)
                                     SetSupHuTrue();
@@ -14535,7 +14535,7 @@ th.Dispose();
                                             DifOfNoOfSupporteAndReducedSupportGray = NoOfExistInSupportList(Before, RowS, ColS, RowD, ColD) + NoOfExistInMoveList(Before, RowS, ColS, RowD, ColD) + NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) - NoOfExistInReducedSupportList(Before, RowD, ColD, RowS, ColS) - NoOfExistInReducedMoveList(Before, RowD, ColD, RowS, ColS) - NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS);
                                         }
                                         else
-                                        if (DifOfNoOfSupporteAndReducedSupportGray < 64)
+                                        if (DifOfNoOfSupporteAndReducedSupportGray < 0)
                                         {
                                             IsS = true;
                                             SetSupHuTrue();

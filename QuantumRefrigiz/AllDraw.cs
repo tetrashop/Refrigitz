@@ -200,7 +200,7 @@ namespace QuantumRefrigiz
         public static int SignKingDangour = -1;
         public static bool DrawTable = true;
         public static int[,] TableVeryfy = new int[8, 8];
-        public static int MaxAStarGreedy = PlatformHelper.ProcessorCount;
+        public static int MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount;
         public static int[,] TableVeryfyConst = new int[8, 8];
         public static List<int[,]> TableCurrent = new List<int[,]>();
         public static bool NoTableFound = false;
@@ -28077,7 +28077,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 lock (OOOO)
                 {
                     //if (MaxAStarGreedy == 0)
-                    MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                    MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount;
                     MaxAStarGreedy1 = MaxAStarGreedy;
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;
@@ -28113,13 +28113,16 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (OOoOO)
                     {
 
-
                         bool aa = UsePenaltyRegardMechnisamT;
-                        UsePenaltyRegardMechnisamT = false;
+                        if (UsePenaltyRegardMechnisamT)
+                        {
 
-                        RemovePenalltyFromFirstBranches(Order);
-                        MaxAStarGreedy = 1;
-                        AStarGreedyiLevelMax = 1;
+                            UsePenaltyRegardMechnisamT = false;
+
+                            RemovePenalltyFromFirstBranches(Order);
+                            MaxAStarGreedy = 1;
+                            AStarGreedyiLevelMax = 1;
+                        }
                         Less = Int32.MinValue;
 
 
@@ -28145,11 +28148,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                             bool aa = UsePenaltyRegardMechnisamT;
-                            UsePenaltyRegardMechnisamT = false;
+                            if (UsePenaltyRegardMechnisamT)
+                            {
 
-                            RemovePenalltyFromFirstBranches(Order);
-                            MaxAStarGreedy = 1;
-                            AStarGreedyiLevelMax = 1;
+                                UsePenaltyRegardMechnisamT = false;
+
+                                RemovePenalltyFromFirstBranches(Order);
+                                MaxAStarGreedy = 1;
+                                AStarGreedyiLevelMax = 1;
+                            }
                             Less = Int32.MinValue;
 
 

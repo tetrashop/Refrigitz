@@ -1311,7 +1311,7 @@ namespace Chess
                                 aa = Color.Brown;
                             bool B = AllDraw.Blitz;
                             AllDraw.Blitz = false;
-                            RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                            RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount;
                             
                             if (Draw.IsAtLeastAllObjectIsNull())
                             {
@@ -2465,7 +2465,7 @@ namespace Chess
                                             aa = Color.Brown;
                                         bool B = AllDraw.Blitz;
                                         AllDraw.Blitz = false;
-                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount;
                                         AllDraw thiB = Draw.AStarGreedyString;
                                         if (Draw.IsAtLeastAllObjectIsNull())
                                         {
@@ -2576,7 +2576,7 @@ namespace Chess
                                             aa = Color.Brown;
                                         bool B = AllDraw.Blitz;
                                         AllDraw.Blitz = false;
-                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                                        RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount;
                                         AllDraw thiB = Draw.AStarGreedyString;
                                         if (Draw.IsAtLeastAllObjectIsNull())
                                         {
@@ -3207,7 +3207,7 @@ namespace Chess
                                     aa = Color.Brown;
                                 bool B = AllDraw.Blitz;
                                 AllDraw.Blitz = false;
-                                RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount;
+                                RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount;
 
                                 if (!FirstS)
                                 {

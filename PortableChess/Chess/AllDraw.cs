@@ -17642,7 +17642,7 @@ namespace RefrigtzChessPortable
                     Is = Is || ServeBoundryConditionsKing(i, Kind, Order);
                 }
                 else
-                if (Kind == 7 || Kind == 7)
+                if (Kind == 7 || Kind == -7)
                 {
                     Is = Is || ServeBoundryConditionsCasttling(i, Kind, Order);
                 }

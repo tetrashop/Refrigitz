@@ -14543,7 +14543,7 @@ th.Dispose();
                                     }
                                 }
                                 //Hourse before elephants
-                                if (((RowS == 2 && ColS == 7 && TableInitiation[RowS, ColS] == TableS[2, 7] && TableS[2, 7] == 2) && TableInitiationPreventionOfMultipleMove[2, 7] == 0) || ((RowS == 5 && ColS == 7 && TableInitiation[RowS, ColS] == TableS[5, 7] && TableS[5, 7] == 2) && TableInitiationPreventionOfMultipleMove[5, 7] == 0))
+                                if (((RowS == 2 && ColS == 7 && TableInitiation[RowS, ColS] == TableS[2, 7] && TableS[2, 7] == 2) && TableInitiationPreventionOfMultipleMove[2, 7] != 0) || ((RowS == 5 && ColS == 7 && TableInitiation[RowS, ColS] == TableS[5, 7] && TableS[5, 7] == 2) && TableInitiationPreventionOfMultipleMove[5, 7] != 0))
                                 {
                                     Color a = Color.Gray;
                                     if (Order == -1)
@@ -14819,33 +14819,12 @@ th.Dispose();
         //find of most supported objects in enemy
         int[] FindMostHeuristicAllReducedSupportIsCurrent(bool Before, int RowS, int ColS)
         {
-            Object O = new Object();
-            lock (O)
+            int[] IsNo = new int[2];
+            if (!Before)
             {
-                int[] IsNo = new int[2];
-                if (!Before)
+                if (HeuristicAllReducedSupportMidel > 0 && HeuristicAllReducedSupportMidel < HeuristicAllReducedSupport.Count)
                 {
-                    if (HeuristicAllReducedSupportMidel > 0 && HeuristicAllReducedSupportMidel < HeuristicAllReducedSupport.Count)
-                    {
-                        for (int i = HeuristicAllReducedSupportMidel; i < HeuristicAllReducedSupport.Count; i++)
-                        {
-                            if (HeuristicAllReducedSupport[i][2] == RowS && HeuristicAllReducedSupport[i][3] == ColS)
-                            {
-                                for (int ii = 0; ii < 8; ii++)
-                                {
-                                    for (int jj = 0; jj < 8; jj++)
-                                    {
-                                        IsNo[0] += NoOfExistInReducedSupportList(Before, RowS, ColS, ii, jj);
-                                    }
-                                }
-                                IsNo[1] = i;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < HeuristicAllReducedSupport.Count; i++)
+                    for (int i = HeuristicAllReducedSupportMidel; i < HeuristicAllReducedSupport.Count; i++)
                     {
                         if (HeuristicAllReducedSupport[i][2] == RowS && HeuristicAllReducedSupport[i][3] == ColS)
                         {
@@ -14853,15 +14832,42 @@ th.Dispose();
                             {
                                 for (int jj = 0; jj < 8; jj++)
                                 {
+                                    int s = IsNo[0];
                                     IsNo[0] += NoOfExistInReducedSupportList(Before, RowS, ColS, ii, jj);
+                                    if (s > IsNo[0])
+                                    {
+                                        IsNo[0] = s;
+                                        IsNo[1] = i;
+                                    }
                                 }
                             }
-                            IsNo[1] = i;
                         }
                     }
                 }
-                return IsNo;
             }
+            else
+            {
+                for (int i = 0; i < HeuristicAllReducedSupport.Count; i++)
+                {
+                    if (HeuristicAllReducedSupport[i][2] == RowS && HeuristicAllReducedSupport[i][3] == ColS)
+                    {
+                        for (int ii = 0; ii < 8; ii++)
+                        {
+                            for (int jj = 0; jj < 8; jj++)
+                            {
+                                int s = IsNo[0];
+                                IsNo[0] += NoOfExistInReducedSupportList(Before, RowS, ColS, ii, jj);
+                                if (s > IsNo[0])
+                                {
+                                    IsNo[0] = s;
+                                    IsNo[1] = i;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return IsNo;
         }
         //determine if source objects is movable on board
         bool ObjectMovable(int Row, int Col, int[,] Tab, int Order, Color a)

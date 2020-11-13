@@ -14530,7 +14530,7 @@ th.Dispose();
                                     }
                                 }
                                 //Hourse before elephants
-                                if (((RowS == 2 && ColS == 7 && TableInitiation[RowS, ColS] == TableS[2, 7] && TableS[2, 7] == 2) && TableInitiationPreventionOfMultipleMove[2, 7] == 0) || ((RowS == 5 && ColS == 7 && TableInitiation[RowS, ColS] == TableS[5, 7] && TableS[5, 7] == 2) && TableInitiationPreventionOfMultipleMove[5, 7] == 0))
+                                if (((RowS == 2 && ColS == 7 && TableInitiation[RowS, ColS] == TableS[2, 7] && TableS[2, 7] == 2) && TableInitiationPreventionOfMultipleMove[2, 7] != 0) || ((RowS == 5 && ColS == 7 && TableInitiation[RowS, ColS] == TableS[5, 7] && TableS[5, 7] == 2) && TableInitiationPreventionOfMultipleMove[5, 7] != 0))
                                 {
                                     Color a = Color.Gray;
                                     if (Order == -1)
@@ -14815,10 +14815,15 @@ th.Dispose();
                             {
                                 for (int jj = 0; jj < 8; jj++)
                                 {
+                                    int s = IsNo[0];
                                     IsNo[0] += NoOfExistInReducedSupportList(Before, RowS, ColS, ii, jj);
+                                    if (s > IsNo[0])
+                                    {
+                                        IsNo[0] = s;
+                                        IsNo[1] = i;
+                                    }
                                 }
                             }
-                            IsNo[1] = i;
                         }
                     }
                 }
@@ -14833,10 +14838,15 @@ th.Dispose();
                         {
                             for (int jj = 0; jj < 8; jj++)
                             {
+                                int s = IsNo[0];
                                 IsNo[0] += NoOfExistInReducedSupportList(Before, RowS, ColS, ii, jj);
+                                if (s > IsNo[0])
+                                {
+                                    IsNo[0] = s;
+                                    IsNo[1] = i;
+                                }
                             }
                         }
-                        IsNo[1] = i;
                     }
                 }
             }

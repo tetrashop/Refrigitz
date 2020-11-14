@@ -14546,7 +14546,7 @@ th.Dispose();
                             int[] IsNo = MostOfFindMostHeuristicAllReducedSupportInList(Before, RowD, ColD);
                             if (IsNo != null)
                             {
-                                //if (IsNo[1] < HeuristicAllReducedSupport.Count)
+                                if (IsNo[1] < HeuristicAllReducedSupport.Count)
                                 {
                                     if (NoOfExistInAttackList(Before, RowS, ColS, HeuristicAllReducedSupport[IsNo[1]][0], HeuristicAllReducedSupport[IsNo[1]][1]) > 0)
                                         ClearSupHuTrue();
@@ -14817,11 +14817,13 @@ th.Dispose();
                                 {
                                     int s = IsNo[0];
                                     IsNo[0] += NoOfExistInReducedSupportList(Before, RowS, ColS, ii, jj);
-                                    if (s > IsNo[0])
+                                    if (s < IsNo[0])
                                     {
-                                        IsNo[0] = s;
                                         IsNo[1] = i;
                                     }
+                                    else
+                                        IsNo[0] = s;
+
                                 }
                             }
                         }
@@ -14840,11 +14842,12 @@ th.Dispose();
                             {
                                 int s = IsNo[0];
                                 IsNo[0] += NoOfExistInReducedSupportList(Before, RowS, ColS, ii, jj);
-                                if (s > IsNo[0])
+                                if (s < IsNo[0])
                                 {
-                                    IsNo[0] = s;
                                     IsNo[1] = i;
                                 }
+                                else
+                                    IsNo[0] = s;
                             }
                         }
                     }
@@ -16457,18 +16460,18 @@ th.Dispose();
                                                 LoseOcuuredatChiled[0] = -4;
                                         }
                                     }
-                                    else
-                                    {
-                                        if (Order == AllDraw.OrderPlateDraw)
-                                            LoseOcuuredatChiled[0] = -4;
-                                    }
+                                    /* else
+                                     {
+                                         if (Order == AllDraw.OrderPlateDraw)
+                                             LoseOcuuredatChiled[0] = -4;
+                                     }*/
 
                                 }
-                                else
-                                {
-                                    if (Order == AllDraw.OrderPlateDraw)
-                                        LoseOcuuredatChiled[0] = -4;
-                                }
+                                /*  else
+                                  {
+                                      if (Order == AllDraw.OrderPlateDraw)
+                                          LoseOcuuredatChiled[0] = -4;
+                                  }*/
                             }
                         }
 

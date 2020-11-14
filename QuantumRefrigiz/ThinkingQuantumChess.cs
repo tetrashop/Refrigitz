@@ -14546,7 +14546,7 @@ th.Dispose();
                             int[] IsNo = MostOfFindMostHeuristicAllReducedSupportInList(Before, RowD, ColD);
                             if (IsNo != null)
                             {
-                                if (IsNo[1] < HeuristicAllReducedSupport.Count)
+                                //if (IsNo[1] < HeuristicAllReducedSupport.Count)
                                 {
                                     if (NoOfExistInAttackList(Before, RowS, ColS, HeuristicAllReducedSupport[IsNo[1]][0], HeuristicAllReducedSupport[IsNo[1]][1]) > 0)
                                         ClearSupHuTrue();
@@ -14626,7 +14626,7 @@ th.Dispose();
                                                     DifOfNoOfSupporteAndReducedSupportBrown = NoOfExistInSupportList(Before, RowS, ColS, RowD, ColD) + NoOfExistInMoveList(Before, RowS, ColS, RowD, ColD) + NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) - NoOfExistInReducedSupportList(Before, RowD, ColD, RowS, ColS) - NoOfExistInReducedMoveList(Before, RowD, ColD, RowS, ColS) - NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS);
                                                 }
                                                 else
-                                                if (DifOfNoOfSupporteAndReducedSupportBrown < 64)
+                                                if (DifOfNoOfSupporteAndReducedSupportBrown < 0)
                                                 {
                                                     {
                                                         SetSupHuTrue();
@@ -14636,7 +14636,7 @@ th.Dispose();
                                             }
                                         }
                                         //Hourse before elephants
-                                        if (((RowS == 2 && ColS == 0 && TableInitiation[RowS, ColS] == TableS[RowS, ColS] && TableS[RowS, ColS] == -2) && TableInitiationPreventionOfMultipleMove[2, 0] == 0) || ((RowS == 5 && ColS == 0 && TableInitiation[RowS, ColS] == TableS[RowS, ColS] && TableConst[RowS, ColS] == -2) && TableInitiationPreventionOfMultipleMove[5, 0] == 0))
+                                       if (((RowS == 2 && ColS == 0 && TableInitiation[RowS, ColS] == TableS[RowS, ColS] && TableS[RowS, ColS] == -2) && TableInitiationPreventionOfMultipleMove[2, 0] != 0) || ((RowS == 5 && ColS == 0 && TableInitiation[RowS, ColS] == TableS[RowS, ColS] && TableConst[RowS, ColS] == -2) && TableInitiationPreventionOfMultipleMove[5, 0] != 0))
                                         {
                                             Color a = Color.Gray;
                                             if (Order == -1)

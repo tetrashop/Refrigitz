@@ -9,7 +9,7 @@ using RefrigtzDLL;
 using Refrigtz;
 
 public class ArtificialInteligenceMove
-{	public static bool UpdateIsRunning=false; 
+{	public static bool UpdateIsRunning=true; 
 	public static ArtificialInteligenceMove tta;
 	int LevelMul=1;
 	int Order=1;
@@ -81,7 +81,7 @@ public class ArtificialInteligenceMove
 							IdleProgress=false;
                             ArtificialInteligenceMove.UpdateIsRunning = true;
 
-                            //AllDraw.CalIdle=1;
+                            AllDraw.CalIdle=1;
                         }
                         while (AllDraw.CalIdle==2)
 						{

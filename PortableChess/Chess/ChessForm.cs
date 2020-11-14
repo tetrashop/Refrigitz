@@ -850,7 +850,8 @@ namespace RefrigtzChessPortable
 
                         if (AllDraw.CalIdle == 0)
                         {
-                            AllDraw.CalIdle = 2;
+                            ArtificialInteligenceMove.UpdateIsRunning = true;
+                            RefrigtzChessPortable.AllDraw.CalIdle = 2;
                             return 0;
                         }
                         if (ArtificialInteligenceMove.UpdateIsRunning)

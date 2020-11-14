@@ -1,20 +1,15 @@
 //
 //www.IranProject.Ir
 //
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
-using RefrigtzDLL;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
 using Chess;
 using Refrigtz;
-using System.Collections.Concurrent;
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RefrigtzDLL
 {
@@ -851,6 +846,7 @@ namespace RefrigtzDLL
 
                         if (RefrigtzDLL.AllDraw.CalIdle == 0)
                         {
+                            ArtificialInteligenceMove.UpdateIsRunning = true;
                             RefrigtzDLL.AllDraw.CalIdle = 2;
                             return 0;
                         }

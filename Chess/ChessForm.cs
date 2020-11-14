@@ -850,6 +850,7 @@ namespace RefrigtzDLL
 
                         if (RefrigtzDLL.AllDraw.CalIdle == 0)
                         {
+                            ArtificialInteligenceMove.UpdateIsRunning = true;
                             RefrigtzDLL.AllDraw.CalIdle = 2;
                             return 0;
                         }

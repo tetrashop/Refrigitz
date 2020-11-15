@@ -16520,12 +16520,12 @@ th.Dispose();
                                             }
                                         }
                                     }
-                                    else
+                                    /*else
                                     {
                                         if (Order == AllDraw.OrderPlateDraw)
                                             LoseOcuuredatChiled[0] = -4;
                                     }
-
+                                    */
                                 }
                             }
                         }

@@ -12563,11 +12563,11 @@ namespace RefrigtzW
 
                         if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                         {
-                            if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
+                            if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                                 return true;
                         }
-                        if (!KillerForce(HaveKilled))
-                            return true;
+                        //if (!KillerForce(ref HaveKilled))
+                            //return true;
                         //When Soldeirs is Greater than Others these Set Max.
                         if (MaxLess1 > MaxLess2)
                             MaxLess2 = -1;
@@ -12689,11 +12689,11 @@ namespace RefrigtzW
 
                     if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
-                        if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
+                        if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    if (!KillerForce(HaveKilled))
-                        return true;
+                    //if (!KillerForce(ref HaveKilled))
+                        //return true;
                     if (MaxLess2 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess2 > MaxLess3)
@@ -12795,11 +12795,11 @@ namespace RefrigtzW
 
                     if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
-                        if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
+                        if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    if (!KillerForce(HaveKilled))
-                        return true;
+                    //if (!KillerForce(ref HaveKilled))
+                        //return true;
                     if (MaxLess3 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess3 > MaxLess2)
@@ -12898,11 +12898,11 @@ namespace RefrigtzW
 
                     if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
-                        if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
+                        if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    if (!KillerForce(HaveKilled))
-                        return true;
+                    //if (!KillerForce(ref HaveKilled))
+                        //return true;
                     if (MaxLess4 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess4 > MaxLess2)
@@ -13004,11 +13004,11 @@ namespace RefrigtzW
 
                     if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
-                        if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
+                        if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    if (!KillerForce(HaveKilled))
-                        return true;
+                    //if (!KillerForce(ref HaveKilled))
+                        //return true;
 
                     if (MaxLess5 > MaxLess1)
                         MaxLess1 = -1;
@@ -13108,11 +13108,11 @@ namespace RefrigtzW
 
                     if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
-                        if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
+                        if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    if (!KillerForce(HaveKilled))
-                        return true;
+                    //if (!KillerForce(ref HaveKilled))
+                        //return true;
                     if (MaxLess6 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess6 > MaxLess2)
@@ -13215,11 +13215,11 @@ namespace RefrigtzW
 
                     if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
                     {
-                        if ((!KiilledForce(HaveKilled)) && (HaveKilled < 0))
+                        if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    if (!KillerForce(HaveKilled))
-                        return true;
+                    //if (!KillerForce(ref HaveKilled))
+                        //return true;
                     if (MaxLess7 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess7 > MaxLess2)
@@ -13272,19 +13272,24 @@ namespace RefrigtzW
             return continued;
         }
         //determined verified victom occured
-        bool KiilledForce(int HaveKiller)
+        bool KiilledForce(ref int HaveKiller)
         {
             if (ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw)
             {
                 if (HaveKilled > 0)
+                {
+                    HaveKilled = 0;
                     return true;
+                }
             }
             return false;
         }
         //detrmined verfied ingured occured
-        bool KillerForce(int HaveKiller)
+        bool KillerForce(ref int HaveKiller)
         {
-            return ((ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw) || (!(HaveKiller > 0)));
+            bool s = ((ThinkingRefrigtzW.IsAtLeastOneKillerAtDraw) || (!(HaveKiller > 0)));
+            HaveKiller = 0;
+            return s;
         }
         //determine when there is lose or checked self
         bool Lose(int Kind, int i, int j, int Order)
@@ -16147,8 +16152,8 @@ namespace RefrigtzW
                 Object Omm = new Object();
                 lock (Omm)
                 {
-                    if (AStarGreedyi > MaxAStarGreedy)
-                        return TableHeuristic;
+                    //if (AStarGreedyi > MaxAStarGreedy)
+                       //return TableHeuristic;
                 }
                 bool Act = false;
                 if (Order == 1)

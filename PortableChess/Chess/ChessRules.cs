@@ -165,8 +165,12 @@ namespace RefrigtzChessPortable
             Object O = new Object();
             lock (O)
             {
+                if (RowFirst == RowSecond && ColumnFirst == ColumnSecond)
+                    return false;
                 int[,] Table = CloneATable(TableS);
 
+                if (RowFirst == RowSecond && ColumnFirst == ColumnSecond)
+                    return false;
                 if (Order == 1 && Table[RowFirst, ColumnFirst] < 0)
                     return false;
                 if (Order == -1 && Table[RowFirst, ColumnFirst] > 0)

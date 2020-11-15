@@ -167,6 +167,8 @@ namespace RefrigtzDLL
             {
                 int[,] Table = CloneATable(TableS);
 
+                if (RowFirst == RowSecond && ColumnFirst == ColumnSecond)
+                    return false;
                 if (Order == 1 && Table[RowFirst, ColumnFirst] < 0)
                     return false;
                 if (Order == -1 && Table[RowFirst, ColumnFirst] > 0)

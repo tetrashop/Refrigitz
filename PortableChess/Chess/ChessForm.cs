@@ -901,17 +901,16 @@ namespace RefrigtzChessPortable
                         if (Draw.TableZero(Table))
                         {
                             MessageBox.Show("Board is invalid;");
-                            if (Draw.TableList.Count == 0)
-                            { Draw.TableList.Clear();
-                            Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
-                            Draw.SetRowColumn(0);
+                            if (Draw.IsAtLeastAllObjectIsNull())
+                            {
+                                Draw.TableList.Clear();
+                                Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
+                                Draw.SetRowColumn(0);
+                            }
                             Draw.IsCurrentDraw = true;
                             ThinkingRefrigtzChessPortable.NoOfMovableAllObjectMove++;
-                            }
-                            else
-                            {
-                                AllDraw.AStarGreedyiLevelMax = Draw.CurrentMaxLevel;
-                            }
+
+                            AllDraw.AStarGreedyiLevelMax = Draw.CurrentMaxLevel;
                             AllDraw.AllowedSupTrue = true;
 
                             if (ArtificialInteligenceMove.UpdateIsRunning)
@@ -968,10 +967,13 @@ namespace RefrigtzChessPortable
                                 else {
                                     MessageBox.Show("One or more cromosoms is invalid;");
                                     AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
-                                    Draw.TableList.Clear();
-                                    Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
-                                    Draw.SetRowColumn(0);
-                                    Draw.IsCurrentDraw = true;
+                                    if (Draw.IsAtLeastAllObjectIsNull())
+                                    {
+                                        Draw.TableList.Clear();
+                                        Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
+                                        Draw.SetRowColumn(0);
+                                        Draw.IsCurrentDraw = true;
+                                    }
                                     goto Again;
                                 }
                             }

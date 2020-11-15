@@ -13276,9 +13276,9 @@ namespace RefrigtzChessPortable
         {
             if (ThinkingRefrigtzChessPortable.IsAtLeastOneKillerAtDraw)
             {
-                if (HaveKilled > 0)
+                if (HaveKiller > 0)
                 {
-                    HaveKilled = 0;
+                    HaveKiller = 0;
                     return true;
                 }
             }

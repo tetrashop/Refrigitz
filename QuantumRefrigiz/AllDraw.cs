@@ -9767,7 +9767,7 @@ namespace QuantumRefrigiz
                    */
                 if (
                      //(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&
-                     ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                     ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                 {
                     MaxAStarGreedy = CurrentMaxLevel;
                 }
@@ -18468,7 +18468,7 @@ namespace QuantumRefrigiz
                      }*/
                     if (
                         ///(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&
-                        ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                        ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                     {
                         MaxAStarGreedy = CurrentMaxLevel;
                     }
@@ -19625,7 +19625,7 @@ namespace QuantumRefrigiz
                            */
                         if (
                              //(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) && 
-                             ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                             ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                         {
                             MaxAStarGreedy = CurrentMaxLevel;
                         }

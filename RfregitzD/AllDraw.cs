@@ -9746,17 +9746,19 @@ namespace RefrigtzDLL
                        MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                    }
                    */
-               if ((MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) && ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) ||SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+               if (
+                    //(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) && 
+                    ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) ||SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                 {
                     MaxAStarGreedy = CurrentMaxLevel;
                 }
                 else
-                         if (CurrentMaxLevel >= MaxAStarGreedy)
+                         if (CurrentMaxLevel <= MaxAStarGreedy)
                     return;
                 Object Omm1 = new Object();
                 lock (Omm1)
                 {
-                    /*if (CurrentMaxLevel >= MaxAStarGreedy)
+                    /*if (CurrentMaxLevel <= MaxAStarGreedy)
                         return;
                     else
                     {
@@ -12547,8 +12549,8 @@ namespace RefrigtzDLL
                             if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                                 return true;
                         }
-                        //if (!KillerForce(ref HaveKilled))
-                            //return true;
+                       if (!KillerForce(ref HaveKilled))
+                            return true;
                         //When Soldeirs is Greater than Others these Set Max.
                         if (MaxLess1 > MaxLess2)
                             MaxLess2 = -1;
@@ -12673,8 +12675,8 @@ namespace RefrigtzDLL
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    //if (!KillerForce(ref HaveKilled))
-                        //return true;
+                   if (!KillerForce(ref HaveKilled))
+                        return true;
                     if (MaxLess2 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess2 > MaxLess3)
@@ -12779,8 +12781,8 @@ namespace RefrigtzDLL
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                   //if (!KillerForce(ref HaveKilled))
-                        //return true;
+                  if (!KillerForce(ref HaveKilled))
+                        return true;
                     if (MaxLess3 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess3 > MaxLess2)
@@ -12882,8 +12884,8 @@ namespace RefrigtzDLL
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    //if (!KillerForce(ref HaveKilled))
-                        //return true;
+                   if (!KillerForce(ref HaveKilled))
+                        return true;
                     if (MaxLess4 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess4 > MaxLess2)
@@ -12988,8 +12990,8 @@ namespace RefrigtzDLL
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    //if (!KillerForce(ref HaveKilled))
-                        //return true;
+                   if (!KillerForce(ref HaveKilled))
+                        return true;
 
                     if (MaxLess5 > MaxLess1)
                         MaxLess1 = -1;
@@ -13092,8 +13094,8 @@ namespace RefrigtzDLL
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    //if (!KillerForce(ref HaveKilled))
-                        //return true;
+                   if (!KillerForce(ref HaveKilled))
+                        return true;
                     if (MaxLess6 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess6 > MaxLess2)
@@ -13199,8 +13201,8 @@ namespace RefrigtzDLL
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                    //if (!KillerForce(ref HaveKilled))
-                       //return true;
+                   if (!KillerForce(ref HaveKilled))
+                       return true;
                     if (MaxLess7 > MaxLess1)
                         MaxLess1 = -1;
                     if (MaxLess7 > MaxLess2)
@@ -18445,12 +18447,14 @@ namespace RefrigtzDLL
                                  return true;
                          }
                      }*/
-                    if ((MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) && ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                    if (
+                        ///(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&                         
+                        ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                     {
                         MaxAStarGreedy = CurrentMaxLevel;
                     }
                     else
-                   if (CurrentMaxLevel >= MaxAStarGreedy)
+                   if (CurrentMaxLevel <= MaxAStarGreedy)
                         return true;
 
                     if (CalIdle == 2)
@@ -19600,17 +19604,19 @@ namespace RefrigtzDLL
                                MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                            }
                            */
-                       if ((MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) && ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) ||SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                       if (
+                            //(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&
+                            ((MaxAStarGreedy <= StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) ||SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                         {
                             MaxAStarGreedy = CurrentMaxLevel;
                         }
                         else
-                         if (CurrentMaxLevel >= MaxAStarGreedy)
+                         if (CurrentMaxLevel <= MaxAStarGreedy)
                             return true;
                         Object Omm1 = new Object();
                         lock (Omm1)
                         {
-                            /*if (CurrentMaxLevel >= MaxAStarGreedy)
+                            /*if (CurrentMaxLevel <= MaxAStarGreedy)
                                 return;
                             else
                             {

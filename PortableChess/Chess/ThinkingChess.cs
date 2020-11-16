@@ -7593,80 +7593,80 @@ th.Dispose();
             {
                 int[] Exchange = ExchangeA;
 
-                /*   ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                  {
+
+
+                      Object O11 = new Object();
+                      lock (O11)
+                      {
+                          if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                              Exchange[ReducedAttacked]++;
+
+
+                      }
+
+                  }
+                                                       , () =>
+                                                       {
+                                                           Object O111 = new Object();
+                                                           lock (O111)
+                                                           {
+
+
+
+                                                               if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
+                                                                   Exchange[ReducedSupport]++;
+                                                           }
+                                                       }
+               , () =>
+
+               {
+                   Object O1111 = new Object();
+                   lock (O1111)
                    {
 
-   */
-                Object O11 = new Object();
-                lock (O11)
-                {
-                    if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
-                        Exchange[ReducedAttacked]++;
+                       if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
+                           Exchange[ReducedMove]++;
+                   }
+               }
+                     , () =>
 
+                     {
 
-                }
+                         Object O1111111 = new Object();
+                         lock (O1111111)
+                         {
+                             if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                                 Exchange[ToAttacked]++;
+                         }
 
-                /*      }
-                                                        , () =>
-                                                        {*/
-                Object O111 = new Object();
-                lock (O111)
-                {
-
-
-
-                    if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
-                        Exchange[ReducedSupport]++;
-                }
-                /*  }
+                     }
                 , () =>
-
-                {*/
-                Object O1111 = new Object();
-                lock (O1111)
                 {
+                    Object O211 = new Object();
+                    lock (O211)
+                    {
 
-                    if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
-                        Exchange[ReducedMove]++;
+                        if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
+                            Exchange[ToSupport]++;
+                    }
                 }
-                /* }
-                      , () =>
-
-                      {
-                      */
-                Object O1111111 = new Object();
-                lock (O1111111)
-                {
-                    if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
-                        Exchange[ToAttacked]++;
-                }
-
-                /* }
                  , () =>
-                 {*/
-                Object O211 = new Object();
-                lock (O211)
-                {
 
-                    if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
-                        Exchange[ToSupport]++;
-                }
-                /*}
-                  , () =>
+                 {
 
-                  {*/
+                     Object O121 = new Object();
+                     lock (O121)
+                     {
 
-                Object O121 = new Object();
-                lock (O121)
-                {
-
-                    if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
-                        Exchange[ToMoved]++;
+                         if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
+                             Exchange[ToMoved]++;
 
 
-                }
+                     }
 
-                //  });
+                 });
                 ExchangeA = Exchange;
             }
         }
@@ -14405,47 +14405,16 @@ th.Dispose();
                 if (Order != AllDraw.OrderPlateDraw)
                     return;
 
-                int[] Hu = null;
-                var th = Task.Factory.StartNew(() => Hu = CalculateHeuristicsParallel(Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
-                th.Wait();
-                th.Dispose();
-                Task H1 = null, H2 = null, H3 = null;
 
-                //if (UsePenaltyRegardMechnisamT)
-
-
-                Heuristic[0] = Hu[0];
-                Heuristic[1] = Hu[1];
-                Heuristic[2] = Hu[2];
-                Heuristic[3] = Hu[3];
-                Heuristic[4] = Hu[4];
-                Heuristic[5] = Hu[5];
-                HCheck = Hu[6];
-                HDistance = Hu[7];
-                HKingSafe = Hu[8];
-                HKingDangour = Hu[9];
-                HFromCenter = Hu[10];
-                HExchangeInnovation = Hu[11] + Hu[12] + Hu[13];
-                HExchangeSupport = Hu[14];
-                int HAchmaz = 0;
-                int HDoubleAttack = 0, HDoubleDefense = 0;
-                int HWin = 0, HLose = 0;
-
-                H2 = Task.Factory.StartNew(() => HDoubleAttack = DoubleAttack(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
-                H3 = Task.Factory.StartNew(() => HDoubleDefense = DoubleDefence(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
-                H2.Wait();
-                H3.Wait();
-                H2.Dispose();
-                H3.Dispose();
-                bool IsS = false;
-                if (HDoubleDefense < 0)
-                {
-                    SetSupHuTrue();
-                    IsS = true;
-                }
                 Object O1 = new Object();
                 lock (O1)
                 {
+                    int[] Hu = null;
+                    Task H1 = null, H2 = null, H3 = null;
+                    int HAchmaz = 0;
+                    int HDoubleAttack = 0, HDoubleDefense = 0;
+                    int HWin = 0, HLose = 0;
+                    bool IsS = false;
                     if (!IsSupHuTrue())
                     {
                         if (Before)
@@ -14503,7 +14472,7 @@ th.Dispose();
                                 {
                                     if (
                                             //(
-                                            (NoOfBoardMoved + Is >= Total) && 
+                                            (NoOfBoardMoved + Is >= Total) &&
                                             TableInitiationPreventionOfMultipleMove[RowS, ColS] >= NoOfMovableAllObjectMove
                                     //)&& A && TableS[RowS, ColS] < 0 && TableS[RowD, ColD] >= 0
                                     )
@@ -14516,7 +14485,7 @@ th.Dispose();
                                 {
                                     if (
                                             //(
-                                            (NoOfBoardMoved + Is >= Total) && 
+                                            (NoOfBoardMoved + Is >= Total) &&
                                             TableInitiationPreventionOfMultipleMove[RowS, ColS] >= NoOfMovableAllObjectMove
                                     //)&& A && TableS[RowS, ColS] < 0 && TableS[RowD, ColD] >= 0
                                     )
@@ -14717,7 +14686,7 @@ th.Dispose();
                             }
                         }
                     }
-                    if (!IsSupHuTrue()  && (Order == AllDraw.OrderPlateDraw))
+                    if (!IsSupHuTrue() && (Order == AllDraw.OrderPlateDraw))
                     {
                         H1 = Task.Factory.StartNew(() => Achmaz(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
                         H1.Wait();
@@ -14760,7 +14729,42 @@ th.Dispose();
                                 //IsSup[IsSup.Count - 1] = true;
                             }
                         }
-                        
+
+                    }
+                    if (!IsSupHuTrue() && (Order == AllDraw.OrderPlateDraw))
+                    {
+                        var th = Task.Factory.StartNew(() => Hu = CalculateHeuristicsParallel(Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
+                        th.Wait();
+                        th.Dispose();
+
+                        //if (UsePenaltyRegardMechnisamT)
+
+
+                        Heuristic[0] = Hu[0];
+                        Heuristic[1] = Hu[1];
+                        Heuristic[2] = Hu[2];
+                        Heuristic[3] = Hu[3];
+                        Heuristic[4] = Hu[4];
+                        Heuristic[5] = Hu[5];
+                        HCheck = Hu[6];
+                        HDistance = Hu[7];
+                        HKingSafe = Hu[8];
+                        HKingDangour = Hu[9];
+                        HFromCenter = Hu[10];
+                        HExchangeInnovation = Hu[11] + Hu[12] + Hu[13];
+                        HExchangeSupport = Hu[14];
+
+                        H2 = Task.Factory.StartNew(() => HDoubleAttack = DoubleAttack(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
+                        H3 = Task.Factory.StartNew(() => HDoubleDefense = DoubleDefence(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
+                        H2.Wait();
+                        H3.Wait();
+                        H2.Dispose();
+                        H3.Dispose();
+                        if (HDoubleDefense < 0)
+                        {
+                            SetSupHuTrue();
+                            IsS = true;
+                        }
                     }
                     if (Before)
                     {

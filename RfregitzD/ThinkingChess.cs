@@ -14351,16 +14351,16 @@ th.Dispose();
          d: heighth of tree**************************************************************        
          ********************************************************************************/
         public void CalculateHeuristics(int[] LoseOcuuredatChiled, int WinOcuuredatChiled, bool Before, int Order, int Killed, int[,] TableS, int RowS, int ColS, int RowD, int ColD, Color color
-             , ref int HeuristicAttackValue
-                 , ref int HeuristicMovementValue
-                 , ref int HeuristicSelfSupportedValue
-                 , ref int HeuristicReducedMovementValue
-                , ref int HeuristicReducedSupport
-                 , ref int HeuristicReducedAttackValue
-                 , ref int HeuristicDistributionValue
-             , ref int HeuristicKingSafe
-             , ref int HeuristicFromCenter
-             , ref int HeuristicKingDangour, ref int HeuristicCheckedMate)
+          , ref int HeuristicAttackValue
+              , ref int HeuristicMovementValue
+              , ref int HeuristicSelfSupportedValue
+              , ref int HeuristicReducedMovementValue
+             , ref int HeuristicReducedSupport
+              , ref int HeuristicReducedAttackValue
+              , ref int HeuristicDistributionValue
+          , ref int HeuristicKingSafe
+          , ref int HeuristicFromCenter
+          , ref int HeuristicKingDangour, ref int HeuristicCheckedMate)
         {
             Object OO = new Object();
             lock (OO)
@@ -14391,47 +14391,16 @@ th.Dispose();
                 if (Order != AllDraw.OrderPlateDraw)
                     return;
 
-                int[] Hu = null;
-                var th = Task.Factory.StartNew(() => Hu = CalculateHeuristicsParallel(Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
-                th.Wait();
-                th.Dispose();
-                Task H1 = null, H2 = null, H3 = null;
 
-                //if (UsePenaltyRegardMechnisamT)
-
-
-                Heuristic[0] = Hu[0];
-                Heuristic[1] = Hu[1];
-                Heuristic[2] = Hu[2];
-                Heuristic[3] = Hu[3];
-                Heuristic[4] = Hu[4];
-                Heuristic[5] = Hu[5];
-                HCheck = Hu[6];
-                HDistance = Hu[7];
-                HKingSafe = Hu[8];
-                HKingDangour = Hu[9];
-                HFromCenter = Hu[10];
-                HExchangeInnovation = Hu[11] + Hu[12] + Hu[13];
-                HExchangeSupport = Hu[14];
-                int HAchmaz = 0;
-                int HDoubleAttack = 0, HDoubleDefense = 0;
-                int HWin = 0, HLose = 0;
-
-                H2 = Task.Factory.StartNew(() => HDoubleAttack = DoubleAttack(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
-                H3 = Task.Factory.StartNew(() => HDoubleDefense = DoubleDefence(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
-                H2.Wait();
-                H3.Wait();
-                H2.Dispose();
-                H3.Dispose();
-                bool IsS = false;
-                if (HDoubleDefense < 0)
-                {
-                    SetSupHuTrue();
-                    IsS = true;
-                }
                 Object O1 = new Object();
                 lock (O1)
                 {
+                    int[] Hu = null;
+                    Task H1 = null, H2 = null, H3 = null;
+                    int HAchmaz = 0;
+                    int HDoubleAttack = 0, HDoubleDefense = 0;
+                    int HWin = 0, HLose = 0;
+                    bool IsS = false;
                     if (!IsSupHuTrue())
                     {
                         if (Before)
@@ -14454,7 +14423,6 @@ th.Dispose();
                                     IsS = true;
                                 }
                             }
-
                             if (!GoldenFinished && WinOcuuredatChiled == 0)
                             {  //Disturbe on huge traversal exchange prevention 
                                //Ignore of atack and checkedmate at first until all move
@@ -14636,7 +14604,7 @@ th.Dispose();
                                             }
                                         }
                                         //Hourse before elephants
-                                       if (((RowS == 2 && ColS == 0 && TableInitiation[RowS, ColS] == TableS[RowS, ColS] && TableS[RowS, ColS] == -2) && TableInitiationPreventionOfMultipleMove[2, 0] != 0) || ((RowS == 5 && ColS == 0 && TableInitiation[RowS, ColS] == TableS[RowS, ColS] && TableConst[RowS, ColS] == -2) && TableInitiationPreventionOfMultipleMove[5, 0] != 0))
+                                        if (((RowS == 2 && ColS == 0 && TableInitiation[RowS, ColS] == TableS[RowS, ColS] && TableS[RowS, ColS] == -2) && TableInitiationPreventionOfMultipleMove[2, 0] != 0) || ((RowS == 5 && ColS == 0 && TableInitiation[RowS, ColS] == TableS[RowS, ColS] && TableConst[RowS, ColS] == -2) && TableInitiationPreventionOfMultipleMove[5, 0] != 0))
                                         {
                                             Color a = Color.Gray;
                                             if (Order == -1)
@@ -14748,6 +14716,41 @@ th.Dispose();
                             }
                         }
 
+                    }
+                    if (!IsSupHuTrue() && (Order == AllDraw.OrderPlateDraw))
+                    {
+                        var th = Task.Factory.StartNew(() => Hu = CalculateHeuristicsParallel(Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
+                        th.Wait();
+                        th.Dispose();
+
+                        //if (UsePenaltyRegardMechnisamT)
+
+
+                        Heuristic[0] = Hu[0];
+                        Heuristic[1] = Hu[1];
+                        Heuristic[2] = Hu[2];
+                        Heuristic[3] = Hu[3];
+                        Heuristic[4] = Hu[4];
+                        Heuristic[5] = Hu[5];
+                        HCheck = Hu[6];
+                        HDistance = Hu[7];
+                        HKingSafe = Hu[8];
+                        HKingDangour = Hu[9];
+                        HFromCenter = Hu[10];
+                        HExchangeInnovation = Hu[11] + Hu[12] + Hu[13];
+                        HExchangeSupport = Hu[14];
+
+                        H2 = Task.Factory.StartNew(() => HDoubleAttack = DoubleAttack(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
+                        H3 = Task.Factory.StartNew(() => HDoubleDefense = DoubleDefence(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
+                        H2.Wait();
+                        H3.Wait();
+                        H2.Dispose();
+                        H3.Dispose();
+                        if (HDoubleDefense < 0)
+                        {
+                            SetSupHuTrue();
+                            IsS = true;
+                        }
                     }
                     if (Before)
                     {

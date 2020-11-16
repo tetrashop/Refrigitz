@@ -53,6 +53,10 @@ namespace RefrigtzDLL
     [Serializable]
     public class ThinkingChess//: IDisposable
     {
+        bool ExcangePerformed = false;
+        int[] PerformedExchange = null;
+
+
         public static string OutP = "";
         List<List<List<int[]>>> MovableAllObjectsList = new List<List<List<int[]>>>();
         public int RemoveOfDisturbIndex = -1;
@@ -7420,8 +7424,9 @@ th.Dispose();
                                 {
                                     ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
                                     {
-
-                                        ExchangeE(Ord, ref Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, ReducedMove, ToMoved,Table, RowS, ColS, RowD, ColD);
+                                        if (Table[RowS, ColS] == 0 && Table[RowD, ColD] == 0)
+                                            return;
+                                        ExchangeE(Before, Ord, ref Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, ReducedMove, ToMoved,Table, RowS, ColS, RowD, ColD);
 
 
                                     });
@@ -7574,87 +7579,95 @@ th.Dispose();
 
             }
         }
-        void ExchangeE(int Ord, ref int[] ExchangeA, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked, int ReducedMove, int ToMoved, int[,] Table, int RowS, int ColS, int RowD, int ColD)
+        void ExchangeE(bool Before,int Ord, ref int[] ExchangeA, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked, int ReducedMove, int ToMoved, int[,] Table, int RowS, int ColS, int RowD, int ColD)
         {
             Object o = new Object();
             lock (o)
             {
-                int[] Exchange = ExchangeA;
-
-                ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                if (!Before || !ExcangePerformed)
                 {
+                    int[] Exchange = ExchangeA;
 
-                    Object O11 = new Object();
-                    lock (O11)
+                    ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                     {
-                        if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
-                            Exchange[ReducedAttacked]++;
+
+                        Object O11 = new Object();
+                        lock (O11)
+                        {
+                            if (HeuristicExchangHeuristicAllReducedAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                                Exchange[ReducedAttacked]++;
 
 
 
+                        }
                     }
-                }
-                                        , () =>
-                                        {
-                                            Object O11 = new Object();
-                                            lock (O11)
+                                            , () =>
                                             {
+                                                Object O11 = new Object();
+                                                lock (O11)
+                                                {
 
 
 
-                                                if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
-                                                    Exchange[ReducedSupport]++;
+                                                    if (HeuristicExchangeHeuristicAllReducedSupport(Ord, RowS, ColS, RowD, ColD, Table))
+                                                        Exchange[ReducedSupport]++;
+                                                }
                                             }
-                                        }
-                                      , () =>
+                                          , () =>
 
-                                      {
-                                          Object O11 = new Object();
-                                          lock (O11)
                                           {
+                                              Object O11 = new Object();
+                                              lock (O11)
+                                              {
 
-                                              if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
-                                                  Exchange[ReducedMove]++;
+                                                  if (HeuristicExchangeHeuristicAllReducedMove(Ord, RowS, ColS, RowD, ColD, Table))
+                                                      Exchange[ReducedMove]++;
+                                              }
                                           }
-                                      }
-                                           , () =>
+                                               , () =>
 
-                                           {
-
-                                               Object O11 = new Object();
-                                               lock (O11)
-                                               {
-                                                   if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
-                                                       Exchange[ToAttacked]++;
-                                               }
-
-                                           }
-                                           , () =>
-                                           {
-                                               Object O11 = new Object();
-                                               lock (O11)
                                                {
 
-                                                   if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
-                                                       Exchange[ToSupport]++;
+                                                   Object O11 = new Object();
+                                                   lock (O11)
+                                                   {
+                                                       if (HeuristicExchangeHeuristicAllAttacked(Ord, RowS, ColS, RowD, ColD, Table))
+                                                           Exchange[ToAttacked]++;
+                                                   }
+
                                                }
-                                           }
-                                             , () =>
+                                               , () =>
+                                               {
+                                                   Object O11 = new Object();
+                                                   lock (O11)
+                                                   {
 
-                                             {
+                                                       if (HeuristicExchangeHeuristicAllSupport(Ord, RowS, ColS, RowD, ColD, Table))
+                                                           Exchange[ToSupport]++;
+                                                   }
+                                               }
+                                                 , () =>
 
-                                                 Object O11 = new Object();
-                                                 lock (O11)
                                                  {
 
-                                                     if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
-                                                         Exchange[ToMoved]++;
+                                                     Object O11 = new Object();
+                                                     lock (O11)
+                                                     {
+
+                                                         if (HeuristicExchangeHeuristicAllMove(Ord, RowS, ColS, RowD, ColD, Table))
+                                                             Exchange[ToMoved]++;
 
 
-                                                 }
+                                                     }
 
-                                             });
-                ExchangeA = Exchange;
+                                                 });
+                    ExchangeA = Exchange;
+                    PerformedExchange = ExchangeA;
+                    ExcangePerformed = true;
+                }
+                else 
+                    ExchangeA = PerformedExchange;
+                
             }
         }
         //when objectS source less than destination

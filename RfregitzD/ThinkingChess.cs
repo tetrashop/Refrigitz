@@ -14239,14 +14239,14 @@ th.Dispose();
                 {
                     for (int ColSS = 0; ColSS < 8; ColSS++)
                     {
-                        if (Order == 1 && Table[RowSS, ColSS] >= 0)
-                            continue;
-                        if (Order == -1 && Table[RowSS, ColSS] <= 0)
-                            continue;
                         for (int RowDD = 0; RowDD < 8; RowDD++)
                         {
                             for (int ColDD = 0; ColDD < 8; ColDD++)
                             {
+                                if (Order == 1 && Table[RowDD, ColDD] >= 0)
+                                    continue;
+                                if (Order == -1 && Table[RowDD, ColDD] <= 0)
+                                    continue;
                                 List<int[]> DDA = ListOfExistInReducedAttackList(Before, RowSS, ColSS, RowDD, ColDD);
                                 if (DDA.Count > 0)
                                     DDL.Add(DDA);
@@ -14403,18 +14403,38 @@ th.Dispose();
                 }
                 if (Order != AllDraw.OrderPlateDraw)
                     return;
+                int[] Hu = null;
+                Task H1 = null, H2 = null, H3 = null;
+                int HAchmaz = 0;
+                int HDoubleAttack = 0, HDoubleDefense = 0;
+                int HWin = 0, HLose = 0;
+                bool IsS = false;
+                var th = Task.Factory.StartNew(() => Hu = CalculateHeuristicsParallel(Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
+                th.Wait();
+                th.Dispose();
+
+                //if (UsePenaltyRegardMechnisamT)
+
+
+                Heuristic[0] = Hu[0];
+                Heuristic[1] = Hu[1];
+                Heuristic[2] = Hu[2];
+                Heuristic[3] = Hu[3];
+                Heuristic[4] = Hu[4];
+                Heuristic[5] = Hu[5];
+                HCheck = Hu[6];
+                HDistance = Hu[7];
+                HKingSafe = Hu[8];
+                HKingDangour = Hu[9];
+                HFromCenter = Hu[10];
+                HExchangeInnovation = Hu[11] + Hu[12] + Hu[13];
+                HExchangeSupport = Hu[14];
 
 
                 Object O1 = new Object();
                 lock (O1)
                 {
-                    int[] Hu = null;
-                    Task H1 = null, H2 = null, H3 = null;
-                    int HAchmaz = 0;
-                    int HDoubleAttack = 0, HDoubleDefense = 0;
-                    int HWin = 0, HLose = 0;
-                    bool IsS = false;
-                    if (!IsSupHuTrue())
+                      if (!IsSupHuTrue())
                     {
                         if (Before)
                         {
@@ -14446,7 +14466,7 @@ th.Dispose();
                                     if (Order == AllDraw.OrderPlateDraw)
                                     {
                                         B = NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) > 0 && (System.Math.Abs(TableS[RowD, ColD]) != 0 && System.Math.Abs(TableS[RowS, ColS]) > 1);
-                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
+                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1]);
                                     }
                                 }
                                 else
@@ -14455,7 +14475,7 @@ th.Dispose();
                                     if (Order == AllDraw.OrderPlateDraw)
                                     {
                                         B = NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) > 0 && (System.Math.Abs(TableS[RowD, ColD]) != 0 && System.Math.Abs(TableS[RowS, ColS]) > 1);
-                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
+                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1]);
                                     }
                                 }
                                 if (A && ((B) || (C)))
@@ -14575,7 +14595,7 @@ th.Dispose();
                                     if (Order == AllDraw.OrderPlateDraw)
                                     {
                                         B = NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) > 0 && (Killed != 0 && Killed < TableS[RowD, ColD]);
-                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
+                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1]);
                                     }
                                 }
                                 else
@@ -14584,7 +14604,7 @@ th.Dispose();
                                     if (Order == AllDraw.OrderPlateDraw)
                                     {
                                         B = NoOfExistInAttackList(Before, RowS, ColS, RowD, ColD) > 0 && (Killed != 0 && Killed < TableS[RowD, ColD]);
-                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1] || IsThereMateOfEnemy[IsThereMateOfEnemy.Count - 1]);
+                                        C = HeuristicCheckedMate < 0 && (IsThereMateOfSelf[IsThereMateOfSelf.Count - 1]);
                                     }
                                 }
                                 if (A && ((B) || (C)))
@@ -14732,27 +14752,7 @@ th.Dispose();
                     }
                     if (!IsSupHuTrue() && (Order == AllDraw.OrderPlateDraw))
                     {
-                        var th = Task.Factory.StartNew(() => Hu = CalculateHeuristicsParallel(Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
-                        th.Wait();
-                        th.Dispose();
-
-                        //if (UsePenaltyRegardMechnisamT)
-
-
-                        Heuristic[0] = Hu[0];
-                        Heuristic[1] = Hu[1];
-                        Heuristic[2] = Hu[2];
-                        Heuristic[3] = Hu[3];
-                        Heuristic[4] = Hu[4];
-                        Heuristic[5] = Hu[5];
-                        HCheck = Hu[6];
-                        HDistance = Hu[7];
-                        HKingSafe = Hu[8];
-                        HKingDangour = Hu[9];
-                        HFromCenter = Hu[10];
-                        HExchangeInnovation = Hu[11] + Hu[12] + Hu[13];
-                        HExchangeSupport = Hu[14];
-
+                    
                         H2 = Task.Factory.StartNew(() => HDoubleAttack = DoubleAttack(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
                         H3 = Task.Factory.StartNew(() => HDoubleDefense = DoubleDefence(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
                         H2.Wait();

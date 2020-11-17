@@ -134,7 +134,7 @@ namespace RefrigtzDLL
                 int LeafAStarGrteedy = 0;
                 AllDraw THIS = Draw.AStarGreedyString;
                 Table = Draw.Initiate(1, 4, a, CloneATable(brd.GetTable()), Order, false, FOUND, LeafAStarGrteedy);
-                //Draw.AStarGreedyString = THIS;
+                Draw.AStarGreedyString = THIS;
             }
         }
         void BobAction(int Order)
@@ -2714,10 +2714,14 @@ namespace RefrigtzDLL
                             bool LoadTree = true;
 
 
-                            Draw.TableList.Clear();
-                            Draw.TableList.Add(CloneATable(Table));
-                            Draw.SetRowColumn(0);
-                            Draw.IsCurrentDraw = true;
+                            THISB = Draw.AStarGreedyString;
+                            if (Draw.IsAtLeastAllObjectIsNull())
+                            {
+                                Draw.TableList.Clear();
+                                Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
+                                Draw.SetRowColumn(0);
+                                Draw.IsCurrentDraw = true;
+                            }
                             Draw.AStarGreedyString = THISB;
                             RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
                             RefrigtzDLL.AllDraw.DepthIterative = 0;

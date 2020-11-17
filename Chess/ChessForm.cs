@@ -140,7 +140,7 @@ namespace RefrigtzDLL
                 int LeafAStarGrteedy = 0;
                 AllDraw THIS = Draw.AStarGreedyString;
                 Table = Draw.Initiate(1, 4, a, CloneATable(brd.GetTable()), Order, false, FOUND, LeafAStarGrteedy);
-                //Draw.AStarGreedyString = THIS;
+                Draw.AStarGreedyString = THIS;
             }
         }
         void AliceAction(int Order)

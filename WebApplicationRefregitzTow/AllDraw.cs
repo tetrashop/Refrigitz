@@ -8353,32 +8353,18 @@ namespace RefrigtzW
                 //Soldier
                 if (SolderesOnTable == null)
                     Is = true;
-                else
-                    return false;
                 if (ElephantOnTable == null)
                     Is = true;
-                else
-                    return false;
                 if (HoursesOnTable == null)
                     Is = true;
-                else
-                    return false;
                 if (CastlesOnTable == null)
                     Is = true;
-                else
-                    return false;
                 if (MinisterOnTable == null)
                     Is = true;
-                else
-                    return false;
                 if (KingOnTable == null)
                     Is = true;
-                else
-                    return false;
                 if (CastlingOnTable == null)
                     Is = true;
-                else
-                    return false;
 
                 return Is;
             }
@@ -9766,7 +9752,7 @@ namespace RefrigtzW
                    }
                    */
                 if (
-                     //(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&
+                     /*(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&*/
                      ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                 {
                     MaxAStarGreedy = CurrentMaxLevel;
@@ -13576,11 +13562,11 @@ namespace RefrigtzW
                             Do = 0;
 
                             StringHeuristics(1, 1, AA, Do, SolderesOnTable[i].WinOcuuredatChiled, SolderesOnTable[i].LoseOcuuredatChiled);
-                            var ah3 = Task.Factory.StartNew(() => ac = Lose(1, i, j, Order));
+                            /*var ah3 = Task.Factory.StartNew(() => ac = Lose(1, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
-                                continue;
+                                continue;*/
                             Order = COrder;
                             ChessRules.CurrentOrder = CDummy;
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
@@ -13785,11 +13771,11 @@ namespace RefrigtzW
                             Do = 0;
 
                             StringHeuristics(2, 1, AA, Do, ElephantOnTable[i].WinOcuuredatChiled, ElephantOnTable[i].LoseOcuuredatChiled);
-                            var ah3 = Task.Factory.StartNew(() => ac = Lose(2, i, j, Order));
+                           /* var ah3 = Task.Factory.StartNew(() => ac = Lose(2, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
-                                continue;
+                                continue;*/
                             Order = COrder;
                             ChessRules.CurrentOrder = CDummy;
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
@@ -13942,11 +13928,11 @@ namespace RefrigtzW
                             Order *= -1;
                             Do = 0;
                             StringHeuristics(3, 1, AA, Do, HoursesOnTable[i].WinOcuuredatChiled, HoursesOnTable[i].LoseOcuuredatChiled);
-                            var ah3 = Task.Factory.StartNew(() => ac = Lose(3, i, j, Order));
+                            /*var ah3 = Task.Factory.StartNew(() => ac = Lose(3, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
-                                continue;
+                                continue;*/
 
                             Order = COrder;
                             ChessRules.CurrentOrder = CDummy;
@@ -14096,11 +14082,11 @@ namespace RefrigtzW
                             Order *= -1;
                             Order = COrder;
                             StringHeuristics(4, 1, AA, Do, CastlesOnTable[i].WinOcuuredatChiled, CastlesOnTable[i].LoseOcuuredatChiled);
-                            var ah3 = Task.Factory.StartNew(() => ac = Lose(4, i, j, Order));
+                            /*var ah3 = Task.Factory.StartNew(() => ac = Lose(4, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
-                                continue;
+                                continue;*/
                             ChessRules.CurrentOrder = CDummy;
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
                             //)
@@ -14250,11 +14236,11 @@ namespace RefrigtzW
                             Order *= -1;
                             Do = 0;
                             StringHeuristics(5, 1, AA, Do, MinisterOnTable[i].WinOcuuredatChiled, MinisterOnTable[i].LoseOcuuredatChiled);
-                            var ah3 = Task.Factory.StartNew(() => ac = Lose(5, i, j, Order));
+                            /*var ah3 = Task.Factory.StartNew(() => ac = Lose(5, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
-                                continue;
+                                continue;*/
                             Order = COrder;
                             ChessRules.CurrentOrder = CDummy;
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
@@ -14453,11 +14439,11 @@ namespace RefrigtzW
                             Do = 0;
                             StringHeuristics(6, 1, AA, Do, CastlingOnTable[i].WinOcuuredatChiled, CastlingOnTable[i].LoseOcuuredatChiled);
 
-                            var ah3 = Task.Factory.StartNew(() => ac = Lose(7, i, j, Order));
+                            /*var ah3 = Task.Factory.StartNew(() => ac = Lose(7, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
-                                continue;
+                                continue;*/
                             Order = COrder;
                             ChessRules.CurrentOrder = CDummy;
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
@@ -14551,11 +14537,11 @@ namespace RefrigtzW
                             Do = 0;
                             StringHeuristics(6, 1, AA, Do, KingOnTable[i].WinOcuuredatChiled, KingOnTable[i].LoseOcuuredatChiled);
 
-                            var ah3 = Task.Factory.StartNew(() => ac = Lose(6, i, j, Order));
+                            /*var ah3 = Task.Factory.StartNew(() => ac = Lose(6, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
-                                continue;
+                                continue;*/
                             Order = COrder;
                             ChessRules.CurrentOrder = CDummy;
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
@@ -18467,7 +18453,7 @@ namespace RefrigtzW
                          }
                      }*/
                     if (
-                        ///(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&
+                        /*(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&*/
                         ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                     {
                         MaxAStarGreedy = CurrentMaxLevel;
@@ -19624,7 +19610,7 @@ namespace RefrigtzW
                            }
                            */
                         if (
-                             //(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) && 
+                             /*(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&*/
                              ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                         {
                             MaxAStarGreedy = CurrentMaxLevel;

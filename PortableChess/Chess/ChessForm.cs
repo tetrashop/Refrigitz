@@ -1033,8 +1033,7 @@ namespace RefrigtzChessPortable
 
                     if (cl == 0 && k != 0 && played == order)
                     {
-                        freezBoard = false;
-
+                       
                         x1 = i;
                         y1 = j;
                         this.pb[i, j].BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -1878,15 +1877,16 @@ namespace RefrigtzChessPortable
                                         tt.Start();
                                         tt.Join();
                                         tt.Abort();
-                                        AllDraw.OrderPlate = -1; OrderPlate = -1;
 
-
+                                        freezBoard = true;
 
                                         Play(-1, -1);
+                                        AllDraw.OrderPlate = 1; OrderPlate = 1;
 
+                                        ArtificialInteligenceMove.UpdateIsRunning = false;
                                         RefrigtzChessPortable.AllDraw.CalIdle = 0;
 
-
+                                        freezBoard = false;
                                     }
                                     else
                               if (Com && (order == 2))
@@ -1901,8 +1901,10 @@ namespace RefrigtzChessPortable
                                         tt.Start();
                                         tt.Join();
                                         tt.Abort();
-                                        AllDraw.OrderPlate = 1; OrderPlate = 1;
+                                        AllDraw.OrderPlate = -1; OrderPlate = -1;
 
+                                        ArtificialInteligenceMove.UpdateIsRunning = true;
+                                        RefrigtzChessPortable.AllDraw.CalIdle = 1;
 
 
                                     }
@@ -1963,14 +1965,15 @@ namespace RefrigtzChessPortable
                                 tt.Join();
                                 tt.Abort();
 
-                                AllDraw.OrderPlate = -1; OrderPlate = -1;
-
+                                freezBoard = true;
 
                                 Play(-1, -1);
 
+                             
+                                AllDraw.OrderPlate = 1; OrderPlate = 1;
+                                ArtificialInteligenceMove.UpdateIsRunning = false;
                                 RefrigtzChessPortable.AllDraw.CalIdle = 0;
-
-
+                                freezBoard = false;
                             }
                             else
                               if (Com && (order == 2))
@@ -1986,7 +1989,9 @@ namespace RefrigtzChessPortable
                                 tt.Start();
                                 tt.Join();
                                 tt.Abort();
-                                AllDraw.OrderPlate = 1; OrderPlate = 1;
+                                AllDraw.OrderPlate = -1; OrderPlate = -1;
+                                ArtificialInteligenceMove.UpdateIsRunning = true;
+                                RefrigtzChessPortable.AllDraw.CalIdle = 1;
                             }
                         }
                         return 1;
@@ -2727,10 +2732,14 @@ namespace RefrigtzChessPortable
                             bool LoadTree = true;
 
 
-                            Draw.TableList.Clear();
-                            Draw.TableList.Add(CloneATable(Table));
-                            Draw.SetRowColumn(0);
-                            Draw.IsCurrentDraw = true;
+                            THISB = Draw.AStarGreedyString;
+                            if (Draw.IsAtLeastAllObjectIsNull())
+                            {
+                                Draw.TableList.Clear();
+                                Draw.TableList.Add(CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]));
+                                Draw.SetRowColumn(0);
+                                Draw.IsCurrentDraw = true;
+                            }
                             Draw.AStarGreedyString = THISB;
                             RefrigtzChessPortable.ChessRules.CurrentOrder = OrderPlate;
                             RefrigtzChessPortable.AllDraw.DepthIterative = 0;

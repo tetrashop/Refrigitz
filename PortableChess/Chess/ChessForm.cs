@@ -551,6 +551,7 @@ namespace RefrigtzChessPortable
             {
                 if (!LoadP)
                 {
+                                freezBoard = false;
                     MessageBox.Show("Wait...");
                     //var parallelOptions = new ParallelOptions();
                     //parallelOptions.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount;
@@ -1838,7 +1839,10 @@ namespace RefrigtzChessPortable
                                 {
                                     if (Com && (order == 1))
                                     {
+
+                                        freezBoard = true;
                                         MovmentsNumber++;
+                                        AllDraw.MaxAStarGreedy = 0;
 
 
                                         Table = brd.GetTable();
@@ -1869,6 +1873,7 @@ namespace RefrigtzChessPortable
                                             AllDraw.ChangedInTreeOccured = false;
 
                                         }
+                                        AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel;
                                         Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                         AllDraw.Blitz = B;
@@ -1878,21 +1883,20 @@ namespace RefrigtzChessPortable
                                         tt.Join();
                                         tt.Abort();
 
-                                        freezBoard = true;
-
+                                       
                                         Play(-1, -1);
                                         AllDraw.OrderPlate = 1; OrderPlate = 1;
 
                                         ArtificialInteligenceMove.UpdateIsRunning = false;
                                         RefrigtzChessPortable.AllDraw.CalIdle = 0;
 
-                                        freezBoard = false;
                                     }
                                     else
                               if (Com && (order == 2))
                                     {
 
                                         freezBoard = false;
+
                                         MovmentsNumber++;
                                         Table = brd.GetTable();
                                         ClearTableInitiationPreventionOfMultipleMove();
@@ -1973,8 +1977,7 @@ namespace RefrigtzChessPortable
                                 AllDraw.OrderPlate = 1; OrderPlate = 1;
                                 ArtificialInteligenceMove.UpdateIsRunning = false;
                                 RefrigtzChessPortable.AllDraw.CalIdle = 0;
-                                freezBoard = false;
-                            }
+                           }
                             else
                               if (Com && (order == 2))
                             {

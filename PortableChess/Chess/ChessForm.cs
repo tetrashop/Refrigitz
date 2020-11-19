@@ -1034,7 +1034,7 @@ namespace RefrigtzChessPortable
 
                     if (cl == 0 && k != 0 && played == order)
                     {
-                       
+                        freezBoard = false;
                         x1 = i;
                         y1 = j;
                         this.pb[i, j].BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -1873,7 +1873,7 @@ namespace RefrigtzChessPortable
                                             AllDraw.ChangedInTreeOccured = false;
 
                                         }
-                                        AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel;
+                                        AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
                                         Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                         AllDraw.Blitz = B;
@@ -1958,6 +1958,7 @@ namespace RefrigtzChessPortable
                                     AllDraw.ChangedInTreeOccured = false;
 
                                 }
+                               AllDraw.StoreInitMaxAStarGreedy =Draw.CurrentMaxLevel;
                                 Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
 
@@ -2626,7 +2627,7 @@ namespace RefrigtzChessPortable
                     return;
                 int Dummy = OrderPlate;
 
-                RefrigtzChessPortable.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel;
+                RefrigtzChessPortable.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
 
                 RefrigtzChessPortable.AllDraw THISB = Draw.AStarGreedyString;
                 RefrigtzChessPortable.AllDraw THISStore = Draw;
@@ -2697,6 +2698,8 @@ namespace RefrigtzChessPortable
                             AllDraw.ChangedInTreeOccured = false;
 
                         }
+                        AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
+
                         output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
                         output.Wait();
                         output.Dispose();

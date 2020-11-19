@@ -1376,13 +1376,13 @@ namespace Chess
                 int jj = new int();
                 if (R.CromosomRowFirst == -1 || R.CromosomColumnFirst == -1 || R.CromosomRow == -1 || R.CromosomColumn == -1)
                 {
-                    ii = AllDraw.NextRow;
-                    jj = AllDraw.NextColumn;
+                    jj = AllDraw.NextRow;
+                    ii = AllDraw.NextColumn;
                 }
                 else
                 {
-                    ii = R.CromosomRow;
-                    jj = R.CromosomColumn;
+                    jj = R.CromosomRow;
+                    ii = R.CromosomColumn;
                 }
                 
                 
@@ -1597,8 +1597,8 @@ namespace Chess
                                 }
                             }
 
-                            ii = R.CromosomRowFirst;
-                            jj = R.CromosomColumnFirst;
+                            jj = R.CromosomRowFirst;
+                            ii = R.CromosomColumnFirst;
                             i = ii;
                             j = jj;
                             

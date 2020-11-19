@@ -607,7 +607,7 @@ namespace RefrigtzDLL
 
                                 }
 
-                                Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                 AllDraw.Blitz = B;
                                 Deeperthandeeper = Store;
@@ -697,7 +697,7 @@ namespace RefrigtzDLL
 
                                 }
 
-                                Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                 AllDraw.Blitz = B;
                                 Deeperthandeeper = Store;
@@ -751,7 +751,7 @@ namespace RefrigtzDLL
 
                             }
 
-                            Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                            Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                             AllDraw.Blitz = B;
                             Deeperthandeeper = Store;
@@ -1034,7 +1034,6 @@ namespace RefrigtzDLL
 
                     if (cl == 0 && k != 0 && played == order)
                     {
-                        freezBoard = false;
                         x1 = i;
                         y1 = j;
                         this.pb[i, j].BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -1049,6 +1048,7 @@ namespace RefrigtzDLL
                     }
                     if (cl == 1)
                     {
+                        freezBoard = false;
                         Board b = new Board();
                         int m = brd.getInfo(x1, y1);
                         King king2 = new King(order, x1, y1);
@@ -1870,7 +1870,7 @@ namespace RefrigtzDLL
                                             AllDraw.ChangedInTreeOccured = false;
 
                                         }
-                                        Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                        Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                         AllDraw.Blitz = B;
 
@@ -1952,7 +1952,7 @@ namespace RefrigtzDLL
                                     AllDraw.ChangedInTreeOccured = false;
 
                                 }
-                                Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
 
 
@@ -2485,7 +2485,7 @@ namespace RefrigtzDLL
                                     Draw.AStarGreedyString = thiB;
 
 
-                                    output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]), Ord, false, FOUND, 0));
+                                    output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]), Ord, false, FOUND, 0));
                                     output.Wait();
                                     output.Dispose();
                                 }
@@ -2504,7 +2504,7 @@ namespace RefrigtzDLL
                                     Draw.AStarGreedyString = thiB;
 
 
-                                    output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
+                                    output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
                                     output.Wait();
                                     output.Dispose();
                                 }
@@ -2669,7 +2669,7 @@ namespace RefrigtzDLL
                             AllDraw.ChangedInTreeOccured = false;
 
                         }
-                        output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(0, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
+                        output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
                         output.Wait();
                         output.Dispose();
                         AllDraw.Blitz = B;

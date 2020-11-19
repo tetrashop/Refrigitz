@@ -8,7 +8,7 @@ using System.Drawing;
 using RefrigtzChessPortable;
 
 public class ArtificialInteligenceMove
-{	public static bool UpdateIsRunning=false; 
+{	public static bool UpdateIsRunning=true; 
 	public static ArtificialInteligenceMove tta;
 	int LevelMul=1;
 	int Order=1;
@@ -66,7 +66,7 @@ public class ArtificialInteligenceMove
                             AllDraw.MaxAStarGreedy = AllDraw.PlatformHelperProcessorCount * LevelMul;
                             AllDraw.StoreInitMaxAStarGreedy =t.Draw.CurrentMaxLevel;AllDraw.MaxAStarGreedy = 0;
 
-                            var arrayA =Task.Factory.StartNew(() =>	t.Draw.InitiateAStarGreedyt(0,1, 4,OrderColor(t.Draw.OrderP), CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
+                            var arrayA =Task.Factory.StartNew(() =>	t.Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy,1, 4,OrderColor(t.Draw.OrderP), CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
 							//var arrayA =Task.Factory.StartNew(() =>	t.Play(-1,-1));
                             arrayA.Wait();
 							object i=new object();
@@ -116,7 +116,7 @@ public class ArtificialInteligenceMove
                   
                         AllDraw.IdleInWork=true;
 						IdleProgress=true;
-                        
+                        UpdateIsRunning = false;
                     }
 				}
 				} while(AllDraw.CalIdle!=3);

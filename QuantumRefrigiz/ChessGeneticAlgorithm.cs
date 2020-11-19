@@ -444,18 +444,19 @@ namespace QuantumRefrigiz
                         {
                             if (Cromosom2[j, i] > 0 && Cromosom1[j, i] <= 0)
                             {
-                                CromosomRow = j;
-                                CromosomColumn = i;
+                                CromosomRowFirst = j;
+                                CromosomColumnFirst = i;
                                 Find = true;
                                 FindNumber++;
 
+                                Ki = Cromosom1[j, i];
                             }
 
                             else
                             if (Cromosom2[j, i] == 0 && Cromosom1[j, i] > 0)
                             {
-                                CromosomRowFirst = j;
-                                CromosomColumnFirst = i;
+                                CromosomRow = j;
+                                CromosomColumn = i;
                                 Find = true;
                                 FindNumber++;
 
@@ -465,19 +466,19 @@ namespace QuantumRefrigiz
                         {
                             if (Cromosom2[j, i] < 0 && Cromosom1[j, i] >= 0)
                             {
-                                CromosomRow = j;
-                                CromosomColumn = i;
+                                CromosomRowFirst = j;
+                                CromosomColumnFirst = i;
                                 Find = true;
                                 FindNumber++;
-
+                                Ki = Cromosom1[j, i];
                             }
 
                             else
                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] < 0)
                             {
-                                CromosomRowFirst = j;
-                                CromosomColumnFirst = i;
-                                Find = true;
+                                CromosomRow = j;
+                                CromosomColumn = i;
+                                 Find = true;
                                 FindNumber++;
 
                             }

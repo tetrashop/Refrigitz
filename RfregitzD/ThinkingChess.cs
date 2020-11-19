@@ -9493,7 +9493,7 @@ th.Dispose();
             for (var jj = 0; jj < AStarGreedy[k].KingOnTable[m].KingThinking[0].TableListKing.Count; jj++)
             {
                 int hav = HaveKilled;
-                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHeuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref hav));
+                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHeuristicCalculartor(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, Order * -1, ref hav));
                 th.Wait();
                 th.Dispose();
                 HaveKilled = hav;
@@ -9509,7 +9509,7 @@ th.Dispose();
             for (var jj = 0; jj < AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0].TableListCastling.Count; jj++)
             {
                 int hav = HaveKilled;
-                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0].ReturnHeuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref hav));
+                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0].ReturnHeuristicCalculartor(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, Order * -1, ref hav));
                 th.Wait();
                 th.Dispose();
                 HaveKilled = hav;
@@ -9525,7 +9525,7 @@ th.Dispose();
             for (var jj = 0; jj < AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].TableListMinister.Count; jj++)
             {
                 int hav = HaveKilled;
-                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHeuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref hav));
+                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHeuristicCalculartor(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, Order * -1, ref hav));
                 th.Wait();
                 th.Dispose();
                 HaveKilled = hav;
@@ -9541,7 +9541,7 @@ th.Dispose();
             for (var jj = 0; jj < AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].TableListCastle.Count; jj++)
             {
                 int hav = HaveKilled;
-                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHeuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref hav));
+                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHeuristicCalculartor(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, Order * -1, ref hav));
                 th.Wait();
                 th.Dispose();
                 HaveKilled = hav;
@@ -9557,7 +9557,7 @@ th.Dispose();
             for (var jj = 0; jj < AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].TableListHourse.Count; jj++)
             {
                 int hav = HaveKilled;
-                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHeuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref hav));
+                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHeuristicCalculartor(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, Order * -1, ref hav));
                 th.Wait();
                 th.Dispose();
                 HaveKilled = hav;
@@ -9574,7 +9574,7 @@ th.Dispose();
             for (var jj = 0; jj < AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].TableListElefant.Count; jj++)
             {
                 int hav = HaveKilled;
-                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHeuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref hav));
+                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHeuristicCalculartor(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, Order * -1, ref hav));
                 th.Wait();
                 th.Dispose();
                 HaveKilled = hav;
@@ -9592,7 +9592,7 @@ th.Dispose();
             for (var jj = 0; jj < AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].TableListSolder.Count; jj++)
             {
                 int hav = HaveKilled;
-                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHeuristicCalculartor(++iAstarGready, ii, jj, Order * -1, ref hav));
+                var th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHeuristicCalculartor(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, Order * -1, ref hav));
                 th.Wait();
                 th.Dispose();
                 HaveKilled = hav;
@@ -9726,10 +9726,11 @@ th.Dispose();
         //main insider method for manage Heuristic count
         public int ReturnHeuristicCalculartor(int iAstarGready, int ii, int j, int Order, ref int HaveKilled)
         {
-            int BOUND = 0;
-            if (iAstarGready > AllDraw.MaxAStarGreedy)
+            if (iAstarGready > PlatformHelper.ProcessorCount)
                 return 0;
             iAstarGready++;
+            int BOUND = 0;
+            
             Object O = new Object();
             lock (O)
             {

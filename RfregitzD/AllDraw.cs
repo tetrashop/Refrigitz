@@ -20318,7 +20318,7 @@ namespace RefrigtzDLL
                         if (NumberOfnewMove == 0)
                         {
                             UsedRestrictedMoveBlitzAndFull = false;
-                            array1 = Task.Factory.StartNew(() => Do = this.FullGameThinkingTree((Ord, , PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
+                            array1 = Task.Factory.StartNew(() => Do = this.FullGameThinkingTree(Ord,  PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
                             array1.Wait();
                             array1.Dispose();
                         }

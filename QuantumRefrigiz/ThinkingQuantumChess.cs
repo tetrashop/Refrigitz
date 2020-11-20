@@ -9907,8 +9907,20 @@ th.Dispose();
                 else
               if (Kind == 7 || Kind == -7)//Castling
                 {
-                    if (System.Math.Abs(i - ii) == 2 && System.Math.Abs(j - jj) == 0)
-                        Validity = true;
+                         Validity = true;
+                }
+                if (Kind != 7 && Kind != -7)//Castling
+                {
+                    if (Order == 1)
+                    {
+                        if (TableConst[i, j] != Kind)
+                            Validity = false;
+                    }
+                    else
+                    {
+                        if (TableConst[i, j] != (Kind * -1))
+                            Validity = false;
+                    }
                 }
 
                 return Validity;

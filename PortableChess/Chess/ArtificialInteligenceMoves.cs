@@ -81,7 +81,8 @@ public class ArtificialInteligenceMove
 							LevelMul++;
 							IdleProgress=false;
                             AllDraw.MaxAStarGreedy = t.Draw.CurrentMaxLevel;
-
+                            AllDraw.CalIdle = 1;
+                            ArtificialInteligenceMove.UpdateIsRunning = true;
                         }
                         while (AllDraw.CalIdle==2)
 						{

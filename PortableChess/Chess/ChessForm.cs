@@ -1882,10 +1882,10 @@ namespace RefrigtzChessPortable
                                         tt.Join();
                                         tt.Abort();
 
-                                       
-                                        Play(-1, -1);
-                                        AllDraw.OrderPlate = 1; OrderPlate = 1;
+                                        AllDraw.OrderPlate = -1; OrderPlate = -1;
 
+                                        Play(-1, -1);
+                                       
                                         ArtificialInteligenceMove.UpdateIsRunning = false;
                                         RefrigtzChessPortable.AllDraw.CalIdle = 0;
 
@@ -1904,7 +1904,7 @@ namespace RefrigtzChessPortable
                                         tt.Start();
                                         tt.Join();
                                         tt.Abort();
-                                        AllDraw.OrderPlate = -1; OrderPlate = -1;
+                                        AllDraw.OrderPlate = 1; OrderPlate = 1;
 
                                         ArtificialInteligenceMove.UpdateIsRunning = true;
                                         RefrigtzChessPortable.AllDraw.CalIdle = 1;
@@ -1969,11 +1969,12 @@ namespace RefrigtzChessPortable
                                 tt.Join();
                                 tt.Abort();
 
-                                
+                                AllDraw.OrderPlate = -1; OrderPlate = -1;
+
+
                                 Play(-1, -1);
 
                              
-                                AllDraw.OrderPlate = 1; OrderPlate = 1;
                                 ArtificialInteligenceMove.UpdateIsRunning = false;
                                 RefrigtzChessPortable.AllDraw.CalIdle = 0;
                            }
@@ -1991,7 +1992,7 @@ namespace RefrigtzChessPortable
                                 tt.Start();
                                 tt.Join();
                                 tt.Abort();
-                                AllDraw.OrderPlate = -1; OrderPlate = -1;
+                                AllDraw.OrderPlate = 1; OrderPlate = 1;
                                 ArtificialInteligenceMove.UpdateIsRunning = true;
                                 RefrigtzChessPortable.AllDraw.CalIdle = 1;
                             }

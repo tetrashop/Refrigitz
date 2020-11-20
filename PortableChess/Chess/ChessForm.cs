@@ -784,7 +784,7 @@ namespace RefrigtzChessPortable
                 }
                 else
                 {
-                    ii =7- R.CromosomRow;
+                    ii = R.CromosomRow;
                     jj = R.CromosomColumn;
                 }
 
@@ -792,7 +792,7 @@ namespace RefrigtzChessPortable
                 freezBoard = false;
 
 
-                Play(jj, ii);
+                Play(ii, jj);
 
                 AllDraw.NextRow = -1;
                 AllDraw.NextColumn = -1;
@@ -980,10 +980,10 @@ namespace RefrigtzChessPortable
                                 }
                             }
 
-                            ii = 7 - R.CromosomRowFirst; 
+                            ii = R.CromosomRowFirst; 
                             jj = R.CromosomColumnFirst;
-                            i = jj;
-                            j = ii;
+                            i = ii;
+                            j = jj;
 
                             k = brd.getInfo(i, j);
                             //if (k == 0)

@@ -2780,7 +2780,13 @@ namespace RefrigtzChessPortable
                 Logger y = new Logger(AllDrawReplacement);
 
                 y = new Logger(AllDrawKindString);
-
+                if(File.Exists(AllDrawReplacement)){
+                    if (AllDraw.HarasAct)
+                    {
+                        AllDraw.HarasAct = false;
+                        File.Delete(AllDrawReplacement);
+                    }
+                }
                 if (!NotFoundBegin)
                 {
                     if (File.Exists(AllDrawKindString))

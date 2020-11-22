@@ -54,6 +54,7 @@ namespace RefrigtzDLL
     [Serializable]
     public class AllDraw//: IDisposable
     {
+        public static bool HarasAct = false;
         public static int StoreInitMaxAStarGreedy = 0;
         public static bool SStopInitMaxAStarGreedy = false;
         //justicce height
@@ -13297,6 +13298,7 @@ namespace RefrigtzDLL
         bool Lose(int Kind, int i, int j, int Order)
         {
             bool Is = false;
+            HarasAlphaBeta(i, j, Kind);
             if (Kind == 1)
             {
 
@@ -20188,6 +20190,142 @@ namespace RefrigtzDLL
             return true;
         }
 
+        bool HarasAlphaBeta(int i, int j, int kindA)
+        {
+
+            bool Act = false;
+            if (CurrentMaxLevel >= 2)
+            {
+
+                if (kindA == 1)
+                {
+
+                    if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy != null)
+                    {
+                        if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count > j)
+                        {
+                            if (SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                            {
+                                HarasAct = true; Act = true;
+                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j] = null;
+                            }
+                        }
+
+
+                    }
+                }
+                else
+                if (kindA == 2)
+                {
+
+                    if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null)
+                    {
+                        if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count > j)
+                        {
+                            if (ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
+                            {
+                                HarasAct = true; Act = true;
+                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j] = null;
+                            }
+                        }
+
+
+                    }
+                }
+                else
+                if (kindA == 3)
+                {
+
+                    if (HoursesOnTable[i].HourseThinking[0].AStarGreedy != null)
+                    {
+                        if (HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count > j)
+                        {
+                            if (HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                            {
+                                HarasAct = true; Act = true;
+                                HoursesOnTable[i].HourseThinking[0].AStarGreedy[j] = null;
+                            }
+                        }
+
+
+                    }
+                }
+                else
+                     if (kindA == 4)
+                {
+
+                    if (CastlesOnTable[i].CastleThinking[0].AStarGreedy != null)
+                    {
+                        if (CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count > j)
+                        {
+                            if (CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                            {
+                                HarasAct = true; Act = true;
+                                CastlesOnTable[i].CastleThinking[0].AStarGreedy[j] = null;
+                            }
+                        }
+
+
+                    }
+                }
+                else
+                if (kindA == 5)
+                {
+
+                    if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null)
+                    {
+                        if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count > j)
+                        {
+                            if (MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
+                            {
+                                HarasAct = true; Act = true;
+                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j] = null;
+                            }
+                        }
+
+
+                    }
+                }
+                else
+                if (kindA == 6)
+                {
+
+                    if (KingOnTable[i].KingThinking[0].AStarGreedy != null)
+                    {
+                        if (KingOnTable[i].KingThinking[0].AStarGreedy.Count > j)
+                        {
+                            if (KingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                            {
+                                HarasAct = true; Act = true;
+                                KingOnTable[i].KingThinking[0].AStarGreedy[j] = null;
+                            }
+                        }
+
+
+                    }
+                }
+                else
+                if (kindA == 7 || kindA == -7)
+                {
+
+                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                    {
+                        if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                        {
+                            if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                            {
+                                HarasAct = true; Act = true;
+                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] = null;
+                            }
+                        }
+
+
+                    }
+                }
+
+            }
+            return Act; ;
+        }
         //computational initiation
         public AllDraw InitiateAStarGreedyt(int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
             )

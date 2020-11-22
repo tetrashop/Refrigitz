@@ -11806,6 +11806,8 @@ namespace RefrigtzChessPortable
         }
         bool IsSupHuTrue(int i, int j, int k, int Kind)
         {
+            HarasAlphaBeta(i, k, Kind);
+
             bool Is = false;
             if (!AllowedSupTrue)
             {

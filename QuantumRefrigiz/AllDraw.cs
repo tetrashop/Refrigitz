@@ -20214,6 +20214,8 @@ namespace QuantumRefrigiz
 
 
                     }
+                    else
+                        return Act;
                 }
                 else
                 if (kindA == 2)
@@ -20232,6 +20234,9 @@ namespace QuantumRefrigiz
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                 if (kindA == 3)
@@ -20250,6 +20255,9 @@ namespace QuantumRefrigiz
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                      if (kindA == 4)
@@ -20268,6 +20276,9 @@ namespace QuantumRefrigiz
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                 if (kindA == 5)
@@ -20286,6 +20297,9 @@ namespace QuantumRefrigiz
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                 if (kindA == 6)
@@ -20304,6 +20318,9 @@ namespace QuantumRefrigiz
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                 if (kindA == 7 || kindA == -7)
@@ -20322,6 +20339,9 @@ namespace QuantumRefrigiz
 
 
                     }
+                    else
+                        return Act;
+
                 }
 
             }
@@ -20341,7 +20361,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1);
+                                        Act = Act || SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1);
                                     }
 
 
@@ -20370,7 +20390,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2);
+                                        Act = Act || ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2);
                                     }
 
 
@@ -20398,7 +20418,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3);
+                                        Act = Act || HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3);
                                     }
 
 
@@ -20426,7 +20446,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4);
+                                        Act = Act || CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4);
                                     }
 
 
@@ -20454,7 +20474,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5);
+                                        Act = Act || MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5);
                                     }
 
 
@@ -20482,7 +20502,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < KingOnTable[p].KingThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
+                                        Act = Act || KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
                                     }
 
 
@@ -20510,7 +20530,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7);
+                                        Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7);
                                     }
 
 

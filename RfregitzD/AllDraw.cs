@@ -20215,6 +20215,8 @@ namespace RefrigtzDLL
 
 
                     }
+                    else
+                        return Act;
                 }
                 else
                 if (kindA == 2)
@@ -20233,6 +20235,9 @@ namespace RefrigtzDLL
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                 if (kindA == 3)
@@ -20251,6 +20256,9 @@ namespace RefrigtzDLL
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                      if (kindA == 4)
@@ -20269,6 +20277,9 @@ namespace RefrigtzDLL
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                 if (kindA == 5)
@@ -20287,6 +20298,9 @@ namespace RefrigtzDLL
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                 if (kindA == 6)
@@ -20305,6 +20319,9 @@ namespace RefrigtzDLL
 
 
                     }
+                    else
+                        return Act;
+
                 }
                 else
                 if (kindA == 7 || kindA == -7)
@@ -20323,6 +20340,9 @@ namespace RefrigtzDLL
 
 
                     }
+                    else
+                        return Act;
+
                 }
 
             }
@@ -20342,7 +20362,7 @@ namespace RefrigtzDLL
                                 {
                                     for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1);
+                                        Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1);
                                     }
 
 
@@ -20371,7 +20391,7 @@ namespace RefrigtzDLL
                                 {
                                     for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2);
+                                        Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2);
                                     }
 
 
@@ -20399,7 +20419,7 @@ namespace RefrigtzDLL
                                 {
                                     for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3);
+                                        Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3);
                                     }
 
 
@@ -20427,7 +20447,7 @@ namespace RefrigtzDLL
                                 {
                                     for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4);
+                                        Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4);
                                     }
 
 
@@ -20455,8 +20475,9 @@ namespace RefrigtzDLL
                                 {
                                     for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5);
+                                        Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5);
                                     }
+
 
                                 }
                             }
@@ -20482,7 +20503,7 @@ namespace RefrigtzDLL
                                 {
                                     for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        KingOnTable[p].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
+                                        Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
                                     }
 
 
@@ -20510,7 +20531,7 @@ namespace RefrigtzDLL
                                 {
                                     for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7);
+                                        Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7);
                                     }
 
 

@@ -11806,7 +11806,7 @@ namespace QuantumRefrigiz
         }
         bool IsSupHuTrue(int i, int j, int k, int Kind)
         {
-            HarasAlphaBeta(i, k, Kind);
+            //HarasAlphaBeta(i, k, Kind);
 
             bool Is = false;
             if (!AllowedSupTrue)
@@ -13300,7 +13300,7 @@ namespace QuantumRefrigiz
         bool Lose(int Kind, int i, int j, int Order)
         {
             bool Is = false;
-            HarasAlphaBeta(i, j, Kind);
+            //HarasAlphaBeta(i, j, Kind);
             if (Kind == 1)
             {
 
@@ -20191,7 +20191,7 @@ namespace QuantumRefrigiz
             }
             return true;
         }
-        bool HarasAlphaBeta(int i, int j, int kindA)
+        public bool HarasAlphaBeta(int i, int j, int kindA)
         {
 
             bool Act = false;
@@ -20323,6 +20323,203 @@ namespace QuantumRefrigiz
 
                     }
                 }
+
+            }
+            for (int p = 0; p < SodierHigh; i++)
+            {
+                if (SolderesOnTable != null)
+                {
+                    if (SolderesOnTable[p] != null)
+                    {
+
+                        if (SolderesOnTable[p].SoldierThinkingQuantum != null)
+                        {
+                            if (SolderesOnTable[p].SoldierThinkingQuantum[0] != null)
+                            {
+
+                                if (SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy != null)
+                                {
+                                    for (int k = 0; k < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
+                                    {
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1);
+                                    }
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            }
+
+            for (int p = 0; p < ElefantHigh; i++)
+            {
+                if (ElephantOnTable != null)
+                {
+                    if (ElephantOnTable[p] != null)
+                    {
+
+                        if (ElephantOnTable[p].ElefantThinkingQuantum != null)
+                        {
+                            if (ElephantOnTable[p].ElefantThinkingQuantum[0] != null)
+                            {
+
+                                if (ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy != null)
+                                {
+                                    for (int k = 0; k < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
+                                    {
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2);
+                                    }
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            }
+            for (int p = 0; p < HourseHight; i++)
+            {
+                if (HoursesOnTable != null)
+                {
+                    if (HoursesOnTable[p] != null)
+                    {
+
+                        if (HoursesOnTable[p].HourseThinkingQuantum != null)
+                        {
+                            if (HoursesOnTable[p].HourseThinkingQuantum[0] != null)
+                            {
+
+                                if (HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy != null)
+                                {
+                                    for (int k = 0; k < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
+                                    {
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3);
+                                    }
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            }
+            for (int p = 0; p < CastleHigh; i++)
+            {
+                if (CastlesOnTable != null)
+                {
+                    if (CastlesOnTable[p] != null)
+                    {
+
+                        if (CastlesOnTable[p].CastleThinkingQuantum != null)
+                        {
+                            if (CastlesOnTable[p].CastleThinkingQuantum[0] != null)
+                            {
+
+                                if (CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy != null)
+                                {
+                                    for (int k = 0; k < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
+                                    {
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4);
+                                    }
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            }
+            for (int p = 0; p < MinisterHigh; i++)
+            {
+                if (MinisterOnTable != null)
+                {
+                    if (MinisterOnTable[p] != null)
+                    {
+
+                        if (MinisterOnTable[p].MinisterThinkingQuantum != null)
+                        {
+                            if (MinisterOnTable[p].MinisterThinkingQuantum[0] != null)
+                            {
+
+                                if (MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy != null)
+                                {
+                                    for (int k = 0; k < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
+                                    {
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5);
+                                    }
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            }
+            for (int p = 0; p < KingHigh; i++)
+            {
+                if (KingOnTable != null)
+                {
+                    if (KingOnTable[p] != null)
+                    {
+
+                        if (KingOnTable[p].KingThinkingQuantum != null)
+                        {
+                            if (KingOnTable[p].KingThinkingQuantum[0] != null)
+                            {
+
+                                if (KingOnTable[p].KingThinkingQuantum[0].AStarGreedy != null)
+                                {
+                                    for (int k = 0; k < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; k++)
+                                    {
+                                        KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
+                                    }
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            }
+            for (int p = 0; p < 1; i++)
+            {
+                if (CastlingOnTable != null)
+                {
+                    if (CastlingOnTable[p] != null)
+                    {
+
+                        if (CastlingOnTable[p].CastlingThinking != null)
+                        {
+                            if (CastlingOnTable[p].CastlingThinking[0] != null)
+                            {
+
+                                if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
+                                {
+                                    for (int k = 0; k < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; k++)
+                                    {
+                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7);
+                                    }
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+
 
             }
             return Act; ;

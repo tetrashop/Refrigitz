@@ -608,9 +608,10 @@ namespace RefrigtzDLL
 
                             }
                             else
-                            {
+                            {   
                                 FOUND = false;
                                 Draw = y.t;
+                                Draw.HarasAlphaBeta(0, 0, -1);
                                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                                 arr.Start();
                                 arr.Join();
@@ -702,6 +703,7 @@ namespace RefrigtzDLL
                             {
                                 FOUND = false;
                                 Draw = y.t;
+                                Draw.HarasAlphaBeta(0, 0, -1);
                                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                                 arr.Start();
                                 arr.Join();

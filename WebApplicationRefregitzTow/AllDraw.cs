@@ -20338,9 +20338,9 @@ namespace RefrigtzW
 
                                 if (SolderesOnTable[p].SoldierThinking[0].AStarGreedy != null)
                                 {
-                                    for (int k = 0; k < SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count; k++)
+                                    for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        SolderesOnTable[i].SoldierThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1);
+                                        SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1);
                                     }
 
 
@@ -20367,9 +20367,9 @@ namespace RefrigtzW
 
                                 if (ElephantOnTable[p].ElefantThinking[0].AStarGreedy != null)
                                 {
-                                    for (int k = 0; k < ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count; k++)
+                                    for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        ElephantOnTable[i].ElefantThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2);
+                                        ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2);
                                     }
 
 
@@ -20395,9 +20395,9 @@ namespace RefrigtzW
 
                                 if (HoursesOnTable[p].HourseThinking[0].AStarGreedy != null)
                                 {
-                                    for (int k = 0; k < HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count; k++)
+                                    for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        HoursesOnTable[i].HourseThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3);
+                                        HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3);
                                     }
 
 
@@ -20423,9 +20423,9 @@ namespace RefrigtzW
 
                                 if (CastlesOnTable[p].CastleThinking[0].AStarGreedy != null)
                                 {
-                                    for (int k = 0; k < CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count; k++)
+                                    for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        CastlesOnTable[i].CastleThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4);
+                                        CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4);
                                     }
 
 
@@ -20451,11 +20451,10 @@ namespace RefrigtzW
 
                                 if (MinisterOnTable[p].MinisterThinking[0].AStarGreedy != null)
                                 {
-                                    for (int k = 0; k < MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count; k++)
+                                    for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        MinisterOnTable[i].MinisterThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5);
+                                        MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5);
                                     }
-
 
                                 }
                             }
@@ -20472,16 +20471,16 @@ namespace RefrigtzW
                     if (KingOnTable[p] != null)
                     {
 
-                        if (KingOnTable[p].KingThinking  != null)
+                        if (KingOnTable[p].KingThinking != null)
                         {
                             if (KingOnTable[p].KingThinking[0] != null)
                             {
 
                                 if (KingOnTable[p].KingThinking[0].AStarGreedy != null)
                                 {
-                                    for (int k = 0; k < KingOnTable[i].KingThinking[0].AStarGreedy.Count; k++)
+                                    for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        KingOnTable[i].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
+                                        KingOnTable[p].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
                                     }
 
 
@@ -20507,9 +20506,9 @@ namespace RefrigtzW
 
                                 if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
                                 {
-                                    for (int k = 0; k < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; k++)
+                                    for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7);
+                                        CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7);
                                     }
 
 

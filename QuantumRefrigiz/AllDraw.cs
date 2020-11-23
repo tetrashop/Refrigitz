@@ -20208,7 +20208,7 @@ namespace QuantumRefrigiz
                             if (SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j] = null;
+                                SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20226,7 +20226,7 @@ namespace QuantumRefrigiz
                             if (ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j] = null;
+                                ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20244,7 +20244,7 @@ namespace QuantumRefrigiz
                             if (HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j] = null;
+                                HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20262,7 +20262,7 @@ namespace QuantumRefrigiz
                             if (CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j] = null;
+                                CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20280,7 +20280,7 @@ namespace QuantumRefrigiz
                             if (MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j] = null;
+                                MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20298,7 +20298,7 @@ namespace QuantumRefrigiz
                             if (KingOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j] = null;
+                                KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20316,7 +20316,7 @@ namespace QuantumRefrigiz
                             if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] = null;
+                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].Dispose();
                             }
                         }
 

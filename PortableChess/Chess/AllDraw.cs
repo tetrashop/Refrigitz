@@ -20208,7 +20208,7 @@ namespace RefrigtzChessPortable
                             if (SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j] = null;
+                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20226,7 +20226,7 @@ namespace RefrigtzChessPortable
                             if (ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j] = null;
+                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20244,7 +20244,7 @@ namespace RefrigtzChessPortable
                             if (HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                HoursesOnTable[i].HourseThinking[0].AStarGreedy[j] = null;
+                                HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20262,7 +20262,7 @@ namespace RefrigtzChessPortable
                             if (CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                CastlesOnTable[i].CastleThinking[0].AStarGreedy[j] = null;
+                                CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20280,7 +20280,7 @@ namespace RefrigtzChessPortable
                             if (MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j] = null;
+                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20298,7 +20298,7 @@ namespace RefrigtzChessPortable
                             if (KingOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                KingOnTable[i].KingThinking[0].AStarGreedy[j] = null;
+                                KingOnTable[i].KingThinking[0].AStarGreedy[j].Dispose();
                             }
                         }
 
@@ -20316,7 +20316,7 @@ namespace RefrigtzChessPortable
                             if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
                             {
                                 HarasAct = true; Act = true;
-                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] = null;
+                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].Dispose();
                             }
                         }
 

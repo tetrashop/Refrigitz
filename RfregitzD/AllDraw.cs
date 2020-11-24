@@ -20203,39 +20203,86 @@ namespace RefrigtzDLL
 
                     if (kindA == 1)
                     {
-
-                        if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy != null)
+                        if (SolderesOnTable != null)
                         {
-                            if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count > j)
+                            if (SolderesOnTable[i] != null)
                             {
-                                if (SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                if (SolderesOnTable[i].SoldierThinking != null)
                                 {
-                                    HarasAct = true; Act = true;
-                                    SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].Dispose();
+                                    if (SolderesOnTable[i].SoldierThinking[0] != null)
+                                    {
+                                        if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy != null)
+                                        {
+                                            if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
                                 }
+                                else
+                                    return Act;
+
                             }
-
-
+                            else
+                                return Act;
                         }
                         else
                             return Act;
+
                     }
                     else
                     if (kindA == 2)
                     {
-
-                        if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null)
+                        if (ElephantOnTable != null)
                         {
-                            if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count > j)
+                            if (ElephantOnTable[i] != null)
                             {
-                                if (ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                if (ElephantOnTable[i].ElefantThinking != null)
                                 {
-                                    HarasAct = true; Act = true;
-                                    ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].Dispose();
+                                    if (ElephantOnTable[i].ElefantThinking[0] != null)
+                                    {
+                                        if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null)
+                                        {
+                                            if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
                                 }
+                                else
+                                    return Act;
+
                             }
-
-
+                            else
+                                return Act;
                         }
                         else
                             return Act;
@@ -20244,40 +20291,88 @@ namespace RefrigtzDLL
                     else
                     if (kindA == 3)
                     {
-
-                        if (HoursesOnTable[i].HourseThinking[0].AStarGreedy != null)
+                        if (HoursesOnTable != null)
                         {
-                            if (HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count > j)
+                            if (HoursesOnTable[i] != null)
                             {
-                                if (HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                if (HoursesOnTable[i].HourseThinking != null)
                                 {
-                                    HarasAct = true; Act = true;
-                                    HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].Dispose();
+                                    if (HoursesOnTable[i].HourseThinking[0] != null)
+                                    {
+                                        if (HoursesOnTable[i].HourseThinking[0].AStarGreedy != null)
+                                        {
+                                            if (HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
                                 }
+                                else
+                                    return Act;
+
                             }
-
-
+                            else
+                                return Act;
                         }
                         else
                             return Act;
+
 
                     }
                     else
                          if (kindA == 4)
                     {
 
-                        if (CastlesOnTable[i].CastleThinking[0].AStarGreedy != null)
+                        if (CastlesOnTable != null)
                         {
-                            if (CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count > j)
+                            if (CastlesOnTable[i] != null)
                             {
-                                if (CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                if (CastlesOnTable[i].CastleThinking != null)
                                 {
-                                    HarasAct = true; Act = true;
-                                    CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].Dispose();
+                                    if (CastlesOnTable[i].CastleThinking[0] != null)
+                                    {
+                                        if (CastlesOnTable[i].CastleThinking[0].AStarGreedy != null)
+                                        {
+                                            if (CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
                                 }
+                                else
+                                    return Act;
+
                             }
-
-
+                            else
+                                return Act;
                         }
                         else
                             return Act;
@@ -20287,18 +20382,42 @@ namespace RefrigtzDLL
                     if (kindA == 5)
                     {
 
-                        if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null)
+                        if (MinisterOnTable != null)
                         {
-                            if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count > j)
+                            if (MinisterOnTable[i] != null)
                             {
-                                if (MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                if (MinisterOnTable[i].MinisterThinking != null)
                                 {
-                                    HarasAct = true; Act = true;
-                                    MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].Dispose();
+                                    if (MinisterOnTable[i].MinisterThinking[0] != null)
+                                    {
+                                        if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null)
+                                        {
+                                            if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
                                 }
+                                else
+                                    return Act;
+
                             }
-
-
+                            else
+                                return Act;
                         }
                         else
                             return Act;
@@ -20308,18 +20427,42 @@ namespace RefrigtzDLL
                     if (kindA == 6)
                     {
 
-                        if (KingOnTable[i].KingThinking[0].AStarGreedy != null)
+                        if (KingOnTable != null)
                         {
-                            if (KingOnTable[i].KingThinking[0].AStarGreedy.Count > j)
+                            if (KingOnTable[i] != null)
                             {
-                                if (KingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                if (KingOnTable[i].KingThinking != null)
                                 {
-                                    HarasAct = true; Act = true;
-                                    KingOnTable[i].KingThinking[0].AStarGreedy[j].Dispose();
+                                    if (KingOnTable[i].KingThinking[0] != null)
+                                    {
+                                        if (KingOnTable[i].KingThinking[0].AStarGreedy != null)
+                                        {
+                                            if (KingOnTable[i].KingThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (KingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        KingOnTable[i].KingThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
                                 }
+                                else
+                                    return Act;
+
                             }
-
-
+                            else
+                                return Act;
                         }
                         else
                             return Act;
@@ -20329,18 +20472,42 @@ namespace RefrigtzDLL
                     if (kindA == 7 || kindA == -7)
                     {
 
-                        if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                        if (CastlingOnTable != null)
                         {
-                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                            if (CastlingOnTable[i] != null)
                             {
-                                if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                if (CastlingOnTable[i].CastlingThinking != null)
                                 {
-                                    HarasAct = true; Act = true;
-                                    CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].Dispose();
+                                    if (CastlingOnTable[i].CastlingThinking[0] != null)
+                                    {
+                                        if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                                        {
+                                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
                                 }
+                                else
+                                    return Act;
+
                             }
-
-
+                            else
+                                return Act;
                         }
                         else
                             return Act;
@@ -20357,7 +20524,7 @@ namespace RefrigtzDLL
                     lock (o)
                     {
 
-                        for (int p = 0; p < SodierHigh; i++)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
                         {
                             if (SolderesOnTable != null)
                             {
@@ -20373,32 +20540,34 @@ namespace RefrigtzDLL
                                             {
                                                 for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1);
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
                                                 }
 
 
                                             }
                                             else
-                                                continue;
+                                                return;
                                         }
                                         else
-                                            continue;
+                                            return;
 
                                     }
                                     else
-                                        continue;
+                                        return;
 
                                 }
                                 else
-                                    continue;
+                                    return;
 
                             }
                             else
-                                continue;
+                                return;
 
 
 
-                        }
+                        });
                     }
                 },
                 () =>
@@ -20407,7 +20576,7 @@ namespace RefrigtzDLL
                     Object o = new Object();
                     lock (o)
                     {
-                        for (int p = 0; p < ElefantHigh; i++)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
                         {
                             if (ElephantOnTable != null)
                             {
@@ -20423,33 +20592,36 @@ namespace RefrigtzDLL
                                             {
                                                 for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2);
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
                                                 }
 
 
                                             }
                                             else
-                                                continue;
+                                                return;
 
                                         }
                                         else
-                                            continue;
+                                            return;
 
                                     }
                                     else
-                                        continue;
+                                        return;
 
                                 }
                                 else
-                                    continue;
+                                    return;
 
                             }
                             else
-                                continue;
+                                return;
 
 
 
-                        }
+                        });
                     }
                 },
                 () =>
@@ -20457,8 +20629,9 @@ namespace RefrigtzDLL
                     Object o = new Object();
                     lock (o)
                     {
-                        for (int p = 0; p < HourseHight; i++)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
                         {
+
                             if (HoursesOnTable != null)
                             {
                                 if (HoursesOnTable[p] != null)
@@ -20473,40 +20646,44 @@ namespace RefrigtzDLL
                                             {
                                                 for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3);
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
                                                 }
 
 
                                             }
                                             else
-                                                continue;
+                                                return;
 
                                         }
                                         else
-                                            continue;
+                                            return;
 
                                     }
                                     else
-                                        continue;
+                                        return;
 
                                 }
                                 else
-                                    continue;
+                                    return;
 
                             }
                             else
-                                continue;
+                                return;
 
 
-                        }
+                        });
                     }
                 }, () =>
                 {
                     Object o = new Object();
                     lock (o)
                     {
-                        for (int p = 0; p < CastleHigh; i++)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
                         {
+
                             if (CastlesOnTable != null)
                             {
                                 if (CastlesOnTable[p] != null)
@@ -20521,33 +20698,36 @@ namespace RefrigtzDLL
                                             {
                                                 for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4);
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
                                                 }
 
 
                                             }
                                             else
-                                                continue;
+                                                return;
 
                                         }
                                         else
-                                            continue;
+                                            return;
 
                                     }
                                     else
-                                        continue;
+                                        return;
 
                                 }
                                 else
-                                    continue;
+                                    return;
 
                             }
                             else
-                                continue;
+                                return;
 
 
 
-                        }
+                        });
                     }
                 },
                 () =>
@@ -20555,8 +20735,9 @@ namespace RefrigtzDLL
                     Object o = new Object();
                     lock (o)
                     {
-                        for (int p = 0; p < MinisterHigh; i++)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
                         {
+
                             if (MinisterOnTable != null)
                             {
                                 if (MinisterOnTable[p] != null)
@@ -20571,40 +20752,43 @@ namespace RefrigtzDLL
                                             {
                                                 for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5);
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
                                                 }
 
 
                                             }
                                             else
-                                                continue;
+                                                return;
 
                                         }
                                         else
-                                            continue;
+                                            return;
 
                                     }
                                     else
-                                        continue;
+                                        return;
 
                                 }
                                 else
-                                    continue;
+                                    return;
 
                             }
                             else
-                                continue;
+                                return;
 
 
 
-                        }
+                        });
                     }
                 }, () =>
                 {
                     Object o = new Object();
                     lock (o)
                     {
-                        for (int p = 0; p < KingHigh; i++)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
                         {
                             if (KingOnTable != null)
                             {
@@ -20620,33 +20804,36 @@ namespace RefrigtzDLL
                                             {
                                                 for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
                                                 }
 
 
                                             }
                                             else
-                                                continue;
+                                                return;
 
                                         }
                                         else
-                                            continue;
+                                            return;
 
                                     }
                                     else
-                                        continue;
+                                        return;
 
                                 }
                                 else
-                                    continue;
+                                    return;
 
                             }
                             else
-                                continue;
+                                return;
 
 
 
-                        }
+                        });
                     }
                 },
                 () =>
@@ -20654,7 +20841,7 @@ namespace RefrigtzDLL
                     Object o = new Object();
                     lock (o)
                     {
-                        for (int p = 0; p < 1; i++)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
                         {
                             if (CastlingOnTable != null)
                             {
@@ -20670,32 +20857,35 @@ namespace RefrigtzDLL
                                             {
                                                 for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7);
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
                                                 }
 
 
                                             }
                                             else
-                                                continue;
+                                                return;
 
                                         }
                                         else
-                                            continue;
+                                            return;
 
                                     }
                                     else
-                                        continue;
+                                        return;
 
                                 }
                                 else
-                                    continue;
+                                    return;
 
                             }
                             else
-                                continue;
+                                return;
 
 
-                        }
+                        });
                     }
                 });
             });

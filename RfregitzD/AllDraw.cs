@@ -20378,10 +20378,24 @@ namespace RefrigtzDLL
 
 
                                             }
+                                            else
+                                                continue;
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
 
                         }
@@ -20390,7 +20404,7 @@ namespace RefrigtzDLL
                 () =>
                 {
 
-                Object o = new Object();
+                    Object o = new Object();
                     lock (o)
                     {
                         for (int p = 0; p < ElefantHigh; i++)
@@ -20414,10 +20428,25 @@ namespace RefrigtzDLL
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
 
                         }
@@ -20425,9 +20454,9 @@ namespace RefrigtzDLL
                 },
                 () =>
                 {
-                Object o = new Object();
-                lock (o)
-                {
+                    Object o = new Object();
+                    lock (o)
+                    {
                         for (int p = 0; p < HourseHight; i++)
                         {
                             if (HoursesOnTable != null)
@@ -20449,16 +20478,31 @@ namespace RefrigtzDLL
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
                         }
                     }
                 }, () =>
                 {
-                Object o = new Object();
+                    Object o = new Object();
                     lock (o)
                     {
                         for (int p = 0; p < CastleHigh; i++)
@@ -20482,10 +20526,25 @@ namespace RefrigtzDLL
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
 
                         }
@@ -20493,7 +20552,7 @@ namespace RefrigtzDLL
                 },
                 () =>
                 {
-                Object o = new Object();
+                    Object o = new Object();
                     lock (o)
                     {
                         for (int p = 0; p < MinisterHigh; i++)
@@ -20517,54 +20576,84 @@ namespace RefrigtzDLL
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
 
                         }
                     }
                 }, () =>
-                 {
-                 Object o = new Object();
-                     lock (o)
-                     {
-                         for (int p = 0; p < KingHigh; i++)
-                         {
-                             if (KingOnTable != null)
-                             {
-                                 if (KingOnTable[p] != null)
-                                 {
+                {
+                    Object o = new Object();
+                    lock (o)
+                    {
+                        for (int p = 0; p < KingHigh; i++)
+                        {
+                            if (KingOnTable != null)
+                            {
+                                if (KingOnTable[p] != null)
+                                {
 
-                                     if (KingOnTable[p].KingThinking != null)
-                                     {
-                                         if (KingOnTable[p].KingThinking[0] != null)
-                                         {
+                                    if (KingOnTable[p].KingThinking != null)
+                                    {
+                                        if (KingOnTable[p].KingThinking[0] != null)
+                                        {
 
-                                             if (KingOnTable[p].KingThinking[0].AStarGreedy != null)
-                                             {
-                                                 for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
-                                                 {
-                                                     Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
-                                                 }
-
-
-                                             }
-                                         }
-                                     }
-                                 }
-                             }
+                                            if (KingOnTable[p].KingThinking[0].AStarGreedy != null)
+                                            {
+                                                for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
+                                                {
+                                                    Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6);
+                                                }
 
 
-                         }
-                     }
-                 },
+                                            }
+                                            else
+                                                continue;
+
+                                        }
+                                        else
+                                            continue;
+
+                                    }
+                                    else
+                                        continue;
+
+                                }
+                                else
+                                    continue;
+
+                            }
+                            else
+                                continue;
+
+
+
+                        }
+                    }
+                },
                 () =>
                 {
-                Object o = new Object();
-                lock (o)
-                {
+                    Object o = new Object();
+                    lock (o)
+                    {
                         for (int p = 0; p < 1; i++)
                         {
                             if (CastlingOnTable != null)
@@ -20586,16 +20675,30 @@ namespace RefrigtzDLL
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
                         }
                     }
                 });
-              });
-
+            });
             output.Wait();
             output.Dispose();
             return Act;

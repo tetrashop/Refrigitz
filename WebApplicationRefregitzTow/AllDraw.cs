@@ -20376,10 +20376,24 @@ namespace RefrigtzW
 
 
                                             }
+                                            else
+                                                continue;
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
 
                         }
@@ -20412,10 +20426,25 @@ namespace RefrigtzW
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
 
                         }
@@ -20447,10 +20476,25 @@ namespace RefrigtzW
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
                         }
                     }
@@ -20480,10 +20524,25 @@ namespace RefrigtzW
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
 
                         }
@@ -20515,10 +20574,25 @@ namespace RefrigtzW
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
 
                         }
@@ -20549,10 +20623,25 @@ namespace RefrigtzW
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
 
                         }
@@ -20584,16 +20673,30 @@ namespace RefrigtzW
 
 
                                             }
+                                            else
+                                                continue;
+
                                         }
+                                        else
+                                            continue;
+
                                     }
+                                    else
+                                        continue;
+
                                 }
+                                else
+                                    continue;
+
                             }
+                            else
+                                continue;
+
 
                         }
                     }
                 });
             });
-
             output.Wait();
             output.Dispose();
             return Act;

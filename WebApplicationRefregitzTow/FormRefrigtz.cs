@@ -2033,6 +2033,18 @@ namespace RefrigtzW
                 AllDrawKindString = PP + AllDrawKindString;
                 y = new Logger(AllDrawKindString);
 
+                if (File.Exists(AllDrawReplacement))
+                {
+                    if (AllDraw.HarasAct)
+                        File.Delete(AllDrawReplacement);
+                }
+                if (File.Exists(AllDrawKindString))
+                {
+                    if (AllDraw.HarasAct)
+                        File.Delete(AllDrawKindString);
+
+                }
+                AllDraw.HarasAct = false;
                 if (!NotFoundBegin)
                 {
                     if (File.Exists(AllDrawKindString))

@@ -3497,11 +3497,16 @@ namespace Chess
                 if (File.Exists(AllDrawReplacement))
                 {
                     if (AllDraw.HarasAct)
-                    {
-                        AllDraw.HarasAct = false;
                         File.Delete(AllDrawReplacement);
-                    }
                 }
+                if (File.Exists(AllDrawKindString))
+                {
+                    if (AllDraw.HarasAct)
+                        File.Delete(AllDrawKindString);
+
+                }
+                AllDraw.HarasAct = false;
+
                 if (!NotFoundBegin)
                 {
                     if (File.Exists(AllDrawKindString))

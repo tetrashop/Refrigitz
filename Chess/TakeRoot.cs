@@ -124,7 +124,19 @@ namespace Refrigtz
                 Logger y = new Logger(AllDrawReplacement);
                 
                 y = new Logger(AllDrawKindString);
-                
+
+                if (File.Exists(AllDrawReplacement))
+                {
+                    if (AllDraw.HarasAct)
+                        File.Delete(AllDrawReplacement);
+                }
+                if (File.Exists(AllDrawKindString))
+                {
+                    if (AllDraw.HarasAct)
+                        File.Delete(AllDrawKindString);
+
+                }
+                AllDraw.HarasAct = false;
                 if (File.Exists(AllDrawKindString))
                 {
                     if (File.Exists(AllDrawReplacement))

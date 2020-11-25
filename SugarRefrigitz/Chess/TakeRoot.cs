@@ -99,6 +99,19 @@ namespace Refrigtz
                 y = new Logger(AllDrawKindString);
                 //y.Dispose();
 
+                if (File.Exists(AllDrawReplacement))
+                {
+                    if (RefrigtzDLL.AllDraw.HarasAct)
+                        File.Delete(AllDrawReplacement);
+                }
+                if (File.Exists(AllDrawKindString))
+                {
+                    if (RefrigtzDLL.AllDraw.HarasAct)
+                        File.Delete(AllDrawKindString);
+
+                }
+                RefrigtzDLL.AllDraw.HarasAct = false;
+
                 if (File.Exists(AllDrawKindString))
                 {
 

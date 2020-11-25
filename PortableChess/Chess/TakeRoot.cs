@@ -95,6 +95,18 @@ namespace RefrigtzChessPortable
                 y = new Logger(AllDrawKindString);
                 //y.Dispose();
 
+                if (File.Exists(AllDrawReplacement))
+                {
+                    if (AllDraw.HarasAct)
+                        File.Delete(AllDrawReplacement);
+                }
+                if (File.Exists(AllDrawKindString))
+                {
+                    if (AllDraw.HarasAct)
+                        File.Delete(AllDrawKindString);
+
+                }
+                AllDraw.HarasAct = false;
                 if (File.Exists(AllDrawKindString))
                 {
 

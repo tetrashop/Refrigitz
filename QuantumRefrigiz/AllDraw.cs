@@ -20214,7 +20214,7 @@ namespace QuantumRefrigiz
                                         {
                                             if (SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count > j)
                                             {
-                                                if (SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (SolderesOnTable[i].LoseOcuuredatChiled[0] < 0 || SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20258,7 +20258,7 @@ namespace QuantumRefrigiz
                                         {
                                             if (ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count > j)
                                             {
-                                                if (ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (ElephantOnTable[i].LoseOcuuredatChiled[0] < 0 || ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20302,7 +20302,7 @@ namespace QuantumRefrigiz
                                         {
                                             if (HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count > j)
                                             {
-                                                if (HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (HoursesOnTable[i].LoseOcuuredatChiled[0] < 0 || HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20348,7 +20348,7 @@ namespace QuantumRefrigiz
                                         {
                                             if (CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count > j)
                                             {
-                                                if (CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (CastlesOnTable[i].LoseOcuuredatChiled[0] < 0 || CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20393,7 +20393,7 @@ namespace QuantumRefrigiz
                                         {
                                             if (MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count > j)
                                             {
-                                                if (MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (MinisterOnTable[i].LoseOcuuredatChiled[0] < 0 || MinisterOnTable[i].MinisterThinkingQuantum[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20438,7 +20438,7 @@ namespace QuantumRefrigiz
                                         {
                                             if (KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count > j)
                                             {
-                                                if (KingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (KingOnTable[i].LoseOcuuredatChiled[0] < 0 || KingOnTable[i].KingThinkingQuantum[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20483,7 +20483,7 @@ namespace QuantumRefrigiz
                                         {
                                             if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
                                             {
-                                                if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)

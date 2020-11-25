@@ -20213,7 +20213,7 @@ namespace RefrigtzW
                                         {
                                             if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count > j)
                                             {
-                                                if (SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (SolderesOnTable[i].LoseOcuuredatChiled[0] < 0 || SolderesOnTable[i].SoldierThinking[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20257,7 +20257,7 @@ namespace RefrigtzW
                                         {
                                             if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count > j)
                                             {
-                                                if (ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (ElephantOnTable[i].LoseOcuuredatChiled[0] < 0 || ElephantOnTable[i].ElefantThinking[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20301,7 +20301,7 @@ namespace RefrigtzW
                                         {
                                             if (HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count > j)
                                             {
-                                                if (HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (HoursesOnTable[i].LoseOcuuredatChiled[0] < 0 || HoursesOnTable[i].HourseThinking[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20347,7 +20347,7 @@ namespace RefrigtzW
                                         {
                                             if (CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count > j)
                                             {
-                                                if (CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (CastlesOnTable[i].LoseOcuuredatChiled[0] < 0 || CastlesOnTable[i].CastleThinking[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20392,7 +20392,7 @@ namespace RefrigtzW
                                         {
                                             if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count > j)
                                             {
-                                                if (MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (MinisterOnTable[i].LoseOcuuredatChiled[0] < 0 || MinisterOnTable[i].MinisterThinking[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20437,7 +20437,7 @@ namespace RefrigtzW
                                         {
                                             if (KingOnTable[i].KingThinking[0].AStarGreedy.Count > j)
                                             {
-                                                if (KingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (KingOnTable[i].LoseOcuuredatChiled[0] < 0 || KingOnTable[i].KingThinking[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
@@ -20482,7 +20482,7 @@ namespace RefrigtzW
                                         {
                                             if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
                                             {
-                                                if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                                if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)

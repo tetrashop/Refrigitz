@@ -368,7 +368,10 @@ namespace Refrigtz
                                 if (Draw.SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
                                     tt.BackColor = Color.RosyBrown;
                                 else
-                                   if (Draw.IsCurrentDraw)
+                                if (Draw.SolderesOnTable[i].SoldierThinking[0].LoseChiled[j] < 0)                               
+                                    tt.BackColor = Color.Cyan;
+                                 else
+                                if (Draw.IsCurrentDraw)
                                     tt.BackColor = Color.Orange;
                                 else
                        if (Draw.SolderesOnTable[i].SoldierThinking[0].IsThereMateOfSelf[j])
@@ -520,7 +523,10 @@ namespace Refrigtz
                                 if (Draw.ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
                                     tt.BackColor = Color.RosyBrown;
                                 else
-                                 if (Draw.IsCurrentDraw)
+                                 if (Draw.ElephantOnTable[i].ElefantThinking[0].LoseChiled[j] < 0)
+                                    tt.BackColor = Color.Cyan;
+                                else
+                               if (Draw.IsCurrentDraw)
                                     tt.BackColor = Color.Orange;
                                 else
                            if (Draw.ElephantOnTable[i].ElefantThinking[0].IsThereMateOfSelf[j])
@@ -696,7 +702,10 @@ namespace Refrigtz
                                 if (Draw.HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
                                     tt.BackColor = Color.RosyBrown;
                                 else
-                             if (Draw.IsCurrentDraw)
+                             if (Draw.HoursesOnTable[i].HourseThinking[0].LoseChiled[j] < 0)
+                                    tt.BackColor = Color.Cyan;
+                                else
+                                if (Draw.IsCurrentDraw)
                                     tt.BackColor = Color.Orange;
                                 else
                          if (Draw.HoursesOnTable[i].HourseThinking[0].IsThereMateOfSelf[j])
@@ -873,7 +882,10 @@ namespace Refrigtz
                                 if (Draw.CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
                                     tt.BackColor = Color.RosyBrown;
                                 else
-                               if (Draw.IsCurrentDraw)
+                                 if (Draw.CastlesOnTable[i].CastleThinking[0].LoseChiled[j] < 0)
+                                    tt.BackColor = Color.Cyan;
+                                else
+                              if (Draw.IsCurrentDraw)
 
                                     tt.BackColor = Color.Orange;
                                 else
@@ -1158,6 +1170,9 @@ namespace Refrigtz
                                 if (Draw.MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
                                     tt.BackColor = Color.RosyBrown;
                                 else
+                                if (Draw.MinisterOnTable[i].MinisterThinking[0].LoseChiled[j] < 0)
+                                    tt.BackColor = Color.Cyan;
+                                else
                                if (Draw.IsCurrentDraw)
                                     tt.BackColor = Color.Orange;
                                 else
@@ -1336,7 +1351,10 @@ namespace Refrigtz
                                 if (Draw.KingOnTable[i].LoseOcuuredatChiled[0] < 0)
                                     tt.BackColor = Color.RosyBrown;
                                 else
-                                if (Draw.IsCurrentDraw)
+                                   if (Draw.KingOnTable[i].KingThinking[0].LoseChiled[j] < 0)
+                                    tt.BackColor = Color.Cyan;
+                                else
+                             if (Draw.IsCurrentDraw)
                                     tt.BackColor = Color.Orange;
                                 else
                         if (Draw.KingOnTable[i].KingThinking[0].IsThereMateOfSelf[j])
@@ -1515,7 +1533,10 @@ namespace Refrigtz
                                 if (Draw.CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
                                     tt.BackColor = Color.RosyBrown;
                                 else
-                                if (Draw.IsCurrentDraw)
+                                   if (Draw.CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] < 0)
+                                    tt.BackColor = Color.Cyan;
+                                else
+                             if (Draw.IsCurrentDraw)
                                     tt.BackColor = Color.Orange;
                                 else
                         if (Draw.CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf[j])

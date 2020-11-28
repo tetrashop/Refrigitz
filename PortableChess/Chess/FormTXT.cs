@@ -373,7 +373,10 @@ namespace Refrigtz
                                     if (Draw.SolderesOnTable[i].SoldierThinking[0].LoseChiled[j] < 0 )
                                         tt.BackColor = Color.Cyan;
                                 }
-                                 else
+                                else
+                                if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
+                                else
                        if (Draw.SolderesOnTable[i].SoldierThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
                                 else
@@ -390,9 +393,6 @@ namespace Refrigtz
                                     tt.BackColor = Color.Gray;
                                 else if (Draw.HaveKilled < 0)
                                     tt.BackColor = Color.Brown;
-                                else
-                                if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.Orange;
                                 tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].OrderP.ToString();
                                 tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].OrderP.ToString();
                                 tt.Tag = j;
@@ -531,7 +531,10 @@ namespace Refrigtz
                                     if (Draw.ElephantOnTable[i].ElefantThinking[0].LoseChiled[j] < 0)
                                         tt.BackColor = Color.Cyan;
                                 }
-                                  else
+                                else
+                               if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
+                                else
                            if (Draw.ElephantOnTable[i].ElefantThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
                                 else
@@ -548,9 +551,6 @@ namespace Refrigtz
                                     tt.BackColor = Color.Gray;
                                 else if (Draw.HaveKilled < 0)
                                     tt.BackColor = Color.Brown;
-                                else
-                               if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.Orange;
                                 tt.Text = "HeuristicElephant" + j.ToString() + "_CountHurEl:" + ReturnbCal(Draw.ElephantOnTable[i].ElefantThinking[0], 2, j).ToString() + "_MoveString:" + MoveS(Draw.ElephantOnTable[i].ElefantThinking[0], 2, j).ToString();
                                 tt.Name = "HeuristicElephant" + j.ToString() + "_CountHurEl:" + ReturnbCal(Draw.ElephantOnTable[i].ElefantThinking[0], 2, j).ToString() + "_MoveString:" + MoveS(Draw.ElephantOnTable[i].ElefantThinking[0], 2, j).ToString();
                                 tt.Tag = j;
@@ -714,6 +714,9 @@ namespace Refrigtz
                                         tt.BackColor = Color.Cyan;
                                 }
                                 else
+                                if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
+                                else
                          if (Draw.HoursesOnTable[i].HourseThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
                                 else
@@ -730,9 +733,6 @@ namespace Refrigtz
                                     tt.BackColor = Color.Gray;
                                 else if (Draw.HaveKilled < 0)
                                     tt.BackColor = Color.Brown;
-                                else
-                                if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.Orange;
                                 tt.Text = "HeuristicHourse" + j.ToString() + "_CountHurHo:" + ReturnbCal(Draw.HoursesOnTable[i].HourseThinking[0], 3, j).ToString() + "_MoveString:" + MoveS(Draw.HoursesOnTable[i].HourseThinking[0], 3, j).ToString();
                                 tt.Name = "HeuristicHourse" + j.ToString() + "_CountHurHo:" + ReturnbCal(Draw.HoursesOnTable[i].HourseThinking[0], 3, j).ToString() + "_MoveString:" + MoveS(Draw.HoursesOnTable[i].HourseThinking[0], 3, j).ToString();
                                 tt.Tag = j;
@@ -896,7 +896,11 @@ namespace Refrigtz
                                     if (Draw.CastlesOnTable[i].CastleThinking[0].LoseChiled.Count == Draw.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Count)
                                         tt.BackColor = Color.Cyan;
                                 }
-                                  else
+                                else
+                              if (Draw.IsCurrentDraw)
+
+                                    tt.BackColor = Color.Orange;
+                                else
                       if (Draw.CastlesOnTable[i].CastleThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
                                 else
@@ -913,10 +917,6 @@ namespace Refrigtz
                                     tt.BackColor = Color.Gray;
                                 else if (Draw.HaveKilled < 0)
                                     tt.BackColor = Color.Brown;
-                                else
-                              if (Draw.IsCurrentDraw)
-
-                                    tt.BackColor = Color.Orange;
                                 tt.Text = "HeuristicCastle" + j.ToString() + "_CountHurCa:" + ReturnbCal(Draw.CastlesOnTable[i].CastleThinking[0], 4, j).ToString() + "_MoveString:" + MoveS(Draw.CastlesOnTable[i].CastleThinking[0], 4, j).ToString();
                                 tt.Name = "HeuristicCastle" + j.ToString() + "_CountHurCa:" + ReturnbCal(Draw.CastlesOnTable[i].CastleThinking[0], 4, j).ToString() + "_MoveString:" + MoveS(Draw.CastlesOnTable[i].CastleThinking[0], 4, j).ToString();
                                 tt.Tag = j;
@@ -1188,6 +1188,9 @@ namespace Refrigtz
                                         tt.BackColor = Color.Cyan;
                                 }
                                 else
+                               if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
+                                else
                          if (Draw.MinisterOnTable[i].MinisterThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
                                 else
@@ -1204,9 +1207,6 @@ namespace Refrigtz
                                     tt.BackColor = Color.Gray;
                                 else if (Draw.HaveKilled < 0)
                                     tt.BackColor = Color.Brown;
-                                else
-                               if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.Orange;
                                 tt.Text = "HeuristicMinister" + j.ToString() + "_CountHurMi:" + ReturnbCal(Draw.MinisterOnTable[i].MinisterThinking[0], 5, j).ToString() + "_MoveString:" + MoveS(Draw.MinisterOnTable[i].MinisterThinking[0], 5, j).ToString();
                                 tt.Name = "HeuristicMinister" + j.ToString() + "_CountHurMi:" + ReturnbCal(Draw.MinisterOnTable[i].MinisterThinking[0], 5, j).ToString() + "_MoveString:" + MoveS(Draw.MinisterOnTable[i].MinisterThinking[0], 5, j).ToString();
                                 tt.Tag = j;
@@ -1372,6 +1372,9 @@ namespace Refrigtz
                                         tt.BackColor = Color.Cyan;
                                 }
                                 else
+                             if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
+                                else
                         if (Draw.KingOnTable[i].KingThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
                                 else
@@ -1388,9 +1391,6 @@ namespace Refrigtz
                                     tt.BackColor = Color.Gray;
                                 else if (Draw.HaveKilled < 0)
                                     tt.BackColor = Color.Brown;
-                                else
-                             if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.Orange;
                                 tt.Text = "HeuristicKing" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.KingOnTable[i].KingThinking[0], 6, j).ToString() + "_MoveString:" + MoveS(Draw.KingOnTable[i].KingThinking[0], 6, j).ToString();
                                 tt.Name = "HeuristicKing" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.KingOnTable[i].KingThinking[0], 6, j).ToString() + "_MoveString:" + MoveS(Draw.KingOnTable[i].KingThinking[0], 6, j).ToString();
                                 tt.Tag = j;

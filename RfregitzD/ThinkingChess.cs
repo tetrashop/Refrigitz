@@ -119,8 +119,12 @@ namespace RefrigtzDLL
         int RationalRegard = 10;
         int RationalPenalty = -10;
 
+#pragma warning disable CS0414 // The field 'RationalWin' is assigned but its value is never used
         int RationalWin = 1000;
+#pragma warning restore CS0414 // The field 'RationalWin' is assigned but its value is never used
+#pragma warning disable CS0414 // The field 'RationalLose' is assigned but its value is never used
         int RationalLose = -1000;
+#pragma warning restore CS0414 // The field 'RationalLose' is assigned but its value is never used
 
         public static bool FullGameAllow = false;
         readonly int iIndex = -1;
@@ -4795,10 +4799,10 @@ th.Dispose();
                     if (ab)
                     {
                         if (Order == 1 && G.CheckMateBrown)
-                            HA += RationalWin;
+                            HA += RationalRegard;
                         else
                      if (Order == 1 && G.CheckMateGray)
-                            HA += RationalLose;
+                            HA += RationalPenalty;
                     }
                 }
                 else
@@ -4812,10 +4816,10 @@ th.Dispose();
                     if (ab)
                     {
                         if (Order == -1 && G.CheckMateGray)
-                            HA += RationalWin;
+                            HA += RationalRegard;
                         else
                         if (Order == -1 && G.CheckMateBrown)
-                            HA += RationalLose;
+                            HA += RationalPenalty;
                     }
                 }
                 return HA;
@@ -4837,7 +4841,7 @@ th.Dispose();
                     H1.Wait();
                     H1.Dispose();
                     if (S1)
-                        HA += RationalWin;
+                        HA += RationalRegard;
                     else
                     {
                         bool S2 = false;
@@ -4845,7 +4849,7 @@ th.Dispose();
                         H2.Wait();
                         H2.Dispose();
                         if (S2)
-                            HA += RationalWin;
+                            HA += RationalRegard;
                         else
                         {
                             bool S3 = false;
@@ -4853,7 +4857,7 @@ th.Dispose();
                             H3.Wait();
                             H3.Dispose();
                             if (S3)
-                                HA += RationalWin;
+                                HA += RationalRegard;
                         }
                     }
                 }
@@ -4867,7 +4871,7 @@ th.Dispose();
                     H1.Wait();
                     H1.Dispose();
                     if (S1)
-                        HA += RationalWin;
+                        HA += RationalRegard;
                     else
                     {
                         bool S2 = false;
@@ -4875,7 +4879,7 @@ th.Dispose();
                         H2.Wait();
                         H2.Dispose();
                         if (S2)
-                            HA += RationalWin;
+                            HA += RationalRegard;
                         else
                         {
                             bool S3 = false;
@@ -4883,7 +4887,7 @@ th.Dispose();
                             H3.Wait();
                             H3.Dispose();
                             if (S3)
-                                HA += RationalWin;
+                                HA += RationalRegard;
                         }
                     }
                 }
@@ -4902,7 +4906,7 @@ th.Dispose();
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order, RowS, ColS);
                     G.FindBrownKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingCanMateByCloseHome(RowK, ColK, CloneATable(Table), Order))
-                        HA += RationalWin;
+                        HA += RationalRegard;
                 }
                 else
                 {
@@ -4910,7 +4914,7 @@ th.Dispose();
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order, RowS, ColS);
                     G.FindGrayKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingCanMateByCloseHome(RowK, ColK, CloneATable(Table), Order))
-                        HA += RationalWin;
+                        HA += RationalRegard;
                 }
                 return HA;
             }
@@ -4927,7 +4931,7 @@ th.Dispose();
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order, RowS, ColS);
                     G.FindBrownKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingHaveAtMostOneEmptyItemInAttack(RowK, ColK, CloneATable(Table), Order))
-                        HA += RationalWin;
+                        HA += RationalRegard;
                 }
                 else
                 {
@@ -4935,7 +4939,7 @@ th.Dispose();
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order, RowS, ColS);
                     G.FindGrayKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingHaveAtMostOneEmptyItemInAttack(RowK, ColK, CloneATable(Table), Order))
-                        HA += RationalWin;
+                        HA += RationalRegard;
                 }
                 return HA;
             }

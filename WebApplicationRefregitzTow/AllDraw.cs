@@ -20190,7 +20190,959 @@ namespace RefrigtzW
             }
             return true;
         }
-        public bool HarasAlphaBeta(int i, int j, int kindA)
+         bool NotExistChild(int i, int j, int kindA, AllDraw jungle)
+        {
+            bool Act = true;
+            Object oo = new Object();
+            lock (oo)
+            {
+                if (jungle == null)
+                    return true;
+
+                if (kindA == 1)
+                {
+
+                    if (jungle.SolderesOnTable != null)
+                    {
+                        if (jungle.SolderesOnTable[i] != null)
+                        {
+                            if (jungle.SolderesOnTable[i].SoldierThinking != null)
+                            {
+                                if (jungle.SolderesOnTable[i].SoldierThinking[0] != null)
+                                {
+                                    if (jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy != null)
+                                    {
+                                        for (int p = 0; p < jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count; p++)
+                                        {
+                                            if (ThinkingRefrigtzW.TableEqual(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j], jungle.SolderesOnTable[i].SoldierThinking[0].TableListSolder[p]))
+                                            {
+                                                Object ooo = new Object();
+                                                lock (ooo)
+                                                {
+                                                    Act = false;
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+                else
+                if (kindA == 2)
+                {
+                    if (jungle.ElephantOnTable != null)
+                    {
+                        if (jungle.ElephantOnTable[i] != null)
+                        {
+                            if (jungle.ElephantOnTable[i].ElefantThinking != null)
+                            {
+                                if (jungle.ElephantOnTable[i].ElefantThinking[0] != null)
+                                {
+                                    if (jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null)
+                                    {
+                                        for (int p = 0; p < jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count; p++)
+                                        {
+                                            if (ThinkingRefrigtzW.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], jungle.ElephantOnTable[i].ElefantThinking[0].TableListElefant[p]))
+                                            {
+                                                Object ooo = new Object();
+                                                lock (ooo)
+                                                {
+                                                    Act = false;
+
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+
+                }
+                else
+                if (kindA == 3)
+                {
+                    if (jungle.HoursesOnTable != null)
+                    {
+                        if (jungle.HoursesOnTable[i] != null)
+                        {
+                            if (jungle.HoursesOnTable[i].HourseThinking != null)
+                            {
+                                if (jungle.HoursesOnTable[i].HourseThinking[0] != null)
+                                {
+                                    if (jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy != null)
+                                    {
+                                        for (int p = 0; p < jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count; p++)
+                                        {
+                                            if (ThinkingRefrigtzW.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], jungle.HoursesOnTable[i].HourseThinking[0].TableListHourse[p]))
+                                            {
+                                                Object ooo = new Object();
+                                                lock (ooo)
+                                                {
+                                                    Act = false;
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+                else
+                     if (kindA == 4)
+                {
+
+                    if (jungle.CastlesOnTable != null)
+                    {
+                        if (jungle.CastlesOnTable[i] != null)
+                        {
+                            if (jungle.CastlesOnTable[i].CastleThinking != null)
+                            {
+                                if (jungle.CastlesOnTable[i].CastleThinking[0] != null)
+                                {
+                                    if (jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy != null)
+                                    {
+                                        for (int p = 0; p < jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count; p++)
+                                        {
+                                            if (ThinkingRefrigtzW.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], jungle.CastlesOnTable[i].CastleThinking[0].TableListCastle[p]))
+                                            {
+                                                Object ooo = new Object();
+                                                lock (ooo)
+                                                {
+                                                    Act = false;
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                else
+                if (kindA == 5)
+                {
+
+                    if (jungle.MinisterOnTable != null)
+                    {
+                        if (jungle.MinisterOnTable[i] != null)
+                        {
+                            if (jungle.MinisterOnTable[i].MinisterThinking != null)
+                            {
+                                if (jungle.MinisterOnTable[i].MinisterThinking[0] != null)
+                                {
+                                    if (jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null)
+                                    {
+                                        for (int p = 0; p < jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count; p++)
+                                        {
+                                            if (ThinkingRefrigtzW.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], jungle.MinisterOnTable[i].MinisterThinking[0].TableListMinister[p]))
+                                            {
+                                                Object ooo = new Object();
+                                                lock (ooo)
+                                                {
+                                                    Act = false;
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+                else
+                if (kindA == 6)
+                {
+
+                    if (jungle.KingOnTable != null)
+                    {
+                        if (jungle.KingOnTable[i] != null)
+                        {
+                            if (jungle.KingOnTable[i].KingThinking != null)
+                            {
+                                if (jungle.KingOnTable[i].KingThinking[0] != null)
+                                {
+                                    if (jungle.KingOnTable[i].KingThinking[0].AStarGreedy != null)
+                                    {
+                                        for (int p = 0; p < jungle.KingOnTable[i].KingThinking[0].AStarGreedy.Count; p++)
+                                        {
+                                            if (ThinkingRefrigtzW.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], jungle.KingOnTable[i].KingThinking[0].TableListKing[p]))
+                                            {
+                                                Object ooo = new Object();
+                                                lock (ooo)
+                                                {
+                                                    Act = false;
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+
+                }
+                else
+                if (kindA == 7 || kindA == -7)
+                {
+
+                    if (jungle.CastlingOnTable != null)
+                    {
+                        if (jungle.CastlingOnTable[i] != null)
+                        {
+                            if (jungle.CastlingOnTable[i].CastlingThinking != null)
+                            {
+                                if (jungle.CastlingOnTable[i].CastlingThinking[0] != null)
+                                {
+                                    if (jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                                    {
+                                        for (int p = 0; p < jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; p++)
+                                        {
+                                            if (ThinkingRefrigtzW.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListSolder[j], jungle.CastlingOnTable[i].CastlingThinking[0].TableListSolder[p]))
+                                            {
+                                                Object ooo = new Object();
+                                                lock (ooo)
+                                                {
+                                                    Act = false;
+
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+                        }
+                    }
+
+                }
+
+            }
+            return Act;
+        }
+            public bool MergeJungleTree(AllDraw jungle,int i, int j,int kindA)
+        {
+            bool Act = false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                {
+
+                    if (kindA == 1)
+                    {
+                        if (SolderesOnTable != null)
+                        {
+                            if (SolderesOnTable[i] != null)
+                            {
+                                if (SolderesOnTable[i].SoldierThinking != null)
+                                {
+                                    if (SolderesOnTable[i].SoldierThinking[0] != null)
+                                    {
+                                        if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy != null)
+                                        {
+                                            if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (NotExistChild(i, j, kindA, jungle))
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+                        }
+                        else
+                            return Act;
+
+                    }
+                    else
+                    if (kindA == 2)
+                    {
+                        if (ElephantOnTable != null)
+                        {
+                            if (ElephantOnTable[i] != null)
+                            {
+                                if (ElephantOnTable[i].ElefantThinking != null)
+                                {
+                                    if (ElephantOnTable[i].ElefantThinking[0] != null)
+                                    {
+                                        if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null)
+                                        {
+                                            if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (NotExistChild(i, j, kindA, jungle))
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+                        }
+                        else
+                            return Act;
+
+                    }
+                    else
+                    if (kindA == 3)
+                    {
+                        if (HoursesOnTable != null)
+                        {
+                            if (HoursesOnTable[i] != null)
+                            {
+                                if (HoursesOnTable[i].HourseThinking != null)
+                                {
+                                    if (HoursesOnTable[i].HourseThinking[0] != null)
+                                    {
+                                        if (HoursesOnTable[i].HourseThinking[0].AStarGreedy != null)
+                                        {
+                                            if (HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (NotExistChild(i, j, kindA, jungle))
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+                        }
+                        else
+                            return Act;
+
+
+                    }
+                    else
+                         if (kindA == 4)
+                    {
+
+                        if (CastlesOnTable != null)
+                        {
+                            if (CastlesOnTable[i] != null)
+                            {
+                                if (CastlesOnTable[i].CastleThinking != null)
+                                {
+                                    if (CastlesOnTable[i].CastleThinking[0] != null)
+                                    {
+                                        if (CastlesOnTable[i].CastleThinking[0].AStarGreedy != null)
+                                        {
+                                            if (CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (NotExistChild(i, j, kindA, jungle))
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+                        }
+                        else
+                            return Act;
+
+                    }
+                    else
+                    if (kindA == 5)
+                    {
+
+                        if (MinisterOnTable != null)
+                        {
+                            if (MinisterOnTable[i] != null)
+                            {
+                                if (MinisterOnTable[i].MinisterThinking != null)
+                                {
+                                    if (MinisterOnTable[i].MinisterThinking[0] != null)
+                                    {
+                                        if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null)
+                                        {
+                                            if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (NotExistChild(i, j, kindA, jungle))
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+                        }
+                        else
+                            return Act;
+
+                    }
+                    else
+                    if (kindA == 6)
+                    {
+
+                        if (KingOnTable != null)
+                        {
+                            if (KingOnTable[i] != null)
+                            {
+                                if (KingOnTable[i].KingThinking != null)
+                                {
+                                    if (KingOnTable[i].KingThinking[0] != null)
+                                    {
+                                        if (KingOnTable[i].KingThinking[0].AStarGreedy != null)
+                                        {
+                                            if (KingOnTable[i].KingThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (NotExistChild(i, j, kindA, jungle))
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        KingOnTable[i].KingThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+                        }
+                        else
+                            return Act;
+
+                    }
+                    else
+                    if (kindA == 7 || kindA == -7)
+                    {
+
+                        if (CastlingOnTable != null)
+                        {
+                            if (CastlingOnTable[i] != null)
+                            {
+                                if (CastlingOnTable[i].CastlingThinking != null)
+                                {
+                                    if (CastlingOnTable[i].CastlingThinking[0] != null)
+                                    {
+                                        if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                                        {
+                                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                                            {
+                                                if (NotExistChild(i, j, kindA, jungle))
+                                                {
+                                                    Object ooo = new Object();
+                                                    lock (ooo)
+                                                    {
+                                                        HarasAct = true; Act = true;
+                                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].Dispose();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                            return Act;
+                                    }
+                                    else
+                                        return Act;
+
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+                        }
+                        else
+                            return Act;
+
+                    }
+
+                }
+            }
+            var output = Task.Factory.StartNew(() =>
+            {
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                {
+                    Object o = new Object();
+                    lock (o)
+                    {
+
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
+                        {
+                            if (SolderesOnTable != null)
+                            {
+                                if (SolderesOnTable[p] != null)
+                                {
+
+                                    if (SolderesOnTable[p].SoldierThinking != null)
+                                    {
+                                        if (SolderesOnTable[p].SoldierThinking[0] != null)
+                                        {
+
+                                            if (SolderesOnTable[p].SoldierThinking[0].AStarGreedy != null)
+                                            {
+                                                for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
+                                                {
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 1));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+                                                }
+
+
+                                            }
+                                            else
+                                                return;
+                                        }
+                                        else
+                                            return;
+
+                                    }
+                                    else
+                                        return;
+
+                                }
+                                else
+                                    return;
+
+                            }
+                            else
+                                return;
+
+
+
+                        });
+                    }
+                },
+                () =>
+                {
+
+                    Object o = new Object();
+                    lock (o)
+                    {
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
+                        {
+                            if (ElephantOnTable != null)
+                            {
+                                if (ElephantOnTable[p] != null)
+                                {
+
+                                    if (ElephantOnTable[p].ElefantThinking != null)
+                                    {
+                                        if (ElephantOnTable[p].ElefantThinking[0] != null)
+                                        {
+
+                                            if (ElephantOnTable[p].ElefantThinking[0].AStarGreedy != null)
+                                            {
+                                                for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
+                                                {
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 2));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
+                                                }
+
+
+                                            }
+                                            else
+                                                return;
+
+                                        }
+                                        else
+                                            return;
+
+                                    }
+                                    else
+                                        return;
+
+                                }
+                                else
+                                    return;
+
+                            }
+                            else
+                                return;
+
+
+
+                        });
+                    }
+                },
+                () =>
+                {
+                    Object o = new Object();
+                    lock (o)
+                    {
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
+                        {
+
+                            if (HoursesOnTable != null)
+                            {
+                                if (HoursesOnTable[p] != null)
+                                {
+
+                                    if (HoursesOnTable[p].HourseThinking != null)
+                                    {
+                                        if (HoursesOnTable[p].HourseThinking[0] != null)
+                                        {
+
+                                            if (HoursesOnTable[p].HourseThinking[0].AStarGreedy != null)
+                                            {
+                                                for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
+                                                {
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 3));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
+                                                }
+
+
+                                            }
+                                            else
+                                                return;
+
+                                        }
+                                        else
+                                            return;
+
+                                    }
+                                    else
+                                        return;
+
+                                }
+                                else
+                                    return;
+
+                            }
+                            else
+                                return;
+
+
+                        });
+                    }
+                }, () =>
+                {
+                    Object o = new Object();
+                    lock (o)
+                    {
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
+                        {
+
+                            if (CastlesOnTable != null)
+                            {
+                                if (CastlesOnTable[p] != null)
+                                {
+
+                                    if (CastlesOnTable[p].CastleThinking != null)
+                                    {
+                                        if (CastlesOnTable[p].CastleThinking[0] != null)
+                                        {
+
+                                            if (CastlesOnTable[p].CastleThinking[0].AStarGreedy != null)
+                                            {
+                                                for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
+                                                {
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 4));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
+                                                }
+
+
+                                            }
+                                            else
+                                                return;
+
+                                        }
+                                        else
+                                            return;
+
+                                    }
+                                    else
+                                        return;
+
+                                }
+                                else
+                                    return;
+
+                            }
+                            else
+                                return;
+
+
+
+                        });
+                    }
+                },
+                () =>
+                {
+                    Object o = new Object();
+                    lock (o)
+                    {
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
+                        {
+
+                            if (MinisterOnTable != null)
+                            {
+                                if (MinisterOnTable[p] != null)
+                                {
+
+                                    if (MinisterOnTable[p].MinisterThinking != null)
+                                    {
+                                        if (MinisterOnTable[p].MinisterThinking[0] != null)
+                                        {
+
+                                            if (MinisterOnTable[p].MinisterThinking[0].AStarGreedy != null)
+                                            {
+                                                for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
+                                                {
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 5));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
+                                                }
+
+
+                                            }
+                                            else
+                                                return;
+
+                                        }
+                                        else
+                                            return;
+
+                                    }
+                                    else
+                                        return;
+
+                                }
+                                else
+                                    return;
+
+                            }
+                            else
+                                return;
+
+
+
+                        });
+                    }
+                }, () =>
+                {
+                    Object o = new Object();
+                    lock (o)
+                    {
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
+                        {
+                            if (KingOnTable != null)
+                            {
+                                if (KingOnTable[p] != null)
+                                {
+
+                                    if (KingOnTable[p].KingThinking != null)
+                                    {
+                                        if (KingOnTable[p].KingThinking[0] != null)
+                                        {
+
+                                            if (KingOnTable[p].KingThinking[0].AStarGreedy != null)
+                                            {
+                                                for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
+                                                {
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 6));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
+                                                }
+
+
+                                            }
+                                            else
+                                                return;
+
+                                        }
+                                        else
+                                            return;
+
+                                    }
+                                    else
+                                        return;
+
+                                }
+                                else
+                                    return;
+
+                            }
+                            else
+                                return;
+
+
+
+                        });
+                    }
+                },
+                () =>
+                {
+                    Object o = new Object();
+                    lock (o)
+                    {
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
+                        {
+                            if (CastlingOnTable != null)
+                            {
+                                if (CastlingOnTable[p] != null)
+                                {
+
+                                    if (CastlingOnTable[p].CastlingThinking != null)
+                                    {
+                                        if (CastlingOnTable[p].CastlingThinking[0] != null)
+                                        {
+
+                                            if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
+                                            {
+                                                for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
+                                                {
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 7));
+                                                    outputH.Wait();
+                                                    outputH.Dispose();
+
+                                                }
+
+
+                                            }
+                                            else
+                                                return;
+
+                                        }
+                                        else
+                                            return;
+
+                                    }
+                                    else
+                                        return;
+
+                                }
+                                else
+                                    return;
+
+                            }
+                            else
+                                return;
+
+
+                        });
+                    }
+                });
+            });
+            output.Wait();
+            output.Dispose();
+            return Act;
+        }
+     public bool HarasAlphaBeta(int i, int j, int kindA)
         {
             bool Act = false;
             Object oo = new Object();

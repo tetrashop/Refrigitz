@@ -20191,14 +20191,14 @@ namespace RefrigtzChessPortable
             }
             return true;
         }
-        bool NotExistChild(int i, int j, int kindA, AllDraw jungle)
+        int NotExistChild(int i, int j, int kindA, AllDraw jungle)
         {
-            bool Act = true;
+            int Act = -1;
             Object oo = new Object();
             lock (oo)
             {
                 if (jungle == null)
-                    return true;
+                    return -1;
 
                 if (kindA == 1)
                 {
@@ -20220,7 +20220,7 @@ namespace RefrigtzChessPortable
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20248,12 +20248,12 @@ namespace RefrigtzChessPortable
                                     {
                                         for (int p = 0; p < jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingRefrigtzChessPortable.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], jungle.ElephantOnTable[i].ElefantThinking[0].TableListElefant[p]))
+                                            if (ThinkingRefrigtzChessPortable.TableEqual(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j], jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20283,12 +20283,12 @@ namespace RefrigtzChessPortable
                                     {
                                         for (int p = 0; p < jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingRefrigtzChessPortable.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], jungle.HoursesOnTable[i].HourseThinking[0].TableListHourse[p]))
+                                            if (ThinkingRefrigtzChessPortable.TableEqual(HoursesOnTable[i].HourseThinking[0].TableListHourse[j], jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20317,12 +20317,12 @@ namespace RefrigtzChessPortable
                                     {
                                         for (int p = 0; p < jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingRefrigtzChessPortable.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], jungle.CastlesOnTable[i].CastleThinking[0].TableListCastle[p]))
+                                            if (ThinkingRefrigtzChessPortable.TableEqual(CastlesOnTable[i].CastleThinking[0].TableListCastle[j], jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20350,12 +20350,12 @@ namespace RefrigtzChessPortable
                                     {
                                         for (int p = 0; p < jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingRefrigtzChessPortable.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], jungle.MinisterOnTable[i].MinisterThinking[0].TableListMinister[p]))
+                                            if (ThinkingRefrigtzChessPortable.TableEqual(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j], jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20384,12 +20384,12 @@ namespace RefrigtzChessPortable
                                     {
                                         for (int p = 0; p < jungle.KingOnTable[i].KingThinking[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingRefrigtzChessPortable.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], jungle.KingOnTable[i].KingThinking[0].TableListKing[p]))
+                                            if (ThinkingRefrigtzChessPortable.TableEqual(KingOnTable[i].KingThinking[0].TableListKing[j], jungle.KingOnTable[i].KingThinking[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20419,12 +20419,12 @@ namespace RefrigtzChessPortable
                                     {
                                         for (int p = 0; p < jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingRefrigtzChessPortable.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListSolder[j], jungle.CastlingOnTable[i].CastlingThinking[0].TableListSolder[p]))
+                                            if (ThinkingRefrigtzChessPortable.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListSolder[j], jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20442,6 +20442,84 @@ namespace RefrigtzChessPortable
 
             }
             return Act;
+        }
+        void BlitzNotValidFullGameThinkingTreePartFour(int ik, int Order, int kind, AllDraw junge, int[,] tab)
+        {
+
+
+            //soldier
+            if (kind == 1)
+            {
+                //when valid 
+
+                if (SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count == 0)
+                    SolderesOnTable[ik].SoldierThinking[0].AStarGreedy = new List<AllDraw>();
+                SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Add(CloneATable(tab));
+                SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Add(junge);
+                SolderesOnTable[ik].SoldierThinking[0].AStarGreedy[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 2)//elephant
+            {
+                //when valid 
+
+                if (ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count == 0)
+                    ElephantOnTable[ik].ElefantThinking[0].AStarGreedy = new List<AllDraw>();
+                ElephantOnTable[ik].ElefantThinking[0].TableListElefant.Add(CloneATable(tab));
+                ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Add(junge);
+                ElephantOnTable[ik].ElefantThinking[0].AStarGreedy[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 3)//hourse
+            {
+                //when valid 
+
+                if (HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count == 0)
+                    HoursesOnTable[ik].HourseThinking[0].AStarGreedy = new List<AllDraw>();
+                HoursesOnTable[ik].HourseThinking[0].TableListHourse.Add(CloneATable(tab));
+                HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Add(junge);
+                HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 4)//Castle
+            {
+                //when valid 
+
+                if (CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count == 0)
+                    CastlesOnTable[ik].CastleThinking[0].AStarGreedy = new List<AllDraw>();
+                CastlesOnTable[ik].CastleThinking[0].TableListCastle.Add(CloneATable(tab));
+                CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Add(junge);
+                CastlesOnTable[ik].CastleThinking[0].AStarGreedy[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 5)//minister
+            {
+                //when valid 
+
+                if (MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count == 0)
+                    MinisterOnTable[ik].MinisterThinking[0].AStarGreedy = new List<AllDraw>();
+                MinisterOnTable[ik].MinisterThinking[0].TableListMinister.Add(CloneATable(tab));
+                MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Add(junge);
+                MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 6)//king
+            {
+                //when valid 
+
+                if (KingOnTable[ik].KingThinking[0].AStarGreedy.Count == 0)
+                    KingOnTable[ik].KingThinking[0].AStarGreedy = new List<AllDraw>();
+                KingOnTable[ik].KingThinking[0].TableListKing.Add(CloneATable(tab));
+                KingOnTable[ik].KingThinking[0].AStarGreedy.Add(junge);
+                KingOnTable[ik].KingThinking[0].AStarGreedy[KingOnTable[ik].KingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 7 || kind == -7)//king
+            {
+                //when valid 
+
+
+                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
+                CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Add(CloneATable(tab));
+                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(junge);
+                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+
         }
         public bool MergeJungleTree(AllDraw jungle, int i, int j, int kindA)
         {
@@ -20461,20 +20539,18 @@ namespace RefrigtzChessPortable
                                 {
                                     if (SolderesOnTable[i].SoldierThinking[0] != null)
                                     {
-                                        if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy != null)
+                                        if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy == null)
                                         {
-                                            if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count > j)
+                                            SolderesOnTable[i].SoldierThinking[0].TableListSolder.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[h], jungle.SolderesOnTable[i].SoldierThinking[0].TableListSolder[h]);
+
                                             }
+
                                         }
                                         else
                                             return Act;
@@ -20505,19 +20581,16 @@ namespace RefrigtzChessPortable
                                 {
                                     if (ElephantOnTable[i].ElefantThinking[0] != null)
                                     {
-                                        if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null)
+                                        if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy == null)
                                         {
-                                            if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count > j)
+                                            ElephantOnTable[i].ElefantThinking[0].TableListElefant.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinking[0].TableListElefant[h]);
+
                                             }
                                         }
                                         else
@@ -20549,19 +20622,16 @@ namespace RefrigtzChessPortable
                                 {
                                     if (HoursesOnTable[i].HourseThinking[0] != null)
                                     {
-                                        if (HoursesOnTable[i].HourseThinking[0].AStarGreedy != null)
+                                        if (HoursesOnTable[i].HourseThinking[0].AStarGreedy == null)
                                         {
-                                            if (HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count > j)
+                                            HoursesOnTable[i].HourseThinking[0].TableListHourse.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinking[0].TableListSolder.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinking[0].TableListHourse[h]);
+
                                             }
                                         }
                                         else
@@ -20595,19 +20665,16 @@ namespace RefrigtzChessPortable
                                 {
                                     if (CastlesOnTable[i].CastleThinking[0] != null)
                                     {
-                                        if (CastlesOnTable[i].CastleThinking[0].AStarGreedy != null)
+                                        if (CastlesOnTable[i].CastleThinking[0].AStarGreedy == null)
                                         {
-                                            if (CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count > j)
+                                            CastlesOnTable[i].CastleThinking[0].TableListCastle.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinking[0].TableListCastle.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinking[0].TableListCastle[h]);
+
                                             }
                                         }
                                         else
@@ -20640,19 +20707,16 @@ namespace RefrigtzChessPortable
                                 {
                                     if (MinisterOnTable[i].MinisterThinking[0] != null)
                                     {
-                                        if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null)
+                                        if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy == null)
                                         {
-                                            if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count > j)
+                                            MinisterOnTable[i].MinisterThinking[0].TableListMinister.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinking[0].TableListMinister[h]);
+
                                             }
                                         }
                                         else
@@ -20685,19 +20749,16 @@ namespace RefrigtzChessPortable
                                 {
                                     if (KingOnTable[i].KingThinking[0] != null)
                                     {
-                                        if (KingOnTable[i].KingThinking[0].AStarGreedy != null)
+                                        if (KingOnTable[i].KingThinking[0].AStarGreedy == null)
                                         {
-                                            if (KingOnTable[i].KingThinking[0].AStarGreedy.Count > j)
+                                            KingOnTable[i].KingThinking[0].TableListKing.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        KingOnTable[i].KingThinking[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.KingOnTable[i].KingThinking[0].TableListKing.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.KingOnTable[i].KingThinking[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinking[0].TableListKing[h]);
+
                                             }
                                         }
                                         else
@@ -20730,27 +20791,18 @@ namespace RefrigtzChessPortable
                                 {
                                     if (CastlingOnTable[i].CastlingThinking[0] != null)
                                     {
-                                        if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                                        CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
                                         {
-                                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
-                                            {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
-                                            }
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling[h]);
+
                                         }
-                                        else
-                                            return Act;
                                     }
                                     else
                                         return Act;
-
                                 }
                                 else
                                     return Act;
@@ -20758,11 +20810,13 @@ namespace RefrigtzChessPortable
                             }
                             else
                                 return Act;
+
                         }
                         else
                             return Act;
-
                     }
+
+
 
                 }
             }
@@ -20790,7 +20844,7 @@ namespace RefrigtzChessPortable
                                             {
                                                 for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 1));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].MergeJungleTree(jungle.SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k], p, k, 1));
                                                     outputH.Wait();
                                                     outputH.Dispose();
                                                 }
@@ -20842,7 +20896,7 @@ namespace RefrigtzChessPortable
                                             {
                                                 for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 2));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].MergeJungleTree(jungle.ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k], p, k, 2));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -20896,7 +20950,7 @@ namespace RefrigtzChessPortable
                                             {
                                                 for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 3));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].MergeJungleTree(jungle.HoursesOnTable[p].HourseThinking[0].AStarGreedy[k], p, k, 3));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -20948,7 +21002,7 @@ namespace RefrigtzChessPortable
                                             {
                                                 for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 4));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlesOnTable[p].CastleThinking[0].AStarGreedy[k], p, k, 4));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -21002,7 +21056,7 @@ namespace RefrigtzChessPortable
                                             {
                                                 for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 5));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].MergeJungleTree(jungle.MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k], p, k, 5));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -21054,7 +21108,7 @@ namespace RefrigtzChessPortable
                                             {
                                                 for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 6));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.KingOnTable[p].KingThinking[0].AStarGreedy[k], p, k, 6));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -21107,7 +21161,7 @@ namespace RefrigtzChessPortable
                                             {
                                                 for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 7));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k], p, k, 7));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 

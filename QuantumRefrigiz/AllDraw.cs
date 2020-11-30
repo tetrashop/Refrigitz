@@ -20191,14 +20191,14 @@ namespace QuantumRefrigiz
             }
             return true;
         }
-        bool NotExistChild(int i, int j, int kindA, AllDraw jungle)
+        int NotExistChild(int i, int j, int kindA, AllDraw jungle)
         {
-            bool Act = true;
+            int Act = -1;
             Object oo = new Object();
             lock (oo)
             {
                 if (jungle == null)
-                    return true;
+                    return -1;
 
                 if (kindA == 1)
                 {
@@ -20220,7 +20220,7 @@ namespace QuantumRefrigiz
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20248,12 +20248,12 @@ namespace QuantumRefrigiz
                                     {
                                         for (int p = 0; p < jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[p]))
+                                            if (ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20283,12 +20283,12 @@ namespace QuantumRefrigiz
                                     {
                                         for (int p = 0; p < jungle.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], jungle.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[p]))
+                                            if (ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], jungle.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20317,12 +20317,12 @@ namespace QuantumRefrigiz
                                     {
                                         for (int p = 0; p < jungle.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], jungle.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[p]))
+                                            if (ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], jungle.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20350,12 +20350,12 @@ namespace QuantumRefrigiz
                                     {
                                         for (int p = 0; p < jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[p]))
+                                            if (ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20384,12 +20384,12 @@ namespace QuantumRefrigiz
                                     {
                                         for (int p = 0; p < jungle.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], jungle.KingOnTable[i].KingThinkingQuantum[0].TableListKing[p]))
+                                            if (ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], jungle.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20419,12 +20419,12 @@ namespace QuantumRefrigiz
                                     {
                                         for (int p = 0; p < jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; p++)
                                         {
-                                            if (ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListSolder[j], jungle.CastlingOnTable[i].CastlingThinking[0].TableListSolder[p]))
+                                            if (ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListSolder[j], jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[p].TableList[0]))
                                             {
                                                 Object ooo = new Object();
                                                 lock (ooo)
                                                 {
-                                                    Act = false;
+                                                    Act = p;
 
                                                 }
                                             }
@@ -20442,6 +20442,84 @@ namespace QuantumRefrigiz
 
             }
             return Act;
+        }
+        void BlitzNotValidFullGameThinkingTreePartFour(int ik, int Order, int kind, AllDraw junge, int[,] tab)
+        {
+
+
+            //soldier
+            if (kind == 1)
+            {
+                //when valid 
+
+                if (SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count == 0)
+                    SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(CloneATable(tab));
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Add(junge);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 2)//elephant
+            {
+                //when valid 
+
+                if (ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count == 0)
+                    ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant.Add(CloneATable(tab));
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Add(junge);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 3)//hourse
+            {
+                //when valid 
+
+                if (HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count == 0)
+                    HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse.Add(CloneATable(tab));
+                HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Add(junge);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 4)//Castle
+            {
+                //when valid 
+
+                if (CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count == 0)
+                    CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle.Add(CloneATable(tab));
+                CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Add(junge);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 5)//minister
+            {
+                //when valid 
+
+                if (MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count == 0)
+                    MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister.Add(CloneATable(tab));
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Add(junge);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 6)//king
+            {
+                //when valid 
+
+                if (KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count == 0)
+                    KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                KingOnTable[ik].KingThinkingQuantum[0].TableListKing.Add(CloneATable(tab));
+                KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Add(junge);
+                KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+            else if (kind == 7 || kind == -7)//king
+            {
+                //when valid 
+
+
+                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
+                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
+                CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Add(CloneATable(tab));
+                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(junge);
+                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+            }
+
         }
         public bool MergeJungleTree(AllDraw jungle, int i, int j, int kindA)
         {
@@ -20461,20 +20539,18 @@ namespace QuantumRefrigiz
                                 {
                                     if (SolderesOnTable[i].SoldierThinkingQuantum[0] != null)
                                     {
-                                        if (SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy != null)
+                                        if (SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy == null)
                                         {
-                                            if (SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count > j)
+                                            SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[h], jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[h]);
+
                                             }
+
                                         }
                                         else
                                             return Act;
@@ -20505,19 +20581,16 @@ namespace QuantumRefrigiz
                                 {
                                     if (ElephantOnTable[i].ElefantThinkingQuantum[0] != null)
                                     {
-                                        if (ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != null)
+                                        if (ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy == null)
                                         {
-                                            if (ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count > j)
+                                            ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[h]);
+
                                             }
                                         }
                                         else
@@ -20549,19 +20622,16 @@ namespace QuantumRefrigiz
                                 {
                                     if (HoursesOnTable[i].HourseThinkingQuantum[0] != null)
                                     {
-                                        if (HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy != null)
+                                        if (HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy == null)
                                         {
-                                            if (HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count > j)
+                                            HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinkingQuantum[0].TableListSolder.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[h]);
+
                                             }
                                         }
                                         else
@@ -20595,19 +20665,16 @@ namespace QuantumRefrigiz
                                 {
                                     if (CastlesOnTable[i].CastleThinkingQuantum[0] != null)
                                     {
-                                        if (CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy != null)
+                                        if (CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy == null)
                                         {
-                                            if (CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count > j)
+                                            CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[h]);
+
                                             }
                                         }
                                         else
@@ -20640,19 +20707,16 @@ namespace QuantumRefrigiz
                                 {
                                     if (MinisterOnTable[i].MinisterThinkingQuantum[0] != null)
                                     {
-                                        if (MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy != null)
+                                        if (MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy == null)
                                         {
-                                            if (MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count > j)
+                                            MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[h]);
+
                                             }
                                         }
                                         else
@@ -20685,19 +20749,16 @@ namespace QuantumRefrigiz
                                 {
                                     if (KingOnTable[i].KingThinkingQuantum[0] != null)
                                     {
-                                        if (KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null)
+                                        if (KingOnTable[i].KingThinkingQuantum[0].AStarGreedy == null)
                                         {
-                                            if (KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count > j)
+                                            KingOnTable[i].KingThinkingQuantum[0].TableListKing.Clear();
+                                            Object ooo = new Object();
+                                            lock (ooo)
                                             {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
+                                                HarasAct = true; Act = true;
+                                                for (int h = 0; h < jungle.KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; h++)
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinkingQuantum[0].TableListKing[h]);
+
                                             }
                                         }
                                         else
@@ -20730,27 +20791,18 @@ namespace QuantumRefrigiz
                                 {
                                     if (CastlingOnTable[i].CastlingThinking[0] != null)
                                     {
-                                        if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                                        CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
                                         {
-                                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
-                                            {
-                                                if (NotExistChild(i, j, kindA, jungle))
-                                                {
-                                                    Object ooo = new Object();
-                                                    lock (ooo)
-                                                    {
-                                                        HarasAct = true; Act = true;
-                                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].Dispose();
-                                                    }
-                                                }
-                                            }
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling[h]);
+
                                         }
-                                        else
-                                            return Act;
                                     }
                                     else
                                         return Act;
-
                                 }
                                 else
                                     return Act;
@@ -20758,11 +20810,13 @@ namespace QuantumRefrigiz
                             }
                             else
                                 return Act;
+
                         }
                         else
                             return Act;
-
                     }
+
+
 
                 }
             }
@@ -20790,7 +20844,7 @@ namespace QuantumRefrigiz
                                             {
                                                 for (int k = 0; k < SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 1));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k], p, k, 1));
                                                     outputH.Wait();
                                                     outputH.Dispose();
                                                 }
@@ -20842,7 +20896,7 @@ namespace QuantumRefrigiz
                                             {
                                                 for (int k = 0; k < ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 2));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k], p, k, 2));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -20896,7 +20950,7 @@ namespace QuantumRefrigiz
                                             {
                                                 for (int k = 0; k < HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 3));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k], p, k, 3));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -20948,7 +21002,7 @@ namespace QuantumRefrigiz
                                             {
                                                 for (int k = 0; k < CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 4));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k], p, k, 4));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -21002,7 +21056,7 @@ namespace QuantumRefrigiz
                                             {
                                                 for (int k = 0; k < MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 5));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k], p, k, 5));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -21054,7 +21108,7 @@ namespace QuantumRefrigiz
                                             {
                                                 for (int k = 0; k < KingOnTable[p].KingThinkingQuantum[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 6));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k], p, k, 6));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -21107,7 +21161,7 @@ namespace QuantumRefrigiz
                                             {
                                                 for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle, p, k, 7));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k], p, k, 7));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 

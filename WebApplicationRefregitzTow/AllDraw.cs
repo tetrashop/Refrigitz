@@ -20190,7 +20190,7 @@ namespace RefrigtzW
             }
             return true;
         }
-         bool NotExistChild(int i, int j, int kindA, AllDraw jungle)
+         bool ExistChild(int i, int j, int kindA, AllDraw jungle)
         {
             bool Act = false;
             Object oo = new Object();
@@ -20495,7 +20495,7 @@ namespace RefrigtzW
             Object oo = new Object();
             lock (oo)
             {
-                if (!NotExistChild(i, j, kindA, jungle))
+                if (!ExistChild(i, j, kindA, jungle))
                     return Act;
 
                     if (kindA == 1)

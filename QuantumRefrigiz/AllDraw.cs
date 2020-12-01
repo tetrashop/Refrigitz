@@ -20496,6 +20496,7 @@ namespace QuantumRefrigiz
             Object oo = new Object();
             lock (oo)
             {
+                if (CurrentMaxLevel > 0)
                 {
 
                     if (!ExistChild(i, j, kindA, jungle))

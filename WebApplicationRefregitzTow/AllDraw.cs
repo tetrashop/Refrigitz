@@ -20495,8 +20495,10 @@ namespace RefrigtzW
             Object oo = new Object();
             lock (oo)
             {
-                if (!ExistChild(i, j, kindA, jungle))
-                    return Act;
+                if (CurrentMaxLevel > 0)
+                {
+                    if (!ExistChild(i, j, kindA, jungle))
+                        return Act;
 
                     if (kindA == 1)
                     {
@@ -20787,7 +20789,8 @@ namespace RefrigtzW
 
 
 
-                
+
+                }
             }
             var output = Task.Factory.StartNew(() =>
             {

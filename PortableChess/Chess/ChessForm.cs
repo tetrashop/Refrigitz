@@ -107,6 +107,8 @@ namespace RefrigtzChessPortable
             new CancellationTokenSource();
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem treeViewToolStripMenuItem;
+        private ToolStripMenuItem junglesMakeTreeToolStripMenuItem;
+        private OpenFileDialog openFileDialogjunglesMakeTree;
 #pragma warning disable CS0169 // The field 'RefrigtzChessPortableForm.feedTask' is never used
         [field: NonSerialized] private readonly Task feedTask;
 #pragma warning restore CS0169 // The field 'RefrigtzChessPortableForm.feedTask' is never used
@@ -2302,11 +2304,13 @@ namespace RefrigtzChessPortable
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RefrigtzChessPortableForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.junglesMakeTreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialogjunglesMakeTree = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2321,6 +2325,29 @@ namespace RefrigtzChessPortable
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.treeViewToolStripMenuItem,
+            this.junglesMakeTreeToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
+            this.toolStripMenuItem1.Text = "View";
+            // 
+            // treeViewToolStripMenuItem
+            // 
+            this.treeViewToolStripMenuItem.Name = "treeViewToolStripMenuItem";
+            this.treeViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.treeViewToolStripMenuItem.Text = "Tree View";
+            this.treeViewToolStripMenuItem.Click += new System.EventHandler(this.treeViewToolStripMenuItem_Click);
+            // 
+            // junglesMakeTreeToolStripMenuItem
+            // 
+            this.junglesMakeTreeToolStripMenuItem.Name = "junglesMakeTreeToolStripMenuItem";
+            this.junglesMakeTreeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.junglesMakeTreeToolStripMenuItem.Text = "Jungles make Tree";
+            this.junglesMakeTreeToolStripMenuItem.Click += new System.EventHandler(this.junglesMakeTreeToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2333,31 +2360,20 @@ namespace RefrigtzChessPortable
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.AboutToolStripMenuItem.Text = "درباره";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // AboutHelpToolStripMenuItem
             // 
             this.AboutHelpToolStripMenuItem.Name = "AboutHelpToolStripMenuItem";
-            this.AboutHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutHelpToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.AboutHelpToolStripMenuItem.Text = "درباره یاری ";
             this.AboutHelpToolStripMenuItem.Click += new System.EventHandler(this.AboutHelpToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem1
+            // openFileDialogjunglesMakeTree
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.treeViewToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
-            this.toolStripMenuItem1.Text = "View";
-            // 
-            // treeViewToolStripMenuItem
-            // 
-            this.treeViewToolStripMenuItem.Name = "treeViewToolStripMenuItem";
-            this.treeViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.treeViewToolStripMenuItem.Text = "Tree View";
-            this.treeViewToolStripMenuItem.Click += new System.EventHandler(this.treeViewToolStripMenuItem_Click);
+            this.openFileDialogjunglesMakeTree.Filter = "asd|*asd";
             // 
             // RefrigtzChessPortableForm
             // 
@@ -2907,6 +2923,21 @@ namespace RefrigtzChessPortable
                     t.Show();
                 }
                 catch (Exception t) { Log(t); }
+            }
+        }
+
+        private void junglesMakeTreeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialogjunglesMakeTree.ShowDialog();
+            TakeRoot y = new TakeRoot();
+            bool LoadTree = false;
+            bool DrawDrawen = y.LoadJungle(openFileDialogjunglesMakeTree.FileName, FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+            if (DrawDrawen)
+            {
+                bool makes = Draw.MergeJungleTree(y.t, -1, -1, -1);
+                if (makes)
+                    MessageBox.Show("ایجاد درخت از جنگلها موفقیت آمیز بود.");
+
             }
         }
     }

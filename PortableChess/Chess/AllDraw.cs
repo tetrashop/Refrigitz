@@ -20412,7 +20412,7 @@ namespace RefrigtzChessPortable
             }
             return Act;
         }
-        void BlitzNotValidFullGameThinkingTreePartFour(int ik, int Order, int kind, AllDraw junge, int[,] tab)
+        void BlitzNotValidFullGameThinkingTreePartFour(int ik, int Order, int kind, AllDraw junge, ThinkingRefrigtzChessPortable obj,int j)
         {
 
 
@@ -20423,7 +20423,21 @@ namespace RefrigtzChessPortable
 
                 if (SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count == 0)
                     SolderesOnTable[ik].SoldierThinking[0].AStarGreedy = new List<AllDraw>();
-                SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Add(CloneATable(tab));
+                SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Add(obj.TableListSolder[j]);
+                SolderesOnTable[ik].SoldierThinking[0].HeuristicListSolder.Add(obj.HeuristicListSolder[j]);
+                SolderesOnTable[ik].SoldierThinking[0].RowColumnSoldier.Add(obj.RowColumnSoldier[j]);
+                SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Add(obj.TableListSolder[j]);
+                SolderesOnTable[ik].SoldierThinking[0].PenaltyRegardListSolder.Add(obj.PenaltyRegardListSolder[j]);
+                SolderesOnTable[ik].SoldierThinking[0].KishSelf.Add(obj.KishSelf[j]);
+                SolderesOnTable[ik].SoldierThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
+                SolderesOnTable[ik].SoldierThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
+                SolderesOnTable[ik].SoldierThinking[0].WinChiled.Add(obj.WinChiled[j]);
+                SolderesOnTable[ik].SoldierThinking[0].IsSup.Add(obj.IsSup[j]);
+                SolderesOnTable[ik].SoldierThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
+                SolderesOnTable[ik].SoldierThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                SolderesOnTable[ik].SoldierThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                SolderesOnTable[ik].SoldierThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                SolderesOnTable[ik].SoldierThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
                 SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Add(junge);
                 SolderesOnTable[ik].SoldierThinking[0].AStarGreedy[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
             }
@@ -20433,7 +20447,21 @@ namespace RefrigtzChessPortable
 
                 if (ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count == 0)
                     ElephantOnTable[ik].ElefantThinking[0].AStarGreedy = new List<AllDraw>();
-                ElephantOnTable[ik].ElefantThinking[0].TableListElefant.Add(CloneATable(tab));
+                ElephantOnTable[ik].ElefantThinking[0].TableListElefant.Add(obj.TableListElefant[j]);
+                ElephantOnTable[ik].ElefantThinking[0].HeuristicListElefant.Add(obj.HeuristicListElefant[j]);
+                ElephantOnTable[ik].ElefantThinking[0].RowColumnElefant.Add(obj.RowColumnElefant[j]);
+                ElephantOnTable[ik].ElefantThinking[0].HitNumberElefant.Add(obj.HitNumberElefant[j]);
+                ElephantOnTable[ik].ElefantThinking[0].PenaltyRegardListElefant.Add(obj.PenaltyRegardListElefant[j]);
+                ElephantOnTable[ik].ElefantThinking[0].KishSelf.Add(obj.KishSelf[j]);
+                ElephantOnTable[ik].ElefantThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
+                ElephantOnTable[ik].ElefantThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
+                ElephantOnTable[ik].ElefantThinking[0].WinChiled.Add(obj.WinChiled[j]);
+                ElephantOnTable[ik].ElefantThinking[0].IsSup.Add(obj.IsSup[j]);
+                ElephantOnTable[ik].ElefantThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
+                ElephantOnTable[ik].ElefantThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                ElephantOnTable[ik].ElefantThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                ElephantOnTable[ik].ElefantThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                ElephantOnTable[ik].ElefantThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
                 ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Add(junge);
                 ElephantOnTable[ik].ElefantThinking[0].AStarGreedy[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
             }
@@ -20443,7 +20471,21 @@ namespace RefrigtzChessPortable
 
                 if (HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count == 0)
                     HoursesOnTable[ik].HourseThinking[0].AStarGreedy = new List<AllDraw>();
-                HoursesOnTable[ik].HourseThinking[0].TableListHourse.Add(CloneATable(tab));
+                HoursesOnTable[ik].HourseThinking[0].TableListHourse.Add(obj.TableListHourse[j]);
+                HoursesOnTable[ik].HourseThinking[0].HeuristicListHourse.Add(obj.HeuristicListHourse[j]);
+                HoursesOnTable[ik].HourseThinking[0].RowColumnHourse.Add(obj.RowColumnHourse[j]);
+                HoursesOnTable[ik].HourseThinking[0].HitNumberHourse.Add(obj.HitNumberHourse[j]);
+                HoursesOnTable[ik].HourseThinking[0].PenaltyRegardListHourse.Add(obj.PenaltyRegardListHourse[j]);
+                HoursesOnTable[ik].HourseThinking[0].KishSelf.Add(obj.KishSelf[j]);
+                HoursesOnTable[ik].HourseThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
+                HoursesOnTable[ik].HourseThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
+                HoursesOnTable[ik].HourseThinking[0].WinChiled.Add(obj.WinChiled[j]);
+                HoursesOnTable[ik].HourseThinking[0].IsSup.Add(obj.IsSup[j]);
+                HoursesOnTable[ik].HourseThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
+                HoursesOnTable[ik].HourseThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                HoursesOnTable[ik].HourseThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                HoursesOnTable[ik].HourseThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                HoursesOnTable[ik].HourseThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
                 HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Add(junge);
                 HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
             }
@@ -20453,7 +20495,21 @@ namespace RefrigtzChessPortable
 
                 if (CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count == 0)
                     CastlesOnTable[ik].CastleThinking[0].AStarGreedy = new List<AllDraw>();
-                CastlesOnTable[ik].CastleThinking[0].TableListCastle.Add(CloneATable(tab));
+                CastlesOnTable[ik].CastleThinking[0].TableListCastle.Add(obj.TableListCastle[j]);
+                CastlesOnTable[ik].CastleThinking[0].HeuristicListCastle.Add(obj.HeuristicListCastle[j]);
+                CastlesOnTable[ik].CastleThinking[0].RowColumnCastle.Add(obj.RowColumnCastle[j]);
+                CastlesOnTable[ik].CastleThinking[0].HitNumberCastle.Add(obj.HitNumberMinister[j]);
+                CastlesOnTable[ik].CastleThinking[0].PenaltyRegardListCastle.Add(obj.PenaltyRegardListCastle[j]);
+                CastlesOnTable[ik].CastleThinking[0].KishSelf.Add(obj.KishSelf[j]);
+                CastlesOnTable[ik].CastleThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
+                CastlesOnTable[ik].CastleThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
+                CastlesOnTable[ik].CastleThinking[0].WinChiled.Add(obj.WinChiled[j]);
+                CastlesOnTable[ik].CastleThinking[0].IsSup.Add(obj.IsSup[j]);
+                CastlesOnTable[ik].CastleThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
+                CastlesOnTable[ik].CastleThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                CastlesOnTable[ik].CastleThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                CastlesOnTable[ik].CastleThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                CastlesOnTable[ik].CastleThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
                 CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Add(junge);
                 CastlesOnTable[ik].CastleThinking[0].AStarGreedy[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
             }
@@ -20463,7 +20519,21 @@ namespace RefrigtzChessPortable
 
                 if (MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count == 0)
                     MinisterOnTable[ik].MinisterThinking[0].AStarGreedy = new List<AllDraw>();
-                MinisterOnTable[ik].MinisterThinking[0].TableListMinister.Add(CloneATable(tab));
+                MinisterOnTable[ik].MinisterThinking[0].TableListMinister.Add(obj.TableListCastling[j]);
+                MinisterOnTable[ik].MinisterThinking[0].HeuristicListMinister.Add(obj.HeuristicListMinister[j]);
+                MinisterOnTable[ik].MinisterThinking[0].RowColumnMinister.Add(obj.RowColumnMinister[j]);
+                MinisterOnTable[ik].MinisterThinking[0].HitNumberMinister.Add(obj.HitNumberMinister[j]);
+                MinisterOnTable[ik].MinisterThinking[0].PenaltyRegardListMinister.Add(obj.PenaltyRegardListMinister[j]);
+                MinisterOnTable[ik].MinisterThinking[0].KishSelf.Add(obj.KishSelf[j]);
+                MinisterOnTable[ik].MinisterThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
+                MinisterOnTable[ik].MinisterThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
+                MinisterOnTable[ik].MinisterThinking[0].WinChiled.Add(obj.WinChiled[j]);
+                MinisterOnTable[ik].MinisterThinking[0].IsSup.Add(obj.IsSup[j]);
+                MinisterOnTable[ik].MinisterThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
+                MinisterOnTable[ik].MinisterThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                MinisterOnTable[ik].MinisterThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                MinisterOnTable[ik].MinisterThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                MinisterOnTable[ik].MinisterThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
                 MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Add(junge);
                 MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
             }
@@ -20473,7 +20543,21 @@ namespace RefrigtzChessPortable
 
                 if (KingOnTable[ik].KingThinking[0].AStarGreedy.Count == 0)
                     KingOnTable[ik].KingThinking[0].AStarGreedy = new List<AllDraw>();
-                KingOnTable[ik].KingThinking[0].TableListKing.Add(CloneATable(tab));
+                KingOnTable[ik].KingThinking[0].TableListKing.Add(obj.TableListKing[j]);
+                KingOnTable[ik].KingThinking[0].HeuristicListKing.Add(obj.HeuristicListKing[j]);
+                KingOnTable[ik].KingThinking[0].RowColumnKing.Add(obj.RowColumnKing[j]);
+                KingOnTable[ik].KingThinking[0].HitNumberKing.Add(obj.HitNumberKing[j]);
+                KingOnTable[ik].KingThinking[0].PenaltyRegardListKing.Add(obj.PenaltyRegardListKing[j]);
+                KingOnTable[ik].KingThinking[0].KishSelf.Add(obj.KishSelf[j]);
+                KingOnTable[ik].KingThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
+                KingOnTable[ik].KingThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
+                KingOnTable[ik].KingThinking[0].WinChiled.Add(obj.WinChiled[j]);
+                KingOnTable[ik].KingThinking[0].IsSup.Add(obj.IsSup[j]);
+                KingOnTable[ik].KingThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
+                KingOnTable[ik].KingThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                KingOnTable[ik].KingThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                KingOnTable[ik].KingThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                KingOnTable[ik].KingThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
                 KingOnTable[ik].KingThinking[0].AStarGreedy.Add(junge);
                 KingOnTable[ik].KingThinking[0].AStarGreedy[KingOnTable[ik].KingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
             }
@@ -20484,7 +20568,21 @@ namespace RefrigtzChessPortable
 
                 if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
                     CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
-                CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Add(CloneATable(tab));
+                CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Add(obj.TableListCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Add(obj.HeuristicListCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling.Add(obj.RowColumnCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].HitNumberCastling.Add(obj.HitNumberCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling.Add(obj.PenaltyRegardListCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].KishSelf.Add(obj.KishSelf[j]);
+                CastlingOnTable[ik].CastlingThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
+                CastlingOnTable[ik].CastlingThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
+                CastlingOnTable[ik].CastlingThinking[0].WinChiled.Add(obj.WinChiled[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsSup.Add(obj.IsSup[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
                 CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(junge);
                 CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
             }
@@ -20514,12 +20612,26 @@ namespace RefrigtzChessPortable
                                         if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy == null)
                                         {
                                             SolderesOnTable[i].SoldierThinking[0].TableListSolder.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].RowColumnSoldier.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].TableListSolder.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].PenaltyRegardListSolder.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].KishSelf.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].KishEnemy.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].LoseChiled.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].WinChiled.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].IsSup.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].IsSupHu.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].IsThereCheckOfEnemy.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].IsThereCheckOfSelf.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].IsThereMateOfEnemy.Clear();
+                                            SolderesOnTable[i].SoldierThinking[0].IsThereMateOfSelf.Clear();
                                             Object ooo = new Object();
                                             lock (ooo)
                                             {
                                                 HarasAct = true; Act = true;
                                                 for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[h], jungle.SolderesOnTable[i].SoldierThinking[0].TableListSolder[h]);
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[h], jungle.SolderesOnTable[i].SoldierThinking[0], h);
 
                                             }
 
@@ -20556,12 +20668,27 @@ namespace RefrigtzChessPortable
                                         if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy == null)
                                         {
                                             ElephantOnTable[i].ElefantThinking[0].TableListElefant.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].RowColumnElefant.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].HitNumberElefant.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].HitNumberElefant.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].PenaltyRegardListElefant.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].KishSelf.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].KishEnemy.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].LoseChiled.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].WinChiled.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].IsSup.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].IsSupHu.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].IsThereCheckOfEnemy.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].IsThereCheckOfSelf.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].IsThereMateOfEnemy.Clear();
+                                            ElephantOnTable[i].ElefantThinking[0].IsThereMateOfSelf.Clear();
                                             Object ooo = new Object();
                                             lock (ooo)
                                             {
                                                 HarasAct = true; Act = true;
                                                 for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinking[0].TableListElefant[h]);
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinking[0],h);
 
                                             }
                                         }
@@ -20597,12 +20724,26 @@ namespace RefrigtzChessPortable
                                         if (HoursesOnTable[i].HourseThinking[0].AStarGreedy == null)
                                         {
                                             HoursesOnTable[i].HourseThinking[0].TableListHourse.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].HeuristicListHourse.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].RowColumnHourse.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].HitNumberHourse.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].PenaltyRegardListHourse.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].KishSelf.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].KishEnemy.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].LoseChiled.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].WinChiled.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].IsSup.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].IsSupHu.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].IsThereCheckOfEnemy.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].IsThereCheckOfSelf.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].IsThereMateOfEnemy.Clear();
+                                            HoursesOnTable[i].HourseThinking[0].IsThereMateOfSelf.Clear();
                                             Object ooo = new Object();
                                             lock (ooo)
                                             {
                                                 HarasAct = true; Act = true;
                                                 for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinking[0].TableListSolder.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinking[0].TableListHourse[h]);
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinking[0],h);
 
                                             }
                                         }
@@ -20640,12 +20781,25 @@ namespace RefrigtzChessPortable
                                         if (CastlesOnTable[i].CastleThinking[0].AStarGreedy == null)
                                         {
                                             CastlesOnTable[i].CastleThinking[0].TableListCastle.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].RowColumnCastle.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].HitNumberCastle.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].PenaltyRegardListCastle.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].KishSelf.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].KishEnemy.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].LoseChiled.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].IsSup.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].IsSupHu.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].IsThereCheckOfEnemy.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].IsThereCheckOfSelf.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].IsThereMateOfEnemy.Clear();
+                                            CastlesOnTable[i].CastleThinking[0].IsThereMateOfSelf.Clear();
                                             Object ooo = new Object();
                                             lock (ooo)
                                             {
                                                 HarasAct = true; Act = true;
                                                 for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinking[0].TableListCastle.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinking[0].TableListCastle[h]);
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinking[0],h);
 
                                             }
                                         }
@@ -20682,12 +20836,25 @@ namespace RefrigtzChessPortable
                                         if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy == null)
                                         {
                                             MinisterOnTable[i].MinisterThinking[0].TableListMinister.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].RowColumnMinister.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].HitNumberMinister.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].PenaltyRegardListMinister.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].KishSelf.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].KishEnemy.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].WinChiled.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].IsSup.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].IsSupHu.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].IsThereCheckOfEnemy.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].IsThereCheckOfSelf.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].IsThereMateOfEnemy.Clear();
+                                            MinisterOnTable[i].MinisterThinking[0].IsThereMateOfSelf.Clear();
                                             Object ooo = new Object();
                                             lock (ooo)
                                             {
                                                 HarasAct = true; Act = true;
                                                 for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinking[0].TableListMinister[h]);
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinking[0],h);
 
                                             }
                                         }
@@ -20724,12 +20891,26 @@ namespace RefrigtzChessPortable
                                         if (KingOnTable[i].KingThinking[0].AStarGreedy == null)
                                         {
                                             KingOnTable[i].KingThinking[0].TableListKing.Clear();
+                                            KingOnTable[i].KingThinking[0].HeuristicListKing.Clear();
+                                            KingOnTable[i].KingThinking[0].RowColumnKing.Clear();
+                                            KingOnTable[i].KingThinking[0].HitNumberKing.Clear();
+                                            KingOnTable[i].KingThinking[0].PenaltyRegardListKing.Clear();
+                                            KingOnTable[i].KingThinking[0].KishSelf.Clear();
+                                            KingOnTable[i].KingThinking[0].KishEnemy.Clear();
+                                            KingOnTable[i].KingThinking[0].LoseChiled.Clear();
+                                            KingOnTable[i].KingThinking[0].WinChiled.Clear();
+                                            KingOnTable[i].KingThinking[0].IsSup.Clear();
+                                            KingOnTable[i].KingThinking[0].IsSupHu.Clear();
+                                            KingOnTable[i].KingThinking[0].IsThereCheckOfEnemy.Clear();
+                                            KingOnTable[i].KingThinking[0].IsThereCheckOfSelf.Clear();
+                                            KingOnTable[i].KingThinking[0].IsThereMateOfEnemy.Clear();
+                                            KingOnTable[i].KingThinking[0].IsThereMateOfSelf.Clear();
                                             Object ooo = new Object();
                                             lock (ooo)
                                             {
                                                 HarasAct = true; Act = true;
                                                 for (int h = 0; h < jungle.KingOnTable[i].KingThinking[0].TableListKing.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinking[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinking[0].TableListKing[h]);
+                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinking[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinking[0],h);
 
                                             }
                                         }
@@ -20764,12 +20945,26 @@ namespace RefrigtzChessPortable
                                     if (CastlingOnTable[i].CastlingThinking[0] != null)
                                     {
                                         CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
-                                        Object ooo = new Object();
+                                        CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].HitNumberCastling.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].KishSelf.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].KishEnemy.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].LoseChiled.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].WinChiled.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].IsSup.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].IsSupHu.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfEnemy.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfSelf.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy.Clear();
+                                        CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf.Clear();
+                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
                                             HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling[h]);
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0],h);
 
                                         }
                                     }

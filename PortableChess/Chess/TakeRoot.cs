@@ -163,7 +163,7 @@ namespace RefrigtzChessPortable
                             //if (!Quantum)
                             {
                                 RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                t = (AllDraw)tr.Load(Quantum, RefrigtzChessPortableForm.OrderPlate);
+                                t = (AllDraw)tr.LoadJungle(path, Quantum, RefrigtzChessPortableForm.OrderPlate);
                                 if (t != null)
                                 {
                                     Curent.Draw = t;

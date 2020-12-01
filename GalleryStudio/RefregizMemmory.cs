@@ -83,6 +83,41 @@ namespace GalleryStudio
             }
 
         }
+        public RefrigtzDLL.AllDraw LoadJungle(string pathj, bool Quantum, int Order)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                SAllDraw = pathj;
+                if (File.Exists(SAllDraw))
+                {
+                    FileInfo A = new FileInfo(SAllDraw);
+                    if (A.Length == 0)
+                        return null;
+
+                    RefrigtzDLL.AllDraw tt = new RefrigtzDLL.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
+                    FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
+                    BinaryFormatter Formatters = new BinaryFormatter();
+                    DummyFileStream.Seek(0, SeekOrigin.Begin);
+
+                    Console.WriteLine("Loading...");
+                    RefrigtzDLL.AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
+                    tt = (RefrigtzDLL.AllDraw)Formatters.Deserialize(DummyFileStream);
+                    if (tt == null)
+                        return tt;
+                    tt = (RefrigtzDLL.AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+
+                    DummyFileStream.Flush();
+                    DummyFileStream.Close();
+
+                    return tt;
+                }
+
+                return null;
+
+                //return Node.al;
+            }
+        }
         public RefrigtzDLL.AllDraw Load(bool Quantum, int Order)
         {
             Object o = new Object();

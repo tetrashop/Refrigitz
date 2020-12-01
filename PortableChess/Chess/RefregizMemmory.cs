@@ -116,6 +116,41 @@ namespace RefrigtzChessPortable
                 //return Node.al;
             }
         }
+        public AllDraw LoadJungle(string pathj,bool Quantum, int Order)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                SAllDraw = pathj;
+                if (File.Exists(SAllDraw))
+                {
+                    FileInfo A = new FileInfo(SAllDraw);
+                    if (A.Length == 0)
+                        return null;
+
+                    AllDraw tt = new AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
+                    FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
+                    BinaryFormatter Formatters = new BinaryFormatter();
+                    DummyFileStream.Seek(0, SeekOrigin.Begin);
+
+                    Console.WriteLine("Loading...");
+                    AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
+                    tt = (AllDraw)Formatters.Deserialize(DummyFileStream);
+                    if (tt == null)
+                        return tt;
+                    tt = (AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+
+                    DummyFileStream.Flush();
+                    DummyFileStream.Close();
+
+                    return tt;
+                }
+
+                return null;
+
+                //return Node.al;
+            }
+        }
         public void RewriteAllDraw(int Order)
         {
             Object oo = new Object();

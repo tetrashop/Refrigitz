@@ -21126,7 +21126,7 @@ namespace QuantumRefrigiz
                                             lock (ooo)
                                             {
                                                 HarasAct = true; Act = true;
-                                                for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinkingQuantum[0].TableListSolder.Count; h++)
+                                                for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; h++)
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinkingQuantum[0], h);
 
                                             }

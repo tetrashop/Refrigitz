@@ -20634,6 +20634,7 @@ namespace RefrigtzW
 
                                             }
 
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20690,6 +20691,7 @@ namespace RefrigtzW
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinking[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20745,6 +20747,7 @@ namespace RefrigtzW
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinking[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20801,6 +20804,7 @@ namespace RefrigtzW
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinking[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20856,6 +20860,7 @@ namespace RefrigtzW
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinking[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20912,6 +20917,7 @@ namespace RefrigtzW
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinking[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinking[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20966,6 +20972,7 @@ namespace RefrigtzW
                                                 BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0], h);
 
                                         }
+                                        return Act;
                                     }
                                     else
                                         return Act;

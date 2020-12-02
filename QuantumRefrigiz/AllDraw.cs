@@ -20635,6 +20635,7 @@ namespace QuantumRefrigiz
 
                                             }
 
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20691,6 +20692,7 @@ namespace QuantumRefrigiz
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinkingQuantum[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20746,6 +20748,7 @@ namespace QuantumRefrigiz
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinkingQuantum[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20802,6 +20805,7 @@ namespace QuantumRefrigiz
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinkingQuantum[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20857,6 +20861,7 @@ namespace QuantumRefrigiz
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinkingQuantum[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20913,6 +20918,7 @@ namespace QuantumRefrigiz
                                                     BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinkingQuantum[0], h);
 
                                             }
+                                            return Act;
                                         }
                                         else
                                             return Act;
@@ -20967,6 +20973,7 @@ namespace QuantumRefrigiz
                                                 BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0], h);
 
                                         }
+                                        return Act;
                                     }
                                     else
                                         return Act;

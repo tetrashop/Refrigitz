@@ -20421,7 +20421,7 @@ namespace QuantumRefrigiz
             {
                 //when valid 
 
-                if (SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count == 0)
+                if (SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy == null)
                     SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(obj.TableListSolder[j]);
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].HeuristicListSolder.Add(obj.HeuristicListSolder[j]);
@@ -20445,7 +20445,7 @@ namespace QuantumRefrigiz
             {
                 //when valid 
 
-                if (ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count == 0)
+                if (ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy == null)
                     ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
                 ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant.Add(obj.TableListElefant[j]);
                 ElephantOnTable[ik].ElefantThinkingQuantum[0].HeuristicListElefant.Add(obj.HeuristicListElefant[j]);
@@ -20469,7 +20469,7 @@ namespace QuantumRefrigiz
             {
                 //when valid 
 
-                if (HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count == 0)
+                if (HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy == null)
                     HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
                 HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse.Add(obj.TableListHourse[j]);
                 HoursesOnTable[ik].HourseThinkingQuantum[0].HeuristicListHourse.Add(obj.HeuristicListHourse[j]);
@@ -20493,7 +20493,7 @@ namespace QuantumRefrigiz
             {
                 //when valid 
 
-                if (CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count == 0)
+                if (CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy == null)
                     CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
                 CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle.Add(obj.TableListCastle[j]);
                 CastlesOnTable[ik].CastleThinkingQuantum[0].HeuristicListCastle.Add(obj.HeuristicListCastle[j]);
@@ -20517,7 +20517,7 @@ namespace QuantumRefrigiz
             {
                 //when valid 
 
-                if (MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count == 0)
+                if (MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy == null)
                     MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
                 MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister.Add(obj.TableListCastling[j]);
                 MinisterOnTable[ik].MinisterThinkingQuantum[0].HeuristicListMinister.Add(obj.HeuristicListMinister[j]);
@@ -20541,7 +20541,7 @@ namespace QuantumRefrigiz
             {
                 //when valid 
 
-                if (KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count == 0)
+                if (KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy == null)
                     KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
                 KingOnTable[ik].KingThinkingQuantum[0].TableListKing.Add(obj.TableListKing[j]);
                 KingOnTable[ik].KingThinkingQuantum[0].HeuristicListKing.Add(obj.HeuristicListKing[j]);
@@ -20566,7 +20566,7 @@ namespace QuantumRefrigiz
                 //when valid 
 
 
-                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
+                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy == null)
                     CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
                 CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Add(obj.TableListCastling[j]);
                 CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Add(obj.HeuristicListCastling[j]);
@@ -20979,380 +20979,71 @@ namespace QuantumRefrigiz
             lock (oo)
             {
 
-                    if (!ExistChild(i, j, kindA, jungle))
-                        return Act;
-                    if (kindA == 1)
+
+                //if (!ExistChild(i, j, kindA, jungle))
+                //return Act;
+                if (kindA == 1)
+                {
+                    if (SolderesOnTable != null)
                     {
-                        if (SolderesOnTable != null)
+                        if (SolderesOnTable[i] != null)
                         {
-                            if (SolderesOnTable[i] != null)
+                            if (SolderesOnTable[i].SoldierThinkingQuantum != null)
                             {
-                                if (SolderesOnTable[i].SoldierThinkingQuantum != null)
+                                if (SolderesOnTable[i].SoldierThinkingQuantum[0] != null)
                                 {
-                                    if (SolderesOnTable[i].SoldierThinkingQuantum[0] != null)
+                                    if (SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy == null)
                                     {
-                                        if (SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy == null)
-                                        {
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].RowColumnSoldier.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].KishSelf.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].KishEnemy.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].WinChiled.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereCheckOfSelf.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereMateOfEnemy.Clear();
-                                            SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereMateOfSelf.Clear();
-                                            Object ooo = new Object();
-                                            lock (ooo)
-                                            {
-                                                HarasAct = true; Act = true;
-                                                for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[h], jungle.SolderesOnTable[i].SoldierThinkingQuantum[0], h);
-
-                                            }
-
-                                            return Act;
-                                        }
-                                        else
-                                            return Act;
-                                    }
-                                    else
-                                        return Act;
-
-                                }
-                                else
-                                    return Act;
-
-                            }
-                            else
-                                return Act;
-                        }
-                        else
-                            return Act;
-
-                    }
-                    else
-                    if (kindA == 2)
-                    {
-                        if (ElephantOnTable != null)
-                        {
-                            if (ElephantOnTable[i] != null)
-                            {
-                                if (ElephantOnTable[i].ElefantThinkingQuantum != null)
-                                {
-                                    if (ElephantOnTable[i].ElefantThinkingQuantum[0] != null)
-                                    {
-                                        if (ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy == null)
-                                        {
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].RowColumnElefant.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].KishSelf.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].KishEnemy.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].WinChiled.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereCheckOfSelf.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereMateOfEnemy.Clear();
-                                            ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereMateOfSelf.Clear();
-                                            Object ooo = new Object();
-                                            lock (ooo)
-                                            {
-                                                HarasAct = true; Act = true;
-                                                for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinkingQuantum[0], h);
-
-                                            }
-                                            return Act;
-                                        }
-                                        else
-                                            return Act;
-                                    }
-                                    else
-                                        return Act;
-
-                                }
-                                else
-                                    return Act;
-
-                            }
-                            else
-                                return Act;
-                        }
-                        else
-                            return Act;
-
-                    }
-                    else
-                    if (kindA == 3)
-                    {
-                        if (HoursesOnTable != null)
-                        {
-                            if (HoursesOnTable[i] != null)
-                            {
-                                if (HoursesOnTable[i].HourseThinkingQuantum != null)
-                                {
-                                    if (HoursesOnTable[i].HourseThinkingQuantum[0] != null)
-                                    {
-                                        if (HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy == null)
-                                        {
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].RowColumnHourse.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].HitNumberHourse.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].KishSelf.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].KishEnemy.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].WinChiled.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].IsSup.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].IsThereCheckOfSelf.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].IsThereMateOfEnemy.Clear();
-                                            HoursesOnTable[i].HourseThinkingQuantum[0].IsThereMateOfSelf.Clear();
-                                            Object ooo = new Object();
-                                            lock (ooo)
-                                            {
-                                                HarasAct = true; Act = true;
-                                                for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinkingQuantum[0], h);
-
-                                            }
-                                            return Act;
-                                        }
-                                        else
-                                            return Act;
-                                    }
-                                    else
-                                        return Act;
-
-                                }
-                                else
-                                    return Act;
-
-                            }
-                            else
-                                return Act;
-                        }
-                        else
-                            return Act;
-
-
-                    }
-                    else
-                         if (kindA == 4)
-                    {
-
-                        if (CastlesOnTable != null)
-                        {
-                            if (CastlesOnTable[i] != null)
-                            {
-                                if (CastlesOnTable[i].CastleThinkingQuantum != null)
-                                {
-                                    if (CastlesOnTable[i].CastleThinkingQuantum[0] != null)
-                                    {
-                                        if (CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy == null)
-                                        {
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].RowColumnCastle.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].HitNumberCastle.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].KishSelf.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].KishEnemy.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].IsSup.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].IsThereCheckOfSelf.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].IsThereMateOfEnemy.Clear();
-                                            CastlesOnTable[i].CastleThinkingQuantum[0].IsThereMateOfSelf.Clear();
-                                            Object ooo = new Object();
-                                            lock (ooo)
-                                            {
-                                                HarasAct = true; Act = true;
-                                                for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinkingQuantum[0], h);
-
-                                            }
-                                            return Act;
-                                        }
-                                        else
-                                            return Act;
-                                    }
-                                    else
-                                        return Act;
-
-                                }
-                                else
-                                    return Act;
-
-                            }
-                            else
-                                return Act;
-                        }
-                        else
-                            return Act;
-
-                    }
-                    else
-                    if (kindA == 5)
-                    {
-
-                        if (MinisterOnTable != null)
-                        {
-                            if (MinisterOnTable[i] != null)
-                            {
-                                if (MinisterOnTable[i].MinisterThinkingQuantum != null)
-                                {
-                                    if (MinisterOnTable[i].MinisterThinkingQuantum[0] != null)
-                                    {
-                                        if (MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy == null)
-                                        {
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].RowColumnMinister.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].HitNumberMinister.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].KishSelf.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].KishEnemy.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].WinChiled.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereCheckOfSelf.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereMateOfEnemy.Clear();
-                                            MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereMateOfSelf.Clear();
-                                            Object ooo = new Object();
-                                            lock (ooo)
-                                            {
-                                                HarasAct = true; Act = true;
-                                                for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinkingQuantum[0], h);
-
-                                            }
-                                            return Act;
-                                        }
-                                        else
-                                            return Act;
-                                    }
-                                    else
-                                        return Act;
-
-                                }
-                                else
-                                    return Act;
-
-                            }
-                            else
-                                return Act;
-                        }
-                        else
-                            return Act;
-
-                    }
-                    else
-                    if (kindA == 6)
-                    {
-
-                        if (KingOnTable != null)
-                        {
-                            if (KingOnTable[i] != null)
-                            {
-                                if (KingOnTable[i].KingThinkingQuantum != null)
-                                {
-                                    if (KingOnTable[i].KingThinkingQuantum[0] != null)
-                                    {
-                                        if (KingOnTable[i].KingThinkingQuantum[0].AStarGreedy == null)
-                                        {
-                                            KingOnTable[i].KingThinkingQuantum[0].TableListKing.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].RowColumnKing.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].HitNumberKing.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].KishSelf.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].KishEnemy.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].LoseChiled.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].WinChiled.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].IsSup.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].IsSupHu.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].IsThereCheckOfSelf.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].IsThereMateOfEnemy.Clear();
-                                            KingOnTable[i].KingThinkingQuantum[0].IsThereMateOfSelf.Clear();
-                                            Object ooo = new Object();
-                                            lock (ooo)
-                                            {
-                                                HarasAct = true; Act = true;
-                                                for (int h = 0; h < jungle.KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; h++)
-                                                    BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinkingQuantum[0], h);
-
-                                            }
-                                            return Act;
-                                        }
-                                        else
-                                            return Act;
-                                    }
-                                    else
-                                        return Act;
-
-                                }
-                                else
-                                    return Act;
-
-                            }
-                            else
-                                return Act;
-                        }
-                        else
-                            return Act;
-
-                    }
-                    else
-                    if (kindA == 7 || kindA == -7)
-                    {
-
-                        if (CastlingOnTable != null)
-                        {
-                            if (CastlingOnTable[i] != null)
-                            {
-                                if (CastlingOnTable[i].CastlingThinking != null)
-                                {
-                                    if (CastlingOnTable[i].CastlingThinking[0] != null)
-                                    {
-                                        CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].HitNumberCastling.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].KishSelf.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].KishEnemy.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].LoseChiled.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].WinChiled.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].IsSup.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].IsSupHu.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfEnemy.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfSelf.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy.Clear();
-                                        CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].RowColumnSoldier.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].KishSelf.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].KishEnemy.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].WinChiled.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereMateOfSelf.Clear();
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
                                             HarasAct = true; Act = true;
-                                            for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0], h);
+                                            for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[h], jungle.SolderesOnTable[i].SoldierThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                    if (SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count < jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count)
+                                    {
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].RowColumnSoldier.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].KishSelf.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].KishEnemy.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].LoseChiled.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].WinChiled.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsSupHu.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        SolderesOnTable[i].SoldierThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[h], jungle.SolderesOnTable[i].SoldierThinkingQuantum[0], h);
 
                                         }
                                         return Act;
@@ -21371,10 +21062,523 @@ namespace QuantumRefrigiz
                         else
                             return Act;
                     }
+                    else
+                        return Act;
+
+                }
+                else
+                if (kindA == 2)
+                {
+                    if (ElephantOnTable != null)
+                    {
+                        if (ElephantOnTable[i] != null)
+                        {
+                            if (ElephantOnTable[i].ElefantThinkingQuantum != null)
+                            {
+                                if (ElephantOnTable[i].ElefantThinkingQuantum[0] != null)
+                                {
+                                    if (ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy == null)
+                                    {
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].RowColumnElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].KishSelf.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].KishEnemy.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].WinChiled.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                    if (ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count < jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count)
+                                    {
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].RowColumnElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].KishSelf.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].KishEnemy.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].LoseChiled.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].WinChiled.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsSupHu.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        ElephantOnTable[i].ElefantThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                        return Act;
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+
+                        }
+                        else
+                            return Act;
+                    }
+                    else
+                        return Act;
+
+                }
+                else
+                if (kindA == 3)
+                {
+                    if (HoursesOnTable != null)
+                    {
+                        if (HoursesOnTable[i] != null)
+                        {
+                            if (HoursesOnTable[i].HourseThinkingQuantum != null)
+                            {
+                                if (HoursesOnTable[i].HourseThinkingQuantum[0] != null)
+                                {
+                                    if (HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy == null)
+                                    {
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].RowColumnHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].HitNumberHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].KishSelf.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].KishEnemy.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].WinChiled.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsSup.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                    if (HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count < jungle.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count)
+                                    {
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].RowColumnHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].HitNumberHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].KishSelf.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].KishEnemy.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].LoseChiled.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].WinChiled.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsSup.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsSupHu.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        HoursesOnTable[i].HourseThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                        return Act;
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+
+                        }
+                        else
+                            return Act;
+                    }
+                    else
+                        return Act;
+
+
+                }
+                else
+                     if (kindA == 4)
+                {
+
+                    if (CastlesOnTable != null)
+                    {
+                        if (CastlesOnTable[i] != null)
+                        {
+                            if (CastlesOnTable[i].CastleThinkingQuantum != null)
+                            {
+                                if (CastlesOnTable[i].CastleThinkingQuantum[0] != null)
+                                {
+                                    if (CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy == null)
+                                    {
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].RowColumnCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].HitNumberCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].KishSelf.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].KishEnemy.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsSup.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                    if (CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count < jungle.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count)
+                                    {
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].RowColumnCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].HitNumberCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].KishSelf.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].KishEnemy.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].LoseChiled.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsSup.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsSupHu.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        CastlesOnTable[i].CastleThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+
+                                    }
+                                    else
+                                        return Act;
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+
+                        }
+                        else
+                            return Act;
+                    }
+                    else
+                        return Act;
+
+                }
+                else
+                if (kindA == 5)
+                {
+
+                    if (MinisterOnTable != null)
+                    {
+                        if (MinisterOnTable[i] != null)
+                        {
+                            if (MinisterOnTable[i].MinisterThinkingQuantum != null)
+                            {
+                                if (MinisterOnTable[i].MinisterThinkingQuantum[0] != null)
+                                {
+                                    if (MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy == null)
+                                    {
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].RowColumnMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].HitNumberMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].KishSelf.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].KishEnemy.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].WinChiled.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                     if (MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count < jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count)
+                                    {
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].RowColumnMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].HitNumberMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].KishSelf.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].KishEnemy.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].WinChiled.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsSupHu.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        MinisterOnTable[i].MinisterThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                        return Act;
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+
+                        }
+                        else
+                            return Act;
+                    }
+                    else
+                        return Act;
+
+                }
+                else
+                if (kindA == 6)
+                {
+
+                    if (KingOnTable != null)
+                    {
+                        if (KingOnTable[i] != null)
+                        {
+                            if (KingOnTable[i].KingThinkingQuantum != null)
+                            {
+                                if (KingOnTable[i].KingThinkingQuantum[0] != null)
+                                {
+                                    if (KingOnTable[i].KingThinkingQuantum[0].AStarGreedy == null)
+                                    {
+                                        KingOnTable[i].KingThinkingQuantum[0].TableListKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].RowColumnKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].HitNumberKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].KishSelf.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].KishEnemy.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].LoseChiled.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].WinChiled.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsSup.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsSupHu.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                        if (KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count)
+                                    {
+                                        KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].TableListKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].RowColumnKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].HitNumberKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].KishSelf.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].KishEnemy.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].LoseChiled.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].WinChiled.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsSup.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsSupHu.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                        KingOnTable[i].KingThinkingQuantum[0].IsThereMateOfSelf.Clear();
+                                        Object ooo = new Object();
+                                        lock (ooo)
+                                        {
+                                            HarasAct = true; Act = true;
+                                            for (int h = 0; h < jungle.KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; h++)
+                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinkingQuantum[0], h);
+
+                                        }
+                                        return Act;
+                                    }
+                                    else
+                                        return Act;
+                                }
+                                else
+                                    return Act;
+
+                            }
+                            else
+                                return Act;
+
+                        }
+                        else
+                            return Act;
+                    }
+                    else
+                        return Act;
+
+                }
+                else
+                if (kindA == 7 || kindA == -7)
+                {
+
+                    if (CastlingOnTable != null)
+                    {
+                        if (CastlingOnTable[i] != null)
+                        {
+                            if (CastlingOnTable[i].CastlingThinking != null)
+                            {
+                                if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy == null)
+                                {
+                                    CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].HitNumberCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].KishSelf.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].KishEnemy.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].LoseChiled.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].WinChiled.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsSup.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsSupHu.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfEnemy.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfSelf.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf.Clear();
+                                    Object ooo = new Object();
+                                    lock (ooo)
+                                    {
+                                        HarasAct = true; Act = true;
+                                        for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
+                                            BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0], h);
+
+                                    }
+                                    return Act;
+                                }
+                                else
+                                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count < jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count)
+                                {
+                                    CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].HitNumberCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].KishSelf.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].KishEnemy.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].LoseChiled.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].WinChiled.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsSup.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsSupHu.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfEnemy.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfSelf.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy.Clear();
+                                    CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf.Clear();
+                                    Object ooo = new Object();
+                                    lock (ooo)
+                                    {
+                                        HarasAct = true; Act = true;
+                                        for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
+                                            BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0], h);
+
+                                    }
+                                    return Act;
+                                }
+                                else
+                                    return Act;
+                            }
+                            else
+                                return Act;
+                        }
+                        else
+                            return Act;
+
+                    }
+                    else
+                        return Act;
+
+                }
+            }
 
 
 
-             }
+
             var output = Task.Factory.StartNew(() =>
             {
                 ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>

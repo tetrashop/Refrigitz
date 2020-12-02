@@ -2934,10 +2934,11 @@ namespace RefrigtzChessPortable
             bool DrawDrawen = y.LoadJungle(openFileDialogjunglesMakeTree.FileName, FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
             if (DrawDrawen)
             {
-                bool makes = Draw.MergeJungleTree(y.t, -1, -1, -1);
+                bool makes = Draw.MergeJungleTree(y.t);
                 if (makes)
                     MessageBox.Show("ایجاد درخت از جنگلها موفقیت آمیز بود.");
-
+                else
+                    MessageBox.Show("هیچ تغییری ایجاد نشد.");
             }
         }
     }

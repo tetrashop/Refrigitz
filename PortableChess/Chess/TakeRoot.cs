@@ -166,15 +166,15 @@ namespace RefrigtzChessPortable
                                 t = (AllDraw)tr.LoadJungle(path, Quantum, RefrigtzChessPortableForm.OrderPlate);
                                 if (t != null)
                                 {
-                                    Curent.Draw = t;
+                                    //Curent.Draw = t;
 
                                     LoadTree = true;
-                                    Curent.Draw = Curent.RootFound();
+                                    t = Curent.RootFound();
 
                                     //Curent.Draw.UpdateLoseAndWinDepenOfKind(Curent.Draw.OrderP);
 
 
-                                    t = Curent.Draw;
+                                    //t = Curent.Draw;
                                     //Curent.SetDrawFounding(ref FOUND, ref THIS, false);
                                     DrawDrawen = true;
 

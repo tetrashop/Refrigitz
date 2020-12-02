@@ -216,7 +216,57 @@ namespace RefrigtzW
                 
                 return DrawDrawen;
             }
+        }  /*    public bool LoadJungle(String path,bool FOUND, bool Quantum, RefrigtzChessPortableForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                bool DrawDrawen = false;
+                //Load Middle Targets.
+                try
+                {
+                    Refrigtz.AllDrawKindString = path;
+
+                    if (File.Exists(RefrigtzChessPortableForm.AllDrawKindString))
+                    {
+                        if (RefrigtzChessPortableForm.MovmentsNumber >= 0)
+                        {
+                            //if (!Quantum)
+                            {
+                                RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+                                t = (AllDraw)tr.LoadJungle(path, Quantum, RefrigtzChessPortableForm.OrderPlate);
+                                if (t != null)
+                                {
+                                    //Curent.Draw = t;
+
+                                    LoadTree = true;
+                                    t = Curent.RootFound();
+
+                                    //Curent.Draw.UpdateLoseAndWinDepenOfKind(Curent.Draw.OrderP);
+
+
+                                    //t = Curent.Draw;
+                                    //Curent.SetDrawFounding(ref FOUND, ref THIS, false);
+                                    DrawDrawen = true;
+
+                                    System.Windows.Forms.MessageBox.Show("Load Completed.");
+                                }
+                            }
+
+                        }
+                        File.Delete(chess.AllDrawKindString);
+                    }
+                }
+                catch (Exception t) { Log(t); }
+                //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
+                //ttt.Start();
+                //ttt.Join();
+
+                return DrawDrawen;
+            }
         }
+
+        */
         void Wait()
         {
             Object O = new Object();

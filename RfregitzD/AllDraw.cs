@@ -20603,21 +20603,21 @@ namespace RefrigtzDLL
                         lock (o)
                         {
 
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.SodierHigh, p =>
                             {
-                                if (SolderesOnTable != null)
+                                if (jungle.SolderesOnTable != null)
                                 {
-                                    if (SolderesOnTable[p] != null)
+                                    if (jungle.SolderesOnTable[p] != null)
                                     {
 
-                                        if (SolderesOnTable[p].SoldierThinking != null)
+                                        if (jungle.SolderesOnTable[p].SoldierThinking != null)
                                         {
-                                            if (SolderesOnTable[p].SoldierThinking[0] != null)
+                                            if (jungle.SolderesOnTable[p].SoldierThinking[0] != null)
                                             {
 
-                                                if (SolderesOnTable[p].SoldierThinking[0].AStarGreedy != null)
+                                                if (jungle.SolderesOnTable[p].SoldierThinking[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 1));
                                                         outputH.Wait();
@@ -20655,21 +20655,21 @@ namespace RefrigtzDLL
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.ElefantHigh, p =>
                             {
-                                if (ElephantOnTable != null)
+                                if (jungle.ElephantOnTable != null)
                                 {
-                                    if (ElephantOnTable[p] != null)
+                                    if (jungle.ElephantOnTable[p] != null)
                                     {
 
-                                        if (ElephantOnTable[p].ElefantThinking != null)
+                                        if (jungle.ElephantOnTable[p].ElefantThinking != null)
                                         {
-                                            if (ElephantOnTable[p].ElefantThinking[0] != null)
+                                            if (jungle.ElephantOnTable[p].ElefantThinking[0] != null)
                                             {
 
-                                                if (ElephantOnTable[p].ElefantThinking[0].AStarGreedy != null)
+                                                if (jungle.ElephantOnTable[p].ElefantThinking[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 2));
                                                         outputH.Wait();
@@ -20708,22 +20708,22 @@ namespace RefrigtzDLL
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.HourseHight, p =>
                             {
 
-                                if (HoursesOnTable != null)
+                                if (jungle.HoursesOnTable != null)
                                 {
-                                    if (HoursesOnTable[p] != null)
+                                    if (jungle.HoursesOnTable[p] != null)
                                     {
 
-                                        if (HoursesOnTable[p].HourseThinking != null)
+                                        if (jungle.HoursesOnTable[p].HourseThinking != null)
                                         {
-                                            if (HoursesOnTable[p].HourseThinking[0] != null)
+                                            if (jungle.HoursesOnTable[p].HourseThinking[0] != null)
                                             {
 
-                                                if (HoursesOnTable[p].HourseThinking[0].AStarGreedy != null)
+                                                if (jungle.HoursesOnTable[p].HourseThinking[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 3));
                                                         outputH.Wait();
@@ -20760,22 +20760,22 @@ namespace RefrigtzDLL
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.CastleHigh, p =>
                             {
 
-                                if (CastlesOnTable != null)
+                                if (jungle.CastlesOnTable != null)
                                 {
-                                    if (CastlesOnTable[p] != null)
+                                    if (jungle.CastlesOnTable[p] != null)
                                     {
 
-                                        if (CastlesOnTable[p].CastleThinking != null)
+                                        if (jungle.CastlesOnTable[p].CastleThinking != null)
                                         {
-                                            if (CastlesOnTable[p].CastleThinking[0] != null)
+                                            if (jungle.CastlesOnTable[p].CastleThinking[0] != null)
                                             {
 
-                                                if (CastlesOnTable[p].CastleThinking[0].AStarGreedy != null)
+                                                if (jungle.CastlesOnTable[p].CastleThinking[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 4));
                                                         outputH.Wait();
@@ -20814,22 +20814,22 @@ namespace RefrigtzDLL
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.MinisterHigh, p =>
                             {
 
-                                if (MinisterOnTable != null)
+                                if (jungle.MinisterOnTable != null)
                                 {
-                                    if (MinisterOnTable[p] != null)
+                                    if (jungle.MinisterOnTable[p] != null)
                                     {
 
-                                        if (MinisterOnTable[p].MinisterThinking != null)
+                                        if (jungle.MinisterOnTable[p].MinisterThinking != null)
                                         {
-                                            if (MinisterOnTable[p].MinisterThinking[0] != null)
+                                            if (jungle.MinisterOnTable[p].MinisterThinking[0] != null)
                                             {
 
-                                                if (MinisterOnTable[p].MinisterThinking[0].AStarGreedy != null)
+                                                if (jungle.MinisterOnTable[p].MinisterThinking[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 5));
                                                         outputH.Wait();
@@ -20867,21 +20867,21 @@ namespace RefrigtzDLL
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.KingHigh, p =>
                             {
-                                if (KingOnTable != null)
+                                if (jungle.KingOnTable != null)
                                 {
-                                    if (KingOnTable[p] != null)
+                                    if (jungle.KingOnTable[p] != null)
                                     {
 
-                                        if (KingOnTable[p].KingThinking != null)
+                                        if (jungle.KingOnTable[p].KingThinking != null)
                                         {
-                                            if (KingOnTable[p].KingThinking[0] != null)
+                                            if (jungle.KingOnTable[p].KingThinking[0] != null)
                                             {
 
-                                                if (KingOnTable[p].KingThinking[0].AStarGreedy != null)
+                                                if (jungle.KingOnTable[p].KingThinking[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 6));
                                                         outputH.Wait();
@@ -20922,19 +20922,19 @@ namespace RefrigtzDLL
                         {
                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
                             {
-                                if (CastlingOnTable != null)
+                                if (jungle.CastlingOnTable != null)
                                 {
-                                    if (CastlingOnTable[p] != null)
+                                    if (jungle.CastlingOnTable[p] != null)
                                     {
 
-                                        if (CastlingOnTable[p].CastlingThinking != null)
+                                        if (jungle.CastlingOnTable[p].CastlingThinking != null)
                                         {
-                                            if (CastlingOnTable[p].CastlingThinking[0] != null)
+                                            if (jungle.CastlingOnTable[p].CastlingThinking[0] != null)
                                             {
 
-                                                if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
+                                                if (jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 7));
                                                         outputH.Wait();

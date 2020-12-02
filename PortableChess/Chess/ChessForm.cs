@@ -2931,7 +2931,8 @@ namespace RefrigtzChessPortable
             openFileDialogjunglesMakeTree.ShowDialog();
             TakeRoot y = new TakeRoot();
             bool LoadTree = false;
-            bool DrawDrawen = y.LoadJungle(openFileDialogjunglesMakeTree.FileName, FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+            RefrigtzChessPortableForm sss = new RefrigtzChessPortableForm();
+            bool DrawDrawen = y.LoadJungle(openFileDialogjunglesMakeTree.FileName, FOUND, false, sss, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
             if (DrawDrawen)
             {
                 bool makes = Draw.MergeJungleTree(y.t);

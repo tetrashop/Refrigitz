@@ -20602,21 +20602,21 @@ namespace QuantumRefrigiz
                         lock (o)
                         {
 
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.SodierHigh, p =>
                             {
-                                if (SolderesOnTable != null)
+                                if (jungle.SolderesOnTable != null)
                                 {
-                                    if (SolderesOnTable[p] != null)
+                                    if (jungle.SolderesOnTable[p] != null)
                                     {
 
-                                        if (SolderesOnTable[p].SoldierThinkingQuantum != null)
+                                        if (jungle.SolderesOnTable[p].SoldierThinkingQuantum != null)
                                         {
-                                            if (SolderesOnTable[p].SoldierThinkingQuantum[0] != null)
+                                            if (jungle.SolderesOnTable[p].SoldierThinkingQuantum[0] != null)
                                             {
 
-                                                if (SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy != null)
+                                                if (jungle.SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 1));
                                                         outputH.Wait();
@@ -20654,21 +20654,21 @@ namespace QuantumRefrigiz
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.ElefantHigh, p =>
                             {
-                                if (ElephantOnTable != null)
+                                if (jungle.ElephantOnTable != null)
                                 {
-                                    if (ElephantOnTable[p] != null)
+                                    if (jungle.ElephantOnTable[p] != null)
                                     {
 
-                                        if (ElephantOnTable[p].ElefantThinkingQuantum != null)
+                                        if (jungle.ElephantOnTable[p].ElefantThinkingQuantum != null)
                                         {
-                                            if (ElephantOnTable[p].ElefantThinkingQuantum[0] != null)
+                                            if (jungle.ElephantOnTable[p].ElefantThinkingQuantum[0] != null)
                                             {
 
-                                                if (ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy != null)
+                                                if (jungle.ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 2));
                                                         outputH.Wait();
@@ -20707,22 +20707,22 @@ namespace QuantumRefrigiz
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.HourseHight, p =>
                             {
 
-                                if (HoursesOnTable != null)
+                                if (jungle.HoursesOnTable != null)
                                 {
-                                    if (HoursesOnTable[p] != null)
+                                    if (jungle.HoursesOnTable[p] != null)
                                     {
 
-                                        if (HoursesOnTable[p].HourseThinkingQuantum != null)
+                                        if (jungle.HoursesOnTable[p].HourseThinkingQuantum != null)
                                         {
-                                            if (HoursesOnTable[p].HourseThinkingQuantum[0] != null)
+                                            if (jungle.HoursesOnTable[p].HourseThinkingQuantum[0] != null)
                                             {
 
-                                                if (HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy != null)
+                                                if (jungle.HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 3));
                                                         outputH.Wait();
@@ -20759,22 +20759,22 @@ namespace QuantumRefrigiz
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.CastleHigh, p =>
                             {
 
-                                if (CastlesOnTable != null)
+                                if (jungle.CastlesOnTable != null)
                                 {
-                                    if (CastlesOnTable[p] != null)
+                                    if (jungle.CastlesOnTable[p] != null)
                                     {
 
-                                        if (CastlesOnTable[p].CastleThinkingQuantum != null)
+                                        if (jungle.CastlesOnTable[p].CastleThinkingQuantum != null)
                                         {
-                                            if (CastlesOnTable[p].CastleThinkingQuantum[0] != null)
+                                            if (jungle.CastlesOnTable[p].CastleThinkingQuantum[0] != null)
                                             {
 
-                                                if (CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy != null)
+                                                if (jungle.CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 4));
                                                         outputH.Wait();
@@ -20813,22 +20813,22 @@ namespace QuantumRefrigiz
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.MinisterHigh, p =>
                             {
 
-                                if (MinisterOnTable != null)
+                                if (jungle.MinisterOnTable != null)
                                 {
-                                    if (MinisterOnTable[p] != null)
+                                    if (jungle.MinisterOnTable[p] != null)
                                     {
 
-                                        if (MinisterOnTable[p].MinisterThinkingQuantum != null)
+                                        if (jungle.MinisterOnTable[p].MinisterThinkingQuantum != null)
                                         {
-                                            if (MinisterOnTable[p].MinisterThinkingQuantum[0] != null)
+                                            if (jungle.MinisterOnTable[p].MinisterThinkingQuantum[0] != null)
                                             {
 
-                                                if (MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy != null)
+                                                if (jungle.MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 5));
                                                         outputH.Wait();
@@ -20866,21 +20866,21 @@ namespace QuantumRefrigiz
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.KingHigh, p =>
                             {
-                                if (KingOnTable != null)
+                                if (jungle.KingOnTable != null)
                                 {
-                                    if (KingOnTable[p] != null)
+                                    if (jungle.KingOnTable[p] != null)
                                     {
 
-                                        if (KingOnTable[p].KingThinkingQuantum != null)
+                                        if (jungle.KingOnTable[p].KingThinkingQuantum != null)
                                         {
-                                            if (KingOnTable[p].KingThinkingQuantum[0] != null)
+                                            if (jungle.KingOnTable[p].KingThinkingQuantum[0] != null)
                                             {
 
-                                                if (KingOnTable[p].KingThinkingQuantum[0].AStarGreedy != null)
+                                                if (jungle.KingOnTable[p].KingThinkingQuantum[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < KingOnTable[p].KingThinkingQuantum[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.KingOnTable[p].KingThinkingQuantum[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 6));
                                                         outputH.Wait();
@@ -20921,19 +20921,19 @@ namespace QuantumRefrigiz
                         {
                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
                             {
-                                if (CastlingOnTable != null)
+                                if (jungle.CastlingOnTable != null)
                                 {
-                                    if (CastlingOnTable[p] != null)
+                                    if (jungle.CastlingOnTable[p] != null)
                                     {
 
-                                        if (CastlingOnTable[p].CastlingThinking != null)
+                                        if (jungle.CastlingOnTable[p].CastlingThinking != null)
                                         {
-                                            if (CastlingOnTable[p].CastlingThinking[0] != null)
+                                            if (jungle.CastlingOnTable[p].CastlingThinking[0] != null)
                                             {
 
-                                                if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
+                                                if (jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
                                                 {
-                                                    for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
+                                                    for (int k = 0; k < jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                                     {
                                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 7));
                                                         outputH.Wait();

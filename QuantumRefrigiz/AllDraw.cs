@@ -20461,184 +20461,210 @@ namespace QuantumRefrigiz
         }
         bool BlitzNotValidFullGameThinkingTreePartFourSoldier(int ik, int Order, ThinkingQuantumChess obj, int j)
         {
+            Object oo = new Object();
+            lock (oo)
+            {
+                bool Act = false;
 
-            bool Act = false;
+                //when valid 
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(obj.TableListSolder[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].HeuristicListSolder.Add(obj.HeuristicListSolder[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].RowColumnSoldier.Add(obj.RowColumnSoldier[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(obj.TableListSolder[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Add(obj.PenaltyRegardListSolder[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
+                Act = true;
 
-            //when valid 
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(obj.TableListSolder[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].HeuristicListSolder.Add(obj.HeuristicListSolder[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].RowColumnSoldier.Add(obj.RowColumnSoldier[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(obj.TableListSolder[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Add(obj.PenaltyRegardListSolder[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
-            SolderesOnTable[ik].SoldierThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-            Act = true;
-
-            return Act;
+                return Act;
+            }
         }
         bool BlitzNotValidFullGameThinkingTreePartFourElephant(int ik, int Order, ThinkingQuantumChess obj, int j)
         {
 
-            bool Act = false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                bool Act = false;
 
-            //when valid 
+                //when valid 
 
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant.Add(obj.TableListElefant[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].HeuristicListElefant.Add(obj.HeuristicListElefant[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].RowColumnElefant.Add(obj.RowColumnElefant[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].HitNumberElefant.Add(obj.HitNumberElefant[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].PenaltyRegardListElefant.Add(obj.PenaltyRegardListElefant[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
-            ElephantOnTable[ik].ElefantThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant.Add(obj.TableListElefant[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].HeuristicListElefant.Add(obj.HeuristicListElefant[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].RowColumnElefant.Add(obj.RowColumnElefant[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].HitNumberElefant.Add(obj.HitNumberElefant[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].PenaltyRegardListElefant.Add(obj.PenaltyRegardListElefant[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                ElephantOnTable[ik].ElefantThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
 
-            Act = true;
+                Act = true;
 
-            return Act;
+                return Act;
+            }
         }
         bool BlitzNotValidFullGameThinkingTreePartFourHourse(int ik, int Order, ThinkingQuantumChess obj, int j)
         {
 
-            bool Act = false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                bool Act = false;
 
-            //when valid 
+                //when valid 
 
-            HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse.Add(obj.TableListHourse[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].HeuristicListHourse.Add(obj.HeuristicListHourse[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].RowColumnHourse.Add(obj.RowColumnHourse[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].HitNumberHourse.Add(obj.HitNumberHourse[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].PenaltyRegardListHourse.Add(obj.PenaltyRegardListHourse[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
-            HoursesOnTable[ik].HourseThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-            Act = true;
-            return Act;
+                HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse.Add(obj.TableListHourse[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].HeuristicListHourse.Add(obj.HeuristicListHourse[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].RowColumnHourse.Add(obj.RowColumnHourse[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].HitNumberHourse.Add(obj.HitNumberHourse[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].PenaltyRegardListHourse.Add(obj.PenaltyRegardListHourse[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                HoursesOnTable[ik].HourseThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
+                Act = true;
+                return Act;
+            }
         }
         bool BlitzNotValidFullGameThinkingTreePartFourCastle(int ik, int Order, ThinkingQuantumChess obj, int j)
         {
 
-            bool Act = false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                bool Act = false;
 
-            //when valid 
+                //when valid 
 
-            CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle.Add(obj.TableListCastle[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].HeuristicListCastle.Add(obj.HeuristicListCastle[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].RowColumnCastle.Add(obj.RowColumnCastle[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].HitNumberCastle.Add(obj.HitNumberMinister[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].PenaltyRegardListCastle.Add(obj.PenaltyRegardListCastle[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
-            CastlesOnTable[ik].CastleThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-            Act = true;
+                CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle.Add(obj.TableListCastle[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].HeuristicListCastle.Add(obj.HeuristicListCastle[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].RowColumnCastle.Add(obj.RowColumnCastle[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].HitNumberCastle.Add(obj.HitNumberMinister[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].PenaltyRegardListCastle.Add(obj.PenaltyRegardListCastle[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                CastlesOnTable[ik].CastleThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
+                Act = true;
 
-            return Act;
+                return Act;
+            }
         }
         bool BlitzNotValidFullGameThinkingTreePartFourMinister(int ik, int Order, ThinkingQuantumChess obj, int j)
         {
 
-            bool Act = false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                bool Act = false;
 
-            //when valid 
+                //when valid 
 
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister.Add(obj.TableListCastling[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].HeuristicListMinister.Add(obj.HeuristicListMinister[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].RowColumnMinister.Add(obj.RowColumnMinister[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].HitNumberMinister.Add(obj.HitNumberMinister[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].PenaltyRegardListMinister.Add(obj.PenaltyRegardListMinister[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
-            MinisterOnTable[ik].MinisterThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-            Act = true;
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister.Add(obj.TableListCastling[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].HeuristicListMinister.Add(obj.HeuristicListMinister[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].RowColumnMinister.Add(obj.RowColumnMinister[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].HitNumberMinister.Add(obj.HitNumberMinister[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].PenaltyRegardListMinister.Add(obj.PenaltyRegardListMinister[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                MinisterOnTable[ik].MinisterThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
+                Act = true;
 
-            return Act;
+                return Act;
+            }
         }
         bool BlitzNotValidFullGameThinkingTreePartFourKing(int ik, int Order, ThinkingQuantumChess obj, int j)
         {
+            Object oo = new Object();
+            lock (oo)
+            {
+                bool Act = false;
 
-            bool Act = false;
+                //when valid 
 
-            //when valid 
+                KingOnTable[ik].KingThinkingQuantum[0].TableListKing.Add(obj.TableListKing[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].HeuristicListKing.Add(obj.HeuristicListKing[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].RowColumnKing.Add(obj.RowColumnKing[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].HitNumberKing.Add(obj.HitNumberKing[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].PenaltyRegardListKing.Add(obj.PenaltyRegardListKing[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                KingOnTable[ik].KingThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
+                Act = true;
 
-            KingOnTable[ik].KingThinkingQuantum[0].TableListKing.Add(obj.TableListKing[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].HeuristicListKing.Add(obj.HeuristicListKing[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].RowColumnKing.Add(obj.RowColumnKing[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].HitNumberKing.Add(obj.HitNumberKing[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].PenaltyRegardListKing.Add(obj.PenaltyRegardListKing[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
-            KingOnTable[ik].KingThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-            Act = true;
-
-            return Act;
+                return Act;
+            }
         }
         bool BlitzNotValidFullGameThinkingTreePartFourCastling(int ik, int Order, ThinkingQuantumChess obj, int j)
         {
 
-            bool Act = false;
+            Object oo = new Object();
+            lock (oo)
+            {
+                bool Act = false;
 
-            //when valid 
+                //when valid 
 
 
-            CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Add(obj.TableListCastling[j]);
-            CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Add(obj.HeuristicListCastling[j]);
-            CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling.Add(obj.RowColumnCastling[j]);
-            CastlingOnTable[ik].CastlingThinking[0].HitNumberCastling.Add(obj.HitNumberCastling[j]);
-            CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling.Add(obj.PenaltyRegardListCastling[j]);
-            CastlingOnTable[ik].CastlingThinking[0].KishSelf.Add(obj.KishSelf[j]);
-            CastlingOnTable[ik].CastlingThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
-            CastlingOnTable[ik].CastlingThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
-            CastlingOnTable[ik].CastlingThinking[0].WinChiled.Add(obj.WinChiled[j]);
-            CastlingOnTable[ik].CastlingThinking[0].IsSup.Add(obj.IsSup[j]);
-            CastlingOnTable[ik].CastlingThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
-            CastlingOnTable[ik].CastlingThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
-            CastlingOnTable[ik].CastlingThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
-            CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
-            CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-            Act = true;
-            return Act;
+                CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Add(obj.TableListCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Add(obj.HeuristicListCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling.Add(obj.RowColumnCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].HitNumberCastling.Add(obj.HitNumberCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling.Add(obj.PenaltyRegardListCastling[j]);
+                CastlingOnTable[ik].CastlingThinking[0].KishSelf.Add(obj.KishSelf[j]);
+                CastlingOnTable[ik].CastlingThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
+                CastlingOnTable[ik].CastlingThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
+                CastlingOnTable[ik].CastlingThinking[0].WinChiled.Add(obj.WinChiled[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsSup.Add(obj.IsSup[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
+                Act = true;
+                return Act;
+            }
         }
         public bool MergeJungleTree(AllDraw jungle)
         {

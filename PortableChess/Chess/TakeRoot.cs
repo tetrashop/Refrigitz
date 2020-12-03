@@ -419,6 +419,123 @@ namespace RefrigtzChessPortable
                 }
             }
         }
+        public bool SaveJungle(bool FOUND, bool Quantum, RefrigtzChessPortableForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                object o = new object();
+                lock (o)
+                {
+
+            
+                }
+                //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
+                //ttt.Start();
+                //ttt.Join();
+
+                /*if (!Quantum)
+                {
+                    while (Curent.Draw.AStarGreedyString != null)
+                        Curent.Draw = Curent.Draw.AStarGreedyString;
+                }
+                else
+                {
+                    while (Curent.DrawQ.AStarGreedyString != null)
+                        Curent.DrawQ = Curent.DrawQ.AStarGreedyString;
+                }
+               if (UsePenaltyRegardMechnisam && AStarGreedyHeuristic)
+                    AllDrawKind = 4;
+                else
+                                                     if ((!UsePenaltyRegardMechnisam) && AStarGreedyHeuristic)
+                    AllDrawKind = 3;
+                if (UsePenaltyRegardMechnisam && (!AStarGreedyHeuristic))
+                    AllDrawKind = 2;
+                if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHeuristic))
+                    AllDrawKind = 1;
+                //Set Configuration To True for some unknown reason!.
+                //UpdateConfigurationTableVal = true;                             
+                SetAllDrawKindString();
+                */
+                try
+                {
+
+
+                    AllDraw Stote = Curent.Draw;
+                    if (!File.Exists(AllDrawKindString))
+                    {
+                        RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
+                           );
+                        //if (!Quantum)
+                        {
+                            if (Curent.Draw != null)
+                            {
+                                Curent.Draw = Curent.RootFound();
+                                rt.AllDrawCurrentAccess = Curent.Draw;
+                                rt.RewriteAllDraw(RefrigtzChessPortableForm.OrderPlate);
+                                AllDraw.DrawTable = false;
+                                //.SetBoxText("\r\nSaved Completed.");
+                                //Curent.RefreshBoxText();
+                                //PictureBoxSendToBack();
+                                //PictureBoxTimerGray.SendToBack();
+                                //PictureBoxTimerBrown.SendToBack();
+                                //MessageBox.Show("Saved Completed.");
+                            }
+                        }
+                        /*else {
+                            if (Curent.DrawQ != null)
+                            {
+                                Curent.DrawQ = Curent.RootFoundQ();
+                                rt.AllDrawCurrentAccessQ = Curent.DrawQ;
+                                rt.RewriteAllDrawQ(RefrigtzChessPortableForm.OrderPlate);
+                                QuantumRefrigiz.AllDraw.DrawTable = false;
+    //Curent.SetBoxText("\r\nSaved Completed.");
+                            //    Curent.RefreshBoxText();
+                                //PictureBoxSendToBack();
+                                //PictureBoxTimerGray.SendToBack();
+                                //PictureBoxTimerBrown.SendToBack();
+                                //MessageBox.Show("Saved Completed.");
+                            }
+                        */
+                    }
+                    else
+                          if (File.Exists(AllDrawKindString))
+                    {
+                        //DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
+
+                        File.Delete(RefrigtzChessPortableForm.AllDrawKindString);
+                        RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
+                            );
+                        //"Universal Root Founding";
+                        if (Curent.Draw != null)
+                        {
+                            Curent.Draw = Curent.RootFound();
+                            rt.AllDrawCurrentAccess = Curent.Draw;
+                            rt.RewriteAllDraw(RefrigtzChessPortableForm.OrderPlate);
+                            AllDraw.DrawTable = false;
+                            // Curent.SetBoxText("\r\nSaved Completed.");
+                            // Curent.RefreshBoxText();
+                            //PictureBoxSendToBack();
+                            //PictureBoxTimerGray.SendToBack();
+                            //PictureBoxTimerBrown.SendToBack();
+                            //MessageBox.Show("Saved Completed.");
+                        }
+                        //DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
+
+                    }
+                    Curent.Draw = Stote;
+                    return true;
+#pragma warning disable CS0162 // Unreachable code detected
+                    return true;
+#pragma warning restore CS0162 // Unreachable code detected
+                }
+                catch (Exception t)
+                {
+                    Log(t);
+                    return false;
+                }
+            }
+        }
     }
 }
 

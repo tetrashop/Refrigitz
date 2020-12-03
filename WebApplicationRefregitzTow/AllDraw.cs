@@ -20411,17 +20411,14 @@ namespace RefrigtzW
             }
             return Act;
         }
-        void BlitzNotValidFullGameThinkingTreePartFour(int ik, int Order, int kind, AllDraw junge, ThinkingRefrigtzW obj, int j)
+        bool BlitzNotValidFullGameThinkingTreePartFour(int ik, int Order, int kind, ThinkingRefrigtzW obj, int j)
         {
 
-
+            bool Act = false;
             //soldier
             if (kind == 1)
             {
                 //when valid 
-
-                if (SolderesOnTable[ik].SoldierThinking[0].AStarGreedy == null)
-                    SolderesOnTable[ik].SoldierThinking[0].AStarGreedy = new List<AllDraw>();
                 SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Add(obj.TableListSolder[j]);
                 SolderesOnTable[ik].SoldierThinking[0].HeuristicListSolder.Add(obj.HeuristicListSolder[j]);
                 SolderesOnTable[ik].SoldierThinking[0].RowColumnSoldier.Add(obj.RowColumnSoldier[j]);
@@ -20437,15 +20434,12 @@ namespace RefrigtzW
                 SolderesOnTable[ik].SoldierThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
                 SolderesOnTable[ik].SoldierThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
                 SolderesOnTable[ik].SoldierThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-                SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Add(junge);
-                SolderesOnTable[ik].SoldierThinking[0].AStarGreedy[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                Act = true;
             }
             else if (kind == 2)//elephant
             {
                 //when valid 
 
-                if (ElephantOnTable[ik].ElefantThinking[0].AStarGreedy == null)
-                    ElephantOnTable[ik].ElefantThinking[0].AStarGreedy = new List<AllDraw>();
                 ElephantOnTable[ik].ElefantThinking[0].TableListElefant.Add(obj.TableListElefant[j]);
                 ElephantOnTable[ik].ElefantThinking[0].HeuristicListElefant.Add(obj.HeuristicListElefant[j]);
                 ElephantOnTable[ik].ElefantThinking[0].RowColumnElefant.Add(obj.RowColumnElefant[j]);
@@ -20461,15 +20455,13 @@ namespace RefrigtzW
                 ElephantOnTable[ik].ElefantThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
                 ElephantOnTable[ik].ElefantThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
                 ElephantOnTable[ik].ElefantThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-                ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Add(junge);
-                ElephantOnTable[ik].ElefantThinking[0].AStarGreedy[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+
+                Act = true;
             }
             else if (kind == 3)//hourse
             {
                 //when valid 
 
-                if (HoursesOnTable[ik].HourseThinking[0].AStarGreedy == null)
-                    HoursesOnTable[ik].HourseThinking[0].AStarGreedy = new List<AllDraw>();
                 HoursesOnTable[ik].HourseThinking[0].TableListHourse.Add(obj.TableListHourse[j]);
                 HoursesOnTable[ik].HourseThinking[0].HeuristicListHourse.Add(obj.HeuristicListHourse[j]);
                 HoursesOnTable[ik].HourseThinking[0].RowColumnHourse.Add(obj.RowColumnHourse[j]);
@@ -20485,15 +20477,12 @@ namespace RefrigtzW
                 HoursesOnTable[ik].HourseThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
                 HoursesOnTable[ik].HourseThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
                 HoursesOnTable[ik].HourseThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-                HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Add(junge);
-                HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                Act = true;
             }
             else if (kind == 4)//Castle
             {
                 //when valid 
 
-                if (CastlesOnTable[ik].CastleThinking[0].AStarGreedy == null)
-                    CastlesOnTable[ik].CastleThinking[0].AStarGreedy = new List<AllDraw>();
                 CastlesOnTable[ik].CastleThinking[0].TableListCastle.Add(obj.TableListCastle[j]);
                 CastlesOnTable[ik].CastleThinking[0].HeuristicListCastle.Add(obj.HeuristicListCastle[j]);
                 CastlesOnTable[ik].CastleThinking[0].RowColumnCastle.Add(obj.RowColumnCastle[j]);
@@ -20509,15 +20498,12 @@ namespace RefrigtzW
                 CastlesOnTable[ik].CastleThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
                 CastlesOnTable[ik].CastleThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
                 CastlesOnTable[ik].CastleThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-                CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Add(junge);
-                CastlesOnTable[ik].CastleThinking[0].AStarGreedy[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                Act = true;
             }
             else if (kind == 5)//minister
             {
                 //when valid 
 
-                if (MinisterOnTable[ik].MinisterThinking[0].AStarGreedy == null)
-                    MinisterOnTable[ik].MinisterThinking[0].AStarGreedy = new List<AllDraw>();
                 MinisterOnTable[ik].MinisterThinking[0].TableListMinister.Add(obj.TableListCastling[j]);
                 MinisterOnTable[ik].MinisterThinking[0].HeuristicListMinister.Add(obj.HeuristicListMinister[j]);
                 MinisterOnTable[ik].MinisterThinking[0].RowColumnMinister.Add(obj.RowColumnMinister[j]);
@@ -20533,15 +20519,12 @@ namespace RefrigtzW
                 MinisterOnTable[ik].MinisterThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
                 MinisterOnTable[ik].MinisterThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
                 MinisterOnTable[ik].MinisterThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-                MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Add(junge);
-                MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                Act = true;
             }
             else if (kind == 6)//king
             {
                 //when valid 
 
-                if (KingOnTable[ik].KingThinking[0].AStarGreedy == null)
-                    KingOnTable[ik].KingThinking[0].AStarGreedy = new List<AllDraw>();
                 KingOnTable[ik].KingThinking[0].TableListKing.Add(obj.TableListKing[j]);
                 KingOnTable[ik].KingThinking[0].HeuristicListKing.Add(obj.HeuristicListKing[j]);
                 KingOnTable[ik].KingThinking[0].RowColumnKing.Add(obj.RowColumnKing[j]);
@@ -20557,16 +20540,13 @@ namespace RefrigtzW
                 KingOnTable[ik].KingThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
                 KingOnTable[ik].KingThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
                 KingOnTable[ik].KingThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-                KingOnTable[ik].KingThinking[0].AStarGreedy.Add(junge);
-                KingOnTable[ik].KingThinking[0].AStarGreedy[KingOnTable[ik].KingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                Act = true;
             }
             else if (kind == 7 || kind == -7)//king
             {
                 //when valid 
 
 
-                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy == null)
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
                 CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Add(obj.TableListCastling[j]);
                 CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Add(obj.HeuristicListCastling[j]);
                 CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling.Add(obj.RowColumnCastling[j]);
@@ -20582,10 +20562,9 @@ namespace RefrigtzW
                 CastlingOnTable[ik].CastlingThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
                 CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
                 CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
-                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(junge);
-                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                Act = true;
             }
-
+            return Act;
         }
         public bool MergeJungleTree(AllDraw jungle)
         {
@@ -20993,6 +20972,9 @@ namespace RefrigtzW
                                 {
                                     if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy == null)
                                     {
+
+                                        if (SolderesOnTable[i].SoldierThinking[0].AStarGreedy == null)
+                                            SolderesOnTable[i].SoldierThinking[0].AStarGreedy = new List<AllDraw>();
                                         SolderesOnTable[i].SoldierThinking[0].TableListSolder.Clear();
                                         SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Clear();
                                         SolderesOnTable[i].SoldierThinking[0].RowColumnSoldier.Clear();
@@ -21011,10 +20993,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[h], jungle.SolderesOnTable[i].SoldierThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinking[0], h);
 
+                                            for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Add(jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[h]);
+                                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy[SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21040,10 +21027,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[h], jungle.SolderesOnTable[i].SoldierThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 1, jungle.SolderesOnTable[i].SoldierThinking[0], h);
 
+                                            for (int h = 0; h < jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Add(jungle.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[h]);
+                                                SolderesOnTable[i].SoldierThinking[0].AStarGreedy[SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21078,6 +21070,8 @@ namespace RefrigtzW
                                 {
                                     if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy == null)
                                     {
+                                        if (ElephantOnTable[i].ElefantThinking[0].AStarGreedy == null)
+                                            ElephantOnTable[i].ElefantThinking[0].AStarGreedy = new List<AllDraw>();
                                         ElephantOnTable[i].ElefantThinking[0].TableListElefant.Clear();
                                         ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Clear();
                                         ElephantOnTable[i].ElefantThinking[0].RowColumnElefant.Clear();
@@ -21097,10 +21091,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinking[0], h);
 
+                                            for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Add(jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[h]);
+                                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy[ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21127,10 +21126,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[h], jungle.ElephantOnTable[i].ElefantThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 2, jungle.ElephantOnTable[i].ElefantThinking[0], h);
 
+                                            for (int h = 0; h < jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Add(jungle.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[h]);
+                                                ElephantOnTable[i].ElefantThinking[0].AStarGreedy[ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21165,6 +21169,8 @@ namespace RefrigtzW
                                 {
                                     if (HoursesOnTable[i].HourseThinking[0].AStarGreedy == null)
                                     {
+                                        if (HoursesOnTable[i].HourseThinking[0].AStarGreedy == null)
+                                            HoursesOnTable[i].HourseThinking[0].AStarGreedy = new List<AllDraw>();
                                         HoursesOnTable[i].HourseThinking[0].TableListHourse.Clear();
                                         HoursesOnTable[i].HourseThinking[0].HeuristicListHourse.Clear();
                                         HoursesOnTable[i].HourseThinking[0].RowColumnHourse.Clear();
@@ -21183,10 +21189,14 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinking[0].TableListHourse.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinking[0], h);
-
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinking[0], h);
+                                            for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                HoursesOnTable[i].HourseThinking[0].AStarGreedy.Add(jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy[h]);
+                                                HoursesOnTable[i].HourseThinking[0].AStarGreedy[HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21212,10 +21222,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinking[0].TableListHourse.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy[h], jungle.HoursesOnTable[i].HourseThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 3, jungle.HoursesOnTable[i].HourseThinking[0], h);
 
+                                            for (int h = 0; h < jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                HoursesOnTable[i].HourseThinking[0].AStarGreedy.Add(jungle.HoursesOnTable[i].HourseThinking[0].AStarGreedy[h]);
+                                                HoursesOnTable[i].HourseThinking[0].AStarGreedy[HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21252,6 +21267,8 @@ namespace RefrigtzW
                                 {
                                     if (CastlesOnTable[i].CastleThinking[0].AStarGreedy == null)
                                     {
+                                        if (CastlesOnTable[i].CastleThinking[0].AStarGreedy == null)
+                                            CastlesOnTable[i].CastleThinking[0].AStarGreedy = new List<AllDraw>();
                                         CastlesOnTable[i].CastleThinking[0].TableListCastle.Clear();
                                         CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Clear();
                                         CastlesOnTable[i].CastleThinking[0].RowColumnCastle.Clear();
@@ -21269,10 +21286,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinking[0].TableListCastle.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinking[0], h);
 
+                                            for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                CastlesOnTable[i].CastleThinking[0].AStarGreedy.Add(jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy[h]);
+                                                CastlesOnTable[i].CastleThinking[0].AStarGreedy[CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21297,10 +21319,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinking[0].TableListCastle.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy[h], jungle.CastlesOnTable[i].CastleThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 4, jungle.CastlesOnTable[i].CastleThinking[0], h);
 
+                                            for (int h = 0; h < jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                CastlesOnTable[i].CastleThinking[0].AStarGreedy.Add(jungle.CastlesOnTable[i].CastleThinking[0].AStarGreedy[h]);
+                                                CastlesOnTable[i].CastleThinking[0].AStarGreedy[CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
 
@@ -21337,6 +21364,8 @@ namespace RefrigtzW
                                 {
                                     if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy == null)
                                     {
+                                        if (MinisterOnTable[i].MinisterThinking[0].AStarGreedy == null)
+                                            MinisterOnTable[i].MinisterThinking[0].AStarGreedy = new List<AllDraw>();
                                         MinisterOnTable[i].MinisterThinking[0].TableListMinister.Clear();
                                         MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Clear();
                                         MinisterOnTable[i].MinisterThinking[0].RowColumnMinister.Clear();
@@ -21354,10 +21383,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinking[0], h);
 
+                                            for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Add(jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[h]);
+                                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy[MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21382,10 +21416,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[h], jungle.MinisterOnTable[i].MinisterThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 5, jungle.MinisterOnTable[i].MinisterThinking[0], h);
 
+                                            for (int h = 0; h < jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Add(jungle.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[h]);
+                                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy[MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21421,6 +21460,8 @@ namespace RefrigtzW
                                 {
                                     if (KingOnTable[i].KingThinking[0].AStarGreedy == null)
                                     {
+                                        if (KingOnTable[i].KingThinking[0].AStarGreedy == null)
+                                            KingOnTable[i].KingThinking[0].AStarGreedy = new List<AllDraw>();
                                         KingOnTable[i].KingThinking[0].TableListKing.Clear();
                                         KingOnTable[i].KingThinking[0].HeuristicListKing.Clear();
                                         KingOnTable[i].KingThinking[0].RowColumnKing.Clear();
@@ -21439,10 +21480,15 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.KingOnTable[i].KingThinking[0].TableListKing.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinking[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinking[0], h);
 
+                                            for (int h = 0; h < jungle.KingOnTable[i].KingThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                KingOnTable[i].KingThinking[0].AStarGreedy.Add(jungle.KingOnTable[i].KingThinking[0].AStarGreedy[h]);
+                                                KingOnTable[i].KingThinking[0].AStarGreedy[KingOnTable[i].KingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21468,10 +21514,16 @@ namespace RefrigtzW
                                         Object ooo = new Object();
                                         lock (ooo)
                                         {
-                                            HarasAct = true; Act = true;
+                                            ////HarasAct = true; Act = true;
                                             for (int h = 0; h < jungle.KingOnTable[i].KingThinking[0].TableListKing.Count; h++)
-                                                BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinking[0].AStarGreedy[h], jungle.KingOnTable[i].KingThinking[0], h);
+                                                Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 6, jungle.KingOnTable[i].KingThinking[0], h);
 
+
+                                            for (int h = 0; h < jungle.KingOnTable[i].KingThinking[0].AStarGreedy.Count; h++)
+                                            {
+                                                KingOnTable[i].KingThinking[0].AStarGreedy.Add(jungle.KingOnTable[i].KingThinking[0].AStarGreedy[h]);
+                                                KingOnTable[i].KingThinking[0].AStarGreedy[KingOnTable[i].KingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                            }
                                         }
                                         return Act;
                                     }
@@ -21505,6 +21557,8 @@ namespace RefrigtzW
                             {
                                 if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy == null)
                                 {
+                                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy == null)
+                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
                                     CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
                                     CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
                                     CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
@@ -21523,10 +21577,15 @@ namespace RefrigtzW
                                     Object ooo = new Object();
                                     lock (ooo)
                                     {
-                                        HarasAct = true; Act = true;
+                                        ////HarasAct = true; Act = true;
                                         for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
-                                            BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0], h);
+                                            Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0], h);
 
+                                        for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h++)
+                                        {
+                                            CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Add(jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h]);
+                                            CastlingOnTable[i].CastlingThinking[0].AStarGreedy[CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                        }
                                     }
                                     return Act;
                                 }
@@ -21548,14 +21607,19 @@ namespace RefrigtzW
                                     CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfEnemy.Clear();
                                     CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfSelf.Clear();
                                     CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy.Clear();
-                                    CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf.Clear();
+
                                     Object ooo = new Object();
                                     lock (ooo)
                                     {
-                                        HarasAct = true; Act = true;
+                                        ////HarasAct = true; Act = true;
                                         for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
-                                            BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], jungle.CastlingOnTable[i].CastlingThinking[0], h);
+                                            Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0], h);
 
+                                        for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h++)
+                                        {
+                                            CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Add(jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h]);
+                                            CastlingOnTable[i].CastlingThinking[0].AStarGreedy[CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                        }
                                     }
                                     return Act;
                                 }

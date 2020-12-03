@@ -553,7 +553,7 @@ namespace RefrigtzChessPortable
             {
                 if (!LoadP)
                 {
-                                freezBoard = false;
+                    freezBoard = false;
                     MessageBox.Show("Wait...");
                     //var parallelOptions = new ParallelOptions();
                     //parallelOptions.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount;
@@ -611,7 +611,7 @@ namespace RefrigtzChessPortable
 
                                 }
 
-                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                 AllDraw.Blitz = B;
                                 Deeperthandeeper = Store;
@@ -702,7 +702,7 @@ namespace RefrigtzChessPortable
 
                                 }
 
-                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                 AllDraw.Blitz = B;
                                 Deeperthandeeper = Store;
@@ -757,7 +757,7 @@ namespace RefrigtzChessPortable
 
                             }
 
-                            Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                            Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                             AllDraw.Blitz = B;
                             Deeperthandeeper = Store;
@@ -783,7 +783,7 @@ namespace RefrigtzChessPortable
                 int jj = new int();
                 if (R.CromosomRowFirst == -1 || R.CromosomColumnFirst == -1 || R.CromosomRow == -1 || R.CromosomColumn == -1)
                 {
-                    ii = 7-AllDraw.NextRow;
+                    ii = 7 - AllDraw.NextRow;
                     jj = AllDraw.NextColumn;
                 }
                 else
@@ -848,7 +848,7 @@ namespace RefrigtzChessPortable
 
                 try
                 {
-              object f = new object();
+                    object f = new object();
                     lock (f)
                     {
                         if (freezBoard)
@@ -873,7 +873,7 @@ namespace RefrigtzChessPortable
                             return 0;
 
                     }
-                           bool Com = false;
+                    bool Com = false;
                     int k = 0;
                     int played = 0;
 
@@ -984,7 +984,7 @@ namespace RefrigtzChessPortable
                                 }
                             }
 
-                            ii = R.CromosomRowFirst; 
+                            ii = R.CromosomRowFirst;
                             jj = R.CromosomColumnFirst;
                             i = ii;
                             j = jj;
@@ -1053,7 +1053,7 @@ namespace RefrigtzChessPortable
                     }
                     if (cl == 1)
                     {
-                         Board b = new Board();
+                        Board b = new Board();
                         int m = brd.getInfo(x1, y1);
                         King king2 = new King(order, x1, y1);
                         int y, z;
@@ -1877,7 +1877,7 @@ namespace RefrigtzChessPortable
 
                                         }
                                         AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
-                                        Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                        Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
                                         AllDraw.Blitz = B;
 
@@ -1889,7 +1889,7 @@ namespace RefrigtzChessPortable
                                         AllDraw.OrderPlate = -1; OrderPlate = -1;
 
                                         Play(-1, -1);
-                                       
+
                                         ArtificialInteligenceMove.UpdateIsRunning = false;
                                         RefrigtzChessPortable.AllDraw.CalIdle = 0;
 
@@ -1961,8 +1961,8 @@ namespace RefrigtzChessPortable
                                     AllDraw.ChangedInTreeOccured = false;
 
                                 }
-                               AllDraw.StoreInitMaxAStarGreedy =Draw.CurrentMaxLevel;
-                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
+                                AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel;
+                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
 
 
 
@@ -1978,10 +1978,10 @@ namespace RefrigtzChessPortable
 
                                 Play(-1, -1);
 
-                             
+
                                 ArtificialInteligenceMove.UpdateIsRunning = false;
                                 RefrigtzChessPortable.AllDraw.CalIdle = 0;
-                           }
+                            }
                             else
                               if (Com && (order == 2))
                             {
@@ -2717,7 +2717,7 @@ namespace RefrigtzChessPortable
                         }
                         AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
 
-                        output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
+                        output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
                         output.Wait();
                         output.Dispose();
                         AllDraw.Blitz = B;
@@ -2801,14 +2801,14 @@ namespace RefrigtzChessPortable
 
                 if (File.Exists(AllDrawReplacement))
                 {
-                    if (AllDraw.HarasAct)                   
+                    if (AllDraw.HarasAct)
                         File.Delete(AllDrawReplacement);
                 }
                 if (File.Exists(AllDrawKindString))
-                {                    
-                        if (AllDraw.HarasAct)                        
-                            File.Delete(AllDrawKindString);                       
-                   
+                {
+                    if (AllDraw.HarasAct)
+                        File.Delete(AllDrawKindString);
+
                 }
                 AllDraw.HarasAct = false;
 
@@ -2919,7 +2919,7 @@ namespace RefrigtzChessPortable
             {
                 try
                 {
-                  Refrigtz.FormTXT t = new Refrigtz.FormTXT(Draw);
+                    Refrigtz.FormTXT t = new Refrigtz.FormTXT(Draw);
                     t.Show();
                 }
                 catch (Exception t) { Log(t); }
@@ -2928,6 +2928,7 @@ namespace RefrigtzChessPortable
 
         private void junglesMakeTreeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            freezBoard = true;
             openFileDialogjunglesMakeTree.ShowDialog();
             TakeRoot y = new TakeRoot();
             bool LoadTree = false;
@@ -2937,7 +2938,18 @@ namespace RefrigtzChessPortable
             {
                 bool makes = Draw.MergeJungleTree(y.t);
                 if (makes)
+                {
                     MessageBox.Show("ایجاد درخت از جنگلها موفقیت آمیز بود.");
+                    object i = new object();
+
+                    lock (i)
+                    {
+                        LoadTree = false;
+                        //Draw = sss.Draw;
+                        (new TakeRoot()).SaveJungle(false, false, this, ref LoadTree, false, false, false, false, false, false, false, true);
+                    }
+                    Application.Exit();
+                }
                 else
                     MessageBox.Show("هیچ تغییری ایجاد نشد.");
             }

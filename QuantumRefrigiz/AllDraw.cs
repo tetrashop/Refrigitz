@@ -20470,7 +20470,7 @@ namespace QuantumRefrigiz
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(obj.TableListSolder[j]);
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].HeuristicListSolder.Add(obj.HeuristicListSolder[j]);
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].RowColumnSoldier.Add(obj.RowColumnSoldier[j]);
-                SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(obj.TableListSolder[j]);
+                SolderesOnTable[ik].SoldierThinkingQuantum[0].HitNumberSoldier.Add(obj.HitNumberSoldier[j]);
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Add(obj.PenaltyRegardListSolder[j]);
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
@@ -21596,7 +21596,7 @@ namespace QuantumRefrigiz
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].RowColumnSoldier.Clear();
-                                    SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
+                                    SolderesOnTable[i].SoldierThinkingQuantum[0].HitNumberSoldier.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].KishSelf.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].KishEnemy.Clear();
@@ -21630,7 +21630,7 @@ namespace QuantumRefrigiz
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].RowColumnSoldier.Clear();
-                                    SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Clear();
+                                    SolderesOnTable[i].SoldierThinkingQuantum[0].HitNumberSoldier.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].KishSelf.Clear();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].KishEnemy.Clear();
@@ -21701,7 +21701,6 @@ namespace QuantumRefrigiz
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].RowColumnElefant.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
-                                    ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].KishSelf.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].KishEnemy.Clear();
@@ -21735,7 +21734,6 @@ namespace QuantumRefrigiz
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].RowColumnElefant.Clear();
-                                    ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].HitNumberElefant.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].KishSelf.Clear();

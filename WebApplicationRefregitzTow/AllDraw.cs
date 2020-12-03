@@ -20470,7 +20470,7 @@ namespace RefrigtzW
                 SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Add(obj.TableListSolder[j]);
                 SolderesOnTable[ik].SoldierThinking[0].HeuristicListSolder.Add(obj.HeuristicListSolder[j]);
                 SolderesOnTable[ik].SoldierThinking[0].RowColumnSoldier.Add(obj.RowColumnSoldier[j]);
-                SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Add(obj.TableListSolder[j]);
+                SolderesOnTable[ik].SoldierThinking[0].HitNumberSoldier.Add(obj.HitNumberSoldier[j]);
                 SolderesOnTable[ik].SoldierThinking[0].PenaltyRegardListSolder.Add(obj.PenaltyRegardListSolder[j]);
                 SolderesOnTable[ik].SoldierThinking[0].KishSelf.Add(obj.KishSelf[j]);
                 SolderesOnTable[ik].SoldierThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
@@ -21595,7 +21595,7 @@ namespace RefrigtzW
                                     SolderesOnTable[i].SoldierThinking[0].TableListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].RowColumnSoldier.Clear();
-                                    SolderesOnTable[i].SoldierThinking[0].TableListSolder.Clear();
+                                    SolderesOnTable[i].SoldierThinking[0].HitNumberSoldier.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].PenaltyRegardListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].KishSelf.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].KishEnemy.Clear();
@@ -21629,7 +21629,7 @@ namespace RefrigtzW
                                     SolderesOnTable[i].SoldierThinking[0].TableListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].RowColumnSoldier.Clear();
-                                    SolderesOnTable[i].SoldierThinking[0].TableListSolder.Clear();
+                                    SolderesOnTable[i].SoldierThinking[0].HitNumberSoldier.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].PenaltyRegardListSolder.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].KishSelf.Clear();
                                     SolderesOnTable[i].SoldierThinking[0].KishEnemy.Clear();
@@ -21700,7 +21700,6 @@ namespace RefrigtzW
                                     ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].RowColumnElefant.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].HitNumberElefant.Clear();
-                                    ElephantOnTable[i].ElefantThinking[0].HitNumberElefant.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].PenaltyRegardListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].KishSelf.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].KishEnemy.Clear();
@@ -21734,7 +21733,6 @@ namespace RefrigtzW
                                     ElephantOnTable[i].ElefantThinking[0].TableListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].RowColumnElefant.Clear();
-                                    ElephantOnTable[i].ElefantThinking[0].HitNumberElefant.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].HitNumberElefant.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].PenaltyRegardListElefant.Clear();
                                     ElephantOnTable[i].ElefantThinking[0].KishSelf.Clear();

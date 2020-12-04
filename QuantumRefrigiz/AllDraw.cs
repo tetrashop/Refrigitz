@@ -20466,7 +20466,7 @@ namespace QuantumRefrigiz
             lock (oo)
             {
                 bool Act = false;
-                if (obj.HeuristicListSolder.Count != 10)
+                if (obj.HeuristicListSolder[j].Length != 10)
                     return Act;
                 //when valid 
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(obj.TableListSolder[j]);
@@ -20497,7 +20497,7 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
-                if (obj.HeuristicListElefant.Count != 10)
+                if (obj.HeuristicListElefant[j].Length != 10)
                     return Act;
                 //when valid 
 
@@ -20530,7 +20530,7 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
-                if (obj.HeuristicListHourse.Count != 10)
+                if (obj.HeuristicListHourse[j].Length != 10)
                     return Act;
                 //when valid 
 
@@ -20561,7 +20561,7 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
-                if (obj.HeuristicListCastle.Count != 10)
+                if (obj.HeuristicListCastle[j].Length != 10)
                     return Act;
                 //when valid 
 
@@ -20592,7 +20592,7 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
-                if (obj.HeuristicListMinister.Count != 10)
+                if (obj.HeuristicListMinister[j].Length != 10)
                     return Act;
                 //when valid 
 
@@ -20623,7 +20623,7 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
-                if (obj.HeuristicListKing.Count != 10)
+                if (obj.HeuristicListKing[j].Length != 10)
                     return Act;
                 //when valid 
 
@@ -20655,7 +20655,7 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
-                if (obj.HeuristicListCastling.Count != 10)
+                if (obj.HeuristicListCastling[j].Length != 10)
                     return Act;
                 //when valid 
 

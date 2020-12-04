@@ -20467,7 +20467,8 @@ namespace RefrigtzDLL
             lock (oo)
             {
                 bool Act = false;
-
+                if (obj.HeuristicListSolder.Count != 10)
+                    return Act;
                 //when valid 
                 SolderesOnTable[ik].SoldierThinking[0].TableListSolder.Add(obj.TableListSolder[j]);
                 SolderesOnTable[ik].SoldierThinking[0].HeuristicListSolder.Add(obj.HeuristicListSolder[j]);
@@ -20497,6 +20498,8 @@ namespace RefrigtzDLL
             {
                 bool Act = false;
 
+                if (obj.HeuristicListElefant.Count != 10)
+                    return Act;
                 //when valid 
 
                 ElephantOnTable[ik].ElefantThinking[0].TableListElefant.Add(obj.TableListElefant[j]);
@@ -20528,6 +20531,8 @@ namespace RefrigtzDLL
             {
                 bool Act = false;
 
+                if (obj.HeuristicListHourse.Count != 10)
+                    return Act;
                 //when valid 
 
                 HoursesOnTable[ik].HourseThinking[0].TableListHourse.Add(obj.TableListHourse[j]);
@@ -20557,6 +20562,8 @@ namespace RefrigtzDLL
             {
                 bool Act = false;
 
+                if (obj.HeuristicListCastle.Count != 10)
+                    return Act;
                 //when valid 
 
                 CastlesOnTable[ik].CastleThinking[0].TableListCastle.Add(obj.TableListCastle[j]);
@@ -20581,12 +20588,13 @@ namespace RefrigtzDLL
         }
         bool BlitzNotValidFullGameThinkingTreePartFourMinister(int ik, int Order, ThinkingChess obj, int j)
         {
-
             Object oo = new Object();
             lock (oo)
             {
                 bool Act = false;
 
+                if (obj.HeuristicListMinister.Count != 10)
+                    return Act;
                 //when valid 
 
                 MinisterOnTable[ik].MinisterThinking[0].TableListMinister.Add(obj.TableListCastling[j]);
@@ -20611,12 +20619,13 @@ namespace RefrigtzDLL
         }
         bool BlitzNotValidFullGameThinkingTreePartFourKing(int ik, int Order, ThinkingChess obj, int j)
         {
-
             Object oo = new Object();
             lock (oo)
             {
                 bool Act = false;
 
+                if (obj.HeuristicListKing.Count != 10)
+                    return Act;
                 //when valid 
 
                 KingOnTable[ik].KingThinking[0].TableListKing.Add(obj.TableListKing[j]);
@@ -20647,6 +20656,8 @@ namespace RefrigtzDLL
             {
                 bool Act = false;
 
+                if (obj.HeuristicListCastling.Count != 10)
+                    return Act;
                 //when valid 
 
 

@@ -20461,11 +20461,13 @@ namespace QuantumRefrigiz
         }
         bool BlitzNotValidFullGameThinkingTreePartFourSoldier(int ik, int Order, ThinkingQuantumChess obj, int j)
         {
+
             Object oo = new Object();
             lock (oo)
             {
                 bool Act = false;
-
+                if (obj.HeuristicListSolder.Count != 10)
+                    return Act;
                 //when valid 
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder.Add(obj.TableListSolder[j]);
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].HeuristicListSolder.Add(obj.HeuristicListSolder[j]);
@@ -20495,6 +20497,8 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
+                if (obj.HeuristicListElefant.Count != 10)
+                    return Act;
                 //when valid 
 
                 ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant.Add(obj.TableListElefant[j]);
@@ -20526,6 +20530,8 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
+                if (obj.HeuristicListHourse.Count != 10)
+                    return Act;
                 //when valid 
 
                 HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse.Add(obj.TableListHourse[j]);
@@ -20555,6 +20561,8 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
+                if (obj.HeuristicListCastle.Count != 10)
+                    return Act;
                 //when valid 
 
                 CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle.Add(obj.TableListCastle[j]);
@@ -20579,12 +20587,13 @@ namespace QuantumRefrigiz
         }
         bool BlitzNotValidFullGameThinkingTreePartFourMinister(int ik, int Order, ThinkingQuantumChess obj, int j)
         {
-
             Object oo = new Object();
             lock (oo)
             {
                 bool Act = false;
 
+                if (obj.HeuristicListMinister.Count != 10)
+                    return Act;
                 //when valid 
 
                 MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister.Add(obj.TableListCastling[j]);
@@ -20614,6 +20623,8 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
+                if (obj.HeuristicListKing.Count != 10)
+                    return Act;
                 //when valid 
 
                 KingOnTable[ik].KingThinkingQuantum[0].TableListKing.Add(obj.TableListKing[j]);
@@ -20644,6 +20655,8 @@ namespace QuantumRefrigiz
             {
                 bool Act = false;
 
+                if (obj.HeuristicListCastling.Count != 10)
+                    return Act;
                 //when valid 
 
 

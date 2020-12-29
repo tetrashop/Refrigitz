@@ -35,8 +35,8 @@ namespace RefrigtzChessPortable
                 Netfi = new LearningKrinskyAtamata[m0, k0];
 
                 for (int j = 0; j < m0; j++)
-                    for (int k = 0; k < k0; k++)
-                        Netfi[j, k] = new LearningKrinskyAtamata(r0, m0, k0);
+                    for (int p = 0; p < k0; p++)
+                        Netfi[j, p] = new LearningKrinskyAtamata(r0, m0, k0);
 
                 r = r0;
                 m = m0;

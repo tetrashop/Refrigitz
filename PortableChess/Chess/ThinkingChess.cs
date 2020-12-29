@@ -152,7 +152,7 @@ namespace RefrigtzChessPortable
         public List<bool> IsThereMateOfSelf = new List<bool>();
         public List<bool> IsThereCheckOfEnemy = new List<bool>();
         public List<bool> IsThereCheckOfSelf = new List<bool>();
-        public static NetworkQuantumLearningKrinskyAtamata LearniningTable = null;
+        public static NetworkQuantumLearningKrinskyAtamata LearniningTable = new NetworkQuantumLearningKrinskyAtamata(8,8,8);
         bool ThinkingAtRun = false;
         public static String ActionsString = "";
         int ThinkingLevel = 0;
@@ -986,7 +986,7 @@ namespace RefrigtzChessPortable
                 //When Heuristic is not Greedy.
                 if (!AStarGreedyHeuristicT)
                 {
-                    int Order = new int();
+                    Order = new int();
                     Color a = new Color();
                     a = aa;
                     if (RowS == RowD && ColS == ColD)
@@ -1098,7 +1098,7 @@ namespace RefrigtzChessPortable
                 //For All Table Homes find Attack Heuristic.
                 else
                 {
-                    int Order = new int();
+                    Order = new int();
                     Color a = new Color();
                     a = aa;
                     //Ignore of Current.
@@ -1293,7 +1293,7 @@ namespace RefrigtzChessPortable
                     {
                         {
                             //For Current Object Lcation.
-                            int Order = new int();
+                            Order = new int();
                             Order = DumOrder;
                             Color a = new Color();
                             a = aa;
@@ -1414,7 +1414,7 @@ namespace RefrigtzChessPortable
                 else
                 {
 
-                    int Order = new int();
+                    Order = new int();
                     Color a = new Color();
                     a = aa;
                     {
@@ -1699,7 +1699,7 @@ namespace RefrigtzChessPortable
                     Tab[RowS, ColS] = Killed;
                 }
 
-                int Order = new int();
+                Order = new int();
                 Order = DummyOrder;
                 Color a = new Color();
                 a = aa;
@@ -2748,7 +2748,7 @@ th.Dispose();
                     {
                         {
                             //For Current Object Lcation.
-                            int Order = new int();
+                            Order = new int();
                             Order = DumOrder;
                             Color a = new Color();
                             a = aa;
@@ -2881,7 +2881,7 @@ th.Dispose();
                         {
                             {
                                 {
-                                    int Order = new int();
+                                    Order = new int();
                                     Color a = new Color();
                                     a = aa;
                                     {
@@ -3034,7 +3034,7 @@ th.Dispose();
                     {
                         {
                             //For Current Object Lcation.
-                            int Order = new int();
+                            Order = new int();
                             Order = DumOrder;
                             Color a = new Color();
                             a = aa;
@@ -3167,7 +3167,7 @@ th.Dispose();
                         {
                             {
                                 {
-                                    int Order = new int();
+                                    Order = new int();
                                     Color a = new Color();
                                     a = aa;
                                     {
@@ -7780,7 +7780,7 @@ th.Dispose();
                 ///When AStarGreedy Heuristic is Not Assigned.
                 if (!AStarGreedyHeuristicT)
                 {
-                    int Order = new int();
+                    Order = new int();
                     Color a = new Color();
                     a = aa;
                     Order = DummyOrder;
@@ -7897,7 +7897,7 @@ th.Dispose();
                 //For All Homes Table.
                 else
                 {
-                    int Order = new int();
+                    Order = new int();
                     Color a = new Color();
                     a = aa;
                     if (RowD == RowS && ColD == ColS)
@@ -8030,7 +8030,7 @@ th.Dispose();
                 ///When AStarGreedy Heuristic is Not Assigned.
                 if (!AStarGreedyHeuristicT)
                 {
-                    int Order = new int();
+                    Order = new int();
                     Color a = new Color();
                     a = aa;
                     Order = DummyOrder;
@@ -8145,7 +8145,7 @@ th.Dispose();
                 //For All Homes Table.
                 else
                 {
-                    int Order = new int();
+                    Order = new int();
                     Color a = new Color();
                     a = aa;
                     if (RowD == RowS && ColD == ColS)

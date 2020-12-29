@@ -24,9 +24,9 @@ namespace LearningMachine
     [Serializable]
     public class LearningKrinskyAtamata
     {
-        int r = 100;
-        int m = 100;
-        int k = 100;
+        public int r = 100;
+        public int m = 100;
+        public int k = 100;
         public double[] alpha;
         bool beta = true;
         double[] fi;

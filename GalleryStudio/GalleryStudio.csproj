@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalleryStudio</RootNamespace>
     <AssemblyName>GalleryStudio</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -44,12 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RefregitzOperator.cs" />
     <Compile Include="RefregizMemmory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QuantumRefrigiz\QuantumRefrigiz.csproj">
-      <Project>{56d82e52-1fc9-4bc2-b57c-4d23ee44ce23}</Project>
+      <Project>{bb6b1880-9e91-4a92-ad86-fb4cf3ace7dc}</Project>
       <Name>QuantumRefrigiz</Name>
     </ProjectReference>
     <ProjectReference Include="..\RfregitzD\RefrigtzDLL.csproj">

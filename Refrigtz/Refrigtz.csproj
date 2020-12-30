@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Refrigtz</RootNamespace>
     <AssemblyName>Refrigtz</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -371,10 +371,6 @@
     <ProjectReference Include="..\GalleryStudio\GalleryStudio.csproj">
       <Project>{257fbd67-c2d8-4e20-8d14-9a4e27341e1a}</Project>
       <Name>GalleryStudio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QuantumRefrigiz\QuantumRefrigiz.csproj">
-      <Project>{56d82e52-1fc9-4bc2-b57c-4d23ee44ce23}</Project>
-      <Name>QuantumRefrigiz</Name>
     </ProjectReference>
     <ProjectReference Include="..\RfregitzD\RefrigtzDLL.csproj">
       <Project>{6fe9bef7-bd1c-48c4-9967-6d1517c76661}</Project>

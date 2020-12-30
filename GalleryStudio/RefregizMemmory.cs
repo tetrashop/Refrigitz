@@ -30,7 +30,7 @@ namespace GalleryStudio
         public bool ArrangmentsT = false;
         string SAllDraw = "";
         public int Kind = 0;
-        //static GalleryStudio.RefregizMemmory Node;
+        //static RefregizMemmory Node;
         public RefrigtzDLL.AllDraw Current = null;
         public QuantumRefrigiz.AllDraw CurrentQ = null;
         //bool NewListOfNextBegins = true;
@@ -83,7 +83,41 @@ namespace GalleryStudio
             }
 
         }
-        public RefrigtzDLL.AllDraw LoadJungle(string pathj, bool Quantum, int Order)
+        public RefrigtzDLL.AllDraw Load(bool Quantum, int Order)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                if (File.Exists(SAllDraw))
+                {
+                    FileInfo A = new FileInfo(SAllDraw);
+                    if (A.Length == 0)
+                        return null;
+
+                    RefrigtzDLL.AllDraw tt = new RefrigtzDLL.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
+                    FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
+                    BinaryFormatter Formatters = new BinaryFormatter();
+                    DummyFileStream.Seek(0, SeekOrigin.Begin);
+
+                    Console.WriteLine("Loading...");
+                    RefrigtzDLL.AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
+                    tt = (RefrigtzDLL.AllDraw)Formatters.Deserialize(DummyFileStream);
+                    if (tt == null)
+                        return tt;
+                    tt = (RefrigtzDLL.AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+
+                    DummyFileStream.Flush();
+                    DummyFileStream.Close();
+
+                    return tt;
+                }
+
+                return null;
+
+                //return Node.al;
+            }
+        }
+        public RefrigtzDLL.AllDraw LoadJungle(string pathj,bool Quantum, int Order)
         {
             Object o = new Object();
             lock (o)
@@ -118,7 +152,7 @@ namespace GalleryStudio
                 //return Node.al;
             }
         }
-        public RefrigtzDLL.AllDraw Load(bool Quantum, int Order)
+        public QuantumRefrigiz.AllDraw LoadQ(bool Quantum, int Order)
         {
             Object o = new Object();
             lock (o)
@@ -129,17 +163,17 @@ namespace GalleryStudio
                     if (A.Length == 0)
                         return null;
 
-                    RefrigtzDLL.AllDraw tt = new RefrigtzDLL.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
+                    QuantumRefrigiz.AllDraw tt = new QuantumRefrigiz.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                     FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
                     BinaryFormatter Formatters = new BinaryFormatter();
                     DummyFileStream.Seek(0, SeekOrigin.Begin);
 
-                    RefrigtzDLL.AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
-                    //Console.WriteLine("Loading...");
-                    tt = (RefrigtzDLL.AllDraw)Formatters.Deserialize(DummyFileStream);
+                    Console.WriteLine("Loading...");
+                    QuantumRefrigiz.AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
+                    tt = (QuantumRefrigiz.AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
                         return tt;
-                    tt = (RefrigtzDLL.AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+                    tt = (QuantumRefrigiz.AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
 
                     DummyFileStream.Flush();
                     DummyFileStream.Close();
@@ -152,38 +186,38 @@ namespace GalleryStudio
                 //return Node.al;
             }
         }
-        public QuantumRefrigiz.AllDraw LoadQ(bool Quantum, int Order)
+        public QuantumRefrigiz.AllDraw LoadJungleQ(string pathj, bool Quantum, int Order)
         {
             Object o = new Object();
             lock (o)
             {
-
+                SAllDraw = pathj;
                 if (File.Exists(SAllDraw))
                 {
                     FileInfo A = new FileInfo(SAllDraw);
                     if (A.Length == 0)
                         return null;
-                    QuantumRefrigiz.AllDraw tQ = new QuantumRefrigiz.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
 
+                    QuantumRefrigiz.AllDraw tt = new QuantumRefrigiz.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                     FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
                     BinaryFormatter Formatters = new BinaryFormatter();
+                    DummyFileStream.Seek(0, SeekOrigin.Begin);
 
                     Console.WriteLine("Loading...");
-                    DummyFileStream.Seek(0, SeekOrigin.Begin);
-                    RefrigtzDLL.AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
-                    tQ = (QuantumRefrigiz.AllDraw)Formatters.Deserialize(DummyFileStream);
-                    if (tQ == null)
-                        return tQ;
-
-                    tQ = tQ.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+                    QuantumRefrigiz.AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
+                    tt = (QuantumRefrigiz.AllDraw)Formatters.Deserialize(DummyFileStream);
+                    if (tt == null)
+                        return tt;
+                    tt = (QuantumRefrigiz.AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
 
                     DummyFileStream.Flush();
                     DummyFileStream.Close();
 
-                    return tQ;
+                    return tt;
                 }
 
                 return null;
+
                 //return Node.al;
             }
         }
@@ -193,7 +227,7 @@ namespace GalleryStudio
             lock (oo)
             {
 
-                //Current = new RefrigtzDLL.AllDraw(MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
+                //Current = new AllDraw(MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                 FileStream DummyFileStream = null;
 
 
@@ -206,7 +240,7 @@ namespace GalleryStudio
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
 
-                Formatters.Serialize(DummyFileStream, RefrigtzDLL.AllDraw.indexStep);
+                Formatters.Serialize(DummyFileStream,RefrigtzDLL.AllDraw.indexStep);
                 Formatters.Serialize(DummyFileStream, Current);
                 Current.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
 
@@ -221,7 +255,7 @@ namespace GalleryStudio
             lock (oo)
             {
 
-                //Current = new RefrigtzDLL.AllDraw(MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
+                //Current = new AllDraw(MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                 FileStream DummyFileStream = null;
 
 
@@ -229,20 +263,21 @@ namespace GalleryStudio
                 //RefregizMemmory t = p;
 
                 FileInfo DummyFileInfo = new FileInfo(SAllDraw);
-                DummyFileInfo.Delete();
+                //DummyFileInfo.Delete();
                 DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.Write);
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
 
-                Formatters.Serialize(DummyFileStream, RefrigtzDLL.AllDraw.indexStep);
-                Formatters.Serialize(DummyFileStream, CurrentQ);
-                CurrentQ.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
+                Formatters.Serialize(DummyFileStream,QuantumRefrigiz.AllDraw.indexStep);
+                Formatters.Serialize(DummyFileStream, Current);
+                Current.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
 
 
                 DummyFileStream.Flush(); DummyFileStream.Close();
 
             }
         }
+
 
         public RefrigtzDLL.AllDraw AllDrawCurrentAccess
         {

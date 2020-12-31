@@ -2214,7 +2214,7 @@ namespace Refrigtz
                             //RefreshBoxText();
 
                         }
-                        if (QuantumRefrigiz.AllDraw.MouseClick == 0 && !QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun)
+                        if (QuantumRefrigiz.AllDraw.MouseClick == 0 && !QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun)
                         {
                             QuantumRefrigiz.ChessRules A = new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 1, CloneATable(Table), OrderPlate, -1, -1);
                             Color a = Color.Gray;
@@ -14917,7 +14917,7 @@ namespace Refrigtz
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = true;
                 else
-                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = true;
+                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = true;
                 //PaintedPaused = true;
                 try
                 {
@@ -15004,7 +15004,7 @@ namespace Refrigtz
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = true;
                 else
-                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = true;
+                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = true;
                 try
                 {
                     Begin1:
@@ -15335,7 +15335,7 @@ namespace Refrigtz
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = false;
                 else
-                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = false;
+                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = false;
 
                 UpdateConfigurationTable();
                 if (OrderPlate == 1)
@@ -15395,7 +15395,7 @@ namespace Refrigtz
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = false;
                 else
-                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = false;
+                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = false;
                 Begin4:
 
                 Color a = Color.Gray;
@@ -15476,7 +15476,7 @@ namespace Refrigtz
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = true;
                 else
-                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = true;
+                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = true;
                 StateGe = false;
 
 
@@ -15639,7 +15639,7 @@ namespace Refrigtz
 
                     StateGe = true;
                     InsertTableAtDatabase(Table);
-                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = false;
+                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = false;
                 }
                 if (t4.IsAlive)
                     new Syncronization(t4, 1);
@@ -15660,7 +15660,7 @@ namespace Refrigtz
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = true;
                 else
-                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingQuantumRun = true;
+                    QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = true;
                 Begin2:
                 Color a = Color.Gray;
                 bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;

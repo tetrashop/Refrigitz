@@ -61,7 +61,6 @@ namespace Refrigtz
             // 
             // PictureBoxBrown
             // 
-            this.PictureBoxBrown.BackgroundImage = global::Refrigtz.Properties.Resources.KB;
             this.PictureBoxBrown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBoxBrown.Location = new System.Drawing.Point(258, 12);
             this.PictureBoxBrown.Name = "PictureBoxBrown";
@@ -72,7 +71,6 @@ namespace Refrigtz
             // 
             // PictureBoxGray
             // 
-            this.PictureBoxGray.BackgroundImage = global::Refrigtz.Properties.Resources.KG;
             this.PictureBoxGray.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBoxGray.Location = new System.Drawing.Point(76, 12);
             this.PictureBoxGray.Name = "PictureBoxGray";

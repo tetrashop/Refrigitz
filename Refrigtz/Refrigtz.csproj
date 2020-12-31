@@ -174,9 +174,6 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
-    <Reference Include="Timer">
-      <HintPath>bin\Debug\Timer\Timer\bin\Debug\Timer.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutBoxChessRefregitz.cs">
@@ -193,6 +190,11 @@
       <DependentUpon>AboutBoxFaraDars.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TakeRoot.cs" />
     <Compile Include="XmlSerializer.cs" />
     <Compile Include="ClassLoad.cs" />
@@ -277,6 +279,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -372,9 +375,17 @@
       <Project>{257fbd67-c2d8-4e20-8d14-9a4e27341e1a}</Project>
       <Name>GalleryStudio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QuantumRefrigiz\QuantumRefrigiz.csproj">
+      <Project>{bb6b1880-9e91-4a92-ad86-fb4cf3ace7dc}</Project>
+      <Name>QuantumRefrigiz</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RfregitzD\RefrigtzDLL.csproj">
       <Project>{6fe9bef7-bd1c-48c4-9967-6d1517c76661}</Project>
       <Name>RefrigtzDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="bin\Debug\Timer\Timer\Timer.csproj">
+      <Project>{6b7e2b13-fd25-412b-896d-cb710e8737f8}</Project>
+      <Name>Timer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

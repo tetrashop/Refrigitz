@@ -89,6 +89,7 @@ namespace Refrigtz
                 PopulateTreeViewC(0, null, Draw);
                 PopulateTreeViewM(0, null, Draw);
                 PopulateTreeViewK(0, null, Draw);
+                PopulateTreeViewA(0, null, Draw);
                 Invoke((MethodInvoker)delegate ()
                 {
                     treeViewRefregitzDraw.EndUpdate();
@@ -233,6 +234,12 @@ namespace Refrigtz
                     RowDestination = t.RowColumnKing[j][0];
                     ColumnDestination = t.RowColumnKing[j][1];
                 }
+                else
+          if (kind == 7|| kind == -7)
+                {
+                    RowDestination = t.RowColumnCastling[j][0];
+                    ColumnDestination = t.RowColumnCastling[j][1];
+                }
                 string move = Alphabet(t.Row) + Number(t.Column) + Alphabet(RowDestination) + Number(ColumnDestination);
                 if (t.IsThereMateOfSelf[j] || t.IsThereMateOfEnemy[j])
                     move += "++";
@@ -359,10 +366,16 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
-                                   if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                                if (Draw.SolderesOnTable[i].SoldierThinking[0].LoseChiled.Count == Draw.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Count)
+                                {
+                                    if (Draw.SolderesOnTable[i].SoldierThinking[0].LoseChiled[j] < 0 )
+                                        tt.BackColor = Color.Cyan;
+                                }
+                                else
+                                if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
                                 else
                        if (Draw.SolderesOnTable[i].SoldierThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -407,8 +420,9 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j]);
                                 }
-                                
+
                             }
                         }
                     }
@@ -510,10 +524,16 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
-                                 if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                                 if (Draw.ElephantOnTable[i].ElefantThinking[0].LoseChiled.Count == Draw.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Count)
+                                {
+                                    if (Draw.ElephantOnTable[i].ElefantThinking[0].LoseChiled[j] < 0)
+                                        tt.BackColor = Color.Cyan;
+                                }
+                                else
+                               if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
                                 else
                            if (Draw.ElephantOnTable[i].ElefantThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -583,6 +603,7 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j]);
                                 }
                             }
 
@@ -685,10 +706,16 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
-                             if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                             if (Draw.HoursesOnTable[i].HourseThinking[0].LoseChiled.Count == Draw.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse.Count)
+                                {
+                                    if (Draw.HoursesOnTable[i].HourseThinking[0].LoseChiled[j] < 0)
+                                        tt.BackColor = Color.Cyan;
+                                }
+                                else
+                                if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
                                 else
                          if (Draw.HoursesOnTable[i].HourseThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -760,6 +787,7 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j]);
                                 }
                             }
                         }
@@ -861,11 +889,17 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
-                               if (Draw.IsCurrentDraw)
+                                 if (Draw.CastlesOnTable[i].CastleThinking[0].LoseChiled[j] < 0 )
+                                {
+                                    if (Draw.CastlesOnTable[i].CastleThinking[0].LoseChiled.Count == Draw.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Count)
+                                        tt.BackColor = Color.Cyan;
+                                }
+                                else
+                              if (Draw.IsCurrentDraw)
 
-                                    tt.BackColor = Color.DeepPink;
+                                    tt.BackColor = Color.Orange;
                                 else
                       if (Draw.CastlesOnTable[i].CastleThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -936,6 +970,7 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j]);
                                 }
                             }
                         }
@@ -1032,6 +1067,20 @@ namespace Refrigtz
         t.HeuristicListKing[j][7] +
         t.HeuristicListKing[j][8] +
         t.HeuristicListKing[j][9];
+                }
+                else
+                    if (Kind == 7||Kind==-7)
+                {
+                    return t.HeuristicListCastling[j][0] +
+        t.HeuristicListCastling[j][1] +
+        t.HeuristicListCastling[j][2] +
+        t.HeuristicListCastling[j][3] +
+        t.HeuristicListCastling[j][4] +
+        t.HeuristicListCastling[j][5] +
+        t.HeuristicListCastling[j][6] +
+        t.HeuristicListCastling[j][7] +
+        t.HeuristicListCastling[j][8] +
+        t.HeuristicListCastling[j][9];
                 }
                 return int.MinValue;
             }
@@ -1131,10 +1180,16 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
+                                else
+                                if ( Draw.MinisterOnTable[i].MinisterThinking[0].LoseChiled.Count == Draw.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Count)
+                                {
+                                    if (Draw.MinisterOnTable[i].MinisterThinking[0].LoseChiled[j] < 0 ) 
+                                        tt.BackColor = Color.Cyan;
+                                }
                                 else
                                if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                                    tt.BackColor = Color.Orange;
                                 else
                          if (Draw.MinisterOnTable[i].MinisterThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -1205,6 +1260,7 @@ namespace Refrigtz
                                     PopulateTreeViewC(j, AstarGreedy, Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewM(j, AstarGreedy, Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j]);
                                     PopulateTreeViewK(j, AstarGreedy, Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j]);
                                 }
                             }
                         }
@@ -1308,10 +1364,16 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.KingOnTable[i].LoseOcuuredatChiled[0] < 0)
-                                    tt.BackColor = Color.Gray;
+                                    tt.BackColor = Color.RosyBrown;
                                 else
-                                if (Draw.IsCurrentDraw)
-                                    tt.BackColor = Color.DeepPink;
+                                   if (Draw.KingOnTable[i].KingThinking[0].LoseChiled.Count == Draw.KingOnTable[i].KingThinking[0].HeuristicListKing.Count)
+                                {
+                                    if (Draw.KingOnTable[i].KingThinking[0].LoseChiled[j] < 0)
+                                        tt.BackColor = Color.Cyan;
+                                }
+                                else
+                             if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
                                 else
                         if (Draw.KingOnTable[i].KingThinking[0].IsThereMateOfSelf[j])
                                     tt.BackColor = Color.Red;
@@ -1391,6 +1453,191 @@ namespace Refrigtz
                 }
             }
         }
+        private void PopulateTreeViewA(int parentId, TreeNode parentNode, RefrigtzDLL.AllDraw Draw)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        {
+            Object O = new Object();
+            lock (O)
+            {
+                bool Call = true;
+
+
+                if (Draw == null)
+                    return;
+
+                TreeNode childNode = new TreeNode();
+                for (int i = 0; i < 1; i++)
+                {
+                    if (Draw.CastlingOnTable == null)
+                    {
+                        Call = false;
+                        TreeNode t = new TreeNode();
+                        t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                        t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                        t.Tag = parentId;
+                        if (parentNode == null)
+                        {
+                            Invoke((MethodInvoker)delegate ()
+                            {
+                                treeViewRefregitzDraw.Nodes.Add(t);
+                            });
+                            childNode = t;
+                        }
+                        else
+                        {
+                            Invoke((MethodInvoker)delegate ()
+                            {
+                                parentNode.Nodes.Add(t);
+                            });
+                            childNode = t;
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        if (Draw.CastlingOnTable[i] == null)
+                        {
+                            Call = false;
+
+                            TreeNode t = new TreeNode();
+                            t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                            t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                            t.Tag = parentId;
+                            if (parentNode == null)
+                            {
+                                Invoke((MethodInvoker)delegate ()
+                                {
+                                    treeViewRefregitzDraw.Nodes.Add(t);
+                                });
+                                childNode = t;
+                            }
+                            else
+                            {
+                                Invoke((MethodInvoker)delegate ()
+                                {
+                                    parentNode.Nodes.Add(t);
+                                });
+                                childNode = t;
+                            }
+
+                        }
+                        else
+                        {
+                            TreeNode t = new TreeNode();
+                            t.Text = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                            t.Name = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
+                            t.Tag = parentId;
+                                      if (parentNode == null)
+                            {
+                                Invoke((MethodInvoker)delegate ()
+                                {
+                                    treeViewRefregitzDraw.Nodes.Add(t);
+                                });
+                                childNode = t;
+                            }
+                            else
+                            {
+                                Invoke((MethodInvoker)delegate ()
+                                {
+                                    parentNode.Nodes.Add(t);
+                                });
+
+                                childNode = t;
+                            }
+                            TreeNode HeuristicCastling = new TreeNode();
+                            for (int j = 0; Draw.CastlingOnTable[i].CastlingThinking != null && Draw.CastlingOnTable[i].CastlingThinking[0] != null && Draw.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling != null && j < Draw.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
+                            {
+                                TreeNode tt = new TreeNode();
+                                if (Draw.CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                    tt.BackColor = Color.RosyBrown;
+                                else
+                                   if (Draw.CastlingOnTable[i].CastlingThinking[0].LoseChiled.Count == Draw.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count)
+                                {
+                                    if (Draw.CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] < 0)
+                                        tt.BackColor = Color.Cyan;
+                                }
+                                else
+                             if (Draw.IsCurrentDraw)
+                                    tt.BackColor = Color.Orange;
+                                else
+                        if (Draw.CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf[j])
+                                    tt.BackColor = Color.Red;
+                                else
+                      if (Draw.CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy[j])
+                                    tt.BackColor = Color.Green;
+
+                                if (Draw.CastlingOnTable[i].CastlingThinking[0].KishEnemy[j])
+                                    tt.BackColor = Color.Blue;
+                                else
+                          if (Draw.CastlingOnTable[i].CastlingThinking[0].KishSelf[j])
+                                    tt.BackColor = Color.Yellow;
+                                else
+                                if (Draw.HaveKilled > 0)
+                                    tt.BackColor = Color.Gray;
+                                else if (Draw.HaveKilled < 0)
+                                    tt.BackColor = Color.Brown;
+                                tt.Text = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString();
+                                tt.Name = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString();
+                                tt.Tag = j;
+
+
+                                if (childNode == null)
+                                {
+                                    Invoke((MethodInvoker)delegate ()
+                                    {
+                                        treeViewRefregitzDraw.Nodes.Add(tt);
+                                    });
+                                    HeuristicCastling = tt;
+                                }
+                                else
+                                {
+                                    Invoke((MethodInvoker)delegate ()
+                                    {
+                                        childNode.Nodes.Add(tt);
+                                    });
+                                    HeuristicCastling = tt;
+                                }
+                            }
+                            TreeNode AstarGreedy = new TreeNode();
+                            for (int j = 0; Draw.CastlingOnTable[i].CastlingThinking != null && Draw.CastlingOnTable[i].CastlingThinking[0] != null && Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && j < Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; j++)
+                            {
+                                TreeNode tt = new TreeNode();
+                                tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].OrderP.ToString();
+                                tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].OrderP.ToString();
+                                tt.Tag = j;
+
+                                if (childNode == null)
+                                {
+                                    Invoke((MethodInvoker)delegate ()
+                                    {
+                                        treeViewRefregitzDraw.Nodes.Add(tt);
+                                    });
+                                    AstarGreedy = tt;
+                                }
+                                else
+                                {
+                                    Invoke((MethodInvoker)delegate ()
+                                    {
+                                        childNode.Nodes.Add(tt);
+                                    });
+                                    AstarGreedy = tt;
+                                }
+                                if (Call)
+                                {
+                                    PopulateTreeViewS(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewE(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewH(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewC(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewM(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewK(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                    PopulateTreeViewA(j, AstarGreedy, Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -1432,21 +1679,7 @@ namespace Refrigtz
         }
         private void treeViewRefregitzDraw_MouseClick(object sender, MouseEventArgs e)
         {
-            //treeViewRefregitzDraw.Update();
-            Object O = new Object();
-            lock (O)
-            {
-                if (t == null)
-                {
-                    t = new Thread(new ThreadStart(Create));
-                    t.Start();
-                }
-                if (t != null && (!t.IsAlive))
-                {
-                    t = new Thread(new ThreadStart(Create));
-                    t.Start();
-                }
-            }
+
         }
 
         private void FormTXT_MouseClick(object sender, MouseEventArgs e)

@@ -68,7 +68,6 @@ namespace Refrigtz
             // 
             // logoPictureBox
             // 
-            this.logoPictureBox.BackgroundImage = global::Refrigtz.Properties.Resources.ProgramLogo_copy;
             this.logoPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);

@@ -1,7 +1,7 @@
 //
 //www.IranProject.Ir
 //
-namespace Chess
+namespace ChessFirst
 {
 	public class Point
 	{

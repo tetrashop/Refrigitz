@@ -30,13 +30,13 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("15.57.88.458")]
+[assembly: AssemblyVersion("15.57.88.459")]
 
 
 
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile("")]
 [assembly: AssemblyKeyName("")]
-[assembly: AssemblyFileVersion("15.57.88.458")]
+[assembly: AssemblyFileVersion("15.57.88.459")]
 [assembly: NeutralResourcesLanguage("fa")]
 

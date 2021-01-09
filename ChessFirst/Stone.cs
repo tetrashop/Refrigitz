@@ -3,7 +3,7 @@
 //
 using System;
 
-namespace Chess
+namespace ChessFirst
 {
 	 
 	

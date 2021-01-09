@@ -7,13 +7,14 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
-using RefrigtzDLL;
-namespace Chess
+
+namespace ChessFirst
 {
     
     
     static class Program
     {
+        //Main Programm.
         static void CoordinationDataStructures()
         {
             /*Not to be outshined, our concurrent collections and synchronization
@@ -28,7 +29,8 @@ namespace Chess
             while (true)
 
             {
-                while (!RefrigtzDLL.AllDraw.ThinkingRunInBothSide) { Thread.Sleep(1); }
+                while (!AllDraw.ThinkingRunInBothSide) { Thread.Sleep(1); }
+
 
                 var cd = new ConcurrentDictionary<int, int>();
 
@@ -62,7 +64,7 @@ namespace Chess
             while (true)
 
             {
-                while (!RefrigtzDLL.AllDraw.ThinkingRunInBothSide) { Thread.Sleep(1); }
+                while (!AllDraw.ThinkingRunInBothSide) { Thread.Sleep(1); }
 
                 GC.Collect();
 
@@ -96,11 +98,11 @@ namespace Chess
         [STAThread]
         static void Main()
         {
-            Task ttap = new Task(new Action(TaskParallelLibrary));
+           /* Task ttap = new Task(new Action(TaskParallelLibrary));
             ttap.Start();
             Task ttta = new Task(new Action(CoordinationDataStructures));
             ttta.Start();
-            Application.Run(new ChessForm());
+          */  Application.Run(new ChessFirstForm());
         }
     }
 }

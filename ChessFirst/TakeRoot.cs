@@ -4,10 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.IO;
-using Chess;
+using ChessFirst;
 using System.Diagnostics;
-using RefrigtzDLL;
-namespace Refrigtz
+
+namespace ChessFirst
 {
     [Serializable]
     public class TakeRoot
@@ -20,7 +20,7 @@ namespace Refrigtz
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6
         public static String AllDrawKindString = "";
 
-        public RefrigtzDLL.AllDraw t = null;
+        public AllDraw t = null;
         //public QuantumRefrigiz.AllDraw tt = null;
 
         static void Log(Exception ex)
@@ -31,7 +31,7 @@ namespace Refrigtz
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
-                    File.AppendAllText(ChessForm.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); // path of file where stack trace will be stored.
+                    File.AppendAllText(ChessFirstForm.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); // path of file where stack trace will be stored.
                 }
             }
             catch (Exception t) { Log(t); }
@@ -145,26 +145,25 @@ namespace Refrigtz
                 return Found;
             }
         }
-
-        public bool Load(bool FOUND, bool Quantum, ChessForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        public bool LoadJungle(String path,bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
             Object OO = new Object();
             lock (OO)
             {
-                DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
-
                 bool DrawDrawen = false;
                 //Load Middle Targets.
                 try
                 {
-                    if (File.Exists(ChessForm.AllDrawKindString))
+                    ChessFirstForm.AllDrawKindString = path;
+
+                    if (File.Exists(ChessFirstForm.AllDrawKindString))
                     {
-                        if (ChessForm.MovmentsNumber >= 0)
+                        if (ChessFirstForm.MovmentsNumber >= 0)
                         {
                             //if (!Quantum)
                             {
-                                GalleryStudio.RefregizMemmory tr = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                t = (RefrigtzDLL.AllDraw)tr.Load(Quantum, ChessForm.OrderPlate);
+                                RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+                                t = (AllDraw)tr.LoadJungle(path, Quantum, ChessFirstForm.OrderPlate);
                                 if (t != null)
                                 {
                                     Curent.Draw = t;
@@ -172,7 +171,7 @@ namespace Refrigtz
                                     LoadTree = true;
                                     Curent.Draw = Curent.RootFound();
 
-                                //Curent.Draw.UpdateLoseAndWinDepenOfKind(Curent.Draw.OrderP);
+                                    //Curent.Draw.UpdateLoseAndWinDepenOfKind(Curent.Draw.OrderP);
 
 
                                     t = Curent.Draw;
@@ -184,8 +183,8 @@ namespace Refrigtz
                             }
                             /*else
                             {
-                                GalleryStudio.RefregizMemmory tr = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                               tt =(QuantumRefrigiz.AllDraw) tr.LoadQ(Quantum, ChessForm.OrderPlate);
+                                RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+                               tt =(QuantumRefrigiz.AllDraw) tr.LoadQ(Quantum, ChessFirstForm.OrderPlate);
                                 if (t != null)
                                 {
 
@@ -204,7 +203,77 @@ namespace Refrigtz
                                 }
                             }*/
                         }
-                        File.Delete(ChessForm.AllDrawKindString);
+                        File.Delete(ChessFirstForm.AllDrawKindString);
+                    }
+                }
+                catch (Exception t) { Log(t); }
+                //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
+                //ttt.Start();
+                //ttt.Join();
+
+                return DrawDrawen;
+            }
+        }
+
+
+        public bool Load(bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
+
+                bool DrawDrawen = false;
+                //Load Middle Targets.
+                try
+                {
+                    if (File.Exists(ChessFirstForm.AllDrawKindString))
+                    {
+                        if (ChessFirstForm.MovmentsNumber >= 0)
+                        {
+                            //if (!Quantum)
+                            {   RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+                                t = (AllDraw)tr.Load(Quantum, ChessFirstForm.OrderPlate);
+                                if (t != null)
+                                {
+                                    Curent.Draw = t;
+
+                                    LoadTree = true;
+                                    Curent.Draw = Curent.RootFound();
+
+                                    //Curent.Draw.UpdateLoseAndWinDepenOfKind(Curent.Draw.OrderP);
+
+
+                                    t = Curent.Draw;
+                                    //Curent.SetDrawFounding(ref FOUND, ref THIS, false);
+                                    DrawDrawen = true;
+
+                                    System.Windows.Forms.MessageBox.Show("Load Completed.");
+                                }
+                            }
+                            /*else
+                            {
+                                RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+                               tt =(QuantumRefrigiz.AllDraw) tr.LoadQ(Quantum, ChessFirstForm.OrderPlate);
+                                if (t != null)
+                                {
+
+                                    Curent.DrawQ = tt;
+
+                                    LoadTree = true;
+
+
+                                    Curent.DrawQ = Curent.RootFoundQ();
+
+                                    tt = Curent.DrawQ;
+
+                                    DrawDrawen = true;
+
+                                    System.Windows.Forms.MessageBox.Show("Load Completed.");
+                                }
+                            }*/
+                        }
+                        File.Delete(ChessFirstForm.AllDrawKindString);
                     }
                 }
                 catch (Exception t) { Log(t); }
@@ -232,7 +301,7 @@ namespace Refrigtz
             }
         }
 
-        public bool Save(bool FOUND,bool Quantum, ChessForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        public bool Save(bool FOUND,bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
             Object OO = new Object();
             lock (OO)
@@ -240,18 +309,10 @@ namespace Refrigtz
                 object o = new object();
                 lock (o)
                 {
-                    if (!Quantum)
-                    {
-                        if (!RefrigtzDLL.AllDraw.ChangedInTreeOccured)
+                    
+                        if (!AllDraw.ChangedInTreeOccured)
                             return true;
-                    }
-                    else
-                    {
-                        if (!QuantumRefrigiz.AllDraw.ChangedInTreeOccured)
-                            return true;
-
-
-                    }
+                    
                 }
                 //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
                 //ttt.Start();
@@ -283,10 +344,10 @@ namespace Refrigtz
                 try
                 {
 
-                    RefrigtzDLL.AllDraw Stote = Curent.Draw;
+
+                    AllDraw Stote = Curent.Draw;
                     if (!File.Exists(AllDrawKindString))
-                    {
-                        GalleryStudio.RefregizMemmory rt = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
+                    {    RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
                             );
                         //if (!Quantum)
                         {
@@ -294,11 +355,11 @@ namespace Refrigtz
                             {
                                 Curent.Draw = Curent.RootFound();
                                 rt.AllDrawCurrentAccess = Curent.Draw;
-                                rt.RewriteAllDraw(ChessForm.OrderPlate);
-                                RefrigtzDLL.AllDraw.DrawTable = false;
+                                rt.RewriteAllDraw(ChessFirstForm.OrderPlate);
+                                AllDraw.DrawTable = false;
                                 //.SetBoxText("\r\nSaved Completed.");
                                 //Curent.RefreshBoxText();
-                                //PictureBoxRefrigtz.SendToBack();
+                                //PictureBoxSendToBack();
                                 //PictureBoxTimerGray.SendToBack();
                                 //PictureBoxTimerBrown.SendToBack();
                                 //MessageBox.Show("Saved Completed.");
@@ -309,11 +370,11 @@ namespace Refrigtz
                             {
                                 Curent.DrawQ = Curent.RootFoundQ();
                                 rt.AllDrawCurrentAccessQ = Curent.DrawQ;
-                                rt.RewriteAllDrawQ(ChessForm.OrderPlate);
+                                rt.RewriteAllDrawQ(ChessFirstForm.OrderPlate);
                                 QuantumRefrigiz.AllDraw.DrawTable = false;
     //Curent.SetBoxText("\r\nSaved Completed.");
                             //    Curent.RefreshBoxText();
-                                //PictureBoxRefrigtz.SendToBack();
+                                //PictureBoxSendToBack();
                                 //PictureBoxTimerGray.SendToBack();
                                 //PictureBoxTimerBrown.SendToBack();
                                 //MessageBox.Show("Saved Completed.");
@@ -325,19 +386,19 @@ namespace Refrigtz
                     {
                         //DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
 
-                        File.Delete(ChessForm.AllDrawKindString);
-                        GalleryStudio.RefregizMemmory rt = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
+                        File.Delete(ChessFirstForm.AllDrawKindString);
+                        RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
                             );
                         //"Universal Root Founding";
                         if (Curent.Draw != null)
                         {
                             Curent.Draw = Curent.RootFound();
                             rt.AllDrawCurrentAccess = Curent.Draw;
-                            rt.RewriteAllDraw(ChessForm.OrderPlate);
-                            RefrigtzDLL.AllDraw.DrawTable = false;
+                            rt.RewriteAllDraw(ChessFirstForm.OrderPlate);
+                            AllDraw.DrawTable = false;
                             // Curent.SetBoxText("\r\nSaved Completed.");
                             // Curent.RefreshBoxText();
-                            //PictureBoxRefrigtz.SendToBack();
+                            //PictureBoxSendToBack();
                             //PictureBoxTimerGray.SendToBack();
                             //PictureBoxTimerBrown.SendToBack();
                             //MessageBox.Show("Saved Completed.");
@@ -347,6 +408,126 @@ namespace Refrigtz
                     }
                     Curent.Draw = Stote;
                     return true;
+#pragma warning disable CS0162 // Unreachable code detected
+                    return true;
+#pragma warning restore CS0162 // Unreachable code detected
+                }
+                catch (Exception t)
+                {
+                    Log(t);
+                    return false;
+                }
+            }
+        }
+        public bool SaveJungle(bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        {
+            Object OO = new Object();
+            lock (OO)
+            {
+                object o = new object();
+                lock (o)
+                {
+
+            
+                }
+                //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
+                //ttt.Start();
+                //ttt.Join();
+
+                /*if (!Quantum)
+                {
+                    while (Curent.Draw.AStarGreedyString != null)
+                        Curent.Draw = Curent.Draw.AStarGreedyString;
+                }
+                else
+                {
+                    while (Curent.DrawQ.AStarGreedyString != null)
+                        Curent.DrawQ = Curent.DrawQ.AStarGreedyString;
+                }
+               if (UsePenaltyRegardMechnisam && AStarGreedyHeuristic)
+                    AllDrawKind = 4;
+                else
+                                                     if ((!UsePenaltyRegardMechnisam) && AStarGreedyHeuristic)
+                    AllDrawKind = 3;
+                if (UsePenaltyRegardMechnisam && (!AStarGreedyHeuristic))
+                    AllDrawKind = 2;
+                if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHeuristic))
+                    AllDrawKind = 1;
+                //Set Configuration To True for some unknown reason!.
+                //UpdateConfigurationTableVal = true;                             
+                SetAllDrawKindString();
+                */
+                try
+                {
+
+
+                    AllDraw Stote = Curent.Draw;
+                    if (!File.Exists(AllDrawKindString))
+                    {
+                        RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
+                           );
+                        //if (!Quantum)
+                        {
+                            if (Curent.Draw != null)
+                            {
+                                Curent.Draw = Curent.RootFound();
+                                rt.AllDrawCurrentAccess = Curent.Draw;
+                                rt.RewriteAllDraw(ChessFirstForm.OrderPlate);
+                                AllDraw.DrawTable = false;
+                                //.SetBoxText("\r\nSaved Completed.");
+                                //Curent.RefreshBoxText();
+                                //PictureBoxSendToBack();
+                                //PictureBoxTimerGray.SendToBack();
+                                //PictureBoxTimerBrown.SendToBack();
+                                //MessageBox.Show("Saved Completed.");
+                            }
+                        }
+                        /*else {
+                            if (Curent.DrawQ != null)
+                            {
+                                Curent.DrawQ = Curent.RootFoundQ();
+                                rt.AllDrawCurrentAccessQ = Curent.DrawQ;
+                                rt.RewriteAllDrawQ(ChessFirstForm.OrderPlate);
+                                QuantumRefrigiz.AllDraw.DrawTable = false;
+    //Curent.SetBoxText("\r\nSaved Completed.");
+                            //    Curent.RefreshBoxText();
+                                //PictureBoxSendToBack();
+                                //PictureBoxTimerGray.SendToBack();
+                                //PictureBoxTimerBrown.SendToBack();
+                                //MessageBox.Show("Saved Completed.");
+                            }
+                        */
+                    }
+                    else
+                          if (File.Exists(AllDrawKindString))
+                    {
+                        //DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
+
+                        File.Delete(ChessFirstForm.AllDrawKindString);
+                        RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
+                            );
+                        //"Universal Root Founding";
+                        if (Curent.Draw != null)
+                        {
+                            Curent.Draw = Curent.RootFound();
+                            rt.AllDrawCurrentAccess = Curent.Draw;
+                            rt.RewriteAllDraw(ChessFirstForm.OrderPlate);
+                            AllDraw.DrawTable = false;
+                            // Curent.SetBoxText("\r\nSaved Completed.");
+                            // Curent.RefreshBoxText();
+                            //PictureBoxSendToBack();
+                            //PictureBoxTimerGray.SendToBack();
+                            //PictureBoxTimerBrown.SendToBack();
+                            //MessageBox.Show("Saved Completed.");
+                        }
+                        //DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
+
+                    }
+                    Curent.Draw = Stote;
+                    return true;
+#pragma warning disable CS0162 // Unreachable code detected
+                    return true;
+#pragma warning restore CS0162 // Unreachable code detected
                 }
                 catch (Exception t)
                 {

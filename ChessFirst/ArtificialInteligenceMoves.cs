@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using System;
 using System.Drawing;
 
-using RefrigtzDLL;
-using Refrigtz;
+using ChessFirst;
+
 public class ArtificialInteligenceMove
 {	public static bool UpdateIsRunning=true; 
 	public static ArtificialInteligenceMove tta;
@@ -14,11 +14,11 @@ public class ArtificialInteligenceMove
 	int Order=1;
 	public int x,y,x1,y1;
 
-    ChessForm t = null;
+    ChessFirstForm t = null;
 
     bool Idle = false;
 	public static bool IdleProgress=true;
-	public  ArtificialInteligenceMove(RefrigtzDLL.ChessForm tt)
+	public  ArtificialInteligenceMove(ChessFirstForm tt)
     {
         //Awake ();
         t = tt;
@@ -63,7 +63,9 @@ public class ArtificialInteligenceMove
 							AllDraw.Blitz=false;
 															Idle=true;
                             AllDraw.TimeInitiation = (DateTime.Now.Hour * 60 * 60 * 1000 + DateTime.Now.Minute * 60 * 1000 + DateTime.Now.Second * 1000);
-                            //AllDraw.MaxAStarGreedy = 0; // AllDraw.PlatformHelperProcessorCount * LevelMul;
+                            AllDraw.MaxAStarGreedy = AllDraw.PlatformHelperProcessorCount * LevelMul;
+                            AllDraw.StoreInitMaxAStarGreedy =t.Draw.CurrentMaxLevel;AllDraw.MaxAStarGreedy = 0;
+
                             var arrayA =Task.Factory.StartNew(() =>	t.Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy,1, 4,OrderColor(t.Draw.OrderP), CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
 							//var arrayA =Task.Factory.StartNew(() =>	t.Play(-1,-1));
                             arrayA.Wait();
@@ -76,11 +78,11 @@ public class ArtificialInteligenceMove
 							}
 							AllDraw.Blitz=Blit;
 //							Thread.Sleep(50);
-							//LevelMul++;
+							LevelMul++;
 							IdleProgress=false;
+                            AllDraw.MaxAStarGreedy = t.Draw.CurrentMaxLevel;
+                            AllDraw.CalIdle = 1;
                             ArtificialInteligenceMove.UpdateIsRunning = true;
-
-                            AllDraw.CalIdle=1;
                         }
                         while (AllDraw.CalIdle==2)
 						{
@@ -112,13 +114,11 @@ public class ArtificialInteligenceMove
 						{	
 							//Thread.Sleep(1);
 						}*/
-                        ArtificialInteligenceMove.UpdateIsRunning = false;
-
+                  
                         AllDraw.IdleInWork=true;
-						AllDraw.CalIdle=0;
 						IdleProgress=true;
-//				
-					}
+                        UpdateIsRunning = false;
+                    }
 				}
 				} while(AllDraw.CalIdle!=3);
 		

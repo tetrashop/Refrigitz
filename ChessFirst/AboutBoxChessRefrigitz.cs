@@ -7,11 +7,11 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Chess
+namespace ChessFirst
 {
-    partial class AboutBoxChessRefrigitz : Form
+    partial class AboutBoxChessFirstRefrigitz : Form
     {
-        public AboutBoxChessRefrigitz()
+        public AboutBoxChessFirstRefrigitz()
         {
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);

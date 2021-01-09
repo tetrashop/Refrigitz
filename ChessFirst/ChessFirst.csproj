@@ -74,6 +74,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -107,6 +108,7 @@
     <Compile Include="AboutBoxFaraDars.Designer.cs">
       <DependentUpon>AboutBoxFaraDars.cs</DependentUpon>
     </Compile>
+    <Compile Include="AllDraw.cs" />
     <Compile Include="ArtificialInteligenceMoves.cs" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -117,8 +119,31 @@
     <Compile Include="ChessForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ChessGeneticAlgorithm.cs" />
+    <Compile Include="ChessRules.cs" />
+    <Compile Include="CodeClass.cs" />
+    <Compile Include="Colleralation.cs" />
+    <Compile Include="DrawCastle.cs" />
+    <Compile Include="DrawCastling.cs" />
+    <Compile Include="DrawElefant.cs" />
+    <Compile Include="DrawHourse.cs" />
+    <Compile Include="DrawKing.cs" />
+    <Compile Include="DrawMinister.cs" />
+    <Compile Include="DrawSoldire.cs" />
+    <Compile Include="FormTXT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTXT.Designer.cs">
+      <DependentUpon>FormTXT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="HermitInterpolation.cs" />
+    <Compile Include="Interpolate.cs" />
+    <Compile Include="LearningAtamata.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="NetworkQuantumLearningKrinskyAtamata.cs" />
+    <Compile Include="NewotoonInterpolate.cs" />
     <Compile Include="PlatformHelper.cs" />
     <Compile Include="Point.cs">
       <SubType>Code</SubType>
@@ -129,10 +154,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="QuantumAtamata.cs" />
+    <Compile Include="QuantumLearningAtamata.cs" />
+    <Compile Include="RefregitzOperator.cs" />
+    <Compile Include="RefregizMemmory.cs" />
     <Compile Include="Stone.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TakeRoot.cs" />
+    <Compile Include="ThingsConverter.cs" />
+    <Compile Include="ThinkingChess.cs" />
+    <Compile Include="TimeElapced.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AboutBoxChessRefrigitz.resx">
@@ -145,28 +177,13 @@
       <SubType>Designer</SubType>
       <DependentUpon>ChessForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTXT.resx">
+      <DependentUpon>FormTXT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GalleryStudio\GalleryStudio.csproj">
-      <Project>{9bbdd240-bd25-43ee-b5af-3f9546614587}</Project>
-      <Name>GalleryStudio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QuantumRefrigiz\QuantumRefrigiz.csproj">
-      <Project>{bb6b1880-9e91-4a92-ad86-fb4cf3ace7dc}</Project>
-      <Name>QuantumRefrigiz</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Refrigtz\bin\Debug\All\All\All.csproj">
-      <Project>{ac2b4cf6-3294-46d5-9af0-c58ee5b637d4}</Project>
-      <Name>All</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RfregitzD\RefrigtzDLL.csproj">
-      <Project>{6fe9bef7-bd1c-48c4-9967-6d1517c76661}</Project>
-      <Name>RefrigtzDLL</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Chess
+namespace ChessFirst
 {
     partial class AboutBoxFaraDars : Form
     {
@@ -102,7 +102,17 @@ namespace Chess
         }
         #endregion
 
+        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void labelCopyright_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelVersion_Click(object sender, EventArgs e)
         {
 
         }

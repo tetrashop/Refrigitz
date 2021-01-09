@@ -38,19 +38,22 @@ namespace RefrigtzChessPortable
 
         void SetAllDrawKindString()
         {
-            if (AllDrawKind == 4)
-                AllDrawKindString = "AllDrawBT.asd";//Both True
-            else
+            Object O = new Object();
+            lock (O)
+            {
+                if (AllDrawKind == 4)
+                    AllDrawKindString = "S_AllDrawBT.asd";
+                else
                 if (AllDrawKind == 3)
-                AllDrawKindString = "AllDrawFFST.asd";//First false second true
-            else
+                    AllDrawKindString = "S_AllDrawFFST.asd";
+                else
                 if (AllDrawKind == 2)
-                AllDrawKindString = "AllDrawFTSF.asd";//First true second false
-            else
+                    AllDrawKindString = "S_AllDrawFTSF.asd";
+                else
                 if (AllDrawKind == 1)
-                AllDrawKindString = "AllDrawFFSF.asd";//Fist false second false
+                    AllDrawKindString = "S_AllDrawFFSF.asd";
 
-
+            }
         }
         public RefregizMemmory(bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments//) : base(MovementsAStarGreedyHeuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments
             )

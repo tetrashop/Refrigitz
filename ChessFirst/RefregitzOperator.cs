@@ -45,19 +45,22 @@ namespace ChessFirst
         }
         void SetAllDrawKindString()
         {
-            if (AllDrawKind == 4)
-                AllDrawKindString = "AllDrawBT.asd";//Both True
-            else
+            Object O = new Object();
+            lock (O)
+            {
+                if (AllDrawKind == 4)
+                    AllDrawKindString = "F_AllDrawBT.asd";
+                else
                 if (AllDrawKind == 3)
-                AllDrawKindString = "AllDrawFFST.asd";//First false second true
-            else
+                    AllDrawKindString = "F_AllDrawFFST.asd";
+                else
                 if (AllDrawKind == 2)
-                AllDrawKindString = "AllDrawFTSF.asd";//First true second false
-            else
+                    AllDrawKindString = "F_AllDrawFTSF.asd";
+                else
                 if (AllDrawKind == 1)
-                AllDrawKindString = "AllDrawFFSF.asd";//Fist false second false
+                    AllDrawKindString = "F_AllDrawFFSF.asd";
 
-
+            }
         }
         public RefregitzOperator(int Order, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments//) : base(MovementsAStarGreedyHeuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments
             )

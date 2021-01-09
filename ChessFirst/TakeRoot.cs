@@ -38,21 +38,20 @@ namespace ChessFirst
         }
         void SetAllDrawKindString()
         {
-            Object OO = new Object();
-            lock (OO)
+            Object O = new Object();
+            lock (O)
             {
                 if (AllDrawKind == 4)
-                    AllDrawKindString = "AllDrawBT.asd";//Both True
+                    AllDrawKindString = "F_AllDrawBT.asd";
                 else
                 if (AllDrawKind == 3)
-                    AllDrawKindString = "AllDrawFFST.asd";//First false second true
+                    AllDrawKindString = "F_AllDrawFFST.asd";
                 else
                 if (AllDrawKind == 2)
-                    AllDrawKindString = "AllDrawFTSF.asd";//First true second false
+                    AllDrawKindString = "F_AllDrawFTSF.asd";
                 else
                 if (AllDrawKind == 1)
-                    AllDrawKindString = "AllDrawFFSF.asd";//Fist false second false
-
+                    AllDrawKindString = "F_AllDrawFFSF.asd";
 
             }
         }

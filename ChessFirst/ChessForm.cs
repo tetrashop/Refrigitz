@@ -2871,16 +2871,16 @@ namespace ChessFirst
             lock (O)
             {
                 if (AllDrawKind == 4)
-                    AllDrawKindString = "AllDrawBT.asd";
+                    AllDrawKindString = "F_AllDrawBT.asd";
                 else
                 if (AllDrawKind == 3)
-                    AllDrawKindString = "AllDrawFFST.asd";
+                    AllDrawKindString = "F_AllDrawFFST.asd";
                 else
                 if (AllDrawKind == 2)
-                    AllDrawKindString = "AllDrawFTSF.asd";
+                    AllDrawKindString = "F_AllDrawFTSF.asd";
                 else
                 if (AllDrawKind == 1)
-                    AllDrawKindString = "AllDrawFFSF.asd";
+                    AllDrawKindString = "F_AllDrawFFSF.asd";
 
             }
         }

@@ -2872,16 +2872,16 @@ namespace RefrigtzChessPortable
             lock (O)
             {
                 if (AllDrawKind == 4)
-                    AllDrawKindString = "AllDrawBT.asd";
+                    AllDrawKindString = "S_AllDrawBT.asd";
                 else
                 if (AllDrawKind == 3)
-                    AllDrawKindString = "AllDrawFFST.asd";
+                    AllDrawKindString = "S_AllDrawFFST.asd";
                 else
                 if (AllDrawKind == 2)
-                    AllDrawKindString = "AllDrawFTSF.asd";
+                    AllDrawKindString = "S_AllDrawFTSF.asd";
                 else
                 if (AllDrawKind == 1)
-                    AllDrawKindString = "AllDrawFFSF.asd";
+                    AllDrawKindString = "S_AllDrawFFSF.asd";
 
             }
         }

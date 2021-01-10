@@ -12,7 +12,8 @@ namespace Chess
 {
     public partial class Chess : Form
     {
-        public bool WB = true;
+        public bool W = true;
+        public bool B = true;
         public bool frize = true;
         public Chess()
         {
@@ -21,37 +22,41 @@ namespace Chess
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (WB) {
+            B = false;
+            if (W) {
                 frize = true;
                 (new ChessFirst.ChessFirstForm()).ShowDialog();
                 frize = false;
-                WB = false;
+                W = false;
             }
             else
             {
                 frize = true;
                 (new RefrigtzChessPortable.RefrigtzChessPortableForm()).ShowDialog();
                 frize = false;
-                WB = true;
+                W = true;
             }
+            B = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (WB)
+            W = false;
+            if (!B)
             {
                 frize = true;
                 (new ChessFirst.ChessFirstForm()).ShowDialog();
                 frize = false;
-                WB = false;
+                B = true;
             }
             else
             {
                 frize = true;
                 (new RefrigtzChessPortable.RefrigtzChessPortableForm()).ShowDialog();
                 frize = false;
-                WB = true;
+                B = false;
             }
+            W = true;
         }
     }
 }

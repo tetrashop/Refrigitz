@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Chess));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.Computer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -55,12 +56,23 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // Computer
+            // 
+            this.Computer.Location = new System.Drawing.Point(288, 2);
+            this.Computer.Name = "Computer";
+            this.Computer.Size = new System.Drawing.Size(143, 247);
+            this.Computer.TabIndex = 2;
+            this.Computer.Text = "Computer";
+            this.Computer.UseVisualStyleBackColor = true;
+            this.Computer.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Chess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(437, 261);
+            this.Controls.Add(this.Computer);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.ForeColor = System.Drawing.Color.Black;
@@ -75,5 +87,6 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Computer;
     }
 }

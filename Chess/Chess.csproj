@@ -176,6 +176,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChessCom\ChessCom.csproj">
+      <Project>{1f04b85d-26fd-4b2b-810e-da7bc0b94da1}</Project>
+      <Name>ChessCom</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChessFirst\ChessFirst.csproj">
       <Project>{c776321d-e5fa-442e-8320-5159d5bb0d8c}</Project>
       <Name>ChessFirst</Name>

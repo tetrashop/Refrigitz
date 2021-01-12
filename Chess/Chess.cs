@@ -58,5 +58,13 @@ namespace Chess
             }
             W = true;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frize = true;
+            (new ChessCom.ChessComForm()).ShowDialog();
+            frize = false;
+
+        }
     }
 }

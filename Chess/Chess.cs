@@ -12,8 +12,11 @@ namespace Chess
 {
     public partial class Chess : Form
     {
+        RefrigtzChessPortable.RefrigtzChessPortableForm S = null;
+        ChessFirst.ChessFirstForm F = null;
         public bool W = true;
         public bool B = true;
+        ChessCom.ChessComForm BB = null;
         public bool frize = true;
         public Chess()
         {
@@ -58,11 +61,53 @@ namespace Chess
             }
             W = true;
         }
+        void Play()
+        {
+            do {
+                if(W)
+                {
+                    F.Play(-1, -1);
+                    S.Play(F.R.CromosomRowFirst, F.R.CromosomColumnFirst);
+                    S.Play(F.R.CromosomRow, F.R.CromosomColumn);
+                    BB.Play(F.R.CromosomRowFirst, F.R.CromosomColumnFirst);
+                    BB.Play(F.R.CromosomRow, F.R.CromosomColumn);
+                    W = false;
+                    B = true;
+                }
+                else
+                {
+                    S.Play(-1, -1);
+                    F.Play(S.R.CromosomRowFirst, S.R.CromosomColumnFirst);
+                    F.Play(S.R.CromosomRow, S.R.CromosomColumn);
+                    BB.Play(S.R.CromosomRowFirst, S.R.CromosomColumnFirst);
+                    BB.Play(S.R.CromosomRow, S.R.CromosomColumn);
+                    W = true;
+                    B = false;
+                }
 
+
+            } while (true);
+
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             frize = true;
-            (new ChessCom.ChessComForm()).ShowDialog();
+          
+            F = new ChessFirst.ChessFirstForm();
+            F.ComStop = true;
+
+            F.Show();
+            S = (new RefrigtzChessPortable.RefrigtzChessPortableForm());
+            S.Show();
+            do { System.Threading.Thread.Sleep(2000); } while (!(S.LoadP || F.LoadP));
+            F.Hide();
+            S.Hide();
+            W = true;
+            B = false;
+            BB = new ChessCom.ChessComForm();
+            BB.Show();
+            var th = Task.Factory.StartNew(() => Play());
+
             frize = false;
 
         }

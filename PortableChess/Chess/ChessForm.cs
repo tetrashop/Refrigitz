@@ -40,7 +40,7 @@ namespace RefrigtzChessPortable
         int ConClick = -1;
         PictureBox[] Con = new PictureBox[4];
         bool WaitOnplay = false;
-        RefrigtzChessPortable.RefrigtzChessPortableGeneticAlgorithm R = new RefrigtzChessPortable.RefrigtzChessPortableGeneticAlgorithm(false, false, UsePenaltyRegardMechnisam, false, false, false, false, true);
+        public RefrigtzChessPortable.RefrigtzChessPortableGeneticAlgorithm R = new RefrigtzChessPortable.RefrigtzChessPortableGeneticAlgorithm(false, false, UsePenaltyRegardMechnisam, false, false, false, false, true);
         bool Person = true;
         public RefrigtzChessPortable.AllDraw Draw = new AllDraw(-1, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
         int[,] Table = null;

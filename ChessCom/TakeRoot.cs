@@ -41,18 +41,34 @@ namespace ChessCom
             Object O = new Object();
             lock (O)
             {
-                if (AllDrawKind == 4)
-                    AllDrawKindString = "T_AllDrawBT.asd";
+                if (AllDraw.OrderPlateDraw == 1)
+                {
+                    if (AllDrawKind == 4)
+                        AllDrawKindString = "F_AllDrawBT.asd";
+                    else
+                    if (AllDrawKind == 3)
+                        AllDrawKindString = "F_AllDrawFFST.asd";
+                    else
+                    if (AllDrawKind == 2)
+                        AllDrawKindString = "F_AllDrawFTSF.asd";
+                    else
+                    if (AllDrawKind == 1)
+                        AllDrawKindString = "F_AllDrawFFSF.asd";
+                }
                 else
-                if (AllDrawKind == 3)
-                    AllDrawKindString = "T_AllDrawFFST.asd";
-                else
-                if (AllDrawKind == 2)
-                    AllDrawKindString = "T_AllDrawFTSF.asd";
-                else
-                if (AllDrawKind == 1)
-                    AllDrawKindString = "T_AllDrawFFSF.asd";
-
+                {
+                    if (AllDrawKind == 4)
+                        AllDrawKindString = "S_AllDrawBT.asd";
+                    else
+            if (AllDrawKind == 3)
+                        AllDrawKindString = "S_AllDrawFFST.asd";
+                    else
+            if (AllDrawKind == 2)
+                        AllDrawKindString = "S_AllDrawFTSF.asd";
+                    else
+            if (AllDrawKind == 1)
+                        AllDrawKindString = "S_AllDrawFFSF.asd";
+                }
             }
         }
         void SetAllDrawKind(bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)

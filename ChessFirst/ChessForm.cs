@@ -21,6 +21,7 @@ namespace ChessFirst
     [Serializable]
     public class ChessFirstForm : System.Windows.Forms.Form
     {
+        public bool ComStop = false;
         bool freezBoard = false;
         ArtificialInteligenceMove f = null;
         public bool LoadP = false;
@@ -40,7 +41,7 @@ namespace ChessFirst
         int ConClick = -1;
         PictureBox[] Con = new PictureBox[4];
         bool WaitOnplay = false;
-        ChessFirst.ChessFirstGeneticAlgorithm R = new ChessFirst.ChessFirstGeneticAlgorithm(false, false, UsePenaltyRegardMechnisam, false, false, false, false, true);
+        public ChessFirst.ChessFirstGeneticAlgorithm R = new ChessFirst.ChessFirstGeneticAlgorithm(false, false, UsePenaltyRegardMechnisam, false, false, false, false, true);
         bool Person = true;
         public ChessFirst.AllDraw Draw = new AllDraw(-1, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
         int[,] Table = null;
@@ -772,7 +773,8 @@ namespace ChessFirst
                 LoadP = true;
 
                 f = new ArtificialInteligenceMove(this);
-                Play(-1, -1);
+                if (!ComStop)
+                    Play(-1, -1);
             }
         }
         void ClickedSimAtClOne(int i, int j)

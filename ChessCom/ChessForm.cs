@@ -21,6 +21,7 @@ namespace ChessCom
     [Serializable]
     public class ChessComForm : System.Windows.Forms.Form
     {
+        bool Comready = false;
         bool freezBoard = false;
         ArtificialInteligenceMove f = null;
         public bool LoadP = false;
@@ -43,6 +44,8 @@ namespace ChessCom
         ChessCom.ChessComGeneticAlgorithm R = new ChessCom.ChessComGeneticAlgorithm(false, false, UsePenaltyRegardMechnisam, false, false, false, false, true);
         bool Person = true;
         public ChessCom.AllDraw Draw = new AllDraw(-1, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+        public ChessCom.AllDraw DrawF = new AllDraw(-1, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+        public ChessCom.AllDraw DrawS = new AllDraw(-1, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
         int[,] Table = null;
         bool FOUND = false;
         #region These are the global variables and objects for ChessComForm class
@@ -552,232 +555,7 @@ namespace ChessCom
         }
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            Object O = new Object();
-            lock (O)
-            {
-                if (!LoadP)
-                {
-                    freezBoard = false;
-                    MessageBox.Show("Wait...");
-                    //var parallelOptions = new ParallelOptions();
-                    //parallelOptions.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount;
-                    ChessCom.AllDraw.OrderPlateDraw = 1;
-                    ChessCom.AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
-                    Table = CloneATable(brd.GetTable());
-                    ChessCom.ThinkingChessCom.TableInitiation = CloneATable(brd.GetTable());
-                    //Load AllDraw.asd
-                    bool LoadTree = true;
-                    TakeRoot y = new TakeRoot();
-                    bool DrawDrawen = y.Load(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                    if (DrawDrawen)
-                    {
-                        if (DrawManagement())
-                        {
-                            //Load AllDraw.asd
-                            LoadTree = true;
-                            y = new TakeRoot();
-                            FOUND = false;
-                            DrawDrawen = y.Load(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                            if (!DrawDrawen)
-                            {
-                                Draw = new ChessCom.AllDraw(OrderPlate, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                                Draw.TableList.Clear();
-                                Draw.TableList.Add(CloneATable(Table));
-                                Draw.SetRowColumn(0);
-                                ChessCom.AllDraw.DepthIterative = 0;
-
-                                bool Store = Deeperthandeeper;
-                                Deeperthandeeper = false;
-
-                                OrderPlate = 1;
-                                AllDraw.OrderPlate = OrderPlate;
-
-                                int Ord = OrderPlate;
-                                Color aa = Color.Gray;
-                                if (Ord == -1)
-                                    aa = Color.Brown;
-                                bool B = AllDraw.Blitz;
-                                AllDraw.Blitz = false;
-                                //ChessCom.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
-
-                                if (Draw.IsAtLeastAllObjectIsNull())
-                                {
-                                    Draw.TableList.Clear();
-                                    Draw.TableList.Add(CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 2]));
-                                    Draw.SetRowColumn(0);
-                                    Draw.IsCurrentDraw = true;
-                                }
-
-                                object n = new object();
-                                lock (n)
-                                {
-                                    AllDraw.ChangedInTreeOccured = false;
-
-                                }
-
-                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
-
-                                AllDraw.Blitz = B;
-                                Deeperthandeeper = Store;
-
-                            }
-                            else
-                            {
-                                FOUND = false;
-                                Draw = y.t;
-                                Draw.HarasAlphaBeta(0, 0, -1);
-                                Thread arr = new Thread(new ThreadStart(SetDrawFound));
-                                arr.Start();
-                                arr.Join();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Object OO = new Object();
-                        lock (OO)
-                        {
-                            SetAllDrawKind();
-                            //Set Configuration To True for some unknown reason!.
-
-                            SetAllDrawKindString();
-                            bool Found = false;
-                            String P = Path.GetFullPath(path3);
-                            AllDrawReplacement = Path.Combine(P, AllDrawKindString);
-
-
-                            if (File.Exists(AllDrawReplacement))
-                            {
-                                if (((new System.IO.FileInfo(AllDrawKindString).Length) < (new System.IO.FileInfo(AllDrawReplacement)).Length))
-                                {
-                                    File.Delete(AllDrawKindString);
-                                    File.Copy(AllDrawReplacement, AllDrawKindString);
-                                    Found = true;
-                                }
-                            }
-                            else
-                            {
-
-                                File.Delete(AllDrawKindString);
-                            }
-
-
-                        }
-                        if (DrawManagement())
-                        {
-                            //Load AllDraw.asd
-                            LoadTree = true;
-                            y = new TakeRoot();
-                            DrawDrawen = y.Load(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                            if (!DrawDrawen)
-                            {
-                                Draw = new ChessCom.AllDraw(OrderPlate, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                                Draw.TableList.Clear();
-                                Draw.TableList.Add(CloneATable(Table));
-                                Draw.SetRowColumn(0);
-                                ChessCom.AllDraw.DepthIterative = 0;
-
-                                bool Store = Deeperthandeeper;
-                                Deeperthandeeper = false;
-
-                                OrderPlate = 1;
-                                AllDraw.OrderPlate = OrderPlate;
-
-                                int Ord = OrderPlate;
-                                Color aa = Color.Gray;
-                                if (Ord == -1)
-                                    aa = Color.Brown;
-                                bool B = AllDraw.Blitz;
-                                AllDraw.Blitz = false;
-                                //ChessCom.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
-
-                                if (Draw.IsAtLeastAllObjectIsNull())
-                                {
-                                    Draw.TableList.Clear();
-                                    Draw.TableList.Add(CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 2]));
-                                    Draw.SetRowColumn(0);
-                                    Draw.IsCurrentDraw = true;
-                                }
-
-                                object n = new object();
-                                lock (n)
-                                {
-                                    AllDraw.ChangedInTreeOccured = false;
-
-                                }
-
-                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
-
-                                AllDraw.Blitz = B;
-                                Deeperthandeeper = Store;
-
-
-                            }
-                            else
-                            {
-                                FOUND = false;
-                                Draw = y.t;
-                                Draw.HarasAlphaBeta(0, 0, -1);
-                                Thread arr = new Thread(new ThreadStart(SetDrawFound));
-                                arr.Start();
-                                arr.Join();
-                            }
-                        }
-                        else
-                        {
-
-                            Draw = new ChessCom.AllDraw(OrderPlate, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                            Draw.TableList.Clear();
-                            Draw.TableList.Add(CloneATable(Table));
-                            Draw.SetRowColumn(0);
-                            ChessCom.AllDraw.DepthIterative = 0;
-
-                            bool Store = Deeperthandeeper;
-                            Deeperthandeeper = false;
-
-                            OrderPlate = 1;
-                            AllDraw.OrderPlate = OrderPlate;
-
-                            int Ord = OrderPlate;
-                            Color aa = Color.Gray;
-                            if (Ord == -1)
-                                aa = Color.Brown;
-                            bool B = AllDraw.Blitz;
-                            AllDraw.Blitz = false;
-                            //ChessCom.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
-
-                            if (Draw.IsAtLeastAllObjectIsNull())
-                            {
-                                Draw.TableList.Clear();
-                                Draw.TableList.Add(CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 2]));
-                                Draw.SetRowColumn(0);
-                                Draw.IsCurrentDraw = true;
-                            }
-
-                            object n = new object();
-                            lock (n)
-                            {
-                                AllDraw.ChangedInTreeOccured = false;
-
-                            }
-
-                            Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
-
-                            AllDraw.Blitz = B;
-                            Deeperthandeeper = Store;
-
-
-
-                        }
-                    }
-                }
-
-                MessageBox.Show("Ready...");
-                LoadP = true;
-
-                var ah1 = Task.Factory.StartNew(() => Play(-1, -1));
-                
-            }
+            
         }
         void ClickedSimAtClOne(int i, int j)
         {
@@ -843,6 +621,18 @@ namespace ChessCom
         {
             do { } while (WaitOnplay);
         }
+        void Play()
+        {
+            do {
+                if (Comready)
+                {
+                    Comready = false;
+                    Play(-1, -1);
+                } else
+                    Thread.Sleep(100);
+
+            } while (true);
+        }
         public int Play(int i, int j)
         {
             Object o = new Object();
@@ -853,185 +643,10 @@ namespace ChessCom
 
                 try
                 {
-                    object f = new object();
-                    lock (f)
-                    {
-                        if (freezBoard)
-                            return 0;
-
-                        if (AllDraw.CalIdle == 0)
-                        {
-                            ArtificialInteligenceMove.UpdateIsRunning = true;
-                            ChessCom.AllDraw.CalIdle = 2;
-                            return 0;
-                        }
-                        if (ArtificialInteligenceMove.UpdateIsRunning)
-                        {
-                            if (AllDraw.CalIdle == 2)
-                            {
-                                AllDraw.CalIdle = 1;
-                                return 0;
-                            }
-                        }
-                        else
-                            if (!freezBoard)
-                            return 0;
-
-                    }
-                    bool Com = false;
-                   
-                    if (i == -1 && j == -1)
-                    {
-                        ChessCom.AllDraw.OrderPlateDraw = AllDraw.OrderPlate;
-
-                        AllDraw.AllowedSupTrue = false;
-
-                    Again:
-                        AllDraw.NextRow = -1;
-                        AllDraw.NextColumn = -1;
-                        AllDraw.LastRow = -1;
-                        AllDraw.LastColumn = -1;
-                        CoPermit = false;
-                        Person = false;
-
-                        AllDraw.Blitz = true;
-
-
-
-
-
-                        Table = brd.GetTable();
-
-
-
-
-                        freezBoard = true;
-                        var newTask = Task.Factory.StartNew(() => BobAction(1));
-                        newTask.Wait();
-                        newTask.Dispose();
-                        if (Draw.TableZero(Table))
-                        {
-                            MessageBox.Show("Board is invalid;");
-                            if (Draw.IsAtLeastAllObjectIsNull())
-                            {
-                                Draw.TableList.Clear();
-                                Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
-                                Draw.SetRowColumn(0);
-                            }
-                            Draw.IsCurrentDraw = true;
-                            ThinkingChessCom.NoOfMovableAllObjectMove++;
-
-                            AllDraw.AStarGreedyiLevelMax = Draw.CurrentMaxLevel;
-                            AllDraw.AllowedSupTrue = true;
-
-                            if (ArtificialInteligenceMove.UpdateIsRunning)
-                            {
-                                if (AllDraw.CalIdle == 0)
-                                    return 0;
-                                if (AllDraw.CalIdle == 2)
-                                {
-                                    AllDraw.CalIdle = 1;
-                                    return 0;
-                                }
-                            }
-                            else
-                            if (!freezBoard)
-                                return 0;
-                            //AllDraw.indexStep--;//no to axelirity speed
-
-                            goto Again;
-                        }
-                        AllDraw.AllowedSupTrue = false;
-
-                        if (ArtificialInteligenceMove.UpdateIsRunning)
-                        {
-                            if (AllDraw.CalIdle == 0)
-                                return 0;
-                            if (AllDraw.CalIdle == 2)
-                            {
-                                AllDraw.CalIdle = 1;
-                                return 0;
-                            }
-                        }
-                        else
-                            if (!freezBoard)
-                            return 0;
-
-
-                        AllDraw.TableListAction.Add(CloneATable(Table));
-                        R = new ChessComGeneticAlgorithm(false, false, false, false, false, false, false, true);
-                        if (R.FindGenToModified(AllDraw.TableListAction[AllDraw.TableListAction.Count - 2], AllDraw.TableListAction[AllDraw.TableListAction.Count - 1], AllDraw.TableListAction, 0, OrderPlate, true))
-                        {
-
-                            int ii = new int();
-                            int jj = new int();
-                            if (R.CromosomRowFirst == -1 || R.CromosomColumnFirst == -1 || R.CromosomRow == -1 || R.CromosomColumn == -1)
-                            {
-                                if (AllDraw.LastRow != -1 && AllDraw.LastColumn != -1 && AllDraw.NextRow != -1 && AllDraw.NextColumn != -1)
-                                {
-                                    R.CromosomRowFirst = AllDraw.LastRow;
-                                    R.CromosomColumnFirst = AllDraw.LastColumn;
-                                    R.CromosomRow = AllDraw.NextRow;
-                                    R.CromosomColumn = AllDraw.NextColumn;
-
-                                }
-                                else {
-                                    MessageBox.Show("One or more cromosoms is invalid;");
-                                    AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
-                                    if (Draw.IsAtLeastAllObjectIsNull())
-                                    {
-                                        Draw.TableList.Clear();
-                                        Draw.TableList.Add(CloneATable(AllDraw.TableListAction[AllDraw.TableListAction.Count - 1]));
-                                        Draw.SetRowColumn(0);
-                                        Draw.IsCurrentDraw = true;
-                                    }
-                                    goto Again;
-                                }
-                            }
-
-                            ii = R.CromosomRowFirst;
-                            jj = R.CromosomColumnFirst;
-                            i = ii;
-                            j = jj;
-
-                            k = brd.getInfo(i, j);
-                            //if (k == 0)
-
-                            cl = 0;
-                            if (AllDraw.OrderPlateDraw == 1)
-                                ThinkingChessCom.NoOfBoardMovedGray++;
-                            else
-                                ThinkingChessCom.NoOfBoardMovedBrown++;
-                        }
-                        else
-                        {
-
-
-                            {
-                                MessageBox.Show("One or more DNA is invalid;");
-
-
-
-                                AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
-                                Table = brd.GetTable();
-
-
-
-
-
-                                goto Again;
-                            }
-                        }
-
-
-                    }
-                    else
-                    {
-                        CoPermit = true;
+                    
                         k = brd.getInfo(i, j);
                         //if (k == 0)
 
-                    }
                     string lstr = " ";
                     if (k > 6)
                     {
@@ -1093,7 +708,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img2;
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1128,7 +743,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img4;
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1163,7 +778,6 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img6;
                                     }
-                                    Com = true;
                                 }
                                 else
                                 {
@@ -1198,7 +812,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img8;
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1232,7 +846,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img10;
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else if (kg2.move(brd, i, j) == 2)
                                 {
@@ -1255,7 +869,7 @@ namespace ChessCom
                                     brd.setSquare(5, 2, 0);
                                     brd.setSquare(1, 3, 0);
                                     order++;
-                                    Com = true;
+                                    
                                 }
                                 else if (kg2.move(brd, i, j) == 3)
                                 {
@@ -1278,7 +892,7 @@ namespace ChessCom
                                     brd.setSquare(1, 5, 0);
                                     brd.setSquare(5, 6, 0);
                                     order++;
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1402,7 +1016,7 @@ namespace ChessCom
                                             pb[i, j].Image = img12;
                                         }
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1437,7 +1051,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img22;
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1472,7 +1086,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img24;
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1507,7 +1121,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img26;
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1542,7 +1156,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img28;
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1577,7 +1191,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img30;
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else if (kg.move(brd, i, j) == 2)
                                 {
@@ -1600,7 +1214,7 @@ namespace ChessCom
                                     brd.setSquare(11, 2, 7);
                                     brd.setSquare(5, 3, 7);
                                     order--;
-                                    Com = true;
+                                    
                                 }
                                 else if (kg.move(brd, i, j) == 3)
                                 {
@@ -1623,7 +1237,7 @@ namespace ChessCom
                                     brd.setSquare(7, 5, 7);
                                     brd.setSquare(11, 6, 7);
                                     order--;
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1747,7 +1361,7 @@ namespace ChessCom
                                             pb[i, j].Image = img32;
                                         }
                                     }
-                                    Com = true;
+                                    
                                 }
                                 else
                                 {
@@ -1843,160 +1457,12 @@ namespace ChessCom
                                 lstr = str2 + " کیش  " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() + " Hu:" + AllDraw.Less.ToString();
                                 this.lb.Items.AddRange(new object[] { lstr });
                                 MessageBox.Show(" کیش توسط" + " " + str2);
-                                Object oo = new Object();
-                                lock (oo)
-                                {
-                                    if (Com && (order == 2))
-                                    {
-
-                                        MovmentsNumber++;
-                                        AllDraw.MaxAStarGreedy = 0;
-
-
-                                        Table = brd.GetTable();
-                                        ClearTableInitiationPreventionOfMultipleMove();
-                                        ChessCom.AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
-
-                                        AllDraw.OrderPlate = OrderPlate;
-                                        int Ord = OrderPlate;
-                                        Color aa = Color.Gray;
-                                        if (Ord == -1)
-                                            aa = Color.Brown;
-                                        bool B = AllDraw.Blitz;
-                                        AllDraw.Blitz = false;
-                                        //ChessCom.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
-
-                                        AllDraw thiB = Draw.AStarGreedyString;
-                                        if (Draw.IsAtLeastAllObjectIsNull())
-                                        {
-                                            Draw.TableList.Clear();
-                                            Draw.TableList.Add(CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 1]));
-                                            Draw.SetRowColumn(0);
-                                            Draw.IsCurrentDraw = true;
-                                        }
-                                        Draw.AStarGreedyString = thiB;
-                                        object n = new object();
-                                        lock (n)
-                                        {
-                                            AllDraw.ChangedInTreeOccured = false;
-
-                                        }
-                                        AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
-                                        Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
-
-                                        AllDraw.Blitz = B;
-
-                                        System.Threading.Thread tt = new System.Threading.Thread(new System.Threading.ThreadStart(SetDrawFound));
-                                        tt.Start();
-                                        tt.Join();
-                                        tt.Abort();
-
-                                        AllDraw.OrderPlate = -1; OrderPlate = -1;
-
-                                        Play(-1, -1);
-
-
-                                    }
-                                    else
-                              if (Com && (order == 1))
-                                    {
-
-                                        freezBoard = false;
-
-                                        MovmentsNumber++;
-                                        Table = brd.GetTable();
-                                        ClearTableInitiationPreventionOfMultipleMove();
-
-                                        System.Threading.Thread tt = new System.Threading.Thread(new System.Threading.ThreadStart(SetDrawFound));
-                                        tt.Start();
-                                        tt.Join();
-                                        tt.Abort();
-                                        AllDraw.OrderPlate = 1; OrderPlate = 1;
-
-                                        Play(-1, -1);
-
-                                    }
-                                }
                             }
                         }
                         else
                         {
                             lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() + " Hu:" + AllDraw.Less.ToString();
                             this.lb.Items.AddRange(new object[] { lstr });
-                        }
-                        Object oi = new Object();
-                        lock (oi)
-                        {
-                            if (Com && (order == 2))
-                            {
-                                MovmentsNumber++;
-
-
-                                Table = brd.GetTable();
-                                ClearTableInitiationPreventionOfMultipleMove();
-                                ChessCom.AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
-
-
-                                AllDraw.OrderPlate = OrderPlate;
-                                int Ord = OrderPlate;
-                                Color aa = Color.Gray;
-                                if (Ord == -1)
-                                    aa = Color.Brown;
-                                bool B = AllDraw.Blitz;
-                                AllDraw.Blitz = false;
-                                //ChessCom.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
-
-                                AllDraw thiB = Draw.AStarGreedyString;
-                                if (Draw.IsAtLeastAllObjectIsNull())
-                                {
-                                    Draw.TableList.Clear();
-                                    Draw.TableList.Add(CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 1]));
-                                    Draw.SetRowColumn(0);
-                                    Draw.IsCurrentDraw = true;
-                                }
-                                Draw.AStarGreedyString = thiB;
-
-                                object n = new object();
-                                lock (n)
-                                {
-                                    AllDraw.ChangedInTreeOccured = false;
-
-                                }
-                                AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel;
-                                Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(ChessCom.AllDraw.TableListAction[ChessCom.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
-
-
-
-                                AllDraw.Blitz = B;
-
-                                System.Threading.Thread tt = new System.Threading.Thread(new System.Threading.ThreadStart(SetDrawFound));
-                                tt.Start();
-                                tt.Join();
-                                tt.Abort();
-
-                                AllDraw.OrderPlate = -1; OrderPlate = -1;
-
-
-                                Play(-1, -1);
-                            }
-                            else
-                              if (Com && (order == 1))
-                            {
-
-
-                                freezBoard = false;
-                                Table = brd.GetTable();
-                                MovmentsNumber++;
-                                ClearTableInitiationPreventionOfMultipleMove();
-
-                                System.Threading.Thread tt = new System.Threading.Thread(new System.Threading.ThreadStart(SetDrawFound));
-                                tt.Start();
-                                tt.Join();
-                                tt.Abort();
-                                AllDraw.OrderPlate = 1; OrderPlate = 1;
-
-                                Play(-1, -1);
-                            }
                         }
                         return 1;
                     }
@@ -2868,18 +2334,34 @@ namespace ChessCom
             Object O = new Object();
             lock (O)
             {
-                if (AllDrawKind == 4)
-                    AllDrawKindString = "T_AllDrawBT.asd";
+                if (AllDraw.OrderPlateDraw == 1)
+                {
+                    if (AllDrawKind == 4)
+                        AllDrawKindString = "F_AllDrawBT.asd";
+                    else
+                    if (AllDrawKind == 3)
+                        AllDrawKindString = "F_AllDrawFFST.asd";
+                    else
+                    if (AllDrawKind == 2)
+                        AllDrawKindString = "F_AllDrawFTSF.asd";
+                    else
+                    if (AllDrawKind == 1)
+                        AllDrawKindString = "F_AllDrawFFSF.asd";
+                }
                 else
-                if (AllDrawKind == 3)
-                    AllDrawKindString = "T_AllDrawFFST.asd";
-                else
-                if (AllDrawKind == 2)
-                    AllDrawKindString = "T_AllDrawFTSF.asd";
-                else
-                if (AllDrawKind == 1)
-                    AllDrawKindString = "T_AllDrawFFSF.asd";
-
+                {
+                    if (AllDrawKind == 4)
+                        AllDrawKindString = "S_AllDrawBT.asd";
+                    else
+            if (AllDrawKind == 3)
+                        AllDrawKindString = "S_AllDrawFFST.asd";
+                    else
+            if (AllDrawKind == 2)
+                        AllDrawKindString = "S_AllDrawFTSF.asd";
+                    else
+            if (AllDrawKind == 1)
+                        AllDrawKindString = "S_AllDrawFFSF.asd";
+                }
             }
         }
         void SetAllDrawKind()

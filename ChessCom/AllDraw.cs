@@ -54,7 +54,7 @@ namespace ChessCom
     [Serializable]
     public class AllDraw//: IDisposable
     {
-        public static bool HarasAct = false;
+         public static bool HarasAct = false;
         public static int StoreInitMaxAStarGreedy = 0;
         public static bool SStopInitMaxAStarGreedy = false;
         //justicce height

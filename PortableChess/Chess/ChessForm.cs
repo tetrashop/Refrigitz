@@ -21,6 +21,7 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class RefrigtzChessPortableForm : System.Windows.Forms.Form
     {
+        public bool ComStop = false;
         bool freezBoard = false;
         ArtificialInteligenceMove f = null;
         public bool LoadP = false;
@@ -1887,11 +1888,13 @@ namespace RefrigtzChessPortable
                                         tt.Abort();
 
                                         AllDraw.OrderPlate = -1; OrderPlate = -1;
+                                        if (!ComStop)
+                                        {
+                                            Play(-1, -1);
 
-                                        Play(-1, -1);
-
-                                        ArtificialInteligenceMove.UpdateIsRunning = false;
-                                        RefrigtzChessPortable.AllDraw.CalIdle = 0;
+                                            ArtificialInteligenceMove.UpdateIsRunning = false;
+                                            RefrigtzChessPortable.AllDraw.CalIdle = 0;
+                                        }
 
                                     }
                                     else
@@ -1976,11 +1979,13 @@ namespace RefrigtzChessPortable
                                 AllDraw.OrderPlate = -1; OrderPlate = -1;
 
 
-                                Play(-1, -1);
+                                if (!ComStop)
+                                {
+                                    Play(-1, -1);
 
-
-                                ArtificialInteligenceMove.UpdateIsRunning = false;
-                                RefrigtzChessPortable.AllDraw.CalIdle = 0;
+                                    ArtificialInteligenceMove.UpdateIsRunning = false;
+                                    RefrigtzChessPortable.AllDraw.CalIdle = 0;
+                                }
                             }
                             else
                               if (Com && (order == 2))

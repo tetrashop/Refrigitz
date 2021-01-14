@@ -1889,11 +1889,13 @@ namespace ChessFirst
 
                                         AllDraw.OrderPlate = -1; OrderPlate = -1;
 
-                                        Play(-1, -1);
+                                        if (!ComStop)
+                                        {
+                                            Play(-1, -1);
 
-                                        ArtificialInteligenceMove.UpdateIsRunning = false;
-                                        ChessFirst.AllDraw.CalIdle = 0;
-
+                                            ArtificialInteligenceMove.UpdateIsRunning = false;
+                                            ChessFirst.AllDraw.CalIdle = 0;
+                                        }
                                     }
                                     else
                               if (Com && (order == 1))
@@ -1977,11 +1979,13 @@ namespace ChessFirst
                                 AllDraw.OrderPlate = -1; OrderPlate = -1;
 
 
-                                Play(-1, -1);
+                                if (!ComStop)
+                                {
+                                    Play(-1, -1);
 
-
-                                ArtificialInteligenceMove.UpdateIsRunning = false;
-                                ChessFirst.AllDraw.CalIdle = 0;
+                                    ArtificialInteligenceMove.UpdateIsRunning = false;
+                                    ChessFirst.AllDraw.CalIdle = 0;
+                                }
                             }
                             else
                               if (Com && (order == 1))

@@ -95,9 +95,9 @@ namespace Chess
           
             F = new ChessFirst.ChessFirstForm();
             F.ComStop = true;
-
             F.Show();
             S = (new RefrigtzChessPortable.RefrigtzChessPortableForm());
+            S.ComStop = true;
             S.Show();
             do { System.Threading.Thread.Sleep(2000); } while (!(S.LoadP || F.LoadP));
             F.Hide();

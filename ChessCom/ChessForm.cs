@@ -1353,10 +1353,10 @@ namespace ChessCom
                             lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() ;
                             this.lb.Items.AddRange(new object[] { lstr });
                         }
-                        return 1;
+                        return 0;
                     }
                 }
-                catch (Exception t) { Log(t); }
+                catch (Exception t) { Log(t); return -1; }
                 return 0;
             }
         }

@@ -66,21 +66,33 @@ namespace Chess
             do {
                 if(W)
                 {
-                    F.Play(-1, -1);
-                    S.Play(F.R.CromosomRowFirst, F.R.CromosomColumnFirst);
-                    S.Play(F.R.CromosomRow, F.R.CromosomColumn);
-                    BB.Play(F.R.CromosomRowFirst, F.R.CromosomColumnFirst);
-                    BB.Play(F.R.CromosomRow, F.R.CromosomColumn);
+                    int C = 0;
+                    C += F.Play(-1, -1);
+                    C += S.Play(F.R.CromosomRowFirst, F.R.CromosomColumnFirst);
+                    C += S.Play(F.R.CromosomRow, F.R.CromosomColumn);
+                    C += BB.Play(F.R.CromosomRowFirst, F.R.CromosomColumnFirst);
+                    C += BB.Play(F.R.CromosomRow, F.R.CromosomColumn);
+                    if (C != 0)
+                    {
+                        MessageBox.Show("خطای بحرانی!");
+                        return;
+                    }
                     W = false;
                     B = true;
                 }
                 else
                 {
-                    S.Play(-1, -1);
-                    F.Play(S.R.CromosomRowFirst, S.R.CromosomColumnFirst);
-                    F.Play(S.R.CromosomRow, S.R.CromosomColumn);
-                    BB.Play(S.R.CromosomRowFirst, S.R.CromosomColumnFirst);
-                    BB.Play(S.R.CromosomRow, S.R.CromosomColumn);
+                    int C = 0;
+                    C += S.Play(-1, -1);
+                    C += F.Play(S.R.CromosomRowFirst, S.R.CromosomColumnFirst);
+                    C += F.Play(S.R.CromosomRow, S.R.CromosomColumn);
+                    C += BB.Play(S.R.CromosomRowFirst, S.R.CromosomColumnFirst);
+                    C += BB.Play(S.R.CromosomRow, S.R.CromosomColumn);
+                    if (C != 0)
+                    {
+                        MessageBox.Show("خطای بحرانی!");
+                        return;
+                    }
                     W = true;
                     B = false;
                 }

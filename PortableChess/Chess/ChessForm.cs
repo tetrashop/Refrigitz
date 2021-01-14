@@ -2006,10 +2006,10 @@ namespace RefrigtzChessPortable
                                 RefrigtzChessPortable.AllDraw.CalIdle = 1;
                             }
                         }
-                        return 1;
+                        return 0;
                     }
                 }
-                catch (Exception t) { Log(t); }
+                catch (Exception t) { Log(t);return -1; }
                 return 0;
             }
         }

@@ -547,7 +547,7 @@ namespace ChessFirst
             }
 
         }
-        private void Form1_Load(object sender, System.EventArgs e)
+        public void Form1_Load(object sender, System.EventArgs e)
         {
             Object O = new Object();
             lock (O)
@@ -1900,6 +1900,8 @@ namespace ChessFirst
                                     else
                               if (Com && (order == 1))
                                     {
+                                        if (ComStop && (!freezBoard))
+                                        AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
 
                                         freezBoard = false;
 
@@ -1991,6 +1993,8 @@ namespace ChessFirst
                               if (Com && (order == 1))
                             {
 
+                                if (ComStop && (!freezBoard))
+                                    AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
 
                                 freezBoard = false;
                                 Table = brd.GetTable();

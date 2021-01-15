@@ -21,8 +21,9 @@ namespace ChessCom
     [Serializable]
     public class ChessComForm : System.Windows.Forms.Form
     {
+        public int rf = -1, cf = -1, rs = -1, cs = -1;
         bool Comready = false;
-        bool freezBoard = false;
+        public static bool freezBoard = false;
         public bool LoadP = false;
         static readonly bool UsePenaltyRegardMechnisam = false;
         static readonly bool AStarGreedyHeuristic = false;
@@ -534,7 +535,8 @@ namespace ChessCom
             Object o = new Object();
             lock (o)
             {
-
+                if (freezBoard)
+                    return 0;
                 int k = 0, played = 0;
 
                 try
@@ -557,13 +559,17 @@ namespace ChessCom
                     {
                         x1 = i;
                         y1 = j;
+                        rf = i;
+                        cf = j;
                         this.pb[i, j].BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
                         cl = 1;
-                        
-                        return 0;
+                         return 0;
                     }
                     if (cl == 1)
                     {
+                        freezBoard = true;
+                        rs = i;
+                        cs = j;
                         Board b = new Board();
                         int m = brd.getInfo(x1, y1);
                         King king2 = new King(order, x1, y1);

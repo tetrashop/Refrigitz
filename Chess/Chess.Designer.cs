@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Computer = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -66,12 +67,23 @@
             this.Computer.UseVisualStyleBackColor = true;
             this.Computer.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(439, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(158, 258);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Teach Us";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // Chess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(436, 261);
+            this.ClientSize = new System.Drawing.Size(622, 261);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.Computer);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -88,5 +100,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Computer;
+        private System.Windows.Forms.Button button3;
     }
 }

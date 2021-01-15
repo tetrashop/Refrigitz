@@ -17,6 +17,7 @@ namespace Chess
         public bool W = true;
         public bool B = true;
         ChessCom.ChessComForm BB = null;
+        public static ChessCom.ChessComForm BBS = null;
         public bool frize = true;
         public Chess()
         {
@@ -101,6 +102,58 @@ namespace Chess
             } while (true);
 
         }
+        public void PlayTeach()
+        {
+            do
+            {
+                do { System.Threading.Thread.Sleep(1000); } while (BBS.rf == -1 || BBS.cf == -1 || BBS.rs == -1 || BBS.cs == -1);
+                if (W)
+                {
+                    int C = 0;
+                    C += F.Play(BBS.rf, BBS.cf);
+                    C += F.Play(BBS.rs, BBS.cs);
+                  
+                    C += S.Play(BBS.rf, BBS.cf);
+                    C += S.Play(BBS.rs, BBS.cs);
+                    BBS.rf = -1;
+                    BBS.cf = -1;
+                    BBS.rs = -1;
+                    BBS.cs = -1;
+
+                    ChessCom.ChessComForm.freezBoard = false;
+                    if (C != 0)
+                    {
+                        MessageBox.Show("خطای بحرانی!");
+                        return;
+                    }
+                    W = false;
+                    B = true;
+                }
+                else
+                {
+                    int C = 0;
+                    C += F.Play(BBS.rf, BBS.cf);
+                    C += F.Play(BBS.rs, BBS.cs);
+                    C += S.Play(BBS.rf, BBS.cf);
+                    C += S.Play(BBS.rs, BBS.cs);
+                    BBS.rf = -1;
+                    BBS.cf = -1;
+                    BBS.rs = -1;
+                    BBS.cs = -1;
+
+                    ChessCom.ChessComForm.freezBoard = false;
+                    if (C != 0)
+                    {
+                        MessageBox.Show("خطای بحرانی!");
+                        return;
+                    }
+                    W = true;
+                    B = false;
+                }
+
+
+            } while (true);
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             frize = true;
@@ -122,6 +175,28 @@ namespace Chess
 
             frize = false;
 
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            frize = true;
+
+            F = new ChessFirst.ChessFirstForm();
+            F.ComStop = true;
+            F.Show();
+            S = (new RefrigtzChessPortable.RefrigtzChessPortableForm());
+            S.ComStop = true;
+            S.Show();
+            do { System.Threading.Thread.Sleep(2000); } while (!(S.LoadP || F.LoadP));
+            F.Hide();
+            S.Hide();
+            W = true;
+            B = false;
+            BBS = new ChessCom.ChessComForm();
+            BBS.Show();
+            var th = Task.Factory.StartNew(() => PlayTeach());
+
+            frize = false;
         }
     }
 }

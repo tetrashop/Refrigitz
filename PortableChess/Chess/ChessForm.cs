@@ -547,7 +547,7 @@ namespace RefrigtzChessPortable
             }
 
         }
-        private void Form1_Load(object sender, System.EventArgs e)
+        public void Form1_Load(object sender, System.EventArgs e)
         {
             Object O = new Object();
             lock (O)
@@ -1900,6 +1900,8 @@ namespace RefrigtzChessPortable
                                     else
                               if (Com && (order == 2))
                                     {
+                                        if (ComStop && (!freezBoard))
+                                               AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
 
                                         freezBoard = false;
 
@@ -1992,6 +1994,8 @@ namespace RefrigtzChessPortable
                             {
 
 
+                                if (ComStop && (!freezBoard))
+                                                  AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
                                 freezBoard = false;
                                 Table = brd.GetTable();
                                 MovmentsNumber++;

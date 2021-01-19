@@ -224,43 +224,47 @@ namespace Chess
                          else*/
                         BBS.cs = ((System.Convert.ToInt32(A[3]) - 48) - 1);
 
-                        if (A.Length == 5)
-                        {
-                            if (A[4] == 'p')
-                                return -1;
-                            else
-                                if (A[4] == 'n')
-                                return -3;
-                            else
-                                    if (A[4] == 'b')
-                                return -2;
-                            else
-                                        if (A[4] == 'r')
-                                return -4;
-                            else
-                                            if (A[4] == 'q')
-                                return -5;
-                            else
-                                                if (A[4] == 'P')
-                                return 1;
-                            else
-                                                    if (A[4] == 'N')
-                                return 3;
-                            else
-                                                        if (A[4] == 'B')
-                                return 2;
-                            else
-                                                            if (A[4] == 'R')
-                                return 4;
-                            else
-                                                                if (A[4] == 'Q')
-                                return 5;
-                        }
-                    
+                    if (A.Length == 5)
+                    {
+                        if (A[4] == 'p')
+                            return -1;
+                        else
+                            if (A[4] == 'n')
+                            return -3;
+                        else
+                                if (A[4] == 'b')
+                            return -2;
+                        else
+                                    if (A[4] == 'r')
+                            return -4;
+                        else
+                                        if (A[4] == 'q')
+                            return -5;
+                        else
+                                            if (A[4] == 'P')
+                            return 1;
+                        else
+                                                if (A[4] == 'N')
+                            return 3;
+                        else
+                                                    if (A[4] == 'B')
+                            return 2;
+                        else
+                                                        if (A[4] == 'R')
+                            return 4;
+                        else
+                                                            if (A[4] == 'Q')
+                            return 5;
+                    }
+                    else
+                 if (BBS.rf != -1 && BBS.cf != -1 && BBS.rs != -1 && BBS.cs != -1)
+                        return 10;
+
+
                 }
                 catch (Exception t)
                 {
-                    return -1;
+                    return -10;
                 }
                 return 0;
 
@@ -1004,7 +1008,7 @@ namespace Chess
 
             do
             {
-               
+
                 String A = gameDb.Games[I].ToString();
                 PgnGames = A;
                 do
@@ -1027,15 +1031,15 @@ namespace Chess
                         if (W)
                         {
                             z = z.Remove(0, 2);
-                            string b = z.Substring(2, z.IndexOf(" "));
-                            if (SetRowColumn(b) == -1)
-                                return;
+                            string b = z.Substring(0, z.IndexOf(" "));
+                            if (SetRowColumn(b) == -10 || SetRowColumn(b) == 0)
+                                Application.Exit();
                         }
                         else
                         {
                             string b = z.Substring(1, z.IndexOf(" "));
-                            if (SetRowColumn(b) == -1)
-                                return;
+                            if (SetRowColumn(b) == -10 || SetRowColumn(b) == 0)
+                                Application.Exit();
 
                         }
                     } while (BBS.rf == -1 || BBS.cf == -1 || BBS.rs == -1 || BBS.cs == -1);
@@ -1088,9 +1092,9 @@ namespace Chess
                     }
 
 
-                } while (A != "" && A.Length > 3);
+                } while (A != "" && A.Length > 4);
                 MessageBox.Show("یک بازی ذخیره شد");
-            } while (SS.Length > 0);
+            } while (I < gameDb.Games.Count);
             MessageBox.Show("بازی ها تمام شد.");
 
         }

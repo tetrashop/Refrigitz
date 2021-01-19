@@ -176,6 +176,14 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\pgn.net\src\pgn.Data\pgn.Data.csproj">
+      <Project>{29143ecd-e5d3-41d4-9c62-81d82597d895}</Project>
+      <Name>pgn.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\pgn.net\src\pgn.NET\pgn.NET.csproj">
+      <Project>{b06a9f96-62f5-49c9-bfa8-58664d9a7462}</Project>
+      <Name>pgn.NET</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChessCom\ChessCom.csproj">
       <Project>{1f04b85d-26fd-4b2b-810e-da7bc0b94da1}</Project>
       <Name>ChessCom</Name>

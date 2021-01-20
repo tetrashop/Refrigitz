@@ -25,7 +25,7 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <OldToolsVersion>2.0</OldToolsVersion>
     <TargetFrameworkProfile />
     <PublishUrl>C:\Users\TechnologyLover\Desktop\New folder %282%29\</PublishUrl>
@@ -93,11 +93,15 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
@@ -156,6 +160,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="app.manifest" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="clicknrun.ico" />
@@ -183,6 +188,10 @@
     <ProjectReference Include="..\..\pgn.net\src\pgn.NET\pgn.NET.csproj">
       <Project>{b06a9f96-62f5-49c9-bfa8-58664d9a7462}</Project>
       <Name>pgn.NET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\pgn.net\src\pgn.Parse\pgn.Parse.fsproj">
+      <Project>{90538968-8127-451b-945d-59707a910b63}</Project>
+      <Name>pgn.Parse</Name>
     </ProjectReference>
     <ProjectReference Include="..\ChessCom\ChessCom.csproj">
       <Project>{1f04b85d-26fd-4b2b-810e-da7bc0b94da1}</Project>

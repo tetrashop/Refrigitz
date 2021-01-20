@@ -13,6 +13,9 @@ namespace Chess
 {
     public partial class Chess : Form
     {
+        PgnReader reader = null;
+        Database gameDb = null;
+
         String[] SS;
         String PgnGames = "";
         RefrigtzChessPortable.RefrigtzChessPortableForm S = null;
@@ -1000,9 +1003,6 @@ namespace Chess
         }
         public void PlayTeachPGNConvertedToChessBase()
         {
-            var reader = new PgnReader();
-            var gameDb = reader.ReadFromFile(openFileDialog1.FileName);
-
             Game game = null;
             int I = 0;
 
@@ -1149,6 +1149,10 @@ namespace Chess
             openFileDialog1.Filter = "PGN|*.pgn";
             openFileDialog1.ShowDialog();
 
+             reader = new PgnReader();
+             gameDb = reader.ReadFromFile(openFileDialog1.FileName);
+
+            MessageBox.Show("PGN load completed.");
             //PlayTeachPGNConvertedToChessBase();
 
             F = new ChessFirst.ChessFirstForm();

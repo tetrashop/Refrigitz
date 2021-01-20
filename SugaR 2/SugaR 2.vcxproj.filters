@@ -20,6 +20,7 @@
   <ItemGroup>
     <None Include="..\..\..\%27External%27 %27Files%27\Sugar v2.0c 32-64.7z\Sugar v2.0c 32-64\srcS\Makefile" />
     <None Include="..\..\..\%27Personal%27_%27Files%27\Refregitz\SugaR 2\packages.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\%27Personal%27_%27Files%27\Refregitz\SugaR 2\bitboard.h">

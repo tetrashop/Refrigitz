@@ -1009,7 +1009,7 @@ namespace Chess
             do
             {
 
-                String A = gameDb.Games[I].ToString();
+                String A = gameDb.Games[I].MoveText.ToString();
                 PgnGames = A;
                 do
                 {

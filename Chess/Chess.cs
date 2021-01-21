@@ -327,15 +327,15 @@ namespace Chess
 
                 if (B)
                 {
-                    if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(src[1])) - 1] == 1)
+                    if (S.brd.GetTable()[row - 1, System.Math.Abs(System.Convert.ToInt32(src[1]))] == 1)
                     {
-                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) - 1).ToString();
+                        des += (row - 1).ToString();
                         des += src;
                     }
                     else
-                    if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(src[1])) - 2] == 1)
+                    if (S.brd.GetTable()[row - 2, System.Math.Abs(System.Convert.ToInt32(src[1]))] == 1)
                     {
-                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) - 2).ToString();
+                        des += (row - 2).ToString();
                         des += src;
 
                     }
@@ -344,15 +344,15 @@ namespace Chess
                 else
                 {
 
-                    if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(src[1])) + 1] == 1)
+                    if (S.brd.GetTable()[row+1, System.Math.Abs(System.Convert.ToInt32(src[1]))] == 1)
                     {
-                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) + 1).ToString();
+                        des += (row + 1).ToString();
                         des += src;
                     }
                     else
-                    if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(src[1])) + 2] == 1)
+                    if (S.brd.GetTable()[row + 2, System.Math.Abs(System.Convert.ToInt32(src[1]))] == 1)
                     {
-                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) + 2).ToString();
+                        des += (row + 2).ToString();
                         des += src;
 
                     }

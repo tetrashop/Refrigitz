@@ -65,7 +65,7 @@ namespace Chess
         public static String AllDrawKindString = "";
         public static int OrderPlate = 1;
         bool CoPermit = true;
-        int ConClick = -1;
+        public int ConClick = -1;
         PictureBox[] Con = new PictureBox[4];
         bool WaitOnplay = false;
 //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
@@ -1912,10 +1912,13 @@ namespace Chess
                                     lstr = "P";
                                     if (j == 7 && CoPermit)
                                     {
-                                        InitConv(y1);
-                                        System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(WaitCon));
-                                        t.Start();
-                                        t.Join();
+                                        if (!ComStop)
+                                        {
+                                            InitConv(y1);
+                                            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(WaitCon));
+                                            t.Start();
+                                            t.Join();
+                                        }
                                         if (ConClick == 1)
                                         {
                                             brd.setSquare(0, x1, y1);
@@ -2257,20 +2260,23 @@ namespace Chess
                                     lstr = "P";
                                     if (j == 0 && CoPermit)
                                     {
-                                        InitConv(y1);
-                                        System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(WaitCon));
-                                        t.Start();
-                                        t.Join();
+                                        if (!ComStop)
+                                        {
+                                            InitConv(y1);
+                                            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(WaitCon));
+                                            t.Start();
+                                            t.Join();
+                                        }
                                         if (ConClick == 1)
                                         {
                                             brd.setSquare(0, x1, y1);
-                                            brd.setSquare(9, i, j);
+                                            brd.setSquare(10, i, j);
                                         }
                                         else
                                          if (ConClick == 2)
                                         {
                                             brd.setSquare(0, x1, y1);
-                                            brd.setSquare(7, i, j);
+                                            brd.setSquare(8, i, j);
                                         }
                                         else
                                         if (ConClick == 3)

@@ -279,8 +279,9 @@ namespace Chess
                             return 5;
                     }
                     else
-                 if (BBS.rf != -1 && BBS.cf != -1 && BBS.rs != -1 && BBS.cs != -1)
-                        return 10;
+                 if (BBS.rf > -1 && BBS.cf > -1 && BBS.rs > -1 && BBS.cs > -1)
+                        if (BBS.rf < 8 && BBS.cf < 8 && BBS.rs < 8 && BBS.cs < 8)
+                            return 10;
 
 
                 }
@@ -288,7 +289,7 @@ namespace Chess
                 {
                     return -10;
                 }
-                return 0;
+                return -11;
 
             }
         }
@@ -320,41 +321,45 @@ namespace Chess
             else
                                                    if (src[0] == 'h')
                 row = 7;
-         
-
-            if (W)
+            if (row != -1)
             {
-                if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(des)) - 1] == 1)
+                des += src[0].ToString();
+
+                if (B)
                 {
-                    des += (System.Math.Abs(System.Convert.ToInt32(des)) - 1).ToString();
-                    des += src;
+                    if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(src[1])) - 1] == 1)
+                    {
+                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) - 1).ToString();
+                        des += src;
+                    }
+                    else
+                    if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(src[1])) - 2] == 1)
+                    {
+                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) - 2).ToString();
+                        des += src;
+
+                    }
                 }
+
                 else
-                if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(des)) - 2] == 0)
                 {
-                    des += (System.Math.Abs(System.Convert.ToInt32(des)) - 2).ToString();
-                    des += src;
 
-                }
-            }
+                    if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(src[1])) + 1] == 1)
+                    {
+                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) + 1).ToString();
+                        des += src;
+                    }
+                    else
+                    if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(src[1])) + 2] == 1)
+                    {
+                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) + 2).ToString();
+                        des += src;
 
-            else
-            {
-
-                if(S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(des) )+ 1] == 1)
-                {
-                    des += (System.Math.Abs(System.Convert.ToInt32(des)) + 1).ToString();
-                    des += src;
-                }
-                else
-                if (S.brd.GetTable()[row, System.Math.Abs(System.Convert.ToInt32(des)) + 2] == 0)
-                {
-                    des += (System.Math.Abs(System.Convert.ToInt32(des)) + 2).ToString();
-                    des += src;
-
+                    }
                 }
             }
             return des;
+
         }
         //common non pawn objects move
         String ConLen3(String des)
@@ -1293,8 +1298,10 @@ namespace Chess
         {
             int I = 0, o = 0;
 
-
-
+            if (System.IO.File.Exists("a.txt"))
+                System.IO.File.Delete("a.txt");
+            System.IO.File.AppendAllText("a.txt", "PlayTeachPGNConvertedToChessBase started");
+            
             do
             {
 
@@ -1305,32 +1312,49 @@ namespace Chess
                     int k = 0;
                     do
                     {
+                        bool Wr = false;
+
                         do
                         {
                             if (W)
                             {
 
-                                z = z.Remove(0, 3);
+                                z = z.Remove(0, z.IndexOf('.') + 2);
                                 string b = z.Substring(0, z.IndexOf(" "));
-                                if (SetRowColumn(Convert(b)) == -10 || SetRowColumn(Convert(b)) == 0)
+                                int a = SetRowColumn(Convert(b));
+                                if (a == -10 || a == -11)
                                 {
-                                    System.IO.File.WriteAllText("a.txt", '1'.ToString() + b);
+                                    System.IO.File.AppendAllText("a.txt", '1'.ToString() + b);
                                     Application.Exit();
+                                }
+                                else 
+                                if (!Wr)
+                                {
+                                    System.IO.File.AppendAllText("a.txt", "\r" + (Convert(b)));
+                                    Wr = true;
                                 }
                             }
                             else
                             {
                                 string b = z.Substring(1, z.IndexOf(" ") - 1);
-                                if (SetRowColumn(Convert(b)) == -10 || SetRowColumn(Convert(b)) == 0)
+                                int a = SetRowColumn(Convert(b));
+                                if (a == -10 || a == -11)
                                 {
-                                    System.IO.File.WriteAllText("a.txt", '2'.ToString() + b);
+                                    System.IO.File.AppendAllText("a.txt", '2'.ToString() + b);
                                     Application.Exit();
+                                }
+                                else 
+                                if (!Wr)
+                                {
+                                    System.IO.File.AppendAllText("a.txt", "\r" + (Convert(b)));
+                                    Wr = true;
                                 }
 
                             }
                         } while (BBS.rf == -1 || BBS.cf == -1 || BBS.rs == -1 || BBS.cs == -1);
                         if (W)
                         {
+                            System.IO.File.WriteAllText("a.txt", "\r" + "White ready");
                             int C = 0;
                             C += F.Play(BBS.rf, BBS.cf);
                             C += F.Play(BBS.rs, BBS.cs);
@@ -1352,9 +1376,12 @@ namespace Chess
                             }
                             W = false;
                             B = true;
+                            Wr = false;
                         }
                         else
                         {
+                            System.IO.File.AppendAllText("a.txt", "\r" + "Black ready");
+
                             int C = 0;
                             C += F.Play(BBS.rf, BBS.cf);
                             C += F.Play(BBS.rs, BBS.cs);
@@ -1375,6 +1402,7 @@ namespace Chess
                             }
                             W = true;
                             B = false;
+                            Wr = false;
                         }
                         k++;
                     } while (k < 2);

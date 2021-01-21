@@ -297,45 +297,45 @@ namespace Chess
         String ConLen2(String src)
         {
             String des = "";
-            int row = -1;
+            int column = -1;
             if (src[0] == 'a')
-                row = 0;
+                column = 0;
             else
                            if (src[0] == 'b')
-                row = 1;
+                column = 1;
             else
                                if (src[0] == 'c')
-                row = 2;
+                column = 2;
             else
                                    if (src[0] == 'd')
-                row = 3;
+                column = 3;
             else
                                        if (src[0] == 'e')
-                row = 4;
+                column = 4;
             else
                                            if (src[0] == 'f')
-                row = 5;
+                column = 5;
             else
                                                if (src[0] == 'g')
-                row = 6;
+                column = 6;
             else
                                                    if (src[0] == 'h')
-                row = 7;
-            if (row != -1)
+                column = 7;
+            if (column != -1)
             {
                 des += src[0].ToString();
 
                 if (B)
                 {
-                    if (S.brd.GetTable()[row - 1, System.Math.Abs(System.Convert.ToInt32(src[1]))] == 1)
+                    if (S.brd.GetTable()[System.Math.Abs(System.Convert.ToInt32(src[1])) - 1, column] == 1)
                     {
-                        des += (row - 1).ToString();
+                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) - 1).ToString();
                         des += src;
                     }
                     else
-                    if (S.brd.GetTable()[row - 2, System.Math.Abs(System.Convert.ToInt32(src[1]))] == 1)
+                    if (S.brd.GetTable()[System.Math.Abs(System.Convert.ToInt32(src[1])) - 2, column] == 1)
                     {
-                        des += (row - 2).ToString();
+                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) - 2).ToString();
                         des += src;
 
                     }
@@ -344,15 +344,15 @@ namespace Chess
                 else
                 {
 
-                    if (S.brd.GetTable()[row+1, System.Math.Abs(System.Convert.ToInt32(src[1]))] == 1)
+                    if (S.brd.GetTable()[System.Math.Abs(System.Convert.ToInt32(src[1])) + 1, column] == 1)
                     {
-                        des += (row + 1).ToString();
+                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) + 1).ToString();
                         des += src;
                     }
                     else
-                    if (S.brd.GetTable()[row + 2, System.Math.Abs(System.Convert.ToInt32(src[1]))] == 1)
+                    if (S.brd.GetTable()[System.Math.Abs(System.Convert.ToInt32(src[1])) + 2, column] == 1)
                     {
-                        des += (row + 2).ToString();
+                        des += (System.Math.Abs(System.Convert.ToInt32(src[1])) + 2).ToString();
                         des += src;
 
                     }

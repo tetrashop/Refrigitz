@@ -216,7 +216,7 @@ namespace Chess
                      BBS.cf = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
                      else
                       */
-                    BBS.cf = ((System.Convert.ToInt32(A[1]) - 48) - 1);
+                    BBS.cf = ((System.Convert.ToInt32(A[1].ToString())));
 
                     if (A[2] == 'a')
                         BBS.rs = 0;
@@ -244,7 +244,7 @@ namespace Chess
                     /*if (!Sugar)
                          BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
                      else*/
-                    BBS.cs = ((System.Convert.ToInt32(A[3]) - 48) - 1);
+                    BBS.cs = ((System.Convert.ToInt32(A[3].ToString())));
 
                     if (A.Length == 5)
                     {
@@ -408,14 +408,14 @@ namespace Chess
                 if (des[0] == 'R')
                 Kind = 4;
             else
-                if (des[0] == 'N')
+                if (des[0] == 'K')
                 Kind = 3;
             else
                 if (des[0] == 'B')
                 Kind = 2;
             else
                 Kind = 1;
-
+            
             int oBJ = Kind;
             if (B)
                 oBJ *= -1;
@@ -447,7 +447,7 @@ namespace Chess
             /*if (!Sugar)
                  BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
              else*/
-            column = 7 - (((System.Convert.ToInt32(des[2]) - 48) - 1) - 1);
+            column = 7 - ((System.Convert.ToInt32(des[2].ToString())) - 1);
 
 
             bool found = false;
@@ -458,15 +458,16 @@ namespace Chess
                 a = System.Drawing.Color.Brown;
                 ord = -1;
             }
-            ChessFirst.ChessRules C = new ChessFirst.ChessRules(0, false, false, false, false, false, false, false, true, ord);
+            int r = -1, c = -1;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                   if (C.Rules(i, j, row, column, a, Kind))
+                    ChessFirst.ChessRules C = new ChessFirst.ChessRules(0, false, false, false, false, false, false, false, true, Kind, S.brd.GetTable(), ord, i, j);
+                    if (C.Rules(i, j, row, column, a, Kind))
                     {
-                        row = i;
-                        column = j;
+                        r = i;
+                        c = j;
                         found = true;
                         break;
                     }
@@ -476,33 +477,33 @@ namespace Chess
             }
             if (found)
             {
-                if (row == 0)
+                if (c == 0)
                     src = "a";
                 else
-                  if (row == 1)
+                  if (c == 1)
                     src = "b";
                 else
-                      if (row == 2)
+                      if (c == 2)
                     src = "c";
                 else
-                          if (row == 3)
+                          if (c == 3)
                     src = "d";
                 else
-                              if (row == 4)
+                              if (c == 4)
                     src = "e";
                 else
-                                  if (row == 5)
+                                  if (c == 5)
                     src = "f";
                 else
-                                      if (row == 6)
+                                      if (c == 6)
                     src = "g";
                 else
-                                          if (row == 7)
+                                          if (c == 7)
                     src = "h";
 
 
-                src += column.ToString();
-                src += des[0].ToString() + (7 - (System.Math.Abs(System.Convert.ToInt32(des[1].ToString())) - 1)).ToString();
+                src += r.ToString();
+                src += des[1].ToString() + row.ToString();
             }
             return src;
 
@@ -1347,7 +1348,7 @@ namespace Chess
                                     int a = SetRowColumn(t);
                                     if (a == -10 || a == -11)
                                     {
-                                        System.IO.File.AppendAllText("a.txt", '1'.ToString() + b);
+                                        System.IO.File.AppendAllText("a.txt", '1'.ToString() + b + "#" + a);
                                         Application.Exit();
                                     }
                                     else
@@ -1370,7 +1371,7 @@ namespace Chess
                                     int a = SetRowColumn(t);
                                     if (a == -10 || a == -11)
                                     {
-                                        System.IO.File.AppendAllText("a.txt", '2'.ToString() + b);
+                                        System.IO.File.AppendAllText("a.txt", '2'.ToString() + b + "#" + a);
                                         Application.Exit();
                                     }
                                     else
@@ -1512,14 +1513,13 @@ namespace Chess
             S.ComStop = true;
             S.Show();
             do { System.Threading.Thread.Sleep(2000); } while (!(S.LoadP || F.LoadP));
-            int a = S.brd.GetTable()[6, 4];
-          
-            int b = S.brd.GetTable()[4, 6];
+            int a = S.brd.GetTable()[0, 2];          
+            int b = S.brd.GetTable()[2, 0];
             System.IO.File.AppendAllText("b.txt", a.ToString() + "-" + b.ToString());
             F.Hide();
             S.Hide();
-             a = S.brd.GetTable()[6, 4];
-             b = S.brd.GetTable()[4, 6];
+             a = S.brd.GetTable()[0, 2];
+             b = S.brd.GetTable()[2, 0];
             System.IO.File.AppendAllText("c.txt", a.ToString() + "-" + b.ToString());
             W = true;
             B = false;

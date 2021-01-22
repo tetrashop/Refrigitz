@@ -566,10 +566,44 @@ namespace Chess
         String ConLen5(String des)
         {
             String src = "";
+            if (des[5] == '#')
+            {
+                if (des[1] == 'x')
+                {
+                    src = des.Remove('x');
+
+                    src = src.Remove('#');
+
+                    src = ConLen3(src);
+
+                }
+            }
+
+            if (src != "")
+                return src;
+
+            if (des[5] == '+')
+            {
+                if (des[1] == 'x')
+                {
+                    src = des.Remove('x');
+
+                    src = src.Remove('+');
+
+                    src = ConLen3(src);
+
+                 }
+            }
+            if (src != "")
+                return src;
+
             if (des[2] == '#')
                 src = ConLen4(des.Remove('='));
             if (des[2] == '+')
                 src = ConLen4(des.Remove('+'));
+
+            if (des[1] == 'x')
+                src = ConLen4(des.Remove('x'));
 
             if (src != "")
                 return src;
@@ -583,8 +617,43 @@ namespace Chess
             }
             return src;
         }
-       
-    int SetRowColumnA(String A)
+        String ConLen6(String des)
+        {
+            String src = "";
+            if (des[5] == '#')
+            {
+                if (des[1] == 'x')
+                {
+                    src = des.Remove('x');
+
+                    src = src.Remove('#');
+
+                    src = ConLen4(src);
+
+                }
+            }
+
+            if (src != "")
+                return src;
+            
+            if (des[5] == '+')
+            {
+                if (des[1] == 'x')
+                {
+                    src = des.Remove('x');
+
+                    src = src.Remove('+');
+
+                    src = ConLen4(src);
+
+                    if (src != "")
+                        return src;
+                }
+            }           
+            return src;
+        }
+
+        int SetRowColumnA(String A)
         {
             Object O = new Object();
             lock (O)

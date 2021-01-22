@@ -321,26 +321,31 @@ namespace Chess
             else
                                                    if (src[0] == 'h')
                 column = 7;
+            string srca = "";
             if (column != -1)
             {
-                MessageBox.Show("colum ready;");
+                //MessageBox.Show("colum ready;");
                 des += src[0].ToString();
+                srca = src[0].ToString();
+                int row = 7 - (System.Math.Abs(System.Convert.ToInt32(src[1].ToString())) - 1);
 
                 if (B)
                 {
-                    if (S.brd.GetTable()[column, (System.Math.Abs(System.Convert.ToInt32(src[1].ToString())) - 1) ] == -1)
+                    if (S.brd.GetTable()[column, row - 1] == -1)
                     {
-                        des += ((System.Math.Abs(System.Convert.ToInt32(src[1].ToString())) - 1)).ToString();
-                        des += src;
-                        MessageBox.Show("string ready;");
+                        des += (row - 1).ToString();
+                        srca += row.ToString();
+                        des += srca;
+                        /// MessageBox.Show("string ready;");
                     }
                     else
                     {
-                        if (S.brd.GetTable()[column, (System.Math.Abs(System.Convert.ToInt32(src[1].ToString())) - 2) ] == -1)
+                        if (S.brd.GetTable()[column, row - 2] == -1)
                         {
-                            des += ((System.Math.Abs(System.Convert.ToInt32(src[1].ToString())) - 2)).ToString();
-                            des += src;
-                            MessageBox.Show("string ready;");
+                            des += (row - 2).ToString();
+                            srca += row.ToString();
+                            des += srca;
+                            //MessageBox.Show("string ready;");
 
                         }
                     }
@@ -349,19 +354,21 @@ namespace Chess
                 else
                 {
 
-                    if (S.brd.GetTable()[column, (System.Math.Abs(System.Convert.ToInt32(src[1].ToString())) + 1) ] == 1)
+                    if (S.brd.GetTable()[column, row + 1] == 1)
                     {
-                        des += ((System.Math.Abs(System.Convert.ToInt32(src[1].ToString())) + 1)).ToString();
-                        des += src;
-                        MessageBox.Show("string ready;");
+                        des += (row + 1).ToString();
+                        srca += row.ToString();
+                        des += srca;
+                        //MessageBox.Show("string ready;");
                     }
                     else
                     {
-                        if (S.brd.GetTable()[column, (System.Math.Abs(System.Convert.ToInt32(src[1].ToString())) + 2) ] == 1)
+                        if (S.brd.GetTable()[column, row + 2 ] == 1)
                         {
-                            des += ((System.Math.Abs(System.Convert.ToInt32(src[1].ToString())) + 2)).ToString();
-                            des += src;
-                            MessageBox.Show("string ready;");
+                            des += (row + 2).ToString();
+                            srca += row.ToString();
+                            des += srca;
+                            // MessageBox.Show("string ready;");
 
                         }
                     }
@@ -440,7 +447,7 @@ namespace Chess
             /*if (!Sugar)
                  BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
              else*/
-            column = ((System.Convert.ToInt32(des[2]) - 48) - 1);
+            column = 7 - (((System.Convert.ToInt32(des[2]) - 48) - 1) - 1);
 
 
             bool found = false;
@@ -495,7 +502,7 @@ namespace Chess
 
 
                 src += column.ToString();
-                src += (des[1].ToString() + des[2].ToString());
+                src += des[0].ToString() + (7 - (System.Math.Abs(System.Convert.ToInt32(des[1].ToString())) - 1)).ToString();
             }
             return src;
 
@@ -510,7 +517,7 @@ namespace Chess
                 {
                     F.ConClick = 4;
                     S.ConClick = 4;
-                    src = ConLen2((des[0].ToString() + des[1].ToString()));
+                    src = ConLen2((des[0].ToString() + ((System.Math.Abs(System.Convert.ToInt32(des[1].ToString())) - 1)).ToString()));
                 }
                 else
                     if (des[3] == 'R')
@@ -518,21 +525,22 @@ namespace Chess
 
                     F.ConClick = 1;
                     S.ConClick = 1;
-                    src = ConLen2((des[0].ToString() + des[1].ToString()));
+                    src = ConLen2((des[0].ToString() + ((System.Math.Abs(System.Convert.ToInt32(des[1].ToString())) - 1)).ToString()));
                 }
                 else
                 if(des[3] == 'K')
                 {
                     F.ConClick = 3;
                     S.ConClick = 3;
-                    src = ConLen2((des[0].ToString() + des[1].ToString()));
+                    src = ConLen2((des[0].ToString() + ((System.Math.Abs(System.Convert.ToInt32(des[1].ToString())) - 1)).ToString()));
 
-                }else
+                }
+                else
                 if (des[3] == 'B')
                 {
                     F.ConClick = 2;
                     S.ConClick = 2;
-                    src = ConLen2((des[0].ToString() + des[1].ToString()));
+                    src = ConLen2((des[0].ToString() + ((System.Math.Abs(System.Convert.ToInt32(des[1].ToString())) - 1)).ToString()));
 
                 }
 
@@ -1354,7 +1362,8 @@ namespace Chess
                                 else
                                 {
                                     System.IO.File.AppendAllText("a.txt", "\r" + "Black ");
-                                    string b = z.Substring(z.IndexOf(' ') + 1, z.Length - 1- z.IndexOf(' '));
+                                    z = z.Remove(0, z.IndexOf(' ') + 1);
+                                    string b = z.Substring(0, z.Length);
                                     System.IO.File.AppendAllText("a.txt", "\r" + b);
                                     string t = Convert(b);
                                     System.IO.File.AppendAllText("a.txt", "\r" + t);
@@ -1378,7 +1387,7 @@ namespace Chess
                         } while (BBS.rf == -1 || BBS.cf == -1 || BBS.rs == -1 || BBS.cs == -1);
                         if (W)
                         {
-                            System.IO.File.WriteAllText("a.txt", "\r" + "White ready");
+                            System.IO.File.AppendAllText("a.txt", "\r" + "White ready");
                             int C = 0;
                             C += F.Play(BBS.rf, BBS.cf);
                             C += F.Play(BBS.rs, BBS.cs);
@@ -1401,6 +1410,7 @@ namespace Chess
                             W = false;
                             B = true;
                             Wr = false;
+                            System.IO.File.AppendAllText("a.txt", "\r" + "White finished");
                         }
                         else
                         {
@@ -1427,6 +1437,7 @@ namespace Chess
                             W = true;
                             B = false;
                             Wr = false;
+                            System.IO.File.AppendAllText("a.txt", "\r" + "Black finished");
                         }
                         k++;
                     } while (k < 2);

@@ -381,11 +381,11 @@ namespace Chess
         String ConLen3(String des)
         {
             String src = "";
-            
+
             if (des[2] == '#')
-                src = ConLen2(des.Remove('='));
+                src = ConLen2(des.Remove(2, 1));
             if (des[2] == '+')
-                src = ConLen2(des.Remove('+'));
+                src = ConLen2(des.Remove(2, 1));
 
             if (src != "")
                 return src;
@@ -551,28 +551,28 @@ namespace Chess
                 return src;
 
             if (des[2] == '#')
-                src = ConLen3(des.Remove('='));
+                src = ConLen3(des.Remove(2, 1));
             if (des[2] == '+')
-                src = ConLen3(des.Remove('+'));
+                src = ConLen3(des.Remove(2, 1));
 
             if (src != "")
                 return src;
             //when non pawn hit enemy
             if (des[1] == 'x')
-                src = ConLen3(des.Remove('x'));
+                src = ConLen3(des.Remove(1, 1));
        
           return src;
         }
         String ConLen5(String des)
         {
             String src = "";
-            if (des[5] == '#')
+            if (des[4] == '#')
             {
                 if (des[1] == 'x')
                 {
-                    src = des.Remove('x');
+                    src = des.Remove(1, 1);
 
-                    src = src.Remove('#');
+                    src = src.Remove(4, 1);
 
                     src = ConLen3(src);
 
@@ -582,13 +582,13 @@ namespace Chess
             if (src != "")
                 return src;
 
-            if (des[5] == '+')
+            if (des[4] == '+')
             {
                 if (des[1] == 'x')
                 {
-                    src = des.Remove('x');
+                    src = des.Remove(1, 1);
 
-                    src = src.Remove('+');
+                    src = src.Remove(4, 1);
 
                     src = ConLen3(src);
 
@@ -598,12 +598,12 @@ namespace Chess
                 return src;
 
             if (des[2] == '#')
-                src = ConLen4(des.Remove('='));
+                src = ConLen4(des.Remove(2, 1));
             if (des[2] == '+')
-                src = ConLen4(des.Remove('+'));
+                src = ConLen4(des.Remove(2, 1));
 
             if (des[1] == 'x')
-                src = ConLen4(des.Remove('x'));
+                src = ConLen4(des.Remove(1, 1));
 
             if (src != "")
                 return src;
@@ -624,9 +624,9 @@ namespace Chess
             {
                 if (des[1] == 'x')
                 {
-                    src = des.Remove('x');
+                    src = des.Remove(1, 1);
 
-                    src = src.Remove('#');
+                    src = src.Remove(5, 1);
 
                     src = ConLen4(src);
 
@@ -640,9 +640,9 @@ namespace Chess
             {
                 if (des[1] == 'x')
                 {
-                    src = des.Remove('x');
+                    src = des.Remove(1, 1);
 
-                    src = src.Remove('+');
+                    src = src.Remove(5, 1);
 
                     src = ConLen4(src);
 

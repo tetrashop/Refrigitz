@@ -408,7 +408,7 @@ namespace Chess
                 if (des[0] == 'R')
                 Kind = 4;
             else
-                if (des[0] == 'K')
+                if (des[0] == 'N')
                 Kind = 3;
             else
                 if (des[0] == 'B')
@@ -463,11 +463,12 @@ namespace Chess
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    ChessFirst.ChessRules C = new ChessFirst.ChessRules(0, false, false, false, false, false, false, false, true, Kind, S.brd.GetTable(), ord, i, j);
-                    if (C.Rules(i, j, row, column, a, Kind))
+                    int[,] tab = CloneATable(S.brd.GetTable());
+                    ChessFirst.ChessRules C = new ChessFirst.ChessRules(0, false, false, false, false, false, false, false, true, Kind, tab, ord, i, j);
+                    if (C.Rules(i, j, row, column, a, Kind) && (tab[i, j] == oBJ))
                     {
                         r = i;
-                        c = j;
+                        c =  j;
                         found = true;
                         break;
                     }
@@ -477,33 +478,33 @@ namespace Chess
             }
             if (found)
             {
-                if (c == 0)
+                if (r == 0)
                     src = "a";
                 else
-                  if (c == 1)
+                  if (r == 1)
                     src = "b";
                 else
-                      if (c == 2)
+                      if (r == 2)
                     src = "c";
                 else
-                          if (c == 3)
+                          if (r == 3)
                     src = "d";
                 else
-                              if (c == 4)
+                              if (r == 4)
                     src = "e";
                 else
-                                  if (c == 5)
+                                  if (r == 5)
                     src = "f";
                 else
-                                      if (c == 6)
+                                      if (r == 6)
                     src = "g";
                 else
-                                          if (c == 7)
+                                          if (r == 7)
                     src = "h";
 
 
-                src += r.ToString();
-                src += des[1].ToString() + row.ToString();
+                src += c.ToString();
+                src += des[1].ToString() + column.ToString();
             }
             return src;
 
@@ -511,8 +512,74 @@ namespace Chess
         String ConLen4(String des)
         {
             String src = "";
-            //pawn Conversion
-            if (des[2] == '=')
+            if (des[1] == 'x')
+            {
+                if (des[0] == 'a' || des[0] == 'b' || des[0] == 'c' || des[0] == 'd' || des[0] == 'e' || des[0] == 'f' || des[0] == 'g' || des[1] == 'h')
+                {
+                    int sc = -1, dc = -1;
+                    if (des[0] == 'a')
+                        sc = 0;
+                    else
+                                   if (des[0] == 'b')
+                        sc = 1;
+                    else
+                                       if (des[0] == 'c')
+                        sc = 2;
+                    else
+                                           if (des[0] == 'd')
+                        sc = 3;
+                    else
+                                               if (des[0] == 'e')
+                        sc = 4;
+                    else
+                                                   if (des[0] == 'f')
+                        sc = 5;
+                    else
+                                                       if (des[0] == 'g')
+                        sc = 6;
+                    else
+                                                           if (des[0] == 'h')
+                        sc = 7;
+
+                    if (des[2] == 'a')
+                        dc = 0;
+                    else
+                                    if (des[2] == 'b')
+                        dc = 1;
+                    else
+                                        if (des[2] == 'c')
+                        dc = 2;
+                    else
+                                            if (des[2] == 'd')
+                        dc = 3;
+                    else
+                                                if (des[2] == 'e')
+                        dc = 4;
+                    else
+                                                    if (des[2] == 'f')
+                        dc = 5;
+                    else
+                                                        if (des[2] == 'g')
+                        dc = 6;
+                    else
+                                                            if (des[2] == 'h')
+                        dc = 7;
+
+                    int row = 7 - (System.Math.Abs(System.Convert.ToInt32(des[3].ToString())) - 1);
+                    int r = -1;
+                    if (W)
+                    {
+                        r = row + 1;
+                    }
+                    else
+                    {
+                        r = row - 1;
+                    }
+                    return des[0].ToString() + r.ToString() + des[2].ToString() + row.ToString();
+                }
+            }
+                //pawn Conversion
+                if (des[2] == '=')
             {
                 if (des[3] == 'Q')
                 {
@@ -529,7 +596,7 @@ namespace Chess
                     src = ConLen2((des[0].ToString() + ((System.Math.Abs(System.Convert.ToInt32(des[1].ToString())) - 1)).ToString()));
                 }
                 else
-                if(des[3] == 'K')
+                if(des[3] == 'N')
                 {
                     F.ConClick = 3;
                     S.ConClick = 3;
@@ -1477,6 +1544,7 @@ namespace Chess
                                 MessageBox.Show("خطای بحرانی!");
                                 return;
                             }
+                            do { System.Threading.Thread.Sleep(1000); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
                             W = false;
                             B = true;
                             Wr = false;
@@ -1504,6 +1572,7 @@ namespace Chess
                                 MessageBox.Show("خطای بحرانی!");
                                 return;
                             }
+                            do { System.Threading.Thread.Sleep(1000); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
                             W = true;
                             B = false;
                             Wr = false;
@@ -1599,6 +1668,22 @@ namespace Chess
 
             frize = false;
 
+        }   //Clone A Table
+        int[,] CloneATable(int[,] Tab)
+        {
+            Object O = new Object();
+            lock (O)
+            {
+                //Create and new an Object.
+                int[,] Table = new int[8, 8];
+                //Assigne Parameter To New Objects.
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        Table[i, j] = Tab[i, j];
+                //Return New Object.
+                return Table;
+            }
         }
+
     }
 }

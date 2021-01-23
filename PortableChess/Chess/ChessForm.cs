@@ -21,6 +21,7 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class RefrigtzChessPortableForm : System.Windows.Forms.Form
     {
+        public bool freezCalculation = false;
         public bool ComStop = false;
         bool freezBoard = false;
         ArtificialInteligenceMove f = null;
@@ -1040,6 +1041,8 @@ namespace RefrigtzChessPortable
 
                     if (cl == 0 && k != 0 && played == order)
                     {
+                        freezCalculation = true;
+
                         x1 = i;
                         y1 = j;
                         this.pb[i, j].BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -1902,6 +1905,7 @@ namespace RefrigtzChessPortable
                                             RefrigtzChessPortable.AllDraw.CalIdle = 0;
                                         }
 
+                                        freezCalculation = false;
                                     }
                                     else
                               if (Com && (order == 2))
@@ -1924,6 +1928,7 @@ namespace RefrigtzChessPortable
                                         ArtificialInteligenceMove.UpdateIsRunning = true;
                                         RefrigtzChessPortable.AllDraw.CalIdle = 1;
 
+                                        freezCalculation = false;
 
                                     }
                                 }
@@ -1994,6 +1999,7 @@ namespace RefrigtzChessPortable
                                     ArtificialInteligenceMove.UpdateIsRunning = false;
                                     RefrigtzChessPortable.AllDraw.CalIdle = 0;
                                 }
+                                freezCalculation = false;
                             }
                             else
                               if (Com && (order == 2))
@@ -2014,6 +2020,7 @@ namespace RefrigtzChessPortable
                                 AllDraw.OrderPlate = 1; OrderPlate = 1;
                                 ArtificialInteligenceMove.UpdateIsRunning = true;
                                 RefrigtzChessPortable.AllDraw.CalIdle = 1;
+                                freezCalculation = false;
                             }
                         }
                         return 0;

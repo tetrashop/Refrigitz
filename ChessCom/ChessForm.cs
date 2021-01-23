@@ -21,6 +21,7 @@ namespace ChessCom
     [Serializable]
     public class ChessComForm : System.Windows.Forms.Form
     {
+        public bool freezCalculation = false;
         public bool ComStop = false;
         public int rf = -1, cf = -1, rs = -1, cs = -1;
         bool Comready = false;
@@ -558,6 +559,7 @@ namespace ChessCom
 
                     if (cl == 0 && k != 0 && played == order)
                     {
+                        freezCalculation = true;
                         x1 = i;
                         y1 = j;
                         rf = i;
@@ -1366,6 +1368,7 @@ namespace ChessCom
                             lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() ;
                             this.lb.Items.AddRange(new object[] { lstr });
                         }
+                        freezCalculation = false;
                         return 0;
                     }
                 }

@@ -13,6 +13,7 @@ namespace Chess
 {
     public partial class Chess : Form
     {
+        bool GaveOver = false;
         PgnReader reader = null;
         Database gameDb = null;
 
@@ -383,7 +384,12 @@ namespace Chess
             String src = "";
 
             if (des[2] == '#')
+            {
                 src = ConLen2(des.Remove(2, 1));
+                if (src != "")
+                    GaveOver = true;
+
+            }
             if (des[2] == '+')
                 src = ConLen2(des.Remove(2, 1));
 
@@ -617,10 +623,14 @@ namespace Chess
             if (src != "")
                 return src;
 
-            if (des[2] == '#')
-                src = ConLen3(des.Remove(2, 1));
-            if (des[2] == '+')
-                src = ConLen3(des.Remove(2, 1));
+            if (des[3] == '#')
+            {
+                src = ConLen3(des.Remove(3, 1));
+                if (src != "")
+                    GaveOver = true;
+            }
+            if (des[3] == '+')
+                src = ConLen3(des.Remove(3, 1));
 
             if (src != "")
                 return src;
@@ -664,10 +674,14 @@ namespace Chess
             if (src != "")
                 return src;
 
-            if (des[2] == '#')
-                src = ConLen4(des.Remove(2, 1));
-            if (des[2] == '+')
-                src = ConLen4(des.Remove(2, 1));
+            if (des[4] == '#')
+            {
+                src = ConLen4(des.Remove(4, 1));
+                if (src != "")
+                    GaveOver = true;
+            }
+            if (des[4] == '+')
+                src = ConLen4(des.Remove(4, 1));
 
             if (des[1] == 'x')
                 src = ConLen4(des.Remove(1, 1));
@@ -693,10 +707,21 @@ namespace Chess
                 {
                     src = des.Remove(1, 1);
 
-                    src = src.Remove(5, 1);
+                    src = src.Remove(4, 1);
 
                     src = ConLen4(src);
 
+                    if (src != "")
+                        GaveOver = true;
+                }
+                else
+                {
+                    src = src.Remove(5, 1);
+
+                    src = ConLen5(src);
+
+                    if (src != "")
+                        GaveOver = true;
                 }
             }
 
@@ -1455,11 +1480,35 @@ namespace Chess
             if (System.IO.File.Exists("a.txt"))
                 System.IO.File.Delete("a.txt");
             System.IO.File.AppendAllText("a.txt", "PlayTeachPGNConvertedToChessBase started");
-            
+
             do
             {
-
-
+                I = 0;
+                if (GaveOver)
+                {
+                    System.IO.File.AppendAllText("a.txt", "\r\r\rPlayTeachPGNConvertedToChessBase started #" + o.ToString());
+                    if (F != null)
+                        F.Dispose();
+                    if (S != null)
+                        S.Dispose();
+                    if (BBS != null)
+                        BBS.Dispose();
+                    F = new ChessFirst.ChessFirstForm();
+                    F.ComStop = true;
+                    F.Show();
+                    S = (new RefrigtzChessPortable.RefrigtzChessPortableForm());
+                    S.ComStop = true;
+                    S.Show();
+                    do { System.Threading.Thread.Sleep(20); } while (!(S.LoadP || F.LoadP));
+                    F.Hide();
+                    S.Hide();
+                    W = true;
+                    B = false;
+                    BBS = new ChessCom.ChessComForm();
+                    BBS.ComStop = true;
+                    BBS.Show();
+                    GaveOver = false;
+                }
                 do
                 {
                     String z = gameDb.Games[o].MoveText[I].ToString();
@@ -1477,7 +1526,12 @@ namespace Chess
 
                                     System.IO.File.AppendAllText("a.txt", "\r" + "White ");
                                     z = z.Remove(0, z.IndexOf(' ') + 1);
-                                    string b = z.Substring(0, z.IndexOf(" "));
+                                    string b = "";
+                                    if(z.Contains(' '))
+                                        b = z.Substring(0, z.IndexOf(" "));
+                                    else
+                                        b = z.Substring(0, z.Length);
+
                                     System.IO.File.AppendAllText("a.txt", "\r" + b);
                                     string t = Convert(b);
                                     System.IO.File.AppendAllText("a.txt", "\r" + t);
@@ -1544,11 +1598,13 @@ namespace Chess
                                 MessageBox.Show("خطای بحرانی!");
                                 return;
                             }
-                            do { System.Threading.Thread.Sleep(1000); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
+                            do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
                             W = false;
                             B = true;
                             Wr = false;
                             System.IO.File.AppendAllText("a.txt", "\r" + "White finished");
+                            if (GaveOver)
+                                break;
                         }
                         else
                         {
@@ -1572,16 +1628,23 @@ namespace Chess
                                 MessageBox.Show("خطای بحرانی!");
                                 return;
                             }
-                            do { System.Threading.Thread.Sleep(1000); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
+                            do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
                             W = true;
                             B = false;
                             Wr = false;
                             System.IO.File.AppendAllText("a.txt", "\r" + "Black finished");
+                            if (GaveOver)
+                                break;
                         }
                         k++;
+                        if (GaveOver)
+                            break;
                     } while (k < 2);
+                    if (GaveOver)
+                        break;
                 } while (I < gameDb.Games[o].MoveText.Count);
                 MessageBox.Show("یک بازی ذخیره شد");
+                GaveOver = true;
                 o++;
             } while (o < gameDb.Games.Count);
             MessageBox.Show("بازی ها تمام شد.");
@@ -1638,9 +1701,9 @@ namespace Chess
             openFileDialog1.Filter = "PGN|*.pgn";
             openFileDialog1.ShowDialog();
 
-             reader = new PgnReader();
-             gameDb = reader.ReadFromFile(openFileDialog1.FileName);
-            
+            reader = new PgnReader();
+            gameDb = reader.ReadFromFile(openFileDialog1.FileName);
+
             MessageBox.Show("PGN load completed.");
             //PlayTeachPGNConvertedToChessBase();
 
@@ -1650,15 +1713,9 @@ namespace Chess
             S = (new RefrigtzChessPortable.RefrigtzChessPortableForm());
             S.ComStop = true;
             S.Show();
-            do { System.Threading.Thread.Sleep(2000); } while (!(S.LoadP || F.LoadP));
-            int a = S.brd.GetTable()[0, 2];          
-            int b = S.brd.GetTable()[2, 0];
-            System.IO.File.AppendAllText("b.txt", a.ToString() + "-" + b.ToString());
+            do { System.Threading.Thread.Sleep(20); } while (!(S.LoadP || F.LoadP));
             F.Hide();
             S.Hide();
-             a = S.brd.GetTable()[0, 2];
-             b = S.brd.GetTable()[2, 0];
-            System.IO.File.AppendAllText("c.txt", a.ToString() + "-" + b.ToString());
             W = true;
             B = false;
             BBS = new ChessCom.ChessComForm();

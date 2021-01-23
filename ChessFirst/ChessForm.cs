@@ -1841,7 +1841,8 @@ namespace ChessFirst
                                 this.lb.Items.AddRange(new object[] { lstr });
                                 lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() + " Hu:" + AllDraw.Less.ToString();
                                 MessageBox.Show(str + " " + "مات شد");
-                                Application.Exit();
+                                if (!ComStop)
+                                    Application.Exit();
                             }
                             else
                             {

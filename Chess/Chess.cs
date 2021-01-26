@@ -1650,6 +1650,9 @@ namespace Chess
                                     I = gameDb.Game[o].MoveText.Count;
                                     k = 2;
                                     gamenf = true;
+                                    S.freezCalculation = false;
+                                    F.freezCalculation = false;
+                                    BBS.freezCalculation = false;
                                 }
                                 do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
                                 BBS.Update();
@@ -1684,6 +1687,9 @@ namespace Chess
                                     I = gameDb.Game[o].MoveText.Count;
                                     k = 2;
                                     gamenf = true;
+                                    S.freezCalculation = false;
+                                    F.freezCalculation = false;
+                                    BBS.freezCalculation = false;
                                 }
                                 do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
                                 BBS.Update();

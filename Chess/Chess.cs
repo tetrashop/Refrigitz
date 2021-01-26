@@ -1554,6 +1554,8 @@ namespace Chess
             }
                 try
                 {
+                    bool gamenf = false;
+
                     do
                     {
                         String z = gameDb.Game[o].MoveText[I].ToString();
@@ -1645,7 +1647,9 @@ namespace Chess
                                 if (C != 0)
                                 {
                                     MessageBox.Show("خطای بحرانی!");
-                                    return;
+                                    I = gameDb.Game[o].MoveText.Count;
+                                    k = 2;
+                                    gamenf = true;
                                 }
                                 do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
                                 BBS.Update();
@@ -1677,7 +1681,9 @@ namespace Chess
                                 if (C != 0)
                                 {
                                     MessageBox.Show("خطای بحرانی!");
-                                    return;
+                                    I = gameDb.Game[o].MoveText.Count;
+                                    k = 2;
+                                    gamenf = true;
                                 }
                                 do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
                                 BBS.Update();
@@ -1696,7 +1702,11 @@ namespace Chess
                         if (GaveOver)
                             break;
                     } while (I < gameDb.Game[o].MoveText.Count);
-                    MessageBox.Show("یک بازی ذخیره شد");
+                    if (!gamenf)
+                        MessageBox.Show("یک بازی ذخیره شد");
+                    else
+                        MessageBox.Show("نیمه یک بازی ذخیره شد");
+
                 }
                 catch (Exception y) {
                     MessageBox.Show("نیمه یک بازی ذخیره شد");

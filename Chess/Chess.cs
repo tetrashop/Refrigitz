@@ -187,8 +187,7 @@ namespace Chess
             lock (O)
             {
 
-                try
-                {
+                
 
 
                     if (A[0] == 'a')
@@ -286,11 +285,7 @@ namespace Chess
                             return 10;
 
 
-                }
-                catch (Exception t)
-                {
-                    return -10;
-                }
+                
                 return -11;
 
             }

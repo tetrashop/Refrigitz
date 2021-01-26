@@ -1505,7 +1505,8 @@ namespace Chess
                     BBS.Show();
                     GaveOver = false;
                     do { System.Threading.Thread.Sleep(2000); } while (!(BBS.LoadP));
-                
+                    BBS.Update();
+                    BBS.Invalidate();
             }
                 try
                 {
@@ -1603,6 +1604,8 @@ namespace Chess
                                     return;
                                 }
                                 do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
+                                BBS.Update();
+                                BBS.Invalidate();
                                 W = false;
                                 B = true;
                                 Wr = false;
@@ -1633,6 +1636,8 @@ namespace Chess
                                     return;
                                 }
                                 do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
+                                BBS.Update();
+                                BBS.Invalidate();
                                 W = true;
                                 B = false;
                                 Wr = false;

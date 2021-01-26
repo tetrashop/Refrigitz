@@ -491,7 +491,7 @@ namespace ChessCom
         
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            
+            LoadP = true; 
         }
          static void Log(Exception ex)
         {

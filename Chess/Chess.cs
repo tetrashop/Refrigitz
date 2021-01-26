@@ -7,15 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ilf.pgn;
-using ilf.pgn.Data;
+//using ilf.pgn;
+//using ilf.pgn.Data;
 namespace Chess
 {
     public partial class Chess : Form
     {
         bool GaveOver = false;
-        PgnReader reader = null;
-        Database gameDb = null;
+        // PgnReader reader = null;
+        // Database gameDb = null;
+        PGNToArraycs gameDb = null;
 
         String[] SS;
         String PgnGames = "";
@@ -1508,145 +1509,158 @@ namespace Chess
                     BBS.ComStop = true;
                     BBS.Show();
                     GaveOver = false;
-                }
-                do
+                    do { System.Threading.Thread.Sleep(2000); } while (!(BBS.LoadP));
+                
+            }
+                try
                 {
-                    String z = gameDb.Games[o].MoveText[I].ToString();
-                    int k = 0;
                     do
                     {
-                        bool Wr = false;
-
+                        String z = gameDb.Game[o].MoveText[I].ToString();
+                        int k = 0;
                         do
                         {
-                            if (!Wr)
+                            bool Wr = false;
+
+                            do
                             {
-                                if (W)
+                                if (!Wr)
                                 {
-
-                                    System.IO.File.AppendAllText("a.txt", "\r" + "White ");
-                                    z = z.Remove(0, z.IndexOf(' ') + 1);
-                                    string b = "";
-                                    if(z.Contains(' '))
-                                        b = z.Substring(0, z.IndexOf(" "));
-                                    else
-                                        b = z.Substring(0, z.Length);
-
-                                    System.IO.File.AppendAllText("a.txt", "\r" + b);
-                                    string t = Convert(b);
-                                    System.IO.File.AppendAllText("a.txt", "\r" + t);
-                                    int a = SetRowColumn(t);
-                                    if (a == -10 || a == -11)
+                                    if (W)
                                     {
-                                        System.IO.File.AppendAllText("a.txt", '1'.ToString() + b + "#" + a);
-                                        Application.Exit();
-                                    }
-                                    else
-                                    {
-                                        if (!Wr)
+
+                                        System.IO.File.AppendAllText("a.txt", "\r" + "White ");
+                                        z = z.Remove(0, z.IndexOf(' ') + 1);
+                                        string b = "";
+                                        if (z.Contains(' '))
+                                            b = z.Substring(0, z.IndexOf(" "));
+                                        else
+                                            b = z.Substring(0, z.Length);
+
+                                        System.IO.File.AppendAllText("a.txt", "\r" + b);
+                                        string t = Convert(b);
+                                        System.IO.File.AppendAllText("a.txt", "\r" + t);
+                                        int a = SetRowColumn(t);
+                                        if (a == -10 || a == -11)
                                         {
-                                            System.IO.File.AppendAllText("a.txt", "\r" + t);
-                                            Wr = true;
+                                            System.IO.File.AppendAllText("a.txt", '1'.ToString() + b + "#" + a + "+" + t);
+                                            Application.Exit();
+                                        }
+                                        else
+                                        {
+                                            if (!Wr)
+                                            {
+                                                System.IO.File.AppendAllText("a.txt", "\r" + t);
+                                                Wr = true;
+                                            }
                                         }
                                     }
-                                }
-                                else
-                                {
-                                    System.IO.File.AppendAllText("a.txt", "\r" + "Black ");
-                                    z = z.Remove(0, z.IndexOf(' ') + 1);
-                                    string b = z.Substring(0, z.Length);
-                                    System.IO.File.AppendAllText("a.txt", "\r" + b);
-                                    string t = Convert(b);
-                                    System.IO.File.AppendAllText("a.txt", "\r" + t);
-                                    int a = SetRowColumn(t);
-                                    if (a == -10 || a == -11)
-                                    {
-                                        System.IO.File.AppendAllText("a.txt", '2'.ToString() + b + "#" + a);
-                                        Application.Exit();
-                                    }
                                     else
                                     {
-                                        if (!Wr)
+                                        System.IO.File.AppendAllText("a.txt", "\r" + "Black ");
+                                        z = z.Remove(0, z.IndexOf(' ') + 1);
+                                        string b = "";
+                                        if (z.Contains(' '))
+                                            b = z.Substring(0, z.IndexOf(" "));
+                                        else
+                                            b = z.Substring(0, z.Length);
+                                        System.IO.File.AppendAllText("a.txt", "\r" + b);
+                                        string t = Convert(b);
+                                        System.IO.File.AppendAllText("a.txt", "\r" + t);
+                                        int a = SetRowColumn(t);
+                                        if (a == -10 || a == -11)
                                         {
-                                            System.IO.File.AppendAllText("a.txt", "\r" + t);
-                                            Wr = true;
+                                            System.IO.File.AppendAllText("a.txt", '1'.ToString() + b + "#" + a + "+" + t);
+                                            Application.Exit();
                                         }
+                                        else
+                                        {
+                                            if (!Wr)
+                                            {
+                                                System.IO.File.AppendAllText("a.txt", "\r" + t);
+                                                Wr = true;
+                                            }
+                                        }
+
                                     }
-
                                 }
-                            }
-                        } while (BBS.rf == -1 || BBS.cf == -1 || BBS.rs == -1 || BBS.cs == -1);
-                        if (W)
-                        {
-                            System.IO.File.AppendAllText("a.txt", "\r" + "White ready");
-                            int C = 0;
-                            C += F.Play(BBS.rf, BBS.cf);
-                            C += F.Play(BBS.rs, BBS.cs);
-
-                            C += S.Play(BBS.rf, BBS.cf);
-                            C += S.Play(BBS.rs, BBS.cs);
-
-                            C += BBS.Play(BBS.rf, BBS.cf);
-                            C += BBS.Play(BBS.rs, BBS.cs);
-                            BBS.rf = -1;
-                            BBS.cf = -1;
-                            BBS.rs = -1;
-                            BBS.cs = -1;
-                            ChessCom.ChessComForm.freezBoard = false;
-                            if (C != 0)
+                            } while (BBS.rf == -1 || BBS.cf == -1 || BBS.rs == -1 || BBS.cs == -1);
+                            if (W)
                             {
-                                MessageBox.Show("خطای بحرانی!");
-                                return;
+                                System.IO.File.AppendAllText("a.txt", "\r" + "White ready");
+                                int C = 0;
+                                C += F.Play(BBS.rf, BBS.cf);
+                                C += F.Play(BBS.rs, BBS.cs);
+
+                                C += S.Play(BBS.rf, BBS.cf);
+                                C += S.Play(BBS.rs, BBS.cs);
+
+                                C += BBS.Play(BBS.rf, BBS.cf);
+                                C += BBS.Play(BBS.rs, BBS.cs);
+                                BBS.rf = -1;
+                                BBS.cf = -1;
+                                BBS.rs = -1;
+                                BBS.cs = -1;
+                                ChessCom.ChessComForm.freezBoard = false;
+                                if (C != 0)
+                                {
+                                    MessageBox.Show("خطای بحرانی!");
+                                    return;
+                                }
+                                do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
+                                W = false;
+                                B = true;
+                                Wr = false;
+                                System.IO.File.AppendAllText("a.txt", "\r" + "White finished");
+                                if (GaveOver)
+                                    break;
                             }
-                            do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
-                            W = false;
-                            B = true;
-                            Wr = false;
-                            System.IO.File.AppendAllText("a.txt", "\r" + "White finished");
+                            else
+                            {
+                                System.IO.File.AppendAllText("a.txt", "\r" + "Black ready");
+
+                                int C = 0;
+                                C += F.Play(BBS.rf, BBS.cf);
+                                C += F.Play(BBS.rs, BBS.cs);
+                                C += S.Play(BBS.rf, BBS.cf);
+                                C += S.Play(BBS.rs, BBS.cs);
+                                C += BBS.Play(BBS.rf, BBS.cf);
+                                C += BBS.Play(BBS.rs, BBS.cs);
+                                BBS.rf = -1;
+                                BBS.cf = -1;
+                                BBS.rs = -1;
+                                BBS.cs = -1;
+                                I++;
+                                ChessCom.ChessComForm.freezBoard = false;
+                                if (C != 0)
+                                {
+                                    MessageBox.Show("خطای بحرانی!");
+                                    return;
+                                }
+                                do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
+                                W = true;
+                                B = false;
+                                Wr = false;
+                                System.IO.File.AppendAllText("a.txt", "\r" + "Black finished");
+                                if (GaveOver)
+                                    break;
+                            }
+                            k++;
                             if (GaveOver)
                                 break;
-                        }
-                        else
-                        {
-                            System.IO.File.AppendAllText("a.txt", "\r" + "Black ready");
-
-                            int C = 0;
-                            C += F.Play(BBS.rf, BBS.cf);
-                            C += F.Play(BBS.rs, BBS.cs);
-                            C += S.Play(BBS.rf, BBS.cf);
-                            C += S.Play(BBS.rs, BBS.cs);
-                            C += BBS.Play(BBS.rf, BBS.cf);
-                            C += BBS.Play(BBS.rs, BBS.cs);
-                            BBS.rf = -1;
-                            BBS.cf = -1;
-                            BBS.rs = -1;
-                            BBS.cs = -1;
-                            I++;
-                            ChessCom.ChessComForm.freezBoard = false;
-                            if (C != 0)
-                            {
-                                MessageBox.Show("خطای بحرانی!");
-                                return;
-                            }
-                            do { System.Threading.Thread.Sleep(10); } while (S.freezCalculation || F.freezCalculation || BBS.freezCalculation);
-                            W = true;
-                            B = false;
-                            Wr = false;
-                            System.IO.File.AppendAllText("a.txt", "\r" + "Black finished");
-                            if (GaveOver)
-                                break;
-                        }
-                        k++;
+                        } while (k < 2);
                         if (GaveOver)
                             break;
-                    } while (k < 2);
-                    if (GaveOver)
-                        break;
-                } while (I < gameDb.Games[o].MoveText.Count);
-                MessageBox.Show("یک بازی ذخیره شد");
+                    } while (I < gameDb.Game[o].MoveText.Count);
+                    MessageBox.Show("یک بازی ذخیره شد");
+                }
+                catch (Exception y) {
+                    MessageBox.Show("نیمه یک بازی ذخیره شد");
+
+                }
                 GaveOver = true;
                 o++;
-            } while (o < gameDb.Games.Count);
+            } while (o < gameDb.Game.Count);
             MessageBox.Show("بازی ها تمام شد.");
 
         }
@@ -1697,12 +1711,15 @@ namespace Chess
 
         private void button4_Click(object sender, EventArgs e)
         {
+         
             frize = true;
             openFileDialog1.Filter = "PGN|*.pgn";
             openFileDialog1.ShowDialog();
 
-            reader = new PgnReader();
-            gameDb = reader.ReadFromFile(openFileDialog1.FileName);
+            //reader = new PgnReader();
+            ///gameDb = reader.ReadFromFile(openFileDialog1.FileName);
+            gameDb = new PGNToArraycs(openFileDialog1.FileName);
+            gameDb.PGNToArraycsMethod();
 
             MessageBox.Show("PGN load completed.");
             //PlayTeachPGNConvertedToChessBase();

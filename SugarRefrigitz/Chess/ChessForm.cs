@@ -25,6 +25,7 @@ namespace Chess
     [Serializable]
     public class ChessForm : System.Windows.Forms.Form
     {
+        public bool ComStop = false;
         Process proc = new Process();
         public bool LoadTree = false;
         bool SettingPRFALSE = false;

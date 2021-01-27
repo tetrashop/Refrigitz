@@ -536,101 +536,84 @@ namespace Chess
         String ConLen4(String des)
         {
             String src = "";
-            int sc = -1, dc = -1;
-            if (des.ToUpper()[1] == 'A')
-                sc = 0;
-            else
-                           if (des.ToUpper()[1] == 'B')
-                sc = 1;
-            else
-                               if (des.ToUpper()[1] == 'C')
-                sc = 2;
-            else
-                                   if (des.ToUpper()[1] == 'D')
-                sc = 3;
-            else
-                                       if (des.ToUpper()[1] == 'E')
-                sc = 4;
-            else
-                                           if (des.ToUpper()[1] == 'F')
-                sc = 5;
-            else
-                                               if (des.ToUpper()[1] == 'G')
-                sc = 6;
-            else
-                                                   if (des.ToUpper()[1] == 'H')
-                sc = 7;
+            int sc = -1;
+            if (des[1] != 'x')
+            {
+                if (des.ToUpper()[1] == 'A')
+                    sc = 0;
+                else
+                               if (des.ToUpper()[1] == 'B')
+                    sc = 1;
+                else
+                                   if (des.ToUpper()[1] == 'C')
+                    sc = 2;
+                else
+                                       if (des.ToUpper()[1] == 'D')
+                    sc = 3;
+                else
+                                           if (des.ToUpper()[1] == 'E')
+                    sc = 4;
+                else
+                                               if (des.ToUpper()[1] == 'F')
+                    sc = 5;
+                else
+                                                   if (des.ToUpper()[1] == 'G')
+                    sc = 6;
+                else
+                                                       if (des.ToUpper()[1] == 'H')
+                    sc = 7;
 
-            if (sc != -1)
-            {
-                src = ConLen3(des.Remove(1, 1), sc);
-                if (src != "")
-                    return src;
-            }
-            if (des[1] == 'x')
-            {
-                if (des[0] == 'a' || des[0] == 'b' || des[0] == 'c' || des[0] == 'd' || des[0] == 'e' || des[0] == 'f' || des[0] == 'g' || des[1] == 'h')
+                if (sc != -1)
                 {
-                    sc = -1; dc = -1;
-                    if (des[0] == 'a')
-                        sc = 0;
-                    else
-                               if (des[0] == 'b')
-                        sc = 1;
-                    else
-                                   if (des[0] == 'c')
-                        sc = 2;
-                    else
-                                       if (des[0] == 'd')
-                        sc = 3;
-                    else
-                                           if (des[0] == 'e')
-                        sc = 4;
-                    else
-                                               if (des[0] == 'f')
-                        sc = 5;
-                    else
-                                                   if (des[0] == 'g')
-                        sc = 6;
-                    else
-                                                       if (des[0] == 'h')
-                        sc = 7;
-
-                    if (des[2] == 'a')
-                        dc = 0;
-                    else
-                                    if (des[2] == 'b')
-                        dc = 1;
-                    else
-                                        if (des[2] == 'c')
-                        dc = 2;
-                    else
-                                            if (des[2] == 'd')
-                        dc = 3;
-                    else
-                                                if (des[2] == 'e')
-                        dc = 4;
-                    else
-                                                    if (des[2] == 'f')
-                        dc = 5;
-                    else
-                                                        if (des[2] == 'g')
-                        dc = 6;
-                    else
-                                                            if (des[2] == 'h')
-                        dc = 7;
-
-                    int row = 7 - (System.Math.Abs(System.Convert.ToInt32(des[3].ToString())) - 1);
-                    int r = -1;
-                    if (W)
+                    src = ConLen3(des.Remove(1, 1), sc);
+                    if (src != "")
+                        return src;
+                }
+            }
+            else
+            {
+                if (des[1] == 'x')
+                {
+                    if (des[0] == 'a' || des[0] == 'b' || des[0] == 'c' || des[0] == 'd' || des[0] == 'e' || des[0] == 'f' || des[0] == 'g' || des[0] == 'h')
                     {
-                        r = row + 1;
+                        sc = -1;
+                        if (des[0] == 'a')
+                            sc = 0;
+                        else
+                                   if (des[0] == 'b')
+                            sc = 1;
+                        else
+                                       if (des[0] == 'c')
+                            sc = 2;
+                        else
+                                           if (des[0] == 'd')
+                            sc = 3;
+                        else
+                                               if (des[0] == 'e')
+                            sc = 4;
+                        else
+                                                   if (des[0] == 'f')
+                            sc = 5;
+                        else
+                                                       if (des[0] == 'g')
+                            sc = 6;
+                        else
+                                                           if (des[0] == 'h')
+                            sc = 7;
+
+                  
+                        int row = 7 - (System.Math.Abs(System.Convert.ToInt32(des[3].ToString())) - 1);
+                        int r = -1;
+                        if (W)
+                        {
+                            r = row + 1;
+                        }
+                        else
+                        {
+                            r = row - 1;
+                        }
+                        return des[0].ToString() + r.ToString() + des[2].ToString() + row.ToString();
                     }
-                    else
-                    {
-                        r = row - 1;
-                    }
-                    return des[0].ToString() + r.ToString() + des[2].ToString() + row.ToString();
                 }
             }
             //pawn Conversion
@@ -685,7 +668,7 @@ namespace Chess
                 return src;
             //when non pawn hit enemy
             if (des[1] == 'x')
-                src = ConLen3(des.Remove(1, 1));
+                src = ConLen3(des.Remove(1, 1), 8);
 
             return src;
         }
@@ -1790,7 +1773,22 @@ namespace Chess
             ///gameDb = reader.ReadFromFile(openFileDialog1.FileName);
             gameDb = new PGNToArraycs(openFileDialog1.FileName);
             gameDb.PGNToArraycsMethod();
+            System.IO.File.AppendAllText("b.txt", gameDb.Lines.Length.ToString());
+            for (int i = 0; i < gameDb.gamese.Count; i++)
+            {
+                System.IO.File.AppendAllText("c.txt", "\r" + gameDb.gamese[i]);
+                
+            }
+            for (int i = 0; i < gameDb.Game.Count; i++)
+            {
+               for (int j = 0; j < gameDb.Game[i].MoveText.Count; j++)
+                {
+                    System.IO.File.AppendAllText("d.txt", "\r" + gameDb.Game[i].MoveText[j]);
 
+                }
+                System.IO.File.AppendAllText("d.txt", "\r=====================================================================");
+
+            }
             MessageBox.Show("PGN load completed.");
             //PlayTeachPGNConvertedToChessBase();
 

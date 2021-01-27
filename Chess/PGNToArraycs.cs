@@ -9,7 +9,7 @@ namespace Chess
     //main
     public class PGNToArraycs
     {
-        String[] Lines;
+        public String[] Lines;
         public List<PGN> Game = new List<PGN>();
         public List<String> gamese = new List<String>();
 
@@ -30,9 +30,12 @@ namespace Chess
                 {
                     Game.Add(new PGN());
                     Game[j].PGNToArraycsSplit(Lines[i]);
+                    gamese.Add(Lines[i]);
                     j++;
                 }
+                
             }
+           
 
         }
     }
@@ -56,7 +59,7 @@ namespace Chess
                 Index = 1;
                 do
                 {
-                    MoveText.Add(Game.Substring(Game.IndexOf(Index.ToString() + "."), Game.IndexOf((Index + 1).ToString() + ".") - Game.IndexOf(Index.ToString() + ".")));
+                    MoveText.Add(Game.Substring(Game.IndexOf(System.Convert.ToString(Index) + "."), Game.IndexOf(System.Convert.ToString(Index+1) + ".") - Game.IndexOf(System.Convert.ToString(Index) + ".")));
                     Index++;
                 } while (true);
 
@@ -65,12 +68,12 @@ namespace Chess
               
                 try
                 {
-                    MoveText.Add(Game.Substring(Game.IndexOf(Index.ToString() + "."), Game.IndexOf("1-0") - Game.IndexOf(Index.ToString() + ".")));
+                    MoveText.Add(Game.Substring(Game.IndexOf(System.Convert.ToString(Index) + "."), Game.IndexOf("1-0") - Game.IndexOf(System.Convert.ToString(Index) + ".")));
 
                 }
                 catch (Exception tt)
                 {
-                    MoveText.Add(Game.Substring(Game.IndexOf(Index.ToString() + "."), Game.IndexOf("0-1") - Game.IndexOf(Index.ToString() + ".")));
+                    MoveText.Add(Game.Substring(Game.IndexOf(System.Convert.ToString(Index) + "."), Game.IndexOf("0-1") - Game.IndexOf(System.Convert.ToString(Index) + ".")));
 
                 }
             }

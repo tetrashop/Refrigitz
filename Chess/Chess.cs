@@ -466,19 +466,35 @@ namespace Chess
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (Dublicated != -1)
+                    if (Dublicated != 8)
                     {
-                        if (i != Dublicated)
-                            continue;
+                        if (Dublicated != -1)
+                        {
+                            if (i != Dublicated)
+                                continue;
+                        }
+                        int[,] tab = CloneATable(S.brd.GetTable());
+                        ChessFirst.ChessRules C = new ChessFirst.ChessRules(0, false, false, false, false, false, false, false, true, Kind, tab, ord, i, j);
+                        if (C.Rules(i, j, row, column, a, Kind) && (tab[i, j] == oBJ))
+                        {
+                            r = i;
+                            c = j;
+                            found = true;
+                            break;
+                        }
                     }
-                    int[,] tab = CloneATable(S.brd.GetTable());
-                    ChessFirst.ChessRules C = new ChessFirst.ChessRules(0, false, false, false, false, false, false, false, true, Kind, tab, ord, i, j);
-                    if (C.Rules(i, j, row, column, a, Kind) && (tab[i, j] == oBJ))
+                    else
                     {
-                        r = i;
-                        c =  j;
-                        found = true;
-                        break;
+                        int[,] tab = CloneATable(S.brd.GetTable());
+                        ChessFirst.ThinkingChessFirst C = new ChessFirst.ThinkingChessFirst(0, Kind, 0, false, false, false, false, false, false, false, true, i, j, a, tab, 0, ord, false, 0, 0, Kind);
+                        if (C.Attack(tab,i, j, row, column, a, ord) && (tab[i, j] == oBJ))
+                        {
+                            r = i;
+                            c = j;
+                            found = true;
+                            break;
+                        }
+
                     }
                 }
                 if (found)
@@ -684,7 +700,8 @@ namespace Chess
 
                     src = src.Remove(4, 1);
 
-                    src = ConLen3(src);
+                    src = ConLen3(src, 8);
+
 
                 }
             }
@@ -700,7 +717,7 @@ namespace Chess
 
                     src = src.Remove(4, 1);
 
-                    src = ConLen3(src);
+                    src = ConLen3(src, 8);
 
                  }
             }

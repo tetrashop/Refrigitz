@@ -871,7 +871,7 @@ namespace QuantumRefrigiz
                     }
                     else if (Kind == 7 || Kind == -7)
                     {
-                        if (Dum.CastlingOnTable[i].CastlingThinking[0].ThinkingFinished)
+                        if (Dum.CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingFinished)
                             return true;
                     }
                 }
@@ -1699,11 +1699,11 @@ namespace QuantumRefrigiz
                 return true;
             // if (CastlingOnTable[0].CastlingThinking == null)
             //     return true;
-            //if (CastlingOnTable[0].CastlingThinking[0] == null)
+            //if (CastlingOnTable[0].CastlingThinkingQuantum[0] == null)
             //  return true;
-            //if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy == null)
+            //if (CastlingOnTable[0].CastlingThinkingQuantum[0].AStarGreedy == null)
             //    return true;
-            //if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy.Count==0)
+            //if (CastlingOnTable[0].CastlingThinkingQuantum[0].AStarGreedy.Count==0)
             //  return true;
 
             return false;
@@ -2287,11 +2287,11 @@ namespace QuantumRefrigiz
                             Order = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
 
                             //When there is Brown checked mate.
-                            if (A.CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2301,7 +2301,7 @@ namespace QuantumRefrigiz
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2310,8 +2310,8 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             Order = CDummy;
                         }
                 }
@@ -2489,11 +2489,11 @@ namespace QuantumRefrigiz
                             Order = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
 
                             //When there is Brown checked mate.
-                            if (A.CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2503,7 +2503,7 @@ namespace QuantumRefrigiz
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2512,8 +2512,8 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             Order = CDummy;
                         }
                 }
@@ -2929,18 +2929,18 @@ namespace QuantumRefrigiz
                             }
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
 
                             //Gray Castling Rules.
-                            AA = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])[CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][0], CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][1]]
-                            , CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])
+                            AA = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])[CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][0], CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][1]]
+                            , CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])
                             , Order
-                            , CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][0]
-                            , CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][1]);
+                            , CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][0]
+                            , CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][1]);
                             //When CheckMate Occured in Castling Gray.
                             bool ac = false;
-                            var ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order));
+                            var ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -2951,7 +2951,7 @@ namespace QuantumRefrigiz
                                     //Penalty Ignore.
                                     Do = -1;
                                     //Superposition.
-                                    CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = -1;
+                                    CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
                                     var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
@@ -2965,7 +2965,7 @@ namespace QuantumRefrigiz
                                         //Regard Setting.
                                         Do = 1;
                                         //Superpoistion.
-                                        CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = 1;
+                                        CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Regard Subbranchs.
                                         var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
@@ -2978,11 +2978,11 @@ namespace QuantumRefrigiz
                                 Order *= -1;
                                 ChessRules.CurrentOrder *= -1;
                                 //For Castling Gray Subbranchs.
-                                for (var ii = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                                for (var ii = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
                                 {
                                     int D = Do;
 
-                                    var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3387,18 +3387,18 @@ namespace QuantumRefrigiz
                             }
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
 
                             //Gray Castling Rules.
-                            AA = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])[CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][0], CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][1]]
-                            , CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])
+                            AA = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])[CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][0], CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][1]]
+                            , CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])
                             , Order
-                            , CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][0]
-                            , CastlingOnTable[i].CastlingThinking[0].RowColumnCastling[j][1]);
+                            , CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][0]
+                            , CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling[j][1]);
                             //When CheckMate Occured in Castling Gray.
                             bool ac = false;
-                            var ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order));
+                            var ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3409,7 +3409,7 @@ namespace QuantumRefrigiz
                                     //Penalty Ignore.
                                     Do = -1;
                                     //Superposition.
-                                    CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = -1;
+                                    CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
                                     var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
@@ -3423,7 +3423,7 @@ namespace QuantumRefrigiz
                                         //Regard Setting.
                                         Do = 1;
                                         //Superpoistion.
-                                        CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = 1;
+                                        CastlingOnTable[i].CastlingThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Regard Subbranchs.
                                         var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
@@ -3436,11 +3436,11 @@ namespace QuantumRefrigiz
                                 Order *= -1;
                                 ChessRules.CurrentOrder *= -1;
                                 //For Castling Gray Subbranchs.
-                                for (var ii = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                                for (var ii = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
                                 {
                                     int D = Do;
 
-                                    var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3566,15 +3566,15 @@ namespace QuantumRefrigiz
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //make penalty  
-                            A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
+                            A.CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
                             //for deeper chiled
                             Order *= -1; ChessRules.CurrentOrder *= -1;
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
+                                var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3681,15 +3681,15 @@ namespace QuantumRefrigiz
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //make penalty  
-                            A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
+                            A.CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
                             //for deeper chiled
                             Order *= -1; ChessRules.CurrentOrder *= -1;
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
+                                var ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3816,17 +3816,17 @@ namespace QuantumRefrigiz
 
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate());
+                            var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
-                            for (int k = 0; k < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; k++)
+                            for (int k = 0; k < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3939,17 +3939,17 @@ namespace QuantumRefrigiz
                             }
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate());
+                            var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
-                            for (int k = 0; k < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; k++)
+                            for (int k = 0; k < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                var ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -4181,13 +4181,13 @@ namespace QuantumRefrigiz
             var ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 7, Order));
             ah7.Wait();
             ah7.Dispose();
-            if (ac && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+            if (ac && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null)
             {
-                if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null)
                 {
                     AllDraw This = THIS;
                     bool fou = Found;
-                    var ah8 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                    var ah8 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
                     ah8.Wait();
                     ah8.Dispose();
                     THIS = This;
@@ -4478,14 +4478,14 @@ namespace QuantumRefrigiz
                     }
                     for (var i = 0; i < 1; i++)
                     {
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4503,7 +4503,7 @@ namespace QuantumRefrigiz
                             else
                             {
 
-                                //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
+                                //CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
                                 var ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
@@ -4770,14 +4770,14 @@ namespace QuantumRefrigiz
                     }
                     for (var i = 0; i < 1; i++)
                     {
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, -7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -4795,7 +4795,7 @@ namespace QuantumRefrigiz
                             else
                             {
 
-                                //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
+                                //CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
                                 var ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
@@ -5077,14 +5077,14 @@ namespace QuantumRefrigiz
                     }
                     for (var i = 0; i < 1; i++)
                     {
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5102,7 +5102,7 @@ namespace QuantumRefrigiz
                             else
                             {
 
-                                //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
+                                //CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
                                 var ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
@@ -5369,14 +5369,14 @@ namespace QuantumRefrigiz
                     }
                     for (var i = 0; i < 1; i++)
                     {
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, -7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
                                 continue;
-                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
@@ -5394,7 +5394,7 @@ namespace QuantumRefrigiz
                             else
                             {
 
-                                //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
+                                //CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
                                 var ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
@@ -5535,7 +5535,7 @@ namespace QuantumRefrigiz
                 {
                     for (int i = 0; CastlingOnTable != null && i < 1; i++)
                     {
-                        if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                        if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
                         {
                             Is = true;
                         }
@@ -5610,7 +5610,7 @@ namespace QuantumRefrigiz
                 {
                     for (int i = 0; CastlingOnTable != null && i < 1; i++)
                     {
-                        if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                        if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
                         {
                             Is = true;
                         }
@@ -5711,9 +5711,9 @@ namespace QuantumRefrigiz
                 }
                 for (int i = 0; CastlingOnTable != null && i < 1; i++)
                 {
-                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
                     {
-                        for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //when is not validity
                             var ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
@@ -5814,9 +5814,9 @@ namespace QuantumRefrigiz
                 }
                 for (int i = 0; CastlingOnTable != null && i < 1; i++)
                 {
-                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                    if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
                     {
-                        for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //when is not validity
                             var ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
@@ -6004,14 +6004,14 @@ namespace QuantumRefrigiz
                 if (ac)
                 {
                     //clear all lists
-                    CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
-                    CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
-                    CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
-                    CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Clear();
-                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
-                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged);
+                    CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Clear();
+                    CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Clear();
+                    CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling.Clear();
+                    CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Clear();
+                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j)
+                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j] = new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged);
                     else
-                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
+                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
                 }
             }
         }
@@ -6080,9 +6080,9 @@ namespace QuantumRefrigiz
                          if (Kind == 7 || Kind == -7)
                 {
                     //remove extra
-                    for (int h = a; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h++)
+                    for (int h = a; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; h++)
                     {
-                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy.RemoveAt(h);
+                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.RemoveAt(h);
                     }
                 }
             }
@@ -6138,7 +6138,7 @@ namespace QuantumRefrigiz
                                     if (Kind == 7 || Kind == -7)
                 {
                     //when current alldraw lists is collision of stored lists tables state return true
-                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]))))
+                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Count != 0 && (!ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]))))
                         Is = true;
                 }
             }
@@ -6274,18 +6274,18 @@ namespace QuantumRefrigiz
             else if (Kind == 7 || Kind == -7)
             {
                 //when there is
-                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
                 {
                     //calculate of lists count and dynamic micprogramming
-                    int a = CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count;
-                    int b = CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count;
-                    int c = CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Count;
-                    int d = CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Count;
+                    int a = CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count;
+                    int b = CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count;
+                    int c = CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling.Count;
+                    int d = CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Count;
                     int e = 0;
-                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j)
                         e = -1;
                     else
-                        e = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count;
+                        e = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count;
                     var ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, i, j, 7));
                     ah.Wait();
                     ah.Dispose();
@@ -6935,7 +6935,7 @@ namespace QuantumRefrigiz
             //if (IsSupHuTrue(i, j, 0, 6))
 
             //when is null creation enough but empty and create deeper node 
-            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0)
+            if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
             {
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
@@ -6944,37 +6944,37 @@ namespace QuantumRefrigiz
                     ah.Wait();
                     ah.Dispose();
                 }
-                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Clear();
-                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]));
-                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].SetRowColumn(0);
-                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
-                THIS = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
+                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Clear();
+                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]));
+                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].SetRowColumn(0);
+                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
+                THIS = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
                 Found = true;
                 return true;
             }//when is not deeper null and is less than j index create empty but create deeper node table
             else
-                                    if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count < j + 1)
+                                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count < j + 1)
             {
-                for (int h = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h <= j; h++)
+                for (int h = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
                     var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingQuantumTreePartThree(i, Order, 7));
                     ah.Wait();
                     ah.Dispose();
                 }
-                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Clear();
-                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]));
-                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].SetRowColumn(0);
-                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
-                THIS = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
+                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Clear();
+                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]));
+                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].SetRowColumn(0);
+                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
+                THIS = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
                 Found = true;
                 return true;
             }//when is enough and determine about creation of empty deeper than deeper or return exist
             else
             {
-                if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j)
                 {
-                    THIS = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
+                    THIS = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
                     Found = true;
                     return true;
                 }
@@ -7056,7 +7056,7 @@ namespace QuantumRefrigiz
             {
                 for (int i = 0; CastlingOnTable != null && i < 1; i++)
                 {
-                    for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > j; j++)
+                    for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > j; j++)
                     {
                         bool ac = false;
                         var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
@@ -7064,7 +7064,7 @@ namespace QuantumRefrigiz
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -7087,7 +7087,7 @@ namespace QuantumRefrigiz
             {
                 for (int i = 0; CastlingOnTable != null && i < 1; i++)
                 {
-                    for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > j; j++)
+                    for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > j; j++)
                     {
                         bool ac = false;
                         var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, -7));
@@ -7095,7 +7095,7 @@ namespace QuantumRefrigiz
                         ah.Dispose();
                         if (ac)
                             continue;
-                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                        var ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j], Tab));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -7554,7 +7554,7 @@ namespace QuantumRefrigiz
                 //when found return recursive
                 if (Found)
                     return Leaf;
-                for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                 {
                     bool ac = false;
                     var ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
@@ -7563,25 +7563,25 @@ namespace QuantumRefrigiz
                     if (ac)
                         continue;
                     //when leaf found set refer bool and alldraw refer objects
-                    if ((!CastlingOnTableMove[i]) && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j// && Kind == 1
+                    if ((!CastlingOnTableMove[i]) && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j// && Kind == 1
                     )
                     {
 
                         if (Order == 1)
                         {
-                            for (var k = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && k < 1; k++)
+                            for (var k = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && k < 1; k++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].CastlingOnTableMove[k])
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].CastlingOnTableMove[k])
                                 {
                                     //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
-                                    CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
-                                    Leaf = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
+                                    CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
+                                    Leaf = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
                                     Found = true;
                                     return Leaf;
                                 }
@@ -7589,19 +7589,19 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            for (var k = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && k < 1; k++)
+                            for (var k = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && k < 1; k++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].CastlingOnTableMove[k])
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].CastlingOnTableMove[k])
                                 {
                                     //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
-                                    CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
-                                    Leaf = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j];
+                                    CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
+                                    Leaf = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j];
                                     Found = true;
                                     return Leaf;
                                 }
@@ -7609,8 +7609,8 @@ namespace QuantumRefrigiz
                         }
                     }
                     else//deeper
-                        for (var ii = 0; ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
-                            CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].FoundOfLeafDepenOfKind(ref Leaf, ref Found, Order * -1, LeafDeep++, ik, jk, iii, jjj);
+                        for (var ii = 0; ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                            CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].FoundOfLeafDepenOfKind(ref Leaf, ref Found, Order * -1, LeafDeep++, ik, jk, iii, jjj);
 
                 }
 
@@ -8004,10 +8004,10 @@ namespace QuantumRefrigiz
 
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //when is victory
-                            if (CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy[j] //&& CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0 
+                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereMateOfEnemy[j] //&& CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0 
                                 && (Kind == 7 || Kind == -7))
                             {
                                 Found = true;
@@ -8015,10 +8015,10 @@ namespace QuantumRefrigiz
                                 return true;
                             }
                             else//deeper
-                                for (var ii = 0; ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                                for (var ii = 0; ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
                                 {
                                     bool fou = Found;
-                                    var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                    var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                     ah.Wait();
                                     ah.Dispose();
                                     Found = fou;
@@ -8161,10 +8161,10 @@ namespace QuantumRefrigiz
                                 }
                         }//king
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //when is victory
-                            if (CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy[j] //&& CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0 
+                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereMateOfEnemy[j] //&& CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0 
                                 && (Kind == 7 || Kind == -7))
                             {
                                 Found = true;
@@ -8172,10 +8172,10 @@ namespace QuantumRefrigiz
                                 return true;
                             }
                             else//deeper
-                                for (var ii = 0; ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                                for (var ii = 0; ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
                                 {
                                     bool fou = Found;
-                                    var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                    var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                     ah.Wait();
                                     ah.Dispose();
                                     Found = fou;
@@ -8336,16 +8336,16 @@ namespace QuantumRefrigiz
             else if (Kind == 7 || Kind == -7)
             {
                 //determine nodes is coorectly existence
-                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
                 {
                     //deeper count
-                    e = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count;
+                    e = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count;
                     //when deeper count exist and index is not more than count of deeper
                     if (e > 0 && j < e)
                         //alldraw table list count
-                        d = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Count;
+                        d = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Count;
                     //alldraw tabale list and deeper count not staisfy validity or when there is not equallity retunr true
-                    if (d > 0 && e > j && (!ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]))))
+                    if (d > 0 && e > j && (!ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]))))
                         Is = true;
                 }
             }
@@ -8604,17 +8604,17 @@ namespace QuantumRefrigiz
             }
             else if (Kind == 7 || Kind == -7)
             {
-                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
                 {
                     //lists count
-                    int a = CastlingOnTable[i].CastlingThinking[0].TableListKing.Count;
-                    e = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count;
+                    int a = CastlingOnTable[i].CastlingThinkingQuantum[0].TableListKing.Count;
+                    e = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count;
                     //when table state exist and there is equliity between lists and deeper count
-                    if (a == e && e > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList.Count > 0)
+                    if (a == e && e > j && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Count > 0)
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])));
+                        var ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -8626,9 +8626,9 @@ namespace QuantumRefrigiz
                         if (e > a)
                         {
                             //remove extra
-                            for (int h = a; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h++)
+                            for (int h = a; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; h++)
                             {
-                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy.RemoveAt(h);
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.RemoveAt(h);
                             }
                         }
                         //when deeper dose not exist return true
@@ -9600,7 +9600,7 @@ namespace QuantumRefrigiz
             Object P = new Object();
             lock (P)
             {
-                for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null
+                for (var j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null
            ; j++)
                 {
                     Object OOOOO = new Object();
@@ -9652,20 +9652,20 @@ namespace QuantumRefrigiz
                         var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
-                        for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
+                        for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
                         {
-                            CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h].AStarGreedyString = this;
-                            CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
+                            CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
+                            CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
                         }
-                        for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
-                            CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
+                        for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                            CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
                     }
                     else
                     {
                         //when is suitable for leafer 
                         if (Is == 2)
                         {
-                            for (var iii = 0; iii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].TableList != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].TableList.Count > 0; iii++)
+                            for (var iii = 0; iii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].TableList != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].TableList.Count > 0; iii++)
                             {
                                 Object OOOO = new Object();
                                 lock (OOOO)
@@ -9682,13 +9682,13 @@ namespace QuantumRefrigiz
                                 }
 
 
-                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].FoundOfLeafDepenOfKindFullGame(CloneATable(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].TableList[0]), Order * -1, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy);
-                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy[iii].AStarGreedyString = this;
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].FoundOfLeafDepenOfKindFullGame(CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].TableList[0]), Order * -1, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy);
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[iii].AStarGreedyString = this;
                             }
-                            for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
-                                CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
-                            for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
-                                CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
+                            for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                                CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
+                            for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                                CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
 
                         }
                         else if (Is == 3)//when is suitable for deeper
@@ -9713,13 +9713,13 @@ namespace QuantumRefrigiz
                                 var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
-                                for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
+                                for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
                                 {
-                                    CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h].AStarGreedyString = this;
-                                    CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
+                                    CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
+                                    CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
                                 }
-                                for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
-                                    CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
+                                for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                                    CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
                             }
                         }
                         else//otherwise
@@ -10334,17 +10334,17 @@ namespace QuantumRefrigiz
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //make regard
-                            var ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
+                            var ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             //deeper call
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
+                                var ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -10472,17 +10472,17 @@ namespace QuantumRefrigiz
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
                     for (var i = 0; i < 1; i++)
-                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                        for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && j < A.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                         {
                             //make regard
-                            var ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
+                            var ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             //deeper call
-                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
+                            for (var ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinkingQuantum[0] != null && ii < A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                var ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
+                                var ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11830,7 +11830,7 @@ namespace QuantumRefrigiz
                     Is = KingOnTable[i].KingThinkingQuantum[0].IsSupHu[j];
                 else
                 if (Math.Abs(Kind) == 7)
-                    Is = CastlingOnTable[i].CastlingThinking[0].IsSupHu[j];
+                    Is = CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu[j];
             }
             else
             {
@@ -11853,7 +11853,7 @@ namespace QuantumRefrigiz
                     Is = KingOnTable[i].KingThinkingQuantum[0].IsSup[j];
                 else
                 if (Math.Abs(Kind) == 7)
-                    Is = CastlingOnTable[i].CastlingThinking[0].IsSup[j];
+                    Is = CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j];
             }
             return Is;
         }
@@ -11894,7 +11894,7 @@ namespace QuantumRefrigiz
             else//king
                 if (Kind == 7 || Kind == -7)
             {
-                Less = CastlingOnTable[i].CastlingThinking[k].ReturnHeuristic(i, j, Order, AA, ref HaveKilled);
+                Less = CastlingOnTable[i].CastlingThinkingQuantum[k].ReturnHeuristic(i, j, Order, AA, ref HaveKilled);
             }
         }
         //index of tables that verified existence havbeen saved into refer var
@@ -11933,7 +11933,7 @@ namespace QuantumRefrigiz
             else//king
                 if (Kind == 7 || Kind == -7)
             {
-                TableHeuristic = CloneATable(CastlingOnTable[i].CastlingThinking[k].TableListCastling[j]);
+                TableHeuristic = CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[k].TableListCastling[j]);
             }
         }
         //same of befor verified existence of begin move and end move location saved in unique results of Last best movments
@@ -11990,10 +11990,10 @@ namespace QuantumRefrigiz
             else//king
                  if (Kind == 7 || Kind == -7)
             {
-                AllDraw.LastRowQ = CastlingOnTable[i].CastlingThinking[k].Row;
-                AllDraw.LastColumnQ = CastlingOnTable[i].CastlingThinking[k].Column;
-                AllDraw.NextRowQ = CastlingOnTable[i].CastlingThinking[k].RowColumnCastling[j][0];
-                AllDraw.NextColumnQ = CastlingOnTable[i].CastlingThinking[k].RowColumnCastling[j][1];
+                AllDraw.LastRowQ = CastlingOnTable[i].CastlingThinkingQuantum[k].Row;
+                AllDraw.LastColumnQ = CastlingOnTable[i].CastlingThinkingQuantum[k].Column;
+                AllDraw.NextRowQ = CastlingOnTable[i].CastlingThinkingQuantum[k].RowColumnCastling[j][0];
+                AllDraw.NextColumnQ = CastlingOnTable[i].CastlingThinkingQuantum[k].RowColumnCastling[j][1];
             }
         }
         //when branches(chield) of tree has heuristic less than current found 
@@ -12093,7 +12093,7 @@ namespace QuantumRefrigiz
                 bool ac = false;
                 int HaKild = HaveKilled;
                 int Le = Less;
-                var ah = Task.Factory.StartNew(() => ac = Le < CastlingOnTable[i].CastlingThinking[k].ReturnHeuristic(i, j, Order, AA, ref HaKild));
+                var ah = Task.Factory.StartNew(() => ac = Le < CastlingOnTable[i].CastlingThinkingQuantum[k].ReturnHeuristic(i, j, Order, AA, ref HaKild));
                 ah.Wait();
                 ah.Dispose();
                 HaveKilled = HaKild;
@@ -12345,7 +12345,7 @@ namespace QuantumRefrigiz
             else//king
             if (Kind == 7 || Kind == -7)
             {
-                if ((CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsPenaltyAction() != 0 && CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsRewardAction() == 1 && AStarGreedyi == 1) || ((Do == 1 || AA) && UsePenaltyRegardMechnisamT) || CastlingOnTable[i].WinOcuuredatChiled >= 1 || CastlingOnTable[i].WinOcuuredatChiled >= 2 || CastlingOnTable[i].WinOcuuredatChiled >= 3)
+                if ((CastlingOnTable[i].CastlingThinkingQuantum[k].PenaltyRegardListCastling[j].IsPenaltyAction() != 0 && CastlingOnTable[i].CastlingThinkingQuantum[k].PenaltyRegardListCastling[j].IsRewardAction() == 1 && AStarGreedyi == 1) || ((Do == 1 || AA) && UsePenaltyRegardMechnisamT) || CastlingOnTable[i].WinOcuuredatChiled >= 1 || CastlingOnTable[i].WinOcuuredatChiled >= 2 || CastlingOnTable[i].WinOcuuredatChiled >= 3)
                 {
                     Object On = new Object();
                     lock (On)
@@ -13171,7 +13171,7 @@ namespace QuantumRefrigiz
                 bool AAA = AA;
                 int Le = Less;
                 int Havk = HaveKilled;
-                var ah = Task.Factory.StartNew(() => ac = CastlingOnTable[i].CastlingThinking[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
+                var ah = Task.Factory.StartNew(() => ac = CastlingOnTable[i].CastlingThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
                 ah.Wait();
                 ah.Dispose();
                 AA = AAA;
@@ -13186,7 +13186,7 @@ namespace QuantumRefrigiz
                     }
                     //retrive table of current Heuristic.
                     //retrive table of current Heuristic.
-                    int[,] TableS = CastlingOnTable[i].CastlingThinking[k].TableListCastling[j];
+                    int[,] TableS = CastlingOnTable[i].CastlingThinkingQuantum[k].TableListCastling[j];
                     //checked for Legal Movments ArgumentOutOfRangeException curnt game.
                     if (DynamicAStarGreedytPrograming && !CurrentTableHeuristic && AStarGreedyi == 1)
                     {
@@ -13212,7 +13212,7 @@ namespace QuantumRefrigiz
 
                     AAA = AA;
                     Havk = HaveKilled;
-                    var ah3 = Task.Factory.StartNew(() => MaxLess7 = CastlingOnTable[RW7].CastlingThinking[CL7].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                    var ah3 = Task.Factory.StartNew(() => MaxLess7 = CastlingOnTable[RW7].CastlingThinkingQuantum[CL7].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                     ah3.Wait();
                     ah3.Dispose();
                     AA = AAA;
@@ -13380,7 +13380,7 @@ namespace QuantumRefrigiz
        if (Kind == 7 || Kind == -7)
             {
 
-                if ((CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -1 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -2 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
+                if ((CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled[j] <= -1 || CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled[j] <= -2 || CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled[j] <= -3) && UniqueCapableMoveIsTruSup(Kind, Order, i, j) != -1)
                     return true;
 
                 if (!AllowedSupTrue)
@@ -13524,7 +13524,7 @@ namespace QuantumRefrigiz
             {
                 bool A = false;
 
-                A = A || CastlingOnTable[i].CastlingThinking[0].WinChiled[j] >= 1 || CastlingOnTable[i].CastlingThinking[0].WinChiled[j] >= 2 || CastlingOnTable[i].CastlingThinking[0].WinChiled[j] >= 3;
+                A = A || CastlingOnTable[i].CastlingThinkingQuantum[0].WinChiled[j] >= 1 || CastlingOnTable[i].CastlingThinkingQuantum[0].WinChiled[j] >= 2 || CastlingOnTable[i].CastlingThinkingQuantum[0].WinChiled[j] >= 3;
 
                 Is = A;
 
@@ -14428,7 +14428,7 @@ namespace QuantumRefrigiz
                 int Do = 0;
                 for (int k = 0; k < 1; k++)
                 {
-                    for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[k] != null && CastlingOnTable[i].CastlingThinking != null && j < CastlingOnTable[i].CastlingThinking[k].TableListCastling.Count; j++)
+                    for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[k] != null && CastlingOnTable[i].CastlingThinking != null && j < CastlingOnTable[i].CastlingThinkingQuantum[k].TableListCastling.Count; j++)
                     {
                         bool ac = false;
                         var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, 7));
@@ -14440,14 +14440,14 @@ namespace QuantumRefrigiz
                             //For Penalty Reagrad Mechanisam of Current Check CheckMate Current Movments.
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
                             //)
-                            if (CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsPenaltyAction() == 0)
+                            if (CastlingOnTable[i].CastlingThinkingQuantum[k].PenaltyRegardListCastling[j].IsPenaltyAction() == 0)
                                 continue;
                             int CDummy = ChessRules.CurrentOrder;
                             int COrder = Order;
-                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] != null)
+                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -14484,7 +14484,7 @@ namespace QuantumRefrigiz
                             {
                                 //When There is No Movments in Such Order Enemy continue.
                                 if (Order != AllDraw.OrderPlateDraw)
-                                    if (CastlingOnTable[i].CastlingThinking[0].ReturnHeuristic(i, j, Order, AA, ref HaveKilled) > Less)
+                                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].ReturnHeuristic(i, j, Order, AA, ref HaveKilled) > Less)
                                         continue;
                                 //When There is greater Heuristic Movments.
                                 Ac = Act;
@@ -14624,7 +14624,7 @@ namespace QuantumRefrigiz
                 int Do = 0;
                 for (int k = 0; k < 1; k++)
                 {
-                    for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[k] != null && CastlingOnTable[i].CastlingThinking != null && j < CastlingOnTable[i].CastlingThinking[k].TableListCastling.Count; j++)
+                    for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinkingQuantum[k] != null && CastlingOnTable[i].CastlingThinking != null && j < CastlingOnTable[i].CastlingThinkingQuantum[k].TableListCastling.Count; j++)
                     {
                         bool ac = false;
                         var ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 0, kin));
@@ -14636,14 +14636,14 @@ namespace QuantumRefrigiz
                             //For Penalty Reagrad Mechanisam of Current Check CheckMate Current Movments.
                             //if (AllDraw.OrderPlate == Order && AStarGreedyi == 1 //&& UsePenaltyRegardMechnisamT
                             //)
-                            if (CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsPenaltyAction() == 0)
+                            if (CastlingOnTable[i].CastlingThinkingQuantum[k].PenaltyRegardListCastling[j].IsPenaltyAction() == 0)
                                 continue;
                             int CDummy = ChessRules.CurrentOrder;
                             int COrder = Order;
-                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] != null)
+                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                var ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -14680,7 +14680,7 @@ namespace QuantumRefrigiz
                             {
                                 //When There is No Movments in Such Order Enemy continue.
                                 if (Order != AllDraw.OrderPlateDraw)
-                                    if (CastlingOnTable[i].CastlingThinking[0].ReturnHeuristic(i, j, Order, AA, ref HaveKilled) > Less)
+                                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].ReturnHeuristic(i, j, Order, AA, ref HaveKilled) > Less)
                                         continue;
                                 //When There is greater Heuristic Movments.
                                 Ac = Act;
@@ -16730,11 +16730,11 @@ namespace QuantumRefrigiz
                         if (!ASS)
                         {//When ThinkingQuantum Gray King Count of Existing Operations.
                          //ThinkingQuantum Of Gray King Operatins.
-                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
-                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            CastlingOnTable[iIndex].CastlingThinkingQuantum[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -16745,11 +16745,11 @@ namespace QuantumRefrigiz
                         else if (ASS)//When ThinkingQuantum Gray Castling Count of Existing Operations.
                         {
                             //Gray Castling ThinkingQuantum Operations.                                        
-                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
-                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            CastlingOnTable[iIndex].CastlingThinkingQuantum[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -17003,11 +17003,11 @@ namespace QuantumRefrigiz
                         if (!ASS)
                         {//When ThinkingQuantum Gray King Count of Existing Operations.
                          //ThinkingQuantum Of Gray King Operatins.
-                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
-                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            CastlingOnTable[iIndex].CastlingThinkingQuantum[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -17018,11 +17018,11 @@ namespace QuantumRefrigiz
                         else if (ASS)//When ThinkingQuantum Gray Castling Count of Existing Operations.
                         {
                             //Gray Castling ThinkingQuantum Operations.                                        
-                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingBegin = true;
-                            CastlingOnTable[iIndex].CastlingThinking[0].ThinkingFinished = false;
+                            CastlingOnTable[iIndex].CastlingThinkingQuantum[0].ThinkingBegin = true;
+                            CastlingOnTable[iIndex].CastlingThinkingQuantum[0].ThinkingFinished = false;
                             int[] Lose = CastlingOnTable[iIndex].LoseOcuuredatChiled;
                             int Win = CastlingOnTable[iIndex].WinOcuuredatChiled;
-                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
+                            var ah1 = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref Lose, ref Win));
                             ah1.Wait();
                             ah1.Dispose();
                             CastlingOnTable[iIndex].LoseOcuuredatChiled[0] = Lose[0];
@@ -17107,11 +17107,11 @@ namespace QuantumRefrigiz
                 else
                                     if (KindIndex == 7 || KindIndex == -6)
                 {
-                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
-                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Clear();
-                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(Tab));
-                    CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].SetRowColumn(0);
-                    var H = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy[CastlingOnTable[iIndex].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order * -1, false, FOUND, LeafAStarGreedy));
+                    CastlingOnTable[iIndex].CastlingThinkingQuantum[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[iIndex].CastlingThinkingQuantum[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Clear();
+                    CastlingOnTable[iIndex].CastlingThinkingQuantum[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(Tab));
+                    CastlingOnTable[iIndex].CastlingThinkingQuantum[0].AStarGreedy[MinisterOnTable[iIndex].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].SetRowColumn(0);
+                    var H = Task.Factory.StartNew(() => CastlingOnTable[iIndex].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[iIndex].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, CloneATable(Tab), Order * -1, false, FOUND, LeafAStarGreedy));
                     H.Wait();
                     H.Dispose();
                 }
@@ -17884,6 +17884,45 @@ namespace QuantumRefrigiz
             //soldoer
             if (Kind == 1)
             {
+                ServeISSupSoldier(Order, Kind, ii);
+            }
+            else if (Kind == 2)//elephant
+            {
+                ServeISSupElephant(Order, Kind, ii);
+            }
+            else if (Kind == 3)//hourse
+            {
+                ServeISSupHourse(Order, Kind, ii);
+            }
+            else if (Kind == 4)//Castle
+            {
+                ServeISSupCastle(Order, Kind, ii);
+            }
+            else//minister
+            if (Kind == 5)
+            {
+                ServeISSupMinister(Order, Kind, ii);
+            }
+            else
+            if (Kind == 6)//king
+            {
+                ServeISSupKing(Order, Kind, ii);
+            }
+            else
+            if (Kind == 7 || Kind == -7)//king
+            {
+                ServeISSupCastling(Order, Kind, ii);
+            }
+
+        }
+        void ServeISSupSoldier(int Order, int Kind,
+               int ii
+              )
+        {
+
+            //soldoer
+            if (Kind == 1)
+            {
                 //Gray
                 if (Order == 1)
                 {
@@ -17960,7 +17999,15 @@ namespace QuantumRefrigiz
                     SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else if (Kind == 2)//elephant
+
+        }
+        void ServeISSupElephant(int Order, int Kind,
+              int ii
+             )
+        {
+
+            //soldoer
+            if (Kind == 2)//elephant
             {
                 if (Order == 1)//Gray
                 {
@@ -18036,7 +18083,14 @@ namespace QuantumRefrigiz
                     ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else if (Kind == 3)//hourse
+
+        }
+        void ServeISSupHourse(int Order, int Kind,
+             int ii
+            )
+        {
+
+            if (Kind == 3)//hourse
             {
                 if (Order == 1)//Gray
                 {
@@ -18111,7 +18165,14 @@ namespace QuantumRefrigiz
                     HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else if (Kind == 4)//Castle
+
+        }
+        void ServeISSupCastle(int Order, int Kind,
+                int ii
+               )
+        {
+
+            if (Kind == 4)//Castle
             {
                 if (Order == 1)//Gray
                 {
@@ -18185,7 +18246,14 @@ namespace QuantumRefrigiz
                     CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else//minister
+
+        }
+        void ServeISSupMinister(int Order, int Kind,
+                int ii
+               )
+        {
+
+            //minister
             if (Kind == 5)
             {
                 if (Order == 1)//Gray
@@ -18261,7 +18329,14 @@ namespace QuantumRefrigiz
                     MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else
+
+        }
+        void ServeISSupKing(int Order, int Kind,
+               int ii
+              )
+        {
+
+
             if (Kind == 6)//king
             {
                 if (Order == 1)//Gray
@@ -18340,7 +18415,14 @@ namespace QuantumRefrigiz
 
                 }
             }
-            else
+
+        }
+        void ServeISSupCastling(int Order, int Kind,
+              int ii
+             )
+        {
+
+
             if (Kind == 7 || Kind == -7)//king
             {
                 if (Order == 1)//Gray
@@ -18349,35 +18431,35 @@ namespace QuantumRefrigiz
                     {
                         if (CastlingOnTable == null || CastlingOnTable[i] == null)
                             continue;
-                        for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
+                        for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
                         {
-                            if (!(CastlingOnTable[i].CastlingThinking[0].IsSup[j]))
+                            if (!(CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j]))
                                 continue;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup;
 
 
 
                         }
                     }
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup = 0;
 
                 }
                 else//Brown
@@ -18386,36 +18468,36 @@ namespace QuantumRefrigiz
                     {
                         if (CastlingOnTable == null || CastlingOnTable[i] == null)
                             continue;
-                        for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
+                        for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
                         {
-                            if (!(CastlingOnTable[i].CastlingThinking[0].IsSup[j]))
+                            if (!(CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j]))
                                 continue;
 
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup;
+                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup;
 
 
 
                         }
                     }
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup = 0;
 
                 }
             }
@@ -19147,9 +19229,9 @@ namespace QuantumRefrigiz
                         int ik = (int)(int)CastlingOnTable[i].Row;
                         int jk = (int)CastlingOnTable[i].Column;
                         //Construction of Gray Castling ThinkingQuantum Objects.
-                        //if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count == 0)
+                        //if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count == 0)
                         //When There is Not ThinkingQuantum Table Gray Castling Movments.
-                        if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count == 0)
+                        if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count == 0)
                         {
                             //For All Possible Gray Castling Movments.
                             ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.CastlingMovments, j =>
@@ -19158,11 +19240,11 @@ namespace QuantumRefrigiz
                                 Object OOO = new Object();
                                 lock (OOO)
                                 {
-                                    CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = true;
-                                    CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
+                                    CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingBegin = true;
+                                    CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingFinished = false;
+                                    var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
                                     array.Wait(); array.Dispose();
-                                    if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count != 0)
+                                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count != 0)
                                     {
                                         CastlingOnTableMove[i] = true;
                                         AllDraw.ChangedInTreeOccured = true;
@@ -19173,8 +19255,8 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = false;
-                            CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = true;
+                            CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingBegin = false;
+                            CastlingOnTable[i].CastlingThinkingQuantum[0].ThinkingFinished = true;
                         }
                     }
                 }
@@ -20386,9 +20468,9 @@ namespace QuantumRefrigiz
                         {
                             if (jungle.CastlingOnTable[i].CastlingThinking != null)
                             {
-                                if (jungle.CastlingOnTable[i].CastlingThinking[0] != null)
+                                if (jungle.CastlingOnTable[i].CastlingThinkingQuantum[0] != null)
                                 {
-                                    if (jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                                    if (jungle.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null)
                                     {
 
                                         Object ooo = new Object();
@@ -20660,21 +20742,21 @@ namespace QuantumRefrigiz
                 //when valid 
 
 
-                CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Add(obj.TableListCastling[j]);
-                CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Add(obj.HeuristicListCastling[j]);
-                CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling.Add(obj.RowColumnCastling[j]);
-                CastlingOnTable[ik].CastlingThinking[0].HitNumberCastling.Add(obj.HitNumberCastling[j]);
-                CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling.Add(obj.PenaltyRegardListCastling[j]);
-                CastlingOnTable[ik].CastlingThinking[0].KishSelf.Add(obj.KishSelf[j]);
-                CastlingOnTable[ik].CastlingThinking[0].KishEnemy.Add(obj.KishEnemy[j]);
-                CastlingOnTable[ik].CastlingThinking[0].LoseChiled.Add(obj.LoseChiled[j]);
-                CastlingOnTable[ik].CastlingThinking[0].WinChiled.Add(obj.WinChiled[j]);
-                CastlingOnTable[ik].CastlingThinking[0].IsSup.Add(obj.IsSup[j]);
-                CastlingOnTable[ik].CastlingThinking[0].IsSupHu.Add(obj.IsSupHu[j]);
-                CastlingOnTable[ik].CastlingThinking[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
-                CastlingOnTable[ik].CastlingThinking[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
-                CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
-                CastlingOnTable[ik].CastlingThinking[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Add(obj.TableListCastling[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].HeuristicListCastling.Add(obj.HeuristicListCastling[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].RowColumnCastling.Add(obj.RowColumnCastling[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].HitNumberCastling.Add(obj.HitNumberCastling[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Add(obj.PenaltyRegardListCastling[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].KishSelf.Add(obj.KishSelf[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].KishEnemy.Add(obj.KishEnemy[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].LoseChiled.Add(obj.LoseChiled[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].WinChiled.Add(obj.WinChiled[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].IsSup.Add(obj.IsSup[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].IsSupHu.Add(obj.IsSupHu[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].IsThereCheckOfEnemy.Add(obj.IsThereCheckOfEnemy[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].IsThereCheckOfSelf.Add(obj.IsThereCheckOfSelf[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].IsThereMateOfEnemy.Add(obj.IsThereMateOfEnemy[j]);
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].IsThereMateOfSelf.Add(obj.IsThereMateOfSelf[j]);
                 Act = true;
                 return Act;
             }
@@ -21109,12 +21191,12 @@ namespace QuantumRefrigiz
 
                         if (jungle.CastlingOnTable[p].CastlingThinking != null)
                         {
-                            if (jungle.CastlingOnTable[p].CastlingThinking[0] != null)
+                            if (jungle.CastlingOnTable[p].CastlingThinkingQuantum[0] != null)
                             {
 
-                                if (jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
+                                if (jungle.CastlingOnTable[p].CastlingThinkingQuantum[0].AStarGreedy != null)
                                 {
-                                    for (int k = 0; k < jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
+                                    for (int k = 0; k < jungle.CastlingOnTable[p].CastlingThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
                                         var outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 7));
                                         outputH.Wait();
@@ -21541,14 +21623,14 @@ namespace QuantumRefrigiz
 
                                     if (CastlingOnTable[p].CastlingThinking != null)
                                     {
-                                        if (CastlingOnTable[p].CastlingThinking[0] != null)
+                                        if (CastlingOnTable[p].CastlingThinkingQuantum[0] != null)
                                         {
 
-                                            if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
+                                            if (CastlingOnTable[p].CastlingThinkingQuantum[0].AStarGreedy != null)
                                             {
-                                                for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
+                                                for (int k = 0; k < CastlingOnTable[p].CastlingThinkingQuantum[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k], p, k, 7));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.CastlingOnTable[p].CastlingThinkingQuantum[0].AStarGreedy[k], p, k, 7));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -22244,70 +22326,70 @@ namespace QuantumRefrigiz
                     {
                         if (CastlingOnTable[i].CastlingThinking != null)
                         {
-                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy == null)
+                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy == null)
                             {
-                                if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy == null)
-                                    CastlingOnTable[i].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
-                                CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].HitNumberCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].KishSelf.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].KishEnemy.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].LoseChiled.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].WinChiled.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsSup.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsSupHu.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfEnemy.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfSelf.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf.Clear();
+                                if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy == null)
+                                    CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].HitNumberCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].KishSelf.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].KishEnemy.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].WinChiled.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereMateOfEnemy.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereMateOfSelf.Clear();
                                 Object ooo = new Object();
                                 lock (ooo)
                                 {
                                     ////HarasAct = true; Act = true;
-                                    for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
-                                        Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0], h);
+                                    for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; h++)
+                                        Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinkingQuantum[0], h);
 
-                                    for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h++)
+                                    for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; h++)
                                     {
-                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Add(jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h]);
-                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Add(jungle.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h]);
+                                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                                     }
                                 }
                                 return Act;
                             }
                             else
-                                if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count < jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count)
+                                if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count < jungle.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count)
                             {
-                                CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].TableListCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].RowColumnCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].HitNumberCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].KishSelf.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].KishEnemy.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].LoseChiled.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].WinChiled.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsSup.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsSupHu.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfEnemy.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfSelf.Clear();
-                                CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].RowColumnCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].HitNumberCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].KishSelf.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].KishEnemy.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].WinChiled.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereCheckOfEnemy.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereCheckOfSelf.Clear();
+                                CastlingOnTable[i].CastlingThinkingQuantum[0].IsThereMateOfEnemy.Clear();
 
                                 Object ooo = new Object();
                                 lock (ooo)
                                 {
                                     ////HarasAct = true; Act = true;
-                                    for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; h++)
-                                        Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinking[0], h);
+                                    for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; h++)
+                                        Act = Act || BlitzNotValidFullGameThinkingTreePartFour(i, OrderP, 7, jungle.CastlingOnTable[i].CastlingThinkingQuantum[0], h);
 
-                                    for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h++)
+                                    for (int h = 0; h < jungle.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; h++)
                                     {
-                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Add(jungle.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h]);
-                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Add(jungle.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h]);
+                                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                                     }
                                 }
                                 return Act;
@@ -22617,19 +22699,19 @@ namespace QuantumRefrigiz
                             {
                                 if (CastlingOnTable[i].CastlingThinking != null)
                                 {
-                                    if (CastlingOnTable[i].CastlingThinking[0] != null)
+                                    if (CastlingOnTable[i].CastlingThinkingQuantum[0] != null)
                                     {
-                                        if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                                        if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null)
                                         {
-                                            if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
+                                            if (CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j)
                                             {
-                                                if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0 || CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] < 0)
+                                                if (CastlingOnTable[i].LoseOcuuredatChiled[0] < 0 || CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled[j] < 0)
                                                 {
                                                     Object ooo = new Object();
                                                     lock (ooo)
                                                     {
                                                         HarasAct = true; Act = true;
-                                                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].Dispose();
+                                                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].Dispose();
                                                     }
                                                 }
                                             }
@@ -22989,14 +23071,14 @@ namespace QuantumRefrigiz
 
                                     if (CastlingOnTable[p].CastlingThinking != null)
                                     {
-                                        if (CastlingOnTable[p].CastlingThinking[0] != null)
+                                        if (CastlingOnTable[p].CastlingThinkingQuantum[0] != null)
                                         {
 
-                                            if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
+                                            if (CastlingOnTable[p].CastlingThinkingQuantum[0].AStarGreedy != null)
                                             {
-                                                for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
+                                                for (int k = 0; k < CastlingOnTable[p].CastlingThinkingQuantum[0].AStarGreedy.Count; k++)
                                                 {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7));
+                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7));
                                                     outputH.Wait();
                                                     outputH.Dispose();
 
@@ -23336,8 +23418,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 if (Kind == 6 && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count > 0)
                 KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Clear();
             else//king
-                if ((Kind == 7 || Kind == -7) && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > 0)
-                CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Clear();
+                if ((Kind == 7 || Kind == -7) && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > 0)
+                CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Clear();
         }
         //deterministic of calculated computational deeper
         bool IsThereCalculatedAStarGreedyNode()
@@ -23449,9 +23531,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 //king
                 for (int i = 0; i < 1; i++)
                 {
-                    if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null)
+                    if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null)
                     {
-                        if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                        if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
                         {
                             Is = true;
                             break;
@@ -23558,9 +23640,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
             else
             if (Kind == 7 || Kind == -7)
-                if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null)
+                if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling != null)
                 {
-                    if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
+                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count > 0)
                     {
                         Is = true;
                     }
@@ -23631,10 +23713,10 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else//king
             if (Kind == 7 || Kind == -7)
             {
-                if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null)
+                if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null)
                 {
-                    for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; j++)
-                        Is = Is && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsThereCalculatedAStarGreedyNode();
+                    for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; j++)
+                        Is = Is && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].IsThereCalculatedAStarGreedyNode();
                 }
             }
             return Is;
@@ -23684,8 +23766,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 else//king
                 if (Kind == 7 || Kind == -7)
                 {
-                    if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j)
-                        Is = CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsThereCalculatedAStarGreedyNode();
+                    if (CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinkingQuantum[0] != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count > j)
+                        Is = CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].IsThereCalculatedAStarGreedyNode();
                 }
             }
             return (!Is);
@@ -23784,9 +23866,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return true;
                 if (CastlingOnTable[ik].CastlingThinking == null)
                     return true;
-                if (CastlingOnTable[ik].CastlingThinking[0] == null)
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] == null)
                     return true;
-                if (CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling == null)
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].HeuristicListCastling == null)
                     return true;
             }
             return false;
@@ -23850,9 +23932,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else
             if (Kind == 7 || Kind == -7)
             {
-                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedyMove.Count > j)
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedyMove.Count > j)
                 {
-                    if ((CastlingOnTable[ik].CastlingThinking[0].AStarGreedyMove[j] && UsedRestrictedMoveBlitzAndFull))
+                    if ((CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedyMove[j] && UsedRestrictedMoveBlitzAndFull))
                         return true;
                 }
             }
@@ -24332,7 +24414,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 if (ac)
                     continue;
                 //when there is computational lists
-                for (j = 0; j < CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Count; j++)
+                for (j = 0; j < CastlingOnTable[ik].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
                 {
                     //when node is serving node continue
                     if (IsSupHuTrue(ik, j, 0, 7)
@@ -24348,7 +24430,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (!ac)
                             continue;
                         //when node have Castlings dangoures ignore and continue.
-                        var ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order, ik, j, 0));
+                        var ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]), Order, ik, j, 0));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -24357,7 +24439,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(7, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(7, ik, j) || CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -24366,7 +24448,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 int pre = PreviousLessK;
-                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -24376,7 +24458,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) > PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) > PreviousLessK || (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -24385,7 +24467,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 int pre = PreviousLessK;
-                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -24535,13 +24617,13 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 //when do permite
                 if (Index[6] != -1)
                 {
-                    if (CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
-                    CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].TableList.Clear();
-                    CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(CastlingOnTable[Index[6]].CastlingThinking[0].TableListCastling[jIndex[6]]));
-                    CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].SetRowColumn(0);
-                    CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
-                    var H = Task.Factory.StartNew(() => CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, CastlingOnTable[Index[6]].CastlingThinking[0].RowColumnCastling[jIndex[6]][0], CastlingOnTable[Index[6]].CastlingThinking[0].RowColumnCastling[jIndex[6]][1], a, CastlingOnTable[Index[6]].CastlingThinking[0].TableListCastling[jIndex[6]], Order, false, FOUND, LeafAStarGreedy));
+                    if (CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Clear();
+                    CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].TableList.Add(CloneATable(CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].TableListCastling[jIndex[6]]));
+                    CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].SetRowColumn(0);
+                    CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                    var H = Task.Factory.StartNew(() => CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].RowColumnCastling[jIndex[6]][0], CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].RowColumnCastling[jIndex[6]][1], a, CastlingOnTable[Index[6]].CastlingThinkingQuantum[0].TableListCastling[jIndex[6]], Order, false, FOUND, LeafAStarGreedy));
                     H.Wait();
                     H.Dispose();
                 }
@@ -25139,7 +25221,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 if (ac)
                     continue;
                 //when there is computational lists
-                for (j = 0; j < CastlingOnTable[ik].CastlingThinking[0].HeuristicListCastling.Count; j++)
+                for (j = 0; j < CastlingOnTable[ik].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
                 {
                     //when node is serving node continue
                     if (IsSupHuTrue(ik, j, 0, 7)
@@ -25155,7 +25237,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (!ac)
                             continue;
                         //when node have Castlings dangoures ignore and continue.
-                        var ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order, ik, j, 0));
+                        var ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]), Order, ik, j, 0));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -25164,7 +25246,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         if (Order != AllDraw.OrderPlateDraw)
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(7, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(7, ik, j) || CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) < PreviousLessK || (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -25173,7 +25255,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 int pre = PreviousLessK;
-                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25183,7 +25265,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         else
                         {
                             //when in learning autamata is penalty or Heuristic specified is less than specific dynamic programming var
-                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) > PreviousLessK || (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
+                            if (UsedRestrictedBlitzMoveAstarGreedy(6, ik, j) || CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref HaveKilled) > PreviousLessK || (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsPenaltyAction() == 0 && UsePenaltyRegardMechnisamT))
                             {
                             }
                             else
@@ -25192,7 +25274,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 int pre = PreviousLessK;
-                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                var ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25953,7 +26035,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
             else if (kind == 7 || kind == -7)//king
             {
-                if (CastlingOnTable[ik].CastlingThinking[0].ThinkingBegin && (!CastlingOnTable[ik].CastlingThinking[0].ThinkingFinished))
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].ThinkingBegin && (!CastlingOnTable[ik].CastlingThinkingQuantum[0].ThinkingFinished))
                     return true;
             }
 
@@ -26001,7 +26083,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 }
                 else if (kind == 7 || kind == -7)//king
                 {
-                    if (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
+                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
                         return true;
                 }
             }
@@ -26041,7 +26123,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 }
                 else if (kind == 7 || kind == -7)//king
                 {
-                    if (CastlingOnTable[ik].CastlingThinking[0].PenaltyRegardListCastling[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
+                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].IsRewardAction() != 1 || (!UsePenaltyRegardMechnisamT))
                         return true;
                 }
             }
@@ -26122,12 +26204,12 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else if (kind == 7 || kind == -7)//king
             {
                 //when valid 
-                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count)
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count)
                 {
-                    if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 }
             }
 
@@ -26205,12 +26287,12 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else if (kind == 7 || kind == -7)//king
             {
                 //when valid 
-                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count)
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count)
                 {
-                    if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 }
             }
 
@@ -26290,12 +26372,12 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else if (kind == 7 || kind == -7)//king
             {
                 //when valid 
-                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count)
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count > CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count)
                 {
-                    if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Add(new AllDraw(Order * -1, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged));
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 }
             }
 
@@ -26392,15 +26474,15 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             else if (kind == 7 || kind == -7)//king
             {
                 //when valid do create of deeper node and string making
-                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count == CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count)
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count == CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count)
                 {
-                    if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count == 0)
-                        CastlingOnTable[ik].CastlingThinking[0].AStarGreedy = new List<AllDraw>();
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].TableList.Clear();
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]));
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].SetRowColumn(0);
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].SetRowColumnFinishedWait();
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
+                    if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
+                        CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy = new List<AllDraw>();
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Clear();
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].TableList.Add(CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]));
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].SetRowColumn(0);
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].SetRowColumnFinishedWait();
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
                 }
             }
 
@@ -26575,26 +26657,26 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 //if (!IsNotAStarGreedyConanaied(ik, j, 6))
 
                 //minitor
-                OutPutAction = " " + Alphabet(CastlingOnTable[ik].CastlingThinking[0].Row) + Number(CastlingOnTable[ik].CastlingThinking[0].Column) + Alphabet(CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling[j][0]) + Number(CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling[j][1]);
+                OutPutAction = " " + Alphabet(CastlingOnTable[ik].CastlingThinkingQuantum[0].Row) + Number(CastlingOnTable[ik].CastlingThinkingQuantum[0].Column) + Alphabet(CastlingOnTable[ik].CastlingThinkingQuantum[0].RowColumnCastling[j][0]) + Number(CastlingOnTable[ik].CastlingThinkingQuantum[0].RowColumnCastling[j][1]);
                 //if (Order == 1)
                 //else
 
                 //operational 
                 PerceptionCount++;
-                var iii = CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling[j][0];
-                var jjj = CastlingOnTable[ik].CastlingThinking[0].RowColumnCastling[j][1];
+                var iii = CastlingOnTable[ik].CastlingThinkingQuantum[0].RowColumnCastling[j][0];
+                var jjj = CastlingOnTable[ik].CastlingThinkingQuantum[0].RowColumnCastling[j][1];
                 Color aa = a;
-                int[,] Tab = CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]);
+                int[,] Tab = CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]);
                 int Ord = Order;
-                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 //StoreInitMaxAStarGreedy = CurrentMaxLevel;
 
-                var array1 = Task.Factory.StartNew(() => CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
+                var array1 = Task.Factory.StartNew(() => CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
 
                 array1.Wait(); array1.Dispose();
-                CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
-                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedyMove.Count > 0)
-                    CastlingOnTable[ik].CastlingThinking[0].AStarGreedyMove[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1] = true;
+                CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedyMove.Count > 0)
+                    CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedyMove[CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count - 1] = true;
             }
         }
         bool ReturnFullGameThinkingQuantumTreeIligalSemaphore(int ik, int kind)
@@ -26633,7 +26715,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
             else if (kind == 7 || kind == -7)//king
             {
-                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count == 0)
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count == 0)
                     return true;
             }
             return false;
@@ -26803,12 +26885,12 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             if (CastlingOnTable[ik].CastlingThinking != null
                      )
                             {
-                                if (CastlingOnTable[ik].CastlingThinking[0] != null
+                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
                              )
                                 {    //non learning autamata victory leafs
-                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
-                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
-                                    CastlingOnTable[ik].CastlingThinking[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                    CastlingOnTable[ik].CastlingThinkingQuantum[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
                         }
@@ -26966,12 +27048,12 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             if (CastlingOnTable[ik].CastlingThinking != null
                      )
                             {
-                                if (CastlingOnTable[ik].CastlingThinking[0] != null
+                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
                              )
                                 {    //non learning autamata victory leafs
-                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
-                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
-                                    CastlingOnTable[ik].CastlingThinking[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].WinOcuuredatChiled += CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeWin(Order * -1);
+                                    CastlingOnTable[ik].CastlingThinkingQuantum[0].TowDistrurbProperUse(ref CastlingOnTable[ik].LoseOcuuredatChiled);
                                 }
                             }
                         }
@@ -27203,11 +27285,11 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             if (CastlingOnTable[ik].CastlingThinking != null
                      )
                             {
-                                if (CastlingOnTable[ik].CastlingThinking[0] != null
+                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
                              )
                                 {    //non learning autamata victory leafs
-                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
-                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -27360,11 +27442,11 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             if (CastlingOnTable[ik].CastlingThinking != null
                      )
                             {
-                                if (CastlingOnTable[ik].CastlingThinking[0] != null
+                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
                              )
                                 {    //non learning autamata victory leafs
-                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinking[0].AStarGreedy != null; h++)
-                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
+                                    for (int h = 0; h < CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                                        CastlingOnTable[ik].LoseOcuuredatChiled[0] += CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy[h].FullGameThinkingQuantumTreeLose(Order * -1);
                                 }
                             }
                         }
@@ -28698,11 +28780,11 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                 }
-                if (CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count == 0)
+                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count == 0)
                     return Do;
-                // //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count, j =>
+                // //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count, j =>
                 //operational computation secxistence
-                for (var j = 0; j < CastlingOnTable[ik].CastlingThinking[0].TableListCastling.Count; j++)
+                for (var j = 0; j < CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                 {
                     Object OOOOO = new Object();
                     lock (OOOOO)
@@ -28717,7 +28799,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (ooo)
                     {
                         //when node have kings dangoures ignore and continue.
-                        if (CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order, ik, j, 0))
+                        if (CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinkingQuantum[0].TableListCastling[j]), Order, ik, j, 0))
                             continue;
                         //sereved continuce
                         if (IsSupHuTrue(ik, j, 0, 7))
@@ -28777,7 +28859,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
 
 
                                 //when deeper is valid
-                                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count > 0)
+                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count > 0)
                                 {
                                     Object O = new Object();
                                     lock (O)
@@ -28833,7 +28915,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 }
 
 
-                                if (CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count > 0)
+                                if (CastlingOnTable[ik].CastlingThinkingQuantum[0].AStarGreedy.Count > 0)
                                 {
                                     Object O = new Object();
                                     lock (O)
@@ -28900,7 +28982,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
 
                 {
-                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
+                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
                         )
                     {
                         Object O = new Object();
@@ -29103,7 +29185,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
 
                 {
-                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
+                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinkingQuantum[0] != null
                         )
                     {
                         Object O = new Object();
@@ -30305,18 +30387,18 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
         void CheckedMateConfiguratiioncastling(int Order, int i, bool Regrad)
         {
 
-            for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Count; j++)
+            for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Count; j++)
             {
-                if (CastlingOnTable[i].CastlingThinking[0].LearningVarsObject.Count == CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling.Count)
-                    if (CastlingOnTable[i].CastlingThinking[0].LearningVarsObject[j][1] && (!CastlingOnTable[i].CastlingThinking[0].LearningVarsObject[j][4]))
+                if (CastlingOnTable[i].CastlingThinkingQuantum[0].LearningVarsObject.Count == CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling.Count)
+                    if (CastlingOnTable[i].CastlingThinkingQuantum[0].LearningVarsObject[j][1] && (!CastlingOnTable[i].CastlingThinkingQuantum[0].LearningVarsObject[j][4]))
                     {
-                        CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate();
+                        CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].Initiate();
                         //if(Regrad)
 
                         //else
                         if (!Regrad)
-                            CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
-                        CastlingOnTable[i].CastlingThinking[0].HeuristicPenaltyValuePerform(CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j], Order, ref CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0], true);
+                            CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j].LearningAlgorithmPenalty();
+                        CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicPenaltyValuePerform(CastlingOnTable[i].CastlingThinkingQuantum[0].PenaltyRegardListCastling[j], Order, ref CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0], true);
                     }
             }
 
@@ -30517,9 +30599,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     {
                         for (int i = 0; i < 1; i++)
                         {
-                            for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].IsSupHu.Count; j++)
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Count; j++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinking[0].IsSupHu[j])
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu[j])
                                     No++;
                             }
                         }
@@ -30597,9 +30679,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     {
                         for (int i = 0; i < 1; i++)
                         {
-                            for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].IsSupHu.Count; j++)
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu.Count; j++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinking[0].IsSupHu[j])
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSupHu[j])
                                     No++;
                             }
                         }
@@ -30680,9 +30762,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     {
                         for (int i = 0; i < 1; i++)
                         {
-                            for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].IsSup.Count; j++)
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup.Count; j++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinking[0].IsSup[j])
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j])
                                     No++;
                             }
                         }
@@ -30760,9 +30842,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     {
                         for (int i = 0; i < 1; i++)
                         {
-                            for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].IsSup.Count; j++)
+                            for (int j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup.Count; j++)
                             {
-                                if (!CastlingOnTable[i].CastlingThinking[0].IsSup[j])
+                                if (!CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j])
                                     No++;
                             }
                         }
@@ -30819,8 +30901,8 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             }
             else if (Kind == 7 || Kind == -7)
             {
-                CastlingOnTable[i].CastlingThinking[0].TowDistrurbProperUsePreferNotToClose(ref CastlingOnTable[i].LoseOcuuredatChiled, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]));
-                if ((CastlingOnTable[i].CastlingThinking[0].RemoveOfDisturbIndex == j) && (CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] < 0 || CastlingOnTable[i].LoseOcuuredatChiled[0] < 0))
+                CastlingOnTable[i].CastlingThinkingQuantum[0].TowDistrurbProperUsePreferNotToClose(ref CastlingOnTable[i].LoseOcuuredatChiled, CloneATable(CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling[j]));
+                if ((CastlingOnTable[i].CastlingThinkingQuantum[0].RemoveOfDisturbIndex == j) && (CastlingOnTable[i].CastlingThinkingQuantum[0].LoseChiled[j] < 0 || CastlingOnTable[i].LoseOcuuredatChiled[0] < 0))
                     No = true;
             }
 
@@ -31602,17 +31684,17 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     if (Node.CastlingOnTable[i].CastlingThinking == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinking[0] == null)
+                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinking[0] == null)
+                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0)
+                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
                         continue;
-                    Formatters.Serialize(DummyFileStream, Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count);
-                    for (int j = 0; j < Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; j++)
+                    Formatters.Serialize(DummyFileStream, Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count);
+                    for (int j = 0; j < Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; j++)
                     {
-                        Formatters.Serialize(DummyFileStream, Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j]);
-                        Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].RewriteAllDrawRec(Formatters, DummyFileStream, Order * -1);
+                        Formatters.Serialize(DummyFileStream, Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j]);
+                        Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].RewriteAllDrawRec(Formatters, DummyFileStream, Order * -1);
                     }
                 }
             }
@@ -31795,21 +31877,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     if (Node.CastlingOnTable[i].CastlingThinking == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinking[0] == null)
+                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinking[0] == null)
+                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
                         continue;
-                    if (Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count == 0)
+                    if (Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count == 0)
                         continue;
                     int count = (Int32)Formatters.Deserialize(DummyFileStream);
-                    Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Clear();
+                    Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Clear();
                     for (int j = 0; j < count; j++)
                     {
                         if (DummyFileStream.Position < DummyFileStream.Length)
                         {
-                            Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Add((AllDraw)Formatters.Deserialize(DummyFileStream));
-                            Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].LoaderEC(Quantum, Order * -1, DummyFileStream, Formatters);
-                            Node.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = Node;
+                            Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Add((AllDraw)Formatters.Deserialize(DummyFileStream));
+                            Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].LoaderEC(Quantum, Order * -1, DummyFileStream, Formatters);
+                            Node.CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = Node;
                         }
                     }
                 }
@@ -31903,9 +31985,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return false;
                 if (CastlingOnTable[i] == null)
                     return false;
-                if (CastlingOnTable[i].CastlingThinking[0] == null)
+                if (CastlingOnTable[i].CastlingThinkingQuantum[0] == null)
                     return false;
-                if (CastlingOnTable[i].CastlingThinking[0].TableListCastling == null)
+                if (CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling == null)
                     return false;
             }
             return true;
@@ -32076,23 +32158,23 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             lock (a)
             {
                 //when found return recursive
-                for (var j = 0; UpdateLoseAndWinDepenOfKindBoundryCondition(7, i, j) && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
+                for (var j = 0; UpdateLoseAndWinDepenOfKindBoundryCondition(7, i, j) && j < CastlingOnTable[i].CastlingThinkingQuantum[0].TableListCastling.Count; j++)
                 {
                     if (IsSupHuTrue(i, j, 0, 7))
                         continue;
                     //deeper
-                    for (var ii = 0; ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
-                        CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].UpdateLoseAndWinDepenOfKind(Order * -1);
+                    for (var ii = 0; ii < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count; ii++)
+                        CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[ii].UpdateLoseAndWinDepenOfKind(Order * -1);
                     if (CastlingOnTable[i].WinOcuuredatChiled == 0)
                     {
                         //non learning autamata victory leafs
-                        for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
-                            CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
+                        for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                            CastlingOnTable[i].WinOcuuredatChiled += SumOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
                     }
                     if (CastlingOnTable[i].LoseOcuuredatChiled[0] == 0)
                     {   //non learning autamata victom leafs
-                        for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
-                            CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h], Order * -1);
+                        for (int h = 0; h < CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy != null; h++)
+                            CastlingOnTable[i].LoseOcuuredatChiled[0] += SumMinusOfObjects(CastlingOnTable[i].CastlingThinkingQuantum[0].AStarGreedy[h], Order * -1);
                     }
                 }
             }

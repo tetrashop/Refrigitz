@@ -17883,6 +17883,45 @@ namespace RefrigtzW
             //soldoer
             if (Kind == 1)
             {
+                ServeISSupSoldier(Order, Kind, ii);
+            }
+            else if (Kind == 2)//elephant
+            {
+                ServeISSupElephant(Order, Kind, ii);
+            }
+            else if (Kind == 3)//hourse
+            {
+                ServeISSupHourse(Order, Kind, ii);
+            }
+            else if (Kind == 4)//Castle
+            {
+                ServeISSupCastle(Order, Kind, ii);
+            }
+            else//minister
+            if (Kind == 5)
+            {
+                ServeISSupMinister(Order, Kind, ii);
+            }
+            else
+            if (Kind == 6)//king
+            {
+                ServeISSupKing(Order, Kind, ii);
+            }
+            else
+            if (Kind == 7 || Kind == -7)//king
+            {
+                ServeISSupCastling(Order, Kind, ii);
+            }
+
+        }
+        void ServeISSupSoldier(int Order, int Kind,
+               int ii
+              )
+        {
+
+            //soldoer
+            if (Kind == 1)
+            {
                 //Gray
                 if (Order == 1)
                 {
@@ -17959,7 +17998,15 @@ namespace RefrigtzW
                     SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else if (Kind == 2)//elephant
+
+        }
+        void ServeISSupElephant(int Order, int Kind,
+              int ii
+             )
+        {
+
+            //soldoer
+            if (Kind == 2)//elephant
             {
                 if (Order == 1)//Gray
                 {
@@ -18035,7 +18082,14 @@ namespace RefrigtzW
                     ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else if (Kind == 3)//hourse
+
+        }
+        void ServeISSupHourse(int Order, int Kind,
+             int ii
+            )
+        {
+
+            if (Kind == 3)//hourse
             {
                 if (Order == 1)//Gray
                 {
@@ -18110,7 +18164,14 @@ namespace RefrigtzW
                     HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else if (Kind == 4)//Castle
+
+        }
+        void ServeISSupCastle(int Order, int Kind,
+                int ii
+               )
+        {
+
+            if (Kind == 4)//Castle
             {
                 if (Order == 1)//Gray
                 {
@@ -18184,7 +18245,14 @@ namespace RefrigtzW
                     CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else//minister
+
+        }
+        void ServeISSupMinister(int Order, int Kind,
+                int ii
+               )
+        {
+
+            //minister
             if (Kind == 5)
             {
                 if (Order == 1)//Gray
@@ -18260,7 +18328,14 @@ namespace RefrigtzW
                     MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup = 0;
                 }
             }
-            else
+
+        }
+        void ServeISSupKing(int Order, int Kind,
+               int ii
+              )
+        {
+
+
             if (Kind == 6)//king
             {
                 if (Order == 1)//Gray
@@ -18339,7 +18414,14 @@ namespace RefrigtzW
 
                 }
             }
-            else
+
+        }
+        void ServeISSupCastling(int Order, int Kind,
+              int ii
+             )
+        {
+
+
             if (Kind == 7 || Kind == -7)//king
             {
                 if (Order == 1)//Gray

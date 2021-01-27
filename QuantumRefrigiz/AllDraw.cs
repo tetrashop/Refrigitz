@@ -17916,8 +17916,8 @@ namespace QuantumRefrigiz
 
         }
         void ServeISSupSoldier(int Order, int Kind,
-               int ii
-              )
+                   int ii
+                  )
         {
 
             //soldoer
@@ -17927,77 +17927,106 @@ namespace QuantumRefrigiz
                 if (Order == 1)
                 {
                     //soldier
-                    for (var i = 0; i < SodierMidle; i++)
-                    {
-                        if (SolderesOnTable == null || SolderesOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder.Count; j++)
-                        {
-                            if (!(SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup[j]))
-                                continue;
-
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][0] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][1] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][2] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][3] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][4] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][5] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][6] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][7] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][8] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][9] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-                        }
-                    }
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupSoldierGray(Order, Kind, ii);
                 }
                 else//Brown
                 {
-
-                    for (var i = SodierMidle; i < SodierHigh; i++)
-                    {
-                        if (SolderesOnTable == null || SolderesOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder.Count; j++)
-                        {
-                            if (!(SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup[j]))
-                                continue;
-
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][0] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][1] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][2] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][3] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][4] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][5] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][6] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][7] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][8] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][9] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-                        }
-                    }
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupSoldierBrown(Order, Kind, ii);
                 }
+            }
+
+        }
+        void ServeISSupSoldierGray(int Order, int Kind,
+              int ii
+             )
+        {
+
+            //soldoer
+            if (Kind == 1)
+            {
+
+                //soldier
+                for (var i = 0; i < SodierMidle; i++)
+                {
+                    if (SolderesOnTable == null || SolderesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder.Count; j++)
+                    {
+                        if (!(SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup[j]))
+                            continue;
+
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][0] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][1] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][2] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][3] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][4] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][5] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][6] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][7] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][8] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][9] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+                    }
+                }
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
+            }
+
+        }
+        void ServeISSupSoldierBrown(int Order, int Kind,
+             int ii
+            )
+        {
+
+            //soldoer
+            if (Kind == 1)
+            {
+
+
+                for (var i = SodierMidle; i < SodierHigh; i++)
+                {
+                    if (SolderesOnTable == null || SolderesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder.Count; j++)
+                    {
+                        if (!(SolderesOnTable[i].SoldierThinkingQuantum[0].IsSup[j]))
+                            continue;
+
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][0] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][1] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][2] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][3] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][4] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][5] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][6] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][7] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][8] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.SolderesOnTable[i].SoldierThinkingQuantum[0].HeuristicListSolder[j][9] += SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+                    }
+                }
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                SolderesOnTable[ii].SoldierThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18011,77 +18040,105 @@ namespace QuantumRefrigiz
             {
                 if (Order == 1)//Gray
                 {
-                    for (var i = 0; i < ElefantMidle; i++)
-                    {
-                        if (ElephantOnTable == null || ElephantOnTable[i] == null)
-                            continue;
-
-                        for (var j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant.Count; j++)
-                        {
-                            if (!(ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup[j]))
-                                continue;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][0] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][1] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][2] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][3] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][4] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][5] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][6] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][7] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][8] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][9] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-                        }
-                    }
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupElephantGray(Order, Kind, ii);
                 }
                 else//Brown
                 {
                     //elephant
-                    for (var i = ElefantMidle; i < ElefantHigh; i++)
-                    {
-                        if (ElephantOnTable == null || ElephantOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant.Count; j++)
-                        {
-                            if (!(ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup[j]))
-                                continue;
-
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][0] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][1] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][2] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][3] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][4] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][5] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][6] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][7] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][8] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][9] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-                        }
-                    }
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupElephantBrown(Order, Kind, ii);
                 }
+            }
+
+        }
+        void ServeISSupElephantGray(int Order, int Kind,
+           int ii
+          )
+        {
+
+            //soldoer
+            if (Kind == 2)//elephant
+            {
+
+                for (var i = 0; i < ElefantMidle; i++)
+                {
+                    if (ElephantOnTable == null || ElephantOnTable[i] == null)
+                        continue;
+
+                    for (var j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant.Count; j++)
+                    {
+                        if (!(ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup[j]))
+                            continue;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][0] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][1] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][2] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][3] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][4] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][5] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][6] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][7] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][8] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][9] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+                    }
+                }
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
+            }
+
+        }
+        void ServeISSupElephantBrown(int Order, int Kind,
+               int ii
+              )
+        {
+
+            //soldoer
+            if (Kind == 2)//elephant
+            {
+
+                for (var i = 0; i < ElefantMidle; i++)
+                {
+                    if (ElephantOnTable == null || ElephantOnTable[i] == null)
+                        continue;
+
+                    for (var j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant.Count; j++)
+                    {
+                        if (!(ElephantOnTable[i].ElefantThinkingQuantum[0].IsSup[j]))
+                            continue;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][0] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][1] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][2] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][3] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][4] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][5] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][6] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][7] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][8] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.ElephantOnTable[i].ElefantThinkingQuantum[0].HeuristicListElefant[j][9] += ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+                    }
+                }
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                ElephantOnTable[ii].ElefantThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18094,76 +18151,103 @@ namespace QuantumRefrigiz
             {
                 if (Order == 1)//Gray
                 {
-                    for (var i = 0; i < HourseMidle; i++)
-                    {
-                        if (HoursesOnTable == null || HoursesOnTable[i] == null)
-                            continue;
-
-                        for (var j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse.Count; j++)
-                        {
-                            if (!(HoursesOnTable[i].HourseThinkingQuantum[0].IsSup[j]))
-                                continue;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][0] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][1] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][2] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][3] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][4] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][5] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][6] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][7] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][8] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][9] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-                        }
-                    }
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupHourseGray(Order, Kind, ii);
 
                 }
                 else//Brown
                 {
-                    for (var i = HourseMidle; i < HourseHight; i++)
-                    {
-                        if (HoursesOnTable == null || HoursesOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse.Count; j++)
-                        {
-                            if (!(HoursesOnTable[i].HourseThinkingQuantum[0].IsSup[j]))
-                                continue;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][0] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][1] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][2] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][3] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][4] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][5] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][6] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][7] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][8] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][9] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-                        }
-                    }
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupHourseBrown(Order, Kind, ii);
                 }
+            }
+
+        }
+        void ServeISSupHourseGray(int Order, int Kind,
+          int ii
+         )
+        {
+
+            if (Kind == 3)//hourse
+            {
+
+                for (var i = 0; i < HourseMidle; i++)
+                {
+                    if (HoursesOnTable == null || HoursesOnTable[i] == null)
+                        continue;
+
+                    for (var j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse.Count; j++)
+                    {
+                        if (!(HoursesOnTable[i].HourseThinkingQuantum[0].IsSup[j]))
+                            continue;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][0] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][1] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][2] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][3] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][4] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][5] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][6] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][7] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][8] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][9] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+                    }
+                }
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
+
+            }
+
+        }
+        void ServeISSupHourseBrown(int Order, int Kind,
+         int ii
+        )
+        {
+
+            if (Kind == 3)//hourse
+            {
+
+                for (var i = HourseMidle; i < HourseHight; i++)
+                {
+                    if (HoursesOnTable == null || HoursesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse.Count; j++)
+                    {
+                        if (!(HoursesOnTable[i].HourseThinkingQuantum[0].IsSup[j]))
+                            continue;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][0] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][1] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][2] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][3] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][4] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][5] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][6] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][7] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][8] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.HoursesOnTable[i].HourseThinkingQuantum[0].HeuristicListHourse[j][9] += HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+                    }
+                }
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                HoursesOnTable[ii].HourseThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18176,75 +18260,102 @@ namespace QuantumRefrigiz
             {
                 if (Order == 1)//Gray
                 {
-                    for (var i = 0; i < CastleMidle; i++)
-                    {
-                        if (CastlesOnTable == null || CastlesOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle.Count; j++)
-                        {
-                            if (!(CastlesOnTable[i].CastleThinkingQuantum[0].IsSup[j]))
-                                continue;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][0] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][1] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][2] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][3] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][4] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][5] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][6] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][7] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][8] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][9] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-                        }
-                    }
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupCastleGray(Order, Kind, ii);
                 }
                 else//Brown
                 {
-                    for (var i = CastleMidle; i < CastleHigh; i++)
-                    {
-                        if (CastlesOnTable == null || CastlesOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle.Count; j++)
-                        {
-                            if (!(CastlesOnTable[i].CastleThinkingQuantum[0].IsSup[j]))
-                                continue;
-
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][0] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][1] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][2] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][3] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][4] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][5] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][6] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][7] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][8] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][9] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-                        }
-                    }
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupCastleBrown(Order, Kind, ii);
                 }
+            }
+
+        }
+        void ServeISSupCastleGray(int Order, int Kind,
+            int ii
+           )
+        {
+
+            if (Kind == 4)//Castle
+            {
+
+                for (var i = 0; i < CastleMidle; i++)
+                {
+                    if (CastlesOnTable == null || CastlesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle.Count; j++)
+                    {
+                        if (!(CastlesOnTable[i].CastleThinkingQuantum[0].IsSup[j]))
+                            continue;
+
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][0] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][1] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][2] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][3] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][4] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][5] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][6] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][7] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][8] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][9] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+                    }
+                }
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
+            }
+
+        }
+        void ServeISSupCastleBrown(int Order, int Kind,
+               int ii
+              )
+        {
+
+            if (Kind == 4)//Castle
+            {
+
+                for (var i = CastleMidle; i < CastleHigh; i++)
+                {
+                    if (CastlesOnTable == null || CastlesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle.Count; j++)
+                    {
+                        if (!(CastlesOnTable[i].CastleThinkingQuantum[0].IsSup[j]))
+                            continue;
+
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][0] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][1] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][2] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][3] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][4] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][5] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][6] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][7] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][8] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.CastlesOnTable[i].CastleThinkingQuantum[0].HeuristicListCastle[j][9] += CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+                    }
+                }
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                CastlesOnTable[ii].CastleThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18258,76 +18369,103 @@ namespace QuantumRefrigiz
             {
                 if (Order == 1)//Gray
                 {
-                    for (var i = 0; i < MinisterMidle; i++)
-                    {
-                        if (MinisterOnTable == null || MinisterOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister.Count; j++)
-                        {
-                            if (!(MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup[j]))
-                                continue;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][0] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][1] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][2] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][3] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][4] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][5] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][6] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][7] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][8] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][9] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-
-                        }
-                    }
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupMinisterGray(Order, Kind, ii);
                 }
                 else
                 {
-                    for (var i = MinisterMidle; i < MinisterHigh; i++)
-                    {
-                        if (MinisterOnTable == null || MinisterOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister.Count; j++)
-                        {
-                            if (!(MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup[j]))
-                                continue;
-
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][0] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][1] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][2] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][3] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][4] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][5] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][6] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][7] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][8] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][9] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-                        }
-                    }
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupMinisterBrown(Order, Kind, ii);
                 }
+            }
+
+        }
+        void ServeISSupMinisterGray(int Order, int Kind,
+              int ii
+             )
+        {
+
+            //minister
+            if (Kind == 5)
+            {
+
+                for (var i = 0; i < MinisterMidle; i++)
+                {
+                    if (MinisterOnTable == null || MinisterOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister.Count; j++)
+                    {
+                        if (!(MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup[j]))
+                            continue;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][0] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][1] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][2] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][3] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][4] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][5] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][6] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][7] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][8] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][9] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+
+                    }
+                }
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingDangourSup = 0;
+            }
+
+        }
+        void ServeISSupMinisterBrown(int Order, int Kind,
+                int ii
+               )
+        {
+
+            //minister
+            if (Kind == 5)
+            {
+
+                for (var i = MinisterMidle; i < MinisterHigh; i++)
+                {
+                    if (MinisterOnTable == null || MinisterOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister.Count; j++)
+                    {
+                        if (!(MinisterOnTable[i].MinisterThinkingQuantum[0].IsSup[j]))
+                            continue;
+
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][0] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][1] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][2] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][3] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][4] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][5] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][6] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][7] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][8] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.MinisterOnTable[i].MinisterThinkingQuantum[0].HeuristicListMinister[j][9] += MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+                    }
+                }
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                MinisterOnTable[ii].MinisterThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18341,79 +18479,109 @@ namespace QuantumRefrigiz
             {
                 if (Order == 1)//Gray
                 {
-                    for (var i = 0; i < KingMidle; i++)
-                    {
-                        if (KingOnTable == null || KingOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing.Count; j++)
-                        {
-                            if (!(KingOnTable[i].KingThinkingQuantum[0].IsSup[j]))
-                                continue;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][0] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][1] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][2] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][3] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][4] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][5] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][6] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][7] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][8] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][9] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-
-                        }
-                    }
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupKingGray(Order, Kind, ii);
 
                 }
                 else//Brown
                 {
-                    for (var i = KingMidle; i < KingHigh; i++)
-                    {
-                        if (KingOnTable == null || KingOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing.Count; j++)
-                        {
-                            if (!(KingOnTable[i].KingThinkingQuantum[0].IsSup[j]))
-                                continue;
-
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][0] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][1] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][2] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][3] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][4] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][5] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][6] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][7] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][8] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][9] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-
-                        }
-                    }
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupKingBrown(Order, Kind, ii);
 
                 }
+            }
+
+        }
+        void ServeISSupKingGray(int Order, int Kind,
+             int ii
+            )
+        {
+
+
+            if (Kind == 6)//king
+            {
+
+                for (var i = 0; i < KingMidle; i++)
+                {
+                    if (KingOnTable == null || KingOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing.Count; j++)
+                    {
+                        if (!(KingOnTable[i].KingThinkingQuantum[0].IsSup[j]))
+                            continue;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][0] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][1] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][2] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][3] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][4] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][5] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][6] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][7] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][8] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][9] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+
+                    }
+                }
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
+
+            }
+
+        }
+        void ServeISSupKingBrown(int Order, int Kind,
+              int ii
+             )
+        {
+
+
+            if (Kind == 6)//king
+            {
+
+                for (var i = KingMidle; i < KingHigh; i++)
+                {
+                    if (KingOnTable == null || KingOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing.Count; j++)
+                    {
+                        if (!(KingOnTable[i].KingThinkingQuantum[0].IsSup[j]))
+                            continue;
+
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][0] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][1] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][2] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][3] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][4] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][5] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][6] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][7] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][8] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.KingOnTable[i].KingThinkingQuantum[0].HeuristicListKing[j][9] += KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+
+                    }
+                }
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                KingOnTable[ii].KingThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
+
             }
 
         }
@@ -18427,80 +18595,109 @@ namespace QuantumRefrigiz
             {
                 if (Order == 1)//Gray
                 {
-                    for (var i = 0; i < 1; i++)
-                    {
-                        if (CastlingOnTable == null || CastlingOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
-                        {
-                            if (!(CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j]))
-                                continue;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-
-                        }
-                    }
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup = 0;
-
+                    ServeISSupCastlingGray(Order, Kind, ii);
                 }
                 else//Brown
                 {
-                    for (var i = 0; i < 1; i++)
-                    {
-                        if (CastlingOnTable == null || CastlingOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
-                        {
-                            if (!(CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j]))
-                                continue;
-
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup;
-                            this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup;
-
-
-
-                        }
-                    }
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup = 0;
-                    CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup = 0;
+                    ServeISSupCastlingBrown(Order, Kind, ii);
 
                 }
             }
+
+        }
+        void ServeISSupCastlingGray(int Order, int Kind,
+          int ii
+         )
+        {
+
+
+            if (Kind == 7 || Kind == -7)//king
+            {
+
+                for (var i = 0; i < 1; i++)
+                {
+                    if (CastlingOnTable == null || CastlingOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
+                    {
+                        if (!(CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j]))
+                            continue;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+
+                    }
+                }
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
+            }
+
+
+        }
+        void ServeISSupCastlingBrown(int Order, int Kind,
+              int ii
+             )
+        {
+
+
+            if (Kind == 7 || Kind == -7)//king
+            {
+
+                for (var i = 0; i < 1; i++)
+                {
+                    if (CastlingOnTable == null || CastlingOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling.Count; j++)
+                    {
+                        if (!(CastlingOnTable[i].CastlingThinkingQuantum[0].IsSup[j]))
+                            continue;
+
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup;
+                        this.CastlingOnTable[i].CastlingThinkingQuantum[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup;
+
+
+
+                    }
+                }
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicAttackValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicSelfSupportedValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedMovementValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedSupportSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicReducedAttackValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicDistributionValueSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingSafeSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicFromCenterSup = 0;
+                CastlingOnTable[ii].CastlingThinkingQuantum[0].HeuristicKingDangourSup = 0;
+
+            }
+
 
         }
         void ThinkingQuantumAllowedSemaphore(int i)
@@ -19431,6 +19628,8 @@ namespace QuantumRefrigiz
                         return true;
                     if (SolderesOnTable[ikk] == null)
                         return true;
+                    if (SolderesOnTable[ikk].LoseOcuuredatChiled == null)
+                        return true;
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19449,6 +19648,8 @@ namespace QuantumRefrigiz
                         return true;
                     if (ElephantOnTable[ikk] == null)
                         return true;
+                    if (ElephantOnTable[ikk].LoseOcuuredatChiled == null)
+                        return true;
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19466,7 +19667,10 @@ namespace QuantumRefrigiz
                 {
                     if (HoursesOnTable == null)
                         return true;
+
                     if (HoursesOnTable[ikk] == null)
+                        return true;
+                    if (HoursesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
                 }
                 catch (Exception t) { Log(t); }
@@ -19485,6 +19689,8 @@ namespace QuantumRefrigiz
                     if (CastlesOnTable == null)
                         return true;
                     if (CastlesOnTable[ikk] == null)
+                        return true;
+                    if (CastlesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
 
                 }
@@ -19505,6 +19711,8 @@ namespace QuantumRefrigiz
                         return true;
                     if (MinisterOnTable[ikk] == null)
                         return true;
+                    if (MinisterOnTable[ikk].LoseOcuuredatChiled == null)
+                        return true;
 
                 }
                 catch (Exception t) { Log(t); }
@@ -19524,6 +19732,8 @@ namespace QuantumRefrigiz
                         return true;
                     if (KingOnTable[ikk] == null)
                         return true;
+                    if (KingOnTable[ikk].LoseOcuuredatChiled == null)
+                        return true;
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19540,6 +19750,8 @@ namespace QuantumRefrigiz
                     if (CastlingOnTable == null)
                         return true;
                     if (CastlingOnTable[ikk] == null)
+                        return true;
+                    if (CastlingOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
                 }
                 catch (Exception t) { Log(t); }

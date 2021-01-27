@@ -17927,6 +17927,25 @@ namespace RefrigtzChessPortable
                 if (Order == 1)
                 {
                     //soldier
+                    ServeISSupSoldierGray(Order, Kind, ii);
+                }
+                else//Brown
+                {
+                    ServeISSupSoldierBrown(Order, Kind, ii);
+                }
+            }
+
+        }
+        void ServeISSupSoldierGray(int Order, int Kind,
+              int ii
+             )
+        {
+
+            //soldoer
+            if (Kind == 1)
+            {
+                
+                    //soldier
                     for (var i = 0; i < SodierMidle; i++)
                     {
                         if (SolderesOnTable == null || SolderesOnTable[i] == null)
@@ -17960,9 +17979,19 @@ namespace RefrigtzChessPortable
                     SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup = 0;
                     SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup = 0;
                     SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup = 0;
-                }
-                else//Brown
-                {
+                
+            }
+
+        }
+        void ServeISSupSoldierBrown(int Order, int Kind,
+             int ii
+            )
+        {
+
+            //soldoer
+            if (Kind == 1)
+            {
+               
 
                     for (var i = SodierMidle; i < SodierHigh; i++)
                     {
@@ -17997,7 +18026,7 @@ namespace RefrigtzChessPortable
                     SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup = 0;
                     SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup = 0;
                     SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup = 0;
-                }
+                
             }
 
         }
@@ -18011,6 +18040,25 @@ namespace RefrigtzChessPortable
             {
                 if (Order == 1)//Gray
                 {
+                    ServeISSupElephantGray(Order, Kind, ii);
+                }
+                else//Brown
+                {
+                    //elephant
+                    ServeISSupElephantBrown(Order, Kind, ii);
+                }
+            }
+
+        }
+        void ServeISSupElephantGray(int Order, int Kind,
+           int ii
+          )
+        {
+
+            //soldoer
+            if (Kind == 2)//elephant
+            {
+               
                     for (var i = 0; i < ElefantMidle; i++)
                     {
                         if (ElephantOnTable == null || ElephantOnTable[i] == null)
@@ -18044,19 +18092,28 @@ namespace RefrigtzChessPortable
                     ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup = 0;
                     ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup = 0;
                     ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup = 0;
-                }
-                else//Brown
-                {
-                    //elephant
-                    for (var i = ElefantMidle; i < ElefantHigh; i++)
+                
+            }
+
+        }
+        void ServeISSupElephantBrown(int Order, int Kind,
+               int ii
+              )
+        {
+
+            //soldoer
+            if (Kind == 2)//elephant
+            {
+                
+                    for (var i = 0; i < ElefantMidle; i++)
                     {
                         if (ElephantOnTable == null || ElephantOnTable[i] == null)
                             continue;
+
                         for (var j = 0; j < ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Count; j++)
                         {
                             if (!(ElephantOnTable[i].ElefantThinking[0].IsSup[j]))
                                 continue;
-
                             this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][0] += ElephantOnTable[ii].ElefantThinking[0].HeuristicAttackValueSup;
                             this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][1] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup;
                             this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][2] += ElephantOnTable[ii].ElefantThinking[0].HeuristicSelfSupportedValueSup;
@@ -18081,7 +18138,7 @@ namespace RefrigtzChessPortable
                     ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup = 0;
                     ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup = 0;
                     ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup = 0;
-                }
+               
             }
 
         }
@@ -18094,6 +18151,24 @@ namespace RefrigtzChessPortable
             {
                 if (Order == 1)//Gray
                 {
+                    ServeISSupHourseGray(Order, Kind, ii);
+
+                }
+                else//Brown
+                {
+                    ServeISSupHourseBrown(Order, Kind, ii);
+                }
+            }
+
+        }
+        void ServeISSupHourseGray(int Order, int Kind,
+          int ii
+         )
+        {
+
+            if (Kind == 3)//hourse
+            {
+               
                     for (var i = 0; i < HourseMidle; i++)
                     {
                         if (HoursesOnTable == null || HoursesOnTable[i] == null)
@@ -18128,9 +18203,18 @@ namespace RefrigtzChessPortable
                     HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup = 0;
                     HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup = 0;
 
-                }
-                else//Brown
-                {
+               
+            }
+
+        }
+        void ServeISSupHourseBrown(int Order, int Kind,
+         int ii
+        )
+        {
+
+            if (Kind == 3)//hourse
+            {
+               
                     for (var i = HourseMidle; i < HourseHight; i++)
                     {
                         if (HoursesOnTable == null || HoursesOnTable[i] == null)
@@ -18163,7 +18247,7 @@ namespace RefrigtzChessPortable
                     HoursesOnTable[ii].HourseThinking[0].HeuristicKingSafeSup = 0;
                     HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup = 0;
                     HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup = 0;
-                }
+                
             }
 
         }
@@ -18176,6 +18260,23 @@ namespace RefrigtzChessPortable
             {
                 if (Order == 1)//Gray
                 {
+                    ServeISSupCastleGray(Order, Kind, ii);
+                }
+                else//Brown
+                {
+                    ServeISSupCastleBrown(Order, Kind, ii);
+                }
+            }
+
+        }
+        void ServeISSupCastleGray(int Order, int Kind,
+            int ii
+           )
+        {
+
+            if (Kind == 4)//Castle
+            {
+               
                     for (var i = 0; i < CastleMidle; i++)
                     {
                         if (CastlesOnTable == null || CastlesOnTable[i] == null)
@@ -18184,6 +18285,7 @@ namespace RefrigtzChessPortable
                         {
                             if (!(CastlesOnTable[i].CastleThinking[0].IsSup[j]))
                                 continue;
+
                             this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][0] += CastlesOnTable[ii].CastleThinking[0].HeuristicAttackValueSup;
                             this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][1] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup;
                             this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][2] += CastlesOnTable[ii].CastleThinking[0].HeuristicSelfSupportedValueSup;
@@ -18208,9 +18310,18 @@ namespace RefrigtzChessPortable
                     CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup = 0;
                     CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup = 0;
                     CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup = 0;
-                }
-                else//Brown
-                {
+                
+            }
+
+        }
+        void ServeISSupCastleBrown(int Order, int Kind,
+               int ii
+              )
+        {
+
+            if (Kind == 4)//Castle
+            {
+               
                     for (var i = CastleMidle; i < CastleHigh; i++)
                     {
                         if (CastlesOnTable == null || CastlesOnTable[i] == null)
@@ -18244,7 +18355,7 @@ namespace RefrigtzChessPortable
                     CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup = 0;
                     CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup = 0;
                     CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup = 0;
-                }
+                
             }
 
         }
@@ -18258,6 +18369,24 @@ namespace RefrigtzChessPortable
             {
                 if (Order == 1)//Gray
                 {
+                    ServeISSupMinisterGray(Order, Kind, ii);
+                }
+                else
+                {
+                    ServeISSupMinisterBrown(Order, Kind, ii);
+                }
+            }
+
+        }
+        void ServeISSupMinisterGray(int Order, int Kind,
+              int ii
+             )
+        {
+
+            //minister
+            if (Kind == 5)
+            {
+                
                     for (var i = 0; i < MinisterMidle; i++)
                     {
                         if (MinisterOnTable == null || MinisterOnTable[i] == null)
@@ -18291,9 +18420,18 @@ namespace RefrigtzChessPortable
                     MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup = 0;
                     MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup = 0;
                     MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup = 0;
-                }
-                else
-                {
+             }
+
+        }
+        void ServeISSupMinisterBrown(int Order, int Kind,
+                int ii
+               )
+        {
+
+            //minister
+            if (Kind == 5)
+            {
+                
                     for (var i = MinisterMidle; i < MinisterHigh; i++)
                     {
                         if (MinisterOnTable == null || MinisterOnTable[i] == null)
@@ -18327,7 +18465,7 @@ namespace RefrigtzChessPortable
                     MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup = 0;
                     MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup = 0;
                     MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup = 0;
-                }
+                
             }
 
         }
@@ -18341,6 +18479,26 @@ namespace RefrigtzChessPortable
             {
                 if (Order == 1)//Gray
                 {
+                    ServeISSupKingGray(Order, Kind, ii);
+
+                }
+                else//Brown
+                {
+                    ServeISSupKingBrown(Order, Kind, ii);
+
+                }
+            }
+
+        }
+        void ServeISSupKingGray(int Order, int Kind,
+             int ii
+            )
+        {
+
+
+            if (Kind == 6)//king
+            {
+               
                     for (var i = 0; i < KingMidle; i++)
                     {
                         if (KingOnTable == null || KingOnTable[i] == null)
@@ -18375,9 +18533,19 @@ namespace RefrigtzChessPortable
                     KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup = 0;
                     KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup = 0;
 
-                }
-                else//Brown
-                {
+                
+            }
+
+        }
+        void ServeISSupKingBrown(int Order, int Kind,
+              int ii
+             )
+        {
+
+
+            if (Kind == 6)//king
+            {
+                
                     for (var i = KingMidle; i < KingHigh; i++)
                     {
                         if (KingOnTable == null || KingOnTable[i] == null)
@@ -18413,7 +18581,7 @@ namespace RefrigtzChessPortable
                     KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup = 0;
                     KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup = 0;
 
-                }
+                
             }
 
         }
@@ -18427,43 +18595,25 @@ namespace RefrigtzChessPortable
             {
                 if (Order == 1)//Gray
                 {
-                    for (var i = 0; i < 1; i++)
-                    {
-                        if (CastlingOnTable == null || CastlingOnTable[i] == null)
-                            continue;
-                        for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
-                        {
-                            if (!(CastlingOnTable[i].CastlingThinking[0].IsSup[j]))
-                                continue;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup;
-
-
-
-                        }
-                    }
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup = 0;
-
+                    ServeISSupCastlingGray(Order, Kind, ii);
                 }
                 else//Brown
                 {
+                    ServeISSupCastlingBrown(Order, Kind, ii);
+
+                }
+            }
+
+        }
+        void ServeISSupCastlingGray(int Order, int Kind,
+          int ii
+         )
+        {
+
+
+            if (Kind == 7 || Kind == -7)//king
+            {
+                
                     for (var i = 0; i < 1; i++)
                     {
                         if (CastlingOnTable == null || CastlingOnTable[i] == null)
@@ -18472,7 +18622,6 @@ namespace RefrigtzChessPortable
                         {
                             if (!(CastlingOnTable[i].CastlingThinking[0].IsSup[j]))
                                 continue;
-
                             this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup;
                             this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
                             this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup;
@@ -18500,7 +18649,55 @@ namespace RefrigtzChessPortable
                     CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup = 0;
 
                 }
+           
+
+        }
+        void ServeISSupCastlingBrown(int Order, int Kind,
+              int ii
+             )
+        {
+
+
+            if (Kind == 7 || Kind == -7)//king
+            {
+
+                for (var i = 0; i < 1; i++)
+                {
+                    if (CastlingOnTable == null || CastlingOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
+                    {
+                        if (!(CastlingOnTable[i].CastlingThinking[0].IsSup[j]))
+                            continue;
+
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup;
+
+
+
+                    }
+                }
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup = 0;
+
             }
+
 
         }
         void ThinkingAllowedSemaphore(int i)
@@ -19431,6 +19628,8 @@ namespace RefrigtzChessPortable
                         return true;
                     if (SolderesOnTable[ikk] == null)
                         return true;
+                    if (SolderesOnTable[ikk].LoseOcuuredatChiled == null)
+                        return true;
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19449,6 +19648,8 @@ namespace RefrigtzChessPortable
                         return true;
                     if (ElephantOnTable[ikk] == null)
                         return true;
+                    if (ElephantOnTable[ikk].LoseOcuuredatChiled == null)
+                        return true;
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19466,7 +19667,10 @@ namespace RefrigtzChessPortable
                 {
                     if (HoursesOnTable == null)
                         return true;
+
                     if (HoursesOnTable[ikk] == null)
+                        return true;
+                    if (HoursesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
                 }
                 catch (Exception t) { Log(t); }
@@ -19485,6 +19689,8 @@ namespace RefrigtzChessPortable
                     if (CastlesOnTable == null)
                         return true;
                     if (CastlesOnTable[ikk] == null)
+                        return true;
+                    if (CastlesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
 
                 }
@@ -19505,6 +19711,8 @@ namespace RefrigtzChessPortable
                         return true;
                     if (MinisterOnTable[ikk] == null)
                         return true;
+                    if (MinisterOnTable[ikk].LoseOcuuredatChiled == null)
+                        return true;
 
                 }
                 catch (Exception t) { Log(t); }
@@ -19524,6 +19732,8 @@ namespace RefrigtzChessPortable
                         return true;
                     if (KingOnTable[ikk] == null)
                         return true;
+                    if (KingOnTable[ikk].LoseOcuuredatChiled == null)
+                        return true;
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19540,6 +19750,8 @@ namespace RefrigtzChessPortable
                     if (CastlingOnTable == null)
                         return true;
                     if (CastlingOnTable[ikk] == null)
+                        return true;
+                    if (CastlingOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
                 }
                 catch (Exception t) { Log(t); }

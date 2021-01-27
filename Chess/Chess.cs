@@ -27,6 +27,22 @@ namespace Chess
         ChessCom.ChessComForm BB = null;
         public static ChessCom.ChessComForm BBS = null;
         public bool frize = true;
+        static void Log(Exception ex)
+        {
+            try
+            {
+                Object a = new Object();
+                lock (a)
+                {
+                    string stackTrace = ex.ToString();
+                    //Write to File.
+                  System.IO.File.AppendAllText("ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
+                }
+            }
+#pragma warning disable CS0168 // The variable 't' is declared but never used
+            catch (Exception t) { }
+#pragma warning restore CS0168 // The variable 't' is declared but never used
+        }
         public Chess()
         {
             InitializeComponent();
@@ -526,7 +542,7 @@ namespace Chess
                                           if (r == 7)
                     src = "h"; 
 
-
+               
                 src += c.ToString();
                 src += des[1].ToString() + column.ToString();
             }
@@ -736,19 +752,7 @@ namespace Chess
             String src = "";
             if (des[5] == '#')
             {
-                if (des[1] == 'x')
-                {
-                    src = des.Remove(1, 1);
-
-                    src = src.Remove(4, 1);
-
-                    src = ConLen4(src);
-
-                    if (src != "")
-                        GaveOver = true;
-                }
-                else
-                {
+                
                     src = src.Remove(5, 1);
 
                     src = ConLen5(src);
@@ -756,7 +760,7 @@ namespace Chess
                     if (src != "")
                         GaveOver = true;
                 }
-            }
+            
 
             if (src != "")
                 return src;
@@ -765,8 +769,7 @@ namespace Chess
             {
                 if (des[1] == 'x')
                 {
-                    src = des.Remove(1, 1);
-
+                  
                     src = src.Remove(5, 1);
 
                     src = ConLen4(src);
@@ -1708,6 +1711,7 @@ namespace Chess
 
                 }
                 catch (Exception y) {
+                    Log(y);
                     MessageBox.Show("نیمه یک بازی ذخیره شد");
 
                 }

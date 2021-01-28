@@ -18919,7 +18919,7 @@ namespace RefrigtzDLL
             }
         }
         AllDraw InitiateAStarGreedytSodler(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
-             )
+         )
         {
             Object oo = new Object();
             lock (oo)
@@ -18951,25 +18951,7 @@ namespace RefrigtzDLL
                         //If There is no Thinking Movments on Current Object  
                         if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count == 0)
                         {
-                            //For All Movable Gray Solders.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.SodierMovments, j =>
-                            {
-                                //Thinking of Gray Solder Operation.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    SolderesOnTable[i].SoldierThinking[0].ThinkingBegin = true;
-                                    SolderesOnTable[i].SoldierThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count != 0)
-                                    {
-                                        SolderesOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedytSodlerThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -18979,6 +18961,29 @@ namespace RefrigtzDLL
                     }
                 }
             }
+            return this;
+        }
+        AllDraw InitiateAStarGreedytSodlerThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+         )
+        {
+
+            //For All Movable Gray Solders.
+            //Thinking of Gray Solder Operation.
+            Object OOO = new Object();
+            lock (OOO)
+            {
+                SolderesOnTable[i].SoldierThinking[0].ThinkingBegin = true;
+                SolderesOnTable[i].SoldierThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+                if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count != 0)
+                {
+                    SolderesOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+            }
+
             return this;
         }
         //main initiation of elephant Gray
@@ -19030,25 +19035,7 @@ namespace RefrigtzDLL
                         //If There is Not Thinking Objetive List Elephant Gray. 
                         if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count == 0)
                         {
-                            //For All Possible Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.ElefantMovments, j =>
-                            {
-                                //Operational Thinking Gray Elephant. 
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    ElephantOnTable[i].ElefantThinking[0].ThinkingBegin = true;
-                                    ElephantOnTable[i].ElefantThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count != 0)
-                                    {
-                                        ElephantOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedytElephantThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19057,6 +19044,30 @@ namespace RefrigtzDLL
                         }
                     }
                 }
+            }
+            return this;
+        }
+        AllDraw InitiateAStarGreedytElephantThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+         )
+        {
+
+
+            Object O = new Object();
+            lock (O)
+            {
+
+
+                ElephantOnTable[i].ElefantThinking[0].ThinkingBegin = true;
+                ElephantOnTable[i].ElefantThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+                if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count != 0)
+                {
+                    ElephantOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+
             }
             return this;
         }
@@ -19110,25 +19121,7 @@ namespace RefrigtzDLL
                         //When There is Not HourseList Count. 
                         if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count == 0)
                         {
-                            //For All Possible Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.HourseMovments, j =>
-                            {
-                                //Thinking of Gray Hourse Oprational.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    HoursesOnTable[i].HourseThinking[0].ThinkingBegin = true;
-                                    HoursesOnTable[i].HourseThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count != 0)
-                                    {
-                                        HoursesOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythHourseThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19139,6 +19132,35 @@ namespace RefrigtzDLL
                 }
             }
             return this;
+        }
+        AllDraw InitiateAStarGreedythHourseThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+        )
+        {
+
+            //For All Gray Hourse Objects.
+            Object O = new Object();
+            lock (O)
+            {
+
+                //For All Possible Movments.
+
+                //Thinking of Gray Hourse Oprational.
+
+                HoursesOnTable[i].HourseThinking[0].ThinkingBegin = true;
+                HoursesOnTable[i].HourseThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+                if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count != 0)
+                {
+                    HoursesOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+
+
+
+                return this;
+            }
         }
         //main initiation of Castle Gray
         AllDraw InitiateAStarGreedythCastleGray(int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
@@ -19190,26 +19212,7 @@ namespace RefrigtzDLL
                         //When Count of Table Castles of Thinking Not Exist Do Operational.
                         if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count == 0)
                         {
-                            //For All Possible Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.CastleMovments, j =>
-                            {
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    //Thinking of Gray Castles Operational.
-                                    CastlesOnTable[i].CastleThinking[0].ThinkingBegin = true;
-                                    CastlesOnTable[i].CastleThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinking[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-
-                                    if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count != 0)
-                                    {
-                                        CastlesOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythCastleThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19219,6 +19222,32 @@ namespace RefrigtzDLL
                     }
                 }
             }
+            return this;
+        }
+        AllDraw InitiateAStarGreedythCastleThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+   )
+        {
+
+            //For All Possible Movments.
+
+            Object OOO = new Object();
+            lock (OOO)
+            {
+                //Thinking of Gray Castles Operational.
+                CastlesOnTable[i].CastleThinking[0].ThinkingBegin = true;
+                CastlesOnTable[i].CastleThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinking[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+
+                if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count != 0)
+                {
+                    CastlesOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+            }
+
+
             return this;
         }
         //main initiation of minister Gray
@@ -19271,25 +19300,7 @@ namespace RefrigtzDLL
                         //If There is Not Minister Of Gray In The Thinking Table List.   
                         if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count == 0)
                         {
-                            //For All Possible Movments.
-                            // //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.MinisterMovments, j =>
-                            {
-                                //Thinking of Gray Minister Operational.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    MinisterOnTable[i].MinisterThinking[0].ThinkingBegin = true;
-                                    MinisterOnTable[i].MinisterThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count != 0)
-                                    {
-                                        MinisterOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythMinisterThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19298,6 +19309,39 @@ namespace RefrigtzDLL
                         }
                     }
                 }
+            }
+            return this;
+        }
+        AllDraw InitiateAStarGreedythMinisterThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+      )
+        {
+            Object oo = new Object();
+            lock (oo)
+            {
+                //For All Possible Gray Minister Movments.
+                Object O = new Object();
+                lock (O)
+                {
+
+                    //For All Possible Movments.
+
+                    //Thinking of Gray Minister Operational.
+                    Object OOO = new Object();
+                    lock (OOO)
+                    {
+                        MinisterOnTable[i].MinisterThinking[0].ThinkingBegin = true;
+                        MinisterOnTable[i].MinisterThinking[0].ThinkingFinished = false;
+                        var array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
+                        array.Wait(); array.Dispose();
+                        if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count != 0)
+                        {
+                            MinisterOnTableMove[i] = true;
+                            AllDraw.ChangedInTreeOccured = true;
+
+                        }
+                    }
+                }
+
             }
             return this;
         }
@@ -19367,25 +19411,7 @@ namespace RefrigtzDLL
                         //When There is Not Thinking Table Gray King Movments.
                         if (KingOnTable[i].KingThinking[0].TableListKing.Count == 0)
                         {
-                            //For All Possible Gray King Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.KingMovments, j =>
-                            {
-                                //Thinking Of Gray King Operatins.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    KingOnTable[i].KingThinking[0].ThinkingBegin = true;
-                                    KingOnTable[i].KingThinking[0].ThinkingFinished = false;
-                                    ; var array = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].Thinking(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (KingOnTable[i].KingThinking[0].TableListKing.Count != 0)
-                                    {
-                                        KingOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythKingThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19394,6 +19420,34 @@ namespace RefrigtzDLL
                         }
                     }
                 }
+            }
+            return this;
+        }
+        AllDraw InitiateAStarGreedythKingThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+       )
+        {
+            Object oo = new Object();
+            lock (oo)
+            {
+
+                //For All Possible Gray King Movments.
+
+                //Thinking Of Gray King Operatins.
+                Object OOO = new Object();
+                lock (OOO)
+                {
+                    KingOnTable[i].KingThinking[0].ThinkingBegin = true;
+                    KingOnTable[i].KingThinking[0].ThinkingFinished = false;
+                    ; var array = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].Thinking(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
+                    array.Wait(); array.Dispose();
+                    if (KingOnTable[i].KingThinking[0].TableListKing.Count != 0)
+                    {
+                        KingOnTableMove[i] = true;
+                        AllDraw.ChangedInTreeOccured = true;
+
+                    }
+                }
+
             }
             return this;
         }
@@ -19430,25 +19484,7 @@ namespace RefrigtzDLL
                         //When There is Not Thinking Table Gray Castling Movments.
                         if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count == 0)
                         {
-                            //For All Possible Gray Castling Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.CastlingMovments, j =>
-                            {
-                                //Thinking Of Gray Castling Operatins.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = true;
-                                    CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count != 0)
-                                    {
-                                        CastlingOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythCastlingThinking(kin, i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19457,6 +19493,30 @@ namespace RefrigtzDLL
                         }
                     }
                 }
+            }
+            return this;
+        }
+        AllDraw InitiateAStarGreedythCastlingThinking(int kin, int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+           )
+        {
+            Object oo = new Object();
+            lock (oo)
+            {
+                //For All Possible Gray Castling Movments.
+                //Thinking Of Gray Castling Operatins.
+                CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = true;
+                CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+                if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count != 0)
+                {
+                    CastlingOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+
+
+
             }
             return this;
         }

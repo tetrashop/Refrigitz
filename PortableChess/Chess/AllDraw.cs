@@ -116,7 +116,7 @@ namespace RefrigtzChessPortable
         bool OnlyWin = false;
         public static bool LeafSemaphoreIndex = false;
         //Initiate Variables. 
-        bool[] ThinkingAllowed = { false, false, false, false, false, false, false, false, false, false, false, false,  false, false };
+        bool[] ThinkingAllowed = { false, false, false, false, false, false, false, false, false, false, false, false, false, false };
 
         [field: NonSerialized] List<Task> tH = new List<Task>();
         [field: NonSerialized] List<Task> TH = new List<Task>();
@@ -588,7 +588,7 @@ namespace RefrigtzChessPortable
                 CastlesOnTable = null;
                 MinisterOnTable = null;
                 KingOnTable = null;
-                CastlingOnTable = null; 
+                CastlingOnTable = null;
                 MaxHeuristicAStarGreedytBackWard.Clear();
                 //Initiayte Locally Variables.
                 TableList = new List<int[,]>();
@@ -700,7 +700,7 @@ namespace RefrigtzChessPortable
                     CastlingOnTable[i].Clone(ref AA.CastlingOnTable[i]);
 
                 }
-                
+
 
                 AA.AStarGreedy = AStarGreedy;
                 if (AA.TableList.Count > 0)
@@ -869,7 +869,7 @@ namespace RefrigtzChessPortable
                         if (Dum.KingOnTable[i].KingThinking[0].ThinkingFinished)
                             return true;
                     }
-                    else if (Kind == 7||Kind==-7)
+                    else if (Kind == 7 || Kind == -7)
                     {
                         if (Dum.CastlingOnTable[i].CastlingThinking[0].ThinkingFinished)
                             return true;
@@ -1637,7 +1637,7 @@ namespace RefrigtzChessPortable
                     {
                         if (Dummy == 1)
                         {
-                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column,Color.Gray, CloneATable(TableList[index]), 1, false, 0);
+                            CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column, Color.Gray, CloneATable(TableList[index]), 1, false, 0);
 
                             var ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                             ah.Wait();
@@ -1697,14 +1697,14 @@ namespace RefrigtzChessPortable
                 return true;
             if (CastlingOnTable[0] == null)
                 return true;
-           // if (CastlingOnTable[0].CastlingThinking == null)
-           //     return true;
+            // if (CastlingOnTable[0].CastlingThinking == null)
+            //     return true;
             //if (CastlingOnTable[0].CastlingThinking[0] == null)
-              //  return true;
+            //  return true;
             //if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy == null)
             //    return true;
             //if (CastlingOnTable[0].CastlingThinking[0].AStarGreedy.Count==0)
-              //  return true;
+            //  return true;
 
             return false;
         }
@@ -4195,7 +4195,7 @@ namespace RefrigtzChessPortable
 
                 }
             }
-            
+
             return THIS;
         }
         //when current alldraw is equal of table state return node and set true
@@ -5606,7 +5606,7 @@ namespace RefrigtzChessPortable
                         }
                     }
                 }
-                else if (Kind == 7|| Kind == -7)
+                else if (Kind == 7 || Kind == -7)
                 {
                     for (int i = 0; CastlingOnTable != null && i < 1; i++)
                     {
@@ -6015,7 +6015,7 @@ namespace RefrigtzChessPortable
                 }
             }
         }
-     //when there is a colision in lists of current return true and remove extra lists
+        //when there is a colision in lists of current return true and remove extra lists
         bool A_B_C_D_E_ISNonEqual(int a, int b, int c, int d, int e, int i, int j, int Kind)
         {
             bool Is = false;
@@ -7149,7 +7149,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7169,7 +7169,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(SolderesOnTable[i].SoldierThinking[0].TableListSolder[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7222,7 +7222,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7242,7 +7242,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(ElephantOnTable[i].ElefantThinking[0].TableListElefant[j]), Order * -1, false, false, 0));
                                     ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].AStarGreedyString = this;
                                     H.Wait();
                                     H.Dispose();
@@ -7292,7 +7292,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7312,7 +7312,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(HoursesOnTable[i].HourseThinking[0].TableListHourse[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7385,7 +7385,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(CastlesOnTable[i].CastleThinking[0].TableListCastle[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlesOnTable[i].CastleThinking[0].TableListCastle[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7435,7 +7435,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7455,7 +7455,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7506,7 +7506,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(KingOnTable[i].KingThinking[0].TableListKing[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(KingOnTable[i].KingThinking[0].TableListKing[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     KingOnTable[i].KingThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7526,7 +7526,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(KingOnTable[i].KingThinking[0].TableListKing[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(KingOnTable[i].KingThinking[0].TableListKing[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     KingOnTable[i].KingThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7577,7 +7577,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7597,7 +7597,7 @@ namespace RefrigtzChessPortable
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                         aa = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
+                                    var H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -8333,7 +8333,7 @@ namespace RefrigtzChessPortable
                         Is = true;
                 }
             }
-            else if (Kind == 7||Kind==-7)
+            else if (Kind == 7 || Kind == -7)
             {
                 //determine nodes is coorectly existence
                 if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
@@ -8368,11 +8368,11 @@ namespace RefrigtzChessPortable
                 //Soldier
                 if (SolderesOnTable == null)
                     Is = true;
-                 if (ElephantOnTable == null)
+                if (ElephantOnTable == null)
                     Is = true;
                 if (HoursesOnTable == null)
                     Is = true;
-                 if (CastlesOnTable == null)
+                if (CastlesOnTable == null)
                     Is = true;
                 if (MinisterOnTable == null)
                     Is = true;
@@ -8380,7 +8380,7 @@ namespace RefrigtzChessPortable
                     Is = true;
                 if (CastlingOnTable == null)
                     Is = true;
-            
+
                 return Is;
             }
 
@@ -8602,7 +8602,7 @@ namespace RefrigtzChessPortable
                     }
                 }
             }
-            else if (Kind == 7|| Kind == -7)
+            else if (Kind == 7 || Kind == -7)
             {
                 if (CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > 0)
                 {
@@ -8696,8 +8696,8 @@ namespace RefrigtzChessPortable
                         }
                         FullGameFound = true;
 
-                         //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count && SolderesOnTable[i].SoldierThinking[0].AStarGreedy != null; h++)
@@ -8756,8 +8756,8 @@ namespace RefrigtzChessPortable
                             lock (O1)
                             {
                                 int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                 //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count && SolderesOnTable[i].SoldierThinking[0].AStarGreedy != null; h++)
@@ -8869,8 +8869,8 @@ namespace RefrigtzChessPortable
                         }
                         FullGameFound = true;
 
-                         //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null; h++)
@@ -8928,8 +8928,8 @@ namespace RefrigtzChessPortable
                             lock (O1)
                             {
                                 int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                 //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null; h++)
@@ -9025,9 +9025,9 @@ namespace RefrigtzChessPortable
                                 return;
                         }
                         FullGameFound = true;
-                         //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                        //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count && HoursesOnTable[i].HourseThinking[0].AStarGreedy != null; h++)
@@ -9084,8 +9084,8 @@ namespace RefrigtzChessPortable
                             Object O1 = new Object();
                             lock (O1)
                             {
-                                 //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count && HoursesOnTable[i].HourseThinking[0].AStarGreedy != null; h++)
@@ -9182,9 +9182,9 @@ namespace RefrigtzChessPortable
                                 return;
                         }
                         FullGameFound = true;
-                         //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                        //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count && CastlesOnTable[i].CastleThinking[0].AStarGreedy != null; h++)
@@ -9239,8 +9239,8 @@ namespace RefrigtzChessPortable
                             Object O1 = new Object();
                             lock (O1)
                             {
-                                 //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count && CastlesOnTable[i].CastleThinking[0].AStarGreedy != null; h++)
@@ -9338,8 +9338,8 @@ namespace RefrigtzChessPortable
                         }
                         FullGameFound = true;
 
-                         //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count && MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null; h++)
@@ -9392,7 +9392,7 @@ namespace RefrigtzChessPortable
                             }
 
 
-                            var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();
                             for (int h = 0; h < MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count && MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null; h++)
@@ -9490,7 +9490,7 @@ namespace RefrigtzChessPortable
                         FullGameFound = true;
 
 
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < KingOnTable[i].KingThinking[0].AStarGreedy.Count && KingOnTable[i].KingThinking[0].AStarGreedy != null; h++)
@@ -9550,8 +9550,8 @@ namespace RefrigtzChessPortable
                             lock (O1)
                             {
                                 int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                 //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < KingOnTable[i].KingThinking[0].AStarGreedy.Count && KingOnTable[i].KingThinking[0].AStarGreedy != null; h++)
@@ -9648,8 +9648,8 @@ namespace RefrigtzChessPortable
                         }
                         FullGameFound = true;
 
-                         //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                        var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                         for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
@@ -9709,8 +9709,8 @@ namespace RefrigtzChessPortable
                             lock (O1)
                             {
                                 int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                 //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount+StoreInitMaxAStarGreedy-MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                                var H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
@@ -9766,14 +9766,14 @@ namespace RefrigtzChessPortable
                        MaxAStarGreedy = MaxAStarGreedy + CurrentMaxLevel + (PlatformHelper.ProcessorCount - iAStarGreedy);
                    }
                    */
-               if (
-                    /*(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&*/
-                    ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) ||SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
+                if (
+                     /*(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&*/
+                     ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount) || SStopInitMaxAStarGreedy))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                 {
                     MaxAStarGreedy = CurrentMaxLevel;
                 }
                 else
-                         //if (CurrentMaxLevel >= MaxAStarGreedy)
+                    //if (CurrentMaxLevel >= MaxAStarGreedy)
                     return;
                 Object Omm1 = new Object();
                 lock (Omm1)
@@ -9807,183 +9807,183 @@ namespace RefrigtzChessPortable
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
-                                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
-                                {
+                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+        {
                                     //soldier
                                     for (var i = 0; i < SodierMidle; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //elephant
                                     for (var i = 0; i < ElefantMidle; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //hourse
                                     for (var i = 0; i < HourseMidle; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //Castle
                                     for (var i = 0; i < CastleMidle; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //minister
                                     for (var i = 0; i < MinisterMidle; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //king
                                     for (var i = 0; i < KingMidle; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //king
                                     for (var i = 0; i < 1; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                });
+                }
+            }
+        });
                             }
                         });
                         output.Wait(); output.Dispose();
@@ -9996,181 +9996,181 @@ namespace RefrigtzChessPortable
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
-                                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
-                                {
+                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+        {
                                     //soldier
                                     for (var i = SodierMidle; i < SodierHigh; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //elephant
                                     for (var i = ElefantMidle; i < ElefantHigh; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //hourse
                                     for (var i = HourseMidle; i < HourseHight; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
-                                        }
-                                    }
-                                }, () =>
-                                {
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
+                }
+            }
+        }, () =>
+        {
                                     //Castle
                                     for (var i = CastleMidle; i < CastleHigh; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //minister
                                     for (var i = MinisterMidle; i < MinisterHigh; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //king
                                     for (var i = KingMidle; i < KingHigh; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                }, () =>
-                                {
+                }
+            }
+        }, () =>
+        {
                                     //king
                                     for (var i = 0; i < 1; i++)
-                                    {
-                                        Object OOOO = new Object();
-                                        lock (OOOO)
-                                        {
+            {
+                Object OOOO = new Object();
+                lock (OOOO)
+                {
                                             //when search finished stop and return
                                             bool ac = false;
-                                            var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                                            ah1.Wait();
-                                            ah1.Dispose();
-                                            if (ac)
-                                                return;
-                                        }
-                                        Object P = new Object();
-                                        lock (P)
-                                        {
-                                            var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                                            ah.Wait();
-                                            ah.Dispose();
+                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    ah1.Wait();
+                    ah1.Dispose();
+                    if (ac)
+                        return;
+                }
+                Object P = new Object();
+                lock (P)
+                {
+                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    ah.Wait();
+                    ah.Dispose();
 
-                                        }
-                                    }
-                                });
+                }
+            }
+        });
                             }
                         });
                         output.Wait(); output.Dispose();
@@ -10189,7 +10189,7 @@ namespace RefrigtzChessPortable
                         ah1.Dispose();
                         if (ac)
                             return;
-                         //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
+                        //StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                         Color a = Color.Gray;
                         if (Order == -1)
                             a = Color.Brown;
@@ -10471,7 +10471,7 @@ namespace RefrigtzChessPortable
                             }
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
-                                 for (var i = 0; i < 1; i++)
+                    for (var i = 0; i < 1; i++)
                         for (var j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //make regard
@@ -10488,7 +10488,7 @@ namespace RefrigtzChessPortable
                             }
                             Order = COrder; ChessRules.CurrentOrder = CDummy;
                         }
-   }
+                }
             }
 
         }
@@ -11988,7 +11988,7 @@ namespace RefrigtzChessPortable
                 AllDraw.NextColumn = KingOnTable[i].KingThinking[k].RowColumnKing[j][1];
             }
             else//king
-                 if (Kind == 7||Kind==-7)
+                 if (Kind == 7 || Kind == -7)
             {
                 AllDraw.LastRow = CastlingOnTable[i].CastlingThinking[k].Row;
                 AllDraw.LastColumn = CastlingOnTable[i].CastlingThinking[k].Column;
@@ -12088,7 +12088,7 @@ namespace RefrigtzChessPortable
                     return true;
             }
             else//king
-    if (Kind == 7|| Kind == -7)
+    if (Kind == 7 || Kind == -7)
             {
                 bool ac = false;
                 int HaKild = HaveKilled;
@@ -12343,7 +12343,7 @@ namespace RefrigtzChessPortable
                 }
             }
             else//king
-            if (Kind == 7|| Kind == -7)
+            if (Kind == 7 || Kind == -7)
             {
                 if ((CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsPenaltyAction() != 0 && CastlingOnTable[i].CastlingThinking[k].PenaltyRegardListCastling[j].IsRewardAction() == 1 && AStarGreedyi == 1) || ((Do == 1 || AA) && UsePenaltyRegardMechnisamT) || CastlingOnTable[i].WinOcuuredatChiled >= 1 || CastlingOnTable[i].WinOcuuredatChiled >= 2 || CastlingOnTable[i].WinOcuuredatChiled >= 3)
                 {
@@ -12450,7 +12450,7 @@ namespace RefrigtzChessPortable
                 Ki6 = j;
             }
             else//king
-                if (Kind == 7|| Kind == -7)
+                if (Kind == 7 || Kind == -7)
             {
                 RW7 = i;
                 CL7 = k;
@@ -12571,7 +12571,7 @@ namespace RefrigtzChessPortable
                             if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                                 return true;
                         }
-                       if (!KillerForce(ref HaveKilled))
+                        if (!KillerForce(ref HaveKilled))
                             return true;
                         //When Soldeirs is Greater than Others these Set Max.
                         if (MaxLess1 > MaxLess2)
@@ -12697,7 +12697,7 @@ namespace RefrigtzChessPortable
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                   if (!KillerForce(ref HaveKilled))
+                    if (!KillerForce(ref HaveKilled))
                         return true;
                     if (MaxLess2 > MaxLess1)
                         MaxLess1 = -1;
@@ -12803,7 +12803,7 @@ namespace RefrigtzChessPortable
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                   if (!KillerForce(ref HaveKilled))
+                    if (!KillerForce(ref HaveKilled))
                         return true;
                     if (MaxLess3 > MaxLess1)
                         MaxLess1 = -1;
@@ -12906,7 +12906,7 @@ namespace RefrigtzChessPortable
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                   if (!KillerForce(ref HaveKilled))
+                    if (!KillerForce(ref HaveKilled))
                         return true;
                     if (MaxLess4 > MaxLess1)
                         MaxLess1 = -1;
@@ -13012,7 +13012,7 @@ namespace RefrigtzChessPortable
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                   if (!KillerForce(ref HaveKilled))
+                    if (!KillerForce(ref HaveKilled))
                         return true;
 
                     if (MaxLess5 > MaxLess1)
@@ -13116,7 +13116,7 @@ namespace RefrigtzChessPortable
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                   if (!KillerForce(ref HaveKilled))
+                    if (!KillerForce(ref HaveKilled))
                         return true;
                     if (MaxLess6 > MaxLess1)
                         MaxLess1 = -1;
@@ -13165,7 +13165,7 @@ namespace RefrigtzChessPortable
                 {
                 }
             }
-            else if (Kind == 7|| Kind == -7)
+            else if (Kind == 7 || Kind == -7)
             {
                 bool ac = false;
                 bool AAA = AA;
@@ -13223,7 +13223,7 @@ namespace RefrigtzChessPortable
                         if ((!KiilledForce(ref HaveKilled)) && (HaveKilled < 0))
                             return true;
                     }
-                   if (!KillerForce(ref HaveKilled))
+                    if (!KillerForce(ref HaveKilled))
                         return true;
                     if (MaxLess7 > MaxLess1)
                         MaxLess1 = -1;
@@ -13237,7 +13237,7 @@ namespace RefrigtzChessPortable
                         MaxLess5 = -1;
                     if (MaxLess7 > MaxLess5)
                         MaxLess6 = -1;
-                   
+
                     if (AStarGreedyi == 1)
                     {
                         OutputHeuristic(Order);
@@ -13520,7 +13520,7 @@ namespace RefrigtzChessPortable
 
             }
             else
-    if (Kind == 7|| Kind == -7)
+    if (Kind == 7 || Kind == -7)
             {
                 bool A = false;
 
@@ -14609,7 +14609,7 @@ namespace RefrigtzChessPortable
             }
         }
         //main section of king Heuristic
-        int[,] HeuristicAStarGreadySearchCastling(int kin,ref int[,] TableHeuristic, int i, int AStarGreedyi, Color a, int Order, bool CurrentTableHeuristic, ref bool Act)
+        int[,] HeuristicAStarGreadySearchCastling(int kin, ref int[,] TableHeuristic, int i, int AStarGreedyi, Color a, int Order, bool CurrentTableHeuristic, ref bool Act)
         {
 
             Object O = new Object();
@@ -16159,7 +16159,7 @@ namespace RefrigtzChessPortable
                 lock (Omm)
                 {
                     //if (AStarGreedyi > MaxAStarGreedy)
-                        //return TableHeuristic;
+                    //return TableHeuristic;
                 }
                 bool Act = false;
                 if (Order == 1)
@@ -16720,7 +16720,7 @@ namespace RefrigtzChessPortable
                             KingOnTable[iIndex].WinOcuuredatChiled = Win;
                         }
                     }
-                    if (KindIndex == 7||KindIndex==-7)
+                    if (KindIndex == 7 || KindIndex == -7)
                     {
 
                         Order = DummyOrder;
@@ -17944,42 +17944,42 @@ namespace RefrigtzChessPortable
             //soldoer
             if (Kind == 1)
             {
-                
-                    //soldier
-                    for (var i = 0; i < SodierMidle; i++)
+
+                //soldier
+                for (var i = 0; i < SodierMidle; i++)
+                {
+                    if (SolderesOnTable == null || SolderesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Count; j++)
                     {
-                        if (SolderesOnTable == null || SolderesOnTable[i] == null)
+                        if (!(SolderesOnTable[i].SoldierThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Count; j++)
-                        {
-                            if (!(SolderesOnTable[i].SoldierThinking[0].IsSup[j]))
-                                continue;
 
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][0] += SolderesOnTable[ii].SoldierThinking[0].HeuristicAttackValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][1] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][2] += SolderesOnTable[ii].SoldierThinking[0].HeuristicSelfSupportedValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][3] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][4] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedSupportSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][5] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedAttackValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][6] += SolderesOnTable[ii].SoldierThinking[0].HeuristicDistributionValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][7] += SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][8] += SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][9] += SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][0] += SolderesOnTable[ii].SoldierThinking[0].HeuristicAttackValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][1] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][2] += SolderesOnTable[ii].SoldierThinking[0].HeuristicSelfSupportedValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][3] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][4] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedSupportSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][5] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedAttackValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][6] += SolderesOnTable[ii].SoldierThinking[0].HeuristicDistributionValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][7] += SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][8] += SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][9] += SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup;
 
 
-                        }
                     }
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicAttackValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedSupportSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedAttackValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicDistributionValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup = 0;
-                
+                }
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicAttackValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicSelfSupportedValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedSupportSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedAttackValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicDistributionValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -17991,42 +17991,42 @@ namespace RefrigtzChessPortable
             //soldoer
             if (Kind == 1)
             {
-               
 
-                    for (var i = SodierMidle; i < SodierHigh; i++)
+
+                for (var i = SodierMidle; i < SodierHigh; i++)
+                {
+                    if (SolderesOnTable == null || SolderesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Count; j++)
                     {
-                        if (SolderesOnTable == null || SolderesOnTable[i] == null)
+                        if (!(SolderesOnTable[i].SoldierThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Count; j++)
-                        {
-                            if (!(SolderesOnTable[i].SoldierThinking[0].IsSup[j]))
-                                continue;
 
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][0] += SolderesOnTable[ii].SoldierThinking[0].HeuristicAttackValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][1] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][2] += SolderesOnTable[ii].SoldierThinking[0].HeuristicSelfSupportedValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][3] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][4] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedSupportSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][5] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedAttackValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][6] += SolderesOnTable[ii].SoldierThinking[0].HeuristicDistributionValueSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][7] += SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][8] += SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup;
-                            this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][9] += SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][0] += SolderesOnTable[ii].SoldierThinking[0].HeuristicAttackValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][1] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][2] += SolderesOnTable[ii].SoldierThinking[0].HeuristicSelfSupportedValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][3] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][4] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedSupportSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][5] += SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedAttackValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][6] += SolderesOnTable[ii].SoldierThinking[0].HeuristicDistributionValueSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][7] += SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][8] += SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup;
+                        this.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder[j][9] += SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup;
 
 
-                        }
                     }
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicAttackValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedSupportSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedAttackValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicDistributionValueSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup = 0;
-                    SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup = 0;
-                
+                }
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicAttackValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicSelfSupportedValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedMovementValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedSupportSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicReducedAttackValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicDistributionValueSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicKingSafeSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicFromCenterSup = 0;
+                SolderesOnTable[ii].SoldierThinking[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18058,41 +18058,41 @@ namespace RefrigtzChessPortable
             //soldoer
             if (Kind == 2)//elephant
             {
-               
-                    for (var i = 0; i < ElefantMidle; i++)
+
+                for (var i = 0; i < ElefantMidle; i++)
+                {
+                    if (ElephantOnTable == null || ElephantOnTable[i] == null)
+                        continue;
+
+                    for (var j = 0; j < ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Count; j++)
                     {
-                        if (ElephantOnTable == null || ElephantOnTable[i] == null)
+                        if (!(ElephantOnTable[i].ElefantThinking[0].IsSup[j]))
                             continue;
-
-                        for (var j = 0; j < ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Count; j++)
-                        {
-                            if (!(ElephantOnTable[i].ElefantThinking[0].IsSup[j]))
-                                continue;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][0] += ElephantOnTable[ii].ElefantThinking[0].HeuristicAttackValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][1] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][2] += ElephantOnTable[ii].ElefantThinking[0].HeuristicSelfSupportedValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][3] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][4] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedSupportSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][5] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedAttackValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][6] += ElephantOnTable[ii].ElefantThinking[0].HeuristicDistributionValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][7] += ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][8] += ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][9] += ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][0] += ElephantOnTable[ii].ElefantThinking[0].HeuristicAttackValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][1] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][2] += ElephantOnTable[ii].ElefantThinking[0].HeuristicSelfSupportedValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][3] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][4] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedSupportSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][5] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedAttackValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][6] += ElephantOnTable[ii].ElefantThinking[0].HeuristicDistributionValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][7] += ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][8] += ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][9] += ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup;
 
 
-                        }
                     }
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicAttackValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedSupportSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedAttackValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicDistributionValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup = 0;
-                
+                }
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicAttackValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicSelfSupportedValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedSupportSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedAttackValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicDistributionValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18104,41 +18104,41 @@ namespace RefrigtzChessPortable
             //soldoer
             if (Kind == 2)//elephant
             {
-                
-                    for (var i = 0; i < ElefantMidle; i++)
+
+                for (var i = 0; i < ElefantMidle; i++)
+                {
+                    if (ElephantOnTable == null || ElephantOnTable[i] == null)
+                        continue;
+
+                    for (var j = 0; j < ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Count; j++)
                     {
-                        if (ElephantOnTable == null || ElephantOnTable[i] == null)
+                        if (!(ElephantOnTable[i].ElefantThinking[0].IsSup[j]))
                             continue;
-
-                        for (var j = 0; j < ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Count; j++)
-                        {
-                            if (!(ElephantOnTable[i].ElefantThinking[0].IsSup[j]))
-                                continue;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][0] += ElephantOnTable[ii].ElefantThinking[0].HeuristicAttackValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][1] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][2] += ElephantOnTable[ii].ElefantThinking[0].HeuristicSelfSupportedValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][3] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][4] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedSupportSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][5] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedAttackValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][6] += ElephantOnTable[ii].ElefantThinking[0].HeuristicDistributionValueSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][7] += ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][8] += ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup;
-                            this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][9] += ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][0] += ElephantOnTable[ii].ElefantThinking[0].HeuristicAttackValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][1] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][2] += ElephantOnTable[ii].ElefantThinking[0].HeuristicSelfSupportedValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][3] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][4] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedSupportSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][5] += ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedAttackValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][6] += ElephantOnTable[ii].ElefantThinking[0].HeuristicDistributionValueSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][7] += ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][8] += ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup;
+                        this.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant[j][9] += ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup;
 
 
-                        }
                     }
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicAttackValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedSupportSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedAttackValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicDistributionValueSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup = 0;
-                    ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup = 0;
-               
+                }
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicAttackValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicSelfSupportedValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedMovementValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedSupportSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicReducedAttackValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicDistributionValueSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicKingSafeSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicFromCenterSup = 0;
+                ElephantOnTable[ii].ElefantThinking[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18168,42 +18168,42 @@ namespace RefrigtzChessPortable
 
             if (Kind == 3)//hourse
             {
-               
-                    for (var i = 0; i < HourseMidle; i++)
+
+                for (var i = 0; i < HourseMidle; i++)
+                {
+                    if (HoursesOnTable == null || HoursesOnTable[i] == null)
+                        continue;
+
+                    for (var j = 0; j < HoursesOnTable[i].HourseThinking[0].HeuristicListHourse.Count; j++)
                     {
-                        if (HoursesOnTable == null || HoursesOnTable[i] == null)
+                        if (!(HoursesOnTable[i].HourseThinking[0].IsSup[j]))
                             continue;
-
-                        for (var j = 0; j < HoursesOnTable[i].HourseThinking[0].HeuristicListHourse.Count; j++)
-                        {
-                            if (!(HoursesOnTable[i].HourseThinking[0].IsSup[j]))
-                                continue;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][0] += HoursesOnTable[ii].HourseThinking[0].HeuristicAttackValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][1] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][2] += HoursesOnTable[ii].HourseThinking[0].HeuristicSelfSupportedValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][3] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][4] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedSupportSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][5] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedAttackValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][6] += HoursesOnTable[ii].HourseThinking[0].HeuristicDistributionValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][7] += HoursesOnTable[ii].HourseThinking[0].HeuristicKingSafeSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][8] += HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][9] += HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][0] += HoursesOnTable[ii].HourseThinking[0].HeuristicAttackValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][1] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][2] += HoursesOnTable[ii].HourseThinking[0].HeuristicSelfSupportedValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][3] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][4] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedSupportSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][5] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedAttackValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][6] += HoursesOnTable[ii].HourseThinking[0].HeuristicDistributionValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][7] += HoursesOnTable[ii].HourseThinking[0].HeuristicKingSafeSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][8] += HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][9] += HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup;
 
 
-                        }
                     }
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicAttackValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicReducedSupportSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicReducedAttackValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicDistributionValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicKingSafeSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup = 0;
+                }
+                HoursesOnTable[ii].HourseThinking[0].HeuristicAttackValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicSelfSupportedValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicReducedSupportSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicReducedAttackValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicDistributionValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicKingSafeSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup = 0;
 
-               
+
             }
 
         }
@@ -18214,40 +18214,40 @@ namespace RefrigtzChessPortable
 
             if (Kind == 3)//hourse
             {
-               
-                    for (var i = HourseMidle; i < HourseHight; i++)
+
+                for (var i = HourseMidle; i < HourseHight; i++)
+                {
+                    if (HoursesOnTable == null || HoursesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < HoursesOnTable[i].HourseThinking[0].HeuristicListHourse.Count; j++)
                     {
-                        if (HoursesOnTable == null || HoursesOnTable[i] == null)
+                        if (!(HoursesOnTable[i].HourseThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < HoursesOnTable[i].HourseThinking[0].HeuristicListHourse.Count; j++)
-                        {
-                            if (!(HoursesOnTable[i].HourseThinking[0].IsSup[j]))
-                                continue;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][0] += HoursesOnTable[ii].HourseThinking[0].HeuristicAttackValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][1] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][2] += HoursesOnTable[ii].HourseThinking[0].HeuristicSelfSupportedValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][3] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][4] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedSupportSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][5] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedAttackValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][6] += HoursesOnTable[ii].HourseThinking[0].HeuristicDistributionValueSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][7] += HoursesOnTable[ii].HourseThinking[0].HeuristicKingSafeSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][8] += HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup;
-                            this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][9] += HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][0] += HoursesOnTable[ii].HourseThinking[0].HeuristicAttackValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][1] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][2] += HoursesOnTable[ii].HourseThinking[0].HeuristicSelfSupportedValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][3] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][4] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedSupportSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][5] += HoursesOnTable[ii].HourseThinking[0].HeuristicReducedAttackValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][6] += HoursesOnTable[ii].HourseThinking[0].HeuristicDistributionValueSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][7] += HoursesOnTable[ii].HourseThinking[0].HeuristicKingSafeSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][8] += HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup;
+                        this.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse[j][9] += HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup;
 
 
-                        }
                     }
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicAttackValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicReducedSupportSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicReducedAttackValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicDistributionValueSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicKingSafeSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup = 0;
-                    HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup = 0;
-                
+                }
+                HoursesOnTable[ii].HourseThinking[0].HeuristicAttackValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicSelfSupportedValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicReducedMovementValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicReducedSupportSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicReducedAttackValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicDistributionValueSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicKingSafeSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicFromCenterSup = 0;
+                HoursesOnTable[ii].HourseThinking[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18276,41 +18276,41 @@ namespace RefrigtzChessPortable
 
             if (Kind == 4)//Castle
             {
-               
-                    for (var i = 0; i < CastleMidle; i++)
+
+                for (var i = 0; i < CastleMidle; i++)
+                {
+                    if (CastlesOnTable == null || CastlesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Count; j++)
                     {
-                        if (CastlesOnTable == null || CastlesOnTable[i] == null)
+                        if (!(CastlesOnTable[i].CastleThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Count; j++)
-                        {
-                            if (!(CastlesOnTable[i].CastleThinking[0].IsSup[j]))
-                                continue;
 
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][0] += CastlesOnTable[ii].CastleThinking[0].HeuristicAttackValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][1] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][2] += CastlesOnTable[ii].CastleThinking[0].HeuristicSelfSupportedValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][3] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][4] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedSupportSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][5] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedAttackValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][6] += CastlesOnTable[ii].CastleThinking[0].HeuristicDistributionValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][7] += CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][8] += CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][9] += CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][0] += CastlesOnTable[ii].CastleThinking[0].HeuristicAttackValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][1] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][2] += CastlesOnTable[ii].CastleThinking[0].HeuristicSelfSupportedValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][3] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][4] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedSupportSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][5] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedAttackValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][6] += CastlesOnTable[ii].CastleThinking[0].HeuristicDistributionValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][7] += CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][8] += CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][9] += CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup;
 
 
-                        }
                     }
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicAttackValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicReducedSupportSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicReducedAttackValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicDistributionValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup = 0;
-                
+                }
+                CastlesOnTable[ii].CastleThinking[0].HeuristicAttackValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicSelfSupportedValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicReducedSupportSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicReducedAttackValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicDistributionValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18321,41 +18321,41 @@ namespace RefrigtzChessPortable
 
             if (Kind == 4)//Castle
             {
-               
-                    for (var i = CastleMidle; i < CastleHigh; i++)
+
+                for (var i = CastleMidle; i < CastleHigh; i++)
+                {
+                    if (CastlesOnTable == null || CastlesOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Count; j++)
                     {
-                        if (CastlesOnTable == null || CastlesOnTable[i] == null)
+                        if (!(CastlesOnTable[i].CastleThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Count; j++)
-                        {
-                            if (!(CastlesOnTable[i].CastleThinking[0].IsSup[j]))
-                                continue;
 
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][0] += CastlesOnTable[ii].CastleThinking[0].HeuristicAttackValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][1] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][2] += CastlesOnTable[ii].CastleThinking[0].HeuristicSelfSupportedValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][3] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][4] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedSupportSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][5] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedAttackValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][6] += CastlesOnTable[ii].CastleThinking[0].HeuristicDistributionValueSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][7] += CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][8] += CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup;
-                            this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][9] += CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][0] += CastlesOnTable[ii].CastleThinking[0].HeuristicAttackValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][1] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][2] += CastlesOnTable[ii].CastleThinking[0].HeuristicSelfSupportedValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][3] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][4] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedSupportSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][5] += CastlesOnTable[ii].CastleThinking[0].HeuristicReducedAttackValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][6] += CastlesOnTable[ii].CastleThinking[0].HeuristicDistributionValueSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][7] += CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][8] += CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup;
+                        this.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle[j][9] += CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup;
 
 
-                        }
                     }
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicAttackValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicReducedSupportSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicReducedAttackValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicDistributionValueSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup = 0;
-                    CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup = 0;
-                
+                }
+                CastlesOnTable[ii].CastleThinking[0].HeuristicAttackValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicSelfSupportedValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicReducedMovementValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicReducedSupportSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicReducedAttackValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicDistributionValueSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicKingSafeSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicFromCenterSup = 0;
+                CastlesOnTable[ii].CastleThinking[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18386,41 +18386,41 @@ namespace RefrigtzChessPortable
             //minister
             if (Kind == 5)
             {
-                
-                    for (var i = 0; i < MinisterMidle; i++)
+
+                for (var i = 0; i < MinisterMidle; i++)
+                {
+                    if (MinisterOnTable == null || MinisterOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Count; j++)
                     {
-                        if (MinisterOnTable == null || MinisterOnTable[i] == null)
+                        if (!(MinisterOnTable[i].MinisterThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Count; j++)
-                        {
-                            if (!(MinisterOnTable[i].MinisterThinking[0].IsSup[j]))
-                                continue;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][0] += MinisterOnTable[ii].MinisterThinking[0].HeuristicAttackValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][1] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][2] += MinisterOnTable[ii].MinisterThinking[0].HeuristicSelfSupportedValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][3] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][4] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedSupportSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][5] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedAttackValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][6] += MinisterOnTable[ii].MinisterThinking[0].HeuristicDistributionValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][7] += MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][8] += MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][9] += MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][0] += MinisterOnTable[ii].MinisterThinking[0].HeuristicAttackValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][1] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][2] += MinisterOnTable[ii].MinisterThinking[0].HeuristicSelfSupportedValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][3] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][4] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedSupportSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][5] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedAttackValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][6] += MinisterOnTable[ii].MinisterThinking[0].HeuristicDistributionValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][7] += MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][8] += MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][9] += MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup;
 
 
 
-                        }
                     }
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicAttackValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedSupportSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedAttackValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicDistributionValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup = 0;
-             }
+                }
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicAttackValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicSelfSupportedValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedSupportSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedAttackValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicDistributionValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup = 0;
+            }
 
         }
         void ServeISSupMinisterBrown(int Order, int Kind,
@@ -18431,41 +18431,41 @@ namespace RefrigtzChessPortable
             //minister
             if (Kind == 5)
             {
-                
-                    for (var i = MinisterMidle; i < MinisterHigh; i++)
+
+                for (var i = MinisterMidle; i < MinisterHigh; i++)
+                {
+                    if (MinisterOnTable == null || MinisterOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Count; j++)
                     {
-                        if (MinisterOnTable == null || MinisterOnTable[i] == null)
+                        if (!(MinisterOnTable[i].MinisterThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Count; j++)
-                        {
-                            if (!(MinisterOnTable[i].MinisterThinking[0].IsSup[j]))
-                                continue;
 
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][0] += MinisterOnTable[ii].MinisterThinking[0].HeuristicAttackValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][1] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][2] += MinisterOnTable[ii].MinisterThinking[0].HeuristicSelfSupportedValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][3] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][4] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedSupportSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][5] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedAttackValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][6] += MinisterOnTable[ii].MinisterThinking[0].HeuristicDistributionValueSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][7] += MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][8] += MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup;
-                            this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][9] += MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][0] += MinisterOnTable[ii].MinisterThinking[0].HeuristicAttackValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][1] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][2] += MinisterOnTable[ii].MinisterThinking[0].HeuristicSelfSupportedValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][3] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][4] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedSupportSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][5] += MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedAttackValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][6] += MinisterOnTable[ii].MinisterThinking[0].HeuristicDistributionValueSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][7] += MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][8] += MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup;
+                        this.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister[j][9] += MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup;
 
 
-                        }
                     }
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicAttackValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedSupportSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedAttackValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicDistributionValueSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup = 0;
-                    MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup = 0;
-                
+                }
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicAttackValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicSelfSupportedValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedMovementValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedSupportSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicReducedAttackValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicDistributionValueSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicKingSafeSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicFromCenterSup = 0;
+                MinisterOnTable[ii].MinisterThinking[0].HeuristicKingDangourSup = 0;
+
             }
 
         }
@@ -18498,42 +18498,42 @@ namespace RefrigtzChessPortable
 
             if (Kind == 6)//king
             {
-               
-                    for (var i = 0; i < KingMidle; i++)
+
+                for (var i = 0; i < KingMidle; i++)
+                {
+                    if (KingOnTable == null || KingOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < KingOnTable[i].KingThinking[0].HeuristicListKing.Count; j++)
                     {
-                        if (KingOnTable == null || KingOnTable[i] == null)
+                        if (!(KingOnTable[i].KingThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < KingOnTable[i].KingThinking[0].HeuristicListKing.Count; j++)
-                        {
-                            if (!(KingOnTable[i].KingThinking[0].IsSup[j]))
-                                continue;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][0] += KingOnTable[ii].KingThinking[0].HeuristicAttackValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][1] += KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][2] += KingOnTable[ii].KingThinking[0].HeuristicSelfSupportedValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][3] += KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][4] += KingOnTable[ii].KingThinking[0].HeuristicReducedSupportSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][5] += KingOnTable[ii].KingThinking[0].HeuristicReducedAttackValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][6] += KingOnTable[ii].KingThinking[0].HeuristicDistributionValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][7] += KingOnTable[ii].KingThinking[0].HeuristicKingSafeSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][8] += KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][9] += KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][0] += KingOnTable[ii].KingThinking[0].HeuristicAttackValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][1] += KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][2] += KingOnTable[ii].KingThinking[0].HeuristicSelfSupportedValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][3] += KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][4] += KingOnTable[ii].KingThinking[0].HeuristicReducedSupportSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][5] += KingOnTable[ii].KingThinking[0].HeuristicReducedAttackValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][6] += KingOnTable[ii].KingThinking[0].HeuristicDistributionValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][7] += KingOnTable[ii].KingThinking[0].HeuristicKingSafeSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][8] += KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][9] += KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup;
 
 
 
-                        }
                     }
-                    KingOnTable[ii].KingThinking[0].HeuristicAttackValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicReducedSupportSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicReducedAttackValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicDistributionValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicKingSafeSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup = 0;
+                }
+                KingOnTable[ii].KingThinking[0].HeuristicAttackValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicSelfSupportedValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicReducedSupportSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicReducedAttackValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicDistributionValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicKingSafeSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup = 0;
 
-                
+
             }
 
         }
@@ -18545,43 +18545,43 @@ namespace RefrigtzChessPortable
 
             if (Kind == 6)//king
             {
-                
-                    for (var i = KingMidle; i < KingHigh; i++)
+
+                for (var i = KingMidle; i < KingHigh; i++)
+                {
+                    if (KingOnTable == null || KingOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < KingOnTable[i].KingThinking[0].HeuristicListKing.Count; j++)
                     {
-                        if (KingOnTable == null || KingOnTable[i] == null)
+                        if (!(KingOnTable[i].KingThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < KingOnTable[i].KingThinking[0].HeuristicListKing.Count; j++)
-                        {
-                            if (!(KingOnTable[i].KingThinking[0].IsSup[j]))
-                                continue;
 
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][0] += KingOnTable[ii].KingThinking[0].HeuristicAttackValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][1] += KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][2] += KingOnTable[ii].KingThinking[0].HeuristicSelfSupportedValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][3] += KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][4] += KingOnTable[ii].KingThinking[0].HeuristicReducedSupportSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][5] += KingOnTable[ii].KingThinking[0].HeuristicReducedAttackValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][6] += KingOnTable[ii].KingThinking[0].HeuristicDistributionValueSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][7] += KingOnTable[ii].KingThinking[0].HeuristicKingSafeSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][8] += KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup;
-                            this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][9] += KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][0] += KingOnTable[ii].KingThinking[0].HeuristicAttackValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][1] += KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][2] += KingOnTable[ii].KingThinking[0].HeuristicSelfSupportedValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][3] += KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][4] += KingOnTable[ii].KingThinking[0].HeuristicReducedSupportSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][5] += KingOnTable[ii].KingThinking[0].HeuristicReducedAttackValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][6] += KingOnTable[ii].KingThinking[0].HeuristicDistributionValueSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][7] += KingOnTable[ii].KingThinking[0].HeuristicKingSafeSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][8] += KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup;
+                        this.KingOnTable[i].KingThinking[0].HeuristicListKing[j][9] += KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup;
 
 
 
-                        }
                     }
-                    KingOnTable[ii].KingThinking[0].HeuristicAttackValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicReducedSupportSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicReducedAttackValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicDistributionValueSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicKingSafeSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup = 0;
-                    KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup = 0;
+                }
+                KingOnTable[ii].KingThinking[0].HeuristicAttackValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicSelfSupportedValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicReducedMovementValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicReducedSupportSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicReducedAttackValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicDistributionValueSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicKingSafeSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicFromCenterSup = 0;
+                KingOnTable[ii].KingThinking[0].HeuristicKingDangourSup = 0;
 
-                
+
             }
 
         }
@@ -18613,43 +18613,43 @@ namespace RefrigtzChessPortable
 
             if (Kind == 7 || Kind == -7)//king
             {
-                
-                    for (var i = 0; i < 1; i++)
+
+                for (var i = 0; i < 1; i++)
+                {
+                    if (CastlingOnTable == null || CastlingOnTable[i] == null)
+                        continue;
+                    for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
                     {
-                        if (CastlingOnTable == null || CastlingOnTable[i] == null)
+                        if (!(CastlingOnTable[i].CastlingThinking[0].IsSup[j]))
                             continue;
-                        for (var j = 0; j < CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count; j++)
-                        {
-                            if (!(CastlingOnTable[i].CastlingThinking[0].IsSup[j]))
-                                continue;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup;
-                            this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][0] += CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][1] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][2] += CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][3] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][4] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][5] += CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][6] += CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][7] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][8] += CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup;
+                        this.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling[j][9] += CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup;
 
 
 
-                        }
                     }
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup = 0;
-                    CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup = 0;
-
                 }
-           
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicAttackValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicSelfSupportedValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedMovementValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedSupportSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicReducedAttackValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicDistributionValueSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicKingSafeSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicFromCenterSup = 0;
+                CastlingOnTable[ii].CastlingThinking[0].HeuristicKingDangourSup = 0;
+
+            }
+
 
         }
         void ServeISSupCastlingBrown(int Order, int Kind,
@@ -18716,12 +18716,12 @@ namespace RefrigtzChessPortable
             {
 
                 //For Gray Soldeirs Objects. 
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, SodierMidle, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, i =>
+{
+var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+H.Wait();
+H.Dispose();
+});
 
             }
             return this;
@@ -18756,7 +18756,7 @@ namespace RefrigtzChessPortable
                         MaxAStarGreedy = CurrentMaxLevel;
                     }
                     else
-                   //if (CurrentMaxLevel >= MaxAStarGreedy)
+                        //if (CurrentMaxLevel >= MaxAStarGreedy)
                         return true;
 
                     if (CalIdle == 2)
@@ -18951,25 +18951,7 @@ namespace RefrigtzChessPortable
                         //If There is no Thinking Movments on Current Object  
                         if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count == 0)
                         {
-                            //For All Movable Gray Solders.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.SodierMovments, j =>
-                            {
-                                //Thinking of Gray Solder Operation.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    SolderesOnTable[i].SoldierThinking[0].ThinkingBegin = true;
-                                    SolderesOnTable[i].SoldierThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count != 0)
-                                    {
-                                        SolderesOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedytSodlerThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -18981,6 +18963,29 @@ namespace RefrigtzChessPortable
             }
             return this;
         }
+        AllDraw InitiateAStarGreedytSodlerThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+         )
+        {
+
+            //For All Movable Gray Solders.
+            //Thinking of Gray Solder Operation.
+            Object OOO = new Object();
+            lock (OOO)
+            {
+                SolderesOnTable[i].SoldierThinking[0].ThinkingBegin = true;
+                SolderesOnTable[i].SoldierThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinking[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+                if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count != 0)
+                {
+                    SolderesOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+            }
+
+            return this;
+        }
         //main initiation of elephant Gray
         AllDraw InitiateAStarGreedytElephantGray(int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
             )
@@ -18988,12 +18993,12 @@ namespace RefrigtzChessPortable
             Object oo = new Object();
             lock (oo)
             {
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, ElefantMidle, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, i =>
+{
+var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+H.Wait();
+H.Dispose();
+});
             }
             return this;
         }
@@ -19030,25 +19035,7 @@ namespace RefrigtzChessPortable
                         //If There is Not Thinking Objetive List Elephant Gray. 
                         if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count == 0)
                         {
-                            //For All Possible Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.ElefantMovments, j =>
-                            {
-                                //Operational Thinking Gray Elephant. 
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    ElephantOnTable[i].ElefantThinking[0].ThinkingBegin = true;
-                                    ElephantOnTable[i].ElefantThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count != 0)
-                                    {
-                                        ElephantOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedytElephantThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19060,6 +19047,30 @@ namespace RefrigtzChessPortable
             }
             return this;
         }
+        AllDraw InitiateAStarGreedytElephantThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+         )
+        {
+
+
+            Object O = new Object();
+            lock (O)
+            {
+
+
+                ElephantOnTable[i].ElefantThinking[0].ThinkingBegin = true;
+                ElephantOnTable[i].ElefantThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinking[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+                if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count != 0)
+                {
+                    ElephantOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+
+            }
+            return this;
+        }
         //main initiation of hourse Gray
         AllDraw InitiateAStarGreedythHourseGray(int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
             )
@@ -19068,12 +19079,12 @@ namespace RefrigtzChessPortable
             lock (oo)
             {
                 //For All Gray Hourse Objects.
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, HourseMidle, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, i =>
+{
+var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+H.Wait();
+H.Dispose();
+});
             }
             return this;
         }
@@ -19110,25 +19121,7 @@ namespace RefrigtzChessPortable
                         //When There is Not HourseList Count. 
                         if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count == 0)
                         {
-                            //For All Possible Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.HourseMovments, j =>
-                            {
-                                //Thinking of Gray Hourse Oprational.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    HoursesOnTable[i].HourseThinking[0].ThinkingBegin = true;
-                                    HoursesOnTable[i].HourseThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count != 0)
-                                    {
-                                        HoursesOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythHourseThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19140,6 +19133,35 @@ namespace RefrigtzChessPortable
             }
             return this;
         }
+        AllDraw InitiateAStarGreedythHourseThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+        )
+        {
+
+            //For All Gray Hourse Objects.
+            Object O = new Object();
+            lock (O)
+            {
+
+                //For All Possible Movments.
+
+                //Thinking of Gray Hourse Oprational.
+
+                HoursesOnTable[i].HourseThinking[0].ThinkingBegin = true;
+                HoursesOnTable[i].HourseThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinking[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+                if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count != 0)
+                {
+                    HoursesOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+
+
+
+                return this;
+            }
+        }
         //main initiation of Castle Gray
         AllDraw InitiateAStarGreedythCastleGray(int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
        )
@@ -19148,12 +19170,12 @@ namespace RefrigtzChessPortable
             lock (oo)
             {
                 //For All Possible Gray Castles Objects.
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, CastleMidle, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, i =>
+{
+var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+H.Wait();
+H.Dispose();
+});
             }
             return this;
         }
@@ -19190,26 +19212,7 @@ namespace RefrigtzChessPortable
                         //When Count of Table Castles of Thinking Not Exist Do Operational.
                         if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count == 0)
                         {
-                            //For All Possible Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.CastleMovments, j =>
-                            {
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    //Thinking of Gray Castles Operational.
-                                    CastlesOnTable[i].CastleThinking[0].ThinkingBegin = true;
-                                    CastlesOnTable[i].CastleThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinking[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-
-                                    if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count != 0)
-                                    {
-                                        CastlesOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythCastleThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19219,6 +19222,32 @@ namespace RefrigtzChessPortable
                     }
                 }
             }
+            return this;
+        }
+        AllDraw InitiateAStarGreedythCastleThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+   )
+        {
+
+            //For All Possible Movments.
+
+            Object OOO = new Object();
+            lock (OOO)
+            {
+                //Thinking of Gray Castles Operational.
+                CastlesOnTable[i].CastleThinking[0].ThinkingBegin = true;
+                CastlesOnTable[i].CastleThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinking[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+
+                if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count != 0)
+                {
+                    CastlesOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+            }
+
+
             return this;
         }
         //main initiation of minister Gray
@@ -19271,25 +19300,7 @@ namespace RefrigtzChessPortable
                         //If There is Not Minister Of Gray In The Thinking Table List.   
                         if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count == 0)
                         {
-                            //For All Possible Movments.
-                            // //ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.MinisterMovments, j =>
-                            {
-                                //Thinking of Gray Minister Operational.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    MinisterOnTable[i].MinisterThinking[0].ThinkingBegin = true;
-                                    MinisterOnTable[i].MinisterThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count != 0)
-                                    {
-                                        MinisterOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythMinisterThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19298,6 +19309,39 @@ namespace RefrigtzChessPortable
                         }
                     }
                 }
+            }
+            return this;
+        }
+        AllDraw InitiateAStarGreedythMinisterThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+      )
+        {
+            Object oo = new Object();
+            lock (oo)
+            {
+                //For All Possible Gray Minister Movments.
+                Object O = new Object();
+                lock (O)
+                {
+
+                    //For All Possible Movments.
+
+                    //Thinking of Gray Minister Operational.
+                    Object OOO = new Object();
+                    lock (OOO)
+                    {
+                        MinisterOnTable[i].MinisterThinking[0].ThinkingBegin = true;
+                        MinisterOnTable[i].MinisterThinking[0].ThinkingFinished = false;
+                        var array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinking[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
+                        array.Wait(); array.Dispose();
+                        if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count != 0)
+                        {
+                            MinisterOnTableMove[i] = true;
+                            AllDraw.ChangedInTreeOccured = true;
+
+                        }
+                    }
+                }
+
             }
             return this;
         }
@@ -19367,25 +19411,7 @@ namespace RefrigtzChessPortable
                         //When There is Not Thinking Table Gray King Movments.
                         if (KingOnTable[i].KingThinking[0].TableListKing.Count == 0)
                         {
-                            //For All Possible Gray King Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.KingMovments, j =>
-                            {
-                                //Thinking Of Gray King Operatins.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    KingOnTable[i].KingThinking[0].ThinkingBegin = true;
-                                    KingOnTable[i].KingThinking[0].ThinkingFinished = false;
-                                    ; var array = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].Thinking(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (KingOnTable[i].KingThinking[0].TableListKing.Count != 0)
-                                    {
-                                        KingOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythKingThinking(i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19394,6 +19420,34 @@ namespace RefrigtzChessPortable
                         }
                     }
                 }
+            }
+            return this;
+        }
+        AllDraw InitiateAStarGreedythKingThinking(int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+       )
+        {
+            Object oo = new Object();
+            lock (oo)
+            {
+
+                //For All Possible Gray King Movments.
+
+                //Thinking Of Gray King Operatins.
+                Object OOO = new Object();
+                lock (OOO)
+                {
+                    KingOnTable[i].KingThinking[0].ThinkingBegin = true;
+                    KingOnTable[i].KingThinking[0].ThinkingFinished = false;
+                    ; var array = Task.Factory.StartNew(() => KingOnTable[i].KingThinking[0].Thinking(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
+                    array.Wait(); array.Dispose();
+                    if (KingOnTable[i].KingThinking[0].TableListKing.Count != 0)
+                    {
+                        KingOnTableMove[i] = true;
+                        AllDraw.ChangedInTreeOccured = true;
+
+                    }
+                }
+
             }
             return this;
         }
@@ -19430,25 +19484,7 @@ namespace RefrigtzChessPortable
                         //When There is Not Thinking Table Gray Castling Movments.
                         if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count == 0)
                         {
-                            //For All Possible Gray Castling Movments.
-                            ////ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For(0, AllDraw.CastlingMovments, j =>
-                            {
-                                //Thinking Of Gray Castling Operatins.
-                                Object OOO = new Object();
-                                lock (OOO)
-                                {
-                                    CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = true;
-                                    CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = false;
-                                    var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
-                                    array.Wait(); array.Dispose();
-                                    if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count != 0)
-                                    {
-                                        CastlingOnTableMove[i] = true;
-                                        AllDraw.ChangedInTreeOccured = true;
-
-                                    }
-                                }
-                            }
+                            InitiateAStarGreedythCastlingThinking(kin, i, iii, jjj, Table, DummyOrder, DummyCurrentOrder, iAStarGreedy, ii, jj, a, Tab, Order, TB, FOUND, LeafAStarGreedy);
                         }
                         else
                         {
@@ -19457,6 +19493,30 @@ namespace RefrigtzChessPortable
                         }
                     }
                 }
+            }
+            return this;
+        }
+        AllDraw InitiateAStarGreedythCastlingThinking(int kin, int i, int iii, int jjj, int[,] Table, int DummyOrder, int DummyCurrentOrder, int iAStarGreedy, int ii, int jj, Color a, int[,] Tab, int Order, bool TB, bool FOUND, int LeafAStarGreedy//, ref Refrigtz.Timer timer, ref Refrigtz.Timer Timerint, ref int Less
+           )
+        {
+            Object oo = new Object();
+            lock (oo)
+            {
+                //For All Possible Gray Castling Movments.
+                //Thinking Of Gray Castling Operatins.
+                CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = true;
+                CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = false;
+                var array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
+                array.Wait(); array.Dispose();
+                if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count != 0)
+                {
+                    CastlingOnTableMove[i] = true;
+                    AllDraw.ChangedInTreeOccured = true;
+
+                }
+
+
+
             }
             return this;
         }

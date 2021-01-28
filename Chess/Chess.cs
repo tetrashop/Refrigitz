@@ -692,33 +692,22 @@ namespace Chess
         {
             String src = "";
             if (des[4] == '#')
-            {
-                if (des[1] == 'x')
-                {
-                    src = des.Remove(1, 1);
+            {               
+               
+                    src = des.Remove(4, 1);
 
-                    src = src.Remove(4, 1);
-
-                    src = ConLen3(src, 8);
-
-
-                }
+                    src = ConLen4(src);                
             }
 
             if (src != "")
                 return src;
 
             if (des[4] == '+')
-            {
-                if (des[1] == 'x')
-                {
-                    src = des.Remove(1, 1);
+            {               
+                   
+                    src = des.Remove(4, 1);
 
-                    src = src.Remove(4, 1);
-
-                    src = ConLen3(src, 8);
-
-                 }
+                    src = ConLen4(src);
             }
             if (src != "")
                 return src;
@@ -729,12 +718,7 @@ namespace Chess
                 if (src != "")
                     GaveOver = true;
             }
-            if (des[4] == '+')
-                src = ConLen4(des.Remove(4, 1));
-
-            if (des[1] == 'x')
-                src = ConLen4(des.Remove(1, 1));
-
+          
             if (src != "")
                 return src;
             //big castling
@@ -753,7 +737,7 @@ namespace Chess
             if (des[5] == '#')
             {
                 
-                    src = src.Remove(5, 1);
+                    src = des.Remove(5, 1);
 
                     src = ConLen5(src);
 
@@ -767,16 +751,15 @@ namespace Chess
             
             if (des[5] == '+')
             {
-                if (des[1] == 'x')
-                {
+               
                   
-                    src = src.Remove(5, 1);
+                    src = des.Remove(5, 1);
 
-                    src = ConLen4(src);
+                    src = ConLen5(src);
 
                     if (src != "")
                         return src;
-                }
+                
             }           
             return src;
         }

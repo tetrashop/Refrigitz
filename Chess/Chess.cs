@@ -553,7 +553,7 @@ namespace Chess
         {
             String src = "";
             int sc = -1;
-            if (des[1] != 'x')
+            if (des[1] != 'x' && (des[3] != '+' && des[3] != '#'))
             {
                 if (des.ToUpper()[1] == 'A')
                     sc = 0;
@@ -588,7 +588,7 @@ namespace Chess
             }
             else
             {
-                if (des[1] == 'x')
+                if (des[1] == 'x' && (des[3] != '+' && des[3] != '#'))
                 {
                     if (des[0] == 'a' || des[0] == 'b' || des[0] == 'c' || des[0] == 'd' || des[0] == 'e' || des[0] == 'f' || des[0] == 'g' || des[0] == 'h')
                     {

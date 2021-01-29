@@ -48,6 +48,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using LearningMachine;
 namespace QuantumRefrigiz
 {
 
@@ -17222,7 +17223,7 @@ namespace QuantumRefrigiz
                                          if (SolderesOnTable != null && SolderesOnTable[i] != null)
                                          {
                                              //Initiate of Local Variables By Global Objective Gray Current Solder.
-                                             int ik = (int)SolderesOnTable[i].Row;
+                                             //int ik = (int)SolderesOnTable[i].Row;
                                              int jk = (int)SolderesOnTable[i].Column;
                                              //Construction of ThinkingQuantum Gray Soldier By Local Variables.
                                              //If There is no ThinkingQuantum Movments on Current Object  
@@ -17366,7 +17367,7 @@ namespace QuantumRefrigiz
                                          if (SolderesOnTable != null && SolderesOnTable[i] != null)
                                          {
                                              //Initiate of Local Variables By Global Objective Gray Current Solder.
-                                             int ik = (int)SolderesOnTable[i].Row;
+                                             //int ik = (int)SolderesOnTable[i].Row;
                                              int jk = (int)SolderesOnTable[i].Column;
                                              //Construction of ThinkingQuantum Gray Soldier By Local Variables.
                                              //If There is no ThinkingQuantum Movments on Current Object  
@@ -18944,8 +18945,8 @@ namespace QuantumRefrigiz
                         AStarGreedyString = Th;
 
                         //Initiate of Local Variables By Global Objective Gray Current Solder.
-                        int ik = (int)SolderesOnTable[i].Row;
-                        int jk = (int)SolderesOnTable[i].Column;
+                        //int ik = (int)SolderesOnTable[i].Row;
+                        //int jk = (int)SolderesOnTable[i].Column;
                         //Construction of Thinking Gray Soldier By Local Variables.
                         //if (SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count == 0)
                         //If There is no Thinking Movments on Current Object  
@@ -19028,8 +19029,8 @@ namespace QuantumRefrigiz
                         AStarGreedyString = Th;
 
                         //Inititae Local Varibale By Global Gray Elephant Objects Varibales.
-                        int ik = (int)ElephantOnTable[i].Row;
-                        int jk = (int)ElephantOnTable[i].Column;
+                        //int ik = (int)ElephantOnTable[i].Row;
+                        //int jk = (int)ElephantOnTable[i].Column;
                         //Construction of Thinking Objects By Local Varibales.
                         //if (ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count == 0)
                         //If There is Not Thinking Objetive List Elephant Gray. 
@@ -19114,8 +19115,8 @@ namespace QuantumRefrigiz
                         AStarGreedyString = Th;
 
                         //Initiate of Local Variables By Global Gray Hourse Objectives.
-                        int ik = (int)HoursesOnTable[i].Row;
-                        int jk = (int)HoursesOnTable[i].Column;
+                        //int ik = (int)HoursesOnTable[i].Row;
+                        //int jk = (int)HoursesOnTable[i].Column;
                         //Construction of Gray Hourse Thinking Objects..
                         //if (HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count == 0)
                         //When There is Not HourseList Count. 
@@ -19205,8 +19206,8 @@ namespace QuantumRefrigiz
                         AStarGreedyString = Th;
 
                         //Initaiate of Local Varibales By Global Varoiables.
-                        int ik = (int)CastlesOnTable[i].Row;
-                        int jk = (int)CastlesOnTable[i].Column;
+                        //int ik = (int)CastlesOnTable[i].Row;
+                        //int jk = (int)CastlesOnTable[i].Column;
                         //Construction of Thinking Variables By Local Variables.
                         //if (CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count == 0)
                         //When Count of Table Castles of Thinking Not Exist Do Operational.
@@ -19293,8 +19294,8 @@ namespace QuantumRefrigiz
                         AStarGreedyString = Th;
 
                         //Inititate Local Variables By Global Varibales.
-                        int ik = (int)MinisterOnTable[i].Row;
-                        int jk = (int)MinisterOnTable[i].Column;
+                        //int ik = (int)MinisterOnTable[i].Row;
+                        //int jk = (int)MinisterOnTable[i].Column;
                         //Construction of Thinking Objects Gray Minister.
                         //if (MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count == 0)
                         //If There is Not Minister Of Gray In The Thinking Table List.   
@@ -19404,8 +19405,8 @@ namespace QuantumRefrigiz
                         AStarGreedyString = Th;
 
                         //Initiate Local varibale By Global Objective Varibales.
-                        int ik = (int)(int)KingOnTable[i].Row;
-                        int jk = (int)KingOnTable[i].Column;
+                        //int ik = (int)(int)KingOnTable[i].Row;
+                        //int jk = (int)KingOnTable[i].Column;
                         //Construction of Gray King Thinking Objects.
                         //if (KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count == 0)
                         //When There is Not Thinking Table Gray King Movments.
@@ -19477,8 +19478,8 @@ namespace QuantumRefrigiz
                         AStarGreedyString = Th;
 
                         //Initiate Local varibale By Global Objective Varibales.
-                        int ik = (int)(int)CastlingOnTable[i].Row;
-                        int jk = (int)CastlingOnTable[i].Column;
+                        //int ik = (int)(int)CastlingOnTable[i].Row;
+                        //int jk = (int)CastlingOnTable[i].Column;
                         //Construction of Gray Castling Thinking Objects.
                         //if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count == 0)
                         //When There is Not Thinking Table Gray Castling Movments.
@@ -19690,6 +19691,18 @@ namespace QuantumRefrigiz
                         return true;
                     if (SolderesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (SolderesOnTable[ikk].SoldierThinkingQuantum == null)
+                        return true;
+                    if (SolderesOnTable[ikk].SoldierThinkingQuantum[0] == null)
+                        return true;
+                    if (SolderesOnTable[ikk].SoldierThinkingQuantum[0].TableListSolder == null)
+                    {
+                        SolderesOnTable[ikk].SoldierThinkingQuantum[0].TableListSolder = new List<int[,]>();
+                        SolderesOnTable[ikk].SoldierThinkingQuantum[0].RowColumnSoldier = new List<int[]>();
+                        SolderesOnTable[ikk].SoldierThinkingQuantum[0].HitNumberSoldier = new List<int>();
+                        SolderesOnTable[ikk].SoldierThinkingQuantum[0].HeuristicListSolder = new List<int[]>();
+                        SolderesOnTable[ikk].SoldierThinkingQuantum[0].PenaltyRegardListSolder = new List<QuantumAtamata>();
+                    }
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19710,6 +19723,20 @@ namespace QuantumRefrigiz
                         return true;
                     if (ElephantOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (ElephantOnTable[ikk].ElefantThinkingQuantum == null)
+                        return true;
+                    if (ElephantOnTable[ikk].ElefantThinkingQuantum[0] == null)
+                        return true;
+                    if (ElephantOnTable[ikk].ElefantThinkingQuantum[0].TableListElefant == null)
+
+                    {
+                        ElephantOnTable[ikk].ElefantThinkingQuantum[0].TableListElefant = new List<int[,]>();
+                        ElephantOnTable[ikk].ElefantThinkingQuantum[0].RowColumnElefant = new List<int[]>();
+                        ElephantOnTable[ikk].ElefantThinkingQuantum[0].HitNumberElefant = new List<int>();
+                        ElephantOnTable[ikk].ElefantThinkingQuantum[0].HeuristicListElefant = new List<int[]>();
+                        ElephantOnTable[ikk].ElefantThinkingQuantum[0].PenaltyRegardListElefant = new List<QuantumAtamata>();
+                    }
+
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19732,6 +19759,20 @@ namespace QuantumRefrigiz
                         return true;
                     if (HoursesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (HoursesOnTable[ikk].HourseThinkingQuantum == null)
+                        return true;
+                    if (HoursesOnTable[ikk].HourseThinkingQuantum[0] == null)
+                        return true;
+                    if (HoursesOnTable[ikk].HourseThinkingQuantum[0].TableListHourse == null)
+
+                    {
+                        HoursesOnTable[ikk].HourseThinkingQuantum[0].TableListHourse = new List<int[,]>();
+                        HoursesOnTable[ikk].HourseThinkingQuantum[0].RowColumnHourse = new List<int[]>();
+                        HoursesOnTable[ikk].HourseThinkingQuantum[0].HitNumberHourse = new List<int>();
+                        HoursesOnTable[ikk].HourseThinkingQuantum[0].HeuristicListHourse = new List<int[]>();
+                        HoursesOnTable[ikk].HourseThinkingQuantum[0].PenaltyRegardListHourse = new List<QuantumAtamata>();
+                    }
+
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19752,7 +19793,18 @@ namespace QuantumRefrigiz
                         return true;
                     if (CastlesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
-
+                    if (CastlesOnTable[ikk].CastleThinkingQuantum == null)
+                        return true;
+                    if (CastlesOnTable[ikk].CastleThinkingQuantum[0] == null)
+                        return true;
+                    if (CastlesOnTable[ikk].CastleThinkingQuantum[0].TableListCastle == null)
+                    {
+                        CastlesOnTable[ikk].CastleThinkingQuantum[0].TableListCastle = new List<int[,]>();
+                        CastlesOnTable[ikk].CastleThinkingQuantum[0].RowColumnCastle = new List<int[]>();
+                        CastlesOnTable[ikk].CastleThinkingQuantum[0].HitNumberCastle = new List<int>();
+                        CastlesOnTable[ikk].CastleThinkingQuantum[0].HeuristicListCastle = new List<int[]>();
+                        CastlesOnTable[ikk].CastleThinkingQuantum[0].PenaltyRegardListCastle = new List<QuantumAtamata>();
+                    }
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19773,7 +19825,18 @@ namespace QuantumRefrigiz
                         return true;
                     if (MinisterOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
-
+                    if (MinisterOnTable[ikk].MinisterThinkingQuantum == null)
+                        return true;
+                    if (MinisterOnTable[ikk].MinisterThinkingQuantum[0] == null)
+                        return true;
+                    if (MinisterOnTable[ikk].MinisterThinkingQuantum[0].TableListMinister == null)
+                    {
+                        MinisterOnTable[ikk].MinisterThinkingQuantum[0].TableListMinister = new List<int[,]>();
+                        MinisterOnTable[ikk].MinisterThinkingQuantum[0].RowColumnMinister = new List<int[]>();
+                        MinisterOnTable[ikk].MinisterThinkingQuantum[0].HitNumberMinister = new List<int>();
+                        MinisterOnTable[ikk].MinisterThinkingQuantum[0].HeuristicListMinister = new List<int[]>();
+                        MinisterOnTable[ikk].MinisterThinkingQuantum[0].PenaltyRegardListMinister = new List<QuantumAtamata>();
+                    }
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19794,6 +19857,19 @@ namespace QuantumRefrigiz
                         return true;
                     if (KingOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (KingOnTable[ikk].KingThinkingQuantum == null)
+                        return true;
+                    if (KingOnTable[ikk].KingThinkingQuantum[0] == null)
+                        return true;
+                    if (KingOnTable[ikk].KingThinkingQuantum[0].TableListKing == null)
+                    {
+                        KingOnTable[ikk].KingThinkingQuantum[0].TableListKing = new List<int[,]>();
+                        KingOnTable[ikk].KingThinkingQuantum[0].RowColumnKing = new List<int[]>();
+                        KingOnTable[ikk].KingThinkingQuantum[0].HitNumberKing = new List<int>();
+                        KingOnTable[ikk].KingThinkingQuantum[0].HeuristicListKing = new List<int[]>();
+                        KingOnTable[ikk].KingThinkingQuantum[0].PenaltyRegardListKing = new List<QuantumAtamata>();
+                    }
+
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19813,6 +19889,18 @@ namespace QuantumRefrigiz
                         return true;
                     if (CastlingOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (CastlingOnTable[ikk].CastlingThinking == null)
+                        return true;
+                    if (CastlingOnTable[ikk].CastlingThinking[0] == null)
+                        return true;
+                    if (CastlingOnTable[ikk].CastlingThinking[0].TableListCastling == null)
+                    {
+                        CastlingOnTable[ikk].CastlingThinking[0].TableListCastling = new List<int[,]>();
+                        CastlingOnTable[ikk].CastlingThinking[0].RowColumnCastling = new List<int[]>();
+                        CastlingOnTable[ikk].CastlingThinking[0].HitNumberCastling = new List<int>();
+                        CastlingOnTable[ikk].CastlingThinking[0].HeuristicListCastling = new List<int[]>();
+                        CastlingOnTable[ikk].CastlingThinking[0].PenaltyRegardListCastling = new List<QuantumAtamata>();
+                    }
                 }
                 catch (Exception t) { Log(t); }
                 return IS;

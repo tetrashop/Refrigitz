@@ -17221,7 +17221,7 @@ namespace RefrigtzW
                                          if (SolderesOnTable != null && SolderesOnTable[i] != null)
                                          {
                                              //Initiate of Local Variables By Global Objective Gray Current Solder.
-                                             int ik = (int)SolderesOnTable[i].Row;
+                                             //int ik = (int)SolderesOnTable[i].Row;
                                              int jk = (int)SolderesOnTable[i].Column;
                                              //Construction of Thinking Gray Soldier By Local Variables.
                                              //If There is no Thinking Movments on Current Object  
@@ -17365,7 +17365,7 @@ namespace RefrigtzW
                                          if (SolderesOnTable != null && SolderesOnTable[i] != null)
                                          {
                                              //Initiate of Local Variables By Global Objective Gray Current Solder.
-                                             int ik = (int)SolderesOnTable[i].Row;
+                                             //int ik = (int)SolderesOnTable[i].Row;
                                              int jk = (int)SolderesOnTable[i].Column;
                                              //Construction of Thinking Gray Soldier By Local Variables.
                                              //If There is no Thinking Movments on Current Object  
@@ -18943,8 +18943,8 @@ namespace RefrigtzW
                         AStarGreedyString = Th;
 
                         //Initiate of Local Variables By Global Objective Gray Current Solder.
-                        int ik = (int)SolderesOnTable[i].Row;
-                        int jk = (int)SolderesOnTable[i].Column;
+                        //int ik = (int)SolderesOnTable[i].Row;
+                        //int jk = (int)SolderesOnTable[i].Column;
                         //Construction of Thinking Gray Soldier By Local Variables.
                         //if (SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count == 0)
                         //If There is no Thinking Movments on Current Object  
@@ -19027,8 +19027,8 @@ namespace RefrigtzW
                         AStarGreedyString = Th;
 
                         //Inititae Local Varibale By Global Gray Elephant Objects Varibales.
-                        int ik = (int)ElephantOnTable[i].Row;
-                        int jk = (int)ElephantOnTable[i].Column;
+                        //int ik = (int)ElephantOnTable[i].Row;
+                        //int jk = (int)ElephantOnTable[i].Column;
                         //Construction of Thinking Objects By Local Varibales.
                         //if (ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count == 0)
                         //If There is Not Thinking Objetive List Elephant Gray. 
@@ -19113,8 +19113,8 @@ namespace RefrigtzW
                         AStarGreedyString = Th;
 
                         //Initiate of Local Variables By Global Gray Hourse Objectives.
-                        int ik = (int)HoursesOnTable[i].Row;
-                        int jk = (int)HoursesOnTable[i].Column;
+                        //int ik = (int)HoursesOnTable[i].Row;
+                        //int jk = (int)HoursesOnTable[i].Column;
                         //Construction of Gray Hourse Thinking Objects..
                         //if (HoursesOnTable[i].HourseThinking[0].TableListHourse.Count == 0)
                         //When There is Not HourseList Count. 
@@ -19204,8 +19204,8 @@ namespace RefrigtzW
                         AStarGreedyString = Th;
 
                         //Initaiate of Local Varibales By Global Varoiables.
-                        int ik = (int)CastlesOnTable[i].Row;
-                        int jk = (int)CastlesOnTable[i].Column;
+                        //int ik = (int)CastlesOnTable[i].Row;
+                        //int jk = (int)CastlesOnTable[i].Column;
                         //Construction of Thinking Variables By Local Variables.
                         //if (CastlesOnTable[i].CastleThinking[0].TableListCastle.Count == 0)
                         //When Count of Table Castles of Thinking Not Exist Do Operational.
@@ -19292,8 +19292,8 @@ namespace RefrigtzW
                         AStarGreedyString = Th;
 
                         //Inititate Local Variables By Global Varibales.
-                        int ik = (int)MinisterOnTable[i].Row;
-                        int jk = (int)MinisterOnTable[i].Column;
+                        //int ik = (int)MinisterOnTable[i].Row;
+                        //int jk = (int)MinisterOnTable[i].Column;
                         //Construction of Thinking Objects Gray Minister.
                         //if (MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count == 0)
                         //If There is Not Minister Of Gray In The Thinking Table List.   
@@ -19403,8 +19403,8 @@ namespace RefrigtzW
                         AStarGreedyString = Th;
 
                         //Initiate Local varibale By Global Objective Varibales.
-                        int ik = (int)(int)KingOnTable[i].Row;
-                        int jk = (int)KingOnTable[i].Column;
+                        //int ik = (int)(int)KingOnTable[i].Row;
+                        //int jk = (int)KingOnTable[i].Column;
                         //Construction of Gray King Thinking Objects.
                         //if (KingOnTable[i].KingThinking[0].TableListKing.Count == 0)
                         //When There is Not Thinking Table Gray King Movments.
@@ -19476,8 +19476,8 @@ namespace RefrigtzW
                         AStarGreedyString = Th;
 
                         //Initiate Local varibale By Global Objective Varibales.
-                        int ik = (int)(int)CastlingOnTable[i].Row;
-                        int jk = (int)CastlingOnTable[i].Column;
+                        //int ik = (int)(int)CastlingOnTable[i].Row;
+                        //int jk = (int)CastlingOnTable[i].Column;
                         //Construction of Gray Castling Thinking Objects.
                         //if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count == 0)
                         //When There is Not Thinking Table Gray Castling Movments.
@@ -19689,6 +19689,18 @@ namespace RefrigtzW
                         return true;
                     if (SolderesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (SolderesOnTable[ikk].SoldierThinking == null)
+                        return true;
+                    if (SolderesOnTable[ikk].SoldierThinking[0] == null)
+                        return true;
+                    if (SolderesOnTable[ikk].SoldierThinking[0].TableListSolder == null)
+                    {
+                        SolderesOnTable[ikk].SoldierThinking[0].TableListSolder = new List<int[,]>();
+                        SolderesOnTable[ikk].SoldierThinking[0].RowColumnSoldier = new List<int[]>();
+                        SolderesOnTable[ikk].SoldierThinking[0].HitNumberSoldier = new List<int>();
+                        SolderesOnTable[ikk].SoldierThinking[0].HeuristicListSolder = new List<int[]>();
+                        SolderesOnTable[ikk].SoldierThinking[0].PenaltyRegardListSolder = new List<QuantumAtamata>();
+                    }
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19709,6 +19721,20 @@ namespace RefrigtzW
                         return true;
                     if (ElephantOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (ElephantOnTable[ikk].ElefantThinking == null)
+                        return true;
+                    if (ElephantOnTable[ikk].ElefantThinking[0] == null)
+                        return true;
+                    if (ElephantOnTable[ikk].ElefantThinking[0].TableListElefant == null)
+
+                    {
+                        ElephantOnTable[ikk].ElefantThinking[0].TableListElefant = new List<int[,]>();
+                        ElephantOnTable[ikk].ElefantThinking[0].RowColumnElefant = new List<int[]>();
+                        ElephantOnTable[ikk].ElefantThinking[0].HitNumberElefant = new List<int>();
+                        ElephantOnTable[ikk].ElefantThinking[0].HeuristicListElefant = new List<int[]>();
+                        ElephantOnTable[ikk].ElefantThinking[0].PenaltyRegardListElefant = new List<QuantumAtamata>();
+                    }
+
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19731,6 +19757,20 @@ namespace RefrigtzW
                         return true;
                     if (HoursesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (HoursesOnTable[ikk].HourseThinking == null)
+                        return true;
+                    if (HoursesOnTable[ikk].HourseThinking[0] == null)
+                        return true;
+                    if (HoursesOnTable[ikk].HourseThinking[0].TableListHourse == null)
+
+                    {
+                        HoursesOnTable[ikk].HourseThinking[0].TableListHourse = new List<int[,]>();
+                        HoursesOnTable[ikk].HourseThinking[0].RowColumnHourse = new List<int[]>();
+                        HoursesOnTable[ikk].HourseThinking[0].HitNumberHourse = new List<int>();
+                        HoursesOnTable[ikk].HourseThinking[0].HeuristicListHourse = new List<int[]>();
+                        HoursesOnTable[ikk].HourseThinking[0].PenaltyRegardListHourse = new List<QuantumAtamata>();
+                    }
+
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19751,7 +19791,18 @@ namespace RefrigtzW
                         return true;
                     if (CastlesOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
-
+                    if (CastlesOnTable[ikk].CastleThinking == null)
+                        return true;
+                    if (CastlesOnTable[ikk].CastleThinking[0] == null)
+                        return true;
+                    if (CastlesOnTable[ikk].CastleThinking[0].TableListCastle == null)
+                    {
+                        CastlesOnTable[ikk].CastleThinking[0].TableListCastle = new List<int[,]>();
+                        CastlesOnTable[ikk].CastleThinking[0].RowColumnCastle = new List<int[]>();
+                        CastlesOnTable[ikk].CastleThinking[0].HitNumberCastle = new List<int>();
+                        CastlesOnTable[ikk].CastleThinking[0].HeuristicListCastle = new List<int[]>();
+                        CastlesOnTable[ikk].CastleThinking[0].PenaltyRegardListCastle = new List<QuantumAtamata>();
+                    }
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19772,7 +19823,18 @@ namespace RefrigtzW
                         return true;
                     if (MinisterOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
-
+                    if (MinisterOnTable[ikk].MinisterThinking == null)
+                        return true;
+                    if (MinisterOnTable[ikk].MinisterThinking[0] == null)
+                        return true;
+                    if (MinisterOnTable[ikk].MinisterThinking[0].TableListMinister == null)
+                    {
+                        MinisterOnTable[ikk].MinisterThinking[0].TableListMinister = new List<int[,]>();
+                        MinisterOnTable[ikk].MinisterThinking[0].RowColumnMinister = new List<int[]>();
+                        MinisterOnTable[ikk].MinisterThinking[0].HitNumberMinister = new List<int>();
+                        MinisterOnTable[ikk].MinisterThinking[0].HeuristicListMinister = new List<int[]>();
+                        MinisterOnTable[ikk].MinisterThinking[0].PenaltyRegardListMinister = new List<QuantumAtamata>();
+                    }
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19793,6 +19855,19 @@ namespace RefrigtzW
                         return true;
                     if (KingOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (KingOnTable[ikk].KingThinking == null)
+                        return true;
+                    if (KingOnTable[ikk].KingThinking[0] == null)
+                        return true;
+                    if (KingOnTable[ikk].KingThinking[0].TableListKing == null)
+                    {
+                        KingOnTable[ikk].KingThinking[0].TableListKing = new List<int[,]>();
+                        KingOnTable[ikk].KingThinking[0].RowColumnKing = new List<int[]>();
+                        KingOnTable[ikk].KingThinking[0].HitNumberKing = new List<int>();
+                        KingOnTable[ikk].KingThinking[0].HeuristicListKing = new List<int[]>();
+                        KingOnTable[ikk].KingThinking[0].PenaltyRegardListKing = new List<QuantumAtamata>();
+                    }
+
                 }
                 catch (Exception t) { Log(t); }
                 return IS;
@@ -19812,6 +19887,18 @@ namespace RefrigtzW
                         return true;
                     if (CastlingOnTable[ikk].LoseOcuuredatChiled == null)
                         return true;
+                    if (CastlingOnTable[ikk].CastlingThinking == null)
+                        return true;
+                    if (CastlingOnTable[ikk].CastlingThinking[0] == null)
+                        return true;
+                    if (CastlingOnTable[ikk].CastlingThinking[0].TableListCastling == null)
+                    {
+                        CastlingOnTable[ikk].CastlingThinking[0].TableListCastling = new List<int[,]>();
+                        CastlingOnTable[ikk].CastlingThinking[0].RowColumnCastling = new List<int[]>();
+                        CastlingOnTable[ikk].CastlingThinking[0].HitNumberCastling = new List<int>();
+                        CastlingOnTable[ikk].CastlingThinking[0].HeuristicListCastling = new List<int[]>();
+                        CastlingOnTable[ikk].CastlingThinking[0].PenaltyRegardListCastling = new List<QuantumAtamata>();
+                    }
                 }
                 catch (Exception t) { Log(t); }
                 return IS;

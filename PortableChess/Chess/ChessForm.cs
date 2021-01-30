@@ -136,7 +136,7 @@ namespace RefrigtzChessPortable
             }
             GC.SuppressFinalize(this);
             base.Dispose(disposing);
-        }
+        }//tetrashop.ir
         void Initiate(Color a, int Order)
         {
             Object O = new Object();
@@ -148,6 +148,7 @@ namespace RefrigtzChessPortable
                 Draw.AStarGreedyString = THIS;
             }
         }
+        //tetrashop.ir
         void AliceAction(int Order)
         {
 
@@ -181,11 +182,13 @@ namespace RefrigtzChessPortable
 
 
         }
+        //tetrashop.ir
         void DisposeConv()
         {
             for (int i = 0; i < 4; i++)
                 Con[i].Dispose();
         }
+        //tetrashop.ir
         void InitConv(int j)
         {
             for (int i = j; i < 4 + j; i++)
@@ -532,7 +535,7 @@ namespace RefrigtzChessPortable
             pb[6, 6].Image = img31;
             pb[7, 6].Image = img32;
         }
-
+        //tetrashop.ir
         void ClearTableInitiationPreventionOfMultipleMove()
         {
             for (int i = 0; i < 8; i++)
@@ -550,6 +553,7 @@ namespace RefrigtzChessPortable
         }
         public void Form1_Load(object sender, System.EventArgs e)
         {
+            //tetrashop.ir
             Object O = new Object();
             lock (O)
             {
@@ -776,6 +780,7 @@ namespace RefrigtzChessPortable
                 f = new ArtificialInteligenceMove(this);
             }
         }
+        //tetrashop.ir
         void ClickedSimAtClOne(int i, int j)
         {
             Object o = new Object();
@@ -808,6 +813,7 @@ namespace RefrigtzChessPortable
                 Person = true;
             }
         }
+        //tetrashop.ir
         static void Log(Exception ex)
         {
 
@@ -819,6 +825,7 @@ namespace RefrigtzChessPortable
             }
 
         }
+        //tetrashop.ir
         int[,] CloneATable(int[,] Tab)
         {
             Object O = new Object();
@@ -832,10 +839,12 @@ namespace RefrigtzChessPortable
                 return Tabl;
             }
         }
+        //tetrashop.ir
         void WaitCon()
         {
             do { } while (ConClick == -1);
         }
+        //tetrashop.ir
         void WaitOnly()
         {
             do { } while (WaitOnplay);
@@ -850,6 +859,7 @@ namespace RefrigtzChessPortable
 
                 try
                 {
+                    //tetrashop.ir
                     object f = new object();
                     lock (f)
                     {
@@ -1038,7 +1048,7 @@ namespace RefrigtzChessPortable
                     {
                         played = 1;
                     }
-
+                    //tetrashop.ir
                     if (cl == 0 && k != 0 && played == order)
                     {
                         freezCalculation = true;
@@ -1300,6 +1310,7 @@ namespace RefrigtzChessPortable
                                         return 0;
                                     }
                                     lstr = "P";
+                                    //tetrashop.ir
                                     if (j == 7 && CoPermit)
                                     {
                                         if (!ComStop)
@@ -1341,6 +1352,7 @@ namespace RefrigtzChessPortable
                                         brd.setSquare(6, i, j);
                                     }
                                     order++;
+                                    //tetrashop.ir
                                     if (ConClick != -1)
                                     {
                                         if (ConClick == 1)
@@ -1648,6 +1660,7 @@ namespace RefrigtzChessPortable
                                         return 0;
                                     }
                                     lstr = "P";
+                                    //tetrashop.ir
                                     if (j == 0 && CoPermit)
                                     {
                                         if (!ComStop)
@@ -1689,6 +1702,7 @@ namespace RefrigtzChessPortable
                                         brd.setSquare(12, i, j);
                                     }
                                     order--;
+                                    //tetrashop.ir
                                     if (ConClick != -1)
                                     {
                                         if (ConClick == 1)
@@ -1762,6 +1776,7 @@ namespace RefrigtzChessPortable
                                 }
                                 break;
                         }
+                        //tetrashop.ir
                         RefrigtzChessPortable.ThinkingRefrigtzChessPortable.TableInitiationPreventionOfMultipleMove[x1, y1]++;
                         RefrigtzChessPortable.ThinkingRefrigtzChessPortable.TableInitiationPreventionOfMultipleMove[i, j]++;
 
@@ -1848,6 +1863,7 @@ namespace RefrigtzChessPortable
                                 lstr = str2 + " کیش  " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() + " Hu:" + AllDraw.Less.ToString();
                                 this.lb.Items.AddRange(new object[] { lstr });
                                 MessageBox.Show(" کیش توسط" + " " + str2);
+                                //tetrashop.ir
                                 Object oo = new Object();
                                 lock (oo)
                                 {
@@ -1939,6 +1955,7 @@ namespace RefrigtzChessPortable
                             lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() + " Hu:" + AllDraw.Less.ToString();
                             this.lb.Items.AddRange(new object[] { lstr });
                         }
+                        //tetrashop.ir
                         Object oi = new Object();
                         lock (oi)
                         {
@@ -2030,6 +2047,7 @@ namespace RefrigtzChessPortable
                 return 0;
             }
         }
+        //tetrashop.ir
         void Wait()
         {
             Object O = new Object();
@@ -2043,6 +2061,7 @@ namespace RefrigtzChessPortable
                 WaitOnplay = false;
             }
         }
+
         #region These are the Click events for Picture Boxes in the form
         private void Con1_Click1(object sender, System.EventArgs e)
         {
@@ -2335,6 +2354,7 @@ namespace RefrigtzChessPortable
             this.openFileDialogjunglesMakeTree = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            //tetrashop.ir
             // 
             // menuStrip1
             // 
@@ -2346,6 +2366,7 @@ namespace RefrigtzChessPortable
             this.menuStrip1.Size = new System.Drawing.Size(500, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            //tetrashop.ir
             // 
             // toolStripMenuItem1
             // 
@@ -2355,6 +2376,7 @@ namespace RefrigtzChessPortable
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
             this.toolStripMenuItem1.Text = "View";
+            //tetrashop.ir
             // 
             // treeViewToolStripMenuItem
             // 
@@ -2362,6 +2384,7 @@ namespace RefrigtzChessPortable
             this.treeViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.treeViewToolStripMenuItem.Text = "Tree View";
             this.treeViewToolStripMenuItem.Click += new System.EventHandler(this.treeViewToolStripMenuItem_Click);
+            //tetrashop.ir
             // 
             // junglesMakeTreeToolStripMenuItem
             // 
@@ -2369,6 +2392,7 @@ namespace RefrigtzChessPortable
             this.junglesMakeTreeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.junglesMakeTreeToolStripMenuItem.Text = "Jungles make Tree";
             this.junglesMakeTreeToolStripMenuItem.Click += new System.EventHandler(this.junglesMakeTreeToolStripMenuItem_Click);
+            //tetrashop.ir
             // 
             // helpToolStripMenuItem
             // 
@@ -2378,6 +2402,7 @@ namespace RefrigtzChessPortable
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.helpToolStripMenuItem.Text = "راهنما";
+            //tetrashop.ir
             // 
             // AboutToolStripMenuItem
             // 
@@ -2385,6 +2410,7 @@ namespace RefrigtzChessPortable
             this.AboutToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.AboutToolStripMenuItem.Text = "درباره";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            //tetrashop.ir
             // 
             // AboutHelpToolStripMenuItem
             // 
@@ -2392,6 +2418,7 @@ namespace RefrigtzChessPortable
             this.AboutHelpToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.AboutHelpToolStripMenuItem.Text = "درباره یاری ";
             this.AboutHelpToolStripMenuItem.Click += new System.EventHandler(this.AboutHelpToolStripMenuItem_Click);
+            //tetrashop.ir
             // 
             // openFileDialogjunglesMakeTree
             // 
@@ -2412,14 +2439,17 @@ namespace RefrigtzChessPortable
             this.PerformLayout();
 
         }
+        //tetrashop.ir
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new AboutBoxRefrigtzChessPortableRefrigitz()).ShowDialog();
         }
+        //tetrashop.ir
         private void AboutHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new AboutBoxFaraDars()).ShowDialog();
         }
+        //tetrashop.ir
         public RefrigtzChessPortable.AllDraw RootFound()
         {
             Object O = new Object();
@@ -2439,6 +2469,7 @@ namespace RefrigtzChessPortable
                 return Draw;
             }
         }
+        //tetrashop.ir
         public void SetDrawFounding(ref bool FOUNDI, ref RefrigtzChessPortable.AllDraw THISI, bool FirstI)
         {
             /*    Object OO = new Object();
@@ -2805,6 +2836,7 @@ namespace RefrigtzChessPortable
             }
 
         }
+        //tetrashop.ir
         bool DrawManagement()
         {
             Object OO = new Object();
@@ -2888,6 +2920,7 @@ namespace RefrigtzChessPortable
                 return Found;
             }
         }
+        //tetrashop.ir
         void SetAllDrawKindString()
         {
             Object O = new Object();
@@ -2907,6 +2940,7 @@ namespace RefrigtzChessPortable
 
             }
         }
+        //tetrashop.ir
         void SetAllDrawKind()
         {
             Object O = new Object();
@@ -2923,6 +2957,7 @@ namespace RefrigtzChessPortable
                     AllDrawKind = 1;
             }
         }
+        //tetrashop.ir
         void SetDrawFound()
         {
             Object O = new Object();
@@ -2933,7 +2968,7 @@ namespace RefrigtzChessPortable
                 SetDrawFounding(ref FOUND, ref THIS, false);
             }
         }
-
+        //tetrashop.ir
         private void treeViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Object O = new Object();
@@ -2947,7 +2982,7 @@ namespace RefrigtzChessPortable
                 catch (Exception t) { Log(t); }
             }
         }
-
+        //tetrashop.ir
         private void junglesMakeTreeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             freezBoard = true;

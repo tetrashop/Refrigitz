@@ -138,6 +138,7 @@ namespace ChessFirst
             GC.SuppressFinalize(this);
             base.Dispose(disposing);
         }
+        //tetrashop.ir
         void Initiate(Color a, int Order)
         {
             Object O = new Object();
@@ -149,6 +150,7 @@ namespace ChessFirst
                 Draw.AStarGreedyString = THIS;
             }
         }
+        //tetrashop.ir
         void BobAction(int Order)
         {
 
@@ -182,11 +184,13 @@ namespace ChessFirst
 
 
         }
+        //tetrashop.ir
         void DisposeConv()
         {
             for (int i = 0; i < 4; i++)
                 Con[i].Dispose();
         }
+        //tetrashop.ir
         void InitConv(int j)
         {
             for (int i = j; i < 4 + j; i++)
@@ -533,7 +537,7 @@ namespace ChessFirst
             pb[6, 6].Image = img31;
             pb[7, 6].Image = img32;
         }
-
+        //tetrashop.ir
         void ClearTableInitiationPreventionOfMultipleMove()
         {
             for (int i = 0; i < 8; i++)
@@ -551,6 +555,7 @@ namespace ChessFirst
         }
         public void Form1_Load(object sender, System.EventArgs e)
         {
+            //tetrashop.ir
             Object O = new Object();
             lock (O)
             {
@@ -779,6 +784,7 @@ namespace ChessFirst
                     Play(-1, -1);
             }
         }
+        //tetrashop.ir
         void ClickedSimAtClOne(int i, int j)
         {
             Object o = new Object();
@@ -811,6 +817,7 @@ namespace ChessFirst
                 Person = true;
             }
         }
+        //tetrashop.ir
         static void Log(Exception ex)
         {
 
@@ -822,6 +829,7 @@ namespace ChessFirst
             }
 
         }
+        //tetrashop.ir
         int[,] CloneATable(int[,] Tab)
         {
             Object O = new Object();
@@ -835,10 +843,12 @@ namespace ChessFirst
                 return Tabl;
             }
         }
+        //tetrashop.ir
         void WaitCon()
         {
             do { } while (ConClick == -1);
         }
+        //tetrashop.ir
         void WaitOnly()
         {
             do { } while (WaitOnplay);
@@ -853,6 +863,7 @@ namespace ChessFirst
 
                 try
                 {
+                    //tetrashop.ir
                     object f = new object();
                     lock (f)
                     {
@@ -879,7 +890,7 @@ namespace ChessFirst
 
                     }
                     bool Com = false;
-                   
+                    //tetrashop.ir
                     if (i == -1 && j == -1)
                     {
                         AllDraw.AllowedSupTrue = false;
@@ -1039,7 +1050,7 @@ namespace ChessFirst
                     {
                         played = 1;
                     }
-
+                    //tetrashop.ir
                     if (cl == 0 && k != 0 && played == order)
                     {
                         freezCalculation = true;
@@ -1300,6 +1311,7 @@ namespace ChessFirst
                                         return 0;
                                     }
                                     lstr = "P";
+                                    //tetrashop.ir
                                     if (j == 7 && CoPermit)
                                     {
                                         if (!ComStop)
@@ -1341,6 +1353,7 @@ namespace ChessFirst
                                         brd.setSquare(6, i, j);
                                     }
                                     order++;
+                                    //tetrashop.ir
                                     if (ConClick != -1)
                                     {
                                         if (ConClick == 1)
@@ -1648,6 +1661,7 @@ namespace ChessFirst
                                         return 0;
                                     }
                                     lstr = "P";
+                                    //tetrashop.ir
                                     if (j == 0 && CoPermit)
                                     {
                                         if (!ComStop)
@@ -1689,6 +1703,7 @@ namespace ChessFirst
                                         brd.setSquare(12, i, j);
                                     }
                                     order--;
+                                    //tetrashop.ir
                                     if (ConClick != -1)
                                     {
                                         if (ConClick == 1)
@@ -1762,6 +1777,7 @@ namespace ChessFirst
                                 }
                                 break;
                         }
+                        //tetrashop.ir
                         ChessFirst.ThinkingChessFirst.TableInitiationPreventionOfMultipleMove[x1, y1]++;
                         ChessFirst.ThinkingChessFirst.TableInitiationPreventionOfMultipleMove[i, j]++;
 
@@ -1850,6 +1866,7 @@ namespace ChessFirst
                                 this.lb.Items.AddRange(new object[] { lstr });
                                 MessageBox.Show(" کیش توسط" + " " + str2);
                                 Object oo = new Object();
+                                //tetrashop.ir
                                 lock (oo)
                                 {
                                     if (Com && (order == 2))
@@ -1909,6 +1926,7 @@ namespace ChessFirst
                                         freezCalculation = false;
                                     }
                                     else
+                                    //tetrashop.ir
                               if (Com && (order == 1))
                                     {
                                         if (ComStop && (!freezBoard))
@@ -1940,6 +1958,7 @@ namespace ChessFirst
                             lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() + " Hu:" + AllDraw.Less.ToString();
                             this.lb.Items.AddRange(new object[] { lstr });
                         }
+                        //tetrashop.ir
                         Object oi = new Object();
                         lock (oi)
                         {
@@ -2032,6 +2051,7 @@ namespace ChessFirst
                 return 0;
             }
         }
+        //tetrashop.ir
         void Wait()
         {
             Object O = new Object();
@@ -2348,6 +2368,7 @@ namespace ChessFirst
             this.menuStrip1.Size = new System.Drawing.Size(500, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            //tetrashop.ir
             // 
             // toolStripMenuItem1
             // 
@@ -2357,6 +2378,7 @@ namespace ChessFirst
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
             this.toolStripMenuItem1.Text = "View";
+            //tetrashop.ir
             // 
             // treeViewToolStripMenuItem
             // 
@@ -2364,6 +2386,7 @@ namespace ChessFirst
             this.treeViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.treeViewToolStripMenuItem.Text = "Tree View";
             this.treeViewToolStripMenuItem.Click += new System.EventHandler(this.treeViewToolStripMenuItem_Click);
+            //tetrashop.ir
             // 
             // junglesMakeTreeToolStripMenuItem
             // 
@@ -2371,6 +2394,7 @@ namespace ChessFirst
             this.junglesMakeTreeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.junglesMakeTreeToolStripMenuItem.Text = "Jungles make Tree";
             this.junglesMakeTreeToolStripMenuItem.Click += new System.EventHandler(this.junglesMakeTreeToolStripMenuItem_Click);
+            //tetrashop.ir
             // 
             // helpToolStripMenuItem
             // 
@@ -2380,6 +2404,7 @@ namespace ChessFirst
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.helpToolStripMenuItem.Text = "راهنما";
+            //tetrashop.ir
             // 
             // AboutToolStripMenuItem
             // 
@@ -2387,6 +2412,7 @@ namespace ChessFirst
             this.AboutToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.AboutToolStripMenuItem.Text = "درباره";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            //tetrashop.ir
             // 
             // AboutHelpToolStripMenuItem
             // 
@@ -2414,14 +2440,17 @@ namespace ChessFirst
             this.PerformLayout();
 
         }
+        //tetrashop.ir
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new AboutBoxChessFirstRefrigitz()).ShowDialog();
         }
+        //tetrashop.ir
         private void AboutHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new AboutBoxFaraDars()).ShowDialog();
         }
+        //tetrashop.ir
         public ChessFirst.AllDraw RootFound()
         {
             Object O = new Object();
@@ -2441,6 +2470,7 @@ namespace ChessFirst
                 return Draw;
             }
         }
+        //tetrashop.ir
         public void SetDrawFounding(ref bool FOUNDI, ref ChessFirst.AllDraw THISI, bool FirstI)
         {
             /*    Object OO = new Object();
@@ -2807,6 +2837,7 @@ namespace ChessFirst
             }
 
         }
+        //tetrashop.ir
         bool DrawManagement()
         {
             Object OO = new Object();
@@ -2890,6 +2921,7 @@ namespace ChessFirst
                 return Found;
             }
         }
+        //tetrashop.ir
         void SetAllDrawKindString()
         {
             Object O = new Object();
@@ -2909,6 +2941,7 @@ namespace ChessFirst
 
             }
         }
+        //tetrashop.ir
         void SetAllDrawKind()
         {
             Object O = new Object();
@@ -2925,6 +2958,7 @@ namespace ChessFirst
                     AllDrawKind = 1;
             }
         }
+        //tetrashop.ir
         void SetDrawFound()
         {
             Object O = new Object();
@@ -2935,7 +2969,7 @@ namespace ChessFirst
                 SetDrawFounding(ref FOUND, ref THIS, false);
             }
         }
-
+        //tetrashop.ir
         private void treeViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Object O = new Object();
@@ -2949,7 +2983,7 @@ namespace ChessFirst
                 catch (Exception t) { Log(t); }
             }
         }
-
+        //tetrashop.ir
         private void junglesMakeTreeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             freezBoard = true;

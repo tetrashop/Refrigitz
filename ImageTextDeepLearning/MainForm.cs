@@ -322,7 +322,7 @@
                 {
                     return;
                 }
-                lock (this.processor.foundTemplates)
+                //lock (this.processor.foundTemplates)
                 {
                     using (List<FoundTemplateDesc>.Enumerator enumerator2 = this.processor.foundTemplates.GetEnumerator())
                     {

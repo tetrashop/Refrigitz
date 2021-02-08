@@ -8,7 +8,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <AssemblyName>ContourAnalysisProcessing</AssemblyName>
     <OutputType>Library</OutputType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -39,15 +39,18 @@
   <ItemGroup>
     <Compile Include="ImageProcessor.cs" />
     <Compile Include="TemplateGenerator.cs" />
+    <Reference Include="Emgu.CV">
+      <HintPath>..\bin\Debug\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>..\bin\Debug\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>..\bin\Debug\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Compile Include="Global.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ContourAnalysis\ContourAnalysis\ContourAnalysis.csproj">
-      <Project>{26c090e4-105d-4681-bfe4-e60752d3dc63}</Project>
-      <Name>ContourAnalysis</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -60,5 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Fakes Include="Fakes\Emgu.CV.fakes" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ContourAnalysis\ContourAnalysis\ContourAnalysis.csproj">
+      <Project>{26c090e4-105d-4681-bfe4-e60752d3dc63}</Project>
+      <Name>ContourAnalysis</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

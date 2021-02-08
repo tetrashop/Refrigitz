@@ -71,7 +71,6 @@
     <Compile Include="AboutBoxTryCatchRemover.Designer.cs">
       <DependentUpon>AboutBoxTryCatchRemover.cs</DependentUpon>
     </Compile>
-    <Compile Include="AllKeyboardOfWorldMemmoty.cs" />
     <Compile Include="Colleralation.cs" />
     <Compile Include="FormTryCatchRemover.cs">
       <SubType>Form</SubType>

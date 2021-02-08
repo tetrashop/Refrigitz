@@ -2609,7 +2609,7 @@ namespace ImageTextDeepLearning
 {
     //To Store All Keyboard literals
     [Serializable]
-    class AllKeyboardOfWorld
+    public class AllKeyboardOfWorld
     {
         public static List<string> fonts = new List<string>();
 

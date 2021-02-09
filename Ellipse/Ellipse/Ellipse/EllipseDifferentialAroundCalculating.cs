@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using LearningMachine;
+
 
 namespace Ellipse
 {
@@ -24,7 +22,7 @@ namespace Ellipse
             //Found
             for (int i = 1; i < aa; i++)
             {
-                dx += ((Math.Pow(LearningMachine.HermitInterpolation.Factorial(2 * i), 2) / (Math.Pow(Math.Pow(2, i) * LearningMachine.HermitInterpolation.Factorial(i), 4))) * (Math.Pow(e, 2 * i) / (2 * i - 1)));
+                dx += ((Math.Pow((LearningMachine.HermitInterpolation.Factorial(2 * i)), 2) / (Math.Pow(Math.Pow(2, i) * (LearningMachine.HermitInterpolation.Factorial(i)), 4))) * (Math.Pow(e, 2 * i) / (2 * i - 1)));
             }
             //Multiply for orthogonality.
             around = p * (1 - dx);
@@ -44,7 +42,7 @@ namespace Ellipse
 
             double p = 2 * Math.PI * Math.Sqrt((Math.Pow(a, 2) + Math.Pow(b, 2)) / 2);
 
-              around = p;
+            around = p;
             aroundOiler = Math.PI * (Math.Sqrt(2 * (Math.Pow(a, 2) + Math.Pow(b, 2))));
             /* double h = Math.PI * (Math.Pow(a - b, 2) / Math.Pow(a + b, 2));
                 double Pp = Math.PI * (a + b);

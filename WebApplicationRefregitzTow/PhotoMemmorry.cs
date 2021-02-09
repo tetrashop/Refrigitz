@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace RefrigtzW
 {
 
@@ -16,9 +13,9 @@ namespace RefrigtzW
 
         public void Load()
         {
-            if (Node == null) Node = new PhotoMemmorry();              
+            if (Node == null) Node = new PhotoMemmorry();
             Node.PhotosNextAccess = null;
-            Node.PhotosCurrentAccess = null;               
+            Node.PhotosCurrentAccess = null;
             try
             {
                 FileStream DummyFileStream = new FileStream(S, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
@@ -83,13 +80,13 @@ namespace RefrigtzW
             else
             {
                 t = t.PhotosNextAccess;
-                Node=t;
+                Node = t;
             }
         }
         public void AddObject(PhotoMemmorry p)
         {
             //p.PhotosNextAccess = null;
-            PhotoMemmorry t =new PhotoMemmorry();
+            PhotoMemmorry t = new PhotoMemmorry();
             if (p.PhotosNodeAccess != null)
             {
                 t = p.PhotosNodeAccess;
@@ -137,4 +134,4 @@ namespace RefrigtzW
             }
         }
     }
-    }
+}

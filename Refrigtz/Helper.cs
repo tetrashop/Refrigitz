@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System;
+﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 internal static class Helper
 {
@@ -11,10 +11,10 @@ internal static class Helper
         int errorCode = Marshal.GetHRForException(exception) & ((1 << 16) - 1);
         return errorCode == ERROR_SHARING_VIOLATION || errorCode == ERROR_LOCK_VIOLATION;
     }
-    public static void WaitOnUsed(string filePath) 
+    public static void WaitOnUsed(string filePath)
     {
-        do { } while (!CanReadFile(filePath)); 
-    
+        do { } while (!CanReadFile(filePath));
+
     }
     internal static bool CanReadFile(string filePath)
     {

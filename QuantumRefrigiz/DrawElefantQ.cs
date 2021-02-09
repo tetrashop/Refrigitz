@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace QuantumRefrigiz
 {
     [Serializable]
@@ -11,21 +10,21 @@ namespace QuantumRefrigiz
 
     {
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawElefantQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'DrawElefantQ.Spaces' is ASsigned but its value is never used
         int Spaces = 0;
-//#pragma warning restore CS0414 // The field 'DrawElefantQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'DrawElefantQ.Spaces' is ASsigned but its value is never used
 
         //A quantum move cannot be used to take a piece.
         public bool IsQuntumMove = false;
         //Pieces have rings around them, filled in with colour. These rings show the probability that the piece is in that square.
         public bool RingHalf = false;
-        public int WinOcuuredatChiled = 0;public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
-        
+        public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
+
+
+
         //Initiate Global Variables.
         List<int[]> ValuableSelfSupported = new List<int[]>();
-      
+
         public bool MovementsAStarGreedyHeuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
         public bool UsePenaltyRegardMechnisamT = false;
@@ -51,69 +50,69 @@ namespace QuantumRefrigiz
 
         static void Log(Exception ex)
         {
-            
-                Object a = new Object();
-                lock (a)
-                {
-                    string stackTrace = ex.ToString();
-                    Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); 
-                }
-           
+
+            Object a = new Object();
+            lock (a)
+            {
+                string stackTrace = ex.ToString();
+                Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
+            }
+
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-            
+
         }
         public bool MaxFound(ref bool MaxNotFound)
         {
-            
+
 
             int a = ReturnHeuristic();
-                if (MaxHeuristicxE < a)
+            if (MaxHeuristicxE < a)
+            {
+                Object O2 = new Object();
+                lock (O2)
                 {
-                    Object O2 = new Object();
-                    lock (O2)
-                    {
-                        MaxNotFound = false;
-                        if (ThinkingQuantumChess.MaxHeuristicx < MaxHeuristicxE)
-                            ThinkingQuantumChess.MaxHeuristicx = a;
-                        MaxHeuristicxE = a;
-                    }
-                
-                return true;
+                    MaxNotFound = false;
+                    if (ThinkingQuantumChess.MaxHeuristicx < MaxHeuristicxE)
+                        ThinkingQuantumChess.MaxHeuristicx = a;
+                    MaxHeuristicxE = a;
                 }
-           
+
+                return true;
+            }
+
             MaxNotFound = true;
-            
+
             return false;
         }
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.ElefantMovments; ii++)
-                
-                    a += ElefantThinkingQuantum[ii].ReturnHeuristic(-1, -1, Order, false,ref HaveKilled);
-            
+
+                a += ElefantThinkingQuantum[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
+
 
             return a;
         }
 
         //Constructor 1.
-        
+
         //Constructor 2.
         public DrawElefantQ(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//,ref AllDraw. THIS
             )
         {
-            
+
             object balancelock = new object();
 
             lock (balancelock)
             {
-               
+
 
 
                 CurrentAStarGredyMax = CurrentAStarGredy;
@@ -131,7 +130,7 @@ namespace QuantumRefrigiz
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.ElefantMovments; ii++)
-                    ElefantThinkingQuantum[ii] = new ThinkingQuantumChess(ii,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 2);
+                    ElefantThinkingQuantum[ii] = new ThinkingQuantumChess(ii, 2, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 2);
 
                 Row = i;
                 Column = j;
@@ -139,11 +138,11 @@ namespace QuantumRefrigiz
                 Order = Ord;
                 Current = Cur;
             }
-            
+
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -154,14 +153,14 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -172,7 +171,7 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -181,20 +180,20 @@ namespace QuantumRefrigiz
         public void Clone(ref DrawElefantQ AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
                     Tab[i, j] = this.Table[i, j];
             //Initiate a Constructed Object an Clone a Copy.
-            AA = new DrawElefantQ( CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, this.Row, this.Column, this.color, this.CloneATable(Table), this.Order, false, this.Current);
+            AA = new DrawElefantQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, this.Row, this.Column, this.color, this.CloneATable(Table), this.Order, false, this.Current);
             AA.ArrangmentsChanged = ArrangmentsChanged;
             for (var i = 0; i < AllDraw.ElefantMovments; i++)
             {
-                
-                    AA.ElefantThinkingQuantum[i] = new ThinkingQuantumChess(i,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
-                    this.ElefantThinkingQuantum[i].Clone(ref AA.ElefantThinkingQuantum[i]);
-               
+
+                AA.ElefantThinkingQuantum[i] = new ThinkingQuantumChess(i, 2, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                this.ElefantThinkingQuantum[i].Clone(ref AA.ElefantThinkingQuantum[i]);
+
             }
             AA.Table = new int[8, 8];
             for (var ii = 0; ii < 8; ii++)
@@ -205,7 +204,7 @@ namespace QuantumRefrigiz
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         //Draw an Instatnt Elephant On the Table.
         public void DrawElefantOnTable(ref Graphics g, int CellW, int CellH)
@@ -216,7 +215,7 @@ namespace QuantumRefrigiz
             {
                 if (g == null)
                     return;
-                
+
 
 
                 int LastRow = -1, LastColumn = -1;
@@ -266,7 +265,7 @@ namespace QuantumRefrigiz
 
                 lock (balancelockS)
                 {
-                    
+
 
                     //Gray Color.
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
@@ -342,7 +341,7 @@ namespace QuantumRefrigiz
                         }
                     }
                 }
-                
+
             }
         }
     }

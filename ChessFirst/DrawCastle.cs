@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace ChessFirst
 {
     [Serializable]
@@ -17,9 +16,9 @@ namespace ChessFirst
 
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
-        
+
+
+
         //Iniatite Global Variable.
         List<int[]> ValuableSelfSupported = new List<int[]>();
 
@@ -60,33 +59,33 @@ namespace ChessFirst
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-            
+
 
         }
-        
+
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.CastleMovments; ii++)
 
                 a += CastleThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
 
-            
+
             return a;
         }
 
 
         //Constructor 1.
-        
+
         //constructor 2.
         public DrawCastle(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//, ref AllDraw. THIS
             )
         {
-            
+
             object balancelock = new object();
             lock (balancelock)
             {
@@ -114,11 +113,11 @@ namespace ChessFirst
                 Order = Ord;
                 Current = Cur;
             }
-            
+
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -129,14 +128,14 @@ namespace ChessFirst
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -147,7 +146,7 @@ namespace ChessFirst
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -156,7 +155,7 @@ namespace ChessFirst
         public void Clone(ref DrawCastle AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -180,7 +179,7 @@ namespace ChessFirst
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         //Draw An Instatnt Brideges Images On the Table Method.
         public void DrawCastleOnTable(ref Graphics g, int CellW, int CellH)
@@ -191,11 +190,11 @@ namespace ChessFirst
             {
                 if (g == null)
                     return;
-                
+
                 try
                 {
 
-                    
+
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     { //Gray Color.
                         if (Order == 1)
@@ -223,7 +222,7 @@ namespace ChessFirst
                 {
                     Log(t);
                 }
-                
+
             }
         }
     }

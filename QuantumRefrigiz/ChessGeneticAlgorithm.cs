@@ -1,17 +1,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
- 
+
 namespace QuantumRefrigiz
 {
     [Serializable]
     public class ChessGeneticAlgorithm
     {
-        
+
         //
         public bool Hit = false;
 
@@ -69,7 +67,7 @@ namespace QuantumRefrigiz
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
-                    Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); 
+                    Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
                 }
             }
             catch (Exception t) { }
@@ -478,7 +476,7 @@ namespace QuantumRefrigiz
                             {
                                 CromosomRow = j;
                                 CromosomColumn = i;
-                                 Find = true;
+                                Find = true;
                                 FindNumber++;
 
                             }
@@ -524,7 +522,7 @@ namespace QuantumRefrigiz
 
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -535,14 +533,14 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -553,7 +551,7 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -588,7 +586,7 @@ namespace QuantumRefrigiz
 
 
             //Initiate Global Variables.
-        BeginFind:
+            BeginFind:
             Color color = Color.Gray;
             if (Order == -1)
                 color = Color.Brown;

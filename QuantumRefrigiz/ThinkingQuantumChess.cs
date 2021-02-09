@@ -38,6 +38,7 @@
 ***************************************
 ***************************************
 **************************************/
+using LearningMachine;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -46,7 +47,6 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using LearningMachine;
 
 namespace QuantumRefrigiz
 {
@@ -497,7 +497,7 @@ namespace QuantumRefrigiz
                     HeuristicListKing = new List<int[]>();
                     PenaltyRegardListKing = new List<QuantumAtamata>();
                 }
-                else if (KindO == 7||KindO==-7)
+                else if (KindO == 7 || KindO == -7)
                 {
                     TableListCastling = new List<int[,]>();
                     RowColumnCastling = new List<int[]>();
@@ -902,7 +902,7 @@ namespace QuantumRefrigiz
                     }
                 }
                 else
-                if (Kind == 7||Kind==-7)
+                if (Kind == 7 || Kind == -7)
                 {
                     //Initaite and Create King Penalty List Object.
                     AA.PenaltyRegardListCastling = new List<QuantumAtamata>();
@@ -2716,15 +2716,15 @@ namespace QuantumRefrigiz
                 int HAE = 0;
                 ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
-var th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
-th.Wait();
-th.Dispose();
+    var th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
+    th.Wait();
+    th.Dispose();
 }
 , () =>
 {
-var th = Task.Factory.StartNew(() => HAS = HAE = HeuristicEnemySupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
-th.Wait();
-th.Dispose();
+    var th = Task.Factory.StartNew(() => HAS = HAE = HeuristicEnemySupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
+    th.Wait();
+    th.Dispose();
 
 });
                 return HAS + (HAE);
@@ -7180,7 +7180,8 @@ th.Dispose();
             Object OO = new Object();
             lock (OO)
             {
-                try {
+                try
+                {
 
                     bool ab = false;
                     var th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
@@ -7427,7 +7428,7 @@ th.Dispose();
 
                                         if (Table[RowS, ColS] == 0 && Table[RowD, ColD] == 0)
                                             return;
-                                        ExchangeE(Before, Ord, ref Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, ReducedMove, ToMoved,Table, RowS, ColS, RowD, ColD);
+                                        ExchangeE(Before, Ord, ref Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, ReducedMove, ToMoved, Table, RowS, ColS, RowD, ColD);
 
 
                                     });
@@ -7580,7 +7581,7 @@ th.Dispose();
 
             }
         }
-        void ExchangeE(bool Before,int Ord, ref int[] ExchangeA, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked, int ReducedMove, int ToMoved, int[,] Table, int RowS, int ColS, int RowD, int ColD)
+        void ExchangeE(bool Before, int Ord, ref int[] ExchangeA, int ToSupport, int ReducedSupport, int ReducedAttacked, int ToAttacked, int ReducedMove, int ToMoved, int[,] Table, int RowS, int ColS, int RowD, int ColD)
         {
             Object o = new Object();
             lock (o)
@@ -7666,9 +7667,9 @@ th.Dispose();
                     PerformedExchange = ExchangeA;
                     ExcangePerformed = true;
                 }
-                else 
+                else
                     ExchangeA = PerformedExchange;
-                
+
             }
         }
         //when objectS source less than destination
@@ -7739,19 +7740,19 @@ th.Dispose();
             {
                 int HAS = 0;
                 int HAE = 0;
-                ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
-                {
-                    var th = Task.Factory.StartNew(() => HAS = HeuristicMovmentSelf(Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
-                    th.Wait();
-                    th.Dispose();
-                }
-                , () =>
-                {
-                    var th = Task.Factory.StartNew(() => HAE = HeuristicMovmentEnemy(Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
-                    th.Wait();
-                    th.Dispose();
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+{
+var th = Task.Factory.StartNew(() => HAS = HeuristicMovmentSelf(Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
+th.Wait();
+th.Dispose();
+}
+, () =>
+{
+var th = Task.Factory.StartNew(() => HAE = HeuristicMovmentEnemy(Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
+th.Wait();
+th.Dispose();
 
-                });
+});
                 return HAS + (HAE);
             }
         }
@@ -9139,7 +9140,7 @@ th.Dispose();
                 }
             }
             //when there is not served layer
-            bool A = !IsSupHuTrue(j); if (A  && j >= 0)
+            bool A = !IsSupHuTrue(j); if (A && j >= 0)
             {
                 //when there is computations
                 for (j = 0; HeuristicListSolder != null && j < HeuristicListSolder.Count; j++)
@@ -9399,7 +9400,7 @@ th.Dispose();
                                 BOUND = bo;
                                 HaveKilled = hav;
                             } //Repeate for King.
-                            for (int m = 0; m <1; m++)
+                            for (int m = 0; m < 1; m++)
                             {
                                 int bo = BOUND;
                                 int hav = HaveKilled;
@@ -9604,7 +9605,7 @@ th.Dispose();
         public int ReturnHeuristicCalculartorSurface(int iAstarGready, int ii, int j, int Order, ref int HaveKilled, ref int BOUND)
         {
             int Heuristic = 0;
-            bool A = !IsSupHuTrue(j); if (A  && j >= 0)
+            bool A = !IsSupHuTrue(j); if (A && j >= 0)
             {
                 //When Solder Kind.
                 if (System.Math.Abs(Kind) == 1 && HeuristicListSolder.Count > 0)
@@ -9731,7 +9732,7 @@ th.Dispose();
                 return 0;
             iAstarGready++;
             int BOUND = 0;
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -9907,7 +9908,7 @@ th.Dispose();
                 else
               if (Kind == 7 || Kind == -7)//Castling
                 {
-                         Validity = true;
+                    Validity = true;
                 }
                 if (Kind != 7 && Kind != -7)//Castling
                 {
@@ -11157,7 +11158,7 @@ th.Dispose();
                                      if (kind == 6 && Current.IsPenaltyAction() != 0 && UsePenaltyRegardMechnisamT && PenaltyRegardListKing != null && PenaltyRegardListKing.Count == TableListKing.Count)
                     Equality = true;
                 else
-                                     if ((kind == 7||kind==-7) && Current.IsPenaltyAction() != 0 && UsePenaltyRegardMechnisamT && PenaltyRegardListCastling != null && PenaltyRegardListCastling.Count == TableListCastling.Count)
+                                     if ((kind == 7 || kind == -7) && Current.IsPenaltyAction() != 0 && UsePenaltyRegardMechnisamT && PenaltyRegardListCastling != null && PenaltyRegardListCastling.Count == TableListCastling.Count)
                     Equality = true;
                 return Equality;
             }
@@ -11193,7 +11194,7 @@ th.Dispose();
                     //King.
                     PenaltyRegardListKing.Add(Current);
                 else
-                                if (kind == 7||kind==-7)
+                                if (kind == 7 || kind == -7)
                     //King.
                     PenaltyRegardListCastling.Add(Current);
             }
@@ -11230,7 +11231,7 @@ th.Dispose();
                     //King.
                     PenaltyRegardListKing.RemoveAt(PenaltyRegardListKing.Count - 1);
                 else
-                                if (kind == 7||kind==-7)
+                                if (kind == 7 || kind == -7)
                     //King.
                     PenaltyRegardListCastling.RemoveAt(PenaltyRegardListCastling.Count - 1);
             }
@@ -11571,7 +11572,7 @@ th.Dispose();
                         newTask2.Dispose();
                     }
                     else
-                                if ((kind == 7 ||Kind==-7)&& PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListCastling != null && PenaltyRegardListCastling.Count == TableListCastling.Count)
+                                if ((kind == 7 || Kind == -7) && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListCastling != null && PenaltyRegardListCastling.Count == TableListCastling.Count)
                     {
                         var newTask2 = Task.Factory.StartNew(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
                         newTask2.Wait();
@@ -12184,7 +12185,7 @@ th.Dispose();
                     HitNumberKing.Add(TableS[RowDestination, ColumnDestination]);
                 }
                 else
-                if (Kind == 7||Kind==-7)
+                if (Kind == 7 || Kind == -7)
                 {
                     int[] AS = new int[2];
                     AS[0] = RowDestination;
@@ -12525,33 +12526,33 @@ th.Dispose();
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
-                        {
-                            Object O = new Object();
-                            lock (O)
-                            {
-                                if (!Scop(RowS, ColS, RowD, ColD, Kind))
-                                    return;
-                                int[,] TableSS = CloneATable(TableS);
-                                int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                                var H = Task.Factory.StartNew(() => Heuristic = HeuristicAll(Before, Killed, TableSS, color, Order));
-                                H.Wait();
-                                H.Dispose();
-                            }
-                        }, () =>
-                        {
-                            Object O = new Object();
-                            lock (O)
-                            {
-                                if (!Scop(RowS, ColS, RowD, ColD, Kind))
-                                    return;
-                                int[,] TableSS = CloneATable(TableS);
-                                int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                                var H = Task.Factory.StartNew(() => Exchange = HeuristicExchange(Before, Killed, TableSS, color, Order, RowS, ColS, RowD, ColD));
-                                H.Wait();
-                                H.Dispose();
-                            }
-                        });
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+{
+    Object O = new Object();
+    lock (O)
+    {
+        if (!Scop(RowS, ColS, RowD, ColD, Kind))
+            return;
+        int[,] TableSS = CloneATable(TableS);
+        int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
+        var H = Task.Factory.StartNew(() => Heuristic = HeuristicAll(Before, Killed, TableSS, color, Order));
+        H.Wait();
+        H.Dispose();
+    }
+}, () =>
+{
+    Object O = new Object();
+    lock (O)
+    {
+        if (!Scop(RowS, ColS, RowD, ColD, Kind))
+            return;
+        int[,] TableSS = CloneATable(TableS);
+        int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
+        var H = Task.Factory.StartNew(() => Exchange = HeuristicExchange(Before, Killed, TableSS, color, Order, RowS, ColS, RowD, ColD));
+        H.Wait();
+        H.Dispose();
+    }
+});
                     }
                 });
 
@@ -12560,106 +12561,106 @@ th.Dispose();
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.Invoke(() =>
-                        {
-                            Object O = new Object();
-                            lock (O)
-                            {
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+{
+    Object O = new Object();
+    lock (O)
+    {
                                 //if (SubOfHeuristicAllIsPositive(Heuristic))
                                 {
-                                    if (!Scop(RowS, ColS, RowD, ColD, Kind))
-                                        return;
-                                    int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                                    int[,] TableSS = CloneATable(TableS);
-                                    var H = Task.Factory.StartNew(() => HeuristicRemain[0] = HeuristicCheckAndCheckMate(RoS, CoS, RoD, CoD, TableSS, color//, ref HeuristicReducedMovementValue
-                                    ));
-                                    H.Wait();
-                                    H.Dispose();
-                                }
-                            }
-                        }, () =>
-                        {
-                            Object O = new Object();
-                            lock (O)
-                            {
+            if (!Scop(RowS, ColS, RowD, ColD, Kind))
+                return;
+            int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
+            int[,] TableSS = CloneATable(TableS);
+            var H = Task.Factory.StartNew(() => HeuristicRemain[0] = HeuristicCheckAndCheckMate(RoS, CoS, RoD, CoD, TableSS, color//, ref HeuristicReducedMovementValue
+            ));
+            H.Wait();
+            H.Dispose();
+        }
+    }
+}, () =>
+{
+    Object O = new Object();
+    lock (O)
+    {
                                 //if (SubOfHeuristicAllIsPositive(Heuristic))
                                 {
-                                    if (!Scop(RowS, ColS, RowD, ColD, Kind))
-                                        return;
-                                    int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                                    int[,] TableSS = CloneATable(TableS);
-                                    var H = Task.Factory.StartNew(() => HeuristicRemain[1] = HeuristicDistribution(Before, TableSS, Order, color, RowS, ColS, RowD, ColD//, ref HeuristicDistributionValue
-                                         ));
-                                    H.Wait();
-                                    H.Dispose();
-                                }
-                            }
-                        }, () =>
-                        {
-                            Object O = new Object();
-                            lock (O)
-                            {
-                                if (!Scop(RowS, ColS, RowD, ColD, Kind))
-                                    return;
-                                int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                                int[,] TableSS = CloneATable(TableS);
-                                var H = Task.Factory.StartNew(() => HeuristicRemain[2] = HeuristicKingSafety(TableSS, Order, color, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
-                                     ));
-                                H.Wait();
-                                H.Dispose();
-                            }
-                        }, () =>
-                        {
-                            Object O = new Object();
-                            lock (O)
-                            {
-                                if (!Scop(RowS, ColS, RowD, ColD, Kind))
-                                    return;
-                                int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                                int[,] TableSS = CloneATable(TableS);
-                                var H = Task.Factory.StartNew(() => HeuristicRemain[3] = HeuristicKingPreventionOfCheckedAtBegin(TableSS, Order, color, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
-                                ));
-                                H.Wait();
-                                H.Dispose();
-                            }
-                        }, () =>
-                        {
-                            Object O = new Object();
-                            lock (O)
-                            {
+            if (!Scop(RowS, ColS, RowD, ColD, Kind))
+                return;
+            int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
+            int[,] TableSS = CloneATable(TableS);
+            var H = Task.Factory.StartNew(() => HeuristicRemain[1] = HeuristicDistribution(Before, TableSS, Order, color, RowS, ColS, RowD, ColD//, ref HeuristicDistributionValue
+                 ));
+            H.Wait();
+            H.Dispose();
+        }
+    }
+}, () =>
+{
+    Object O = new Object();
+    lock (O)
+    {
+        if (!Scop(RowS, ColS, RowD, ColD, Kind))
+            return;
+        int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
+        int[,] TableSS = CloneATable(TableS);
+        var H = Task.Factory.StartNew(() => HeuristicRemain[2] = HeuristicKingSafety(TableSS, Order, color, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
+             ));
+        H.Wait();
+        H.Dispose();
+    }
+}, () =>
+{
+    Object O = new Object();
+    lock (O)
+    {
+        if (!Scop(RowS, ColS, RowD, ColD, Kind))
+            return;
+        int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
+        int[,] TableSS = CloneATable(TableS);
+        var H = Task.Factory.StartNew(() => HeuristicRemain[3] = HeuristicKingPreventionOfCheckedAtBegin(TableSS, Order, color, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
+        ));
+        H.Wait();
+        H.Dispose();
+    }
+}, () =>
+{
+    Object O = new Object();
+    lock (O)
+    {
                                 //if (SubOfHeuristicAllIsPositive(Heuristic))
                                 {
-                                    if (!Scop(RowS, ColS, RowD, ColD, Kind))
-                                        return;
-                                    int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                                    int[,] TableSS = CloneATable(TableS);
-                                    var H = Task.Factory.StartNew(() => HeuristicRemain[4] = HeuristicObjectAtCenterAndPawnAttackTraversalObjectsAndDangourForEnemy(TableSS, color, Order, RoS, CoS, RoD, CoD));
-                                    H.Wait();
-                                    H.Dispose();
-                                }
-                            }
-                        }, () =>
-                        {
-                            Object O = new Object();
-                            lock (O)
-                            {
+            if (!Scop(RowS, ColS, RowD, ColD, Kind))
+                return;
+            int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
+            int[,] TableSS = CloneATable(TableS);
+            var H = Task.Factory.StartNew(() => HeuristicRemain[4] = HeuristicObjectAtCenterAndPawnAttackTraversalObjectsAndDangourForEnemy(TableSS, color, Order, RoS, CoS, RoD, CoD));
+            H.Wait();
+            H.Dispose();
+        }
+    }
+}, () =>
+{
+    Object O = new Object();
+    lock (O)
+    {
                                 //if (SubOfHeuristicAllIsPositive(Heuristic))
                                 {
-                                    if (!Scop(RowS, ColS, RowD, ColD, Kind))
-                                        return;
-                                    int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                                    int[,] TableSS = CloneATable(TableS);
-                                    Color colorE = Color.Gray;
-                                    if (Order == -1)
-                                        colorE = Color.Gray;
-                                    else
-                                        colorE = Color.Brown;
-                                    var H = Task.Factory.StartNew(() => HeuristicRemain[5] = HeuristicBetterSpace(TableSS, color, colorE, Order, Order * -1));
-                                    H.Wait();
-                                    H.Dispose();
-                                }
-                            }
-                        });
+            if (!Scop(RowS, ColS, RowD, ColD, Kind))
+                return;
+            int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
+            int[,] TableSS = CloneATable(TableS);
+            Color colorE = Color.Gray;
+            if (Order == -1)
+                colorE = Color.Gray;
+            else
+                colorE = Color.Brown;
+            var H = Task.Factory.StartNew(() => HeuristicRemain[5] = HeuristicBetterSpace(TableSS, color, colorE, Order, Order * -1));
+            H.Wait();
+            H.Dispose();
+        }
+    }
+});
                     }
                 });
 
@@ -14448,7 +14449,7 @@ th.Dispose();
                 Object O1 = new Object();
                 lock (O1)
                 {
-                     if (!IsSupHuTrue())
+                    if (!IsSupHuTrue())
                     {
                         if (Before)
                         {
@@ -14764,9 +14765,9 @@ th.Dispose();
                         }
 
                     }
-                     if (!IsSupHuTrue() && (Order == AllDraw.OrderPlateDraw))
+                    if (!IsSupHuTrue() && (Order == AllDraw.OrderPlateDraw))
                     {
-                        
+
                         H2 = Task.Factory.StartNew(() => HDoubleAttack = DoubleAttack(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
                         H3 = Task.Factory.StartNew(() => HDoubleDefense = DoubleDefence(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
                         H2.Wait();
@@ -15780,8 +15781,8 @@ th.Dispose();
                 {
 
 
-                      ///Initiate a Local Variables.
-                        int[,] TableS = CloneATable(TableConst);
+                    ///Initiate a Local Variables.
+                    int[,] TableS = CloneATable(TableConst);
 
                     if (Scop(ii, jj, i, jj, -7) && System.Math.Abs(TableS[ii, jj]) == 6 && System.Math.Abs(Kind) == 7)
                     { ///"Inizialization of This New Class (Current is Dynamic class Object) is MalFunction (Constant Variable Count).
@@ -15973,7 +15974,7 @@ th.Dispose();
                     AStarGreedy[AStarGreedy.Count - 1].AStarGreedyString = THIS;
                 }
             }
-            else if (kind == 7||kind==-7)//king
+            else if (kind == 7 || kind == -7)//king
             {
                 //when valid do create of deeper node and string making
                 if (TableListKing.Count > AStarGreedy.Count)

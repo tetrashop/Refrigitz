@@ -1,28 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.IO;
-using System.Net;
-using System.Net.Mail;
 using System.Globalization;
 using System.Threading;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Media;
-using System.Drawing.Drawing2D;
-using System.Resources;
-using System.Web;
-using System.IO.Ports;
-using System.Collections;
+using System.Windows.Forms;
 namespace JSONReader
 {
     public partial class FormJSONReader : Form

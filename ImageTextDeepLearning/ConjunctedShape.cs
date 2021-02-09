@@ -4,19 +4,15 @@
  TetraShop.Ir***********************************************************************
  https://www.codingdefined.com/2015/04/solved-bitmapclone-out-of-memory.html********
  ***********************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+//#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+using ContourAnalysisDemo;
 //#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
-using ContourAnalysisNS;
 //#pragma warning restore CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 using Emgu.CV;
-//#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-using ContourAnalysisDemo;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ImageTextDeepLearning
@@ -142,7 +138,7 @@ namespace ImageTextDeepLearning
                             List<Bitmap> TempAllImage = new List<Bitmap>();
 
 
-                            
+
                             Point[] Tem = null;
                             //retrive current item
                             Tem = All[i][j];
@@ -165,7 +161,7 @@ namespace ImageTextDeepLearning
 
 
                             //draw all points
-                            e.FillPolygon(Brushes.Black, Tem,System.Drawing.Drawing2D.FillMode.Alternate);
+                            e.FillPolygon(Brushes.Black, Tem, System.Drawing.Drawing2D.FillMode.Alternate);
 
 
                             //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
@@ -173,13 +169,13 @@ namespace ImageTextDeepLearning
                             Bitmap Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
 
 
-                           /* Do = ColorizedCountreImageCommmon(ref Te);
-                            if (!Do)
-                            {
-                                MessageBox.Show("Coloriezed Fatal Error");
-                                return false;
-                            }
-                            */
+                            /* Do = ColorizedCountreImageCommmon(ref Te);
+                             if (!Do)
+                             {
+                                 MessageBox.Show("Coloriezed Fatal Error");
+                                 return false;
+                             }
+                             */
                             //add image
                             AllImage.Add(Te);
                             e.Dispose();
@@ -343,13 +339,13 @@ namespace ImageTextDeepLearning
                         while (true)
                         {
                             //when there is not and is not empty at list
-                          /*  if (!All.Contains(Collection) && Collection.Count > 1)
-                            {
-                                //add collection
-                                All.Add(Collection);
-                                Collection = new List<Point[]>();
+                            /*  if (!All.Contains(Collection) && Collection.Count > 1)
+                              {
+                                  //add collection
+                                  All.Add(Collection);
+                                  Collection = new List<Point[]>();
 
-                            }*/
+                              }*/
                             //next enumerator
                             flag1 = enumerator1.MoveNext();
                             //when is finished break 
@@ -370,7 +366,7 @@ namespace ImageTextDeepLearning
                             Collection.Add(PointP1);
                             flag2 = true;
                         }
-                        if(flag2)                         
+                        if (flag2)
                             All.Add(Collection);
                         Collection = new List<Point[]>();
                     } while (true);

@@ -5,7 +5,7 @@
     using System.ComponentModel;
     using System.Drawing;
     using System.Windows.Forms;
-  
+
     public class TemplateEditor : Form
     {
         private Templates templates;
@@ -17,8 +17,8 @@
         private CheckBox cbPreferredAngle;
         private Button btDelete;
 
-       public TemplateEditor(Templates templates)
-      {
+        public TemplateEditor(Templates templates)
+        {
             this.InitializeComponent();
             this.templates = templates;
             templates.Sort((t1, t2) => t1.name.CompareTo(t2.name));
@@ -114,7 +114,7 @@
             this.label1 = new Label();
             this.cbPreferredAngle = new CheckBox();
             this.btDelete = new Button();
-            ((ISupportInitialize) this.dgvTemplates).BeginInit();
+            ((ISupportInitialize)this.dgvTemplates).BeginInit();
             base.SuspendLayout();
             this.dgvTemplates.AllowUserToAddRows = false;
             this.dgvTemplates.AllowUserToDeleteRows = false;
@@ -174,7 +174,7 @@
             this.MinimumSize = new Size(0x25e, 0x13e);
             base.Name = "TemplateEditor";
             this.Text = "Template Editor";
-            ((ISupportInitialize) this.dgvTemplates).EndInit();
+            ((ISupportInitialize)this.dgvTemplates).EndInit();
             base.ResumeLayout(false);
             base.PerformLayout();
         }

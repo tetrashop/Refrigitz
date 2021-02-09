@@ -5,12 +5,8 @@
  ***********************************************************************************/
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 //#pragma warning disable CS0105 // The using directive for 'System.Threading.Tasks' appeared previously in this namespace
-using System.Threading.Tasks;
 //#pragma warning restore CS0105 // The using directive for 'System.Threading.Tasks' appeared previously in this namespace
 namespace ImageTextDeepLearning
 {
@@ -152,4 +148,4 @@ namespace ImageTextDeepLearning
             return true;
         }
     }
-}  
+}

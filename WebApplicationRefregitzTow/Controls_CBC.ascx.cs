@@ -72,14 +72,11 @@
 //   62= f1
 //   63= g1
 //   64= h1
+using RefrigtzW;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Threading;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Threading;
-using RefrigtzW;
 namespace WebApplicationRefregitzTow
 {
     public partial class Controls_CBC : System.Web.UI.UserControl
@@ -89,16 +86,16 @@ namespace WebApplicationRefregitzTow
         public static int MouseClicked = 0;
         public static int CurrentClickedNumber;
         public static bool Found = false;
-//#pragma warning disable CS3008 // Identifier '_1' is not CLS-compliant
+        //#pragma warning disable CS3008 // Identifier '_1' is not CLS-compliant
 #pragma warning disable CS3008 // Identifier '_1' is not CLS-compliant
         public static Control _1 = null;
 #pragma warning restore CS3008 // Identifier '_1' is not CLS-compliant
-//#pragma warning restore CS3008 // Identifier '_1' is not CLS-compliant
-//#pragma warning disable CS3008 // Identifier '_2' is not CLS-compliant
+        //#pragma warning restore CS3008 // Identifier '_1' is not CLS-compliant
+        //#pragma warning disable CS3008 // Identifier '_2' is not CLS-compliant
 #pragma warning disable CS3008 // Identifier '_2' is not CLS-compliant
         public static Control _2 = null;
 #pragma warning restore CS3008 // Identifier '_2' is not CLS-compliant
-//#pragma warning restore CS3008 // Identifier '_2' is not CLS-compliant
+        //#pragma warning restore CS3008 // Identifier '_2' is not CLS-compliant
         public double MaxHeuristicxT = Double.MinValue;
         public bool MovementsAStarGreedyHeuristicFound = false;
         public bool IIgnoreSelfObjects = false;
@@ -194,7 +191,7 @@ namespace WebApplicationRefregitzTow
 
 
 
-                            if ((new ChessRules(0,MovementsAStarGreedyHeuristicFound,IIgnoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,7, FormRefrigtz.Table, FormRefrigtz.OrderPlate, Row1, Column1)).Rules(Row1, Column1, Row2, Column2, A, 7))
+                            if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IIgnoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 7, FormRefrigtz.Table, FormRefrigtz.OrderPlate, Row1, Column1)).Rules(Row1, Column1, Row2, Column2, A, 7))
                             {
 
                                 FormRefrigtz.Table[Row1 - 2, Column1] = FormRefrigtz.Table[Row1, Column1];
@@ -210,7 +207,7 @@ namespace WebApplicationRefregitzTow
 
                         else if ((Column1 == Column2) && (Row1 == Row2 + 2))
                         {
-                            if ((new ChessRules(0,MovementsAStarGreedyHeuristicFound,IIgnoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,-7, FormRefrigtz.Table, FormRefrigtz.OrderPlate, Row1, Column1)).Rules(Row1, Column1, Row2, Column2, A, -7))
+                            if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IIgnoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, -7, FormRefrigtz.Table, FormRefrigtz.OrderPlate, Row1, Column1)).Rules(Row1, Column1, Row2, Column2, A, -7))
                             {
                                 FormRefrigtz.Table[Row1 + 2, Column1] = FormRefrigtz.Table[Row1, Column1];
                                 FormRefrigtz.Table[Row1 + 3, Column1] = FormRefrigtz.Table[Row1, 0];
@@ -221,13 +218,13 @@ namespace WebApplicationRefregitzTow
                         }
                         else
                         {
-                            if ((new ChessRules(0,MovementsAStarGreedyHeuristicFound,IIgnoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,FormRefrigtz.Table[Row1, Column1], FormRefrigtz.Table, FormRefrigtz.OrderPlate, Row1, Column1)).Rules(Row1, Column1, Row2, Column2, A, FormRefrigtz.Table[Row1, Column1]))
+                            if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IIgnoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, FormRefrigtz.Table[Row1, Column1], FormRefrigtz.Table, FormRefrigtz.OrderPlate, Row1, Column1)).Rules(Row1, Column1, Row2, Column2, A, FormRefrigtz.Table[Row1, Column1]))
                             {
                                 ThingsConverter t = new ThingsConverter();
                                 t.ConvertOperation(Row2, Column2, A, FormRefrigtz.Table, FormRefrigtz.OrderPlate, false, 0);
                                 if (t.Convert)
                                 {
-                            
+
                                     FormRefrigtz.Table[Row1, Column1] = 0;
                                     if (t.ConvertedToMinister)
                                         FormRefrigtz.Table[Row2, Column2] = 5;
@@ -236,8 +233,8 @@ namespace WebApplicationRefregitzTow
                                     else if (t.ConvertedToHourse)
                                         FormRefrigtz.Table[Row2, Column2] = 3;
                                     else if (t.ConvertedToElefant)
-                                        FormRefrigtz.Table[Row2, Column2] = 2;                                   
-                                }                               
+                                        FormRefrigtz.Table[Row2, Column2] = 2;
+                                }
                                 else
                                 {
                                     FormRefrigtz.Table[Row2, Column2] = FormRefrigtz.Table[Row1, Column1];
@@ -257,7 +254,7 @@ namespace WebApplicationRefregitzTow
             //*****************************************
             //   PROCEDUREVALIDATEMOVE(MoveFrom,MoveTo)
 
-    BeginSection:
+            BeginSection:
 
 
                 //Move From Section
@@ -1395,87 +1392,87 @@ namespace WebApplicationRefregitzTow
                             }
                             else
                                 if (Tab[i, j] == 2)
-                                {
-                                    ((Image)c).ImageUrl = "~/Images/Wbishop.gif";
-                                    ((Panel)cP).Visible = true;
-                                    //Setucc(((j*8+i) + 1), "~/Images/Wbishop.gif", true);
-                                }
-                                else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/Wbishop.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/Wbishop.gif", true);
+                            }
+                            else
                                     if (Tab[i, j] == 3)
-                                    {
-                                        ((Image)c).ImageUrl = "~/Images/Wknight.gif";
-                                        ((Panel)cP).Visible = true;
-                                        //Setucc(((j*8+i) + 1), "~/Images/Wknight.gif", true);
-                                    }
-                                    else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/Wknight.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/Wknight.gif", true);
+                            }
+                            else
                                         if (Tab[i, j] == 4)
-                                        {
-                                            ((Image)c).ImageUrl = "~/Images/Wrook.gif";
-                                            ((Panel)cP).Visible = true;
-                                            //Setucc(((j*8+i) + 1), "~/Images/Wrook.gif", true);
-                                        }
-                                        else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/Wrook.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/Wrook.gif", true);
+                            }
+                            else
                                             if (Tab[i, j] == 5)
-                                            {
-                                                ((Image)c).ImageUrl = "~/Images/Wqueen.gif";
-                                                ((Panel)cP).Visible = true;
-                                                //Setucc(((j*8+i) + 1), "~/Images/Wqueen.gif", true);
-                                            }
-                                            else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/Wqueen.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/Wqueen.gif", true);
+                            }
+                            else
                                                 if (Tab[i, j] == 6)
-                                                {
-                                                    ((Image)c).ImageUrl = "~/Images/WKing.gif";
-                                                    ((Panel)cP).Visible = true;
-                                                    //Setucc(((j*8+i) + 1), "~/Images/WKing.gif", true);
-                                                }
-                                                else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/WKing.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/WKing.gif", true);
+                            }
+                            else
                                                     if (Tab[i, j] == -1)
-                                                    {
-                                                        ((Image)c).ImageUrl = "~/Images/bPawn.gif";
-                                                        ((Panel)cP).Visible = true;
-                                                        //Setucc(((j*8+i) + 1), "~/Images/bPawn.gif", true);
-                                                    }
-                                                    else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/bPawn.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/bPawn.gif", true);
+                            }
+                            else
                                                         if (Tab[i, j] == -2)
-                                                        {
-                                                            ((Image)c).ImageUrl = "~/Images/bbishop.gif";
-                                                            ((Panel)cP).Visible = true;
-                                                            //Setucc(((j*8+i) + 1), "~/Images/bbishop.gif", true);
-                                                        }
-                                                        else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/bbishop.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/bbishop.gif", true);
+                            }
+                            else
                                                             if (Tab[i, j] == -3)
-                                                            {
-                                                                ((Image)c).ImageUrl = "~/Images/bknight.gif";
-                                                                ((Panel)cP).Visible = true;
-                                                                //Setucc(((j*8+i) + 1), "~/Images/bknight.gif", true);
-                                                            }
-                                                            else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/bknight.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/bknight.gif", true);
+                            }
+                            else
                                                                 if (Tab[i, j] == -4)
-                                                                {
-                                                                    ((Image)c).ImageUrl = "~/Images/brook.gif";
-                                                                    ((Panel)cP).Visible = true;
-                                                                    //Setucc(((j*8+i) + 1), "~/Images/brook.gif", true);
-                                                                }
-                                                                else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/brook.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/brook.gif", true);
+                            }
+                            else
                                                                     if (Tab[i, j] == -5)
-                                                                    {
-                                                                        ((Image)c).ImageUrl = "~/Images/bqueen.gif";
-                                                                        ((Panel)cP).Visible = true;
-                                                                        //Setucc(((j*8+i) + 1), "~/Images/bqueen.gif", true);
-                                                                    }
-                                                                    else
+                            {
+                                ((Image)c).ImageUrl = "~/Images/bqueen.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/bqueen.gif", true);
+                            }
+                            else
                                                                         if (Tab[i, j] == -6)
-                                                                        {
-                                                                            ((Image)c).ImageUrl = "~/Images/bking.gif";
-                                                                            ((Panel)cP).Visible = true;
-                                                                            //Setucc(((j*8+i) + 1), "~/Images/bking.gif", true);
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            ((Image)c).ImageUrl = "";
-                                                                            ((Panel)cP).Visible = false;
-                                                                            //Setucc(((j*8+i) + 1), "", false);
-                                                                        }
+                            {
+                                ((Image)c).ImageUrl = "~/Images/bking.gif";
+                                ((Panel)cP).Visible = true;
+                                //Setucc(((j*8+i) + 1), "~/Images/bking.gif", true);
+                            }
+                            else
+                            {
+                                ((Image)c).ImageUrl = "";
+                                ((Panel)cP).Visible = false;
+                                //Setucc(((j*8+i) + 1), "", false);
+                            }
                         }
                         //((CheckBox)cC).AutoPostBack = true;
 
@@ -1784,7 +1781,7 @@ namespace WebApplicationRefregitzTow
             else
 
                 if (a == 2)
-                    return "b8";
+                return "b8";
             if (a == 3)
                 return "c8";
             if (a == 4)

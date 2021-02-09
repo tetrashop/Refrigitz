@@ -20,39 +20,35 @@
  * *******************************************************************************************************************************************************
  * *******************************************************************************************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Media;
-using System.Web.UI.WebControls;
 using System.Threading;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace WebApplicationRefregitzTow
 {
 
-//#pragma warning disable CS3008 // Identifier '_Default' is not CLS-compliant
+    //#pragma warning disable CS3008 // Identifier '_Default' is not CLS-compliant
 #pragma warning disable CS3008 // Identifier '_Default' is not CLS-compliant
     public partial class _Default : Page
 #pragma warning restore CS3008 // Identifier '_Default' is not CLS-compliant
-//#pragma warning restore CS3008 // Identifier '_Default' is not CLS-compliant
+    //#pragma warning restore CS3008 // Identifier '_Default' is not CLS-compliant
     {
         public static bool First = true;
         public static Control uc;
         //public static Controls_CBC ucc;
         public static int No = 0;
-         public _Default()
+        public _Default()
         {
             PlaceHolder1 = new PlaceHolder();
             Label2 = new Label();
-           // Iniziate();
+            // Iniziate();
         }
         public void Iniziate()
         {
-           WebApplicationRefregitzTow._Default.uc = (Control)Page.LoadControl("Controls_CBC.ascx");
-           // WebApplicationRefregitzTow._Default.ucc = new WebApplicationRefregitzTow.Controls_CBC();
+            WebApplicationRefregitzTow._Default.uc = (Control)Page.LoadControl("Controls_CBC.ascx");
+            // WebApplicationRefregitzTow._Default.ucc = new WebApplicationRefregitzTow.Controls_CBC();
             //uc.ID = "AddBPOP";
-           // ucc.Controls.Add(uc);
+            // ucc.Controls.Add(uc);
 
             /*                for (int i = 0; i < 8; i++)
                                 for (int j = 0; j < 8; j++)
@@ -72,8 +68,8 @@ namespace WebApplicationRefregitzTow
         }
         public void AddBPOP()
         {//
-           // PlaceHolder1.Controls.Clear();
-           // PlaceHolder1.Controls.Add(uc);
+         // PlaceHolder1.Controls.Clear();
+         // PlaceHolder1.Controls.Add(uc);
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -108,55 +104,55 @@ namespace WebApplicationRefregitzTow
             }
         }
 
-       /* public void Inizialization()
-        {
-            Control lblMove = uc.FindControl("lblMove");
-            Control lblMove1 = uc.FindControl("lblMove1");
-            Control lblMove2 = uc.FindControl("lblMove2");
-            ucc.lblMove = (Label)lblMove;
-            ucc.lblMove1 = (Label)lblMove1;
-            ucc.lblMove2 = (Label)lblMove2;
+        /* public void Inizialization()
+         {
+             Control lblMove = uc.FindControl("lblMove");
+             Control lblMove1 = uc.FindControl("lblMove1");
+             Control lblMove2 = uc.FindControl("lblMove2");
+             ucc.lblMove = (Label)lblMove;
+             ucc.lblMove1 = (Label)lblMove1;
+             ucc.lblMove2 = (Label)lblMove2;
 
-            // ucc.LoadStart();
-            //do
-            //  {
-
-
-            int[,] Tab = new int[8, 8];
-            for (int i = 0; i < 8; i++)
-                for (int j = 0; j < 8; j++)
-                    Tab[i, j] = RefrigtzW.FormRefrigtz.Table[i, j];
-
-            for (int i = 0; i < 8; i++)
-                for (int j = 0; j < 8; j++)
-                {
-                    string ctrlName = "Image" + ((i * 8 + j) + 1).ToString();
-                    string ctrlNameP = "Panel" + ((i * 8 + j) + 1).ToString();
-                    string ctrlNameC = "CheckBox" + ((i * 8 + j) + 1).ToString();
-
-                    Control c = uc.FindControl(ctrlName);
-                    Control cP = uc.FindControl(ctrlNameP);
-                    Control cC = uc.FindControl(ctrlNameC);
-                    if (c != null)
-                    {
-                        try
-                        {
-                            ucc.Controls.Add(c);
-                            ucc.Controls.Add(cP);
-                            ucc.Controls.Add(cC);
-                        }
-
-                        catch (Exception t)
-                        {
-                        }
-                    }
+             // ucc.LoadStart();
+             //do
+             //  {
 
 
-                    //((CheckBox)cC).AutoPostBack = true;
-                }
+             int[,] Tab = new int[8, 8];
+             for (int i = 0; i < 8; i++)
+                 for (int j = 0; j < 8; j++)
+                     Tab[i, j] = RefrigtzW.FormRefrigtz.Table[i, j];
 
-        }
-        */ 
+             for (int i = 0; i < 8; i++)
+                 for (int j = 0; j < 8; j++)
+                 {
+                     string ctrlName = "Image" + ((i * 8 + j) + 1).ToString();
+                     string ctrlNameP = "Panel" + ((i * 8 + j) + 1).ToString();
+                     string ctrlNameC = "CheckBox" + ((i * 8 + j) + 1).ToString();
+
+                     Control c = uc.FindControl(ctrlName);
+                     Control cP = uc.FindControl(ctrlNameP);
+                     Control cC = uc.FindControl(ctrlNameC);
+                     if (c != null)
+                     {
+                         try
+                         {
+                             ucc.Controls.Add(c);
+                             ucc.Controls.Add(cP);
+                             ucc.Controls.Add(cC);
+                         }
+
+                         catch (Exception t)
+                         {
+                         }
+                     }
+
+
+                     //((CheckBox)cC).AutoPostBack = true;
+                 }
+
+         }
+         */
         public void Setucc(int C, string ChessImage, bool V)
         {
             /*if (C == 1)
@@ -287,40 +283,40 @@ namespace WebApplicationRefregitzTow
             if (C == 64)
                 ucc.Image64.ImageUrl = ChessImage;
              */
-          /*  string ctrlName = "Image" + C.ToString();
-            string ctrlNameP = "Panel" + C.ToString();
-            string ctrlNameC = "CheckBox" + C.ToString();
+            /*  string ctrlName = "Image" + C.ToString();
+              string ctrlNameP = "Panel" + C.ToString();
+              string ctrlNameC = "CheckBox" + C.ToString();
 
-            Control c = ucc.FindControl(ctrlName);
-            Control cP = ucc.FindControl(ctrlNameP);
-            Control cC = ucc.FindControl(ctrlNameC);
-            try
-            {
-                ((Image)c).ImageUrl = ChessImage;
-                ((Panel)cP).Visible = V;
-                ((CheckBox)cC).Checked = V;
-            }
-            catch (Exception)
-            {
-            }
+              Control c = ucc.FindControl(ctrlName);
+              Control cP = ucc.FindControl(ctrlNameP);
+              Control cC = ucc.FindControl(ctrlNameC);
+              try
+              {
+                  ((Image)c).ImageUrl = ChessImage;
+                  ((Panel)cP).Visible = V;
+                  ((CheckBox)cC).Checked = V;
+              }
+              catch (Exception)
+              {
+              }
 
 
 
-           
-           */ 
+
+             */
         }
 
-        
+
         public void LoadPlaceHolder()
         {
-        //    if (!RefrigtzW.FormRefrigtz.ReadF)
-          //      while (!RefrigtzW.FormRefrigtz.LoadPlaceHolder && !RefrigtzW.FormRefrigtz.ReadF) ;
+            //    if (!RefrigtzW.FormRefrigtz.ReadF)
+            //      while (!RefrigtzW.FormRefrigtz.LoadPlaceHolder && !RefrigtzW.FormRefrigtz.ReadF) ;
             //else
             //{
-              //  Thread t = new Thread(new ThreadStart(UserControlLoad));
-               // t.Start();
-                //while (!RefrigtzW.FormRefrigtz.LoadPlaceHolder) ;
-           // }
+            //  Thread t = new Thread(new ThreadStart(UserControlLoad));
+            // t.Start();
+            //while (!RefrigtzW.FormRefrigtz.LoadPlaceHolder) ;
+            // }
 
             Iniziate();
             //try
@@ -368,7 +364,7 @@ namespace WebApplicationRefregitzTow
 
         }
 
-       
+
 
 
     }

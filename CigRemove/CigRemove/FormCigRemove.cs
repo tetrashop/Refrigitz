@@ -1,28 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
-using System.Globalization;
-using System.Threading;
 using System.Runtime.InteropServices;
-using System.Security;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Media;
-using System.Drawing.Drawing2D;
-using System.Resources;
-using System.Web;
-using System.IO.Ports;
-using System.Collections;
+using System.Threading;
+using System.Windows.Forms;
 
 
 
@@ -370,21 +352,21 @@ namespace CigRemove
                 openFileDialogBackup.Filter = "Acccess Datbase|*.accdb";
                 openFileDialogBackup.ShowDialog();
                 //CigReaderDatabase.CigDatabase Cig = new CigReaderDatabase.CigDatabase();
-               // CigRead = new List<String>();
-               // Cig.CigRead(ref dataGridViewCig, ref CigRead, openFileDialogBackup.FileName);
-               // DateTime S = System.Convert.ToDateTime(CigRead[0]);
-               // DateTime Now = DateTime.Now;
+                // CigRead = new List<String>();
+                // Cig.CigRead(ref dataGridViewCig, ref CigRead, openFileDialogBackup.FileName);
+                // DateTime S = System.Convert.ToDateTime(CigRead[0]);
+                // DateTime Now = DateTime.Now;
                 //  if (S.Year != Now.Year || S.Month != Now.Month || S.Day != Now.Day)
                 {
                     saveFileDialogBackup.Filter = "Access Database|*.accdb";
                     saveFileDialogBackup.ShowDialog();
                     if (File.Exists(saveFileDialogBackup.FileName))
                         File.Delete(saveFileDialogBackup.FileName);
-                        File.Copy(openFileDialogBackup.FileName, saveFileDialogBackup.FileName);
+                    File.Copy(openFileDialogBackup.FileName, saveFileDialogBackup.FileName);
                     //(new CigReaderDatabase.CigDatabase()).CigDelete();
                 }
-               // CigRead.Clear();
-              //  CigRead = null;
+                // CigRead.Clear();
+                //  CigRead = null;
             }
             catch (Exception t)
             {
@@ -408,12 +390,12 @@ namespace CigRemove
                 {
                     if (File.Exists("CigRemove.accdb"))
                         File.Delete("CigRemove.accdb");
-                  
+
                     File.Copy(openFileDialogBackup.FileName, "CigRemove.accdb");
                     //(new CigReaderDatabase.CigDatabase()).CigDelete();
                 }
-               // CigRead.Clear();
-              //  CigRead = null;
+                // CigRead.Clear();
+                //  CigRead = null;
                 MessageBox.Show("موفقیت در انتقال");
             }
             catch (Exception t)

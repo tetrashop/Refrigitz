@@ -1,15 +1,14 @@
 ﻿
 namespace System.Threading
 {
-    
+
     using System;
-    using System.Runtime.CompilerServices;
-//#pragma warning disable CS0657 // 'field' is not a valid attribute location for this declaration. Valid attribute locations for this declaration are 'type'. All attributes in this block will be ignored.
+    //#pragma warning disable CS0657 // 'field' is not a valid attribute location for this declaration. Valid attribute locations for this declaration are 'type'. All attributes in this block will be ignored.
     [field: NonSerialized]
-//#pragma warning restore CS0657 // 'field' is not a valid attribute location for this declaration. Valid attribute locations for this declaration are 'type'. All attributes in this block will be ignored.
+    //#pragma warning restore CS0657 // 'field' is not a valid attribute location for this declaration. Valid attribute locations for this declaration are 'type'. All attributes in this block will be ignored.
     internal static class PlatformHelper
     {
-        
+
         private const int PROCESSOR_COUNT_REFRESH_INTERVAL_MS = 0x7530;
         private static volatile int s_LastProcessorCountRefreshTicks;
         private static volatile int s_ProcessorCount;

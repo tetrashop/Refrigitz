@@ -1,9 +1,8 @@
-using System.Resources;
 //
 //www.IranProject.Ir
 //
 using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Resources;
 
 //
 // General Information about an assembly is controlled through the following 
@@ -17,7 +16,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyProduct("Refrigitz")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]
 
 //
 // Version information for an assembly consists of the following four values:

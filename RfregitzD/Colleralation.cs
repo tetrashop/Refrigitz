@@ -1,16 +1,11 @@
 ﻿/*https://stackoverflow.com/questions/8869006/multiple-dimension-correlation-in-c-sharp*/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImageTextDeepLearning
 {
     public class Colleralation
     {
         static double Threshold = 0.2;
-        public static int GetCorrelationScore(bool[,] seriesA, bool[,] seriesB, int n,int Order)
+        public static int GetCorrelationScore(bool[,] seriesA, bool[,] seriesB, int n, int Order)
         {
             int correlationScore = 0;
 
@@ -59,11 +54,11 @@ namespace ImageTextDeepLearning
                             correlationScore++;
                     }
                     else
+                    {
+                        if (Order == -1 && seriesA[i, j] < 0)
                         {
-                            if (Order == -1 && seriesA[i, j] < 0)
-                            {
-                                A = areEqual(System.Convert.ToDouble(seriesA[i, j]), System.Convert.ToDouble(seriesB[i, j]), Threshold
-                                );
+                            A = areEqual(System.Convert.ToDouble(seriesA[i, j]), System.Convert.ToDouble(seriesB[i, j]), Threshold
+                            );
                             if (A)
                                 correlationScore++;
                         }

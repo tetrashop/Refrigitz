@@ -3,33 +3,24 @@
  CopyRighted 1398/0802**************************************************************
  TetraShop.Ir***********************************************************************
  ***********************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Threading;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using ContourAnalysisDemo;
-
-using ImageTextDeepLearning;
 //#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
 using ContourAnalysisNS;
 //#pragma warning restore CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 using Emgu.CV;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Threading;
+using System.Windows.Forms;
 //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-using Emgu.CV.CvEnum;
 //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-using Emgu.CV.UI;
 //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-using Emgu.CV.Structure;
 //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 
 namespace ImageTextDeepLearning
@@ -40,11 +31,11 @@ namespace ImageTextDeepLearning
         bool Recognized = false;
         //Global vars
         DetectionOfLitteral On = null;
-//#pragma warning disable CS0108 // 'FormImageTextDeepLearning.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
-//#pragma warning disable CS0108 // 'FormImageTextDeepLearning.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
-        int Width =10, Height =10;
-//#pragma warning restore CS0108 // 'FormImageTextDeepLearning.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
-//#pragma warning restore CS0108 // 'FormImageTextDeepLearning.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
+        //#pragma warning disable CS0108 // 'FormImageTextDeepLearning.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
+        //#pragma warning disable CS0108 // 'FormImageTextDeepLearning.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
+        int Width = 10, Height = 10;
+        //#pragma warning restore CS0108 // 'FormImageTextDeepLearning.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
+        //#pragma warning restore CS0108 // 'FormImageTextDeepLearning.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
         List<ConjunctedShape> conShapes = new List<ConjunctedShape>();
         SmallImageing t = null;
         MainForm d = null;
@@ -196,7 +187,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         {
             Recognized = false;
             textBoxImageTextDeepLearning.Text = "";
-            
+
             //detection foregin unnkown app constructor
             d = new MainForm();
             d.ShowDialog();
@@ -364,7 +355,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                  */
                     //call detection constructor
                     FormImageTextDeepLearning This = this;
-                    On = new DetectionOfLitteral(ref This,d);
+                    On = new DetectionOfLitteral(ref This, d);
                 }
             }
 
@@ -435,7 +426,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
                         PictureBoxTest.Refresh();
                         PictureBoxTest.Update();
-                        
+
                     }
                     catch (System.Exception t) { }
                 }
@@ -447,7 +438,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             Thread t = new Thread(new ThreadStart(CreateOneConShape));
             t.Start();
             t.Join();
-             t = new Thread(new ThreadStart(Draw));
+            t = new Thread(new ThreadStart(Draw));
             t.Start();
             t.Join();
 
@@ -482,7 +473,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
         private void buttonTxtTemplates_Click(object sender, EventArgs e)
         {
-    
+
         }
 
         //create main detection button
@@ -497,21 +488,21 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
                 PictureBoxTest.Refresh();
                 PictureBoxTest.Update();
-                
+
             }
             for (int i = 0; i < On.Detected.Count; i++)
-            {               
-                    textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
-              
-            }
-           /* for (int i = 0; i < On.t.KeyboardAllImage.Count; i++)
             {
-                PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[i];
-                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
-                PictureBoxTest.Refresh();
-                PictureBoxTest.Update();
-                
-            }*/
+                textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
+
+            }
+            /* for (int i = 0; i < On.t.KeyboardAllImage.Count; i++)
+             {
+                 PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[i];
+                 PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
+                 PictureBoxTest.Refresh();
+                 PictureBoxTest.Update();
+
+             }*/
         }
     }
 }

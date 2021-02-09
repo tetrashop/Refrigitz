@@ -1,24 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Data.OleDb;
-using System.IO;
-using System.Net;
-using System.Net.Mail;
-using System.Globalization;
-using System.Threading;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Security.Cryptography;
 using System.Diagnostics;
-using System.Media;
-using System.Resources;
-using System.Web;
-using System.IO.Ports;
-using System.Collections;
+using System.IO;
 namespace Run
 {
     public class Program
@@ -41,7 +24,7 @@ namespace Run
         public static void Main(string[] args)
         {
             String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-       
+
             List<Process> a = new List<Process>();
             a.AddRange(Process.GetProcessesByName("Refrigtz"));
             if (a.Count >= 1)
@@ -55,15 +38,15 @@ namespace Run
 
                             a[i].Kill();
                         }
-                        catch (Exception t) { Log(t);  }
+                        catch (Exception t) { Log(t); }
 
                     }
 
                 }
             }
-        
-        
-        String FolderLocation = Root;
+
+
+            String FolderLocation = Root;
             int exitCode = 0;
 
             // Prepare the process to run
@@ -86,7 +69,7 @@ namespace Run
                 // Retrieve the app's exit code
                 exitCode = proc.ExitCode;
             }
-          
+
         }
     }
 }

@@ -3,11 +3,8 @@
  * 1397/04/26:Problem in Seirlization Recurisvely of linked list for refrigitz.********************************
  * ************************************************************************************************************
  */using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace RefrigtzChessPortable
 {
     [Serializable]
@@ -27,21 +24,21 @@ namespace RefrigtzChessPortable
         public bool ArrangmentsT = false;
         public static String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 
-        string SAllDraw ="";
+        string SAllDraw = "";
         //static RefregizMemmory Node;
         //AllDraw Current = null;
         //RefregizMemmory Next = null;
         //int Kind = -1;
         static void Log(Exception ex)
         {
-            
-                Object a = new Object();
-                lock (a)
-                {
-                    string stackTrace = ex.ToString();
-                    File.AppendAllText(Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); // path of file where stack trace will be stored.
-                }
-           
+
+            Object a = new Object();
+            lock (a)
+            {
+                string stackTrace = ex.ToString();
+                File.AppendAllText(Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); // path of file where stack trace will be stored.
+            }
+
         }
         void SetAllDrawKindString()
         {
@@ -106,17 +103,17 @@ namespace RefrigtzChessPortable
                 AllDraw Dummy = null;
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
-                
-                    while (p <= No)
-                    {
-                        if (DummyFileStream.Length >= DummyFileStream.Position)
-                            Dummy = (AllDraw)Formatters.Deserialize(DummyFileStream);
-                        else
-                            Dummy = null;
-                        p++;
-                    }
-                    DummyFileStream.Flush(); DummyFileStream.Close();
-               
+
+                while (p <= No)
+                {
+                    if (DummyFileStream.Length >= DummyFileStream.Position)
+                        Dummy = (AllDraw)Formatters.Deserialize(DummyFileStream);
+                    else
+                        Dummy = null;
+                    p++;
+                }
+                DummyFileStream.Flush(); DummyFileStream.Close();
+
                 return Dummy;
             }
         }

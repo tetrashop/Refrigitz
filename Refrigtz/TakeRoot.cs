@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace Refrigtz
@@ -16,12 +12,12 @@ namespace Refrigtz
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6
         public static String AllDrawKindString = "";
 
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         public RefrigtzDLL.AllDraw t = null;
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         public QuantumRefrigiz.AllDraw tt = null;
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
 
         static void Log(Exception ex)
         {
@@ -52,7 +48,7 @@ namespace Refrigtz
 
 
         }
-        void SetAllDrawKind(bool UsePenaltyRegardMechnisam,bool AStarGreedyHeuristic)
+        void SetAllDrawKind(bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
         {
             if (UsePenaltyRegardMechnisam && AStarGreedyHeuristic)
                 AllDrawKind = 4;
@@ -65,9 +61,9 @@ namespace Refrigtz
                 AllDrawKind = 1;
         }
 
-        bool DrawManagement(bool FOUND,bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
+        bool DrawManagement(bool FOUND, bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
         {
-            SetAllDrawKind(UsePenaltyRegardMechnisam,AStarGreedyHeuristic);
+            SetAllDrawKind(UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
 
             //Set Configuration To True for some unknown reason!.
             //UpdateConfigurationTableVal = true;                             
@@ -114,9 +110,9 @@ namespace Refrigtz
             return Found;
         }
 
-        public bool Load(bool FOUND,bool Quantum,FormRefrigtz Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        public bool Load(bool FOUND, bool Quantum, FormRefrigtz Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
-            DrawManagement(FOUND, UsePenaltyRegardMechnisam,  AStarGreedyHeuristic);
+            DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
 
             bool DrawDrawen = false;
             //Load Middle Targets.
@@ -129,7 +125,7 @@ namespace Refrigtz
                         if (!Quantum)
                         {
                             GalleryStudio.RefregizMemmory tr = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                            t =(RefrigtzDLL.AllDraw)tr.Load(Quantum, FormRefrigtz.OrderPlate);
+                            t = (RefrigtzDLL.AllDraw)tr.Load(Quantum, FormRefrigtz.OrderPlate);
                             if (t != null)
                             {
                                 Curent.Draw = t;
@@ -150,10 +146,10 @@ namespace Refrigtz
                         else
                         {
                             GalleryStudio.RefregizMemmory tr = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                           tt =(QuantumRefrigiz.AllDraw) tr.LoadQ(Quantum, FormRefrigtz.OrderPlate);
+                            tt = (QuantumRefrigiz.AllDraw)tr.LoadQ(Quantum, FormRefrigtz.OrderPlate);
                             if (t != null)
                             {
-                               
+
                                 Curent.DrawQ = tt;
 
                                 LoadTree = true;
@@ -175,7 +171,7 @@ namespace Refrigtz
             catch (Exception t) { Log(t); }
             return DrawDrawen;
         }
-        public bool Save(bool FOUND,bool Quantum, FormRefrigtz Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        public bool Save(bool FOUND, bool Quantum, FormRefrigtz Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
             object o = new object();
             lock (o)
@@ -238,15 +234,16 @@ namespace Refrigtz
                             //MessageBox.Show("Saved Completed.");
                         }
                     }
-                    else {
+                    else
+                    {
                         if (Curent.DrawQ != null)
                         {
                             Curent.DrawQ = Curent.RootFoundQ();
                             rt.AllDrawCurrentAccessQ = Curent.DrawQ;
                             rt.RewriteAllDrawQ(FormRefrigtz.OrderPlate);
                             QuantumRefrigiz.AllDraw.DrawTable = false;
-//Curent.SetBoxText("\r\nSaved Completed.");
-                        //    Curent.RefreshBoxText();
+                            //Curent.SetBoxText("\r\nSaved Completed.");
+                            //    Curent.RefreshBoxText();
                             //PictureBoxRefrigtz.SendToBack();
                             //PictureBoxTimerGray.SendToBack();
                             //PictureBoxTimerBrown.SendToBack();
@@ -269,8 +266,8 @@ namespace Refrigtz
                         rt.AllDrawCurrentAccess = Curent.Draw;
                         rt.RewriteAllDraw(FormRefrigtz.OrderPlate);
                         RefrigtzDLL.AllDraw.DrawTable = false;
-                       // Curent.SetBoxText("\r\nSaved Completed.");
-                       // Curent.RefreshBoxText();
+                        // Curent.SetBoxText("\r\nSaved Completed.");
+                        // Curent.RefreshBoxText();
                         //PictureBoxRefrigtz.SendToBack();
                         //PictureBoxTimerGray.SendToBack();
                         //PictureBoxTimerBrown.SendToBack();

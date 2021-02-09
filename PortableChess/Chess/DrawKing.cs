@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace RefrigtzChessPortable
 {
     [Serializable]
@@ -17,9 +16,9 @@ namespace RefrigtzChessPortable
         public static bool KingBrownNotCheckedByQuantumMove = false;
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
-        
+
+
+
         //Initiate Global Variables.
         List<int[]> ValuableSelfSupported = new List<int[]>();
 
@@ -61,31 +60,31 @@ namespace RefrigtzChessPortable
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-             
+
         }
 
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.KingMovments; ii++)
 
                 a += KingThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
 
-            
+
             return a;
         }
-       
+
         //Constructor 1.
-        
+
         //Constructor 2.
         public DrawKing(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//, ref AllDraw. THIS
             )
         {
-            
+
             object balancelock = new object();
             lock (balancelock)
             {
@@ -114,11 +113,11 @@ namespace RefrigtzChessPortable
                 Order = Ord;
                 Current = Cur;
             }
-            
+
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -129,14 +128,14 @@ namespace RefrigtzChessPortable
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -147,7 +146,7 @@ namespace RefrigtzChessPortable
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -157,7 +156,7 @@ namespace RefrigtzChessPortable
         public void Clone(ref DrawKing AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -181,7 +180,7 @@ namespace RefrigtzChessPortable
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         //Draw an Instatnt King on the Table Method.
         public void DrawKingOnTable(ref Graphics g, int CellW, int CellH)
@@ -192,12 +191,12 @@ namespace RefrigtzChessPortable
             {
                 if (g == null)
                     return;
-                
+
 
                 try
                 {
 
-                    
+
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     { //Gray Order.
                         if (Order == 1)
@@ -229,7 +228,7 @@ namespace RefrigtzChessPortable
                 {
                     Log(t);
                 }
-                
+
             }
         }
     }

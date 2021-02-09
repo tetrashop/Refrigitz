@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace QuantumRefrigiz
 {
     [Serializable]
     public class DrawKingQ
     {
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawKingQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'DrawKingQ.Spaces' is ASsigned but its value is never used
         int Spaces = 0;
-//#pragma warning restore CS0414 // The field 'DrawKingQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'DrawKingQ.Spaces' is ASsigned but its value is never used
 
         //A quantum move cannot be used to take a piece.
         public bool IsQuntumMove = false;
@@ -21,9 +20,9 @@ namespace QuantumRefrigiz
         public static bool KingBrownNotCheckedByQuantumMove = false;
         public bool RingHalf = false;
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
-        
+
+
+
         //Initiate Global Variables.
         List<int[]> ValuableSelfSupported = new List<int[]>();
 
@@ -76,26 +75,26 @@ namespace QuantumRefrigiz
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-             
+
         }
 
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.KingMovments; ii++)
 
                 a += KingThinkingQuantum[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
-            
+
 
             return a;
         }
         public bool MaxFound(ref bool MaxNotFound)
         {
-            
+
 
             int a = ReturnHeuristic();
             if (MaxHeuristicxK < a)
@@ -108,21 +107,21 @@ namespace QuantumRefrigiz
                         ThinkingQuantumChess.MaxHeuristicx = a;
                     MaxHeuristicxK = a;
                 }
-                
+
                 return true;
             }
 
             MaxNotFound = true;
-            
+
             return false;
         }
         //Constructor 1.
-        
+
         //Constructor 2.
         public DrawKingQ(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//, ref AllDraw. THIS
             )
         {
-            
+
             object balancelock = new object();
 
             lock (balancelock)
@@ -152,11 +151,11 @@ namespace QuantumRefrigiz
                 Order = Ord;
                 Current = Cur;
             }
-            
+
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -167,14 +166,14 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -185,7 +184,7 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -194,7 +193,7 @@ namespace QuantumRefrigiz
         public void Clone(ref DrawKingQ AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -218,7 +217,7 @@ namespace QuantumRefrigiz
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         //Draw an Instatnt King on the Table Method.
         public void DrawKingOnTable(ref Graphics g, int CellW, int CellH)
@@ -229,7 +228,7 @@ namespace QuantumRefrigiz
             {
                 if (g == null)
                     return;
-                
+
 
                 int LastRowQ = -1, LastColumn = -1;
 
@@ -281,7 +280,7 @@ namespace QuantumRefrigiz
 
                 lock (balancelockS)
                 {
-                    
+
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     { //Gray Order.
                         if (Order == 1)
@@ -318,7 +317,7 @@ namespace QuantumRefrigiz
                                     g.DrawArc(new Pen(new SolidBrush(Color.Red)), new Rectangle((int)((Row * (float)CellW)), (int)(Column * (float)CellH), CellW, CellH), -45, 360);
 
                                 //12/16/2018
-                                
+
                             }
                         }
                         else
@@ -355,14 +354,14 @@ namespace QuantumRefrigiz
                                 else
                                     g.DrawArc(new Pen(new SolidBrush(Color.Red)), new Rectangle((int)((Row * (float)CellW)), (int)(Column * (float)CellH), CellW, CellH), -45, 360);
                                 //12/16/2018
-                                
+
                             }
                         }
 
                     }
                 }
 
-                
+
             }
         }
     }

@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 using System.Data.OleDb;
 using System.IO;
-using System.Text;
-using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace CigReaderDatabase
 {
@@ -108,52 +106,14 @@ namespace CigReaderDatabase
             string stackTrace = ex.ToString();
             File.AppendAllText("ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); // path of file where stack trace will be stored.
         }
-   
-        public bool CigRead(ref DataGridView dataGridViewCig,ref List<String> CigRead)
+
+        public bool CigRead(ref DataGridView dataGridViewCig, ref List<String> CigRead)
         {
             bool OK = false;
             try
             {
-                
+
                 connParamJs = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\" + "CigRemove.accdb;Persist Security Info=true;Jet OLEDB:Database Password='HGBVBGF(HGDSACBNB!'";
-                connParamJs = connParamJs.Replace("\\", "/");
-                OleDbConnection conObj = new OleDbConnection(connParamJs);
-                conObj.Open();
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
-                ds.Tables.Add(dt);
-                OleDbDataAdapter da = new OleDbDataAdapter();
-                String AAA = "";
-
-                AAA = "select * from CigTable";
-
-                da = new OleDbDataAdapter(AAA, conObj);
-                da.Fill(dt);
-                dataGridViewCig.DataSource= dt.DefaultView;
-                dataGridViewCig.Refresh();
-                for (int i = 0; i < dataGridViewCig.RowCount; i++)
-                {
-                    CigRead.Add(dataGridViewCig.Rows[i].Cells["CigDateS"].Value.ToString());
-                }
-                conObj.Close();
-                conObj.Dispose();
-                da.Dispose();
-                OK = true;
-            }
-            catch (Exception t)
-            {
-                Log(t);
-            }
-            return OK;
-
-        }
-        public bool CigRead(ref DataGridView dataGridViewCig, ref List<String> CigRead,String fileName)
-        {
-            bool OK = false;
-            try
-            {
-
-                connParamJs = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +fileName + ";Persist Security Info=true;Jet OLEDB:Database Password='HGBVBGF(HGDSACBNB!'";
                 connParamJs = connParamJs.Replace("\\", "/");
                 OleDbConnection conObj = new OleDbConnection(connParamJs);
                 conObj.Open();
@@ -185,7 +145,45 @@ namespace CigReaderDatabase
             return OK;
 
         }
-    
+        public bool CigRead(ref DataGridView dataGridViewCig, ref List<String> CigRead, String fileName)
+        {
+            bool OK = false;
+            try
+            {
+
+                connParamJs = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Persist Security Info=true;Jet OLEDB:Database Password='HGBVBGF(HGDSACBNB!'";
+                connParamJs = connParamJs.Replace("\\", "/");
+                OleDbConnection conObj = new OleDbConnection(connParamJs);
+                conObj.Open();
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                ds.Tables.Add(dt);
+                OleDbDataAdapter da = new OleDbDataAdapter();
+                String AAA = "";
+
+                AAA = "select * from CigTable";
+
+                da = new OleDbDataAdapter(AAA, conObj);
+                da.Fill(dt);
+                dataGridViewCig.DataSource = dt.DefaultView;
+                dataGridViewCig.Refresh();
+                for (int i = 0; i < dataGridViewCig.RowCount; i++)
+                {
+                    CigRead.Add(dataGridViewCig.Rows[i].Cells["CigDateS"].Value.ToString());
+                }
+                conObj.Close();
+                conObj.Dispose();
+                da.Dispose();
+                OK = true;
+            }
+            catch (Exception t)
+            {
+                Log(t);
+            }
+            return OK;
+
+        }
+
         private bool ShowWordFreuency(ref DataGridView dataGridViewJSON)
         {
             bool OK = false;
@@ -433,6 +431,6 @@ namespace CigReaderDatabase
 
             return OK;
         }
-   
+
     }
 }

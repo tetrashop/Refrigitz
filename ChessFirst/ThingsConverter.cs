@@ -1,20 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
+using System.Text;
 namespace ChessFirst
 {
     [Serializable]
     public class ThingsConverter
     {
-        
+
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
         int Spaces = 0;
 #pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
 
         //Initiate Global Variables.
         public static bool LoadConvertTable = false;
@@ -485,7 +483,7 @@ namespace ChessFirst
 
 
                 }
-                
+
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ConvertOperation:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //return Convert State.
                 return Convert;

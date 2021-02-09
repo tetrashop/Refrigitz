@@ -1,17 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.IO;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Concurrent;
+using System.Windows.Forms;
 
 namespace RefrigtzChessPortable
 {
-    
-    
+
+
     static class Program
     {
         //Main Programm.
@@ -98,11 +95,12 @@ namespace RefrigtzChessPortable
         [STAThread]
         static void Main()
         {
-           /* Task ttap = new Task(new Action(TaskParallelLibrary));
-            ttap.Start();
-            Task ttta = new Task(new Action(CoordinationDataStructures));
-            ttta.Start();
-          */  Application.Run(new RefrigtzChessPortableForm());
+            /* Task ttap = new Task(new Action(TaskParallelLibrary));
+             ttap.Start();
+             Task ttta = new Task(new Action(CoordinationDataStructures));
+             ttta.Start();
+           */
+            Application.Run(new RefrigtzChessPortableForm());
         }
     }
 }

@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace QuantumRefrigiz
 {
 
@@ -11,18 +10,18 @@ namespace QuantumRefrigiz
     public class DrawCastleQ
     {
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawCastleQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'DrawCastleQ.Spaces' is ASsigned but its value is never used
         int Spaces = 0;
-//#pragma warning restore CS0414 // The field 'DrawCastleQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'DrawCastleQ.Spaces' is ASsigned but its value is never used
 
         //A quantum move cannot be used to take a piece.
         public bool IsQuntumMove = false;
         //Pieces have rings around them, filled in with colour. These rings show the probability that the piece is in that square.
         public bool RingHalf = false;
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
-        
+
+
+
         //Iniatite Global Variable.
         List<int[]> ValuableSelfSupported = new List<int[]>();
 
@@ -67,13 +66,13 @@ namespace QuantumRefrigiz
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-             
+
         }
         public bool MaxFound(ref bool MaxNotFound)
         {
-            
+
 
             int a = ReturnHeuristic();
             if (MaxHeuristicxB < a)
@@ -86,35 +85,35 @@ namespace QuantumRefrigiz
                         ThinkingQuantumChess.MaxHeuristicx = a;
                     MaxHeuristicxB = a;
                 }
-                
+
                 return true;
             }
 
             MaxNotFound = true;
-            
+
             return false;
         }
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.CastleMovments; ii++)
 
                 a += CastleThinkingQuantum[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
 
-            
+
             return a;
         }
 
 
         //Constructor 1.
-        
+
         //constructor 2.
         public DrawCastleQ(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//, ref AllDraw. THIS
             )
         {
-            
+
             object balancelock = new object();
 
             lock (balancelock)
@@ -144,13 +143,13 @@ namespace QuantumRefrigiz
                 Order = Ord;
                 Current = Cur;
             }
-            
+
         }
         //Clone a Copy.
         public void Clone(ref DrawCastleQ AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -174,11 +173,11 @@ namespace QuantumRefrigiz
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -189,14 +188,14 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -207,7 +206,7 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -221,7 +220,7 @@ namespace QuantumRefrigiz
             {
                 if (g == null)
                     return;
-                
+
 
                 int LastRow = -1, LastColumn = -1;
 
@@ -272,7 +271,7 @@ namespace QuantumRefrigiz
                 lock (balancelockS)
                 {
 
-                    
+
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     { //Gray Color.
                         if (Order == 1)
@@ -347,7 +346,7 @@ namespace QuantumRefrigiz
                         }
                     }
                 }
-                
+
             }
         }
     }

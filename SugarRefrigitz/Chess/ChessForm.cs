@@ -1,24 +1,20 @@
 //
 //www.IranProject.Ir
 //
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
+using Refrigtz;
 //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
 using RefrigtzDLL;
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Text;
+using System.Threading;
 //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
 using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
-using Refrigtz;
-using System.Text;
-using System.Collections.Concurrent;
+using System.Windows.Forms;
 
 namespace Chess
 {
@@ -29,9 +25,9 @@ namespace Chess
         Process proc = new Process();
         public bool LoadTree = false;
         bool SettingPRFALSE = false;
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         public QuantumRefrigiz.AllDraw DrawQ;
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         bool Clicked = false;
         public bool ArrangmentsChanged = true;
         const string PieceToChar = "kqrnbp PBNRQK";
@@ -60,7 +56,7 @@ namespace Chess
         bool Deeperthandeeper = false;
         readonly String path3 = @"temp";
         String AllDrawReplacement = "";
-        
+
         public static int MovmentsNumber = 0;
         public static String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
         public static String AllDrawKindString = "";
@@ -69,17 +65,17 @@ namespace Chess
         public int ConClick = -1;
         PictureBox[] Con = new PictureBox[4];
         bool WaitOnplay = false;
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         RefrigtzDLL.ChessGeneticAlgorithm R = new RefrigtzDLL.ChessGeneticAlgorithm(false, false, false, false, false, false, false, true);
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         bool Person = true;
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         public RefrigtzDLL.AllDraw Draw = new AllDraw(-1, false, false, false, false, false, false, false, false);
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         int[,] Table = null;
         bool FOUND = false;
         #region These are the global variables and objects for ChessForm class
@@ -147,7 +143,7 @@ namespace Chess
 
         public ChessForm()
         {
-            
+
             Init();
             Init2();
         }
@@ -188,9 +184,9 @@ namespace Chess
                 bool B = AllDraw.Blitz;
                 AllDraw.Blitz = false;
                 RefrigtzDLL.ThinkingChess.ThinkingRun = false;
-////#pragma warning disable CS0164 // This label has not been referenced
-                Begin4:
-////#pragma warning restore CS0164 // This label has not been referenced
+            ////#pragma warning disable CS0164 // This label has not been referenced
+            Begin4:
+                ////#pragma warning restore CS0164 // This label has not been referenced
                 AllDraw Th = Draw.AStarGreedyString;
                 if (Draw.IsAtLeastAllObjectIsNull())
                 {
@@ -560,30 +556,30 @@ namespace Chess
             pb[6, 6].Image = img31;
             pb[7, 6].Image = img32;
         }
-       
+
         void OpAfterAllTinking(ref bool StoreStateCC, ref bool StoreStateCP, ref bool StoreStateGe)
         {
             Object O = new Object();
             lock (O)
             {
-                
-              
+
+
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = false;
                 else
                     QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = false;
-                
+
                 if (OrderPlate == 1)
                 {
-                    
-                    
+
+
                 }
                 else
                 {
-                    
-                    
+
+
                 }
-               
+
                 Clicked = false; BobSection = false;
             }
         }
@@ -592,30 +588,30 @@ namespace Chess
             Object O = new Object();
             lock (O)
             {
-             
-                
+
+
 
                 if (OrderPlate == 1)
                 {
-                    
-                    
+
+
                 }
                 else
                 {
-                    
-                    
+
+
                 }
                 if (OrderPlate == 1)
                 {
-                    
-                    
+
+
                 }
                 else
                 {
-                    
-                    
+
+
                 }
-                
+
                 a = Color.Gray;
                 if (OrderPlate == -1)
                     a = Color.Brown;
@@ -633,7 +629,7 @@ namespace Chess
                     Helper.WaitOnUsed("output.txt");
                     if (File.Exists("output.txt"))
                     {
-                        Aga:
+                    Aga:
                         try
                         {
                             Helper.WaitOnUsed("output.txt");
@@ -652,11 +648,11 @@ namespace Chess
                 catch (Exception t)
                 {
                     Log(t);
-                }   
-                
+                }
+
                 if (Preveios == Next || Next.Length < 1)
                     return true;
-                
+
                 return false;
             }
         }
@@ -690,8 +686,8 @@ namespace Chess
                     else
                                                 if (A[0] == 'h')
                         RowClickP = 7;
-                    
-                    ColumnClickP = 7-((System.Convert.ToInt32(A[1]) - 48) - 1);
+
+                    ColumnClickP = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
                     if (A[2] == 'a')
                         RowRealesed = 0;
                     else
@@ -715,8 +711,8 @@ namespace Chess
                     else
                                                 if (A[2] == 'h')
                         RowRealesed = 7;
-                    
-                    ColumnRealeased = 7-((System.Convert.ToInt32(A[3]) - 48) - 1);
+
+                    ColumnRealeased = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
                     if (A.Length == 5)
                     {
                         if (A[4] == 'p')
@@ -851,13 +847,13 @@ namespace Chess
                 S += (StockMovebase).ToString() + " " + ((int)StockMove).ToString() + "\n";
                 ss += S;
                 //if (MovmentsNumber % 2 == 0 && MovmentsNumber != 0)
-                
+
                 //else
-                
+
                 ss = "position fen " + ss;
                 return ss;
-                
-                
+
+
 
             }
         }
@@ -911,8 +907,8 @@ namespace Chess
                                 if (R.CromosomRow != -1 && R.CromosomColumn != -1)
                                     RefrigtzDLL.AllDraw.SyntaxToWrite = (new RefrigtzDLL.ChessRules(0, OrderPlate, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1][R.CromosomRow, R.CromosomColumn], R.CromosomColumn, R.CromosomRow, HitVal, Hit, RefrigtzDLL.ChessRules.CastleActBrown, Convert);
                             }
-                            
-                            
+
+
                         }
                     }
                 }
@@ -956,7 +952,7 @@ namespace Chess
                                     QuantumRefrigiz.AllDraw.SyntaxToWrite = (new QuantumRefrigiz.ChessRules(0, OrderPlate, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber, QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1][R.CromosomRow, R.CromosomColumn], R.CromosomColumn, R.CromosomRow, HitVal, Hit, QuantumRefrigiz.ChessRules.CastleActBrown, Convert);
                             }
                             SetBoxStatistic(QuantumRefrigiz.AllDraw.SyntaxToWrite);
-                            
+
                         }
                     }
                 }
@@ -973,25 +969,25 @@ namespace Chess
             {
                 Color a = Color.Gray;
                 bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
-                
+
                 int[,] Tab = CloneATable(Table);
                 RowClickP = -1;
                 ColumnClickP = -1;
                 RowRealesed = -1;
                 ColumnRealeased = -1;
-                
+
 
                 if (OrderPlate == 1)
                 {
-                    
-                    
+
+
                 }
                 else
                 {
-                    
-                    
+
+
                 }
-                
+
                 String Pre = "";
                 if (File.Exists("output.txt"))
                     Pre = File.ReadAllText("output.txt");
@@ -1005,7 +1001,7 @@ namespace Chess
                 {
                     try
                     {
-                        
+
                         input = "wr" + "\r\n";
                         sw.BaseStream.Write(Encoding.ASCII.GetBytes(input), 0, input.Length);
                         sw.Flush();
@@ -1089,19 +1085,19 @@ namespace Chess
                 sw.BaseStream.Write(Encoding.ASCII.GetBytes(input), 0, input.Length);
                 sw.Flush();
                 //if (OrderPlate == 1)
-                
-                //else
-                
-                
 
-                
+                //else
+
+
+
+
                 Table = CloneATable(Tab);
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
 
 
                 RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
@@ -1129,11 +1125,11 @@ namespace Chess
             {
                 SetAllDrawKind();
                 //Set Configuration To True for some unknown reason!.
-                
+
                 SetAllDrawKindString();
                 //Saved Midle Target.
                 (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-              
+
             }
         }
         public bool TableZero(int[,] Ta)
@@ -1156,14 +1152,14 @@ namespace Chess
         //Bob Section of Computer By Computer Thinking.
         void BobAction()
         {
-            
-            
-            
+
+
+
             Object O = new Object();
             lock (O)
             {
                 int[,] TableC = new int[8, 8];
-                
+
                 if (!Quantum)
                     RefrigtzDLL.ThinkingChess.ThinkingRun = true;
                 else
@@ -1172,11 +1168,11 @@ namespace Chess
                 Color a = Color.Gray;
                 bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
                 OpBeforeThinking(ref a, ref StoreStateCC, ref StoreStateCP, ref StoreStateGe);
-                
+
 
                 var array = Task.Factory.StartNew(() => Initiate(a));
                 array.Wait(); array.Dispose();
-              
+
 
                 try
                 {
@@ -1189,28 +1185,28 @@ namespace Chess
                     Log(t);
                     goto Begin2;
                 }
-                
-                
-                
-                
-                
-                
-                
-                
 
-                
+
+
+
+
+
+
+
+
+
 
             }
-            
-            
-            
+
+
+
         }
         void ComputerByComputerBobAsRefregitz(ref Process proc)
         {
             Object O = new Object();
             lock (O)
             {
-               
+
                 BobAction();
                 if (RefrigtzDLL.ChessRules.BigKingCastleGray)
                 {
@@ -1227,7 +1223,7 @@ namespace Chess
                 R = new RefrigtzDLL.ChessGeneticAlgorithm(false, false, false, false, false, false, false, true);
                 if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, 1, true))
                 {
-                    
+
                     int ii = new int();
                     int jj = new int();
                     if (R.CromosomRowFirst == -1 || R.CromosomColumnFirst == -1 || R.CromosomRow == -1 || R.CromosomColumn == -1)
@@ -1242,7 +1238,7 @@ namespace Chess
                         ColumnRealeased = R.CromosomColumn;
                     }
                 }
-                
+
                 String fens = Fen();
                 if (RefrigtzDLL.ChessRules.BigKingCastleGray)
                 {
@@ -1261,13 +1257,13 @@ namespace Chess
                 ColumnClickP = -1;
                 RowRealesed = -1;
                 ColumnRealeased = -1;
-             
-                BobSection = false;
-                
-                
-                
 
-                
+                BobSection = false;
+
+
+
+
+
             }
         }
 
@@ -1279,10 +1275,10 @@ namespace Chess
                 if (!LoadP)
                 {
                     MessageBox.Show("Wait...");
-                  
+
                     //var parallelOptions = new ParallelOptions();
                     //parallelOptions.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount;
-                    
+
                     Table = CloneATable(brd.GetTable());
                     RefrigtzDLL.AllDraw.TableListAction.Add(CloneATable(Table));
                     RefrigtzDLL.AllDraw.OrderPlateDraw = 1;
@@ -1313,7 +1309,7 @@ namespace Chess
                             bool B = AllDraw.Blitz;
                             AllDraw.Blitz = false;
                             //RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount;
-                            
+
                             if (Draw.IsAtLeastAllObjectIsNull())
                             {
                                 Draw.TableList.Clear();
@@ -1344,11 +1340,11 @@ namespace Chess
                     }
                     MessageBox.Show("Ready...");
                     LoadP = true;
-              
+
                     AllOperations();
                     Thread t = new Thread(new ThreadStart(P));
                     t.Start();
-                    
+
                 }
             }
         }
@@ -1367,7 +1363,9 @@ namespace Chess
             }
 
         }
-        void P() { Play(-1, -1); AllDraw.ThinkingRunInBothSide = false;
+        void P()
+        {
+            Play(-1, -1); AllDraw.ThinkingRunInBothSide = false;
         }
         void ClickedSimAtClOne(int i, int j)
         {
@@ -1386,12 +1384,12 @@ namespace Chess
                     jj = R.CromosomRow;
                     ii = R.CromosomColumn;
                 }
-                
-                
-                
-                
+
+
+
+
                 Play(ii, jj);
-                
+
                 AllDraw.NextRow = -1;
                 AllDraw.NextColumn = -1;
                 AllDraw.LastRow = -1;
@@ -1402,25 +1400,25 @@ namespace Chess
         }
         static void Log(Exception ex)
         {
-            
+
             Object a = new Object();
             lock (a)
             {
                 string stackTrace = ex.ToString();
-                Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); 
+                Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
             }
-            
+
         }
         int[,] CloneATable(int[,] Tab)
         {
             Object O = new Object();
             lock (O)
-            {          
+            {
                 int[,] Tabl = new int[8, 8];
                 for (var i = 0; i < 8; i++)
                     for (var j = 0; j < 8; j++)
                         Tabl[i, j] = Tab[i, j];
-                
+
                 return Tabl;
             }
         }
@@ -1454,9 +1452,9 @@ namespace Chess
             Object O = new Object();
             lock (O)
             {
-                 
+
                 String FolderLocation = Root;
-          
+
                 ProcessStartInfo start = new ProcessStartInfo();
                 start.FileName = FolderLocation + "\\" + "Sugar.exe";
                 start.UseShellExecute = false;
@@ -1464,17 +1462,17 @@ namespace Chess
                 start.RedirectStandardInput = true;
                 start.RedirectStandardError = true;
                 start.CreateNoWindow = true;
-                start.ErrorDialog = false;  
-                                            
-                                            
-                                            
-                                            
+                start.ErrorDialog = false;
+
+
+
+
                 proc.OutputDataReceived += new DataReceivedEventHandler(SortOutputHandler);
                 proc.ErrorDataReceived += new DataReceivedEventHandler(SortOutputHandler);
                 proc = Process.Start(start);
                 proc.BeginOutputReadLine();
                 proc.BeginErrorReadLine();
-                
+
                 try
                 {
                     if (File.Exists("output.txt"))
@@ -1487,7 +1485,7 @@ namespace Chess
                     {
                         var array1 = Task.Factory.StartNew(() => SetAllDrawKind()); array1.Wait();
                         //Set Configuration To True for some unknown reason!.
-                        
+
                         var array2 = Task.Factory.StartNew(() => SetAllDrawKindString()); array2.Wait();
                         (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
                         MessageBox.Show("No Konwledgs to begin with stockfish! Please delete one node of Last table and continue");
@@ -1499,7 +1497,7 @@ namespace Chess
                     BobSection = true;
                 else
                     BobSection = false;
-                
+
             }
         }
         public int Play(int i, int j)
@@ -1507,9 +1505,9 @@ namespace Chess
             Object o = new Object();
             lock (o)
             {
-                
-                
-                
+
+
+
                 try
                 {
                     bool Com = false;
@@ -1527,30 +1525,31 @@ namespace Chess
                         AllDraw.LastColumn = -1;
                         CoPermit = false;
                         Person = false;
-                        
-                        AllDraw.Blitz = true;
-                        
 
-                   
-                        
-                        
+                        AllDraw.Blitz = true;
+
+
+
+
+
                         Table = brd.GetTable();
-                        
-                        
-                        
-                        
-                            var array = Task.Factory.StartNew(() => ComputerByComputerBobAsRefregitz(ref proc));
-                            array.Wait(); array.Dispose();
+
+
+
+
+                        var array = Task.Factory.StartNew(() => ComputerByComputerBobAsRefregitz(ref proc));
+                        array.Wait(); array.Dispose();
                         if (Draw.TableZero(Table))
                         {
 
 
                             if (Draw.TableList.Count == 0)
-                            { Draw.TableList.Clear();
-                            Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
-                            Draw.SetRowColumn(0);
-                            Draw.IsCurrentDraw = true;
-                            RefrigtzDLL.ThinkingChess.NoOfMovableAllObjectMove++;
+                            {
+                                Draw.TableList.Clear();
+                                Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
+                                Draw.SetRowColumn(0);
+                                Draw.IsCurrentDraw = true;
+                                RefrigtzDLL.ThinkingChess.NoOfMovableAllObjectMove++;
                             }
                             else
                             {
@@ -1559,7 +1558,7 @@ namespace Chess
                             RefrigtzDLL.AllDraw.AllowedSupTrue = true;
 
                             goto Again;
-                            
+
                         }
                         RefrigtzDLL.AllDraw.AllowedSupTrue = false;
 
@@ -1569,9 +1568,9 @@ namespace Chess
 
 
                         R = new RefrigtzDLL.ChessGeneticAlgorithm(false, false, false, false, false, false, false, true);
-                        if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, 1 , true))
+                        if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, 1, true))
                         {
-                            
+
                             int ii = new int();
                             int jj = new int();
                             if (R.CromosomRowFirst == -1 || R.CromosomColumnFirst == -1 || R.CromosomRow == -1 || R.CromosomColumn == -1)
@@ -1603,10 +1602,10 @@ namespace Chess
                             ii = R.CromosomColumnFirst;
                             i = ii;
                             j = jj;
-                            
+
                             k = brd.getInfo(i, j);
                             //if (k == 0)
-                            
+
                             cl = 0;
                             if (RefrigtzDLL.AllDraw.OrderPlateDraw == 1)
                                 RefrigtzDLL.ThinkingChess.NoOfBoardMovedGray++;
@@ -1615,32 +1614,32 @@ namespace Chess
                         }
                         else
                         {
-                            
-                            
+
+
                             {
                                 MessageBox.Show("One or more DNA is invalid by refrigitz;");
-                                
-                                
-                                
+
+
+
                                 RefrigtzDLL.AllDraw.TableListAction.RemoveAt(RefrigtzDLL.AllDraw.TableListAction.Count - 1);
                                 Table = brd.GetTable();
-                                
 
-                                
-                                
-                                
+
+
+
+
                                 goto Again;
                             }
                         }
-                        
-                        
+
+
                     }
                     else
                     {
                         CoPermit = true;
                         k = brd.getInfo(i, j);
                         //if (k == 0)
-                        
+
                     }
                     string lstr = " ";
                     if (k > 6)
@@ -2373,7 +2372,7 @@ namespace Chess
                                 }
                                 break;
                         }
-                    
+
                         this.pb[x1, y1].BorderStyle = 0;
                         cl = 0;
                         string str, str2;
@@ -2500,20 +2499,20 @@ namespace Chess
                                         tt.Abort();
                                         AllDraw.OrderPlate = -1; OrderPlate = -1;
 
-                                        
-                                        
-                                        
+
+
+
                                         var array = Task.Factory.StartNew(() => ComputerByComputerAliceAsStockFish(ref proc));
                                         array.Wait(); array.Dispose();
                                         R = new RefrigtzDLL.ChessGeneticAlgorithm(false, false, false, false, false, false, false, true);
                                         if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, -1, true))
                                         {
-                                            
+
                                             int ii = new int();
                                             int jj = new int();
                                             if (R.CromosomRowFirst == -1 || R.CromosomColumnFirst == -1 || R.CromosomRow == -1 || R.CromosomColumn == -1)
                                             {
-                                                
+
                                                 MessageBox.Show("One or more cromosoms is invalid;");
                                                 RefrigtzDLL.AllDraw.TableListAction.RemoveAt(RefrigtzDLL.AllDraw.TableListAction.Count - 1);
                                                 if (Draw.IsAtLeastAllObjectIsNull())
@@ -2523,7 +2522,7 @@ namespace Chess
                                                     Draw.SetRowColumn(0);
                                                 }
                                                 Draw.IsCurrentDraw = true;
-                                                
+
 
 
 
@@ -2532,15 +2531,15 @@ namespace Chess
 
                                                 Application.Exit();
                                             }
-                                           
+
                                             ii = R.CromosomRowFirst;
                                             jj = R.CromosomColumnFirst;
                                             i = ii;
                                             j = jj;
-                                            
+
                                             k = brd.getInfo(i, j);
                                             //if (k == 0)
-                                            
+
                                             cl = 0;
                                             if (RefrigtzDLL.AllDraw.OrderPlateDraw == 1)
                                                 RefrigtzDLL.ThinkingChess.NoOfBoardMovedGray++;
@@ -2550,20 +2549,20 @@ namespace Chess
                                         }
                                         else
                                         {
-                                            
-                                            
+
+
                                             {
                                                 MessageBox.Show("One or more DNA is invalid;");
-                                                
-                                                
-                                                
+
+
+
                                                 RefrigtzDLL.AllDraw.TableListAction.RemoveAt(RefrigtzDLL.AllDraw.TableListAction.Count - 1);
                                                 Table = brd.GetTable();
-                                                
 
-                                                
-                                                
-                                                
+
+
+
+
                                                 Application.Exit();
                                             }
                                         }
@@ -2635,9 +2634,9 @@ namespace Chess
                             {
                                 RefrigtzDLL.ThinkingChess.TableInitiationPreventionOfMultipleMove[x1, y1]++;
                                 RefrigtzDLL.ThinkingChess.TableInitiationPreventionOfMultipleMove[i, j]++;
-                           
+
                                 MovmentsNumber++;
-                                
+
                                 Table = brd.GetTable();
                                 ClearTableInitiationPreventionOfMultipleMove();
 
@@ -2647,40 +2646,40 @@ namespace Chess
                                 tt.Abort();
                                 AllDraw.OrderPlate = -1; OrderPlate = -1;
 
-                                
-                                
-                                
+
+
+
                                 var array = Task.Factory.StartNew(() => ComputerByComputerAliceAsStockFish(ref proc));
                                 array.Wait(); array.Dispose();
                                 R = new RefrigtzDLL.ChessGeneticAlgorithm(false, false, false, false, false, false, false, true);
                                 if (R.FindGenToModified(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2], RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1], RefrigtzDLL.AllDraw.TableListAction, 0, -1, true))
                                 {
-                                    
+
                                     int ii = new int();
                                     int jj = new int();
                                     if (R.CromosomRowFirst == -1 || R.CromosomColumnFirst == -1 || R.CromosomRow == -1 || R.CromosomColumn == -1)
                                     {
-                                        
+
                                         MessageBox.Show("One or more cromosoms is invalid by sugar;");
                                         RefrigtzDLL.AllDraw.TableListAction.RemoveAt(RefrigtzDLL.AllDraw.TableListAction.Count - 1);
 
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
+
+
+
+
+
+
                                         Application.Exit();
                                     }
-                                   
+
                                     ii = R.CromosomRowFirst;
                                     jj = R.CromosomColumnFirst;
                                     i = ii;
                                     j = jj;
-                                    
+
                                     k = brd.getInfo(i, j);
                                     //if (k == 0)
-                                    
+
                                     cl = 0;
                                     if (RefrigtzDLL.AllDraw.OrderPlateDraw == 1)
                                         RefrigtzDLL.ThinkingChess.NoOfBoardMovedGray++;
@@ -2690,21 +2689,21 @@ namespace Chess
                                 }
                                 else
                                 {
-                                    
-                                    
+
+
                                     {
                                         MessageBox.Show("One or more DNA is invalid by sugar;");
-                                        
-                                        
-                                        
+
+
+
                                         RefrigtzDLL.AllDraw.TableListAction.RemoveAt(RefrigtzDLL.AllDraw.TableListAction.Count - 1);
                                         Table = brd.GetTable();
-                                        
 
-                                        
-                                        
-                                        
-                                         Application.Exit();
+
+
+
+
+                                        Application.Exit();
                                     }
                                 }
                                 Play(-1, -1);
@@ -2726,7 +2725,7 @@ namespace Chess
                                 tt.Start();
                                 tt.Join();
                                 tt.Abort();
-                           
+
                                 Play(-1, -1);
 
                                 AllDraw.ThinkingRunInBothSide = false;
@@ -3097,11 +3096,11 @@ namespace Chess
         {
             (new AboutBoxFaraDars()).ShowDialog();
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         public RefrigtzDLL.AllDraw RootFound()
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -3120,11 +3119,11 @@ namespace Chess
                 return Draw;
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         public void SetDrawFounding(ref bool FOUNDI, ref RefrigtzDLL.AllDraw THISI, bool FirstI)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             /*    Object OO = new Object();
                 lock (OO)
@@ -3492,13 +3491,13 @@ namespace Chess
             {
                 SetAllDrawKind();
                 //Set Configuration To True for some unknown reason!.
-                
+
                 SetAllDrawKindString();
                 bool Found = false;
                 String P = Path.GetFullPath(path3);
                 AllDrawReplacement = Path.Combine(P, AllDrawKindString);
                 Logger y = new Logger(AllDrawReplacement);
-                
+
                 y = new Logger(AllDrawKindString);
 
                 if (File.Exists(AllDrawReplacement))

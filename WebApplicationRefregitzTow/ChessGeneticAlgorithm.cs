@@ -1,8 +1,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
 namespace RefrigtzW
@@ -67,11 +65,11 @@ namespace RefrigtzW
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
-                    Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); 
+                    Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
                 }
             }
 #pragma warning disable CS0168 // The variable 't' is declared but never used
-            catch (Exception t) {  }
+            catch (Exception t) { }
 #pragma warning restore CS0168 // The variable 't' is declared but never used
         }
         //Constructor.
@@ -522,7 +520,7 @@ namespace RefrigtzW
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -533,14 +531,14 @@ namespace RefrigtzW
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -551,7 +549,7 @@ namespace RefrigtzW
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -559,8 +557,8 @@ namespace RefrigtzW
         //Table Foundation of Genetic Alogorithm Method.
         public int[,] GenerateTable(List<int[,]> List, int Index, int Order)
         {
-            //Initiate Local Variables.
-            Begine5:
+        //Initiate Local Variables.
+        Begine5:
             RowColumn.Clear();
             int Store = Index;
             int[,] Cromosom1 = null;
@@ -731,7 +729,7 @@ namespace RefrigtzW
                 goto BeginFind;
             }
 
-            EndFindAThing:
+        EndFindAThing:
             //Foudn of Some Samness Gen.
             if (Order == 1)
                 Ki = (new Random()).Next(1, 7);

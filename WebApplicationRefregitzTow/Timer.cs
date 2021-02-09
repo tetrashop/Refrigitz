@@ -19,11 +19,8 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.IO;
+using System.Threading;
 
 
 
@@ -102,7 +99,7 @@ namespace Refrigtz
                     //When timer stop sleep and checked for 500 ms.
                     while (Paused)
                     {
-                        
+
                     };
                     //When timr begin store current time.
                     long t1 = DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000
@@ -111,7 +108,7 @@ namespace Refrigtz
 
                     do
                     {
-                        
+
                     }
                     //Cal for every 1 second.
                     while (DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000
@@ -156,12 +153,12 @@ namespace Refrigtz
                 //When Ok.
                 if (Sign != 1)
                 {
-                    
+
                     if (Times - 120000 < 0)
                         Increase = -1;
                     else
                         Increase = 1;
-                    
+
                 }
                 return Increase;
             }
@@ -277,18 +274,18 @@ namespace Refrigtz
                 String Houre = "0";
                 if (T >= 3600000)
                 {
-                    
+
                     Houre = ((System.Convert.ToInt64(T / 3600000))).ToString();
                     T = (T - System.Convert.ToInt64(T / 3600000) * 3600000);
                 }
                 String Minute = "0";
                 if (T >= 60000)
                 {
-                    
+
                     Minute = ((System.Convert.ToInt64(T / 60000))).ToString();
                     T = (T - System.Convert.ToInt64(T / 60000) * 60000);
                 }
-                String Second = (T / 1000).ToString();               
+                String Second = (T / 1000).ToString();
                 return Houre + ":" + Minute + ":" + Second;
             }
         }

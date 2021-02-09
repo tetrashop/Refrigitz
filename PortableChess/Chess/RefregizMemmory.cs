@@ -4,11 +4,8 @@
  * ************************************************************************************************************
  */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace RefrigtzChessPortable
 {
 
@@ -119,7 +116,7 @@ namespace RefrigtzChessPortable
                 //return Node.al;
             }
         }
-        public AllDraw LoadJungle(string pathj,bool Quantum, int Order)
+        public AllDraw LoadJungle(string pathj, bool Quantum, int Order)
         {
             Object o = new Object();
             lock (o)

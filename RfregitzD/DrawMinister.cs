@@ -1,27 +1,26 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace RefrigtzDLL
 {
     [Serializable]
     public class DrawMinister//:DrawKing
     {
-        
+
 
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawMinister.Spaces' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'DrawMinister.Spaces' is assigned but its value is never used
         int Spaces = 0;
-//#pragma warning restore CS0414 // The field 'DrawMinister.Spaces' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'DrawMinister.Spaces' is assigned but its value is never used
 
 
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
-        
+
+
+
         //Initiate Global Variable.
         List<int[]> ValuableSelfSupported = new List<int[]>();
 
@@ -60,14 +59,14 @@ namespace RefrigtzDLL
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-            
+
         }
 
         public bool MaxFound(ref bool MaxNotFound)
         {
-            
+
             int a = ReturnHeuristic();
             if (MaxHeuristicxM < a)
             {
@@ -79,32 +78,32 @@ namespace RefrigtzDLL
                         ThinkingChess.MaxHeuristicx = a;
                     MaxHeuristicxM = a;
                 }
-                
+
                 return true;
             }
 
             MaxNotFound = true;
-            
+
             return false;
         }
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.MinisterMovments; ii++)
 
-                a += MinisterThinking[ii].ReturnHeuristic(-1, -1, Order, false,ref HaveKilled);
-            
+                a += MinisterThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
+
             return a;
         }
         //constructor 1.
-        
+
         //Constructor 2.
         public DrawMinister(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//, ref AllDraw. THIS
             )
         {
-            
+
             object balancelock = new object();
             lock (balancelock)
             {
@@ -124,7 +123,7 @@ namespace RefrigtzDLL
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.MinisterMovments; ii++)
-                    MinisterThinking[ii] = new ThinkingChess(ii,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 32, Ord, TB, Cur, 2, 5);
+                    MinisterThinking[ii] = new ThinkingChess(ii, 5, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 32, Ord, TB, Cur, 2, 5);
 
                 Row = i;
                 Column = j;
@@ -132,11 +131,11 @@ namespace RefrigtzDLL
                 Current = Cur;
                 Order = Ord;
             }
-            
+
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -147,14 +146,14 @@ namespace RefrigtzDLL
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -165,7 +164,7 @@ namespace RefrigtzDLL
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -174,7 +173,7 @@ namespace RefrigtzDLL
         public void Clone(ref DrawMinister AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -185,7 +184,7 @@ namespace RefrigtzDLL
             for (var i = 0; i < AllDraw.MinisterMovments; i++)
             {
 
-                AA.MinisterThinking[i] = new ThinkingChess(i,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.MinisterThinking[i] = new ThinkingChess(i, 5, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.MinisterThinking[i].Clone(ref AA.MinisterThinking[i]);
 
 
@@ -199,7 +198,7 @@ namespace RefrigtzDLL
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         //Draw an Mnister on the Table.
         public void DrawMinisterOnTable(ref Graphics g, int CellW, int CellH)
@@ -210,11 +209,11 @@ namespace RefrigtzDLL
             {
                 if (g == null)
                     return;
-                
+
                 try
                 {
 
-                         //Gray Color.
+                    //Gray Color.
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     {
                         //Gray Order.
@@ -243,7 +242,7 @@ namespace RefrigtzDLL
                 {
                     Log(t);
                 }
-                
+
             }
         }
     }

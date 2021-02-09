@@ -3,14 +3,11 @@
  CopyRighted 1398/0802**************************************************************
  TetraShop.Ir***********************************************************************
  ***********************************************************************************/
+using ContourAnalysisDemo;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Drawing;
-using ContourAnalysisDemo;
+using System.IO;
 namespace ImageTextDeepLearning
 {
     //To Store All Keyboard literals
@@ -31,8 +28,8 @@ namespace ImageTextDeepLearning
 
         }
 
-    //Initiate global vars
-    int Width =10, Height =10;
+        //Initiate global vars
+        int Width = 10, Height = 10;
         public List<String> KeyboardAllStrings = new List<String>();
         public List<Image> KeyboardAllImage = new List<Image>();
         public List<bool[,]> KeyboardAllConjunctionMatrix = new List<bool[,]>();
@@ -109,7 +106,7 @@ namespace ImageTextDeepLearning
                                File.AppendAllText("KeyboardAllStrings.asd", KeyboardAllStrings[i]);
                            }
                        }*/
-                       //serialized on take root
+                    //serialized on take root
                     if (this.KeyboardAllImage.Count > 0)
                     {
                         Refrigtz.TakeRoot t = new Refrigtz.TakeRoot();
@@ -117,7 +114,8 @@ namespace ImageTextDeepLearning
 
                     }
                 }
-                else {//delete and serilized take root
+                else
+                {//delete and serilized take root
                     File.Delete("KeyboardAllStrings.asd");
                     if (this.KeyboardAllImage.Count > 0)
                     {
@@ -163,7 +161,7 @@ namespace ImageTextDeepLearning
                          if (!Do)
                              return false;
                      }*/
-                     //serilized
+                    //serilized
                     Refrigtz.TakeRoot tr = new Refrigtz.TakeRoot();
                     AllKeyboardOfWorld t = tr.Load("KeyboardAllStrings.asd");
                     this.KeyboardAllConjunctionMatrix = t.KeyboardAllConjunctionMatrix;
@@ -175,7 +173,8 @@ namespace ImageTextDeepLearning
                 else//others retiurn unsuccessfull
                     return false;
             }
-            catch (Exception t) {
+            catch (Exception t)
+            {
                 //when unsuccessfull return false
                 return false;
             }
@@ -201,7 +200,7 @@ namespace ImageTextDeepLearning
         //Cropping and fitting image
         Bitmap cropImage(Bitmap img, Rectangle cropArea)
         {
-               int X = cropArea.X;
+            int X = cropArea.X;
             int Y = cropArea.Y;
             int XX = cropArea.Width;
             int YY = cropArea.Height;
@@ -237,7 +236,7 @@ namespace ImageTextDeepLearning
         {
             int Ma = 0;
             int j = 0;
-            for (int k = Im.Height-1; k >= 0; k--)
+            for (int k = Im.Height - 1; k >= 0; k--)
             {
                 if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                 {
@@ -253,7 +252,7 @@ namespace ImageTextDeepLearning
         {
             int Ma = 0;
             int k = 0;
-            for (int j = Im.Width-1; j >= 0; j--)
+            for (int j = Im.Width - 1; j >= 0; j--)
             {
                 if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                 {

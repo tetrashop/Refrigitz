@@ -2,12 +2,7 @@
 ////tetrashop.ir
 ///////////////
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 //using ilf.pgn;
@@ -39,7 +34,7 @@ namespace Chess
                 {
                     string stackTrace = ex.ToString();
                     //Write to File.
-                  System.IO.File.AppendAllText("ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
+                    System.IO.File.AppendAllText("ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
                 }
             }
 #pragma warning disable CS0168 // The variable 't' is declared but never used
@@ -54,7 +49,8 @@ namespace Chess
         private void button1_Click(object sender, EventArgs e)
         {
             B = false;
-            if (W) {
+            if (W)
+            {
                 frize = true;
                 (new ChessFirst.ChessFirstForm()).ShowDialog();
                 frize = false;
@@ -91,7 +87,8 @@ namespace Chess
         }
         void Play()
         {
-            do {
+            do
+            {
                 if (W)
                 {
                     int C = 0;
@@ -206,105 +203,105 @@ namespace Chess
             lock (O)
             {
 
-                
 
 
-                    if (A[0] == 'a')
-                        BBS.rf = 0;
-                    else
-                        if (A[0] == 'b')
-                        BBS.rf = 1;
-                    else
-                            if (A[0] == 'c')
-                        BBS.rf = 2;
-                    else
-                                if (A[0] == 'd')
-                        BBS.rf = 3;
-                    else
-                                    if (A[0] == 'e')
-                        BBS.rf = 4;
-                    else
-                                        if (A[0] == 'f')
-                        BBS.rf = 5;
-                    else
-                                            if (A[0] == 'g')
-                        BBS.rf = 6;
-                    else
-                                                if (A[0] == 'h')
-                        BBS.rf = 7;
-                    /* if(!Sugar)
-                     BBS.cf = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
-                     else
-                      */
-                    BBS.cf = ((System.Convert.ToInt32(A[1].ToString())));
 
-                    if (A[2] == 'a')
-                        BBS.rs = 0;
-                    else
-                        if (A[2] == 'b')
-                        BBS.rs = 1;
-                    else
-                            if (A[2] == 'c')
-                        BBS.rs = 2;
-                    else
-                                if (A[2] == 'd')
-                        BBS.rs = 3;
-                    else
-                                    if (A[2] == 'e')
-                        BBS.rs = 4;
-                    else
-                                        if (A[2] == 'f')
-                        BBS.rs = 5;
-                    else
-                                            if (A[2] == 'g')
-                        BBS.rs = 6;
-                    else
-                                                if (A[2] == 'h')
-                        BBS.rs = 7;
-                    /*if (!Sugar)
-                         BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-                     else*/
-                    BBS.cs = ((System.Convert.ToInt32(A[3].ToString())));
+                if (A[0] == 'a')
+                    BBS.rf = 0;
+                else
+                    if (A[0] == 'b')
+                    BBS.rf = 1;
+                else
+                        if (A[0] == 'c')
+                    BBS.rf = 2;
+                else
+                            if (A[0] == 'd')
+                    BBS.rf = 3;
+                else
+                                if (A[0] == 'e')
+                    BBS.rf = 4;
+                else
+                                    if (A[0] == 'f')
+                    BBS.rf = 5;
+                else
+                                        if (A[0] == 'g')
+                    BBS.rf = 6;
+                else
+                                            if (A[0] == 'h')
+                    BBS.rf = 7;
+                /* if(!Sugar)
+                 BBS.cf = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
+                 else
+                  */
+                BBS.cf = ((System.Convert.ToInt32(A[1].ToString())));
 
-                    if (A.Length == 5)
-                    {
-                        if (A[4] == 'p')
-                            return -1;
-                        else
-                            if (A[4] == 'n')
-                            return -3;
-                        else
-                                if (A[4] == 'b')
-                            return -2;
-                        else
-                                    if (A[4] == 'r')
-                            return -4;
-                        else
-                                        if (A[4] == 'q')
-                            return -5;
-                        else
-                                            if (A[4] == 'P')
-                            return 1;
-                        else
-                                                if (A[4] == 'N')
-                            return 3;
-                        else
-                                                    if (A[4] == 'B')
-                            return 2;
-                        else
-                                                        if (A[4] == 'R')
-                            return 4;
-                        else
-                                                            if (A[4] == 'Q')
-                            return 5;
-                    }
+                if (A[2] == 'a')
+                    BBS.rs = 0;
+                else
+                    if (A[2] == 'b')
+                    BBS.rs = 1;
+                else
+                        if (A[2] == 'c')
+                    BBS.rs = 2;
+                else
+                            if (A[2] == 'd')
+                    BBS.rs = 3;
+                else
+                                if (A[2] == 'e')
+                    BBS.rs = 4;
+                else
+                                    if (A[2] == 'f')
+                    BBS.rs = 5;
+                else
+                                        if (A[2] == 'g')
+                    BBS.rs = 6;
+                else
+                                            if (A[2] == 'h')
+                    BBS.rs = 7;
+                /*if (!Sugar)
+                     BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+                 else*/
+                BBS.cs = ((System.Convert.ToInt32(A[3].ToString())));
+
+                if (A.Length == 5)
+                {
+                    if (A[4] == 'p')
+                        return -1;
                     else
-                 if (BBS.rf > -1 && BBS.cf > -1 && BBS.rs > -1 && BBS.cs > -1)
-                        if (BBS.rf < 8 && BBS.cf < 8 && BBS.rs < 8 && BBS.cs < 8)
-                            return 10;
+                        if (A[4] == 'n')
+                        return -3;
+                    else
+                            if (A[4] == 'b')
+                        return -2;
+                    else
+                                if (A[4] == 'r')
+                        return -4;
+                    else
+                                    if (A[4] == 'q')
+                        return -5;
+                    else
+                                        if (A[4] == 'P')
+                        return 1;
+                    else
+                                            if (A[4] == 'N')
+                        return 3;
+                    else
+                                                if (A[4] == 'B')
+                        return 2;
+                    else
+                                                    if (A[4] == 'R')
+                        return 4;
+                    else
+                                                        if (A[4] == 'Q')
+                        return 5;
+                }
+                else
+             if (BBS.rf > -1 && BBS.cf > -1 && BBS.rs > -1 && BBS.cs > -1)
+                    if (BBS.rf < 8 && BBS.cf < 8 && BBS.rs < 8 && BBS.cs < 8)
+                        return 10;
 
 
-                
+
                 return -11;
 
             }
@@ -379,7 +376,7 @@ namespace Chess
                     }
                     else
                     {
-                        if (S.brd.GetTable()[column, row + 2 ] == 1)
+                        if (S.brd.GetTable()[column, row + 2] == 1)
                         {
                             des += (row + 2).ToString();
                             srca += row.ToString();
@@ -412,7 +409,7 @@ namespace Chess
                 return src;
 
             //small castling
-            if (des == "O-O"|| des == "o-o")
+            if (des == "O-O" || des == "o-o")
             {
                 if (W)
                     return "e7g7";
@@ -436,7 +433,7 @@ namespace Chess
                 Kind = 2;
             else
                 Kind = 1;
-            
+
             int oBJ = Kind;
             if (B)
                 oBJ *= -1;
@@ -480,7 +477,7 @@ namespace Chess
                 ord = -1;
             }
             int r = -1, c = -1;
-            
+
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -506,7 +503,7 @@ namespace Chess
                     {
                         int[,] tab = CloneATable(S.brd.GetTable());
                         ChessFirst.ThinkingChessFirst C = new ChessFirst.ThinkingChessFirst(0, Kind, 0, false, false, false, false, false, false, false, true, i, j, a, tab, 0, ord, false, 0, 0, Kind);
-                        if (C.Attack(tab,i, j, row, column, a, ord) && (tab[i, j] == oBJ))
+                        if (C.Attack(tab, i, j, row, column, a, ord) && (tab[i, j] == oBJ))
                         {
                             r = i;
                             c = j;
@@ -543,9 +540,9 @@ namespace Chess
                     src = "g";
                 else
                                           if (r == 7)
-                    src = "h"; 
+                    src = "h";
 
-               
+
                 src += c.ToString();
                 src += des[1].ToString() + column.ToString();
             }
@@ -620,7 +617,7 @@ namespace Chess
                                                            if (des[0] == 'h')
                             sc = 7;
 
-                  
+
                         int row = 7 - (System.Math.Abs(System.Convert.ToInt32(des[3].ToString())) - 1);
                         int r = -1;
                         if (W)
@@ -695,22 +692,22 @@ namespace Chess
         {
             String src = "";
             if (des[4] == '#')
-            {               
-               
-                    src = des.Remove(4, 1);
+            {
 
-                    src = ConLen4(src);                
+                src = des.Remove(4, 1);
+
+                src = ConLen4(src);
             }
 
             if (src != "")
                 return src;
 
             if (des[4] == '+')
-            {               
-                   
-                    src = des.Remove(4, 1);
+            {
 
-                    src = ConLen4(src);
+                src = des.Remove(4, 1);
+
+                src = ConLen4(src);
             }
             if (src != "")
                 return src;
@@ -721,16 +718,16 @@ namespace Chess
                 if (src != "")
                     GaveOver = true;
             }
-          
+
             if (src != "")
                 return src;
             //big castling
-             if (des == "O-O-O"|| des == "o-o-o")
+            if (des == "O-O-O" || des == "o-o-o")
             {
                 if (W)
-                    src= "e7c7";
+                    src = "e7c7";
                 else
-                    src= "e0c0";
+                    src = "e0c0";
             }
             return src;
         }
@@ -739,31 +736,31 @@ namespace Chess
             String src = "";
             if (des[5] == '#')
             {
-                
-                    src = des.Remove(5, 1);
 
-                    src = ConLen5(src);
+                src = des.Remove(5, 1);
 
-                    if (src != "")
-                        GaveOver = true;
-                }
-            
+                src = ConLen5(src);
+
+                if (src != "")
+                    GaveOver = true;
+            }
+
 
             if (src != "")
                 return src;
-            
+
             if (des[5] == '+')
             {
-               
-                  
-                    src = des.Remove(5, 1);
 
-                    src = ConLen5(src);
 
-                    if (src != "")
-                        return src;
-                
-            }           
+                src = des.Remove(5, 1);
+
+                src = ConLen5(src);
+
+                if (src != "")
+                    return src;
+
+            }
             return src;
         }
 
@@ -974,7 +971,7 @@ namespace Chess
                                     }
                                 }
 
-                             
+
                                 if (W)
                                 {
                                     i = BBS.cs + 1;
@@ -1151,7 +1148,7 @@ namespace Chess
                                 int src = -1;
                                 int srcObj = -1;
                                 if (A[3] == 'a')
-                                        srcObj = 0;
+                                    srcObj = 0;
                                 else
                                      if (A[3] == 'b')
                                     srcObj = 1;
@@ -1174,7 +1171,7 @@ namespace Chess
                                                              if (A[3] == 'h')
                                     srcObj = 7;
 
-                              
+
 
                                 //destination
                                 if (A[1] == 'a')
@@ -1245,7 +1242,7 @@ namespace Chess
                                         return 1;
                                     }
 
-                                    
+
                                 }
 
 
@@ -1292,63 +1289,63 @@ namespace Chess
                         }
                     }
                     else
-                    { 
-                    if (A[1] == 'a')
-                        BBS.rf = 0;
-                    else
-                        if (A[1] == 'b')
-                        BBS.rf = 1;
-                    else
-                            if (A[1] == 'c')
-                        BBS.rf = 2;
-                    else
-                                if (A[1] == 'd')
-                        BBS.rf = 3;
-                    else
-                                    if (A[1] == 'e')
-                        BBS.rf = 4;
-                    else
-                                        if (A[1] == 'f')
-                        BBS.rf = 5;
-                    else
-                                            if (A[1] == 'g')
-                        BBS.rf = 6;
-                    else
-                                                if (A[1] == 'h')
-                        BBS.rf = 7;
-                    /* if(!Sugar)
-                     BBS.cf = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
-                     else
-                      */
-                    BBS.cf = ((System.Convert.ToInt32(A[1]) - 48) - 1);
-                      
-                    if (A[1] == 'a')
-                        BBS.rs = 0;
-                    else
-                        if (A[2] == 'b')
-                        BBS.rs = 1;
-                    else
-                            if (A[2] == 'c')
-                        BBS.rs = 2;
-                    else
-                                if (A[2] == 'd')
-                        BBS.rs = 3;
-                    else
-                                    if (A[2] == 'e')
-                        BBS.rs = 4;
-                    else
-                                        if (A[2] == 'f')
-                        BBS.rs = 5;
-                    else
-                                            if (A[2] == 'g')
-                        BBS.rs = 6;
-                    else
-                                                if (A[2] == 'h')
-                        BBS.rs = 7;
-                     /*if (!Sugar)
-                          BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-                      else*/
-                    BBS.cs = ((System.Convert.ToInt32(A[3]) - 48) - 1);
+                    {
+                        if (A[1] == 'a')
+                            BBS.rf = 0;
+                        else
+                            if (A[1] == 'b')
+                            BBS.rf = 1;
+                        else
+                                if (A[1] == 'c')
+                            BBS.rf = 2;
+                        else
+                                    if (A[1] == 'd')
+                            BBS.rf = 3;
+                        else
+                                        if (A[1] == 'e')
+                            BBS.rf = 4;
+                        else
+                                            if (A[1] == 'f')
+                            BBS.rf = 5;
+                        else
+                                                if (A[1] == 'g')
+                            BBS.rf = 6;
+                        else
+                                                    if (A[1] == 'h')
+                            BBS.rf = 7;
+                        /* if(!Sugar)
+                         BBS.cf = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
+                         else
+                          */
+                        BBS.cf = ((System.Convert.ToInt32(A[1]) - 48) - 1);
+
+                        if (A[1] == 'a')
+                            BBS.rs = 0;
+                        else
+                            if (A[2] == 'b')
+                            BBS.rs = 1;
+                        else
+                                if (A[2] == 'c')
+                            BBS.rs = 2;
+                        else
+                                    if (A[2] == 'd')
+                            BBS.rs = 3;
+                        else
+                                        if (A[2] == 'e')
+                            BBS.rs = 4;
+                        else
+                                            if (A[2] == 'f')
+                            BBS.rs = 5;
+                        else
+                                                if (A[2] == 'g')
+                            BBS.rs = 6;
+                        else
+                                                    if (A[2] == 'h')
+                            BBS.rs = 7;
+                        /*if (!Sugar)
+                             BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+                         else*/
+                        BBS.cs = ((System.Convert.ToInt32(A[3]) - 48) - 1);
 
                         if (A.Length == 5)
                         {
@@ -1455,7 +1452,7 @@ namespace Chess
                         BBS.cf = -1;
                         BBS.rs = -1;
                         BBS.cs = -1;
-                         ChessCom.ChessComForm.freezBoard = false;
+                        ChessCom.ChessComForm.freezBoard = false;
                         if (C != 0)
                         {
                             MessageBox.Show("خطای بحرانی!");
@@ -1533,7 +1530,7 @@ namespace Chess
                     do { System.Threading.Thread.Sleep(2000); } while (!(BBS.LoadP));
                     BBS.Update();
                     BBS.Invalidate();
-            }
+                }
                 try
                 {
                     bool gamenf = false;
@@ -1696,7 +1693,8 @@ namespace Chess
                         MessageBox.Show("نیمه یک بازی ذخیره شد");
 
                 }
-                catch (Exception y) {
+                catch (Exception y)
+                {
                     Log(y);
                     MessageBox.Show("نیمه یک بازی ذخیره شد");
 
@@ -1710,7 +1708,7 @@ namespace Chess
         private void button3_Click(object sender, EventArgs e)
         {
             frize = true;
-          
+
             F = new ChessFirst.ChessFirstForm();
             F.ComStop = true;
             F.Show();
@@ -1754,7 +1752,7 @@ namespace Chess
 
         private void button4_Click(object sender, EventArgs e)
         {
-         
+
             frize = true;
             openFileDialog1.Filter = "PGN|*.pgn";
             openFileDialog1.ShowDialog();
@@ -1767,11 +1765,11 @@ namespace Chess
             for (int i = 0; i < gameDb.gamese.Count; i++)
             {
                 System.IO.File.AppendAllText("c.txt", "\r" + gameDb.gamese[i]);
-                
+
             }
             for (int i = 0; i < gameDb.Game.Count; i++)
             {
-               for (int j = 0; j < gameDb.Game[i].MoveText.Count; j++)
+                for (int j = 0; j < gameDb.Game[i].MoveText.Count; j++)
                 {
                     System.IO.File.AppendAllText("d.txt", "\r" + gameDb.Game[i].MoveText[j]);
 
@@ -1817,5 +1815,9 @@ namespace Chess
             }
         }
 
+        private void Chess_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

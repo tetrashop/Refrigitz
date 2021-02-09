@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 
 namespace QuantumRefrigiz
 {
@@ -11,9 +10,9 @@ namespace QuantumRefrigiz
     public class DrawSoldierQ : ThingsConverter
     {
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawSoldierQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'DrawSoldierQ.Spaces' is ASsigned but its value is never used
         int Spaces = 0;
-//#pragma warning restore CS0414 // The field 'DrawSoldierQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'DrawSoldierQ.Spaces' is ASsigned but its value is never used
 
         public static int[,,] QuntumTable = {
             {{-1, -1, - 1, -1, -1, -1, -1, -1 },
@@ -44,12 +43,12 @@ namespace QuantumRefrigiz
 
         List<int[]> ValuableSelfSupported = new List<int[]>();
 
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         public bool MovementsAStarGreedyHeuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
         public bool UsePenaltyRegardMechnisamT = false;
@@ -95,13 +94,13 @@ namespace QuantumRefrigiz
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-            
+
         }
         public bool MaxFound(ref bool MaxNotFound)
         {
-            
+
 
             int a = ReturnHeuristic();
             if (MaxHeuristicxS < a)
@@ -114,33 +113,33 @@ namespace QuantumRefrigiz
                         ThinkingQuantumChess.MaxHeuristicx = a;
                     MaxHeuristicxS = a;
                 }
-                
+
                 return true;
             }
 
             MaxNotFound = true;
-            
+
             return false;
         }
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.SodierMovments; ii++)
 
                 a += SoldierThinkingQuantum[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
-            
+
             return a;
         }
         //Constructor 1.
-        
+
         //Constructor 2.
         public DrawSoldierQ(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//, ref AllDraw. THIS
             ) :
             base(Arrangments, (int)i, (int)j, a, Tab, Ord, TB, Cur)
         {
-            
+
             object balancelock = new object();
             lock (balancelock)
             {
@@ -172,13 +171,13 @@ namespace QuantumRefrigiz
                 Order = Ord;
                 Current = Cur;
             }
-            
+
         }
         //Clone a Copy Method.
         public void Clone(ref DrawSoldierQ AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -204,11 +203,11 @@ namespace QuantumRefrigiz
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         bool Quantum(int[,] Tab, int Order, int Row, int Column, int LastRowQ, int LastColumn)
         {
-            
+
             if (ArrangmentsChanged)
             {
                 if (LastRowQ == 6)
@@ -217,14 +216,14 @@ namespace QuantumRefrigiz
                         if (Table[Row, LastColumn + 1] < 0)
                             if (Table[Row, Column] == 1)
                             {
-                                
+
                                 return true;
                             }
                 }
                 if (System.Math.Abs(Column - LastColumn) == 1 && System.Math.Abs(Row - LastRowQ) == 1)
                     if (Table[Row, Column] == 1 || Table[LastRowQ, LastColumn] == 1)
                     {
-                        
+
                         return true;
                     }
             }
@@ -236,25 +235,25 @@ namespace QuantumRefrigiz
                         if (Table[Row, LastColumn - 1] > 0)
                             if (Table[Row, Column] == -1)
                             {
-                                
+
                                 return true;
                             }
                 }
                 if (System.Math.Abs(Column - LastColumn) == 1 && System.Math.Abs(Row - LastRowQ) == 1)
                     if (Table[Row, Column] == -1 || Table[LastRowQ, LastColumn] == -1)
                     {
-                        
+
                         return true;
                     }
             }
 
-            
+
 
             return false;
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -265,14 +264,14 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -283,7 +282,7 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -298,7 +297,7 @@ namespace QuantumRefrigiz
             {
                 if (g == null)
                     return;
-                
+
 
                 int LastRowQ = 0, LastColumn = 0;
 
@@ -349,8 +348,8 @@ namespace QuantumRefrigiz
 
                 if (!Quantum(CloneATable(Table), Order, (int)Row, (int)Column, LastRowQ, LastColumn))
                     RingHalf = false;
-                
-                
+
+
                 //When Conversion Solders Not Occured.
                 if (!ConvertOperation((int)Row, (int)Column, color, CloneATable(Table), Order, false, Current))
                 {
@@ -781,9 +780,9 @@ namespace QuantumRefrigiz
                     }
                 }
             }
-            
+
         }
     }
-    
+
 }
 //End of Documentation.

@@ -1,7 +1,7 @@
 /*CopyRight Ramin Edjlal***************************2018*************************
  The Magic Table Game Satte Learing Quantum Atamata.****************************
  *******************************************************************************
- */ 
+ */
 using System;
 using System.IO;
 
@@ -13,14 +13,14 @@ namespace RefrigtzW
         public static String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
         static void Log(Exception ex)
         {
-            
-                Object a = new Object();
-                lock (a)
-                {
-                    string stackTrace = ex.ToString();
-                    File.AppendAllText(Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); // path of file where stack trace will be stored.
-                }
-           
+
+            Object a = new Object();
+            lock (a)
+            {
+                string stackTrace = ex.ToString();
+                File.AppendAllText(Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); // path of file where stack trace will be stored.
+            }
+
         }
 
         int r, m, k;
@@ -50,10 +50,10 @@ namespace RefrigtzW
             {
 
                 double Hu = 1;
-                
-                    Netfi[Row, Column].LearningAlgorithmRegard();
-                    Hu = Netfi[Row, Column].alpha[State];
-               
+
+                Netfi[Row, Column].LearningAlgorithmRegard();
+                Hu = Netfi[Row, Column].alpha[State];
+
                 return Hu;
             }
         }
@@ -84,10 +84,10 @@ namespace RefrigtzW
             lock (o)
             {
                 double Hu = 1;
-                
-                    Netfi[Row, Column].LearningAlgorithmPenalty();
-                    Hu = Netfi[Row, Column].alpha[State];
-               
+
+                Netfi[Row, Column].LearningAlgorithmPenalty();
+                Hu = Netfi[Row, Column].alpha[State];
+
                 return Hu;
             }
         }
@@ -97,9 +97,9 @@ namespace RefrigtzW
             lock (o)
             {
                 double Hu = 1;
-                
-                    Hu = Netfi[Row, Column].alpha[State];
-               
+
+                Hu = Netfi[Row, Column].alpha[State];
+
                 return Hu;
             }
         }

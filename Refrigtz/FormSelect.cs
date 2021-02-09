@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using System.Threading;
 using System.IO;
+using System.Windows.Forms;
 namespace Refrigtz
 {
     [Serializable]
@@ -72,7 +66,7 @@ namespace Refrigtz
                     RadioButtonGrayOrder.Checked = true;
 
 
-            } 
+            }
         }
 
         private void RadioButtonBrownOrder_CheckedChanged(object sender, EventArgs e)

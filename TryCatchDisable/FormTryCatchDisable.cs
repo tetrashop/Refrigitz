@@ -4,13 +4,6 @@
  * Removing try catch exeption hole contained when need.**************************************
  * *******************************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 
@@ -62,7 +55,7 @@ namespace TryCatchDisable
                         //Store current index
                         int P = A1;
                         //store  try from remain substring 
-                        P = Contain.Substring(A1, Contain.Length-A1).IndexOf("try");
+                        P = Contain.Substring(A1, Contain.Length - A1).IndexOf("try");
                         //add to current index
                         A1 = A1 + P;
                         //store 
@@ -135,7 +128,7 @@ namespace TryCatchDisable
                         return true;
                     }
                     //else
-                        //return false;
+                    //return false;
                 }
                 //Incese
                 A++;
@@ -182,14 +175,14 @@ namespace TryCatchDisable
             try
             {
 
-                
+
                 //while end of file 
                 while (A2 < Contain.Length && A2 > 0)
                 {
                     //store
                     int C = A2;
                     //index of first catch in substring
-                    C= Contain.Substring(A2, Contain.Length-A2).IndexOf("catch");
+                    C = Contain.Substring(A2, Contain.Length - A2).IndexOf("catch");
                     //add and store
                     A2 = A2 + C;
 

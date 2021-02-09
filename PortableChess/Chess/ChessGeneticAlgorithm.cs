@@ -1,8 +1,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
 namespace RefrigtzChessPortable
@@ -67,7 +65,7 @@ namespace RefrigtzChessPortable
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
-                    Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); 
+                    Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
                 }
             }
 
@@ -460,7 +458,7 @@ namespace RefrigtzChessPortable
 
                         }
                     }
-                    
+
                     //Store Locatjon of Gen and Calculate Gen Numbers.
 
                 }
@@ -500,7 +498,7 @@ namespace RefrigtzChessPortable
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -511,14 +509,14 @@ namespace RefrigtzChessPortable
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -529,7 +527,7 @@ namespace RefrigtzChessPortable
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -537,8 +535,8 @@ namespace RefrigtzChessPortable
         //Table Foundation of Genetic Alogorithm Method.
         public int[,] GenerateTable(List<int[,]> List, int Index, int Order)
         {
-            //Initiate Local Variables.
-            Begine5:
+        //Initiate Local Variables.
+        Begine5:
             RowColumn.Clear();
             int Store = Index;
             int[,] Cromosom1 = null;
@@ -709,7 +707,7 @@ namespace RefrigtzChessPortable
                 goto BeginFind;
             }
 
-            EndFindAThing:
+        EndFindAThing:
             //Foudn of Some Samness Gen.
             if (Order == 1)
                 Ki = (new Random()).Next(1, 7);

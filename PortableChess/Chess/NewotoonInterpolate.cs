@@ -4,9 +4,6 @@
  * Implementation recursivley.
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace RefrigtzChessPortable
 {
@@ -64,11 +61,11 @@ namespace RefrigtzChessPortable
             }
         }
         static Double[] Simplify(Double[] s, Double[] x, int i, int j)
+        {
+            Object o = new Object();
+            lock (o)
             {
-                Object o = new Object();
-                lock (o)
-                {
-                    if (j == i)
+                if (j == i)
                     return s;
                 for (int k = i - 1; k >= 0; k--)
                     s[k + 1] = s[k];

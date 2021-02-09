@@ -3,13 +3,6 @@
  * TetraShop.ir************************************************************
  * ************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShizoImprove
@@ -80,7 +73,7 @@ namespace ShizoImprove
             {
                 if (ShizoImprove.AllFiles.Count > 0)
                 {
-               
+
                     progressBarWorking.Maximum = ShizoImprove.AllFiles.Count;
                     progressBarWorking.Minimum = 0;
                     t.FormImprove(textBoxWorkingProject.Text, ref progressBarWorking);
@@ -98,7 +91,7 @@ namespace ShizoImprove
             {
                 if (ShizoImproveFile.AllFiles.Count > 0)
                 {
-                 
+
                     progressBarWorking.Maximum = ShizoImproveFile.AllFiles.Count;
                     progressBarWorking.Minimum = 0;
                     tt.FormImprove(textBoxWorkingProject.Text, ref progressBarWorking);
@@ -130,14 +123,14 @@ namespace ShizoImprove
 
             if (!checkBoxActOnSuffixes.Checked)
             {
-           
+
                 progressBarWorking.Maximum = ShizoImprove.AllFiles.Count;
                 progressBarWorking.Minimum = 0;
                 t.FormShizoImproveClearCach(textBoxInput.Text, ref progressBarWorking);
             }
             else
             {
-         
+
                 progressBarWorking.Maximum = ShizoImproveFile.AllFiles.Count;
                 progressBarWorking.Minimum = 0;
                 tt.FormShizoImproveClearCach(textBoxInput.Text, ref progressBarWorking);
@@ -150,7 +143,7 @@ namespace ShizoImprove
             {
                 if (ShizoImprove.AllFiles.Count > 0)
                 {
-            
+
                     progressBarWorking.Maximum = ShizoImprove.AllFiles.Count;
                     progressBarWorking.Minimum = 0;
                     t.FormShizoImproveActOnFileHistory(textBoxWorkingProject.Text, ref progressBarWorking);
@@ -168,7 +161,7 @@ namespace ShizoImprove
             {
                 if (ShizoImproveFile.AllFiles.Count > 0)
                 {
-               
+
                     progressBarWorking.Maximum = ShizoImproveFile.AllFiles.Count;
                     progressBarWorking.Minimum = 0;
                     tt.FormShizoImproveActOnFileHistory(textBoxWorkingProject.Text, ref progressBarWorking);

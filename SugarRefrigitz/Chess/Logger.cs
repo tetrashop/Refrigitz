@@ -1,10 +1,5 @@
 ﻿/*https://stackoverflow.com/questions/11262357/best-practise-locking-files-and-sharing-between-threads*/
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chess
 {

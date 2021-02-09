@@ -5,9 +5,6 @@
  * ************************************************************************/
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace ShizoImprove
@@ -24,11 +21,11 @@ namespace ShizoImprove
         //for evry statistic files create info
         List<ShizoImprove> All = new List<ShizoImprove>();
         //retrive files and directories Constructor
-        public ShizoImprove(String Root,bool Imp=false)
+        public ShizoImprove(String Root, bool Imp = false)
         {
             bool Do = false;
             if (AllFiles.Count == 0)
-                Do = ParsePath(Root,Imp);
+                Do = ParsePath(Root, Imp);
             if (Do && AllFiles.Count > 0)
             {
                 for (int i = 0; i < AllFiles.Count; i++)
@@ -41,7 +38,7 @@ namespace ShizoImprove
             }
         }
         //retrive all files and sub directories in a list
-        static bool ParsePath(string path,bool Imp)
+        static bool ParsePath(string path, bool Imp)
         {
             try
             {
@@ -60,13 +57,13 @@ namespace ShizoImprove
                         }
                     }
                 }
-            
+
                 //Allfiles in path
                 AllFiles.AddRange(Directory.GetFiles(path));
                 //for each sub directory parse sub of subdirectories(recursive)
                 foreach (string subdir in SubDirs)
                 {
-                    if (Imp && subdir.Contains("\\Improved"))                     
+                    if (Imp && subdir.Contains("\\Improved"))
                         continue;
                     ParsePath(subdir, Imp);
                 }
@@ -148,7 +145,7 @@ namespace ShizoImprove
                                         {
                                             File.Delete(Des);
                                             File.Copy(AllFiles[i], Des);
-                                            
+
                                         }
 
                                     }
@@ -189,7 +186,7 @@ namespace ShizoImprove
                         if (AllFiles[i].Contains("("))
                         {
                             //index of to substring
-                            String Des = AllFiles[i].Substring(0,AllFiles[i].IndexOf("("));
+                            String Des = AllFiles[i].Substring(0, AllFiles[i].IndexOf("("));
                             //create correct path
                             Des = "C:\\ShizoImprove\\" + Pro + "\\" + All[i].Lastmodified.ToLongDateString() + "\\" + Des;
                             //when
@@ -274,10 +271,10 @@ namespace ShizoImprove
                                         setAttributesNormal(dir);
                                         dir.Delete(true);
                                     }
-                                      
+
                                 }
                                 catch (Exception t) { }
-                                }
+                            }
                             else
                             {
                                 try
@@ -382,7 +379,7 @@ namespace ShizoImprove
 
         }
 
-        
+
     }
 
     public class ShizoImproveFile

@@ -1,34 +1,33 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 
 namespace RefrigtzDLL
 {
     [Serializable]
     public class DrawSoldier : ThingsConverter
     {
-        
+
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawSoldier.Spaces' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'DrawSoldier.Spaces' is assigned but its value is never used
         int Spaces = 0;
-//#pragma warning restore CS0414 // The field 'DrawSoldier.Spaces' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'DrawSoldier.Spaces' is assigned but its value is never used
 
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
         //Iniatate Global Variables.
-        
-        
+
+
         List<int[]> ValuableSelfSupported = new List<int[]>();
 
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         public bool MovementsAStarGreedyHeuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
         public bool UsePenaltyRegardMechnisamT = false;
@@ -64,13 +63,13 @@ namespace RefrigtzDLL
 
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-            
+
         }
         public bool MaxFound(ref bool MaxNotFound)
         {
-            
+
             int a = ReturnHeuristic();
             if (MaxHeuristicxS < a)
             {
@@ -82,24 +81,24 @@ namespace RefrigtzDLL
                         ThinkingChess.MaxHeuristicx = a;
                     MaxHeuristicxS = a;
                 }
-                
+
                 return true;
             }
 
             MaxNotFound = true;
-            
+
             return false;
         }
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.SodierMovments; ii++)
 
-                a += SoldierThinking[ii].ReturnHeuristic(-1, -1, Order, false,ref HaveKilled);
+                a += SoldierThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
 
-            
+
             return a;
         }
         //clone a table
@@ -111,7 +110,7 @@ namespace RefrigtzDLL
                     Tabl[i, j] = Tab[i, j];
             return Tabl;
         }
-        
+
         //Constructor 1.
 
         //Constructor 2.
@@ -119,7 +118,7 @@ namespace RefrigtzDLL
             ) :
             base(Arrangments, (int)i, (int)j, a, Tab, Ord, TB, Cur)
         {
-            
+
             object balancelock = new object();
             lock (balancelock)
             {
@@ -141,21 +140,21 @@ namespace RefrigtzDLL
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.SodierMovments; ii++)
 
-                    SoldierThinking[ii] = new ThinkingChess(ii,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 4, Ord, TB, Cur, 16, 1);
+                    SoldierThinking[ii] = new ThinkingChess(ii, 1, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 4, Ord, TB, Cur, 16, 1);
                 Row = i;
                 Column = j;
                 color = a;
                 Order = Ord;
                 Current = Cur;
             }
-            
+
         }
-        
+
         //Clone a Copy Method.
         public void Clone(ref DrawSoldier AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -168,7 +167,7 @@ namespace RefrigtzDLL
             for (var i = 0; i < AllDraw.SodierMovments; i++)
             {
 
-                AA.SoldierThinking[i] = new ThinkingChess(i,1,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.SoldierThinking[i] = new ThinkingChess(i, 1, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.SoldierThinking[i].Clone(ref AA.SoldierThinking[i]);
 
             }
@@ -181,12 +180,12 @@ namespace RefrigtzDLL
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
-        
+
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -197,7 +196,7 @@ namespace RefrigtzDLL
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -211,11 +210,11 @@ namespace RefrigtzDLL
             {
                 if (g == null)
                     return;
-                
+
                 try
                 {
 
-  
+
                     //When Conversion Solders Not Occured.
                     if (!ConvertOperation((int)Row, (int)Column, color, CloneATable(Table), Order, false, Current))
                     {
@@ -350,7 +349,7 @@ namespace RefrigtzDLL
                 {
                     Log(t);
                 }
-                
+
             }
         }
     }

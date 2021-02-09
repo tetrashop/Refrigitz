@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace RefrigtzChessPortable
 {
@@ -10,7 +7,7 @@ namespace RefrigtzChessPortable
     {
         int r = 0, k = 0, m = 0;
         double Alpha = 0;
-        public QuantumLearningKrinskyAtamata(int r0, int m0, int k0,double Alpha0)
+        public QuantumLearningKrinskyAtamata(int r0, int m0, int k0, double Alpha0)
             : base(r0, m0, k0)
         {
             Object o = new Object();

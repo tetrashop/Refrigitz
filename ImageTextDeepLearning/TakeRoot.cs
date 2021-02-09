@@ -3,14 +3,10 @@
  CopyRighted 1398/0802**************************************************************
  TetraShop.Ir***********************************************************************
  ***********************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.IO;
-using ImageTextDeepLearning;
 using GalleryStudio;
+using ImageTextDeepLearning;
+using System;
+using System.IO;
 
 
 namespace Refrigtz

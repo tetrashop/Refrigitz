@@ -63,22 +63,15 @@
  */
 
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
-using System.Threading;
-using System.Data.OleDb;
-using System.Media;
-using System.IO;
-using Refrigtz;
-using System.Threading.Tasks;
-using System.Collections;
 using Chess;
+using System;
+using System.Data.OleDb;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Media;
+using System.Threading;
+using System.Threading.Tasks;
 
 [assembly: CLSCompliant(true)]
 
@@ -97,7 +90,7 @@ namespace RefrigtzW
         bool NotFoundBegin = false;
         public static String AllDrawKindString = "";
         bool Deeperthandeeper = false;
-    
+
         //Initiate Global Variable.
         //public bool DisableTemporarlyTimerUpdate = false;
         public static double MaxHeuristicx = Double.MinValue;
@@ -117,17 +110,17 @@ namespace RefrigtzW
         public static OleDbConnection bookConn = null;
         public static OleDbCommand oleDbCmd = new OleDbCommand();
         public static OleDbCommand oleDbCmdUser = new OleDbCommand();
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
-         bool BobWithStockfishFinished = false;
+        bool BobWithStockfishFinished = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
         bool Stockfish = false;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
         bool RefregitzisCurrent = true;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
         bool SettingPRFALSE = false;
         public static bool ProfesionalWithComputer = false;
         public bool TimersSet = true;
@@ -135,146 +128,146 @@ namespace RefrigtzW
         public static bool ArrangmentsChanged = true;
         public static int MaxCurrentMovmentsNumber = 1;
         public static bool ErrorTrueMonitorFalse = true;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
         Thread tM = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
         bool Clicked = true;
         public static int MaxAStarGreedyHeuristicProgress = 0;
         public static String Root = System.Web.HttpRuntime.AppDomainAppPath;
         public bool MouseClicked = false;
         public static bool Blitz = false;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
         static bool LoadAG = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
         static bool _1 = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
         static bool _2 = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
         static bool _3 = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
         static bool _4 = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
         static bool Hideag = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
         bool exit = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
         bool AllDrawLoad = false;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
         Thread AllOperate = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
         static bool Paused = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
         static bool UpdateConfigurationTableVal = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
         static bool NewTable = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
         Image TimerImage = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
         Graphics g1 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
         Image TimerImage1 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
         Graphics g2 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
         Graphics g = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
         Image ChessTable = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
         public static int LastRowQ = -1;
         public static int LastColumn = -1;
         Thread t1 = null;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
         Thread t2 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
         Thread t3 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
         Thread t4 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
         Thread TTimerSet;
         public static bool LoadedTable = false;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
         bool GrayWinner = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
         bool BrownWiner = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
         public Refrigtz.Timer TimerText = null;
         public Refrigtz.Timer GrayTimer = null;
         public Refrigtz.Timer BrownTimer = null;
         public static int MovmentsNumber = 0;
         public static bool EndOfGame = false;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
         bool Maximize = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.ColS' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.ColP' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.RowP' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.ColS' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.ColP' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.RowP' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ColP' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowP' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
@@ -284,54 +277,54 @@ namespace RefrigtzW
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowP' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ColP' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.RowP' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.ColP' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.ColS' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.RowP' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.ColP' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.ColS' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
         bool BobSection = true;
         bool AliceSection = false;
         public static bool Person = true;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
         static int CurrentKind = 0;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
         public static bool StateCC = false;//Computer With Computer
         public static bool StateCP = false;//Person With Computer
         public static bool StateGe = false;//For Genetic Games.
         public static int OrderPlate = 1;
         // int AllDraw.MouseClick;
         float RowClickP = -1, ColumnClickP = -1;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.RowClick' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.RowClick' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowClick' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
         int RowClick = -1, ColumnClick = -1;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowClick' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.RowClick' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnRealeasedP' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.RowClick' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnRealeasedP' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnRealeasedP' is assigned but its value is never used
         float RowRealesedP = -1, ColumnRealeasedP = -1;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnRealeasedP' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnRealeasedP' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.RowRealesed' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnRealeasedP' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.RowRealesed' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowRealesed' is assigned but its value is never used
         float RowRealesed = -1, ColumnRealeased = -1;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesed' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesed' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesed' is assigned but its value is never used
         public static int[,] Table = new int[8, 8];
         FormRefrigtz THIs = null;
-        String connParam = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Root +  "Database\\CurrentBank.accdb;;Persist Security Info=False; Jet OLEDB:Database Password='!HN#BGHHN&N$G$V4'";
+        String connParam = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Root + "Database\\CurrentBank.accdb;;Persist Security Info=False; Jet OLEDB:Database Password='!HN#BGHHN&N$G$V4'";
         //Error Handling.
         static void Log(Exception ex)
         {
@@ -356,12 +349,12 @@ namespace RefrigtzW
             {
 
                 t1 = new Thread(new ThreadStart(AliceWithPerson));
-          
+
             }
 
 
             THIs = this;
-            Draw = new AllDraw(OrderPlate, MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged);
+            Draw = new AllDraw(OrderPlate, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
 
             if (!AllDrawLoad)
             {
@@ -378,7 +371,7 @@ namespace RefrigtzW
 
                 TimerText.StartTime();
             }
-           
+
             if (!AllDrawLoad)
             {
                 for (int i = 0; i < 8; i++)
@@ -403,7 +396,7 @@ namespace RefrigtzW
                 Table[6, 7] = -3;
 
                 Table[0, 0] = 4;
-                Table[0,0] = 4;
+                Table[0, 0] = 4;
                 Table[0, 7] = -4;
                 Table[7, 7] = -4;
 
@@ -411,7 +404,7 @@ namespace RefrigtzW
                 Table[3, 7] = -6;
 
                 Table[4, 0] = 5;
-                Table[0,0] = -5;
+                Table[0, 0] = -5;
             }
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
@@ -482,7 +475,7 @@ namespace RefrigtzW
             do
             {
                 //while (!StateCC && !StateCP && !StateGe)
-                
+
                 Refrigtz.Timer.AStarGreadyFirstSearch = AllDraw.AStarGreadyFirstSearch;
                 Refrigtz.Timer.AStarGreedytiLevelMax = AllDraw.AStarGreedyiLevelMax;
                 Refrigtz.Timer.UseDoubleTime = AllDraw.UseDoubleTime;
@@ -504,7 +497,7 @@ namespace RefrigtzW
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
                 {
-                    if ((new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,Table[(int)RowClickP, (int)ColumnClickP], CloneATable(Table), Order, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, i, j, a, Table[(int)RowClickP, (int)ColumnClickP]))
+                    if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, Table[(int)RowClickP, (int)ColumnClickP], CloneATable(Table), Order, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, i, j, a, Table[(int)RowClickP, (int)ColumnClickP]))
                     {
                         Tab[i, j] = true;
                     }
@@ -512,7 +505,7 @@ namespace RefrigtzW
             ChessRules.CurrentOrder = Cdummy;
             return Tab;
         }
-           //Load Refregitz Form.
+        //Load Refregitz Form.
         //Reading Table Database.
         int[,] ReadTable(int Movment, ref int MoveNumber)
         {
@@ -527,7 +520,7 @@ namespace RefrigtzW
             Again:
                 try
                 {
-                    
+
                     bookConn = new OleDbConnection(connParam);
                     bookConn.Open();
                     oleDbCmd.Connection = bookConn;
@@ -564,7 +557,7 @@ namespace RefrigtzW
 
                     if (AllDraw.TableListAction.Count > 1)
                     {
-                        ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged);
+                        ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
                         if (R.FindGenToModified(AllDraw.TableListAction[AllDraw.TableListAction.Count - 2], AllDraw.TableListAction[AllDraw.TableListAction.Count - 1], AllDraw.TableListAction, 0, OrderPlate, true))
                         {
                             bool HitVal = false;
@@ -581,7 +574,7 @@ namespace RefrigtzW
                                 }
                                 if ((ChessRules.SmallKingCastleGray || ChessRules.BigKingCastleGray) && (!ChessRules.CastleActGray))
                                     ChessRules.CastleActGray = true;
-                                AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MoveNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
+                                AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MoveNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                             }
                             else
                             {
@@ -593,7 +586,7 @@ namespace RefrigtzW
                                 if ((ChessRules.SmallKingCastleBrown || ChessRules.BigKingCastleBrown) && (!ChessRules.CastleActBrown))
                                     ChessRules.CastleActBrown = true;
 
-                                AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,TableA, MoveNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
+                                AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MoveNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                             }
 
                         }
@@ -602,9 +595,9 @@ namespace RefrigtzW
 
                     //Move++;
                     //if (Move > 2)
-                        //GameStarted = true;
+                    //GameStarted = true;
                     //if (Move > 1)
-                        //MoveNumber++;
+                    //MoveNumber++;
 
                     for (int i = 0; i < 8; i++)
                         for (int j = 0; j < 8; j++)
@@ -617,7 +610,7 @@ namespace RefrigtzW
 
                     if (Move > 0)
                         OrderPlate *= -1;
-                    if ((new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,1, TableA, OrderPlate, -1, -1).CheckMate(TableA, OrderPlate)))
+                    if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 1, TableA, OrderPlate, -1, -1).CheckMate(TableA, OrderPlate)))
                     {
                         int iii = 0;
                         do { iii++; } while (System.IO.File.Exists(Root + "\\Database\\Games\\CurrentBank" + iii.ToString() + ".accdb"));
@@ -681,7 +674,7 @@ namespace RefrigtzW
                         AllDraw.TableListAction.Add(TableA);
                         if (AllDraw.TableListAction.Count >= 1)
                         {
-                            ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged);
+                            ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
                             if (R.FindGenToModified(AllDraw.TableListAction[AllDraw.TableListAction.Count - 2], AllDraw.TableListAction[AllDraw.TableListAction.Count - 1], AllDraw.TableListAction, 0, OrderPlate, true))
                             {
                                 bool HitVal = false;
@@ -696,7 +689,7 @@ namespace RefrigtzW
                                         if (R.CromosomColumn == 7)
                                             Convert = true;
                                     }
-                                    AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,TableA, MoveNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
+                                    AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MoveNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                                 }
                                 else
                                 {
@@ -705,19 +698,19 @@ namespace RefrigtzW
                                         if (R.CromosomColumn == 0)
                                             Convert = true;
                                     }
-                                    AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,TableA, MoveNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
+                                    AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MoveNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                                 }
 
                             }
                         }
 
 
-                         for (int i = 0; i < 8; i++)
+                        for (int i = 0; i < 8; i++)
                             for (int j = 0; j < 8; j++)
                                 TableA[i, j] = Tab[i, j];
 
 
-                        if ((new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,1, TableA, OrderPlate, -1, -1).CheckMate(TableA, OrderPlate)))
+                        if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 1, TableA, OrderPlate, -1, -1).CheckMate(TableA, OrderPlate)))
                         {
                             int iii = 0;
                             do { iii++; } while (System.IO.File.Exists(Root + "\\Database\\Games\\CurrentBank" + iii.ToString() + ".accdb"));
@@ -770,7 +763,7 @@ namespace RefrigtzW
                         Order = 1;
                     else
                         Order = -1;
-                    
+
 
                     bookConn = new OleDbConnection(connParam);
                     oleDbCmd = new OleDbCommand();
@@ -838,7 +831,7 @@ namespace RefrigtzW
                         for (int j = 0; j < 8; j++)
                             TableA[i, j] = Tab[i, j];
 
-                    ChessRules A = new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,1, TableA, OrderPlate, -1, -1);
+                    ChessRules A = new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 1, TableA, OrderPlate, -1, -1);
                     if (A.CheckMate(TableA, OrderPlate))
                     {
 
@@ -857,9 +850,9 @@ namespace RefrigtzW
                     }
                     else
                         if (Order == 1 && A.CheckGray)
-                            TowCheckFromOneKind = true;
-                        else
-                            TowCheckFromOneKind = false;
+                        TowCheckFromOneKind = true;
+                    else
+                        TowCheckFromOneKind = false;
 
                     if (A.CheckGray && TowCheckFromOneKind)
                     {
@@ -869,9 +862,9 @@ namespace RefrigtzW
                     }
                     else
                         if (Order == 1 && A.CheckGray)
-                            TowCheckFromOneKind = true;
-                        else
-                            TowCheckFromOneKind = false;
+                        TowCheckFromOneKind = true;
+                    else
+                        TowCheckFromOneKind = false;
 
                     if (A.CheckBrown || A.CheckGray)
                     {
@@ -889,7 +882,7 @@ namespace RefrigtzW
                     bookConn.Close();
                     oleDbCmd.Dispose();
                     bookConn.Dispose();
-                    
+
 
                     do
                     {
@@ -898,7 +891,7 @@ namespace RefrigtzW
 
                             Move++;
 
-                            
+
 
                             bookConn = new OleDbConnection(connParam);
                             bookConn.Open();
@@ -961,7 +954,7 @@ namespace RefrigtzW
                         OrderPlate = -1;
                     ChessRules.CurrentOrder = OrderPlate;
                 }
-                
+
                 bookConn = new OleDbConnection(connParam);
                 bookConn.Open();
                 oleDbCmd.Connection = bookConn;
@@ -995,7 +988,7 @@ namespace RefrigtzW
                 AllDraw.TableListAction.Add(TableA);
                 if (AllDraw.TableListAction.Count >= 1)
                 {
-                    ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged);
+                    ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
                     if (R.FindGenToModified(AllDraw.TableListAction[AllDraw.TableListAction.Count - 2], AllDraw.TableListAction[AllDraw.TableListAction.Count - 1], AllDraw.TableListAction, 0, OrderPlate, true))
                     {
                         bool HitVal = false;
@@ -1010,7 +1003,7 @@ namespace RefrigtzW
                                 if (R.CromosomColumn == 7)
                                     Convert = true;
                             }
-                            AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
+                            AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                         }
                         else
                         {
@@ -1019,7 +1012,7 @@ namespace RefrigtzW
                                 if (R.CromosomColumn == 0)
                                     Convert = true;
                             }
-                            AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
+                            AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                         }
                         //SetBoxStatistic(AllDraw.SyntaxToWrite);
                         //RefreshBoxStatistic();
@@ -1032,7 +1025,7 @@ namespace RefrigtzW
                 bookConn.Dispose();
                 Move++;
 
-                if ((new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,1, CloneATable(Tab), OrderPlate, -1, -1).CheckMate(CloneATable(Tab), OrderPlate)))
+                if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 1, CloneATable(Tab), OrderPlate, -1, -1).CheckMate(CloneATable(Tab), OrderPlate)))
                 {
                     int iii = 0;
                     do { iii++; } while (System.IO.File.Exists(Root + "\\Database\\Games\\CurrentBank" + iii.ToString() + ".accdb"));
@@ -1053,7 +1046,7 @@ namespace RefrigtzW
 
                     Move++;
 
-                    
+
                     bookConn = new OleDbConnection(connParam);
                     bookConn.Open();
                     oleDbCmd.Connection = bookConn;
@@ -1087,7 +1080,7 @@ namespace RefrigtzW
                     AllDraw.TableListAction.Add(TableA);
                     if (AllDraw.TableListAction.Count >= 1)
                     {
-                        ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged);
+                        ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
                         if (R.FindGenToModified(AllDraw.TableListAction[AllDraw.TableListAction.Count - 2], AllDraw.TableListAction[AllDraw.TableListAction.Count - 1], AllDraw.TableListAction, 0, OrderPlate, true))
                         {
                             bool HitVal = false;
@@ -1102,7 +1095,7 @@ namespace RefrigtzW
                                     if (R.CromosomColumn == 7)
                                         Convert = true;
                                 }
-                                AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged,TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
+                                AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                             }
                             else
                             {
@@ -1111,7 +1104,7 @@ namespace RefrigtzW
                                     if (R.CromosomColumn == 0)
                                         Convert = true;
                                 }
-                                AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
+                                AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                             }
                             //SetBoxStatistic(AllDraw.SyntaxToWrite);
                             //RefreshBoxStatistic();
@@ -1121,7 +1114,7 @@ namespace RefrigtzW
                     bookConn.Close();
                     oleDbCmd.Dispose();
                     bookConn.Dispose();
-                    if ((new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,1, CloneATable(Tab), OrderPlate, -1, -1).CheckMate(CloneATable(Tab), OrderPlate)))
+                    if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 1, CloneATable(Tab), OrderPlate, -1, -1).CheckMate(CloneATable(Tab), OrderPlate)))
                     {
                         int iii = 0;
                         do { iii++; } while (System.IO.File.Exists("Database\\Games\\CurrentBank" + iii.ToString() + ".accdb"));
@@ -1154,7 +1147,7 @@ namespace RefrigtzW
         Begin12:
             try
             {
-                
+
 
                 bookConn = new OleDbConnection(connParam);
                 bookConn.Open();
@@ -1200,10 +1193,10 @@ namespace RefrigtzW
         //Creatiopn of Configuration Table
         public void CreateConfigurationTable()
         {
-            Begin12:
+        Begin12:
             if (bookConn == null)
             {
-                
+
                 bookConn = new OleDbConnection(connParam);
                 bookConn.Open();
                 oleDbCmd.Connection = bookConn;
@@ -1213,7 +1206,7 @@ namespace RefrigtzW
             {
                 try
                 {
-                   
+
                     oleDbCmd.CommandText = "Create Table Configuration (ArrangmentsChanged Number NOT NULL,GrayTimer Number NOT NULL,BrownTimer Number NOT NULL,BobSection Number NOT NULL,AliceSection Number NOT NULL,StateCP Number NOT NULL,StateCC Number NOT NULL,StateGe Number NOT NULL,Blitz Number NOT NULL,Person Number NOT NULL,SettingPRFALSE Number NOT NULL,Colleralation Number NOT NULL)";
                     int temp = 0;
                     temp = oleDbCmd.ExecuteNonQuery();
@@ -1249,7 +1242,7 @@ namespace RefrigtzW
                 Log(t);
             }
         }
-        
+
 
         //Reading of Configuration Table Method.
         void ReadConfigurationTable()
@@ -1340,15 +1333,15 @@ namespace RefrigtzW
         }
         public void InsertTableAtDataBase(int[,] Table)
         {
-            
-            
+
+
             //TimersSet = false;
             int[,] Tab = new int[8, 8];
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
                     Tab[i, j] = Table[i, j];
             String TableName = CreatTable();
-             for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 bookConn = new OleDbConnection(connParam);
                 oleDbCmd = new OleDbCommand();
@@ -1399,7 +1392,7 @@ namespace RefrigtzW
             do
             {
                 ArrangmentsChanged = true;
-                
+
             } while (true);
         }
         public void Load()
@@ -1417,7 +1410,7 @@ namespace RefrigtzW
             tSPHT.Start();
             Thread tS = new Thread(new ThreadStart(SetRefregitzDLL));
             tS.Start();
-            
+
 
             ThinkingA = true;
 
@@ -1495,13 +1488,13 @@ namespace RefrigtzW
                     }
                 }
             }
-     
+
 
             //GC.Collect();
             //GC.WaitForPendingFinalizers();
             LoadPlaceHolder = true;
             // ttt.LoadPlaceHolder(); 
-            
+
             do
             {
                 AllDraw.Root = Root;
@@ -1514,7 +1507,7 @@ namespace RefrigtzW
                 //LoadPlaceHolder = false;
                 if (OrderPlate == 1)
                 {
-                   
+
                     File.AppendAllText(Root + "\\Database\\Monitor.txt", "\n\t=====================================================================================================================================================================");
                     File.AppendAllText(Root + "\\Database\\Monitor.txt", "\n\tMovment Number:" + MovmentsNumber);
 
@@ -1538,13 +1531,13 @@ namespace RefrigtzW
                             Tab[i, j] = Table[i, j];
                     OrderPlate *= -1;
                     ChessRules.CurrentOrder *= -1;
-                     //RefrigtzW.FormRefrigtz.MovmentsNumber++; 
+                    //RefrigtzW.FormRefrigtz.MovmentsNumber++; 
 
 
                     InsertTableAtDataBase(Tab);
 
 
-                    
+
                     //ttt.AddBPOP();
                     //LoadPlaceHolder = true;
                     using (SoundPlayer soundClick = new SoundPlayer(Root + "\\Music\\Click6.wav"))
@@ -1613,12 +1606,12 @@ namespace RefrigtzW
             } while (true);
         }
         //Inserting of New Tabler at Database.
-        
+
         void Wait()
         {
             do
             {
-                
+
             } while (Clicked);
         }
         int[,] CloneATable(int[,] Tab)
@@ -1709,7 +1702,7 @@ namespace RefrigtzW
                 //this.//SetBoxText("\r\nThinking Finished!");
                 try
                 {
-                    
+
                     if (!TableZero(Table))
                     {
                         SettingPRFALSE = true;
@@ -1737,7 +1730,7 @@ namespace RefrigtzW
                             // Retrieve the app's exit code
                             exitCode = proc.ExitCode;
                         }
-                       
+
                     }
 
                 }
@@ -1758,13 +1751,13 @@ namespace RefrigtzW
                     for (int j = 0; j < 8; j++)
                         Tab[i, j] = Table[i, j];
                 //RefrigtzW.FormRefrigtz.MovmentsNumber++; 
-                
+
                 InsertTableAtDataBase(Tab);
 
                 if (AllDraw.TableListAction.Count > 1)
 
                 {
-                    ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged);
+                    ChessGeneticAlgorithm R = new ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
                     if (R.FindGenToModified(AllDraw.TableListAction[AllDraw.TableListAction.Count - 2], AllDraw.TableListAction[AllDraw.TableListAction.Count - 1], AllDraw.TableListAction, 0, OrderPlate, true))
                     {
                         bool HitVal = false;
@@ -1781,7 +1774,7 @@ namespace RefrigtzW
                             }
                             if ((ChessRules.SmallKingCastleGray || ChessRules.BigKingCastleGray) && (!ChessRules.CastleActGray))
                                 ChessRules.CastleActGray = true;
-                            AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,CloneATable(Table), MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
+                            AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                         }
                         else
                         {
@@ -1793,7 +1786,7 @@ namespace RefrigtzW
                             if ((ChessRules.SmallKingCastleBrown || ChessRules.BigKingCastleBrown) && (!ChessRules.CastleActBrown))
                                 ChessRules.CastleActBrown = true;
 
-                            AllDraw.SyntaxToWrite = (new ChessRules(0,MovementsAStarGreedyHeuristicFound,IInoreSelfObjects,UsePenaltyRegardMechnisam,BestMovments,PredictHeuristic,OnlySelf,AStarGreedyHeuristic,ArrangmentsChanged,OrderPlate)).CreateStatistic(ArrangmentsChanged,CloneATable(Table), MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
+                            AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                         }
                         //SetBoxStatistic(AllDraw.SyntaxToWrite);
                         //RefreshBoxStatistic();
@@ -1828,7 +1821,7 @@ namespace RefrigtzW
                     soundClick.Dispose();
                 }
 
-                
+
                 Person = true;
                 StateCC = StoreStateCC;
                 StateCP = StoreStateCP;
@@ -1877,7 +1870,7 @@ namespace RefrigtzW
                         AllDraw.OutPut.Clear();
 
                     }
-                    
+
                 }
 
             } while (true);
@@ -1890,17 +1883,17 @@ namespace RefrigtzW
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
-                try
-                {
+            try
+            {
                 String A = TimerText.ReturnTime();
                 if (OrderPlate == -1)
                     A = TimerText.ReturnTime();
 
                 File.AppendAllText(Root + "\\Database\\Monitor.txt", "\n\t" + state + " At Time " + A);
 
-                
-                }
-                catch (Exception t) { Log(t); }                      
+
+            }
+            catch (Exception t) { Log(t); }
         }
         public void SetDrawFounding(ref bool FOUNDI, ref RefrigtzW.AllDraw THISI, bool FirstI)
         {
@@ -2135,7 +2128,7 @@ namespace RefrigtzW
                 SetDrawFounding(ref FOUND, ref THIS, false);
             }
         }
-     }
+    }
 
 
 }

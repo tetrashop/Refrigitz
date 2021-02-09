@@ -71,17 +71,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Threading;
 using System.Data.OleDb;
-using System.Media;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Media;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Refrigtz
 {
@@ -92,18 +90,18 @@ namespace Refrigtz
         bool NotFoundBegin = false;
         int[,] TabStor = null;
         bool PersonTmCall = true;
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.Move' is assigned but its value is never used
-//#pragma warning disable CS0108 // 'FormRefrigtz.Move' hides inherited member 'Control.Move'. Use the new keyword if hiding was intended.
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.Move' is assigned but its value is never used
+        //#pragma warning disable CS0108 // 'FormRefrigtz.Move' hides inherited member 'Control.Move'. Use the new keyword if hiding was intended.
         int Move = 0;
-//#pragma warning restore CS0108 // 'FormRefrigtz.Move' hides inherited member 'Control.Move'. Use the new keyword if hiding was intended.
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.Move' is assigned but its value is never used
+        //#pragma warning restore CS0108 // 'FormRefrigtz.Move' hides inherited member 'Control.Move'. Use the new keyword if hiding was intended.
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.Move' is assigned but its value is never used
         bool Deeperthandeeper = false;
 
         bool FOUND = false;
 
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.LoadO' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.LoadO' is assigned but its value is never used
         bool LoadO = false;
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.LoadO' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.LoadO' is assigned but its value is never used
         bool ExitM = false;
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6
         public static String AllDrawKindString = "";
@@ -223,9 +221,9 @@ namespace Refrigtz
         public static bool StateCC = false;//Computer With Computer
         public static bool StateCP = false;//Person With Computer
         public static bool StateGe = false;//For Genetic Games.
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+                                           //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         public RefrigtzDLL.AllDraw Draw;
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         public static int OrderPlate = 1;
         // int RefrigtzDLL.AllDraw.MouseClick;
         int Soldier;
@@ -264,9 +262,9 @@ namespace Refrigtz
         public bool LoadTree = false;
         //Thread tttt = null;
         //Thread ttt = null;
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         public QuantumRefrigiz.AllDraw DrawQ = null;
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         [field: NonSerialized]
         Process proc = new Process();
 
@@ -277,21 +275,21 @@ namespace Refrigtz
         //private System.Timers.Timer queueManagementTimerSetTimer;
 
 
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.AllDo' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.AllDo' is assigned but its value is never used
         bool AllDo = false;
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.AllDo' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.AllMove' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.AllDo' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.AllMove' is assigned but its value is never used
         bool AllMove = false;
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.AllMove' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.SetDLL' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.AllMove' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.SetDLL' is assigned but its value is never used
         bool SetDLL = false;
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.SetDLL' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.SetNode' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.SetDLL' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.SetNode' is assigned but its value is never used
         bool SetNode = false;
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.SetNode' is assigned but its value is never used
-//#pragma warning disable CS0414 // The field 'FormRefrigtz.SetTimer' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.SetNode' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'FormRefrigtz.SetTimer' is assigned but its value is never used
         bool SetTimer = false;
-//#pragma warning restore CS0414 // The field 'FormRefrigtz.SetTimer' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'FormRefrigtz.SetTimer' is assigned but its value is never used
 
         /*private void worker_DoWork()
         {
@@ -392,7 +390,7 @@ namespace Refrigtz
 
           }
       */
-        void WaitOnEndGame() 
+        void WaitOnEndGame()
         {
             do { } while (!EndOfGame);
         }
@@ -423,7 +421,7 @@ namespace Refrigtz
 
                     PictureBoxTimerBrown.CancelAsync();
                     PictureBoxTimerGray.CancelAsync();
-                 
+
                     ////UpdateConfigurationTableVal = true;
 
                     UpdateConfigurationTable();
@@ -513,7 +511,7 @@ namespace Refrigtz
                                 //UpdateConfigurationTableVal = true;                             
                                 SetAllDrawKindString();
                                 (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                
+
                             }
                         }
                     }
@@ -587,7 +585,7 @@ namespace Refrigtz
                                 //UpdateConfigurationTableVal = true;                             
                                 SetAllDrawKindString();
                                 (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                 
+
                             }
                         }
                     }
@@ -634,7 +632,7 @@ namespace Refrigtz
         }
         void WaitOnAllOP()
         {
-            while (!LoadedTable || (!MenueSelecte)) {  }
+            while (!LoadedTable || (!MenueSelecte)) { }
         }
         void AllOp()
         {
@@ -696,9 +694,9 @@ namespace Refrigtz
                                     StateCP = false;
                                     Person = false;
                                     //if (A.CheckMateGray || A.CheckMateBrown)
-                                        //SetBoxText("\r\nCheckMate!");
+                                    //SetBoxText("\r\nCheckMate!");
                                     //else if (A.PatkGray || A.PatBrown)
-                                        //SetBoxText("\r\nPat!");
+                                    //SetBoxText("\r\nPat!");
                                     //RefreshBoxText();
                                     EndOfGame = true;
                                     return;
@@ -718,9 +716,9 @@ namespace Refrigtz
                                         {
                                             //if (OrderPlate == 1)
 
-                                                //SetBoxText("\r\nGray OrderPlate!Check!");
-                                         //   else
-                                                //SetBoxText("\r\nBrown OrderPlate!Check!");
+                                            //SetBoxText("\r\nGray OrderPlate!Check!");
+                                            //   else
+                                            //SetBoxText("\r\nBrown OrderPlate!Check!");
 
                                         }
                                 }
@@ -874,7 +872,7 @@ namespace Refrigtz
                                         Thread arr = new Thread(new ThreadStart(SetDrawFound));
                                         arr.Start();
                                         arr.Join();
-             
+
                                         if (RefrigtzDLL.ChessRules.BigKingCastleGray)
                                         {
                                             FenCastling = 1;
@@ -905,7 +903,7 @@ namespace Refrigtz
                                         ColumnClickP = -1;
                                         RowRealesed = -1;
                                         ColumnRealeased = -1;
-                                        
+
                                         BobSection = false;
 
                                         GrayTimer.StopTime();
@@ -981,12 +979,12 @@ namespace Refrigtz
                                         //SetBoxText("\r\nYour Ready!");
                                         //RefreshBoxText();
                                         Color a = Color.Brown;
-//#pragma warning disable CS0219 // The variable 'FOUND' is assigned but its value is never used
+                                        //#pragma warning disable CS0219 // The variable 'FOUND' is assigned but its value is never used
                                         FOUND = false;
-//#pragma warning restore CS0219 // The variable 'FOUND' is assigned but its value is never used
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                                        //#pragma warning restore CS0219 // The variable 'FOUND' is assigned but its value is never used
+                                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
 
                                         //SetDrawFounding(ref FOUND, ref THIS, true);
@@ -1333,7 +1331,7 @@ namespace Refrigtz
                                         ColumnClickP = -1;
                                         RowRealesed = -1;
                                         ColumnRealeased = -1;
-                                        
+
                                         BobSection = false;
 
                                         GrayTimer.StopTime();
@@ -1485,10 +1483,10 @@ namespace Refrigtz
                                     //RefreshBoxText();
                                     //SetBoxText("\r\nYour Ready!");
                                     //RefreshBoxText();
-                                   // Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                   // Draw.TableList.Clear();
-                                   // Draw.TableList.Add(CloneATable(Table));
-                                  //  Draw.SetRowColumn(0);
+                                    // Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+                                    // Draw.TableList.Clear();
+                                    // Draw.TableList.Add(CloneATable(Table));
+                                    //  Draw.SetRowColumn(0);
                                     BobSection = true;
                                     AllDo = false;
                                 }
@@ -2123,7 +2121,7 @@ namespace Refrigtz
 
                      */
 
-                   
+
                     {
 
 
@@ -2246,9 +2244,9 @@ namespace Refrigtz
                                     StateCP = false;
                                     Person = false;
                                     //if (A.CheckMateGray || A.CheckMateBrown)
-                                        //SetBoxText("\r\nCheckMate!");
+                                    //SetBoxText("\r\nCheckMate!");
                                     //else if (A.PatkGray || A.PatBrown)
-                                        //SetBoxText("\r\nPat!");
+                                    //SetBoxText("\r\nPat!");
                                     //RefreshBoxText();
                                     //if (AllOperate.IsAlive)
                                     //new Syncronization(AllOperate, 1);
@@ -2266,9 +2264,9 @@ namespace Refrigtz
                                         {
                                             //if (OrderPlate == 1)
 
-                                                //SetBoxText("\r\nGray OrderPlate!Check!");
-                                           // else
-                                                //SetBoxText("\r\nBrown OrderPlate!Check!");
+                                            //SetBoxText("\r\nGray OrderPlate!Check!");
+                                            // else
+                                            //SetBoxText("\r\nBrown OrderPlate!Check!");
 
                                         }
                                 }
@@ -2454,7 +2452,7 @@ namespace Refrigtz
                                         ColumnClickP = -1;
                                         RowRealesed = -1;
                                         ColumnRealeased = -1;
-                                        
+
                                         BobSection = false;
 
                                         GrayTimer.StopTime();
@@ -2527,12 +2525,12 @@ namespace Refrigtz
                                         //SetBoxText("\r\nYour Ready!");
                                         //RefreshBoxText();
                                         Color a = Color.Brown;
-//#pragma warning disable CS0219 // The variable 'FOUND' is assigned but its value is never used
+                                        //#pragma warning disable CS0219 // The variable 'FOUND' is assigned but its value is never used
                                         FOUND = false;
-//#pragma warning restore CS0219 // The variable 'FOUND' is assigned but its value is never used
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                                        //#pragma warning restore CS0219 // The variable 'FOUND' is assigned but its value is never used
+                                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                                         QuantumRefrigiz.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
 
                                         //SetDrawFounding(ref FOUND, ref THIS, true);
@@ -2860,7 +2858,7 @@ namespace Refrigtz
                                         ColumnClickP = -1;
                                         RowRealesed = -1;
                                         ColumnRealeased = -1;
-                                        
+
                                         BobSection = false;
 
                                         GrayTimer.StopTime();
@@ -3646,7 +3644,7 @@ namespace Refrigtz
 
                      */
 
-                  
+
                     {
 
 
@@ -4342,7 +4340,7 @@ namespace Refrigtz
                                 SetlableRefregitzMaxValue(labelNodesCount, QuantumRefrigiz.ThinkingQuantumChess.NumbersOfAllNode.ToString() + " at time " + ((int)(Store)).ToString() + "N/s and by Elapsed time " + ((int)((EndTime - TimeElapsed) / 1000)).ToString() + " s by string" + QuantumRefrigiz.AllDraw.ActionString.ToString() + " By CheckMate Count " + QuantumRefrigiz.ThinkingQuantumChess.FoundFirstMating.ToString() + " By CheckMate SELF Count " + QuantumRefrigiz.ThinkingQuantumChess.FoundFirstSelfMating.ToString() + " For Order  " + QuantumRefrigiz.AllDraw.OrderPlate.ToString());
                             else
                                 SetlableRefregitzMaxValue(labelNodesCount, QuantumRefrigiz.ThinkingQuantumChess.NumbersOfAllNode.ToString() + " at time " + ((int)(Store)).ToString() + "N/s and by Elapsed time " + ((int)((EndTime - TimeElapsed) / 1000)).ToString() + " s" + " By CheckMate Count " + QuantumRefrigiz.ThinkingQuantumChess.FoundFirstMating.ToString() + " By CheckMate SELF Count " + QuantumRefrigiz.ThinkingQuantumChess.FoundFirstSelfMating.ToString() + " For Order  " + QuantumRefrigiz.AllDraw.OrderPlate.ToString());
-                        }                     
+                        }
                     }
                 } //while (true);
                   //SetNode = false;
@@ -4483,7 +4481,7 @@ namespace Refrigtz
                                     NextColumn = RefrigtzDLL.AllDraw.NextRow;
                                 }
                             }
-                 
+
                         }
                         else
                         {
@@ -4591,7 +4589,7 @@ namespace Refrigtz
 
                                 }
                             }
-                         }
+                        }
 
                     }
                 }// while (true);
@@ -5285,7 +5283,7 @@ namespace Refrigtz
                     DrawImageOfMain();
 
 
-                   // SetPrictureBoxRefregitzInvalidate(PictureBoxTimerBrown);
+                    // SetPrictureBoxRefregitzInvalidate(PictureBoxTimerBrown);
                     //SetPrictureBoxRefregitzUpdate(PictureBoxTimerBrown);
 
                     if (Quantum)
@@ -5329,7 +5327,7 @@ namespace Refrigtz
 
                 LoadedTable = true;
             }
-           }
+        }
         //Load Refregitz Form.
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -5641,7 +5639,7 @@ namespace Refrigtz
                             Thread arr = new Thread(new ThreadStart(SetDrawFound));
                             arr.Start();
                             arr.Join();
-             
+
                             if (!DrawQ.IsEnemyThingsinStable(TableA, QuantumRefrigiz.AllDraw.TableVeryfy, Order))
                             {
                                 Tab = null;
@@ -5956,7 +5954,7 @@ namespace Refrigtz
             lock (O)
             {
                 String TableName = null;
-                Begin12:
+            Begin12:
                 try
                 {
 
@@ -6010,9 +6008,9 @@ namespace Refrigtz
 
 
                 }
-//#pragma warning disable CS0162 // Unreachable code detected
+                //#pragma warning disable CS0162 // Unreachable code detected
                 return TableName;
-//#pragma warning restore CS0162 // Unreachable code detected
+                //#pragma warning restore CS0162 // Unreachable code detected
             }
         }
         //Creatiopn of Configuration Table
@@ -6021,7 +6019,7 @@ namespace Refrigtz
             Object O = new Object();
             lock (O)
             {
-                Begin12:
+            Begin12:
                 oleDbCmd = new OleDbCommand();
                 bookConn = new OleDbConnection(connParam);
                 bookConn.Open();
@@ -6044,7 +6042,7 @@ namespace Refrigtz
                             bookConn = new OleDbConnection(connParam);
                             oleDbCmd.Connection = bookConn;
                             bookConn.Open();
-                            
+
                             oleDbCmd.CommandText = @"Create Table Configuration (CheckBoxAStarGreedyHeuristic Number NOT NULL,CheckBoxPredictHuristci Number NOT NULL,CheckBoxAStarGreadyFirstSearch Number NOT NULL,CheckBoxBestMovments Number NOT NULL,CheckBoxOnlySelf Number NOT NULL,RadioButtonOriginalImages Number NOT NULL,RadioButtonBigFittingImages Number NOT NULL,RadioButtonSmallFittingImages Number NOT NULL,CheckBoxAStarGreedyMovement Number NOT NULL,CheckBoxUseDoubleTime Number NOT NULL,CheckBoxUsePenaltyRegradMechnisam Number NOT NULL,CheckBoxDynamicProgrammingAStarGreedyt Number NOT NULL,ComboBoxMaxTree Number NOT NULL,ComboBoxAttack Number NOT NULL,ComboBoxObjectDangour Number NOT NULL,ComboBoxReducedAttacked Number NOT NULL,ComboBoxSupport Number NOT NULL,ComboBoxHitting Number NOT NULL,ComboBoxMovments Number NOT NULL,ArrangmentsChanged Number NOT NULL,GrayTimer Number NOT NULL,BrownTimer Number NOT NULL,BobSection Number NOT NULL,AliceSection Number NOT NULL,StateCP Number NOT NULL,StateCC Number NOT NULL,StateGe Number NOT NULL,Blitz Number NOT NULL,Person Number NOT NULL,SettingPRFALSE Number NOT NULL,FullGame Number NOT NULL,Stockfish Number NOT NULL,lable1 Text NOT NULL,lable2 Text NOT NULL,MovmentsNumber Number NOT NULL,Quantum Number NOT NULL,Sugar Number NOT NULL,MenueSelecte Number NOT NULL,AllDrawKind Number NOT NULL,OrderPlate Number NOT NULL,Deeperthandeeper Number NOT NULL,Colleralation Number NOT NULL,DeColleralation Number NOT NULL)";
                             int temp = 0;
                             temp = oleDbCmd.ExecuteNonQuery();
@@ -6055,7 +6053,7 @@ namespace Refrigtz
                              oleDbCmd.Connection = bookConn;
                              bookConn.Open();
                              */
-                             if(!Quantum)
+                            if (!Quantum)
                                 oleDbCmd.CommandText = String.Concat("Insert into Configuration (CheckBoxAStarGreedyHeuristic,CheckBoxPredictHuristci,CheckBoxAStarGreadyFirstSearch,CheckBoxBestMovments,CheckBoxOnlySelf,RadioButtonOriginalImages,RadioButtonBigFittingImages,RadioButtonSmallFittingImages,CheckBoxAStarGreedyMovement,CheckBoxUseDoubleTime,CheckBoxUsePenaltyRegradMechnisam,CheckBoxDynamicProgrammingAStarGreedyt,ComboBoxMaxTree,ComboBoxAttack,ComboBoxObjectDangour,ComboBoxReducedAttacked,ComboBoxSupport,ComboBoxHitting,ComboBoxMovments,ArrangmentsChanged,GrayTimer,BrownTimer,BobSection,AliceSection,StateCP,StateCC,StateGe,Blitz,Person,SettingPRFALSE,FullGame,Stockfish,lable1,lable2,MovmentsNumber,Quantum,Sugar,MenueSelecte,AllDrawKind,OrderPlate,Deeperthandeeper,,Colleralation,DeColleralation) values(", System.Convert.ToInt32(CheckBoxAStarGreedyHeuristic.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString(), ",", System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString(), ",", System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString(), ",", System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString(), ",", System.Convert.ToInt32(ComboBoxMaxLevel.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxAttack.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxObjectDangour.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxReducedAttacked.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxSupport.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxKiller.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxMovments.Text).ToString(), ",", System.Convert.ToInt32(ArrangmentsChanged).ToString(), ",", GrayTimer.Times.ToString(), ",", BrownTimer.Times.ToString(), ",", System.Convert.ToInt32(BobSection).ToString(), ",", System.Convert.ToInt32(AliceSection).ToString(), ",", System.Convert.ToInt32(StateCP).ToString(), ",", System.Convert.ToInt32(StateCC).ToString(), ",", System.Convert.ToInt32(StateGe).ToString(), ",", System.Convert.ToInt32(Blitz).ToString(), ",", System.Convert.ToInt32(Person).ToString(), ",", System.Convert.ToInt32(SettingPRFALSE).ToString(), ",", System.Convert.ToInt32(FullGame).ToString(), ",", System.Convert.ToInt32(Stockfish).ToString(), ",'", label1.Text, "','", label2.Text, "','", MovmentsNumber.ToString(), "','", System.Convert.ToInt32(Quantum).ToString(), "','", System.Convert.ToInt32(Sugar).ToString(), "','", System.Convert.ToInt32(MenueSelecte).ToString(), "','", System.Convert.ToInt32(AllDrawKind).ToString(), "','", System.Convert.ToInt32(OrderPlate).ToString(), "','" + System.Convert.ToInt32(Deeperthandeeper).ToString() + "',", RefrigtzDLL.ThinkingChess.Colleralation.ToString(), "',", RefrigtzDLL.ThinkingChess.DeColleralation.ToString(), ")");
                             else
                                 oleDbCmd.CommandText = String.Concat("Insert into Configuration (CheckBoxAStarGreedyHeuristic,CheckBoxPredictHuristci,CheckBoxAStarGreadyFirstSearch,CheckBoxBestMovments,CheckBoxOnlySelf,RadioButtonOriginalImages,RadioButtonBigFittingImages,RadioButtonSmallFittingImages,CheckBoxAStarGreedyMovement,CheckBoxUseDoubleTime,CheckBoxUsePenaltyRegradMechnisam,CheckBoxDynamicProgrammingAStarGreedyt,ComboBoxMaxTree,ComboBoxAttack,ComboBoxObjectDangour,ComboBoxReducedAttacked,ComboBoxSupport,ComboBoxHitting,ComboBoxMovments,ArrangmentsChanged,GrayTimer,BrownTimer,BobSection,AliceSection,StateCP,StateCC,StateGe,Blitz,Person,SettingPRFALSE,FullGame,Stockfish,lable1,lable2,MovmentsNumber,Quantum,Sugar,MenueSelecte,AllDrawKind,OrderPlate,Deeperthandeeper,Colleralation,DeColleralation) values(", System.Convert.ToInt32(CheckBoxAStarGreedyHeuristic.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString(), ",", System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString(), ",", System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString(), ",", System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString(), ",", System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString(), ",", System.Convert.ToInt32(ComboBoxMaxLevel.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxAttack.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxObjectDangour.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxReducedAttacked.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxSupport.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxKiller.Text).ToString(), ",", System.Convert.ToInt32(ComboBoxMovments.Text).ToString(), ",", System.Convert.ToInt32(ArrangmentsChanged).ToString(), ",", GrayTimer.Times.ToString(), ",", BrownTimer.Times.ToString(), ",", System.Convert.ToInt32(BobSection).ToString(), ",", System.Convert.ToInt32(AliceSection).ToString(), ",", System.Convert.ToInt32(StateCP).ToString(), ",", System.Convert.ToInt32(StateCC).ToString(), ",", System.Convert.ToInt32(StateGe).ToString(), ",", System.Convert.ToInt32(Blitz).ToString(), ",", System.Convert.ToInt32(Person).ToString(), ",", System.Convert.ToInt32(SettingPRFALSE).ToString(), ",", System.Convert.ToInt32(FullGame).ToString(), ",", System.Convert.ToInt32(Stockfish).ToString(), ",'", label1.Text, "','", label2.Text, "','", MovmentsNumber.ToString(), "','", System.Convert.ToInt32(Quantum).ToString(), "','", System.Convert.ToInt32(Sugar).ToString(), "','", System.Convert.ToInt32(MenueSelecte).ToString(), "','", System.Convert.ToInt32(AllDrawKind).ToString(), "','", System.Convert.ToInt32(OrderPlate).ToString(), "','" + System.Convert.ToInt32(Deeperthandeeper).ToString() + "',", QuantumRefrigiz.ThinkingQuantumChess.Colleralation.ToString(), "',", QuantumRefrigiz.ThinkingQuantumChess.DeColleralation.ToString(), ")");
@@ -6130,9 +6128,9 @@ namespace Refrigtz
                     }
 
                 }
-//#pragma warning disable CS0168 // The variable 't' is declared but never used
+                //#pragma warning disable CS0168 // The variable 't' is declared but never used
                 catch (Exception t)
-//#pragma warning restore CS0168 // The variable 't' is declared but never used
+                //#pragma warning restore CS0168 // The variable 't' is declared but never used
                 {
                 }
                 bookConn.Close();
@@ -6181,7 +6179,7 @@ namespace Refrigtz
 
                 if (!AllDrawLoad)
                 {
-                    Begin12:
+                Begin12:
                     try
                     {
 
@@ -6375,7 +6373,7 @@ namespace Refrigtz
             Object O = new Object();
             lock (O)
             {
-                Begin12:
+            Begin12:
                 if (bookConn != null)
                 {
                     bookConn.Close();
@@ -6390,10 +6388,10 @@ namespace Refrigtz
                 {
 
                     //Begin12:
-//#pragma warning disable CS0164 // This label has not been referenced
+                    //#pragma warning disable CS0164 // This label has not been referenced
                     try
                     {
-//#pragma warning restore CS0164 // This label has not been referenced
+                        //#pragma warning restore CS0164 // This label has not been referenced
                         /* if (AStarGreedyHeuristic)
                              CheckBoxAStarGreedyHeuristic.Checked = true;
                          else
@@ -6431,9 +6429,9 @@ namespace Refrigtz
                          bookConn.Open();
                          */
                         if (!Quantum)
-                            oleDbCmd.CommandText = String.Concat("Update Configuration Set CheckBoxAStarGreedyHeuristic=", System.Convert.ToInt32(CheckBoxAStarGreedyHeuristic.Checked).ToString(), ",CheckBoxPredictHuristci=", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString(), ",CheckBoxAStarGreadyFirstSearch=", System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString(), ",CheckBoxBestMovments=", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",CheckBoxOnlySelf=", System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString(), ",RadioButtonOriginalImages=", System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString(), ",RadioButtonBigFittingImages=", System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString(), ",RadioButtonSmallFittingImages=", System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString(), ",CheckBoxAStarGreedyMovement=", System.Convert.ToInt32(CheckBoxAStarGreedyMovement.Checked).ToString(), ",CheckBoxUseDoubleTime=", System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString(), ",CheckBoxUsePenaltyRegradMechnisam=", System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString(), ",CheckBoxDynamicProgrammingAStarGreedyt=", System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString(), ",ComboBoxMaxTree=", ComboBoxMaxLevel.Text, ",ComboBoxAttack=", ComboBoxAttack.Text, ",ComboBoxObjectDangour=", ComboBoxObjectDangour.Text, ",ComboBoxReducedAttacked=", ComboBoxReducedAttacked.Text, ",ComboBoxSupport=", ComboBoxSupport.Text, ",ComboBoxHitting=", ComboBoxKiller.Text, ",ComboBoxMovments=", ComboBoxMovments.Text, ",ArrangmentsChanged=", System.Convert.ToString(System.Convert.ToInt32(ArrangmentsChanged)), ",GrayTimer=", GrayTimer.Times.ToString(), ",BrownTimer=", BrownTimer.Times.ToString(), ",BobSection = ", System.Convert.ToUInt32(BobSection).ToString(), ",AliceSection =", System.Convert.ToUInt32(AliceSection).ToString(), ",StateCP = ", System.Convert.ToUInt32(StateCP).ToString(), ",StateCC = ", System.Convert.ToUInt32(StateCC).ToString(), ",StateGe=", System.Convert.ToUInt32(StateGe).ToString(), ",Blitz=", System.Convert.ToUInt32(Blitz).ToString(), ",Person=", System.Convert.ToUInt32(Person).ToString(), ",SettingPRFALSE=", System.Convert.ToUInt32(SettingPRFALSE).ToString(), ",FullGame=", System.Convert.ToUInt32(FullGame).ToString(), ",Stockfish=", System.Convert.ToUInt32(Stockfish).ToString(), ",lable1='", label1.Text, "',lable2='", label2.Text, "',MovmentsNumber='", MovmentsNumber.ToString(), "',", "Quantum = '", System.Convert.ToInt32(Quantum).ToString(), "',", "Sugar = '", System.Convert.ToInt32(Sugar).ToString(), "',", "MenueSelecte='", System.Convert.ToInt32(MenueSelecte).ToString(), "',", "AllDrawKind='", System.Convert.ToInt32(AllDrawKind).ToString(), "',", "OrderPlate='", System.Convert.ToInt32(OrderPlate).ToString(), "'," + "Deeperthandeeper='" + System.Convert.ToInt32(Deeperthandeeper).ToString(), "'," , "Colleralation='" , RefrigtzDLL.ThinkingChess.Colleralation.ToString(),"',", "DeColleralation='" , RefrigtzDLL.ThinkingChess.DeColleralation.ToString() , "'");
+                            oleDbCmd.CommandText = String.Concat("Update Configuration Set CheckBoxAStarGreedyHeuristic=", System.Convert.ToInt32(CheckBoxAStarGreedyHeuristic.Checked).ToString(), ",CheckBoxPredictHuristci=", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString(), ",CheckBoxAStarGreadyFirstSearch=", System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString(), ",CheckBoxBestMovments=", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",CheckBoxOnlySelf=", System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString(), ",RadioButtonOriginalImages=", System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString(), ",RadioButtonBigFittingImages=", System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString(), ",RadioButtonSmallFittingImages=", System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString(), ",CheckBoxAStarGreedyMovement=", System.Convert.ToInt32(CheckBoxAStarGreedyMovement.Checked).ToString(), ",CheckBoxUseDoubleTime=", System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString(), ",CheckBoxUsePenaltyRegradMechnisam=", System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString(), ",CheckBoxDynamicProgrammingAStarGreedyt=", System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString(), ",ComboBoxMaxTree=", ComboBoxMaxLevel.Text, ",ComboBoxAttack=", ComboBoxAttack.Text, ",ComboBoxObjectDangour=", ComboBoxObjectDangour.Text, ",ComboBoxReducedAttacked=", ComboBoxReducedAttacked.Text, ",ComboBoxSupport=", ComboBoxSupport.Text, ",ComboBoxHitting=", ComboBoxKiller.Text, ",ComboBoxMovments=", ComboBoxMovments.Text, ",ArrangmentsChanged=", System.Convert.ToString(System.Convert.ToInt32(ArrangmentsChanged)), ",GrayTimer=", GrayTimer.Times.ToString(), ",BrownTimer=", BrownTimer.Times.ToString(), ",BobSection = ", System.Convert.ToUInt32(BobSection).ToString(), ",AliceSection =", System.Convert.ToUInt32(AliceSection).ToString(), ",StateCP = ", System.Convert.ToUInt32(StateCP).ToString(), ",StateCC = ", System.Convert.ToUInt32(StateCC).ToString(), ",StateGe=", System.Convert.ToUInt32(StateGe).ToString(), ",Blitz=", System.Convert.ToUInt32(Blitz).ToString(), ",Person=", System.Convert.ToUInt32(Person).ToString(), ",SettingPRFALSE=", System.Convert.ToUInt32(SettingPRFALSE).ToString(), ",FullGame=", System.Convert.ToUInt32(FullGame).ToString(), ",Stockfish=", System.Convert.ToUInt32(Stockfish).ToString(), ",lable1='", label1.Text, "',lable2='", label2.Text, "',MovmentsNumber='", MovmentsNumber.ToString(), "',", "Quantum = '", System.Convert.ToInt32(Quantum).ToString(), "',", "Sugar = '", System.Convert.ToInt32(Sugar).ToString(), "',", "MenueSelecte='", System.Convert.ToInt32(MenueSelecte).ToString(), "',", "AllDrawKind='", System.Convert.ToInt32(AllDrawKind).ToString(), "',", "OrderPlate='", System.Convert.ToInt32(OrderPlate).ToString(), "'," + "Deeperthandeeper='" + System.Convert.ToInt32(Deeperthandeeper).ToString(), "',", "Colleralation='", RefrigtzDLL.ThinkingChess.Colleralation.ToString(), "',", "DeColleralation='", RefrigtzDLL.ThinkingChess.DeColleralation.ToString(), "'");
                         else
-                            oleDbCmd.CommandText = String.Concat("Update Configuration Set CheckBoxAStarGreedyHeuristic=", System.Convert.ToInt32(CheckBoxAStarGreedyHeuristic.Checked).ToString(), ",CheckBoxPredictHuristci=", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString(), ",CheckBoxAStarGreadyFirstSearch=", System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString(), ",CheckBoxBestMovments=", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",CheckBoxOnlySelf=", System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString(), ",RadioButtonOriginalImages=", System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString(), ",RadioButtonBigFittingImages=", System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString(), ",RadioButtonSmallFittingImages=", System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString(), ",CheckBoxAStarGreedyMovement=", System.Convert.ToInt32(CheckBoxAStarGreedyMovement.Checked).ToString(), ",CheckBoxUseDoubleTime=", System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString(), ",CheckBoxUsePenaltyRegradMechnisam=", System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString(), ",CheckBoxDynamicProgrammingAStarGreedyt=", System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString(), ",ComboBoxMaxTree=", ComboBoxMaxLevel.Text, ",ComboBoxAttack=", ComboBoxAttack.Text, ",ComboBoxObjectDangour=", ComboBoxObjectDangour.Text, ",ComboBoxReducedAttacked=", ComboBoxReducedAttacked.Text, ",ComboBoxSupport=", ComboBoxSupport.Text, ",ComboBoxHitting=", ComboBoxKiller.Text, ",ComboBoxMovments=", ComboBoxMovments.Text, ",ArrangmentsChanged=", System.Convert.ToString(System.Convert.ToInt32(ArrangmentsChanged)), ",GrayTimer=", GrayTimer.Times.ToString(), ",BrownTimer=", BrownTimer.Times.ToString(), ",BobSection = ", System.Convert.ToUInt32(BobSection).ToString(), ",AliceSection =", System.Convert.ToUInt32(AliceSection).ToString(), ",StateCP = ", System.Convert.ToUInt32(StateCP).ToString(), ",StateCC = ", System.Convert.ToUInt32(StateCC).ToString(), ",StateGe=", System.Convert.ToUInt32(StateGe).ToString(), ",Blitz=", System.Convert.ToUInt32(Blitz).ToString(), ",Person=", System.Convert.ToUInt32(Person).ToString(), ",SettingPRFALSE=", System.Convert.ToUInt32(SettingPRFALSE).ToString(), ",FullGame=", System.Convert.ToUInt32(FullGame).ToString(), ",Stockfish=", System.Convert.ToUInt32(Stockfish).ToString(), ",lable1='", label1.Text, "',lable2='", label2.Text, "',MovmentsNumber='", MovmentsNumber.ToString(), "',", "Quantum = '", System.Convert.ToInt32(Quantum).ToString(), "',", "Sugar = '", System.Convert.ToInt32(Sugar).ToString(), "',", "MenueSelecte='", System.Convert.ToInt32(MenueSelecte).ToString(), "',", "AllDrawKind='", System.Convert.ToInt32(AllDrawKind).ToString(), "',", "OrderPlate='", System.Convert.ToInt32(OrderPlate).ToString(), "'," + "Deeperthandeeper='" + System.Convert.ToInt32(Deeperthandeeper).ToString(), "'," , "Colleralation='", QuantumRefrigiz.ThinkingQuantumChess.Colleralation.ToString() , "'," , "DeColleralation='", QuantumRefrigiz.ThinkingQuantumChess.DeColleralation.ToString() , "'");
+                            oleDbCmd.CommandText = String.Concat("Update Configuration Set CheckBoxAStarGreedyHeuristic=", System.Convert.ToInt32(CheckBoxAStarGreedyHeuristic.Checked).ToString(), ",CheckBoxPredictHuristci=", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked).ToString(), ",CheckBoxAStarGreadyFirstSearch=", System.Convert.ToInt32(CheckBoxAStarGreadyFirstSearch.Checked).ToString(), ",CheckBoxBestMovments=", System.Convert.ToInt32(CheckBoxBestMovments.Checked).ToString(), ",CheckBoxOnlySelf=", System.Convert.ToInt32(CheckBoxOnlySelf.Checked).ToString(), ",RadioButtonOriginalImages=", System.Convert.ToInt32(RadioButtonOriginalImages.Checked).ToString(), ",RadioButtonBigFittingImages=", System.Convert.ToInt32(RadioButtonBigFittingImages.Checked).ToString(), ",RadioButtonSmallFittingImages=", System.Convert.ToInt32(RadioButtonSmallFittingImages.Checked).ToString(), ",CheckBoxAStarGreedyMovement=", System.Convert.ToInt32(CheckBoxAStarGreedyMovement.Checked).ToString(), ",CheckBoxUseDoubleTime=", System.Convert.ToInt32(CheckBoxUseDoubleTime.Checked).ToString(), ",CheckBoxUsePenaltyRegradMechnisam=", System.Convert.ToInt32(CheckBoxUsePenaltyRegradMechnisam.Checked).ToString(), ",CheckBoxDynamicProgrammingAStarGreedyt=", System.Convert.ToInt32(CheckBoxDynamicProgrammingAStarGreedyt.Checked).ToString(), ",ComboBoxMaxTree=", ComboBoxMaxLevel.Text, ",ComboBoxAttack=", ComboBoxAttack.Text, ",ComboBoxObjectDangour=", ComboBoxObjectDangour.Text, ",ComboBoxReducedAttacked=", ComboBoxReducedAttacked.Text, ",ComboBoxSupport=", ComboBoxSupport.Text, ",ComboBoxHitting=", ComboBoxKiller.Text, ",ComboBoxMovments=", ComboBoxMovments.Text, ",ArrangmentsChanged=", System.Convert.ToString(System.Convert.ToInt32(ArrangmentsChanged)), ",GrayTimer=", GrayTimer.Times.ToString(), ",BrownTimer=", BrownTimer.Times.ToString(), ",BobSection = ", System.Convert.ToUInt32(BobSection).ToString(), ",AliceSection =", System.Convert.ToUInt32(AliceSection).ToString(), ",StateCP = ", System.Convert.ToUInt32(StateCP).ToString(), ",StateCC = ", System.Convert.ToUInt32(StateCC).ToString(), ",StateGe=", System.Convert.ToUInt32(StateGe).ToString(), ",Blitz=", System.Convert.ToUInt32(Blitz).ToString(), ",Person=", System.Convert.ToUInt32(Person).ToString(), ",SettingPRFALSE=", System.Convert.ToUInt32(SettingPRFALSE).ToString(), ",FullGame=", System.Convert.ToUInt32(FullGame).ToString(), ",Stockfish=", System.Convert.ToUInt32(Stockfish).ToString(), ",lable1='", label1.Text, "',lable2='", label2.Text, "',MovmentsNumber='", MovmentsNumber.ToString(), "',", "Quantum = '", System.Convert.ToInt32(Quantum).ToString(), "',", "Sugar = '", System.Convert.ToInt32(Sugar).ToString(), "',", "MenueSelecte='", System.Convert.ToInt32(MenueSelecte).ToString(), "',", "AllDrawKind='", System.Convert.ToInt32(AllDrawKind).ToString(), "',", "OrderPlate='", System.Convert.ToInt32(OrderPlate).ToString(), "'," + "Deeperthandeeper='" + System.Convert.ToInt32(Deeperthandeeper).ToString(), "',", "Colleralation='", QuantumRefrigiz.ThinkingQuantumChess.Colleralation.ToString(), "',", "DeColleralation='", QuantumRefrigiz.ThinkingQuantumChess.DeColleralation.ToString(), "'");
 
                         oleDbCmd.Parameters.AddWithValue("@CheckBoxAStarGreedyHeuristic", System.Convert.ToInt32(CheckBoxAStarGreedyHeuristic.Checked));
                         oleDbCmd.Parameters.AddWithValue("@CheckBoxPredictHuristci", System.Convert.ToInt32(CheckBoxPredictHuristci.Checked));
@@ -6959,10 +6957,10 @@ namespace Refrigtz
                                 t3.Abort();
                             if (GrayWinner)
                                 //SetBoxText("\r\nGray Winees!");
-                            if (BrownWiner)
-                                //SetBoxText("\r\nBrown Winees!");
+                                if (BrownWiner)
+                                    //SetBoxText("\r\nBrown Winees!");
 
-                            return;
+                                    return;
                         }
 
                         try
@@ -7057,10 +7055,10 @@ namespace Refrigtz
                                 t3.Abort();
                             if (GrayWinner)
                                 //SetBoxText("\r\nGray Winees!");
-                            if (BrownWiner)
-                                //SetBoxText("\r\nBrown Winees!");
+                                if (BrownWiner)
+                                    //SetBoxText("\r\nBrown Winees!");
 
-                            return;
+                                    return;
                         }
 
                         try
@@ -7130,7 +7128,7 @@ namespace Refrigtz
                 }
                 SetPrictureBoxRefregitzInvalidate(PictureBoxTimerGray);
                 SetPrictureBoxRefregitzUpdate(PictureBoxTimerGray);
-             }
+            }
         }
 
         int CalculateMoveMentHueuristicUser(int Kind, int[,] Table, int Order, int Row, int Column, int RowSource, int ColumnS, Color color)
@@ -7166,7 +7164,7 @@ namespace Refrigtz
                 int HeuristicDistributionValue = new int();
                 int HeuristicKingSafe = new int();
                 int HeuristicFromCenter = new int();
-                int HeuristicKingDangour = new int();int HeuristicCheckedMate = new int();
+                int HeuristicKingDangour = new int(); int HeuristicCheckedMate = new int();
                 int[] Lose = { 0, 0, 0 };
                 th1.CalculateHeuristics(Lose, 0, true, Order, 0, CloneATable(Table), Row, Column, RowSource, ColumnS, color, ref HeuristicActionAttackAndSupportAndMoveSelfOrEnemyValue, ref HeuristicReducedMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicHittingValue, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate);
 
@@ -7188,7 +7186,7 @@ namespace Refrigtz
                 int HeuristicActionAttackAndSupportAndMoveSelfOrEnemyValue = new int();
                 int HeuristicReducedMovementValue = new int();
                 int HeuristicSelfSupportedValue = new int();
-                 int HeuristicHittingValue = new int();
+                int HeuristicHittingValue = new int();
                 int HeuristicReducedAttackValue = new int();
                 int HeuristicDistributionValue = new int();
                 int HeuristicKingSafe = new int();
@@ -7200,7 +7198,7 @@ namespace Refrigtz
                 return HeuristicActionAttackAndSupportAndMoveSelfOrEnemyValue + HeuristicReducedMovementValue +
               HeuristicSelfSupportedValue +
 
-              HeuristicReducedMovementValue + HeuristicReducedAttackValue + HeuristicHittingValue + HeuristicDistributionValue + HeuristicKingSafe + HeuristicFromCenter + HeuristicKingDangour+ HeuristicCheckedMate;
+              HeuristicReducedMovementValue + HeuristicReducedAttackValue + HeuristicHittingValue + HeuristicDistributionValue + HeuristicKingSafe + HeuristicFromCenter + HeuristicKingDangour + HeuristicCheckedMate;
             }
         }
         bool CheckMovment(int[,] Table, int i, int j, int ii, int jj, int Order)
@@ -7617,9 +7615,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovementCastleKingGray(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             object O = new object();
             lock (O)
@@ -7822,9 +7820,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovementSoldierGray(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -7843,7 +7841,7 @@ namespace Refrigtz
                         CurrentKind = 1;
                         ConvertWait = true;
                         Draw.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
-                
+
                         var array = Task.Factory.StartNew(() => WaitConvertion()); array.Wait(); array.Dispose();
                         int[,] TableCon = new int[8, 8];
 
@@ -7936,9 +7934,9 @@ namespace Refrigtz
 
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
 
@@ -7959,18 +7957,18 @@ namespace Refrigtz
                 }
 
                 else
-                              {
+                {
 
-                                  Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
-                                  Table[(int)RowClickP, (int)ColumnClickP] = 1;
-                                  Draw.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                                  Clicked = false; BobSection = false;
-                              }
+                    Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
+                    Table[(int)RowClickP, (int)ColumnClickP] = 1;
+                    Draw.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovementElephantGray(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -8031,9 +8029,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
 
@@ -8051,19 +8049,19 @@ namespace Refrigtz
                     }
                 }
 
-                 else
-                 {
+                else
+                {
 
-                     Table[(int)RowClickP, (int)ColumnClickP] = 2;
-                     Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Elefant);
-                     Draw.ElephantOnTable[Elefant].DrawElefantOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                     Clicked = false; BobSection = false;
-                 }
+                    Table[(int)RowClickP, (int)ColumnClickP] = 2;
+                    Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Elefant);
+                    Draw.ElephantOnTable[Elefant].DrawElefantOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentHourseGray(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -8125,9 +8123,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
                         OrderPlate = OrderPlate * -1;
@@ -8145,7 +8143,7 @@ namespace Refrigtz
                     }
                 }
 
-                   else
+                else
                 {
 
                     Table[(int)RowClickP, (int)ColumnClickP] = 3;
@@ -8154,12 +8152,12 @@ namespace Refrigtz
                     Clicked = false; BobSection = false;
 
                 }
-                
+
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentCastleGray(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -8221,9 +8219,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
                         OrderPlate = OrderPlate * -1;
@@ -8242,7 +8240,7 @@ namespace Refrigtz
 
                 }
 
-                        else
+                else
                 {
 
                     Table[(int)RowClickP, (int)ColumnClickP] = 4;
@@ -8252,9 +8250,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentMinisterGray(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object o = new Object();
             lock (o)
@@ -8316,9 +8314,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
                         OrderPlate = OrderPlate * -1;
@@ -8337,19 +8335,19 @@ namespace Refrigtz
 
                 }
 
-                       else
-              {
+                else
+                {
 
-                  Table[(int)RowClickP, (int)ColumnClickP] = 5;
-                  Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Minister);
-                  Draw.MinisterOnTable[Minister].DrawMinisterOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                  Clicked = false; BobSection = false;
-              }
+                    Table[(int)RowClickP, (int)ColumnClickP] = 5;
+                    Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, Minister);
+                    Draw.MinisterOnTable[Minister].DrawMinisterOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentKingGray(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -8410,9 +8408,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
                         OrderPlate = OrderPlate * -1;
@@ -8431,19 +8429,19 @@ namespace Refrigtz
                 }
 
 
-                 else
-                 {
+                else
+                {
 
-                     Table[(int)RowClickP, (int)ColumnClickP] = 6;
-                     Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
-                     Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                     Clicked = false; BobSection = false;
-                 }
+                    Table[(int)RowClickP, (int)ColumnClickP] = 6;
+                    Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
+                    Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentCastleKingBrown(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -8599,9 +8597,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
 
@@ -8627,33 +8625,33 @@ namespace Refrigtz
 
                 }
 
+                else
+                {
+                    if (!ArrangmentsChanged)
+                    {
+                        if (ColumnClickP == 0)
+                            Table[(int)RowClickP, (int)ColumnClickP] = 6;
+                        else
+                            if (ColumnClickP == 7)
+                            Table[(int)RowClickP, (int)ColumnClickP] = -6;
+                    }
                     else
-                 {
-                     if (!ArrangmentsChanged)
-                     {
-                         if (ColumnClickP == 0)
-                             Table[(int)RowClickP, (int)ColumnClickP] = 6;
-                         else
-                             if (ColumnClickP == 7)
-                             Table[(int)RowClickP, (int)ColumnClickP] = -6;
-                     }
-                     else
-                     {
-                         if (ColumnClickP == 7)
-                             Table[(int)RowClickP, (int)ColumnClickP] = 6;
-                         else
-                             if (ColumnClickP == 0)
-                             Table[(int)RowClickP, (int)ColumnClickP] = -6;
-                     }
-                     Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
-                     Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                     Clicked = false; BobSection = false;
-                 }
+                    {
+                        if (ColumnClickP == 7)
+                            Table[(int)RowClickP, (int)ColumnClickP] = 6;
+                        else
+                            if (ColumnClickP == 0)
+                            Table[(int)RowClickP, (int)ColumnClickP] = -6;
+                    }
+                    Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Gray, CloneATable(Table), OrderPlate, false, King);
+                    Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentSoldierBrown(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -8761,9 +8759,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
 
@@ -8781,20 +8779,20 @@ namespace Refrigtz
                     }
                 }
 
-                   else
-               {
+                else
+                {
 
-                   Table[(int)RowClickP, (int)ColumnClickP] = -1;
-                   Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Soldier);
-                   Draw.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                   Clicked = false; BobSection = false;
-               }
+                    Table[(int)RowClickP, (int)ColumnClickP] = -1;
+                    Draw.SolderesOnTable[Soldier] = new RefrigtzDLL.DrawSoldier(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Soldier);
+                    Draw.SolderesOnTable[Soldier].DrawSoldierOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
 
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovementElephantBrown(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -8856,9 +8854,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
                         OrderPlate = OrderPlate * -1;
@@ -8877,19 +8875,19 @@ namespace Refrigtz
 
                 }
 
-                 else
-                  {
+                else
+                {
 
-                      Table[(int)RowClickP, (int)ColumnClickP] = -2;
-                      Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Elefant);
-                      Draw.ElephantOnTable[Elefant].DrawElefantOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                      Clicked = false; BobSection = false;
-                  }
+                    Table[(int)RowClickP, (int)ColumnClickP] = -2;
+                    Draw.ElephantOnTable[Elefant] = new RefrigtzDLL.DrawElefant(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Elefant);
+                    Draw.ElephantOnTable[Elefant].DrawElefantOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentHourseBrown(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -8951,9 +8949,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
 
@@ -8971,7 +8969,7 @@ namespace Refrigtz
                     }
                 }
 
-                   else
+                else
                 {
 
                     Table[(int)RowClickP, (int)ColumnClickP] = -3;
@@ -8981,9 +8979,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentCastleBrown(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -9045,9 +9043,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
 
@@ -9066,19 +9064,19 @@ namespace Refrigtz
 
                 }
 
-                      else
-                              {
+                else
+                {
 
-                                  Table[(int)RowClickP, (int)ColumnClickP] = -4;
-                                  Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Castle);
-                                  Draw.CastlesOnTable[Castle].DrawCastleOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                                  Clicked = false; BobSection = false;
-                              }
+                    Table[(int)RowClickP, (int)ColumnClickP] = -4;
+                    Draw.CastlesOnTable[Castle] = new RefrigtzDLL.DrawCastle(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Castle);
+                    Draw.CastlesOnTable[Castle].DrawCastleOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentMinisterBrown(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -9141,9 +9139,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
 
@@ -9162,19 +9160,19 @@ namespace Refrigtz
                     }
                 }
 
-                  else
-                              {
-                                  Table[(int)RowClickP, (int)ColumnClickP] = -5;
-                                  Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Minister);
+                else
+                {
+                    Table[(int)RowClickP, (int)ColumnClickP] = -5;
+                    Draw.MinisterOnTable[Minister] = new RefrigtzDLL.DrawMinister(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, Minister);
 
-                                  Draw.MinisterOnTable[Minister].DrawMinisterOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                                  Clicked = false; BobSection = false;
-                              }
+                    Draw.MinisterOnTable[Minister].DrawMinisterOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentKingBrown(RefrigtzDLL.ChessRules AA, ref bool Do)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -9237,9 +9235,9 @@ namespace Refrigtz
                         SetAndConfirmSyntax();
 
                         FOUND = false;
-//#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning disable CS0219 // The variable 'THIS' is assigned but its value is never used
                         RefrigtzDLL.AllDraw THIS = null;
-//#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
+                        //#pragma warning restore CS0219 // The variable 'THIS' is assigned but its value is never used
 
                         //SetDrawFounding(ref FOUND, ref THIS, false);
                         OrderPlate = OrderPlate * -1;
@@ -9259,14 +9257,14 @@ namespace Refrigtz
                 }
 
 
-                   else
-                   {
+                else
+                {
 
-                       Table[(int)RowClickP, (int)ColumnClickP] = -6;
-                       Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, King);
-                       Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
-                       Clicked = false; BobSection = false;
-                   }
+                    Table[(int)RowClickP, (int)ColumnClickP] = -6;
+                    Draw.KingOnTable[King] = new RefrigtzDLL.DrawKing(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, RowClickP, ColumnClickP, Color.Brown, CloneATable(Table), OrderPlate, false, King);
+                    Draw.KingOnTable[King].DrawKingOnTable(ref g, PictureBoxRefrigtz.Image.Width / 8, PictureBoxRefrigtz.Image.Height / 8);
+                    Clicked = false; BobSection = false;
+                }
             }
         }
         bool MovementRefrigitzDLL()
@@ -9278,342 +9276,342 @@ namespace Refrigtz
                 if (!RefrigtzDLL.AllDraw.DrawTable)
                     RefrigtzDLL.AllDraw.DrawTable = true;
 
-              
+
                 RefrigtzDLL.ChessRules AA = null;
-                
-                    
-                 
-                    int[,] TabStor = new int[8, 8];
-                    for (int i = 0; i < 8; i++)
+
+
+
+                int[,] TabStor = new int[8, 8];
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
                     {
-                        for (int j = 0; j < 8; j++)
-                        {
-                            TabStor[i, j] = Table[i, j];
-                        }
+                        TabStor[i, j] = Table[i, j];
                     }
+                }
 
 
-                    //For Iterative Movewmnt
-                    // if (SetMovement((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased))
-                    //  return Do;
+                //For Iterative Movewmnt
+                // if (SetMovement((int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased))
+                //  return Do;
 
-                    if (RowClickP == -1 && ColumnClickP == -1)
-                        return Do;
-                    try
+                if (RowClickP == -1 && ColumnClickP == -1)
+                    return Do;
+                try
+                {
+                    if (((!StateCC && StateCP) || Blitz) && Person)
                     {
-                        if (((!StateCC && StateCP) || Blitz) && Person)
+                        if (Sec.RadioButtonGrayOrder.Checked)
                         {
-                            if (Sec.RadioButtonGrayOrder.Checked)
+                            if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == 6 && (RefrigtzDLL.ChessRules.CastleKingAllowedGray))
                             {
-                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == 6 && (RefrigtzDLL.ChessRules.CastleKingAllowedGray))
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
                                 {
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(7));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovementCastleKingGray(AA, ref Do));
-                                        array1.Wait();                                    
-                                        Do = false;
-                                    }
-                                }
-                                else
-                                    if (Table[(int)RowClickP, (int)ColumnClickP] == 1)
-                                {
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(1));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-
-                                        var array1 = Task.Factory.StartNew(() => MovementSoldierGray(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-
-                                    }
-                                    //SetRefregitzBicture();
-
-                                }
-                                else
-                                        if (Table[(int)RowClickP, (int)ColumnClickP] == 2)
-                                {
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(2));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovementElephantGray(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-                                    }
-
-                                    //SetRefregitzBicture();
-                                }
-                                else
-                                            if (Table[(int)RowClickP, (int)ColumnClickP] == 3)
-                                {
-
-
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(3));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentHourseGray(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-                                    }
-                                    //SetRefregitzBicture();
-
-                                }
-                                else if (Table[(int)RowClickP, (int)ColumnClickP] == 4)
-                                {
-
-
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(4));
-                                        array1.Wait();
-
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentCastleGray(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-                                    }
-
-                                    //SetRefregitzBicture();
-                                }
-
-                                else
-                                    if (Table[(int)RowClickP, (int)ColumnClickP] == 5)
-                                {
-
-
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(5));
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(7));
                                     array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-
-                                        var array1 = Task.Factory.StartNew(() => MovmentMinisterGray(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-                                    }
-
-                                    //SetRefregitzBicture();
                                 }
                                 else
-                                        if (Table[(int)RowClickP, (int)ColumnClickP] == 6)
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovementCastleKingGray(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
+                            }
+                            else
+                                if (Table[(int)RowClickP, (int)ColumnClickP] == 1)
+                            {
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(1));
+                                    array1.Wait();
+                                }
+                                else
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                 {
 
+                                    var array1 = Task.Factory.StartNew(() => MovementSoldierGray(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
 
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(6));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentKingGray(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-                                    }
+                                }
+                                //SetRefregitzBicture();
+
+                            }
+                            else
+                                    if (Table[(int)RowClickP, (int)ColumnClickP] == 2)
+                            {
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(2));
+                                    array1.Wait();
+                                }
+                                else
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovementElephantGray(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
+
+                                //SetRefregitzBicture();
+                            }
+                            else
+                                        if (Table[(int)RowClickP, (int)ColumnClickP] == 3)
+                            {
+
+
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(3));
+                                    array1.Wait();
+                                }
+                                else
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentHourseGray(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
+                                //SetRefregitzBicture();
+
+                            }
+                            else if (Table[(int)RowClickP, (int)ColumnClickP] == 4)
+                            {
+
+
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(4));
+                                    array1.Wait();
+
+                                }
+                                else
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentCastleGray(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
+
+                                //SetRefregitzBicture();
+                            }
+
+                            else
+                                if (Table[(int)RowClickP, (int)ColumnClickP] == 5)
+                            {
+
+
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(5));
+                                    array1.Wait();
+                                }
+                                else
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
+                                {
+
+                                    var array1 = Task.Factory.StartNew(() => MovmentMinisterGray(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
+
+                                //SetRefregitzBicture();
+                            }
+                            else
+                                    if (Table[(int)RowClickP, (int)ColumnClickP] == 6)
+                            {
+
+
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(6));
+                                    array1.Wait();
+                                }
+                                else
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentKingGray(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
+                                //SetRefregitzBicture();
+
+                            }
+                        }
+
+
+                        if (Sec.RadioButtonBrownOrder.Checked)
+                        {
+                            if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == -6 && (RefrigtzDLL.ChessRules.CastleKingAllowedBrown))
+                            {
+
+
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(-7));
+                                    array1.Wait();
+                                }
+                                else
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentCastleKingBrown(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+
                                     //SetRefregitzBicture();
 
                                 }
                             }
-
-
-                            if (Sec.RadioButtonBrownOrder.Checked)
+                            else
+                                if (Table[(int)RowClickP, (int)ColumnClickP] == -1)
                             {
-                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == -6 && (RefrigtzDLL.ChessRules.CastleKingAllowedBrown))
+
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
                                 {
-
-
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(-7));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentCastleKingBrown(AA, ref Do)); 
-                                        array1.Wait();
-                                        Do = false;
-
-                                        //SetRefregitzBicture();
-
-                                    }
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(-1));
+                                    array1.Wait();
                                 }
                                 else
-                                    if (Table[(int)RowClickP, (int)ColumnClickP] == -1)
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                 {
+                                    var array1 = Task.Factory.StartNew(() => MovmentSoldierBrown(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
+                                //SetRefregitzBicture();
 
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(-1));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentSoldierBrown(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-                                    }
-                                    //SetRefregitzBicture();
-
+                            }
+                            else
+                                    if (Table[(int)RowClickP, (int)ColumnClickP] == -2)
+                            {
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(-2));
+                                    array1.Wait();
                                 }
                                 else
-                                        if (Table[(int)RowClickP, (int)ColumnClickP] == -2)
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                 {
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(-2));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovementElephantBrown(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-                                    }
-                                    //SetRefregitzBicture();
+                                    var array1 = Task.Factory.StartNew(() => MovementElephantBrown(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
+                                //SetRefregitzBicture();
 
 
+                            }
+                            else
+                                        if (Table[(int)RowClickP, (int)ColumnClickP] == -3)
+                            {
+
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(-3));
+                                    array1.Wait();
                                 }
                                 else
-                                            if (Table[(int)RowClickP, (int)ColumnClickP] == -3)
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                 {
+                                    var array1 = Task.Factory.StartNew(() => MovmentHourseBrown(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
 
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(-3));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentHourseBrown(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-                                    }
+                                //SetRefregitzBicture();
+                            }
+                            else
+                                            if (Table[(int)RowClickP, (int)ColumnClickP] == -4)
+                            {
 
-                                    //SetRefregitzBicture();
+
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(-4));
+                                    array1.Wait();
                                 }
                                 else
-                                                if (Table[(int)RowClickP, (int)ColumnClickP] == -4)
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                 {
+                                    var array1 = Task.Factory.StartNew(() => MovmentCastleBrown(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
+                                }
+
+                                //SetRefregitzBicture();
+                            }
+                            else
+                                                if (Table[(int)RowClickP, (int)ColumnClickP] == -5)
+                            {
 
 
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(-4));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentCastleBrown(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-                                    }
-
-                                    //SetRefregitzBicture();
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(-5));
+                                    array1.Wait();
                                 }
                                 else
-                                                    if (Table[(int)RowClickP, (int)ColumnClickP] == -5)
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                 {
+                                    var array1 = Task.Factory.StartNew(() => MovmentMinisterBrown(AA, ref Do));
+                                    array1.Wait();
+
+                                }
+                                //SetRefregitzBicture();
 
 
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(-5));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentMinisterBrown(AA, ref Do));
-                                        array1.Wait();
-
-                                    }
-                                    //SetRefregitzBicture();
+                            }
+                            else
+                                                    if (Table[(int)RowClickP, (int)ColumnClickP] == -6)
+                            {
 
 
+                                if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                {
+                                    var array1 = Task.Factory.StartNew(() => MovmentneDraw(-6));
+                                    array1.Wait();
                                 }
                                 else
-                                                        if (Table[(int)RowClickP, (int)ColumnClickP] == -6)
+                                    if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                 {
-
-
-                                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentneDraw(-6));
-                                        array1.Wait();
-                                    }
-                                    else
-                                        if (RefrigtzDLL.AllDraw.MouseClick == 2)
-                                    {
-                                        var array1 = Task.Factory.StartNew(() => MovmentKingBrown(AA, ref Do));
-                                        array1.Wait();
-                                        Do = false;
-
-                                    }
-
+                                    var array1 = Task.Factory.StartNew(() => MovmentKingBrown(AA, ref Do));
+                                    array1.Wait();
+                                    Do = false;
 
                                 }
+
 
                             }
 
                         }
 
                     }
-                    catch (Exception T)
-                    {
-                        Log(T);
 
-                        RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                        //Blitz = true; 
-                        //Person = true;
-                        //Clicked = true;
-                        //StateCC = false;
-                        //StateCP = true;
-                        return false;
-                    }
+                }
+                catch (Exception T)
+                {
+                    Log(T);
+
+                    RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
+                    //Blitz = true; 
+                    //Person = true;
+                    //Clicked = true;
+                    //StateCC = false;
+                    //StateCP = true;
+                    return false;
+                }
                 //if (RefrigtzDLL.AllDraw.MouseClick == 2)
                 DrawImageOfMain();
 
-                    RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
+                RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
 
-                
+
             }
             return Do;
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovementCastleKingGrayQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             object O = new object();
             lock (O)
@@ -9836,9 +9834,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovementSoldierGrayQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -9869,7 +9867,7 @@ namespace Refrigtz
                             CurrentKind = 1;
                             ConvertWait = true;
                             DrawQ.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, Color.Gray, CloneATable(Table), OrderPlate, false, Soldier);
-                          
+
                             var array = Task.Factory.StartNew(() => WaitConvertion()); array.Wait(); array.Dispose();
                             int[,] TableCon = new int[8, 8];
 
@@ -9908,9 +9906,9 @@ namespace Refrigtz
                             else
                             {
                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                                //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                 bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                                //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                                 if (Hit != 0)
                                     HitVal = true;
 
@@ -9991,9 +9989,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovementElephantGrayQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -10018,9 +10016,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -10095,9 +10093,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentHourseGrayQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -10121,9 +10119,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -10200,9 +10198,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentCastleGrayQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -10227,9 +10225,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -10304,9 +10302,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentMinisterGrayQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object o = new Object();
             lock (o)
@@ -10331,9 +10329,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -10411,9 +10409,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentKingGrayQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -10437,9 +10435,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), 1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Gray);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -10516,9 +10514,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentCastleKingBrownQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -10737,9 +10735,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentSoldierBrownQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -10804,9 +10802,9 @@ namespace Refrigtz
                             else
                             {
                                 int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                                //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                                 bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                                //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                                 if (Hit != 0)
                                     HitVal = true;
 
@@ -10885,9 +10883,9 @@ namespace Refrigtz
             }
         }
 
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovementElephantBrownQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -10911,9 +10909,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -10988,9 +10986,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentHourseBrownQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -11015,9 +11013,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -11092,9 +11090,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentCastleBrownQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -11118,9 +11116,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -11195,9 +11193,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentMinisterBrownQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -11221,9 +11219,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -11301,9 +11299,9 @@ namespace Refrigtz
 
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         void MovmentKingBrownQuantum(QuantumRefrigiz.ChessRules AA)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -11328,9 +11326,9 @@ namespace Refrigtz
 
                             QuantumRefrigiz.AllDraw.Less = CalculateMoveMentHueuristicUser(System.Math.Abs(CurrentKind), CloneATable(Table), -1, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, Color.Brown);
                             int Hit = Table[(int)RowRealesed, (int)ColumnRealeased];
-//#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning disable CS0219 // The variable 'HitVal' is assigned but its value is never used
                             bool HitVal = false;
-//#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
+                            //#pragma warning restore CS0219 // The variable 'HitVal' is assigned but its value is never used
                             if (Hit != 0)
                                 HitVal = true;
                             LastRow = (int)RowRealesed;
@@ -11418,12 +11416,12 @@ namespace Refrigtz
             {
                 if (QuantumRefrigiz.AllDraw.DrawTable)
                     QuantumRefrigiz.AllDraw.DrawTable = true;
-              
+
                 bool Do = true;
                 QuantumRefrigiz.ChessRules AA = null;
                 //do
                 {
-                    
+
                     int[,] TabStor = new int[8, 8];
                     for (int i = 0; i < 8; i++)
                     {
@@ -11590,7 +11588,7 @@ namespace Refrigtz
                     }
                     QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
 
-      
+
                 }
                 //while (Do);
                 return Do;
@@ -13027,10 +13025,10 @@ namespace Refrigtz
                     else
                                                 if (A[0] == 'h')
                         RowClickP = 7;
-                       /* if(!Sugar)
-                        ColumnClickP = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
-                    else*/
-                        ColumnClickP = ((System.Convert.ToInt32(A[1]) - 48) - 1);
+                    /* if(!Sugar)
+                     ColumnClickP = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
+                 else*/
+                    ColumnClickP = ((System.Convert.ToInt32(A[1]) - 48) - 1);
                     if (A[2] == 'a')
                         RowRealesed = 0;
                     else
@@ -13054,10 +13052,10 @@ namespace Refrigtz
                     else
                                                 if (A[2] == 'h')
                         RowRealesed = 7;
-                  /*if (!Sugar)
-                        ColumnRealeased = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-                    else*/
-                        ColumnRealeased = ((System.Convert.ToInt32(A[3]) - 48) - 1);
+                    /*if (!Sugar)
+                          ColumnRealeased = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+                      else*/
+                    ColumnRealeased = ((System.Convert.ToInt32(A[3]) - 48) - 1);
 
                     if (A.Length == 5)
                     {
@@ -13530,7 +13528,7 @@ namespace Refrigtz
                             Thread arr = new Thread(new ThreadStart(SetDrawFound));
                             arr.Start();
                             arr.Join();
-             
+
                             bool StoreStateCC = StateCC, StoreStateCP = StateCP, StoreStateGe = StateGe;
                             if (FOUND)
                             {
@@ -13758,7 +13756,7 @@ namespace Refrigtz
                         input = "wr" + "\r\n";
                         sw.BaseStream.Write(Encoding.ASCII.GetBytes(input), 0, input.Length);
                         sw.Flush();
-                       
+
                         WaitOn = WaitOnMovmentOccured(Pre, ref wr);
                     }
                     catch (Exception t)
@@ -13845,9 +13843,9 @@ namespace Refrigtz
                 sw.Flush();
 
                 //if (OrderPlate == 1)
-                   // this.SetBoxText("\r\nThinking Finished by Bob!");
+                // this.SetBoxText("\r\nThinking Finished by Bob!");
                 //else
-                   // this.SetBoxText("\r\nThinking Finished by Alice!");
+                // this.SetBoxText("\r\nThinking Finished by Alice!");
                 //RefreshBoxText();
 
 
@@ -13949,9 +13947,9 @@ namespace Refrigtz
                     SetDrawFounding(ref FOUND, ref THISQ, false);
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         public void SetDrawFounding(ref bool FOUND, ref RefrigtzDLL.AllDraw THIS, bool First)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object OO = new Object();
             lock (OO)
@@ -14250,9 +14248,9 @@ namespace Refrigtz
                 DrawManagement();
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         public void SetDrawFounding(ref bool FOUND, ref QuantumRefrigiz.AllDraw THIS, bool First)
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object OO = new Object();
             lock (OO)
@@ -14556,16 +14554,16 @@ namespace Refrigtz
             Object O = new Object();
             lock (O)
             {
-                while ((!AllDrawLoad) ||( RefrigtzDLL.AllDraw.TableListAction.Count == 0) || (!MenueSelecte)) 
-                { 
-                //Thread.Sleep(10);
+                while ((!AllDrawLoad) || (RefrigtzDLL.AllDraw.TableListAction.Count == 0) || (!MenueSelecte))
+                {
+                    //Thread.Sleep(10);
                 }
-          
+
             }
 
         }
-            //All Operation of Thinking Handling.
-            void AllOperations()
+        //All Operation of Thinking Handling.
+        void AllOperations()
         {
             Object O = new Object();
             lock (O)
@@ -14573,8 +14571,8 @@ namespace Refrigtz
                 var array = new Thread(new ThreadStart(AllOperationsWait));
                 array.Start();
                 array.Join();
-                  //Fen();
-                  String FolderLocation = Root;
+                //Fen();
+                String FolderLocation = Root;
                 sortOutPut.Clear();
 
                 ProcessStartInfo start = new ProcessStartInfo();
@@ -14607,7 +14605,7 @@ namespace Refrigtz
 
                 if ((MovmentsNumber > 0) && Stockfish)
                 {
-                    
+
                     if (OrderPlate == -1)
                     {
 
@@ -14794,7 +14792,7 @@ namespace Refrigtz
                     }
                     catch (Exception t) { Log(t); }
                 }
-               // this.RefreshBoxText();
+                // this.RefreshBoxText();
             }
         }
         delegate void SetComboBoxTextCallback();
@@ -14921,7 +14919,7 @@ namespace Refrigtz
                 //PaintedPaused = true;
                 try
                 {
-                    Begin1:
+                Begin1:
                     //LoadConvertedTable = false;
 
                     Color a = Color.Gray;
@@ -14931,7 +14929,7 @@ namespace Refrigtz
 
                     var array = Task.Factory.StartNew(() => Initiate(a));
                     array.Wait(); array.Dispose();
-              
+
                     //LoadConvertedTable = true;
                     //PaintedPaused = false;
                     //this.SetBoxText("\r\nThinking Finished!");
@@ -15007,7 +15005,7 @@ namespace Refrigtz
                     QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = true;
                 try
                 {
-                    Begin1:
+                Begin1:
 
                     Color a = Color.Gray;
                     bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
@@ -15035,7 +15033,7 @@ namespace Refrigtz
                     Thread arr = new Thread(new ThreadStart(SetDrawFound));
                     arr.Start();
                     arr.Join();
-             
+
                     OpAfterAllTinking(ref StoreStateCC, ref StoreStateCP, ref StoreStateGe);
 
                     OrderPlate *= -1;
@@ -15411,7 +15409,7 @@ namespace Refrigtz
 
                 var array = Task.Factory.StartNew(() => Initiate(a));
                 array.Wait(); array.Dispose();
-               //LoadConvertedTable = true;
+                //LoadConvertedTable = true;
                 //StateCP = false;
                 try
                 {
@@ -15481,17 +15479,17 @@ namespace Refrigtz
 
 
 
-                //if (OrderPlate == 1)
+            //if (OrderPlate == 1)
 
-                    //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Gray OrderPlate!");
+            //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Gray OrderPlate!");
+            //else
+            //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Brown OrderPlate!");
+            //RefreshBoxText();
+            Begin4:
+                // if (OrderPlate == 1)
+                //SetBoxText("\r\nThinking Begin By Bob!");
                 //else
-                    //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Brown OrderPlate!");
-                //RefreshBoxText();
-                Begin4:
-               // if (OrderPlate == 1)
-                    //SetBoxText("\r\nThinking Begin By Bob!");
-                //else
-                    //SetBoxText("\r\nThinking Begin By Alice!");
+                //SetBoxText("\r\nThinking Begin By Alice!");
                 //RefreshBoxText();
                 Color a = Color.Gray;
                 if (OrderPlate == -1)
@@ -15667,7 +15665,7 @@ namespace Refrigtz
                 OpBeforeThinking(ref a, ref StoreStateCC, ref StoreStateCP, ref StoreStateGe);
                 //FOUND = false;
 
-              
+
 
                 var array = Task.Factory.StartNew(() => Initiate(a));
                 array.Wait(); array.Dispose();
@@ -15697,7 +15695,7 @@ namespace Refrigtz
                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                 arr.Start();
                 arr.Join();
-              
+
                 OpAfterAllTinking(ref StoreStateCC, ref StoreStateCP, ref StoreStateGe);
 
                 //BobWithStockfishFinished = true;
@@ -16847,7 +16845,7 @@ namespace Refrigtz
 
 
                 }
-             }
+            }
         }
 
         //Mouse Movments of FormRefregitz PictureBox Event Handling.
@@ -17072,7 +17070,7 @@ namespace Refrigtz
                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                 arr.Start();
                 arr.Join();
-             
+
                 MenueSelecte = true;
                 //UpdateConfigurationTableVal = true;
                 UpdateConfigurationTable();
@@ -17171,7 +17169,7 @@ namespace Refrigtz
             Object O = new Object();
             lock (O)
             {
-                 if (!Maximize)
+                if (!Maximize)
                 {
                     RowP = PictureBoxRefrigtz.Width;
                     ColP = PictureBoxRefrigtz.Height;
@@ -17612,9 +17610,9 @@ namespace Refrigtz
                 catch (Exception t) { Log(t); }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         public RefrigtzDLL.AllDraw RootFound()
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -17634,9 +17632,9 @@ namespace Refrigtz
                 return Draw;
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         public QuantumRefrigiz.AllDraw RootFoundQ()
-//#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -17904,7 +17902,7 @@ namespace Refrigtz
 
 
 
-            
+
             if (t1.IsBackground)
                 new Syncronization(t1, 3);
             if (t2.IsBackground)
@@ -18168,11 +18166,11 @@ namespace Refrigtz
                     label1.Text = "Refregiz";
                     label2.Text = "You";
                 }
-               
+
                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                 arr.Start();
                 arr.Join();
-             
+
                 MenueSelecte = true;
                 //UpdateConfigurationTableVal = true;
                 UpdateConfigurationTable();
@@ -18477,7 +18475,7 @@ namespace Refrigtz
                 do
                 {
 
-                     if (System.IO.File.Exists(FormRefrigtz.Root + "\\Database\\Games\\CurrentBank" + Max.ToString() + ".accdb"))
+                    if (System.IO.File.Exists(FormRefrigtz.Root + "\\Database\\Games\\CurrentBank" + Max.ToString() + ".accdb"))
                         Max++;
 
                     if (DateTime.Now.Second * 1000 + DateTime.Now.Millisecond - t > 2000) break;
@@ -18847,14 +18845,14 @@ namespace Refrigtz
                         Log(t);
                     }
                 }
-             
+
                 PictureBoxTimerBrown.Invalidate();
                 PictureBoxTimerBrown.Update();
 
                 //PictureBoxRefrigtz.Invalidate();
                 //PictureBoxRefrigtz.Update();
 
-             }
+            }
         }
         void UpadatTimer()
         {
@@ -18906,7 +18904,7 @@ namespace Refrigtz
                         //RunInFront();
                     }
                 }
-         
+
                 //PictureBoxTimerGray.Invalidate();
                 //PictureBoxTimerGray.Update();
 
@@ -19007,7 +19005,7 @@ namespace Refrigtz
                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                 arr.Start();
                 arr.Join();
-                
+
                 MenueSelecte = true;
                 //UpdateConfigurationTableVal = true;
                 UpdateConfigurationTable();
@@ -19110,7 +19108,7 @@ namespace Refrigtz
                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                 arr.Start();
                 arr.Join();
-                
+
                 MenueSelecte = true;
                 //UpdateConfigurationTableVal = true;
                 UpdateConfigurationTable();
@@ -19210,7 +19208,7 @@ namespace Refrigtz
             }
         }
 
-        
+
 
         private void ToolStripMenuItem21_Click(object sender, EventArgs e)
         {
@@ -19326,24 +19324,24 @@ namespace Refrigtz
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-           /* Object O = new Object();
-            lock (O)
-            {
-                try
-                {
-                    //tttt.Start();
-                    //ttt.Start();
-                    Thread arr = new Thread(new ThreadStart(SetRefregitzDLL));
-                    arr.Start();
-                    arr = new Thread(new ThreadStart(SetNodesCount));
-                    arr.Start();
-                    arr = new Thread(new ThreadStart(AllOp));
-                    arr.Start();
-                    // AllOperate.Start();
-                }
-                catch (Exception t) { Log(t); }
+            /* Object O = new Object();
+             lock (O)
+             {
+                 try
+                 {
+                     //tttt.Start();
+                     //ttt.Start();
+                     Thread arr = new Thread(new ThreadStart(SetRefregitzDLL));
+                     arr.Start();
+                     arr = new Thread(new ThreadStart(SetNodesCount));
+                     arr.Start();
+                     arr = new Thread(new ThreadStart(AllOp));
+                     arr.Start();
+                     // AllOperate.Start();
+                 }
+                 catch (Exception t) { Log(t); }
 
-          }  */
+           }  */
         }
 
         private void TimerAllOperation_Tick(object sender, EventArgs e)
@@ -19372,7 +19370,7 @@ namespace Refrigtz
                     try
                     {
                         SetNodesCount();
-                        
+
                     }
                     catch (Exception t) { Log(t); }
                 } while (true);
@@ -19602,7 +19600,7 @@ namespace Refrigtz
                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                 arr.Start();
                 arr.Join();
-                
+
                 MenueSelecte = true;
                 //UpdateConfigurationTableVal = true;
                 UpdateConfigurationTable();
@@ -19623,7 +19621,7 @@ namespace Refrigtz
             Object O = new Object();
             lock (O)
             {
-               
+
                 UpdateConfigurationTable();
 
 
@@ -19632,7 +19630,7 @@ namespace Refrigtz
 
                 SetAllDrawKind();
 
-               
+
                 if (i != AllDrawKind)
                     OpTableZero(false);
             }
@@ -19696,9 +19694,9 @@ namespace Refrigtz
                             File.Delete("CodeLogEvent.txt");
                         finished = true;
                     }
-//#pragma warning disable CS0168 // The variable 't' is declared but never used
+                    //#pragma warning disable CS0168 // The variable 't' is declared but never used
                     catch (Exception t) { }
-//#pragma warning restore CS0168 // The variable 't' is declared but never used
+                    //#pragma warning restore CS0168 // The variable 't' is declared but never used
                 } while (!finished);
                 //SetBoxText("\n\rCleared!");
                 //RefreshBoxText();
@@ -19793,7 +19791,7 @@ namespace Refrigtz
             Thread arr = new Thread(new ThreadStart(SetDrawFound));
             arr.Start();
             arr.Join();
-            
+
             OrderPlate *= -1;
 
 
@@ -19839,7 +19837,7 @@ namespace Refrigtz
             Thread arr = new Thread(new ThreadStart(SetDrawFound));
             arr.Start();
             arr.Join();
-            
+
             OrderPlate *= -1;
 
         }
@@ -19917,7 +19915,7 @@ namespace Refrigtz
                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                 arr.Start();
                 arr.Join();
-                
+
                 MenueSelecte = true;
                 //UpdateConfigurationTableVal = true;
                 UpdateConfigurationTable();
@@ -19981,7 +19979,7 @@ namespace Refrigtz
                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                 arr.Start();
                 arr.Join();
-                
+
                 MenueSelecte = true;
                 //UpdateConfigurationTableVal = true;
                 AllDo = false;
@@ -20058,7 +20056,7 @@ namespace Refrigtz
                 Thread arr = new Thread(new ThreadStart(SetDrawFound));
                 arr.Start();
                 arr.Join();
-                
+
                 AllDo = false;
             }
         }

@@ -1,30 +1,29 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace QuantumRefrigiz
 {
     [Serializable]
     public class DrawMinisterQ//:DrawKingQ
     {
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawMinisterQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'DrawMinisterQ.Spaces' is ASsigned but its value is never used
         int Spaces = 0;
-//#pragma warning restore CS0414 // The field 'DrawMinisterQ.Spaces' is ASsigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'DrawMinisterQ.Spaces' is ASsigned but its value is never used
 
         //A quantum move cannot be used to take a piece.
         public bool IsQuntumMove = false;
         //Pieces have rings around them, filled in with colour. These rings show the probability that the piece is in that square.
         public bool RingHalf = false;
-        public int WinOcuuredatChiled = 0;public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
-        
+        public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
+
+
+
         //Initiate Global Variable.
         List<int[]> ValuableSelfSupported = new List<int[]>();
-      
+
         public bool MovementsAStarGreedyHeuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
         public bool UsePenaltyRegardMechnisamT = false;
@@ -67,57 +66,57 @@ namespace QuantumRefrigiz
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-             
+
         }
 
         public bool MaxFound(ref bool MaxNotFound)
         {
-            
+
 
             int a = ReturnHeuristic();
-                if (MaxHeuristicxM < a)
+            if (MaxHeuristicxM < a)
+            {
+                Object O2 = new Object();
+                lock (O2)
                 {
-                    Object O2 = new Object();
-                    lock (O2)
-                    {
-                        MaxNotFound = false;
-                        if (ThinkingQuantumChess.MaxHeuristicx < MaxHeuristicxM)
-                            ThinkingQuantumChess.MaxHeuristicx = a;
-                        MaxHeuristicxM = a;
-                    }
-            
-                return true;
+                    MaxNotFound = false;
+                    if (ThinkingQuantumChess.MaxHeuristicx < MaxHeuristicxM)
+                        ThinkingQuantumChess.MaxHeuristicx = a;
+                    MaxHeuristicxM = a;
                 }
 
-               MaxNotFound = true;
-            
+                return true;
+            }
+
+            MaxNotFound = true;
+
             return false;
         }
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.MinisterMovments; ii++)
-                
-                    a += MinisterThinkingQuantum[ii].ReturnHeuristic(-1, -1, Order,false,ref HaveKilled);
-         
+
+                a += MinisterThinkingQuantum[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
+
             return a;
         }
         //constructor 1.
-        
+
         //Constructor 2.
         public DrawMinisterQ(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//, ref AllDraw. THIS
             )
         {
-            
+
             object balancelock = new object();
 
             lock (balancelock)
             {
-                
+
                 CurrentAStarGredyMax = CurrentAStarGredy;
                 MovementsAStarGreedyHeuristicFoundT = MovementsAStarGreedyHeuristicTFou;
                 IgnoreSelfObjectsT = IgnoreSelfObject;
@@ -133,7 +132,7 @@ namespace QuantumRefrigiz
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.MinisterMovments; ii++)
-                    MinisterThinkingQuantum[ii] = new ThinkingQuantumChess(ii,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 32, Ord, TB, Cur, 2, 5);
+                    MinisterThinkingQuantum[ii] = new ThinkingQuantumChess(ii, 5, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 32, Ord, TB, Cur, 2, 5);
 
                 Row = i;
                 Column = j;
@@ -141,11 +140,11 @@ namespace QuantumRefrigiz
                 Current = Cur;
                 Order = Ord;
             }
-             
+
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -156,14 +155,14 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -174,7 +173,7 @@ namespace QuantumRefrigiz
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -183,20 +182,20 @@ namespace QuantumRefrigiz
         public void Clone(ref DrawMinisterQ AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
                     Tab[i, j] = this.Table[i, j];
             //Initiate an Object and Clone a Construction Objectve.
-            AA = new DrawMinisterQ( CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, this.color, this.CloneATable(Table), this.Order, false, this.Current);
+            AA = new DrawMinisterQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, this.color, this.CloneATable(Table), this.Order, false, this.Current);
             AA.ArrangmentsChanged = ArrangmentsChanged;
             for (var i = 0; i < AllDraw.MinisterMovments; i++)
             {
-                
-                    AA.MinisterThinkingQuantum[i] = new ThinkingQuantumChess(i,5,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
-                    this.MinisterThinkingQuantum[i].Clone(ref AA.MinisterThinkingQuantum[i]);
-               
+
+                AA.MinisterThinkingQuantum[i] = new ThinkingQuantumChess(i, 5, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                this.MinisterThinkingQuantum[i].Clone(ref AA.MinisterThinkingQuantum[i]);
+
 
             }
             AA.Table = new int[8, 8];
@@ -208,7 +207,7 @@ namespace QuantumRefrigiz
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-         
+
         }
         //Draw an Mnister on the Table.
         public void DrawMinisterOnTable(ref Graphics g, int CellW, int CellH)
@@ -219,7 +218,7 @@ namespace QuantumRefrigiz
             {
                 if (g == null)
                     return;
-                
+
 
                 int LastRowQ = -1, LastColumn = -1;
 
@@ -270,7 +269,7 @@ namespace QuantumRefrigiz
 
                 lock (balancelockS)
                 {
-                         //Gray Color.
+                    //Gray Color.
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     {
                         //Gray Order.
@@ -348,7 +347,7 @@ namespace QuantumRefrigiz
                         }
                     }
                 }
-                
+
             }
         }
     }

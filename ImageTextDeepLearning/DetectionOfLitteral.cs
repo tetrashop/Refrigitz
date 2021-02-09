@@ -3,20 +3,17 @@
  CopyRighted 1398/0802**************************************************************
  TetraShop.Ir***********************************************************************
  ***********************************************************************************/
+using ContourAnalysisDemo;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using ContourAnalysisDemo;
 namespace ImageTextDeepLearning
 {
     //detection of literal class
     class DetectionOfLitteral
     {
         //initiate global vars
-        int Width =10, Heigh =10;
+        int Width = 10, Heigh = 10;
         double Threashold = 0.01;
         public AllKeyboardOfWorld t = new AllKeyboardOfWorld();
         public ConjunctedShape tt = null;
@@ -121,9 +118,9 @@ namespace ImageTextDeepLearning
                         Detected.Add(TempDetected.ToString());
                     }
                     ///else
-                       // return false;
-                       //Add created items string to list
-                    
+                    // return false;
+                    //Add created items string to list
+
                 }
 
             }
@@ -135,5 +132,5 @@ namespace ImageTextDeepLearning
             //when successfull return validity
             return true;
         }
-     }
+    }
 }

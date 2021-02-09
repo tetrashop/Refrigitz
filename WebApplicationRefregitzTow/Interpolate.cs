@@ -7,9 +7,6 @@
  * Recurve Matrix.
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace LearningMachine
 {
@@ -18,7 +15,7 @@ namespace LearningMachine
     {
         static Double[,] D;
         static Double[] F;
-        
+
         static public Double[] Array(Double[] ArrayInput, Int32 n)
         {
             Object o = new Object();
@@ -33,7 +30,7 @@ namespace LearningMachine
                 return Array;
             }
         }
-       static  Double[] Answer(Double[] a, Int32 n)
+        static Double[] Answer(Double[] a, Int32 n)
         {
             Object o = new Object();
             lock (o)

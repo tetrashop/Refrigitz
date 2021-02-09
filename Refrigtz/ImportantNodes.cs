@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Refrigtz
 {
@@ -17,11 +15,11 @@ namespace Refrigtz
         List<King> K;
         public ImportantNodes()
         {
-            S = new List<Soldier>(); 
-            E = new List<Elephant>(); 
-            H = new List<Hourse>(); 
-            B = new List<Bridge>(); 
-            M = new List<Minister>(); 
+            S = new List<Soldier>();
+            E = new List<Elephant>();
+            H = new List<Hourse>();
+            B = new List<Bridge>();
+            M = new List<Minister>();
             K = new List<King>();
         }
         /// <summary>
@@ -35,7 +33,7 @@ namespace Refrigtz
             H.Add(new Hourse(Table));
             B.Add(new Bridge(Table));
             M.Add(new Minister(Table));
-            K.Add(new King(Table)); 
+            K.Add(new King(Table));
         }
     }
     class Soldier

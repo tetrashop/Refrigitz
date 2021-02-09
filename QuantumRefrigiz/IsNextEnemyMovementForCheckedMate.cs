@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
-using System.Threading.Tasks;
 
 namespace QuantumRefrigiz
 {
-    class IsNextEnemyMovementForCheckedMate:AllDraw
+    class IsNextEnemyMovementForCheckedMate : AllDraw
     {
         int[,] TableIsNextEnemyMovementForCheckedMate = new int[8, 8];
-        public IsNextEnemyMovementForCheckedMate(int Order, bool MovementsAStarGreedyHuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments,int[,] Tab)
+        public IsNextEnemyMovementForCheckedMate(int Order, bool MovementsAStarGreedyHuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, int[,] Tab)
             : base(Order, MovementsAStarGreedyHuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments)
         {
             for (int i = 0; i < 8; i++)
@@ -18,7 +15,7 @@ namespace QuantumRefrigiz
                     TableIsNextEnemyMovementForCheckedMate[i, j] = Tab[i, j];
 
         }
-        public IsNextEnemyMovementForCheckedMate(int Order, bool MovementsAStarGreedyHuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, AllDraw THi,int[,] Tab)
+        public IsNextEnemyMovementForCheckedMate(int Order, bool MovementsAStarGreedyHuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, AllDraw THi, int[,] Tab)
             : base(Order, MovementsAStarGreedyHuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments, THi)
         {
             for (int i = 0; i < 8; i++)
@@ -27,7 +24,7 @@ namespace QuantumRefrigiz
         }
         public bool Is()
         {
-            bool IS= false;
+            bool IS = false;
             Color a = Color.Gray;
             if (OrderP == -1)
                 a = Color.Brown;
@@ -142,57 +139,57 @@ namespace QuantumRefrigiz
                 IS = true;
 
             //AllDraw.ActionString = A1; ;
-            AllDraw.ActionStringReady= A2;
-             AllDraw.AStarGreadyFirstSearch= A3 ;
+            AllDraw.ActionStringReady = A2;
+            AllDraw.AStarGreadyFirstSearch = A3;
             AllDraw.AStarGreedyiLevelMax = A4;
             //AllDraw.AStarGreedytMaxCount = A5;
             AllDraw.Blitz = A6;
             AllDraw.CastleMovments = A7;
-             AllDraw.ConvertedKind= A8 ;
-             AllDraw.ConvertWait = A9 ;
-             AllDraw.CurrentHeuristic= A10 ;
-             AllDraw.DepthIterative = A11 ;
-             AllDraw.DrawTable = A12 ;
-             AllDraw.DynamicAStarGreedytPrograming =A13 ;
-             AllDraw.ElefantMovments = A14 ;
-             AllDraw.EndOfGame= A15 ;
-             AllDraw.FoundATable = A16 ;
-            AllDraw.HourseMovments = A17 ;
-             AllDraw.ImageRoot = A18 ;
-             AllDraw.ImagesSubRoot= A19 ;
-             AllDraw.increasedProgress = A20;
-             AllDraw.KingMovments= A21;
-             AllDraw.LastColumnQ = A22;
-             AllDraw.LastRowQ = A23;
-             //AllDraw.Less = A24;
-             AllDraw.LoopHeuristicIndex = A25;
-             AllDraw.MaxAStarGreedy = A26;
-             //AllDraw.MaxAStarGreedyHuristicProgress = A27;
-             AllDraw.MinisterMovments = A28;
-             AllDraw.MinThinkingQuantumTreeDepth = A29;
-             AllDraw.MouseClick = A30;
-             AllDraw.MovmentsNumber = A31;
-             AllDraw.NextColumnQ = A32;
-             AllDraw.NextRowQ = A33;
-             AllDraw.NoTableFound = A34;
-             AllDraw.OrderPlate = A35;
-             //AllDraw.OutPut = A36;
-             AllDraw.Person = A37;
-             AllDraw.RedrawTable = A38;
-             AllDraw.RegardOccurred = A39;
-             AllDraw.Root = A40;
+            AllDraw.ConvertedKind = A8;
+            AllDraw.ConvertWait = A9;
+            AllDraw.CurrentHeuristic = A10;
+            AllDraw.DepthIterative = A11;
+            AllDraw.DrawTable = A12;
+            AllDraw.DynamicAStarGreedytPrograming = A13;
+            AllDraw.ElefantMovments = A14;
+            AllDraw.EndOfGame = A15;
+            AllDraw.FoundATable = A16;
+            AllDraw.HourseMovments = A17;
+            AllDraw.ImageRoot = A18;
+            AllDraw.ImagesSubRoot = A19;
+            AllDraw.increasedProgress = A20;
+            AllDraw.KingMovments = A21;
+            AllDraw.LastColumnQ = A22;
+            AllDraw.LastRowQ = A23;
+            //AllDraw.Less = A24;
+            AllDraw.LoopHeuristicIndex = A25;
+            AllDraw.MaxAStarGreedy = A26;
+            //AllDraw.MaxAStarGreedyHuristicProgress = A27;
+            AllDraw.MinisterMovments = A28;
+            AllDraw.MinThinkingQuantumTreeDepth = A29;
+            AllDraw.MouseClick = A30;
+            AllDraw.MovmentsNumber = A31;
+            AllDraw.NextColumnQ = A32;
+            AllDraw.NextRowQ = A33;
+            AllDraw.NoTableFound = A34;
+            AllDraw.OrderPlate = A35;
+            //AllDraw.OutPut = A36;
+            AllDraw.Person = A37;
+            AllDraw.RedrawTable = A38;
+            AllDraw.RegardOccurred = A39;
+            AllDraw.Root = A40;
             //AllDraw.SignAttack = A41;
-             //AllDraw.SignDistance =A42;
-             AllDraw.SignKiller = A43;
-             AllDraw.SignKingDangour = A44;
-             AllDraw.SignKingSafe= A45;
-             AllDraw.SignMovments = A46;
-             AllDraw.SignObjectDangour = A47;
+            //AllDraw.SignDistance =A42;
+            AllDraw.SignKiller = A43;
+            AllDraw.SignKingDangour = A44;
+            AllDraw.SignKingSafe = A45;
+            AllDraw.SignMovments = A46;
+            AllDraw.SignObjectDangour = A47;
             AllDraw.SignReducedAttacked = A48;
-             AllDraw.SignSupport= A49;
+            AllDraw.SignSupport = A49;
             AllDraw.SodierConversionOcuured = A50;
-             AllDraw.SodierMovments = A51;
-             AllDraw.StateCP = A52;
+            AllDraw.SodierMovments = A51;
+            AllDraw.StateCP = A52;
             AllDraw.Stockfish = A53;
             AllDraw.StoreADraw.Clear();
             for (int i = 0; i < AllDraw.StoreADraw.Count; i++)
@@ -200,8 +197,8 @@ namespace QuantumRefrigiz
             AllDraw.StoreADrawAStarGreedy.Clear();
             for (int i = 0; i < AllDraw.StoreADrawAStarGreedy.Count; i++)
                 AllDraw.StoreADrawAStarGreedy.Add(A55[i]);
-             AllDraw.SuppportCountStaticBrown= A56;
-             AllDraw.SuppportCountStaticGray= A57;
+            AllDraw.SuppportCountStaticBrown = A56;
+            AllDraw.SuppportCountStaticGray = A57;
             AllDraw.SyntaxToWrite = A58;
             AllDraw.TableCurrent.Clear();
             for (int i = 0; i < AllDraw.TableCurrent.Count; i++)
@@ -209,35 +206,35 @@ namespace QuantumRefrigiz
             AllDraw.TableListAction.Clear();
             for (int i = 0; i < AllDraw.TableListAction.Count; i++)
                 AllDraw.TableListAction.Add(A60[i]);
-            
+
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
                     AllDraw.TableVeryfy[i, j] = A61[i, j];
-            
+
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
                     AllDraw.TableVeryfyConst[i, j] = A62[i, j];
-             AllDraw.TaskBegin= A63;
-             AllDraw.TaskEnd= A64;
-             AllDraw.THIScomboBoxMaxLevelText= A65;
+            AllDraw.TaskBegin = A63;
+            AllDraw.TaskEnd = A64;
+            AllDraw.THIScomboBoxMaxLevelText = A65;
             if (A66 != null)
                 A66.Clone(AllDraw.THISDummy);
-             AllDraw.THISSecradioButtonBrownOrderChecked= A67;
-             AllDraw.THISSecradioButtonGrayOrderChecked= A68;
-             //AllDraw.UseDoubleTime= A69;
-             ThinkingQuantumChess.ActionsString= B1;
-             ThinkingQuantumChess.BeginThread = B2;
-             ThinkingQuantumChess.EndThread = B3;
-             ThinkingQuantumChess.FoundFirstMating = B4;
-             ThinkingQuantumChess.FoundFirstSelfMating = B5;
-             ThinkingQuantumChess.KingMaovableBrown = B6;
-             ThinkingQuantumChess.KingMaovableGray = B7;
-             ThinkingQuantumChess.LearningVarsCheckedMateOccured = B8;
-             ThinkingQuantumChess.LearningVarsCheckedMateOccuredOneCheckedMate = B9;
-             ThinkingQuantumChess.MaxHeuristicx = B10;
-             ThinkingQuantumChess.NotSolvedKingDanger =B11;
-             ThinkingQuantumChess.NumbersOfAllNode = B12;
-             //ThinkingQuantumChess.ThinkingRun = B13;
+            AllDraw.THISSecradioButtonBrownOrderChecked = A67;
+            AllDraw.THISSecradioButtonGrayOrderChecked = A68;
+            //AllDraw.UseDoubleTime= A69;
+            ThinkingQuantumChess.ActionsString = B1;
+            ThinkingQuantumChess.BeginThread = B2;
+            ThinkingQuantumChess.EndThread = B3;
+            ThinkingQuantumChess.FoundFirstMating = B4;
+            ThinkingQuantumChess.FoundFirstSelfMating = B5;
+            ThinkingQuantumChess.KingMaovableBrown = B6;
+            ThinkingQuantumChess.KingMaovableGray = B7;
+            ThinkingQuantumChess.LearningVarsCheckedMateOccured = B8;
+            ThinkingQuantumChess.LearningVarsCheckedMateOccuredOneCheckedMate = B9;
+            ThinkingQuantumChess.MaxHeuristicx = B10;
+            ThinkingQuantumChess.NotSolvedKingDanger = B11;
+            ThinkingQuantumChess.NumbersOfAllNode = B12;
+            //ThinkingQuantumChess.ThinkingRun = B13;
             return IS;
         }
     }

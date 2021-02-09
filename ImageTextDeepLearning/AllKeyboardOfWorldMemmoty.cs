@@ -3,14 +3,10 @@
  * 1397/04/26:Problem in Seirlization Recurisvely of linked list for refrigitz.********************************
  * ************************************************************************************************************
  */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
-using System.IO;
-
 using ImageTextDeepLearning;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace GalleryStudio
 {
     //clas for store in file
@@ -18,9 +14,9 @@ namespace GalleryStudio
 
     class AllKeyboardOfWorldMemmoty
     {
-        
+
         //initiate global vars
-       public  AllKeyboardOfWorld Current = null;
+        public AllKeyboardOfWorld Current = null;
 
         //Constructor
         public AllKeyboardOfWorldMemmoty()
@@ -63,13 +59,13 @@ namespace GalleryStudio
                 DummyFileStream.Flush(); DummyFileStream.Close();
             }
         }
-    
+
         //Load main
         public AllKeyboardOfWorld Load(String SAllKeyboardOfWorld)
         {
             Object o = new Object();
             lock (o)
-            {      
+            {
                 //initiate and call
                 FileStream DummyFileStream = new FileStream(SAllKeyboardOfWorld, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
                 BinaryFormatter Formatters = new BinaryFormatter();
@@ -79,7 +75,7 @@ namespace GalleryStudio
                 DummyFileStream.Flush();
                 DummyFileStream.Close();
 
-                return Current;                
+                return Current;
             }
         }
         //Load

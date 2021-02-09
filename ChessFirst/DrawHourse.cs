@@ -1,24 +1,23 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace ChessFirst
 {
     [Serializable]
     public class DrawHourse
     {
 
-        
+
         StringBuilder Space = new StringBuilder("&nbsp;");
         int Spaces = 0;
 
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
-        
+
+
+
         //Iniatite Global Variables.
         List<int[]> ValuableSelfSupported = new List<int[]>();
 
@@ -59,29 +58,29 @@ namespace ChessFirst
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-            
+
         }
-        
+
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.HourseMovments; ii++)
 
-                a += HourseThinking[ii].ReturnHeuristic(-1, -1, Order, false,ref HaveKilled);
-            
+                a += HourseThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
+
             return a;
         }
         //Constructor 1.
-        
+
         //Constructpor 2.
         public DrawHourse(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//,ref AllDraw. THIS
             )
         {
-            
+
 
             {
 
@@ -100,7 +99,7 @@ namespace ChessFirst
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.HourseMovments; ii++)
-                    HourseThinking[ii] = new ThinkingChessFirst(ii,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 4, 3);
+                    HourseThinking[ii] = new ThinkingChessFirst(ii, 3, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 8, Ord, TB, Cur, 4, 3);
 
                 Row = i;
                 Column = j;
@@ -108,11 +107,11 @@ namespace ChessFirst
                 Order = Ord;
                 Current = Cur;
             }
-            
+
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -123,14 +122,14 @@ namespace ChessFirst
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -141,7 +140,7 @@ namespace ChessFirst
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -150,7 +149,7 @@ namespace ChessFirst
         public void Clone(ref DrawHourse AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -161,7 +160,7 @@ namespace ChessFirst
             for (var i = 0; i < AllDraw.HourseMovments; i++)
             {
 
-                AA.HourseThinking[i] = new ThinkingChessFirst(i,3,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.HourseThinking[i] = new ThinkingChessFirst(i, 3, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.HourseThinking[i].Clone(ref AA.HourseThinking[i]);
 
             }
@@ -174,7 +173,7 @@ namespace ChessFirst
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         //Draw a Instatnt Hourse on the Table Method.
         public void DrawHourseOnTable(ref Graphics g, int CellW, int CellH)
@@ -185,11 +184,11 @@ namespace ChessFirst
             {
                 if (g == null)
                     return;
-                
+
                 try
                 {
 
-                    
+
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     { //Gray Order.
                         if (Order == 1)
@@ -218,7 +217,7 @@ namespace ChessFirst
                 {
                     Log(t);
                 }
-                
+
             }
         }
     }

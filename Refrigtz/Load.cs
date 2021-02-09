@@ -93,18 +93,10 @@
  2.3.increamental sync discovery.
  */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Diagnostics;
-using System.Threading;
-using System.Data.OleDb;
-using System.Media;
 using System.IO;
+using System.Threading;
+using System.Windows.Forms;
 namespace Refrigtz
 {
     [Serializable]

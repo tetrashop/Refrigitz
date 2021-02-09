@@ -1,25 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 namespace Refrigtz
 {
     [Serializable]
     public partial class FormTXT : Form
     {
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         RefrigtzChessPortable.AllDraw D = null;
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         Thread t = null;
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         public FormTXT(RefrigtzChessPortable.AllDraw TG)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             InitializeComponent();
             Object O = new Object();
@@ -70,9 +65,9 @@ namespace Refrigtz
         {
 
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         public void CreateTree(RefrigtzChessPortable.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -192,9 +187,9 @@ namespace Refrigtz
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheM:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             return AA;
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         string MoveS(RefrigtzChessPortable.ThinkingRefrigtzChessPortable t, int kind, int j)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -235,7 +230,7 @@ namespace Refrigtz
                     ColumnDestination = t.RowColumnKing[j][1];
                 }
                 else
-          if (kind == 7|| kind == -7)
+          if (kind == 7 || kind == -7)
                 {
                     RowDestination = t.RowColumnCastling[j][0];
                     ColumnDestination = t.RowColumnCastling[j][1];
@@ -250,10 +245,11 @@ namespace Refrigtz
                 return move;
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         private void PopulateTreeViewS(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-        { Object O = new Object();
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        {
+            Object O = new Object();
             lock (O)
             {
                 bool Call = true;
@@ -289,7 +285,7 @@ namespace Refrigtz
                     }
                     else
                     {
-                        
+
                         if (Draw.SolderesOnTable[i] == null)
                         {
                             Call = false;
@@ -321,7 +317,7 @@ namespace Refrigtz
                             t.Text = "SoldierOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Name = "SoldierOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Tag = parentId;
-                 
+
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -370,7 +366,7 @@ namespace Refrigtz
                                 else
                                 if (Draw.SolderesOnTable[i].SoldierThinking[0].LoseChiled.Count == Draw.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Count)
                                 {
-                                    if (Draw.SolderesOnTable[i].SoldierThinking[0].LoseChiled[j] < 0 )
+                                    if (Draw.SolderesOnTable[i].SoldierThinking[0].LoseChiled[j] < 0)
                                         tt.BackColor = Color.Cyan;
                                 }
                                 else
@@ -429,9 +425,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         private void PopulateTreeViewE(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -503,7 +499,7 @@ namespace Refrigtz
                             t.Text = "ElephantOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Name = "ElephantOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Tag = parentId;
-                                                if (parentNode == null)
+                            if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
                                 {
@@ -612,10 +608,11 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         private void PopulateTreeViewH(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
-        { Object O = new Object();
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        {
+            Object O = new Object();
             lock (O)
             {
                 bool Call = true;
@@ -685,7 +682,7 @@ namespace Refrigtz
                             t.Text = "HoursesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Name = "HoursesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Tag = parentId;
-                                    if (parentNode == null)
+                            if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
                                 {
@@ -795,9 +792,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         private void PopulateTreeViewC(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -867,7 +864,7 @@ namespace Refrigtz
                             t.Text = "CastlesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Name = "CastlesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Tag = parentId;
-                         
+
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -891,7 +888,7 @@ namespace Refrigtz
                                 if (Draw.CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
                                     tt.BackColor = Color.RosyBrown;
                                 else
-                                 if (Draw.CastlesOnTable[i].CastleThinking[0].LoseChiled[j] < 0 )
+                                 if (Draw.CastlesOnTable[i].CastleThinking[0].LoseChiled[j] < 0)
                                 {
                                     if (Draw.CastlesOnTable[i].CastleThinking[0].LoseChiled.Count == Draw.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Count)
                                         tt.BackColor = Color.Cyan;
@@ -979,9 +976,9 @@ namespace Refrigtz
                 }
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         int ReturnbCal(RefrigtzChessPortable.ThinkingRefrigtzChessPortable t, int Kind, int j)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -1069,7 +1066,7 @@ namespace Refrigtz
         t.HeuristicListKing[j][9];
                 }
                 else
-                    if (Kind == 7||Kind==-7)
+                    if (Kind == 7 || Kind == -7)
                 {
                     return t.HeuristicListCastling[j][0] +
         t.HeuristicListCastling[j][1] +
@@ -1085,9 +1082,9 @@ namespace Refrigtz
                 return int.MinValue;
             }
         }
-//#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         private void PopulateTreeViewM(int parentId, TreeNode parentNode, RefrigtzChessPortable.AllDraw Draw)
-//#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzChessPortable' could not be found (are you missing a using directive or an assembly reference?)
         {
             Object O = new Object();
             lock (O)
@@ -1159,7 +1156,7 @@ namespace Refrigtz
                             t.Text = "MinisterOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Name = "MinisterOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Tag = parentId;
-                             if (parentNode == null)
+                            if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
                                 {
@@ -1182,9 +1179,9 @@ namespace Refrigtz
                                 if (Draw.MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
                                     tt.BackColor = Color.RosyBrown;
                                 else
-                                if ( Draw.MinisterOnTable[i].MinisterThinking[0].LoseChiled.Count == Draw.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Count)
+                                if (Draw.MinisterOnTable[i].MinisterThinking[0].LoseChiled.Count == Draw.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Count)
                                 {
-                                    if (Draw.MinisterOnTable[i].MinisterThinking[0].LoseChiled[j] < 0 ) 
+                                    if (Draw.MinisterOnTable[i].MinisterThinking[0].LoseChiled[j] < 0)
                                         tt.BackColor = Color.Cyan;
                                 }
                                 else
@@ -1527,7 +1524,7 @@ namespace Refrigtz
                             t.Text = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Name = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
                             t.Tag = parentId;
-                                      if (parentNode == null)
+                            if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
                                 {
@@ -1655,7 +1652,7 @@ namespace Refrigtz
                     treeViewRefregitzDraw.Nodes.Clear();
                     CreateTree(D);
                     treeViewRefregitzDraw.Update();
-                    
+
                 }
             } while (true);
         }

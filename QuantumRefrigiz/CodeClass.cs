@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 /*****************************************************************************
  * "1" Boundry Heuristic Founding.
  * "2" Search in ThinkingQuantumChess tree to found Max or Min Heuristic.

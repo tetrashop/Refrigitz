@@ -4,11 +4,8 @@
  * ************************************************************************************************************
  */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace GalleryStudio
 {
 
@@ -32,10 +29,10 @@ namespace GalleryStudio
         public int Kind = 0;
         //static GalleryStudio.RefregizMemmory Node;
         public RefrigtzW.AllDraw Current = null;
-         //bool NewListOfNextBegins = true;
+        //bool NewListOfNextBegins = true;
 
 
-        
+
         void SetAllDrawKindString()
         {
             if (AllDrawKind == 4)
@@ -69,7 +66,7 @@ namespace GalleryStudio
             SetAllDrawKindString();
             SAllDraw = AllDrawKindString;
 
-  
+
             Object o = new Object();
             lock (o)
             {
@@ -177,7 +174,7 @@ namespace GalleryStudio
 
             }
         }
-    
+
         public RefrigtzW.AllDraw AllDrawCurrentAccess
         {
             get
@@ -185,7 +182,7 @@ namespace GalleryStudio
             set
             { Current = value; }
         }
-        
+
 
     }
 }

@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace RefrigtzW
 {
 
@@ -15,7 +12,7 @@ namespace RefrigtzW
         RefrigtzW.CustomerMemmorry Next = null;
         public void Load()
         {
-            if (Node == null) Node = new CustomerMemmorry();              
+            if (Node == null) Node = new CustomerMemmorry();
             Node.CustomersNextAccess = null;
             Node.CustomersCurrentAccess = null;
             try
@@ -29,8 +26,8 @@ namespace RefrigtzW
                 while (DummyFileStream.Position < DummyFileStream.Length)
                 {
                     Dummy = (Customers)Formatters.Deserialize(DummyFileStream);
-                    if (Node.Current == null)                    
-                        Node.Current = Dummy;                    
+                    if (Node.Current == null)
+                        Node.Current = Dummy;
                     else
                     {
                         Last = Node;
@@ -44,7 +41,7 @@ namespace RefrigtzW
                 DummyFileStream.Flush();
                 DummyFileStream.Close();
             }
-            catch (IOException t){Console.WriteLine(t.Message.ToString());}
+            catch (IOException t) { Console.WriteLine(t.Message.ToString()); }
         }
         public void DeleteObject(CustomerMemmorry p)
         {
@@ -77,40 +74,40 @@ namespace RefrigtzW
             else
             {
                 t = t.CustomersNextAccess;
-                Node=t;
+                Node = t;
             }
         }
         public void AddObject(CustomerMemmorry p)
-        {            
-            CustomerMemmorry t =new CustomerMemmorry();
+        {
+            CustomerMemmorry t = new CustomerMemmorry();
             t = p.CustomersNodeAccess;
             while (t.CustomersNextAccess != null)
                 t = t.CustomersNextAccess;
-             if (t.CustomersCurrentAccess == null)
+            if (t.CustomersCurrentAccess == null)
                 t.CustomersCurrentAccess = p.CustomersCurrentAccess;
-             else
-             t.CustomersNextAccess = p;        
+            else
+                t.CustomersNextAccess = p;
         }
         public CustomerMemmorry CustomersNodeAccess
         {
             get
-            { return Node;}
+            { return Node; }
             set
-            { Node = value;}
+            { Node = value; }
         }
         public Customers CustomersCurrentAccess
         {
             get
-            {return Current;}
+            { return Current; }
             set
-            {Current = value;}
+            { Current = value; }
         }
         public CustomerMemmorry CustomersNextAccess
         {
             get
-            {return Next;}
+            { return Next; }
             set
-            {Next = value;}
+            { Next = value; }
         }
     }
-    }
+}

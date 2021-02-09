@@ -2,19 +2,12 @@
 //www.IranProject.Ir
 //
 using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
-using ChessCom;
-using System.Threading.Tasks;
 using System.Diagnostics;
-using System.IO;
+using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 #pragma warning disable CS0105 // The using directive for 'ChessCom' appeared previously in this namespace
-using ChessCom;
-using System.Collections.Concurrent;
 #pragma warning restore CS0105 // The using directive for 'ChessCom' appeared previously in this namespace
 namespace ChessCom
 {
@@ -44,7 +37,7 @@ namespace ChessCom
         PictureBox[] Con = new PictureBox[4];
         bool WaitOnplay = false;
         bool Person = true;
-         int[,] Table = null;
+        int[,] Table = null;
         bool FOUND = false;
         #region These are the global variables and objects for ChessComForm class
         private PictureBox[,] pb;
@@ -136,7 +129,7 @@ namespace ChessCom
             GC.SuppressFinalize(this);
             base.Dispose(disposing);
         }
-          void DisposeConv()
+        void DisposeConv()
         {
             for (int i = 0; i < 4; i++)
                 Con[i].Dispose();
@@ -488,15 +481,15 @@ namespace ChessCom
             pb[7, 6].Image = img32;
         }
 
-        
+
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            LoadP = true; 
+            LoadP = true;
         }
-         static void Log(Exception ex)
+        static void Log(Exception ex)
         {
 
-           
+
 
         }
         int[,] CloneATable(int[,] Tab)
@@ -522,12 +515,14 @@ namespace ChessCom
         }
         void Play()
         {
-            do {
+            do
+            {
                 if (Comready)
                 {
                     Comready = false;
                     Play(-1, -1);
-                } else
+                }
+                else
                     Thread.Sleep(100);
 
             } while (true);
@@ -543,9 +538,9 @@ namespace ChessCom
 
                 try
                 {
-                    
-                        k = brd.getInfo(i, j);
-                        //if (k == 0)
+
+                    k = brd.getInfo(i, j);
+                    //if (k == 0)
 
                     string lstr = " ";
                     if (k > 6)
@@ -566,7 +561,7 @@ namespace ChessCom
                         cf = j;
                         this.pb[i, j].BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
                         cl = 1;
-                         return 0;
+                        return 0;
                     }
                     if (cl == 1)
                     {
@@ -608,7 +603,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img2;
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -643,7 +638,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img4;
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -712,7 +707,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img8;
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -746,7 +741,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img10;
                                     }
-                                    
+
                                 }
                                 else if (kg2.move(brd, i, j) == 2)
                                 {
@@ -769,7 +764,7 @@ namespace ChessCom
                                     brd.setSquare(5, 2, 0);
                                     brd.setSquare(1, 3, 0);
                                     order++;
-                                    
+
                                 }
                                 else if (kg2.move(brd, i, j) == 3)
                                 {
@@ -792,7 +787,7 @@ namespace ChessCom
                                     brd.setSquare(1, 5, 0);
                                     brd.setSquare(5, 6, 0);
                                     order++;
-                                    
+
                                 }
                                 else
                                 {
@@ -919,7 +914,7 @@ namespace ChessCom
                                             pb[i, j].Image = img12;
                                         }
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -954,7 +949,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img22;
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -989,7 +984,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img24;
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -1024,7 +1019,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img26;
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -1059,7 +1054,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img28;
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -1094,7 +1089,7 @@ namespace ChessCom
                                     {
                                         pb[i, j].Image = img30;
                                     }
-                                    
+
                                 }
                                 else if (kg.move(brd, i, j) == 2)
                                 {
@@ -1117,7 +1112,7 @@ namespace ChessCom
                                     brd.setSquare(11, 2, 7);
                                     brd.setSquare(5, 3, 7);
                                     order--;
-                                    
+
                                 }
                                 else if (kg.move(brd, i, j) == 3)
                                 {
@@ -1140,7 +1135,7 @@ namespace ChessCom
                                     brd.setSquare(7, 5, 7);
                                     brd.setSquare(11, 6, 7);
                                     order--;
-                                    
+
                                 }
                                 else
                                 {
@@ -1267,7 +1262,7 @@ namespace ChessCom
                                             pb[i, j].Image = img32;
                                         }
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -1277,7 +1272,7 @@ namespace ChessCom
                                 }
                                 break;
                         }
-                
+
                         this.pb[x1, y1].BorderStyle = 0;
                         cl = 0;
                         string str, str2;
@@ -1365,7 +1360,7 @@ namespace ChessCom
                         }
                         else
                         {
-                            lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() ;
+                            lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString();
                             this.lb.Items.AddRange(new object[] { lstr });
                         }
                         freezCalculation = false;
@@ -1766,13 +1761,13 @@ namespace ChessCom
         {
             (new AboutBoxFaraDars()).ShowDialog();
         }
-    
+
         private void treeViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            }
+        }
 
         private void junglesMakeTreeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            }
+        }
     }
 }

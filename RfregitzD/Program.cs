@@ -1,15 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 namespace RefrigtzDLL
 {
-    
-    
+
+
     static class Program
     {
 
@@ -46,13 +44,13 @@ namespace RefrigtzDLL
             long total = 0;
 
             // Use type parameter to make subtotal a long, not an int
-            ParallelOptions po = new ParallelOptions();       po.MaxDegreeOfParallelism =PlatformHelper.ProcessorCount;                    Parallel.For<long>(0, nums.Length, () => 0, (j, loop, subtotal) =>
-            {
-                subtotal += nums[j];
-                return subtotal;
-            },
-                (x) => Interlocked.Add(ref total, x)
-            );
+            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For<long>(0, nums.Length, () => 0, (j, loop, subtotal) =>
+{
+subtotal += nums[j];
+return subtotal;
+},
+(x) => Interlocked.Add(ref total, x)
+);
 
 
         }
@@ -83,10 +81,10 @@ namespace RefrigtzDLL
             //Application.EnableVisualStyles();
             //
 
-                //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.SetCompatibleTextRenderingDefault(false);
 
-                //Application.Run(new Load());
-            
+            //Application.Run(new Load());
+
 
         }
     }

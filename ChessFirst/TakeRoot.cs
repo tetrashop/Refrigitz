@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.IO;
-using ChessFirst;
 using System.Diagnostics;
+using System.IO;
 
 namespace ChessFirst
 {
@@ -72,7 +67,7 @@ namespace ChessFirst
             }
         }
 
-        bool DrawManagement(bool FOUND,bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
+        bool DrawManagement(bool FOUND, bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
         {
             Object OO = new Object();
             lock (OO)
@@ -144,7 +139,7 @@ namespace ChessFirst
                 return Found;
             }
         }
-        public bool LoadJungle(String path,bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        public bool LoadJungle(String path, bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
             Object OO = new Object();
             lock (OO)
@@ -231,7 +226,8 @@ namespace ChessFirst
                         if (ChessFirstForm.MovmentsNumber >= 0)
                         {
                             //if (!Quantum)
-                            {   RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+                            {
+                                RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
                                 t = (AllDraw)tr.Load(Quantum, ChessFirstForm.OrderPlate);
                                 if (t != null)
                                 {
@@ -300,7 +296,7 @@ namespace ChessFirst
             }
         }
 
-        public bool Save(bool FOUND,bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        public bool Save(bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
             Object OO = new Object();
             lock (OO)
@@ -308,10 +304,10 @@ namespace ChessFirst
                 object o = new object();
                 lock (o)
                 {
-                    
-                        if (!AllDraw.ChangedInTreeOccured)
-                            return true;
-                    
+
+                    if (!AllDraw.ChangedInTreeOccured)
+                        return true;
+
                 }
                 //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
                 //ttt.Start();
@@ -346,8 +342,9 @@ namespace ChessFirst
 
                     AllDraw Stote = Curent.Draw;
                     if (!File.Exists(AllDrawKindString))
-                    {    RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
-                            );
+                    {
+                        RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
+                           );
                         //if (!Quantum)
                         {
                             if (Curent.Draw != null)
@@ -427,7 +424,7 @@ namespace ChessFirst
                 lock (o)
                 {
 
-            
+
                 }
                 //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
                 //ttt.Start();

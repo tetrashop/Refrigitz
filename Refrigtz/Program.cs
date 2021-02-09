@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.IO;
+using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
-using System.Collections.Concurrent;
+using System.Windows.Forms;
 
 namespace Refrigtz
 {
@@ -90,20 +88,21 @@ namespace Refrigtz
                 //Task ttt = new Task(new Action(CoordinationDataStructures));
                 //ttt.Start();
                 Application.SetCompatibleTextRenderingDefault(false);
-                 t = new Load();
-                
-                 Application.Run(t);/*
+                t = new Load();
+
+                Application.Run(t);/*
 //#pragma warning disable CS0197 // Using 'FormRefrigtz.LoadTree' as a ref or out value or taking its address may cause a runtime exception because it is a field of a marshal-by-reference class
                 (new TakeRoot()).Save(t.ttt.Quantum, t.ttt, ref t.ttt.LoadTree, t.ttt.MovementsAStarGreedyHeuristicFound, t.ttt.IInoreSelfObjects, t.ttt.UsePenaltyRegardMechnisam, t.ttt.BestMovments, t.ttt.PredictHeuristic, t.ttt.OnlySelf, t.ttt.AStarGreedyHeuristic, t.ttt.ArrangmentsChanged);
 //#pragma warning restore CS0197 // Using 'FormRefrigtz.LoadTree' as a ref or out value or taking its address may cause a runtime exception because it is a field of a marshal-by-reference class
-           */ }
+           */
+            }
             catch (Exception tt)
             {
-/*//#pragma warning disable CS0197 // Using 'FormRefrigtz.LoadTree' as a ref or out value or taking its address may cause a runtime exception because it is a field of a marshal-by-reference class
-                (new TakeRoot()).Save(t.ttt.Quantum, t.ttt, ref t.ttt.LoadTree, t.ttt.MovementsAStarGreedyHeuristicFound, t.ttt.IInoreSelfObjects, t.ttt.UsePenaltyRegardMechnisam, t.ttt.BestMovments, t.ttt.PredictHeuristic, t.ttt.OnlySelf, t.ttt.AStarGreedyHeuristic, t.ttt.ArrangmentsChanged);
-//#pragma warning restore CS0197 // Using 'FormRefrigtz.LoadTree' as a ref or out value or taking its address may cause a runtime exception because it is a field of a marshal-by-reference class
+                /*//#pragma warning disable CS0197 // Using 'FormRefrigtz.LoadTree' as a ref or out value or taking its address may cause a runtime exception because it is a field of a marshal-by-reference class
+                                (new TakeRoot()).Save(t.ttt.Quantum, t.ttt, ref t.ttt.LoadTree, t.ttt.MovementsAStarGreedyHeuristicFound, t.ttt.IInoreSelfObjects, t.ttt.UsePenaltyRegardMechnisam, t.ttt.BestMovments, t.ttt.PredictHeuristic, t.ttt.OnlySelf, t.ttt.AStarGreedyHeuristic, t.ttt.ArrangmentsChanged);
+                //#pragma warning restore CS0197 // Using 'FormRefrigtz.LoadTree' as a ref or out value or taking its address may cause a runtime exception because it is a field of a marshal-by-reference class
 
-*/
+                */
                 Log(tt);
             }
 
@@ -146,7 +145,7 @@ namespace Refrigtz
                 Console.WriteLine(sw.Elapsed);
 
             }
-            
+
         }
         static void TaskParallelLibrary()
 
@@ -160,7 +159,8 @@ namespace Refrigtz
 
             while (true)
 
-            {if (!Refrigtz.FormRefrigtz.Quantum)
+            {
+                if (!Refrigtz.FormRefrigtz.Quantum)
                 {
                     do { Thread.Sleep(1); } while (!RefrigtzDLL.AllDraw.ThinkingRunInBothSide);
 
@@ -200,6 +200,6 @@ namespace Refrigtz
         }
 
 
-}
+    }
 }
 //End of Documents.

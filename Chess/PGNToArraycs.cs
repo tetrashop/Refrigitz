@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chess
 {
@@ -33,9 +30,9 @@ namespace Chess
                     gamese.Add(Lines[i]);
                     j++;
                 }
-                
+
             }
-           
+
 
         }
     }
@@ -59,13 +56,14 @@ namespace Chess
                 Index = 1;
                 do
                 {
-                    MoveText.Add(Game.Substring(Game.IndexOf(System.Convert.ToString(Index) + "."), Game.IndexOf(System.Convert.ToString(Index+1) + ".") - Game.IndexOf(System.Convert.ToString(Index) + ".")));
+                    MoveText.Add(Game.Substring(Game.IndexOf(System.Convert.ToString(Index) + "."), Game.IndexOf(System.Convert.ToString(Index + 1) + ".") - Game.IndexOf(System.Convert.ToString(Index) + ".")));
                     Index++;
                 } while (true);
 
-            }catch(Exception t)
+            }
+            catch (Exception t)
             {
-              
+
                 try
                 {
                     MoveText.Add(Game.Substring(Game.IndexOf(System.Convert.ToString(Index) + "."), Game.IndexOf("1-0") - Game.IndexOf(System.Convert.ToString(Index) + ".")));

@@ -2,19 +2,13 @@
 //www.IranProject.Ir
 //
 using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
-using RefrigtzChessPortable;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 #pragma warning disable CS0105 // The using directive for 'RefrigtzChessPortable' appeared previously in this namespace
-using RefrigtzChessPortable;
-using System.Collections.Concurrent;
 #pragma warning restore CS0105 // The using directive for 'RefrigtzChessPortable' appeared previously in this namespace
 namespace RefrigtzChessPortable
 {
@@ -982,7 +976,8 @@ namespace RefrigtzChessPortable
                                     R.CromosomColumn = AllDraw.NextColumn;
 
                                 }
-                                else {
+                                else
+                                {
                                     MessageBox.Show("One or more cromosoms is invalid;");
                                     AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
                                     if (Draw.IsAtLeastAllObjectIsNull())
@@ -1927,7 +1922,7 @@ namespace RefrigtzChessPortable
                               if (Com && (order == 2))
                                     {
                                         if (ComStop && (!freezBoard))
-                                               AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
+                                            AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
 
                                         freezBoard = false;
 
@@ -2024,7 +2019,7 @@ namespace RefrigtzChessPortable
 
 
                                 if (ComStop && (!freezBoard))
-                                                  AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
+                                    AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
                                 freezBoard = false;
                                 Table = brd.GetTable();
                                 MovmentsNumber++;
@@ -2043,7 +2038,7 @@ namespace RefrigtzChessPortable
                         return 0;
                     }
                 }
-                catch (Exception t) { Log(t);return -1; }
+                catch (Exception t) { Log(t); return -1; }
                 return 0;
             }
         }

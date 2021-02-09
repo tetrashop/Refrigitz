@@ -2,19 +2,13 @@
 //www.IranProject.Ir
 //
 using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
-using ChessFirst;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 #pragma warning disable CS0105 // The using directive for 'ChessFirst' appeared previously in this namespace
-using ChessFirst;
-using System.Collections.Concurrent;
 #pragma warning restore CS0105 // The using directive for 'ChessFirst' appeared previously in this namespace
 namespace ChessFirst
 {
@@ -984,7 +978,8 @@ namespace ChessFirst
                                     R.CromosomColumn = AllDraw.NextColumn;
 
                                 }
-                                else {
+                                else
+                                {
                                     MessageBox.Show("One or more cromosoms is invalid;");
                                     AllDraw.TableListAction.RemoveAt(AllDraw.TableListAction.Count - 1);
                                     if (Draw.IsAtLeastAllObjectIsNull())
@@ -1930,7 +1925,7 @@ namespace ChessFirst
                               if (Com && (order == 1))
                                     {
                                         if (ComStop && (!freezBoard))
-                                        AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
+                                            AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
 
                                         freezBoard = false;
 
@@ -2047,7 +2042,7 @@ namespace ChessFirst
                         return 0;
                     }
                 }
-                catch (Exception t) { Log(t);return -1; }
+                catch (Exception t) { Log(t); return -1; }
                 return 0;
             }
         }

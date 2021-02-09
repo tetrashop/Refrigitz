@@ -7,9 +7,6 @@
  * Recurve Matrix.
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ChessFirst
 {
@@ -18,7 +15,7 @@ namespace ChessFirst
     {
         static Double[,] D;
         static Double[] F;
-        
+
         static public Double[] Array(Double[] ArrayInput, Int32 n)
         {
             Object o = new Object();
@@ -33,7 +30,7 @@ namespace ChessFirst
                 return Array;
             }
         }
-       static  Double[] Answer(Double[] a, Int32 n)
+        static Double[] Answer(Double[] a, Int32 n)
         {
             Object o = new Object();
             lock (o)
@@ -122,11 +119,11 @@ namespace ChessFirst
             lock (o)
             {
                 if (n == 0)
-                    return 0 ;
+                    return 0;
                 if (n == 1)
                     return System.Convert.ToDouble(A[0, 0]);
                 if (n == 2)
-                    return System.Convert.ToDouble(A[0, 0])* System.Convert.ToDouble(A[1, 1])- System.Convert.ToDouble(A[0, 1]) * System.Convert.ToDouble(A[1, 0]);
+                    return System.Convert.ToDouble(A[0, 0]) * System.Convert.ToDouble(A[1, 1]) - System.Convert.ToDouble(A[0, 1]) * System.Convert.ToDouble(A[1, 0]);
                 double AA = 0;
                 for (int i = 0; i < n; i++)
                     AA = AA + System.Convert.ToDouble(A[0, i]) * System.Convert.ToDouble(System.Math.Pow(-1, i)) * DetB(AStar(A, n, 0, i), n - 1); ;
@@ -222,7 +219,7 @@ namespace ChessFirst
 
 
                 }
-                return 1- DetB(Ast, n);
+                return 1 - DetB(Ast, n);
             }
         }
         public static double SimilarityB(double[,] A, double[,] B, Int32 n)

@@ -1,9 +1,4 @@
 ﻿/*https://stackoverflow.com/questions/8869006/multiple-dimension-correlation-in-c-sharp*/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImageTextDeepLearning
 {

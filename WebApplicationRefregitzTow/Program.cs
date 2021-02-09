@@ -1,14 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 namespace RefrigtzW
 {
-    
-    
+
+
     static class Program
     {
         public static long SomeExtremelyLargeNumber { get; private set; }
@@ -76,10 +75,10 @@ namespace RefrigtzW
             //Application.EnableVisualStyles();
             //
 
-                //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.SetCompatibleTextRenderingDefault(false);
 
-                //Application.Run(new Load());
-            
+            //Application.Run(new Load());
+
 
         }
     }

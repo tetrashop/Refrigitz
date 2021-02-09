@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace JSONReader
@@ -11,17 +9,17 @@ namespace JSONReader
         String Read;
         List<String> Item;
         public List<SearchGoogle> ItemSearch;
-        public bool OKResult=false;
+        public bool OKResult = false;
         public JSONReader(String Path)
         {
-            Item=new List<String>();
+            Item = new List<String>();
             Read = File.ReadAllText(Path);
-            if(ReadJSON())
+            if (ReadJSON())
             {
-                if(!ConvertToSearchGooleItem())
+                if (!ConvertToSearchGooleItem())
                     System.Windows.Forms.MessageBox.Show("خطای خوادن رشته2 ");
                 else
-                    OKResult=true;
+                    OKResult = true;
             }
             else
                 System.Windows.Forms.MessageBox.Show(" 1خطای خوادن رشته");
@@ -87,7 +85,7 @@ namespace JSONReader
                             ItemSearch[LenDum].timestamp_usec = ConvertJsonStringToDateTime(Read.Substring(0, Read.IndexOf("\"")));
                             Read = Read.Remove(0, Read.IndexOf(":") + 2);
                             ItemSearch[LenDum].query_text = (Read.Substring(0, Read.IndexOf("\"")));
-                            Len ++;
+                            Len++;
                             LenDum++;
                         }
                         catch (Exception tt)

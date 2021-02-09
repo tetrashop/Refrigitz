@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace ChessFirst
 {
     [Serializable]
     public class DrawElefant
 
     {
-        
+
 
         StringBuilder Space = new StringBuilder("&nbsp;");
         int Spaces = 0;
@@ -18,9 +17,9 @@ namespace ChessFirst
 
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
-        
+
+
+
         //Initiate Global Variables.
         List<int[]> ValuableSelfSupported = new List<int[]>();
 
@@ -60,31 +59,31 @@ namespace ChessFirst
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
-           
+
         }
-       
+
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.ElefantMovments; ii++)
 
-                a += ElefantThinking[ii].ReturnHeuristic(-1, -1, Order, false,ref HaveKilled);
+                a += ElefantThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
 
-            
+
             return a;
         }
 
         //Constructor 1.
-        
+
         //Constructor 2.
         public DrawElefant(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//,ref AllDraw. THIS
             )
         {
-            
+
             object balancelock = new object();
             lock (balancelock)
             {
@@ -106,7 +105,7 @@ namespace ChessFirst
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.ElefantMovments; ii++)
-                    ElefantThinking[ii] = new ThinkingChessFirst(ii,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 2);
+                    ElefantThinking[ii] = new ThinkingChessFirst(ii, 2, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 2);
 
                 Row = i;
                 Column = j;
@@ -114,12 +113,12 @@ namespace ChessFirst
                 Order = Ord;
                 Current = Cur;
             }
-            
+
 
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -130,14 +129,14 @@ namespace ChessFirst
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -148,7 +147,7 @@ namespace ChessFirst
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -157,7 +156,7 @@ namespace ChessFirst
         public void Clone(ref DrawElefant AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -168,7 +167,7 @@ namespace ChessFirst
             for (var i = 0; i < AllDraw.ElefantMovments; i++)
             {
 
-                AA.ElefantThinking[i] = new ThinkingChessFirst(i,2,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.ElefantThinking[i] = new ThinkingChessFirst(i, 2, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.ElefantThinking[i].Clone(ref AA.ElefantThinking[i]);
 
             }
@@ -181,7 +180,7 @@ namespace ChessFirst
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         //Draw an Instatnt Elephant On the Table.
         public void DrawElefantOnTable(ref Graphics g, int CellW, int CellH)
@@ -192,11 +191,11 @@ namespace ChessFirst
             {
                 if (g == null)
                     return;
-                
+
                 try
                 {
 
-                    
+
 
                     //Gray Color.
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
@@ -226,7 +225,7 @@ namespace ChessFirst
                 {
                     Log(t);
                 }
-                
+
             }
         }
     }

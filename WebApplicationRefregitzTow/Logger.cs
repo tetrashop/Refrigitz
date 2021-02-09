@@ -1,10 +1,5 @@
 ﻿/*https://stackoverflow.com/questions/11262357/best-practise-locking-files-and-sharing-between-threads*/
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chess
 {
@@ -20,7 +15,8 @@ namespace Chess
             {
                 string tem = get(logPath);
                 if (!Directory.Exists(tem))
-                    Directory.CreateDirectory(tem); }
+                    Directory.CreateDirectory(tem);
+            }
             using (file = File.Open(logPath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
             {
                 writer = new StreamWriter(file);
@@ -31,7 +27,9 @@ namespace Chess
         {
             string aa = a;
             int i = 0, j = 0;
-            while (aa[i] != '.') { i++;
+            while (aa[i] != '.')
+            {
+                i++;
                 if (aa[i] == '\\')
                     j = i;
             }

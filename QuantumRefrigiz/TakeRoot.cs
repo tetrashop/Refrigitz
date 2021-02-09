@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace QuantumRefrigiz
 {
@@ -11,8 +7,8 @@ namespace QuantumRefrigiz
     {
         //static AllDraw Node = null;
         //  POINTER IS THE MEMMERY LOCATION OF Last MOVMENTS.
-        public static AllDraw Pointer=null;
-        
+        public static AllDraw Pointer = null;
+
         public static void CalculateRootGray(AllDraw Curent)
         {/*
             try
@@ -33,6 +29,6 @@ namespace QuantumRefrigiz
             }*/
             return;
         }
-       
+
     }
 }

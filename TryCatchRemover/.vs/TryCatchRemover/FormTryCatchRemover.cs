@@ -1155,11 +1155,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 
@@ -1483,9 +1479,9 @@ namespace TryCatchRemover
                     break;
                 if (Contain.IndexOf("/*") == -1)
                     break;
-                if (Contain.IndexOf("*/")+2 > Contain.Length)
+                if (Contain.IndexOf("*/") + 2 > Contain.Length)
                     break;
-                Contain = Contain.Replace(Contain.Substring(Contain.IndexOf("/*"), Contain.IndexOf("*/")+2 - Contain.IndexOf("/*")), "");
+                Contain = Contain.Replace(Contain.Substring(Contain.IndexOf("/*"), Contain.IndexOf("*/") + 2 - Contain.IndexOf("/*")), "");
 
             } while (Contain.Contains("*/"));
             saveFileDialogTryCatchRemover.ShowDialog();
@@ -2438,7 +2434,7 @@ namespace TryCatchRemover
             Array.Sort(Lists);
             MessageBox.Show("Sorting! This might take long time;");
 
-            ImageTextDeepLearning.AllKeyboardOfWorld dd=new ImageTextDeepLearning.AllKeyboardOfWorld();
+            ImageTextDeepLearning.AllKeyboardOfWorld dd = new ImageTextDeepLearning.AllKeyboardOfWorld();
             Lists = dd.AllSortedImageMatrix(Lists);
 
             MessageBox.Show("Select Image:");
@@ -3030,7 +3026,7 @@ namespace ImageTextDeepLearning
 
             for (int i = 0; i < 256; i++)
             {
-                for (int j = i+1; j < 256; j++)
+                for (int j = i + 1; j < 256; j++)
                 {
                     if (dd[i] > dd[j])
                     {

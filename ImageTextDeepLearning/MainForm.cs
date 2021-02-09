@@ -1,21 +1,20 @@
 ﻿namespace ContourAnalysisDemo
 {
-    using ImageTextDeepLearning;
-//#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
     using ContourAnalysisNS;
-//#pragma warning restore CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning restore CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
     using Emgu.CV;
-//#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
     using Emgu.CV.CvEnum;
-//#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-    using Emgu.CV.UI;
-//#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
     using Emgu.CV.Structure;
-//#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    using Emgu.CV.UI;
+    //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -28,17 +27,17 @@
     public class MainForm : Form
     {
         public bool DisablePaintOnAligns = false;
-//#pragma warning disable CS0246 // The type or namespace name 'Capture' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'Capture' could not be found (are you missing a using directive or an assembly reference?)
         private Capture _capture;
-//#pragma warning restore CS0246 // The type or namespace name 'Capture' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0308 // The non-generic type 'Image' cannot be used with type arguments
-//#pragma warning disable CS0246 // The type or namespace name 'Bgr' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'Capture' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0308 // The non-generic type 'Image' cannot be used with type arguments
+        //#pragma warning disable CS0246 // The type or namespace name 'Bgr' could not be found (are you missing a using directive or an assembly reference?)
         public Image<Bgr, byte> frame;
-//#pragma warning restore CS0246 // The type or namespace name 'Bgr' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning restore CS0308 // The non-generic type 'Image' cannot be used with type arguments
-//#pragma warning disable CS0246 // The type or namespace name 'ImageProcessor' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'Bgr' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0308 // The non-generic type 'Image' cannot be used with type arguments
+        //#pragma warning disable CS0246 // The type or namespace name 'ImageProcessor' could not be found (are you missing a using directive or an assembly reference?)
         public ImageProcessor processor;
-//#pragma warning restore CS0246 // The type or namespace name 'ImageProcessor' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'ImageProcessor' could not be found (are you missing a using directive or an assembly reference?)
         private Dictionary<string, Image> AugmentedRealityImages = new Dictionary<string, Image>();
         private bool captureFromCam = true;
         private int frameCount = 0;
@@ -48,13 +47,13 @@
         private int camHeight = 480;
         private string templateFile;
         private IContainer components = null;
-//#pragma warning disable CS0246 // The type or namespace name 'ImageBox' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'ImageBox' could not be found (are you missing a using directive or an assembly reference?)
         private ImageBox ibMain;
-//#pragma warning restore CS0246 // The type or namespace name 'ImageBox' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'ImageBox' could not be found (are you missing a using directive or an assembly reference?)
         private Panel pnSettings;
         private StatusStrip ssMain;
         private Splitter splitter1;
-        public  ToolStripStatusLabel lbFPS;
+        public ToolStripStatusLabel lbFPS;
         private ToolStripStatusLabel lbContoursCount;
         private Timer tmUpdateState;
         private ToolStripStatusLabel lbRecognized;
@@ -92,9 +91,9 @@
         private CheckBox cbShowContours;
         private ToolStripButton btTemplateEditor;
         private ToolStripButton btAutoGenerate;
-//#pragma warning disable CS0246 // The type or namespace name 'PanAndZoomPictureBox' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'PanAndZoomPictureBox' could not be found (are you missing a using directive or an assembly reference?)
         private PanAndZoomPictureBox panAndZoomPictureBox1;
-//#pragma warning restore CS0246 // The type or namespace name 'PanAndZoomPictureBox' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'PanAndZoomPictureBox' could not be found (are you missing a using directive or an assembly reference?)
         private ToolStripLabel toolStripLabel1;
         private ToolStripDropDownButton toolStripDropDownButton1;
         private ToolStripComboBox toolStripComboBox1;
@@ -122,8 +121,8 @@
         {
             try
             {
-                this._capture.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, (double) this.camWidth);
-                this._capture.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, (double) this.camHeight);
+                this._capture.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, (double)this.camWidth);
+                this._capture.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, (double)this.camHeight);
                 this.cbCamResolution.Text = this.camWidth + "x" + this.camHeight;
             }
             catch (NullReferenceException exception1)
@@ -142,16 +141,16 @@
                 this.btLoadImage.Enabled = !this.captureFromCam;
                 this.cbCamResolution.Enabled = this.captureFromCam;
                 this.processor.finder.maxRotateAngle = this.cbAllowAngleMore45.Checked ? 3.1415926535897931 : 0.78539816339744828;
-                this.processor.minContourArea = (int) this.nudMinContourArea.Value;
-                this.processor.minContourLength = (int) this.nudMinContourLength.Value;
-                this.processor.finder.maxACFDescriptorDeviation = (int) this.nudMaxACFdesc.Value;
-                this.processor.finder.minACF = (double) this.nudMinACF.Value;
-                this.processor.finder.minICF = (double) this.nudMinICF.Value;
+                this.processor.minContourArea = (int)this.nudMinContourArea.Value;
+                this.processor.minContourLength = (int)this.nudMinContourLength.Value;
+                this.processor.finder.maxACFDescriptorDeviation = (int)this.nudMaxACFdesc.Value;
+                this.processor.finder.minACF = (double)this.nudMinACF.Value;
+                this.processor.finder.minICF = (double)this.nudMinICF.Value;
                 this.processor.blur = this.cbBlur.Checked;
                 this.processor.noiseFilter = this.cbNoiseFilter.Checked;
-                this.processor.cannyThreshold = (int) this.nudMinDefinition.Value;
+                this.processor.cannyThreshold = (int)this.nudMinDefinition.Value;
                 this.nudMinDefinition.Enabled = this.processor.noiseFilter;
-                this.processor.adaptiveThresholdBlockSize = (int) this.nudAdaptiveThBlockSize.Value;
+                this.processor.adaptiveThresholdBlockSize = (int)this.nudAdaptiveThBlockSize.Value;
                 string[] strArray = this.cbCamResolution.Text.ToLower().Split(new char[] { 'x' });
                 if (strArray.Length == 2)
                 {
@@ -186,14 +185,15 @@
 
         private void btLoadImage_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog {
+            OpenFileDialog dialog = new OpenFileDialog
+            {
                 Filter = "Image|*.bmp;*.png;*.jpg;*.jpeg"
             };
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 try
                 {
-                    this.frame = new Image<Bgr, byte>((Bitmap) Image.FromFile(dialog.FileName));
+                    this.frame = new Image<Bgr, byte>((Bitmap)Image.FromFile(dialog.FileName));
                 }
                 catch (Exception exception1)
                 {
@@ -212,7 +212,8 @@
 
         private void btOpenTemplates_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog {
+            OpenFileDialog dialog = new OpenFileDialog
+            {
                 Filter = "Templates(*.bin)|*.bin"
             };
             if (dialog.ShowDialog(this) == DialogResult.OK)
@@ -224,7 +225,8 @@
 
         private void btSaveTemplates_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog {
+            SaveFileDialog dialog = new SaveFileDialog
+            {
                 Filter = "Templates(*.bin)|*.bin"
             };
             if (dialog.ShowDialog(this) == DialogResult.OK)
@@ -253,9 +255,9 @@
             base.Dispose(disposing);
         }
 
-//#pragma warning disable CS0246 // The type or namespace name 'FoundTemplateDesc' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'FoundTemplateDesc' could not be found (are you missing a using directive or an assembly reference?)
         public void DrawAugmentedReality(FoundTemplateDesc found, Graphics gr)
-//#pragma warning restore CS0246 // The type or namespace name 'FoundTemplateDesc' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'FoundTemplateDesc' could not be found (are you missing a using directive or an assembly reference?)
         {
             string key = Path.GetDirectoryName(this.templateFile) + @"\" + found.template.name;
             if (!this.AugmentedRealityImages.ContainsKey(key))
@@ -272,9 +274,9 @@
             Image image = this.AugmentedRealityImages[key];
             Point point = found.sample.contour.SourceBoundingRect.Center();
             GraphicsState gstate = gr.Save();
-            gr.TranslateTransform((float) point.X, (float) point.Y);
-            gr.RotateTransform((float) ((180.0 * found.angle) / 3.1415926535897931));
-            gr.ScaleTransform((float) found.scale, (float) found.scale);
+            gr.TranslateTransform((float)point.X, (float)point.Y);
+            gr.RotateTransform((float)((180.0 * found.angle) / 3.1415926535897931));
+            gr.ScaleTransform((float)found.scale, (float)found.scale);
             gr.DrawImage(image, new Point(-image.Width / 2, -image.Height / 2));
             gr.Restore(gstate);
         }
@@ -852,8 +854,8 @@
             // lbFPS
             // 
             this.lbFPS.AutoSize = false;
-            this.lbFPS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            this.lbFPS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lbFPS.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.lbFPS.Name = "lbFPS";
@@ -863,8 +865,8 @@
             // lbContoursCount
             // 
             this.lbContoursCount.AutoSize = false;
-            this.lbContoursCount.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            this.lbContoursCount.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lbContoursCount.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.lbContoursCount.Name = "lbContoursCount";
@@ -876,8 +878,8 @@
             // lbRecognized
             // 
             this.lbRecognized.AutoSize = false;
-            this.lbRecognized.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            this.lbRecognized.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lbRecognized.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.lbRecognized.Name = "lbRecognized";
@@ -1051,7 +1053,7 @@
                 FileStream serializationStream = new FileStream(fileName, FileMode.Open);
                 try
                 {
-                    this.processor.templates = (Templates) new BinaryFormatter().Deserialize(serializationStream);
+                    this.processor.templates = (Templates)new BinaryFormatter().Deserialize(serializationStream);
                 }
                 finally
                 {
@@ -1077,7 +1079,7 @@
                 }
                 this.frameCount++;
                 this.processor.ProcessImage(this.frame);
-                this.ibMain.Image = !this.cbShowBinarized.Checked ? ((IImage) this.frame) : ((IImage) this.processor.binarizedFrame);
+                this.ibMain.Image = !this.cbShowBinarized.Checked ? ((IImage)this.frame) : ((IImage)this.processor.binarizedFrame);
             }
             catch (Exception exception1)
             {

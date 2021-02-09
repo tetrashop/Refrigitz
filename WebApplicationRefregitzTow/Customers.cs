@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RefrigtzW
 {
@@ -8,21 +6,22 @@ namespace RefrigtzW
     public class Customers
     {
         static Int32 NumberOfObjects = 0;
-        const char NULL='\0';
-    
-        Int32  CustomerID = new Int32();
-        String Name = new String(NULL,20);
-        String FamilyName = new String(NULL,20);
-        String Address = new String(NULL,20);
-        Int32  TelephonNumber = new Int32();
+        const char NULL = '\0';
+
+        Int32 CustomerID = new Int32();
+        String Name = new String(NULL, 20);
+        String FamilyName = new String(NULL, 20);
+        String Address = new String(NULL, 20);
+        Int32 TelephonNumber = new Int32();
 
         public Customers()
         {
-        
+
         }
         public Int32 CustomenrNumberOfObjectsAccess
         {
-            get {
+            get
+            {
                 return NumberOfObjects;
             }
             set
@@ -85,6 +84,6 @@ namespace RefrigtzW
                 TelephonNumber = value;
             }
         }
-        
+
     }
 }

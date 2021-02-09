@@ -1,28 +1,27 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace RefrigtzW
 {
     [Serializable]
     public class DrawCastle
     {
-       
+
 
         StringBuilder Space = new StringBuilder("&nbsp;");
-//#pragma warning disable CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
+        //#pragma warning disable CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
         int Spaces = 0;
 #pragma warning restore CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
-//#pragma warning restore CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
+        //#pragma warning restore CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
 
 
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
-        
-        
+
+
         public static Image[] C = new Image[2];
         //Iniatite Global Variable.
         List<int[]> ValuableSelfSupported = new List<int[]>();
@@ -64,15 +63,15 @@ namespace RefrigtzW
         }
         public void Dispose()
         {
-            
+
             ValuableSelfSupported = null;
             C = null;
-            
+
 
         }
         public bool MaxFound(ref bool MaxNotFound)
         {
-            
+
 
             int a = ReturnHeuristic();
             if (MaxHeuristicxB < a)
@@ -85,35 +84,35 @@ namespace RefrigtzW
                         ThinkingRefrigtzW.MaxHeuristicx = a;
                     MaxHeuristicxB = a;
                 }
-                
+
                 return true;
             }
 
             MaxNotFound = true;
-            
+
             return false;
         }
         public int ReturnHeuristic()
         {
             int HaveKilled = 0;
-            
+
             int a = 0;
             for (var ii = 0; ii < AllDraw.CastleMovments; ii++)
 
-                a += CastleThinking[ii].ReturnHeuristic(-1, -1, Order, false,ref HaveKilled);
+                a += CastleThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
 
-            
+
             return a;
         }
 
 
         //Constructor 1.
-        
+
         //constructor 2.
         public DrawCastle(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//, ref AllDraw. THIS
             )
         {
-            
+
             object balancelock = new object();
             lock (balancelock)
             {
@@ -133,7 +132,7 @@ namespace RefrigtzW
                     for (var jj = 0; jj < 8; jj++)
                         Table[ii, jj] = Tab[ii, jj];
                 for (var ii = 0; ii < AllDraw.CastleMovments; ii++)
-                    CastleThinking[ii] = new ThinkingRefrigtzW(ii,4,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 4);
+                    CastleThinking[ii] = new ThinkingRefrigtzW(ii, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 4);
 
                 Row = i;
                 Column = j;
@@ -141,11 +140,11 @@ namespace RefrigtzW
                 Order = Ord;
                 Current = Cur;
             }
-            
+
         }
         int[,] CloneATable(int[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -156,14 +155,14 @@ namespace RefrigtzW
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
         }
         bool[,] CloneATable(bool[,] Tab)
         {
-            
+
             Object O = new Object();
             lock (O)
             {
@@ -174,7 +173,7 @@ namespace RefrigtzW
                     for (var j = 0; j < 8; j++)
                         Table[i, j] = Tab[i, j];
                 //Return New Object.
-                
+
                 return Table;
             }
 
@@ -183,7 +182,7 @@ namespace RefrigtzW
         public void Clone(ref DrawCastle AA//, ref AllDraw. THIS
             )
         {
-            
+
             int[,] Tab = new int[8, 8];
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
@@ -194,7 +193,7 @@ namespace RefrigtzW
             for (var i = 0; i < AllDraw.CastleMovments; i++)
             {
 
-                AA.CastleThinking[i] = new ThinkingRefrigtzW(i,4,CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
+                AA.CastleThinking[i] = new ThinkingRefrigtzW(i, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
                 this.CastleThinking[i].Clone(ref AA.CastleThinking[i]);
 
             }
@@ -207,14 +206,14 @@ namespace RefrigtzW
             AA.Order = Order;
             AA.Current = Current;
             AA.color = color;
-            
+
         }
         //Draw An Instatnt Brideges Images On the Table Method.
         public void DrawCastleOnTable(ref Graphics g, int CellW, int CellH)
         {
             if (g == null)
                 return;
-            
+
             try
             {
                 object balancelockS = new object();
@@ -254,7 +253,7 @@ namespace RefrigtzW
             {
                 Log(t);
             }
-            
+
         }
     }
 }

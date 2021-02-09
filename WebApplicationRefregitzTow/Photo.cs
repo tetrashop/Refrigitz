@@ -1,17 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RefrigtzW
 {
     [Serializable]
     public class Photo
     {
-        Int32   PhotoNumber = new Int32();
-        String  PhotoName   = null;
-        Boolean PhotoType   = new Boolean();
+        Int32 PhotoNumber = new Int32();
+        String PhotoName = null;
+        Boolean PhotoType = new Boolean();
         public Photo()
-        { 
+        {
         }
         public Int32 PhotoNumberAccsess
         {
@@ -21,27 +19,28 @@ namespace RefrigtzW
             }
             set
             {
-            PhotoNumber=value;
+                PhotoNumber = value;
             }
         }
         public String PhotoNameAccess
         {
-            get {
+            get
+            {
                 return PhotoName;
 
             }
-            set 
+            set
             {
                 PhotoName = value;
             }
         }
         public Boolean PhotoTypeAccess
         {
-            get 
+            get
             {
                 return PhotoType;
             }
-            set 
+            set
             {
                 PhotoType = value;
             }

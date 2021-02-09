@@ -1,22 +1,21 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Text;
 namespace RefrigtzDLL
 {
     [Serializable]
     public class ChessRules
     {
-       
+
         StringBuilder Space = new StringBuilder("&nbsp;");
 
 
         int Spaces = 0;
 
-//
+        //
 
         public bool IgnoreSelfObject = false;
         public static int ObjectHittedRow = -1;
@@ -609,7 +608,7 @@ namespace RefrigtzDLL
                 bool CheckGrayDummy = CheckGray;
                 bool CheckBrownDummy = CheckBrown;
                 //If There is Check on Tow Side.
-                
+
                 int CDummy = RefrigtzDLL.ChessRules.CurrentOrder;
                 int COrder = Order;
                 if (Order == 1)
@@ -806,7 +805,7 @@ namespace RefrigtzDLL
                 bool CheckGrayDummy = CheckGray;
                 bool CheckBrownDummy = CheckBrown;
                 //If There is Check on Tow Side.
-                
+
                 int CDummy = RefrigtzDLL.ChessRules.CurrentOrder;
                 int COrder = Order;
                 if (Order == 1)
@@ -1613,7 +1612,7 @@ namespace RefrigtzDLL
                 }
                 //Separate.
                 if (AllDraw.Less != int.MinValue)
-                    S += " With Heuristic (" +AllDraw.Less.ToString() + ")--";
+                    S += " With Heuristic (" + AllDraw.Less.ToString() + ")--";
                 else
                     S += " --";
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CreateStatistic:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
@@ -2589,7 +2588,7 @@ namespace RefrigtzDLL
                     }
                 }
                 //Determination of King Enemy at Destination Home.
-                
+
                 //If Source and The Destination are The Same.
                 if (RowFirst == RowSecond && ColumnFirst == ColumnSecond)
                 {
@@ -2612,7 +2611,7 @@ namespace RefrigtzDLL
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                         return SoldierRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
 
-                        
+
                     case 4://Rule of Castles.
                         if (System.Math.Abs(TableS[RowFirst, ColumnFirst]) != Kind)
                             return false;
@@ -2671,7 +2670,7 @@ namespace RefrigtzDLL
                 if (MinisterRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki) && (System.Math.Abs(RowFirst - RowSecond) <= 1) && (System.Math.Abs(ColumnFirst - ColumnSecond) <= 1))
                 {
                     //Initiate Local Variable.
-                    
+
                     Move = true;
                 }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("KingRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
@@ -2884,7 +2883,7 @@ namespace RefrigtzDLL
                 }
 
                 //Return Not Validity.
-                
+
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //Return not Vailidity.
                 return Move;
@@ -2992,7 +2991,7 @@ namespace RefrigtzDLL
                     if (!Act)
                         Move = true;
                 }
-                
+
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ElephantRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //Return Not Validity.
                 return Move;
@@ -3018,7 +3017,7 @@ namespace RefrigtzDLL
                     Move = true;
                 }
                 //Return Not Validity.
-                
+
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("HourseRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Move;
             }
@@ -3371,7 +3370,7 @@ namespace RefrigtzDLL
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("SoldierRulesaArrangmentsBoardZero:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Move;
             }
-            
+
         }
         //Solder Rule Method.
         public bool SoldierRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy)
@@ -3391,7 +3390,7 @@ namespace RefrigtzDLL
                     ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("SoldierRules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                     return SoldierRulesaArrangmentsBoardOne(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
                 }
-                
+
                 ///Return Not Validity.
             }
         }

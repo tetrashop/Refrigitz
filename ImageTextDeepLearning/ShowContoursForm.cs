@@ -1,11 +1,10 @@
 ﻿namespace ContourAnalysisDemo
 {
-//#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
     using ContourAnalysisNS;
-//#pragma warning restore CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-    using Emgu.CV;
-//#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning restore CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
+    //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -15,15 +14,15 @@
 
     public class ShowContoursForm : Form
     {
-//#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
         private Templates templates;
-//#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
         private Templates samples;
-//#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'Template' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'Template' could not be found (are you missing a using directive or an assembly reference?)
         public Template selectedTemplate;
-//#pragma warning restore CS0246 // The type or namespace name 'Template' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'Template' could not be found (are you missing a using directive or an assembly reference?)
         private Bitmap bmp;
         private IContainer components = null;
         private DataGridView dgvContours;
@@ -33,11 +32,11 @@
         private DataGridViewTextBoxColumn Column;
         private Label label2;
 
-//#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
         public ShowContoursForm(Templates templates, Templates samples, Image image)
-//#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
+        //#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
         {
             bool flag = !ReferenceEquals(image, null);
             if (flag)
@@ -63,7 +62,7 @@
                 base.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
                 string fileName = Path.GetTempPath() + @"\temp.bmp";
                 image.Save(fileName);
-                this.bmp = (Bitmap) Image.FromFile(fileName);
+                this.bmp = (Bitmap)Image.FromFile(fileName);
             }
         }
 
@@ -97,7 +96,7 @@
                 Template template = this.samples[e.RowIndex];
                 if (e.ColumnIndex == -1)
                 {
-                    e.Graphics.DrawString(e.RowIndex.ToString(), this.Font, Brushes.Black, (PointF) e.CellBounds.Location);
+                    e.Graphics.DrawString(e.RowIndex.ToString(), this.Font, Brushes.Black, (PointF)e.CellBounds.Location);
                 }
                 else
                 {
@@ -106,8 +105,8 @@
                         Rectangle rectangle = new Rectangle(e.CellBounds.X, e.CellBounds.Y, (e.CellBounds.Width - 0x18) / 2, e.CellBounds.Height);
                         rectangle.Inflate(-20, -20);
                         Rectangle sourceBoundingRect = template.contour.SourceBoundingRect;
-                        float num3 = Math.Min((float) ((1f * rectangle.Width) / ((float) sourceBoundingRect.Width)), (float) ((1f * rectangle.Height) / ((float) sourceBoundingRect.Height)));
-                        e.Graphics.DrawImage(this.bmp, new Rectangle(rectangle.X, rectangle.Y, (int) (sourceBoundingRect.Width * num3), (int) (sourceBoundingRect.Height * num3)), sourceBoundingRect, GraphicsUnit.Pixel);
+                        float num3 = Math.Min((float)((1f * rectangle.Width) / ((float)sourceBoundingRect.Width)), (float)((1f * rectangle.Height) / ((float)sourceBoundingRect.Height)));
+                        e.Graphics.DrawImage(this.bmp, new Rectangle(rectangle.X, rectangle.Y, (int)(sourceBoundingRect.Width * num3), (int)(sourceBoundingRect.Height * num3)), sourceBoundingRect, GraphicsUnit.Pixel);
                     }
                     if (e.ColumnIndex == 0)
                     {
@@ -141,8 +140,8 @@
             // 
             this.dgvContours.AllowUserToAddRows = false;
             this.dgvContours.AllowUserToDeleteRows = false;
-            this.dgvContours.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvContours.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvContours.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvContours.BorderStyle = System.Windows.Forms.BorderStyle.None;

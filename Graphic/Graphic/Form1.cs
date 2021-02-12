@@ -628,6 +628,12 @@ namespace WindowsApplication1
             ClickMouse = 0;
             Kind = 1;
         }
+
+        private void doToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             ClickMouse = 0;

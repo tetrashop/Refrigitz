@@ -90,6 +90,8 @@ namespace WindowsApplication1
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button10 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dTo3DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.doToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -124,7 +126,8 @@ namespace WindowsApplication1
             this.fileToolStripMenuItem,
             this.dShapesToolStripMenuItem,
             this.modifiersToolStripMenuItem,
-            this.viewToolStripMenuItem});
+            this.viewToolStripMenuItem,
+            this.dTo3DToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(611, 24);
@@ -153,7 +156,7 @@ namespace WindowsApplication1
             // aRCToolStripMenuItem
             // 
             this.aRCToolStripMenuItem.Name = "aRCToolStripMenuItem";
-            this.aRCToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.aRCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aRCToolStripMenuItem.Text = "Arc";
             this.aRCToolStripMenuItem.Click += new System.EventHandler(this.aRCToolStripMenuItem_Click_1);
             this.aRCToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.aRCToolStripMenuItem_MouseDown);
@@ -162,28 +165,28 @@ namespace WindowsApplication1
             // lToolStripMenuItem
             // 
             this.lToolStripMenuItem.Name = "lToolStripMenuItem";
-            this.lToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.lToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lToolStripMenuItem.Text = "Line";
             this.lToolStripMenuItem.Click += new System.EventHandler(this.lToolStripMenuItem_Click);
             // 
             // bezierToolStripMenuItem
             // 
             this.bezierToolStripMenuItem.Name = "bezierToolStripMenuItem";
-            this.bezierToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.bezierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.bezierToolStripMenuItem.Text = "Bezier";
             this.bezierToolStripMenuItem.Click += new System.EventHandler(this.bezierToolStripMenuItem_Click);
             // 
             // curveToolStripMenuItem
             // 
             this.curveToolStripMenuItem.Name = "curveToolStripMenuItem";
-            this.curveToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.curveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.curveToolStripMenuItem.Text = "Ellipse";
             this.curveToolStripMenuItem.Click += new System.EventHandler(this.EllipseToolStripMenuItem_Click);
             // 
             // rectangleToolStripMenuItem
             // 
             this.rectangleToolStripMenuItem.Name = "rectangleToolStripMenuItem";
-            this.rectangleToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.rectangleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rectangleToolStripMenuItem.Text = "Rectangle";
             this.rectangleToolStripMenuItem.Click += new System.EventHandler(this.rectangleToolStripMenuItem_Click);
             // 
@@ -239,19 +242,19 @@ namespace WindowsApplication1
             // inversionTransmisionToolStripMenuItem
             // 
             this.inversionTransmisionToolStripMenuItem.Name = "inversionTransmisionToolStripMenuItem";
-            this.inversionTransmisionToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.inversionTransmisionToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.inversionTransmisionToolStripMenuItem.Text = "Inversion Transmision";
             // 
             // inversionRotationToolStripMenuItem
             // 
             this.inversionRotationToolStripMenuItem.Name = "inversionRotationToolStripMenuItem";
-            this.inversionRotationToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.inversionRotationToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.inversionRotationToolStripMenuItem.Text = "Inversion Rotation";
             // 
             // inversionScalingToolStripMenuItem
             // 
             this.inversionScalingToolStripMenuItem.Name = "inversionScalingToolStripMenuItem";
-            this.inversionScalingToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.inversionScalingToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.inversionScalingToolStripMenuItem.Text = "Inversion Scaling";
             // 
             // viewToolStripMenuItem
@@ -267,21 +270,21 @@ namespace WindowsApplication1
             // zoomInToolStripMenuItem
             // 
             this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zoomInToolStripMenuItem.Text = "ZoomIn";
             this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.zoomInToolStripMenuItem_Click);
             // 
             // zoomOutToolStripMenuItem
             // 
             this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zoomOutToolStripMenuItem.Text = "ZoomOut";
             this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
             // 
             // moveToolStripMenuItem
             // 
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.moveToolStripMenuItem.Text = "MoveAll";
             this.moveToolStripMenuItem.Click += new System.EventHandler(this.moveToolStripMenuItem_Click);
             // 
@@ -739,6 +742,21 @@ namespace WindowsApplication1
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Modifiers";
             // 
+            // dTo3DToolStripMenuItem
+            // 
+            this.dTo3DToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.doToolStripMenuItem});
+            this.dTo3DToolStripMenuItem.Name = "dTo3DToolStripMenuItem";
+            this.dTo3DToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.dTo3DToolStripMenuItem.Text = "2D to 3D";
+            // 
+            // doToolStripMenuItem
+            // 
+            this.doToolStripMenuItem.Name = "doToolStripMenuItem";
+            this.doToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.doToolStripMenuItem.Text = "Do";
+            this.doToolStripMenuItem.Click += new System.EventHandler(this.doToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -878,6 +896,8 @@ namespace WindowsApplication1
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.ToolStripMenuItem dTo3DToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem doToolStripMenuItem;
     }
 }
 

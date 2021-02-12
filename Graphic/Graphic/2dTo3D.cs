@@ -44,7 +44,7 @@ namespace WindowsApplication1
             }
             return s;
         }
-        void ContoObject(int[] b)
+        void ContoObject()
         {
             c = new float[(maxr - minr + 1) * fg, (maxteta - minteta + 1) * fg, 3];
             int v = 0;
@@ -166,6 +166,15 @@ namespace WindowsApplication1
 
                 }
             }
+        }
+        //convert 2d image to 3d;
+        public _2dTo3D(string ass)
+        {
+            a = (Bitmap)Image.FromFile(ass);
+            Initiate();           
+            ContoObject();
+            ConvTo3D();
+
         }
     }
 }

@@ -49,6 +49,8 @@ namespace WindowsApplication1
             this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dTo3DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.doToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.PictureBox2 = new System.Windows.Forms.PictureBox();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
@@ -90,8 +92,8 @@ namespace WindowsApplication1
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button10 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dTo3DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.doToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -118,6 +120,7 @@ namespace WindowsApplication1
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox23)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -156,7 +159,7 @@ namespace WindowsApplication1
             // aRCToolStripMenuItem
             // 
             this.aRCToolStripMenuItem.Name = "aRCToolStripMenuItem";
-            this.aRCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aRCToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.aRCToolStripMenuItem.Text = "Arc";
             this.aRCToolStripMenuItem.Click += new System.EventHandler(this.aRCToolStripMenuItem_Click_1);
             this.aRCToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.aRCToolStripMenuItem_MouseDown);
@@ -165,28 +168,28 @@ namespace WindowsApplication1
             // lToolStripMenuItem
             // 
             this.lToolStripMenuItem.Name = "lToolStripMenuItem";
-            this.lToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.lToolStripMenuItem.Text = "Line";
             this.lToolStripMenuItem.Click += new System.EventHandler(this.lToolStripMenuItem_Click);
             // 
             // bezierToolStripMenuItem
             // 
             this.bezierToolStripMenuItem.Name = "bezierToolStripMenuItem";
-            this.bezierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bezierToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.bezierToolStripMenuItem.Text = "Bezier";
             this.bezierToolStripMenuItem.Click += new System.EventHandler(this.bezierToolStripMenuItem_Click);
             // 
             // curveToolStripMenuItem
             // 
             this.curveToolStripMenuItem.Name = "curveToolStripMenuItem";
-            this.curveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.curveToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.curveToolStripMenuItem.Text = "Ellipse";
             this.curveToolStripMenuItem.Click += new System.EventHandler(this.EllipseToolStripMenuItem_Click);
             // 
             // rectangleToolStripMenuItem
             // 
             this.rectangleToolStripMenuItem.Name = "rectangleToolStripMenuItem";
-            this.rectangleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rectangleToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.rectangleToolStripMenuItem.Text = "Rectangle";
             this.rectangleToolStripMenuItem.Click += new System.EventHandler(this.rectangleToolStripMenuItem_Click);
             // 
@@ -270,23 +273,38 @@ namespace WindowsApplication1
             // zoomInToolStripMenuItem
             // 
             this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.zoomInToolStripMenuItem.Text = "ZoomIn";
             this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.zoomInToolStripMenuItem_Click);
             // 
             // zoomOutToolStripMenuItem
             // 
             this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.zoomOutToolStripMenuItem.Text = "ZoomOut";
             this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
             // 
             // moveToolStripMenuItem
             // 
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.moveToolStripMenuItem.Text = "MoveAll";
             this.moveToolStripMenuItem.Click += new System.EventHandler(this.moveToolStripMenuItem_Click);
+            // 
+            // dTo3DToolStripMenuItem
+            // 
+            this.dTo3DToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.doToolStripMenuItem});
+            this.dTo3DToolStripMenuItem.Name = "dTo3DToolStripMenuItem";
+            this.dTo3DToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.dTo3DToolStripMenuItem.Text = "2D to 3D";
+            // 
+            // doToolStripMenuItem
+            // 
+            this.doToolStripMenuItem.Name = "doToolStripMenuItem";
+            this.doToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.doToolStripMenuItem.Text = "Do";
+            this.doToolStripMenuItem.Click += new System.EventHandler(this.doToolStripMenuItem_Click);
             // 
             // PictureBox1
             // 
@@ -742,20 +760,18 @@ namespace WindowsApplication1
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Modifiers";
             // 
-            // dTo3DToolStripMenuItem
+            // openFileDialog1
             // 
-            this.dTo3DToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.doToolStripMenuItem});
-            this.dTo3DToolStripMenuItem.Name = "dTo3DToolStripMenuItem";
-            this.dTo3DToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.dTo3DToolStripMenuItem.Text = "2D to 3D";
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // doToolStripMenuItem
+            // pictureBox24
             // 
-            this.doToolStripMenuItem.Name = "doToolStripMenuItem";
-            this.doToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.doToolStripMenuItem.Text = "Do";
-            this.doToolStripMenuItem.Click += new System.EventHandler(this.doToolStripMenuItem_Click);
+            this.pictureBox24.Location = new System.Drawing.Point(140, 54);
+            this.pictureBox24.Name = "pictureBox24";
+            this.pictureBox24.Size = new System.Drawing.Size(385, 346);
+            this.pictureBox24.TabIndex = 35;
+            this.pictureBox24.TabStop = false;
+            this.pictureBox24.Visible = false;
             // 
             // Form1
             // 
@@ -763,6 +779,7 @@ namespace WindowsApplication1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(611, 517);
+            this.Controls.Add(this.pictureBox24);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.PictureBox23);
@@ -827,6 +844,7 @@ namespace WindowsApplication1
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox23)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -898,6 +916,8 @@ namespace WindowsApplication1
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.ToolStripMenuItem dTo3DToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem doToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.PictureBox pictureBox24;
     }
 }
 

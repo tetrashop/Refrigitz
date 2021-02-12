@@ -631,7 +631,13 @@ namespace WindowsApplication1
 
         private void doToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            openFileDialog1.ShowDialog();
 
+            _2dTo3D a = new _2dTo3D(openFileDialog1.FileName);
+            pictureBox24.Visible = true;
+            pictureBox24.Image = a.a;
+            pictureBox24.Update();
+            pictureBox24.Invalidate();
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -10,24 +10,21 @@ namespace WindowsApplication1
 {
     class _2dTo3D
     {
-        Bitmap a;
+        public Bitmap a;
         //size
         int[] b =new int[3];
         int[,,] t;// zeros(b(1,1),b(1,2),3);
         int[,,] rr;// rr=zeros(b(1,1),b(1,2),3);
         int[,,] f;//     f=zeros(b(1,1),b(1,2),3);
         float[,,] c;
-        float[,,] e;
+        public float[,,] e;
         int fg = 2;
-        int r = 0;
-        int teta = 0;
-        int fi = 0;
-        int minr = +100000;
-        int minteta = +100000;
-        int minfi = +100000;
-        int maxr = -1000000;
-        int maxteta = -1000000;
-        int maxfi = -1000000;
+        int minr = int.MaxValue;
+        int minteta = int.MaxValue;
+        int minfi = int.MaxValue;
+        int maxr = int.MinValue;
+        int maxteta = int.MinValue;
+        int maxfi = int.MinValue;
         float[] cart2sph(float i, float j, float k)
         {
             float[] s = new float[3];
@@ -39,13 +36,16 @@ namespace WindowsApplication1
             }
             else
             {
-                s[0] = (float)Math.Acos(k / r);
+                s[0] = (float)Math.Acos(k / s[2]);
                 s[1] = (float)Math.Atan2(j, i);
             }
             return s;
         }
         void ContoObject()
         {
+            int r = 0;
+            int teta = 0;
+            int fi = 0;
             c = new float[(maxr - minr + 1) * fg, (maxteta - minteta + 1) * fg, 3];
             int v = 0;
             int n = 0;
@@ -84,13 +84,13 @@ namespace WindowsApplication1
                                 f[i, j, k] = fi;
 
 
-                                dr = (float)Math.Round((-i / Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2))) * 3 * 300 / (1 + System.Convert.ToInt32(a.GetPixel(i, j))));
+                                dr = (float)Math.Round((-i / Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2))) * 3 * 300 / (1 + System.Convert.ToInt32(a.GetPixel(i, j).ToArgb())));
                                 if (dr + maxr - minr < maxr - minr && teta + 2 < maxteta - minteta && teta - 2 > minteta)
                                 {
                                     if ((ii + jj) % 2 == 0)
-                                        c[(int)((maxr - minr + 1) * ii + r),(int)Math.Round((double)(maxteta - minteta + 1) * jj + teta + 2), k] = System.Convert.ToInt32(a.GetPixel(i, j)) + dr;
+                                        c[(int)((maxr - minr + 1) * ii + r),(int)Math.Round((double)(maxteta - minteta + 1) * jj + teta + 2), k] = System.Convert.ToInt32(a.GetPixel(i, j).ToArgb()) + dr;
                                     else
-                                        c[(int)((maxr - minr + 1) * ii + r), (int)Math.Round((double)(maxteta - minteta + 1) * jj + teta - 2), k] = System.Convert.ToInt32(a.GetPixel(i, j)) + dr;
+                                        c[(int)((maxr - minr + 1) * ii + r), (int)Math.Round((double)(maxteta - minteta + 1) * jj + teta - 2), k] = System.Convert.ToInt32(a.GetPixel(i, j).ToArgb()) + dr;
                                 }
                             }
 
@@ -102,6 +102,9 @@ namespace WindowsApplication1
         }
         void ConvTo3D()
         {
+            int r = 0;
+            int teta = 0;
+            int fi = 0;
             e = new float[b[0],(int)( b[1] * fg), 3];
 
             for (int ii = 0; ii < fg - 1; ii++)
@@ -124,9 +127,12 @@ namespace WindowsApplication1
         }
         void Initiate()
         {
+            int r = 0;
+            int teta = 0;
+            int fi = 0;
             b[0] = a.Width;
             b[1] = a.Height;
-            b[3] = 3;
+            b[2] = 3;
             t = new int[b[0], b[1], 3];
             rr=new int[b[0], b[1], 3];
             f=new int[b[0], b[1], 3];
@@ -139,6 +145,7 @@ namespace WindowsApplication1
                         //[teta, fi, r] = cart2sph(i, j, 0);
                         s = cart2sph(i, j, 0);
                         s[2] = (float)Math.Round(s[2]);
+                        s[0] = (float)Math.Round(s[0] * 180 / 3.1415);
                         s[1] = (float)Math.Round(s[1] * 180 / 3.1415);
                         teta = (int)s[0];
                         fi = (int)s[1];
@@ -174,7 +181,14 @@ namespace WindowsApplication1
             Initiate();           
             ContoObject();
             ConvTo3D();
-
+            a=new Bitmap(b[0], (int)(b[1] * fg));
+            for (int i = 0; i < a.Width; i++)
+            {
+                for(int j=0;j<a.Height;j++)
+                {
+                    a.SetPixel(i, j, Color.FromArgb((int)(e[i, j, 0])));
+                }
+            }
         }
     }
 }

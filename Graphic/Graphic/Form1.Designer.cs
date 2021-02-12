@@ -312,6 +312,7 @@ namespace WindowsApplication1
             this.PictureBox1.Location = new System.Drawing.Point(523, 27);
             this.PictureBox1.Name = "PictureBox1";
             this.PictureBox1.Size = new System.Drawing.Size(87, 492);
+            this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBox1.TabIndex = 1;
             this.PictureBox1.TabStop = false;
             this.PictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
@@ -770,6 +771,7 @@ namespace WindowsApplication1
             this.pictureBox24.Location = new System.Drawing.Point(140, 54);
             this.pictureBox24.Name = "pictureBox24";
             this.pictureBox24.Size = new System.Drawing.Size(385, 346);
+            this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox24.TabIndex = 35;
             this.pictureBox24.TabStop = false;
             this.pictureBox24.Visible = false;
@@ -778,6 +780,7 @@ namespace WindowsApplication1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(611, 517);
             this.Controls.Add(this.pictureBox24);

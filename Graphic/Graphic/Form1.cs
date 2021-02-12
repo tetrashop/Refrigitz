@@ -634,9 +634,10 @@ namespace WindowsApplication1
             openFileDialog1.ShowDialog();
 
             _2dTo3D a = new _2dTo3D(openFileDialog1.FileName);
+            pictureBox24.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox24.Visible = true;
-            pictureBox24.Image = a.a;
-            pictureBox24.Update();
+            pictureBox24.Image = (new Bitmap(a.a,pictureBox24.Width,pictureBox24.Height));
+           pictureBox24.Update();
             pictureBox24.Invalidate();
         }
 

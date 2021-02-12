@@ -302,7 +302,7 @@ namespace WindowsApplication1
             // doToolStripMenuItem
             // 
             this.doToolStripMenuItem.Name = "doToolStripMenuItem";
-            this.doToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.doToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
             this.doToolStripMenuItem.Text = "Do";
             this.doToolStripMenuItem.Click += new System.EventHandler(this.doToolStripMenuItem_Click);
             // 
@@ -314,6 +314,7 @@ namespace WindowsApplication1
             this.PictureBox1.Size = new System.Drawing.Size(87, 492);
             this.PictureBox1.TabIndex = 1;
             this.PictureBox1.TabStop = false;
+            this.PictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // PictureBox2
             // 

@@ -84,13 +84,13 @@ namespace WindowsApplication1
                                 f[i, j, k] = fi;
 
 
-                                dr = (float)Math.Round((-i / Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2))) * 3 * 300 / (1 + System.Convert.ToInt32(a.GetPixel(i, j).ToArgb())));
+                                dr = (float)Math.Round((-i / Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
                                 if (dr + maxr - minr < maxr - minr && teta + 2 < maxteta - minteta && teta - 2 > minteta)
                                 {
                                     if ((ii + jj) % 2 == 0)
-                                        c[(int)((maxr - minr + 1) * ii + r),(int)Math.Round((double)(maxteta - minteta + 1) * jj + teta + 2), k] = System.Convert.ToInt32(a.GetPixel(i, j).ToArgb()) + dr;
+                                        c[(int)((maxr - minr + 1) * ii + r), (int)Math.Round((double)(maxteta - minteta + 1) * jj + teta + 2), k] = System.Convert.ToInt32(GetK(a, i, j, k)) + dr;
                                     else
-                                        c[(int)((maxr - minr + 1) * ii + r), (int)Math.Round((double)(maxteta - minteta + 1) * jj + teta - 2), k] = System.Convert.ToInt32(a.GetPixel(i, j).ToArgb()) + dr;
+                                        c[(int)((maxr - minr + 1) * ii + r), (int)Math.Round((double)(maxteta - minteta + 1) * jj + teta - 2), k] = System.Convert.ToInt32(GetK(a, i, j, k)) + dr;
                                 }
                             }
 
@@ -99,6 +99,16 @@ namespace WindowsApplication1
                     }
                 }
             }
+        }
+        int GetK(Bitmap a, int i, int j, int k)
+        {
+            if (k == 0)
+                return a.GetPixel(i, k).R;
+            if (k == 1)
+                return a.GetPixel(i, k).G;
+
+            return a.GetPixel(i, k).B;
+
         }
         void ConvTo3D()
         {

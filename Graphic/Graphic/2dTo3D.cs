@@ -1,18 +1,15 @@
 ﻿/*tetrashop.ir 1399/11/24 iran urmia
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 namespace WindowsApplication1
 {
     class _2dTo3D
     {
-        public Bitmap a;
+        Bitmap a;
+        public Bitmap ar;
         //size
-        int[] b =new int[3];
+        int[] b = new int[3];
         int[,,] t;// zeros(b(1,1),b(1,2),3);
         int[,,] rr;// rr=zeros(b(1,1),b(1,2),3);
         int[,,] f;//     f=zeros(b(1,1),b(1,2),3);
@@ -28,7 +25,7 @@ namespace WindowsApplication1
         float[] cart2sph(float i, float j, float k)
         {
             float[] s = new float[3];
-            s[2] =(float) Math.Sqrt(i * i + j * j + k * k);
+            s[2] = (float)Math.Sqrt(i * i + j * j + k * k);
             if (s[2] == 0)
             {
                 s[0] = 0;
@@ -85,7 +82,7 @@ namespace WindowsApplication1
 
 
                                 dr = (float)Math.Round((-i / Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
-                                if (dr + maxr - minr < maxr - minr && teta + 2 < maxteta - minteta && teta - 2 > minteta)
+                                if ((dr + maxr - minr < maxr - minr) && (teta + 2 < maxteta - minteta) && (teta - 2 > minteta))
                                 {
                                     if ((ii + jj) % 2 == 0)
                                         c[(int)((maxr - minr + 1) * ii + r), (int)Math.Round((double)(maxteta - minteta + 1) * jj + teta + 2), k] = System.Convert.ToInt32(GetK(a, i, j, k)) + dr;
@@ -115,7 +112,7 @@ namespace WindowsApplication1
             int r = 0;
             int teta = 0;
             int fi = 0;
-            e = new float[b[0],(int)( b[1] * fg), 3];
+            e = new float[b[0], (int)(b[1] * fg), 3];
 
             for (int ii = 0; ii < fg - 1; ii++)
             {
@@ -128,7 +125,7 @@ namespace WindowsApplication1
                             for (int k = 1; k < 3; k++)
                             {
 
-                                e[(int)(ii * b[0] + i),(int) (jj * b[1] + j), k] = c[(int)(ii * (maxr - minr + 1) + rr[i, j, k]),(int)( jj * (maxteta - minteta + 1) + t[i, j, k]), k];
+                                e[(int)(ii * b[0] + i), (int)(jj * b[1] + j), k] = c[(int)(ii * (maxr - minr + 1) + rr[i, j, k]), (int)(jj * (maxteta - minteta + 1) + t[i, j, k]), k];
                             }
                         }
                     }
@@ -144,13 +141,15 @@ namespace WindowsApplication1
             b[1] = a.Height;
             b[2] = 3;
             t = new int[b[0], b[1], 3];
-            rr=new int[b[0], b[1], 3];
-            f=new int[b[0], b[1], 3];
+            rr = new int[b[0], b[1], 3];
+            f = new int[b[0], b[1], 3];
 
-            for (int i = 0; i < b[0]; i++){
-                for (int j = 0; j < b[1]; j++){
+            for (int i = 0; i < b[0]; i++)
+            {
+                for (int j = 0; j < b[1]; j++)
+                {
                     for (int k = 0; k < 3; k++)
-                        {
+                    {
                         float[] s = new float[3];
                         //[teta, fi, r] = cart2sph(i, j, 0);
                         s = cart2sph(i, j, 0);
@@ -177,7 +176,7 @@ namespace WindowsApplication1
 
                         if (maxteta < teta)
                             maxteta = teta;
-                   
+
                     }
 
 
@@ -188,15 +187,21 @@ namespace WindowsApplication1
         public _2dTo3D(string ass)
         {
             a = (Bitmap)Image.FromFile(ass);
-            Initiate();           
+            Initiate();
             ContoObject();
             ConvTo3D();
-            a=new Bitmap(b[0], (int)(b[1] * fg));
-            for (int i = 0; i < a.Width; i++)
+            ar = new Bitmap(b[0], (int)(b[1] * fg));
+            Graphics g = Graphics.FromImage(ar);
+            for (int i = 0; i < ar.Width; i++)
             {
-                for(int j=0;j<a.Height;j++)
+                for (int j = 0; j < ar.Height; j++)
                 {
-                    a.SetPixel(i, j, Color.FromArgb((int)(e[i, j, 0])));
+                    for (int k = 0; k < 3; k++)
+                    {
+                        ar.SetPixel(i, j, Color.FromArgb((int)(e[i, j, k])));
+                        g.DrawImage(ar, 0, 0, ar.Width, ar.Height);
+                        g.Save();
+                    }
                 }
             }
         }

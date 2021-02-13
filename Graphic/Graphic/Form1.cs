@@ -7,6 +7,7 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
+        _2dTo3D a;
         int Kind = 0;
         float xp0 = 0, yp0 = 0, xp1 = 0, yp1 = 0, xp2 = 0, yp2 = 0, xp3 = 0, yp3 = 0;
         float xz0 = 0, yz0 = 0, xz1 = 0, yz1 = 0, xz2 = 0, yz2 = 0, xz3 = 0, yz3 = 0;
@@ -633,11 +634,12 @@ namespace WindowsApplication1
         {
             openFileDialog1.ShowDialog();
 
-            _2dTo3D a = new _2dTo3D(openFileDialog1.FileName);
+            a = new _2dTo3D(openFileDialog1.FileName);
             pictureBox24.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox24.Visible = true;
-            pictureBox24.Image = (new Bitmap(a.a,pictureBox24.Width,pictureBox24.Height));
-           pictureBox24.Update();
+            pictureBox24.Image = (new Bitmap(a.ar,pictureBox24.Width,pictureBox24.Height));
+            pictureBox24.Refresh();
+            pictureBox24.Update();
             pictureBox24.Invalidate();
         }
 

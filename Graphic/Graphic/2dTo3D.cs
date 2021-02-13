@@ -56,9 +56,9 @@ namespace WindowsApplication1
             float Z = (float)0.100;// distance of eye form screen cm;
             float ra = 0;//varabale;
             float dr = 0;
-            for (int ii = 0; ii < fg-1 ; ii++)
+            for (int ii = 0; ii < fg ; ii++)
             {
-                for (int jj = 0; jj < fg-1 ; jj++)
+                for (int jj = 0; jj < fg ; jj++)
                 {
                     float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                     for (int i = 1; i < b[0]; i++)
@@ -115,11 +115,11 @@ namespace WindowsApplication1
             int r = 0;
             int teta = 0;
             int fi = 0;
-            e = new float[fg * (b[0]), (int)((b[1]) * fg), 3];
+            e = new float[fg * (b[0] + 1), (int)((b[1] + 1) * fg), 3];
 
-            for (int ii = 0; ii < fg-1 ; ii++)
+            for (int ii = 0; ii < fg ; ii++)
             {
-                for (int jj = 0; jj < fg-1 ; jj++)
+                for (int jj = 0; jj < fg ; jj++)
                 {
                     for (int i = 1; i < b[0]; i++)
                     {
@@ -128,7 +128,7 @@ namespace WindowsApplication1
                             for (int k = 1; k < 3; k++)
                             {
 
-                                e[(int)(ii * b[0] + i), (int)(jj * b[1] + j), k] = c[(int)(ii * (maxr - minr + 1) + rr[i, j, k]), (int)(jj * (maxteta - minteta + 1) + t[i, j, k]), k];
+                                e[(int)(ii * b[0] + i)-1, (int)(jj * b[1] + j), k] = c[(int)(ii * (maxr - minr + 1) + rr[i, j, k]), (int)(jj * (maxteta - minteta + 1) + t[i, j, k]), k];
                             }
                         }
                     }
@@ -193,7 +193,7 @@ namespace WindowsApplication1
             Initiate();
             ContoObject();
             ConvTo3D();
-            ar = new Bitmap(fg * (b[0]), (int)((b[1]) * fg));
+            ar = new Bitmap(fg * (b[0] + 1), (int)((b[1] + 1) * fg));
             Graphics g = Graphics.FromImage(ar);
             for (int i = 0; i < ar.Width; i++)
             {

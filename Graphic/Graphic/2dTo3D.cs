@@ -198,7 +198,7 @@ namespace WindowsApplication1
                 {
                     for (int k = 0; k < 3; k++)
                     {
-                        ar.SetPixel(i, j, Color.FromArgb((int)(e[i, j, k])));
+                        (ar as Bitmap).SetPixel(i, j, Color.FromArgb((int)(e[i, j, k])));
                         g.DrawImage(ar, 0, 0, ar.Width, ar.Height);
                         g.Save();
                     }

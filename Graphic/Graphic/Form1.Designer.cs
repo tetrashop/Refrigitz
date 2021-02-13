@@ -775,6 +775,7 @@ namespace WindowsApplication1
             this.pictureBox24.TabIndex = 35;
             this.pictureBox24.TabStop = false;
             this.pictureBox24.Visible = false;
+            this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
             // 
             // Form1
             // 

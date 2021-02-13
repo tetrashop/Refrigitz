@@ -648,6 +648,11 @@ namespace WindowsApplication1
 
         }
 
+        private void pictureBox24_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             ClickMouse = 0;

@@ -6,8 +6,8 @@ namespace WindowsApplication1
 {
     class _2dTo3D
     {
-        Bitmap a;
-        public Bitmap ar;
+        Image a;
+        public Image ar;
         //size
         int[] b = new int[3];
         int[,,] t;// zeros(b(1,1),b(1,2),3);
@@ -44,6 +44,9 @@ namespace WindowsApplication1
             int teta = 0;
             int fi = 0;
             c = new float[(maxr - minr + 1) * fg, (maxteta - minteta + 1) * fg, 3];
+            t = new int[b[0], b[1], 3];
+            rr = new int[b[0], b[1], 3];
+            f = new int[b[0], b[1], 3];
             int v = 0;
             int n = 0;
             int q = 0;
@@ -53,20 +56,20 @@ namespace WindowsApplication1
             float Z = (float)0.100;// distance of eye form screen cm;
             float ra = 0;//varabale;
             float dr = 0;
-            for (int ii = 0; ii < fg - 1; ii++)
+            for (int ii = 0; ii < fg ; ii++)
             {
-                for (int jj = 0; jj < fg - 1; jj++)
+                for (int jj = 0; jj < fg ; jj++)
                 {
                     float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                    for (int i = 0; i < b[0]; i++)
+                    for (int i = 1; i < b[0]; i++)
                     {
-                        for (int j = 0; j < b[1]; j++)
+                        for (int j = 1; j < b[1]; j++)
                         {
                             for (int k = 0; k < 3; k++)
                             {
                                 float[] s = new float[3];
                                 //[teta, fi, r] = cart2sph(i, j, 0);
-                                s = cart2sph(i, j, 0);
+                                s = cart2sph(i, j, k);
                                 teta = (int)s[0];
                                 fi = (int)s[1];
                                 r = (int)s[2];
@@ -82,7 +85,7 @@ namespace WindowsApplication1
 
 
                                 dr = (float)Math.Round((-i / Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
-                                if ((dr + maxr - minr < maxr - minr) && (teta + 2 < maxteta - minteta) && (teta - 2 > minteta))
+                                if ((dr + maxr - minr < maxr - minr) && (teta + 2 < maxteta - minteta) && (teta - 2 >= minteta))
                                 {
                                     if ((ii + jj) % 2 == 0)
                                         c[(int)((maxr - minr + 1) * ii + r), (int)Math.Round((double)(maxteta - minteta + 1) * jj + teta + 2), k] = System.Convert.ToInt32(GetK(a, i, j, k)) + dr;
@@ -97,14 +100,14 @@ namespace WindowsApplication1
                 }
             }
         }
-        int GetK(Bitmap a, int i, int j, int k)
+        byte GetK(Image a, int i, int j, int k)
         {
             if (k == 0)
-                return a.GetPixel(i, k).R;
+                return (a as Bitmap).GetPixel(i, j).R;
             if (k == 1)
-                return a.GetPixel(i, k).G;
+                return (a as Bitmap).GetPixel(i, j).G;
 
-            return a.GetPixel(i, k).B;
+            return (a as Bitmap).GetPixel(i, j).B;
 
         }
         void ConvTo3D()
@@ -112,20 +115,20 @@ namespace WindowsApplication1
             int r = 0;
             int teta = 0;
             int fi = 0;
-            e = new float[b[0], (int)(b[1] * fg), 3];
+            e = new float[fg * (b[0] + 1), (int)((b[1] + 1) * fg), 3];
 
-            for (int ii = 0; ii < fg - 1; ii++)
+            for (int ii = 0; ii < fg ; ii++)
             {
-                for (int jj = 0; jj < fg - 1; jj++)
+                for (int jj = 0; jj < fg ; jj++)
                 {
-                    for (int i = 0; i < b[0]; i++)
+                    for (int i = 1; i < b[0]; i++)
                     {
                         for (int j = 0; j < b[1]; j++)
                         {
                             for (int k = 1; k < 3; k++)
                             {
 
-                                e[(int)(ii * b[0] + i), (int)(jj * b[1] + j), k] = c[(int)(ii * (maxr - minr + 1) + rr[i, j, k]), (int)(jj * (maxteta - minteta + 1) + t[i, j, k]), k];
+                                e[(int)(ii * b[0] + i)-1, (int)(jj * b[1] + j), k] = c[(int)(ii * (maxr - minr + 1) + rr[i, j, k]), (int)(jj * (maxteta - minteta + 1) + t[i, j, k]), k];
                             }
                         }
                     }
@@ -186,11 +189,11 @@ namespace WindowsApplication1
         //convert 2d image to 3d;
         public _2dTo3D(string ass)
         {
-            a = (Bitmap)Image.FromFile(ass);
+            a = Image.FromFile(ass);
             Initiate();
             ContoObject();
             ConvTo3D();
-            ar = new Bitmap(b[0], (int)(b[1] * fg));
+            ar = new Bitmap(fg * (b[0] + 1), (int)((b[1] + 1) * fg));
             Graphics g = Graphics.FromImage(ar);
             for (int i = 0; i < ar.Width; i++)
             {

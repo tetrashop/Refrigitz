@@ -85,8 +85,8 @@ namespace WindowsApplication1
                                 f[i, j, k] = fi;
 
 
-                                dr = (float)Math.Round((-i /(1+ Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
-                                if ((dr  +maxr-minr< maxr - minr) && (teta +2 < maxteta - minteta) && (teta -2>= minteta))
+                                dr = (float)Math.Round((-(i+1) /(1+ Math.Sqrt(Math.Pow(i+1, 2) + Math.Pow(j+1, 2) + Math.Pow(k+1, 2)))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
+                                if ((dr + maxr - minr < maxr - minr) && (teta + 2 < maxteta - minteta) && (teta - 2 >= minteta))
                                 {
                                     if ((ii + jj) % 2 == 0)
                                         c[(int)((maxr - minr) * ii + r), (int)Math.Round((double)(maxteta - minteta) * jj + teta + 2), k] = (float)( System.Convert.ToInt32(GetK(a, i, j, k)) + dr);

@@ -38,12 +38,13 @@ namespace WindowsApplication1
             }
             return s;
         }
+        
         void ContoObject()
         {
             int r = 0;
             int teta = 0;
             int fi = 0;
-            c = new float[(maxr - minr + 1) * fg, (maxteta - minteta + 1) * fg, 3];
+            c = new float[(int)((maxr - minr + 1) * fg + maxr), (int)Math.Round((double)(maxteta - minteta + 1) * fg + maxteta + 1), 3];
             t = new int[b[0], b[1], 3];
             rr = new int[b[0], b[1], 3];
             f = new int[b[0], b[1], 3];
@@ -56,9 +57,9 @@ namespace WindowsApplication1
             float Z = (float)0.100;// distance of eye form screen cm;
             float ra = 0;//varabale;
             float dr = 0;
-            for (int ii = 0; ii < fg ; ii++)
+            for (int ii = 0; ii < (int)((maxr - minr + 1) * fg + maxr); ii++)
             {
-                for (int jj = 0; jj < fg ; jj++)
+                for (int jj = 0; jj < (int)Math.Round((double)(maxteta - minteta + 1) * fg + maxteta + 1); jj++)
                 {
                     float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                     for (int i = 0; i < b[0]; i++)
@@ -77,7 +78,7 @@ namespace WindowsApplication1
                                 s[1] = (float)Math.Round(s[1] * 180 / 3.1415);
                                 s[0] = (float)Math.Round(s[0] * 180 / 3.1415);
                                 s[2] = (float)Math.Round(s[2] - minr);
-                                fi = fi - minfi + 1;
+                                fi = fi - minfi;
                                 teta = teta - minteta + 1;
                                 r = (int)Math.Round((double)(r - minr + 1));
                                 t[i, j, k] = teta;
@@ -85,13 +86,16 @@ namespace WindowsApplication1
                                 f[i, j, k] = fi;
 
 
-                                dr = (float)Math.Round(((-1 * (i + 1)) / (1 + Math.Sqrt(Math.Pow(i + 1, 2) + Math.Pow(j + 1, 2) + Math.Pow(k + 1, 2)))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
-                                if ((dr + maxr - minr < maxr - minr) && (teta + 1 < maxteta - minteta) && (teta - 1 >= minteta))
+                                dr = (float)Math.Round(((-1 * (i + 1)) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
+                                if ((ii + jj) % 2 == 0 && jj - 2 >= 0)
                                 {
-                                    if ((ii + jj) % 2 == 0)
-                                        c[(int)((maxr - minr + 1) * ii + r), (int)Math.Round((double)(maxteta - minteta + 1) * jj + teta + 1), k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
-                                    else
-                                        c[(int)((maxr - minr + 1) * ii + r), (int)Math.Round((double)(maxteta - minteta + 1) * jj + teta - 1), k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
+
+                                    c[ii, jj - 2, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
+                                }
+                                else
+                                {
+
+                                    c[ii, jj, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
                                 }
                             }
 
@@ -187,19 +191,19 @@ namespace WindowsApplication1
                 }
             }
         }
-        float[,,] uitn8(float[,,] a,int ii,int jj,int kk)
+        float[,,] uitn8(float[,,] p,int ii,int jj,int kk)
         {
-            float min = 10000000, max = -1000000;
+            float min = float.MaxValue, max = float.MinValue;
             for (int i = 0; i < ii; i++)
             {
                 for (int j = 0; j < jj; j++)
                 {
                     for (int k = 0; k < kk; k++)
                     {
-                        if (a[i, j, k] > max)
-                            max = a[i, j, k];
-                        if (a[i, j, k] < min)
-                            min = a[i, j, k];
+                        if (p[i, j, k] > max)
+                            max = p[i, j, k];
+                        if (p[i, j, k] < min)
+                            min = p[i, j, k];
                     }
                 }
 
@@ -211,40 +215,40 @@ namespace WindowsApplication1
                 {
                     for (int k = 0; k < kk; k++)
                     {
-                        a[i, j, k] -= q;
+                        p[i, j, k] -= q;
                     }
                 }
 
             }
 
-            min = 10000000; max = -1000000;
+            min = float.MaxValue; max = float.MinValue;
             for (int i = 0; i < ii; i++)
             {
                 for (int j = 0; j < jj; j++)
                 {
                     for (int k = 0; k < kk; k++)
                     {
-                        if (a[i, j, k] > max)
-                            max = a[i, j, k];
-                        if (a[i, j, k] < min)
-                            min = a[i, j, k];
+                        if (p[i, j, k] > max)
+                            max = p[i, j, k];
+                        if (p[i, j, k] < min)
+                            min = p[i, j, k];
                     }
                 }
 
             }
-             q = 255 / (max - min);
+             q =(float)255.0 / (max - min);
             for (int i = 0; i < ii; i++)
             {
                 for (int j = 0; j < jj; j++)
                 {
                     for (int k = 0; k < kk; k++)
                     {
-                        a[i, j, k] *= q;
+                        p[i, j, k] *= q;
                     }
                 }
 
             }
-            return a;
+            return p;
         }
         //convert 2d image to 3d;
         public _2dTo3D(string ass)
@@ -254,7 +258,7 @@ namespace WindowsApplication1
             ContoObject();
             ConvTo3D();
             e = uitn8(e, (int)(b[0] * fg), (int)((b[1]) * fg), 3);
-            ar = new Bitmap(a, (int)(b[0] * fg), (int)((b[1]) * fg));
+            ar = new Bitmap( (int)(b[0] * fg), (int)((b[1]) * fg));
             Graphics g = Graphics.FromImage(ar);
             for (int i = 0; i < ar.Width; i++)
             {

@@ -2,6 +2,8 @@
  */
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
+using System.Threading;
 namespace WindowsApplication1
 {
     class _2dTo3D
@@ -22,10 +24,10 @@ namespace WindowsApplication1
         int maxr = int.MinValue;
         int maxteta = int.MinValue;
         int maxfi = int.MinValue;
-        float[] cart2sph(float i, float j, float k)
+        double[] cart2sph(float i, float j, float k)
         {
-            float[] s = new float[3];
-            s[2] = (float)Math.Sqrt(i * i + j * j + k * k);
+            double[] s = new double[3];
+            s[2] = Math.Sqrt(i * i + j * j + k * k);
             if (s[2] == 0)
             {
                 s[0] = 0;
@@ -33,12 +35,12 @@ namespace WindowsApplication1
             }
             else
             {
-                s[0] = (float)Math.Acos(k / s[2]);
-                s[1] = (float)Math.Atan2(j, i);
+                s[0] = Math.Acos(k / s[2]);
+                s[1] = Math.Atan2(j, i);
             }
             return s;
         }
-        
+
         void ContoObject()
         {
             int r = 0;
@@ -57,63 +59,66 @@ namespace WindowsApplication1
             float Z = (float)0.100;// distance of eye form screen cm;
             float ra = 0;//varabale;
             float dr = 0;
-            for (int ii = 0; ii < (int)((maxr - minr + 1) * fg + maxr); ii++)
+            var output = Task.Factory.StartNew(() =>
             {
-                for (int jj = 0; jj < (int)Math.Round((double)(maxteta - minteta + 1) * fg + maxteta + 1); jj++)
+
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, (int)((maxr - minr + 1) * fg + maxr), ii =>
                 {
-                    float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                    for (int i = 0; i < b[0]; i++)
+
+                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, (int)Math.Round((double)(maxteta - minteta + 1) * fg + maxteta + 1), jj =>
                     {
-                        for (int j = 0; j < b[1]; j++)
-                        {
-                            for (int k = 0; k < 3; k++)
+                        //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                        ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], i =>
+                  {
+                      ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], j =>
+                      {
+                          ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, k =>
                             {
-                                float[] s = new float[3];
-                                //[teta, fi, r] = cart2sph(i, j, 0);
-                                s = cart2sph(i, j, 0);
-                                teta = (int)s[0];
-                                fi = (int)s[1];
-                                r = (int)s[2];
-
-                                s[1] = (float)Math.Round(s[1] * 180 / 3.1415);
-                                s[0] = (float)Math.Round(s[0] * 180 / 3.1415);
-                                s[2] = (float)Math.Round(s[2] - minr);
-                                fi = fi - minfi;
-                                teta = teta - minteta + 1;
-                                r = (int)Math.Round((double)(r - minr + 1));
-                                t[i, j, k] = teta;
-                                rr[i, j, k] = r;
-                                f[i, j, k] = fi;
-
-
-                                dr = (float)Math.Round(((-1 * (i + 1)) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
-                                if ((ii + jj) % 2 == 0 && jj - 2 >= 0)
+                                object oo = new object();
+                                lock (oo)
                                 {
+                                    double[] s = new double[3];
+                                    //[teta, fi, r] = cart2sph(i, j, 0);
+                                    s = cart2sph(i, j, 0);
+                                    t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415 - minteta + 1));
+                                    rr[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415 - minfi + 1));
+                                    f[i, j, k] = (int)Math.Round((double)(s[2] - minr + 1.00));
 
-                                    c[ii, jj - 2, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
+                                    dr = (float)Math.Round(((-1 * (i + 1)) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
+                                    if ((ii + jj) % 2 == 0 && jj - 2 >= 0)
+                                    {
+
+                                        c[ii, jj - 2, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
+                                    }
+                                    else
+                                    {
+
+                                        c[ii, jj, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
+                                    }
                                 }
-                                else
-                                {
-
-                                    c[ii, jj, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
-                                }
-                            }
+                            });
 
 
-                        }
-                    }
-                }
-            }
+                      });
+                  });
+                    });
+                });
+            });
+            output.Wait();
         }
         byte GetK(Image a, int i, int j, int k)
         {
-            if (k == 0)
-                return (a as Bitmap).GetPixel(i, j).R;
-            if (k == 1)
-                return (a as Bitmap).GetPixel(i, j).G;
+            object oo = new object();
+            lock (oo)
+            {
+                if (k == 0)
+                    return (a as Bitmap).GetPixel(i, j).R;
+                if (k == 1)
+                    return (a as Bitmap).GetPixel(i, j).G;
 
-            return (a as Bitmap).GetPixel(i, j).B;
+                return (a as Bitmap).GetPixel(i, j).B;
 
+            }
         }
         void ConvTo3D()
         {
@@ -158,7 +163,7 @@ namespace WindowsApplication1
                 {
                     for (int k = 0; k < 3; k++)
                     {
-                        float[] s = new float[3];
+                        double[] s = new double[3];
                         //[teta, fi, r] = cart2sph(i, j, 0);
                         s = cart2sph(i, j, 0);
                         s[2] = (float)Math.Round(s[2]);

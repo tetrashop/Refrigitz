@@ -40,7 +40,57 @@ namespace WindowsApplication1
             }
             return s;
         }
+        void Threaadcal( int i, int j, int k, int ii, int jj)
+        {
+            lock (c)
+            {
+                float dr = 0;
+                double[] s = new double[3];
+                //[teta, fi, r] = cart2sph(i, j, 0);
+                s = cart2sph(i, j, 0);
+                t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415 - minteta + 1));
+                rr[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415 - minfi + 1));
+                f[i, j, k] = (int)Math.Round((double)(s[2] - minr + 1.00));
 
+                dr = (float)Math.Round(((-1 * (i + 1)) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
+                if ((ii + jj) % 2 == 0 && jj - 1 >= 0)
+                {
+
+                    c[ii, jj - 2, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
+                }
+                else
+                 if ((ii + jj) % 2 != 0 && jj + 1 < (int)Math.Round((double)(maxteta - minteta + 1) * fg + maxteta + 1))
+                {
+
+                    c[ii, jj, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
+                }
+            }
+        }
+        void Threaadfetch(int i, int j, int k, int ii, int jj)
+        {
+            lock (e)
+            {
+                lock (c)
+                {
+                    e[(int)(ii * b[0] + i), (int)(jj * b[1] + j), k] = c[(int)(ii * (maxr - minr) + rr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k]), k];
+                }
+            }
+        }
+        void Threaaddraw(int i, int j, Graphics g, Image ar)
+        {
+            lock (e)
+            {
+                lock (ar)
+                {
+                    lock (g)
+                    {
+                        (ar as Bitmap).SetPixel(i, j, Color.FromArgb((int)(e[i, j, 0]), (int)(e[i, j, 1]), (int)(e[i, j, 2])));
+                        g.DrawImage(ar, 0, 0, ar.Width, ar.Height);
+                        g.Save();
+                    }
+                }
+            }
+        }
         void ContoObject()
         {
             int r = 0;
@@ -58,8 +108,7 @@ namespace WindowsApplication1
             float rb = (float)0.20;// pixel;
             float Z = (float)0.100;// distance of eye form screen cm;
             float ra = 0;//varabale;
-            float dr = 0;
-            var output = Task.Factory.StartNew(() =>
+             var output = Task.Factory.StartNew(() =>
             {
 
                 ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, (int)((maxr - minr + 1) * fg + maxr), ii =>
@@ -74,28 +123,7 @@ namespace WindowsApplication1
                       {
                           ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, k =>
                             {
-                                object oo = new object();
-                                lock (oo)
-                                {
-                                    double[] s = new double[3];
-                                    //[teta, fi, r] = cart2sph(i, j, 0);
-                                    s = cart2sph(i, j, 0);
-                                    t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415 - minteta + 1));
-                                    rr[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415 - minfi + 1));
-                                    f[i, j, k] = (int)Math.Round((double)(s[2] - minr + 1.00));
-
-                                    dr = (float)Math.Round(((-1 * (i + 1)) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
-                                    if ((ii + jj) % 2 == 0 && jj - 2 >= 0)
-                                    {
-
-                                        c[ii, jj - 2, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
-                                    }
-                                    else
-                                    {
-
-                                        c[ii, jj, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
-                                    }
-                                }
+                                var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, ii, jj));
                             });
 
 
@@ -108,8 +136,7 @@ namespace WindowsApplication1
         }
         byte GetK(Image a, int i, int j, int k)
         {
-            object oo = new object();
-            lock (oo)
+            lock (a)
             {
                 if (k == 0)
                     return (a as Bitmap).GetPixel(i, j).R;
@@ -127,23 +154,27 @@ namespace WindowsApplication1
             int fi = 0;
             e = new float[(int)(b[0] * fg), (int)((b[1]) * fg), 3];
 
-            for (int ii = 0; ii < fg ; ii++)
+            var output = Task.Factory.StartNew(() =>
             {
-                for (int jj = 0; jj < fg ; jj++)
+                ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, ii =>
                 {
-                    for (int i = 0; i < b[0]; i++)
+                    ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, jj =>
                     {
-                        for (int j = 0; j < b[1]; j++)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], i =>
                         {
-                            for (int k = 0; k < 3; k++)
+                            ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], j =>
                             {
+                                ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, k =>
+                                {
+                                    var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
 
-                                e[(int)(ii * b[0] + i), (int)(jj * b[1] + j), k] = c[(int)(ii * (maxr - minr) + rr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k]), k];
-                            }
-                        }
-                    }
-                }
-            }
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+            output.Wait();
         }
         void Initiate()
         {
@@ -263,19 +294,24 @@ namespace WindowsApplication1
             ContoObject();
             ConvTo3D();
             e = uitn8(e, (int)(b[0] * fg), (int)((b[1]) * fg), 3);
-            ar = new Bitmap( (int)(b[0] * fg), (int)((b[1]) * fg));
+            ar = new Bitmap((int)(b[0] * fg), (int)((b[1]) * fg));
             Graphics g = Graphics.FromImage(ar);
-            for (int i = 0; i < ar.Width; i++)
+            var output = Task.Factory.StartNew(() =>
             {
-                for (int j = 0; j < ar.Height; j++)
+
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, i =>
                 {
-                    
-                        (ar as Bitmap).SetPixel(i, j, Color.FromArgb((int)(e[i, j, 0]), (int)(e[i, j, 1]),(int)(e[i, j, 2])));
-                        g.DrawImage(ar, 0, 0, ar.Width, ar.Height);
-                        g.Save();
-                    
-                }
-            }
+
+
+                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, j =>
+                    {
+
+                        var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, g, ar));
+
+                    });
+                });
+            });
+            output.Wait();
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-
+using System.Threading.Tasks;
 namespace WindowsApplication1
 {
 
@@ -634,7 +634,11 @@ namespace WindowsApplication1
         {
             openFileDialog1.ShowDialog();
 
-            a = new _2dTo3D(openFileDialog1.FileName);
+            var output = Task.Factory.StartNew(() =>
+            {
+                a = new _2dTo3D(openFileDialog1.FileName);
+            });
+            output.Wait();
             pictureBox24.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox24.Visible = true;
             pictureBox24.Image = a.ar;

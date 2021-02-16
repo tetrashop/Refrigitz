@@ -56,7 +56,7 @@ namespace WindowsApplication1
                 t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415 - (double)minteta + 1));
                 rr[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415 - (double)minr + 1));
                 f[i, j, k] = (int)Math.Round((double)(s[2] - (double)minfi + 1.00));
-                dr = (float)Math.Round(((-1 * (i + 1)) / (Math.Sqrt(Math.Pow(i + 1, 2) + Math.Pow(j + 1, 2) + Math.Pow(k + 1, 2)))) * 3 * 300 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
+                dr = (float)Math.Round(((-1 * (i + 1)) / (Math.Sqrt(Math.Pow(i + 1, 2) + Math.Pow(j + 1, 2) + Math.Pow(k + 1, 2)))) * 3 * 3000 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
                 if ((dr + maxr - minr < maxr - minr)// && (t[i, j, k] + 2 < maxteta - minteta) && (t[i, j, k] - 2 > minteta)
                     )
                 {
@@ -102,8 +102,8 @@ namespace WindowsApplication1
                         try
                         {
                             (ar as Bitmap).SetPixel(i, j, Color.FromArgb((int)(e[i, j, 0]), (int)(e[i, j, 1]), (int)(e[i, j, 2])));
-                        g.DrawImage(ar, 0, 0, ar.Width, ar.Height);
-                        g.Save();
+                            g.DrawImage(ar, 0, 0, ar.Width, ar.Height);
+                            g.Save();
                         }
                         catch (Exception t)
                         {
@@ -138,19 +138,19 @@ namespace WindowsApplication1
 
                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, jj =>
                    {
-                        //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                        ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], i =>
-                 {
-                     ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], j =>
-                     {
-                         ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, k =>
-                           {
-                               var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, (int)((maxr - minr + 1) * ii + maxr), (int)Math.Round((double)(maxteta - minteta + 1) * jj + maxteta + 1)));
-                           });
+                       //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                       ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], i =>
+                {
+                    ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], j =>
+                    {
+                        ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, k =>
+                          {
+                              var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, (int)((maxr - minr + 1) * ii + maxr), (int)Math.Round((double)(maxteta - minteta + 1) * jj + maxteta + 1)));
+                          });
 
 
-                     });
-                 });
+                    });
+                });
                    });
                });
            });
@@ -322,26 +322,18 @@ namespace WindowsApplication1
             ar = new Bitmap((int)(b[0] * fg), (int)((b[1]) * fg));
             MessageBox.Show("Graphic begin!!");
             Graphics g = Graphics.FromImage(ar);
-            lock (ar)
-            {
-                var output = Task.Factory.StartNew(() =>
-            {
-
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, i =>
-            {
 
 
-                ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, j =>
+
+            for (int i = 0; i < ar.Width; i++)
+            {
+                for (int j = 0; j < ar.Height; j++)
                 {
-
-                    var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
-
-                });
-            });
-
-            });
-                output.Wait();
+                    Threaaddraw(i, j, ref g, ref ar);
+                }
             }
+
+
             MessageBox.Show("Graphic finished!!");
         }
     }

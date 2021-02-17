@@ -266,18 +266,20 @@ namespace WindowsApplication1
 
             }
             float q = min;
-            for (int i = 0; i < ii; i++)
+            if (q < 0)
             {
-                for (int j = 0; j < jj; j++)
+                for (int i = 0; i < ii; i++)
                 {
-                    for (int k = 0; k < kk; k++)
+                    for (int j = 0; j < jj; j++)
                     {
-                        p[i, j, k] -= q;
+                        for (int k = 0; k < kk; k++)
+                        {
+                            p[i, j, k] -= q;
+                        }
                     }
+
                 }
-
             }
-
             min = float.MaxValue; max = float.MinValue;
             for (int i = 0; i < ii; i++)
             {

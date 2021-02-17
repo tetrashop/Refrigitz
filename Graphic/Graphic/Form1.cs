@@ -639,7 +639,7 @@ namespace WindowsApplication1
                 a = new _2dTo3D(openFileDialog1.FileName);
             });
             output.Wait();
-            pictureBox24.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
             pictureBox24.Image = a.ar;
             pictureBox24.Refresh();

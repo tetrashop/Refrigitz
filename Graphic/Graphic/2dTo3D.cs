@@ -33,15 +33,15 @@ namespace WindowsApplication1
         {
             double[] s = new double[3];
             s[2] = Math.Sqrt(i * i + j * j + k * k);
-            if (s[2] == 0)
+            if (s[2] == 0.0)
             {
-                s[0] = 0;
-                s[1] = 0;
+                s[0] = 0.0;
+                s[1] = 0.0;
             }
             else
             {
-                s[0] = Math.Acos(k / s[2]);
-                s[1] = Math.Atan2(j, i);
+                s[0] = Math.Acos((double)k / s[2]);
+                s[1] = Math.Atan2((double)j, (double)i);
             }
             return s;
         }
@@ -52,20 +52,20 @@ namespace WindowsApplication1
                 float dr = 0;
                 double[] s = new double[3];
                 //[teta, fi, r] = cart2sph(i, j, 0);
-                s = cart2sph(i, j, 0);
-                t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415 - (double)minteta + 1));
-                rr[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415 - (double)minr + 1));
-                f[i, j, k] = (int)Math.Round((double)(s[2] - (double)minfi + 1.00));
-                dr = (float)Math.Round(((-1 * (i + 1)) / (Math.Sqrt(Math.Pow(i + 1, 2) + Math.Pow(j + 1, 2) + Math.Pow(k + 1, 2)))) * 3 * 3000 / (1 + System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2))));
-                if ((dr + maxr - minr < maxr - minr)// && (t[i, j, k] + 2 < maxteta - minteta) && (t[i, j, k] - 2 > minteta)
-                    )
+                s = cart2sph(i + 1, j + 1, k + 1);
+                t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415 ));
+                f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
+                rr[i, j, k] = (int)Math.Round((double)(s[2] ));
+               dr = (float)Math.Round(((-1.0 * (i + 1.0)) / (Math.Sqrt(Math.Pow(i + 1, 2) + Math.Pow(j + 1, 2) + Math.Pow(k + 1, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2))));
+               /* if ((dr + maxr - minr < maxr - minr) && (t[i, j, k] + 2 < maxteta - minteta) && (t[i, j, k] - 2 > minteta)
+                    )*/
                 {
                     try
                     {
-                        if ((ii + jj) % 2 == 0)
-                            c[ii, jj - 1, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
+                              if ((ii + jj) % 2 == 0)
+                            c[(maxr - minr ) * ii + rr[i, j, k], (int)Math.Round((double)((maxteta-minteta) * (double)jj + (double)t[i, j, k] + 2.0)), k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
                         else
-                            c[ii, jj + 1, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
+                            c[(maxr - minr) * ii + rr[i, j, k], (int)Math.Round((double)((maxteta-minteta) * (double)jj + (double)t[i, j, k] - 2.0)), k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) + dr);
                     }
                     catch (Exception t)
                     {
@@ -81,8 +81,10 @@ namespace WindowsApplication1
                 lock (c)
                 {
                     try
-                    {
-                        e[(int)(ii * b[0] + i), (int)(jj * b[1] + j), k] = c[(int)(ii * (maxr - minr) + rr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k]), k];
+                    {if ((ii + jj) % 2 == 0)
+                            e[(int)(ii * b[0] + i), (int)( j), k] = c[(int)(ii * (maxr - minr) + rr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k]+2), k];
+                        else
+                            e[(int)(ii * b[0] + i), (int)( j), k] = c[(int)(ii * (maxr - minr) + rr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k]-2), k];
                     }
                     catch (Exception t)
                     {
@@ -118,7 +120,7 @@ namespace WindowsApplication1
             int r = 0;
             int teta = 0;
             int fi = 0;
-            c = new float[(int)((maxr - minr + 1) * fg + maxr), (int)Math.Round((double)(maxteta - minteta + 1) * fg + maxteta + 1), 3];
+            c = new float[(int)((maxr - minr) * fg + (int)maxr + 1), (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0), 3];
             t = new int[b[0], b[1], 3];
             rr = new int[b[0], b[1], 3];
             f = new int[b[0], b[1], 3];
@@ -145,7 +147,7 @@ namespace WindowsApplication1
                     {
                         ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, k =>
                           {
-                              var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, (int)((maxr - minr + 1) * ii + maxr), (int)Math.Round((double)(maxteta - minteta + 1) * jj + maxteta + 1)));
+                              var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k,  ii, jj));
                           });
 
 
@@ -174,7 +176,7 @@ namespace WindowsApplication1
             int r = 0;
             int teta = 0;
             int fi = 0;
-            e = new float[(int)(b[0] * fg), (int)((b[1]) * fg), 3];
+            e = new float[(int)(b[0] * fg), (int)((b[1])), 3];
 
             var output = Task.Factory.StartNew(() =>
             {
@@ -218,13 +220,10 @@ namespace WindowsApplication1
                     {
                         double[] s = new double[3];
                         //[teta, fi, r] = cart2sph(i, j, 0);
-                        s = cart2sph(i, j, 0);
-                        s[2] = Math.Round(s[2]);
-                        s[0] = Math.Round(s[0] * 180.0 / 3.1415);
-                        s[1] = Math.Round(s[1] * 180.0 / 3.1415);
-                        teta = (int)s[0];
-                        fi = (int)s[1];
-                        r = (int)s[2];
+                        s = cart2sph(i + 1, j + 1, k + 1);
+                        teta = (int)Math.Round(s[0] * 180.0 / 3.1415);
+                        fi = (int)Math.Round(s[1] * 180.0 / 3.1415);
+                        r = (int)Math.Round(s[2]);
                         if (minr > r)
                             minr = r;
 
@@ -318,8 +317,8 @@ namespace WindowsApplication1
             MessageBox.Show("ContoObject pass!");
             ConvTo3D();
             MessageBox.Show("ConvTo3D pass!");
-            e = uitn8(e, (int)(b[0] * fg), (int)((b[1]) * fg), 3);
-            ar = new Bitmap((int)(b[0] * fg), (int)((b[1]) * fg));
+            e = uitn8(e, (int)(b[0] *fg), (int)((b[1])), 3);
+            ar = new Bitmap((int)(b[0] *fg), (int)((b[1])));
             MessageBox.Show("Graphic begin!!");
             Graphics g = Graphics.FromImage(ar);
 

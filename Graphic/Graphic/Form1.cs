@@ -657,6 +657,12 @@ namespace WindowsApplication1
 
         }
 
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox24.Image.Dispose();
+            pictureBox24.Visible = false;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             ClickMouse = 0;

@@ -94,6 +94,7 @@ namespace WindowsApplication1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -294,7 +295,8 @@ namespace WindowsApplication1
             // dTo3DToolStripMenuItem
             // 
             this.dTo3DToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.doToolStripMenuItem});
+            this.doToolStripMenuItem,
+            this.clearToolStripMenuItem});
             this.dTo3DToolStripMenuItem.Name = "dTo3DToolStripMenuItem";
             this.dTo3DToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.dTo3DToolStripMenuItem.Text = "2D to 3D";
@@ -302,7 +304,7 @@ namespace WindowsApplication1
             // doToolStripMenuItem
             // 
             this.doToolStripMenuItem.Name = "doToolStripMenuItem";
-            this.doToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
+            this.doToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.doToolStripMenuItem.Text = "Do";
             this.doToolStripMenuItem.Click += new System.EventHandler(this.doToolStripMenuItem_Click);
             // 
@@ -777,6 +779,13 @@ namespace WindowsApplication1
             this.pictureBox24.Visible = false;
             this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
             // 
+            // clearToolStripMenuItem
+            // 
+            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearToolStripMenuItem.Text = "Clear";
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -923,6 +932,7 @@ namespace WindowsApplication1
         private System.Windows.Forms.ToolStripMenuItem doToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox pictureBox24;
+        private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
     }
 }
 

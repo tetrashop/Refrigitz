@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -137,17 +139,17 @@ namespace WindowsApplication1
             var output = Task.Factory.StartNew(() =>
            {
 
-               ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, ii =>
+               ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, delegate (int ii)
                {
 
-                   ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, jj =>
+                   ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, delegate (int jj)
                    {
                        //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                       ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], i =>
+                       ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], delegate (int i)
                 {
-                    ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], j =>
+                    ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], delegate (int j)
                     {
-                        ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, k =>
+                        ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, delegate (int k)
                           {
                               var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k,  ii, jj));
                               lock (th) { th.Add(output1); }
@@ -185,15 +187,15 @@ namespace WindowsApplication1
 
             var output = Task.Factory.StartNew(() =>
             {
-                ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, ii =>
+                ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, delegate (int ii)
                 {
-                    ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, jj =>
+                    ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, delegate (int jj) 
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], i =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], delegate (int i)
                         {
-                            ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], j =>
+                            ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], delegate (int j) 
                             {
-                                ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, k =>
+                                ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, delegate (int k) 
                                 {
                                     var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
 
@@ -333,31 +335,67 @@ namespace WindowsApplication1
 
 
 
-            /* for (int i = 0; i < ar.Width; i++)
+            for (int i = 0; i < ar.Width; i++)
              {
                  for (int j = 0; j < ar.Height; j++)
                  {
                      Threaaddraw(i, j, ref g, ref ar);
                  }
              }
-            */
-            List<Task> th = new List<Task>();
-            var output = Task.Factory.StartNew(() =>
-                {
-                lock (ar)
-                {
-                    ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, i =>
-                    {
-                        ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, j =>
-                        {
-                            var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
-                            lock (th) { th.Add(output1); }
-                        });
-                    });
-                    }
-                });
-            th.Add(output);
-            Parallel.ForEach(th, item => Task.WaitAll(item));
+            
+            /*  List<Task> th = new List<Task>();
+              var output = Task.Factory.StartNew(() =>
+                  {
+                  lock (ar)
+                  {
+                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, delegate(int i)
+                      {
+                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, delegate(int j) 
+                          {
+                              var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
+                              lock (th) { th.Add(output1); }
+                          });
+                      });
+                      }
+                  });
+              th.Add(output);
+              Parallel.ForEach(th, item => Task.WaitAll(item));*/
+            /* BitmapData bitmapData = (ar as Bitmap).LockBits(new Rectangle(0, 0, (ar as Bitmap).Width, (ar as Bitmap).Height), ImageLockMode.ReadWrite, (ar as Bitmap).PixelFormat);
+            //http://csharpexamples.com/tag/parallel-bitmap-processing/
+             int bytesPerPixel = Bitmap.GetPixelFormatSize((ar as Bitmap).PixelFormat) / 8;
+             int byteCount = bitmapData.Stride * (ar as Bitmap).Height;
+             byte[] pixels = new byte[byteCount];
+             IntPtr ptrFirstPixel = bitmapData.Scan0;
+             Marshal.Copy(ptrFirstPixel, pixels, 0, pixels.Length);
+             int heightInPixels = bitmapData.Height;
+             int widthInBytes = bitmapData.Width * bytesPerPixel;
+
+             for (int y = 0; y < heightInPixels; y++)
+             {
+                 int currentLine = y * bitmapData.Stride;
+                 for (int x = 0; x < widthInBytes; x = x + bytesPerPixel)
+                 {
+                     int oldBlue = new int();
+                     int oldGreen = new int();
+                     int oldRed = new int();
+
+                     lock (e)
+                     {
+                          oldBlue = (int)e[x / bytesPerPixel, y, 0];                        
+                          oldGreen = (int)e[x / bytesPerPixel, y, 1];
+                          oldRed = (int)e[x / bytesPerPixel, y, 2];
+                     }
+
+                     // calculate new pixel value
+                     pixels[currentLine + x] = (byte)oldBlue;
+                     pixels[currentLine + x + 1] = (byte)oldGreen;
+                     pixels[currentLine + x + 2] = (byte)oldRed;
+                 }
+             }
+
+             // copy modified bytes back
+             Marshal.Copy(pixels, 0, ptrFirstPixel, pixels.Length);
+             (ar as Bitmap).UnlockBits(bitmapData);*/
             MessageBox.Show("Graphic finished!!");
         }
     }

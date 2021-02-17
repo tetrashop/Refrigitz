@@ -52,7 +52,7 @@ namespace WindowsApplication1
                 float dr = 0;
                 double[] s = new double[3];
                 //[teta, fi, r] = cart2sph(i, j, 0);
-                s = cart2sph(i + 1, j + 1, k + 1);
+                s = cart2sph(i + 1, j + 1,  1);
                 t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415 ));
                 f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
                 rr[i, j, k] = (int)Math.Round((double)(s[2] ));
@@ -220,7 +220,7 @@ namespace WindowsApplication1
                     {
                         double[] s = new double[3];
                         //[teta, fi, r] = cart2sph(i, j, 0);
-                        s = cart2sph(i + 1, j + 1, k + 1);
+                        s = cart2sph(i + 1, j + 1, 1);
                         teta = (int)Math.Round(s[0] * 180.0 / 3.1415);
                         fi = (int)Math.Round(s[1] * 180.0 / 3.1415);
                         r = (int)Math.Round(s[2]);

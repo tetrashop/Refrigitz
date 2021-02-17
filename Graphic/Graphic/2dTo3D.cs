@@ -132,6 +132,8 @@ namespace WindowsApplication1
             float rb = (float)0.20;// pixel;
             float Z = (float)0.100;// distance of eye form screen cm;
             float ra = 0;//varabale;
+            List<Task> th = new List<Task>();
+
             var output = Task.Factory.StartNew(() =>
            {
 
@@ -148,6 +150,7 @@ namespace WindowsApplication1
                         ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = 2; Parallel.For(0, 3, k =>
                           {
                               var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k,  ii, jj));
+                              lock (th) { th.Add(output1); }
                           });
 
 
@@ -156,7 +159,8 @@ namespace WindowsApplication1
                    });
                });
            });
-            output.Wait();
+            th.Add(output);
+            Parallel.ForEach(th, item => Task.WaitAll(item));
         }
         byte GetK(Image a, int i, int j, int k)
         {
@@ -177,6 +181,7 @@ namespace WindowsApplication1
             int teta = 0;
             int fi = 0;
             e = new float[(int)(b[0] * fg), (int)((b[1])), 3];
+            List<Task> th = new List<Task>();
 
             var output = Task.Factory.StartNew(() =>
             {
@@ -192,13 +197,15 @@ namespace WindowsApplication1
                                 {
                                     var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
 
+                                    lock (th) { th.Add(output1); }
                                 });
                             });
                         });
                     });
                 });
             });
-            output.Wait();
+            th.Add(output);
+            Parallel.ForEach(th, item => Task.WaitAll(item));
         }
         void Initiate()
         {
@@ -326,15 +333,31 @@ namespace WindowsApplication1
 
 
 
-            for (int i = 0; i < ar.Width; i++)
-            {
-                for (int j = 0; j < ar.Height; j++)
+            /* for (int i = 0; i < ar.Width; i++)
+             {
+                 for (int j = 0; j < ar.Height; j++)
+                 {
+                     Threaaddraw(i, j, ref g, ref ar);
+                 }
+             }
+            */
+            List<Task> th = new List<Task>();
+            var output = Task.Factory.StartNew(() =>
                 {
-                    Threaaddraw(i, j, ref g, ref ar);
-                }
-            }
-
-
+                lock (ar)
+                {
+                    ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, i =>
+                    {
+                        ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, j =>
+                        {
+                            var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
+                            lock (th) { th.Add(output1); }
+                        });
+                    });
+                    }
+                });
+            th.Add(output);
+            Parallel.ForEach(th, item => Task.WaitAll(item));
             MessageBox.Show("Graphic finished!!");
         }
     }

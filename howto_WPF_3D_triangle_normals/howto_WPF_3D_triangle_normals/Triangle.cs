@@ -7,10 +7,13 @@ using System.Windows.Media.Media3D;
 using LearningMachine;
 
 namespace howto_WPF_3D_triangle_normals
-{  class Triangle
+{
+    class Triangle 
     {
 
         double a, b, c, d;
+        //normal of plate
+        double na, nb, nc;
         public Triangle(Point3D p0, Point3D p1, Point3D p2, Point3D dd)
         {
             double[,,] aa = new double[3, 3, 3];
@@ -33,11 +36,19 @@ namespace howto_WPF_3D_triangle_normals
 
             double[] cc = Interpolate.Quaficient(aa, ddd, 3);
 
-
+            //plate
             a = cc[0];
             b = cc[1];
             c = cc[2];
             d = a * (p0.X) + b * (p0.Y) + c * (p0.Z);
+
+            //create vectors contain plate
+            Line l0 =new Line(p0, p1);
+            Line l1 = new Line(p0, p1);
+            //normals indices
+            na = (l0.b * l1.c) - (l0.c * l1.b);
+            nb = (l0.a * l1.c) - (l0.c * l1.a);
+            nc = (l0.a * l1.b) - (l0.b * l1.a);
         }
     }
 }

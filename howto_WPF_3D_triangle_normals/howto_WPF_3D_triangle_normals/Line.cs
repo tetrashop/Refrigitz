@@ -9,7 +9,7 @@ namespace howto_WPF_3D_triangle_normals
 {
     class Line
     {
-        double a, b, c, x0, y0, z0;
+        public double a, b, c, x0, y0, z0;
         public Line(Point3D p0,Point3D p1)
         {
             x0 = p0.X;

@@ -13,8 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace WindowsApplication1
 {
-    class _2dTo3D
+   public class _2dTo3D
     {
+        public bool _3DReady=false;
         Image a;
         public Image ar;
         //size
@@ -23,7 +24,8 @@ namespace WindowsApplication1
         int[,,] rr;// rr=zeros(b(1,1),b(1,2),3);
         int[,,] f;//     f=zeros(b(1,1),b(1,2),3);
         int[,,] ddr;//     f=zeros(b(1,1),b(1,2),3);
-        float[,,] c;
+        public float[,,] c;
+        int cx = 0, cy = 0, cz = 3;
         public float[,,] e;
         int fg = 2;
         int minr = int.MaxValue;
@@ -125,6 +127,8 @@ namespace WindowsApplication1
             int r = 0;
             int teta = 0;
             int fi = 0;
+            cx = (int)((maxr - minr) * fg + (int)maxr + 1);
+            cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
             c = new float[(int)((maxr - minr) * fg + (int)maxr + 1), (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0), 3];
             t = new int[b[0], b[1], 3];
             rr = new int[b[0], b[1], 3];
@@ -346,7 +350,7 @@ namespace WindowsApplication1
                     Threaaddraw(i, j, ref g, ref ar);
                 }
             }
-
+            _3DReady = true;
             /*  List<Task> th = new List<Task>();
               var output = Task.Factory.StartNew(() =>
                   {
@@ -401,6 +405,7 @@ namespace WindowsApplication1
              Marshal.Copy(pixels, 0, ptrFirstPixel, pixels.Length);
              (ar as Bitmap).UnlockBits(bitmapData);*/
             MessageBox.Show("Graphic finished!!");
-        }
+       
+                }
     }
 }

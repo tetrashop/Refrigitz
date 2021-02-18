@@ -308,50 +308,105 @@ namespace howto_WPF_3D_triangle_normals
                     if (gr.a._3DReady)
                     {      
                         //creation of target
-                        //list found of 3d points
-                        List<Point3D> points = new List<Point3D>();
+                        //list found of 3d PointsAdd
+                        List<Point3D> PointsAdd = new List<Point3D>();
                         for (int i = 0; i < gr.a.cx; i++)
                         {
                             for (int j = 0; j < gr.a.cy; j++)
                             {
                                 if (gr.a.c[i, j, 0] != 0)
                                 {
-                                    Point3D s = new Point3D();
-                                    s.X = i;
-                                    s.Y = j;
-                                    s.Z = gr.a.c[i, j, 0];
-                                    points.Add(s);
+                                    Point3D s = new Point3D(i, j, gr.a.c[i, j, 0]);
+                                    PointsAdd.Add(s);
                                 }
                                 else
                                     if (gr.a.c[i, j, 1] != 0)
                                 {
-                                    Point3D s = new Point3D();
-                                    s.X = i;
-                                    s.Y = j;
-                                    s.Z = gr.a.c[i, j, 1];
-                                    points.Add(s);
+                                    Point3D s = new Point3D(i, j, gr.a.c[i, j, 1]);
+                                    PointsAdd.Add(s);
                                 }
                                 else
                                     if (gr.a.c[i, j, 2] != 0)
                                 {
-                                    Point3D s = new Point3D();
-                                    s.X = i;
-                                    s.Y = j;
-                                    s.Z = gr.a.c[i, j, 2];
-                                    points.Add(s);
+                                    Point3D s = new Point3D(i, j, gr.a.c[i, j, 2]);
+                                    PointsAdd.Add(s);
                                 }
-                                
+
 
 
                             }
                         }
-                        for(int i = 0; i < points.Count; i++)
+                        if (PointsAdd.Count >= 3)
                         {
-                            Point3DCollection mes = new Point3DCollection();
-                            AddPoint(mes, points[i]);
+                            MessageBox.Show("Add capable...!");
+                            // Give the camera its initial position.
+                            TheCamera = new PerspectiveCamera();
+                            TheCamera.FieldOfView = 60;
+                            MainViewport.Camera = TheCamera;
+                            PositionCamera();
+
+                            // Define lights.
+                            DefineLights();
+                            MeshGeometry3D mesh = new MeshGeometry3D();
+                            Model3DGroup model_group = MainModel3Dgroup;
+
+                            for (int i = 0; i < PointsAdd.Count - 2; i += 3)
+                            {
+                                AddTriangle(mesh, PointsAdd[i], PointsAdd[i + 1], PointsAdd[i + 2]);
+                            }
+                          
+                        
+                            // Make a mesh to hold the surface.
+                            Console.WriteLine("Surface: ");
+                            Console.WriteLine("    " + mesh.Positions.Count + " Points");
+                            Console.WriteLine("    " + mesh.TriangleIndices.Count / 3 + " triangles");
+                            Console.WriteLine();
+
+                            // Make the surface's material using a solid green brush.
+                            DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.LightGreen);
+
+                            // Make the surface's model.
+                            SurfaceModel = new GeometryModel3D(mesh, surface_material);
+
+                            // Make the surface visible from both sides.
+                            SurfaceModel.BackMaterial = surface_material;
+
+                            // Add the model to the model groups.
+                            model_group.Children.Add(SurfaceModel);
+                           
+                            // Make a wireframe.
+                            double thickness = 0.03;
+#if SURFACE2
+            thickness = 0.01
+#endif
+                            MeshGeometry3D wireframe = mesh.ToWireframe(thickness);
+                            DiffuseMaterial wireframe_material = new DiffuseMaterial(Brushes.Red);
+                            WireframeModel = new GeometryModel3D(wireframe, wireframe_material);
+                            model_group.Children.Add(WireframeModel);
+                            Console.WriteLine("Wireframe: ");
+                            Console.WriteLine("    " + wireframe.Positions.Count + " Points");
+                            Console.WriteLine("    " + wireframe.TriangleIndices.Count / 3 + " triangles");
+                            Console.WriteLine();
+
+                            // Make the normals.
+                            MeshGeometry3D normals = mesh.ToTriangleNormals(0.5, thickness);
+                            DiffuseMaterial normals_material = new DiffuseMaterial(Brushes.Blue);
+                            NormalsModel = new GeometryModel3D(normals, normals_material);
+                            model_group.Children.Add(NormalsModel);
+                            Console.WriteLine("Normals: ");
+                            Console.WriteLine("    " + normals.Positions.Count + " Points");
+                            Console.WriteLine("    " + normals.TriangleIndices.Count / 3 + " triangles");
+                            Console.WriteLine();
+
+                            // Add the group of models to a ModelVisual3D.
+                            ModelVisual3D model_visual = new ModelVisual3D();
+                            model_visual.Content = MainModel3Dgroup;
+
+                            // Display the main visual in the viewportt.
+                            MainViewport.Children.Add(model_visual);
                         }
-                       // if (points.Count > 0)
-                           // Window_Loaded(sender, e);
+                        // if (PointsAdd.Count > 0)
+                        // Window_Loaded(sender, e);
                     }
               
                 }

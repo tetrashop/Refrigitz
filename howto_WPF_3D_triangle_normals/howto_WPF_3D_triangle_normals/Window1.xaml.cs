@@ -305,7 +305,8 @@ namespace howto_WPF_3D_triangle_normals
                 if (gr.a != null)
                 {
                     if (gr.a._3DReady)
-                    {
+                    {      
+                        //creation of target
                         //list found of 3d points
                         List<Point3D> points = new List<Point3D>();
                         for (int i = 0; i < gr.a.cx; i++)
@@ -344,8 +345,7 @@ namespace howto_WPF_3D_triangle_normals
                             }
                         }
                     }
-                    //creation of target
-
+              
                 }
 
             }

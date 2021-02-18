@@ -47,7 +47,7 @@ namespace howto_WPF_3D_triangle_normals
             Line l1 = new Line(p0, p1);
             //normals indices
             na = (l0.b * l1.c) - (l0.c * l1.b);
-            nb = (l0.a * l1.c) - (l0.c * l1.a);
+            nb = (l0.c * l1.a) - (l0.a * l1.c);
             nc = (l0.a * l1.b) - (l0.b * l1.a);
         }
     }

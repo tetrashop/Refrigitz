@@ -292,7 +292,7 @@ namespace howto_WPF_3D_triangle_normals
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            gr= new Form1();
+            gr = new Form1();
             WindowInteropHelper wih = new WindowInteropHelper(this);
             wih.Owner = gr.Handle;
             gr.Show();
@@ -306,10 +306,48 @@ namespace howto_WPF_3D_triangle_normals
                 {
                     if (gr.a._3DReady)
                     {
-                        //creation of target
-                        
+                        //list found of 3d points
+                        List<Point3D> points = new List<Point3D>();
+                        for (int i = 0; i < gr.a.cx; i++)
+                        {
+                            for (int j = 0; j < gr.a.cy; j++)
+                            {
+                                if (gr.a.c[i, j, 0] != 0)
+                                {
+                                    Point3D s = new Point3D();
+                                    s.X = i;
+                                    s.Y = j;
+                                    s.Z = gr.a.c[i, j, 0];
+                                    points.Add(s);
+                                }
+                                else
+                                    if (gr.a.c[i, j, 1] != 0)
+                                {
+                                    Point3D s = new Point3D();
+                                    s.X = i;
+                                    s.Y = j;
+                                    s.Z = gr.a.c[i, j, 1];
+                                    points.Add(s);
+                                }
+                                else
+                                    if (gr.a.c[i, j, 2] != 0)
+                                {
+                                    Point3D s = new Point3D();
+                                    s.X = i;
+                                    s.Y = j;
+                                    s.Z = gr.a.c[i, j, 2];
+                                    points.Add(s);
+                                }
+                                
+
+
+                            }
+                        }
                     }
+                    //creation of target
+
                 }
+
             }
         }
     }

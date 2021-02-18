@@ -25,7 +25,7 @@ namespace WindowsApplication1
         int[,,] f;//     f=zeros(b(1,1),b(1,2),3);
         int[,,] ddr;//     f=zeros(b(1,1),b(1,2),3);
         public float[,,] c;
-        int cx = 0, cy = 0, cz = 3;
+       public int cx = 0, cy = 0, cz = 3;
         public float[,,] e;
         int fg = 2;
         int minr = int.MaxValue;

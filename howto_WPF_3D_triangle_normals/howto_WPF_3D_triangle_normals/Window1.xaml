@@ -20,7 +20,6 @@
                 Click="chkContents_Click" IsChecked="True">Normals</CheckBox>
         </StackPanel>
         <Button Content="Graphic" HorizontalAlignment="Left" Margin="438,0,0,0" VerticalAlignment="Top" Width="54" Height="22" Click="Button_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
         <Button Content="3D creation" HorizontalAlignment="Left" Margin="358,0,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
     </Grid>
 </Window>

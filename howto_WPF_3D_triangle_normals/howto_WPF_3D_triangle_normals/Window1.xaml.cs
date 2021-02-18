@@ -24,6 +24,7 @@ namespace howto_WPF_3D_triangle_normals
         // The main object model group.
         private Model3DGroup MainModel3Dgroup = new Model3DGroup();
 
+
         // The camera.
         private PerspectiveCamera TheCamera;
 
@@ -344,6 +345,13 @@ namespace howto_WPF_3D_triangle_normals
 
                             }
                         }
+                        for(int i = 0; i < points.Count; i++)
+                        {
+                            Point3DCollection mes = new Point3DCollection();
+                            AddPoint(mes, points[i]);
+                        }
+                       // if (points.Count > 0)
+                           // Window_Loaded(sender, e);
                     }
               
                 }

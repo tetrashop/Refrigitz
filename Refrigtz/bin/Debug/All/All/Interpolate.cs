@@ -19,6 +19,21 @@ namespace LearningMachine
         static Double[,] D;
         static Double[] F;
         
+        public static double[] Quaficient(double[,,] AMinuseOnea, double[] b, int n)
+        {
+            double[] ans = new double[n];
+            for (int i = 0; i <n; i++)
+            {
+                for (int j = 0; j <n; j++)
+                {
+                    for (int k = 0; k < n; j++)
+                    {
+                        ans[i] += (AMinuseOnea[i, j, k] * b[k]);
+                    }
+                }
+            }
+            return ans;
+        }
         static public Double[] Array(Double[] ArrayInput, Int32 n)
         {
             Object o = new Object();
@@ -57,7 +72,7 @@ namespace LearningMachine
                 return Ans;
             }
         }
-        static private Double[,] AMinuseOne(Double[,] A, Int32 n)
+        static Double[,] AMinuseOne(Double[,] A, Int32 n)
         {
             Object o = new Object();
             lock (o)
@@ -82,6 +97,34 @@ namespace LearningMachine
                 return N;
             }
         }
+           static Double[,,] AMinuseOne(Double[,,] A, Int32 n)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                Double[,,] N = new Double[n, n,n];
+                Double[,,] Ast = new Double[n - 1, n - 1,n-1];
+                for (Int32 ii = 0; ii < n; ii++)
+                    for (Int32 jj = 0; jj < n; jj++)
+                        for (Int32 kk = 0; kk < n; kk++)
+                            N[ii, jj, kk] = System.Math.Pow(-1, ii + jj + kk) * Det(AStar(A, n, ii, jj, kk), n - 1);
+
+                for (int i = 0; i < n; i++)
+                    for (int j = i + 1; j < n; j++)
+                        for (int k = j + 1; k < n; k++)
+                        {
+                            Double AS = N[i, j, k];
+                            N[i, j, k] = N[j, i, k];
+                            N[j, i, k] = AS;
+                        }
+                Double SAS = 1 / Det(A, n);
+                for (int i = 0; i < n; i++)
+                    for (int j = 0; j < n; j++)
+                        for (int k = 0; k < n; k++)
+                            N[i, j, k] = SAS * N[i, j, k];
+                return N;
+            }
+        }
         static Double Det(Double[,] A, Int32 n)
         {
             Object o = new Object();
@@ -96,6 +139,23 @@ namespace LearningMachine
                 Double AA = 0;
                 for (int i = 0; i < n; i++)
                     AA = AA + A[0, i] * System.Math.Pow(-1, i) * Det(AStar(A, n, 0, i), n - 1);
+                return AA;
+            }
+        }
+        static Double Det(Double[,,] A, Int32 n)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                if (n == 0)
+                    return 0;
+                if (n == 1)
+                    return A[0, 0,0];
+             
+                Double AA = 0;
+                for (int i = 0; i < n; i++)
+                    for (int j = 0; j < n; j++)
+                        AA = AA + A[0, 0, i] * System.Math.Pow(-1, i + j) * Det(AStar(A, n, 0, i, j), n - 1);
                 return AA;
             }
         }
@@ -153,6 +213,42 @@ namespace LearningMachine
                         {
                             Ast[ni, nj] = A[i, j];
                             nj++;
+                        }
+                    }
+                    ni++;
+
+                }
+                return Ast;
+            }
+        }
+        static Double[,,] AStar(Double[,,] A, Int32 n, Int32 ii, Int32 jj,int kk)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                Double[,,] Ast = new Double[n - 1, n - 1,n-1];
+                Int32 ni = 0, nj = 0, nk = 0;
+                for (int i = 0; i < n; i++)
+                {
+                    nj = 0;
+                    if ((i == ii))
+                        i++;
+                    if (i == n)
+                        break;
+                    for (int j = 0; j < n; j++)
+                    {
+                        if ((j != jj))
+                        {
+                            for (int k = 0; k < n; k++)
+                            {
+                                if ((k != kk))
+                                {
+                                    Ast[ni, nj, nk] = A[i, j, k];
+                                    nk++;
+                                }
+                            }
+                            nj++;
+
                         }
                     }
                     ni++;

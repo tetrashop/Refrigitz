@@ -59,7 +59,7 @@ namespace WindowsApplication1
                 t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415));
                 f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
                 rr[i, j, k] = (int)Math.Round((double)(s[2]));
-                dr = (float)Math.Round(((1.0 * ((double)i)) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2))));
+                dr = (float)Math.Round(((1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2))));
                 ddr[i, j, k] = (int)dr;
                 if ((maxr - minr) * ii + dr >= 0// && (t[i, j, k + 1] + 2 < maxteta - minteta) && (t[i, j, k + 1] - 2 > minteta)
                      )

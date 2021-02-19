@@ -94,10 +94,71 @@ namespace howto_WPF_3D_triangle_normals
                 return count;
             }
         }
+        bool exist(Point3D[] ss, List<Point3D[]> d)
+        {
+            if (d.Count == 0)
+                return false;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
+                    return true;
+            }
+            return false;
+        }
         Point3D getd(Point3D p0, Point3D p1)
         {
             Line l0 = new Line(p0, p1);
             return new Point3D(p1.X + l0.a * 2, p1.Y * l0.b * 2, p1.Z * l0.c * 2);
         }
+        int reduceCountOfpoints(ref List<Point3D> s, double ht, double percent)
+        {
+            double countb = s.Count;
+
+            List<Point3D[]> d = new List<Point3D[]>();
+
+            do
+            {
+                for (int i = 0; i < s.Count; i++)
+                {
+                    for (int j = 0; j < s.Count; j++)
+                    {
+                        for (int k = 0; k < s.Count; k++)
+                        {
+                            //external point
+                            for (int b = 0; b < s.Count; b++)
+                            {
+                                if (i == j && j == k && k == b)
+                                    continue;
+                                if (countb / (double)s.Count <= percent)
+                                    return s.Count;
+                                Triangle a = new Triangle(s[i], s[j], s[k]);
+
+                                Point3D[] ss = new Point3D[3];
+                                ss[0] = s[i];
+                                ss[1] = s[j];
+                                ss[2] = s[k];
+                                ss = ImprovmentSort.Do(ss);
+                                if (!exist(ss, d))
+                                {
+                                    d.Add(ss);
+                                    double h = System.Math.Abs(a.a * s[b].X + a.b * s[b].Y + a.c * s[b].Z) / Math.Sqrt(a.a * a.a + a.b * a.b + a.c * a.c);
+                                    if (h < ht)
+                                    {
+                                        /*if (s[b].X < s[i].X && s[b].X < s[j].X && s[b].X < s[k].X)
+                                        {
+                                            s.RemoveAt(i);
+                                        }*/
+                                       
+                                    }
+                                }
+                            }
+                            }
+                    }
+                }
+
+
+            } while (countb / (double)s.Count > percent);
+            return s.Count;
+        }]
     }
 }

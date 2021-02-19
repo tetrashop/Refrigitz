@@ -372,6 +372,11 @@ namespace howto_WPF_3D_triangle_normals
                             if (PointsAdd.Count >= 3)
                             {
                                 MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points.");
+                                if (PointsAdd.Count > 100)
+                                {
+                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, 10, 100.0 / (double)PointsAdd.Count);
+                                    MessageBox.Show("reduced...! " + PointsAdd.Count.ToString() + " points.");
+                                }
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();
                                 TheCamera.FieldOfView = 60;

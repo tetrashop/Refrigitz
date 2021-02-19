@@ -313,16 +313,19 @@ namespace WindowsApplication1
 
             }
             q = (float)255.0 / (max - min);
-            for (int i = 0; i < ii; i++)
+            if (max > 255)
             {
-                for (int j = 0; j < jj; j++)
+                for (int i = 0; i < ii; i++)
                 {
-                    for (int k = 0; k < kk; k++)
+                    for (int j = 0; j < jj; j++)
                     {
-                        p[i, j, k] *= q;
+                        for (int k = 0; k < kk; k++)
+                        {
+                            p[i, j, k] *= q;
+                        }
                     }
-                }
 
+                }
             }
             return p;
         }

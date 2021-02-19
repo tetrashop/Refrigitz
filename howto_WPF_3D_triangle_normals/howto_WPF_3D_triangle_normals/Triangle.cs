@@ -77,18 +77,22 @@ namespace howto_WPF_3D_triangle_normals
         }
         public int externalMuliszerotow(Point3D p0, Point3D p1, Point3D p2, List<Point3D> externalp0)
         {
-            int count = 0;
-            for (int i = 0; i < externalp0.Count; i++)
+            object o = new object();
+            lock (o)
             {
-                if (!(externalp0.Contains(p0) || externalp0.Contains(p1) || externalp0.Contains(p2)))
+                int count = 0;
+                for (int i = 0; i < externalp0.Count; i++)
                 {
-                    if (externalMulIsEqual(p0, p1, p2, externalp0[i]))
-                        count++;
-                    if (externalMulIsEqualiInverse(p0, p1, p2, externalp0[i]))
-                        count++;
+                    if (!(externalp0.Contains(p0) || externalp0.Contains(p1) || externalp0.Contains(p2)))
+                    {
+                        if (externalMulIsEqual(p0, p1, p2, externalp0[i]))
+                            count++;
+                        if (externalMulIsEqualiInverse(p0, p1, p2, externalp0[i]))
+                            count++;
+                    }
                 }
+                return count;
             }
-            return count;
         }
         Point3D getd(Point3D p0, Point3D p1)
         {

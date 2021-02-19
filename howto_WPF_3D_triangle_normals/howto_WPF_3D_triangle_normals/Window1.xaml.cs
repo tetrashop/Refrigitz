@@ -2,6 +2,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -189,15 +191,19 @@ namespace howto_WPF_3D_triangle_normals
         // If the triangle's points already exist, reuse them.
         private void AddTriangle(MeshGeometry3D mesh, Point3D point1, Point3D point2, Point3D point3)
         {
-            // Get the points' indices.
-            int index1 = AddPoint(mesh.Positions, point1);
-            int index2 = AddPoint(mesh.Positions, point2);
-            int index3 = AddPoint(mesh.Positions, point3);
+            object o = new object();
+            lock (o)
+            {
+                // Get the points' indices.
+                int index1 = AddPoint(mesh.Positions, point1);
+                int index2 = AddPoint(mesh.Positions, point2);
+                int index3 = AddPoint(mesh.Positions, point3);
 
-            // Create the triangle.
-            mesh.TriangleIndices.Add(index1);
-            mesh.TriangleIndices.Add(index2);
-            mesh.TriangleIndices.Add(index3);
+                // Create the triangle.
+                mesh.TriangleIndices.Add(index1);
+                mesh.TriangleIndices.Add(index2);
+                mesh.TriangleIndices.Add(index3);
+            }
         }
 
         // A dictionary to hold points for fast lookup.
@@ -306,7 +312,7 @@ namespace howto_WPF_3D_triangle_normals
                 if (gr.a != null)
                 {
                     if (gr.a._3DReady)
-                    {      
+                    {
                         //creation of target
                         //list found of 3d PointsAdd
                         List<Point3D> PointsAdd = new List<Point3D>();
@@ -350,13 +356,32 @@ namespace howto_WPF_3D_triangle_normals
                             MeshGeometry3D mesh = new MeshGeometry3D();
                             Model3DGroup model_group = MainModel3Dgroup;
 
-                            for (int i = 0; i < PointsAdd.Count - 2; i += 3)
+                            var output = Task.Factory.StartNew(() =>
                             {
-                                if ((new Triangle()).externalMuliszerotow(PointsAdd[i], PointsAdd[i + 1], PointsAdd[i + 2], PointsAdd) == 0)
-                                    AddTriangle(mesh, PointsAdd[i], PointsAdd[i + 1], PointsAdd[i + 2]);
-                            }
-                          
-                        
+
+                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, i =>
+                               {
+
+                                   ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(i+1, PointsAdd.Count, j =>
+                                       {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                                           ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(j+1, PointsAdd.Count, k =>
+                                          {
+
+
+                                              if ((new Triangle()).externalMuliszerotow(PointsAdd[i], PointsAdd[j], PointsAdd[k], PointsAdd) == 0)
+                                              {
+                                                  this.Dispatcher.Invoke(() =>
+                                                  {
+                                                      var output1 = Task.Factory.StartNew(() => AddTriangle(mesh, PointsAdd[i], PointsAdd[j], PointsAdd[k]));
+                                                  });
+                                              }
+
+                                          });
+                                       });
+                               });
+                            });
+                            output.Wait();
+
                             // Make a mesh to hold the surface.
                             Console.WriteLine("Surface: ");
                             Console.WriteLine("    " + mesh.Positions.Count + " Points");
@@ -374,7 +399,7 @@ namespace howto_WPF_3D_triangle_normals
 
                             // Add the model to the model groups.
                             model_group.Children.Add(SurfaceModel);
-                           
+
                             // Make a wireframe.
                             double thickness = 0.03;
 #if SURFACE2
@@ -409,7 +434,7 @@ namespace howto_WPF_3D_triangle_normals
                         // if (PointsAdd.Count > 0)
                         // Window_Loaded(sender, e);
                     }
-              
+
                 }
 
             }

@@ -352,7 +352,8 @@ namespace howto_WPF_3D_triangle_normals
 
                             for (int i = 0; i < PointsAdd.Count - 2; i += 3)
                             {
-                                AddTriangle(mesh, PointsAdd[i], PointsAdd[i + 1], PointsAdd[i + 2]);
+                                if ((new Triangle()).externalMuliszerotow(PointsAdd[i], PointsAdd[i + 1], PointsAdd[i + 2], PointsAdd) == 0)
+                                    AddTriangle(mesh, PointsAdd[i], PointsAdd[i + 1], PointsAdd[i + 2]);
                             }
                           
                         

@@ -304,7 +304,17 @@ namespace howto_WPF_3D_triangle_normals
             wih.Owner = gr.Handle;
             gr.Show();
         }
-
+        bool exist(Point3D[] ss,List<Point3D[]> d)
+        {
+            if (d.Count == 0)
+                return true;
+            for(int i = 0; i < d.Count; i++)
+            {
+                if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
+                    return true;
+            }
+            return false;
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (gr != null)
@@ -366,8 +376,16 @@ namespace howto_WPF_3D_triangle_normals
                                        {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                                            ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(j+1, PointsAdd.Count, k =>
                                           {
+                                              List<Point3D[]> d = new List<Point3D[]>();
 
-
+                                              Point3D[] ss = new Point3D[3];
+                                              ss[0] = PointsAdd[i];
+                                              ss[1] = PointsAdd[j];
+                                              ss[2] = PointsAdd[k];
+                                              ss = ImprovmentSort.Do(ss);
+                                              if (exist(ss, d))
+                                                  return;
+                                              d.Add(ss);
                                               if ((new Triangle()).externalMuliszerotow(PointsAdd[i], PointsAdd[j], PointsAdd[k], PointsAdd) == 0)
                                               {
                                                   this.Dispatcher.Invoke(() =>

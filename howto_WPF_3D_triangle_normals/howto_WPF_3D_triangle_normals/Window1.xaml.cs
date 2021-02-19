@@ -371,7 +371,7 @@ namespace howto_WPF_3D_triangle_normals
                             }
                             if (PointsAdd.Count >= 3)
                             {
-                                MessageBox.Show("Add capable...!");
+                                MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points.");
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();
                                 TheCamera.FieldOfView = 60;

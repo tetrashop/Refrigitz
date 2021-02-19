@@ -110,99 +110,104 @@ namespace howto_WPF_3D_triangle_normals
             Line l0 = new Line(p0, p1);
             return new Point3D(p1.X + l0.a * 2, p1.Y * l0.b * 2, p1.Z * l0.c * 2);
         }
-        public int reduceCountOfpoints(ref List<Point3D> s, double ht, double percent)
+        public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent)
         {
-            double countb = s.Count;
+            double countb = sss.Count;
 
             List<Point3D[]> d = new List<Point3D[]>();
             bool Done = false;
-
+            List<Point3D> s = sss;
             do
             {
                 Done = false;
-                for (int i = 0; i < s.Count; i++)
+                var output = Task.Factory.StartNew(() =>
                 {
-                    for (int j = i + 1; j < s.Count; j++)
+
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, s.Count, i =>
                     {
-                        for (int k = j + 1; k < s.Count; k++)
-                        {
-                            //external point
-                            for (int b = 0; b < s.Count; b++)
-                            {
-                                if (i == j)
-                                    continue;
-                                if (i == k)
-                                    continue;
-                                if (i == b)
-                                    continue;
-                                if (j == k)
-                                    continue;
-                                if (j == b)
-                                    continue;
-                                if (k == b)
-                                    continue;
-                                if (countb / (double)s.Count <= percent)
-                                    return s.Count;
-                                if (b >= s.Count)
-                                    break;
-                                if (k >= s.Count)
-                                    break;
-                                if (j >= s.Count)
-                                    break;
-                                if (i >= s.Count)
-                                    break;
-                                Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
-                                Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
-                                Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
 
-                                Triangle at = new Triangle(aa, bb, cc);
-
-                                Point3D[] ss = new Point3D[3];
-                                ss[0] = new Point3D(aa.X, aa.Y, aa.Z);
-                                ss[1] = new Point3D(bb.X, bb.Y, bb.Z);
-                                ss[2] = new Point3D(cc.X, cc.Y, cc.Z);
-                                ss = ImprovmentSort.Do(ss);
-                                if (!exist(ss, d))
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(i + 1, s.Count, j =>
+                        {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                            ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(j + 1, s.Count, k =>
+                            {            //external point
+                                ParallelOptions ppopio = new ParallelOptions(); ppopio.MaxDegreeOfParallelism = 2; Parallel.For(0, s.Count, b =>
                                 {
-                                    d.Add(ss);
-                                    double h = System.Math.Abs(at.a * s[b].X + at.b * s[b].Y + at.c * s[b].Z) / Math.Sqrt(at.a * at.a + at.b * at.b + at.c * at.c);
-                                    if (h < ht && h != 0)
+                                    if (i == j)
+                                        return;
+                                    if (i == k)
+                                        return;
+                                    if (i == b)
+                                        return;
+                                    if (j == k)
+                                        return;
+                                    if (j == b)
+                                        return;
+                                    if (k == b)
+                                        return;
+                                    if (countb / (double)s.Count <= percent)
+                                        return;
+                                    if (b >= s.Count)
+                                        return;
+                                    if (k >= s.Count)
+                                        return;
+                                    if (j >= s.Count)
+                                        return;
+                                    if (i >= s.Count)
+                                        return;
+                                    Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
+                                    Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
+                                    Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
+
+                                    Triangle at = new Triangle(aa, bb, cc);
+
+                                    Point3D[] ss = new Point3D[3];
+                                    ss[0] = new Point3D(aa.X, aa.Y, aa.Z);
+                                    ss[1] = new Point3D(bb.X, bb.Y, bb.Z);
+                                    ss[2] = new Point3D(cc.X, cc.Y, cc.Z);
+                                    ss = ImprovmentSort.Do(ss);
+                                    if (!exist(ss, d))
                                     {
-                                        if (System.Math.Abs(s[b].X - s[i].X) == System.Math.Abs(s[b].X - s[j].X) && System.Math.Abs(s[b].X - s[j].X) == System.Math.Abs(s[b].X - s[k].X))
+                                        d.Add(ss);
+                                        double h = System.Math.Abs(at.a * s[b].X + at.b * s[b].Y + at.c * s[b].Z) / Math.Sqrt(at.a * at.a + at.b * at.b + at.c * at.c);
+                                        if (h < ht && h != 0)
                                         {
-                                            s.RemoveAt(b);
-                                            Done = true;
-                                        }
-                                        else
-                                             if (System.Math.Abs(s[b].Y - s[i].Y) == System.Math.Abs(s[b].Y - s[j].Y) && System.Math.Abs(s[b].Y - s[j].Y) == System.Math.Abs(s[b].Y - s[k].Y))
-                                        {
-                                            s.RemoveAt(b);
-                                            Done = true;
-                                        }
-                                        else if (System.Math.Abs(s[b].Z - s[i].Z) == System.Math.Abs(s[b].Z - s[j].Z) && System.Math.Abs(s[b].Z - s[j].Z) == System.Math.Abs(s[b].Z - s[k].Z))
-                                        {
-                                            s.RemoveAt(b);
-                                            Done = true;
-                                        }
+                                            if (System.Math.Abs(s[b].X - s[i].X) == System.Math.Abs(s[b].X - s[j].X) && System.Math.Abs(s[b].X - s[j].X) == System.Math.Abs(s[b].X - s[k].X))
+                                            {
+                                                s.RemoveAt(b);
+                                                Done = true;
+                                            }
+                                            else
+                                                 if (System.Math.Abs(s[b].Y - s[i].Y) == System.Math.Abs(s[b].Y - s[j].Y) && System.Math.Abs(s[b].Y - s[j].Y) == System.Math.Abs(s[b].Y - s[k].Y))
+                                            {
+                                                s.RemoveAt(b);
+                                                Done = true;
+                                            }
+                                            else if (System.Math.Abs(s[b].Z - s[i].Z) == System.Math.Abs(s[b].Z - s[j].Z) && System.Math.Abs(s[b].Z - s[j].Z) == System.Math.Abs(s[b].Z - s[k].Z))
+                                            {
+                                                s.RemoveAt(b);
+                                                Done = true;
+                                            }
 
+                                        }
                                     }
-                                }
-                                if (b >= s.Count)
-                                    break;
-                            }
-                            if (k >= s.Count)
-                                break;
-                        }
-                        if (j >= s.Count)
-                            break;
-                    }
-                    if (i >= s.Count)
-                        break;
-                }
-
+                                    if (b >= s.Count)
+                                        return;
+                                });
+                                if (k >= s.Count)
+                                    return;
+                            });
+                            if (j >= s.Count)
+                                return;
+                        });
+                        if (i >= s.Count)
+                            return;
+                    });
+                });
+                output.Wait();
 
             } while (countb / (double)s.Count > percent && (Done));
-            return s.Count;
+            sss = s;
+            return sss.Count;
         }
     }
 }

@@ -25,13 +25,13 @@ namespace howto_WPF_3D_triangle_normals
             aa[0, 0, 0] = p0.Y;
             aa[0, 0, 0] = p0.Z;
 
-            aa[0, 1, 2] = p1.X;
-            aa[0, 0, 0] = p1.Y;
+            aa[0, 0, 0] = p1.X;
+            aa[0, 1, 2] = p1.Y;
             aa[0, 0, 0] = p1.Z;
 
             aa[0, 0, 0] = p2.X;
             aa[0, 0, 0] = p2.Y;
-            aa[1, 2, 3] = p2.Z;
+            aa[0, 1, 2] = p2.Z;
 
             ddd[0] = dd.X;
             ddd[1] = dd.Y;
@@ -122,66 +122,86 @@ namespace howto_WPF_3D_triangle_normals
                 Done = false;
                 for (int i = 0; i < s.Count; i++)
                 {
-                    for (int j = 0; j < s.Count; j++)
+                    for (int j = i + 1; j < s.Count; j++)
                     {
-                        for (int k = 0; k < s.Count; k++)
+                        for (int k = j + 1; k < s.Count; k++)
                         {
                             //external point
                             for (int b = 0; b < s.Count; b++)
                             {
-                                if (i == j )
+                                if (i == j)
+                                    continue;
+                                if (i == k)
+                                    continue;
+                                if (i == b)
                                     continue;
                                 if (j == k)
                                     continue;
-                                if (i == k)
+                                if (j == b)
                                     continue;
                                 if (k == b)
                                     continue;
-                                if (i == k)
-                                    continue;
-                                if (i ==  b)
-                                    continue;
                                 if (countb / (double)s.Count <= percent)
                                     return s.Count;
-                                Triangle a = new Triangle(s[i], s[j], s[k]);
+                                if (b >= s.Count)
+                                    break;
+                                if (k >= s.Count)
+                                    break;
+                                if (j >= s.Count)
+                                    break;
+                                if (i >= s.Count)
+                                    break;
+                                Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
+                                Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
+                                Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
+
+                                Triangle at = new Triangle(aa, bb, cc);
 
                                 Point3D[] ss = new Point3D[3];
-                                ss[0] = s[i];
-                                ss[1] = s[j];
-                                ss[2] = s[k];
+                                ss[0] = new Point3D(aa.X, aa.Y, aa.Z);
+                                ss[1] = new Point3D(bb.X, bb.Y, bb.Z);
+                                ss[2] = new Point3D(cc.X, cc.Y, cc.Z);
                                 ss = ImprovmentSort.Do(ss);
                                 if (!exist(ss, d))
                                 {
                                     d.Add(ss);
-                                    double h = System.Math.Abs(a.a * s[b].X + a.b * s[b].Y + a.c * s[b].Z) / Math.Sqrt(a.a * a.a + a.b * a.b + a.c * a.c);
+                                    double h = System.Math.Abs(at.a * s[b].X + at.b * s[b].Y + at.c * s[b].Z) / Math.Sqrt(at.a * at.a + at.b * at.b + at.c * at.c);
                                     if (h < ht && h != 0)
                                     {
                                         if (System.Math.Abs(s[b].X - s[i].X) == System.Math.Abs(s[b].X - s[j].X) && System.Math.Abs(s[b].X - s[j].X) == System.Math.Abs(s[b].X - s[k].X))
                                         {
-                                            s.RemoveAt(i);
+                                            s.RemoveAt(b);
                                             Done = true;
                                         }
                                         else
                                              if (System.Math.Abs(s[b].Y - s[i].Y) == System.Math.Abs(s[b].Y - s[j].Y) && System.Math.Abs(s[b].Y - s[j].Y) == System.Math.Abs(s[b].Y - s[k].Y))
                                         {
-                                            s.RemoveAt(i);
+                                            s.RemoveAt(b);
                                             Done = true;
                                         }
                                         else if (System.Math.Abs(s[b].Z - s[i].Z) == System.Math.Abs(s[b].Z - s[j].Z) && System.Math.Abs(s[b].Z - s[j].Z) == System.Math.Abs(s[b].Z - s[k].Z))
                                         {
-                                            s.RemoveAt(i);
+                                            s.RemoveAt(b);
                                             Done = true;
                                         }
 
                                     }
                                 }
+                                if (b >= s.Count)
+                                    break;
                             }
+                            if (k >= s.Count)
+                                break;
                         }
+                        if (j >= s.Count)
+                            break;
                     }
+                    if (i >= s.Count)
+                        break;
                 }
 
 
-            } while (countb / (double)s.Count > percent&& (Done));
+            } while (countb / (double)s.Count > percent && (Done));
             return s.Count;
         }
     }

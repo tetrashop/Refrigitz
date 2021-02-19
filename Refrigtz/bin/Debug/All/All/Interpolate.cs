@@ -22,13 +22,14 @@ namespace LearningMachine
         public static double[] Quaficient(double[,,] AMinuseOnea, double[] b, int n)
         {
             double[] ans = new double[n];
+            double[,,] x = AMinuseOne(AMinuseOnea, n);
             for (int i = 0; i <n; i++)
             {
                 for (int j = 0; j <n; j++)
                 {
-                    for (int k = 0; k < n; j++)
+                    for (int k = 0; k < n; k++)
                     {
-                        ans[i] += (AMinuseOnea[i, j, k] * b[k]);
+                        ans[i] += x[i, j, k] * b[k];
                     }
                 }
             }
@@ -237,6 +238,7 @@ namespace LearningMachine
                         break;
                     for (int j = 0; j < n; j++)
                     {
+                        nk = 0;
                         if ((j != jj))
                         {
                             for (int k = 0; k < n; k++)

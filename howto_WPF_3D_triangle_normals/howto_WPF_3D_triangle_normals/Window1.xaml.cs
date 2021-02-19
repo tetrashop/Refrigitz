@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,6 +19,22 @@ namespace howto_WPF_3D_triangle_normals
     /// </summary>
     public partial class Window1 : Window
     {
+        static void Log(Exception ex)
+        {
+            try
+            {
+                Object a = new Object();
+                lock (a)
+                {
+                    string stackTrace = ex.ToString();
+                    //Write to File.
+                     File.AppendAllText( "ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
+                }
+            }
+#pragma warning disable CS0168 // The variable 't' is declared but never used
+            catch (Exception t) { }
+#pragma warning restore CS0168 // The variable 't' is declared but never used
+        }
         public Window1()
         {
             InitializeComponent();
@@ -304,11 +321,11 @@ namespace howto_WPF_3D_triangle_normals
             wih.Owner = gr.Handle;
             gr.Show();
         }
-        bool exist(Point3D[] ss,List<Point3D[]> d)
+        bool exist(Point3D[] ss, List<Point3D[]> d)
         {
             if (d.Count == 0)
-                return true;
-            for(int i = 0; i < d.Count; i++)
+                return false;
+            for (int i = 0; i < d.Count; i++)
             {
                 if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
                     return true;
@@ -317,145 +334,147 @@ namespace howto_WPF_3D_triangle_normals
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (gr != null)
-            {
-                if (gr.a != null)
+            try { if (gr != null)
                 {
-                    if (gr.a._3DReady)
+                    if (gr.a != null)
                     {
-                        //creation of target
-                        //list found of 3d PointsAdd
-                        List<Point3D> PointsAdd = new List<Point3D>();
-                        for (int i = 0; i < gr.a.cx; i++)
+                        if (gr.a._3DReady)
                         {
-                            for (int j = 0; j < gr.a.cy; j++)
+                            //creation of target
+                            //list found of 3d PointsAdd
+                            List<Point3D> PointsAdd = new List<Point3D>();
+                            for (int i = 0; i < gr.a.cx; i++)
                             {
-                                if (gr.a.c[i, j, 0] != 0)
+                                for (int j = 0; j < gr.a.cy; j++)
                                 {
-                                    Point3D s = new Point3D(i, j, gr.a.c[i, j, 0]);
-                                    PointsAdd.Add(s);
-                                }
-                                else
-                                    if (gr.a.c[i, j, 1] != 0)
-                                {
-                                    Point3D s = new Point3D(i, j, gr.a.c[i, j, 1]);
-                                    PointsAdd.Add(s);
-                                }
-                                else
-                                    if (gr.a.c[i, j, 2] != 0)
-                                {
-                                    Point3D s = new Point3D(i, j, gr.a.c[i, j, 2]);
-                                    PointsAdd.Add(s);
-                                }
+                                    if (gr.a.c[i, j, 0] != 0)
+                                    {
+                                        Point3D s = new Point3D(i, j, gr.a.c[i, j, 0]);
+                                        PointsAdd.Add(s);
+                                    }
+                                    else
+                                        if (gr.a.c[i, j, 1] != 0)
+                                    {
+                                        Point3D s = new Point3D(i, j, gr.a.c[i, j, 1]);
+                                        PointsAdd.Add(s);
+                                    }
+                                    else
+                                        if (gr.a.c[i, j, 2] != 0)
+                                    {
+                                        Point3D s = new Point3D(i, j, gr.a.c[i, j, 2]);
+                                        PointsAdd.Add(s);
+                                    }
 
 
 
+                                }
                             }
-                        }
-                        if (PointsAdd.Count >= 3)
-                        {
-                            MessageBox.Show("Add capable...!");
-                            // Give the camera its initial position.
-                            TheCamera = new PerspectiveCamera();
-                            TheCamera.FieldOfView = 60;
-                            MainViewport.Camera = TheCamera;
-                            PositionCamera();
-
-                            // Define lights.
-                            DefineLights();
-                            MeshGeometry3D mesh = new MeshGeometry3D();
-                            Model3DGroup model_group = MainModel3Dgroup;
-
-                            var output = Task.Factory.StartNew(() =>
+                            if (PointsAdd.Count >= 3)
                             {
+                                MessageBox.Show("Add capable...!");
+                                // Give the camera its initial position.
+                                TheCamera = new PerspectiveCamera();
+                                TheCamera.FieldOfView = 60;
+                                MainViewport.Camera = TheCamera;
+                                PositionCamera();
 
-                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, i =>
-                               {
+                                // Define lights.
+                                DefineLights();
+                                MeshGeometry3D mesh = new MeshGeometry3D();
+                                Model3DGroup model_group = MainModel3Dgroup;
 
-                                   ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(i+1, PointsAdd.Count, j =>
-                                       {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                                           ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(j+1, PointsAdd.Count, k =>
-                                          {
-                                              List<Point3D[]> d = new List<Point3D[]>();
+                                var output = Task.Factory.StartNew(() =>
+                                {
 
-                                              Point3D[] ss = new Point3D[3];
-                                              ss[0] = PointsAdd[i];
-                                              ss[1] = PointsAdd[j];
-                                              ss[2] = PointsAdd[k];
-                                              ss = ImprovmentSort.Do(ss);
-                                              if (exist(ss, d))
-                                                  return;
-                                              d.Add(ss);
-                                              if ((new Triangle()).externalMuliszerotow(PointsAdd[i], PointsAdd[j], PointsAdd[k], PointsAdd) == 0)
+                                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, i =>
+                                   {
+
+                                       ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(i + 1, PointsAdd.Count, j =>
+                                         {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                                             ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(j + 1, PointsAdd.Count, k =>
                                               {
-                                                  this.Dispatcher.Invoke(() =>
+                                                  List<Point3D[]> d = new List<Point3D[]>();
+
+                                                  Point3D[] ss = new Point3D[3];
+                                                  ss[0] = PointsAdd[i];
+                                                  ss[1] = PointsAdd[j];
+                                                  ss[2] = PointsAdd[k];
+                                                  ss = ImprovmentSort.Do(ss);
+                                                  if (!exist(ss, d))
                                                   {
-                                                      var output1 = Task.Factory.StartNew(() => AddTriangle(mesh, PointsAdd[i], PointsAdd[j], PointsAdd[k]));
-                                                  });
-                                              }
+                                                      d.Add(ss);
+                                                      if ((new Triangle()).externalMuliszerotow(PointsAdd[i], PointsAdd[j], PointsAdd[k], PointsAdd) == 0)
+                                                      {
+                                                          this.Dispatcher.Invoke(() =>
+                                                        {
+                                                            var output1 = Task.Factory.StartNew(() => AddTriangle(mesh, PointsAdd[i], PointsAdd[j], PointsAdd[k]));
+                                                        });
+                                                      }
+                                                  }
 
-                                          });
-                                       });
-                               });
-                            });
-                            output.Wait();
+                                              });
+                                         });
+                                   });
+                                });
+                                output.Wait();
 
-                            // Make a mesh to hold the surface.
-                            Console.WriteLine("Surface: ");
-                            Console.WriteLine("    " + mesh.Positions.Count + " Points");
-                            Console.WriteLine("    " + mesh.TriangleIndices.Count / 3 + " triangles");
-                            Console.WriteLine();
+                                // Make a mesh to hold the surface.
+                                Console.WriteLine("Surface: ");
+                                Console.WriteLine("    " + mesh.Positions.Count + " Points");
+                                Console.WriteLine("    " + mesh.TriangleIndices.Count / 3 + " triangles");
+                                Console.WriteLine();
 
-                            // Make the surface's material using a solid green brush.
-                            DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.LightGreen);
+                                // Make the surface's material using a solid green brush.
+                                DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.LightGreen);
 
-                            // Make the surface's model.
-                            SurfaceModel = new GeometryModel3D(mesh, surface_material);
+                                // Make the surface's model.
+                                SurfaceModel = new GeometryModel3D(mesh, surface_material);
 
-                            // Make the surface visible from both sides.
-                            SurfaceModel.BackMaterial = surface_material;
+                                // Make the surface visible from both sides.
+                                SurfaceModel.BackMaterial = surface_material;
 
-                            // Add the model to the model groups.
-                            model_group.Children.Add(SurfaceModel);
+                                // Add the model to the model groups.
+                                model_group.Children.Add(SurfaceModel);
 
-                            // Make a wireframe.
-                            double thickness = 0.03;
+                                // Make a wireframe.
+                                double thickness = 0.03;
 #if SURFACE2
             thickness = 0.01
 #endif
-                            MeshGeometry3D wireframe = mesh.ToWireframe(thickness);
-                            DiffuseMaterial wireframe_material = new DiffuseMaterial(Brushes.Red);
-                            WireframeModel = new GeometryModel3D(wireframe, wireframe_material);
-                            model_group.Children.Add(WireframeModel);
-                            Console.WriteLine("Wireframe: ");
-                            Console.WriteLine("    " + wireframe.Positions.Count + " Points");
-                            Console.WriteLine("    " + wireframe.TriangleIndices.Count / 3 + " triangles");
-                            Console.WriteLine();
+                                MeshGeometry3D wireframe = mesh.ToWireframe(thickness);
+                                DiffuseMaterial wireframe_material = new DiffuseMaterial(Brushes.Red);
+                                WireframeModel = new GeometryModel3D(wireframe, wireframe_material);
+                                model_group.Children.Add(WireframeModel);
+                                Console.WriteLine("Wireframe: ");
+                                Console.WriteLine("    " + wireframe.Positions.Count + " Points");
+                                Console.WriteLine("    " + wireframe.TriangleIndices.Count / 3 + " triangles");
+                                Console.WriteLine();
 
-                            // Make the normals.
-                            MeshGeometry3D normals = mesh.ToTriangleNormals(0.5, thickness);
-                            DiffuseMaterial normals_material = new DiffuseMaterial(Brushes.Blue);
-                            NormalsModel = new GeometryModel3D(normals, normals_material);
-                            model_group.Children.Add(NormalsModel);
-                            Console.WriteLine("Normals: ");
-                            Console.WriteLine("    " + normals.Positions.Count + " Points");
-                            Console.WriteLine("    " + normals.TriangleIndices.Count / 3 + " triangles");
-                            Console.WriteLine();
+                                // Make the normals.
+                                MeshGeometry3D normals = mesh.ToTriangleNormals(0.5, thickness);
+                                DiffuseMaterial normals_material = new DiffuseMaterial(Brushes.Blue);
+                                NormalsModel = new GeometryModel3D(normals, normals_material);
+                                model_group.Children.Add(NormalsModel);
+                                Console.WriteLine("Normals: ");
+                                Console.WriteLine("    " + normals.Positions.Count + " Points");
+                                Console.WriteLine("    " + normals.TriangleIndices.Count / 3 + " triangles");
+                                Console.WriteLine();
 
-                            // Add the group of models to a ModelVisual3D.
-                            ModelVisual3D model_visual = new ModelVisual3D();
-                            model_visual.Content = MainModel3Dgroup;
+                                // Add the group of models to a ModelVisual3D.
+                                ModelVisual3D model_visual = new ModelVisual3D();
+                                model_visual.Content = MainModel3Dgroup;
 
-                            // Display the main visual in the viewportt.
-                            MainViewport.Children.Add(model_visual);
+                                // Display the main visual in the viewportt.
+                                MainViewport.Children.Add(model_visual);
+                            }
+                            // if (PointsAdd.Count > 0)
+                            // Window_Loaded(sender, e);
                         }
-                        // if (PointsAdd.Count > 0)
-                        // Window_Loaded(sender, e);
+
                     }
 
                 }
-
-            }
-        }
+            } catch (Exception t) { MessageBox.Show(t.ToString()); Log(t); }
+        } 
     }
 }

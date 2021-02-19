@@ -283,7 +283,7 @@ namespace WindowsApplication1
 
             }
             float q = min;
-            if (q < 0)
+            if (q < 0.0)
             {
                 for (int i = 0; i < ii; i++)
                 {
@@ -312,8 +312,8 @@ namespace WindowsApplication1
                 }
 
             }
-            q = (float)255.0 / (max - min);
-            if (max > 255)
+            q = (float)255.0 / (max );
+            if (max > 255.0)
             {
                 for (int i = 0; i < ii; i++)
                 {

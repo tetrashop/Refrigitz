@@ -9,7 +9,7 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
-        double percent = 0.9;
+        double percent = 0.5;
         bool elim = false;
         public _2dTo3D a;
         int Kind = 0;
@@ -784,17 +784,17 @@ namespace WindowsApplication1
                     }
                 }
             }
+            percent = percent - 0.1;
+            int v = (int)((percent) * 100.0);
+            toolStripMenuItem1.Text = "Do by " + v.ToString() + "% of pixels";
+          
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
             pictureBox24.Image = a;
             pictureBox24.Refresh();
             pictureBox24.Update();
             pictureBox24.Invalidate();
-            percent = percent - 0.1;
-            int v = (int)((percent) * 100.0);
-            toolStripMenuItem1.Text = "Do by " + v.ToString() + "% of pixels";
-            doToolStripMenuItem1.Text = "Do by " + v.ToString() + "% of pixels";
-        }
+         }
 
         private void button2_Click(object sender, EventArgs e)
         {

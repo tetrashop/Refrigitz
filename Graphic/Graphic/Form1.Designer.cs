@@ -346,7 +346,7 @@ namespace WindowsApplication1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
-            this.toolStripMenuItem1.Text = "Do by 90% of pixels";
+            this.toolStripMenuItem1.Text = "Do by 50% of pixels";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // eliminateClicingColorToolStripMenuItem

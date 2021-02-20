@@ -748,7 +748,7 @@ namespace WindowsApplication1
             Image aa = pictureBox24.Image;
             var output = Task.Factory.StartNew(() =>
             {
-                a = new _2dTo3D(aa, percent);
+                a = new _2dTo3D(aa);
             });
             output.Wait();
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;

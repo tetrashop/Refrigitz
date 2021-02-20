@@ -357,6 +357,7 @@ namespace WindowsApplication1
                 }
             }
             _3DReady = true;
+            g.Dispose();
             /*  List<Task> th = new List<Task>();
               var output = Task.Factory.StartNew(() =>
                   {
@@ -458,6 +459,7 @@ namespace WindowsApplication1
                 }
             }
             _3DReady = true;
+            g.Dispose();
             /*  List<Task> th = new List<Task>();
               var output = Task.Factory.StartNew(() =>
                   {
@@ -539,6 +541,7 @@ namespace WindowsApplication1
                 }
             }
             _3DReady = true;
+            g.Dispose();
             /*  List<Task> th = new List<Task>();
               var output = Task.Factory.StartNew(() =>
                   {
@@ -643,6 +646,7 @@ namespace WindowsApplication1
                 }
             }
             _3DReady = true;
+            g.Dispose();
             /*  List<Task> th = new List<Task>();
               var output = Task.Factory.StartNew(() =>
                   {

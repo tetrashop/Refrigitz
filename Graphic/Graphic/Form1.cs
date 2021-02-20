@@ -748,11 +748,12 @@ namespace WindowsApplication1
             Image aa = pictureBox24.Image;
             var output = Task.Factory.StartNew(() =>
             {
-                a = new _2dTo3D(aa);
+                a = new _2dTo3D(aa, percent);
             });
             output.Wait();
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
+            pictureBox24.Image.Dispose();
             pictureBox24.Image = a.ar;
             pictureBox24.Refresh();
             pictureBox24.Update();
@@ -773,8 +774,7 @@ namespace WindowsApplication1
                 {
                     if (((i + j) % ((int)(1.0 / percent))) == 0)
                     {
-                        g.DrawImage(a, 0, 0, a.Width, a.Height);
-                        g.Save();
+                     
                     }
                     else
                     {
@@ -793,6 +793,7 @@ namespace WindowsApplication1
             percent = percent - 0.1;
             int v = (int)((percent) * 100.0);
             toolStripMenuItem1.Text = "Do by " + v.ToString() + "% of pixels";
+            doToolStripMenuItem1.Text = "Do by " + v.ToString() + "% of pixels";
         }
 
         private void button2_Click(object sender, EventArgs e)

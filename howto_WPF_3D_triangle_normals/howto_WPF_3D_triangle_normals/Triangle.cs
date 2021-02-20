@@ -205,7 +205,7 @@ namespace howto_WPF_3D_triangle_normals
                 });
                 output.Wait();
 
-            } while (countb / (double)s.Count > percent && (Done));
+            } while ((double)s.Count / countb > percent && (Done));
             sss = s;
             return sss.Count;
         }

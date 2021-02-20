@@ -786,11 +786,12 @@ namespace WindowsApplication1
             }
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
+            pictureBox24.Image = a;
             pictureBox24.Refresh();
             pictureBox24.Update();
             pictureBox24.Invalidate();
             percent = percent - 0.1;
-            int v = (int)(1.0 / percent) * 100;
+            int v = (int)((percent) * 100.0);
             toolStripMenuItem1.Text = "Do by " + v.ToString() + "% of pixels";
         }
 

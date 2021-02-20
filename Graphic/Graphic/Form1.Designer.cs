@@ -55,7 +55,6 @@ namespace WindowsApplication1
             this.doBy1OfPixelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.decreseResulotonCheckersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminateClicingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.PictureBox2 = new System.Windows.Forms.PictureBox();
@@ -100,6 +99,7 @@ namespace WindowsApplication1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.doToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -333,24 +333,17 @@ namespace WindowsApplication1
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.decreseResulotonCheckersToolStripMenuItem,
-            this.eliminateClicingColorToolStripMenuItem});
+            this.eliminateClicingColorToolStripMenuItem,
+            this.doToolStripMenuItem1});
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
-            // decreseResulotonCheckersToolStripMenuItem
-            // 
-            this.decreseResulotonCheckersToolStripMenuItem.Name = "decreseResulotonCheckersToolStripMenuItem";
-            this.decreseResulotonCheckersToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.decreseResulotonCheckersToolStripMenuItem.Text = "Decrese resoluion checkers";
-            this.decreseResulotonCheckersToolStripMenuItem.Click += new System.EventHandler(this.decreseResulotonCheckersToolStripMenuItem_Click);
-            // 
             // eliminateClicingColorToolStripMenuItem
             // 
             this.eliminateClicingColorToolStripMenuItem.Name = "eliminateClicingColorToolStripMenuItem";
-            this.eliminateClicingColorToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.eliminateClicingColorToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.eliminateClicingColorToolStripMenuItem.Text = "Eliminate clicing color";
             this.eliminateClicingColorToolStripMenuItem.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
@@ -826,6 +819,13 @@ namespace WindowsApplication1
             this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
             this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_Click);
             // 
+            // doToolStripMenuItem1
+            // 
+            this.doToolStripMenuItem1.Name = "doToolStripMenuItem1";
+            this.doToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.doToolStripMenuItem1.Text = "Do";
+            this.doToolStripMenuItem1.Click += new System.EventHandler(this.doToolStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -975,8 +975,8 @@ namespace WindowsApplication1
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem doBy1OfPixelsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem decreseResulotonCheckersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminateClicingColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem doToolStripMenuItem1;
     }
 }
 

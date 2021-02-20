@@ -742,6 +742,23 @@ namespace WindowsApplication1
 
         }
 
+        private void doToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Image aa = pictureBox24.Image;
+            var output = Task.Factory.StartNew(() =>
+            {
+                a = new _2dTo3D(aa);
+            });
+            output.Wait();
+            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox24.Visible = true;
+            pictureBox24.Image = a.ar;
+            pictureBox24.Refresh();
+            pictureBox24.Update();
+            pictureBox24.Invalidate();
+
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             ClickMouse = 0;

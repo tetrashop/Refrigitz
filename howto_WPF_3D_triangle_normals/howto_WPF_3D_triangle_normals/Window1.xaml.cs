@@ -372,11 +372,11 @@ namespace howto_WPF_3D_triangle_normals
                             if (PointsAdd.Count >= 3)
                             {
                                 MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points.");
-                                if (PointsAdd.Count > 100)
-                                {
-                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, 10, 100.0 / (double)PointsAdd.Count);
-                                    MessageBox.Show("reduced...! " + PointsAdd.Count.ToString() + " points.");
-                                }
+                                /* if (PointsAdd.Count > 100)
+                                 {
+                                     int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, 10, 100.0 / (double)PointsAdd.Count);
+                                     MessageBox.Show("reduced...! " + PointsAdd.Count.ToString() + " points.");
+                                 }*/
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();
                                 TheCamera.FieldOfView = 60;
@@ -388,7 +388,7 @@ namespace howto_WPF_3D_triangle_normals
                                 MeshGeometry3D mesh = new MeshGeometry3D();
                                 Model3DGroup model_group = MainModel3Dgroup;
 
-                                var output = Task.Factory.StartNew(() =>
+                                /*var output = Task.Factory.StartNew(() =>
                                 {
 
                                     ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, i =>
@@ -422,9 +422,37 @@ namespace howto_WPF_3D_triangle_normals
                                    });
                                 });
                                 output.Wait();
+                                */
 
-                                // Make a mesh to hold the surface.
-                                Console.WriteLine("Surface: ");
+                                for (int i = 0; i < PointsAdd.Count; i++)
+                                {
+                                    for (int j = i + 1; j < PointsAdd.Count; j++)
+                                    {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                                        for (int k = j + 1; k < PointsAdd.Count; k++)
+                                        {
+                                            List<Point3D[]> d = new List<Point3D[]>();
+
+                                            Point3D[] ss = new Point3D[3];
+                                            ss[0] = PointsAdd[i];
+                                            ss[1] = PointsAdd[j];
+                                            ss[2] = PointsAdd[k];
+                                            ss = ImprovmentSort.Do(ss);
+                                            if (!exist(ss, d))
+                                            {
+                                                d.Add(ss);
+                                                if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd) == 0)
+                                                {
+
+                                                    AddTriangle(mesh, ss[0], ss[1], ss[2]);
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                            
+                            // Make a mesh to hold the surface.
+                            Console.WriteLine("Surface: ");
                                 Console.WriteLine("    " + mesh.Positions.Count + " Points");
                                 Console.WriteLine("    " + mesh.TriangleIndices.Count / 3 + " triangles");
                                 Console.WriteLine();

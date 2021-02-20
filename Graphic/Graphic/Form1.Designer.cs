@@ -1,3 +1,4 @@
+
 namespace WindowsApplication1
 {
     partial class Form1
@@ -53,6 +54,9 @@ namespace WindowsApplication1
             this.doToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doBy1OfPixelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.decreseResulotonCheckersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminateClicingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.PictureBox2 = new System.Windows.Forms.PictureBox();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
@@ -297,7 +301,8 @@ namespace WindowsApplication1
             // 
             this.dTo3DToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.doToolStripMenuItem,
-            this.clearToolStripMenuItem});
+            this.clearToolStripMenuItem,
+            this.loadToolStripMenuItem});
             this.dTo3DToolStripMenuItem.Name = "dTo3DToolStripMenuItem";
             this.dTo3DToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.dTo3DToolStripMenuItem.Text = "2D to 3D";
@@ -314,7 +319,7 @@ namespace WindowsApplication1
             // doBy1OfPixelsToolStripMenuItem
             // 
             this.doBy1OfPixelsToolStripMenuItem.Name = "doBy1OfPixelsToolStripMenuItem";
-            this.doBy1OfPixelsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.doBy1OfPixelsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.doBy1OfPixelsToolStripMenuItem.Text = "Do by 50% of pixels";
             this.doBy1OfPixelsToolStripMenuItem.Click += new System.EventHandler(this.doBy1OfPixelsToolStripMenuItem_Click);
             // 
@@ -324,6 +329,30 @@ namespace WindowsApplication1
             this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.decreseResulotonCheckersToolStripMenuItem,
+            this.eliminateClicingColorToolStripMenuItem});
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            // 
+            // decreseResulotonCheckersToolStripMenuItem
+            // 
+            this.decreseResulotonCheckersToolStripMenuItem.Name = "decreseResulotonCheckersToolStripMenuItem";
+            this.decreseResulotonCheckersToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.decreseResulotonCheckersToolStripMenuItem.Text = "Decrese resoluion checkers";
+            this.decreseResulotonCheckersToolStripMenuItem.Click += new System.EventHandler(this.decreseResulotonCheckersToolStripMenuItem_Click);
+            // 
+            // eliminateClicingColorToolStripMenuItem
+            // 
+            this.eliminateClicingColorToolStripMenuItem.Name = "eliminateClicingColorToolStripMenuItem";
+            this.eliminateClicingColorToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.eliminateClicingColorToolStripMenuItem.Text = "Eliminate clicing color";
+            this.eliminateClicingColorToolStripMenuItem.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // PictureBox1
             // 
@@ -795,6 +824,7 @@ namespace WindowsApplication1
             this.pictureBox24.TabStop = false;
             this.pictureBox24.Visible = false;
             this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
+            this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_Click);
             // 
             // Form1
             // 
@@ -944,6 +974,9 @@ namespace WindowsApplication1
         private System.Windows.Forms.PictureBox pictureBox24;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem doBy1OfPixelsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem decreseResulotonCheckersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eliminateClicingColorToolStripMenuItem;
     }
 }
 

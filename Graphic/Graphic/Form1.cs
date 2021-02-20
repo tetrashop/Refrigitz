@@ -2,11 +2,14 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
+
 namespace WindowsApplication1
 {
 
     public partial class Form1 : Form
     {
+        bool elim = false;
         public _2dTo3D a;
         int Kind = 0;
         float xp0 = 0, yp0 = 0, xp1 = 0, yp1 = 0, xp2 = 0, yp2 = 0, xp3 = 0, yp3 = 0;
@@ -649,12 +652,42 @@ namespace WindowsApplication1
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
-
+            elim = true;
         }
 
-        private void pictureBox24_Click(object sender, EventArgs e)
+        private void pictureBox24_Click(object sender, MouseEventArgs e)
         {
+            if (elim)
+            {
+                int x = e.X;
+                int y = e.Y ;
+                
+                x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
 
+                Color s = (pictureBox24.Image as Bitmap).GetPixel(x, y);
+                Graphics g = Graphics.FromImage(pictureBox24.Image);
+                for (int i = 0; i < pictureBox24.Image.Width; i++)
+                {
+                    for (int j = 0; j < pictureBox24.Image.Height; j++)
+                    {
+
+                        if ((pictureBox24.Image as Bitmap).GetPixel(i, j) == s)
+                        {
+                            (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
+                            g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                            g.Save();
+                        }
+
+
+                    }
+                }
+                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox24.Visible = true;
+                pictureBox24.Refresh();
+                pictureBox24.Update();
+                pictureBox24.Invalidate();
+            }
         }
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
@@ -678,6 +711,35 @@ namespace WindowsApplication1
             pictureBox24.Refresh();
             pictureBox24.Update();
             pictureBox24.Invalidate();
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+
+            Image b = Image.FromFile(openFileDialog1.FileName);
+
+
+            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox24.Visible = true;
+            pictureBox24.Image = b;
+            pictureBox24.Refresh();
+            pictureBox24.Update();
+            pictureBox24.Invalidate();
+        }
+
+        private void decreseResulotonCheckersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void eliminateClicingColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBox24_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void button2_Click(object sender, EventArgs e)

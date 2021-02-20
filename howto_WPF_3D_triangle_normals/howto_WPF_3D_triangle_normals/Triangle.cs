@@ -19,19 +19,21 @@ namespace howto_WPF_3D_triangle_normals
         public Triangle(Point3D p0, Point3D p1, Point3D p2)
         {
             Point3D dd = getd(p0, p1);
-            double[,,] aa = new double[3, 3, 3];
+            double[,] aa = new double[3, 3];
+            
             double[] ddd = new double[3];
-            aa[0, 1, 2] = p0.X;
-            aa[0, 0, 0] = p0.Y;
-            aa[0, 0, 0] = p0.Z;
 
-            aa[0, 0, 0] = p1.X;
-            aa[0, 1, 2] = p1.Y;
-            aa[0, 0, 0] = p1.Z;
+            aa[0, 0] = p0.X;
+            aa[0, 1] = p0.Y;
+            aa[0, 2] = p0.Z;
 
-            aa[0, 0, 0] = p2.X;
-            aa[0, 0, 0] = p2.Y;
-            aa[0, 1, 2] = p2.Z;
+            aa[1, 0] = p1.X;
+            aa[1, 1] = p1.Y;
+            aa[1, 2] = p1.Z;
+
+            aa[2, 0] = p2.X;
+            aa[2, 1] = p2.Y;
+            aa[2, 2] = p2.Z;
 
             ddd[0] = dd.X;
             ddd[1] = dd.Y;
@@ -205,7 +207,7 @@ namespace howto_WPF_3D_triangle_normals
                 });
                 output.Wait();
 
-            } while ((double)s.Count / countb > percent && (Done));
+            } while ( (double)s.Count/ countb > percent && (Done));
             sss = s;
             return sss.Count;
         }

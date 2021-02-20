@@ -663,6 +663,23 @@ namespace WindowsApplication1
             pictureBox24.Visible = false;
         }
 
+        private void doBy1OfPixelsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+
+            var output = Task.Factory.StartNew(() =>
+            {
+                a = new _2dTo3D(openFileDialog1.FileName, 0.5);
+            });
+            output.Wait();
+            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox24.Visible = true;
+            pictureBox24.Image = a.ar;
+            pictureBox24.Refresh();
+            pictureBox24.Update();
+            pictureBox24.Invalidate();
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             ClickMouse = 0;

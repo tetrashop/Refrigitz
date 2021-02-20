@@ -332,6 +332,22 @@ namespace howto_WPF_3D_triangle_normals
             }
             return false;
         }
+        double minraddpoints(List<Point3D> p0)
+        {
+            double r = double.MaxValue;
+            for (int i = 0; i < p0.Count; i++)
+            {
+                for (int j = 0; j < p0.Count; j++)
+                {
+
+                    double a = Math.Sqrt((p0[i].X - p0[j].X) * (p0[i].X - p0[j].X) + (p0[i].Y - p0[j].Y) * (p0[i].Y - p0[j].Y) + (p0[i].Z - p0[j].Z) * (p0[i].Z - p0[j].Z));
+
+                    if (a < r && a != 0)
+                        r = a;
+                }
+            }
+            return r;
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try { if (gr != null)
@@ -347,7 +363,7 @@ namespace howto_WPF_3D_triangle_normals
                             {
                                 for (int j = 0; j < gr.a.cy; j++)
                                 {
-                                    if (gr.a.c[i, j, 0] != 0)
+                                        if (gr.a.c[i, j, 0] != 0)
                                     {
                                         Point3D s = new Point3D(i, j, gr.a.c[i, j, 0]);
                                         PointsAdd.Add(s);
@@ -371,7 +387,8 @@ namespace howto_WPF_3D_triangle_normals
                             }
                             if (PointsAdd.Count >= 3)
                             {
-                                MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points.");
+                                double minr = minraddpoints(PointsAdd);
+                                MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points. with minr "+minr.ToString());
                                 /* if (PointsAdd.Count > 100)
                                  {
                                      int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, 10, 100.0 / (double)PointsAdd.Count);
@@ -437,6 +454,8 @@ namespace howto_WPF_3D_triangle_normals
                                             ss[1] = PointsAdd[j];
                                             ss[2] = PointsAdd[k];
                                             ss = ImprovmentSort.Do(ss);
+                                            if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
+                                                continue;
                                             if (!exist(ss, d))
                                             {
                                                 d.Add(ss);

@@ -51,6 +51,8 @@ namespace WindowsApplication1
             this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dTo3DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.doBy1OfPixelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.PictureBox2 = new System.Windows.Forms.PictureBox();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
@@ -94,7 +96,6 @@ namespace WindowsApplication1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
-            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -303,10 +304,26 @@ namespace WindowsApplication1
             // 
             // doToolStripMenuItem
             // 
+            this.doToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.doBy1OfPixelsToolStripMenuItem});
             this.doToolStripMenuItem.Name = "doToolStripMenuItem";
             this.doToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.doToolStripMenuItem.Text = "Do";
             this.doToolStripMenuItem.Click += new System.EventHandler(this.doToolStripMenuItem_Click);
+            // 
+            // doBy1OfPixelsToolStripMenuItem
+            // 
+            this.doBy1OfPixelsToolStripMenuItem.Name = "doBy1OfPixelsToolStripMenuItem";
+            this.doBy1OfPixelsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.doBy1OfPixelsToolStripMenuItem.Text = "Do by 50% of pixels";
+            this.doBy1OfPixelsToolStripMenuItem.Click += new System.EventHandler(this.doBy1OfPixelsToolStripMenuItem_Click);
+            // 
+            // clearToolStripMenuItem
+            // 
+            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearToolStripMenuItem.Text = "Clear";
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
             // PictureBox1
             // 
@@ -779,13 +796,6 @@ namespace WindowsApplication1
             this.pictureBox24.Visible = false;
             this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
             // 
-            // clearToolStripMenuItem
-            // 
-            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.clearToolStripMenuItem.Text = "Clear";
-            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -933,6 +943,7 @@ namespace WindowsApplication1
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox pictureBox24;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem doBy1OfPixelsToolStripMenuItem;
     }
 }
 

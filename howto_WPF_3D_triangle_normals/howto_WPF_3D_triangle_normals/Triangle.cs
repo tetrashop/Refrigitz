@@ -96,6 +96,17 @@ namespace howto_WPF_3D_triangle_normals
                 return count;
             }
         }
+        public bool distancesaticfied(Point3D p0, Point3D p1, Point3D p2, double d)
+        {
+            object o = new object();
+            lock (o)
+            {
+                double count = (Math.Sqrt(p0.X * p0.X + p0.Y * p0.Y + p0.Z * p0.Z) + Math.Sqrt(p1.X * p1.X + p1.Y * p1.Y + p1.Z * p1.Z) + Math.Sqrt(p2.X * p2.X + p2.Y * p2.Y + p2.Z * p2.Z)) / 3;
+                if (count <= 2 * d)
+                    return true;
+                return false;
+            }
+        }
         bool exist(Point3D[] ss, List<Point3D[]> d)
         {
             if (d.Count == 0)

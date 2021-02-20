@@ -609,6 +609,8 @@ namespace WindowsApplication1
                 {
                     if (((i + j) % ((int)(1.0 / percent)))==0)
                     {
+                        g.DrawImage(a, 0, 0, a.Width, a.Height);
+                        g.Save();
                     }
                     else
                     {

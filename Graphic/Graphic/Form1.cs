@@ -9,6 +9,7 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
+        double percent = 0.9;
         bool elim = false;
         public _2dTo3D a;
         int Kind = 0;
@@ -757,6 +758,40 @@ namespace WindowsApplication1
             pictureBox24.Update();
             pictureBox24.Invalidate();
 
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Image a = pictureBox24.Image;
+            Graphics g = Graphics.FromImage(a);
+
+
+
+            for (int i = 0; i < a.Width; i++)
+            {
+                for (int j = 0; j < a.Height; j++)
+                {
+                    if (((i + j) % ((int)(1.0 / percent))) == 0)
+                    {
+                        g.DrawImage(a, 0, 0, a.Width, a.Height);
+                        g.Save();
+                    }
+                    else
+                    {
+                        (a as Bitmap).SetPixel(i, j, Color.Black);
+                        g.DrawImage(a, 0, 0, a.Width, a.Height);
+                        g.Save();
+                    }
+                }
+            }
+            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox24.Visible = true;
+            pictureBox24.Refresh();
+            pictureBox24.Update();
+            pictureBox24.Invalidate();
+            percent = percent - 0.1;
+            int v = (int)(1.0 / percent) * 100;
+            toolStripMenuItem1.Text = "Do by " + v.ToString() + "% of pixels";
         }
 
         private void button2_Click(object sender, EventArgs e)

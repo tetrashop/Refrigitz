@@ -912,6 +912,75 @@ namespace WindowsApplication1
 
         }
 
+        private void reduce10ColorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Color> ss = new List<Color>();
+            for (int r = 0; r < pictureBox24.Image.Width; r++)
+            {
+                for (int t = 0; t < pictureBox24.Image.Height; t++)
+                {
+                    Color d = (pictureBox24.Image as Bitmap).GetPixel(r, t);
+                    if (!ss.Contains(d))
+                        ss.Add(d);
+                }
+            }
+
+            Graphics g = Graphics.FromImage(pictureBox24.Image);
+            List<Color> ssrep = new List<Color>();
+            int gg = (int)((double)ss.Count * 0.1);
+            {
+                if (ss[gg] != Color.Black)
+                {
+                    for (int i = 0; i < pictureBox24.Image.Width; i++)
+                    {
+                        for (int j = 0; j < pictureBox24.Image.Height; j++)
+                        {
+                            Color d = (pictureBox24.Image as Bitmap).GetPixel(i, j);
+                            for (int b = 0; b < gg; b++)
+                            {
+                                if (d == ss[b] && ss[b] != Color.Black && ss[gg] != Color.Black && d != Color.Black)
+                                {
+                                    (pictureBox24.Image as Bitmap).SetPixel(i, j, ss[gg]);
+                                    g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                                    g.Save();
+                                }
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    if (gg > 0 && (ss.Count > gg + 1))
+                    {
+                        for (int i = 0; i < pictureBox24.Image.Width; i++)
+                        {
+                            for (int j = 0; j < pictureBox24.Image.Height; j++)
+                            {
+                                Color d = (pictureBox24.Image as Bitmap).GetPixel(i, j);
+                                for (int b = 0; b < gg + 1; b++)
+                                {
+                                    if (d == ss[b] && ss[b] != Color.Black && ss[gg + 1] != Color.Black && d != Color.Black)
+                                    {
+                                        (pictureBox24.Image as Bitmap).SetPixel(i, j, ss[gg+1]);
+                                        g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                                        g.Save();
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+            }
+                
+                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox24.Visible = true;
+                pictureBox24.Refresh();
+                pictureBox24.Update();
+                pictureBox24.Invalidate();
+
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             ClickMouse = 0;

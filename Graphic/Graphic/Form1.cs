@@ -645,9 +645,7 @@ namespace WindowsApplication1
             output.Wait();
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
-            if (pictureBox24.Image != null)
-                pictureBox24.Image.Dispose();
-
+          
             pictureBox24.Image = a.ar;
             pictureBox24.Refresh();
             pictureBox24.Update();
@@ -712,8 +710,6 @@ namespace WindowsApplication1
             output.Wait();
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
-            if (pictureBox24.Image != null)
-                pictureBox24.Image.Dispose();
             pictureBox24.Image = a.ar;
             pictureBox24.Refresh();
             pictureBox24.Update();

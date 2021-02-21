@@ -121,7 +121,7 @@ namespace howto_WPF_3D_triangle_normals
         Point3D getd(Point3D p0, Point3D p1)
         {
             Line l0 = new Line(p0, p1);
-            return new Point3D(p1.X + l0.a * 2, p1.Y * l0.b * 2, p1.Z * l0.c * 2);
+            return new Point3D(p1.X + l0.a * 2, p1.Y + l0.b * 2, p1.Z + l0.c * 2);
         }
         public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent)
         {

@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="ImprovmentSort.cs" />
     <Compile Include="Line.cs" />
+    <Compile Include="Point3D.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>

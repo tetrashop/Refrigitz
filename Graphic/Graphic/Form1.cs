@@ -4,12 +4,16 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 using System.Collections.Generic;
+using Point3Dspaceuser;
+using howto_WPF_3D_triangle_normalsuser;
 
 namespace WindowsApplication1
 {
 
     public partial class Form1 : Form
     {
+        public bool Reducedinteligent = false;
+     
         bool mouseclick = false;
         long time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
 
@@ -651,7 +655,7 @@ namespace WindowsApplication1
             output.Wait();
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
-          
+
             pictureBox24.Image = a.ar;
             pictureBox24.Refresh();
             pictureBox24.Update();
@@ -715,7 +719,7 @@ namespace WindowsApplication1
                     mouseclick = false;
                     elim = false;
                     Colorset = false;
-                 }         
+                }
             }
             else
             {
@@ -750,7 +754,7 @@ namespace WindowsApplication1
                     pictureBox24.Update();
                     pictureBox24.Invalidate();
                 }
-            
+
             }
         }
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
@@ -838,7 +842,7 @@ namespace WindowsApplication1
                 {
                     if (((i + j) % ((int)(1.0 / percent))) == 0)
                     {
-                     
+
                     }
                     else
                     {
@@ -851,14 +855,14 @@ namespace WindowsApplication1
             percent = percent - 0.1;
             int v = (int)((percent) * 100.0);
             toolStripMenuItem1.Text = "Do by " + v.ToString() + "% of pixels";
-          
+
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
             pictureBox24.Image = a;
             pictureBox24.Refresh();
             pictureBox24.Update();
             pictureBox24.Invalidate();
-         }
+        }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
@@ -962,7 +966,7 @@ namespace WindowsApplication1
                                 {
                                     if (d == ss[b] && ss[b] != Color.Black && ss[gg + 1] != Color.Black && d != Color.Black)
                                     {
-                                        (pictureBox24.Image as Bitmap).SetPixel(i, j, ss[gg+1]);
+                                        (pictureBox24.Image as Bitmap).SetPixel(i, j, ss[gg + 1]);
                                         g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
                                         g.Save();
                                     }
@@ -971,8 +975,8 @@ namespace WindowsApplication1
                             }
                         }
                     }
-            }
-                
+                }
+
                 pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox24.Visible = true;
                 pictureBox24.Refresh();
@@ -981,6 +985,120 @@ namespace WindowsApplication1
 
             }
         }
+
+        private void intelligentRedducedOff3DModdelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Point3D> PointsAdd = new List<Point3D>();
+            for (int i = 0; i < a.cx; i++)
+            {
+                for (int j = 0; j < a.cy; j++)
+                {
+                    if (a.c[i, j, 0] != 0)
+                    {
+                        Point3D s = new Point3D(i, j, a.c[i, j, 0], i, j, 0);
+
+                        PointsAdd.Add(s);
+                    }
+                    else
+                    if (a.c[i, j, 1] != 0)
+                    {
+                        Point3D s = new Point3D(i, j, a.c[i, j, 1], i, j, 1);
+                        PointsAdd.Add(s);
+                    }
+                    else
+                    if (a.c[i, j, 2] != 0)
+                    {
+                        Point3D s = new Point3D(i, j, a.c[i, j, 2], i, j, 2);
+                        PointsAdd.Add(s);
+                    }
+
+
+
+                }
+            }
+            if (PointsAdd.Count >= 3)
+            {
+                double minr = minraddpoints(PointsAdd);
+                MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points. with minr " + minr.ToString());
+                if (PointsAdd.Count > 100)
+                {
+                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, minr * 2, 100.0 / (double)PointsAdd.Count);
+                    MessageBox.Show("reduced...! " + PointsAdd.Count.ToString() + " points.");
+
+                    for (int i = 0; i < a.cx; i++)
+                    {
+                        for (int j = 0; j < a.cy; j++)
+                        {
+                            if (a.c[i, j, 0] != 0)
+                            {
+                                Point3D s = new Point3D(i, j, a.c[i, j, 0]);
+
+                                if (!exist(s, PointsAdd))
+                                    a.c[i, j, 0] = 0;
+
+                            }
+                            else
+                             if (a.c[i, j, 1] != 0)
+                            {
+                                Point3D s = new Point3D(i, j, a.c[i, j, 1]);
+                                if (!exist(s, PointsAdd))
+                                    a.c[i, j, 1] = 0;
+                            }
+                            else
+                             if (a.c[i, j, 2] != 0)
+                            {
+                                Point3D s = new Point3D(i, j, a.c[i, j, 2]);
+                                if (!exist(s, PointsAdd))
+                                    a.c[i, j, 2] = 0;
+                            }
+                        }
+
+
+                    }
+                    var output = Task.Factory.StartNew(() =>
+                    {
+                        a = new _2dTo3D(f);
+                    });
+                    output.Wait();
+                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox24.Visible = true;
+
+                    pictureBox24.Image = a.ar;
+                    pictureBox24.Refresh();
+                    pictureBox24.Update();
+                    pictureBox24.Invalidate();
+                }
+            }
+        }
+        bool exist(Point3D ss, List<Point3D> d)
+        {
+            if (d.Count == 0)
+                return false;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (ss.X == d[i].X && ss.Y == d[i].Y && ss.Z == d[i].Z)
+                    return true;
+            }
+            return false;
+        }
+
+        double minraddpoints(List<Point3D> p0)
+        {
+            double r = double.MaxValue;
+            for (int i = 0; i < p0.Count; i++)
+            {
+                for (int j = 0; j < p0.Count; j++)
+                {
+
+                    double a = Math.Sqrt((p0[i].X - p0[j].X) * (p0[i].X - p0[j].X) + (p0[i].Y - p0[j].Y) * (p0[i].Y - p0[j].Y) + (p0[i].Z - p0[j].Z) * (p0[i].Z - p0[j].Z));
+
+                    if (a < r && a != 0)
+                        r = a;
+                }
+            }
+            return r;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             ClickMouse = 0;

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using WindowsApplication1;
 
+
 namespace howto_WPF_3D_triangle_normals
 {
     /// <summary>

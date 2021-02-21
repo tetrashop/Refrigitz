@@ -20,7 +20,7 @@ namespace howto_WPF_3D_triangle_normalsuser
         {
             Point3D dd = getd(p0, p1);
             double[,] aa = new double[3, 3];
-            
+
             double[] ddd = new double[3];
 
             aa[0, 0] = p0.X;
@@ -134,6 +134,58 @@ namespace howto_WPF_3D_triangle_normalsuser
             }
             return false;
         }
+        bool boundry(int i, int j, int k, int b, int scount, double countb, double percent)
+        {
+            if (i == j)
+                return true;
+            if (i == k)
+                return true;
+            if (i == b)
+                return true;
+            if (j == k)
+                return true;
+            if (j == b)
+                return true;
+            if (k == b)
+                return true;
+            if (countb / (double)scount <= percent)
+                return true;
+            if (b >= scount)
+                return true;
+            if (k >= scount)
+                return true;
+            if (j >= scount)
+                return true;
+            if (i >= scount)
+                return true;
+            return false;
+        }
+        bool distancereduced(Point3D aa, Point3D bb, Point3D cc, ref bool Done, ref List<Point3D> s, double ht,int i,int j,int k)
+        {
+            double r0 = Math.Sqrt((aa.X - bb.X) * (aa.X - bb.X) + (aa.Y - bb.Y) * (aa.Y - bb.Y) + (aa.Z - bb.Z) * (aa.Z - bb.Z));
+            double r1 = Math.Sqrt((aa.X - cc.X) * (aa.X - cc.X) + (aa.Y - cc.Y) * (aa.Y - cc.Y) + (aa.Z - cc.Z) * (aa.Z - cc.Z));
+
+            double r2 = Math.Sqrt((bb.X - cc.X) * (bb.X - cc.X) + (bb.Y - cc.Y) * (bb.Y - cc.Y) + (bb.Z - cc.Z) * (bb.Z - cc.Z));
+
+            if ((r0 > ht * 3))
+            {
+                s.RemoveAt(i);
+                Done = true;
+            }
+            else
+            if ((r1 > ht * 3))
+            {
+                s.RemoveAt(j);
+                Done = true;
+            }
+            else
+            if ((r2 > ht * 3))
+            {
+                s.RemoveAt(k);
+                Done = true;
+            }
+            return Done;
+        }
         public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent)
         {
             double countb = sss.Count;
@@ -156,62 +208,44 @@ namespace howto_WPF_3D_triangle_normalsuser
                             {            //external point
                                 ParallelOptions ppopio = new ParallelOptions(); ppopio.MaxDegreeOfParallelism = 2; Parallel.For(0, s.Count, b =>
                                 {
-                                    if (i == j)
-                                        return;
-                                    if (i == k)
-                                        return;
-                                    if (i == b)
-                                        return;
-                                    if (j == k)
-                                        return;
-                                    if (j == b)
-                                        return;
-                                    if (k == b)
-                                        return;
-                                    if (countb / (double)s.Count <= percent)
-                                        return;
-                                    if (b >= s.Count)
-                                        return;
-                                    if (k >= s.Count)
-                                        return;
-                                    if (j >= s.Count)
-                                        return;
-                                    if (i >= s.Count)
+                                    if (boundry(i, j, k, b, s.Count, countb, percent))
                                         return;
                                     Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
                                     Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
                                     Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
-
-                                    Triangle at = new Triangle(aa, bb, cc);
-
-                                    Point3D[] ss = new Point3D[3];
-                                    ss[0] = new Point3D(aa.X, aa.Y, aa.Z);
-                                    ss[1] = new Point3D(bb.X, bb.Y, bb.Z);
-                                    ss[2] = new Point3D(cc.X, cc.Y, cc.Z);
-                                    ss = ImprovmentSort.Do(ss);
-                                    if (!exist(ss, d))
+                                    if (!distancereduced(aa, bb, cc, ref Done, ref s, ht, i, j, k))
                                     {
-                                        d.Add(ss);
-                                        double h = System.Math.Abs(at.a * s[b].X + at.b * s[b].Y + at.c * s[b].Z -at.d) / Math.Sqrt(at.a * at.a + at.b * at.b + at.c * at.c);
-                                        if (h < ht && h != 0)
-                                        {
-                                            if (System.Math.Abs(s[b].X - s[i].X) == System.Math.Abs(s[b].X - s[j].X) && System.Math.Abs(s[b].X - s[j].X) == System.Math.Abs(s[b].X - s[k].X))
-                                            {
-                                                s.RemoveAt(b);
-                                                Done = true;
-                                            }
-                                            else
-                                                 if (System.Math.Abs(s[b].Y - s[i].Y) == System.Math.Abs(s[b].Y - s[j].Y) && System.Math.Abs(s[b].Y - s[j].Y) == System.Math.Abs(s[b].Y - s[k].Y))
-                                            {
-                                                s.RemoveAt(b);
-                                                Done = true;
-                                            }
-                                            else if (System.Math.Abs(s[b].Z - s[i].Z) == System.Math.Abs(s[b].Z - s[j].Z) && System.Math.Abs(s[b].Z - s[j].Z) == System.Math.Abs(s[b].Z - s[k].Z))
-                                            {
-                                                s.RemoveAt(b);
-                                                Done = true;
-                                            }
+                                        Triangle at = new Triangle(aa, bb, cc);
 
+                                        Point3D[] ss = new Point3D[3];
+                                        ss[0] = new Point3D(aa.X, aa.Y, aa.Z);
+                                        ss[1] = new Point3D(bb.X, bb.Y, bb.Z);
+                                        ss[2] = new Point3D(cc.X, cc.Y, cc.Z);
+                                        ss = ImprovmentSort.Do(ss);
+                                        if (!exist(ss, d))
+                                        {
+                                            d.Add(ss);
+                                            double h = System.Math.Abs(at.a * s[b].X + at.b * s[b].Y + at.c * s[b].Z - at.d) / Math.Sqrt(at.a * at.a + at.b * at.b + at.c * at.c);
+                                            if (h < ht && h != 0)
+                                            {
+                                                if (System.Math.Abs(s[b].X - s[i].X) == System.Math.Abs(s[b].X - s[j].X) && System.Math.Abs(s[b].X - s[j].X) == System.Math.Abs(s[b].X - s[k].X))
+                                                {
+                                                    s.RemoveAt(b);
+                                                    Done = true;
+                                                }
+                                                else
+                                                     if (System.Math.Abs(s[b].Y - s[i].Y) == System.Math.Abs(s[b].Y - s[j].Y) && System.Math.Abs(s[b].Y - s[j].Y) == System.Math.Abs(s[b].Y - s[k].Y))
+                                                {
+                                                    s.RemoveAt(b);
+                                                    Done = true;
+                                                }
+                                                else if (System.Math.Abs(s[b].Z - s[i].Z) == System.Math.Abs(s[b].Z - s[j].Z) && System.Math.Abs(s[b].Z - s[j].Z) == System.Math.Abs(s[b].Z - s[k].Z))
+                                                {
+                                                    s.RemoveAt(b);
+                                                    Done = true;
+                                                }
+
+                                            }
                                         }
                                     }
                                     if (b >= s.Count)
@@ -229,7 +263,7 @@ namespace howto_WPF_3D_triangle_normalsuser
                 });
                 output.Wait();
 
-            } while ( (double)s.Count/ countb > percent && (Done));
+            } while ((double)s.Count / countb > percent && (Done));
             sss = s;
             return sss.Count;
         }

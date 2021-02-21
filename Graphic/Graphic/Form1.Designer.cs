@@ -57,6 +57,8 @@ namespace WindowsApplication1
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminateClicingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminateSetOfColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.doToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.PictureBox2 = new System.Windows.Forms.PictureBox();
@@ -101,7 +103,6 @@ namespace WindowsApplication1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -353,10 +354,26 @@ namespace WindowsApplication1
             // 
             // eliminateClicingColorToolStripMenuItem
             // 
+            this.eliminateClicingColorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminateSetOfColorsToolStripMenuItem});
             this.eliminateClicingColorToolStripMenuItem.Name = "eliminateClicingColorToolStripMenuItem";
             this.eliminateClicingColorToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.eliminateClicingColorToolStripMenuItem.Text = "Eliminate clicing color";
             this.eliminateClicingColorToolStripMenuItem.Click += new System.EventHandler(this.PictureBox1_Click);
+            // 
+            // eliminateSetOfColorsToolStripMenuItem
+            // 
+            this.eliminateSetOfColorsToolStripMenuItem.Name = "eliminateSetOfColorsToolStripMenuItem";
+            this.eliminateSetOfColorsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.eliminateSetOfColorsToolStripMenuItem.Text = "Eliminate set of colors";
+            this.eliminateSetOfColorsToolStripMenuItem.Click += new System.EventHandler(this.eliminateSetOfColorsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(253, 22);
+            this.toolStripMenuItem2.Text = "Reduce 10% off fittting image size";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // doToolStripMenuItem1
             // 
@@ -836,13 +853,7 @@ namespace WindowsApplication1
             this.pictureBox24.Visible = false;
             this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
             this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(253, 22);
-            this.toolStripMenuItem2.Text = "Reduce 10% off fittting image size";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this.pictureBox24.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_MouseMove);
             // 
             // Form1
             // 
@@ -997,6 +1008,7 @@ namespace WindowsApplication1
         private System.Windows.Forms.ToolStripMenuItem doToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem eliminateSetOfColorsToolStripMenuItem;
     }
 }
 

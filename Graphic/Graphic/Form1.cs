@@ -3,12 +3,18 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
+using System.Collections.Generic;
 
 namespace WindowsApplication1
 {
 
     public partial class Form1 : Form
     {
+        bool mouseclick = false;
+        long time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+
+        Image at;
+        bool Colorset = false;
         double percent = 0.5;
         bool elim = false;
         public _2dTo3D a;
@@ -659,39 +665,94 @@ namespace WindowsApplication1
 
         private void pictureBox24_Click(object sender, MouseEventArgs e)
         {
-            if (elim)
+            if (mouseclick)
+                return;
+            if (Colorset)
             {
-                int x = e.X;
-                int y = e.Y ;
-                
-                x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
-
-                Color s = (pictureBox24.Image as Bitmap).GetPixel(x, y);
-                Graphics g = Graphics.FromImage(pictureBox24.Image);
-                for (int i = 0; i < pictureBox24.Image.Width; i++)
+                if (elim)
                 {
-                    for (int j = 0; j < pictureBox24.Image.Height; j++)
+                    mouseclick = true;
+                    int x = e.X;
+                    int y = e.Y;
+
+                    x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                    y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                    List<Color> ss = new List<Color>();
+                    for (int r = 0; r < 5; r++)
                     {
-
-                        if ((pictureBox24.Image as Bitmap).GetPixel(i, j) == s)
+                        for (int t = 0; t < Math.PI * 2; t++)
                         {
-                            (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
-                            g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
-                            g.Save();
+                            Color d = (pictureBox24.Image as Bitmap).GetPixel(x + (int)(r * Math.Cos(t)), y + (int)(r * Math.Sin(t)));
+                            if (!ss.Contains(d))
+                                ss.Add(d);
                         }
-
-
                     }
+                    Graphics g = Graphics.FromImage(pictureBox24.Image);
+
+                    for (int i = 0; i < pictureBox24.Image.Width; i++)
+                    {
+                        for (int j = 0; j < pictureBox24.Image.Height; j++)
+                        {
+                            Color d = (pictureBox24.Image as Bitmap).GetPixel(i, j);
+
+                            for (int b = 0; b < ss.Count; b++)
+                            {
+                                if (d == ss[b])
+                                {
+                                    (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
+                                    g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                                    g.Save();
+                                }
+                            }
+
+                        }
+                    }
+                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox24.Visible = true;
+                    pictureBox24.Refresh();
+                    pictureBox24.Update();
+                    pictureBox24.Invalidate();
+                    mouseclick = false;
+                    elim = false;
+                    Colorset = false;
+                 }         
+            }
+            else
+            {
+                if (elim)
+                {
+                    int x = e.X;
+                    int y = e.Y;
+
+                    x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                    y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+
+                    Color s = (pictureBox24.Image as Bitmap).GetPixel(x, y);
+                    Graphics g = Graphics.FromImage(pictureBox24.Image);
+                    for (int i = 0; i < pictureBox24.Image.Width; i++)
+                    {
+                        for (int j = 0; j < pictureBox24.Image.Height; j++)
+                        {
+
+                            if ((pictureBox24.Image as Bitmap).GetPixel(i, j) == s)
+                            {
+                                (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
+                                g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                                g.Save();
+                            }
+
+
+                        }
+                    }
+                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox24.Visible = true;
+                    pictureBox24.Refresh();
+                    pictureBox24.Update();
+                    pictureBox24.Invalidate();
                 }
-                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox24.Visible = true;
-                pictureBox24.Refresh();
-                pictureBox24.Update();
-                pictureBox24.Invalidate();
+            
             }
         }
-
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (pictureBox24.Image != null)
@@ -807,6 +868,47 @@ namespace WindowsApplication1
             pictureBox24.Refresh();
             pictureBox24.Update();
             pictureBox24.Invalidate();
+
+        }
+
+        private void eliminateSetOfColorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            elim = true;
+            Colorset = true;
+        }
+
+        private void pictureBox24_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Colorset)
+            {
+                if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 25.0)
+                {
+                    Image a = (Image)pictureBox24.Image.Clone();
+
+                    Graphics g = Graphics.FromImage(a);
+
+                    int x = e.X;
+                    int y = e.Y;
+
+                    x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                    y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                    g.DrawEllipse(new Pen(new SolidBrush(Color.White)), new Rectangle(x, y, -5, 5));
+                    pictureBox24.Image = a;
+                    g.Dispose();
+                }
+                else
+                {
+                    time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+                    pictureBox24.Image = (Image)at.Clone();
+                }
+            }
+            else
+            {
+                time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+
+                at = (Image)pictureBox24.Image.Clone();
+            }
+
 
         }
 

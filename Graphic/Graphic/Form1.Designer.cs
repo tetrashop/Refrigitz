@@ -101,6 +101,7 @@ namespace WindowsApplication1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -336,6 +337,7 @@ namespace WindowsApplication1
             this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.eliminateClicingColorToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.doToolStripMenuItem1});
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
@@ -345,21 +347,21 @@ namespace WindowsApplication1
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(253, 22);
             this.toolStripMenuItem1.Text = "Do by 50% of pixels";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // eliminateClicingColorToolStripMenuItem
             // 
             this.eliminateClicingColorToolStripMenuItem.Name = "eliminateClicingColorToolStripMenuItem";
-            this.eliminateClicingColorToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.eliminateClicingColorToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.eliminateClicingColorToolStripMenuItem.Text = "Eliminate clicing color";
             this.eliminateClicingColorToolStripMenuItem.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // doToolStripMenuItem1
             // 
             this.doToolStripMenuItem1.Name = "doToolStripMenuItem1";
-            this.doToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.doToolStripMenuItem1.Size = new System.Drawing.Size(253, 22);
             this.doToolStripMenuItem1.Text = "Do";
             this.doToolStripMenuItem1.Click += new System.EventHandler(this.doToolStripMenuItem1_Click);
             // 
@@ -835,6 +837,13 @@ namespace WindowsApplication1
             this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
             this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(253, 22);
+            this.toolStripMenuItem2.Text = "Reduce 10% off fittting image size";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -987,6 +996,7 @@ namespace WindowsApplication1
         private System.Windows.Forms.ToolStripMenuItem eliminateClicingColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem doToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

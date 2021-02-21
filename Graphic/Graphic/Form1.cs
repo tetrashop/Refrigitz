@@ -645,6 +645,9 @@ namespace WindowsApplication1
             output.Wait();
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
+            if (pictureBox24.Image != null)
+                pictureBox24.Image.Dispose();
+
             pictureBox24.Image = a.ar;
             pictureBox24.Refresh();
             pictureBox24.Update();
@@ -693,7 +696,8 @@ namespace WindowsApplication1
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pictureBox24.Image.Dispose();
+            if (pictureBox24.Image != null)
+                pictureBox24.Image.Dispose();
             pictureBox24.Visible = false;
         }
 
@@ -708,6 +712,8 @@ namespace WindowsApplication1
             output.Wait();
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
+            if (pictureBox24.Image != null)
+                pictureBox24.Image.Dispose();
             pictureBox24.Image = a.ar;
             pictureBox24.Refresh();
             pictureBox24.Update();
@@ -753,7 +759,8 @@ namespace WindowsApplication1
             output.Wait();
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
-            pictureBox24.Image.Dispose();
+            if (pictureBox24.Image != null)
+                pictureBox24.Image.Dispose();
             pictureBox24.Image = a.ar;
             pictureBox24.Refresh();
             pictureBox24.Update();
@@ -795,6 +802,17 @@ namespace WindowsApplication1
             pictureBox24.Update();
             pictureBox24.Invalidate();
          }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox24.Visible = true;
+            pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)((double)(pictureBox24.Image.Width) - ((double)(pictureBox24.Image.Width) * 0.1)), (int)((double)(pictureBox24.Image.Height) - ((double)(pictureBox24.Image.Height) * 0.1)))));
+            pictureBox24.Refresh();
+            pictureBox24.Update();
+            pictureBox24.Invalidate();
+
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {

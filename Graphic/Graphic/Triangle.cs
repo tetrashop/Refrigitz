@@ -192,7 +192,7 @@ namespace howto_WPF_3D_triangle_normalsuser
                                     if (!exist(ss, d))
                                     {
                                         d.Add(ss);
-                                        double h = System.Math.Abs(at.a * s[b].X + at.b * s[b].Y + at.c * s[b].Z) / Math.Sqrt(at.a * at.a + at.b * at.b + at.c * at.c);
+                                        double h = System.Math.Abs(at.a * s[b].X + at.b * s[b].Y + at.c * s[b].Z - s[b].d) / Math.Sqrt(at.a * at.a + at.b * at.b + at.c * at.c);
                                         if (h < ht && h != 0)
                                         {
                                             if (System.Math.Abs(s[b].X - s[i].X) == System.Math.Abs(s[b].X - s[j].X) && System.Math.Abs(s[b].X - s[j].X) == System.Math.Abs(s[b].X - s[k].X))

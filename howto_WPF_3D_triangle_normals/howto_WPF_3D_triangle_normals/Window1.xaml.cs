@@ -364,26 +364,11 @@ namespace howto_WPF_3D_triangle_normals
                             {
                                 for (int j = 0; j < gr.a.cy; j++)
                                 {
-                                        if (gr.a.c[i, j, 0] != 0)
+                                    if (gr.a.c[i, j, 0] != 0 || gr.a.c[i, j, 1] != 0 || gr.a.c[i, j, 2] != 0)
                                     {
-                                        Point3D s = new Point3D(i, j, gr.a.c[i, j, 0]);
+                                        Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
                                         PointsAdd.Add(s);
                                     }
-                                    else
-                                        if (gr.a.c[i, j, 1] != 0)
-                                    {
-                                        Point3D s = new Point3D(i, j, gr.a.c[i, j, 1]);
-                                        PointsAdd.Add(s);
-                                    }
-                                    else
-                                        if (gr.a.c[i, j, 2] != 0)
-                                    {
-                                        Point3D s = new Point3D(i, j, gr.a.c[i, j, 2]);
-                                        PointsAdd.Add(s);
-                                    }
-
-
-
                                 }
                             }
                             if (PointsAdd.Count >= 3)

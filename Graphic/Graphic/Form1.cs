@@ -986,35 +986,18 @@ namespace WindowsApplication1
             }
         }
         void addingpoints(ref List<Point3D> PointsAdd)
-        {  for (int i = 0; i < a.cx; i++)
+        {
+            for (int i = 0; i < a.cx; i++)
             {
                 for (int j = 0; j < a.cy; j++)
                 {
-                    if (a.c[i, j, 0] != 0)
+                    if (a.c[i, j, 0] != 0 || a.c[i, j, 1] != 0 || a.c[i, j, 2] != 0)
                     {
-                        Point3D s = new Point3D(i, j, a.c[i, j, 0], i, j, 0);
-
+                        Point3D s = new Point3D(i, j, (a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3);
                         PointsAdd.Add(s);
                     }
-                    else
-                    if (a.c[i, j, 1] != 0)
-                    {
-                        Point3D s = new Point3D(i, j, a.c[i, j, 1], i, j, 1);
-                        PointsAdd.Add(s);
-                    }
-                    else
-                    if (a.c[i, j, 2] != 0)
-                    {
-                        Point3D s = new Point3D(i, j, a.c[i, j, 2], i, j, 2);
-                        PointsAdd.Add(s);
-                    }
-
-
-
                 }
             }
-         
-
         }
         void reducedpoints(ref List<Point3D> PointsAdd)
         {
@@ -1022,31 +1005,17 @@ namespace WindowsApplication1
             {
                 for (int j = 0; j < a.cy; j++)
                 {
-                    if (a.c[i, j, 0] != 0)
+                    if ((a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3 != 0)
                     {
-                        Point3D s = new Point3D(i, j, a.c[i, j, 0]);
-
+                        Point3D s = new Point3D(i, j, (a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3);
                         if (!exist(s, PointsAdd))
+                        {
                             a.c[i, j, 0] = 0;
-
-                    }
-                    else
-                     if (a.c[i, j, 1] != 0)
-                    {
-                        Point3D s = new Point3D(i, j, a.c[i, j, 1]);
-                        if (!exist(s, PointsAdd))
                             a.c[i, j, 1] = 0;
-                    }
-                    else
-                     if (a.c[i, j, 2] != 0)
-                    {
-                        Point3D s = new Point3D(i, j, a.c[i, j, 2]);
-                        if (!exist(s, PointsAdd))
                             a.c[i, j, 2] = 0;
+                        }
                     }
                 }
-
-
             }
         }
         private void intelligentRedducedOff3DModdelToolStripMenuItem_Click(object sender, EventArgs e)

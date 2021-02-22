@@ -409,9 +409,7 @@ namespace WindowsApplication1
         {
             if (succeed > 0)
             {
-                InitiateIntelli();
-                MessageBox.Show("InitiateIntelli pass!");
-                ConvTo3D();
+                 ConvTo3D();
                 MessageBox.Show("ConvTo3D pass!");
                 ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
                 MessageBox.Show("Graphic begin!!");

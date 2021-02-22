@@ -165,29 +165,33 @@ namespace howto_WPF_3D_triangle_normals
         }
         bool distancereduced(Point3D aa, Point3D bb, Point3D cc, ref bool Done, ref List<Point3D> s, double ht, int i, int j, int k)
         {
+            bool dos = false;
             double r0 = Math.Sqrt((aa.X - bb.X) * (aa.X - bb.X) + (aa.Y - bb.Y) * (aa.Y - bb.Y) + (aa.Z - bb.Z) * (aa.Z - bb.Z));
             double r1 = Math.Sqrt((aa.X - cc.X) * (aa.X - cc.X) + (aa.Y - cc.Y) * (aa.Y - cc.Y) + (aa.Z - cc.Z) * (aa.Z - cc.Z));
 
             double r2 = Math.Sqrt((bb.X - cc.X) * (bb.X - cc.X) + (bb.Y - cc.Y) * (bb.Y - cc.Y) + (bb.Z - cc.Z) * (bb.Z - cc.Z));
 
-            if ((r0 > ht * 3))
+            if ((r0 < ht * 3) && (r0 > ht))
             {
                 s.RemoveAt(i);
                 Done = true;
+                dos = true;
             }
             else
-            if ((r1 > ht * 3))
+          if ((r1 < ht * 3) && (r1 > ht))
             {
                 s.RemoveAt(j);
                 Done = true;
+                dos = true;
             }
             else
-            if ((r2 > ht * 3))
+          if ((r2 < ht * 3) && (r2 > ht))
             {
                 s.RemoveAt(k);
                 Done = true;
+                dos = true;
             }
-            return Done;
+            return dos;
         }
         void removeitem(Triangle at, ref List<Point3D> s, int i, int b, int j, int k, ref bool Done, double ht)
         {
@@ -245,6 +249,7 @@ namespace howto_WPF_3D_triangle_normals
                                     if (boundry(i, j, k, b, s.Count, countb, percent))
                                         return;
                                     else
+                                     if (i < s.Count && j < s.Count && k < s.Count && b < s.Count)
                                     {
                                         Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
                                         Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);

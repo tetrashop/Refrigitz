@@ -985,11 +985,8 @@ namespace WindowsApplication1
 
             }
         }
-
-        private void intelligentRedducedOff3DModdelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<Point3D> PointsAdd = new List<Point3D>();
-            for (int i = 0; i < a.cx; i++)
+        void addingpoints(ref List<Point3D> PointsAdd)
+        {  for (int i = 0; i < a.cx; i++)
             {
                 for (int j = 0; j < a.cy; j++)
                 {
@@ -1016,6 +1013,46 @@ namespace WindowsApplication1
 
                 }
             }
+         
+
+        }
+        void reducedpoints(ref List<Point3D> PointsAdd)
+        {
+            for (int i = 0; i < a.cx; i++)
+            {
+                for (int j = 0; j < a.cy; j++)
+                {
+                    if (a.c[i, j, 0] != 0)
+                    {
+                        Point3D s = new Point3D(i, j, a.c[i, j, 0]);
+
+                        if (!exist(s, PointsAdd))
+                            a.c[i, j, 0] = 0;
+
+                    }
+                    else
+                     if (a.c[i, j, 1] != 0)
+                    {
+                        Point3D s = new Point3D(i, j, a.c[i, j, 1]);
+                        if (!exist(s, PointsAdd))
+                            a.c[i, j, 1] = 0;
+                    }
+                    else
+                     if (a.c[i, j, 2] != 0)
+                    {
+                        Point3D s = new Point3D(i, j, a.c[i, j, 2]);
+                        if (!exist(s, PointsAdd))
+                            a.c[i, j, 2] = 0;
+                    }
+                }
+
+
+            }
+        }
+        private void intelligentRedducedOff3DModdelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Point3D> PointsAdd = new List<Point3D>();
+            addingpoints(ref PointsAdd);
             if (PointsAdd.Count >= 3)
             {
                 double minr = minraddpoints(PointsAdd);
@@ -1024,40 +1061,11 @@ namespace WindowsApplication1
                 {
                     int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, minr * 2, 100.0 / (double)PointsAdd.Count);
                     MessageBox.Show("reduced...! " + PointsAdd.Count.ToString() + " points.");
-
-                    for (int i = 0; i < a.cx; i++)
-                    {
-                        for (int j = 0; j < a.cy; j++)
-                        {
-                            if (a.c[i, j, 0] != 0)
-                            {
-                                Point3D s = new Point3D(i, j, a.c[i, j, 0]);
-
-                                if (!exist(s, PointsAdd))
-                                    a.c[i, j, 0] = 0;
-
-                            }
-                            else
-                             if (a.c[i, j, 1] != 0)
-                            {
-                                Point3D s = new Point3D(i, j, a.c[i, j, 1]);
-                                if (!exist(s, PointsAdd))
-                                    a.c[i, j, 1] = 0;
-                            }
-                            else
-                             if (a.c[i, j, 2] != 0)
-                            {
-                                Point3D s = new Point3D(i, j, a.c[i, j, 2]);
-                                if (!exist(s, PointsAdd))
-                                    a.c[i, j, 2] = 0;
-                            }
-                        }
-
-
-                    }
+                    reducedpoints(ref PointsAdd);
+                    pictureBox24.Image.Dispose();
                     var output = Task.Factory.StartNew(() =>
                     {
-                        a = new _2dTo3D(f);
+                        a.reconstruct2dto3d(f);
                     });
                     output.Wait();
                     pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;

@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace WindowsApplication1
 {
-   public class _2dTo3D
+    public class _2dTo3D
     {
-        public bool _3DReady=false;
+        public bool _3DReady = false;
         Image a;
         public Image ar;
         //size
@@ -25,7 +25,7 @@ namespace WindowsApplication1
         int[,,] f;//     f=zeros(b(1,1),b(1,2),3);
         int[,,] ddr;//     f=zeros(b(1,1),b(1,2),3);
         public float[,,] c;
-       public int cx = 0, cy = 0, cz = 3;
+        public int cx = 0, cy = 0, cz = 3;
         public float[,,] e;
         int fg = 2;
         public int minr = int.MaxValue;
@@ -73,7 +73,7 @@ namespace WindowsApplication1
                         if ((ii + jj) % 2 == 0)
                             c[(maxr - minr) * ii + (int)dr, (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] + 2.0)), k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
                         else
-                            c[(maxr - minr) * ii + (int)dr, (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0)), k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)) );
+                            c[(maxr - minr) * ii + (int)dr, (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0)), k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
                     }
                     catch (Exception t)
                     {
@@ -89,7 +89,8 @@ namespace WindowsApplication1
                 lock (c)
                 {
                     try
-                    {if (c[(int)(ii * (maxr - minr) + ddr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k] + 2), k] == 0)
+                    {
+                        if (c[(int)(ii * (maxr - minr) + ddr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k] + 2), k] == 0)
                             return;
                         if ((ii + jj) % 2 == 0)
                             e[(int)(ii * b[0] + i), (int)(j), k] = c[(int)(ii * (maxr - minr) + ddr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k] + 2), k];
@@ -206,7 +207,7 @@ namespace WindowsApplication1
                           {
                               ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], delegate (int j)
                               {
-                                  ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = 2; Parallel.For(0, 2 ,delegate (int k)
+                                  ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = 2; Parallel.For(0, 2, delegate (int k)
                                   {
                                       var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
 
@@ -222,6 +223,12 @@ namespace WindowsApplication1
         }
         void Initiate()
         {
+            minr = int.MaxValue;
+            minteta = int.MaxValue;
+            minfi = int.MaxValue;
+            maxr = int.MinValue;
+            maxteta = int.MinValue;
+            maxfi = int.MinValue;
             int r = 0;
             int teta = 0;
             int fi = 0;
@@ -268,9 +275,61 @@ namespace WindowsApplication1
                 }
             }
         }
+        void InitiateIntelli()
+        {
+            minr = int.MaxValue;
+            minteta = int.MaxValue;
+            minfi = int.MaxValue;
+            maxr = int.MinValue;
+            maxteta = int.MinValue;
+            maxfi = int.MinValue;
+            int r = 0;
+            int teta = 0;
+            int fi = 0;
+          t = new int[b[0], b[1], 3];
+            rr = new int[b[0], b[1], 3];
+            f = new int[b[0], b[1], 3];
+
+            for (int i = 0; i < b[0]; i++)
+            {
+                for (int j = 0; j < b[1]; j++)
+                {
+                    for (int k = 0; k < 3; k++)
+                    {
+                        double[] s = new double[3];
+                        //[teta, fi, r] = cart2sph(i, j, 0);
+                        s = cart2sph(i, j, 1);
+                        teta = (int)Math.Round(s[0] * 180.0 / 3.1415);
+                        fi = (int)Math.Round(s[1] * 180.0 / 3.1415);
+                        r = (int)Math.Round(s[2]);
+                        if (minr > r)
+                            minr = r;
+
+                        if (maxr < r)
+                            maxr = r;
+
+                        if (minfi > fi)
+                            minfi = fi;
+
+                        if (maxfi < fi)
+                            maxfi = fi;
+
+                        if (minteta > teta)
+                            minteta = teta;
+
+                        if (maxteta < teta)
+                            maxteta = teta;
+
+                    }
+
+
+                }
+            }
+        }
         float[,,] uitn8(float[,,] p, int ii, int jj, int kk)
         {
             float min = float.MaxValue, max = float.MinValue;
+            bool Donemax = false, Donemin = false;
             for (int i = 0; i < ii; i++)
             {
                 for (int j = 0; j < jj; j++)
@@ -278,15 +337,21 @@ namespace WindowsApplication1
                     for (int k = 0; k < kk; k++)
                     {
                         if (p[i, j, k] > max)
+                        {
+                            Donemax = true;
                             max = p[i, j, k];
+                        }
                         if (p[i, j, k] < min)
+                        {
+                            Donemin = true;
                             min = p[i, j, k];
+                        }
                     }
                 }
 
             }
             float q = min;
-            if (q < 0.0)
+            if (q < 0.0 && Donemin)
             {
                 for (int i = 0; i < ii; i++)
                 {
@@ -301,6 +366,7 @@ namespace WindowsApplication1
                 }
             }
             min = float.MaxValue; max = float.MinValue;
+            Donemax = false; Donemin = false;
             for (int i = 0; i < ii; i++)
             {
                 for (int j = 0; j < jj; j++)
@@ -308,15 +374,21 @@ namespace WindowsApplication1
                     for (int k = 0; k < kk; k++)
                     {
                         if (p[i, j, k] > max)
+                        {
+                            Donemax = true;
                             max = p[i, j, k];
+                        }
                         if (p[i, j, k] < min)
+                        {
+                            Donemin = true;
                             min = p[i, j, k];
+                        }
                     }
                 }
 
             }
-            q = (float)255.0 / (max );
-            if (max > 255.0)
+            q = (float)255.0 / (max);
+            if (max > 255.0 && Donemax)
             {
                 for (int i = 0; i < ii; i++)
                 {
@@ -333,13 +405,14 @@ namespace WindowsApplication1
             return p;
         }
 
-        public _2dTo3D(int succeed)
+        public void reconstruct2dto3d(int succeed)
         {
             if (succeed > 0)
             {
+                InitiateIntelli();
+                MessageBox.Show("InitiateIntelli pass!");
                 ConvTo3D();
                 MessageBox.Show("ConvTo3D pass!");
-                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
                 ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
                 MessageBox.Show("Graphic begin!!");
                 Graphics g = Graphics.FromImage(ar);
@@ -413,8 +486,8 @@ namespace WindowsApplication1
 
         }
 
-//convert 2d image to 3d;
-public _2dTo3D(string ass)
+        //convert 2d image to 3d;
+        public _2dTo3D(string ass)
         {
             a = Image.FromFile(ass);
             Initiate();
@@ -493,8 +566,8 @@ public _2dTo3D(string ass)
              Marshal.Copy(pixels, 0, ptrFirstPixel, pixels.Length);
              (ar as Bitmap).UnlockBits(bitmapData);*/
             MessageBox.Show("Graphic finished!!");
-       
-                }
+
+        }
         public _2dTo3D(Image ib, double percent)
         {
             a = ib;
@@ -600,7 +673,7 @@ public _2dTo3D(string ass)
         public _2dTo3D(Image ib)
         {
             a = ib;
-            Graphics g = Graphics.FromImage(a);       
+            Graphics g = Graphics.FromImage(a);
             Initiate();
             MessageBox.Show("Initiate pass!");
             ContoObject();
@@ -691,7 +764,7 @@ public _2dTo3D(string ass)
             {
                 for (int j = 0; j < a.Height; j++)
                 {
-                    if (((i + j) % ((int)(1.0 / percent)))==0)
+                    if (((i + j) % ((int)(1.0 / percent))) == 0)
                     {
                         g.DrawImage(a, 0, 0, a.Width, a.Height);
                         g.Save();
@@ -715,7 +788,7 @@ public _2dTo3D(string ass)
             e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
             ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
             MessageBox.Show("Graphic begin!!");
-             g = Graphics.FromImage(ar);
+            g = Graphics.FromImage(ar);
 
 
 

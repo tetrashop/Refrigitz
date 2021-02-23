@@ -985,30 +985,57 @@ namespace WindowsApplication1
 
             }
         }
-        void addingpoints(ref List<Point3D> PointsAdd)
+        void addingpoints(ref List<Point3D> PointsAddp0, ref List<Point3D> PointsAddp1)
         {
             for (int i = 0; i < a.cx; i++)
             {
-                for (int j = 0; j < a.cy; j++)
+                for (int j = 0; j < a.cyp0; j++)
                 {
                     if (a.c[i, j, 0] != 0 || a.c[i, j, 1] != 0 || a.c[i, j, 2] != 0)
                     {
                         Point3D s = new Point3D(i, j, (a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3);
-                        PointsAdd.Add(s);
+                        PointsAddp0.Add(s);
+                    }
+                }
+            }
+            for (int i = 0; i < a.cx; i++)
+            {
+                for (int j = a.cyp0; j < a.cyp1; j++)
+                {
+                    if (a.c[i, j, 0] != 0 || a.c[i, j, 1] != 0 || a.c[i, j, 2] != 0)
+                    {
+                        Point3D s = new Point3D(i, j, (a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3);
+                        PointsAddp1.Add(s);
                     }
                 }
             }
         }
-        void reducedpoints(ref List<Point3D> PointsAdd)
+        void reducedpoints(ref List<Point3D> PointsAddp0, ref List<Point3D> PointsAddp1)
         {
             for (int i = 0; i < a.cx; i++)
             {
-                for (int j = 0; j < a.cy; j++)
+                for (int j = 0; j < a.cyp0; j++)
                 {
                     if ((a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3 != 0)
                     {
                         Point3D s = new Point3D(i, j, (a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3);
-                        if (!exist(s, PointsAdd))
+                        if (!exist(s, PointsAddp0))
+                        {
+                            a.c[i, j, 0] = 0;
+                            a.c[i, j, 1] = 0;
+                            a.c[i, j, 2] = 0;
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < a.cx; i++)
+            {
+                for (int j = a.cyp0; j < a.cyp1; j++)
+                {
+                    if ((a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3 != 0)
+                    {
+                        Point3D s = new Point3D(i, j, (a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3);
+                        if (!exist(s, PointsAddp1))
                         {
                             a.c[i, j, 0] = 0;
                             a.c[i, j, 1] = 0;
@@ -1020,17 +1047,20 @@ namespace WindowsApplication1
         }
         private void intelligentRedducedOff3DModdelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<Point3D> PointsAdd = new List<Point3D>();
-            addingpoints(ref PointsAdd);
-            if (PointsAdd.Count >= 3)
+            List<Point3D> PointsAddp0 = new List<Point3D>();
+            List<Point3D> PointsAddp1 = new List<Point3D>();
+            addingpoints(ref PointsAddp0, ref PointsAddp1);
+            if (PointsAddp0.Count >= 3||PointsAddp1.Count >= 3)
             {
-                double minr = minraddpoints(PointsAdd);
-                MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points. with minr " + minr.ToString());
-                if (PointsAdd.Count > 100)
+                double minrp0 = minraddpoints(PointsAddp0);
+                double minrp1 = minraddpoints(PointsAddp1);
+                MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
+                if (PointsAddp0.Count > 35|| PointsAddp0.Count > 35)
                 {
-                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, minr * 2, 35.0 / (double)PointsAdd.Count);
-                    MessageBox.Show("reduced...! " + PointsAdd.Count.ToString() + " points.");
-                    reducedpoints(ref PointsAdd);
+                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp0 * 2, 35.0 / (double)PointsAddp0.Count);
+                     f =f+ (new Triangle()).reduceCountOfpoints(ref PointsAddp1, minrp1 * 2, 35.0 / (double)PointsAddp1.Count);
+                    MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points." + "reduced...p1! " + PointsAddp1.Count.ToString() + " points.");
+                    reducedpoints(ref PointsAddp0, ref PointsAddp1);
                     pictureBox24.Image.Dispose();
                     var output = Task.Factory.StartNew(() =>
                     {
@@ -1046,7 +1076,7 @@ namespace WindowsApplication1
                     pictureBox24.Invalidate();
                 }
             }
-        }
+       }
         bool exist(Point3D ss, List<Point3D> d)
         {
             if (d.Count == 0)

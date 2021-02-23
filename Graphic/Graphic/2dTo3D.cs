@@ -25,7 +25,7 @@ namespace WindowsApplication1
         int[,,] f;//     f=zeros(b(1,1),b(1,2),3);
         int[,,] ddr;//     f=zeros(b(1,1),b(1,2),3);
         public float[,,] c;
-        public int cx = 0, cy = 0, cz = 3;
+        public int cx = 0, cyp0 = 0, cyp1 = 0 ,cz = 3;
         public float[,,] e;
         int fg = 2;
         public int minr = int.MaxValue;
@@ -132,7 +132,10 @@ namespace WindowsApplication1
             int teta = 0;
             int fi = 0;
             cx = (int)((maxr - minr) * fg + (int)maxr + 1);
-            cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
+
+            cyp0 = (int)Math.Round((double)(maxteta - minteta) + (double)maxteta + 1.0);
+            cyp1 = (int)Math.Round((double)(maxteta - minteta) * (double)2 + (double)maxteta + 1.0);
+            //cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
             c = new float[(int)((maxr - minr) * fg + (int)maxr + 1), (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0), 3];
             t = new int[b[0], b[1], 3];
             rr = new int[b[0], b[1], 3];

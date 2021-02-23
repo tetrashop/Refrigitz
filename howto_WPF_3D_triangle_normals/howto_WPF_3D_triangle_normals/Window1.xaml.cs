@@ -359,26 +359,41 @@ namespace howto_WPF_3D_triangle_normals
                         {
                             //creation of target
                             //list found of 3d PointsAdd
-                            List<Point3D> PointsAdd = new List<Point3D>();
+                            List<Point3D> PointsAddp0 = new List<Point3D>();
+                            List<Point3D> PointsAddp1 = new List<Point3D>();
                             for (int i = 0; i < gr.a.cx; i++)
                             {
-                                for (int j = 0; j < gr.a.cy; j++)
+                                for (int j = 0; j < gr.a.cyp0; j++)
                                 {
                                     if (gr.a.c[i, j, 0] != 0 || gr.a.c[i, j, 1] != 0 || gr.a.c[i, j, 2] != 0)
                                     {
                                         Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
-                                        PointsAdd.Add(s);
+                                        PointsAddp0.Add(s);
                                     }
                                 }
                             }
-                            if (PointsAdd.Count >= 3)
+                            for (int i = 0; i < gr.a.cx; i++)
                             {
-                                double minr = minraddpoints(PointsAdd);
-                                MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points. with minr "+minr.ToString());
-                                 if (PointsAdd.Count > 35)
+                                for (int j = gr.a.cyp0; j < gr.a.cyp1; j++)
+                                {
+                                    if (gr.a.c[i, j, 0] != 0 || gr.a.c[i, j, 1] != 0 || gr.a.c[i, j, 2] != 0)
+                                    {
+                                        Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
+                                        PointsAddp1.Add(s);
+                                    }
+                                }
+                            }
+                            if (PointsAddp0.Count >= 3|| PointsAddp1.Count >= 3)
+                            {
+
+                                double minrp0 = minraddpoints(PointsAddp0);
+                                double minrp1 = minraddpoints(PointsAddp0);
+                                MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
+                                if (PointsAddp0.Count > 35|| PointsAddp1.Count > 35)
                                  {
-                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, minr * 2, 35.0 / (double)PointsAdd.Count);
-                                    MessageBox.Show("reduced...! " + PointsAdd.Count.ToString() + " points.");
+                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp0 * 2, 35.0 / (double)PointsAddp0.Count);
+                                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, minrp1 * 2, 35.0 / (double)PointsAddp1.Count);
+                                    MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points." + "reduced...p1! " + PointsAddp1.Count.ToString() + " points.");
                                 }
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();
@@ -426,8 +441,10 @@ namespace howto_WPF_3D_triangle_normals
                                 });
                                 output.Wait();
                                 */
-                                minr = minraddpoints(PointsAdd);
+                                List<Point3D> PointsAdd = PointsAddp0;
 
+                                double minr = minraddpoints(PointsAdd);
+                             
                                 for (int i = 0; i < PointsAdd.Count; i++)
                                 {
                                     for (int j = i + 1; j < PointsAdd.Count; j++)

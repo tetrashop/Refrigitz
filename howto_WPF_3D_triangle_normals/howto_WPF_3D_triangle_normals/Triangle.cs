@@ -254,6 +254,7 @@ namespace howto_WPF_3D_triangle_normals
         {
             bool reduced = false;
             List<Point3D> sss = s;
+            Point3D p = new Point3D(-1, -1, -1);
 
             List<Point3D> xxx = new List<Point3D>();
             List<List<Point3D>> xxxAddedClonies = new List<List<Point3D>>();
@@ -290,27 +291,27 @@ namespace howto_WPF_3D_triangle_normals
                                         xxx.Add(p0);
                                         add = true;
                                         if (!(a))
-                                            xxxAddedClonies[index].Add(s[i]);
+                                            xxxAddedClonies[index].Add(s[j]);
                                         if (!(b))
-                                            xxxAddedClonies[index].Add(s[i]);
-                                        sss.RemoveAt(i);
+                                            xxxAddedClonies[index].Add(s[j]);
                                         sss.RemoveAt(j);
                                     }
                                 }
                                 else
                                 {
 
-                                    double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
-                                    if (count <= xxxAddedClonies[index].Count * minr)
+                                    p0 = p;
+                                    if (p.X != -1 && p.Y != -1 && p.Z != -1)
                                     {
-                                        if (!(a))
-                                            xxxAddedClonies[index].Add(s[i]);
-                                        if (!(b))
-                                            xxxAddedClonies[index].Add(s[i]);
-                                        sss.RemoveAt(i);
-                                        sss.RemoveAt(j);
+                                        double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
+                                        if (count <= xxxAddedClonies[index].Count * minr)
+                                        {
+                                            if (!(b))
+                                                xxxAddedClonies[index].Add(s[j]);
+                                            sss.RemoveAt(i);
+                                            sss.RemoveAt(j);
+                                        }
                                     }
-
                                 }
                             }
                         });
@@ -318,6 +319,7 @@ namespace howto_WPF_3D_triangle_normals
                 });
                 output.Wait();
                 index++;
+                p = new Point3D(-1, -1, -1);
             } while (sss.Count > 0 && add);
 
             return xxx;
@@ -328,7 +330,7 @@ namespace howto_WPF_3D_triangle_normals
             if (xxx.Count > 1)
                 return xxx.Count;
 
-
+            
 
             double countb = sss.Count;
 

@@ -282,7 +282,7 @@ namespace howto_WPF_3D_triangle_normals
                                 bool a = exist(p0, xxxAddedClonies);
                                 bool b = exist(p1, xxxAddedClonies);
 
-                                if (!(a || b))
+                                if ((!(a || b)) && (!add))
                                 {
                                     double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
                                     if (count <= minr)

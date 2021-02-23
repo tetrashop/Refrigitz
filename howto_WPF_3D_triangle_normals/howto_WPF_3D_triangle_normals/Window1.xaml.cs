@@ -391,9 +391,22 @@ namespace howto_WPF_3D_triangle_normals
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
                                 if (PointsAddp0.Count > 35|| PointsAddp1.Count > 35)
                                  {
-                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp0 * 2, 35.0 / (double)PointsAddp0.Count);
-                                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, minrp1 * 2, 35.0 / (double)PointsAddp1.Count);
+                                    List<Point3D> xxxp0 = new List<Point3D>();
+
+                                    List<Point3D> xxxp1 = new List<Point3D>();
+
+                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0);
+                                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1);
+                                    if (xxxp0.Count > 1)
+                                    {
+                                        PointsAddp0 = xxxp0;
+                                    }
+                                    if (xxxp1.Count > 1)
+                                    {
+                                        PointsAddp0 = xxxp1;
+                                    }
                                     MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points." + "reduced...p1! " + PointsAddp1.Count.ToString() + " points.");
+                                   
                                 }
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();

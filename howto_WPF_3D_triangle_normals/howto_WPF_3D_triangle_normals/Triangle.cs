@@ -218,8 +218,118 @@ namespace howto_WPF_3D_triangle_normals
             }
 
         }
-        public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent)
+        double minraddpoints(List<Point3D> p0)
         {
+            double r = double.MaxValue;
+            for (int i = 0; i < p0.Count; i++)
+            {
+                for (int j = 0; j < p0.Count; j++)
+                {
+
+                    double a = Math.Sqrt((p0[i].X - p0[j].X) * (p0[i].X - p0[j].X) + (p0[i].Y - p0[j].Y) * (p0[i].Y - p0[j].Y) + (p0[i].Z - p0[j].Z) * (p0[i].Z - p0[j].Z));
+
+                    if (a < r && a != 0)
+                        r = a;
+                }
+            }
+            return r;
+        }
+        bool exist(Point3D ss, List<List<Point3D>> d)
+        {
+            if (d.Count == 0)
+                return false;
+
+            for (int i = 0; i < d.Count; i++)
+            {
+                for (int j = 0; j < d[i].Count; j++)
+                {
+
+                    if (ss.X == d[i][j].X && ss.Y == d[i][j].Y && ss.Z == d[i][j].Z)
+                        return true;
+                }
+            }
+            return false;
+        }
+        List<Point3D> reductionSetOfPointsToNumberOfSets(List<Point3D> s)
+        {
+            bool reduced = false;
+            List<Point3D> sss = s;
+
+            List<Point3D> xxx = new List<Point3D>();
+            List<List<Point3D>> xxxAddedClonies = new List<List<Point3D>>();
+            double minr = minraddpoints(s);
+            bool add = false;
+            int index = 0;
+            do
+            {
+                add = false;
+                minr = minraddpoints(sss);
+                var output = Task.Factory.StartNew(() =>
+                {
+
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, sss.Count, i =>
+                    {
+
+
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, sss.Count, j =>
+                        {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                            if (boundryout(i, 0, 0, 0, sss.Count, 0, 0))
+                                return;
+                            else
+                            {
+                                Point3D p0 = sss[i];
+                                Point3D p1 = sss[j];
+                                bool a = exist(p0, xxxAddedClonies);
+                                bool b = exist(p1, xxxAddedClonies);
+
+                                if (!(a || b))
+                                {
+                                    double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
+                                    if (count <= minr)
+                                    {
+                                        xxx.Add(p0);
+                                        add = true;
+                                        if (!(a))
+                                            xxxAddedClonies[index].Add(s[i]);
+                                        if (!(b))
+                                            xxxAddedClonies[index].Add(s[i]);
+                                        sss.RemoveAt(i);
+                                        sss.RemoveAt(j);
+                                    }
+                                }
+                                else
+                                {
+
+                                    double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
+                                    if (count <= xxxAddedClonies[index].Count * minr)
+                                    {
+                                        if (!(a))
+                                            xxxAddedClonies[index].Add(s[i]);
+                                        if (!(b))
+                                            xxxAddedClonies[index].Add(s[i]);
+                                        sss.RemoveAt(i);
+                                        sss.RemoveAt(j);
+                                    }
+
+                                }
+                            }
+                        });
+                    });
+                });
+                output.Wait();
+                index++;
+            } while (sss.Count > 0 && add);
+
+            return xxx;
+        }
+        public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent, ref List<Point3D> xxx)
+        {
+            xxx = reductionSetOfPointsToNumberOfSets(sss);
+            if (xxx.Count > 1)
+                return xxx.Count;
+
+
+
             double countb = sss.Count;
 
             List<Point3D[]> d = new List<Point3D[]>();
@@ -249,12 +359,12 @@ namespace howto_WPF_3D_triangle_normals
                                     if (boundry(i, j, k, b, s.Count, countb, percent))
                                         return;
                                     else
-                                     if (i < s.Count && j < s.Count && k < s.Count && b < s.Count)
+                                    if (i < s.Count && j < s.Count && k < s.Count && b < s.Count)
                                     {
                                         Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
                                         Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
                                         Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
-                                        if (distancereduced(aa, bb, cc, ref Done, ref s, ht, i, j, k))
+                                        if (!distancereduced(aa, bb, cc, ref Done, ref s, ht, i, j, k))
                                         {
                                             Triangle at = new Triangle(aa, bb, cc);
 

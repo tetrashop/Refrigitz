@@ -305,7 +305,7 @@ namespace howto_WPF_3D_triangle_normals
                                     if (p.X != -1 && p.Y != -1 && p.Z != -1)
                                     {
                                         double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
-                                        if (count <= Math.Sqrt(xxxAddedClonies[index].Count) * minr)
+                                        if (count <= Math.Sqrt(xxxAddedClonies[index].Count * minr))
                                         {
                                             if (!(b))
                                                 xxxAddedClonies[index].Add(s[j]);

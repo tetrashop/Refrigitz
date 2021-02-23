@@ -397,11 +397,11 @@ namespace howto_WPF_3D_triangle_normals
 
                                     int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0);
                                     f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1);
-                                    if (xxxp0.Count > 1)
+                                    if (xxxp0.Count >= 1)
                                     {
                                         PointsAddp0 = xxxp0;
                                     }
-                                    if (xxxp1.Count > 1)
+                                    if (xxxp1.Count >= 1)
                                     {
                                         PointsAddp0 = xxxp1;
                                     }

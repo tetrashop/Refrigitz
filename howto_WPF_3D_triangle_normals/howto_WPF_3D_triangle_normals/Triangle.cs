@@ -328,10 +328,10 @@ namespace howto_WPF_3D_triangle_normals
         public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent, ref List<Point3D> xxx)
         {
             xxx = reductionSetOfPointsToNumberOfSets(sss);
-            if (xxx.Count > 1)
+            if (xxx.Count >= 1)
                 return xxx.Count;
 
-            
+            /*
 
             double countb = sss.Count;
 
@@ -392,7 +392,7 @@ namespace howto_WPF_3D_triangle_normals
                 output.Wait();
 
             } while ((double)s.Count / countb >= percent && (Done));
-            sss = s;
+            sss = s;*/
             return sss.Count;
         }
     }

@@ -1028,7 +1028,7 @@ namespace WindowsApplication1
                 MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points. with minr " + minr.ToString());
                 if (PointsAdd.Count > 100)
                 {
-                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, minr * 2, 100.0 / (double)PointsAdd.Count);
+                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, minr * 2, 35.0 / (double)PointsAdd.Count);
                     MessageBox.Show("reduced...! " + PointsAdd.Count.ToString() + " points.");
                     reducedpoints(ref PointsAdd);
                     pictureBox24.Image.Dispose();

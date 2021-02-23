@@ -375,9 +375,9 @@ namespace howto_WPF_3D_triangle_normals
                             {
                                 double minr = minraddpoints(PointsAdd);
                                 MessageBox.Show("Add capable...! " + PointsAdd.Count.ToString() + " points. with minr "+minr.ToString());
-                                 if (PointsAdd.Count > 100)
+                                 if (PointsAdd.Count > 35)
                                  {
-                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, minr * 2, 100.0 / (double)PointsAdd.Count);
+                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAdd, minr * 2, 35.0 / (double)PointsAdd.Count);
                                     MessageBox.Show("reduced...! " + PointsAdd.Count.ToString() + " points.");
                                 }
                                 // Give the camera its initial position.

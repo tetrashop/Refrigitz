@@ -101,7 +101,7 @@ namespace howto_WPF_3D_triangle_normals
             object o = new object();
             lock (o)
             {
-                double count = (Math.Sqrt(p0.X * p0.X + p0.Y * p0.Y + p0.Z * p0.Z) + Math.Sqrt(p1.X * p1.X + p1.Y * p1.Y + p1.Z * p1.Z) + Math.Sqrt(p2.X * p2.X + p2.Y * p2.Y + p2.Z * p2.Z)) / 3;
+                double count = (Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z)) + Math.Sqrt((p0.X - p2.X) * (p0.X - p2.X) + (p0.Y - p2.Y) * (p0.Y - p2.Y) + (p0.Z - p2.Z) * (p0.Z - p2.Z))+ Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y) + (p1.Z - p2.Z) * (p1.Z - p2.Z))) / 3;
                 if (count <= 2 * d)
                     return true;
                 return false;
@@ -236,11 +236,11 @@ namespace howto_WPF_3D_triangle_normals
 
                         if (boundryout(i, 0, 0, 0, s.Count, countb, percent))
                             return;
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(i + 1, s.Count, j =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, s.Count, j =>
                         {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                             if (boundryout(i, j, 0, 0, s.Count, countb, percent))
                                 return;
-                            ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(j + 1, s.Count, k =>
+                            ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(0, s.Count, k =>
                             {            //external point
                                 if (boundryout(i, j, k, 0, s.Count, countb, percent))
                                     return;
@@ -254,7 +254,7 @@ namespace howto_WPF_3D_triangle_normals
                                         Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
                                         Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
                                         Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
-                                        if (!distancereduced(aa, bb, cc, ref Done, ref s, ht, i, j, k))
+                                        if (distancereduced(aa, bb, cc, ref Done, ref s, ht, i, j, k))
                                         {
                                             Triangle at = new Triangle(aa, bb, cc);
 

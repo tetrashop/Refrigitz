@@ -330,6 +330,7 @@ namespace howto_WPF_3D_triangle_normalsuser
                     });
                 });
                 output.Wait();
+                xxxAddedClonies.Add(new List<Point3D>());
                 index++;
                 p = new Point3D(-1, -1, -1);
             } while (sss.Count > 0 && add);

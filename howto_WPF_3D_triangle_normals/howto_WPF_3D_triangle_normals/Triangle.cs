@@ -294,6 +294,7 @@ namespace howto_WPF_3D_triangle_normals
                                             xxxAddedClonies[index].Add(s[j]);
                                         if (!(b))
                                             xxxAddedClonies[index].Add(s[j]);
+                                        sss.RemoveAt(i);
                                         sss.RemoveAt(j);
                                     }
                                 }
@@ -308,8 +309,7 @@ namespace howto_WPF_3D_triangle_normals
                                         {
                                             if (!(b))
                                                 xxxAddedClonies[index].Add(s[j]);
-                                            sss.RemoveAt(i);
-                                            sss.RemoveAt(j);
+                                             sss.RemoveAt(j);
                                         }
                                     }
                                 }
@@ -318,6 +318,7 @@ namespace howto_WPF_3D_triangle_normals
                     });
                 });
                 output.Wait();
+                xxxAddedClonies.Add(new List<Point3D>());
                 index++;
                 p = new Point3D(-1, -1, -1);
             } while (sss.Count > 0 && add);

@@ -7138,7 +7138,7 @@ namespace Refrigtz
             lock (O)
             {
                 //var parallelOptions = new ParallelOptions();
-                //parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
+                //parallelOptionsMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
 
                 int HA = 0;
                 if (!Quantum)

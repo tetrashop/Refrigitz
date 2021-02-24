@@ -309,11 +309,11 @@ namespace howto_WPF_3D_triangle_normals
                 var output = Task.Factory.StartNew(() =>
                 {
 
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, i =>
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, i =>
                     {
 
 
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, j =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, j =>
                         {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                             if (boundryout(i, 0, 0, 0, sss.Count, 0, 0))
                                 return;
@@ -385,20 +385,20 @@ namespace howto_WPF_3D_triangle_normals
                 var output = Task.Factory.StartNew(() =>
                 {
 
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
                     {
 
                         if (boundryout(i, 0, 0, 0, s.Count, countb, percent))
                             return;
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
                         {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                             if (boundryout(i, j, 0, 0, s.Count, countb, percent))
                                 return;
-                            ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
+                            ParallelOptions ppoio = new ParallelOptions(); ppoioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
                             {            //external point
                                 if (boundryout(i, j, k, 0, s.Count, countb, percent))
                                     return;
-                                ParallelOptions ppopio = new ParallelOptions(); ppopio.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, b =>
+                                ParallelOptions ppopio = new ParallelOptions(); ppopioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, b =>
                                 {
                                     if (boundry(i, j, k, b, s.Count, countb, percent))
                                         return;

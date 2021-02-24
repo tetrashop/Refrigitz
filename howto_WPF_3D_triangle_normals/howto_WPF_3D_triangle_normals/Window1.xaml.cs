@@ -436,12 +436,12 @@ namespace howto_WPF_3D_triangle_normals
                                  var output = Task.Factory.StartNew(() =>
                                 {
 
-                                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, i =>
+                                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, i =>
                                    {
 
-                                       ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, j =>
+                                       ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, j =>
                                          {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                                             ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, k =>
+                                             ParallelOptions ppoio = new ParallelOptions(); ppoioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, k =>
                                               {
                                               
                                                  if ((new Triangle()).boundry(i, j, k))

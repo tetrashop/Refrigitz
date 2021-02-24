@@ -2607,7 +2607,7 @@ namespace RewriteRefrigitz
 
             var parallelOptions = new ParallelOptions();
             //parallelOptions.MaxDegreeOfParallelism = Int32.MaxValue;
-            parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount;
+            parallelOptionsMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount;
 
             //worker_DoWork();
             //worker_DoWorkMove();

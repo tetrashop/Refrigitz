@@ -1398,7 +1398,7 @@ namespace RefrigtzW
         public void Load()
         {
             //var parallelOptions = new ParallelOptions();
-            //parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
+            //parallelOptionsMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
 
             MovmentsNumber = 0;
 

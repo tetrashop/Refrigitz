@@ -9806,7 +9806,7 @@ namespace ChessFirst
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
-                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
         {
             //soldier
             for (var i = 0; i < SodierMidle; i++)
@@ -9995,7 +9995,7 @@ namespace ChessFirst
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
-                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
         {
             //soldier
             for (var i = SodierMidle; i < SodierHigh; i++)
@@ -18716,7 +18716,7 @@ namespace ChessFirst
             {
 
                 //For Gray Soldeirs Objects. 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, i =>
 {
     var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
     H.Wait();
@@ -18993,7 +18993,7 @@ namespace ChessFirst
             Object oo = new Object();
             lock (oo)
             {
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -19079,7 +19079,7 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Gray Hourse Objects.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -19170,7 +19170,7 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Possible Gray Castles Objects.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -19258,7 +19258,7 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Possible Gray Minister Movments.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MinisterMidle, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -19353,7 +19353,7 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Possible Gray King Objects.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, KingMidle, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingMidle, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -19369,7 +19369,7 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Possible Gray Castling Objects.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, i =>
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastling(7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                     H.Wait();
@@ -19531,7 +19531,7 @@ namespace ChessFirst
 
 
                 //For Each Objects of Brown Sodiers.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(SodierMidle, SodierHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(SodierMidle, SodierHigh, i =>
 
 {
     var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -19554,7 +19554,7 @@ namespace ChessFirst
 
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(ElefantMidle, ElefantHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(ElefantMidle, ElefantHigh, i =>
 
 {
     var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -19576,7 +19576,7 @@ namespace ChessFirst
             {
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(HourseMidle, HourseHight, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(HourseMidle, HourseHight, i =>
 
 {
     var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -19598,7 +19598,7 @@ namespace ChessFirst
             {
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(CastleMidle, CastleHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(CastleMidle, CastleHigh, i =>
 
 {
     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -19621,7 +19621,7 @@ namespace ChessFirst
 
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(MinisterMidle, MinisterHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(MinisterMidle, MinisterHigh, i =>
 
 {
     var H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -19643,7 +19643,7 @@ namespace ChessFirst
 
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(KingMidle, KingHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(KingMidle, KingHigh, i =>
 
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -19664,7 +19664,7 @@ namespace ChessFirst
 
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, i =>
 
                 {
                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastling(-7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
@@ -20261,7 +20261,7 @@ namespace ChessFirst
                     {
                         //if (!feedCancellationTokenSource.IsCancellationRequested)
                         {
-                            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
     {
         //For All Gray Soldier Objects.
         Object O = new Object();
@@ -20335,7 +20335,7 @@ namespace ChessFirst
                     {
                         //if (!feedCancellationTokenSource.IsCancellationRequested)
                         {
-                            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
     {
         //For All Gray Soldier Objects.
         Object O = new Object();
@@ -20469,7 +20469,7 @@ namespace ChessFirst
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
     //For All Gray Soldier Objects.
     Object O = new Object();
@@ -20559,7 +20559,7 @@ namespace ChessFirst
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
     //For All Gray Soldier Objects.
     Object O = new Object();
@@ -21132,13 +21132,13 @@ namespace ChessFirst
             {
                 var output = Task.Factory.StartNew(() =>
                 {
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                     {
                         Object o = new Object();
                         lock (o)
                         {
 
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.SodierHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.SodierHigh, p =>
                             {
                                 Act = Act || MergeJungleTreeSoldier(jungle, p);
                             });
@@ -21150,7 +21150,7 @@ namespace ChessFirst
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.ElefantHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.ElefantHigh, p =>
                             {
                                 Act = Act || MergeJungleTreeElephant(jungle, p);
 
@@ -21164,7 +21164,7 @@ namespace ChessFirst
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.HourseHight, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.HourseHight, p =>
                             {
 
                                 Act = Act || MergeJungleTreeHhourse(jungle, p);
@@ -21177,7 +21177,7 @@ namespace ChessFirst
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.CastleHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.CastleHigh, p =>
                             {
 
                                 Act = Act || MergeJungleTreeCastle(jungle, p);
@@ -21192,7 +21192,7 @@ namespace ChessFirst
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.MinisterHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.MinisterHigh, p =>
                             {
                                 Act = Act || MergeJungleTreeMinister(jungle, p);
 
@@ -21205,7 +21205,7 @@ namespace ChessFirst
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, jungle.KingHigh, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.KingHigh, p =>
                             {
                                 Act = Act || MergeJungleTreeKing(jungle, p);
                             });
@@ -21216,7 +21216,7 @@ namespace ChessFirst
                         Object o = new Object();
                         lock (o)
                         {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
                             {
                                 Act = Act || MergeJungleTreeCastling(jungle, p);
                             });
@@ -21654,13 +21654,13 @@ namespace ChessFirst
 
             var output = Task.Factory.StartNew(() =>
             {
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                 {
                     Object o = new Object();
                     lock (o)
                     {
 
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
                         {
                             if (SolderesOnTable != null)
                             {
@@ -21712,7 +21712,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
                         {
                             if (ElephantOnTable != null)
                             {
@@ -21765,7 +21765,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
                         {
 
                             if (HoursesOnTable != null)
@@ -21817,7 +21817,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
                         {
 
                             if (CastlesOnTable != null)
@@ -21871,7 +21871,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
                         {
 
                             if (MinisterOnTable != null)
@@ -21924,7 +21924,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
                         {
                             if (KingOnTable != null)
                             {
@@ -21977,7 +21977,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
                         {
                             if (CastlingOnTable != null)
                             {
@@ -23102,13 +23102,13 @@ namespace ChessFirst
             }
             var output = Task.Factory.StartNew(() =>
             {
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                 {
                     Object o = new Object();
                     lock (o)
                     {
 
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
                         {
                             if (SolderesOnTable != null)
                             {
@@ -23160,7 +23160,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
                         {
                             if (ElephantOnTable != null)
                             {
@@ -23213,7 +23213,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
                         {
 
                             if (HoursesOnTable != null)
@@ -23265,7 +23265,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
                         {
 
                             if (CastlesOnTable != null)
@@ -23319,7 +23319,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
                         {
 
                             if (MinisterOnTable != null)
@@ -23372,7 +23372,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
                         {
                             if (KingOnTable != null)
                             {
@@ -23425,7 +23425,7 @@ namespace ChessFirst
                     Object o = new Object();
                     lock (o)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
                         {
                             if (CastlingOnTable != null)
                             {
@@ -28081,7 +28081,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[0] = true;
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, ik =>
 
 {
     if (SolderesOnTable != null && SolderesOnTable[ik] != null && SolderesOnTable[ik].SoldierThinking != null && SolderesOnTable[ik].SoldierThinking[0] != null
@@ -28284,7 +28284,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[1] = true;
                 //Elephant
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, ik =>
 
 {
     if (ElephantOnTable != null && ElephantOnTable[ik] != null && ElephantOnTable[ik].ElefantThinking != null && ElephantOnTable[ik].ElefantThinking[0] != null
@@ -28493,7 +28493,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[2] = true;
                 //Hourse.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, ik =>
 
 {
     if (HoursesOnTable != null && HoursesOnTable[ik] != null && HoursesOnTable[ik].HourseThinking != null && HoursesOnTable[ik].HourseThinking[0] != null
@@ -28701,7 +28701,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[3] = true;
                 //Castle.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, ik =>
 
 {
     if (CastlesOnTable != null && CastlesOnTable[ik] != null && CastlesOnTable[ik].CastleThinking != null && CastlesOnTable[ik].CastleThinking[0] != null
@@ -28912,7 +28912,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[4] = true;
                 //Minister.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MinisterMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterMidle, ik =>
 
 {
     if (MinisterOnTable != null && MinisterOnTable[ik] != null && MinisterOnTable[ik].MinisterThinking != null && MinisterOnTable[ik].MinisterThinking[0] != null
@@ -29304,7 +29304,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
 
                 //King.
                 ThinkingAllowed[5] = true;
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, KingMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingMidle, ik =>
 
 {
     if (KingOnTable != null && KingOnTable[ik] != null && KingOnTable[ik].KingThinking != null && KingOnTable[ik].KingThinking[0] != null
@@ -29334,7 +29334,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
 
                 //Castling.
                 ThinkingAllowed[6] = true;
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
 
                 {
                     if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
@@ -29363,7 +29363,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             lock (O1)
             {
                 ThinkingAllowed[7] = true;
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(SodierMidle, SodierHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(SodierMidle, SodierHigh, ik =>
 
 {
     if (SolderesOnTable != null && SolderesOnTable[ik] != null && SolderesOnTable[ik].SoldierThinking != null && SolderesOnTable[ik].SoldierThinking[0] != null
@@ -29393,7 +29393,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[8] = true;
                 //Elephant
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(ElefantMidle, ElefantHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(ElefantMidle, ElefantHigh, ik =>
 
 {
     if (ElephantOnTable != null && ElephantOnTable[ik] != null && ElephantOnTable[ik].ElefantThinking != null && ElephantOnTable[ik].ElefantThinking[0] != null
@@ -29422,7 +29422,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[9] = true;
                 //Hourse.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(HourseMidle, HourseHight, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(HourseMidle, HourseHight, ik =>
 
 {
     if (HoursesOnTable != null && HoursesOnTable[ik] != null && HoursesOnTable[ik].HourseThinking != null && HoursesOnTable[ik].HourseThinking[0] != null
@@ -29451,7 +29451,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[10] = true;
                 //Castles.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(CastleMidle, CastleHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(CastleMidle, CastleHigh, ik =>
 
 {
     if (CastlesOnTable != null && CastlesOnTable[ik] != null && CastlesOnTable[ik].CastleThinking != null && CastlesOnTable[ik].CastleThinking[0] != null
@@ -29480,7 +29480,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[11] = true;
                 //Minister.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(MinisterMidle, MinisterHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(MinisterMidle, MinisterHigh, ik =>
 
 {
     if (MinisterOnTable != null && MinisterOnTable[ik] != null && MinisterOnTable[ik].MinisterThinking != null && MinisterOnTable[ik].MinisterThinking[0] != null
@@ -29509,7 +29509,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[12] = true;
                 //King.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(KingMidle, KingHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(KingMidle, KingHigh, ik =>
 
                 {
                     if (KingOnTable != null && KingOnTable[ik] != null && KingOnTable[ik].KingThinking != null && KingOnTable[ik].KingThinking[0] != null
@@ -29537,7 +29537,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[13] = true;
                 //Castling.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
 
                 {
                     if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
@@ -29568,7 +29568,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
     Object O1 = new Object();
     lock (O1)
@@ -29757,7 +29757,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
     Object O1 = new Object();
     lock (O1)
@@ -30015,9 +30015,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, MaxGrayMidle(), i =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MaxGrayMidle(), i =>
 {
-    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
     {
         Object ooo = new Object();
         lock (ooo)
@@ -30197,9 +30197,9 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(MinBrownMidle(), MaxGrayMidle(), i =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(MinBrownMidle(), MaxGrayMidle(), i =>
 {
-    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
     {
         Object ooo = new Object();
         lock (ooo)
@@ -31299,7 +31299,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 ThinkingChessFirst.IsAtLeastOneKillerAtDraw = false;
 
                 //var parallelOptions = new ParallelOptions();
-                //parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
+                //parallelOptionsMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
                 SetDeptIgnore = SetDept;
                 int[,] TableHeuristic = null;
                 int Current = ChessRules.CurrentOrder;

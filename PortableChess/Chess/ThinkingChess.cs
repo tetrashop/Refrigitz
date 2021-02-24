@@ -2711,7 +2711,7 @@ namespace RefrigtzChessPortable
             {
                 int HAS = 0;
                 int HAE = 0;
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
     var th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
     th.Wait();
@@ -6562,13 +6562,13 @@ namespace RefrigtzChessPortable
                 {
                     var output = Task.Factory.StartNew(() =>
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
 {
-    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
+    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
     {
-        ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
+        ParallelOptions pooo = new ParallelOptions(); poooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
         {
-            ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+            ParallelOptions poooo = new ParallelOptions(); pooooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
             {
                 if (IsDistributedObjectAttackNonDistributedEnemyObject(Before, CloneATable(Table), Ord, aa, RowS, ColS, RowD, ColD))
                 {
@@ -6576,7 +6576,7 @@ namespace RefrigtzChessPortable
                     return;
                 }
 
-                ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                ParallelOptions pooooo = new ParallelOptions(); poooooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                 {
                     Object OO = new Object();
                     lock (OO)
@@ -7412,13 +7412,13 @@ namespace RefrigtzChessPortable
                 {
 
 
-                    ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
+                    ParallelOptions poop = new ParallelOptions(); poopMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
                         {
-                            ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
+                            ParallelOptions pooo = new ParallelOptions(); poooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
                             {
-                                ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+                                ParallelOptions poooo = new ParallelOptions(); pooooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
                                 {
                                     Object o = new Object();
                                     lock (o)
@@ -7601,7 +7601,7 @@ namespace RefrigtzChessPortable
                 {
                     int[] Exchange = ExchangeA;
 
-                    ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                    ParallelOptions pooooo = new ParallelOptions(); poooooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                     {
 
                         Object O11 = new Object();
@@ -7751,7 +7751,7 @@ namespace RefrigtzChessPortable
             {
                 int HAS = 0;
                 int HAE = 0;
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
 var th = Task.Factory.StartNew(() => HAS = HeuristicMovmentSelf(Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
 th.Wait();
@@ -12536,7 +12536,7 @@ th.Dispose();
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
     Object O = new Object();
     lock (O)
@@ -12571,7 +12571,7 @@ th.Dispose();
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
     Object O = new Object();
     lock (O)
@@ -13887,7 +13887,7 @@ th.Dispose();
                 {
                     var tth = Task.Factory.StartNew(() =>
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
     var tth1 = Task.Factory.StartNew(() => EleRedAchmaz = AchMazReducedElephasnt(CloneATable(Table), Before, RowS, ColS, RowD, ColD, Order));
     tth1.Wait();
@@ -13934,7 +13934,7 @@ th.Dispose();
                 }
                 var ttttth = Task.Factory.StartNew(() =>
                 {
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
 {
     var tth1 = Task.Factory.StartNew(() => AchmazPure.Add(CollectionSummation(EleAchmaz, HourAchmaz, CastAchmaz, MiniAchmaz, KingAchmaz)));
     tth1.Wait();
@@ -16032,7 +16032,7 @@ th.Dispose();
                     FullGameAllow = true;
                     if (Kind == 1)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, TableListSolder.Count, i =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, TableListSolder.Count, i =>
 {
     FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
     AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListSolder[i], Order * -1, false, false, 0);
@@ -16041,7 +16041,7 @@ th.Dispose();
                     else
                     if (Kind == 2)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, TableListElefant.Count, i =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, TableListElefant.Count, i =>
 {
     FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
     AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListElefant[i], Order * -1, false, false, 0);
@@ -16050,7 +16050,7 @@ th.Dispose();
                     else
                     if (Kind == 3)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, TableListHourse.Count, i =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, TableListHourse.Count, i =>
 {
     FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
     AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListHourse[i], Order * -1, false, false, 0);
@@ -16059,7 +16059,7 @@ th.Dispose();
                     else
                     if (Kind == 4)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, TableListCastle.Count, i =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, TableListCastle.Count, i =>
 {
     FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
     AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListCastle[i], Order * -1, false, false, 0);
@@ -16068,7 +16068,7 @@ th.Dispose();
                     else
                     if (Kind == 5)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, TableListMinister.Count, i =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, TableListMinister.Count, i =>
 {
     FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
     AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListMinister[i], Order * -1, false, false, 0);
@@ -16077,7 +16077,7 @@ th.Dispose();
                     else
                         if (Kind == 6)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, TableListKing.Count, i =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, TableListKing.Count, i =>
 {
     FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
     AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListKing[i], Order * -1, false, false, 0);
@@ -16086,7 +16086,7 @@ th.Dispose();
                     else
                         if (Kind == 7 || Kind == -7)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, TableListCastling.Count, i =>
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, TableListCastling.Count, i =>
                         {
                             FullGameThinkingTreeInitialization(THIS, iIndex, i, Order, Kind);
                             AStarGreedy[i].InitiateAStarGreedyt(iAStarGreedy, 0, 0, ColorOpposite(color), TableListCastling[i], Order * -1, false, false, 0);

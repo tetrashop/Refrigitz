@@ -10078,7 +10078,7 @@ if (Kind == 2)
                     for (int jjj = 0; jjj < 8; jjj++)
                         Table[iii, jjj] = Tab[iii, jjj];
                 //ParallelOptions parallelOptions = new ParallelOptions();
-                //parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount;
+                //parallelOptionsMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount;
                 Object O = new Object();
                 lock (O)
                 {

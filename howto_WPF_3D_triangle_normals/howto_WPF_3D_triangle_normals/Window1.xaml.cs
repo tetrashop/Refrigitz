@@ -460,6 +460,7 @@ namespace howto_WPF_3D_triangle_normals
 
                                 double minr = minraddpoints(PointsAdd);
                                 List<Point3D[]> d = new List<Point3D[]>();
+                                List<Point3D> dd = new List<Point3D>();
 
                                 for (int i = 0; i < PointsAdd.Count; i++)
                                 {
@@ -480,12 +481,15 @@ namespace howto_WPF_3D_triangle_normals
                                             if (!exist(ss, d))
                                             {
                                                 d.Add(ss);
-                                                if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd) == 0)
+                                                if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
                                                 {
-
+                                                    dd.Add(ss[0]);
+                                                    dd.Add(ss[1]);
+                                                    dd.Add(ss[2]);
                                                     AddTriangle(mesh, ss[0], ss[1], ss[2]);
                                                 }
                                             }
+
                                         }
                                     }
                                 }

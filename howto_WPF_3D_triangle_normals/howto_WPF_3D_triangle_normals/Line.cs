@@ -10,14 +10,14 @@ namespace howto_WPF_3D_triangle_normals
     class Line
     {
         public double a, b, c, x0, y0, z0;
-        public Line(Point3D p0,Point3D p1)
+        public Line(Point3D p0, Point3D p1)
         {
             x0 = p0.X;
             y0 = p0.Y;
             z0 = p0.Z;
-            a = (p1.X - p1.X);
-            b = (p1.Y - p1.Y);
-            c = (p1.Z - p1.Z);
+            a = (p1.X - p0.X);
+            b = (p1.Y - p0.Y);
+            c = (p1.Z - p0.Z);
         }
         //constructore for orthogonal line travers from p0 on plate normal0
         public Line(Triangle normal0, Point3D p0)

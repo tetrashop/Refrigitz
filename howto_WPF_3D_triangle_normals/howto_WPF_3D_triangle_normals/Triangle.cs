@@ -60,11 +60,19 @@ namespace howto_WPF_3D_triangle_normals
         {
             Triangle t0 = new Triangle(p0, p1, p2);
             Line l1 = new Line(t0, externalp0);
-            double na = (t0.nb * l1.c) - (t0.nc * l1.b);
+            /*double na = (t0.nb * l1.c) - (t0.nc * l1.b);
             double nb = (t0.nc * l1.a) - (t0.na * l1.c);
             double nc = (t0.na * l1.b) - (t0.nb * l1.a);
             return (na == nb) && (na == nc) & (na == 0);
+*/
+            try {
+                return (t0.na / l1.a) == (t0.nb / l1.b) && (t0.nb / l1.b) == (t0.nc / l1.c);
+            }
+            catch (Exception t)
+            {
+                return (t0.na == l1.a) && (t0.nb == l1.b) && (t0.nc == l1.c);
 
+            }
         }
         //point external mul vectors is zero (180 degree)
         bool externalMulIsEqualiInverse(Point3D p0, Point3D p1, Point3D p2, Point3D externalp0)
@@ -77,7 +85,14 @@ namespace howto_WPF_3D_triangle_normals
             return (na == nb) && (na == nc) & (na == 0);
 
         }
-        public int externalMuliszerotow(Point3D p0, Point3D p1, Point3D p2, List<Point3D> externalp0)
+        bool exist(Point3D ss, Point3D d)
+        {
+
+            if (ss.X == d.X && ss.Y == d.Y && ss.Z == d.Z)
+                return true;
+            return false;
+        }
+        public int externalMuliszerotow(Point3D p0, Point3D p1, Point3D p2, List<Point3D> externalp0, List<Point3D> dd)
         {
             object o = new object();
             lock (o)
@@ -85,12 +100,16 @@ namespace howto_WPF_3D_triangle_normals
                 int count = 0;
                 for (int i = 0; i < externalp0.Count; i++)
                 {
-                    if (!(externalp0.Contains(p0) || externalp0.Contains(p1) || externalp0.Contains(p2)))
+                    if ((!exist(p0, dd)) || (!exist(p1, dd)) || (!exist(p2, dd)))
                     {
-                        if (externalMulIsEqual(p0, p1, p2, externalp0[i]))
-                            count++;
-                        if (externalMulIsEqualiInverse(p0, p1, p2, externalp0[i]))
-                            count++;
+                        if (!(exist(p0, externalp0[i])) || exist(p1, externalp0[i]) || exist(p2, externalp0[i]))
+                        {
+                            if (externalMulIsEqual(p0, p1, p2, externalp0[i]))
+                                count++;
+
+                            //if (externalMulIsEqualiInverse(p0, p1, p2, externalp0[i]))
+                            //count++;
+                        }
                     }
                 }
                 return count;
@@ -114,6 +133,17 @@ namespace howto_WPF_3D_triangle_normals
             for (int i = 0; i < d.Count; i++)
             {
                 if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
+                    return true;
+            }
+            return false;
+        }
+        bool exist(Point3D ss, List<Point3D> d)
+        {
+            if (d.Count == 0)
+                return false;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (ss.X == d[i].X && ss.Y == d[i].Y && ss.Z == d[i].Z)
                     return true;
             }
             return false;

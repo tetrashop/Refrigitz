@@ -1174,27 +1174,42 @@ namespace WindowsApplication1
             curved = true;
             pictureBox24.Cursor = Cursors.Cross;
         }
-          bool isOutsideofCurved(int x, int y)
+        bool isOutsideofCurved(int x, int y)
         {
-            PointF[] sd = (PointF[]) curvedline.Clone();
-            bool IsX = false, IsY = false;
-            float xa = 0, ya = 0;
+            PointF[] sd = (PointF[])curvedline.Clone();
             for (int i = 0; i < curvedlinelen; i++)
             {
                 sd[i].X = sd[i].X - x;
                 sd[i].Y = sd[i].Y - y;
             }
+           
+            float maxx = float.MinValue, minx = float.MaxValue;
+            float maxy = float.MinValue, miny = float.MaxValue;
+            float[] r = new float[curvedlinelen];
+            bool Is = true;
             for (int i = 0; i < curvedlinelen; i++)
             {
-                if (sd[i].X > 0 && sd[i].Y > 0)
-                    IsX = true;
+                float x1 = sd[i].X;
+                float y1 = sd[i].Y;
+
+                if (x1 > maxx)
+                    maxx = x1;
+                if (x1 < minx)
+                    minx = x1;
+
+                if (y1 > maxy)
+                    maxy = y1;
+                if (y1 < miny)
+                    miny = y1;
+
+                r[i] = System.Math.Abs(x1 / (float)(Math.Cos(Math.Atan(y1 / x1))));
             }
+            float rmax = System.Math.Abs(maxx / (float)(Math.Cos(Math.Atan(maxy / maxx))));
             for (int i = 0; i < curvedlinelen; i++)
             {
-                if (sd[i].X < 0 && sd[i].Y < 0)
-                    IsY = true;
+                Is = Is && (rmax > r[i]);
             }
-            return IsX && IsY;
+            return Is;
         }
         private void pictureBox24_MouseDoubleClick(object sender, MouseEventArgs e)
         {

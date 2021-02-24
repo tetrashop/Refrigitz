@@ -329,7 +329,15 @@ namespace howto_WPF_3D_triangle_normals
             for (int i = 0; i < d.Count; i++)
             {
                 if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
-                    return true;
+                {
+                    if (ss[1].X == d[i][1].X && ss[1].Y == d[i][1].Y && ss[1].Z == d[i][1].Z)
+                    {
+                        if (ss[2].X == d[i][2].X && ss[2].Y == d[i][2].Y && ss[2].Z == d[i][2].Z)
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
             return false;
         }

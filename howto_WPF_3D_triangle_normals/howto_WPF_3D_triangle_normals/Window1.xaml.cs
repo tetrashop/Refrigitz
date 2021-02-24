@@ -427,8 +427,11 @@ namespace howto_WPF_3D_triangle_normals
                                 MeshGeometry3D mesh = new MeshGeometry3D();
                                 Model3DGroup model_group = MainModel3Dgroup;
 
-                                /*
+                                List<Point3D> PointsAdd = PointsAddp0;
+                                double minr = minraddpoints(PointsAdd);
+
                                 List<Point3D[]> d = new List<Point3D[]>();
+                                List<Point3D> dd = new List<Point3D>();
 
                                  var output = Task.Factory.StartNew(() =>
                                 {
@@ -436,24 +439,32 @@ namespace howto_WPF_3D_triangle_normals
                                     ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, i =>
                                    {
 
-                                       ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(i + 1, PointsAdd.Count, j =>
+                                       ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, j =>
                                          {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                                             ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(j + 1, PointsAdd.Count, k =>
+                                             ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, k =>
                                               {
                                               
-                                                  Point3D[] ss = new Point3D[3];
-                                                  ss[0] = PointsAdd[i];
-                                                  ss[1] = PointsAdd[j];
-                                                  ss[2] = PointsAdd[k];
-                                                  ss = ImprovmentSort.Do(ss);
-                                                  if (!exist(ss, d))
-                                                  {
-                                                      d.Add(ss);
-                                                      if ((new Triangle()).externalMuliszerotow(PointsAdd[i], PointsAdd[j], PointsAdd[k], PointsAdd) == 0)
-                                                      {
+                                                 if ((new Triangle()).boundry(i, j, k))
+                                                return;
+
+                                            Point3D[] ss = new Point3D[3];
+                                            ss[0] = PointsAdd[i];
+                                            ss[1] = PointsAdd[j];
+                                            ss[2] = PointsAdd[k];
+                                            ss = ImprovmentSort.Do(ss);
+                                            //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
+                                            //continue;
+                                            if (!exist(ss, d))
+                                            {
+                                                d.Add(ss);
+                                                if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
+                                                {
                                                           this.Dispatcher.Invoke(() =>
                                                         {
-                                                            var output1 = Task.Factory.StartNew(() => AddTriangle(mesh, PointsAdd[i], PointsAdd[j], PointsAdd[k]));
+                                                             dd.Add(ss[0]);
+                                                    dd.Add(ss[1]);
+                                                    dd.Add(ss[2]);
+                                                  var output1 = Task.Factory.StartNew(() => AddTriangle(mesh, PointsAdd[i], PointsAdd[j], PointsAdd[k]));
                                                         });
                                                       }
                                                   }
@@ -463,7 +474,7 @@ namespace howto_WPF_3D_triangle_normals
                                    });
                                 });
                                 output.Wait();
-                                */
+                                /*
                                 List<Point3D> PointsAdd = PointsAddp0;
 
                                 double minr = minraddpoints(PointsAdd);
@@ -500,7 +511,7 @@ namespace howto_WPF_3D_triangle_normals
 
                                         }
                                     }
-                                }
+                                }*/
                                                         
                             // Make a mesh to hold the surface.
                             Console.WriteLine("Surface: ");

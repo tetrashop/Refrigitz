@@ -12,12 +12,13 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
-        const int penratio= 400000;
+        List<Point2D> outsidecurved = new List<Point2D>();
+        const int penratio = 400000;
         PointF[] curvedline = new PointF[100000];
         int curvedlinelen = 0;
         bool curved = false;
         public bool Reducedinteligent = false;
-     
+
         bool mouseclick = false;
         long time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
 
@@ -1099,12 +1100,12 @@ namespace WindowsApplication1
             List<Point3D> PointsAddp0 = new List<Point3D>();
             List<Point3D> PointsAddp1 = new List<Point3D>();
             addingpoints(ref PointsAddp0, ref PointsAddp1);
-            if (PointsAddp0.Count >= 3||PointsAddp1.Count >= 3)
+            if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
             {
                 double minrp0 = minraddpoints(PointsAddp0);
                 double minrp1 = minraddpoints(PointsAddp1);
                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
-                if (PointsAddp0.Count > 35|| PointsAddp0.Count > 35)
+                if (PointsAddp0.Count > 35 || PointsAddp0.Count > 35)
                 {
                     List<Point3D> xxxp0 = new List<Point3D>();
 
@@ -1121,9 +1122,9 @@ namespace WindowsApplication1
                         PointsAddp1 = xxxp1;
                     }
                     MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points." + "reduced...p1! " + PointsAddp1.Count.ToString() + " points.");
-                   
-                     reducedpoints(ref PointsAddp0, ref PointsAddp1);
-                     pictureBox24.Image.Dispose();
+
+                    reducedpoints(ref PointsAddp0, ref PointsAddp1);
+                    pictureBox24.Image.Dispose();
                     var output = Task.Factory.StartNew(() =>
                     {
                         a.reconstruct2dto3d(f);
@@ -1138,7 +1139,7 @@ namespace WindowsApplication1
                     pictureBox24.Invalidate();
                 }
             }
-       }
+        }
         bool exist(Point3D ss, List<Point3D> d)
         {
             if (d.Count == 0)
@@ -1173,9 +1174,53 @@ namespace WindowsApplication1
             curved = true;
             pictureBox24.Cursor = Cursors.Cross;
         }
-
+          bool isOutsideofCurved(int x, int y)
+        {
+            PointF[] sd = (PointF[]) curvedline.Clone();
+            bool IsX = false, IsY = false;
+            float xa = 0, ya = 0;
+            for (int i = 0; i < curvedlinelen; i++)
+            {
+                sd[i].X = sd[i].X - x;
+                sd[i].Y = sd[i].Y - y;
+            }
+            for (int i = 0; i < curvedlinelen; i++)
+            {
+                if (sd[i].X > 0 && sd[i].Y > 0)
+                    IsX = true;
+            }
+            for (int i = 0; i < curvedlinelen; i++)
+            {
+                if (sd[i].X < 0 && sd[i].Y < 0)
+                    IsY = true;
+            }
+            return IsX && IsY;
+        }
         private void pictureBox24_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (curvedlinelen > 0)
+            {
+                Graphics g = Graphics.FromImage(pictureBox24.Image);
+                for (int i = 0; i < pictureBox24.Image.Width; i++)
+                {
+                    for (int j = 0; j < pictureBox24.Image.Height; j++)
+                    {
+                        if (!isOutsideofCurved(i, j))
+                        {
+                            (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
+                            g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                            g.Save();
+                        }
+                    }
+                }
+                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox24.Visible = true;
+
+                pictureBox24.Refresh();
+                pictureBox24.Update();
+                pictureBox24.Invalidate();
+
+            }
             curved = false;
             curvedlinelen = 0;
             curvedline = new PointF[100000];

@@ -31303,7 +31303,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 ThinkingQuantumChess.IsAtLeastOneKillerAtDraw = false;
 
                 //var parallelOptions = new ParallelOptions();
-                //parallelOptions.MaxDegreeOfParallelism = 2; //PlatformHelper.ProcessorCount;
+                //parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
                 SetDeptIgnore = SetDept;
                 int[,] TableHeuristic = null;
                 int Current = ChessRules.CurrentOrder;

@@ -31298,7 +31298,7 @@ lock (O)
                 ThinkingRefrigtzChessPortable.IsAtLeastOneKillerAtDraw = false;
 
                 //var parallelOptions = new ParallelOptions();
-                //parallelOptions.MaxDegreeOfParallelism = 2; //PlatformHelper.ProcessorCount;
+                //parallelOptions.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
                 SetDeptIgnore = SetDept;
                 int[,] TableHeuristic = null;
                 int Current = ChessRules.CurrentOrder;

@@ -426,7 +426,7 @@ namespace howto_WPF_3D_triangle_normals
                                 DefineLights();
                                 MeshGeometry3D mesh = new MeshGeometry3D();
                                 Model3DGroup model_group = MainModel3Dgroup;
-
+                                /*
                                 List<Point3D> PointsAdd = PointsAddp0;
                                 double minr = minraddpoints(PointsAdd);
 
@@ -436,12 +436,12 @@ namespace howto_WPF_3D_triangle_normals
                                  var output = Task.Factory.StartNew(() =>
                                 {
 
-                                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, i =>
+                                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, i =>
                                    {
 
-                                       ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, j =>
+                                       ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, j =>
                                          {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                                             ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, k =>
+                                             ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, k =>
                                               {
                                               
                                                  if ((new Triangle()).boundry(i, j, k))
@@ -474,7 +474,7 @@ namespace howto_WPF_3D_triangle_normals
                                    });
                                 });
                                 output.Wait();
-                                /*
+                                */
                                 List<Point3D> PointsAdd = PointsAddp0;
 
                                 double minr = minraddpoints(PointsAdd);
@@ -511,7 +511,7 @@ namespace howto_WPF_3D_triangle_normals
 
                                         }
                                     }
-                                }*/
+                                }
                                                         
                             // Make a mesh to hold the surface.
                             Console.WriteLine("Surface: ");

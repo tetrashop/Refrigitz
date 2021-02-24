@@ -154,17 +154,17 @@ namespace WindowsApplication1
             var output = Task.Factory.StartNew(() =>
            {
 
-               ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, delegate (int ii)
+               ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
                {
 
-                   ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, delegate (int jj)
+                   ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
                    {
                        //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                       ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], delegate (int i)
+                       ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
                   {
-                      ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], delegate (int j)
+                      ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
                       {
-                          ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = 2; Parallel.For(0, 2, delegate (int k)
+                          ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
                             {
                                 var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, ii, jj));
                                 lock (th) { th.Add(output1); }
@@ -202,15 +202,15 @@ namespace WindowsApplication1
 
             var output = Task.Factory.StartNew(() =>
             {
-                ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, delegate (int ii)
+                ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
                 {
-                    ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, fg, delegate (int jj)
+                    ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
                     {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = 2; Parallel.For(0, b[0], delegate (int i)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
                           {
-                              ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = 2; Parallel.For(0, b[1], delegate (int j)
+                              ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
                               {
-                                  ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = 2; Parallel.For(0, 2, delegate (int k)
+                                  ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
                                   {
                                       var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
 
@@ -435,9 +435,9 @@ namespace WindowsApplication1
                   {
                   lock (ar)
                   {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, delegate(int i)
+                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
                       {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, delegate(int j) 
+                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
                           {
                               var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
                               lock (th) { th.Add(output1); }
@@ -518,9 +518,9 @@ namespace WindowsApplication1
                   {
                   lock (ar)
                   {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, delegate(int i)
+                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
                       {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, delegate(int j) 
+                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
                           {
                               var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
                               lock (th) { th.Add(output1); }
@@ -620,9 +620,9 @@ namespace WindowsApplication1
                   {
                   lock (ar)
                   {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, delegate(int i)
+                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
                       {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, delegate(int j) 
+                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
                           {
                               var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
                               lock (th) { th.Add(output1); }
@@ -702,9 +702,9 @@ namespace WindowsApplication1
                   {
                   lock (ar)
                   {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, delegate(int i)
+                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
                       {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, delegate(int j) 
+                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
                           {
                               var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
                               lock (th) { th.Add(output1); }
@@ -807,9 +807,9 @@ namespace WindowsApplication1
                   {
                   lock (ar)
                   {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Width, delegate(int i)
+                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
                       {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = 2; Parallel.For(0, ar.Height, delegate(int j) 
+                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
                           {
                               var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
                               lock (th) { th.Add(output1); }

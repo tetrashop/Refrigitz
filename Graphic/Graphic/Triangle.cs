@@ -195,6 +195,28 @@ namespace howto_WPF_3D_triangle_normalsuser
                 return true;
             return false;
         }
+        public bool boundry(int i, int j, int k)
+        {
+            if (i == j)
+                return true;
+            if (i == k)
+                return true;
+            if (j == k)
+                return true;
+
+            return false;
+        }
+        public bool boundryssscount(int i, int j,int ssscount)
+        {
+            if (i == j)
+                return true;
+
+            if (i >= ssscount)
+                return true;
+            if (j >= ssscount)
+                return true;
+            return false;
+        }
         bool distancereduced(Point3D aa, Point3D bb, Point3D cc, ref bool Done, ref List<Point3D> s, double ht, int i, int j, int k)
         {
             bool dos = false;
@@ -291,8 +313,10 @@ namespace howto_WPF_3D_triangle_normalsuser
 
             List<Point3D> xxx = new List<Point3D>();
             List<List<Point3D>> xxxAddedClonies = new List<List<Point3D>>();
+            xxxAddedClonies.Add(new List<Point3D>());
             double minr = minraddpoints(s);
             bool add = false;
+            double clonieslen = minr;
             int index = 0;
             do
             {
@@ -301,48 +325,84 @@ namespace howto_WPF_3D_triangle_normalsuser
                 var output = Task.Factory.StartNew(() =>
                 {
 
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, i =>
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, i =>
                     {
 
+                        if (boundryssscount(i, 0, sss.Count))
+                            return;
 
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, j =>
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, j =>
                         {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                            if (boundryout(i, 0, 0, 0, sss.Count, 0, 0))
+                            if (boundryssscount(i, j, sss.Count))
                                 return;
                             else
                             {
                                 Point3D p0 = sss[i];
                                 Point3D p1 = sss[j];
+                                Point3D pp0 = sss[i];
+                                Point3D pp1 = sss[j];
                                 bool a = exist(p0, xxxAddedClonies);
                                 bool b = exist(p1, xxxAddedClonies);
 
                                 if ((!(a || b)) && (!add))
                                 {
                                     double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
-                                    if (count <= minr)
+                                    if (count <= clonieslen)
                                     {
                                         xxx.Add(p0);
                                         add = true;
                                         if (!(a))
-                                            xxxAddedClonies[index].Add(s[i]);
+                                            xxxAddedClonies[index].Add(p0);
                                         if (!(b))
-                                            xxxAddedClonies[index].Add(s[j]);
-                                        sss.RemoveAt(i);
-                                        sss.RemoveAt(j);
+                                            xxxAddedClonies[index].Add(p1);
+                                        sss.Remove(p0);
+                                        sss.Remove(p1);
+                                        p = p0;
                                     }
                                 }
                                 else
                                 {
-
+                                    bool done = false;
                                     p0 = p;
-                                    if (p.X != -1 && p.Y != -1 && p.Z != -1)
+                                    p1 = pp0;
+                                    if (p0 != p1)
                                     {
-                                        double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
-                                        if (count <= Math.Sqrt(xxxAddedClonies[index].Count * minr))
+                                        if (p.X != -1 && p.Y != -1 && p.Z != -1)
                                         {
-                                            if (!(b))
-                                                xxxAddedClonies[index].Add(s[j]);
-                                            sss.RemoveAt(j);
+                                            double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
+                                            if (count <= clonieslen)
+                                            {
+                                                if (!(b))
+                                                    xxxAddedClonies[index].Add(p1);
+                                                sss.Remove(p1);
+                                                done = true;
+                                            }
+                                            else
+                                            {
+                                                if (Math.Sqrt(xxxAddedClonies[index].Count * minr) > clonieslen)
+                                                    clonieslen = Math.Sqrt(xxxAddedClonies[index].Count * minr);
+                                            }
+                                        }
+
+                                    }
+                                    p0 = p;
+                                    p1 = pp1;
+                                    if (p0 != p1 && (!done))
+                                    {
+                                        if (p.X != -1 && p.Y != -1 && p.Z != -1)
+                                        {
+                                            double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
+                                            if (count <= clonieslen)
+                                            {
+                                                if (!(b))
+                                                    xxxAddedClonies[index].Add(p1);
+                                                sss.Remove(p1);
+                                            }
+                                            else
+                                            {
+                                                if (Math.Sqrt(xxxAddedClonies[index].Count * minr) > clonieslen)
+                                                    clonieslen = Math.Sqrt(xxxAddedClonies[index].Count * minr);
+                                            }
                                         }
                                     }
                                 }

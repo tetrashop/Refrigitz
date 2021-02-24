@@ -761,11 +761,11 @@ namespace WindowsApplication1
             }
             if (curved)
             {
-                int x = e.X;
-                int y = e.Y;
+                float x = (float)e.X;
+                float y = (float)e.Y;
 
-                x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                x = ((float)e.X * ((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
+                y = ((float)e.Y * ((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
                 curvedline[curvedlinelen] = new PointF(x, y);
                 curvedlinelen++;
             }
@@ -937,11 +937,6 @@ namespace WindowsApplication1
 
                     Graphics g = Graphics.FromImage(a);
 
-                    int x = e.X;
-                    int y = e.Y;
-
-                    x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                    y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
                     PointF[] s = new PointF[curvedlinelen + 1];
                     if (curvedlinelen > 0)
                     {
@@ -1175,11 +1170,15 @@ namespace WindowsApplication1
         private void curvedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             curved = true;
+            pictureBox24.Cursor = Cursors.Cross;
         }
 
         private void pictureBox24_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             curved = false;
+            curvedlinelen = 0;
+            curvedline = new PointF[100000];
+            pictureBox24.Cursor = Cursors.Default;
         }
 
         private void button2_Click(object sender, EventArgs e)

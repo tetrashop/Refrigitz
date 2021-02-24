@@ -85,7 +85,7 @@ namespace howto_WPF_3D_triangle_normalsuser
                 int count = 0;
                 for (int i = 0; i < externalp0.Count; i++)
                 {
-                    if (!(externalp0.Contains(p0) || externalp0.Contains(p1) || externalp0.Contains(p2)))
+                    if (!(externalp0.Contains(p0) && externalp0.Contains(p1) && externalp0.Contains(p2)))
                     {
                         if (externalMulIsEqual(p0, p1, p2, externalp0[i]))
                             count++;

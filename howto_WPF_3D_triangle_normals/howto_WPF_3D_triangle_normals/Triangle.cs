@@ -149,6 +149,17 @@ namespace howto_WPF_3D_triangle_normals
                 return true;
             return false;
         }
+        public bool boundry(int i, int j, int k)
+        {
+            if (i == j)
+                return true;
+            if (i == k)
+                return true;
+            if (j == k)
+                return true;
+      
+            return false;
+        }
         bool boundryout(int i, int j, int k, int b, int scount, double countb, double percent)
         {
             if ((double)countb / (double)scount <= percent)

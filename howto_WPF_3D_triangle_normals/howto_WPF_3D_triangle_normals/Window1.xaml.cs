@@ -90,7 +90,7 @@ namespace howto_WPF_3D_triangle_normals
             DefineLights();
 
             // Create the model.
-            DefineModel(MainModel3Dgroup);
+           //DefineModel(MainModel3Dgroup);
 
             // Add the group of models to a ModelVisual3D.
             ModelVisual3D model_visual = new ModelVisual3D();
@@ -383,14 +383,14 @@ namespace howto_WPF_3D_triangle_normals
                                     }
                                 }
                             }
-                            if (PointsAddp0.Count >= 3|| PointsAddp1.Count >= 3)
+                            if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
                             {
 
                                 double minrp0 = minraddpoints(PointsAddp0);
                                 double minrp1 = minraddpoints(PointsAddp0);
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
-                                if (PointsAddp0.Count > 35|| PointsAddp1.Count > 35)
-                                 {
+                                if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
+                                {
                                     List<Point3D> xxxp0 = new List<Point3D>();
 
                                     List<Point3D> xxxp1 = new List<Point3D>();
@@ -406,7 +406,7 @@ namespace howto_WPF_3D_triangle_normals
                                         PointsAddp0 = xxxp1;
                                     }
                                     MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points." + "reduced...p1! " + PointsAddp1.Count.ToString() + " points.");
-                                   
+
                                 }
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();
@@ -419,7 +419,10 @@ namespace howto_WPF_3D_triangle_normals
                                 MeshGeometry3D mesh = new MeshGeometry3D();
                                 Model3DGroup model_group = MainModel3Dgroup;
 
-                                /*var output = Task.Factory.StartNew(() =>
+                                /*
+                                List<Point3D[]> d = new List<Point3D[]>();
+
+                                 var output = Task.Factory.StartNew(() =>
                                 {
 
                                     ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = 2; Parallel.For(0, PointsAdd.Count, i =>
@@ -429,8 +432,7 @@ namespace howto_WPF_3D_triangle_normals
                                          {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                                              ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = 2; Parallel.For(j + 1, PointsAdd.Count, k =>
                                               {
-                                                  List<Point3D[]> d = new List<Point3D[]>();
-
+                                              
                                                   Point3D[] ss = new Point3D[3];
                                                   ss[0] = PointsAdd[i];
                                                   ss[1] = PointsAdd[j];
@@ -457,22 +459,24 @@ namespace howto_WPF_3D_triangle_normals
                                 List<Point3D> PointsAdd = PointsAddp0;
 
                                 double minr = minraddpoints(PointsAdd);
-                             
+                                List<Point3D[]> d = new List<Point3D[]>();
+
                                 for (int i = 0; i < PointsAdd.Count; i++)
                                 {
-                                    for (int j = i + 1; j < PointsAdd.Count; j++)
+                                    for (int j = 0; j < PointsAdd.Count; j++)
                                     {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                                        for (int k = j + 1; k < PointsAdd.Count; k++)
+                                        for (int k = 0; k < PointsAdd.Count; k++)
                                         {
-                                            List<Point3D[]> d = new List<Point3D[]>();
+                                            if ((new Triangle()).boundry(i, j, k))
+                                                continue;
 
                                             Point3D[] ss = new Point3D[3];
                                             ss[0] = PointsAdd[i];
                                             ss[1] = PointsAdd[j];
                                             ss[2] = PointsAdd[k];
                                             ss = ImprovmentSort.Do(ss);
-                                           if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
-                                                continue;
+                                            //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
+                                            //continue;
                                             if (!exist(ss, d))
                                             {
                                                 d.Add(ss);
@@ -482,11 +486,10 @@ namespace howto_WPF_3D_triangle_normals
                                                     AddTriangle(mesh, ss[0], ss[1], ss[2]);
                                                 }
                                             }
-
                                         }
                                     }
                                 }
-                            
+                                                        
                             // Make a mesh to hold the surface.
                             Console.WriteLine("Surface: ");
                                 Console.WriteLine("    " + mesh.Positions.Count + " Points");

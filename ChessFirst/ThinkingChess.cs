@@ -6566,9 +6566,9 @@ namespace ChessFirst
 {
     ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
     {
-        ParallelOptions pooo = new ParallelOptions(); poooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
+        ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
         {
-            ParallelOptions poooo = new ParallelOptions(); pooooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+            ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
             {
                 if (IsDistributedObjectAttackNonDistributedEnemyObject(Before, CloneATable(Table), Ord, aa, RowS, ColS, RowD, ColD))
                 {
@@ -6576,7 +6576,7 @@ namespace ChessFirst
                     return;
                 }
 
-                ParallelOptions pooooo = new ParallelOptions(); poooooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                 {
                     Object OO = new Object();
                     lock (OO)
@@ -7412,13 +7412,13 @@ namespace ChessFirst
                 {
 
 
-                    ParallelOptions poop = new ParallelOptions(); poopMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
+                    ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowS =>
                     {
                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColS =>
                         {
-                            ParallelOptions pooo = new ParallelOptions(); poooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
+                            ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, RowD =>
                             {
-                                ParallelOptions poooo = new ParallelOptions(); pooooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
+                                ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 8, ColD =>
                                 {
                                     Object o = new Object();
                                     lock (o)
@@ -7601,7 +7601,7 @@ namespace ChessFirst
                 {
                     int[] Exchange = ExchangeA;
 
-                    ParallelOptions pooooo = new ParallelOptions(); poooooMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                    ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
                     {
 
                         Object O11 = new Object();

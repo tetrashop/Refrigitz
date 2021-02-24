@@ -12,6 +12,9 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
+        PointF[] curvedline = new PointF[100000];
+        int curvedlinelen = 0;
+        bool curved = false;
         public bool Reducedinteligent = false;
      
         bool mouseclick = false;
@@ -756,6 +759,16 @@ namespace WindowsApplication1
                 }
 
             }
+            if (curved)
+            {
+                int x = e.X;
+                int y = e.Y;
+
+                x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                curvedline[curvedlinelen] = new PointF(x, y);
+                curvedlinelen++;
+            }
         }
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -908,12 +921,52 @@ namespace WindowsApplication1
             }
             else
             {
-                time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+                if (!curved)
+                {
+                    time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
 
-                at = (Image)pictureBox24.Image.Clone();
+                    at = (Image)pictureBox24.Image.Clone();
+                }
             }
 
+            if (curved)
+            {
+                if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 25.0)
+                {
+                    Image a = (Image)pictureBox24.Image.Clone();
 
+                    Graphics g = Graphics.FromImage(a);
+
+                    int x = e.X;
+                    int y = e.Y;
+
+                    x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                    y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                    PointF[] s = new PointF[curvedlinelen + 1];
+                    if (curvedlinelen > 0)
+                    {
+                        for (int i = 0; i < curvedlinelen; i++)
+                            s[i] = curvedline[i];
+                        g.DrawLines(new Pen(new SolidBrush(Color.White)), s);
+                    }
+                    pictureBox24.Image = a;
+                    g.Dispose();
+                }
+                else
+                {
+                    time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+                    pictureBox24.Image = (Image)at.Clone();
+                }
+            }
+            else
+            {
+                if (!Colorset)
+                {
+                    time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+
+                    at = (Image)pictureBox24.Image.Clone();
+                }
+            }
         }
 
         private void reduce10ColorsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1117,6 +1170,16 @@ namespace WindowsApplication1
                 }
             }
             return r;
+        }
+
+        private void curvedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            curved = true;
+        }
+
+        private void pictureBox24_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            curved = false;
         }
 
         private void button2_Click(object sender, EventArgs e)

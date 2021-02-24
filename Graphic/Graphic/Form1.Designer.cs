@@ -62,6 +62,9 @@ namespace WindowsApplication1
             this.doToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.filtersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reduce10ColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.intelligentRedducedOff3DModdelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.curvedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.PictureBox2 = new System.Windows.Forms.PictureBox();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
@@ -105,7 +108,6 @@ namespace WindowsApplication1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
-            this.intelligentRedducedOff3DModdelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -310,7 +312,8 @@ namespace WindowsApplication1
             this.clearToolStripMenuItem,
             this.loadToolStripMenuItem,
             this.filtersToolStripMenuItem,
-            this.intelligentRedducedOff3DModdelToolStripMenuItem});
+            this.intelligentRedducedOff3DModdelToolStripMenuItem,
+            this.cutToolStripMenuItem});
             this.dTo3DToolStripMenuItem.Name = "dTo3DToolStripMenuItem";
             this.dTo3DToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.dTo3DToolStripMenuItem.Text = "2D to 3D";
@@ -320,7 +323,7 @@ namespace WindowsApplication1
             this.doToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.doBy1OfPixelsToolStripMenuItem});
             this.doToolStripMenuItem.Name = "doToolStripMenuItem";
-            this.doToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.doToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.doToolStripMenuItem.Text = "Do";
             this.doToolStripMenuItem.Click += new System.EventHandler(this.doToolStripMenuItem_Click);
             // 
@@ -334,7 +337,7 @@ namespace WindowsApplication1
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
@@ -346,7 +349,7 @@ namespace WindowsApplication1
             this.toolStripMenuItem2,
             this.doToolStripMenuItem1});
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
@@ -392,7 +395,7 @@ namespace WindowsApplication1
             this.filtersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reduce10ColorsToolStripMenuItem});
             this.filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
-            this.filtersToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.filtersToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.filtersToolStripMenuItem.Text = "Filters";
             // 
             // reduce10ColorsToolStripMenuItem
@@ -401,6 +404,28 @@ namespace WindowsApplication1
             this.reduce10ColorsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.reduce10ColorsToolStripMenuItem.Text = "Reduce 10% Colors";
             this.reduce10ColorsToolStripMenuItem.Click += new System.EventHandler(this.reduce10ColorsToolStripMenuItem_Click);
+            // 
+            // intelligentRedducedOff3DModdelToolStripMenuItem
+            // 
+            this.intelligentRedducedOff3DModdelToolStripMenuItem.Name = "intelligentRedducedOff3DModdelToolStripMenuItem";
+            this.intelligentRedducedOff3DModdelToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
+            this.intelligentRedducedOff3DModdelToolStripMenuItem.Text = "Intelligent reduced off 3D moddel";
+            this.intelligentRedducedOff3DModdelToolStripMenuItem.Click += new System.EventHandler(this.intelligentRedducedOff3DModdelToolStripMenuItem_Click);
+            // 
+            // cutToolStripMenuItem
+            // 
+            this.cutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.curvedToolStripMenuItem});
+            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
+            this.cutToolStripMenuItem.Text = "Cut";
+            // 
+            // curvedToolStripMenuItem
+            // 
+            this.curvedToolStripMenuItem.Name = "curvedToolStripMenuItem";
+            this.curvedToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.curvedToolStripMenuItem.Text = "Curved";
+            this.curvedToolStripMenuItem.Click += new System.EventHandler(this.curvedToolStripMenuItem_Click);
             // 
             // PictureBox1
             // 
@@ -873,14 +898,8 @@ namespace WindowsApplication1
             this.pictureBox24.Visible = false;
             this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
             this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_Click);
+            this.pictureBox24.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_MouseDoubleClick);
             this.pictureBox24.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_MouseMove);
-            // 
-            // intelligentRedducedOff3DModdelToolStripMenuItem
-            // 
-            this.intelligentRedducedOff3DModdelToolStripMenuItem.Name = "intelligentRedducedOff3DModdelToolStripMenuItem";
-            this.intelligentRedducedOff3DModdelToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
-            this.intelligentRedducedOff3DModdelToolStripMenuItem.Text = "Intelligent reduced off 3D moddel";
-            this.intelligentRedducedOff3DModdelToolStripMenuItem.Click += new System.EventHandler(this.intelligentRedducedOff3DModdelToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -1039,6 +1058,8 @@ namespace WindowsApplication1
         private System.Windows.Forms.ToolStripMenuItem filtersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reduce10ColorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem intelligentRedducedOff3DModdelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem curvedToolStripMenuItem;
     }
 }
 

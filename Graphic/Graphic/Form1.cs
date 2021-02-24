@@ -12,6 +12,7 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
+        const int penratio= 400000;
         PointF[] curvedline = new PointF[100000];
         int curvedlinelen = 0;
         bool curved = false;
@@ -764,8 +765,8 @@ namespace WindowsApplication1
                 float x = (float)e.X;
                 float y = (float)e.Y;
 
-                x = ((float)e.X * ((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
-                y = ((float)e.Y * ((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
+                x = ((float)e.X * (float)((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
+                y = ((float)e.Y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
                 curvedline[curvedlinelen] = new PointF(x, y);
                 curvedlinelen++;
             }
@@ -909,7 +910,7 @@ namespace WindowsApplication1
 
                     x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
                     y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
-                    g.DrawEllipse(new Pen(new SolidBrush(Color.White)), new Rectangle(x, y, -5, 5));
+                    g.DrawEllipse(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), new Rectangle(x, y, -5, 5));
                     pictureBox24.Image = a;
                     g.Dispose();
                 }
@@ -942,7 +943,7 @@ namespace WindowsApplication1
                     {
                         for (int i = 0; i < curvedlinelen; i++)
                             s[i] = curvedline[i];
-                        g.DrawLines(new Pen(new SolidBrush(Color.White)), s);
+                        g.DrawLines(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), s);
                     }
                     pictureBox24.Image = a;
                     g.Dispose();

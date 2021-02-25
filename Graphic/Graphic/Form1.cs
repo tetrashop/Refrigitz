@@ -12,6 +12,8 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
+        bool[,] curvedallpoints = null;
+
         float[] region = null;
         float[] r = null;
         float[] teta = null;
@@ -952,7 +954,7 @@ namespace WindowsApplication1
                     }
                     pictureBox24.Image = a;
                     g.Dispose();
-                    
+
                 }
                 else
                 {
@@ -1181,74 +1183,106 @@ namespace WindowsApplication1
         }
         void isOutsideofCurvedInit()
         {
+            curvedallpoints = new bool[pictureBox24.Image.Width, pictureBox24.Image.Height];
+            bool[,] curvedapoints = new bool[pictureBox24.Image.Width, pictureBox24.Image.Height];
             PointF[] sd = (PointF[])curvedline.Clone();
             for (int i = 0; i < curvedlinelen; i++)
             {
-                sd[i].X = sd[i].X -(float)( pictureBox24.Image.Width / 2);
-                sd[i].Y = sd[i].Y -(float)( pictureBox24.Image.Height / 2);
-            }
-
-            float maxx = float.MinValue, minx = float.MaxValue;
-            float maxy = float.MinValue, miny = float.MaxValue;
-            bool Is = true;
-            for (int i = 0; i < curvedlinelen; i++)
-            {
                 float sx = 0, sy = 0, six = 0, siy = 0;
-                if (i < curvedlinelen)
+
+                if ((float)(sd[i].X) > (float)(sd[i + 1].X))
                 {
-                    if (sd[i].X > sd[i + 1].X)
-                    {
-                        sx = sd[i + 1].X;
-                        six = sd[i].X;
-                    }
-                    else
-                    {
-                        sx = sd[i].X;
-                        six = sd[i + 1].X;
-                    }
-                    if (sd[i].Y > sd[i + 1].Y)
-                    {
-                        sy = sd[i + 1].Y;
-                        siy = sd[i].Y;
-                    }
-                    else
-                    {
-                        sy = sd[i].Y;
-                        siy = sd[i + 1].Y;
-                    }
+                    sx = (float)(sd[i + 1].X);
+                    six = (float)(sd[i].X);
                 }
-                for (float k = sx; k < six && i < curvedlinelen - 1; k++)
+                else
+                {
+                    six = (float)(sd[i + 1].X);
+                    sx = (float)(sd[i].X);
+                }
+                if ((float)(sd[i].Y) > (float)(sd[i + 1].Y))
+                {
+                    sy = (float)(sd[i + 1].Y);
+                    siy = (float)(sd[i].Y);
+                }
+                else
+                {
+                    sy = (float)(sd[i].Y);
+                    siy = (float)(sd[i + 1].Y);
+                }
+
+
+
+                for (float k = sx; k < six; k++)
+                {
+                    float p = (float)((((float)(siy - sy) / (float)(six - sx)) * (float)(k - sx)) + sy);
+                    int[] nn = new int[2];
+                    nn[0] = (int)k;
+                    nn[1] = (int)p;
+
+                    if (nn[0] < pictureBox24.Image.Width && nn[1] < pictureBox24.Image.Height)
+                        curvedapoints[nn[0], nn[1]] = true;
+                }
+            }
+            for (int x = 0; x < pictureBox24.Image.Width; x++)
+            {
+                int ocuuredcount = 0;
+                int ocuuredfound = -1;
+                int add = 0;
+                for (int y = 0; y < pictureBox24.Image.Height; y++)
                 {
 
-                    float p = ((six - sx) / (siy - sy)) * (k - sx) + sy;
-                    if (p != 0 && k != 0)
+                    if (curvedapoints[x, y])
                     {
-                        teta[rlen] = (float)Math.Atan(((double)p) / ((double)k));
-                        if (k < 0)
-                            teta[rlen] += (float)Math.PI;
-                        r[rlen] = (float)System.Math.Abs((double)k / (double)(Math.Cos(teta[rlen])));
-                        region[rlen] = getregion(k, p);
+                        if (add == 0)
+                        {
+                            //the  first time
+                            if (ocuuredfound == -1)
+                            {
+                                ocuuredfound = y;
+                                ocuuredcount++;
+                                add = 1;
+                            }
+                            else
+                                if (ocuuredfound != y)
+                            {
+                                ocuuredcount++;
+                                ocuuredfound = y;
+                            }
+                        }
+                        else
+                        if (add == 3)
+                        {
+                            ocuuredcount = 0;
+                            ocuuredfound = -1;
+                            add = 4;
+
+                        }
                     }
                     else
-                        if (p == 0 && k != 0)
+                        if (add == 2)
                     {
-                             teta[rlen] = 0;
+                        add = 3;
 
-                        if (k < 0)
-                            teta[rlen] += (float)Math.PI;
-                        r[rlen] = (float)System.Math.Abs((double)(k));
-                        region[rlen] = getregion(k, p);
-                    }
-                    else
-                        if (p != 0 && k == 0)
-                    {
-                              teta[rlen] = (float)Math.PI / 2;
-
-                         r[rlen] = (float)System.Math.Abs((double)(p));
-                        region[rlen] = getregion(k, p);
                     }
 
-                    rlen++;
+                    if (add > 0 && add != 4 && (add == 3 || add == 1 || add == 2))
+                    {
+                        //add untile second found
+                        if (ocuuredcount >= 0)
+                        {
+                            int[] nn = new int[2];
+                            nn[0] = (int)x;
+                            nn[1] = (int)y;
+                          
+                            if (nn[0] < pictureBox24.Image.Width && nn[1] < pictureBox24.Image.Height)
+                            {
+                                curvedallpoints[nn[0], nn[1]] = true;
+                                if (add == 1)
+                                    add = 2;
+                            }
+                        }
+                    }
                 }
             }
             return;
@@ -1277,53 +1311,20 @@ namespace WindowsApplication1
             return reg;
         }
 
-        bool isOutsideofCurved(float x, float y)
+        bool isOutsideofCurved(int x, int y)
         {
-            bool Is = false;
-            float rv = 0;
-            x = (x - (float)(pictureBox24.Image.Width / 2));
-            y = (y - (float)(pictureBox24.Image.Height / 2));
-            float tet = 0;
-            float reg = getregion(x, y);
-            if (y != 0 && x != 0)
-            {
-                tet = (float)Math.Atan(((((double)y) / ((double)x))));
-                if (x < 0)
-                    tet += (float)Math.PI;
-                rv = (float)System.Math.Abs((double)(x) / (double)(Math.Cos(tet)));
+            bool Is = true;
 
-            }
-            else
-             if (y != 0 && x == 0)
-            {
-                    tet = (float)Math.PI / 2;
-                rv = (float)System.Math.Abs((double)(y));
-            }
-            else
-             if (y == 0 && x != 0)
-            {
-                    tet = 0;
-                if (x < 0)
-                    tet += (float)Math.PI;
-                rv = (float)System.Math.Abs((double)(x));
-            }
-            int rl = -1;
-            for (int i = 0; i < rlen; i++)
-            {
-                if (region[i] == reg)
-                {
-                    if (rv < r[i])
-                    {
-                        if (Math.Abs(tet - teta[i]) < teta[0])
-                            rl = i;
-                    }
-                }
-            }
-            if (rl != -1)
+
+            if (curvedallpoints[x,y])
                 Is = false;
-            else
-                Is = true;
             return Is;
+        }
+        bool D(float a,float b)
+        {
+            if (System.Math.Abs(a - b) <= 3)
+                return true;
+            return false;
         }
         private void pictureBox24_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -1331,25 +1332,26 @@ namespace WindowsApplication1
                 return;
             if (curvedlinelen > 0)
             {
-                rlen = 0;
+                curvedline[curvedlinelen] = curvedline[0];
+                /*rlen = 0;
                 r = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];
                 teta = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];
-                region = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];
+                region = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];*/
                 isOutsideofCurvedInit();
                 mouseclick = true;
                 Graphics g = Graphics.FromImage(pictureBox24.Image);
-                for (int i = 0; i < pictureBox24.Width; i++)
+                for (int i = 0; i < pictureBox24.Image.Width; i++)
                 {
-                    for (int j = 0; j < pictureBox24.Height; j++)
+                    for (int j = 0; j < pictureBox24.Image.Height; j++)
                     {
-                        float x = i;
-                        float y = j;
+                        int x = i;
+                        int y = j;
 
-                        x = (float)((float)x * (float)((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
-                        y = (float)((float)y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
+                        //x = (int)((float)x * (float)((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
+                        //y = (int)((float)y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
                         if (isOutsideofCurved(x, y))
                         {
-                            (pictureBox24.Image as Bitmap).SetPixel((int)x, (int)y, Color.Black);
+                            (pictureBox24.Image as Bitmap).SetPixel(x, y, Color.Black);
                             g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
                             g.Save();
                         }

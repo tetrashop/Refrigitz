@@ -1179,18 +1179,21 @@ namespace WindowsApplication1
             PointF[] sd = (PointF[])curvedline.Clone();
             for (int i = 0; i < curvedlinelen; i++)
             {
-                sd[i].X = sd[i].X - x;
-                sd[i].Y = sd[i].Y - y;
+                sd[i].X = sd[i].X - pictureBox24.Image.Width / 2;
+                sd[i].Y = sd[i].Y - pictureBox24.Image.Height / 2;
             }
-           
+            x =  x - pictureBox24.Image.Width / 2;
+            y =  y - pictureBox24.Image.Height / 2;
+
+            int rlen = 0;
             float maxx = float.MinValue, minx = float.MaxValue;
             float maxy = float.MinValue, miny = float.MaxValue;
-            float[] r = new float[curvedlinelen];
+            float[] r = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];
             bool Is = true;
             for (int i = 0; i < curvedlinelen; i++)
             {
-                float x1 = sd[i].X;
-                float y1 = sd[i].Y;
+                float x1 = (float)System.Math.Abs(sd[i].X);
+                float y1 = (float)System.Math.Abs(sd[i].Y);
 
                 if (x1 > maxx)
                     maxx = x1;
@@ -1202,29 +1205,55 @@ namespace WindowsApplication1
                 if (y1 < miny)
                     miny = y1;
 
-                r[i] = System.Math.Abs(x1 / (float)(Math.Cos(Math.Atan(y1 / x1))));
+                for (float k = sd[i].X; k < sd[i + 1].X && i < curvedlinelen - 1; k++)
+                {
+                    for (float p = sd[i].Y; p < sd[i + 1].Y && i < curvedlinelen - 1; p++)
+                    {
+                        r[rlen] = System.Math.Abs((float)(System.Math.Abs(k)) / (float)(Math.Cos(Math.Atan(System.Math.Abs(p) / System.Math.Abs(k)))));
+                        rlen++;
+                    }
+                }
             }
-            float rmax = System.Math.Abs(maxx / (float)(Math.Cos(Math.Atan(maxy / maxx))));
-            for (int i = 0; i < curvedlinelen; i++)
+            float rv = 0;
+
+            if (y != 0)
+                rv = (float)System.Math.Abs((double)(x) / (float)(Math.Cos(Math.Atan(((double)((x) / (y)))))));
+            else
+                rv = (float)System.Math.Abs((double)(x));
+            for (int i = 0; i < rlen; i++)
             {
-                Is = Is && (rmax > r[i]);
+                Is = Is && (rv <= r[i]);
             }
             return Is;
         }
         private void pictureBox24_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (mouseclick)
+                return;
             if (curvedlinelen > 0)
             {
+                mouseclick = true;
                 Graphics g = Graphics.FromImage(pictureBox24.Image);
                 for (int i = 0; i < pictureBox24.Image.Width; i++)
                 {
                     for (int j = 0; j < pictureBox24.Image.Height; j++)
                     {
-                        if (!isOutsideofCurved(i, j))
+                        int x = i;
+                        int y = j;
+
+                        x = (int)((float)x * (float)((float)(pictureBox24.Width / (float)(pictureBox24.Image.Width))));
+                        y = (int)((float)y * (float)((float)(pictureBox24.Height / (float)(pictureBox24.Image.Height))));
+                        if (!isOutsideofCurved(x, y))
                         {
                             (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
                             g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
                             g.Save();
+                        }
+                        else
+                        {
+                            g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                            g.Save();
+
                         }
                     }
                 }
@@ -1236,6 +1265,7 @@ namespace WindowsApplication1
                 pictureBox24.Invalidate();
 
             }
+            mouseclick = false;
             curved = false;
             curvedlinelen = 0;
             curvedline = new PointF[100000];

@@ -1273,7 +1273,7 @@ namespace WindowsApplication1
                 reg = 6;
             if (x < 0 && y == 0)
                 reg = 7;
-            if (x < 0 && y == 0)
+            if (x == 0 && y < 0)
                 reg = 8;
             return reg;
         }

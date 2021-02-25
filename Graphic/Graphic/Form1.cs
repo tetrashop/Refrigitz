@@ -904,7 +904,7 @@ namespace WindowsApplication1
         {
             if (Colorset)
             {
-                if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 25.0)
+                if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 30.0)
                 {
                     Image a = (Image)pictureBox24.Image.Clone();
 
@@ -937,14 +937,14 @@ namespace WindowsApplication1
 
             if (curved)
             {
-                if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 25.0)
+                if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 30.0)
                 {
                     Image a = (Image)pictureBox24.Image.Clone();
 
                     Graphics g = Graphics.FromImage(a);
 
-                    PointF[] s = new PointF[curvedlinelen + 1];
-                    if (curvedlinelen > 0)
+                    PointF[] s = new PointF[curvedlinelen];
+                    if (curvedlinelen > 1)
                     {
                         for (int i = 0; i < curvedlinelen; i++)
                             s[i] = curvedline[i];
@@ -952,6 +952,7 @@ namespace WindowsApplication1
                     }
                     pictureBox24.Image = a;
                     g.Dispose();
+                    
                 }
                 else
                 {
@@ -1193,7 +1194,7 @@ namespace WindowsApplication1
             for (int i = 0; i < curvedlinelen; i++)
             {
                 float sx = 0, sy = 0, six = 0, siy = 0;
-                if (i < curvedlinelen - 1)
+                if (i < curvedlinelen)
                 {
                     if (sd[i].X > sd[i + 1].X)
                     {
@@ -1223,29 +1224,27 @@ namespace WindowsApplication1
                     if (p != 0 && k != 0)
                     {
                         teta[rlen] = (float)Math.Atan(((double)p) / ((double)k));
+                        if (k < 0)
+                            teta[rlen] += (float)Math.PI;
                         r[rlen] = (float)System.Math.Abs((double)k / (double)(Math.Cos(teta[rlen])));
                         region[rlen] = getregion(k, p);
                     }
                     else
                         if (p == 0 && k != 0)
                     {
-                        if (k > 0)
-                            teta[rlen] = 0;
-                        else
-                            teta[rlen] = (float)Math.PI;
+                             teta[rlen] = 0;
 
+                        if (k < 0)
+                            teta[rlen] += (float)Math.PI;
                         r[rlen] = (float)System.Math.Abs((double)(k));
                         region[rlen] = getregion(k, p);
                     }
                     else
                         if (p != 0 && k == 0)
                     {
-                        if (p > 0)
-                            teta[rlen] = (float)Math.PI / 2;
-                        else
-                            teta[rlen] = 3 * (float)Math.PI / 2;
+                              teta[rlen] = (float)Math.PI / 2;
 
-                        r[rlen] = (float)System.Math.Abs((double)(p));
+                         r[rlen] = (float)System.Math.Abs((double)(p));
                         region[rlen] = getregion(k, p);
                     }
 
@@ -1289,25 +1288,23 @@ namespace WindowsApplication1
             if (y != 0 && x != 0)
             {
                 tet = (float)Math.Atan(((((double)y) / ((double)x))));
+                if (x < 0)
+                    tet += (float)Math.PI;
                 rv = (float)System.Math.Abs((double)(x) / (double)(Math.Cos(tet)));
 
             }
             else
              if (y != 0 && x == 0)
             {
-                if (y > 0)
                     tet = (float)Math.PI / 2;
-                else
-                    tet = 3 * (float)Math.PI / 2;
                 rv = (float)System.Math.Abs((double)(y));
             }
             else
              if (y == 0 && x != 0)
             {
-                if (x > 0)
                     tet = 0;
-                else
-                    tet =(float) Math.PI;
+                if (x < 0)
+                    tet += (float)Math.PI;
                 rv = (float)System.Math.Abs((double)(x));
             }
             int rl = -1;
@@ -1341,9 +1338,9 @@ namespace WindowsApplication1
                 isOutsideofCurvedInit();
                 mouseclick = true;
                 Graphics g = Graphics.FromImage(pictureBox24.Image);
-                for (int i = 0; i < pictureBox24.Image.Width; i++)
+                for (int i = 0; i < pictureBox24.Width; i++)
                 {
-                    for (int j = 0; j < pictureBox24.Image.Height; j++)
+                    for (int j = 0; j < pictureBox24.Height; j++)
                     {
                         float x = i;
                         float y = j;
@@ -1352,7 +1349,7 @@ namespace WindowsApplication1
                         y = (float)((float)y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
                         if (isOutsideofCurved(x, y))
                         {
-                            (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
+                            (pictureBox24.Image as Bitmap).SetPixel((int)x, (int)y, Color.Black);
                             g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
                             g.Save();
                         }

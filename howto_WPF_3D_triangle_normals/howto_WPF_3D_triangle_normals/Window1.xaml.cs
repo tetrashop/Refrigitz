@@ -580,9 +580,9 @@ namespace howto_WPF_3D_triangle_normals
             double maxy = maxGetListY(non);
             double maxz = maxGetListZ(non);
 
-            double minx = maxGetListX(non);
-            double miny = maxGetListY(non);
-            double minz = maxGetListZ(non);
+            double minx = minGetListX(non);
+            double miny = minGetListY(non);
+            double minz = minGetListZ(non);
 
             double disx = minx + (maxx - minx) / 2;
             double disy = miny + (maxy - miny) / 2;

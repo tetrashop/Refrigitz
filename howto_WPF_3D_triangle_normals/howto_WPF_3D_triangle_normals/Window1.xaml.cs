@@ -477,6 +477,8 @@ namespace howto_WPF_3D_triangle_normals
                                 */
                                 List<Point3D> PointsAdd = PointsAddp0;
 
+                                makeListCenteralized(ref PointsAdd);
+
                                 double minr = minraddpoints(PointsAdd);
                                 List<Point3D[]> d = new List<Point3D[]>();
                                 List<Point3D> dd = new List<Point3D>();
@@ -570,6 +572,112 @@ namespace howto_WPF_3D_triangle_normals
 
                 }
             } catch (Exception t) { MessageBox.Show(t.ToString()); Log(t); }
-        } 
+        }
+
+        public static void makeListCenteralized(ref List<Point3D> non)
+        {
+            double maxx = maxGetListX(non);
+            double maxy = maxGetListY(non);
+            double maxz = maxGetListZ(non);
+
+            double minx = maxGetListX(non);
+            double miny = maxGetListY(non);
+            double minz = maxGetListZ(non);
+
+            double disx = minx + (maxx - minx) / 2;
+            double disy = miny + (maxy - miny) / 2;
+            double disz = minz + (maxz - minz) / 2;
+            for (int i = 0; i < non.Count; i++)
+            {
+                non[i] = new Point3D(non[i].X - disx, non[i].Y - disy, non[i].Z - disz);
+            }
+
+        }
+
+
+        static double maxGetListX(List<Point3D> d)
+        {
+            int inex = -1;
+            double max = float.MinValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (max < d[i].X)
+                {
+                    max = d[i].X;
+                    inex = i;
+                }
+            }
+            return d[inex].X;
+        }
+        static double maxGetListY(List<Point3D> d)
+        {
+            int inex = -1;
+            double max = float.MinValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (max < d[i].Y)
+                {
+                    max = d[i].Y;
+                    inex = i;
+                }
+            }
+            return d[inex].Y;
+        }
+        static double maxGetListZ(List<Point3D> d)
+        {
+            int inex = -1;
+            double max = float.MinValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (max < d[i].Z)
+                {
+                    max = d[i].Z;
+                    inex = i;
+                }
+            }
+            return d[inex].Z;
+        }
+        static double minGetListX(List<Point3D> d)
+        {
+            int inex = -1;
+            double min = float.MaxValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (min > d[i].X)
+                {
+                    min = d[i].X;
+                    inex = i;
+                }
+            }
+            return d[inex].X;
+        }
+        static double minGetListY(List<Point3D> d)
+        {
+            int inex = -1;
+            double min = float.MaxValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (min > d[i].X)
+                {
+                    min = d[i].X;
+                    inex = i;
+                }
+            }
+            return d[inex].Y;
+        }
+        static double minGetListZ(List<Point3D> d)
+        {
+            int inex = -1;
+            double min = float.MaxValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (min > d[i].Z)
+                {
+                    min = d[i].Z;
+                    inex = i;
+                }
+            }
+            return d[inex].Z;
+        }
     }
 }

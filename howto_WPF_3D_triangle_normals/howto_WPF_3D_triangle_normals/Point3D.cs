@@ -15,5 +15,6 @@ namespace Point3Dspaceuser
             Y = y;
             Z = z;
         }
+        
     }
 }

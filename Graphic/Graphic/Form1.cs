@@ -1186,7 +1186,7 @@ namespace WindowsApplication1
             curvedallpoints = new bool[pictureBox24.Image.Width, pictureBox24.Image.Height];
             bool[,] curvedapoints = new bool[pictureBox24.Image.Width, pictureBox24.Image.Height];
             PointF[] sd = (PointF[])curvedline.Clone();
-            for (int i = 0; i < curvedlinelen; i++)
+            for (int i = 0; i < curvedlinelen - 1; i++)
             {
                 float sx = 0, sy = 0, six = 0, siy = 0;
 
@@ -1212,15 +1212,15 @@ namespace WindowsApplication1
                 }
 
 
-
+                float sdx = sd[i].X, sdix = sd[i + 1].X, sdy = sd[i].Y, sdiy = sd[i + 1].Y;
                 for (float k = sx; k < six; k++)
                 {
-                    float p = (float)((((float)(siy - sy) / (float)(six - sx)) * (float)(k - sx)) + sy);
+                    float p = (float)((((float)(sdiy - sdy) / (float)(sdix - sdx)) * (float)(k - sdx)) + sdy);
                     int[] nn = new int[2];
                     nn[0] = (int)k;
                     nn[1] = (int)p;
 
-                    if (nn[0] < pictureBox24.Image.Width && nn[1] < pictureBox24.Image.Height)
+                    if (nn[0] >= 0 && nn[1] >= 0 && nn[0] < pictureBox24.Image.Width && nn[1] < pictureBox24.Image.Height)
                         curvedapoints[nn[0], nn[1]] = true;
                 }
             }

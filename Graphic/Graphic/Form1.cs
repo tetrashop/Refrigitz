@@ -1118,8 +1118,8 @@ namespace WindowsApplication1
 
                     List<Point3D> xxxp1 = new List<Point3D>();
 
-                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0);
-                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1);
+                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0, System.Convert.ToDouble(textBox1.Text));
+                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1, System.Convert.ToDouble(textBox1.Text));
                     if (xxxp0.Count > 1)
                     {
                         PointsAddp0 = xxxp0;

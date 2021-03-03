@@ -108,6 +108,8 @@ namespace WindowsApplication1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -901,6 +903,24 @@ namespace WindowsApplication1
             this.pictureBox24.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_MouseDoubleClick);
             this.pictureBox24.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox24_MouseMove);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(187, 489);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 36;
+            this.textBox1.Text = "10";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.label3.Location = new System.Drawing.Point(28, 492);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 13);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Make same blocks 3dCreation:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -908,6 +928,8 @@ namespace WindowsApplication1
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(611, 517);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox24);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label2);
@@ -1060,6 +1082,8 @@ namespace WindowsApplication1
         private System.Windows.Forms.ToolStripMenuItem intelligentRedducedOff3DModdelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem curvedToolStripMenuItem;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }
 

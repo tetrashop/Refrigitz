@@ -11,6 +11,7 @@ namespace howto_WPF_3D_triangle_normalsuser
     class Triangle
     {
 
+        double block = 4;
         double a, b, c, d;
         //normal of plate
         public double na, nb, nc;
@@ -287,7 +288,7 @@ namespace howto_WPF_3D_triangle_normalsuser
                         r = a;
                 }
             }
-            return r;
+            return r * block;
         }
         bool exist(Point3D ss, List<List<Point3D>> d)
         {
@@ -305,6 +306,35 @@ namespace howto_WPF_3D_triangle_normalsuser
             }
             return false;
         }
+        double getclonieslen(List<Point3D> ss, Point3D d, double minr)
+        {
+            Point3D p0 = d;
+            List<Point3D> s = ss;
+            List<Point3D> add = new List<Point3D>();
+            add.Add(p0);
+            double m = 1;
+            double clonieslen = 0;
+            for (int i = 0; i < s.Count; i++)
+            {
+                Point3D p1 = s[i];
+                if (!add.Contains(p1))
+                {
+                    double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
+                    if (count > 0 && count <= minr)
+                    {
+                        if (clonieslen <= m * count)
+                        {
+                            clonieslen = m * count;
+                            s.Remove(p0);
+                            p0 = p1;
+                            add.Add(p1);
+                            m++;
+                        }
+                    }
+                }
+            }
+            return Math.Sqrt(clonieslen);
+        }
         List<Point3D> reductionSetOfPointsToNumberOfSets(List<Point3D> s)
         {
             bool reduced = false;
@@ -318,6 +348,9 @@ namespace howto_WPF_3D_triangle_normalsuser
             bool add = false;
             double clonieslen = minr;
             int index = 0;
+            bool xxadd = false;
+            bool done = false;
+
             do
             {
                 add = false;
@@ -330,6 +363,20 @@ namespace howto_WPF_3D_triangle_normalsuser
 
                         if (boundryssscount(i, 0, sss.Count))
                             return;
+                        for (int k = 0; k < sss.Count; k++)
+                        {
+                            bool a = exist(sss[k], xxxAddedClonies);
+                            if (!a)
+                            {
+                                if (getclonieslen(sss, sss[k], minr) > 0)
+                                {
+                                    double d = getclonieslen(sss, sss[k], minr);
+                                    clonieslen = d;
+                                    i = k;
+                                    xxadd = false;
+                                }
+                            }
+                        }
 
                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, j =>
                         {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
@@ -337,6 +384,8 @@ namespace howto_WPF_3D_triangle_normalsuser
                                 return;
                             else
                             {
+                                done = false;
+
                                 Point3D p0 = sss[i];
                                 Point3D p1 = sss[j];
                                 Point3D pp0 = sss[i];
@@ -344,12 +393,21 @@ namespace howto_WPF_3D_triangle_normalsuser
                                 bool a = exist(p0, xxxAddedClonies);
                                 bool b = exist(p1, xxxAddedClonies);
 
-                                if ((!(a || b)) && (!add))
+                                if ((!(a || b)) //&& (!add)
+                                )
                                 {
                                     double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
                                     if (count <= clonieslen)
                                     {
-                                        xxx.Add(p0);
+                                        if (!xxadd)
+                                        {
+                                            bool aa = exist(p0, xxx);
+                                            if (!(aa || a))
+                                            {
+                                                xxadd = true;
+                                                xxx.Add(p0);
+                                            }
+                                        }
                                         add = true;
                                         if (!(a))
                                             xxxAddedClonies[index].Add(p0);
@@ -357,54 +415,63 @@ namespace howto_WPF_3D_triangle_normalsuser
                                             xxxAddedClonies[index].Add(p1);
                                         sss.Remove(p0);
                                         sss.Remove(p1);
-                                        p = p0;
+                                         p = p0;
+                                        done = true;
                                     }
                                 }
                                 else
                                 {
-                                    bool done = false;
                                     p0 = p;
                                     p1 = pp0;
-                                    if (p0 != p1)
+                                    a = exist(p0, xxxAddedClonies);
+                                    b = exist(p1, xxxAddedClonies);
+                                    if (p0 != p1 && (!(a || b)))
                                     {
                                         if (p.X != -1 && p.Y != -1 && p.Z != -1)
                                         {
                                             double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
                                             if (count <= clonieslen)
                                             {
+                                                if (!(a))
+                                                    xxxAddedClonies[index].Add(p0);
                                                 if (!(b))
                                                     xxxAddedClonies[index].Add(p1);
                                                 sss.Remove(p1);
                                                 done = true;
-                                            }
-                                            else
-                                            {
-                                                if (Math.Sqrt(xxxAddedClonies[index].Count * minr) > clonieslen)
-                                                    clonieslen = Math.Sqrt(xxxAddedClonies[index].Count * minr);
+                                                p = p1;
+                                                done = true;
+                                                double d = getclonieslen(sss, p1, minr);
+                                                if (d > clonieslen)
+                                                    clonieslen = d;
                                             }
                                         }
 
                                     }
                                     p0 = p;
                                     p1 = pp1;
-                                    if (p0 != p1 && (!done))
+                                    a = exist(p0, xxxAddedClonies);
+                                    b = exist(p1, xxxAddedClonies);
+                                    if (p0 != p1 && (!(a || b)))
                                     {
                                         if (p.X != -1 && p.Y != -1 && p.Z != -1)
                                         {
                                             double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
                                             if (count <= clonieslen)
                                             {
+                                                if (!(a))
+                                                    xxxAddedClonies[index].Add(p0);
                                                 if (!(b))
                                                     xxxAddedClonies[index].Add(p1);
                                                 sss.Remove(p1);
-                                            }
-                                            else
-                                            {
-                                                if (Math.Sqrt(xxxAddedClonies[index].Count * minr) > clonieslen)
-                                                    clonieslen = Math.Sqrt(xxxAddedClonies[index].Count * minr);
+                                                p = p0;
+                                                done = true;
+                                                double d = getclonieslen(sss, p1, minr);
+                                                if (d > clonieslen)
+                                                    clonieslen = d;
                                             }
                                         }
                                     }
+
                                 }
                             }
                         });
@@ -412,80 +479,83 @@ namespace howto_WPF_3D_triangle_normalsuser
                 });
                 output.Wait();
                 xxxAddedClonies.Add(new List<Point3D>());
+                xxadd = true;
                 index++;
                 p = new Point3D(-1, -1, -1);
-            } while (sss.Count > 0 && add);
+            } while (sss.Count > 0 && done);
 
             return xxx;
         }
-        public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent,ref List<Point3D> xxx)
+        public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent, ref List<Point3D> xxx, double bl)
         {
+            block = bl;
             xxx = reductionSetOfPointsToNumberOfSets(sss);
             if (xxx.Count >= 1)
                 return xxx.Count;
+
             /*
 
 
-            double countb = sss.Count;
+       double countb = sss.Count;
 
-            List<Point3D[]> d = new List<Point3D[]>();
-            bool Done = false;
-            List<Point3D> s = sss;
-            do
-            {
-                Done = false;
-                var output = Task.Factory.StartNew(() =>
-                {
+       List<Point3D[]> d = new List<Point3D[]>();
+       bool Done = false;
+       List<Point3D> s = sss;
+       do
+       {
+           Done = false;
+           var output = Task.Factory.StartNew(() =>
+           {
 
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
-                    {
+               ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
+               {
 
-                        if (boundryout(i, 0, 0, 0, s.Count, countb, percent))
-                            return;
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
-                        {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                            if (boundryout(i, j, 0, 0, s.Count, countb, percent))
-                                return;
-                            ParallelOptions ppoio = new ParallelOptions(); ppoioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
-                            {            //external point
-                                if (boundryout(i, j, k, 0, s.Count, countb, percent))
-                                    return;
-                                ParallelOptions ppopio = new ParallelOptions(); ppopioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, b =>
-                                {
-                                    if (boundry(i, j, k, b, s.Count, countb, percent))
-                                        return;
-                                    else
-                                    if (i < s.Count && j < s.Count && k < s.Count && b < s.Count)
-                                    {
-                                        Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
-                                        Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
-                                        Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
-                                        if (!distancereduced(aa, bb, cc, ref Done, ref s, ht, i, j, k))
-                                        {
-                                            Triangle at = new Triangle(aa, bb, cc);
+                   if (boundryout(i, 0, 0, 0, s.Count, countb, percent))
+                       return;
+                   ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
+                   {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                       if (boundryout(i, j, 0, 0, s.Count, countb, percent))
+                           return;
+                       ParallelOptions ppoio = new ParallelOptions(); ppoioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
+                       {            //external point
+                           if (boundryout(i, j, k, 0, s.Count, countb, percent))
+                               return;
+                           ParallelOptions ppopio = new ParallelOptions(); ppopioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, b =>
+                           {
+                               if (boundry(i, j, k, b, s.Count, countb, percent))
+                                   return;
+                               else
+                               if (i < s.Count && j < s.Count && k < s.Count && b < s.Count)
+                               {
+                                   Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
+                                   Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
+                                   Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
+                                   if (!distancereduced(aa, bb, cc, ref Done, ref s, ht, i, j, k))
+                                   {
+                                       Triangle at = new Triangle(aa, bb, cc);
 
-                                            Point3D[] ss = new Point3D[3];
-                                            ss[0] = new Point3D(aa.X, aa.Y, aa.Z);
-                                            ss[1] = new Point3D(bb.X, bb.Y, bb.Z);
-                                            ss[2] = new Point3D(cc.X, cc.Y, cc.Z);
-                                            ss = ImprovmentSort.Do(ss);
-                                            if (!exist(ss, d))
-                                            {
-                                                d.Add(ss);
+                                       Point3D[] ss = new Point3D[3];
+                                       ss[0] = new Point3D(aa.X, aa.Y, aa.Z);
+                                       ss[1] = new Point3D(bb.X, bb.Y, bb.Z);
+                                       ss[2] = new Point3D(cc.X, cc.Y, cc.Z);
+                                       ss = ImprovmentSort.Do(ss);
+                                       if (!exist(ss, d))
+                                       {
+                                           d.Add(ss);
 
-                                                removeitem(at, ref s, i, b, j, k, ref Done, ht);
-                                            }
-                                        }
-                                    }
-                                });
-                            });
-                        });
-                    });
-                });
-                output.Wait();
+                                           removeitem(at, ref s, i, b, j, k, ref Done, ht);
+                                       }
+                                   }
+                               }
+                           });
+                       });
+                   });
+               });
+           });
+           output.Wait();
 
-            } while ((double)s.Count / countb >= percent && (Done));
-            sss = s;*/
+       } while ((double)s.Count / countb >= percent && (Done));
+       sss = s;*/
             return sss.Count;
         }
     }

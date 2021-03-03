@@ -10,7 +10,7 @@ namespace howto_WPF_3D_triangle_normals
 {
     class Triangle
     {
-
+        double block = 4;
         double a, b, c, d;
         //normal of plate
         public double na, nb, nc;
@@ -284,7 +284,7 @@ namespace howto_WPF_3D_triangle_normals
                         r = a;
                 }
             }
-            return r;
+            return r * block;
         }
         bool exist(Point3D ss, List<List<Point3D>> d)
         {
@@ -302,6 +302,35 @@ namespace howto_WPF_3D_triangle_normals
             }
             return false;
         }
+        double getclonieslen(List<Point3D> ss, Point3D d, double minr)
+        {
+            Point3D p0 = d;
+            List<Point3D> s = ss;
+            List<Point3D> add = new List<Point3D>();
+            add.Add(p0);
+            double m = 1;
+            double clonieslen = 0;
+            for (int i = 0; i < s.Count; i++)
+            {
+                Point3D p1 = s[i];
+                if (!add.Contains(p1))
+                {
+                    double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
+                    if (count > 0 && count <= minr)
+                    {
+                        if (clonieslen <= m * count)
+                        {
+                            clonieslen = m * count;
+                            s.Remove(p0);
+                            p0 = p1;
+                            add.Add(p1);
+                            m++;
+                        }
+                    }
+                }
+            }
+            return Math.Sqrt(clonieslen);
+        }
         List<Point3D> reductionSetOfPointsToNumberOfSets(List<Point3D> s)
         {
             bool reduced = false;
@@ -315,6 +344,9 @@ namespace howto_WPF_3D_triangle_normals
             bool add = false;
             double clonieslen = minr;
             int index = 0;
+            bool xxadd = false;
+            bool done = false;
+
             do
             {
                 add = false;
@@ -327,6 +359,20 @@ namespace howto_WPF_3D_triangle_normals
 
                         if (boundryssscount(i, 0, sss.Count))
                             return;
+                        for (int k = 0; k < sss.Count; k++)
+                        {
+                            bool a = exist(sss[k], xxxAddedClonies);
+                            if (!a)
+                            {
+                                if (getclonieslen(sss, sss[k], minr) > 0)
+                                {
+                                    double d = getclonieslen(sss, sss[k], minr);
+                                    clonieslen = d;
+                                    i = k;
+                                    xxadd = false;
+                                }
+                            }
+                        }
 
                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, j =>
                         {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
@@ -334,6 +380,8 @@ namespace howto_WPF_3D_triangle_normals
                                 return;
                             else
                             {
+                                done = false;
+
                                 Point3D p0 = sss[i];
                                 Point3D p1 = sss[j];
                                 Point3D pp0 = sss[i];
@@ -341,12 +389,21 @@ namespace howto_WPF_3D_triangle_normals
                                 bool a = exist(p0, xxxAddedClonies);
                                 bool b = exist(p1, xxxAddedClonies);
 
-                                if ((!(a || b)) && (!add))
+                                if ((!(a || b)) //&& (!add)
+                                )
                                 {
                                     double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
                                     if (count <= clonieslen)
                                     {
-                                        xxx.Add(p0);
+                                        if (!xxadd)
+                                        {
+                                            bool aa = exist(p0, xxx);
+                                            if (!(aa || a))
+                                            {
+                                                xxadd = true;
+                                                xxx.Add(p0);
+                                            }
+                                        }
                                         add = true;
                                         if (!(a))
                                             xxxAddedClonies[index].Add(p0);
@@ -354,54 +411,63 @@ namespace howto_WPF_3D_triangle_normals
                                             xxxAddedClonies[index].Add(p1);
                                         sss.Remove(p0);
                                         sss.Remove(p1);
-                                        p = p0;
+                                         p = p0;
+                                        done = true;
                                     }
                                 }
                                 else
                                 {
-                                    bool done = false;
                                     p0 = p;
                                     p1 = pp0;
-                                    if (p0 != p1)
+                                    a = exist(p0, xxxAddedClonies);
+                                    b = exist(p1, xxxAddedClonies);
+                                    if (p0 != p1 && (!(a || b)))
                                     {
                                         if (p.X != -1 && p.Y != -1 && p.Z != -1)
                                         {
                                             double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
                                             if (count <= clonieslen)
                                             {
+                                                if (!(a))
+                                                    xxxAddedClonies[index].Add(p0);
                                                 if (!(b))
                                                     xxxAddedClonies[index].Add(p1);
                                                 sss.Remove(p1);
                                                 done = true;
-                                            }
-                                            else
-                                            {
-                                                if (Math.Sqrt(xxxAddedClonies[index].Count * minr) > clonieslen)
-                                                    clonieslen = Math.Sqrt(xxxAddedClonies[index].Count * minr);
+                                                p = p1;
+                                                done = true;
+                                                double d = getclonieslen(sss, p1, minr);
+                                                if (d > clonieslen)
+                                                    clonieslen = d;
                                             }
                                         }
 
                                     }
                                     p0 = p;
                                     p1 = pp1;
-                                    if (p0 != p1 && (!done))
+                                    a = exist(p0, xxxAddedClonies);
+                                    b = exist(p1, xxxAddedClonies);
+                                    if (p0 != p1 && (!(a || b)))
                                     {
                                         if (p.X != -1 && p.Y != -1 && p.Z != -1)
                                         {
                                             double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
                                             if (count <= clonieslen)
                                             {
+                                                if (!(a))
+                                                    xxxAddedClonies[index].Add(p0);
                                                 if (!(b))
                                                     xxxAddedClonies[index].Add(p1);
                                                 sss.Remove(p1);
-                                            }
-                                            else
-                                            {
-                                                if (Math.Sqrt(xxxAddedClonies[index].Count * minr) > clonieslen)
-                                                    clonieslen = Math.Sqrt(xxxAddedClonies[index].Count * minr);
+                                                p = p0;
+                                                done = true;
+                                                double d = getclonieslen(sss, p1, minr);
+                                                if (d > clonieslen)
+                                                    clonieslen = d;
                                             }
                                         }
                                     }
+
                                 }
                             }
                         });
@@ -409,14 +475,16 @@ namespace howto_WPF_3D_triangle_normals
                 });
                 output.Wait();
                 xxxAddedClonies.Add(new List<Point3D>());
+                xxadd = true;
                 index++;
                 p = new Point3D(-1, -1, -1);
-            } while (sss.Count > 0 && add);
+            } while (sss.Count > 0 && done);
 
             return xxx;
         }
-        public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent, ref List<Point3D> xxx)
+        public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent, ref List<Point3D> xxx,double bl)
         {
+            block = bl;
             xxx = reductionSetOfPointsToNumberOfSets(sss);
             if (xxx.Count >= 1)
                 return xxx.Count;

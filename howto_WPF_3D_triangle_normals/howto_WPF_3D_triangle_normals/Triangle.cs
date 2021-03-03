@@ -577,12 +577,10 @@ namespace howto_WPF_3D_triangle_normals
         {
             List<List<Point3D>> ListOfSemiLineUniq = new List<List<Point3D>>();
             bool found = false;
-            int indexfoun = -1;
             double min = double.MaxValue;
             Point3D next = new Point3D();
             int semiscount = 0;
             int ii = -1, jj = -1, kk = -1;
-            bool notfound = true;
             do
             {
 
@@ -590,16 +588,19 @@ namespace howto_WPF_3D_triangle_normals
 
                 {
 
-                    indexfoun = -1;
-                    found = false;
+                     found = false;
                     min = double.MaxValue;
-                    ii = -1;
+                        ii = -1;                   
                     jj = -1;
-                    kk = -1;
-                    notfound = true;
+                    if (next == null)
+                        kk = -1;
                     ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
                     {
-
+                        if (next != null)
+                        {
+                            i = kk;
+                            kk = -1;                            
+                        }
                         if (boundry(i, 0, 0, 0))
                             return;
                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
@@ -624,8 +625,7 @@ namespace howto_WPF_3D_triangle_normals
                                     min = d;
                                     found = true;
                                     next = s[k];
-                                    notfound = false;
-                                }
+                                 }
                             });
                         });
                     });
@@ -635,7 +635,7 @@ namespace howto_WPF_3D_triangle_normals
                 {
                     if (((!exist(s[ii], ListOfSemiLineUniq)) || ((s[ii] == next) && (exist(next, ListOfSemiLineUniq)))) && (!exist(s[jj], ListOfSemiLineUniq)) && (!exist(s[kk], ListOfSemiLineUniq)))
                     {
-                         if ((!exist(s[ii], ListOfSemiLineUniq)) || ((s[ii] == next) && (exist(next, ListOfSemiLineUniq))))
+                         if ((!exist(s[ii], ListOfSemiLineUniq)))
                             ListOfSemiLineUniq[semiscount].Add(s[ii]);
                         if ((!exist(s[jj], ListOfSemiLineUniq)))
                             ListOfSemiLineUniq[semiscount].Add(s[jj]);
@@ -648,7 +648,7 @@ namespace howto_WPF_3D_triangle_normals
                     ListOfSemiLineUniq = new List<List<Point3D>>();
                     semiscount++;
                 }
-            } while (found || (!notfound));
+            } while (found );
             return ListOfSemiLineUniq;
         }
     }

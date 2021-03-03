@@ -45,6 +45,9 @@ namespace howto_WPF_3D_triangle_normalsuser
             return (na == nb) && (na == nc) & (na == 0);
 
         }
-        
+        public static double getAlpha(Line l0, Line l1)
+        {
+            return System.Math.Abs(l0.a - l1.a) + System.Math.Abs(l0.b - l1.b) + System.Math.Abs(l0.c - l1.c);
+        }
     }
 }

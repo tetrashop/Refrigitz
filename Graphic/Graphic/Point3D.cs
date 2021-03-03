@@ -24,6 +24,9 @@ namespace Point3Dspaceuser
             X = x;
             Y = y;
             Z = z;
-         }
+        }
+        public Point3D()
+        {
+        }
     }
 }

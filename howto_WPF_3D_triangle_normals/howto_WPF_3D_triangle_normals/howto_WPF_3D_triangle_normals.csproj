@@ -93,6 +93,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CurvedSystems.cs" />
     <Compile Include="ImprovmentSort.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="PlatformHelper.cs" />

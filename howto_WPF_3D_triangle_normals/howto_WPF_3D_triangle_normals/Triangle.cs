@@ -375,7 +375,7 @@ namespace howto_WPF_3D_triangle_normals
                     ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, sss.Count, i =>
                     {
 
-                        if (boundryssscount(i, 0, sss.Count))
+                        if (boundryssscount(i, -1, sss.Count))
                             return;
                         for (int k = 0; k < sss.Count; k++)
                         {
@@ -571,85 +571,5 @@ namespace howto_WPF_3D_triangle_normals
             sss = s;*/
             return sss.Count;
         }
-        //create list of semi curved; continusly
-
-        List<List<Point3D>> getlistOfSemilineuniqe(List<Point3D> s)
-        {
-            List<List<Point3D>> ListOfSemiLineUniq = new List<List<Point3D>>();
-            bool found = false;
-            double min = double.MaxValue;
-            Point3D next = new Point3D();
-            int semiscount = 0;
-            int ii = -1, jj = -1, kk = -1;
-            do
-            {
-
-                var output = Task.Factory.StartNew(() =>
-
-                {
-
-                     found = false;
-                    min = double.MaxValue;
-                        ii = -1;                   
-                    jj = -1;
-                    if (next == null)
-                        kk = -1;
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
-                    {
-                        if (next != null)
-                        {
-                            i = kk;
-                            kk = -1;                            
-                        }
-                        if (boundry(i, 0, 0, 0))
-                            return;
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
-                        {
-                            if (boundry(i, j, 0, 0))
-                                return;
-
-                            ParallelOptions poi = new ParallelOptions(); poi.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
-                            {
-
-                                if (boundry(i, j, k, 0))
-                                    return;
-                                //external point
-                                Line l0 = new Line(s[i], s[j]);
-                                Line l1 = new Line(s[j], s[k]);
-                                double d = Line.getAlpha(l0, l1);
-                                if (d < min)
-                                {
-                                    ii = i;
-                                    jj = j;
-                                    kk = k;
-                                    min = d;
-                                    found = true;
-                                    next = s[k];
-                                 }
-                            });
-                        });
-                    });
-                });
-                output.Wait();
-                if (found)
-                {
-                    if (((!exist(s[ii], ListOfSemiLineUniq)) || ((s[ii] == next) && (exist(next, ListOfSemiLineUniq)))) && (!exist(s[jj], ListOfSemiLineUniq)) && (!exist(s[kk], ListOfSemiLineUniq)))
-                    {
-                         if ((!exist(s[ii], ListOfSemiLineUniq)))
-                            ListOfSemiLineUniq[semiscount].Add(s[ii]);
-                        if ((!exist(s[jj], ListOfSemiLineUniq)))
-                            ListOfSemiLineUniq[semiscount].Add(s[jj]);
-                        if ((!exist(s[kk], ListOfSemiLineUniq)))
-                            ListOfSemiLineUniq[semiscount].Add(s[kk]);
-                    }
-                }
-                if (!found)
-                {
-                    ListOfSemiLineUniq = new List<List<Point3D>>();
-                    semiscount++;
-                }
-            } while (found );
-            return ListOfSemiLineUniq;
-        }
-    }
+       }
 }

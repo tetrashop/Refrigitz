@@ -97,6 +97,7 @@
     <Compile Include="Line.cs" />
     <Compile Include="PlatformHelper.cs" />
     <Compile Include="Point3D.cs" />
+    <Compile Include="SemiLines.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>

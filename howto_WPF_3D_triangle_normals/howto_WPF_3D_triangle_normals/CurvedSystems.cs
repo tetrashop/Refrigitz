@@ -17,12 +17,15 @@ namespace howto_WPF_3D_triangle_normals
         List<List<Point3D>> listofssemipoints = null;
 
         List<Point3D> source = null;
+       List< List<double[]>> qlist = new List<List<double[]>>();
+       List< List<double>> qdddlist = new List<List<double>>();
+        List< List<Point3D>> qdddpointslist = new List<List<Point3D>>();
         public CurvedSystems(List<Point3D> ss)
         {
             source = ss;
             listofssemipoints = getlistOfSemilineuniqe(ss);
         }
-        public double[] CreateQuficientofCurved()
+        public List<double[]> CreateQuficientofCurved()
         {
 
 
@@ -61,42 +64,47 @@ namespace howto_WPF_3D_triangle_normals
                         //return null; 
                     }
                 }
+                qdddpointslist.Add(qdddpoints);
+                qlist.Add(q);
             }
-            for (int i = 0; i < q.Count && i < qdddpoints.Count; i++)
+            for (int j = 0; j < qlist.Count && j < qdddpoints.Count; j++)
             {
-
-                if (q.Count > i && i < qdddpoints.Count)
+                double[] ddd = new double[3];
+                for (int i = 0; i < qlist[j].Count && i < qdddpointslist[j].Count; i++)
                 {
-                    double[] ddd = new double[3];
 
-                    ddd[0] = q[i][0] * qdddpoints[i].X;
-                    ddd[1] = q[i][1] * qdddpoints[i].Y;
-                    ddd[2] = q[i][2] * qdddpoints[i].Z;
+                    if (q.Count > i && i < qdddpoints.Count)
+                    {
+
+                        ddd[0] = qlist[j][i][0] * qdddpointslist[j][i].X;
+                        ddd[1] = qlist[j][i][1] * qdddpointslist[j][i].Y;
+                        ddd[2] = qlist[j][i][2] * qdddpointslist[j][i].Z;
 
 
-                    qddd.Add(ddd[0] + ddd[1] + ddd[2]);
+                        qddd.Add(ddd[0] + ddd[1] + ddd[2]);
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Not enough regresion system data;");
+                        //return null;
+                    }
+
+
                 }
-                else
-                {
-                    System.Windows.MessageBox.Show("Not enough regresion system data;");
-                    //return null;
-                }
-
-
+                qdddlist.Add(qddd);
             }
 
-            bool done = false;
-            List<double[]> qq = q;
-            do
-            {
+         
 
-                for (int j = 0; j < qq.Count && j < qddd.Count; j += 3)
+            for (int i = 0; i < qlist.Count; i++)
+            {
+                List<double[]> qq = qlist[i];
+                for (int j = 0; j < qq.Count && j < qdddlist[i].Count; j += 3)
                 {
                     if (qq.Count >= j + 3 && qddd.Count >= j + 3)
                     {
-                        double[,] qcurve = new double[3, 3];
-
                         double[] ddd = new double[3];
+                        double[,] qcurve = new double[3, 3];
                         qcurve[0, 0] = qq[j][0];
                         qcurve[0, 1] = qq[j][1];
                         qcurve[0, 2] = qq[j][2];
@@ -109,9 +117,9 @@ namespace howto_WPF_3D_triangle_normals
                         qcurve[2, 1] = qq[j + 2][1];
                         qcurve[2, 2] = qq[j + 2][2];
 
-                        ddd[0] = qddd[j];
-                        ddd[1] = qddd[j + 1];
-                        ddd[2] = qddd[j + 2];
+                        ddd[0] = qdddlist[i][j];
+                        ddd[1] = qdddlist[i][j + 1];
+                        ddd[2] = qdddlist[i][j + 2];
 
                         qsystem.Add(Interpolate.Quaficient(qcurve, ddd, 3));
                     }
@@ -120,15 +128,13 @@ namespace howto_WPF_3D_triangle_normals
                         System.Windows.MessageBox.Show("Not enough regresion system data;");
                         //return null;
                     }
-
-                    qq = qsystem;
-                    qsystem = new List<double[]>();
+                    ;
                 }
 
 
-            } while (qq.Count >= 3);
-            if (qq.Count > 0)
-                return qq[0];
+            }
+            if (qsystem.Count > 0)
+                return qsystem;
 
             return null;
         }

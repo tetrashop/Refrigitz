@@ -416,9 +416,9 @@ namespace howto_WPF_3D_triangle_normals
 
                                 }
                                 CurvedSystems addpoint0 = new CurvedSystems(PointsAddp0);
-                                double[] p0 = addpoint0.CreateQuficientofCurved();
+                                List<double[]> p0 = addpoint0.CreateQuficientofCurved();
                                 CurvedSystems addpoint1 = new CurvedSystems(PointsAddp1);
-                                double[] p1 = addpoint1.CreateQuficientofCurved();
+                                List<double[]> p1= addpoint1.CreateQuficientofCurved();
                                 MessageBox.Show("queficients complete! p0: " + (p0 != null).ToString() + " p1: " + (p1 != null).ToString());
 
                                 // Give the camera its initial position.

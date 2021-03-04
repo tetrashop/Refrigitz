@@ -147,7 +147,7 @@ namespace howto_WPF_3D_triangle_normals
                     jj = -1;
                     if (next == null)
                         kk = -1;
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
+                    for (int i = 0; i < s.Count; i++)
                     {
                         if (next != null)
                         {
@@ -156,12 +156,12 @@ namespace howto_WPF_3D_triangle_normals
                         }
                         if (boundry(i, -1, -1))
                             return;
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
+                        for (int j = 0; j < s.Count; j++)
                         {
                             if (boundry(i, j, -1))
                                 return;
 
-                            ParallelOptions poi = new ParallelOptions(); poi.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
+                            for (int k = 0; k < s.Count; k++)
                             {
 
                                 if (boundry(i, j, k))
@@ -179,9 +179,9 @@ namespace howto_WPF_3D_triangle_normals
                                     found = true;
                                     next = s[k];
                                 }
-                            });
-                        });
-                    });
+                            }
+                        }
+                    }
                 });
                 output.Wait();
                 if (found)

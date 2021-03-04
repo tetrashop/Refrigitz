@@ -393,8 +393,7 @@ namespace howto_WPF_3D_triangle_normals
                             }
                             if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
                             {
-
-                                double minrp0 = minraddpoints(PointsAddp0);
+                                  double minrp0 = minraddpoints(PointsAddp0);
                                 double minrp1 = minraddpoints(PointsAddp0);
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
                                 if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
@@ -416,6 +415,12 @@ namespace howto_WPF_3D_triangle_normals
                                     MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points." + "reduced...p1! " + PointsAddp1.Count.ToString() + " points.");
 
                                 }
+                                CurvedSystems addpoint0 = new CurvedSystems(PointsAddp0);
+                                double[] p0 = addpoint0.CreateQuficientofCurved();
+                                CurvedSystems addpoint1 = new CurvedSystems(PointsAddp1);
+                                double[] p1 = addpoint1.CreateQuficientofCurved();
+                                MessageBox.Show("queficients complete!");
+
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();
                                 TheCamera.FieldOfView = 60;

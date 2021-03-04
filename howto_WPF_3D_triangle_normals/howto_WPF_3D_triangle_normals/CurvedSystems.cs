@@ -10,7 +10,7 @@ namespace howto_WPF_3D_triangle_normals
 {
     class CurvedSystems
     {
-      public  List<double[]> qsystem = new List<double[]>();
+        public List<double[]> qsystem = new List<double[]>();
         List<double[]> q = new List<double[]>();
         List<double> qddd = new List<double>();
         List<Point3D> qdddpoints = new List<Point3D>();
@@ -24,43 +24,63 @@ namespace howto_WPF_3D_triangle_normals
         }
         public double[] CreateQuficientofCurved()
         {
+
+
             for (int i = 0; i < listofssemipoints.Count; i++)
             {
+
                 for (int j = 0; j < listofssemipoints[i].Count; j += 4)
                 {
-                    double[,] qcurve = new double[3, 3];
+                    if (j < listofssemipoints[i].Count - 3)
+                    {
+                        double[,] qcurve = new double[3, 3];
 
-                    double[] ddd = new double[3];
-                    qcurve[0, 0] = listofssemipoints[i][j].X;
-                    qcurve[0, 1] = listofssemipoints[i][j].Y;
-                    qcurve[0, 2] = listofssemipoints[i][j].Z;
+                        double[] ddd = new double[3];
+                        qcurve[0, 0] = listofssemipoints[i][j].X;
+                        qcurve[0, 1] = listofssemipoints[i][j].Y;
+                        qcurve[0, 2] = listofssemipoints[i][j].Z;
 
-                    qcurve[1, 0] = listofssemipoints[i][j + 1].X;
-                    qcurve[1, 1] = listofssemipoints[i][j + 1].Y;
-                    qcurve[1, 2] = listofssemipoints[i][j + 1].Z;
+                        qcurve[1, 0] = listofssemipoints[i][j + 1].X;
+                        qcurve[1, 1] = listofssemipoints[i][j + 1].Y;
+                        qcurve[1, 2] = listofssemipoints[i][j + 1].Z;
 
-                    qcurve[2, 0] = listofssemipoints[i][j + 2].X;
-                    qcurve[2, 1] = listofssemipoints[i][j + 2].Y;
-                    qcurve[2, 2] = listofssemipoints[i][j + 2].Z;
+                        qcurve[2, 0] = listofssemipoints[i][j + 2].X;
+                        qcurve[2, 1] = listofssemipoints[i][j + 2].Y;
+                        qcurve[2, 2] = listofssemipoints[i][j + 2].Z;
 
-                    ddd[0] = listofssemipoints[i][j + 3].X;
-                    ddd[1] = listofssemipoints[i][j + 3].Y;
-                    ddd[2] = listofssemipoints[i][j + 3].Z;
+                        ddd[0] = listofssemipoints[i][j + 3].X;
+                        ddd[1] = listofssemipoints[i][j + 3].Y;
+                        ddd[2] = listofssemipoints[i][j + 3].Z;
 
-                    qdddpoints.Add(new Point3D(listofssemipoints[i][j + 3].X, listofssemipoints[i][j + 3].Y, listofssemipoints[i][j + 3].Z));
-                    q.Add(Interpolate.Quaficient(qcurve, ddd, 3));
+                        qdddpoints.Add(new Point3D(listofssemipoints[i][j + 3].X, listofssemipoints[i][j + 3].Y, listofssemipoints[i][j + 3].Z));
+                        q.Add(Interpolate.Quaficient(qcurve, ddd, 3));
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Not enough regresion data;");
+                        //return null; 
+                    }
                 }
             }
-            for (int i = 0; i < q.Count; i++)
+            for (int i = 0; i < q.Count && i < qdddpoints.Count; i++)
             {
-                double[] ddd = new double[3];
 
-                ddd[0] = q[i][0] * qdddpoints[i].X;
-                ddd[1] = q[i][1] * qdddpoints[i].Y;
-                ddd[2] = q[i][2] * qdddpoints[i].Z;
+                if (q.Count > i && i < qdddpoints.Count)
+                {
+                    double[] ddd = new double[3];
+
+                    ddd[0] = q[i][0] * qdddpoints[i].X;
+                    ddd[1] = q[i][1] * qdddpoints[i].Y;
+                    ddd[2] = q[i][2] * qdddpoints[i].Z;
 
 
-                qddd.Add(ddd[0] + qddd[1] + qddd[2]);
+                    qddd.Add(ddd[0] + ddd[1] + ddd[2]);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Not enough regresion system data;");
+                    //return null;
+                }
 
 
             }
@@ -70,34 +90,46 @@ namespace howto_WPF_3D_triangle_normals
             do
             {
 
-                for (int j = 0; j < qq.Count; j += 3)
+                for (int j = 0; j < qq.Count && j < qddd.Count; j += 3)
                 {
-                    double[,] qcurve = new double[3, 3];
+                    if (qq.Count >= j + 3 && qddd.Count >= j + 3)
+                    {
+                        double[,] qcurve = new double[3, 3];
 
-                    double[] ddd = new double[3];
-                    qcurve[0, 0] = qq[j][0];
-                    qcurve[0, 1] = qq[j][1];
-                    qcurve[0, 2] = qq[j][2];
+                        double[] ddd = new double[3];
+                        qcurve[0, 0] = qq[j][0];
+                        qcurve[0, 1] = qq[j][1];
+                        qcurve[0, 2] = qq[j][2];
 
-                    qcurve[1, 0] = qq[j + 1][0];
-                    qcurve[1, 1] = qq[j + 1][1];
-                    qcurve[1, 2] = qq[j + 1][2];
+                        qcurve[1, 0] = qq[j + 1][0];
+                        qcurve[1, 1] = qq[j + 1][1];
+                        qcurve[1, 2] = qq[j + 1][2];
 
-                    qcurve[2, 0] = qq[j + 2][0];
-                    qcurve[2, 1] = qq[j + 2][1];
-                    qcurve[2, 2] = qq[j + 2][2];
+                        qcurve[2, 0] = qq[j + 2][0];
+                        qcurve[2, 1] = qq[j + 2][1];
+                        qcurve[2, 2] = qq[j + 2][2];
 
-                    ddd[0] = qddd[j];
-                    ddd[1] = qddd[j + 1];
-                    ddd[2] = qddd[j + 2];
+                        ddd[0] = qddd[j];
+                        ddd[1] = qddd[j + 1];
+                        ddd[2] = qddd[j + 2];
 
-                    qsystem.Add(Interpolate.Quaficient(qcurve, ddd, 3));
+                        qsystem.Add(Interpolate.Quaficient(qcurve, ddd, 3));
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Not enough regresion system data;");
+                        //return null;
+                    }
+
+                    qq = qsystem;
+                    qsystem = new List<double[]>();
                 }
-                qq = qsystem;
-                qsystem.Clear();
+
+
             } while (qq.Count >= 3);
             if (qq.Count > 0)
                 return qq[0];
+
             return null;
         }
         bool exist(Point3D ss, List<List<Point3D>> d)
@@ -118,22 +150,42 @@ namespace howto_WPF_3D_triangle_normals
         }
         public bool boundry(int i, int j, int k)
         {
-            if (i == j)
-                return true;
-            if (i == k)
-                return true;
-            if (j == k)
-                return true;
+            if (i != -1 && j != -1)
+                if (i == j)
+                    return true;
+            if (i != -1 && k != -1)
+                if (i == k)
+                    return true;
+            if (k != -1 && j != -1)
+                if (j == k)
+                    return true;
 
             return false;
         }
+        void getlistOfSemilineuniqeKernel(List<Point3D> s, int i, int j, int k, ref int ii, ref int jj, ref int kk, ref double min, ref bool found, ref Point3D next)
+        {
+            //external point
+            Line l0 = new Line(s[i], s[j]);
+            Line l1 = new Line(s[j], s[k]);
+            double d = Line.getAlpha(l0, l1);
+            if (d < min)
+            {
+                ii = i;
+                jj = j;
+                kk = k;
+                min = d;
+                found = true;
+                next = s[k];
+            }
+        }
+
         //create list of semi curved; continusly
         List<List<Point3D>> getlistOfSemilineuniqe(List<Point3D> s)
         {
             List<List<Point3D>> ListOfSemiLineUniq = new List<List<Point3D>>();
             bool found = false;
             double min = double.MaxValue;
-            Point3D next = new Point3D();
+            Point3D next = new Point3D(-1, -1, -1);
             int semiscount = 0;
             int ii = -1, jj = -1, kk = -1;
             do
@@ -145,42 +197,38 @@ namespace howto_WPF_3D_triangle_normals
 
                     found = false;
                     min = double.MaxValue;
-                    ii = -1;
-                    jj = -1;
-                    if (next == null)
+                    if ((next.X == -1 && next.Y == -1 && next.Z == -1))
+                    {
+                        ii = -1;
+                        jj = -1;
                         kk = -1;
+                    }
                     for (int i = 0; i < s.Count; i++)
                     {
-                        if (next != null)
+                        if (!(next.X == -1 && next.Y == -1 && next.Z == -1) && (kk != -1))
                         {
                             i = kk;
-                            kk = -1;
+                            next = new Point3D(-1, -1, -1);
                         }
                         if (boundry(i, -1, -1))
-                            return;
+                            continue; ;
                         for (int j = 0; j < s.Count; j++)
                         {
                             if (boundry(i, j, -1))
-                                return;
+                                continue; ;
 
                             for (int k = 0; k < s.Count; k++)
                             {
 
                                 if (boundry(i, j, k))
-                                    return;
-                                //external point
-                                Line l0 = new Line(s[i], s[j]);
-                                Line l1 = new Line(s[j], s[k]);
-                                double d = Line.getAlpha(l0, l1);
-                                if (d < min)
-                                {
-                                    ii = i;
-                                    jj = j;
-                                    kk = k;
-                                    min = d;
-                                    found = true;
-                                    next = s[k];
-                                }
+                                    continue;
+                                bool a = exist(s[i], ListOfSemiLineUniq);
+                                bool b = s[i] == next;
+                                bool c = exist(next, ListOfSemiLineUniq);
+                                bool d = exist(s[j], ListOfSemiLineUniq);
+                                bool e = exist(s[k], ListOfSemiLineUniq);
+                                if (((!a) || ((b) && (c))) && (!d) && (!e))
+                                    getlistOfSemilineuniqeKernel(s, i, j, k, ref ii, ref jj, ref kk, ref min, ref found, ref next);
                             }
                         }
                     }
@@ -188,21 +236,31 @@ namespace howto_WPF_3D_triangle_normals
                 output.Wait();
                 if (found)
                 {
-                    if (((!exist(s[ii], ListOfSemiLineUniq)) || ((s[ii] == next) && (exist(next, ListOfSemiLineUniq)))) && (!exist(s[jj], ListOfSemiLineUniq)) && (!exist(s[kk], ListOfSemiLineUniq)))
+                    bool a = exist(s[ii], ListOfSemiLineUniq);
+                    bool b = s[ii] == next;
+                    bool c = exist(next, ListOfSemiLineUniq);
+                    bool d = exist(s[jj], ListOfSemiLineUniq);
+                    bool e = exist(s[kk], ListOfSemiLineUniq);
+                    if (((!a) || ((b) && (c))) && (!d) && (!e))
                     {
-                        if ((!exist(s[ii], ListOfSemiLineUniq)))
+                        if (ListOfSemiLineUniq.Count == 0)
+                            ListOfSemiLineUniq.Add(new List<Point3D>());
+                        if ((!a))
                             ListOfSemiLineUniq[semiscount].Add(s[ii]);
-                        if ((!exist(s[jj], ListOfSemiLineUniq)))
+                        if ((!d))
                             ListOfSemiLineUniq[semiscount].Add(s[jj]);
-                        if ((!exist(s[kk], ListOfSemiLineUniq)))
+                        if ((!e))
                             ListOfSemiLineUniq[semiscount].Add(s[kk]);
                     }
-                }
+                  }
                 if (!found)
                 {
-                    ListOfSemiLineUniq = new List<List<Point3D>>();
+                    ListOfSemiLineUniq.Add(new List<Point3D>());
                     semiscount++;
                 }
+                ii = -1;
+                jj = -1;
+                kk = -1;
             } while (found);
             return ListOfSemiLineUniq;
         }

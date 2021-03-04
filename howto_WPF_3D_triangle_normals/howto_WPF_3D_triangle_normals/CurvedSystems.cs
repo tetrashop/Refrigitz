@@ -12,6 +12,8 @@ namespace howto_WPF_3D_triangle_normals
     {
       public  List<double[]> qsystem = new List<double[]>();
         List<double[]> q = new List<double[]>();
+        List<double> qddd = new List<double>();
+        List<Point3D> qdddpoints = new List<Point3D>();
         List<List<Point3D>> listofssemipoints = null;
 
         List<Point3D> source = null;
@@ -41,18 +43,33 @@ namespace howto_WPF_3D_triangle_normals
                     qcurve[2, 1] = listofssemipoints[i][j + 2].Y;
                     qcurve[2, 2] = listofssemipoints[i][j + 2].Z;
 
-                    ddd[j] = listofssemipoints[i][j + 3].X;
+                    ddd[0] = listofssemipoints[i][j + 3].X;
                     ddd[1] = listofssemipoints[i][j + 3].Y;
                     ddd[2] = listofssemipoints[i][j + 3].Z;
 
+                    qdddpoints.Add(new Point3D(listofssemipoints[i][j + 3].X, listofssemipoints[i][j + 3].Y, listofssemipoints[i][j + 3].Z));
                     q.Add(Interpolate.Quaficient(qcurve, ddd, 3));
                 }
             }
+            for (int i = 0; i < q.Count; i++)
+            {
+                double[] ddd = new double[3];
+
+                ddd[0] = q[i][0] * qdddpoints[i].X;
+                ddd[1] = q[i][1] * qdddpoints[i].Y;
+                ddd[2] = q[i][2] * qdddpoints[i].Z;
+
+
+                qddd.Add(ddd[0] + qddd[1] + qddd[2]);
+
+
+            }
+
             bool done = false;
             List<double[]> qq = q;
             do
             {
-              
+
                 for (int j = 0; j < qq.Count; j += 3)
                 {
                     double[,] qcurve = new double[3, 3];
@@ -70,9 +87,9 @@ namespace howto_WPF_3D_triangle_normals
                     qcurve[2, 1] = qq[j + 2][1];
                     qcurve[2, 2] = qq[j + 2][2];
 
-                    ddd[j] = 0;
-                    ddd[1] = 0;
-                    ddd[2] = 0;
+                    ddd[0] = qddd[j];
+                    ddd[1] = qddd[j + 1];
+                    ddd[2] = qddd[j + 2];
 
                     qsystem.Add(Interpolate.Quaficient(qcurve, ddd, 3));
                 }

@@ -362,9 +362,10 @@ namespace howto_WPF_3D_triangle_normals
                 bool a = exist(sss[k], xxxAddedClonies);
                 if (!a)
                 {
-                    if (getclonieslen(sss, sss[k], minr) > 0)
+                    double s = getclonieslen(sss, sss[k], minr);
+                    if (s > 0)
                     {
-                        double d = getclonieslen(sss, sss[k], minr);
+                        double d = s;
                         clonieslen = d;
                         i = k;
                         xxadd = false;

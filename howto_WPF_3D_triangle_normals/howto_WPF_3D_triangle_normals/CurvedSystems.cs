@@ -96,7 +96,9 @@ namespace howto_WPF_3D_triangle_normals
                 qq = qsystem;
                 qsystem.Clear();
             } while (qq.Count >= 3);
-            return qq[0];
+            if (qq.Count > 0)
+                return qq[0];
+            return null;
         }
         bool exist(Point3D ss, List<List<Point3D>> d)
         {

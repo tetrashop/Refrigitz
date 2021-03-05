@@ -631,6 +631,25 @@ namespace howto_WPF_3D_triangle_normals
             }
 
         }
+        static double  getAlphaperStringOfIndependentvars(String ind, List<List<double[]>> p0,int c,int l,int i,int j,int k)
+        {
+            double a = 0;
+            if (ind == "x")
+            {
+                a = (-1 * (j * p0[c][l][1] + k * p0[c][l][2])) / p0[c][l][0];
+            }
+            if (ind == "y")
+            {
+                a = (-1 * (i * p0[c][l][0] + k * p0[c][l][2])) / p0[c][l][1];
+
+            }
+            if (ind == "z")
+            {
+                a = (-1 * (j * p0[c][l][1] + j * p0[c][l][0])) / p0[c][l][2];
+
+            }
+            return a;
+        }
         public static void makeListExpand(ref List<Point3D> non, int minr)
         {
             CurvedSystems addpoint0 = new CurvedSystems(non);
@@ -659,7 +678,7 @@ namespace howto_WPF_3D_triangle_normals
                          {
                              for (int k = (int)disz; k < minz; k += minr)
                              {
-                                Point3D x = new Point3D(p0[c][l][0] * i, p0[c][l][1] * j, p0[c][l][2] * k);
+                                Point3D x = new Point3D(getAlphaperStringOfIndependentvars("x", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("y", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("z", p0, c, l, i, j, k));
                                 if (!(x.Z < minz || x.Z > maxz))
                                     non.Add(x);
                              }

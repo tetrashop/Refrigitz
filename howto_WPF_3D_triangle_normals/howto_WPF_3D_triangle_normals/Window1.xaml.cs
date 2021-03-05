@@ -423,7 +423,7 @@ namespace howto_WPF_3D_triangle_normals
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString()  + " points. with minrp0 " + minrp.ToString() );
                                 if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
                                 {
-                                    int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, System.Convert.ToDouble(gr.textBox1.Text)
+                                    int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, 1.0 //System.Convert.ToDouble(gr.textBox1.Text) / 3
                                       /// (minrp / minrp0)
                                       );
                                     if (xxxp00.Count > 1)
@@ -622,9 +622,9 @@ namespace howto_WPF_3D_triangle_normals
             double miny = minGetListY(non);
             double minz = minGetListZ(non);
           */
-            double disx =  0.0005;
-            double disy =  0.0005;
-            double disz =  0.0005;
+            double disx =  0.5;
+            double disy =  0.5;
+            double disz =  0.5;
             for (int i = 0; i < non.Count; i++)
             {
                 non[i] = new Point3D(non[i].X * disx, non[i].Y * disy, non[i].Z * disz);
@@ -659,14 +659,16 @@ namespace howto_WPF_3D_triangle_normals
                          {
                              for (int k = (int)disz; k < minz; k += minr)
                              {
-                                 non.Add(new Point3D(p0[c][l][0] * i, p0[c][l][1] * j, p0[c][l][2] * k));
+                                Point3D x = new Point3D(p0[c][l][0] * i, p0[c][l][1] * j, p0[c][l][2] * k);
+                                if (!(x.Z < minz || x.Z > maxz))
+                                    non.Add(x);
                              }
 
                          }
                      }
                  }
              }
-          
+            
             /*for (int c = 0; c < p0.Count; c++)
              {
                  for (int l = 0; l < p0[c].Count; l++)

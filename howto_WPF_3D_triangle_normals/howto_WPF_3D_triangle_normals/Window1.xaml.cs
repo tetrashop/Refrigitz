@@ -419,7 +419,7 @@ namespace howto_WPF_3D_triangle_normals
                                 makeListExpand(ref PointsAddp0, (int)minrp * System.Convert.ToInt32(gr.textBox1.Text));
                                 List<Point3D> xxxp00 = new List<Point3D>();
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString()  + " points. with minrp0 " + minrp0.ToString() );
-                                 minrp = minraddpoints(PointsAddp0);
+                                 //minrp = minraddpoints(PointsAddp0);
                                 int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, System.Convert.ToDouble(gr.textBox1.Text));
                                 if (xxxp00.Count > 1)
                                 {

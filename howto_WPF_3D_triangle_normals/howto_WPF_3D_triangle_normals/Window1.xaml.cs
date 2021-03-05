@@ -501,13 +501,16 @@ namespace howto_WPF_3D_triangle_normals
                                 double minr = minraddpoints(PointsAdd);
                                 List<Point3D[]> d = new List<Point3D[]>();
                                 List<Point3D> dd = new List<Point3D>();
-
+                                double max = PointsAdd.Count * PointsAdd.Count * PointsAdd.Count;
                                 for (int i = 0; i < PointsAdd.Count; i++)
                                 {
                                     for (int j = 0; j < PointsAdd.Count; j++)
                                     {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                                         for (int k = 0; k < PointsAdd.Count; k++)
                                         {
+                                            double ind= i * j * k;
+                                            za.Content = ((int)((ind / max) * 100)).ToString() + "%";
+                                            za.InvalidateVisual();
                                             if ((new Triangle()).boundry(i, j, k))
                                                 continue;
 

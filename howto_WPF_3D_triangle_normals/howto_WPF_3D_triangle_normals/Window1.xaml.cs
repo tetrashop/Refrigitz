@@ -419,15 +419,15 @@ namespace howto_WPF_3D_triangle_normals
                                 makeListExpand(ref PointsAddp0, (int)minrp * System.Convert.ToInt32(gr.textBox1.Text));
                                 List<Point3D> xxxp00 = new List<Point3D>();
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString()  + " points. with minrp0 " + minrp0.ToString() );
-                                /*int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, System.Convert.ToDouble(gr.textBox1.Text));
+                                 minrp = minraddpoints(PointsAddp0);
+                                int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, System.Convert.ToDouble(gr.textBox1.Text));
                                 if (xxxp00.Count > 1)
                                 {
                                     PointsAddp0 = xxxp00;
                                     MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points.");
-                                }*/
+                                }
                                 makeListFittness(ref PointsAddp0);
-                                makeListCenteralized(ref PointsAddp0);
-                                MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
+                                 MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();
                                 TheCamera.FieldOfView = 60;
@@ -627,7 +627,7 @@ namespace howto_WPF_3D_triangle_normals
         public static void makeListExpand(ref List<Point3D> non,int minr)
         {
             CurvedSystems addpoint0 = new CurvedSystems(non);
-            List<double[]> p0 = addpoint0.CreateQuficientofCurved();
+            List<List<double[]>> p0 = addpoint0.CreateQuficientofCurved();
             MessageBox.Show("queficients complete! p0: " + (p0 != null).ToString());
             double maxx = maxGetListX(non);
             double maxy = maxGetListY(non);
@@ -640,18 +640,21 @@ namespace howto_WPF_3D_triangle_normals
             double disx = -1 * (maxx - minx);
             double disy = -1 * (maxy - miny);
             double disz = -1 * (maxz - minz);
-            
-            for (int l = 0; l < p0.Count; l++)
-            {
-                for (int i = (int)disx; i < minx; i+=minr)
-                {
-                    for (int j = (int)disy; j < miny; j+=minr)
-                    {
-                        for (int k = (int)disz;k < minz; k+=minr)
-                        {
-                            non.Add(new Point3D(p0[l][0] * i, p0[l][1] * j, p0[l][2] * k));
-                        }
 
+            for (int c = 0; c < p0.Count; c++)
+            {
+                for (int l = 0; l < p0[c].Count; l++)
+                {
+                    for (int i = (int)disx; i < minx; i += minr)
+                    {
+                        for (int j = (int)disy; j < miny; j += minr)
+                        {
+                            for (int k = (int)disz; k < minz; k += minr)
+                            {
+                                non.Add(new Point3D(p0[c][l][0] * i, p0[c][l][1] * j, p0[c][l][2] * k));
+                            }
+
+                        }
                     }
                 }
             }

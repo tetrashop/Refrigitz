@@ -10,7 +10,6 @@ namespace howto_WPF_3D_triangle_normals
 {
     class CurvedSystems
     {
-        public List<double[]> qsystem = new List<double[]>();
         List<double[]> q = new List<double[]>();
         List<double> qddd = new List<double>();
         List<Point3D> qdddpoints = new List<Point3D>();
@@ -20,12 +19,13 @@ namespace howto_WPF_3D_triangle_normals
        List< List<double[]>> qlist = new List<List<double[]>>();
        List< List<double>> qdddlist = new List<List<double>>();
         List< List<Point3D>> qdddpointslist = new List<List<Point3D>>();
+        public List< List<double[]>> qsystemlist = new List<List<double[]>>();
         public CurvedSystems(List<Point3D> ss)
         {
             source = ss;
             listofssemipoints = getlistOfSemilineuniqe(ss);
         }
-        public List<double[]> CreateQuficientofCurved()
+        public List<List<double[]>> CreateQuficientofCurved()
         {
 
 
@@ -94,11 +94,13 @@ namespace howto_WPF_3D_triangle_normals
                 qdddlist.Add(qddd);
             }
 
-         
+
 
             for (int i = 0; i < qlist.Count; i++)
             {
                 List<double[]> qq = qlist[i];
+                List<double[]> qsystem = new List<double[]>();
+
                 for (int j = 0; j < qq.Count && j < qdddlist[i].Count; j += 3)
                 {
                     if (qq.Count >= j + 3 && qddd.Count >= j + 3)
@@ -128,13 +130,13 @@ namespace howto_WPF_3D_triangle_normals
                         System.Windows.MessageBox.Show("Not enough regresion system data;");
                         //return null;
                     }
-                    ;
+                    qsystemlist.Add(qsystem);
                 }
 
 
             }
-            if (qsystem.Count > 0)
-                return qsystem;
+            if (qsystemlist.Count > 0)
+                return qsystemlist;
 
             return null;
         }

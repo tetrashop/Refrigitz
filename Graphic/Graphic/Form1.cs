@@ -838,9 +838,7 @@ namespace WindowsApplication1
             {
                 a = new _2dTo3D(aa);
             });
-            output.Wait();
-
-            //textBox1.Text = System.Convert.ToString(((int)(System.Convert.ToDouble(textBox1.Text) * (((double)(a.maxr - a.minr) / (double)a.maxr)))));
+            output.Wait();                                                                                                 
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
             if (pictureBox24.Image != null)

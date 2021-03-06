@@ -20,6 +20,7 @@ namespace howto_WPF_3D_triangle_normals
        List< List<double>> qdddlist = new List<List<double>>();
         List< List<Point3D>> qdddpointslist = new List<List<Point3D>>();
         public List< List<double[]>> qsystemlist = new List<List<double[]>>();
+        public List<List<Point3D>> qsystemlistaddpoints = new List<List<Point3D>>();
         public CurvedSystems(List<Point3D> ss)
         {
             source = ss;
@@ -100,6 +101,8 @@ namespace howto_WPF_3D_triangle_normals
             {
                 List<double[]> qq = qlist[i];
                 List<double[]> qsystem = new List<double[]>();
+                List<Point3D> qsystempoi = new List<Point3D>();
+
 
                 for (int j = 0; j < qq.Count && j < qdddlist[i].Count; j += 3)
                 {
@@ -124,6 +127,7 @@ namespace howto_WPF_3D_triangle_normals
                         ddd[2] = qdddlist[i][j + 2];
 
                         qsystem.Add(Interpolate.Quaficient(qcurve, ddd, 3));
+                        qsystempoi.Add(new Point3D(qdddlist[i][j], qdddlist[i][j + 1], qdddlist[i][j + 2]));
                     }
                     else
                     {
@@ -131,6 +135,7 @@ namespace howto_WPF_3D_triangle_normals
                         //return null;
                     }
                     qsystemlist.Add(qsystem);
+                    qsystemlistaddpoints.Add(qsystempoi);
                 }
 
 

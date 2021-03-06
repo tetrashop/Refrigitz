@@ -425,7 +425,7 @@ namespace howto_WPF_3D_triangle_normals
 
                                 }
                                 double minrp = minraddpoints(PointsAddp0);
-                                makeListExpand(ref PointsAddp0, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
+                                makeListExpand(ref PointsAddp0,ref PointsAddp0Conected, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
                                     );
                                 List<Point3D> xxxp00 = new List<Point3D>();
                                 List<int[]> xxxp00C = new List<int[]>();
@@ -664,7 +664,49 @@ namespace howto_WPF_3D_triangle_normals
             }
             return a;
         }
-        public static void makeListExpand(ref List<Point3D> non, int minr)
+        static int[] SetneighboursSt(int i, int j, int minx, int miny, int maxx, int maxy, int minr)
+        {
+            int[] st = new int[18];
+
+            if (i > minr && j > minr)
+            {
+
+                if (i < maxx - minr && j < maxy - minr)
+                {
+
+                    st[0] = i;
+                    st[1] = j;
+
+                    st[2] = i - minr;
+                    st[3] = j;
+
+                    st[4] = i + minr;
+                    st[5] = j;
+
+                    st[6] = i;
+                    st[7] = j - minr;
+
+                    st[8] = i;
+                    st[9] = j + minr;
+
+                    st[10] = i - minr;
+                    st[11] = j - minr;
+
+                    st[12] = i - minr;
+                    st[13] = j + minr;
+
+                    st[14] = i + minr;
+                    st[15] = j - minr;
+
+                    st[16] = i + minr;
+                    st[17] = j + minr;
+
+                }
+            }
+            return st;
+        }
+
+        public static void makeListExpand(ref List<Point3D> non, ref List<int[]> nonCon, int minr)
         {
             CurvedSystems addpoint0 = new CurvedSystems(non);
             List<List<double[]>> p0 = addpoint0.CreateQuficientofCurved();
@@ -694,8 +736,15 @@ namespace howto_WPF_3D_triangle_normals
                              {
                                 Point3D x = new Point3D(getAlphaperStringOfIndependentvars("x", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("y", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("z", p0, c, l, i, j, k));
                                 if (!(x.Z < minz || x.Z > maxz))
+                                { 
+                                    //int f = non.IndexOf(addpoint0.qsystemlistaddpoints[c][l]);
+                                    //nonCon.Add();(?)
                                     non.Add(x);
-                             }
+                                    nonCon.Add(SetneighboursSt(i, j, (int)disx, (int)disy, (int)minx, (int)minx, minr));
+
+                                }
+
+                            }
 
                          }
                      }

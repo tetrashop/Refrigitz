@@ -369,6 +369,8 @@ namespace howto_WPF_3D_triangle_normals
                             //list found of 3d PointsAdd
                             List<Point3D> PointsAddp0 = new List<Point3D>();
                             List<Point3D> PointsAddp1 = new List<Point3D>();
+                            List<int[]> PointsAddp0Conected = new List<int[]>();
+                            List<int[]> PointsAddp1Conected = new List<int[]>();
                             for (int i = 0; i < gr.a.cx; i++)
                             {
                                 for (int j = 0; j < gr.a.cyp0; j++)
@@ -377,6 +379,7 @@ namespace howto_WPF_3D_triangle_normals
                                     {
                                         Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
                                         PointsAddp0.Add(s);
+                                        PointsAddp0Conected.Add(gr.a.st[i][j]);
                                     }
                                 }
                             }
@@ -388,6 +391,7 @@ namespace howto_WPF_3D_triangle_normals
                                     {
                                         Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
                                         PointsAddp1.Add(s);
+                                        PointsAddp1Conected.Add(gr.a.st[i][j]);
                                     }
                                 }
                             }
@@ -398,12 +402,17 @@ namespace howto_WPF_3D_triangle_normals
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
                                 if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
                                 {
+
                                     List<Point3D> xxxp0 = new List<Point3D>();
 
                                     List<Point3D> xxxp1 = new List<Point3D>();
 
-                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0, System.Convert.ToDouble(gr.textBox1.Text));
-                                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1, System.Convert.ToDouble(gr.textBox1.Text));
+                                    List<int[]> xxxp0C = new List<int[]>();
+
+                                    List<int[]> xxxp1C = new List<int[]>();
+
+                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0,ref PointsAddp0Conected, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0,ref xxxp0C, System.Convert.ToDouble(gr.textBox1.Text));
+                                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1,ref PointsAddp1Conected, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1,ref xxxp1C, System.Convert.ToDouble(gr.textBox1.Text));
                                     if (xxxp0.Count > 1)
                                     {
                                         PointsAddp0 = xxxp0;
@@ -419,16 +428,18 @@ namespace howto_WPF_3D_triangle_normals
                                 makeListExpand(ref PointsAddp0, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
                                     );
                                 List<Point3D> xxxp00 = new List<Point3D>();
+                                List<int[]> xxxp00C = new List<int[]>();
                                 minrp = minraddpoints(PointsAddp0);
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString()  + " points. with minrp0 " + minrp.ToString() );
                                 if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
                                 {
-                                    int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, 1.0 //System.Convert.ToDouble(gr.textBox1.Text) / 3
+                                    int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0,ref PointsAddp0Conected ,minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00,ref xxxp00C, 1.0 //System.Convert.ToDouble(gr.textBox1.Text) / 3
                                       /// (minrp / minrp0)
                                       );
                                     if (xxxp00.Count > 1)
                                     {
                                         PointsAddp0 = xxxp00;
+                                        PointsAddp0Conected = xxxp00C;
                                         MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points.");
                                     }
                                     else MessageBox.Show("no reductio p0! " + PointsAddp0.Count.ToString());

@@ -377,7 +377,7 @@ namespace howto_WPF_3D_triangle_normalsuser
             }
             return true;
         }
-        void reductionSetOfPointsToNumberOfSetsFull(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx)
+        void reductionSetOfPointsToNumberOfSetsFull(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<int[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<int[]> xxxCon)
         {
 
             double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
@@ -390,6 +390,8 @@ namespace howto_WPF_3D_triangle_normalsuser
                     {
                         xxadd = true;
                         xxx.Add(p0);
+                        int ff = sss.IndexOf(p0);
+                        xxxCon.Add(sssCon[ff]);
                     }
                 }
                 add = true;
@@ -397,14 +399,20 @@ namespace howto_WPF_3D_triangle_normalsuser
                     xxxAddedClonies[index].Add(p0);
                 if (!(b))
                     xxxAddedClonies[index].Add(p1);
+                int f = sss.IndexOf(p0);
                 sss.Remove(p0);
+                sssCon.RemoveAt(f);
+
+                f = sss.IndexOf(p1);
                 sss.Remove(p1);
+                sssCon.RemoveAt(f);
+
                 p = p0;
                 done = true;
             }
 
         }
-        void reductionSetOfPointsToNumberOfSetsHulfPO(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx)
+        void reductionSetOfPointsToNumberOfSetsHulfPO(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<int[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<int[]> xxxCon)
 
         {
             if (p0 != p1 && (!(a || b)))
@@ -415,10 +423,20 @@ namespace howto_WPF_3D_triangle_normalsuser
                     if (count <= clonieslen)
                     {
                         if (!(a))
+                        {
                             xxxAddedClonies[index].Add(p0);
+                        }
                         if (!(b))
+                        {
+
                             xxxAddedClonies[index].Add(p1);
-                        sss.Remove(p1);
+                        }
+
+                        int ff = sss.IndexOf(p0);
+                        sss.Remove(p0);
+
+                        xxxCon.RemoveAt(ff);
+
                         done = true;
                         p = p1;
                         done = true;
@@ -430,7 +448,7 @@ namespace howto_WPF_3D_triangle_normalsuser
 
             }
         }
-        void reductionSetOfPointsToNumberOfSetsHulfPT(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx)
+        void reductionSetOfPointsToNumberOfSetsHulfPT(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<int[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<int[]> xxxCon)
 
         {
             if (p0 != p1 && (!(a || b)))
@@ -441,10 +459,21 @@ namespace howto_WPF_3D_triangle_normalsuser
                     if (count <= clonieslen)
                     {
                         if (!(a))
+                        {
                             xxxAddedClonies[index].Add(p0);
+                        }
                         if (!(b))
+                        {
+
                             xxxAddedClonies[index].Add(p1);
+                        }
+
+                        int f = sss.IndexOf(p1);
                         sss.Remove(p1);
+
+                        xxxCon.RemoveAt(f);
+
+
                         p = p0;
                         done = true;
                         double d = getclonieslen(sss, p1, minr);
@@ -454,13 +483,15 @@ namespace howto_WPF_3D_triangle_normalsuser
                 }
             }
         }
-        List<Point3D> reductionSetOfPointsToNumberOfSets(List<Point3D> s)
+        List<Point3D> reductionSetOfPointsToNumberOfSets(List<Point3D> s, ref List<int[]> sCon, ref List<int[]> xCon)
         {
             bool reduced = false;
             List<Point3D> sss = s;
+            List<int[]> sssCon = sCon;
             Point3D p = new Point3D(-1, -1, -1);
 
             List<Point3D> xxx = new List<Point3D>();
+            List<int[]> xxxCon = xCon;
             List<List<Point3D>> xxxAddedClonies = new List<List<Point3D>>();
             xxxAddedClonies.Add(new List<Point3D>());
             double minr = minraddpoints(s);
@@ -504,7 +535,7 @@ namespace howto_WPF_3D_triangle_normalsuser
                                 if ((!(a || b)) //&& (!add)
                                 )
                                 {
-                                    reductionSetOfPointsToNumberOfSetsFull(ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx);
+                                    reductionSetOfPointsToNumberOfSetsFull(ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
                                 }
                                 else
                                 {
@@ -513,14 +544,14 @@ namespace howto_WPF_3D_triangle_normalsuser
                                     a = exist(p0, xxxAddedClonies);
                                     b = exist(p1, xxxAddedClonies);
 
-                                    reductionSetOfPointsToNumberOfSetsHulfPO(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx);
+                                    reductionSetOfPointsToNumberOfSetsHulfPO(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
 
                                     p0 = p;
                                     p1 = pp1;
                                     a = exist(p0, xxxAddedClonies);
                                     b = exist(p1, xxxAddedClonies);
 
-                                    reductionSetOfPointsToNumberOfSetsHulfPT(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx);
+                                    reductionSetOfPointsToNumberOfSetsHulfPT(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
 
                                 }
                             }
@@ -533,82 +564,86 @@ namespace howto_WPF_3D_triangle_normalsuser
                 index++;
                 p = new Point3D(-1, -1, -1);
             } while (sss.Count > 0 && done);
-
+            xCon = xxxCon;
             return xxx;
         }
-        public int reduceCountOfpoints(ref List<Point3D> sss, double ht, double percent, ref List<Point3D> xxx, double bl)
+        public int reduceCountOfpoints(ref List<Point3D> sss, ref List<int[]> sCon, double ht, double percent, ref List<Point3D> xxx, ref List<int[]> xCon, double bl)
         {
             block = bl;
-            xxx = reductionSetOfPointsToNumberOfSets(sss);
+            List<int[]> sssCon = sCon;
+            List<int[]> xxxCon = xCon;
+            xxx = reductionSetOfPointsToNumberOfSets(sss, ref sssCon, ref xxxCon);
+
+            xCon = xxxCon;
+            sCon = sssCon;
             if (xxx.Count >= 1)
                 return xxx.Count;
 
             /*
 
+            double countb = sss.Count;
 
-       double countb = sss.Count;
+            List<Point3D[]> d = new List<Point3D[]>();
+            bool Done = false;
+            List<Point3D> s = sss;
+            do
+            {
+                Done = false;
+                var output = Task.Factory.StartNew(() =>
+                {
 
-       List<Point3D[]> d = new List<Point3D[]>();
-       bool Done = false;
-       List<Point3D> s = sss;
-       do
-       {
-           Done = false;
-           var output = Task.Factory.StartNew(() =>
-           {
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
+                    {
 
-               ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
-               {
+                        if (boundryout(i, 0, 0, 0, s.Count, countb, percent))
+                            return;
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
+                        {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                            if (boundryout(i, j, 0, 0, s.Count, countb, percent))
+                                return;
+                            ParallelOptions ppoio = new ParallelOptions(); ppoioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
+                            {            //external point
+                                if (boundryout(i, j, k, 0, s.Count, countb, percent))
+                                    return;
+                                ParallelOptions ppopio = new ParallelOptions(); ppopioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, b =>
+                                {
+                                    if (boundry(i, j, k, b, s.Count, countb, percent))
+                                        return;
+                                    else
+                                    if (i < s.Count && j < s.Count && k < s.Count && b < s.Count)
+                                    {
+                                        Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
+                                        Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
+                                        Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
+                                        if (!distancereduced(aa, bb, cc, ref Done, ref s, ht, i, j, k))
+                                        {
+                                            Triangle at = new Triangle(aa, bb, cc);
 
-                   if (boundryout(i, 0, 0, 0, s.Count, countb, percent))
-                       return;
-                   ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
-                   {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                       if (boundryout(i, j, 0, 0, s.Count, countb, percent))
-                           return;
-                       ParallelOptions ppoio = new ParallelOptions(); ppoioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
-                       {            //external point
-                           if (boundryout(i, j, k, 0, s.Count, countb, percent))
-                               return;
-                           ParallelOptions ppopio = new ParallelOptions(); ppopioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, b =>
-                           {
-                               if (boundry(i, j, k, b, s.Count, countb, percent))
-                                   return;
-                               else
-                               if (i < s.Count && j < s.Count && k < s.Count && b < s.Count)
-                               {
-                                   Point3D aa = new Point3D(s[i].X, s[i].Y, s[i].Z);
-                                   Point3D bb = new Point3D(s[j].X, s[j].Y, s[j].Z);
-                                   Point3D cc = new Point3D(s[k].X, s[k].Y, s[k].Z);
-                                   if (!distancereduced(aa, bb, cc, ref Done, ref s, ht, i, j, k))
-                                   {
-                                       Triangle at = new Triangle(aa, bb, cc);
+                                            Point3D[] ss = new Point3D[3];
+                                            ss[0] = new Point3D(aa.X, aa.Y, aa.Z);
+                                            ss[1] = new Point3D(bb.X, bb.Y, bb.Z);
+                                            ss[2] = new Point3D(cc.X, cc.Y, cc.Z);
+                                            ss = ImprovmentSort.Do(ss);
+                                            if (!exist(ss, d))
+                                            {
+                                                d.Add(ss);
 
-                                       Point3D[] ss = new Point3D[3];
-                                       ss[0] = new Point3D(aa.X, aa.Y, aa.Z);
-                                       ss[1] = new Point3D(bb.X, bb.Y, bb.Z);
-                                       ss[2] = new Point3D(cc.X, cc.Y, cc.Z);
-                                       ss = ImprovmentSort.Do(ss);
-                                       if (!exist(ss, d))
-                                       {
-                                           d.Add(ss);
+                                                removeitem(at, ref s, i, b, j, k, ref Done, ht);
+                                            }
+                                        }
+                                    }
+                                });
+                            });
+                        });
+                    });
+                });
+                output.Wait();
 
-                                           removeitem(at, ref s, i, b, j, k, ref Done, ht);
-                                       }
-                                   }
-                               }
-                           });
-                       });
-                   });
-               });
-           });
-           output.Wait();
-
-       } while ((double)s.Count / countb >= percent && (Done));
-       sss = s;*/
+            } while ((double)s.Count / countb >= percent && (Done));
+            sss = s;*/
             return sss.Count;
-        }     //create list of semi curved; continusly
-              //create list of semi curved; continusly
+        }
+        //create list of semi curved; continusly
 
         List<List<Point3D>> getlistOfSemilineuniqe(List<Point3D> s)
         {

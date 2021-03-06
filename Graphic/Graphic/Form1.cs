@@ -1078,7 +1078,7 @@ namespace WindowsApplication1
                     if ((a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3 != 0)
                     {
                         Point3D s = new Point3D(i, j, (a.c[i, j, 0] + a.c[i, j, 1] + a.c[i, j, 2]) / 3);
-                        if (!exist(s, PointsAddp0))
+                        if (exist(s, PointsAddp0))
                         {
                             a.c[i, j, 0] = 0;
                             a.c[i, j, 1] = 0;

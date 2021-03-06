@@ -1042,7 +1042,7 @@ namespace WindowsApplication1
 
             }
         }
-        void addingpoints(ref List<Point3D> PointsAddp0,ref List<int[]> PointsAddp0Conected, ref List<Point3D> PointsAddp1,ref List<int[]> PointsAddp1Conected)
+        void addingpoints(ref List<Point3D> PointsAddp0,ref List<double[]> PointsAddp0Conected, ref List<Point3D> PointsAddp1,ref List<double[]> PointsAddp1Conected)
         {
             for (int i = 0; i < a.cx; i++)
             {
@@ -1108,8 +1108,8 @@ namespace WindowsApplication1
         {
             List<Point3D> PointsAddp0 = new List<Point3D>();
             List<Point3D> PointsAddp1 = new List<Point3D>();
-            List<int[]> PointsAddp0Conected = new List<int[]>();
-            List<int[]> PointsAddp1Conected = new List<int[]>();
+            List<double[]> PointsAddp0Conected = new List<double[]>();
+            List<double[]> PointsAddp1Conected = new List<double[]>();
             addingpoints(ref PointsAddp0,ref PointsAddp0Conected, ref PointsAddp1,ref PointsAddp0Conected);
             if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
             {
@@ -1122,9 +1122,9 @@ namespace WindowsApplication1
 
                     List<Point3D> xxxp1 = new List<Point3D>();
 
-                    List<int[]> xxxp0Con = new List<int[]>();
+                    List<double[]> xxxp0Con = new List<double[]>();
 
-                    List<int[]> xxxp1Con = new List<int[]>();
+                    List<double[]> xxxp1Con = new List<double[]>();
                     int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0,ref PointsAddp0Conected ,minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0,ref xxxp0Con, System.Convert.ToDouble(textBox1.Text));
                     f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1,ref PointsAddp1Conected, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1,ref xxxp1Con, System.Convert.ToDouble(textBox1.Text));
                     if (xxxp0.Count > 1)

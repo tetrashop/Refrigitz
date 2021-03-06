@@ -377,7 +377,7 @@ namespace howto_WPF_3D_triangle_normalsuser
             }
             return true;
         }
-        void reductionSetOfPointsToNumberOfSetsFull(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<int[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<int[]> xxxCon)
+        void reductionSetOfPointsToNumberOfSetsFull(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
         {
 
             double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
@@ -412,7 +412,7 @@ namespace howto_WPF_3D_triangle_normalsuser
             }
 
         }
-        void reductionSetOfPointsToNumberOfSetsHulfPO(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<int[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<int[]> xxxCon)
+        void reductionSetOfPointsToNumberOfSetsHulfPO(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
 
         {
             if (p0 != p1 && (!(a || b)))
@@ -448,7 +448,7 @@ namespace howto_WPF_3D_triangle_normalsuser
 
             }
         }
-        void reductionSetOfPointsToNumberOfSetsHulfPT(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<int[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<int[]> xxxCon)
+        void reductionSetOfPointsToNumberOfSetsHulfPT(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
 
         {
             if (p0 != p1 && (!(a || b)))
@@ -483,15 +483,15 @@ namespace howto_WPF_3D_triangle_normalsuser
                 }
             }
         }
-        List<Point3D> reductionSetOfPointsToNumberOfSets(List<Point3D> s, ref List<int[]> sCon, ref List<int[]> xCon)
+        List<Point3D> reductionSetOfPointsToNumberOfSets(List<Point3D> s, ref List<double[]> sCon, ref List<double[]> xCon)
         {
             bool reduced = false;
             List<Point3D> sss = s;
-            List<int[]> sssCon = sCon;
+            List<double[]> sssCon = sCon;
             Point3D p = new Point3D(-1, -1, -1);
 
             List<Point3D> xxx = new List<Point3D>();
-            List<int[]> xxxCon = xCon;
+            List<double[]> xxxCon = xCon;
             List<List<Point3D>> xxxAddedClonies = new List<List<Point3D>>();
             xxxAddedClonies.Add(new List<Point3D>());
             double minr = minraddpoints(s);
@@ -567,11 +567,11 @@ namespace howto_WPF_3D_triangle_normalsuser
             xCon = xxxCon;
             return xxx;
         }
-        public int reduceCountOfpoints(ref List<Point3D> sss, ref List<int[]> sCon, double ht, double percent, ref List<Point3D> xxx, ref List<int[]> xCon, double bl)
+        public int reduceCountOfpoints(ref List<Point3D> sss, ref List<double[]> sCon, double ht, double percent, ref List<Point3D> xxx, ref List<double[]> xCon, double bl)
         {
             block = bl;
-            List<int[]> sssCon = sCon;
-            List<int[]> xxxCon = xCon;
+            List<double[]> sssCon = sCon;
+            List<double[]> xxxCon = xCon;
             xxx = reductionSetOfPointsToNumberOfSets(sss, ref sssCon, ref xxxCon);
 
             xCon = xxxCon;

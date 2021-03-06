@@ -519,8 +519,8 @@ namespace howto_WPF_3D_triangle_normals
                                             ss[1] = PointsAdd[j];
                                             ss[2] = PointsAdd[k];
                                             ss = ImprovmentSort.Do(ss);
-                                            //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
-                                            //continue;
+                                            if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
+                                            continue;
                                             if (!exist(ss, d))
                                             {
                                                 d.Add(ss);

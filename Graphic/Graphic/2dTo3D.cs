@@ -15,6 +15,8 @@ namespace WindowsApplication1
 {
     public class _2dTo3D
     {
+        int cxC = -1, cyC = -1, czC= -1;
+        public List<List<int[]>> st = new List<List<int[]>>();
         public bool _3DReady = false;
         Image a;
         public Image ar;
@@ -50,6 +52,64 @@ namespace WindowsApplication1
             }
             return s;
         }
+        void SetneighboursSt(Image a, int i, int j, int maxx, int maxy)
+        {
+          
+
+            if (i > 0 && j > 0)
+            {
+
+                if (i < maxx - 1 && j < maxy - 1 )
+                {
+                    if (System.Convert.ToInt32(GetK(a, i, j, 0)) + System.Convert.ToInt32(GetK(a, i, j, 1)) + System.Convert.ToInt32(GetK(a, i, j, 2)) > 0)
+                    {
+                        st[i][j][0] = i;
+                        st[i][j][1] = j;
+                    }
+                    if (System.Convert.ToInt32(GetK(a, i - 1, j, 0)) + System.Convert.ToInt32(GetK(a, i - 1, j, 1)) + System.Convert.ToInt32(GetK(a, i - 1, j, 2)) > 0)
+                    {
+                        st[i][j][2] = i - 1;
+                        st[i][j][3] = j;
+                    }
+                    if (System.Convert.ToInt32(GetK(a, i + 1, j, 0)) + System.Convert.ToInt32(GetK(a, i + 1, j, 1)) + System.Convert.ToInt32(GetK(a, i + 1, j, 2)) > 0)
+                    {
+                        st[i][j][4] = i + 1;
+                        st[i][j][5] = j;
+                    }
+                    if (System.Convert.ToInt32(GetK(a, i, j - 1, 0)) + System.Convert.ToInt32(GetK(a, i, j - 1, 1)) + System.Convert.ToInt32(GetK(a, i, j - 1, 2)) > 0)
+                    {
+                        st[i][j][6] = i;
+                        st[i][j][7] = j - 1;
+                    }
+                    if (System.Convert.ToInt32(GetK(a, i, j + 1, 0)) + System.Convert.ToInt32(GetK(a, i, j + 1, 1)) + System.Convert.ToInt32(GetK(a, i, j + 1, 2)) > 0)
+                    {
+                        st[i][j][8] = i;
+                        st[i][j][9] = j + 1;
+                    }
+                    if (System.Convert.ToInt32(GetK(a, i - 1, j - 1, 0)) + System.Convert.ToInt32(GetK(a, i - 1, j - 1, 1)) + System.Convert.ToInt32(GetK(a, i - 1, j - 1, 2)) > 0)
+                    {
+                        st[i][j][10] = i - 1;
+                        st[i][j][11] = j - 1;
+                    }
+                    if (System.Convert.ToInt32(GetK(a, i - 1, j + 1, 0)) + System.Convert.ToInt32(GetK(a, i - 1, j + 1, 1)) + System.Convert.ToInt32(GetK(a, i - 1, j + 1, 2)) > 0)
+                    {
+                        st[i][j][12] = i - 1;
+                        st[i][j][13] = j + 1;
+                    }
+                    if (System.Convert.ToInt32(GetK(a, i + 1, j - 1, 0)) + System.Convert.ToInt32(GetK(a, i + 1, j - 1, 1)) + System.Convert.ToInt32(GetK(a, i + 1, j - 1, 2)) > 0)
+                    {
+                        st[i][j][14] = i + 1;
+                        st[i][j][15] = j - 1;
+                    }
+                    if (System.Convert.ToInt32(GetK(a, i + 1, j + 1, 0)) + System.Convert.ToInt32(GetK(a, i + 1, j + 1, 1)) + System.Convert.ToInt32(GetK(a, i + 1, j + 1, 2)) > 0)
+                    {
+                        st[i][j][16] = i + 1;
+                        st[i][j][17] = j + 1;
+                    }
+                }
+            }
+            return ;
+        }
         void Threaadcal(int i, int j, int k, int ii, int jj)
         {
             lock (c)
@@ -70,10 +130,20 @@ namespace WindowsApplication1
                 {
                     try
                     {
+                        int cxT = (maxr - minr) * ii + (int)dr;
+                        int cyT1 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] + 2.0));
+                        int cyT2 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0));
+
                         if ((ii + jj) % 2 == 0)
-                            c[(maxr - minr) * ii + (int)dr, (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] + 2.0)), k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
+                        {
+                           c[cxT, cyT1, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
+                            SetneighboursSt(a, cxT, cyT1, cxC, cyC);
+                        }
                         else
-                            c[(maxr - minr) * ii + (int)dr, (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0)), k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
+                        {
+                            c[cxT, cyT2, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
+                            SetneighboursSt(a, cxT, cyT2, cxC, cyC);
+                        }
                     }
                     catch (Exception t)
                     {
@@ -136,7 +206,18 @@ namespace WindowsApplication1
             cyp0 = (int)Math.Round((double)(maxteta - minteta) + (double)maxteta + 1.0);
             cyp1 = (int)Math.Round((double)(maxteta - minteta) * (double)2 + (double)maxteta + 1.0);
             //cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
-            c = new float[(int)((maxr - minr) * fg + (int)maxr + 1), (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0), 3];
+            cxC = (int)((maxr - minr) * fg + (int)maxr + 1);
+            cyC = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
+            czC = 3;
+            for(int i=0; i < cxC; i++)
+            {
+                st.Add(new List<int[]>());
+                for(int j = 0; j < cyC; j++)
+                {
+                    st[i].Add(new int[18]);
+                }
+            }
+            c = new float[cxC, cyC, czC];
             t = new int[b[0], b[1], 3];
             rr = new int[b[0], b[1], 3];
             f = new int[b[0], b[1], 3];

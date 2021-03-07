@@ -106,7 +106,7 @@ namespace howto_WPF_3D_triangle_normals
 
                 for (int j = 0; j < qq.Count && j < qdddlist[i].Count; j += 3)
                 {
-                    if (qq.Count >= j + 3 && qddd.Count >= j + 3)
+                    if (qq.Count >= j + 4 && qddd.Count >= j + 4)
                     {
                         double[] ddd = new double[3];
                         double[,] qcurve = new double[3, 3];

@@ -12,6 +12,7 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
+        int count = 70;
         bool go = false;
         bool[,] curvedallpoints = null;
 
@@ -677,111 +678,115 @@ namespace WindowsApplication1
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
+            go = true;
             elim = true;
         }
 
         private void pictureBox24_Click(object sender, MouseEventArgs e)
         {
-            if (go)
+            try
             {
-                if (mouseclick)
-                    return;
-                if (Colorset)
+                if (go)
                 {
-                    if (elim)
+                    if (mouseclick)
+                        return;
+                    if (Colorset)
                     {
-                        mouseclick = true;
-                        int x = e.X;
-                        int y = e.Y;
-
-                        x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                        y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
-                        List<Color> ss = new List<Color>();
-                        for (int r = 0; r < 5; r++)
+                        if (elim)
                         {
-                            for (int t = 0; t < Math.PI * 2; t++)
-                            {
-                                Color d = (pictureBox24.Image as Bitmap).GetPixel(x + (int)(r * Math.Cos(t)), y + (int)(r * Math.Sin(t)));
-                                if (!ss.Contains(d))
-                                    ss.Add(d);
-                            }
-                        }
-                        Graphics g = Graphics.FromImage(pictureBox24.Image);
+                            mouseclick = true;
+                            int x = e.X;
+                            int y = e.Y;
 
-                        for (int i = 0; i < pictureBox24.Image.Width; i++)
-                        {
-                            for (int j = 0; j < pictureBox24.Image.Height; j++)
+                            x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                            y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                            List<Color> ss = new List<Color>();
+                            for (int r = 0; r < 5; r++)
                             {
-                                Color d = (pictureBox24.Image as Bitmap).GetPixel(i, j);
-
-                                for (int b = 0; b < ss.Count; b++)
+                                for (int t = 0; t < Math.PI * 2; t++)
                                 {
-                                    if (d == ss[b])
+                                    Color d = (pictureBox24.Image as Bitmap).GetPixel(x + (int)(r * Math.Cos(t)), y + (int)(r * Math.Sin(t)));
+                                    if (!ss.Contains(d))
+                                        ss.Add(d);
+                                }
+                            }
+                            Graphics g = Graphics.FromImage(pictureBox24.Image);
+
+                            for (int i = 0; i < pictureBox24.Image.Width; i++)
+                            {
+                                for (int j = 0; j < pictureBox24.Image.Height; j++)
+                                {
+                                    Color d = (pictureBox24.Image as Bitmap).GetPixel(i, j);
+
+                                    for (int b = 0; b < ss.Count; b++)
+                                    {
+                                        if (d == ss[b])
+                                        {
+                                            (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
+                                            g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                                            g.Save();
+                                        }
+                                    }
+
+                                }
+                            }
+                            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                            pictureBox24.Visible = true;
+                            pictureBox24.Refresh();
+                            pictureBox24.Update();
+                            pictureBox24.Invalidate();
+                            mouseclick = false;
+                            elim = false;
+                            Colorset = false;
+                        }
+                    }
+                    else
+                    {
+                        if (elim)
+                        {
+                            int x = e.X;
+                            int y = e.Y;
+
+                            x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                            y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+
+                            Color s = (pictureBox24.Image as Bitmap).GetPixel(x, y);
+                            Graphics g = Graphics.FromImage(pictureBox24.Image);
+                            for (int i = 0; i < pictureBox24.Image.Width; i++)
+                            {
+                                for (int j = 0; j < pictureBox24.Image.Height; j++)
+                                {
+
+                                    if ((pictureBox24.Image as Bitmap).GetPixel(i, j) == s)
                                     {
                                         (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
                                         g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
                                         g.Save();
                                     }
-                                }
 
+
+                                }
                             }
+                            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                            pictureBox24.Visible = true;
+                            pictureBox24.Refresh();
+                            pictureBox24.Update();
+                            pictureBox24.Invalidate();
                         }
-                        pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                        pictureBox24.Visible = true;
-                        pictureBox24.Refresh();
-                        pictureBox24.Update();
-                        pictureBox24.Invalidate();
-                        mouseclick = false;
-                        elim = false;
-                        Colorset = false;
+
                     }
-                }
-                else
-                {
-                    if (elim)
+                    if (curved)
                     {
-                        int x = e.X;
-                        int y = e.Y;
+                        float x = (float)e.X;
+                        float y = (float)e.Y;
 
-                        x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                        y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
-
-                        Color s = (pictureBox24.Image as Bitmap).GetPixel(x, y);
-                        Graphics g = Graphics.FromImage(pictureBox24.Image);
-                        for (int i = 0; i < pictureBox24.Image.Width; i++)
-                        {
-                            for (int j = 0; j < pictureBox24.Image.Height; j++)
-                            {
-
-                                if ((pictureBox24.Image as Bitmap).GetPixel(i, j) == s)
-                                {
-                                    (pictureBox24.Image as Bitmap).SetPixel(i, j, Color.Black);
-                                    g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
-                                    g.Save();
-                                }
-
-
-                            }
-                        }
-                        pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                        pictureBox24.Visible = true;
-                        pictureBox24.Refresh();
-                        pictureBox24.Update();
-                        pictureBox24.Invalidate();
+                        x = ((float)e.X * (float)((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
+                        y = ((float)e.Y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
+                        curvedline[curvedlinelen] = new PointF(x, y);
+                        curvedlinelen++;
                     }
-
                 }
-                if (curved)
-                {
-                    float x = (float)e.X;
-                    float y = (float)e.Y;
-
-                    x = ((float)e.X * (float)((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
-                    y = ((float)e.Y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
-                    curvedline[curvedlinelen] = new PointF(x, y);
-                    curvedlinelen++;
-                }
-            }
+            }catch(Exception t) { }
         }
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -809,30 +814,39 @@ namespace WindowsApplication1
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-
-            object o = new object();
-            lock (o)
+            try
             {
-                Image b = Image.FromFile(openFileDialog1.FileName);
-                var output = Task.Factory.StartNew(() =>
-                {
-                    a = new _2dTo3D(b, true);
-                });
-                output.Wait();
+                openFileDialog1.ShowDialog();
 
-                object oo = new object();
-                lock (oo)
+                object o = new object();
+                lock (o)
                 {
-                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                    pictureBox24.Visible = true;
-                    pictureBox24.Image = b;
-                    pictureBox24.Refresh();
-                    pictureBox24.Update();
-                    pictureBox24.Invalidate();
-                    go = true;
+                    Image b = Image.FromFile(openFileDialog1.FileName);
+                    var output = Task.Factory.StartNew(() =>
+                    {
+                        a = new _2dTo3D(b, true);
+                    });
+                    output.Wait();
+
+                    if (a.x > 0)
+                        textBox1.Text = ((int)(a.x /35)).ToString();
+                    else
+                        textBox1.Text = "1";
+                    object oo = new object();
+                    lock (oo)
+                    {
+                        pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBox24.Visible = true;
+                        pictureBox24.Image = b;
+                        pictureBox24.Refresh();
+                        pictureBox24.Update();
+                        pictureBox24.Invalidate();
+                        
+                    }
                 }
+               
             }
+            catch (Exception t) { }
         }
 
         private void decreseResulotonCheckersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -852,6 +866,16 @@ namespace WindowsApplication1
         private void doToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Image aa = pictureBox24.Image;
+            if (a.x > count)
+            {
+                a.x = 0;
+                a = new _2dTo3D(aa, true);
+                if (a.x > count)
+                {
+                    MessageBox.Show("Reduced image size;Desired Less Than " + count.ToString() + "; Current : " + (a.x).ToString());
+                    return;
+                }
+            }
             var output = Task.Factory.StartNew(() =>
             {
                 if (a == null)
@@ -860,6 +884,11 @@ namespace WindowsApplication1
                     a._2dTo3D_reconstructed(aa);
             });
             output.Wait();
+            a.x /= 2;
+            if (a.x > 0)
+                textBox1.Text = ((int)(a.x /35)).ToString();
+            else
+                textBox1.Text = "1";
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
             if (pictureBox24.Image != null)
@@ -917,6 +946,10 @@ namespace WindowsApplication1
                     a = new _2dTo3D(b, true);
                 });
             }
+            if (a.x > 0)
+                textBox1.Text = ((int)(a.x /35)).ToString();
+            else
+                textBox1.Text = "1";
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox24.Visible = true;
             pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)((double)(pictureBox24.Image.Width) - ((double)(pictureBox24.Image.Width) * 0.1)), (int)((double)(pictureBox24.Image.Height) - ((double)(pictureBox24.Image.Height) * 0.1)))));
@@ -928,6 +961,7 @@ namespace WindowsApplication1
 
         private void eliminateSetOfColorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            go = true;
             elim = true;
             Colorset = true;
         }
@@ -937,91 +971,97 @@ namespace WindowsApplication1
             object o = new object();
             lock (o)
             {
-                if (go)
+                try
                 {
-                    if (a != null)
+                    if (go)
                     {
-                        if (Colorset)
+                        if (a != null)
                         {
-                            if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 30.0)
+                            if (Colorset)
                             {
-                                Image a = (Image)pictureBox24.Image.Clone();
+                                if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 30.0)
+                                {
+                                    Image a = (Image)pictureBox24.Image.Clone();
 
-                                Graphics g = Graphics.FromImage(a);
+                                    Graphics g = Graphics.FromImage(a);
 
-                                int x = e.X;
-                                int y = e.Y;
+                                    int x = e.X;
+                                    int y = e.Y;
 
-                                x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                                y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
-                                g.DrawEllipse(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), new Rectangle(x, y, -5, 5));
-                                pictureBox24.Image = a;
-                                g.Dispose();
+                                    x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                                    y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                                    g.DrawEllipse(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), new Rectangle(x, y, -5, 5));
+                                    pictureBox24.Image = a;
+                                    g.Dispose();
+                                }
+                                else
+                                {
+                                    time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+                                    pictureBox24.Image = (Image)at.Clone();
+                                }
                             }
                             else
                             {
-                                time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
-                                pictureBox24.Image = (Image)at.Clone();
-                            }
-                        }
-                        else
-                        {
-                            if (!curved)
-                            {
-                                time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
-
-                                object oo = new object();
-                                lock (oo)
+                                if (!curved)
                                 {
-                                    at = (Image)pictureBox24.Image.Clone();
+                                    time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+
+                                    object oo = new object();
+                                    lock (oo)
+                                    {
+                                        at = (Image)pictureBox24.Image.Clone();
+                                    }
                                 }
                             }
-                        }
 
-                        if (curved)
-                        {
-                            if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 30.0)
+                            if (curved)
                             {
-                                Image a = (Image)pictureBox24.Image.Clone();
-
-                                Graphics g = Graphics.FromImage(a);
-
-                                PointF[] s = new PointF[curvedlinelen];
-                                if (curvedlinelen > 1)
+                                if ((DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond - time <= 1000.0 / 30.0)
                                 {
-                                    for (int i = 0; i < curvedlinelen; i++)
-                                        s[i] = curvedline[i];
-                                    g.DrawLines(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), s);
-                                }
-                                pictureBox24.Image = a;
-                                g.Dispose();
+                                    Image a = (Image)pictureBox24.Image.Clone();
 
+                                    Graphics g = Graphics.FromImage(a);
+
+                                    PointF[] s = new PointF[curvedlinelen];
+                                    if (curvedlinelen > 1)
+                                    {
+                                        for (int i = 0; i < curvedlinelen; i++)
+                                            s[i] = curvedline[i];
+                                        g.DrawLines(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), s);
+                                    }
+                                    pictureBox24.Image = a;
+                                    g.Dispose();
+
+                                }
+                                else
+                                {
+                                    time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+
+                                    object oo = new object();
+                                    lock (oo)
+                                    {
+                                        at = (Image)pictureBox24.Image.Clone();
+                                    }
+                                }
                             }
                             else
                             {
-                                time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
-
-                                object oo = new object();
-                                lock (oo)
+                                if (!Colorset)
                                 {
-                                    at = (Image)pictureBox24.Image.Clone();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (!Colorset)
-                            {
-                                time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+                                    time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
 
-                                object oo = new object();
-                                lock (oo)
-                                {
-                                    at = (Image)pictureBox24.Image.Clone();
+                                    object oo = new object();
+                                    lock (oo)
+                                    {
+                                        at = (Image)pictureBox24.Image.Clone();
+                                    }
                                 }
                             }
                         }
                     }
+                }catch(Exception t)
+                {
+                    
                 }
             }
         }
@@ -1095,7 +1135,7 @@ namespace WindowsApplication1
 
             }
         }
-        void addingpoints(ref List<Point3D> PointsAddp0,ref List<double[]> PointsAddp0Conected, ref List<Point3D> PointsAddp1,ref List<double[]> PointsAddp1Conected)
+        void addingpoints(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<Point3D> PointsAddp1, ref List<double[]> PointsAddp1Conected)
         {
             for (int i = 0; i < a.cx; i++)
             {
@@ -1163,7 +1203,7 @@ namespace WindowsApplication1
             List<Point3D> PointsAddp1 = new List<Point3D>();
             List<double[]> PointsAddp0Conected = new List<double[]>();
             List<double[]> PointsAddp1Conected = new List<double[]>();
-            addingpoints(ref PointsAddp0,ref PointsAddp0Conected, ref PointsAddp1,ref PointsAddp0Conected);
+            addingpoints(ref PointsAddp0, ref PointsAddp0Conected, ref PointsAddp1, ref PointsAddp0Conected);
             if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
             {
                 double minrp0 = minraddpoints(PointsAddp0);
@@ -1178,8 +1218,8 @@ namespace WindowsApplication1
                     List<double[]> xxxp0Con = new List<double[]>();
 
                     List<double[]> xxxp1Con = new List<double[]>();
-                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0,ref PointsAddp0Conected ,minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0,ref xxxp0Con, System.Convert.ToDouble(textBox1.Text));
-                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1,ref PointsAddp1Conected, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1,ref xxxp1Con, System.Convert.ToDouble(textBox1.Text));
+                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0, ref xxxp0Con, System.Convert.ToDouble(textBox1.Text));
+                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, ref PointsAddp1Conected, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1, ref xxxp1Con, System.Convert.ToDouble(textBox1.Text));
                     if (xxxp0.Count > 1)
                     {
                         PointsAddp0 = xxxp0;
@@ -1336,7 +1376,7 @@ namespace WindowsApplication1
                             int[] nn = new int[2];
                             nn[0] = (int)x;
                             nn[1] = (int)y;
-                          
+
                             if (nn[0] < pictureBox24.Image.Width && nn[1] < pictureBox24.Image.Height)
                             {
                                 curvedallpoints[nn[0], nn[1]] = true;
@@ -1378,11 +1418,11 @@ namespace WindowsApplication1
             bool Is = true;
 
 
-            if (curvedallpoints[x,y])
+            if (curvedallpoints[x, y])
                 Is = false;
             return Is;
         }
-        bool D(float a,float b)
+        bool D(float a, float b)
         {
             if (System.Math.Abs(a - b) <= 3)
                 return true;
@@ -1390,59 +1430,62 @@ namespace WindowsApplication1
         }
         private void pictureBox24_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (go)
+            try
             {
-                if (mouseclick)
-                    return;
-                if (curvedlinelen > 0)
+                if (go)
                 {
-                    curvedline[curvedlinelen] = curvedline[0];
-                    /*rlen = 0;
-                    r = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];
-                    teta = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];
-                    region = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];*/
-                    isOutsideofCurvedInit();
-                    mouseclick = true;
-                    Graphics g = Graphics.FromImage(pictureBox24.Image);
-                    for (int i = 0; i < pictureBox24.Image.Width; i++)
+                    if (mouseclick)
+                        return;
+                    if (curvedlinelen > 0)
                     {
-                        for (int j = 0; j < pictureBox24.Image.Height; j++)
+                        curvedline[curvedlinelen] = curvedline[0];
+                        /*rlen = 0;
+                        r = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];
+                        teta = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];
+                        region = new float[pictureBox24.Image.Width * pictureBox24.Image.Height];*/
+                        isOutsideofCurvedInit();
+                        mouseclick = true;
+                        Graphics g = Graphics.FromImage(pictureBox24.Image);
+                        for (int i = 0; i < pictureBox24.Image.Width; i++)
                         {
-                            int x = i;
-                            int y = j;
-
-                            //x = (int)((float)x * (float)((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
-                            //y = (int)((float)y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
-                            if (isOutsideofCurved(x, y))
+                            for (int j = 0; j < pictureBox24.Image.Height; j++)
                             {
-                                (pictureBox24.Image as Bitmap).SetPixel(x, y, Color.Black);
-                                g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
-                                g.Save();
-                            }
-                            else
-                            {
-                                g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
-                                g.Save();
+                                int x = i;
+                                int y = j;
 
+                                //x = (int)((float)x * (float)((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
+                                //y = (int)((float)y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
+                                if (isOutsideofCurved(x, y))
+                                {
+                                    (pictureBox24.Image as Bitmap).SetPixel(x, y, Color.Black);
+                                    g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                                    g.Save();
+                                }
+                                else
+                                {
+                                    g.DrawImage((pictureBox24.Image as Bitmap), 0, 0, pictureBox24.Image.Width, pictureBox24.Image.Height);
+                                    g.Save();
+
+                                }
                             }
                         }
+                        pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBox24.Visible = true;
+
+                        pictureBox24.Refresh();
+                        pictureBox24.Update();
+                        pictureBox24.Invalidate();
+
                     }
-                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                    pictureBox24.Visible = true;
-
-                    pictureBox24.Refresh();
-                    pictureBox24.Update();
-                    pictureBox24.Invalidate();
-
+                    mouseclick = false;
+                    curved = false;
+                    curvedlinelen = 0;
+                    curvedline = new PointF[100000];
+                    pictureBox24.Cursor = Cursors.Default;
                 }
-                mouseclick = false;
-                curved = false;
-                curvedlinelen = 0;
-                curvedline = new PointF[100000];
-                pictureBox24.Cursor = Cursors.Default;
             }
+            catch (Exception t) { }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             ClickMouse = 0;

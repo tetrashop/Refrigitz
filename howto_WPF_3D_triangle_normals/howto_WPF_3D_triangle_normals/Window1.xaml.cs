@@ -322,6 +322,41 @@ namespace howto_WPF_3D_triangle_normals
             wih.Owner = gr.Handle;
             gr.Show();
         }
+        bool exist(Point3D ss, List<List<Point3D>> d)
+        {
+            if (d.Count == 0)
+                return false;
+
+            for (int i = 0; i < d.Count; i++)
+            {
+                for (int j = 0; j < d[i].Count; j++)
+                {
+
+                    if (ss.X == d[i][j].X && ss.Y == d[i][j].Y && ss.Z == d[i][j].Z)
+                        return true;
+                }
+            }
+            return false;
+        }
+        
+        bool exist(Point3D ss, List<Point3D> d)
+        {
+            if (d.Count == 0)
+                return false;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (ss.X == d[i].X && ss.Y == d[i].Y && ss.Z == d[i].Z)
+                    return true;
+            }
+            return false;
+        }
+        bool exist(Point3D ss, Point3D d)
+        {
+
+            if (ss.X == d.X && ss.Y == d.Y && ss.Z == d.Z)
+                return true;
+            return false;
+        }
         bool exist(Point3D[] ss, List<Point3D[]> d)
         {
             object o = new object();
@@ -463,6 +498,8 @@ namespace howto_WPF_3D_triangle_normals
                     if (gr.a.c[i, j, 0] != 0 || gr.a.c[i, j, 1] != 0 || gr.a.c[i, j, 2] != 0)
                     {
                         Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
+                        if (!exist(s, PointsAddp0))
+
                         PointsAddp0.Add(s);
                         PointsAddp0Conected.Add(gr.a.st[i][j]);
                     }
@@ -550,12 +587,32 @@ namespace howto_WPF_3D_triangle_normals
                             //continue;
                             if (!exist(ss, d))
                             {
-                                if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[1]))
+                                /*if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[1]))
                                     continue;
                                 if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[2]))
                                     continue;
                                 if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[1], ss[2]))
+                                    continue;*/
+                                bool s = true;
+                                var outputn = Task.Factory.StartNew(() =>
+                                {
+
+                                    Parallel.Invoke(() =>
+                                    {
+                                        s = s && IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[1]);
+                                    }, () =>
+                                    {
+                                        s = s && IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[2]);
+                                    }, () =>
+                                    {
+
+                                        s = s && IsNeigbour(PointsAddpConected, PointsAddp, ss[1], ss[2]);
+                                    });
+                                });
+                                outputn.Wait();
+                                if (!s)
                                     continue;
+
                                 d.Add(ss);
                                 if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
                                 {
@@ -748,14 +805,16 @@ namespace howto_WPF_3D_triangle_normals
 
 
 
-                                DrawTriangleParallel(PointsAdd, PointsAddp, max, PointsAddpConected, dd, d, mesh);
+                                //DrawTriangleParallel(PointsAdd, PointsAddp, max, PointsAddpConected, dd, d, mesh);
+
+                                DrawTriangle(PointsAdd, PointsAddp, max, PointsAddpConected,ref dd,ref d,ref mesh);
 
 
 
 
 
 
-                            // Make a mesh to hold the surface.
+                                // Make a mesh to hold the surface.
                                 Console.WriteLine("Surface: ");
                                 Console.WriteLine("    " + mesh.Positions.Count + " Points");
                                 Console.WriteLine("    " + mesh.TriangleIndices.Count / 3 + " triangles");

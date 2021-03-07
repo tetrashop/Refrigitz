@@ -10,6 +10,7 @@ namespace howto_WPF_3D_triangle_normals
 {
     class Triangle
     {
+
         double block = 4;
         double a, b, c, d;
         //normal of plate
@@ -49,7 +50,7 @@ namespace howto_WPF_3D_triangle_normals
 
             //create vectors contain plate
             Line l0 = new Line(p0, p1);
-            Line l1 = new Line(p0, p1);
+            Line l1 = new Line(p0, p2);
             //normals indices
             na = (l0.b * l1.c) - (l0.c * l1.b);
             nb = (l0.c * l1.a) - (l0.a * l1.c);
@@ -85,6 +86,44 @@ namespace howto_WPF_3D_triangle_normals
             double nc = ((-1 * t0.na) * l1.b) - ((-1 * t0.nb) * l1.a);
             return (na == nb) && (na == nc) & (na == 0);
 
+        }
+        bool exist(Point3D ss, List<List<Point3D>> d)
+        {
+            if (d.Count == 0)
+                return false;
+
+            for (int i = 0; i < d.Count; i++)
+            {
+                for (int j = 0; j < d[i].Count; j++)
+                {
+
+                    if (ss.X == d[i][j].X && ss.Y == d[i][j].Y && ss.Z == d[i][j].Z)
+                        return true;
+                }
+            }
+            return false;
+        }
+        bool exist(Point3D[] ss, List<Point3D[]> d)
+        {
+            if (d.Count == 0)
+                return false;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
+                    return true;
+            }
+            return false;
+        }
+        bool exist(Point3D ss, List<Point3D> d)
+        {
+            if (d.Count == 0)
+                return false;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (ss.X == d[i].X && ss.Y == d[i].Y && ss.Z == d[i].Z)
+                    return true;
+            }
+            return false;
         }
         bool exist(Point3D ss, Point3D d)
         {
@@ -127,33 +166,12 @@ namespace howto_WPF_3D_triangle_normals
                 return false;
             }
         }
-        bool exist(Point3D[] ss, List<Point3D[]> d)
-        {
-            if (d.Count == 0)
-                return false;
-            for (int i = 0; i < d.Count; i++)
-            {
-                if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
-                    return true;
-            }
-            return false;
-        }
-        bool exist(Point3D ss, List<Point3D> d)
-        {
-            if (d.Count == 0)
-                return false;
-            for (int i = 0; i < d.Count; i++)
-            {
-                if (ss.X == d[i].X && ss.Y == d[i].Y && ss.Z == d[i].Z)
-                    return true;
-            }
-            return false;
-        }
-        Point3D getd(Point3D p0, Point3D p1)
+          Point3D getd(Point3D p0, Point3D p1)
         {
             Line l0 = new Line(p0, p1);
             return new Point3D(p1.X + l0.a * 2, p1.Y + l0.b * 2, p1.Z + l0.c * 2);
         }
+
         bool boundry(int i, int j, int k, int b, int scount, double countb, double percent)
         {
             if (i == j)
@@ -168,7 +186,7 @@ namespace howto_WPF_3D_triangle_normals
                 return true;
             if (k == b)
                 return true;
-            if ((double)countb / (double)scount <= percent)
+            if ((double)countb / (double)scount < percent)
                 return true;
             if (b >= scount)
                 return true;
@@ -180,15 +198,18 @@ namespace howto_WPF_3D_triangle_normals
                 return true;
             return false;
         }
-        public bool boundry(int i, int j, int k)
+        bool boundryout(int i, int j, int k, int b, int scount, double countb, double percent)
         {
-            if (i == j)
+            if ((double)countb / (double)scount <= percent)
                 return true;
-            if (i == k)
+            if (b >= scount)
                 return true;
-            if (j == k)
+            if (k >= scount)
                 return true;
-
+            if (j >= scount)
+                return true;
+            if (i >= scount)
+                return true;
             return false;
         }
         public bool boundry(int i, int j, int k, int p)
@@ -208,28 +229,26 @@ namespace howto_WPF_3D_triangle_normals
 
             return false;
         }
+        public bool boundry(int i, int j, int k)
+        {
+            if (i == j)
+                return true;
+            if (i == k)
+                return true;
+            if (j == k)
+                return true;
+
+            return false;
+        }
         public bool boundryssscount(int i, int j, int ssscount)
         {
+            
             if (i == j)
                 return true;
 
             if (i >= ssscount)
                 return true;
             if (j >= ssscount)
-                return true;
-            return false;
-        }
-        bool boundryout(int i, int j, int k, int b, int scount, double countb, double percent)
-        {
-            if ((double)countb / (double)scount <= percent)
-                return true;
-            if (b >= scount)
-                return true;
-            if (k >= scount)
-                return true;
-            if (j >= scount)
-                return true;
-            if (i >= scount)
                 return true;
             return false;
         }
@@ -288,6 +307,7 @@ namespace howto_WPF_3D_triangle_normals
             }
 
         }
+
         double minraddpoints(List<Point3D> p0)
         {
             double r = double.MaxValue;
@@ -304,23 +324,7 @@ namespace howto_WPF_3D_triangle_normals
             }
             return r * block;
         }
-        bool exist(Point3D ss, List<List<Point3D>> d)
-        {
-            if (d.Count == 0)
-                return false;
-
-            for (int i = 0; i < d.Count; i++)
-            {
-                for (int j = 0; j < d[i].Count; j++)
-                {
-
-                    if (ss.X == d[i][j].X && ss.Y == d[i][j].Y && ss.Z == d[i][j].Z)
-                        return true;
-                }
-            }
-            return false;
-        }
-        double getclonieslen(List<Point3D> ss, Point3D d, double minr)
+         double getclonieslen(List<Point3D> ss, Point3D d, double minr)
         {
             Point3D p0 = d;
             List<Point3D> s = ss;
@@ -332,24 +336,48 @@ namespace howto_WPF_3D_triangle_normals
             {
                 if (boundryssscount(i, -1, s.Count))
                     return double.MaxValue;
+                getclonieslenInsideFor(i, ref m, ref clonieslen, ref add, ref s, ref p0, minr);
+            }
+            return Math.Sqrt(clonieslen);
+        }
+        void getclonieslenInsideFor(int i, ref double m, ref double clonieslen, ref List<Point3D> add, ref List<Point3D> s, ref Point3D p0, double minr)
+        {
+            object o = new object();
+            lock (o)
+            {
                 Point3D p1 = s[i];
                 if (!add.Contains(p1))
                 {
-                    double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
-                    if (count > 0 && count <= minr)
+                    getclonieslenInsideForInsideFirsIf(ref p1, ref m, ref clonieslen, ref add, ref s, ref p0, minr);
+                }
+            }
+        }
+        void getclonieslenInsideForInsideFirsIf(ref Point3D p1, ref double m, ref double clonieslen, ref List<Point3D> add, ref List<Point3D> s, ref Point3D p0, double minr)
+        {
+            object o = new object();
+            lock (o)
+            {
+                double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
+                if (count > 0 && count <= minr)
+                {
+                    if (clonieslen <= m * count)
                     {
-                        if (clonieslen <= m * count)
-                        {
-                            clonieslen = m * count;
-                            s.Remove(p0);
-                            p0 = p1;
-                            add.Add(p1);
-                            m++;
-                        }
+                        getclonieslenInsideForInsideSecondIf(count, ref p1, ref m, ref clonieslen, ref add, ref s, ref p0, minr);
                     }
                 }
             }
-            return Math.Sqrt(clonieslen);
+        }
+        void getclonieslenInsideForInsideSecondIf(double count,ref Point3D p1, ref double m, ref double clonieslen, ref List<Point3D> add, ref List<Point3D> s, ref Point3D p0, double minr)
+        {
+            object o = new object();
+            lock (o)
+            {
+                clonieslen = m * count;
+                s.Remove(p0);
+                p0 = p1;
+                add.Add(p1);
+                m++;
+            }
         }
         bool redductionConfiguration(ref List<Point3D> sss, double minr, ref double clonieslen, ref bool xxadd, ref int i, ref List<List<Point3D>> xxxAddedClonies)
         {
@@ -359,19 +387,32 @@ namespace howto_WPF_3D_triangle_normals
             {
                 if (boundryssscount(k, -1, sss.Count))
                     return false;
-                bool a = exist(sss[k], xxxAddedClonies);
-                if (!a)
+                redductionConfigurationInsideFor(k, ref sss, minr, ref clonieslen, ref xxadd, ref i, ref xxxAddedClonies);
+            }
+            return true;
+        }
+        bool redductionConfigurationInsideFor(int k, ref List<Point3D> sss, double minr, ref double clonieslen, ref bool xxadd, ref int i, ref List<List<Point3D>> xxxAddedClonies)
+        {
+
+            bool a = exist(sss[k], xxxAddedClonies);
+            if (!a)
+            {
+                double s = getclonieslen(sss, sss[k], minr);
+                if (s > 0)
                 {
-                    double s = getclonieslen(sss, sss[k], minr);
-                    if (s > 0)
-                    {
-                        double d = s;
-                        clonieslen = d;
-                        i = k;
-                        xxadd = false;
-                    }
+                    redductionConfigurationInsideIf(k, s, ref sss, minr, ref clonieslen, ref xxadd, ref i, ref xxxAddedClonies);
                 }
             }
+            return true;
+        }
+        bool redductionConfigurationInsideIf(int k, double s, ref List<Point3D> sss, double minr, ref double clonieslen, ref bool xxadd, ref int i, ref List<List<Point3D>> xxxAddedClonies)
+        {
+
+            double d = s;
+            clonieslen = d;
+            i = k;
+            xxadd = false;
+
             return true;
         }
         void reductionSetOfPointsToNumberOfSetsFull(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
@@ -385,29 +426,73 @@ namespace howto_WPF_3D_triangle_normals
                     bool aa = exist(p0, xxx);
                     if (!(aa || a))
                     {
-                        xxadd = true;
-                        xxx.Add(p0);
-                        int ff = sss.IndexOf(p0);
-                        xxxCon.Add(sssCon[ff]);
+                        reductionSetOfPointsToNumberOfSetsFullP1(ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
                     }
                 }
+                reductionSetOfPointsToNumberOfSetsFullP2(ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
+
+                reductionSetOfPointsToNumberOfSetsFullP3(ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
+            }
+
+        }
+        void reductionSetOfPointsToNumberOfSetsFullP1(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
+        {
+
+
+            xxadd = true;
+            xxx.Add(p0);
+            int ff = sss.IndexOf(p0);
+            xxxCon.Add(sssCon[ff]);
+
+        }
+        void reductionSetOfPointsToNumberOfSetsFullP2(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
+        {
+
+            int f = sss.IndexOf(p0);
+            if (f < sss.Count && f >= 0)
+            {
                 add = true;
                 if (!(a))
                     xxxAddedClonies[index].Add(p0);
                 if (!(b))
                     xxxAddedClonies[index].Add(p1);
-                int f = sss.IndexOf(p0);
                 sss.Remove(p0);
                 sssCon.RemoveAt(f);
+            }
+          
+        }
 
-                f = sss.IndexOf(p1);
+        void reductionSetOfPointsToNumberOfSetsFullP3(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
+        {
+
+
+
+            int f = sss.IndexOf(p1);
+            if (f < sss.Count && f >= 0)
+            {
                 sss.Remove(p1);
                 sssCon.RemoveAt(f);
 
                 p = p0;
                 done = true;
             }
+        }
+        void reductionSetOfPointsToNumberOfSetsHulfP(Point3D pp0,Point3D pp1, double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
 
+        {
+            p0 = p;
+            p1 = pp0;
+            a = exist(p0, xxxAddedClonies);
+            b = exist(p1, xxxAddedClonies);
+
+            reductionSetOfPointsToNumberOfSetsHulfPO(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
+
+            p0 = p;
+            p1 = pp1;
+            a = exist(p0, xxxAddedClonies);
+            b = exist(p1, xxxAddedClonies);
+
+            reductionSetOfPointsToNumberOfSetsHulfPT(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
         }
         void reductionSetOfPointsToNumberOfSetsHulfPO(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
 
@@ -536,20 +621,7 @@ namespace howto_WPF_3D_triangle_normals
                                 }
                                 else
                                 {
-                                    p0 = p;
-                                    p1 = pp0;
-                                    a = exist(p0, xxxAddedClonies);
-                                    b = exist(p1, xxxAddedClonies);
-
-                                    reductionSetOfPointsToNumberOfSetsHulfPO(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
-
-                                    p0 = p;
-                                    p1 = pp1;
-                                    a = exist(p0, xxxAddedClonies);
-                                    b = exist(p1, xxxAddedClonies);
-
-                                    reductionSetOfPointsToNumberOfSetsHulfPT(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
-
+                                    reductionSetOfPointsToNumberOfSetsHulfP(pp0, pp1, minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
                                 }
                             }
                         });
@@ -640,5 +712,86 @@ namespace howto_WPF_3D_triangle_normals
             sss = s;*/
             return sss.Count;
         }
+        //create list of semi curved; continusly
+
+        List<List<Point3D>> getlistOfSemilineuniqe(List<Point3D> s)
+        {
+            List<List<Point3D>> ListOfSemiLineUniq = new List<List<Point3D>>();
+            bool found = false;
+            double min = double.MaxValue;
+            Point3D next = new Point3D();
+            int semiscount = 0;
+            int ii = -1, jj = -1, kk = -1;
+            do
+            {
+
+                var output = Task.Factory.StartNew(() =>
+
+                {
+
+                    found = false;
+                    min = double.MaxValue;
+                    ii = -1;
+                    jj = -1;
+                    if (next == null)
+                        kk = -1;
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
+                    {
+                        if (next != null)
+                        {
+                            i = kk;
+                            kk = -1;
+                        }
+                        if (boundry(i, 0, 0, 0))
+                            return;
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
+                        {
+                            if (boundry(i, j, 0, 0))
+                                return;
+
+                            ParallelOptions poi = new ParallelOptions(); poi.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
+                            {
+
+                                if (boundry(i, j, k, 0))
+                                    return;
+                                //external point
+                                Line l0 = new Line(s[i], s[j]);
+                                Line l1 = new Line(s[j], s[k]);
+                                double d = Line.getAlpha(l0, l1);
+                                if (d < min)
+                                {
+                                    ii = i;
+                                    jj = j;
+                                    kk = k;
+                                    min = d;
+                                    found = true;
+                                    next = s[k];
+                                }
+                            });
+                        });
+                    });
+                });
+                output.Wait();
+                if (found)
+                {
+                    if (((!exist(s[ii], ListOfSemiLineUniq)) || ((s[ii] == next) && (exist(next, ListOfSemiLineUniq)))) && (!exist(s[jj], ListOfSemiLineUniq)) && (!exist(s[kk], ListOfSemiLineUniq)))
+                    {
+                        if ((!exist(s[ii], ListOfSemiLineUniq)))
+                            ListOfSemiLineUniq[semiscount].Add(s[ii]);
+                        if ((!exist(s[jj], ListOfSemiLineUniq)))
+                            ListOfSemiLineUniq[semiscount].Add(s[jj]);
+                        if ((!exist(s[kk], ListOfSemiLineUniq)))
+                            ListOfSemiLineUniq[semiscount].Add(s[kk]);
+                    }
+                }
+                if (!found)
+                {
+                    ListOfSemiLineUniq = new List<List<Point3D>>();
+                    semiscount++;
+                }
+            } while (found);
+            return ListOfSemiLineUniq;
+        }
+
     }
 }

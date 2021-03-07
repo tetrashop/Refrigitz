@@ -14,7 +14,9 @@ using System.Windows.Forms;
 namespace WindowsApplication1
 {
     public class _2dTo3D
+
     {
+        public double x = 0;
         int cxC = -1, cyC = -1, czC= -1;
         public  List<List<double[]>> st = new List<List<double[]>>();
         public bool _3DReady = false;
@@ -146,6 +148,7 @@ namespace WindowsApplication1
 
                         if ((ii + jj) % 2 == 0)
                         {
+                            x++;
                            c[cxT, cyT1, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
                             //SetneighboursSt(a, cxT, cyT1, cxC, cyC);
                         }
@@ -189,6 +192,7 @@ namespace WindowsApplication1
                         if ((ii + jj) % 2 == 0)
                         {
                             SetneighboursSt(a, cxT, cyT1, cxC, cyC);
+                            x++;
                         }
                         else
                         {
@@ -424,6 +428,7 @@ namespace WindowsApplication1
         }
         void Initiate()
         {
+            x = 0;
             minr = int.MaxValue;
             minteta = int.MaxValue;
             minfi = int.MaxValue;

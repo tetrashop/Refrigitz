@@ -615,15 +615,15 @@ namespace howto_WPF_3D_triangle_normals
                                 });
                                 if (!n)
                                 {
-                                    if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[1]))
-                                        return;
-                                    if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[2]))
-                                        return;
-                                    if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[1], ss[2]))
-                                        return;
-                                    d.Add(ss);
+                                      d.Add(ss);
                                     if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
                                     {
+                                        if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[1]))
+                                            return;
+                                        if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[2]))
+                                            return;
+                                        if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[1], ss[2]))
+                                            return;
                                         dd.Add(ss[0]);
                                         dd.Add(ss[1]);
                                         dd.Add(ss[2]);

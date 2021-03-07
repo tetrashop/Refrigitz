@@ -588,41 +588,54 @@ namespace howto_WPF_3D_triangle_normals
                     {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                         ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, k =>
                         {
-                            object o = new object();
-                            lock (o)
+                        object o = new object();
+                        lock (o)
+                        {
+                            double ind = i * j * k;
+
+                            /*  lock (LockHolder.Lock)
+                              {
+                                  za.Content = ((int)((ind / max) * 100)).ToString() + "%";                                      
+                              }*/
+                            if ((new Triangle()).boundry(i, j, k))
+                                return;
+
+                            Point3D[] ss = new Point3D[3];
+                            ss[0] = PointsAdd[i];
+                            ss[1] = PointsAdd[j];
+                            ss[2] = PointsAdd[k];
+                            ss = ImprovmentSort.Do(ss);
+                            //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
+                            //continue;
+
+                            bool n = true;
+                            Dispatcher.Invoke(() =>
                             {
-                                double ind = i * j * k;
-
-                              /*  lock (LockHolder.Lock)
+                                n = exist(ss, d);
+                            });
+                            if (!n)
+                            {
+                                d.Add(ss);
+                                if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
                                 {
-                                    za.Content = ((int)((ind / max) * 100)).ToString() + "%";                                      
-                                }*/
-                                if ((new Triangle()).boundry(i, j, k))
-                                    return;
+                                        bool s = true;
+                                        var outputn = Task.Factory.StartNew(() =>
+                                        {
 
-                                Point3D[] ss = new Point3D[3];
-                                ss[0] = PointsAdd[i];
-                                ss[1] = PointsAdd[j];
-                                ss[2] = PointsAdd[k];
-                                ss = ImprovmentSort.Do(ss);
-                                //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
-                                //continue;
+                                            Parallel.Invoke(() =>
+                                            {
+                                                s = s && IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[1]);
+                                            }, () =>
+                                             {
+                                                 s = s && IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[2]);
+                                             }, () =>
+                                             {
 
-                                bool n = true;
-                                Dispatcher.Invoke(() =>
-                                {
-                                    n = exist(ss, d);
-                                });
-                                if (!n)
-                                {
-                                      d.Add(ss);
-                                    if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
-                                    {
-                                        if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[1]))
-                                            return;
-                                        if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[2]))
-                                            return;
-                                        if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[1], ss[2]))
+                                                 s = s && IsNeigbour(PointsAddpConected, PointsAddp, ss[1], ss[2]);
+                                             });
+                                        });
+                                        outputn.Wait();
+                                        if (!s)
                                             return;
                                         dd.Add(ss[0]);
                                         dd.Add(ss[1]);

@@ -54,9 +54,9 @@ namespace WindowsApplication1
             }
             return s;
         }
-        void SetneighboursSt(Image a, double i, double j, double maxx, double maxy)
+        bool SetneighboursSt(Image a, double i, double j, double maxx, double maxy)
         {
-
+            bool aa=(System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0 > 0;
 
             if (i > 0 && j > 0)
             {
@@ -120,7 +120,7 @@ namespace WindowsApplication1
                     }
                 }
             }
-            return;
+            return aa;
         }
         void Threaadcal(int i, int j, int k, int ii, int jj)
         {
@@ -148,8 +148,10 @@ namespace WindowsApplication1
 
                         if ((ii + jj) % 2 == 0)
                         {
-                            x++;
-                           c[cxT, cyT1, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
+                            float v = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
+                            if (v > 0)
+                                x++;
+                            c[cxT, cyT1, k] = v;
                             //SetneighboursSt(a, cxT, cyT1, cxC, cyC);
                         }
                         else
@@ -191,12 +193,13 @@ namespace WindowsApplication1
 
                         if ((ii + jj) % 2 == 0)
                         {
-                            SetneighboursSt(a, cxT, cyT1, cxC, cyC);
-                            x++;
+                            bool aa = SetneighboursSt(a, cxT, cyT1, cxC, cyC);
+                            if (aa)
+                                x++;
                         }
                         else
                         {
-                             SetneighboursSt(a, cxT, cyT2, cxC, cyC);
+                            SetneighboursSt(a, cxT, cyT2, cxC, cyC);
                         }
                     }
                     catch (Exception t)

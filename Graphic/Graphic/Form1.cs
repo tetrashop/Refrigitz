@@ -12,7 +12,7 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
-        int count = 70;
+        int count = 35 * System.Threading.PlatformHelper.ProcessorCount;
         bool go = false;
         bool[,] curvedallpoints = null;
 
@@ -786,7 +786,8 @@ namespace WindowsApplication1
                         curvedlinelen++;
                     }
                 }
-            }catch(Exception t) { }
+            }
+            catch (Exception t) { }
         }
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -829,7 +830,7 @@ namespace WindowsApplication1
                     output.Wait();
 
                     if (a.x > 0)
-                        textBox1.Text = ((int)(a.x /35)).ToString();
+                        textBox1.Text = ((int)a.x / ((2 * System.Threading.PlatformHelper.ProcessorCount) / count)).ToString();
                     else
                         textBox1.Text = "1";
                     object oo = new object();
@@ -841,10 +842,10 @@ namespace WindowsApplication1
                         pictureBox24.Refresh();
                         pictureBox24.Update();
                         pictureBox24.Invalidate();
-                        
+
                     }
                 }
-               
+
             }
             catch (Exception t) { }
         }
@@ -884,9 +885,8 @@ namespace WindowsApplication1
                     a._2dTo3D_reconstructed(aa);
             });
             output.Wait();
-            a.x /= 2;
             if (a.x > 0)
-                textBox1.Text = ((int)(a.x /35)).ToString();
+                textBox1.Text = ((int)a.x / ((2 * System.Threading.PlatformHelper.ProcessorCount) / count)).ToString();
             else
                 textBox1.Text = "1";
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
@@ -947,7 +947,7 @@ namespace WindowsApplication1
                 });
             }
             if (a.x > 0)
-                textBox1.Text = ((int)(a.x /35)).ToString();
+                textBox1.Text = ((int)a.x / ((2 * System.Threading.PlatformHelper.ProcessorCount) / count)).ToString();
             else
                 textBox1.Text = "1";
             pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
@@ -1059,9 +1059,10 @@ namespace WindowsApplication1
                             }
                         }
                     }
-                }catch(Exception t)
+                }
+                catch (Exception t)
                 {
-                    
+
                 }
             }
         }

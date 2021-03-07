@@ -324,22 +324,26 @@ namespace howto_WPF_3D_triangle_normals
         }
         bool exist(Point3D[] ss, List<Point3D[]> d)
         {
-            if (d.Count == 0)
-                return false;
-            for (int i = 0; i < d.Count; i++)
+            object o = new object();
+            lock (o)
             {
-                if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
+                if (d.Count == 0)
+                    return false;
+                for (int i = 0; i < d.Count; i++)
                 {
-                    if (ss[1].X == d[i][1].X && ss[1].Y == d[i][1].Y && ss[1].Z == d[i][1].Z)
+                    if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
                     {
-                        if (ss[2].X == d[i][2].X && ss[2].Y == d[i][2].Y && ss[2].Z == d[i][2].Z)
+                        if (ss[1].X == d[i][1].X && ss[1].Y == d[i][1].Y && ss[1].Z == d[i][1].Z)
                         {
-                            return true;
+                            if (ss[2].X == d[i][2].X && ss[2].Y == d[i][2].Y && ss[2].Z == d[i][2].Z)
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
+                return false;
             }
-            return false;
         }
         double minraddpoints(List<Point3D> p0)
         {
@@ -361,15 +365,22 @@ namespace howto_WPF_3D_triangle_normals
         {
             int siall = pall.IndexOf(p1);
             int all = pall.IndexOf(p0);
-            double i = (double)sall[all][0];
-            double j = (double)sall[all][1];
-            double mountsi = (double)sall[siall][0];
-            double mountsj = (double)sall[siall][1];
-            /*double minX = minGetListX(pall);
-            double minY = minGetListY(pall);
-            double maxX = maxGetListX(pall);
-            double maxY = maxGetListY(pall);*/
-            return IsNeigbourChild(mountsi, mountsj, sall, siall, i, j);
+            if (all >= 0)
+            {
+                double i = (double)sall[all][0];
+                double j = (double)sall[all][1];
+                if (i >= 0 && j >= 0)
+                {
+                    double mountsi = (double)sall[siall][0];
+                    double mountsj = (double)sall[siall][1];
+                    /*double minX = minGetListX(pall);
+                    double minY = minGetListY(pall);
+                    double maxX = maxGetListX(pall);
+                    double maxY = maxGetListY(pall);*/
+                    return IsNeigbourChild(mountsi, mountsj, sall, siall, i, j);
+                }
+            }
+            return true; 
         }
 
         bool IsNeigbourChild(double  mountsi,double mountsj,List<double[]> sall, int siall, double i, double j)
@@ -443,6 +454,206 @@ namespace howto_WPF_3D_triangle_normals
             }
             return Is;
         }
+        void CtreatPoints(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1,ref List<double[]> PointsAddp0Conected,ref List<double[]> PointsAddp1Conected)
+        {
+            for (int i = 0; i < gr.a.cx; i++)
+            {
+                for (int j = 0; j < gr.a.cyp0; j++)
+                {
+                    if (gr.a.c[i, j, 0] != 0 || gr.a.c[i, j, 1] != 0 || gr.a.c[i, j, 2] != 0)
+                    {
+                        Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
+                        PointsAddp0.Add(s);
+                        PointsAddp0Conected.Add(gr.a.st[i][j]);
+                    }
+                }
+            }
+            for (int i = 0; i < gr.a.cx; i++)
+            {
+                for (int j = gr.a.cyp0; j < gr.a.cyp1; j++)
+                {
+                    if (gr.a.c[i, j, 0] != 0 || gr.a.c[i, j, 1] != 0 || gr.a.c[i, j, 2] != 0)
+                    {
+                        Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
+                        PointsAddp1.Add(s);
+                        PointsAddp1Conected.Add(gr.a.st[i][j]);
+                    }
+                }
+            }
+
+        }
+        void reductFirst(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddp1Conected,double minrp0,double minrp1)
+        {
+            if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
+            {
+
+                List<Point3D> xxxp0 = new List<Point3D>();
+
+                List<Point3D> xxxp1 = new List<Point3D>();
+
+                List<double[]> xxxp0C = new List<double[]>();
+
+                List<double[]> xxxp1C = new List<double[]>();
+
+                int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0, ref xxxp0C, System.Convert.ToDouble(gr.textBox1.Text));
+                f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, ref PointsAddp1Conected, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1, ref xxxp1C, System.Convert.ToDouble(gr.textBox1.Text));
+                if (xxxp0.Count > 1)
+                {
+                    PointsAddp0 = xxxp0;
+                }
+                if (xxxp1.Count > 1)
+                {
+                    PointsAddp1 = xxxp1;
+                }
+                MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points." + "reduced...p1! " + PointsAddp1.Count.ToString() + " points.");
+
+            }
+
+        }
+        void reductionSecond(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected,ref List<Point3D> xxxp00,ref List<double[]> xxxp00C,double minrp)
+        {
+            int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, ref xxxp00C, 1.0 //System.Convert.ToDouble(gr.textBox1.Text) / 3
+                                      /// (minrp / minrp0)
+                                      );
+            if (xxxp00.Count > 1)
+            {
+                PointsAddp0 = xxxp00;
+                PointsAddp0Conected = xxxp00C;
+                MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points.");
+            }
+            else MessageBox.Show("no reductio p0! " + PointsAddp0.Count.ToString());
+
+        }
+        void DrawTriangle(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected,ref List<Point3D> dd,ref List<Point3D[]> d,ref MeshGeometry3D mesh)
+        {
+            for (int i = 0; i < PointsAdd.Count; i++)
+            {
+                for (int j = 0; j < PointsAdd.Count; j++)
+                {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                    for (int k = 0; k < PointsAdd.Count; k++)
+                    {
+                        object o = new object();
+                        lock (o)
+                        {
+                            double ind = i * j * k;
+                            za.Content = ((int)((ind / max) * 100)).ToString() + "%";
+                            za.InvalidateVisual();
+                            if ((new Triangle()).boundry(i, j, k))
+                                continue;
+
+                            Point3D[] ss = new Point3D[3];
+                            ss[0] = PointsAdd[i];
+                            ss[1] = PointsAdd[j];
+                            ss[2] = PointsAdd[k];
+                            ss = ImprovmentSort.Do(ss);
+                            //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
+                            //continue;
+                            if (!exist(ss, d))
+                            {
+                                if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[1]))
+                                    continue;
+                                if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[2]))
+                                    continue;
+                                if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[1], ss[2]))
+                                    continue;
+                                d.Add(ss);
+                                if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
+                                {
+                                    dd.Add(ss[0]);
+                                    dd.Add(ss[1]);
+                                    dd.Add(ss[2]);
+                                    AddTriangle(mesh, ss[0], ss[1], ss[2]);
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        }
+        public static class LockHolder
+        {
+            public static object Lock = new object();
+        }
+        void DrawTriangleParallel(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected,  List<Point3D> dd,  List<Point3D[]> d,  MeshGeometry3D mesh)
+        {
+            var output = Task.Factory.StartNew(() =>
+            {
+
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, i =>
+                {
+
+                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, j =>
+                    {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                        ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, k =>
+                        {
+                            object o = new object();
+                            lock (o)
+                            {
+                                double ind = i * j * k;
+
+                              /*  lock (LockHolder.Lock)
+                                {
+                                    za.Content = ((int)((ind / max) * 100)).ToString() + "%";                                      
+                                }*/
+                                if ((new Triangle()).boundry(i, j, k))
+                                    return;
+
+                                Point3D[] ss = new Point3D[3];
+                                ss[0] = PointsAdd[i];
+                                ss[1] = PointsAdd[j];
+                                ss[2] = PointsAdd[k];
+                                ss = ImprovmentSort.Do(ss);
+                                //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
+                                //continue;
+
+                                bool n = true;
+                                Dispatcher.Invoke(() =>
+                                {
+                                    n = exist(ss, d);
+                                });
+                                if (!n)
+                                {
+                                    if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[1]))
+                                        return;
+                                    if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[0], ss[2]))
+                                        return;
+                                    if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[1], ss[2]))
+                                        return;
+                                    d.Add(ss);
+                                    if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
+                                    {
+                                        dd.Add(ss[0]);
+                                        dd.Add(ss[1]);
+                                        dd.Add(ss[2]);
+                                        var outputt = Task.Factory.StartNew(() =>
+                                        {
+                                            object b = new object();
+                                            lock (b)
+                                            {
+                                                Dispatcher.Invoke(() =>
+                                                {
+                                                    AddTriangle(mesh, ss[0], ss[1], ss[2]);
+                                                });
+                                            }
+
+                                        });
+                                        //outputt.Wait();
+                                    }
+                                }
+
+                            }
+                        });
+                    });
+                });
+            });
+            output.Wait();
+
+        }
+
+       
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try { if (gr != null)
@@ -459,83 +670,44 @@ namespace howto_WPF_3D_triangle_normals
                             List<double[]> PointsAddp0Conected = new List<double[]>();
                             List<double[]> PointsAddpConected = new List<double[]>();
                             List<double[]> PointsAddp1Conected = new List<double[]>();
-                            for (int i = 0; i < gr.a.cx; i++)
-                            {
-                                for (int j = 0; j < gr.a.cyp0; j++)
-                                {
-                                    if (gr.a.c[i, j, 0] != 0 || gr.a.c[i, j, 1] != 0 || gr.a.c[i, j, 2] != 0)
-                                    {
-                                        Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
-                                        PointsAddp0.Add(s);
-                                        PointsAddp0Conected.Add(gr.a.st[i][j]);
-                                    }
-                                }
-                            }
-                            for (int i = 0; i < gr.a.cx; i++)
-                            {
-                                for (int j = gr.a.cyp0; j < gr.a.cyp1; j++)
-                                {
-                                    if (gr.a.c[i, j, 0] != 0 || gr.a.c[i, j, 1] != 0 || gr.a.c[i, j, 2] != 0)
-                                    {
-                                        Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
-                                        PointsAddp1.Add(s);
-                                        PointsAddp1Conected.Add(gr.a.st[i][j]);
-                                    }
-                                }
-                            }
 
-                            PointsAddpConected = PointsAddp0Conected;
-                            PointsAddp = PointsAddp0;
 
+                            CtreatPoints(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected);
+
+
+
+
+                            for (int y = 0; y < PointsAddp0.Count; y++)
+                                PointsAddp.Add(PointsAddp0[y]);
+                            for (int y = 0; y < PointsAddp0Conected.Count; y++)
+                                PointsAddpConected.Add(PointsAddp0Conected[y]);
+                          
 
                             if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
                             {
                                   double minrp0 = minraddpoints(PointsAddp0);
                                 double minrp1 = minraddpoints(PointsAddp0);
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
-                                if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
-                                {
 
-                                    List<Point3D> xxxp0 = new List<Point3D>();
 
-                                    List<Point3D> xxxp1 = new List<Point3D>();
 
-                                    List<double[]> xxxp0C = new List<double[]>();
 
-                                    List<double[]> xxxp1C = new List<double[]>();
 
-                                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0,ref PointsAddp0Conected, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0,ref xxxp0C, System.Convert.ToDouble(gr.textBox1.Text));
-                                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1,ref PointsAddp1Conected, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1,ref xxxp1C, System.Convert.ToDouble(gr.textBox1.Text));
-                                    if (xxxp0.Count > 1)
-                                    {
-                                        PointsAddp0 = xxxp0;
-                                    }
-                                    if (xxxp1.Count > 1)
-                                    {
-                                        PointsAddp1 = xxxp1;
-                                    }
-                                    MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points." + "reduced...p1! " + PointsAddp1.Count.ToString() + " points.");
-
-                                }
+                                reductFirst(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected, minrp0, minrp1);
+                             
                                 double minrp = minraddpoints(PointsAddp0);
-                                makeListExpand(ref PointsAddp0,ref PointsAddp0Conected, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
+                            
+                                makeListExpand(ref PointsAddp0,ref PointsAddp, ref PointsAddp0Conected,ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
                                     );
+
+
                                 List<Point3D> xxxp00 = new List<Point3D>();
                                 List<double[]> xxxp00C = new List<double[]>();
                                 minrp = minraddpoints(PointsAddp0);
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString()  + " points. with minrp0 " + minrp.ToString() );
                                 if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
                                 {
-                                    int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0,ref PointsAddp0Conected ,minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00,ref xxxp00C, 1.0 //System.Convert.ToDouble(gr.textBox1.Text) / 3
-                                      /// (minrp / minrp0)
-                                      );
-                                    if (xxxp00.Count > 1)
-                                    {
-                                        PointsAddp0 = xxxp00;
-                                        PointsAddp0Conected = xxxp00C;
-                                        MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points.");
-                                    }
-                                    else MessageBox.Show("no reductio p0! " + PointsAddp0.Count.ToString());
+                                    reductionSecond(ref PointsAddp0, ref PointsAddp0Conected, ref xxxp00, ref xxxp00C, minrp);
                                 }
                                 makeListFittness(ref PointsAddp0);
                                  MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
@@ -549,55 +721,8 @@ namespace howto_WPF_3D_triangle_normals
                                 DefineLights();
                                 MeshGeometry3D mesh = new MeshGeometry3D();
                                 Model3DGroup model_group = MainModel3Dgroup;
-                                /*
-                                List<Point3D> PointsAdd = PointsAddp0;
-                                double minr = minraddpoints(PointsAdd);
+                  
 
-                                List<Point3D[]> d = new List<Point3D[]>();
-                                List<Point3D> dd = new List<Point3D>();
-
-                                 var output = Task.Factory.StartNew(() =>
-                                {
-
-                                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, i =>
-                                   {
-
-                                       ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, j =>
-                                         {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                                             ParallelOptions ppoio = new ParallelOptions(); ppoioMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, k =>
-                                              {
-                                              
-                                                 if ((new Triangle()).boundry(i, j, k))
-                                                return;
-
-                                            Point3D[] ss = new Point3D[3];
-                                            ss[0] = PointsAdd[i];
-                                            ss[1] = PointsAdd[j];
-                                            ss[2] = PointsAdd[k];
-                                            ss = ImprovmentSort.Do(ss);
-                                            //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
-                                            //continue;
-                                            if (!exist(ss, d))
-                                            {
-                                                d.Add(ss);
-                                                if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
-                                                {
-                                                          this.Dispatcher.Invoke(() =>
-                                                        {
-                                                             dd.Add(ss[0]);
-                                                    dd.Add(ss[1]);
-                                                    dd.Add(ss[2]);
-                                                  var output1 = Task.Factory.StartNew(() => AddTriangle(mesh, PointsAdd[i], PointsAdd[j], PointsAdd[k]));
-                                                        });
-                                                      }
-                                                  }
-
-                                              });
-                                         });
-                                   });
-                                });
-                                output.Wait();
-                                */
                                 List<Point3D> PointsAdd = PointsAddp0;
 
                                 makeListCenteralized(ref PointsAdd);
@@ -606,49 +731,19 @@ namespace howto_WPF_3D_triangle_normals
                                 List<Point3D[]> d = new List<Point3D[]>();
                                 List<Point3D> dd = new List<Point3D>();
                                 double max = PointsAdd.Count * PointsAdd.Count * PointsAdd.Count;
-                                for (int i = 0; i < PointsAdd.Count; i++)
-                                {
-                                    for (int j = 0; j < PointsAdd.Count; j++)
-                                    {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                                        for (int k = 0; k < PointsAdd.Count; k++)
-                                        {
-                                            double ind= i * j * k;
-                                            za.Content = ((int)((ind / max) * 100)).ToString() + "%";
-                                            za.InvalidateVisual();
-                                            if ((new Triangle()).boundry(i, j, k))
-                                                continue;
 
-                                            Point3D[] ss = new Point3D[3];
-                                            ss[0] = PointsAdd[i];
-                                            ss[1] = PointsAdd[j];
-                                            ss[2] = PointsAdd[k];
-                                            ss = ImprovmentSort.Do(ss);
-                                            //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
-                                            //continue;
-                                            if (!exist(ss, d))
-                                            {
-                                                if (!IsNeigbour(PointsAddp0Conected, PointsAddp, ss[0], ss[1]))
-                                                    continue;
-                                                if (!IsNeigbour(PointsAddp0Conected, PointsAddp, ss[0], ss[2]))
-                                                    continue;
-                                                if (!IsNeigbour(PointsAddp0Conected, PointsAddp, ss[1], ss[2]))
-                                                    continue;
-                                                d.Add(ss);
-                                                if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
-                                                {
-                                                    dd.Add(ss[0]);
-                                                    dd.Add(ss[1]);
-                                                    dd.Add(ss[2]);
-                                                    AddTriangle(mesh, ss[0], ss[1], ss[2]);
-                                                }
-                                            }
 
-                                        }
-                                    }
-                                }
-                                                        
+
+
+                                DrawTriangleParallel(PointsAdd, PointsAddp, max, PointsAddpConected, dd, d, mesh);
+
+
+
+
+
+
                             // Make a mesh to hold the surface.
-                            Console.WriteLine("Surface: ");
+                                Console.WriteLine("Surface: ");
                                 Console.WriteLine("    " + mesh.Positions.Count + " Points");
                                 Console.WriteLine("    " + mesh.TriangleIndices.Count / 3 + " triangles");
                                 Console.WriteLine();
@@ -815,7 +910,7 @@ namespace howto_WPF_3D_triangle_normals
             return st;
         }
 
-        public static void makeListExpand(ref List<Point3D> non, ref List<double[]> nonCon, int minr)
+        public static void makeListExpand(ref List<Point3D> non, ref List<Point3D> nonConst, ref List<double[]> nonCon, ref List<double[]> nonCons, int minr)
         {
             CurvedSystems addpoint0 = new CurvedSystems(non);
             List<List<double[]>> p0 = addpoint0.CreateQuficientofCurved();
@@ -849,7 +944,9 @@ namespace howto_WPF_3D_triangle_normals
                                     //int f = non.IndexOf(addpoint0.qsystemlistaddpoints[c][l]);
                                     //nonCon.Add();(?)
                                     non.Add(x);
+                                    nonConst.Add(x);
                                     nonCon.Add(SetneighboursSt(i, j, disx, disy,minx, minx, minr,x.Z));
+                                    nonCons.Add(SetneighboursSt(i, j, disx, disy, minx, minx, minr, x.Z));
 
                                 }
 

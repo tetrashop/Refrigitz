@@ -357,6 +357,92 @@ namespace howto_WPF_3D_triangle_normals
             }
             return r;
         }
+        bool IsNeigbour(List<double[]> sall, List<Point3D> pall, Point3D p0, Point3D p1)
+        {
+            int siall = pall.IndexOf(p1);
+            int all = pall.IndexOf(p0);
+            double i = (double)sall[all][0];
+            double j = (double)sall[all][1];
+            double mountsi = (double)sall[siall][0];
+            double mountsj = (double)sall[siall][1];
+            /*double minX = minGetListX(pall);
+            double minY = minGetListY(pall);
+            double maxX = maxGetListX(pall);
+            double maxY = maxGetListY(pall);*/
+            return IsNeigbourChild(mountsi, mountsj, sall, siall, i, j);
+        }
+
+        bool IsNeigbourChild(double  mountsi,double mountsj,List<double[]> sall, int siall, double i, double j)
+        {
+            bool Is = false;
+            if (i < 1 || j > 1 || i > gr.a.cx - 1 || j > gr.a.cyp0 - 1)
+                return Is;
+            if (mountsi == i && mountsj == j)
+            {
+                Is = true;
+             }
+            if (sall[siall][3] == (i - 1) && sall[siall][4] == (j))
+            {
+                Is = Is || IsNeigbourChild(mountsi, mountsj, sall, siall, i - 1, j);
+            }
+
+            if (Is)
+                return Is;
+
+            if (sall[siall][6] == (i + 1) && sall[siall][7] == (j))
+            {
+                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i + 1, j);
+            }
+
+            if (Is)
+                return Is;
+            
+            if (sall[siall][9] == (i) && sall[siall][10] == (j - 1))
+            {
+                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i, j - 1);
+            }
+
+            if (Is)
+                return Is;
+            
+            if (sall[siall][12] == (i) && sall[siall][13] == (j + 1))
+            {
+                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i, j + 1);
+            }
+
+            if (Is)
+                return Is;
+            
+            if (sall[siall][15] == (i - 1) && sall[siall][16] == (j - 1))
+            {
+                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i - 1, j - 1);
+            }
+
+            if (Is)
+                return Is;
+            
+            if (sall[siall][18] == (i - 1) && sall[siall][19] == (j + 1))
+            {
+                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i - 1, j + 1);
+            }
+
+            if (Is)
+                return Is;
+            
+            if (sall[siall][21] == (i + 1) && sall[siall][22] == (j - 1))
+            {
+                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i + 1, j - 1);
+            }
+
+            if (Is)
+                return Is;
+            
+            if (sall[siall][24] == (i + 1) && sall[siall][25] == (j + 1))
+            {
+                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i + 1, j + 1);
+            }
+            return Is;
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try { if (gr != null)
@@ -369,7 +455,9 @@ namespace howto_WPF_3D_triangle_normals
                             //list found of 3d PointsAdd
                             List<Point3D> PointsAddp0 = new List<Point3D>();
                             List<Point3D> PointsAddp1 = new List<Point3D>();
+                            List<Point3D> PointsAddp = new List<Point3D>();
                             List<double[]> PointsAddp0Conected = new List<double[]>();
+                            List<double[]> PointsAddpConected = new List<double[]>();
                             List<double[]> PointsAddp1Conected = new List<double[]>();
                             for (int i = 0; i < gr.a.cx; i++)
                             {
@@ -395,6 +483,11 @@ namespace howto_WPF_3D_triangle_normals
                                     }
                                 }
                             }
+
+                            PointsAddpConected = PointsAddp0Conected;
+                            PointsAddp = PointsAddp0;
+
+
                             if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
                             {
                                   double minrp0 = minraddpoints(PointsAddp0);
@@ -530,10 +623,16 @@ namespace howto_WPF_3D_triangle_normals
                                             ss[1] = PointsAdd[j];
                                             ss[2] = PointsAdd[k];
                                             ss = ImprovmentSort.Do(ss);
-                                            if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
-                                            continue;
+                                            //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
+                                            //continue;
                                             if (!exist(ss, d))
                                             {
+                                                if (!IsNeigbour(PointsAddp0Conected, PointsAddp, ss[0], ss[1]))
+                                                    continue;
+                                                if (!IsNeigbour(PointsAddp0Conected, PointsAddp, ss[0], ss[2]))
+                                                    continue;
+                                                if (!IsNeigbour(PointsAddp0Conected, PointsAddp, ss[1], ss[2]))
+                                                    continue;
                                                 d.Add(ss);
                                                 if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
                                                 {

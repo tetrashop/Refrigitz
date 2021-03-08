@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Formulas
 {
     static class CommonFactor
     {
         static public AddToTree.Tree CommonFactorFx(AddToTree.Tree Dummy1, AddToTree.Tree Dummy2)
         {
-            AddToTree.Tree Dummy = CommonFactor.CommonFactorCalcultor(Dummy1,Dummy2);
+            AddToTree.Tree Dummy = CommonFactor.CommonFactorCalcultor(Dummy1, Dummy2);
             return Dummy;
         }
         static AddToTree.Tree CommonFactorCalcultor(AddToTree.Tree Dummy1, AddToTree.Tree Dummy2)

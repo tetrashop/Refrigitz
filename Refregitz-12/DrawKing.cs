@@ -1,27 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
 using System.IO;
 namespace Refregitz_12
 {
     [Serializable]
     public class DrawKing
     {
-        
-        
-        
+
+
+
         public static bool KingGrayNotCheckedByQuantumMove = false;
         public static bool KingBrownNotCheckedByQuantumMove = false;
-        
-        public int WinOcuuredatChiled = 0;public int LoseOcuuredatChiled = 0;
+
+        public int WinOcuuredatChiled = 0; public int LoseOcuuredatChiled = 0;
         private readonly object balanceLock = new object();
         private readonly object balanceLockS = new object();
-        public static Image[] K = new Image[2]; 
+        public static Image[] K = new Image[2];
         //Initiate Global Variables.
         List<int[]> ValuableSelfSupported = new List<int[]>();
-      
+
         public bool MovementsAStarGreedyHuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
         public bool UsePenaltyRegardMechnisamT = true;
@@ -65,7 +62,7 @@ namespace Refregitz_12
             for (int ii = 0; ii < AllDraw.KingMovments; ii++)
                 try
                 {
-                    a += KingThinking[ii].ReturnHuristic(-1, -1, Order,false);
+                    a += KingThinking[ii].ReturnHuristic(-1, -1, Order, false);
                 }
                 catch (Exception t)
                 {
@@ -119,7 +116,7 @@ namespace Refregitz_12
             )
         {
 
-              lock (balanceLock)
+            lock (balanceLock)
             {
                 if (K[0] == null && K[1] == null)
                 {
@@ -161,7 +158,7 @@ namespace Refregitz_12
                 for (int j = 0; j < 8; j++)
                     Tab[i, j] = this.Table[i, j];
             //Initiate a Construction Object and Clone a Copy.
-            AA = new DrawKing( CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, this.Row, this.Column, this.color, this.Table, this.Order, false, this.Current);
+            AA = new DrawKing(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, this.Row, this.Column, this.color, this.Table, this.Order, false, this.Current);
             AA.ArrangmentsChanged = ArrangmentsChanged;
             for (int i = 0; i < AllDraw.KingMovments; i++)
             {
@@ -194,7 +191,7 @@ namespace Refregitz_12
             try
             {
 
-                
+
                 lock (balanceLockS)
                 {
                     if (K[0] == null || K[1] == null)
@@ -204,7 +201,7 @@ namespace Refregitz_12
                     }
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     { //Gray Order.
-                        if(Order==1)
+                        if (Order == 1)
                         {
                             Object O1 = new Object();
                             lock (O1)
@@ -224,7 +221,7 @@ namespace Refregitz_12
                                 g.DrawImage(K[1], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
 
                             }
-                            }
+                        }
                     }
                 }
             }

@@ -156,9 +156,9 @@ namespace ChessFirst
                 bool B = AllDraw.Blitz;
                 AllDraw.Blitz = false;
                 ChessFirst.ThinkingChessFirst.ThinkingRun = false;
-            //#pragma warning disable CS0164 // This label has not been referenced
+                //#pragma warning disable CS0164 // This label has not been referenced
 #pragma warning disable CS0164 // This label has not been referenced
-            Begin4:
+                Begin4:
 #pragma warning restore CS0164 // This label has not been referenced
                 //#pragma warning restore CS0164 // This label has not been referenced
                 AllDraw Th = Draw.AStarGreedyString;
@@ -889,7 +889,7 @@ namespace ChessFirst
                     {
                         AllDraw.AllowedSupTrue = false;
 
-                    Again:
+                        Again:
                         AllDraw.NextRow = -1;
                         AllDraw.NextColumn = -1;
                         AllDraw.LastRow = -1;

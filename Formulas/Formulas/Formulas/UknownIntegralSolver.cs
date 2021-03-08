@@ -21,8 +21,8 @@
 //ERRORCORECTION6646464654643211:The Verification Return Valid result:1394/4/9
 //=========================================================================
 using System;
-using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Formulas
 {
@@ -120,25 +120,25 @@ namespace Formulas
                 {
                     SetLableValue(label17, "Integral Calculation Finished.Verifing");
                     A++;
-                    
+
                 }
                 if (A == 1)
                 {
                     SetLableValue(label17, "Integral Calculation Finished.Verifing.");
                     A++;
-                    
+
                 }
                 if (A == 2)
                 {
                     SetLableValue(label17, "Integral Calculation Finished.Verifing..");
                     A++;
-                    
+
                 }
                 if (A == 3)
                 {
                     SetLableValue(label17, "Integral Calculation Finished.Verifing...");
                     A = 0;
-                    
+
                 }
             }
         }
@@ -218,7 +218,7 @@ namespace Formulas
             this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
 
             //Copy = RoundTree.RoundTreeMethod(Copy,0);
-          
+
             Copy.ThreadAccess = null;
             Thread t = new Thread(new ThreadStart(Verifing));
             t.Start();

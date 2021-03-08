@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Formulas
+﻿namespace Formulas
 {
     class StackBoolean
     {
@@ -21,7 +17,7 @@ namespace Formulas
             if (isEmpty())
                 return false;
             Top++;
-            return Stack[Top];            
+            return Stack[Top];
 
         }
         bool isEmpty()

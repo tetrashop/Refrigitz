@@ -511,8 +511,8 @@ namespace RefrigtzDLL
         //Table Foundation of Genetic Alogorithm Method.
         public int[,] GenerateTable(List<int[,]> List, int Index, int Order)
         {
-        //Initiate Local Variables.
-        Begine5:
+            //Initiate Local Variables.
+            Begine5:
             RowColumn.Clear();
             int Store = Index;
             int[,] Cromosom1 = null;
@@ -683,7 +683,7 @@ namespace RefrigtzDLL
                 goto BeginFind;
             }
 
-        EndFindAThing:
+            EndFindAThing:
             //Foudn of Some Samness Gen.
             if (Order == 1)
                 Ki = (new Random()).Next(1, 7);

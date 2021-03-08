@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Setting
@@ -11,7 +6,7 @@ namespace Setting
     public partial class EquationSettingInsertion : Form
     {
         //this variable hold the previous node in order to replace when needed.
-        AddToTree.Tree Holder = new AddToTree.Tree(null,false);
+        AddToTree.Tree Holder = new AddToTree.Tree(null, false);
         //this Form is due to show setting for insertion equation on tree to be correctly.
         public EquationSettingInsertion()
         {
@@ -26,13 +21,13 @@ namespace Setting
         {
             groupBox1.Visible = false;
             groupBox2.Visible = true;
-       
+
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
             groupBox1.Visible = true;
-            groupBox2.Visible = true;       
+            groupBox2.Visible = true;
         }
 
         private void EquationSettingInsertion_Load(object sender, EventArgs e)
@@ -93,6 +88,6 @@ namespace Setting
             InCurrent2.Checked = Current;
             End2.Checked = End;
         }
-        
-     }
+
+    }
 }

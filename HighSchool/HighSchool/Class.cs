@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace HighSchool
 {
@@ -16,7 +12,7 @@ namespace HighSchool
             InitializeComponent();
         }
 
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             SqlCommand cmd = new SqlCommand();
@@ -55,7 +51,7 @@ namespace HighSchool
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
             this.Class_Load(sender, new EventArgs());
-            MessageBox.Show("Updare Finsihed.");            
+            MessageBox.Show("Updare Finsihed.");
         }
 
         private void classBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -73,7 +69,7 @@ namespace HighSchool
 
         }
 
-        
+
 
     }
 }

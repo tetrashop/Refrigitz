@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -29,7 +28,7 @@ namespace howto_WPF_3D_triangle_normals
                 {
                     string stackTrace = ex.ToString();
                     //Write to File.
-                     File.AppendAllText( "ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
+                    File.AppendAllText("ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
                 }
             }
 #pragma warning disable CS0168 // The variable 't' is declared but never used
@@ -90,7 +89,7 @@ namespace howto_WPF_3D_triangle_normals
             DefineLights();
 
             // Create the model.
-           //DefineModel(MainModel3Dgroup);
+            //DefineModel(MainModel3Dgroup);
 
             // Add the group of models to a ModelVisual3D.
             ModelVisual3D model_visual = new ModelVisual3D();
@@ -338,7 +337,7 @@ namespace howto_WPF_3D_triangle_normals
             }
             return false;
         }
-        
+
         bool exist(Point3D ss, List<Point3D> d)
         {
             if (d.Count == 0)
@@ -415,10 +414,10 @@ namespace howto_WPF_3D_triangle_normals
                     return IsNeigbourChild(mountsi, mountsj, sall, siall, i, j);
                 }
             }
-            return true; 
+            return true;
         }
 
-        bool IsNeigbourChild(double  mountsi,double mountsj,List<double[]> sall, int siall, double i, double j)
+        bool IsNeigbourChild(double mountsi, double mountsj, List<double[]> sall, int siall, double i, double j)
         {
             bool Is = false;
             if (i < 1 || j > 1 || i > gr.a.cx - 1 || j > gr.a.cyp0 - 1)
@@ -426,7 +425,7 @@ namespace howto_WPF_3D_triangle_normals
             if (mountsi == i && mountsj == j)
             {
                 Is = true;
-             }
+            }
             if (sall[siall][3] == (i - 1) && sall[siall][4] == (j))
             {
                 Is = Is || IsNeigbourChild(mountsi, mountsj, sall, siall, i - 1, j);
@@ -437,59 +436,59 @@ namespace howto_WPF_3D_triangle_normals
 
             if (sall[siall][6] == (i + 1) && sall[siall][7] == (j))
             {
-                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i + 1, j);
+                Is = Is || IsNeigbourChild(mountsi, mountsj, sall, siall, i + 1, j);
             }
 
             if (Is)
                 return Is;
-            
+
             if (sall[siall][9] == (i) && sall[siall][10] == (j - 1))
             {
-                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i, j - 1);
+                Is = Is || IsNeigbourChild(mountsi, mountsj, sall, siall, i, j - 1);
             }
 
             if (Is)
                 return Is;
-            
+
             if (sall[siall][12] == (i) && sall[siall][13] == (j + 1))
             {
-                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i, j + 1);
+                Is = Is || IsNeigbourChild(mountsi, mountsj, sall, siall, i, j + 1);
             }
 
             if (Is)
                 return Is;
-            
+
             if (sall[siall][15] == (i - 1) && sall[siall][16] == (j - 1))
             {
-                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i - 1, j - 1);
+                Is = Is || IsNeigbourChild(mountsi, mountsj, sall, siall, i - 1, j - 1);
             }
 
             if (Is)
                 return Is;
-            
+
             if (sall[siall][18] == (i - 1) && sall[siall][19] == (j + 1))
             {
-                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i - 1, j + 1);
+                Is = Is || IsNeigbourChild(mountsi, mountsj, sall, siall, i - 1, j + 1);
             }
 
             if (Is)
                 return Is;
-            
+
             if (sall[siall][21] == (i + 1) && sall[siall][22] == (j - 1))
             {
-                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i + 1, j - 1);
+                Is = Is || IsNeigbourChild(mountsi, mountsj, sall, siall, i + 1, j - 1);
             }
 
             if (Is)
                 return Is;
-            
+
             if (sall[siall][24] == (i + 1) && sall[siall][25] == (j + 1))
             {
-                Is = Is || IsNeigbourChild( mountsi,  mountsj, sall, siall, i + 1, j + 1);
+                Is = Is || IsNeigbourChild(mountsi, mountsj, sall, siall, i + 1, j + 1);
             }
             return Is;
         }
-        void CtreatPoints(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1,ref List<double[]> PointsAddp0Conected,ref List<double[]> PointsAddp1Conected)
+        void CtreatPoints(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddp1Conected)
         {
             for (int i = 0; i < gr.a.cx; i++)
             {
@@ -500,7 +499,7 @@ namespace howto_WPF_3D_triangle_normals
                         Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
                         if (!exist(s, PointsAddp0))
 
-                        PointsAddp0.Add(s);
+                            PointsAddp0.Add(s);
                         PointsAddp0Conected.Add(gr.a.st[i][j]);
                     }
                 }
@@ -519,7 +518,7 @@ namespace howto_WPF_3D_triangle_normals
             }
 
         }
-        void reductFirst(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddp1Conected,double minrp0,double minrp1)
+        void reductFirst(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddp1Conected, double minrp0, double minrp1)
         {
             if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
             {
@@ -547,7 +546,7 @@ namespace howto_WPF_3D_triangle_normals
             }
 
         }
-        void reductionSecond(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected,ref List<Point3D> xxxp00,ref List<double[]> xxxp00C,double minrp)
+        void reductionSecond(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<Point3D> xxxp00, ref List<double[]> xxxp00C, double minrp)
         {
             int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, ref xxxp00C, 1.0 //System.Convert.ToDouble(gr.textBox1.Text) / 3
                                       /// (minrp / minrp0)
@@ -561,7 +560,7 @@ namespace howto_WPF_3D_triangle_normals
             else MessageBox.Show("no reductio p0! " + PointsAddp0.Count.ToString());
 
         }
-        void DrawTriangle(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected,ref List<Point3D> dd,ref List<Point3D[]> d,ref MeshGeometry3D mesh)
+        void DrawTriangle(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected, ref List<Point3D> dd, ref List<Point3D[]> d, ref MeshGeometry3D mesh)
         {
             for (int i = 0; i < PointsAdd.Count; i++)
             {
@@ -633,7 +632,7 @@ namespace howto_WPF_3D_triangle_normals
         {
             public static object Lock = new object();
         }
-        void DrawTriangleParallel(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected,  List<Point3D> dd,  List<Point3D[]> d,  MeshGeometry3D mesh)
+        void DrawTriangleParallel(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected, List<Point3D> dd, List<Point3D[]> d, MeshGeometry3D mesh)
         {
             var output = Task.Factory.StartNew(() =>
             {
@@ -645,36 +644,36 @@ namespace howto_WPF_3D_triangle_normals
                     {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
                         ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, k =>
                         {
-                        object o = new object();
-                        lock (o)
-                        {
-                            double ind = i * j * k;
-
-                            /*  lock (LockHolder.Lock)
-                              {
-                                  za.Content = ((int)((ind / max) * 100)).ToString() + "%";                                      
-                              }*/
-                            if ((new Triangle()).boundry(i, j, k))
-                                return;
-
-                            Point3D[] ss = new Point3D[3];
-                            ss[0] = PointsAdd[i];
-                            ss[1] = PointsAdd[j];
-                            ss[2] = PointsAdd[k];
-                            ss = ImprovmentSort.Do(ss);
-                            //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
-                            //continue;
-
-                            bool n = true;
-                            Dispatcher.Invoke(() =>
+                            object o = new object();
+                            lock (o)
                             {
-                                n = exist(ss, d);
-                            });
-                            if (!n)
-                            {
-                                d.Add(ss);
-                                if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
+                                double ind = i * j * k;
+
+                                /*  lock (LockHolder.Lock)
+                                  {
+                                      za.Content = ((int)((ind / max) * 100)).ToString() + "%";                                      
+                                  }*/
+                                if ((new Triangle()).boundry(i, j, k))
+                                    return;
+
+                                Point3D[] ss = new Point3D[3];
+                                ss[0] = PointsAdd[i];
+                                ss[1] = PointsAdd[j];
+                                ss[2] = PointsAdd[k];
+                                ss = ImprovmentSort.Do(ss);
+                                //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
+                                //continue;
+
+                                bool n = true;
+                                Dispatcher.Invoke(() =>
                                 {
+                                    n = exist(ss, d);
+                                });
+                                if (!n)
+                                {
+                                    d.Add(ss);
+                                    if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
+                                    {
                                         bool s = true;
                                         var outputn = Task.Factory.StartNew(() =>
                                         {
@@ -722,11 +721,13 @@ namespace howto_WPF_3D_triangle_normals
 
         }
 
-       
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            try { if (gr != null)
+            try
+            {
+                if (gr != null)
                 {
                     if (gr.a != null)
                     {
@@ -751,11 +752,11 @@ namespace howto_WPF_3D_triangle_normals
                                 PointsAddp.Add(PointsAddp0[y]);
                             for (int y = 0; y < PointsAddp0Conected.Count; y++)
                                 PointsAddpConected.Add(PointsAddp0Conected[y]);
-                          
+
 
                             if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
                             {
-                                  double minrp0 = minraddpoints(PointsAddp0);
+                                double minrp0 = minraddpoints(PointsAddp0);
                                 double minrp1 = minraddpoints(PointsAddp0);
                                 MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
 
@@ -764,23 +765,23 @@ namespace howto_WPF_3D_triangle_normals
 
 
                                 reductFirst(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected, minrp0, minrp1);
-                             
+
                                 double minrp = minraddpoints(PointsAddp0);
-                            
-                                makeListExpand(ref PointsAddp0,ref PointsAddp, ref PointsAddp0Conected,ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
+
+                                makeListExpand(ref PointsAddp0, ref PointsAddp, ref PointsAddp0Conected, ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
                                     );
 
 
                                 List<Point3D> xxxp00 = new List<Point3D>();
                                 List<double[]> xxxp00C = new List<double[]>();
                                 minrp = minraddpoints(PointsAddp0);
-                                MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString()  + " points. with minrp0 " + minrp.ToString() );
+                                MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " points. with minrp0 " + minrp.ToString());
                                 if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
                                 {
                                     reductionSecond(ref PointsAddp0, ref PointsAddp0Conected, ref xxxp00, ref xxxp00C, minrp);
                                 }
                                 makeListFittness(ref PointsAddp0);
-                                 MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
+                                MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();
                                 TheCamera.FieldOfView = 60;
@@ -791,7 +792,7 @@ namespace howto_WPF_3D_triangle_normals
                                 DefineLights();
                                 MeshGeometry3D mesh = new MeshGeometry3D();
                                 Model3DGroup model_group = MainModel3Dgroup;
-                  
+
 
                                 List<Point3D> PointsAdd = PointsAddp0;
 
@@ -807,7 +808,7 @@ namespace howto_WPF_3D_triangle_normals
 
                                 //DrawTriangleParallel(PointsAdd, PointsAddp, max, PointsAddpConected, dd, d, mesh);
 
-                                DrawTriangle(PointsAdd, PointsAddp, max, PointsAddpConected,ref dd,ref d,ref mesh);
+                                DrawTriangle(PointsAdd, PointsAddp, max, PointsAddpConected, ref dd, ref d, ref mesh);
 
 
 
@@ -870,7 +871,8 @@ namespace howto_WPF_3D_triangle_normals
                     }
 
                 }
-            } catch (Exception t) { MessageBox.Show(t.ToString()); Log(t); }
+            }
+            catch (Exception t) { MessageBox.Show(t.ToString()); Log(t); }
         }
 
         public static void makeListCenteralized(ref List<Point3D> non)
@@ -894,24 +896,24 @@ namespace howto_WPF_3D_triangle_normals
         }
         public static void makeListFittness(ref List<Point3D> non)
         {
-          /*  double maxx = maxGetListX(non);
-            double maxy = maxGetListY(non);
-            double maxz = maxGetListZ(non);
+            /*  double maxx = maxGetListX(non);
+              double maxy = maxGetListY(non);
+              double maxz = maxGetListZ(non);
 
-            double minx = minGetListX(non);
-            double miny = minGetListY(non);
-            double minz = minGetListZ(non);
-          */
-            double disx =  0.5;
-            double disy =  0.5;
-            double disz =  0.5;
+              double minx = minGetListX(non);
+              double miny = minGetListY(non);
+              double minz = minGetListZ(non);
+            */
+            double disx = 0.5;
+            double disy = 0.5;
+            double disz = 0.5;
             for (int i = 0; i < non.Count; i++)
             {
                 non[i] = new Point3D(non[i].X * disx, non[i].Y * disy, non[i].Z * disz);
             }
 
         }
-        static double  getAlphaperStringOfIndependentvars(String ind, List<List<double[]>> p0,int c,int l,int i,int j,int k)
+        static double getAlphaperStringOfIndependentvars(String ind, List<List<double[]>> p0, int c, int l, int i, int j, int k)
         {
             double a = 0;
             if (ind == "x")
@@ -930,7 +932,7 @@ namespace howto_WPF_3D_triangle_normals
             }
             return a;
         }
-        static double[] SetneighboursSt(double i, double j, double minx, double miny, double maxx, double maxy, double minr,double amount)
+        static double[] SetneighboursSt(double i, double j, double minx, double miny, double maxx, double maxy, double minr, double amount)
         {
             double[] st = new double[18];
 
@@ -940,43 +942,43 @@ namespace howto_WPF_3D_triangle_normals
                 if (i < maxx - minr && j < maxy - minr)
                 {
 
-                   
-                        st[0] = i;
-                        st[1] = j;
-                        st[2] = amount;
-                  
-                        st[3] = i - 1;
-                        st[4] = j;
-                        st[5] = amount;
-                  
-                        st[6] = i + 1;
-                        st[7] = j;
-                        st[8] = amount;
-                   
-                        st[9] = i;
-                        st[10] = j - 1;
-                        st[11] = amount;
-                    
-                        st[12] = i;
-                        st[13] = j + 1;
-                        st[14] = amount;
-                   
-                        st[15] = i - 1;
-                        st[16] = j - 1;
-                        st[17] = amount;
-                    
-                        st[18] = i - 1;
-                        st[19] = j + 1;
-                        st[20] = amount;
-                    
-                        st[21] = i + 1;
-                        st[22] = j - 1;
-                        st[23] = amount;
-                   
-                        st[24] = i + 1;
-                        st[25] = j + 1;
-                        st[26] = amount;
-             
+
+                    st[0] = i;
+                    st[1] = j;
+                    st[2] = amount;
+
+                    st[3] = i - 1;
+                    st[4] = j;
+                    st[5] = amount;
+
+                    st[6] = i + 1;
+                    st[7] = j;
+                    st[8] = amount;
+
+                    st[9] = i;
+                    st[10] = j - 1;
+                    st[11] = amount;
+
+                    st[12] = i;
+                    st[13] = j + 1;
+                    st[14] = amount;
+
+                    st[15] = i - 1;
+                    st[16] = j - 1;
+                    st[17] = amount;
+
+                    st[18] = i - 1;
+                    st[19] = j + 1;
+                    st[20] = amount;
+
+                    st[21] = i + 1;
+                    st[22] = j - 1;
+                    st[23] = amount;
+
+                    st[24] = i + 1;
+                    st[25] = j + 1;
+                    st[26] = amount;
+
                 }
             }
             return st;
@@ -1001,34 +1003,34 @@ namespace howto_WPF_3D_triangle_normals
 
             MessageBox.Show("creation points: before non : " + non.Count.ToString());
             for (int c = 0; c < p0.Count; c++)
-             {
-                 for (int l = 0; l < p0[c].Count; l++)
-                 {
-                     for (int i = (int)disx; i < minx; i += minr)
-                     {
-                         for (int j = (int)disy; j < miny; j += minr)
-                         {
-                             for (int k = (int)disz; k < minz; k += minr)
-                             {
+            {
+                for (int l = 0; l < p0[c].Count; l++)
+                {
+                    for (int i = (int)disx; i < minx; i += minr)
+                    {
+                        for (int j = (int)disy; j < miny; j += minr)
+                        {
+                            for (int k = (int)disz; k < minz; k += minr)
+                            {
                                 Point3D x = new Point3D(getAlphaperStringOfIndependentvars("x", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("y", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("z", p0, c, l, i, j, k));
                                 if (!(x.Z < minz || x.Z > maxz))
-                                { 
+                                {
                                     //int f = non.IndexOf(addpoint0.qsystemlistaddpoints[c][l]);
                                     //nonCon.Add();(?)
                                     non.Add(x);
                                     nonConst.Add(x);
-                                    nonCon.Add(SetneighboursSt(i, j, disx, disy,minx, minx, minr,x.Z));
+                                    nonCon.Add(SetneighboursSt(i, j, disx, disy, minx, minx, minr, x.Z));
                                     nonCons.Add(SetneighboursSt(i, j, disx, disy, minx, minx, minr, x.Z));
 
                                 }
 
                             }
 
-                         }
-                     }
-                 }
-             }
-            
+                        }
+                    }
+                }
+            }
+
             /*for (int c = 0; c < p0.Count; c++)
              {
                  for (int l = 0; l < p0[c].Count; l++)
@@ -1046,89 +1048,89 @@ namespace howto_WPF_3D_triangle_normals
             MessageBox.Show("add points complete! points: " + non.Count.ToString());
         }
 
-static double maxGetListX(List<Point3D> d)
-{
-int inex = -1;
-double max = float.MinValue;
-for (int i = 0; i < d.Count; i++)
-{
-    if (max < d[i].X)
-    {
-        max = d[i].X;
-        inex = i;
+        static double maxGetListX(List<Point3D> d)
+        {
+            int inex = -1;
+            double max = float.MinValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (max < d[i].X)
+                {
+                    max = d[i].X;
+                    inex = i;
+                }
+            }
+            return d[inex].X;
+        }
+        static double maxGetListY(List<Point3D> d)
+        {
+            int inex = -1;
+            double max = float.MinValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (max < d[i].Y)
+                {
+                    max = d[i].Y;
+                    inex = i;
+                }
+            }
+            return d[inex].Y;
+        }
+        static double maxGetListZ(List<Point3D> d)
+        {
+            int inex = -1;
+            double max = float.MinValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (max < d[i].Z)
+                {
+                    max = d[i].Z;
+                    inex = i;
+                }
+            }
+            return d[inex].Z;
+        }
+        static double minGetListX(List<Point3D> d)
+        {
+            int inex = -1;
+            double min = float.MaxValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (min > d[i].X)
+                {
+                    min = d[i].X;
+                    inex = i;
+                }
+            }
+            return d[inex].X;
+        }
+        static double minGetListY(List<Point3D> d)
+        {
+            int inex = -1;
+            double min = float.MaxValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (min > d[i].X)
+                {
+                    min = d[i].X;
+                    inex = i;
+                }
+            }
+            return d[inex].Y;
+        }
+        static double minGetListZ(List<Point3D> d)
+        {
+            int inex = -1;
+            double min = float.MaxValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (min > d[i].Z)
+                {
+                    min = d[i].Z;
+                    inex = i;
+                }
+            }
+            return d[inex].Z;
+        }
     }
-}
-return d[inex].X;
-}
-static double maxGetListY(List<Point3D> d)
-{
-int inex = -1;
-double max = float.MinValue;
-for (int i = 0; i < d.Count; i++)
-{
-    if (max < d[i].Y)
-    {
-        max = d[i].Y;
-        inex = i;
-    }
-}
-return d[inex].Y;
-}
-static double maxGetListZ(List<Point3D> d)
-{
-int inex = -1;
-double max = float.MinValue;
-for (int i = 0; i < d.Count; i++)
-{
-    if (max < d[i].Z)
-    {
-        max = d[i].Z;
-        inex = i;
-    }
-}
-return d[inex].Z;
-}
-static double minGetListX(List<Point3D> d)
-{
-int inex = -1;
-double min = float.MaxValue;
-for (int i = 0; i < d.Count; i++)
-{
-    if (min > d[i].X)
-    {
-        min = d[i].X;
-        inex = i;
-    }
-}
-return d[inex].X;
-}
-static double minGetListY(List<Point3D> d)
-{
-int inex = -1;
-double min = float.MaxValue;
-for (int i = 0; i < d.Count; i++)
-{
-    if (min > d[i].X)
-    {
-        min = d[i].X;
-        inex = i;
-    }
-}
-return d[inex].Y;
-}
-static double minGetListZ(List<Point3D> d)
-{
-int inex = -1;
-double min = float.MaxValue;
-for (int i = 0; i < d.Count; i++)
-{
-    if (min > d[i].Z)
-    {
-        min = d[i].Z;
-        inex = i;
-    }
-}
-return d[inex].Z;
-}
-}
 }

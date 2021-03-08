@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace HighSchool
 {
@@ -27,7 +23,7 @@ namespace HighSchool
             cmd.Connection.Close();
             this.CountOfPricing_Load(sender, new EventArgs());
             MessageBox.Show("Insert Finsihed.");
-        
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -55,7 +51,7 @@ namespace HighSchool
             cmd.Connection.Close();
             this.CountOfPricing_Load(sender, new EventArgs());
             MessageBox.Show("Update Finsihed.");
-        
+
         }
 
         private void countOfPricingBindingNavigatorSaveItem_Click(object sender, EventArgs e)

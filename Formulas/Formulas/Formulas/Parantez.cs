@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Formulas
@@ -31,9 +27,9 @@ namespace Formulas
         }
         private void DrawParantezOnForm()
         {
-            g.DrawString("(",new Font("Times New Roman",15), new SolidBrush(Color.Black),15,7);
-            g.DrawString(")",new Font("Times New Roman",15), new SolidBrush(Color.Black),50,7);
-        }        
+            g.DrawString("(", new Font("Times New Roman", 15), new SolidBrush(Color.Black), 15, 7);
+            g.DrawString(")", new Font("Times New Roman", 15), new SolidBrush(Color.Black), 50, 7);
+        }
         private void DrawForm()
         {
             int HeightValue = 40;
@@ -48,17 +44,17 @@ namespace Formulas
                     g.FillRectangle(new SolidBrush(Color.LightGray), Sq.lwBase[i / 40, j / 40, 0], Sq.lwBase[i / 40, j / 40, 1], 40, 40);
                     g.FillRectangle(new SolidBrush(Color.White), Sq.lwUp[i / 40, j / 40, 0], Sq.lwUp[i / 40, j / 40, 1], 34, 34);
                 }
-        /*  Integral.BackColor = Color.White;
-            Line.BackColor = Color.White;
-            Trianglic.BackColor = Color.White;
-            Cerices.BackColor = Color.White;
-            Root.BackColor = Color.White;
-            Parantez.BackColor = Color.White;
-            ToUp.BackColor = Color.White;
-            ToDown.BackColor = Color.White;
-            ToLeft.BackColor = Color.White;
-            ToRight.BackColor = Color.White;
-         */
+            /*  Integral.BackColor = Color.White;
+                Line.BackColor = Color.White;
+                Trianglic.BackColor = Color.White;
+                Cerices.BackColor = Color.White;
+                Root.BackColor = Color.White;
+                Parantez.BackColor = Color.White;
+                ToUp.BackColor = Color.White;
+                ToDown.BackColor = Color.White;
+                ToLeft.BackColor = Color.White;
+                ToRight.BackColor = Color.White;
+             */
         }
         private void Parantez_Paint(object sender, PaintEventArgs e)
         {
@@ -112,15 +108,15 @@ namespace Formulas
                             g.FillRectangle(new SolidBrush(Color.LightGray), Sq.lwUp[Row, Column, 0], Sq.lwUp[Row, Column, 1], 34, 34);
                             g.FillRectangle(new SolidBrush(Color.White), Sq.lwUp[DummyRow, DummyColumn, 0], Sq.lwUp[DummyRow, DummyColumn, 1], 34, 34);
                             //Open
-                            
+
                             if (Row == 0)
                                 if (Column == 0)
                                 {
                                     INTPressded = 1;
                                     Contained = "(";
                                 }
-                                
-                            
+
+
                             //Close
                             if (Row == 1)
                                 if (Column == 0)
@@ -128,16 +124,16 @@ namespace Formulas
                                     INTPressded = 2;
                                     Contained = ")";
                                 }
-                                
+
                             DummyRow = Row;
                             DummyColumn = Column;
                         }
-                this.DrawParantezOnForm();                
+                this.DrawParantezOnForm();
             }
         }
         private void Parantez_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void Parantez_Mouseclick(object sender, MouseEventArgs e)
@@ -145,6 +141,6 @@ namespace Formulas
             this.Close();
         }
 
-              
+
     }
 }

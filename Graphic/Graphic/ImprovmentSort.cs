@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Point3Dspaceuser;
 
 namespace howto_WPF_3D_triangle_normalsuser

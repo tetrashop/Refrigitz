@@ -9806,183 +9806,183 @@ namespace ChessFirst
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
-                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-        {
+                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+         {
             //soldier
             for (var i = 0; i < SodierMidle; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //elephant
             for (var i = 0; i < ElefantMidle; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //hourse
             for (var i = 0; i < HourseMidle; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //Castle
             for (var i = 0; i < CastleMidle; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //minister
             for (var i = 0; i < MinisterMidle; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //king
             for (var i = 0; i < KingMidle; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //king
             for (var i = 0; i < 1; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        });
+                 }
+             }
+         });
                             }
                         });
                         output.Wait(); output.Dispose();
@@ -9995,181 +9995,181 @@ namespace ChessFirst
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
-                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-        {
+                                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+         {
             //soldier
             for (var i = SodierMidle; i < SodierHigh; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //elephant
             for (var i = ElefantMidle; i < ElefantHigh; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //hourse
             for (var i = HourseMidle; i < HourseHight; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
-                }
-            }
-        }, () =>
-        {
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
+                 }
+             }
+         }, () =>
+         {
             //Castle
             for (var i = CastleMidle; i < CastleHigh; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //minister
             for (var i = MinisterMidle; i < MinisterHigh; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //king
             for (var i = KingMidle; i < KingHigh; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        }, () =>
-        {
+                 }
+             }
+         }, () =>
+         {
             //king
             for (var i = 0; i < 1; i++)
-            {
-                Object OOOO = new Object();
-                lock (OOOO)
-                {
+             {
+                 Object OOOO = new Object();
+                 lock (OOOO)
+                 {
                     //when search finished stop and return
                     bool ac = false;
-                    var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
-                    ah1.Wait();
-                    ah1.Dispose();
-                    if (ac)
-                        return;
-                }
-                Object P = new Object();
-                lock (P)
-                {
-                    var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
-                    ah.Wait();
-                    ah.Dispose();
+                     var ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                     ah1.Wait();
+                     ah1.Dispose();
+                     if (ac)
+                         return;
+                 }
+                 Object P = new Object();
+                 lock (P)
+                 {
+                     var ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                     ah.Wait();
+                     ah.Dispose();
 
-                }
-            }
-        });
+                 }
+             }
+         });
                             }
                         });
                         output.Wait(); output.Dispose();
@@ -18716,12 +18716,12 @@ namespace ChessFirst
             {
 
                 //For Gray Soldeirs Objects. 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, i =>
-{
-    var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-    H.Wait();
-    H.Dispose();
-});
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, i =>
+ {
+     var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     H.Wait();
+     H.Dispose();
+ });
 
             }
             return this;
@@ -18993,12 +18993,12 @@ namespace ChessFirst
             Object oo = new Object();
             lock (oo)
             {
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, i =>
+                 {
+                     var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     H.Wait();
+                     H.Dispose();
+                 });
             }
             return this;
         }
@@ -19079,12 +19079,12 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Gray Hourse Objects.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, i =>
+                 {
+                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     H.Wait();
+                     H.Dispose();
+                 });
             }
             return this;
         }
@@ -19170,12 +19170,12 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Possible Gray Castles Objects.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, i =>
+                 {
+                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     H.Wait();
+                     H.Dispose();
+                 });
             }
             return this;
         }
@@ -19258,12 +19258,12 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Possible Gray Minister Movments.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterMidle, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterMidle, i =>
+                 {
+                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     H.Wait();
+                     H.Dispose();
+                 });
             }
             return this;
         }
@@ -19353,12 +19353,12 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Possible Gray King Objects.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingMidle, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingMidle, i =>
+                 {
+                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     H.Wait();
+                     H.Dispose();
+                 });
             }
             return this;
         }
@@ -19369,12 +19369,12 @@ namespace ChessFirst
             lock (oo)
             {
                 //For All Possible Gray Castling Objects.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, i =>
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastling(7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, i =>
+                 {
+                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastling(7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     H.Wait();
+                     H.Dispose();
+                 });
             }
             return this;
         }
@@ -19531,13 +19531,13 @@ namespace ChessFirst
 
 
                 //For Each Objects of Brown Sodiers.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(SodierMidle, SodierHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(SodierMidle, SodierHigh, i =>
 
-{
-    var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-    H.Wait();
-    H.Dispose();
-});
+ {
+     var H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     H.Wait();
+     H.Dispose();
+ });
 
             }
 
@@ -19554,13 +19554,13 @@ namespace ChessFirst
 
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(ElefantMidle, ElefantHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(ElefantMidle, ElefantHigh, i =>
 
-{
-    var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-    H.Wait();
-    H.Dispose();
-});
+ {
+     var H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     H.Wait();
+     H.Dispose();
+ });
 
             }
 
@@ -19576,13 +19576,13 @@ namespace ChessFirst
             {
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(HourseMidle, HourseHight, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(HourseMidle, HourseHight, i =>
 
-{
-    var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-    H.Wait();
-    H.Dispose();
-});
+ {
+     var H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     H.Wait();
+     H.Dispose();
+ });
 
             }
 
@@ -19598,13 +19598,13 @@ namespace ChessFirst
             {
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(CastleMidle, CastleHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(CastleMidle, CastleHigh, i =>
 
-{
-    var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-    H.Wait();
-    H.Dispose();
-});
+ {
+     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     H.Wait();
+     H.Dispose();
+ });
 
             }
 
@@ -19621,13 +19621,13 @@ namespace ChessFirst
 
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(MinisterMidle, MinisterHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(MinisterMidle, MinisterHigh, i =>
 
-{
-    var H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-    H.Wait();
-    H.Dispose();
-});
+ {
+     var H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     H.Wait();
+     H.Dispose();
+ });
             }
 
             return this;
@@ -19643,13 +19643,13 @@ namespace ChessFirst
 
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(KingMidle, KingHigh, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(KingMidle, KingHigh, i =>
 
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                 {
+                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     H.Wait();
+                     H.Dispose();
+                 });
             }
 
             return this;
@@ -19664,13 +19664,13 @@ namespace ChessFirst
 
 
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, i =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, i =>
 
-                {
-                    var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastling(-7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
-                    H.Wait();
-                    H.Dispose();
-                });
+                 {
+                     var H = Task.Factory.StartNew(() => InitiateAStarGreedythCastling(-7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     H.Wait();
+                     H.Dispose();
+                 });
             }
 
             return this;
@@ -20261,65 +20261,65 @@ namespace ChessFirst
                     {
                         //if (!feedCancellationTokenSource.IsCancellationRequested)
                         {
-                            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-    {
+                            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+     {
         //For All Gray Soldier Objects.
         Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedytSodlerGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedytSodlerGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
         //For All Gray Elephant Objects.
         Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedytElephantGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedytElephantGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
         //For All Gray Hourse Objects.
         Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythHourseGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
-        Object O = new Object();
-        lock (O)
-        {
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythHourseGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
+         Object O = new Object();
+         lock (O)
+         {
 
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastleGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythMinisterGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythKingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    });
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastleGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythMinisterGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythKingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     });
                         }
                     });
                 }
@@ -20335,64 +20335,64 @@ namespace ChessFirst
                     {
                         //if (!feedCancellationTokenSource.IsCancellationRequested)
                         {
-                            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-    {
+                            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+     {
         //For All Gray Soldier Objects.
         Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythSoldierBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythSoldierBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
         //For All Gray Elephant Objects.
         Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythElephantBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythElephantBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
         //For All Gray Hourse Objects.
         Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythHourseBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastleBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythMinisterBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    }, () =>
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythKingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
-            H.Wait();
-            H.Dispose();
-        }
-    });
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythHourseBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastleBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythMinisterBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     }, () =>
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythKingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tab), Ord1, TB1, FOUND, LeafAStarGreedy));
+             H.Wait();
+             H.Dispose();
+         }
+     });
                         }
                     });
                     output.Wait(); output.Dispose();
@@ -20469,74 +20469,74 @@ namespace ChessFirst
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-{
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+ {
     //For All Gray Soldier Objects.
     Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedytSodlerGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedytSodlerGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
     //For All Gray Elephant Objects.
     Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedytElephantGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedytElephantGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
     //For All Gray Hourse Objects.
     Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythHourseGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
-    Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastleGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
-    Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythMinisterGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}
-, () =>
-{
-    Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythKingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
-    Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastlingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-});
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythHourseGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
+     Object O = new Object();
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastleGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
+     Object O = new Object();
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythMinisterGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }
+ , () =>
+ {
+     Object O = new Object();
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythKingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
+     Object O = new Object();
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastlingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ });
                     }
                 });
                 output.Wait(); output.Dispose();
@@ -20559,73 +20559,73 @@ namespace ChessFirst
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-{
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+ {
     //For All Gray Soldier Objects.
     Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythSoldierBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythSoldierBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
     //For All Gray Elephant Objects.
     Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythElephantBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythElephantBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
     //For All Gray Hourse Objects.
     Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythHourseBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
-    Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastleBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
-    Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythMinisterBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
-    Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythKingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-}, () =>
-{
-    Object O = new Object();
-    lock (O)
-    {
-        var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastlingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
-        H.Wait();
-        H.Dispose();
-    }
-});
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythHourseBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
+     Object O = new Object();
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastleBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
+     Object O = new Object();
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythMinisterBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
+     Object O = new Object();
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythKingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ }, () =>
+ {
+     Object O = new Object();
+     lock (O)
+     {
+         var H = Task.Factory.StartNew(() => this.InitiateAStarGreedythCastlingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         H.Wait();
+         H.Dispose();
+     }
+ });
                     }
                 });
                 output.Wait(); output.Dispose();
@@ -21132,96 +21132,96 @@ namespace ChessFirst
             {
                 var output = Task.Factory.StartNew(() =>
                 {
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-                    {
-                        Object o = new Object();
-                        lock (o)
-                        {
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                     {
+                         Object o = new Object();
+                         lock (o)
+                         {
 
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.SodierHigh, p =>
-                            {
-                                Act = Act || MergeJungleTreeSoldier(jungle, p);
-                            });
-                        }
-                    },
-                    () =>
-                    {
+                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.SodierHigh, p =>
+                             {
+                                 Act = Act || MergeJungleTreeSoldier(jungle, p);
+                             });
+                         }
+                     },
+                     () =>
+                     {
 
-                        Object o = new Object();
-                        lock (o)
-                        {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.ElefantHigh, p =>
-                            {
-                                Act = Act || MergeJungleTreeElephant(jungle, p);
-
-
-
-                            });
-                        }
-                    },
-                    () =>
-                    {
-                        Object o = new Object();
-                        lock (o)
-                        {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.HourseHight, p =>
-                            {
-
-                                Act = Act || MergeJungleTreeHhourse(jungle, p);
-
-
-                            });
-                        }
-                    }, () =>
-                    {
-                        Object o = new Object();
-                        lock (o)
-                        {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.CastleHigh, p =>
-                            {
-
-                                Act = Act || MergeJungleTreeCastle(jungle, p);
+                         Object o = new Object();
+                         lock (o)
+                         {
+                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.ElefantHigh, p =>
+                             {
+                                 Act = Act || MergeJungleTreeElephant(jungle, p);
 
 
 
-                            });
-                        }
-                    },
-                    () =>
-                    {
-                        Object o = new Object();
-                        lock (o)
-                        {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.MinisterHigh, p =>
-                            {
-                                Act = Act || MergeJungleTreeMinister(jungle, p);
+                             });
+                         }
+                     },
+                     () =>
+                     {
+                         Object o = new Object();
+                         lock (o)
+                         {
+                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.HourseHight, p =>
+                             {
+
+                                 Act = Act || MergeJungleTreeHhourse(jungle, p);
+
+
+                             });
+                         }
+                     }, () =>
+                     {
+                         Object o = new Object();
+                         lock (o)
+                         {
+                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.CastleHigh, p =>
+                             {
+
+                                 Act = Act || MergeJungleTreeCastle(jungle, p);
 
 
 
-                            });
-                        }
-                    }, () =>
-                    {
-                        Object o = new Object();
-                        lock (o)
-                        {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.KingHigh, p =>
-                            {
-                                Act = Act || MergeJungleTreeKing(jungle, p);
-                            });
-                        }
-                    },
-                    () =>
-                    {
-                        Object o = new Object();
-                        lock (o)
-                        {
-                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
-                            {
-                                Act = Act || MergeJungleTreeCastling(jungle, p);
-                            });
-                        }
-                    });
+                             });
+                         }
+                     },
+                     () =>
+                     {
+                         Object o = new Object();
+                         lock (o)
+                         {
+                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.MinisterHigh, p =>
+                             {
+                                 Act = Act || MergeJungleTreeMinister(jungle, p);
+
+
+
+                             });
+                         }
+                     }, () =>
+                     {
+                         Object o = new Object();
+                         lock (o)
+                         {
+                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, jungle.KingHigh, p =>
+                             {
+                                 Act = Act || MergeJungleTreeKing(jungle, p);
+                             });
+                         }
+                     },
+                     () =>
+                     {
+                         Object o = new Object();
+                         lock (o)
+                         {
+                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
+                             {
+                                 Act = Act || MergeJungleTreeCastling(jungle, p);
+                             });
+                         }
+                     });
                 });
                 output.Wait();
                 output.Dispose();
@@ -21654,376 +21654,376 @@ namespace ChessFirst
 
             var output = Task.Factory.StartNew(() =>
             {
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
-                        {
-                            if (SolderesOnTable != null)
-                            {
-                                if (SolderesOnTable[p] != null)
-                                {
-
-                                    if (SolderesOnTable[p].SoldierThinking != null)
-                                    {
-                                        if (SolderesOnTable[p].SoldierThinking[0] != null)
-                                        {
-
-                                            if (SolderesOnTable[p].SoldierThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].MergeJungleTree(jungle.SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k], p, k, 1));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-
-                        });
-                    }
-                },
-                () =>
-                {
-
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
-                        {
-                            if (ElephantOnTable != null)
-                            {
-                                if (ElephantOnTable[p] != null)
-                                {
-
-                                    if (ElephantOnTable[p].ElefantThinking != null)
-                                    {
-                                        if (ElephantOnTable[p].ElefantThinking[0] != null)
-                                        {
-
-                                            if (ElephantOnTable[p].ElefantThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].MergeJungleTree(jungle.ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k], p, k, 2));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
+                         {
+                             if (SolderesOnTable != null)
+                             {
+                                 if (SolderesOnTable[p] != null)
+                                 {
+
+                                     if (SolderesOnTable[p].SoldierThinking != null)
+                                     {
+                                         if (SolderesOnTable[p].SoldierThinking[0] != null)
+                                         {
+
+                                             if (SolderesOnTable[p].SoldierThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].MergeJungleTree(jungle.SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k], p, k, 1));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+
+                         });
+                     }
+                 },
+                 () =>
+                 {
+
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
+                         {
+                             if (ElephantOnTable != null)
+                             {
+                                 if (ElephantOnTable[p] != null)
+                                 {
+
+                                     if (ElephantOnTable[p].ElefantThinking != null)
+                                     {
+                                         if (ElephantOnTable[p].ElefantThinking[0] != null)
+                                         {
+
+                                             if (ElephantOnTable[p].ElefantThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].MergeJungleTree(jungle.ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k], p, k, 2));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
 
 
-                        });
-                    }
-                },
-                () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
-                        {
-
-                            if (HoursesOnTable != null)
-                            {
-                                if (HoursesOnTable[p] != null)
-                                {
-
-                                    if (HoursesOnTable[p].HourseThinking != null)
-                                    {
-                                        if (HoursesOnTable[p].HourseThinking[0] != null)
-                                        {
-
-                                            if (HoursesOnTable[p].HourseThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].MergeJungleTree(jungle.HoursesOnTable[p].HourseThinking[0].AStarGreedy[k], p, k, 3));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-                        });
-                    }
-                }, () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
-                        {
-
-                            if (CastlesOnTable != null)
-                            {
-                                if (CastlesOnTable[p] != null)
-                                {
-
-                                    if (CastlesOnTable[p].CastleThinking != null)
-                                    {
-                                        if (CastlesOnTable[p].CastleThinking[0] != null)
-                                        {
-
-                                            if (CastlesOnTable[p].CastleThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlesOnTable[p].CastleThinking[0].AStarGreedy[k], p, k, 4));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-
-                        });
-                    }
-                },
-                () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
-                        {
-
-                            if (MinisterOnTable != null)
-                            {
-                                if (MinisterOnTable[p] != null)
-                                {
-
-                                    if (MinisterOnTable[p].MinisterThinking != null)
-                                    {
-                                        if (MinisterOnTable[p].MinisterThinking[0] != null)
-                                        {
-
-                                            if (MinisterOnTable[p].MinisterThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].MergeJungleTree(jungle.MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k], p, k, 5));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-
-                        });
-                    }
-                }, () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
-                        {
-                            if (KingOnTable != null)
-                            {
-                                if (KingOnTable[p] != null)
-                                {
-
-                                    if (KingOnTable[p].KingThinking != null)
-                                    {
-                                        if (KingOnTable[p].KingThinking[0] != null)
-                                        {
-
-                                            if (KingOnTable[p].KingThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.KingOnTable[p].KingThinking[0].AStarGreedy[k], p, k, 6));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-
-                        });
-                    }
-                },
-                () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
-                        {
-                            if (CastlingOnTable != null)
-                            {
-                                if (CastlingOnTable[p] != null)
-                                {
-
-                                    if (CastlingOnTable[p].CastlingThinking != null)
-                                    {
-                                        if (CastlingOnTable[p].CastlingThinking[0] != null)
-                                        {
-
-                                            if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k], p, k, 7));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-                        });
-                    }
-                });
+                         });
+                     }
+                 },
+                 () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
+                         {
+
+                             if (HoursesOnTable != null)
+                             {
+                                 if (HoursesOnTable[p] != null)
+                                 {
+
+                                     if (HoursesOnTable[p].HourseThinking != null)
+                                     {
+                                         if (HoursesOnTable[p].HourseThinking[0] != null)
+                                         {
+
+                                             if (HoursesOnTable[p].HourseThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].MergeJungleTree(jungle.HoursesOnTable[p].HourseThinking[0].AStarGreedy[k], p, k, 3));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+                         });
+                     }
+                 }, () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
+                         {
+
+                             if (CastlesOnTable != null)
+                             {
+                                 if (CastlesOnTable[p] != null)
+                                 {
+
+                                     if (CastlesOnTable[p].CastleThinking != null)
+                                     {
+                                         if (CastlesOnTable[p].CastleThinking[0] != null)
+                                         {
+
+                                             if (CastlesOnTable[p].CastleThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlesOnTable[p].CastleThinking[0].AStarGreedy[k], p, k, 4));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+
+                         });
+                     }
+                 },
+                 () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
+                         {
+
+                             if (MinisterOnTable != null)
+                             {
+                                 if (MinisterOnTable[p] != null)
+                                 {
+
+                                     if (MinisterOnTable[p].MinisterThinking != null)
+                                     {
+                                         if (MinisterOnTable[p].MinisterThinking[0] != null)
+                                         {
+
+                                             if (MinisterOnTable[p].MinisterThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].MergeJungleTree(jungle.MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k], p, k, 5));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+
+                         });
+                     }
+                 }, () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
+                         {
+                             if (KingOnTable != null)
+                             {
+                                 if (KingOnTable[p] != null)
+                                 {
+
+                                     if (KingOnTable[p].KingThinking != null)
+                                     {
+                                         if (KingOnTable[p].KingThinking[0] != null)
+                                         {
+
+                                             if (KingOnTable[p].KingThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.KingOnTable[p].KingThinking[0].AStarGreedy[k], p, k, 6));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+
+                         });
+                     }
+                 },
+                 () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
+                         {
+                             if (CastlingOnTable != null)
+                             {
+                                 if (CastlingOnTable[p] != null)
+                                 {
+
+                                     if (CastlingOnTable[p].CastlingThinking != null)
+                                     {
+                                         if (CastlingOnTable[p].CastlingThinking[0] != null)
+                                         {
+
+                                             if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k], p, k, 7));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+                         });
+                     }
+                 });
             });
             output.Wait();
             output.Dispose();
@@ -23102,376 +23102,376 @@ namespace ChessFirst
             }
             var output = Task.Factory.StartNew(() =>
             {
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
-                        {
-                            if (SolderesOnTable != null)
-                            {
-                                if (SolderesOnTable[p] != null)
-                                {
-
-                                    if (SolderesOnTable[p].SoldierThinking != null)
-                                    {
-                                        if (SolderesOnTable[p].SoldierThinking[0] != null)
-                                        {
-
-                                            if (SolderesOnTable[p].SoldierThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-
-                        });
-                    }
-                },
-                () =>
-                {
-
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
-                        {
-                            if (ElephantOnTable != null)
-                            {
-                                if (ElephantOnTable[p] != null)
-                                {
-
-                                    if (ElephantOnTable[p].ElefantThinking != null)
-                                    {
-                                        if (ElephantOnTable[p].ElefantThinking[0] != null)
-                                        {
-
-                                            if (ElephantOnTable[p].ElefantThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierHigh, p =>
+                         {
+                             if (SolderesOnTable != null)
+                             {
+                                 if (SolderesOnTable[p] != null)
+                                 {
+
+                                     if (SolderesOnTable[p].SoldierThinking != null)
+                                     {
+                                         if (SolderesOnTable[p].SoldierThinking[0] != null)
+                                         {
+
+                                             if (SolderesOnTable[p].SoldierThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < SolderesOnTable[p].SoldierThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+
+                         });
+                     }
+                 },
+                 () =>
+                 {
+
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantHigh, p =>
+                         {
+                             if (ElephantOnTable != null)
+                             {
+                                 if (ElephantOnTable[p] != null)
+                                 {
+
+                                     if (ElephantOnTable[p].ElefantThinking != null)
+                                     {
+                                         if (ElephantOnTable[p].ElefantThinking[0] != null)
+                                         {
+
+                                             if (ElephantOnTable[p].ElefantThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < ElephantOnTable[p].ElefantThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
 
 
-                        });
-                    }
-                },
-                () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
-                        {
-
-                            if (HoursesOnTable != null)
-                            {
-                                if (HoursesOnTable[p] != null)
-                                {
-
-                                    if (HoursesOnTable[p].HourseThinking != null)
-                                    {
-                                        if (HoursesOnTable[p].HourseThinking[0] != null)
-                                        {
-
-                                            if (HoursesOnTable[p].HourseThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-                        });
-                    }
-                }, () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
-                        {
-
-                            if (CastlesOnTable != null)
-                            {
-                                if (CastlesOnTable[p] != null)
-                                {
-
-                                    if (CastlesOnTable[p].CastleThinking != null)
-                                    {
-                                        if (CastlesOnTable[p].CastleThinking[0] != null)
-                                        {
-
-                                            if (CastlesOnTable[p].CastleThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-
-                        });
-                    }
-                },
-                () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
-                        {
-
-                            if (MinisterOnTable != null)
-                            {
-                                if (MinisterOnTable[p] != null)
-                                {
-
-                                    if (MinisterOnTable[p].MinisterThinking != null)
-                                    {
-                                        if (MinisterOnTable[p].MinisterThinking[0] != null)
-                                        {
-
-                                            if (MinisterOnTable[p].MinisterThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-
-                        });
-                    }
-                }, () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
-                        {
-                            if (KingOnTable != null)
-                            {
-                                if (KingOnTable[p] != null)
-                                {
-
-                                    if (KingOnTable[p].KingThinking != null)
-                                    {
-                                        if (KingOnTable[p].KingThinking[0] != null)
-                                        {
-
-                                            if (KingOnTable[p].KingThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-
-                        });
-                    }
-                },
-                () =>
-                {
-                    Object o = new Object();
-                    lock (o)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
-                        {
-                            if (CastlingOnTable != null)
-                            {
-                                if (CastlingOnTable[p] != null)
-                                {
-
-                                    if (CastlingOnTable[p].CastlingThinking != null)
-                                    {
-                                        if (CastlingOnTable[p].CastlingThinking[0] != null)
-                                        {
-
-                                            if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
-                                            {
-                                                for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
-                                                {
-                                                    var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7));
-                                                    outputH.Wait();
-                                                    outputH.Dispose();
-
-                                                }
-
-
-                                            }
-                                            else
-                                                return;
-
-                                        }
-                                        else
-                                            return;
-
-                                    }
-                                    else
-                                        return;
-
-                                }
-                                else
-                                    return;
-
-                            }
-                            else
-                                return;
-
-
-                        });
-                    }
-                });
+                         });
+                     }
+                 },
+                 () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseHight, p =>
+                         {
+
+                             if (HoursesOnTable != null)
+                             {
+                                 if (HoursesOnTable[p] != null)
+                                 {
+
+                                     if (HoursesOnTable[p].HourseThinking != null)
+                                     {
+                                         if (HoursesOnTable[p].HourseThinking[0] != null)
+                                         {
+
+                                             if (HoursesOnTable[p].HourseThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < HoursesOnTable[p].HourseThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+                         });
+                     }
+                 }, () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleHigh, p =>
+                         {
+
+                             if (CastlesOnTable != null)
+                             {
+                                 if (CastlesOnTable[p] != null)
+                                 {
+
+                                     if (CastlesOnTable[p].CastleThinking != null)
+                                     {
+                                         if (CastlesOnTable[p].CastleThinking[0] != null)
+                                         {
+
+                                             if (CastlesOnTable[p].CastleThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < CastlesOnTable[p].CastleThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+
+                         });
+                     }
+                 },
+                 () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterHigh, p =>
+                         {
+
+                             if (MinisterOnTable != null)
+                             {
+                                 if (MinisterOnTable[p] != null)
+                                 {
+
+                                     if (MinisterOnTable[p].MinisterThinking != null)
+                                     {
+                                         if (MinisterOnTable[p].MinisterThinking[0] != null)
+                                         {
+
+                                             if (MinisterOnTable[p].MinisterThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < MinisterOnTable[p].MinisterThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+
+                         });
+                     }
+                 }, () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingHigh, p =>
+                         {
+                             if (KingOnTable != null)
+                             {
+                                 if (KingOnTable[p] != null)
+                                 {
+
+                                     if (KingOnTable[p].KingThinking != null)
+                                     {
+                                         if (KingOnTable[p].KingThinking[0] != null)
+                                         {
+
+                                             if (KingOnTable[p].KingThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < KingOnTable[p].KingThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+
+                         });
+                     }
+                 },
+                 () =>
+                 {
+                     Object o = new Object();
+                     lock (o)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, p =>
+                         {
+                             if (CastlingOnTable != null)
+                             {
+                                 if (CastlingOnTable[p] != null)
+                                 {
+
+                                     if (CastlingOnTable[p].CastlingThinking != null)
+                                     {
+                                         if (CastlingOnTable[p].CastlingThinking[0] != null)
+                                         {
+
+                                             if (CastlingOnTable[p].CastlingThinking[0].AStarGreedy != null)
+                                             {
+                                                 for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
+                                                 {
+                                                     var outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7));
+                                                     outputH.Wait();
+                                                     outputH.Dispose();
+
+                                                 }
+
+
+                                             }
+                                             else
+                                                 return;
+
+                                         }
+                                         else
+                                             return;
+
+                                     }
+                                     else
+                                         return;
+
+                                 }
+                                 else
+                                     return;
+
+                             }
+                             else
+                                 return;
+
+
+                         });
+                     }
+                 });
             });
             output.Wait();
             output.Dispose();
@@ -28081,21 +28081,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[0] = true;
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, SodierMidle, ik =>
 
-{
-    if (SolderesOnTable != null && SolderesOnTable[ik] != null && SolderesOnTable[ik].SoldierThinking != null && SolderesOnTable[ik].SoldierThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (SolderesOnTable != null && SolderesOnTable[ik] != null && SolderesOnTable[ik].SoldierThinking != null && SolderesOnTable[ik].SoldierThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -28284,21 +28284,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[1] = true;
                 //Elephant
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ElefantMidle, ik =>
 
-{
-    if (ElephantOnTable != null && ElephantOnTable[ik] != null && ElephantOnTable[ik].ElefantThinking != null && ElephantOnTable[ik].ElefantThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeElephant(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (ElephantOnTable != null && ElephantOnTable[ik] != null && ElephantOnTable[ik].ElefantThinking != null && ElephantOnTable[ik].ElefantThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeElephant(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -28493,22 +28493,22 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[2] = true;
                 //Hourse.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, HourseMidle, ik =>
 
-{
-    if (HoursesOnTable != null && HoursesOnTable[ik] != null && HoursesOnTable[ik].HourseThinking != null && HoursesOnTable[ik].HourseThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeHourse(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (HoursesOnTable != null && HoursesOnTable[ik] != null && HoursesOnTable[ik].HourseThinking != null && HoursesOnTable[ik].HourseThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeHourse(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
 
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -28701,22 +28701,22 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[3] = true;
                 //Castle.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, CastleMidle, ik =>
 
-{
-    if (CastlesOnTable != null && CastlesOnTable[ik] != null && CastlesOnTable[ik].CastleThinking != null && CastlesOnTable[ik].CastleThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastle(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (CastlesOnTable != null && CastlesOnTable[ik] != null && CastlesOnTable[ik].CastleThinking != null && CastlesOnTable[ik].CastleThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastle(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
 
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -28912,21 +28912,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[4] = true;
                 //Minister.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MinisterMidle, ik =>
 
-{
-    if (MinisterOnTable != null && MinisterOnTable[ik] != null && MinisterOnTable[ik].MinisterThinking != null && MinisterOnTable[ik].MinisterThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeMinister(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (MinisterOnTable != null && MinisterOnTable[ik] != null && MinisterOnTable[ik].MinisterThinking != null && MinisterOnTable[ik].MinisterThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeMinister(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -29304,22 +29304,22 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
 
                 //King.
                 ThinkingAllowed[5] = true;
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingMidle, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KingMidle, ik =>
 
-{
-    if (KingOnTable != null && KingOnTable[ik] != null && KingOnTable[ik].KingThinking != null && KingOnTable[ik].KingThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeKing(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (KingOnTable != null && KingOnTable[ik] != null && KingOnTable[ik].KingThinking != null && KingOnTable[ik].KingThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeKing(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
 
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -29334,22 +29334,22 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
 
                 //Castling.
                 ThinkingAllowed[6] = true;
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
 
-                {
-                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
-                        )
-                    {
-                        Object O = new Object();
-                        lock (O)
-                        {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastling(7, ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-                            array.Wait(); array.Dispose();
+                 {
+                     if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
+                         )
+                     {
+                         Object O = new Object();
+                         lock (O)
+                         {
+                             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastling(7, ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                             array.Wait(); array.Dispose();
                             //TH.Add(array);
 
                         }
-                    }
-                });
+                     }
+                 });
             }
 
             return Do;
@@ -29363,22 +29363,22 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             lock (O1)
             {
                 ThinkingAllowed[7] = true;
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(SodierMidle, SodierHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(SodierMidle, SodierHigh, ik =>
 
-{
-    if (SolderesOnTable != null && SolderesOnTable[ik] != null && SolderesOnTable[ik].SoldierThinking != null && SolderesOnTable[ik].SoldierThinking[0] != null
-    )
-    {
+ {
+     if (SolderesOnTable != null && SolderesOnTable[ik] != null && SolderesOnTable[ik].SoldierThinking != null && SolderesOnTable[ik].SoldierThinking[0] != null
+     )
+     {
         //Soldier.
         Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -29393,21 +29393,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[8] = true;
                 //Elephant
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(ElefantMidle, ElefantHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(ElefantMidle, ElefantHigh, ik =>
 
-{
-    if (ElephantOnTable != null && ElephantOnTable[ik] != null && ElephantOnTable[ik].ElefantThinking != null && ElephantOnTable[ik].ElefantThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeElephant(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (ElephantOnTable != null && ElephantOnTable[ik] != null && ElephantOnTable[ik].ElefantThinking != null && ElephantOnTable[ik].ElefantThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeElephant(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -29422,21 +29422,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[9] = true;
                 //Hourse.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(HourseMidle, HourseHight, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(HourseMidle, HourseHight, ik =>
 
-{
-    if (HoursesOnTable != null && HoursesOnTable[ik] != null && HoursesOnTable[ik].HourseThinking != null && HoursesOnTable[ik].HourseThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeHourse(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (HoursesOnTable != null && HoursesOnTable[ik] != null && HoursesOnTable[ik].HourseThinking != null && HoursesOnTable[ik].HourseThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeHourse(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -29451,21 +29451,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[10] = true;
                 //Castles.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(CastleMidle, CastleHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(CastleMidle, CastleHigh, ik =>
 
-{
-    if (CastlesOnTable != null && CastlesOnTable[ik] != null && CastlesOnTable[ik].CastleThinking != null && CastlesOnTable[ik].CastleThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastle(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (CastlesOnTable != null && CastlesOnTable[ik] != null && CastlesOnTable[ik].CastleThinking != null && CastlesOnTable[ik].CastleThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastle(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -29480,21 +29480,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[11] = true;
                 //Minister.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(MinisterMidle, MinisterHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(MinisterMidle, MinisterHigh, ik =>
 
-{
-    if (MinisterOnTable != null && MinisterOnTable[ik] != null && MinisterOnTable[ik].MinisterThinking != null && MinisterOnTable[ik].MinisterThinking[0] != null
-    )
-    {
-        Object O = new Object();
-        lock (O)
-        {
-            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeMinister(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-            array.Wait(); array.Dispose();
+ {
+     if (MinisterOnTable != null && MinisterOnTable[ik] != null && MinisterOnTable[ik].MinisterThinking != null && MinisterOnTable[ik].MinisterThinking[0] != null
+     )
+     {
+         Object O = new Object();
+         lock (O)
+         {
+             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeMinister(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             array.Wait(); array.Dispose();
             //TH.Add(array);
         }
-    }
-});
+     }
+ });
             }
 
             return Do;
@@ -29509,21 +29509,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[12] = true;
                 //King.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(KingMidle, KingHigh, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(KingMidle, KingHigh, ik =>
 
-                {
-                    if (KingOnTable != null && KingOnTable[ik] != null && KingOnTable[ik].KingThinking != null && KingOnTable[ik].KingThinking[0] != null
-                        )
-                    {
-                        Object O = new Object();
-                        lock (O)
-                        {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeKing(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-                            array.Wait(); array.Dispose();
+                 {
+                     if (KingOnTable != null && KingOnTable[ik] != null && KingOnTable[ik].KingThinking != null && KingOnTable[ik].KingThinking[0] != null
+                         )
+                     {
+                         Object O = new Object();
+                         lock (O)
+                         {
+                             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeKing(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
-                    }
-                });
+                     }
+                 });
             }
 
             return Do;
@@ -29537,21 +29537,21 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
             {
                 ThinkingAllowed[13] = true;
                 //Castling.
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 1, ik =>
 
-                {
-                    if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
-                        )
-                    {
-                        Object O = new Object();
-                        lock (O)
-                        {
-                            var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastling(-7, ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
-                            array.Wait(); array.Dispose();
+                 {
+                     if (CastlingOnTable != null && CastlingOnTable[ik] != null && CastlingOnTable[ik].CastlingThinking != null && CastlingOnTable[ik].CastlingThinking[0] != null
+                         )
+                     {
+                         Object O = new Object();
+                         lock (O)
+                         {
+                             var array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastling(-7, ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                             array.Wait(); array.Dispose();
                             //TH.Add(array);
                         }
-                    }
-                });
+                     }
+                 });
             }
 
             return Do;
@@ -29568,170 +29568,170 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
-        int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
-        int Ord1 = OrderP;
-        Color a1 = a;
-        int iAStarGreedy1 = iAStarGreedy;
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
+         int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
+         int Ord1 = OrderP;
+         Color a1 = a;
+         int iAStarGreedy1 = iAStarGreedy;
 
-        var array1 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeSoldierGray(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
-        array1.Wait(); array1.Dispose();
-
-
-        Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         var array1 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeSoldierGray(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
+         array1.Wait(); array1.Dispose();
 
 
-        int ii2 = ii, jj2 = jj, ik12 = ik1, j12 = j1;
-        int Ord2 = Order;
-        Color a2 = a;
-        int iAStarGreedy2 = iAStarGreedy;
-
-        var array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeElephantGray(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
-        array2.Wait(); array2.Dispose();
-
-
-        //Initiatye Variables.
-        Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         Order = DummyOrder;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
 
 
-        int ii3 = ii, jj3 = jj, ik13 = ik1, j13 = j1;
-        int Ord3 = Order;
-        Color a3 = a;
-        int iAStarGreedy3 = iAStarGreedy;
+         int ii2 = ii, jj2 = jj, ik12 = ik1, j12 = j1;
+         int Ord2 = Order;
+         Color a2 = a;
+         int iAStarGreedy2 = iAStarGreedy;
 
-        var array3 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeHourseGray(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
-        array3.Wait(); array3.Dispose();
+         var array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeElephantGray(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
+         array2.Wait(); array2.Dispose();
 
 
         //Initiatye Variables.
         Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
 
 
-        int ii4 = ii, jj4 = jj, ik14 = ik1, j14 = j1;
-        int Ord4 = Order;
-        Color a4 = a;
-        int iAStarGreedy4 = iAStarGreedy;
+         int ii3 = ii, jj3 = jj, ik13 = ik1, j13 = j1;
+         int Ord3 = Order;
+         Color a3 = a;
+         int iAStarGreedy3 = iAStarGreedy;
 
-        var array4 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastleGray(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
-        array4.Wait(); array4.Dispose();
-
-
-        //Initiatye Variables.
-        Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
-
-
-        int ii5 = ii, jj5 = jj, ik15 = ik1, j15 = j1;
-        int Ord5 = Order;
-        Color a5 = a;
-        int iAStarGreedy5 = iAStarGreedy;
-
-        var array5 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeMinisterGray(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
-        array5.Wait(); array5.Dispose();
+         var array3 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeHourseGray(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
+         array3.Wait(); array3.Dispose();
 
 
         //Initiatye Variables.
         Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
 
 
-        int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
-        int Ord6 = Order;
-        Color a6 = a;
-        int iAStarGreedy6 = iAStarGreedy;
+         int ii4 = ii, jj4 = jj, ik14 = ik1, j14 = j1;
+         int Ord4 = Order;
+         Color a4 = a;
+         int iAStarGreedy4 = iAStarGreedy;
 
-        var array6 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeKingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
-        array6.Wait(); array6.Dispose();
+         var array4 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastleGray(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
+         array4.Wait(); array4.Dispose();
 
 
+        //Initiatye Variables.
         Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
 
 
-        int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
-        int Ord6 = Order;
-        Color a6 = a;
-        int iAStarGreedy6 = iAStarGreedy;
+         int ii5 = ii, jj5 = jj, ik15 = ik1, j15 = j1;
+         int Ord5 = Order;
+         Color a5 = a;
+         int iAStarGreedy5 = iAStarGreedy;
 
-        var array7 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastlingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
-        array7.Wait(); array7.Dispose();
+         var array5 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeMinisterGray(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
+         array5.Wait(); array5.Dispose();
 
 
+        //Initiatye Variables.
         Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-});
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
+
+
+         int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
+         int Ord6 = Order;
+         Color a6 = a;
+         int iAStarGreedy6 = iAStarGreedy;
+
+         var array6 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeKingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+         array6.Wait(); array6.Dispose();
+
+
+         Order = DummyOrder;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
+
+
+         int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
+         int Ord6 = Order;
+         Color a6 = a;
+         int iAStarGreedy6 = iAStarGreedy;
+
+         var array7 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastlingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+         array7.Wait(); array7.Dispose();
+
+
+         Order = DummyOrder;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ });
                     }
                 });
                 output.Wait(); output.Dispose();
@@ -29757,170 +29757,170 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
-        int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
-        int Ord1 = OrderP;
-        Color a1 = a;
-        int iAStarGreedy1 = iAStarGreedy;
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
+         int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
+         int Ord1 = OrderP;
+         Color a1 = a;
+         int iAStarGreedy1 = iAStarGreedy;
 
-        var array1 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeSoldierBrown(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
-        array1.Wait(); array1.Dispose();
-
-
-        Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         var array1 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeSoldierBrown(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
+         array1.Wait(); array1.Dispose();
 
 
-        int ii2 = ii, jj2 = jj, ik12 = ik1, j12 = j1;
-        int Ord2 = Order;
-        Color a2 = a;
-        int iAStarGreedy2 = iAStarGreedy;
-
-        var array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeElephantBrown(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
-        array2.Wait(); array2.Dispose();
-
-
-        //Initiatye Variables.
-        Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         Order = DummyOrder;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
 
 
-        int ii3 = ii, jj3 = jj, ik13 = ik1, j13 = j1;
-        int Ord3 = Order;
-        Color a3 = a;
-        int iAStarGreedy3 = iAStarGreedy;
+         int ii2 = ii, jj2 = jj, ik12 = ik1, j12 = j1;
+         int Ord2 = Order;
+         Color a2 = a;
+         int iAStarGreedy2 = iAStarGreedy;
 
-        var array3 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeHourseBrown(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
-        array3.Wait(); array3.Dispose();
+         var array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeElephantBrown(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
+         array2.Wait(); array2.Dispose();
 
 
         //Initiatye Variables.
         Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
 
 
-        int ii4 = ii, jj4 = jj, ik14 = ik1, j14 = j1;
-        int Ord4 = Order;
-        Color a4 = a;
-        int iAStarGreedy4 = iAStarGreedy;
+         int ii3 = ii, jj3 = jj, ik13 = ik1, j13 = j1;
+         int Ord3 = Order;
+         Color a3 = a;
+         int iAStarGreedy3 = iAStarGreedy;
 
-        var array4 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastleBrown(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
-        array4.Wait(); array4.Dispose();
-
-
-        //Initiatye Variables.
-        Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
-
-
-        int ii5 = ii, jj5 = jj, ik15 = ik1, j15 = j1;
-        int Ord5 = Order;
-        Color a5 = a;
-        int iAStarGreedy5 = iAStarGreedy;
-
-        var array5 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeMinisterBrown(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
-        array5.Wait(); array5.Dispose();
+         var array3 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeHourseBrown(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
+         array3.Wait(); array3.Dispose();
 
 
         //Initiatye Variables.
         Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
 
 
-        int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
-        int Ord6 = Order;
-        Color a6 = a;
-        int iAStarGreedy6 = iAStarGreedy;
+         int ii4 = ii, jj4 = jj, ik14 = ik1, j14 = j1;
+         int Ord4 = Order;
+         Color a4 = a;
+         int iAStarGreedy4 = iAStarGreedy;
 
-        var array6 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeKingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
-        array6.Wait(); array6.Dispose();
+         var array4 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastleBrown(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
+         array4.Wait(); array4.Dispose();
 
 
+        //Initiatye Variables.
         Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-}, () =>
-{
-    Object O1 = new Object();
-    lock (O1)
-    {
-        if (Order == 1)
-            a = Color.Gray;
-        else
-            a = Color.Brown;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
 
 
-        int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
-        int Ord6 = Order;
-        Color a6 = a;
-        int iAStarGreedy6 = iAStarGreedy;
+         int ii5 = ii, jj5 = jj, ik15 = ik1, j15 = j1;
+         int Ord5 = Order;
+         Color a5 = a;
+         int iAStarGreedy5 = iAStarGreedy;
 
-        var array7 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastlingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
-        array7.Wait(); array7.Dispose();
+         var array5 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeMinisterBrown(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
+         array5.Wait(); array5.Dispose();
 
 
+        //Initiatye Variables.
         Order = DummyOrder;
-        ChessRules.CurrentOrder = DummyCurrentOrder;
-    }
-});
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
+
+
+         int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
+         int Ord6 = Order;
+         Color a6 = a;
+         int iAStarGreedy6 = iAStarGreedy;
+
+         var array6 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeKingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+         array6.Wait(); array6.Dispose();
+
+
+         Order = DummyOrder;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ }, () =>
+ {
+     Object O1 = new Object();
+     lock (O1)
+     {
+         if (Order == 1)
+             a = Color.Gray;
+         else
+             a = Color.Brown;
+
+
+         int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
+         int Ord6 = Order;
+         Color a6 = a;
+         int iAStarGreedy6 = iAStarGreedy;
+
+         var array7 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastlingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+         array7.Wait(); array7.Dispose();
+
+
+         Order = DummyOrder;
+         ChessRules.CurrentOrder = DummyCurrentOrder;
+     }
+ });
                     }
                 });
                 output.Wait(); output.Dispose();
@@ -30015,177 +30015,177 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MaxGrayMidle(), i =>
-{
-    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-    {
-        Object ooo = new Object();
-        lock (ooo)
-        {
-            if (i < SodierMidle)
-            {
-                Object O1 = new Object();
-                lock (O1)
-                {
-                    if (Order == 1)
-                        a = Color.Gray;
-                    else
-                        a = Color.Brown;
-                    int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
-                    int Ord1 = OrderP;
-                    Color a1 = a;
-                    int iAStarGreedy1 = iAStarGreedy;
-                    int i1 = i;
-                    Do |= FullGameThinkingTreeSoldier(i1, a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, MaxGrayMidle(), i =>
+ {
+     ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+     {
+         Object ooo = new Object();
+         lock (ooo)
+         {
+             if (i < SodierMidle)
+             {
+                 Object O1 = new Object();
+                 lock (O1)
+                 {
+                     if (Order == 1)
+                         a = Color.Gray;
+                     else
+                         a = Color.Brown;
+                     int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
+                     int Ord1 = OrderP;
+                     Color a1 = a;
+                     int iAStarGreedy1 = iAStarGreedy;
+                     int i1 = i;
+                     Do |= FullGameThinkingTreeSoldier(i1, a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
 
 
 
-                    Order = DummyOrder;
-                    ChessRules.CurrentOrder = DummyCurrentOrder;
-                }
-            }
-        }
-    }, () =>
-    {
-        Object ooo = new Object();
-        lock (ooo)
-        {
-            if (i < ElefantMidle)
-            {
-                Object O1 = new Object();
-                lock (O1)
-                {
-                    if (Order == 1)
-                        a = Color.Gray;
-                    else
-                        a = Color.Brown;
+                     Order = DummyOrder;
+                     ChessRules.CurrentOrder = DummyCurrentOrder;
+                 }
+             }
+         }
+     }, () =>
+     {
+         Object ooo = new Object();
+         lock (ooo)
+         {
+             if (i < ElefantMidle)
+             {
+                 Object O1 = new Object();
+                 lock (O1)
+                 {
+                     if (Order == 1)
+                         a = Color.Gray;
+                     else
+                         a = Color.Brown;
 
 
-                    int ii2 = ii, jj2 = jj, ik12 = ik1, j12 = j1;
-                    int Ord2 = Order;
-                    Color a2 = a;
-                    int iAStarGreedy2 = iAStarGreedy;
-                    int i2 = i;
-                    Do |= this.FullGameThinkingTreeElephant(i2, a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
+                     int ii2 = ii, jj2 = jj, ik12 = ik1, j12 = j1;
+                     int Ord2 = Order;
+                     Color a2 = a;
+                     int iAStarGreedy2 = iAStarGreedy;
+                     int i2 = i;
+                     Do |= this.FullGameThinkingTreeElephant(i2, a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
                     //Initiatye Variables.
                     Order = DummyOrder;
-                    ChessRules.CurrentOrder = DummyCurrentOrder;
-                }
-            }
-        }
-    }, () =>
-    {
-        Object ooo = new Object();
-        lock (ooo)
-        {
-            if (i < HourseMidle)
-            {
-                Object O1 = new Object();
-                lock (O1)
-                {
-                    if (Order == 1)
-                        a = Color.Gray;
-                    else
-                        a = Color.Brown;
+                     ChessRules.CurrentOrder = DummyCurrentOrder;
+                 }
+             }
+         }
+     }, () =>
+     {
+         Object ooo = new Object();
+         lock (ooo)
+         {
+             if (i < HourseMidle)
+             {
+                 Object O1 = new Object();
+                 lock (O1)
+                 {
+                     if (Order == 1)
+                         a = Color.Gray;
+                     else
+                         a = Color.Brown;
 
 
-                    int ii3 = ii, jj3 = jj, ik13 = ik1, j13 = j1;
-                    int Ord3 = Order;
-                    Color a3 = a;
-                    int iAStarGreedy3 = iAStarGreedy;
-                    int i3 = i;
-                    Do |= this.FullGameThinkingTreeHourse(i3, a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
+                     int ii3 = ii, jj3 = jj, ik13 = ik1, j13 = j1;
+                     int Ord3 = Order;
+                     Color a3 = a;
+                     int iAStarGreedy3 = iAStarGreedy;
+                     int i3 = i;
+                     Do |= this.FullGameThinkingTreeHourse(i3, a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
                     //Initiatye Variables.
                     Order = DummyOrder;
-                    ChessRules.CurrentOrder = DummyCurrentOrder;
-                }
-            }
-        }
-    }, () =>
-    {
-        Object ooo = new Object();
-        lock (ooo)
-        {
-            if (i < CastleMidle)
-            {
-                Object O1 = new Object();
-                lock (O1)
-                {
-                    if (Order == 1)
-                        a = Color.Gray;
-                    else
-                        a = Color.Brown;
+                     ChessRules.CurrentOrder = DummyCurrentOrder;
+                 }
+             }
+         }
+     }, () =>
+     {
+         Object ooo = new Object();
+         lock (ooo)
+         {
+             if (i < CastleMidle)
+             {
+                 Object O1 = new Object();
+                 lock (O1)
+                 {
+                     if (Order == 1)
+                         a = Color.Gray;
+                     else
+                         a = Color.Brown;
 
 
-                    int ii4 = ii, jj4 = jj, ik14 = ik1, j14 = j1;
-                    int Ord4 = Order;
-                    Color a4 = a;
-                    int iAStarGreedy4 = iAStarGreedy;
-                    int i4 = i;
-                    Do |= this.FullGameThinkingTreeCastle(i4, a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
+                     int ii4 = ii, jj4 = jj, ik14 = ik1, j14 = j1;
+                     int Ord4 = Order;
+                     Color a4 = a;
+                     int iAStarGreedy4 = iAStarGreedy;
+                     int i4 = i;
+                     Do |= this.FullGameThinkingTreeCastle(i4, a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
                     //Initiatye Variables.
                     Order = DummyOrder;
-                    ChessRules.CurrentOrder = DummyCurrentOrder;
-                }
-            }
-        }
-    }, () =>
-    {
-        Object ooo = new Object();
-        lock (ooo)
-        {
-            if (i < MinisterMidle)
-            {
-                Object O1 = new Object();
-                lock (O1)
-                {
-                    if (Order == 1)
-                        a = Color.Gray;
-                    else
-                        a = Color.Brown;
+                     ChessRules.CurrentOrder = DummyCurrentOrder;
+                 }
+             }
+         }
+     }, () =>
+     {
+         Object ooo = new Object();
+         lock (ooo)
+         {
+             if (i < MinisterMidle)
+             {
+                 Object O1 = new Object();
+                 lock (O1)
+                 {
+                     if (Order == 1)
+                         a = Color.Gray;
+                     else
+                         a = Color.Brown;
 
 
-                    int ii5 = ii, jj5 = jj, ik15 = ik1, j15 = j1;
-                    int Ord5 = Order;
-                    Color a5 = a;
-                    int iAStarGreedy5 = iAStarGreedy;
-                    int i5 = i;
-                    Do |= this.FullGameThinkingTreeMinister(i5, a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
+                     int ii5 = ii, jj5 = jj, ik15 = ik1, j15 = j1;
+                     int Ord5 = Order;
+                     Color a5 = a;
+                     int iAStarGreedy5 = iAStarGreedy;
+                     int i5 = i;
+                     Do |= this.FullGameThinkingTreeMinister(i5, a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
                     //Initiatye Variables.
                     Order = DummyOrder;
-                    ChessRules.CurrentOrder = DummyCurrentOrder;
-                }
-            }
-        }
-    }, () =>
-    {
-        Object ooo = new Object();
-        lock (ooo)
-        {
-            if (i < KingMidle)
-            {
-                Object O1 = new Object();
-                lock (O1)
-                {
-                    if (Order == 1)
-                        a = Color.Gray;
-                    else
-                        a = Color.Brown;
+                     ChessRules.CurrentOrder = DummyCurrentOrder;
+                 }
+             }
+         }
+     }, () =>
+     {
+         Object ooo = new Object();
+         lock (ooo)
+         {
+             if (i < KingMidle)
+             {
+                 Object O1 = new Object();
+                 lock (O1)
+                 {
+                     if (Order == 1)
+                         a = Color.Gray;
+                     else
+                         a = Color.Brown;
 
 
-                    int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
-                    int Ord6 = Order;
-                    Color a6 = a;
-                    int iAStarGreedy6 = iAStarGreedy;
-                    int i6 = i;
-                    Do |= this.FullGameThinkingTreeKing(i6, a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
-                    Order = DummyOrder;
-                    ChessRules.CurrentOrder = DummyCurrentOrder;
-                }
-            }
-        }
-    });
-});
+                     int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
+                     int Ord6 = Order;
+                     Color a6 = a;
+                     int iAStarGreedy6 = iAStarGreedy;
+                     int i6 = i;
+                     Do |= this.FullGameThinkingTreeKing(i6, a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
+                     Order = DummyOrder;
+                     ChessRules.CurrentOrder = DummyCurrentOrder;
+                 }
+             }
+         }
+     });
+ });
                     }
                 });
                 output.Wait(); output.Dispose();
@@ -30197,148 +30197,148 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
-                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(MinBrownMidle(), MaxGrayMidle(), i =>
-{
-    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
-    {
-        Object ooo = new Object();
-        lock (ooo)
-        {
-            if (i >= SodierMidle && i < SodierHigh)
-            {
-                Object O1 = new Object();
-                lock (O1)
-                {
-                    if (Order == 1)
-                        a = Color.Gray;
-                    else
-                        a = Color.Brown;
-                    int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
-                    int Ord1 = OrderP;
-                    Color a1 = a;
-                    int iAStarGreedy1 = iAStarGreedy;
-                    int i1 = i;
-                    Do |= this.FullGameThinkingTreeSoldier(i1, a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
-                    Order = DummyOrder;
-                    ChessRules.CurrentOrder = DummyCurrentOrder;
-                }
-            }
-        }
-    }, () =>
-    {
-        if (i >= ElefantMidle && i < ElefantHigh)
-        {
-            Object ooo = new Object();
-            lock (ooo)
-            {
-                if (Order == 1)
-                    a = Color.Gray;
-                else
-                    a = Color.Brown;
-                int ii2 = ii, jj2 = jj, ik12 = ik1, j12 = j1;
-                int Ord2 = Order;
-                Color a2 = a;
-                int iAStarGreedy2 = iAStarGreedy;
-                int i2 = i;
-                Do |= this.FullGameThinkingTreeElephant(i2, a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
+                        ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(MinBrownMidle(), MaxGrayMidle(), i =>
+ {
+     ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.Invoke(() =>
+     {
+         Object ooo = new Object();
+         lock (ooo)
+         {
+             if (i >= SodierMidle && i < SodierHigh)
+             {
+                 Object O1 = new Object();
+                 lock (O1)
+                 {
+                     if (Order == 1)
+                         a = Color.Gray;
+                     else
+                         a = Color.Brown;
+                     int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
+                     int Ord1 = OrderP;
+                     Color a1 = a;
+                     int iAStarGreedy1 = iAStarGreedy;
+                     int i1 = i;
+                     Do |= this.FullGameThinkingTreeSoldier(i1, a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
+                     Order = DummyOrder;
+                     ChessRules.CurrentOrder = DummyCurrentOrder;
+                 }
+             }
+         }
+     }, () =>
+     {
+         if (i >= ElefantMidle && i < ElefantHigh)
+         {
+             Object ooo = new Object();
+             lock (ooo)
+             {
+                 if (Order == 1)
+                     a = Color.Gray;
+                 else
+                     a = Color.Brown;
+                 int ii2 = ii, jj2 = jj, ik12 = ik1, j12 = j1;
+                 int Ord2 = Order;
+                 Color a2 = a;
+                 int iAStarGreedy2 = iAStarGreedy;
+                 int i2 = i;
+                 Do |= this.FullGameThinkingTreeElephant(i2, a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
                 //Initiatye Variables.
                 Order = DummyOrder;
-                ChessRules.CurrentOrder = DummyCurrentOrder;
-            }
-        }
-    }, () =>
-    {
-        if (i >= HourseMidle && i < HourseHight)
-        {
-            Object O1 = new Object();
-            lock (O1)
-            {
-                if (Order == 1)
-                    a = Color.Gray;
-                else
-                    a = Color.Brown;
-                int ii3 = ii, jj3 = jj, ik13 = ik1, j13 = j1;
-                int Ord3 = Order;
-                Color a3 = a;
-                int iAStarGreedy3 = iAStarGreedy;
-                int i3 = i;
-                Do |= this.FullGameThinkingTreeHourse(i3, a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
+                 ChessRules.CurrentOrder = DummyCurrentOrder;
+             }
+         }
+     }, () =>
+     {
+         if (i >= HourseMidle && i < HourseHight)
+         {
+             Object O1 = new Object();
+             lock (O1)
+             {
+                 if (Order == 1)
+                     a = Color.Gray;
+                 else
+                     a = Color.Brown;
+                 int ii3 = ii, jj3 = jj, ik13 = ik1, j13 = j1;
+                 int Ord3 = Order;
+                 Color a3 = a;
+                 int iAStarGreedy3 = iAStarGreedy;
+                 int i3 = i;
+                 Do |= this.FullGameThinkingTreeHourse(i3, a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
                 //Initiatye Variables.
                 Order = DummyOrder;
-                ChessRules.CurrentOrder = DummyCurrentOrder;
-            }
-        }
-    }, () =>
-    {
-        if (i >= CastleMidle && i < CastleHigh)
-        {
-            Object ooo = new Object();
-            lock (ooo)
-            {
-                if (Order == 1)
-                    a = Color.Gray;
-                else
-                    a = Color.Brown;
-                int ii4 = ii, jj4 = jj, ik14 = ik1, j14 = j1;
-                int Ord4 = Order;
-                Color a4 = a;
-                int iAStarGreedy4 = iAStarGreedy;
-                int i4 = i;
-                Do |= this.FullGameThinkingTreeCastle(i4, a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
+                 ChessRules.CurrentOrder = DummyCurrentOrder;
+             }
+         }
+     }, () =>
+     {
+         if (i >= CastleMidle && i < CastleHigh)
+         {
+             Object ooo = new Object();
+             lock (ooo)
+             {
+                 if (Order == 1)
+                     a = Color.Gray;
+                 else
+                     a = Color.Brown;
+                 int ii4 = ii, jj4 = jj, ik14 = ik1, j14 = j1;
+                 int Ord4 = Order;
+                 Color a4 = a;
+                 int iAStarGreedy4 = iAStarGreedy;
+                 int i4 = i;
+                 Do |= this.FullGameThinkingTreeCastle(i4, a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
                 //Initiatye Variables.
                 Order = DummyOrder;
-                ChessRules.CurrentOrder = DummyCurrentOrder;
-            }
-        }
-    }, () =>
-    {
-        if (i >= MinisterMidle && i < MinisterHigh)
-        {
-            Object ooo = new Object();
-            lock (ooo)
-            {
-                if (Order == 1)
-                    a = Color.Gray;
-                else
-                    a = Color.Brown;
-                int ii5 = ii, jj5 = jj, ik15 = ik1, j15 = j1;
-                int Ord5 = Order;
-                Color a5 = a;
-                int iAStarGreedy5 = iAStarGreedy;
-                int i5 = i;
-                Do |= this.FullGameThinkingTreeMinister(i5, a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
+                 ChessRules.CurrentOrder = DummyCurrentOrder;
+             }
+         }
+     }, () =>
+     {
+         if (i >= MinisterMidle && i < MinisterHigh)
+         {
+             Object ooo = new Object();
+             lock (ooo)
+             {
+                 if (Order == 1)
+                     a = Color.Gray;
+                 else
+                     a = Color.Brown;
+                 int ii5 = ii, jj5 = jj, ik15 = ik1, j15 = j1;
+                 int Ord5 = Order;
+                 Color a5 = a;
+                 int iAStarGreedy5 = iAStarGreedy;
+                 int i5 = i;
+                 Do |= this.FullGameThinkingTreeMinister(i5, a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
                 //Initiatye Variables.
                 Order = DummyOrder;
-                ChessRules.CurrentOrder = DummyCurrentOrder;
-            }
-        }
-    }, () =>
-    {
-        if (i >= KingMidle && i < KingHigh)
-        {
-            Object ooo = new Object();
-            lock (ooo)
-            {
-                if (Order == 1)
-                    a = Color.Gray;
-                else
-                    a = Color.Brown;
-                if (Order == 1)
-                    a = Color.Gray;
-                else
-                    a = Color.Brown;
-                int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
-                int Ord6 = Order;
-                Color a6 = a;
-                int iAStarGreedy6 = iAStarGreedy;
-                int i6 = i;
-                Do |= this.FullGameThinkingTreeKing(i6, a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
-                Order = DummyOrder;
-                ChessRules.CurrentOrder = DummyCurrentOrder;
-            }
-        }
-    });
-});
+                 ChessRules.CurrentOrder = DummyCurrentOrder;
+             }
+         }
+     }, () =>
+     {
+         if (i >= KingMidle && i < KingHigh)
+         {
+             Object ooo = new Object();
+             lock (ooo)
+             {
+                 if (Order == 1)
+                     a = Color.Gray;
+                 else
+                     a = Color.Brown;
+                 if (Order == 1)
+                     a = Color.Gray;
+                 else
+                     a = Color.Brown;
+                 int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
+                 int Ord6 = Order;
+                 Color a6 = a;
+                 int iAStarGreedy6 = iAStarGreedy;
+                 int i6 = i;
+                 Do |= this.FullGameThinkingTreeKing(i6, a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
+                 Order = DummyOrder;
+                 ChessRules.CurrentOrder = DummyCurrentOrder;
+             }
+         }
+     });
+ });
                     }
                 });
                 output.Wait(); output.Dispose();

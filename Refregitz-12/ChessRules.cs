@@ -84,9 +84,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
 using System.IO;
 namespace Refregitz_12
 {
@@ -297,9 +294,9 @@ namespace Refregitz_12
             }
             else
                 if (((Table[RowFirst, ColumnFirst] < 0) && (Table[RowSecond, ColumnSecond] > 0) && (Order == -1)))
-                {
-                    ExistInDestinationEnemy = true;
-                }
+            {
+                ExistInDestinationEnemy = true;
+            }
 
             //If There is A Source of Soldier.
             if (System.Math.Abs(Kind) == 1)
@@ -311,9 +308,9 @@ namespace Refregitz_12
                         return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
                     else//Solder of Brown At Begining.
                         if (ColumnFirst == 6 && (Order == -1))
-                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
-                        else//Another Solder Movments.
-                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                    else//Another Solder Movments.
+                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
                 }
                 else
                 {
@@ -322,9 +319,9 @@ namespace Refregitz_12
                         return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
                     else//Solder of Brown At Begining.
                         if (ColumnFirst == 1 && (Order == -1))
-                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
-                        else//Another Solder Movments.
-                            return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, true, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
+                    else//Another Solder Movments.
+                        return Rule(RowFirst, ColumnFirst, RowSecond, ColumnSecond, false, color, ExistInDestinationEnemy, Ki, SelfHomeStatCP);
 
                 }
             }
@@ -359,7 +356,7 @@ namespace Refregitz_12
                                             CastleActGray = true;
                                             SmallKingCastleGray = true;
                                         }
-                                        
+
                                         return true;
                                     }
                                 }
@@ -371,27 +368,27 @@ namespace Refregitz_12
 
                             else//For Greates Castles King Movments.
                                 if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
+                            {
+                                //Consideration of Castles King M<ovments.
+                                try
                                 {
-                                    //Consideration of Castles King M<ovments.
-                                    try
+                                    if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
                                     {
-                                        if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
-                                        {
                                         Object O = new Object();
                                         lock (O)
                                         {
                                             CastleActGray = true;
                                             BigKingCastleGray = true;
                                         }
-                                            return true;
-                                        }
+                                        return true;
                                     }
-                                    catch (Exception t)
-                                    {
-                                        Log(t);
-                                    }
-
                                 }
+                                catch (Exception t)
+                                {
+                                    Log(t);
+                                }
+
+                            }
                         }
                     }
                 }
@@ -428,26 +425,26 @@ namespace Refregitz_12
                             }
                             else
                                 if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
-                                //Brown Kings.Big King Castles Consideration.
+                            //Brown Kings.Big King Castles Consideration.
+                            {
+                                try
                                 {
-                                    try
+                                    if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
                                     {
-                                        if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
-                                        {
                                         //CastleActBrown = true;
                                         Object O = new Object();
                                         lock (O)
                                         {
                                             BigKingCastleBrown = true;
                                         }
-                                            return true;
-                                        }
-                                    }
-                                    catch (Exception t)
-                                    {
-                                        Log(t);
+                                        return true;
                                     }
                                 }
+                                catch (Exception t)
+                                {
+                                    Log(t);
+                                }
+                            }
                         }
                     }
                 }
@@ -485,23 +482,23 @@ namespace Refregitz_12
 
                             else//For Greates Castles King Movments.
                                 if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
+                            {
+                                //Consideration of Castles King M<ovments.
+                                try
                                 {
-                                    //Consideration of Castles King M<ovments.
-                                    try
+                                    if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
                                     {
-                                        if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
-                                        {
-                                            //CastleActGray = true;
-                                            //BigKingCastleGray = true;
-                                            return true;
-                                        }
+                                        //CastleActGray = true;
+                                        //BigKingCastleGray = true;
+                                        return true;
                                     }
-                                    catch (Exception t)
-                                    {
-                                        Log(t);
-                                    }
-
                                 }
+                                catch (Exception t)
+                                {
+                                    Log(t);
+                                }
+
+                            }
                         }
                     }
                 }
@@ -534,22 +531,22 @@ namespace Refregitz_12
                             }
                             else
                                 if (RowFirst == RowSecond + 2 && ((RowSecond + 2) < 8))
-                                //Brown Kings.Big King Castles Consideration.
+                            //Brown Kings.Big King Castles Consideration.
+                            {
+                                try
                                 {
-                                    try
+                                    if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
                                     {
-                                        if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
-                                        {
-                                            //  CastleActBrown = true;
-                                            //BigKingCastleBrown = true;
-                                            return true;
-                                        }
-                                    }
-                                    catch (Exception t)
-                                    {
-                                        Log(t);
+                                        //  CastleActBrown = true;
+                                        //BigKingCastleBrown = true;
+                                        return true;
                                     }
                                 }
+                                catch (Exception t)
+                                {
+                                    Log(t);
+                                }
+                            }
                         }
                     }
                 }
@@ -599,7 +596,7 @@ namespace Refregitz_12
                     NotExistInDestinationSelfHome = true;
                 else//If The Same int Brown Return Self Home.
                     if (Table[RowSecond, ColumnSecond] < 0 && Table[RowFirst, ColumnFirst] < 0)
-                        NotExistInDestinationSelfHome = true;
+                    NotExistInDestinationSelfHome = true;
             }
             return NotExistInDestinationSelfHome;
         }
@@ -610,8 +607,8 @@ namespace Refregitz_12
             int[,] Tab = new int[8, 8];
             //Clone a Copy
             for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++)
-            Tab[i, j] = Table[i, j];
+                for (int j = 0; j < 8; j++)
+                    Tab[i, j] = Table[i, j];
             //Initiate Variables.
             CheckGray = false;
             CheckBrown = false;
@@ -960,57 +957,57 @@ namespace Refregitz_12
                                         }
                                         else
                                             if (Order == -1 && A.CheckMateBrown)
+                                        {
+
+                                            //For Current.
+                                            for (int iiii = 0; iiii < 8; iiii++)
                                             {
-
-                                                //For Current.
-                                                for (int iiii = 0; iiii < 8; iiii++)
+                                                for (int jjjj = 0; jjjj < 8; jjjj++)
                                                 {
-                                                    for (int jjjj = 0; jjjj < 8; jjjj++)
+                                                    //Ignore of enemies.
+                                                    if (Order == 1 && Tab[iiii, jjjj] <= 0)
+                                                        continue;
+                                                    if (Order == -1 && Tab[iiii, jjjj] >= 0)
+                                                        continue;
+                                                    //For Enemies and Emety.
+                                                    for (int iiiii = 0; iiiii < 8; iiiii++)
                                                     {
-                                                        //Ignore of enemies.
-                                                        if (Order == 1 && Tab[iiii, jjjj] <= 0)
-                                                            continue;
-                                                        if (Order == -1 && Tab[iiii, jjjj] >= 0)
-                                                            continue;
-                                                        //For Enemies and Emety.
-                                                        for (int iiiii = 0; iiiii < 8; iiiii++)
+                                                        for (int jjjjj = 0; jjjjj < 8; jjjjj++)
                                                         {
-                                                            for (int jjjjj = 0; jjjjj < 8; jjjjj++)
-                                                            {
-                                                                //Ignore of Current.
-                                                                if (Order == 1 && Tab[iiiii, jjjjj] > 0)
-                                                                    continue;
-                                                                if (Order == -1 && Tab[iiiii, jjjjj] < 0)
-                                                                    continue;
-                                                                for (int ik = 0; ik < 8; ik++)
-                                                                    for (int jk = 0; jk < 8; jk++)
-                                                                        Tab[ik, jk] = Table[ik, jk];
-                                                                Tab[iii, jjj] = Tab[i, j];
-                                                                Tab[i, j] = 0;
+                                                            //Ignore of Current.
+                                                            if (Order == 1 && Tab[iiiii, jjjjj] > 0)
+                                                                continue;
+                                                            if (Order == -1 && Tab[iiiii, jjjjj] < 0)
+                                                                continue;
+                                                            for (int ik = 0; ik < 8; ik++)
+                                                                for (int jk = 0; jk < 8; jk++)
+                                                                    Tab[ik, jk] = Table[ik, jk];
+                                                            Tab[iii, jjj] = Tab[i, j];
+                                                            Tab[i, j] = 0;
 
-                                                                A = new Refregitz_12.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tab[iiii, jjjj], Tab, Order, iiii, jjjj);
-                                                                if (A.Rules(iiii, jjjj, iiiii, jjjjj, a, Tab[i, j]))
+                                                            A = new Refregitz_12.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsBoard, Tab[iiii, jjjj], Tab, Order, iiii, jjjj);
+                                                            if (A.Rules(iiii, jjjj, iiiii, jjjjj, a, Tab[i, j]))
+                                                            {
+                                                                Tab[iiiii, jjjjj] = Tab[iiii, jjjj];
+                                                                Tab[iiii, jjjj] = 0;
+                                                                if (A.CheckMate(Tab, Order))
                                                                 {
-                                                                    Tab[iiiii, jjjjj] = Tab[iiii, jjjj];
-                                                                    Tab[iiii, jjjj] = 0;
-                                                                    if (A.CheckMate(Tab, Order))
-                                                                    {
-                                                                        CheckBrown = A.CheckBrown;
-                                                                        CheckGray = A.CheckGray;
-                                                                        CheckMateGray = A.CheckMateGray;
-                                                                        CheckMateBrown = A.CheckMateBrown;
-                                                                        CheckGrayObjectDangour = A.CheckGrayObjectDangour;
-                                                                        CheckBrownObjectDangour = A.CheckBrownObjectDangour;
-                                                                        Refregitz_12.ChessRules.CurrentOrder = CDummy;
-                                                                        Order = COrder;
-                                                                        return true;
-                                                                    }
+                                                                    CheckBrown = A.CheckBrown;
+                                                                    CheckGray = A.CheckGray;
+                                                                    CheckMateGray = A.CheckMateGray;
+                                                                    CheckMateBrown = A.CheckMateBrown;
+                                                                    CheckGrayObjectDangour = A.CheckGrayObjectDangour;
+                                                                    CheckBrownObjectDangour = A.CheckBrownObjectDangour;
+                                                                    Refregitz_12.ChessRules.CurrentOrder = CDummy;
+                                                                    Order = COrder;
+                                                                    return true;
                                                                 }
                                                             }
                                                         }
                                                     }
                                                 }
                                             }
+                                        }
 
 
                                     }
@@ -1418,7 +1415,7 @@ namespace Refregitz_12
                 }
                 //Separate.
                 if (AllDraw.Less != Double.MinValue)
-                    S += " With Huristic (" +Refregitz_12.AllDraw.Less.ToString() + ")--";
+                    S += " With Huristic (" + Refregitz_12.AllDraw.Less.ToString() + ")--";
                 else
                     S += " --";
                 //Return String Sysntax.
@@ -1724,7 +1721,7 @@ namespace Refregitz_12
                         }
                         else
                             if (Tab[i, j] != -6)
-                                return false;
+                            return false;
                     }
 
                 }
@@ -1826,7 +1823,7 @@ namespace Refregitz_12
                     NumbersofKingMovesToPatGray = 0;
                 else
                     if (CheckBrown)
-                        NumbersofKingMovesToPatBrown = 0;
+                    NumbersofKingMovesToPatBrown = 0;
 
             }
             Object O1 = new Object();
@@ -1888,7 +1885,7 @@ namespace Refregitz_12
                         if (A.Rules(i, j, RowK, ColumnK, aa, Ord))
                         {
                             BREAK = true;
-                            CheckGray = true;                            
+                            CheckGray = true;
                             break;
                         }
                     }
@@ -2304,23 +2301,23 @@ namespace Refregitz_12
 
             else//Rule of Castles.
                 if (Kind == 4)
-                    return CastleRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
+                return CastleRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
 
-                else//Rule of Hourses.
+            else//Rule of Hourses.
                     if (Kind == 3)
-                        return HourseRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
-                    else//Rule of Elephant.
+                return HourseRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
+            else//Rule of Elephant.
                         if (Kind == 2)
-                            return ElefantRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
-                        else
+                return ElefantRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
+            else
                             if (Kind == 5)//Rule of Ministers.
-                                return MinisterRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
-                            else
+                return MinisterRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
+            else
                                 if (Kind == 6)//Rule of Kings.
-                                    return KingRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
-                                else
+                return KingRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
+            else
                                     if (Kind == 7)//Rule of Castles King.
-                                        return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+                return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
 
 
             //Non Rulements.
@@ -2539,8 +2536,8 @@ namespace Refregitz_12
             else
                 //When is Elephant Rule.
                 if (ElefantRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki))
-                    //Return Validity.,
-                    Move = true;
+                //Return Validity.,
+                Move = true;
             //Return Not Valididty.
             return Move;
         }
@@ -2876,11 +2873,11 @@ namespace Refregitz_12
             }
             else//int of Brown.
                 if (Order == -1)
-                {
-                    //If Not Back Wrad Return Not Vlaidity.
-                    if (ColumnFirst > ColumnSecond)
-                        Move = false;
-                }
+            {
+                //If Not Back Wrad Return Not Vlaidity.
+                if (ColumnFirst > ColumnSecond)
+                    Move = false;
+            }
             //When Soldier Not Moved in Original Location do
             if (NotMoved)
             {
@@ -2903,28 +2900,28 @@ namespace Refregitz_12
                         else
                             if ((ColumnFirst + 1 < 8) &&
                                 (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
-                            else//Hit Brown Soldier Rulments.
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Brown Soldier Rulments.
                                 if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
-                                {
-                                    if ((RowSecond - 1 < 8) &&
-                                        (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                    {
-                                        Move = true;
-                                    }
-                                    if ((RowSecond + 1 < 8) &&
-                                        (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                    {
-                                        Move = true;
-                                    }
+                        {
+                            if ((RowSecond - 1 < 8) &&
+                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
 
-                                }
+                        }
                     }
                     catch (Exception t)
                     {
@@ -2933,48 +2930,48 @@ namespace Refregitz_12
                 }
                 else//Gray int.
                     if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
+                {
+                    //Depend Of First Move do For Positivism
+                    try
                     {
-                        //Depend Of First Move do For Positivism
-                        try
+                        if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
+                            (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)
+                            )
                         {
-                            if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
-                                (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)
-                                )
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
                             else
-                                if ((ColumnSecond + 1 < 8) &&
-                                    (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                                {
-                                    //When Destination is The Empty Return Validity Else Return Not Validity.
-                                    if (Table[RowSecond, ColumnSecond] == 0)
-                                        Move = true;
-                                    else
-                                        Move = false;
-                                }
-                                else//Hit Condition Enemy Movments.
-                                    if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                                    {
-                                        if ((RowSecond + 1 < 8) &&
-                                            (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                            //Return Validity.
-                                            Move = true;
-                                        if ((RowSecond - 1 >= 0) &&
-                                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                            //Return Validity.
-                                            Move = true;
-                                    }
+                                Move = false;
                         }
-                        catch (Exception t)
+                        else
+                            if ((ColumnSecond + 1 < 8) &&
+                                (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
                         {
-                            Log(t);
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Condition Enemy Movments.
+                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
+                        {
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                            if ((RowSecond - 1 >= 0) &&
+                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
                         }
                     }
+                    catch (Exception t)
+                    {
+                        Log(t);
+                    }
+                }
             }
             else//If Soldeior Moved Previously.
             {
@@ -2995,19 +2992,19 @@ namespace Refregitz_12
                         }
                         else//Hit Brown Soldier Rulments.                            
                             if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
+                        {
+                            if ((RowSecond - 1 < 8) &&
+                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
                             {
-                                if ((RowSecond - 1 < 8) &&
-                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                {
-                                    Move = true;
-                                }
-                                if ((RowSecond + 1 < 8) &&
-                                    (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                {
-                                    Move = true;
-                                }
-
+                                Move = true;
                             }
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
+
+                        }
                     }
                     catch (Exception t)
                     {
@@ -3016,37 +3013,37 @@ namespace Refregitz_12
                 }
                 else//Gray int.
                     if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
+                {
+                    //Depend Of Second Move do For Positivism Land
+                    try
                     {
-                        //Depend Of Second Move do For Positivism Land
-                        try
+                        if ((ColumnSecond + 1 < 8) &&
+                                 (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
                         {
-                            if ((ColumnSecond + 1 < 8) &&
-                                     (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
-                            else//Hit Condition Enemy Movments.
-                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                                {
-                                    if ((RowSecond + 1 < 8) &&
-                                        (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                        //Return Validity.
-                                        Move = true;
-                                    if ((RowSecond - 1 >= 0) &&
-                                            (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                        //Return Validity.
-                                        Move = true;
-                                }
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
                         }
-                        catch (Exception t)
+                        else//Hit Condition Enemy Movments.
+                            if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
                         {
-                            Log(t);
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                            if ((RowSecond - 1 >= 0) &&
+                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
                         }
                     }
+                    catch (Exception t)
+                    {
+                        Log(t);
+                    }
+                }
             }
             return Move;
 
@@ -3063,11 +3060,11 @@ namespace Refregitz_12
             }
             else//int of Brown.
                 if (Order == -1)
-                {
-                    //If Not Back Wrad Return Not Vlaidity.
-                    if (ColumnFirst < ColumnSecond)
-                        Move = false;
-                }
+            {
+                //If Not Back Wrad Return Not Vlaidity.
+                if (ColumnFirst < ColumnSecond)
+                    Move = false;
+            }
             //When Soldier Not Moved in Original Location do
             if (NotMoved)
             {
@@ -3090,28 +3087,28 @@ namespace Refregitz_12
                         else
                             if ((ColumnFirst + 1 < 8) &&
                                 (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
-                            else//Hit Gray Soldier Rulments.
+                        {
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Gray Soldier Rulments.
                                 if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
-                                {
-                                    if ((RowSecond - 1 < 8) &&
-                                        (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                    {
-                                        Move = true;
-                                    }
-                                    if ((RowSecond + 1 < 8) &&
-                                        (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                    {
-                                        Move = true;
-                                    }
+                        {
+                            if ((RowSecond - 1 < 8) &&
+                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
 
-                                }
+                        }
                     }
                     catch (Exception t)
                     {
@@ -3120,48 +3117,48 @@ namespace Refregitz_12
                 }
                 else//Brown int.
                     if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                {
+                    //Depend Of First Move do For Positivism
+                    try
                     {
-                        //Depend Of First Move do For Positivism
-                        try
+                        if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
+                            (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)
+                            )
                         {
-                            if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
-                                (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)
-                                )
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
                             else
-                                if ((ColumnSecond + 1 < 8) &&
-                                    (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                                {
-                                    //When Destination is The Empty Return Validity Else Return Not Validity.
-                                    if (Table[RowSecond, ColumnSecond] == 0)
-                                        Move = true;
-                                    else
-                                        Move = false;
-                                }
-                                else//Hit Condition Enemy Movments.
-                                    if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                                    {
-                                        if ((RowSecond + 1 < 8) &&
-                                            (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                            //Return Validity.
-                                            Move = true;
-                                        if ((RowSecond - 1 >= 0) &&
-                                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                            //Return Validity.
-                                            Move = true;
-                                    }
+                                Move = false;
                         }
-                        catch (Exception t)
+                        else
+                            if ((ColumnSecond + 1 < 8) &&
+                                (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
                         {
-                            Log(t);
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
+                        }
+                        else//Hit Condition Enemy Movments.
+                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
+                        {
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                            if ((RowSecond - 1 >= 0) &&
+                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
                         }
                     }
+                    catch (Exception t)
+                    {
+                        Log(t);
+                    }
+                }
             }
             else//If Soldeior Moved Previously.
             {
@@ -3182,19 +3179,19 @@ namespace Refregitz_12
                         }
                         else//Hit Gray Soldier Rulments.                            
                             if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
+                        {
+                            if ((RowSecond - 1 < 8) &&
+                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
                             {
-                                if ((RowSecond - 1 < 8) &&
-                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                {
-                                    Move = true;
-                                }
-                                if ((RowSecond + 1 < 8) &&
-                                    (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                {
-                                    Move = true;
-                                }
-
+                                Move = true;
                             }
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
+                                Move = true;
+                            }
+
+                        }
                     }
                     catch (Exception t)
                     {
@@ -3203,37 +3200,37 @@ namespace Refregitz_12
                 }
                 else//Brown int.
                     if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                {
+                    //Depend Of Second Move do For Positivism Land
+                    try
                     {
-                        //Depend Of Second Move do For Positivism Land
-                        try
+                        if ((ColumnSecond + 1 < 8) &&
+                                 (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
                         {
-                            if ((ColumnSecond + 1 < 8) &&
-                                     (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                            {
-                                //When Destination is The Empty Return Validity Else Return Not Validity.
-                                if (Table[RowSecond, ColumnSecond] == 0)
-                                    Move = true;
-                                else
-                                    Move = false;
-                            }
-                            else//Hit Condition Enemy Movments.
-                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                                {
-                                    if ((RowSecond + 1 < 8) &&
-                                        (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                        //Return Validity.
-                                        Move = true;
-                                    if ((RowSecond - 1 >= 0) &&
-                                            (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                                        //Return Validity.
-                                        Move = true;
-                                }
+                            //When Destination is The Empty Return Validity Else Return Not Validity.
+                            if (Table[RowSecond, ColumnSecond] == 0)
+                                Move = true;
+                            else
+                                Move = false;
                         }
-                        catch (Exception t)
+                        else//Hit Condition Enemy Movments.
+                            if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
                         {
-                            Log(t);
+                            if ((RowSecond + 1 < 8) &&
+                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
+                            if ((RowSecond - 1 >= 0) &&
+                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                //Return Validity.
+                                Move = true;
                         }
                     }
+                    catch (Exception t)
+                    {
+                        Log(t);
+                    }
+                }
             }
             return Move;
         }

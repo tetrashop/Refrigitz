@@ -5,8 +5,6 @@
 //ERORRCORECTION646565654646:The paranterization and the state of indexpendence function variable ahs been proved.:1394/3/30
 //========================================================
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -16,7 +14,7 @@ namespace Formulas
         //static LinkListNodeClass Node = null;
         public LinkListNodeClass Node = new LinkListNodeClass();
         int CurrentSize = -1;
-        
+
         //int NodeNumber = 0;
         public void LinkListInizialize()
         {
@@ -29,7 +27,7 @@ namespace Formulas
             if(this.Thread==null)
             this.Thread = new LinkListNodeClass();                    
              */
-          //  Node.Thread = null;
+            //  Node.Thread = null;
         }
         public AddToTreeTreeLinkList()
         {
@@ -48,7 +46,7 @@ namespace Formulas
         }
         public void MULAtNumberAllOfThem(float Num)
         {
-            LinkListNodeClass Dummy = Node;            
+            LinkListNodeClass Dummy = Node;
             AddToTree.Tree NUM = new AddToTree.Tree(Num.ToString(), true);
             if (Dummy != null)
                 while (Dummy.NextAccess != null)
@@ -81,7 +79,7 @@ namespace Formulas
                 return null;
             LinkListNodeClass t = new LinkListNodeClass();
             try
-            {                
+            {
                 t.CurrentAccess = Dummy.CurrentAccess.CopyNewTree(Dummy.CurrentAccess);
                 t.NextAccess = this.CopyLinkListAction(Dummy.NextAccess);
                 if (t.NextAccess != null)
@@ -112,7 +110,7 @@ namespace Formulas
                     Dummy.NextAccess.ThreadAccess = Dummy;
                     //                NodeNumber = CurrentSize;
                     CurrentSize++;
-                    
+
                     CreateLinkListFromTree1(T.LeftSideAccess);//ERRORCORECTION1456125478:The Righ Side instide of leftside recurve the answer:1394/3/31
 
                     Dummy = Node;//new LinkListNodeClass();            
@@ -125,11 +123,11 @@ namespace Formulas
                     Dummy.NextAccess.ThreadAccess = Dummy;
                     CurrentSize++;
 
-                    
+
 
                     //CreateLinkListFromTree1(T.LeftSideAccess.RightSideAccess);
-                    
-                    
+
+
                 }
                 else
                 //ERRORCORECTION1246789:The Link Litst Of Dummy Corected:1394/3/31
@@ -166,7 +164,7 @@ namespace Formulas
                     }
                     
                      */
-                     
+
                     Dummy = Node;//new LinkListNodeClass();            
                     NEW = new LinkListNodeClass();
                     //LinkListNodeClass NEW = new LinkListNodeClass();
@@ -193,10 +191,10 @@ namespace Formulas
                         CurrentSize++;
                     }
                      */
-                     
+
                     CreateLinkListFromTree1(T.LeftSideAccess);
-                    
-                    
+
+
 
                 }
 
@@ -212,12 +210,12 @@ namespace Formulas
                 Dummy.NextAccess = NEW;
                 Dummy.NextAccess.ThreadAccess = Dummy;
                 CurrentSize++;
-                
+
             }
 
-        } 
+        }
 
-        
+
         public void CreateLinkListFromTree2(AddToTree.Tree T)
         {
             if (T != null)//ERRORCORECTION1246789:The Link Litst Of Dummy Corected:1394/3/31
@@ -239,7 +237,7 @@ namespace Formulas
             }
 
         }
-    
+
         public void ADDToTree(AddToTree.Tree T)
         {
             if (T == null)
@@ -297,7 +295,7 @@ namespace Formulas
                     try
                     {
                         LinkListNodeClass Dummy = Node;
-                
+
                         while (Dummy.NextAccess != null)
                             Dummy = Dummy.NextAccess;
                         RETURN = Dummy.CurrentAccess;
@@ -329,13 +327,13 @@ namespace Formulas
                     try
                     {
                         LinkListNodeClass Dummy = Node;
-                
+
                         while ((Dummy != null) && (!(EqualToObject.IsEqualWithOutThreadConsiderationCommonly(Dummy.CurrentAccess, DummyToDeleted))))
                             Dummy = Dummy.NextAccess;
                         if (Dummy != null)
                         {
                             if (Dummy.NextAccess != null)
-                                Dummy.NextAccess.ThreadAccess= Dummy.ThreadAccess;
+                                Dummy.NextAccess.ThreadAccess = Dummy.ThreadAccess;
                             Dummy = Dummy.NextAccess;
                         }
                         SetNode(Dummy);
@@ -366,7 +364,7 @@ namespace Formulas
             LinkListNodeClass Tracer = Node;
             try
             {
-                
+
             }
             catch (NullReferenceException k) { ExceptionClass.ExceptionClassMethod(k); }
             bool Is = false;
@@ -388,7 +386,7 @@ namespace Formulas
             LinkListNodeClass Tracer = Node;
             try
             {
-                
+
             }
             catch (NullReferenceException k) { ExceptionClass.ExceptionClassMethod(k); }
             bool Is = false;
@@ -430,6 +428,6 @@ namespace Formulas
             }
             return Is;
         }
-        
+
     }
 }

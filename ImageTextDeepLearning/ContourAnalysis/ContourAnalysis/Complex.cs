@@ -14,34 +14,34 @@
             this.b = b;
         }
 
-        public static Complex FromExp(double r, double angle) => 
+        public static Complex FromExp(double r, double angle) =>
             new Complex(r * Math.Cos(angle), r * Math.Sin(angle));
 
         public double Angle =>
             Math.Atan2(this.b, this.a);
-        public override string ToString() => 
+        public override string ToString() =>
             (this.a + "+i" + this.b);
 
         public double Norma =>
             Math.Sqrt((this.a * this.a) + (this.b * this.b));
         public double NormaSquare =>
             ((this.a * this.a) + (this.b * this.b));
-        public static Complex operator +(Complex x1, Complex x2) => 
+        public static Complex operator +(Complex x1, Complex x2) =>
             new Complex(x1.a + x2.a, x1.b + x2.b);
 
-        public static Complex operator *(double k, Complex x) => 
+        public static Complex operator *(double k, Complex x) =>
             new Complex(k * x.a, k * x.b);
 
-        public static Complex operator *(Complex x, double k) => 
+        public static Complex operator *(Complex x, double k) =>
             new Complex(k * x.a, k * x.b);
 
-        public static Complex operator *(Complex x1, Complex x2) => 
+        public static Complex operator *(Complex x1, Complex x2) =>
             new Complex((x1.a * x2.a) - (x1.b * x2.b), (x1.b * x2.a) + (x1.a * x2.b));
 
-        public double CosAngle() => 
+        public double CosAngle() =>
             (this.a / Math.Sqrt((this.a * this.a) + (this.b * this.b)));
 
-        public Complex Rotate(double CosAngle, double SinAngle) => 
+        public Complex Rotate(double CosAngle, double SinAngle) =>
             new Complex((CosAngle * this.a) - (SinAngle * this.b), (SinAngle * this.a) + (CosAngle * this.b));
 
         public Complex Rotate(double Angle)

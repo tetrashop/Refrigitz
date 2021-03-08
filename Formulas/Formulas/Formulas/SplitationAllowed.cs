@@ -1,8 +1,5 @@
 //ERRORCORECTION31754051.Refer to page 340.
 //====================================================
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -10,28 +7,28 @@ namespace Formulas
     {
         static public AddToTree.Tree SplitationAllowedFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
-          Dummy = FactorActivation.FactorActivationFx(Dummy,ref UIS);
-          //bool CONTINUE=true;
-          //while (CONTINUE)
-          //{
+            Dummy = FactorActivation.FactorActivationFx(Dummy, ref UIS);
+            //bool CONTINUE=true;
+            //while (CONTINUE)
+            //{
             //  CONTINUE = false;
             //  Dummy = SimplifierCommonSubFactor.SimplifierCommonSubFactorCalculatorFx(Dummy, ref CONTINUE, ref UIS);
-          //}
-          return SplitationAllowed.SplitationAllowedAction(Dummy,ref UIS);
+            //}
+            return SplitationAllowed.SplitationAllowedAction(Dummy, ref UIS);
         }
-        static AddToTree.Tree SplitationAllowedAction(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)        
+        static AddToTree.Tree SplitationAllowedAction(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
                 return Dummy;
             if (Dummy.SampleAccess == "/")
                 //ERRORCORECTION31754051.Refer to page 340.
-                Dummy.LeftSideAccess = SplitationAllowed.SplitationAllowedCalculator(Dummy.LeftSideAccess, Dummy.RightSideAccess,ref UIS);
-            
-            Dummy.LeftSideAccess = SplitationAllowed.SplitationAllowedAction(Dummy.LeftSideAccess,ref UIS);
-            Dummy.RightSideAccess = SplitationAllowed.SplitationAllowedAction(Dummy.RightSideAccess,ref UIS);
+                Dummy.LeftSideAccess = SplitationAllowed.SplitationAllowedCalculator(Dummy.LeftSideAccess, Dummy.RightSideAccess, ref UIS);
+
+            Dummy.LeftSideAccess = SplitationAllowed.SplitationAllowedAction(Dummy.LeftSideAccess, ref UIS);
+            Dummy.RightSideAccess = SplitationAllowed.SplitationAllowedAction(Dummy.RightSideAccess, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree SplitationAllowedCalculator(AddToTree.Tree Dummy,AddToTree.Tree UNDER,ref UknownIntegralSolver UIS)
+        static AddToTree.Tree SplitationAllowedCalculator(AddToTree.Tree Dummy, AddToTree.Tree UNDER, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
                 return Dummy;
@@ -50,8 +47,8 @@ namespace Formulas
             }
             else
                 return Dummy;
-            Dummy.LeftSideAccess = SplitationAllowed.SplitationAllowedCalculator(Dummy.LeftSideAccess, UNDER,ref UIS);
-            Dummy.RightSideAccess = SplitationAllowed.SplitationAllowedCalculator(Dummy.RightSideAccess, UNDER,ref UIS);
+            Dummy.LeftSideAccess = SplitationAllowed.SplitationAllowedCalculator(Dummy.LeftSideAccess, UNDER, ref UIS);
+            Dummy.RightSideAccess = SplitationAllowed.SplitationAllowedCalculator(Dummy.RightSideAccess, UNDER, ref UIS);
             return Dummy;
         }
     }

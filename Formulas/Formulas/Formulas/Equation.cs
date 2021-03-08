@@ -411,13 +411,9 @@
 //LOCATION31745197  :Refer to page 187.
 //==================================================================================================                                                                                       
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Forms;
 namespace Formulas
 {
     public partial class Equation : Form
@@ -461,7 +457,7 @@ namespace Formulas
 
 
             if (NumberAndVariable == null)
-                NumberAndVariable = new NumberVar.NumberAndVariable(ref NumberAndVariable, ref  THISREF);
+                NumberAndVariable = new NumberVar.NumberAndVariable(ref NumberAndVariable, ref THISREF);
 
             if (EquationSettingInsertionOnEquationForm == null)
                 EquationSettingInsertionOnEquationForm = new Setting.EquationSettingInsertion();
@@ -1261,14 +1257,14 @@ namespace Formulas
             }
             else//DO CONJUNCT OPERATION IF FINISHSHED FOR ADDING
                 if (ADDTrueDELETEFalse)
-                {//Refer To page 144.
+            {//Refer To page 144.
 
 
-                    DummySenderSample.AutoSenderAccess.NodeAccess.LeftSideAccess = null;
-                    DummySenderSample.AutoSenderAccess.NodeAccess.RightSideAccess = null;
-                    DummySenderSample.AutoSenderAccess.NodeAccess = new AddToTree.Tree(null, false);
-                    //DummySenderSample = new SenderSample(THISE);
-                }
+                DummySenderSample.AutoSenderAccess.NodeAccess.LeftSideAccess = null;
+                DummySenderSample.AutoSenderAccess.NodeAccess.RightSideAccess = null;
+                DummySenderSample.AutoSenderAccess.NodeAccess = new AddToTree.Tree(null, false);
+                //DummySenderSample = new SenderSample(THISE);
+            }
 
             /*
             AddToTree.Tree ADDED  = new AddToTree.Tree(Sample, false);
@@ -1427,60 +1423,60 @@ namespace Formulas
                 GraphicallyInterfaceVariable.DrawIntegralOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
             else
                 if (SetVariable.GetDecoder() == 1)
-                    GraphicallyInterfaceVariable.DrawLineOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
-                else
+                GraphicallyInterfaceVariable.DrawLineOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
+            else
                     if (SetVariable.GetDecoder() == 2)
-                        GraphicallyInterfaceVariable.Sin(SetVariable.XAccess, SetVariable.YAccess, 10);
-                    else
+                GraphicallyInterfaceVariable.Sin(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                         if (SetVariable.GetDecoder() == 3)
-                            GraphicallyInterfaceVariable.Cos(SetVariable.XAccess, SetVariable.YAccess, 10);
-                        else
+                GraphicallyInterfaceVariable.Cos(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                             if (SetVariable.GetDecoder() == 4)
-                                GraphicallyInterfaceVariable.Tan(SetVariable.XAccess, SetVariable.YAccess, 10);
-                            else
+                GraphicallyInterfaceVariable.Tan(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                 if (SetVariable.GetDecoder() == 5)
-                                    GraphicallyInterfaceVariable.Cot(SetVariable.XAccess, SetVariable.YAccess, 10);
-                                else
+                GraphicallyInterfaceVariable.Cot(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                     if (SetVariable.GetDecoder() == 6)
-                                        GraphicallyInterfaceVariable.Sec(SetVariable.XAccess, SetVariable.YAccess, 10);
-                                    else
+                GraphicallyInterfaceVariable.Sec(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                         if (SetVariable.GetDecoder() == 7)
-                                            GraphicallyInterfaceVariable.Csc(SetVariable.XAccess, SetVariable.YAccess, 10);
-                                        else
+                GraphicallyInterfaceVariable.Csc(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                             if (SetVariable.GetDecoder() == 8)
-                                                GraphicallyInterfaceVariable.DrawCericesOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
-                                            else
+                GraphicallyInterfaceVariable.DrawCericesOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
+            else
                                                 if (SetVariable.GetDecoder() == 9)
-                                                    GraphicallyInterfaceVariable.DrawRootOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
-                                                else
+                GraphicallyInterfaceVariable.DrawRootOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
+            else
                                                     if (SetVariable.GetDecoder() == 10)
-                                                        GraphicallyInterfaceVariable.DrawLn(SetVariable.XAccess, SetVariable.YAccess, 10);
-                                                    else
+                GraphicallyInterfaceVariable.DrawLn(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                                         if (SetVariable.GetDecoder() == 11)
-                                                            GraphicallyInterfaceVariable.DrawLog(SetVariable.XAccess, SetVariable.YAccess, 10);
-                                                        else
+                GraphicallyInterfaceVariable.DrawLog(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                                             if (SetVariable.GetDecoder() == 12)
-                                                                GraphicallyInterfaceVariable.DrawNumber(SetVariable, SetVariable.XAccess, SetVariable.YAccess, 10);
-                                                            else
+                GraphicallyInterfaceVariable.DrawNumber(SetVariable, SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                                                 if (SetVariable.GetDecoder() == 13)
-                                                                    GraphicallyInterfaceVariable.FiveBasicOpratorsPlus(SetVariable.XAccess, SetVariable.YAccess, 10);
-                                                                else
+                GraphicallyInterfaceVariable.FiveBasicOpratorsPlus(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                                                     if (SetVariable.GetDecoder() == 14)
-                                                                        GraphicallyInterfaceVariable.FiveBasicOpratorsMinuse(SetVariable.XAccess, SetVariable.YAccess, 10);
-                                                                    else
+                GraphicallyInterfaceVariable.FiveBasicOpratorsMinuse(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                                                         if (SetVariable.GetDecoder() == 15)
-                                                                            GraphicallyInterfaceVariable.FiveBasicOpratorsMul(SetVariable.XAccess, SetVariable.YAccess, 10);
-                                                                        else
+                GraphicallyInterfaceVariable.FiveBasicOpratorsMul(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                                                             if (SetVariable.GetDecoder() == 16)
-                                                                                //ERROR81723678 :Cuase of ERROR13725150 .The Line Of division is not drawn corectly.refr top page 127.
-                                                                                //ERRORCORECTION736340574 :the Argumnet was set.
-                                                                                GraphicallyInterfaceVariable.FiveBasicOpratorsDiv(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
-                                                                            else
+                //ERROR81723678 :Cuase of ERROR13725150 .The Line Of division is not drawn corectly.refr top page 127.
+                //ERRORCORECTION736340574 :the Argumnet was set.
+                GraphicallyInterfaceVariable.FiveBasicOpratorsDiv(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
+            else
                                                                                 if (SetVariable.GetDecoder() == 17)
-                                                                                    GraphicallyInterfaceVariable.FiveBasicOpratorsPow(SetVariable.XAccess, SetVariable.YAccess, 10);
-                                                                                else
+                GraphicallyInterfaceVariable.FiveBasicOpratorsPow(SetVariable.XAccess, SetVariable.YAccess, 10);
+            else
                                                                                     if (SetVariable.GetDecoder() == 18)
-                                                                                        GraphicallyInterfaceVariable.DrawIndependence(SetVariable, SetVariable.XAccess, SetVariable.YAccess, 10);
+                GraphicallyInterfaceVariable.DrawIndependence(SetVariable, SetVariable.XAccess, SetVariable.YAccess, 10);
 
             this.DrawOnForm(SetVariable.LeftSideAccess, GraphicallyInterfaceVariable);
             this.DrawOnForm(SetVariable.RightSideAccess, GraphicallyInterfaceVariable);
@@ -1569,7 +1565,7 @@ namespace Formulas
 
             NodeTree = Dummy.CopyNewTree(Dummy);
 
-         //   System.Windows.Forms.MessageBox.Show("5-1.the Node assigned.");
+            //   System.Windows.Forms.MessageBox.Show("5-1.the Node assigned.");
 
             //For Setting Nodes.
             //(Error) On Inizializing.The SetNode is not created.
@@ -1582,7 +1578,7 @@ namespace Formulas
             //CORRECTION12456.The Number is set now. 
             NodeSet = this.CreateGraphicallyNodes(NodeTree);
 
-           // System.Windows.Forms.MessageBox.Show("5-2.The Graphically Node creates and assigned.");
+            // System.Windows.Forms.MessageBox.Show("5-2.The Graphically Node creates and assigned.");
             //Set Dimensions.
             //(Error) The dimensions are not set.
             //ERROR12769034 .The Settings too only for one of condition is not Occured.
@@ -1592,7 +1588,7 @@ namespace Formulas
             //ERROR30807507  :The whidth of line is not ok.
             NodeSet = this.CalculatingXAndYAndWhithAndHeight(NodeSet, xBegin, yBegin, 20, 20, false);
 
-           // System.Windows.Forms.MessageBox.Show("5-3.The Graphically Node calcculated.");
+            // System.Windows.Forms.MessageBox.Show("5-3.The Graphically Node calcculated.");
 
             //ERROR77007 :The problem dose not found.refer to page 130.
             //ERRORCORECTION8756 :The Shift when needed.refer to page 106.
@@ -1606,7 +1602,7 @@ namespace Formulas
             NodeSet = Dummy;
             */
 
-           // System.Windows.Forms.MessageBox.Show("5-4.End Of Inzizilizing.");
+            // System.Windows.Forms.MessageBox.Show("5-4.End Of Inzizilizing.");
         }
         private Set TheSmalestNodeX(Set Node, Set DummySmalest)
         {
@@ -1814,49 +1810,49 @@ namespace Formulas
                 Current.SetOneOfThem("No");
             else
                 if (Exist.GetSample().ToLower() == "int")
-                    Current.SetOneOfThem("Integral");
-                else
+                Current.SetOneOfThem("Integral");
+            else
                     if (Exist.GetSample().ToLower() == "/")
-                        Current.SetOneOfThem("Line");
-                    else
+                Current.SetOneOfThem("Line");
+            else
                         if (Exist.GetSample().ToLower() == "sin")
-                            Current.SetOneOfThem("Sin");
-                        else
+                Current.SetOneOfThem("Sin");
+            else
                             if (Exist.GetSample().ToLower() == "cos")
-                                Current.SetOneOfThem("Cos");
-                            else
+                Current.SetOneOfThem("Cos");
+            else
                                 if (Exist.GetSample().ToLower() == "tan")
-                                    Current.SetOneOfThem("Tan");
-                                else
+                Current.SetOneOfThem("Tan");
+            else
                                     if (Exist.GetSample().ToLower() == "sec")
-                                        Current.SetOneOfThem("Sec");
-                                    else
+                Current.SetOneOfThem("Sec");
+            else
                                         if (Exist.GetSample().ToLower() == "csc")
-                                            Current.SetOneOfThem("Csc");
-                                        else
+                Current.SetOneOfThem("Csc");
+            else
                                             if (Exist.GetSample().ToLower() == "sic")
-                                                Current.SetOneOfThem("Cerices");
-                                            else
+                Current.SetOneOfThem("Cerices");
+            else
                                                 if (Exist.GetSample().ToLower() == "root")
-                                                    Current.SetOneOfThem("Root");
-                                                else
+                Current.SetOneOfThem("Root");
+            else
                                                     if (Exist.GetSample().ToLower() == "+")
-                                                        Current.SetOneOfThem("+");
-                                                    else
+                Current.SetOneOfThem("+");
+            else
                                                         if (Exist.GetSample().ToLower() == "-")
-                                                            Current.SetOneOfThem("-");
-                                                        else
+                Current.SetOneOfThem("-");
+            else
                                                             if (Exist.GetSample().ToLower() == "*")
-                                                                Current.SetOneOfThem("*");
-                                                            else
+                Current.SetOneOfThem("*");
+            else
                                                                 if (Exist.GetSample().ToLower() == "/")
-                                                                    Current.SetOneOfThem("/");
-                                                                else
+                Current.SetOneOfThem("/");
+            else
                                                                     if (Exist.GetSample().ToLower() == "ln")
-                                                                        Current.SetOneOfThem("Ln");
-                                                                    else
+                Current.SetOneOfThem("Ln");
+            else
                                                                         if (Exist.GetSample().ToLower() == "^")
-                                                                            Current.SetOneOfThem("^");
+                Current.SetOneOfThem("^");
 
 
         }
@@ -2095,11 +2091,11 @@ namespace Formulas
             //ERROR317241 :The XAccessLocation() Calculate incorrectly.refer to page 104.
             //return (this.XAccessLocation(Current.LeftSideAccess) + this.XAccessLocation(Current.RightSideAccess));
             x = x - (this.XAccessLocation(Current.LeftSideAccess, x));
-        END:
+            END:
             //ERRORCORECTION9098218238 :The Function value is constructed and added.     
             if (this.IsFunction(Current.ThreadAccess.GetDecoder()))
                 x = x + 15 * this.NumberOfFunctionSamplesElements(Current.ThreadAccess.StringSampleAccess);
-        ENDOFRETURN:
+            ENDOFRETURN:
             return x;
         }
         private int GetWhidthOfNumber(String Dummy)
@@ -2928,11 +2924,11 @@ namespace Formulas
                 if (Current.LeftSideAccess != null)
                     if (Current.RightSideAccess == null)
                         if (this.IsFunction(Current.GetDecoder()))
-                            if (this.ISindependence(Current.LeftSideAccess.GetDecoder()))                                
-                                {
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);                                    
+                            if (this.ISindependence(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
 
-                                }
+                            }
 
             //if the node is power and rightSide is function  and left side is ind or var.
             if (Current != null)
@@ -3436,9 +3432,9 @@ namespace Formulas
                                     this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
                                 else
                                     if (!this.IsDivision(Current.RightSideAccess.GetDecoder()))
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + Current.XAccess + 25, y, 15, 15, false);
-                                    else
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
+                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + Current.XAccess + 25, y, 15, 15, false);
+                                else
+                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
 
             //If current is artith and the left is null
             //and the right side is num or independence.
@@ -3732,61 +3728,61 @@ namespace Formulas
                     Integral = true;
                 else
                     if (t.ToString().ToLower() == "line")
-                        Line = true;
-                    else
+                    Line = true;
+                else
                         if (t.ToString().ToLower() == "sin")
-                            Sin = true;
-                        else
+                    Sin = true;
+                else
                             if (t.ToString().ToLower() == "cos")
-                                Cos = true;
-                            else
+                    Cos = true;
+                else
                                 if (t.ToString().ToLower() == "tan")
-                                    Tan = true;
-                                else
+                    Tan = true;
+                else
                                     if (t.ToString().ToLower() == "cot")
-                                        Cot = true;
-                                    else
+                    Cot = true;
+                else
                                         if (t.ToString().ToLower() == "sec")
-                                            Cot = true;
-                                        else
+                    Cot = true;
+                else
                                             if (t.ToString().ToLower() == "csc")
-                                                Cot = true;
-                                            else
+                    Cot = true;
+                else
                                                 if (t.ToString().ToLower() == "cerices")
-                                                    Cerices = true;
-                                                else
+                    Cerices = true;
+                else
                                                     if (t.ToString().ToLower() == "root")
-                                                        Root = true;
-                                                    else
+                    Root = true;
+                else
                                                         if (t.ToString().ToLower() == "ln")
-                                                            Ln = true;
-                                                        else
+                    Ln = true;
+                else
                                                             if (t.ToString().ToLower() == "log")
-                                                                Log = true;
-                                                            else
+                    Log = true;
+                else
                                                                 if (t.ToString().ToLower() == "+")
-                                                                    Add = true;
-                                                                else
+                    Add = true;
+                else
                                                                     if (t.ToString().ToLower() == "-")
-                                                                        Subtract = true;
-                                                                    else
+                    Subtract = true;
+                else
                                                                         if (t.ToString().ToLower() == "/")
-                                                                            Div = true;
-                                                                        else
+                    Div = true;
+                else
                                                                             if (t.ToString().ToLower() == "*")
-                                                                                Mul = true;
-                                                                            else
+                    Mul = true;
+                else
                                                                                 if (t.ToString().ToLower() == "^")
-                                                                                    Pow = true;
-                                                                                else
+                    Pow = true;
+                else
                                                                                     if (t.ToString().ToLower() == "x")
-                                                                                        Independence = true;
-                                                                                    else
-                                                                                    {   //Correctiorn of ERROR560364?
-                                                                                        //Consider .ERROR is Elready.
-                                                                                        No = true;
-                                                                                        Number = t;
-                                                                                    }
+                    Independence = true;
+                else
+                {   //Correctiorn of ERROR560364?
+                    //Consider .ERROR is Elready.
+                    No = true;
+                    Number = t;
+                }
         }
         public void ResetAll()
         {
@@ -3838,58 +3834,58 @@ namespace Formulas
                 Decoder = 0;
             else
                 if (Line)
-                    Decoder = 1;
-                else
+                Decoder = 1;
+            else
                     if (Sin)
-                        Decoder = 2;
-                    else
+                Decoder = 2;
+            else
                         if (Cos)
-                            Decoder = 3;
-                        else
+                Decoder = 3;
+            else
                             if (Tan)
-                                Decoder = 4;
-                            else
+                Decoder = 4;
+            else
                                 if (Cot)
-                                    Decoder = 5;
-                                else
+                Decoder = 5;
+            else
                                     if (Sec)
-                                        Decoder = 6;
-                                    else
+                Decoder = 6;
+            else
                                         if (Csc)
-                                            Decoder = 7;
-                                        else
+                Decoder = 7;
+            else
                                             if (Cerices)
-                                                Decoder = 8;
-                                            else
+                Decoder = 8;
+            else
                                                 if (Root)
-                                                    Decoder = 9;
-                                                else
+                Decoder = 9;
+            else
                                                     if (Ln)
-                                                        Decoder = 10;
-                                                    else
+                Decoder = 10;
+            else
                                                         if (Log)
-                                                            Decoder = 11;
-                                                        else
+                Decoder = 11;
+            else
                                                             if (No)
-                                                                Decoder = 12;
-                                                            else
+                Decoder = 12;
+            else
                                                                 if (Add)
-                                                                    Decoder = 13;
-                                                                else
+                Decoder = 13;
+            else
                                                                     if (Subtract)
-                                                                        Decoder = 14;
-                                                                    else
+                Decoder = 14;
+            else
                                                                         if (Mul)
-                                                                            Decoder = 15;
-                                                                        else
+                Decoder = 15;
+            else
                                                                             if (Div)
-                                                                                Decoder = 16;
-                                                                            else
+                Decoder = 16;
+            else
                                                                                 if (Pow)
-                                                                                    Decoder = 17;
-                                                                                else
+                Decoder = 17;
+            else
                                                                                     if (Independence)
-                                                                                        Decoder = 18;
+                Decoder = 18;
 
             return Decoder;
         }
@@ -3902,21 +3898,21 @@ namespace Formulas
                 Is = false;
             else
                 if (t != null)
-                {
-                    if (t.Equals(Exist))
-                        Is = true;
-                    else
-                    {
-                        if (t.LeftSideAccess != null)
-                            if (t.LeftSideAccess.IsNodeInTree(Exist))
-                                Is = true;
-                        if (t.RightSideAccess != null)
-                            if (t.RightSideAccess.IsNodeInTree(Exist))
-                                Is = true;
-                    }
-                }
+            {
+                if (t.Equals(Exist))
+                    Is = true;
                 else
-                    Is = false;
+                {
+                    if (t.LeftSideAccess != null)
+                        if (t.LeftSideAccess.IsNodeInTree(Exist))
+                            Is = true;
+                    if (t.RightSideAccess != null)
+                        if (t.RightSideAccess.IsNodeInTree(Exist))
+                            Is = true;
+                }
+            }
+            else
+                Is = false;
             return Is;
         }
     }
@@ -4077,25 +4073,25 @@ namespace Formulas
                     IsFunction = true;
                 else
                     if (Sample.ToString().ToLower() == "cos")
-                        IsFunction = true;
-                    else
+                    IsFunction = true;
+                else
                         if (Sample.ToString().ToLower() == "tan")
-                            IsFunction = true;
-                        else
+                    IsFunction = true;
+                else
                             if (Sample.ToString().ToLower() == "cot")
-                                IsFunction = true;
-                            else
+                    IsFunction = true;
+                else
                                 if (Sample.ToString().ToLower() == "sec")
-                                    IsFunction = true;
-                                else
+                    IsFunction = true;
+                else
                                     if (Sample.ToString().ToLower() == "csc")
-                                        IsFunction = true;
-                                    else
+                    IsFunction = true;
+                else
                                         if (Sample.ToString().ToLower() == "log")
-                                            IsFunction = true;
-                                        else
+                    IsFunction = true;
+                else
                                             if (Sample.ToString().ToLower() == "ln")
-                                                IsFunction = true;
+                    IsFunction = true;
                 if (Sample.ToString().ToLower() == "root")
                     IsFunction = true;
             }
@@ -4255,26 +4251,26 @@ namespace Formulas
                 this.SetXTraceAndYTrace();
             else
                 if (!this.MovementAlowed(InPressed))
-                    this.CurrentNodeXTraceAndYtrace();
-                else
+                this.CurrentNodeXTraceAndYtrace();
+            else
+            {
+                if (TraceKindVariable.RadioButtonOneAcess.Checked)
                 {
-                    if (TraceKindVariable.RadioButtonOneAcess.Checked)
-                    {
-                        bool SET = true;
-                        this.TransmiteXAndYTraceAtNodes(Setvariable, ref SET);
-                        this.DrawBoxAroundDummyAtNodeKind();
-                    }
-                    else
-                        if (TraceKindVariable.RadioButtonTowAcess.Checked)
-                        {
-                            bool SET = true;
-                            this.TransmiteXAndYTraceAtNodes(Setvariable, ref SET);
-                            this.DrawBoxAroundDummyAtNodeKind();
-                            SET = true;
-                            this.TransmiteXAndYTraceBetweenNodes(Setvariable, ref SET);
-                            this.DrawBoxAroundDummyAtBetweenNodeKind();
-                        }
+                    bool SET = true;
+                    this.TransmiteXAndYTraceAtNodes(Setvariable, ref SET);
+                    this.DrawBoxAroundDummyAtNodeKind();
                 }
+                else
+                    if (TraceKindVariable.RadioButtonTowAcess.Checked)
+                {
+                    bool SET = true;
+                    this.TransmiteXAndYTraceAtNodes(Setvariable, ref SET);
+                    this.DrawBoxAroundDummyAtNodeKind();
+                    SET = true;
+                    this.TransmiteXAndYTraceBetweenNodes(Setvariable, ref SET);
+                    this.DrawBoxAroundDummyAtBetweenNodeKind();
+                }
+            }
             this.DrawBox();
 
             if (!this.MovementAlowed(InPressed))
@@ -4283,27 +4279,27 @@ namespace Formulas
                     this.DrawTraceSimbolOnTopLeftNode();
                 else
                     if ((XTrace == MinX) && (YTrace == MaxY))
-                        this.DrawTraceSimbolOnBelowLeftNode();
-                    else
+                    this.DrawTraceSimbolOnBelowLeftNode();
+                else
                         if ((XTrace == MaxX) && (YTrace == MinY))
-                            this.DrawTraceSimbolOnTopRightNode();
-                        else
+                    this.DrawTraceSimbolOnTopRightNode();
+                else
                             if ((XTrace == MaxX) && (YTrace == MaxY))
-                                this.DrawTraceSimbolOnBelowRightNode();
-                            else
+                    this.DrawTraceSimbolOnBelowRightNode();
+                else
                                 if (YTrace == MaxY)
-                                    this.DrawTraceSimbolOnBloweNode();
-                                else
+                    this.DrawTraceSimbolOnBloweNode();
+                else
                                     if (YTrace == MinY)
-                                        this.DrawTraceSimbolOnTopNode();
-                                    else
+                    this.DrawTraceSimbolOnTopNode();
+                else
                                         if (XTrace == MinX)
-                                            this.DrawTraceSimbolOnLeftNode();
-                                        else
+                    this.DrawTraceSimbolOnLeftNode();
+                else
                                             if (XTrace == MaxX)
-                                                this.DrawTraceSimbolOnRightNode();
-                                            else
-                                                this.DrawTraceSimbolToSelect();
+                    this.DrawTraceSimbolOnRightNode();
+                else
+                    this.DrawTraceSimbolToSelect();
 
             }
 
@@ -4455,52 +4451,52 @@ namespace Formulas
             }
             else
                 if (Equation.INTPressedAccess == 7)//Down
+            {
+                if ((Dummy.YAccess) > YTrace)
                 {
-                    if ((Dummy.YAccess) > YTrace)
+                    if (SetXTraceAndYTrace)
                     {
-                        if (SetXTraceAndYTrace)
-                        {
-                            //    XTrace = (Dummy.XAccess + Dummy.GetWidht());
-                            //  YTrace = (Dummy.YAccess + Dummy.GetHieght());
-                            XTrace = Dummy.XAccess;
-                            YTrace = Dummy.YAccess;
-                            CurrentSetvariable = Dummy;
-                            SetXTraceAndYTrace = false;
-                        }
+                        //    XTrace = (Dummy.XAccess + Dummy.GetWidht());
+                        //  YTrace = (Dummy.YAccess + Dummy.GetHieght());
+                        XTrace = Dummy.XAccess;
+                        YTrace = Dummy.YAccess;
+                        CurrentSetvariable = Dummy;
+                        SetXTraceAndYTrace = false;
                     }
                 }
-                else
+            }
+            else
                     if (Equation.INTPressedAccess == 8)//Right
+            {
+                if ((Dummy.XAccess) > XTrace)
+                {
+                    if (SetXTraceAndYTrace)
                     {
-                        if ((Dummy.XAccess) > XTrace)
-                        {
-                            if (SetXTraceAndYTrace)
-                            {
-                                //XTrace = (Dummy.XAccess + Dummy.GetWidht());
-                                //YTrace = (Dummy.YAccess + Dummy.GetHieght());
-                                XTrace = Dummy.XAccess;
-                                YTrace = Dummy.YAccess;
-                                CurrentSetvariable = Dummy;
-                                SetXTraceAndYTrace = false;
-                            }
-                        }
+                        //XTrace = (Dummy.XAccess + Dummy.GetWidht());
+                        //YTrace = (Dummy.YAccess + Dummy.GetHieght());
+                        XTrace = Dummy.XAccess;
+                        YTrace = Dummy.YAccess;
+                        CurrentSetvariable = Dummy;
+                        SetXTraceAndYTrace = false;
                     }
-                    else
+                }
+            }
+            else
                         if (Equation.INTPressedAccess == 9)//Left
-                        {
-                            if ((Dummy.XAccess) < XTrace)
-                            {
-                                if (SetXTraceAndYTrace)
-                                {
-                                    //XTrace = (Dummy.XAccess + Dummy.GetWidht());
-                                    //YTrace = (Dummy.YAccess + Dummy.GetHieght());
-                                    XTrace = Dummy.XAccess;
-                                    YTrace = Dummy.YAccess;
-                                    CurrentSetvariable = Dummy;
-                                    SetXTraceAndYTrace = false;
-                                }
-                            }
-                        }
+            {
+                if ((Dummy.XAccess) < XTrace)
+                {
+                    if (SetXTraceAndYTrace)
+                    {
+                        //XTrace = (Dummy.XAccess + Dummy.GetWidht());
+                        //YTrace = (Dummy.YAccess + Dummy.GetHieght());
+                        XTrace = Dummy.XAccess;
+                        YTrace = Dummy.YAccess;
+                        CurrentSetvariable = Dummy;
+                        SetXTraceAndYTrace = false;
+                    }
+                }
+            }
             this.TransmiteXAndYTraceAtNodes(Dummy.LeftSideAccess, ref SetXTraceAndYTrace);
             this.TransmiteXAndYTraceAtNodes(Dummy.RightSideAccess, ref SetXTraceAndYTrace);
 
@@ -4701,11 +4697,11 @@ namespace Formulas
             //ERROR76094896096948 :The Value of Cos function dose not calculated.refer to page 97
             else
                 if (SetVariable.LeftSideAccess != null)
-                    if (this.IsFunction(SetVariable.LeftSideAccess.GetDecoder()))
-                    {
-                        xBegin = SetVariable.LeftSideAccess.XAccess - 5;
-                        SetVariable = SetVariable.LeftSideAccess;
-                    }
+                if (this.IsFunction(SetVariable.LeftSideAccess.GetDecoder()))
+                {
+                    xBegin = SetVariable.LeftSideAccess.XAccess - 5;
+                    SetVariable = SetVariable.LeftSideAccess;
+                }
             this.DrawTowParantezOnForm(SetVariable.LeftSideAccess, ref xBegin, ref yBegin, ref xEnd, ref yEnd, Size);
             this.DrawTowParantezOnForm(SetVariable.RightSideAccess, ref xBegin, ref yBegin, ref xEnd, ref yEnd, Size);
         }
@@ -4998,13 +4994,13 @@ namespace Formulas
                     AutoSender.SenderToAddToTree(THIS.GetCurrentSampleFromBoard(INTPressded), THIS, false);
                 else
                     if (INTPressded == 2)
-                        AutoSender.SenderToAddToTree(SinusadClassVariable.GetContained(), THIS, false);
-                    else
+                    AutoSender.SenderToAddToTree(SinusadClassVariable.GetContained(), THIS, false);
+                else
                         if (INTPressded == 15)
-                            AutoSender.SenderToAddToTree(NumberAndVariable.GetContained(), THIS, false);
-                        else
+                    AutoSender.SenderToAddToTree(NumberAndVariable.GetContained(), THIS, false);
+                else
                             if (INTPressded == 5)
-                                AutoSender.SenderToAddToTree(ParantezVariable.GetContained(), THIS, false);
+                    AutoSender.SenderToAddToTree(ParantezVariable.GetContained(), THIS, false);
 
             }
             else
@@ -5523,14 +5519,14 @@ namespace Formulas
                     }
                     else
                         if (ParantezVariable.IsClosedParantez())
+                    {
+                        if (ParantezOpenedNumber > 0)
                         {
-                            if (ParantezOpenedNumber > 0)
-                            {
-                                //LOCATION73808 :At here the node pop inneeded.
-                                StackHoled.Pop();
-                                ParantezOpenedNumber--;
-                            }
+                            //LOCATION73808 :At here the node pop inneeded.
+                            StackHoled.Pop();
+                            ParantezOpenedNumber--;
                         }
+                    }
                     this.PreventTowTimeAdded = true;
                 }
                 if (ParantezOpenedNumber > 0)
@@ -5570,28 +5566,28 @@ namespace Formulas
             }
             else
                 if (!IsParantes)//if is not function arguments.
-                {
-                    if (this.ISindependenceVaribale(Sample))
-                        this.QueueStringVariable.Add(Sample);
-                    if (this.IsNumber(Sample))
-                        this.QueueStringVariable.Add(Sample);
-                    if ((this.IsOperator(Sample)) || (this.IsFunction(Sample)))
-                        if (this.IsOperator(Sample))
+            {
+                if (this.ISindependenceVaribale(Sample))
+                    this.QueueStringVariable.Add(Sample);
+                if (this.IsNumber(Sample))
+                    this.QueueStringVariable.Add(Sample);
+                if ((this.IsOperator(Sample)) || (this.IsFunction(Sample)))
+                    if (this.IsOperator(Sample))
+                    {
+                        if (this.QueueStringVariable.NumberOfElement() >= 1)
                         {
-                            if (this.QueueStringVariable.NumberOfElement() >= 1)
-                            {
-                                String x0 = null;
-                                x0 = QueueStringVariable.Delete();
-                                this.reciverContractionTreeVaribale.ResivedTaskFunction(Sample, x0, null, 0, null, ref ACT);
-                            }
+                            String x0 = null;
+                            x0 = QueueStringVariable.Delete();
+                            this.reciverContractionTreeVaribale.ResivedTaskFunction(Sample, x0, null, 0, null, ref ACT);
                         }
-                        else
-                            //ERROR1826432164 :Refer to page 85 .this condition leads to error
-                            if (this.IsFunction(Sample))
-                                reciverContractionTreeVaribale.ResivedTaskFunction(Sample, null, null, 0, null, ref ACT);
-                }
+                    }
+                    else
+                        //ERROR1826432164 :Refer to page 85 .this condition leads to error
+                        if (this.IsFunction(Sample))
+                        reciverContractionTreeVaribale.ResivedTaskFunction(Sample, null, null, 0, null, ref ACT);
+            }
 
-        End:
+            End:
             return true;
         }
         public bool IsEqualWithThreadConsiderationCommonly(AddToTree.Tree T1, AddToTree.Tree T2)
@@ -5640,13 +5636,13 @@ namespace Formulas
                     Is = true;
                 else
                     if (Sample.ToString().ToLower() == "down")
-                        Is = true;
-                    else
+                    Is = true;
+                else
                         if (Sample.ToString().ToLower() == "left")
-                            Is = true;
-                        else
+                    Is = true;
+                else
                             if (Sample.ToString().ToLower() == "right")
-                                Is = true;
+                    Is = true;
             }
             return Is;
         }
@@ -5878,14 +5874,14 @@ namespace Formulas
             if ((TreeConstructed != null) && (TreeConstructed.GetSample() == null))
                 if (this.IsFunction(Sample))
                     TreeConstructed.SampleAccess = Sample;
-        //To Set Graphically Settings.
-        //GraphicallyInterface.GraphicallyRefreshingToOnotherClass(THIS,this);
-        End:
+            //To Set Graphically Settings.
+            //GraphicallyInterface.GraphicallyRefreshingToOnotherClass(THIS,this);
+            End:
             DrawingVariable.GraphicsAccess.Clear(Color.White);
             if (TreeConstructed != null)
                 if (TreeConstructed.GetSample() != null)//by this condition ocures.
                     DrawingVariable.Draw(THISEquationVariable, this, 40, 40);
-        Return:
+            Return:
             return;
 
         }
@@ -5909,19 +5905,19 @@ namespace Formulas
                     IsOperator = true;
                 else
                     if (Sample.ToString() == "-")
-                        IsOperator = true;
-                    else
+                    IsOperator = true;
+                else
                         if (Sample.ToString() == "*")
-                            IsOperator = true;
-                        else
+                    IsOperator = true;
+                else
                             if (Sample.ToString() == "/")
-                                IsOperator = true;
-                            else
+                    IsOperator = true;
+                else
                                 if (Sample.ToString().ToLower() == "pow")
-                                    IsOperator = true;
-                                else
+                    IsOperator = true;
+                else
                                     if (Sample.ToString().ToLower() == "^")
-                                        IsOperator = true;
+                    IsOperator = true;
             }
             return IsOperator;
         }
@@ -5951,25 +5947,25 @@ namespace Formulas
                     IsFunction = true;
                 else
                     if (Sample.ToString().ToLower() == "cos")
-                        IsFunction = true;
-                    else
+                    IsFunction = true;
+                else
                         if (Sample.ToString().ToLower() == "tan")
-                            IsFunction = true;
-                        else
+                    IsFunction = true;
+                else
                             if (Sample.ToString().ToLower() == "cot")
-                                IsFunction = true;
-                            else
+                    IsFunction = true;
+                else
                                 if (Sample.ToString().ToLower() == "sec")
-                                    IsFunction = true;
-                                else
+                    IsFunction = true;
+                else
                                     if (Sample.ToString().ToLower() == "csc")
-                                        IsFunction = true;
-                                    else
+                    IsFunction = true;
+                else
                                         if (Sample.ToString().ToLower() == "log")
-                                            IsFunction = true;
-                                        else
+                    IsFunction = true;
+                else
                                             if (Sample.ToString().ToLower() == "ln")
-                                                IsFunction = true;
+                    IsFunction = true;
                 if (Sample.ToString().ToLower() == "root")
                     IsFunction = true;
             }

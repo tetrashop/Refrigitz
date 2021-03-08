@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Formulas
@@ -22,7 +17,7 @@ namespace Formulas
         public RadioButton RadioButtonOneAcess
         {
             get { return radioButton1; }
-            set {radioButton1=value;}
+            set { radioButton1 = value; }
         }
         public RadioButton RadioButtonTowAcess
         {

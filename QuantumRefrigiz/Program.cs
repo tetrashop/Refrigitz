@@ -39,13 +39,13 @@ namespace QuantumRefrigiz
             long total = 0;
 
             // Use type parameter to make subtotal a long, not an int
-            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For<long>(0, nums.Length, () => 0, (j, loop, subtotal) =>
-{
-subtotal += nums[j];
-return subtotal;
-},
-(x) => Interlocked.Add(ref total, x)
-);
+            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For<long>(0, nums.Length, () => 0, (j, loop, subtotal) =>
+ {
+     subtotal += nums[j];
+     return subtotal;
+ },
+ (x) => Interlocked.Add(ref total, x)
+ );
 
 
         }

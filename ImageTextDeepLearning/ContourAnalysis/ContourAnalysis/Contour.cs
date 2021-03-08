@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.Reflection;
 
     [Serializable]
     public class Contour
@@ -37,7 +36,7 @@
             {
                 Point point = points[i];
                 Point point2 = (i == (num5 - 1)) ? points[startIndex] : points[i + 1];
-                this.array[i] = new Complex((double) (point2.X - point.X), (double) (-point2.Y + point.Y));
+                this.array[i] = new Complex((double)(point2.X - point.X), (double)(-point2.Y + point.Y));
                 if (point.X > num3)
                 {
                     num3 = point.X;
@@ -92,8 +91,8 @@
             return contour;
         }
 
-        public Contour Clone() => 
-            new Contour { array = (Complex[]) this.array.Clone() };
+        public Contour Clone() =>
+            new Contour { array = (Complex[])this.array.Clone() };
 
         public double DiffR2(Contour c)
         {
@@ -116,7 +115,7 @@
                 num3 += num7 * num7;
             }
             double num8 = Math.Max(num, num2);
-            return (1.0 - (((num3 / ((double) this.Count)) / num8) / num8));
+            return (1.0 - (((num3 / ((double)this.Count)) / num8) / num8));
         }
 
         public double Distance(Contour c)
@@ -126,7 +125,7 @@
             return (((norma * norma) + (num2 * num2)) - (2.0 * this.Dot(c).a));
         }
 
-        public Complex Dot(Contour c) => 
+        public Complex Dot(Contour c) =>
             this.Dot(c, 0);
 
         public unsafe Complex Dot(Contour c, int shift)
@@ -196,8 +195,8 @@
             Complex[] complexArray = new Complex[newCount];
             for (int i = 0; i < newCount; i++)
             {
-                double num2 = ((1.0 * i) * this.Count) / ((double) newCount);
-                int num3 = (int) num2;
+                double num2 = ((1.0 * i) * this.Count) / ((double)newCount);
+                int num3 = (int)num2;
                 double num4 = num2 - num3;
                 if (num3 == (this.Count - 1))
                 {
@@ -233,7 +232,7 @@
             for (int i = 0; i < count; i++)
             {
                 Complex complex = new Complex(0.0, 0.0);
-                double num3 = (-6.2831853071795862 * i) / ((double) count);
+                double num3 = (-6.2831853071795862 * i) / ((double)count);
                 for (int j = 0; j < count; j++)
                 {
                     Complex complex2 = this[j];
@@ -274,17 +273,17 @@
                     num3 = num6;
                 }
             }
-            return new RectangleF((float) num, (float) num3, (float) (num2 - num), (float) (num4 - num3));
+            return new RectangleF((float)num, (float)num3, (float)(num2 - num), (float)(num4 - num3));
         }
 
         public Point[] GetPoints(Point startPoint)
         {
             Point[] pointArray = new Point[this.Count + 1];
-            PointF tf = (PointF) startPoint;
+            PointF tf = (PointF)startPoint;
             pointArray[0] = Point.Round(tf);
             for (int i = 0; i < this.Count; i++)
             {
-                tf = tf.Offset((float) this.array[i].a, -((float) this.array[i].b));
+                tf = tf.Offset((float)this.array[i].a, -((float)this.array[i].b));
                 pointArray[i + 1] = Point.Round(tf);
             }
             return pointArray;
@@ -366,7 +365,7 @@
         {
             for (int i = 0; i < this.Count; i++)
             {
-                this[i] = (Complex) (scale * this[i]);
+                this[i] = (Complex)(scale * this[i]);
             }
         }
 
@@ -375,9 +374,9 @@
 
         public Complex this[int i]
         {
-            get => 
+            get =>
                 this.array[i];
-            set => 
+            set =>
                 this.array[i] = value;
         }
 

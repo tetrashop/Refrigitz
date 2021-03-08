@@ -3,14 +3,12 @@
 //ADDCONDITION18979714 :Refer to page 248.
 //=============================================================
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
     static class NumberDivMul
     {
-        static public AddToTree.Tree NumberDivMulFx(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
+        static public AddToTree.Tree NumberDivMulFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             try
             {
@@ -24,16 +22,16 @@ namespace Formulas
 
                 Dummy.ThreadAccess = THREAD;
             }
-            catch (NullReferenceException t) {ExceptionClass.ExceptionClassMethod(t); }
+            catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
             return Dummy;
         }
-        static AddToTree.Tree NumberDivMulFxAction(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
+        static AddToTree.Tree NumberDivMulFxAction(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
                 return Dummy;
-            Dummy.LeftSideAccess  = NumberDivMul.NumberDivMulFxAction(Dummy.LeftSideAccess,ref UIS);
-            Dummy.RightSideAccess = NumberDivMul.NumberDivMulFxAction(Dummy.RightSideAccess,ref UIS);
-            int INCREASE = 2147483647/6;
+            Dummy.LeftSideAccess = NumberDivMul.NumberDivMulFxAction(Dummy.LeftSideAccess, ref UIS);
+            Dummy.RightSideAccess = NumberDivMul.NumberDivMulFxAction(Dummy.RightSideAccess, ref UIS);
+            int INCREASE = 2147483647 / 6;
             try
             {
                 UIS.SetProgressValue(UIS.progressBar15, 0);
@@ -41,7 +39,7 @@ namespace Formulas
                 if (IS.IsMul(Dummy.SampleAccess))
                     if (IS.IsMul(Dummy.RightSideAccess.SampleAccess))
                         if (IS.IsNumber(Dummy.RightSideAccess.LeftSideAccess.SampleAccess))
-                            if (Dummy.LeftSideAccess.SampleAccess.ToLower()=="c")
+                            if (Dummy.LeftSideAccess.SampleAccess.ToLower() == "c")
                             {
                                 Dummy.RightSideAccess.RightSideAccess.ThreadAccess = Dummy;
                                 Dummy.RightSideAccess = Dummy.RightSideAccess.RightSideAccess;
@@ -66,21 +64,21 @@ namespace Formulas
                         if (IS.IsNumber(Dummy.LeftSideAccess.SampleAccess))
                             if (IS.IsNumber(Dummy.RightSideAccess.LeftSideAccess.SampleAccess))
                             {
-                               
+
                                 //ERRORCORECTION981273 :The Error corrected.refer to page218.
                                 if (Dummy.LeftSideAccess.SampleAccess.ToLower() != "c")
                                     if (Dummy.RightSideAccess.SampleAccess.ToLower() != "c")
                                     {
                                         float Num = (float)System.Convert.ToDouble(Dummy.LeftSideAccess.SampleAccess);
-                                        Num = Num * (float)System.Convert.ToDouble(Dummy.RightSideAccess.LeftSideAccess.SampleAccess);                                        
+                                        Num = Num * (float)System.Convert.ToDouble(Dummy.RightSideAccess.LeftSideAccess.SampleAccess);
                                         Dummy.LeftSideAccess.SampleAccess = Num.ToString();
                                         Dummy.RightSideAccess.RightSideAccess.ThreadAccess = Dummy.RightSideAccess.ThreadAccess;
                                         Dummy.RightSideAccess = Dummy.RightSideAccess.RightSideAccess;
                                     }
                                     else
-                                        Dummy.LeftSideAccess.SampleAccess = "C";                                
-                                
-                                
+                                        Dummy.LeftSideAccess.SampleAccess = "C";
+
+
                             }
                 UIS.SetProgressValue(UIS.progressBar15, INCREASE + UIS.progressBar15.Value);
                 if (IS.IsDiv(Dummy.SampleAccess))
@@ -140,8 +138,8 @@ namespace Formulas
                                     Dummy.RightSideAccess = Dummy.RightSideAccess.RightSideAccess;
                                 }
                         }
-                
-            }         
+
+            }
             catch (NullReferenceException t)
             { ExceptionClass.ExceptionClassMethod(t); }
             UIS.SetProgressValue(UIS.progressBar15, 2147483647);

@@ -1,10 +1,7 @@
-﻿using System;
+﻿using LearningMachine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
-using LearningMachine;
 
 namespace howto_WPF_3D_triangle_normals
 {
@@ -16,10 +13,10 @@ namespace howto_WPF_3D_triangle_normals
         List<List<Point3D>> listofssemipoints = null;
 
         List<Point3D> source = null;
-       List< List<double[]>> qlist = new List<List<double[]>>();
-       List< List<double>> qdddlist = new List<List<double>>();
-        List< List<Point3D>> qdddpointslist = new List<List<Point3D>>();
-        public List< List<double[]>> qsystemlist = new List<List<double[]>>();
+        List<List<double[]>> qlist = new List<List<double[]>>();
+        List<List<double>> qdddlist = new List<List<double>>();
+        List<List<Point3D>> qdddpointslist = new List<List<Point3D>>();
+        public List<List<double[]>> qsystemlist = new List<List<double[]>>();
         public List<List<Point3D>> qsystemlistaddpoints = new List<List<Point3D>>();
         public CurvedSystems(List<Point3D> ss)
         {
@@ -265,7 +262,7 @@ namespace howto_WPF_3D_triangle_normals
                         if ((!e))
                             ListOfSemiLineUniq[semiscount].Add(s[kk]);
                     }
-                  }
+                }
                 if (!found)
                 {
                     ListOfSemiLineUniq.Add(new List<Point3D>());

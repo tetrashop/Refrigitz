@@ -2,36 +2,34 @@
 //====================================================
 //ERROCOCRECTIOn8912739879874 :The thread must be refernces to befor node.
 //====================================================
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
     static class CommonFactorSimlification
     {
-        static public AddToTree.Tree CommonFactorSimlificationFx(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
-        {if (Dummy == null)
+        static public AddToTree.Tree CommonFactorSimlificationFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        {
+            if (Dummy == null)
                 return null;
-            bool CONTINUE=false;
+            bool CONTINUE = false;
             do
             {
                 CONTINUE = false;
-                Dummy = CommonFactorSimlification.CommonFactorSimlificationActionFx(Dummy, ref CONTINUE,ref UIS);
+                Dummy = CommonFactorSimlification.CommonFactorSimlificationActionFx(Dummy, ref CONTINUE, ref UIS);
                 while (Dummy.ThreadAccess != null)
                     Dummy = Dummy.ThreadAccess;
                 //Dummy = MulTowDivision.MulTowDivisionFx(Dummy);
                 //Dummy = Simplifier.SimplifierFxMul(Dummy);
-            } while (CONTINUE);                         
-            
+            } while (CONTINUE);
+
             return Dummy;
         }
-        static AddToTree.Tree CommonFactorSimlificationActionFx(AddToTree.Tree Dummy,ref bool CONTINUE,ref UknownIntegralSolver UIS)
+        static AddToTree.Tree CommonFactorSimlificationActionFx(AddToTree.Tree Dummy, ref bool CONTINUE, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
                 return Dummy;
-            Dummy.LeftSideAccess= CommonFactorSimlification.CommonFactorSimlificationActionFx(Dummy.LeftSideAccess, ref CONTINUE,ref UIS);
-            Dummy.RightSideAccess= CommonFactorSimlification.CommonFactorSimlificationActionFx(Dummy.RightSideAccess, ref CONTINUE,ref UIS);
+            Dummy.LeftSideAccess = CommonFactorSimlification.CommonFactorSimlificationActionFx(Dummy.LeftSideAccess, ref CONTINUE, ref UIS);
+            Dummy.RightSideAccess = CommonFactorSimlification.CommonFactorSimlificationActionFx(Dummy.RightSideAccess, ref CONTINUE, ref UIS);
             //Dummy = CommonFactorSimlification.CommonFactorSuitable(Dummy,ref CONTINUE);
             int INCREASE = 2147483647 / 20;
             UIS.SetProgressValue(UIS.progressBar7, 0);
@@ -98,7 +96,8 @@ namespace Formulas
                     Dummy = COMMONFACTORSIMPLIFICATION;
                     CONTINUE = true;
                 }
-                else{
+                else
+                {
                     UIS.SetProgressValue(UIS.progressBar7, 2147483647 / 3);
                     if (IS.IsDiv(Dummy.LeftSideAccess.SampleAccess))
                     {
@@ -133,9 +132,10 @@ namespace Formulas
                         CONTINUE = true;
 
                         UIS.SetProgressValue(UIS.progressBar7, INCREASE + UIS.progressBar7.Value);
-                }                
-                else{
-                    UIS.SetProgressValue(UIS.progressBar7, (2147483647 / 3) * 2); 
+                    }
+                    else
+                    {
+                        UIS.SetProgressValue(UIS.progressBar7, (2147483647 / 3) * 2);
                         if (IS.IsDiv(Dummy.RightSideAccess.SampleAccess))
                         {
                             UIS.SetProgressValue(UIS.progressBar7, INCREASE + UIS.progressBar7.Value);
@@ -153,7 +153,7 @@ namespace Formulas
 
                             UIS.SetProgressValue(UIS.progressBar7, INCREASE + UIS.progressBar7.Value);
 
-                            COMMONFACTORSIMPLIFICATIONTOW.SetLefTandRightCommonlySide(COMMONFACTORSIMPLIFICATIONONE.CopyNewTree(COMMONFACTORSIMPLIFICATIONONE),Dummy.CopyNewTree(Dummy.RightSideAccess.LeftSideAccess));
+                            COMMONFACTORSIMPLIFICATIONTOW.SetLefTandRightCommonlySide(COMMONFACTORSIMPLIFICATIONONE.CopyNewTree(COMMONFACTORSIMPLIFICATIONONE), Dummy.CopyNewTree(Dummy.RightSideAccess.LeftSideAccess));
                             COMMONFACTORSIMPLIFICATIONTOW.LeftSideAccess.ThreadAccess = COMMONFACTORSIMPLIFICATIONTOW;
                             COMMONFACTORSIMPLIFICATIONTOW.RightSideAccess.ThreadAccess = COMMONFACTORSIMPLIFICATIONTOW;
                             COMMONFACTORSIMPLIFICATIONTOW.SampleAccess = Dummy.SampleAccess;
@@ -175,13 +175,13 @@ namespace Formulas
 
                             UIS.SetProgressValue(UIS.progressBar7, INCREASE + UIS.progressBar7.Value);
                         }
-            }
-            }
+                    }
+                }
             }
             UIS.SetProgressValue(UIS.progressBar7, 2147483647);
 
-        
-            return Dummy;            
+
+            return Dummy;
         }
         /*static AddToTree.Tree CommonFactorSuitable(AddToTree.Tree Dummy,ref bool CONTINUE) 
         {

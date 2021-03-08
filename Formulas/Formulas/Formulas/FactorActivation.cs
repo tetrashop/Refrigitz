@@ -18,19 +18,17 @@
 //ERROCORECTION91827831294 :The thread validation is corrected.refer to page 335.
 //================================================================================
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
     static class FactorActivation
     {
         static AddToTreeTreeLinkList NotAbledFactors = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList AbledFactors    = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList ONLYMULnODE     = new AddToTreeTreeLinkList();
+        static AddToTreeTreeLinkList AbledFactors = new AddToTreeTreeLinkList();
+        static AddToTreeTreeLinkList ONLYMULnODE = new AddToTreeTreeLinkList();
         static AddToTreeTreeLinkList MULATEDELEMENTS = new AddToTreeTreeLinkList();
-        
-        static public AddToTree.Tree FactorActivationFx(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
+
+        static public AddToTree.Tree FactorActivationFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             while (!(NotAbledFactors.ISEmpty()))
                 NotAbledFactors.DELETEFromTreeFirstNode();
@@ -44,43 +42,43 @@ namespace Formulas
 
             return Dummy;
         }
-        static AddToTree.Tree FactorActivationFirstMinuseOrPluseFx(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
+        static AddToTree.Tree FactorActivationFirstMinuseOrPluseFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
                 return Dummy;
-            
-            if ((FactorActivation.SuitableForFactorActivation(Dummy.CopyNewTree(Dummy)))&&((Dummy.SampleAccess == "+") || (Dummy.SampleAccess == "-")))
-            {                
+
+            if ((FactorActivation.SuitableForFactorActivation(Dummy.CopyNewTree(Dummy))) && ((Dummy.SampleAccess == "+") || (Dummy.SampleAccess == "-")))
+            {
                 FactorActivation.FactorActivationOnlyMuLnodesListedFx(Dummy.CopyNewTree(Dummy));
-                Dummy = FactorActivation.FactorActivationActionFx(Dummy,ref UIS);
+                Dummy = FactorActivation.FactorActivationActionFx(Dummy, ref UIS);
             }
             while (!(NotAbledFactors.ISEmpty()))
                 NotAbledFactors.DELETEFromTreeFirstNode();
             while (!(AbledFactors.ISEmpty()))
                 AbledFactors.DELETEFromTreeFirstNode();
-            while (!(ONLYMULnODE.ISEmpty()))            
+            while (!(ONLYMULnODE.ISEmpty()))
                 ONLYMULnODE.DELETEFromTreeFirstNode();
             while (!(MULATEDELEMENTS.ISEmpty()))
-                MULATEDELEMENTS.DELETEFromTreeFirstNode();            
-            Dummy.LeftSideAccess = FactorActivation.FactorActivationFirstMinuseOrPluseFx(Dummy.LeftSideAccess,ref UIS);
-            Dummy.RightSideAccess = FactorActivation.FactorActivationFirstMinuseOrPluseFx(Dummy.RightSideAccess,ref UIS);
+                MULATEDELEMENTS.DELETEFromTreeFirstNode();
+            Dummy.LeftSideAccess = FactorActivation.FactorActivationFirstMinuseOrPluseFx(Dummy.LeftSideAccess, ref UIS);
+            Dummy.RightSideAccess = FactorActivation.FactorActivationFirstMinuseOrPluseFx(Dummy.RightSideAccess, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree FactorActivationActionFx(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
+        static AddToTree.Tree FactorActivationActionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             //ERROR932875987 : Refer to page 301 :If The Non Copy of Dummy Passes to method the result of dummy become invalid.
             //AddToTree.Tree Factor = FactorActivation.GetBigestCommonFactor(Dummy.CopyNewTree(Dummy));
-            AddToTreeTreeLinkList FactorLinkList = FactorActivation.GetBigestCommonFactor(Dummy.CopyNewTree(Dummy),ref UIS);
+            AddToTreeTreeLinkList FactorLinkList = FactorActivation.GetBigestCommonFactor(Dummy.CopyNewTree(Dummy), ref UIS);
             bool Action = false;
             bool Mul = false;
             if (!(FactorLinkList.ISEmpty()))
             {
-                AddToTree.Tree Factor=new AddToTree.Tree(null,false);
+                AddToTree.Tree Factor = new AddToTree.Tree(null, false);
                 //ERROR293846210394 :The effection of Thread is not act on thread.
                 //AddToTree.Tree Holder = Dummy.CopyNewTree(Dummy.ThreadAccess);
                 //ERROCORECTION91827831294 :The thread validation is corrected.refer to page 335.
                 AddToTree.Tree Holder = Dummy.ThreadAccess;
-                
+
                 bool LeftTrueRightFalse = false;
                 try
                 {
@@ -89,14 +87,14 @@ namespace Formulas
                     else
                         LeftTrueRightFalse = true;
                 }
-                            catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
+                catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
 
                 Dummy.ThreadAccess = null;
 
                 while (!(FactorLinkList.ISEmpty()))
                 {
                     Factor = FactorLinkList.DELETEFromTreeFirstNode();
-                    Dummy = FactorActivation.FactorActivationDivActionFx(Dummy.CopyNewTree(Dummy), Factor, ref Action, ref Mul, FactorLinkList.CopyLinkList());                 
+                    Dummy = FactorActivation.FactorActivationDivActionFx(Dummy.CopyNewTree(Dummy), Factor, ref Action, ref Mul, FactorLinkList.CopyLinkList());
                 }
                 while (Dummy.ThreadAccess != null)
                     Dummy = Dummy.ThreadAccess;
@@ -108,17 +106,17 @@ namespace Formulas
                     else
                         Holder.LeftSideAccess = Dummy;
                 }
-                            catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
+                catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
                 Dummy.ThreadAccess = Holder;
             }
-        return Dummy;
+            return Dummy;
         }
-        static AddToTree.Tree FactorActivationDivActionFx(AddToTree.Tree Dummy,AddToTree.Tree  Factor, ref bool Action, ref bool Mul, AddToTreeTreeLinkList CopyOfFactors)
+        static AddToTree.Tree FactorActivationDivActionFx(AddToTree.Tree Dummy, AddToTree.Tree Factor, ref bool Action, ref bool Mul, AddToTreeTreeLinkList CopyOfFactors)
         {
             if (Dummy == null)
-                return Dummy;        
+                return Dummy;
             bool Current = false;
-            
+
             try
             {
                 if (Mul && Action && (IS.IsMinusAndPluseFirstNode(Dummy.ThreadAccess) && (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.ThreadAccess.RightSideAccess, Dummy))))
@@ -127,10 +125,10 @@ namespace Formulas
                     Mul = false;
                 }
             }
-                        catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
-            if ((IS.IsMinusAndPluseFirstNode(Dummy)) && (!Mul) && ((Factor!=null)))
+            catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
+            if ((IS.IsMinusAndPluseFirstNode(Dummy)) && (!Mul) && ((Factor != null)))
             {
-                
+
                 AddToTree.Tree Copy = new AddToTree.Tree("*", false);
                 Copy.SetLefTandRightCommonlySide(Factor.CopyNewTree(Factor), Dummy.CopyNewTree(Dummy));
                 Copy.LeftSideAccess.ThreadAccess = Copy;
@@ -142,20 +140,20 @@ namespace Formulas
             }
             else//CAUSEDERROR2983747 :This Section because of Loss Factors not is not become one extra factors.            
                 Dummy = FactorActivation.ConvertExtraFactorsTooneFx(Dummy, Factor, ref Action, Current);
-                
-        if (Current)
-        {
-            Dummy = Dummy.RightSideAccess;
-            //Dummy = Dummy.RightSideAccess;
-            Current = false;            
-        }
 
-        Dummy.LeftSideAccess = FactorActivation.FactorActivationDivActionFx(Dummy.LeftSideAccess,Factor,ref Action, ref Mul, CopyOfFactors);
-        Dummy.RightSideAccess = FactorActivation.FactorActivationDivActionFx(Dummy.RightSideAccess,Factor,ref Action, ref Mul, CopyOfFactors);
-            
+            if (Current)
+            {
+                Dummy = Dummy.RightSideAccess;
+                //Dummy = Dummy.RightSideAccess;
+                Current = false;
+            }
+
+            Dummy.LeftSideAccess = FactorActivation.FactorActivationDivActionFx(Dummy.LeftSideAccess, Factor, ref Action, ref Mul, CopyOfFactors);
+            Dummy.RightSideAccess = FactorActivation.FactorActivationDivActionFx(Dummy.RightSideAccess, Factor, ref Action, ref Mul, CopyOfFactors);
+
             return Dummy;
         }
-        static AddToTree.Tree ConvertExtraFactorsTooneFx(AddToTree.Tree Dummy,AddToTree.Tree Factors,ref  bool Action, bool Current)
+        static AddToTree.Tree ConvertExtraFactorsTooneFx(AddToTree.Tree Dummy, AddToTree.Tree Factors, ref bool Action, bool Current)
         {
             /*AddToTree.Tree HOLDER = Dummy;
             if(IS.IsMinuseOrPluse(Dummy.SampleAccess))
@@ -163,12 +161,12 @@ namespace Formulas
                 Dummy = Dummy.ThreadAccess;
              */
             //while (!(Factors.ISEmpty()))
-            Dummy = FactorActivation.ConvertExtraFactorsToone(Dummy, Factors,ref Action,Current);
+            Dummy = FactorActivation.ConvertExtraFactorsToone(Dummy, Factors, ref Action, Current);
             //Dummy = Dummy.FINDTreeWithThreadConsideration(Dummy,HOLDER);
             return Dummy;
-            
+
         }
-        static AddToTree.Tree ConvertExtraFactorsToone(AddToTree.Tree Dummy, AddToTree.Tree Factors,ref bool Action, bool Current)
+        static AddToTree.Tree ConvertExtraFactorsToone(AddToTree.Tree Dummy, AddToTree.Tree Factors, ref bool Action, bool Current)
         {
             if (Dummy == null)
                 return Dummy;
@@ -177,9 +175,9 @@ namespace Formulas
                 Action = true;
                 Dummy.SetLefTandRightCommonlySide(null, null);
                 Dummy.SampleAccess = "1";
-            }        
-            Dummy.LeftSideAccess = FactorActivation.ConvertExtraFactorsToone(Dummy.LeftSideAccess,Factors,ref Action,Current);
-            Dummy.RightSideAccess = FactorActivation.ConvertExtraFactorsToone(Dummy.RightSideAccess,Factors,ref Action,Current);
+            }
+            Dummy.LeftSideAccess = FactorActivation.ConvertExtraFactorsToone(Dummy.LeftSideAccess, Factors, ref Action, Current);
+            Dummy.RightSideAccess = FactorActivation.ConvertExtraFactorsToone(Dummy.RightSideAccess, Factors, ref Action, Current);
             return Dummy;
         }
         static void FactorActivationOnlyMuLnodesListedFx(AddToTree.Tree Dummy)
@@ -189,12 +187,12 @@ namespace Formulas
                 {
                     ONLYMULnODE.ADDToTree(Dummy);
                     return;
-                }                          
+                }
             FactorActivation.FactorActivationOnlyMuLnodesListedFx(Dummy.LeftSideAccess);
             FactorActivation.FactorActivationOnlyMuLnodesListedFx(Dummy.RightSideAccess);
             return;
         }
-        static public AddToTreeTreeLinkList GetBigestCommonFactor(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
+        static public AddToTreeTreeLinkList GetBigestCommonFactor(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             AddToTreeTreeLinkList CommonFactors = new AddToTreeTreeLinkList();
             AddToTreeTreeLinkList Holder = new AddToTreeTreeLinkList();
@@ -208,8 +206,8 @@ namespace Formulas
                 Current = Holder.DELETEFromTreeFirstNode();
                 //ERRORCORCTION827346 :Refer to page 302.
                 //ERROR715540         :Refer to page 302.
-                MULATEDELEMENTS = FactorActivation.GetMultedElements(Current,ref UIS);
-                
+                MULATEDELEMENTS = FactorActivation.GetMultedElements(Current, ref UIS);
+
                 AddToTreeTreeLinkList DummyConsiderationCopy = new AddToTreeTreeLinkList();
                 DummyConsiderationCopy = ONLYMULnODE.CopyLinkList();
 
@@ -217,15 +215,15 @@ namespace Formulas
                 DummyConsideration = ONLYMULnODE.CopyLinkList();
 
                 AddToTree.Tree EveryMulatedElementsConsideration = new AddToTree.Tree(null, false);
-                
+
                 while (!(MULATEDELEMENTS.ISEmpty()))
                 {
                     DummyConsideration = DummyConsiderationCopy.CopyLinkList();
                     EveryMulatedElementsConsideration = MULATEDELEMENTS.DELETEFromTreeFirstNode();
                     //bool IsFactor = false;
                     float Num = 0;
-                    if(EveryMulatedElementsConsideration.SampleAccess!=null)
-                        if ((IS.IsMinusAndPluseFirstNode(Dummy)) && (IS.ExistElementOnAllMulatedNodes(EveryMulatedElementsConsideration, DummyConsideration,ref UIS)) && (IS.IsNotUpperPowerOfNodeInList(EveryMulatedElementsConsideration, AbledFactors.CopyLinkList(), ref Num))&&(!(AbledFactors.FINDTreeWithOutThreadConsideration(EveryMulatedElementsConsideration))))
+                    if (EveryMulatedElementsConsideration.SampleAccess != null)
+                        if ((IS.IsMinusAndPluseFirstNode(Dummy)) && (IS.ExistElementOnAllMulatedNodes(EveryMulatedElementsConsideration, DummyConsideration, ref UIS)) && (IS.IsNotUpperPowerOfNodeInList(EveryMulatedElementsConsideration, AbledFactors.CopyLinkList(), ref Num)) && (!(AbledFactors.FINDTreeWithOutThreadConsideration(EveryMulatedElementsConsideration))))
                         {
                             Factors = EveryMulatedElementsConsideration;
                             AbledFactors.ADDToTree(Factors);
@@ -234,7 +232,7 @@ namespace Formulas
             }
             return AbledFactors;
         }
-        static public AddToTreeTreeLinkList GetMultedElements(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
+        static public AddToTreeTreeLinkList GetMultedElements(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             AddToTreeTreeLinkList HOLDER = new AddToTreeTreeLinkList();
             try
@@ -252,18 +250,18 @@ namespace Formulas
                             Dummy.LeftSideAccess.SetLefTandRightCommonlySide(null, null);
                             Dummy.LeftSideAccess.SampleAccess = "1";
                         }
-                            if (Dummy.RightSideAccess.SampleAccess != "*")
-                            //  if (!(HOLDER.FINDTreeWithOutThreadConsideration(Dummy.RightSideAccess)))
-                            {
-                                HOLDER.ADDToTree(Dummy.CopyNewTree(Dummy.RightSideAccess));
-                                Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
-                                Dummy.RightSideAccess.SampleAccess = "1";
-                            }
-                            Dummy = Simplifier.SimplifierFxSimpler(Dummy, ref UIS);                        
-                        
+                        if (Dummy.RightSideAccess.SampleAccess != "*")
+                        //  if (!(HOLDER.FINDTreeWithOutThreadConsideration(Dummy.RightSideAccess)))
+                        {
+                            HOLDER.ADDToTree(Dummy.CopyNewTree(Dummy.RightSideAccess));
+                            Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
+                            Dummy.RightSideAccess.SampleAccess = "1";
+                        }
+                        Dummy = Simplifier.SimplifierFxSimpler(Dummy, ref UIS);
+
                     }
             }
-                        catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
+            catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
             return HOLDER;
         }
         static bool SuitableForFactorActivation(AddToTree.Tree Dummy)

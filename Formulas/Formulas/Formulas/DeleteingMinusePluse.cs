@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -23,10 +21,10 @@ namespace Formulas
             DeleteingMinusPluseTree.ArrangmentToDeleteingMinusPluse(Dummy.RightSideAccess);
             if (Dummy.SampleAccess == "+")
                 if (IS.IsMinuseOrPluse(Dummy.LeftSideAccess.SampleAccess))
-                    Dummy.SetLefTandRightCommonlySide(Dummy.RightSideAccess,Dummy.LeftSideAccess);
+                    Dummy.SetLefTandRightCommonlySide(Dummy.RightSideAccess, Dummy.LeftSideAccess);
             return Dummy;
         }
-        static  AddToTree.Tree RepeatedlyDeletedAction(AddToTree.Tree Dummy)
+        static AddToTree.Tree RepeatedlyDeletedAction(AddToTree.Tree Dummy)
         {
             if (Dummy == null)
                 return Dummy;
@@ -40,117 +38,117 @@ namespace Formulas
                 while (IS.IsMinuseOrPluse(Dummy.SampleAccess))
                 {
                     if (CurrentTow != null)
-                    while (IS.IsMinuseOrPluse(CurrentTow.SampleAccess))
-                    {
-                        
-                        if (((Dummy.SampleAccess == "+") && (CurrentTow.SampleAccess == "-"))
-                        ||
-                        ((Dummy.SampleAccess == "-") && (CurrentTow.SampleAccess == "+")))
-                        {                            
-                            if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, CurrentTow.RightSideAccess))
+                        while (IS.IsMinuseOrPluse(CurrentTow.SampleAccess))
+                        {
+
+                            if (((Dummy.SampleAccess == "+") && (CurrentTow.SampleAccess == "-"))
+                            ||
+                            ((Dummy.SampleAccess == "-") && (CurrentTow.SampleAccess == "+")))
                             {
-                                //Dummy = Dummy.FINDTreeWithThreadConsideration(Dummy,Dummy);
-                                String A = Dummy.SampleAccess;
-                                if (Dummy != null)
-                                if (Dummy.ThreadAccess == null)
-                                {                                    
-                                    Dummy = Dummy.LeftSideAccess;
-                                    Dummy.ThreadAccess = null;
-
-                                }
-                                else
+                                if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, CurrentTow.RightSideAccess))
                                 {
-                                    Dummy.ThreadAccess.LeftSideAccess = Dummy.LeftSideAccess;
-                                    Dummy.LeftSideAccess.ThreadAccess = Dummy.ThreadAccess;
-                                }
-                            if (A == "+")
-                                while ((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, CurrentTow.RightSideAccess)) && (Dummy.SampleAccess != "-"))
-                                    Dummy = Dummy.LeftSideAccess;
+                                    //Dummy = Dummy.FINDTreeWithThreadConsideration(Dummy,Dummy);
+                                    String A = Dummy.SampleAccess;
+                                    if (Dummy != null)
+                                        if (Dummy.ThreadAccess == null)
+                                        {
+                                            Dummy = Dummy.LeftSideAccess;
+                                            Dummy.ThreadAccess = null;
 
-                            if (A == "-")
-                                while ((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, CurrentTow.RightSideAccess)) && (Dummy.SampleAccess != "+"))
-                                    Dummy = Dummy.LeftSideAccess;
-                            //Dummy = Dummy.FINDTreeWithThreadConsideration(Dummy, CurrentTow);
+                                        }
+                                        else
+                                        {
+                                            Dummy.ThreadAccess.LeftSideAccess = Dummy.LeftSideAccess;
+                                            Dummy.LeftSideAccess.ThreadAccess = Dummy.ThreadAccess;
+                                        }
+                                    if (A == "+")
+                                        while ((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, CurrentTow.RightSideAccess)) && (Dummy.SampleAccess != "-"))
+                                            Dummy = Dummy.LeftSideAccess;
 
-                            if (Dummy.ThreadAccess == null)
-                                {
-                                    Dummy = Dummy.LeftSideAccess;
-                                    Dummy.ThreadAccess = null;
+                                    if (A == "-")
+                                        while ((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, CurrentTow.RightSideAccess)) && (Dummy.SampleAccess != "+"))
+                                            Dummy = Dummy.LeftSideAccess;
+                                    //Dummy = Dummy.FINDTreeWithThreadConsideration(Dummy, CurrentTow);
+
+                                    if (Dummy.ThreadAccess == null)
+                                    {
+                                        Dummy = Dummy.LeftSideAccess;
+                                        Dummy.ThreadAccess = null;
+                                    }
+                                    else
+                                    {
+                                        Dummy.ThreadAccess.LeftSideAccess = Dummy.LeftSideAccess;
+                                        Dummy.LeftSideAccess.ThreadAccess = Dummy.ThreadAccess;
+                                    }
+                                    //if (Dummy.ThreadAccess != null)
+                                    //Dummy.ThreadAccess.LeftSideAccess = Dummy.LeftSideAccess;
+                                    //Dummy = AddToTree.Tree.DeleteTree(Dummy, CurrentTow);                                
+                                    CurrentTow = Dummy.LeftSideAccess;
                                 }
-                                else
-                                {
-                                    Dummy.ThreadAccess.LeftSideAccess = Dummy.LeftSideAccess;
-                                    Dummy.LeftSideAccess.ThreadAccess = Dummy.ThreadAccess;
-                                }
-                                //if (Dummy.ThreadAccess != null)
-                                //Dummy.ThreadAccess.LeftSideAccess = Dummy.LeftSideAccess;
-                            //Dummy = AddToTree.Tree.DeleteTree(Dummy, CurrentTow);                                
-                            CurrentTow = Dummy.LeftSideAccess;
                             }
+                            CurrentTow = CurrentTow.LeftSideAccess;
                         }
-                        CurrentTow = CurrentTow.LeftSideAccess;
-                    }
-                    Dummy= Dummy.LeftSideAccess;
+                    Dummy = Dummy.LeftSideAccess;
                     CurrentTow = Dummy.LeftSideAccess;
                 }
             //Dummy= Dummy;
-            while((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy,Current))&&(Dummy.ThreadAccess!=null))
-                Dummy=Dummy.ThreadAccess;
+            while ((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy, Current)) && (Dummy.ThreadAccess != null))
+                Dummy = Dummy.ThreadAccess;
             CurrentTow = Dummy.RightSideAccess;
 
             if (CurrentTow != null)
                 while (IS.IsMinuseOrPluse(Dummy.SampleAccess))
                 {
                     if (CurrentTow != null)
-                    while (IS.IsMinuseOrPluse(CurrentTow.SampleAccess))
-                    {
-                        if (((Dummy.SampleAccess == "+") && (CurrentTow.SampleAccess == "-"))
-                            ||
-                            ((Dummy.SampleAccess == "-") && (CurrentTow.SampleAccess == "+")))
+                        while (IS.IsMinuseOrPluse(CurrentTow.SampleAccess))
                         {
-                            if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess, CurrentTow.LeftSideAccess))
+                            if (((Dummy.SampleAccess == "+") && (CurrentTow.SampleAccess == "-"))
+                                ||
+                                ((Dummy.SampleAccess == "-") && (CurrentTow.SampleAccess == "+")))
                             {
-                                
-                                //Dummy = Dummy.FINDTreeWithThreadConsideration(Dummy, Dummy);
-                                String A = Dummy.SampleAccess;
-                                if (Dummy.ThreadAccess == null)
+                                if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess, CurrentTow.LeftSideAccess))
                                 {
-                                    Dummy = Dummy.RightSideAccess;
-                                    Dummy.ThreadAccess = null;
+
+                                    //Dummy = Dummy.FINDTreeWithThreadConsideration(Dummy, Dummy);
+                                    String A = Dummy.SampleAccess;
+                                    if (Dummy.ThreadAccess == null)
+                                    {
+                                        Dummy = Dummy.RightSideAccess;
+                                        Dummy.ThreadAccess = null;
+                                    }
+                                    else
+                                    {
+                                        Dummy.ThreadAccess.RightSideAccess = Dummy.RightSideAccess;
+                                        Dummy.RightSideAccess.ThreadAccess = Dummy.ThreadAccess;
+                                    }
+
+                                    if (A == "+")
+                                        while ((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess, CurrentTow.LeftSideAccess)) && (Dummy.SampleAccess != "-"))
+                                            Dummy = Dummy.RightSideAccess;
+
+                                    if (A == "-")
+                                        while ((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, CurrentTow.RightSideAccess)) && (Dummy.SampleAccess != "+"))
+                                            Dummy = Dummy.RightSideAccess;
+
+                                    if (Dummy.ThreadAccess == null)
+                                    {
+                                        Dummy = Dummy.RightSideAccess;
+                                        Dummy.ThreadAccess = null;
+                                    }
+                                    else
+                                    {
+                                        Dummy.ThreadAccess.RightSideAccess = Dummy.RightSideAccess;
+                                        Dummy.RightSideAccess.ThreadAccess = Dummy.ThreadAccess;
+                                    }
                                 }
-                                else
-                                {
-                                    Dummy.ThreadAccess.RightSideAccess = Dummy.RightSideAccess;
-                                    Dummy.RightSideAccess.ThreadAccess = Dummy.ThreadAccess;
-                                }
-
-                                if (A == "+")
-                                while ((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess, CurrentTow.LeftSideAccess)) && (Dummy.SampleAccess != "-"))
-                                    Dummy = Dummy.RightSideAccess;
-
-                                if (A == "-")
-                                while ((!EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, CurrentTow.RightSideAccess)) && (Dummy.SampleAccess != "+"))
-                                    Dummy = Dummy.RightSideAccess;
-
-                            if (Dummy.ThreadAccess == null)
-                            {
-                                Dummy = Dummy.RightSideAccess;
-                                Dummy.ThreadAccess = null;
                             }
-                            else
-                            {
-                                Dummy.ThreadAccess.RightSideAccess = Dummy.RightSideAccess;
-                                Dummy.RightSideAccess.ThreadAccess = Dummy.ThreadAccess;
-                            }
+                            CurrentTow = CurrentTow.RightSideAccess;
                         }
-                        }
-                        CurrentTow = CurrentTow.RightSideAccess;
-                    }
-                    Dummy= Dummy.RightSideAccess;
+                    Dummy = Dummy.RightSideAccess;
                     CurrentTow = Dummy.RightSideAccess;
                 }
             return Dummy;
         }
-        
+
     }
 }

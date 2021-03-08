@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -12,7 +10,7 @@ namespace Formulas
             {
                 Formulas.StackTree Stack = new StackTree((Dummy.CurrentSizeAccess) + 1);
 
-               // System.Windows.Forms.MessageBox.Show("2.4.1-The Stsck newed.");
+                // System.Windows.Forms.MessageBox.Show("2.4.1-The Stsck newed.");
 
                 AddToTree.Tree DummyTree = null;
 
@@ -30,14 +28,14 @@ namespace Formulas
                     catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); continue; }
                 }
 
-               // System.Windows.Forms.MessageBox.Show("2.4.2.Stack pushed.");
+                // System.Windows.Forms.MessageBox.Show("2.4.2.Stack pushed.");
 
                 while (!(Stack.IsEmpty()))
                     Dummy.ADDToTree(Stack.Pop());
 
-               // System.Windows.Forms.MessageBox.Show("2.4.3.End Of Recursion.");
-            }          
-            return Dummy;        
+                // System.Windows.Forms.MessageBox.Show("2.4.3.End Of Recursion.");
+            }
+            return Dummy;
         }
     }
 }

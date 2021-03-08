@@ -1,11 +1,11 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Threading.Tasks;
-using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
-using System.Collections.Generic;
-using Point3Dspaceuser;
 using howto_WPF_3D_triangle_normalsuser;
+using Point3Dspaceuser;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 
 namespace WindowsApplication1
 {
@@ -666,14 +666,17 @@ namespace WindowsApplication1
                 a = new _2dTo3D(openFileDialog1.FileName);
             });
             output.Wait();
-            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox24.Visible = true;
+            lock (pictureBox24)
+            {
+                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox24.Visible = true;
 
-            pictureBox24.Image = a.ar;
-            pictureBox24.Refresh();
-            pictureBox24.Update();
-            pictureBox24.Invalidate();
-            go = true;
+                pictureBox24.Image = a.ar;
+                pictureBox24.Invalidate();
+                pictureBox24.Refresh();
+                pictureBox24.Update();
+                go = true;
+            }
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
@@ -730,14 +733,17 @@ namespace WindowsApplication1
 
                                 }
                             }
-                            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                            pictureBox24.Visible = true;
-                            pictureBox24.Refresh();
-                            pictureBox24.Update();
-                            pictureBox24.Invalidate();
-                            mouseclick = false;
-                            elim = false;
-                            Colorset = false;
+                            lock (pictureBox24)
+                            {
+                                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                                pictureBox24.Visible = true;
+                                pictureBox24.Invalidate();
+                                pictureBox24.Refresh();
+                                pictureBox24.Update();
+                                mouseclick = false;
+                                elim = false;
+                                Colorset = false;
+                            }
                         }
                     }
                     else
@@ -767,11 +773,14 @@ namespace WindowsApplication1
 
                                 }
                             }
-                            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                            pictureBox24.Visible = true;
-                            pictureBox24.Refresh();
-                            pictureBox24.Update();
-                            pictureBox24.Invalidate();
+                            lock (pictureBox24)
+                            {
+                                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                                pictureBox24.Visible = true;
+                                pictureBox24.Invalidate();
+                                pictureBox24.Refresh();
+                                pictureBox24.Update();
+                            }
                         }
 
                     }
@@ -805,14 +814,32 @@ namespace WindowsApplication1
                 a = new _2dTo3D(openFileDialog1.FileName, 0.5);
             });
             output.Wait();
-            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox24.Visible = true;
-            pictureBox24.Image = a.ar;
-            pictureBox24.Refresh();
-            pictureBox24.Update();
-            pictureBox24.Invalidate();
+            lock (pictureBox24)
+            {
+                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox24.Visible = true;
+                pictureBox24.Image = a.ar;
+                pictureBox24.Invalidate();
+                pictureBox24.Refresh();
+                pictureBox24.Update();
+            }
         }
+        string Get(Image aa)
+        {
+            lock (a)
+            {
+                lock (aa)
+                {
 
+                    int wid = aa.Width;
+                    int hei = aa.Height;
+
+                    if (a.x > 0)
+                        return "Dimentin; " + wid.ToString() + "X" + hei.ToString() + "; active pixels :" + a.x.ToString();
+                    return "Dimentin " + wid.ToString() + "X" + hei.ToString();
+                }
+            }
+        }
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -829,23 +856,23 @@ namespace WindowsApplication1
                     });
                     output.Wait();
 
+                    label4.Text = Get(b);
                     if (a.x > 0)
-                        textBox1.Text = ((int)a.x / ((2 * System.Threading.PlatformHelper.ProcessorCount) / count)).ToString();
+                        textBox1.Text = ((int)a.x / (35)).ToString();
                     else
                         textBox1.Text = "1";
-                    object oo = new object();
-                    lock (oo)
+                    lock (pictureBox24)
                     {
+                        label4.Text = Get(b);
                         pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                         pictureBox24.Visible = true;
                         pictureBox24.Image = b;
+                        pictureBox24.Invalidate();
                         pictureBox24.Refresh();
                         pictureBox24.Update();
-                        pictureBox24.Invalidate();
-
+                    
                     }
                 }
-
             }
             catch (Exception t) { }
         }
@@ -867,59 +894,69 @@ namespace WindowsApplication1
         private void doToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Image aa = pictureBox24.Image;
-            if (a.x > count)
+            lock (aa)
             {
-                a.x = 0;
-                a = new _2dTo3D(aa, true);
                 if (a.x > count)
                 {
-                    MessageBox.Show("Reduced image size;Desired Less Than " + count.ToString() + "; Current : " + (a.x).ToString());
-                    return;
+                    a.x = 0;
+                    a = new _2dTo3D(aa, true);
+                    if (a.x > count)
+                    {
+                        MessageBox.Show("Reduced image size;Desired Less Than " + count.ToString() + "; Current : " + (a.x).ToString());
+                        return;
+                    }
                 }
-            }
-            var output = Task.Factory.StartNew(() =>
-            {
-                if (a == null)
-                    a = new _2dTo3D(aa);
-                else
-                    a._2dTo3D_reconstructed(aa);
-            });
-            output.Wait();
+                var output = Task.Factory.StartNew(() =>
+                {
+                    if (a == null)
+                        a = new _2dTo3D(aa);
+                    else
+                        a._2dTo3D_reconstructed(aa);
+                });
+                output.Wait();
+            } 
+            label4.Text = Get(aa);
             if (a.x > 0)
-                textBox1.Text = ((int)a.x / ((2 * System.Threading.PlatformHelper.ProcessorCount) / count)).ToString();
+                textBox1.Text = ((int)a.x / (35)).ToString();
             else
                 textBox1.Text = "1";
-            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox24.Visible = true;
-            if (pictureBox24.Image != null)
-                pictureBox24.Image.Dispose();
-            pictureBox24.Image = a.ar;
-            pictureBox24.Refresh();
-            pictureBox24.Update();
-            pictureBox24.Invalidate();
-            go = true;
+            lock (pictureBox24)
+            {
+                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox24.Visible = true;
+                if (pictureBox24.Image != null)
+                    pictureBox24.Image.Dispose();
+                pictureBox24.Image = a.ar;
+                pictureBox24.Invalidate();
+                pictureBox24.Refresh();
+                pictureBox24.Update();
+                go = true;
+            }
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Image a = pictureBox24.Image;
-            Graphics g = Graphics.FromImage(a);
-
-
-
-            for (int i = 0; i < a.Width; i++)
+            lock (a)
             {
-                for (int j = 0; j < a.Height; j++)
-                {
-                    if (((i + j) % ((int)(1.0 / percent))) == 0)
-                    {
+                Graphics g = Graphics.FromImage(a);
 
-                    }
-                    else
+
+
+                for (int i = 0; i < a.Width; i++)
+                {
+                    for (int j = 0; j < a.Height; j++)
                     {
-                        (a as Bitmap).SetPixel(i, j, Color.Black);
-                        g.DrawImage(a, 0, 0, a.Width, a.Height);
-                        g.Save();
+                        if (((i + j) % ((int)(1.0 / percent))) == 0)
+                        {
+
+                        }
+                        else
+                        {
+                            (a as Bitmap).SetPixel(i, j, Color.Black);
+                            g.DrawImage(a, 0, 0, a.Width, a.Height);
+                            g.Save();
+                        }
                     }
                 }
             }
@@ -927,35 +964,45 @@ namespace WindowsApplication1
             int v = (int)((percent) * 100.0);
             toolStripMenuItem1.Text = "Do by " + v.ToString() + "% of pixels";
 
-            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox24.Visible = true;
-            pictureBox24.Image = a;
-            pictureBox24.Refresh();
-            pictureBox24.Update();
-            pictureBox24.Invalidate();
+            lock (pictureBox24)
+            {
+                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox24.Visible = true;
+                pictureBox24.Image = a;
+                pictureBox24.Invalidate();
+                pictureBox24.Refresh();
+                pictureBox24.Update();
+            }
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            object o = new object();
-            lock (o)
-            {
+           
                 Image b = Image.FromFile(openFileDialog1.FileName);
+            lock (b)
+            {
                 var output = Task.Factory.StartNew(() =>
                 {
                     a = new _2dTo3D(b, true);
                 });
+                output.Wait();
+
+                label4.Text = Get(b);
             }
             if (a.x > 0)
-                textBox1.Text = ((int)a.x / ((2 * System.Threading.PlatformHelper.ProcessorCount) / count)).ToString();
+                textBox1.Text = ((int)a.x / (35)).ToString();
             else
                 textBox1.Text = "1";
-            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox24.Visible = true;
-            pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)((double)(pictureBox24.Image.Width) - ((double)(pictureBox24.Image.Width) * 0.1)), (int)((double)(pictureBox24.Image.Height) - ((double)(pictureBox24.Image.Height) * 0.1)))));
-            pictureBox24.Refresh();
-            pictureBox24.Update();
-            pictureBox24.Invalidate();
+            label4.Text = Get(b);
+            lock (pictureBox24)
+            {
+                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox24.Visible = true;
+                pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)((double)(pictureBox24.Image.Width) - ((double)(pictureBox24.Image.Width) * 0.1)), (int)((double)(pictureBox24.Image.Height) - ((double)(pictureBox24.Image.Height) * 0.1)))));
+                pictureBox24.Invalidate();
+                pictureBox24.Refresh();
+                pictureBox24.Update();
+            }
 
         }
 
@@ -983,16 +1030,19 @@ namespace WindowsApplication1
                                 {
                                     Image a = (Image)pictureBox24.Image.Clone();
 
-                                    Graphics g = Graphics.FromImage(a);
+                                    lock (a)
+                                    {
+                                        Graphics g = Graphics.FromImage(a);
 
-                                    int x = e.X;
-                                    int y = e.Y;
+                                        int x = e.X;
+                                        int y = e.Y;
 
-                                    x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                                    y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
-                                    g.DrawEllipse(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), new Rectangle(x, y, -5, 5));
-                                    pictureBox24.Image = a;
-                                    g.Dispose();
+                                        x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                                        y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                                        g.DrawEllipse(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), new Rectangle(x, y, -5, 5));
+                                        pictureBox24.Image = a;
+                                        g.Dispose();
+                                    }
                                 }
                                 else
                                 {
@@ -1007,7 +1057,7 @@ namespace WindowsApplication1
                                     time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
 
                                     object oo = new object();
-                                    lock (oo)
+                                    lock (at)
                                     {
                                         at = (Image)pictureBox24.Image.Clone();
                                     }
@@ -1038,7 +1088,7 @@ namespace WindowsApplication1
                                     time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
 
                                     object oo = new object();
-                                    lock (oo)
+                                    lock (at)
                                     {
                                         at = (Image)pictureBox24.Image.Clone();
                                     }
@@ -1051,7 +1101,7 @@ namespace WindowsApplication1
                                     time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
 
                                     object oo = new object();
-                                    lock (oo)
+                                    lock (at)
                                     {
                                         at = (Image)pictureBox24.Image.Clone();
                                     }
@@ -1128,12 +1178,14 @@ namespace WindowsApplication1
                     }
                 }
 
-                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox24.Visible = true;
-                pictureBox24.Refresh();
-                pictureBox24.Update();
-                pictureBox24.Invalidate();
-
+                lock (pictureBox24)
+                {
+                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox24.Visible = true;
+                    pictureBox24.Invalidate();
+                    pictureBox24.Refresh();
+                    pictureBox24.Update();
+                }
             }
         }
         void addingpoints(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<Point3D> PointsAddp1, ref List<double[]> PointsAddp1Conected)
@@ -1240,13 +1292,16 @@ namespace WindowsApplication1
                         a.reconstruct2dto3d(f);
                     });
                     output.Wait();
-                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                    pictureBox24.Visible = true;
+                    lock (pictureBox24)
+                    {
+                        pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBox24.Visible = true;
 
-                    pictureBox24.Image = a.ar;
-                    pictureBox24.Refresh();
-                    pictureBox24.Update();
-                    pictureBox24.Invalidate();
+                        pictureBox24.Image = a.ar;
+                        pictureBox24.Invalidate();
+                        pictureBox24.Refresh();
+                        pictureBox24.Update();
+                    }
                 }
             }
         }
@@ -1470,12 +1525,15 @@ namespace WindowsApplication1
                                 }
                             }
                         }
-                        pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                        pictureBox24.Visible = true;
+                        lock (pictureBox24)
+                        {
+                            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                            pictureBox24.Visible = true;
 
-                        pictureBox24.Refresh();
-                        pictureBox24.Update();
-                        pictureBox24.Invalidate();
+                            pictureBox24.Invalidate();
+                            pictureBox24.Refresh();
+                            pictureBox24.Update();
+                        }
 
                     }
                     mouseclick = false;

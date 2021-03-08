@@ -5954,7 +5954,7 @@ namespace Refrigtz
             lock (O)
             {
                 String TableName = null;
-            Begin12:
+                Begin12:
                 try
                 {
 
@@ -6019,7 +6019,7 @@ namespace Refrigtz
             Object O = new Object();
             lock (O)
             {
-            Begin12:
+                Begin12:
                 oleDbCmd = new OleDbCommand();
                 bookConn = new OleDbConnection(connParam);
                 bookConn.Open();
@@ -6179,7 +6179,7 @@ namespace Refrigtz
 
                 if (!AllDrawLoad)
                 {
-                Begin12:
+                    Begin12:
                     try
                     {
 
@@ -6373,7 +6373,7 @@ namespace Refrigtz
             Object O = new Object();
             lock (O)
             {
-            Begin12:
+                Begin12:
                 if (bookConn != null)
                 {
                     bookConn.Close();
@@ -14919,7 +14919,7 @@ namespace Refrigtz
                 //PaintedPaused = true;
                 try
                 {
-                Begin1:
+                    Begin1:
                     //LoadConvertedTable = false;
 
                     Color a = Color.Gray;
@@ -15005,7 +15005,7 @@ namespace Refrigtz
                     QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = true;
                 try
                 {
-                Begin1:
+                    Begin1:
 
                     Color a = Color.Gray;
                     bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
@@ -15479,13 +15479,13 @@ namespace Refrigtz
 
 
 
-            //if (OrderPlate == 1)
+                //if (OrderPlate == 1)
 
-            //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Gray OrderPlate!");
-            //else
-            //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Brown OrderPlate!");
-            //RefreshBoxText();
-            Begin4:
+                //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Gray OrderPlate!");
+                //else
+                //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Brown OrderPlate!");
+                //RefreshBoxText();
+                Begin4:
                 // if (OrderPlate == 1)
                 //SetBoxText("\r\nThinking Begin By Bob!");
                 //else

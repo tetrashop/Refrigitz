@@ -3,15 +3,13 @@
 //ERRORCORECTION9872423784 :The ERRORCUASE713040 Correction.refer to page 182.
 //========================================================================
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
     static class TransmisionToDeleteingMinusPluse
     {
         static public AddToTree.Tree TrasmisionToDeleteingMinusPluseFx(AddToTree.Tree Dummy)
-        {            
+        {
             return TransmisionToDeleteingMinusPluse.TrasmisionActionHole(Dummy);
         }
         static private AddToTree.Tree TrasmisionActionHole(AddToTree.Tree Dummy)
@@ -20,7 +18,7 @@ namespace Formulas
             if (Dummy == null)
                 return Dummy;
             TransmisionToDeleteingMinusPluse.TrasmisionActionHole(Dummy.LeftSideAccess);
-            TransmisionToDeleteingMinusPluse.TrasmisionActionHole(Dummy.RightSideAccess);            
+            TransmisionToDeleteingMinusPluse.TrasmisionActionHole(Dummy.RightSideAccess);
             try
             {
                 bool ABLE = false;
@@ -99,7 +97,7 @@ namespace Formulas
                             Dummy = Dummy.ThreadAccess;
                     }
             }
-                        catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
+            catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
             return Dummy;
         }
     }

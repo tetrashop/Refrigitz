@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
 using System.IO;
 namespace Refregitz_12
 {
     [Serializable]
     public class DrawMinister//:DrawKing
     {
-        
-        
-        
-        
-        public int WinOcuuredatChiled = 0;public int LoseOcuuredatChiled = 0;
+
+
+
+
+        public int WinOcuuredatChiled = 0; public int LoseOcuuredatChiled = 0;
         private readonly object balanceLock = new object();
         private readonly object balanceLockS = new object();
         public static Image[] M = new Image[2];
         //Initiate Global Variable.
         List<int[]> ValuableSelfSupported = new List<int[]>();
-      
+
         public bool MovementsAStarGreedyHuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
         public bool UsePenaltyRegardMechnisamT = true;
@@ -88,7 +85,7 @@ namespace Refregitz_12
             for (int ii = 0; ii < AllDraw.MinisterMovments; ii++)
                 try
                 {
-                    a += MinisterThinking[ii].ReturnHuristic(-1, -1, Order,false);
+                    a += MinisterThinking[ii].ReturnHuristic(-1, -1, Order, false);
                 }
                 catch (Exception t)
                 {
@@ -156,7 +153,7 @@ namespace Refregitz_12
                 for (int j = 0; j < 8; j++)
                     Tab[i, j] = this.Table[i, j];
             //Initiate an Object and Clone a Construction Objectve.
-            AA = new DrawMinister( CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, Row, Column, this.color, this.Table, this.Order, false, this.Current);
+            AA = new DrawMinister(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, Row, Column, this.color, this.Table, this.Order, false, this.Current);
             AA.ArrangmentsChanged = ArrangmentsChanged;
             for (int i = 0; i < AllDraw.MinisterMovments; i++)
             {
@@ -189,7 +186,7 @@ namespace Refregitz_12
             try
             {
 
-                
+
                 lock (balanceLockS)
                 {
                     if (M[0] == null || M[1] == null)
@@ -200,14 +197,14 @@ namespace Refregitz_12
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     {
                         //Gray Order.
-                        if(Order==1)
+                        if (Order == 1)
                         {
                             Object O1 = new Object();
                             lock (O1)
                             {    //Draw an Instant from File of Gray Soldeirs.
                                  //Draw a Gray Instatnt Minister Image on the Table.
                                 g.DrawImage(M[0], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
-                             }
+                            }
                         }
                         else
                         {
@@ -216,7 +213,7 @@ namespace Refregitz_12
                             {    //Draw an Instant from File of Gray Soldeirs.
                                  //Draw a Brown Instatnt Minister Image on the Table.
                                 g.DrawImage(M[1], new Rectangle((int)(Row * CellW), (int)(Column * (float)CellH), CellW, CellH));
-                              }
+                            }
                         }
                     }
                 }

@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NumberVar
@@ -18,8 +13,8 @@ namespace NumberVar
             E = this;
             EqationVariable = A;
 
-      
-      
+
+
         }
 
         private void NumberAndVariable_Load(object sender, EventArgs e)
@@ -40,6 +35,6 @@ namespace NumberVar
         {
             Contained = textBox1.Text;
         }
-   
+
     }
 }

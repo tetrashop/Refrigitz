@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HighSchool
@@ -20,8 +15,8 @@ namespace HighSchool
             Course Frm = new Course();
             Frm.ShowDialog();
             StudentCourse Frm1 = new StudentCourse();
-            Frm1.textBox1.Text = Frm.textBox2.Text;            
-            Frm1.Show();                        
+            Frm1.textBox1.Text = Frm.textBox2.Text;
+            Frm1.Show();
         }
         private void studentCourseToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -31,7 +26,7 @@ namespace HighSchool
 
         private void classToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Class Frm=new Class();
+            Class Frm = new Class();
             Frm.ShowDialog();
             BenchNoClass Frm1 = new BenchNoClass();
             Frm1.textBox1.Text = Frm.textBox2.Text;
@@ -55,13 +50,13 @@ namespace HighSchool
 
         private void studentToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Studnet Frm=new Studnet();
+            Studnet Frm = new Studnet();
             Frm.ShowDialog();
             ClassOfStudnet Frm1 = new ClassOfStudnet();
             Frm1.textBox1.Text = Frm.textBox3.Text;
             Frm1.ShowDialog();
             LessonOfStudent Frm2 = new LessonOfStudent();
-            Frm2.textBox1.Text=Frm1.textBox1.Text;
+            Frm2.textBox1.Text = Frm1.textBox1.Text;
             Frm2.ShowDialog();
             RelatedFamilyOfStudent Frm3 = new RelatedFamilyOfStudent();
             Frm3.textBox7.Text = Frm2.textBox1.Text;
@@ -75,7 +70,7 @@ namespace HighSchool
 
         private void relatedFamilyOFstudentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RelatedFamilyOfStudent Frm=new RelatedFamilyOfStudent();
+            RelatedFamilyOfStudent Frm = new RelatedFamilyOfStudent();
             Frm.Show();
         }
 
@@ -116,7 +111,7 @@ namespace HighSchool
 
         private void relatedOfTeacherToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RelatedOfTeacher Frm=new RelatedOfTeacher();
+            RelatedOfTeacher Frm = new RelatedOfTeacher();
             Frm.Show();
         }
 
@@ -148,7 +143,7 @@ namespace HighSchool
             CountOfPricing Frm1 = new CountOfPricing();
             Frm1.textBox1.Text = Frm.textBox2.Text;
             Frm1.ShowDialog();
-            
+
         }
 
         private void countOfPricingToolStripMenuItem_Click(object sender, EventArgs e)

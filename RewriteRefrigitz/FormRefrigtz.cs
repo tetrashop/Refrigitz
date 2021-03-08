@@ -70,19 +70,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Threading;
 using System.Data.OleDb;
-using System.Media;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Media;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using GalleryStudio;
+using System.Windows.Forms;
 namespace RewriteRefrigitz
 {
     [Serializable]
@@ -157,7 +153,7 @@ namespace RewriteRefrigitz
         bool exit = false;
         public FormSelect Sec = new FormSelect();
         bool AllDrawLoad = false;
-       Thread AllOperate = null;
+        Thread AllOperate = null;
         static bool PaintingPaused = false;
         static bool PaintedPaused = false;
         static bool UpdateConfigurationTableVal = false;
@@ -236,7 +232,7 @@ namespace RewriteRefrigitz
         //private System.Timers.Timer queueManagementTimerSetRefrigitDLL;
         //private System.Timers.Timer queueManagementTimerSetNodesCount;
         //private System.Timers.Timer queueManagementTimerSetTimer;
-        
+
 
         bool AllDo = false;
         bool AllMove = false;
@@ -286,66 +282,66 @@ namespace RewriteRefrigitz
 
         }
         */
-      /*  private void OnQueueManagementTimerElapsed(Object source, System.Timers.ElapsedEventArgs e)
-        {
-            if (!AllDo)
-            {
-                AllDo = true;
-                System.Threading.Thread t = new Thread(new ThreadStart(AllOp));
-                t.Start();
-            }
+        /*  private void OnQueueManagementTimerElapsed(Object source, System.Timers.ElapsedEventArgs e)
+          {
+              if (!AllDo)
+              {
+                  AllDo = true;
+                  System.Threading.Thread t = new Thread(new ThreadStart(AllOp));
+                  t.Start();
+              }
 
-        }
-        private void OnQueueManagementTimerElapsedMove(Object source, System.Timers.ElapsedEventArgs e)
-        {
+          }
+          private void OnQueueManagementTimerElapsedMove(Object source, System.Timers.ElapsedEventArgs e)
+          {
 
-            if (!AllMove)
-            {
-                System.Threading.Thread t = new Thread(new ThreadStart(Movements));
-                t.Start();
-                t.Join();
-            }
-
-
-        }
-        private void OnQueueManagementTimerElapsedSetRefrigitDLL(Object source, System.Timers.ElapsedEventArgs e)
-        {
-
-             if (!SetDLL)
-            {
-                System.Threading.Thread t = new Thread(new ThreadStart(SetRefregitzDLL));
-                t.Start();
-                t.Join();
-            }
+              if (!AllMove)
+              {
+                  System.Threading.Thread t = new Thread(new ThreadStart(Movements));
+                  t.Start();
+                  t.Join();
+              }
 
 
-        }
-        private void OnQueueManagementTimerElapsedSetNodesCount(Object source, System.Timers.ElapsedEventArgs e)
-        {
+          }
+          private void OnQueueManagementTimerElapsedSetRefrigitDLL(Object source, System.Timers.ElapsedEventArgs e)
+          {
 
-            if (!SetNode)
-            {
-                System.Threading.Thread t = new Thread(new ThreadStart(SetNodesCount));
-                t.Start();
-                t.Join();
-            }
-        }
-        private void OnQueueManagementTimerElapsedSetTimer(Object source, System.Timers.ElapsedEventArgs e)
-        {
-
-            if (!SetTimer)
-            {
-                System.Threading.Thread t = new Thread(new ThreadStart(SetTimerDLL));
-                t.Start();
-                t.Join();
-            }
+               if (!SetDLL)
+              {
+                  System.Threading.Thread t = new Thread(new ThreadStart(SetRefregitzDLL));
+                  t.Start();
+                  t.Join();
+              }
 
 
-        }
-    */
+          }
+          private void OnQueueManagementTimerElapsedSetNodesCount(Object source, System.Timers.ElapsedEventArgs e)
+          {
+
+              if (!SetNode)
+              {
+                  System.Threading.Thread t = new Thread(new ThreadStart(SetNodesCount));
+                  t.Start();
+                  t.Join();
+              }
+          }
+          private void OnQueueManagementTimerElapsedSetTimer(Object source, System.Timers.ElapsedEventArgs e)
+          {
+
+              if (!SetTimer)
+              {
+                  System.Threading.Thread t = new Thread(new ThreadStart(SetTimerDLL));
+                  t.Start();
+                  t.Join();
+              }
+
+
+          }
+      */
         void AllOp()
         {
-            
+
             //if (RefrigtzDLL.AllDraw.THISDummy != null)
             // RefrigtzDLL.AllDraw.THISDummy.Clone(Draw);
 
@@ -427,7 +423,7 @@ namespace RewriteRefrigitz
                                 SetBoxText("\r\nPat!");
                             RefreshBoxText();
                             //if (AllOperate.IsAlive)
-                                //new Syncronization(AllOperate, 1);
+                            //new Syncronization(AllOperate, 1);
 
 
 
@@ -472,7 +468,7 @@ namespace RewriteRefrigitz
                                         ComputerByComputerAliceAsStockFish(ref proc);
                                         AllDo = false;
                                     }
-                                    }
+                                }
                                 else
                                     if (FullGame)
                                 {
@@ -487,7 +483,7 @@ namespace RewriteRefrigitz
                                         ComputerByComputerAliceAsStockFish(ref proc);
                                         AllDo = false;
                                     }
-                                    }
+                                }
                             }
                             else
                                 MessageBox.Show("Mirror Objects Please!");
@@ -828,7 +824,7 @@ namespace RewriteRefrigitz
                                         ComputerByComputerAliceAsStockFish(ref proc);
                                         AllDo = false;
                                     }
-                                    }
+                                }
                                 else
                                     if (FullGame)
                                 {
@@ -1728,7 +1724,7 @@ namespace RewriteRefrigitz
                  */
 
                 //while ((!StateCP && !StateCC && !StateGe && !Blitz))
-                    //Thread.Sleep(1000);
+                //Thread.Sleep(1000);
 
                 {
 
@@ -1774,7 +1770,7 @@ namespace RewriteRefrigitz
                 Log(t);
             }
 
-            
+
 
         }
         //Error Handling.
@@ -1861,7 +1857,7 @@ namespace RewriteRefrigitz
                 }
                 //System.Threading.Thread.Sleep(10);
             }
-             while (true);
+            while (true);
             SetTimer = false;
 
         }
@@ -1901,12 +1897,12 @@ namespace RewriteRefrigitz
                 {
                     if (Refregitz.InvokeRequired)
                     {
-                        SetlableRefregitzRefreshCalBack d = new SetlableRefregitzRefreshCalBack(SetlableRefregitzRefresh);                        
+                        SetlableRefregitzRefreshCalBack d = new SetlableRefregitzRefreshCalBack(SetlableRefregitzRefresh);
                         Refregitz.Refresh();
                     }
                     else
                     {
-                        
+
                         Refregitz.Refresh();
                     }
                 }
@@ -2199,26 +2195,26 @@ namespace RewriteRefrigitz
         void SetNodesCount()
         {
             SetNode = true;
-              do
+            do
             {
-            Object O = new Object();
-            lock (O)
-            {
-                Int64 FirstTimeD = DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000 + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond;
-                Int64 FirstNode = RefrigtzDLL.ThinkingChess.NumbersOfAllNode;
-                Thread.Sleep(1);
-                Int64 EndTime = DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000 + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond;
-                Double S = ((double)RefrigtzDLL.ThinkingChess.NumbersOfAllNode - FirstNode) / (((double)EndTime - (double)FirstTimeD) / 1000.0);
-                Store = ((Store * Count) + S) / (Count + 1.0);
-                Count++;
-                if (RefrigtzDLL.AllDraw.ActionStringReady)
-                    SetlableRefregitzMaxValue(labelNodesCount, RefrigtzDLL.ThinkingChess.NumbersOfAllNode.ToString() + " at time " + ((int)(Store)).ToString() + "N/s and by Elapsed time " + ((int)((EndTime - TimeElapsed) / 1000)).ToString() + " s by string" + RefrigtzDLL.AllDraw.ActionString + " By CheckMate Count " + RefrigtzDLL.ThinkingChess.FoundFirstMating.ToString() + " For Order  " + RefrigtzDLL.AllDraw.OrderPlate.ToString());
-                else
-                    SetlableRefregitzMaxValue(labelNodesCount, RefrigtzDLL.ThinkingChess.NumbersOfAllNode.ToString() + " at time " + ((int)(Store)).ToString() + "N/s and by Elapsed time " + ((int)((EndTime - TimeElapsed) / 1000)).ToString() + " s" + " By CheckMate Count " + RefrigtzDLL.ThinkingChess.FoundFirstMating.ToString() + " For Order  " + RefrigtzDLL.AllDraw.OrderPlate.ToString());
-                //labelNodesCount.Refresh();
-                Thread.Sleep(1);
-            }
-              } while (true);
+                Object O = new Object();
+                lock (O)
+                {
+                    Int64 FirstTimeD = DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000 + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond;
+                    Int64 FirstNode = RefrigtzDLL.ThinkingChess.NumbersOfAllNode;
+                    Thread.Sleep(1);
+                    Int64 EndTime = DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000 + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond;
+                    Double S = ((double)RefrigtzDLL.ThinkingChess.NumbersOfAllNode - FirstNode) / (((double)EndTime - (double)FirstTimeD) / 1000.0);
+                    Store = ((Store * Count) + S) / (Count + 1.0);
+                    Count++;
+                    if (RefrigtzDLL.AllDraw.ActionStringReady)
+                        SetlableRefregitzMaxValue(labelNodesCount, RefrigtzDLL.ThinkingChess.NumbersOfAllNode.ToString() + " at time " + ((int)(Store)).ToString() + "N/s and by Elapsed time " + ((int)((EndTime - TimeElapsed) / 1000)).ToString() + " s by string" + RefrigtzDLL.AllDraw.ActionString + " By CheckMate Count " + RefrigtzDLL.ThinkingChess.FoundFirstMating.ToString() + " For Order  " + RefrigtzDLL.AllDraw.OrderPlate.ToString());
+                    else
+                        SetlableRefregitzMaxValue(labelNodesCount, RefrigtzDLL.ThinkingChess.NumbersOfAllNode.ToString() + " at time " + ((int)(Store)).ToString() + "N/s and by Elapsed time " + ((int)((EndTime - TimeElapsed) / 1000)).ToString() + " s" + " By CheckMate Count " + RefrigtzDLL.ThinkingChess.FoundFirstMating.ToString() + " For Order  " + RefrigtzDLL.AllDraw.OrderPlate.ToString());
+                    //labelNodesCount.Refresh();
+                    Thread.Sleep(1);
+                }
+            } while (true);
             SetNode = false;
         }
 
@@ -2226,103 +2222,104 @@ namespace RewriteRefrigitz
         {
             bool Set = false;
             SetDLL = true;
-               do{
-            Object o = new Object();
-            lock (o)
+            do
             {
-                //System.Threading.Thread.Sleep(10);
-                RefrigtzDLL.AllDraw.Root = Root;
-                RefrigtzDLL.AllDraw.OrderPlate = OrderPlate;
-                RefrigtzDLL.AllDraw.Blitz = Blitz;
-                ConvertWait = RefrigtzDLL.AllDraw.ConvertWait;
-                RefrigtzDLL.AllDraw.Stockfish = Stockfish;
-                RefrigtzDLL.AllDraw.Person = Person;
-                RefrigtzDLL.AllDraw.THISSecradioButtonGrayOrderChecked = Sec.radioButtonGrayOrder.Checked;
-                RefrigtzDLL.AllDraw.THISSecradioButtonBrownOrderChecked = Sec.radioButtonBrownOrder.Checked;
-                RefrigtzDLL.AllDraw.MovmentsNumber = MovmentsNumber;
-                while (!(RefrigtzDLL.ChessRules.ObjectHittedRow != -1 && RefrigtzDLL.ChessRules.ObjectHittedColumn != -1) &&
-                    (!RefrigtzDLL.AllDraw.ActionStringReady) &&
-                         (!(RefrigtzDLL.AllDraw.OutPut != "")) &&
-                             (!(RefrigtzDLL.AllDraw.ConvertedKind == -1)) &&
-                                 (!StateCC) &&
-                                     (!StateCP))
+                Object o = new Object();
+                lock (o)
                 {
-                    Thread.Sleep(1);
-
-                }
-                if (RefrigtzDLL.ChessRules.ObjectHittedRow != -1 && RefrigtzDLL.ChessRules.ObjectHittedColumn != -1)
-                {
-                    SetObjectInPictureBox(RefrigtzDLL.ChessRules.ObjectHittedRow, RefrigtzDLL.ChessRules.ObjectHittedColumn);
-                    RefrigtzDLL.ChessRules.ObjectHittedRow = -1;
-                    RefrigtzDLL.ChessRules.ObjectHittedColumn = -1;
-                }
-                if (RefrigtzDLL.AllDraw.ActionStringReady)
-                {
-                    SetBoxText(RefrigtzDLL.AllDraw.ActionString);
-                    RefreshBoxText();
-                    RefrigtzDLL.AllDraw.ActionString = "";
-                    RefrigtzDLL.AllDraw.ActionStringReady = false;
-                }
-                if (RefrigtzDLL.AllDraw.OutPut != "")
-                {
-                    SetBoxText(RefrigtzDLL.AllDraw.OutPut);
-                    RefreshBoxText();
-                    RefrigtzDLL.AllDraw.OutPut = "";
-
-                }
-
-
-                if (RefrigtzDLL.AllDraw.ConvertedKind == -1)
-                {
-                    FormُSelectItems.Items = -1;
-                    FormُSelectItems A = new FormُSelectItems();
-                    A.ShowDialog();
-
-
-                    while (RefrigtzDLL.AllDraw.ConvertedKind == -1) { RefrigtzDLL.AllDraw.ConvertedKind = FormُSelectItems.Items; Thread.Sleep(10); }
-
-
-                }
-
-                if (LoadedDLL)
-                {
-                    SetcomboBoxText();
-                    LoadedDLL = false;
-                }
-                //public static AllDraw THISDummy;
-                RefrigtzDLL.AllDraw.StateCP = StateCP;
-                if (StateCP && (!Stockfish))
-                {
-                    if (OrderPlate == -1 && Sec.radioButtonGrayOrder.Checked)
+                    //System.Threading.Thread.Sleep(10);
+                    RefrigtzDLL.AllDraw.Root = Root;
+                    RefrigtzDLL.AllDraw.OrderPlate = OrderPlate;
+                    RefrigtzDLL.AllDraw.Blitz = Blitz;
+                    ConvertWait = RefrigtzDLL.AllDraw.ConvertWait;
+                    RefrigtzDLL.AllDraw.Stockfish = Stockfish;
+                    RefrigtzDLL.AllDraw.Person = Person;
+                    RefrigtzDLL.AllDraw.THISSecradioButtonGrayOrderChecked = Sec.radioButtonGrayOrder.Checked;
+                    RefrigtzDLL.AllDraw.THISSecradioButtonBrownOrderChecked = Sec.radioButtonBrownOrder.Checked;
+                    RefrigtzDLL.AllDraw.MovmentsNumber = MovmentsNumber;
+                    while (!(RefrigtzDLL.ChessRules.ObjectHittedRow != -1 && RefrigtzDLL.ChessRules.ObjectHittedColumn != -1) &&
+                        (!RefrigtzDLL.AllDraw.ActionStringReady) &&
+                             (!(RefrigtzDLL.AllDraw.OutPut != "")) &&
+                                 (!(RefrigtzDLL.AllDraw.ConvertedKind == -1)) &&
+                                     (!StateCC) &&
+                                         (!StateCP))
                     {
-                        LastRow = RefrigtzDLL.AllDraw.LastRow;
-                        LastColumn = RefrigtzDLL.AllDraw.LastColumn;
-                        NextRow = RefrigtzDLL.AllDraw.NextRow;
-                        NextColumn = RefrigtzDLL.AllDraw.NextRow;
-                    }
-                    else if (OrderPlate == 1 && Sec.radioButtonBrownOrder.Checked)
-                    {
-                        LastRow = RefrigtzDLL.AllDraw.LastRow;
-                        LastColumn = RefrigtzDLL.AllDraw.LastColumn;
-                        NextRow = RefrigtzDLL.AllDraw.NextRow;
-                        NextColumn = RefrigtzDLL.AllDraw.NextRow;
-                    }
-                }
-                else
-                        if (StateCP && Stockfish)
-                {
-                    if (OrderPlate == -1 && Sec.radioButtonGrayOrder.Checked)
-                    {
-                        LastRow = RefrigtzDLL.AllDraw.LastRow;
-                        LastColumn = RefrigtzDLL.AllDraw.LastColumn;
-                        NextRow = RefrigtzDLL.AllDraw.NextRow;
-                        NextColumn = RefrigtzDLL.AllDraw.NextRow;
-                    }
-                }
-               // System.Threading.Thread.Sleep(10);
-            }
+                        Thread.Sleep(1);
 
-                } while (true);
+                    }
+                    if (RefrigtzDLL.ChessRules.ObjectHittedRow != -1 && RefrigtzDLL.ChessRules.ObjectHittedColumn != -1)
+                    {
+                        SetObjectInPictureBox(RefrigtzDLL.ChessRules.ObjectHittedRow, RefrigtzDLL.ChessRules.ObjectHittedColumn);
+                        RefrigtzDLL.ChessRules.ObjectHittedRow = -1;
+                        RefrigtzDLL.ChessRules.ObjectHittedColumn = -1;
+                    }
+                    if (RefrigtzDLL.AllDraw.ActionStringReady)
+                    {
+                        SetBoxText(RefrigtzDLL.AllDraw.ActionString);
+                        RefreshBoxText();
+                        RefrigtzDLL.AllDraw.ActionString = "";
+                        RefrigtzDLL.AllDraw.ActionStringReady = false;
+                    }
+                    if (RefrigtzDLL.AllDraw.OutPut != "")
+                    {
+                        SetBoxText(RefrigtzDLL.AllDraw.OutPut);
+                        RefreshBoxText();
+                        RefrigtzDLL.AllDraw.OutPut = "";
+
+                    }
+
+
+                    if (RefrigtzDLL.AllDraw.ConvertedKind == -1)
+                    {
+                        FormُSelectItems.Items = -1;
+                        FormُSelectItems A = new FormُSelectItems();
+                        A.ShowDialog();
+
+
+                        while (RefrigtzDLL.AllDraw.ConvertedKind == -1) { RefrigtzDLL.AllDraw.ConvertedKind = FormُSelectItems.Items; Thread.Sleep(10); }
+
+
+                    }
+
+                    if (LoadedDLL)
+                    {
+                        SetcomboBoxText();
+                        LoadedDLL = false;
+                    }
+                    //public static AllDraw THISDummy;
+                    RefrigtzDLL.AllDraw.StateCP = StateCP;
+                    if (StateCP && (!Stockfish))
+                    {
+                        if (OrderPlate == -1 && Sec.radioButtonGrayOrder.Checked)
+                        {
+                            LastRow = RefrigtzDLL.AllDraw.LastRow;
+                            LastColumn = RefrigtzDLL.AllDraw.LastColumn;
+                            NextRow = RefrigtzDLL.AllDraw.NextRow;
+                            NextColumn = RefrigtzDLL.AllDraw.NextRow;
+                        }
+                        else if (OrderPlate == 1 && Sec.radioButtonBrownOrder.Checked)
+                        {
+                            LastRow = RefrigtzDLL.AllDraw.LastRow;
+                            LastColumn = RefrigtzDLL.AllDraw.LastColumn;
+                            NextRow = RefrigtzDLL.AllDraw.NextRow;
+                            NextColumn = RefrigtzDLL.AllDraw.NextRow;
+                        }
+                    }
+                    else
+                            if (StateCP && Stockfish)
+                    {
+                        if (OrderPlate == -1 && Sec.radioButtonGrayOrder.Checked)
+                        {
+                            LastRow = RefrigtzDLL.AllDraw.LastRow;
+                            LastColumn = RefrigtzDLL.AllDraw.LastColumn;
+                            NextRow = RefrigtzDLL.AllDraw.NextRow;
+                            NextColumn = RefrigtzDLL.AllDraw.NextRow;
+                        }
+                    }
+                    // System.Threading.Thread.Sleep(10);
+                }
+
+            } while (true);
             SetDLL = false;
         }
         void Timerstart()
@@ -2607,7 +2604,7 @@ namespace RewriteRefrigitz
 
             var parallelOptions = new ParallelOptions();
             //parallelOptions.MaxDegreeOfParallelism = Int32.MaxValue;
-            parallelOptionsMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount;
+            parallelOptionsMaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount;
 
             //worker_DoWork();
             //worker_DoWorkMove();
@@ -3980,7 +3977,7 @@ namespace RewriteRefrigitz
                                         {
                                             if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                 return;
-                                            
+
                                             MovmentsCastleKing(7);
 
                                             int Castles = -1;
@@ -4657,7 +4654,7 @@ namespace RewriteRefrigitz
                                             SetSyntax();
 
                                             OrderPlate = OrderPlate * -1;
-                                        
+
                                             RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
                                             MovmentsNumber++;
                                             GrayTimer.StopTime();
@@ -4796,7 +4793,7 @@ namespace RewriteRefrigitz
                                                 return;
 
                                             MovmentsCastleKing(-7);
-                                                
+
                                             int Castles = -1;
                                             if (!ArrangmentsChanged)
                                             {
@@ -7145,7 +7142,7 @@ namespace RewriteRefrigitz
 
                         SetBoxText("\r\nDraw Found");
                         RefreshBoxText();
-                     //   SetRefregitzBicture();
+                        //   SetRefregitzBicture();
                         return true;
                     }
                     else
@@ -7198,7 +7195,7 @@ namespace RewriteRefrigitz
                     RefreshBoxText();
                     //if (!FirstMovmentOnLoad && System.Convert.ToInt32(comboBoxMaxLevel.Text) > 2) Draw.InitiateAStarGreedytOneNode(0, (int)RowRealesed, (int)ColumnRealeased, Color.Gray, Table, OrderPlate * -1, King, -6);
                     Clicked = true;
-                   // SetRefregitzBicture();
+                    // SetRefregitzBicture();
 
                     return true;
                 }
@@ -7612,7 +7609,7 @@ namespace RewriteRefrigitz
             else
                 BobSection = false;
             do { AllOp(); } while (true);
-        
+
         }
         List<int[]> WhereNumbers(String Tag)
         {
@@ -8085,7 +8082,7 @@ namespace RewriteRefrigitz
                     // Retrieve the app's exit code
                     exitCode = proc.ExitCode;
                 }
-                
+
                 Application.Exit();
             }
 
@@ -9308,7 +9305,7 @@ namespace RewriteRefrigitz
 
             try
             {
-                
+
                 for (int i = 0; i < 8; i++)
                 {
                     for (int j = 0; j < 8; j++)
@@ -9317,7 +9314,7 @@ namespace RewriteRefrigitz
                         {
                             if (RefrigtzDLL.AllDraw.MouseClick == 1)
                             {
-                                 
+
                                 ChessTable = pictureBoxRewriteRefrigitz.Image;
                                 g = Graphics.FromImage(ChessTable);
 
@@ -9339,7 +9336,7 @@ namespace RewriteRefrigitz
                                         catch (Exception t) { Log(t); }
 
 
-                                        
+
 
                                         Color a = Color.Gray;
                                         if (OrderPlate == -1)
@@ -9368,12 +9365,12 @@ namespace RewriteRefrigitz
                                     ColumnRealeased = j;
                                     RowRealesedP = i;
                                     ColumnRealeasedP = j;
-                                    
+
                                 }
-                              
+
 
                             }
-                            
+
                             RowRealesedP = RowRealesed;
                             ColumnRealeasedP = ColumnRealeased;
                             RowRealesed = i;
@@ -9620,7 +9617,7 @@ namespace RewriteRefrigitz
                             if (TTimerSet != null)
                                 TTimerSet.Abort();
                             //if (AllOperate != null)
-                                AllOperate.Abort();
+                            AllOperate.Abort();
                             if (t1 != null)
                                 t1.Abort();
                             if (t2 != null)
@@ -9716,7 +9713,7 @@ namespace RewriteRefrigitz
                             if (TTimerSet != null)
                                 TTimerSet.Abort();
                             //if (AllOperate != null)
-                                AllOperate.Abort();
+                            AllOperate.Abort();
                             if (t1 != null)
                                 t1.Abort();
                             if (t2 != null)
@@ -10696,7 +10693,7 @@ namespace RewriteRefrigitz
                         g1.DrawString(GrayTimer.ReturnTime(), new Font("Times New Roman", 30), new SolidBrush(Color.Black), new PointF(5, 5));
                         pictureBoxTimerGray.Image = TimerImageGray;
                         g1.Dispose();
-                        
+
                         //Thread.Sleep(20);
                     }
                     catch (Exception t)
@@ -10711,7 +10708,7 @@ namespace RewriteRefrigitz
 
                 pictureBoxTimerBrown.Invalidate();
                 pictureBoxTimerBrown.Update();
-                
+
             }
         }
         void UpadatTimer()
@@ -10751,7 +10748,7 @@ namespace RewriteRefrigitz
                         g2.DrawString(BrownTimer.ReturnTime(), new Font("Times New Roman", 30), new SolidBrush(Color.Black), new PointF(5, 5));
                         pictureBoxTimerBrown.Image = TimerImageBrown;
                         g2.Dispose();
-                        
+
                         //Thread.Sleep(20);
                     }
                     catch (Exception t)
@@ -10766,7 +10763,7 @@ namespace RewriteRefrigitz
                 pictureBoxRewriteRefrigitz.Invalidate();
                 pictureBoxRewriteRefrigitz.Update();
 
-            
+
             }
 
         }

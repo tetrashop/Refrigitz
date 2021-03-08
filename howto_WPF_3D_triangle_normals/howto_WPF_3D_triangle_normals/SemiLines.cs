@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
 
@@ -38,9 +35,9 @@ namespace howto_WPF_3D_triangle_normals
                 return true;
             if (i == k)
                 return true;
-             if (j == k)
+            if (j == k)
                 return true;
-          
+
             return false;
         }
         List<List<Line>> GetListOfLinesList(List<List<Point3D>> s)

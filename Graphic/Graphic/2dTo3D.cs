@@ -2,13 +2,7 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace WindowsApplication1
@@ -17,8 +11,8 @@ namespace WindowsApplication1
 
     {
         public double x = 0;
-        int cxC = -1, cyC = -1, czC= -1;
-        public  List<List<double[]>> st = new List<List<double[]>>();
+        int cxC = -1, cyC = -1, czC = -1;
+        public List<List<double[]>> st = new List<List<double[]>>();
         public bool _3DReady = false;
         Image a;
         public Image ar;
@@ -29,7 +23,7 @@ namespace WindowsApplication1
         int[,,] f;//     f=zeros(b(1,1),b(1,2),3);
         int[,,] ddr;//     f=zeros(b(1,1),b(1,2),3);
         public float[,,] c;
-        public int cx = 0, cyp0 = 0, cyp1 = 0 ,cz = 3;
+        public int cx = 0, cyp0 = 0, cyp1 = 0, cz = 3;
         public float[,,] e;
         int fg = 2;
         public int minr = int.MaxValue;
@@ -54,73 +48,85 @@ namespace WindowsApplication1
             }
             return s;
         }
-        bool SetneighboursSt(Image a, double i, double j, double maxx, double maxy)
+        bool SetneighboursSt(Image a, double cxr, double cyr, double i, double j, double maxx, double maxy)
         {
-            bool aa=(System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0 > 0;
-
-            if (i > 0 && j > 0)
+            lock (st)
             {
-
-                if (i < maxx - 1 && j < maxy - 1)
+                lock (a)
                 {
+                    bool aa = false;
+                    if (cxr > 0 && cyr> 0)
+                    {
+                        if (i >= 0 && j >= 0)
+                        {
+                            if (i < a.Width && j < a.Height)
+                            {
+                                if (cxr < maxx - 1 && cyr < maxy - 1)
+                                {
 
-                    if (System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2)) > 0)
-                    {
-                        st[(int)i][(int)j][0] = i;
-                        st[(int)i][(int)j][1] = j;
-                        st[(int)i][(int)j][2] = (System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0;
+                                    aa = System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2)) > 0;
+
+                                    if (System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2)) > 0)
+                                    {
+                                        st[(int)cxr][(int)cyr][0] = i;
+                                        st[(int)cxr][(int)cyr][1] = j;
+                                        st[(int)cxr][(int)cyr][2] = (System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0;
+                                    }
+                                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) > 0)
+                                    {
+                                        st[(int)cxr][(int)cyr][3] = i - 1;
+                                        st[(int)cxr][(int)cyr][4] = j;
+                                        st[(int)cxr][(int)cyr][5] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) / 3.0;
+                                    }
+                                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) > 0)
+                                    {
+                                        st[(int)cxr][(int)cyr][6] = i + 1;
+                                        st[(int)cxr][(int)cyr][7] = j;
+                                        st[(int)cxr][(int)cyr][8] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 2))) / 3.0;
+                                    }
+                                    if ((System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 2))) > 0)
+                                    {
+                                        st[(int)cxr][(int)cyr][9] = i;
+                                        st[(int)cxr][(int)cyr][10] = (j - 1);
+                                        st[(int)cxr][(int)cyr][11] = (System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 2))) / 3.0;
+                                    }
+                                    if ((System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 2))) > 0)
+                                    {
+                                        st[(int)cxr][(int)cyr][12] = i;
+                                        st[(int)cxr][(int)cyr][13] = (j + 1);
+                                        st[(int)cxr][(int)cyr][14] = (System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 2))) / 3.0;
+                                    }
+                                    if (System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 2)) > 0)
+                                    {
+                                        st[(int)cxr][(int)cyr][15] = i - 1;
+                                        st[(int)cxr][(int)cyr][16] = (j - 1);
+                                        st[(int)cxr][(int)cyr][17] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0;
+                                    }
+                                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) > 0)
+                                    {
+                                        st[(int)cxr][(int)cyr][18] = i - 1;
+                                        st[(int)cxr][(int)cyr][19] = (j + 1);
+                                        st[(int)cxr][(int)cyr][20] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) / 3.0;
+                                    }
+                                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) > 0)
+                                    {
+                                        st[(int)cxr][(int)cyr][21] = i + 1;
+                                        st[(int)cxr][(int)cyr][22] = (j - 1);
+                                        st[(int)cxr][(int)cyr][23] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 2))) / 3.0;
+                                    }
+                                    if ((System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 2))) > 0)
+                                    {
+                                        st[(int)cxr][(int)cyr][24] = i + 1;
+                                        st[(int)cxr][(int)cyr][25] = (j + 1);
+                                        st[(int)cxr][(int)cyr][26] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 2))) / 3.0;
+                                    }
+                                }
+                            }
+                        }
                     }
-                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) > 0)
-                    {
-                        st[(int)i][(int)j][3] = i - 1;
-                        st[(int)i][(int)j][4] = j;
-                        st[(int)i][(int)j][5] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) / 3.0;
-                    }
-                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) > 0)
-                    {
-                        st[(int)i][(int)j][6] = i + 1;
-                        st[(int)i][(int)j][7] = j;
-                        st[(int)i][(int)j][8] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 2))) / 3.0;
-                    }
-                    if ((System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 2))) > 0)
-                    {
-                        st[(int)i][(int)j][9] = i;
-                        st[(int)i][(int)j][10] = (j - 1);
-                        st[(int)i][(int)j][11] = (System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 2))) / 3.0;
-                    }
-                    if ((System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 2))) > 0)
-                    {
-                        st[(int)i][(int)j][12] = i;
-                        st[(int)i][(int)j][13] = (j + 1);
-                        st[(int)i][(int)j][14] = (System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 2))) / 3.0;
-                    }
-                    if (System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 2)) > 0)
-                    {
-                        st[(int)i][(int)j][15] = i - 1;
-                        st[(int)i][(int)j][16] = (j - 1);
-                        st[(int)i][(int)j][17] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0;
-                    }
-                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) > 0)
-                    {
-                        st[(int)i][(int)j][18] = i - 1;
-                        st[(int)i][(int)j][19] = (j + 1);
-                        st[(int)i][(int)j][20] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) / 3.0;
-                    }
-                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) > 0)
-                    {
-                        st[(int)i][(int)j][21] = i + 1;
-                        st[(int)i][(int)j][22] = (j - 1);
-                        st[(int)i][(int)j][23] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 2))) / 3.0;
-                    }
-                    if ((System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 2))) > 0)
-                    {
-                        st[(int)i][(int)j][24] = i + 1;
-                        st[(int)i][(int)j][25] = (j + 1);
-                        st[(int)i][(int)j][26] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 2))) / 3.0;
-                    }
+                    return aa;
                 }
             }
-            return aa;
         }
         void Threaadcal(int i, int j, int k, int ii, int jj)
         {
@@ -135,7 +141,7 @@ namespace WindowsApplication1
                 t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415));
                 f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
                 rr[i, j, k] = (int)Math.Round((double)(s[2]));
-                dr = (float)Math.Round(maxr * ((1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2)))); ;
+                dr = (float)Math.Round((((maxr - minr) * -1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2)))); ;
                 ddr[i, j, k] = (int)dr;
                 if ((maxr - minr) * ii + dr >= 0// && (t[i, j, k + 1] + 2 < maxteta - minteta) && (t[i, j, k + 1] - 2 > minteta)
                      )
@@ -148,10 +154,7 @@ namespace WindowsApplication1
 
                         if ((ii + jj) % 2 == 0)
                         {
-                            float v = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
-                            if (v > 0)
-                                x++;
-                            c[cxT, cyT1, k] = v;
+                            c[cxT, cyT1, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
                             //SetneighboursSt(a, cxT, cyT1, cxC, cyC);
                         }
                         else
@@ -180,7 +183,7 @@ namespace WindowsApplication1
                 t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415));
                 f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
                 rr[i, j, k] = (int)Math.Round((double)(s[2]));
-                dr = (float)Math.Round(maxr * ((1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2)))); ;
+                dr = (float)Math.Round((((maxr - minr) * -1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2)))); ;
                 ddr[i, j, k] = (int)dr;
                 if ((maxr - minr) * ii + dr >= 0// && (t[i, j, k + 1] + 2 < maxteta - minteta) && (t[i, j, k + 1] - 2 > minteta)
                      )
@@ -193,13 +196,13 @@ namespace WindowsApplication1
 
                         if ((ii + jj) % 2 == 0)
                         {
-                            bool aa = SetneighboursSt(a, cxT, cyT1, cxC, cyC);
+                            bool aa = SetneighboursSt(a, cxT, cyT1, i, j, cx, cyp1);
                             if (aa)
                                 x++;
                         }
                         else
                         {
-                            SetneighboursSt(a, cxT, cyT2, cxC, cyC);
+                            SetneighboursSt(a, cxT, cyT2, i, j, cx, cyp1);
                         }
                     }
                     catch (Exception t)
@@ -266,15 +269,15 @@ namespace WindowsApplication1
             cxC = (int)((maxr - minr) * fg + (int)maxr + 1);
             cyC = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
             czC = 3;
-            for(int i=0; i < cxC; i++)
+            for (int i = 0; i < cxC; i++)
             {
                 st.Add(new List<double[]>());
-                for(int j = 0; j < cyC; j++)
+                for (int j = 0; j < cyp1; j++)
                 {
                     st[i].Add(new double[27]);
                 }
             }
-            c = new float[cxC, cyC, czC];
+            c = new float[cxC, cyp1, czC];
             t = new int[b[0], b[1], 3];
             rr = new int[b[0], b[1], 3];
             f = new int[b[0], b[1], 3];
@@ -292,28 +295,29 @@ namespace WindowsApplication1
             var output = Task.Factory.StartNew(() =>
            {
 
-               ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
-               {
+               ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
+                {
 
-                   ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
-                   {
+                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
+                    {
                        //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                       ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
-                  {
-                      ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
-                      {
-                          ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
-                            {
-                                var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, ii, jj));
-                                lock (th) { th.Add(output1); }
-                            });
+                       ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
+                   {
+                       ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
+                       {
+                           ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
+                             {
+                                 var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, ii, jj));
+                                 lock (th) { th.Add(output1); }
+                             });
 
 
-                      });
-                  });
+                       });
                    });
-               });
+                    });
+                });
            });
+            //output.Wait();
             th.Add(output);
             Parallel.ForEach(th, item => Task.WaitAll(item));
         }
@@ -333,12 +337,12 @@ namespace WindowsApplication1
             for (int i = 0; i < cxC; i++)
             {
                 st.Add(new List<double[]>());
-                for (int j = 0; j < cyC; j++)
+                for (int j = 0; j < cyp1; j++)
                 {
                     st[i].Add(new double[27]);
                 }
             }
-            c = new float[cxC, cyC, czC];
+            c = new float[cxC, cyp1, czC];
             t = new int[b[0], b[1], 3];
             rr = new int[b[0], b[1], 3];
             f = new int[b[0], b[1], 3];
@@ -366,7 +370,7 @@ namespace WindowsApplication1
                         {
                             ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
                             {
-                                ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
+                                ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 3, delegate (int k)
                                 {
                                     var output1 = Task.Factory.StartNew(() => ThreaadcalNeighbour(i, j, k, ii, jj));
                                     lock (th) { th.Add(output1); }
@@ -378,7 +382,8 @@ namespace WindowsApplication1
                     });
                 });
             });
-            th.Add(output);
+            //output.Wait();
+           th.Add(output);
             Parallel.ForEach(th, item => Task.WaitAll(item));
         }
         byte GetK(Image a, int i, int j, int k)
@@ -407,31 +412,31 @@ namespace WindowsApplication1
 
             var output = Task.Factory.StartNew(() =>
             {
-                ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
-                {
-                    ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
-                    {
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
-                          {
-                              ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
-                              {
-                                  ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
-                                  {
-                                      var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
+                ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
+                 {
+                     ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
+                     {
+                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
+                           {
+                               ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
+                               {
+                                   ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
+                                   {
+                                       var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
 
-                                      lock (th) { th.Add(output1); }
-                                  });
-                              });
-                          });
-                    });
-                });
+                                       lock (th) { th.Add(output1); }
+                                   });
+                               });
+                           });
+                     });
+                 });
             });
+           // output.Wait();
             th.Add(output);
             Parallel.ForEach(th, item => Task.WaitAll(item));
         }
         void Initiate()
         {
-            x = 0;
             minr = int.MaxValue;
             minteta = int.MaxValue;
             minfi = int.MaxValue;
@@ -495,7 +500,7 @@ namespace WindowsApplication1
             int r = 0;
             int teta = 0;
             int fi = 0;
-          t = new int[b[0], b[1], 3];
+            t = new int[b[0], b[1], 3];
             rr = new int[b[0], b[1], 3];
             f = new int[b[0], b[1], 3];
 
@@ -618,7 +623,7 @@ namespace WindowsApplication1
         {
             if (succeed > 0)
             {
-                 ConvTo3D();
+                ConvTo3D();
                 MessageBox.Show("ConvTo3D pass!");
                 ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
                 MessageBox.Show("Graphic begin!!");
@@ -877,11 +882,12 @@ namespace WindowsApplication1
             MessageBox.Show("Graphic finished!!");
 
         }
-        public _2dTo3D(Image ib,bool neighbour)
+        public _2dTo3D(Image ib, bool neighbour)
         {
             object o = new object();
             lock (o)
             {
+                x = 0;
                 a = ib;
                 Graphics g = Graphics.FromImage(a);
                 Initiate();

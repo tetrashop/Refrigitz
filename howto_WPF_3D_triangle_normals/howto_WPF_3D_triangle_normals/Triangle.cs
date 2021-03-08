@@ -1,10 +1,8 @@
-﻿using System;
+﻿using LearningMachine;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
-using LearningMachine;
 
 namespace howto_WPF_3D_triangle_normals
 {
@@ -166,7 +164,7 @@ namespace howto_WPF_3D_triangle_normals
                 return false;
             }
         }
-          Point3D getd(Point3D p0, Point3D p1)
+        Point3D getd(Point3D p0, Point3D p1)
         {
             Line l0 = new Line(p0, p1);
             return new Point3D(p1.X + l0.a * 2, p1.Y + l0.b * 2, p1.Z + l0.c * 2);
@@ -242,7 +240,7 @@ namespace howto_WPF_3D_triangle_normals
         }
         public bool boundryssscount(int i, int j, int ssscount)
         {
-            
+
             if (i == j)
                 return true;
 
@@ -324,7 +322,7 @@ namespace howto_WPF_3D_triangle_normals
             }
             return r * block;
         }
-         double getclonieslen(List<Point3D> ss, Point3D d, double minr)
+        double getclonieslen(List<Point3D> ss, Point3D d, double minr)
         {
             Point3D p0 = d;
             List<Point3D> s = ss;
@@ -367,7 +365,7 @@ namespace howto_WPF_3D_triangle_normals
                 }
             }
         }
-        void getclonieslenInsideForInsideSecondIf(double count,ref Point3D p1, ref double m, ref double clonieslen, ref List<Point3D> add, ref List<Point3D> s, ref Point3D p0, double minr)
+        void getclonieslenInsideForInsideSecondIf(double count, ref Point3D p1, ref double m, ref double clonieslen, ref List<Point3D> add, ref List<Point3D> s, ref Point3D p0, double minr)
         {
             object o = new object();
             lock (o)
@@ -459,7 +457,7 @@ namespace howto_WPF_3D_triangle_normals
                 sss.Remove(p0);
                 sssCon.RemoveAt(f);
             }
-          
+
         }
 
         void reductionSetOfPointsToNumberOfSetsFullP3(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
@@ -477,7 +475,7 @@ namespace howto_WPF_3D_triangle_normals
                 done = true;
             }
         }
-        void reductionSetOfPointsToNumberOfSetsHulfP(Point3D pp0,Point3D pp1, double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
+        void reductionSetOfPointsToNumberOfSetsHulfP(Point3D pp0, Point3D pp1, double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
 
         {
             p0 = p;

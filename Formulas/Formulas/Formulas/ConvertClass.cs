@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -8,11 +6,11 @@ namespace Formulas
     {
         public static AddToTree.Tree ConverSetToAddTreeFx(Set Dummy)
         {
-           
+
             Set Holder = Dummy;
             AddToTree.Tree TreeDummy = null;
             AddToTree.Tree HolderDummy;
-            
+
             HolderDummy = ConvertClass.ConverSetToAddTreeActionFx(Dummy);
 
             while (Dummy.ThreadAccess != null)
@@ -21,14 +19,14 @@ namespace Formulas
             TreeDummy = ConvertClass.ConverSetToAddTreeActionFx(Dummy);
 
             TreeDummy = TreeDummy.FINDTreeWithOutThreadConsideration(TreeDummy, HolderDummy);
-            
+
             return TreeDummy;
         }
         private static AddToTree.Tree ConverSetToAddTreeActionFx(Set Dummy)
         {
             if (Dummy == null)
                 return null;
-            AddToTree.Tree TreeDummy = new AddToTree.Tree(null,false);
+            AddToTree.Tree TreeDummy = new AddToTree.Tree(null, false);
             try
             {
                 TreeDummy.SampleAccess = Dummy.StringSampleAccess;

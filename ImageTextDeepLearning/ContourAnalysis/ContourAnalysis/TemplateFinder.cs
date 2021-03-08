@@ -20,7 +20,7 @@
             Template template = null;
             foreach (Template template2 in templates)
             {
-                if (((Math.Abs((int) (sample.autoCorrDescriptor1 - template2.autoCorrDescriptor1)) <= this.maxACFDescriptorDeviation) && (Math.Abs((int) (sample.autoCorrDescriptor2 - template2.autoCorrDescriptor2)) <= this.maxACFDescriptorDeviation)) && ((Math.Abs((int) (sample.autoCorrDescriptor3 - template2.autoCorrDescriptor3)) <= this.maxACFDescriptorDeviation) && (Math.Abs((int) (sample.autoCorrDescriptor4 - template2.autoCorrDescriptor4)) <= this.maxACFDescriptorDeviation)))
+                if (((Math.Abs((int)(sample.autoCorrDescriptor1 - template2.autoCorrDescriptor1)) <= this.maxACFDescriptorDeviation) && (Math.Abs((int)(sample.autoCorrDescriptor2 - template2.autoCorrDescriptor2)) <= this.maxACFDescriptorDeviation)) && ((Math.Abs((int)(sample.autoCorrDescriptor3 - template2.autoCorrDescriptor3)) <= this.maxACFDescriptorDeviation) && (Math.Abs((int)(sample.autoCorrDescriptor4 - template2.autoCorrDescriptor4)) <= this.maxACFDescriptorDeviation)))
                 {
                     double norma = 0.0;
                     if (this.checkACF)
@@ -54,7 +54,8 @@
             }
             if (template != null)
             {
-                return new FoundTemplateDesc { 
+                return new FoundTemplateDesc
+                {
                     template = template,
                     rate = num,
                     sample = sample,

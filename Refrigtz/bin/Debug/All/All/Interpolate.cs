@@ -7,9 +7,6 @@
  * Recurve Matrix.
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace LearningMachine
 {
@@ -18,18 +15,18 @@ namespace LearningMachine
     {
         static Double[,] D;
         static Double[] F;
-        
+
         public static double[] Quaficient(double[,] AMinuseOnea, double[] b, int n)
         {
             double[] ans = new double[n];
             double[,] x = AMinuseOne(AMinuseOnea, n);
-            for (int i = 0; i <n; i++)
+            for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j <n; j++)
+                for (int j = 0; j < n; j++)
                 {
-                    
-                        ans[i] += x[i, j] * b[j];
-                   
+
+                    ans[i] += x[i, j] * b[j];
+
                 }
             }
             return ans;
@@ -64,7 +61,7 @@ namespace LearningMachine
                 return Array;
             }
         }
-       static  Double[] Answer(Double[] a, Int32 n)
+        static Double[] Answer(Double[] a, Int32 n)
         {
             Object o = new Object();
             lock (o)
@@ -113,13 +110,13 @@ namespace LearningMachine
                 return N;
             }
         }
-           static Double[,,] AMinuseOne(Double[,,] A, Int32 n)
+        static Double[,,] AMinuseOne(Double[,,] A, Int32 n)
         {
             Object o = new Object();
             lock (o)
             {
-                Double[,,] N = new Double[n, n,n];
-                Double[,,] Ast = new Double[n - 1, n - 1,n-1];
+                Double[,,] N = new Double[n, n, n];
+                Double[,,] Ast = new Double[n - 1, n - 1, n - 1];
                 for (Int32 ii = 0; ii < n; ii++)
                     for (Int32 jj = 0; jj < n; jj++)
                         for (Int32 kk = 0; kk < n; kk++)
@@ -166,8 +163,8 @@ namespace LearningMachine
                 if (n == 0)
                     return 0;
                 if (n == 1)
-                    return A[0, 0,0];
-             
+                    return A[0, 0, 0];
+
                 Double AA = 0;
                 for (int i = 0; i < n; i++)
                     for (int j = 0; j < n; j++)
@@ -198,11 +195,11 @@ namespace LearningMachine
             lock (o)
             {
                 if (n == 0)
-                    return 0 ;
+                    return 0;
                 if (n == 1)
                     return System.Convert.ToDouble(A[0, 0]);
                 if (n == 2)
-                    return System.Convert.ToDouble(A[0, 0])* System.Convert.ToDouble(A[1, 1])- System.Convert.ToDouble(A[0, 1]) * System.Convert.ToDouble(A[1, 0]);
+                    return System.Convert.ToDouble(A[0, 0]) * System.Convert.ToDouble(A[1, 1]) - System.Convert.ToDouble(A[0, 1]) * System.Convert.ToDouble(A[1, 0]);
                 double AA = 0;
                 for (int i = 0; i < n; i++)
                     AA = AA + System.Convert.ToDouble(A[0, i]) * System.Convert.ToDouble(System.Math.Pow(-1, i)) * DetB(AStar(A, n, 0, i), n - 1); ;
@@ -237,12 +234,12 @@ namespace LearningMachine
                 return Ast;
             }
         }
-        static Double[,,] AStar(Double[,,] A, Int32 n, Int32 ii, Int32 jj,int kk)
+        static Double[,,] AStar(Double[,,] A, Int32 n, Int32 ii, Int32 jj, int kk)
         {
             Object o = new Object();
             lock (o)
             {
-                Double[,,] Ast = new Double[n - 1, n - 1,n-1];
+                Double[,,] Ast = new Double[n - 1, n - 1, n - 1];
                 Int32 ni = 0, nj = 0, nk = 0;
                 for (int i = 0; i < n; i++)
                 {
@@ -335,7 +332,7 @@ namespace LearningMachine
 
 
                 }
-                return 1- DetB(Ast, n);
+                return 1 - DetB(Ast, n);
             }
         }
         public static double SimilarityB(double[,] A, double[,] B, Int32 n)

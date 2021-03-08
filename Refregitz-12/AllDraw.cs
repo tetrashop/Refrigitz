@@ -146,12 +146,9 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using System.IO;
-using System.Diagnostics;
 namespace Refregitz_12
 {
 
@@ -371,9 +368,9 @@ namespace Refregitz_12
             do
             {
                 Later = DateTime.Now.Hour * (60000 * 24) + DateTime.Now.Minute * 60000 + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond;
-                
+
             } while (Later - Now < 3 * 60000);
-            
+
 
         }
         public void SetObjectNumbers(int[,] TabS)
@@ -639,7 +636,7 @@ namespace Refregitz_12
                     AA.jindex[i] = jindex[i];
                 for (int i = 0; i < 6; i++)
                     AA.Kind[i] = Kind[i];
-               if (AStarGreedyString != null)
+                if (AStarGreedyString != null)
                     AStarGreedyString.Clone(AA.AStarGreedyString);
                 if (TableList.Count == 1)
                     SetObjectNumbers(TableList[0]);
@@ -10127,7 +10124,7 @@ if (Kind == 2)
                                         //If There is no Thinking Movments on Current Object  
 
 
-                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) 
+                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                                         { ASS = AllDraw.Blitz; }
                                         if (!ASS)
                                         {
@@ -10168,7 +10165,7 @@ if (Kind == 2)
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
                                         //Ignore of Non Exist Current Elephant Gray Objects.
-                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) 
+                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                                         { ASS = AllDraw.Blitz; }
                                         if (!ASS)
                                         {
@@ -10246,7 +10243,7 @@ if (Kind == 2)
                                     {
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
-                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) 
+                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                                         { ASS = AllDraw.Blitz; }
                                         if (!ASS)
                                         {
@@ -10321,7 +10318,7 @@ if (Kind == 2)
                                     {
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
-                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) 
+                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                                         { ASS = AllDraw.Blitz; }
                                         if (!ASS)
                                         {//When Thinking Gray King Count of Existing Operations.
@@ -10360,7 +10357,7 @@ if (Kind == 2)
                                     {
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
-                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) 
+                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                                         { ASS = AllDraw.Blitz; }
                                         if (!ASS)//When There is Current Brown Existing Objective Thinking Movments.
                                         {
@@ -10396,7 +10393,7 @@ if (Kind == 2)
                                 {
                                     try
                                     {
-                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) 
+                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                                         { ASS = AllDraw.Blitz; }
                                         if (!ASS)
                                         {//When There is Current Brown Existing Objective Thinking Movments.
@@ -10435,7 +10432,7 @@ if (Kind == 2)
                                     {
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
-                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) 
+                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                                         { ASS = AllDraw.Blitz; }
                                         if (!ASS)
                                         {//When There is Current Brown Existing Objective Thinking Movments.
@@ -10513,7 +10510,7 @@ if (Kind == 2)
                                     {
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
-                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) 
+                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                                         { ASS = AllDraw.Blitz; }
                                         if (!ASS)
                                         {//When There is Current Brown Existing Objective Thinking Movments.
@@ -10550,7 +10547,7 @@ if (Kind == 2)
                                     {
                                         Order = DummyOrder;
                                         ChessRules.CurrentOrder = DummyCurrentOrder;
-                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) 
+                                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA)
                                         { ASS = AllDraw.Blitz; }
                                         if (!ASS)
                                         {//When There is Current Brown Existing Objective Thinking Movments.
@@ -13012,7 +13009,7 @@ if (Kind == 2)
             if (Current < MaxAStarGreedy)
                 return false;
             //if (TimerEnded)
-                //return true;
+            //return true;
 
             bool IS = false;
             /*if (Order == 1)
@@ -13526,7 +13523,7 @@ if (Kind == 2)
                         }
                     }
                     */
-                    
+
 
                     Order = DummyOrder;
                     ChessRules.CurrentOrder = DummyCurrentOrder;
@@ -13710,7 +13707,7 @@ if (Kind == 2)
                 if (A.CheckGrayObjectDangour && ((!A.CheckBrownObjectDangour)))
                     IsDang = false;
             }
-            return IsDang;           
+            return IsDang;
 
         }
         void BlitzGameThinkingTreeSolderGray(ref double PreviousLessS, ref int[] Index, ref int[] jIndex, int Order, int iAStarGreedy, int ik, int j, bool FOUND, int LeafAStarGreedy)
@@ -13768,7 +13765,8 @@ if (Kind == 2)
 
                     //Elephant
                 }
-                catch (Exception t) {
+                catch (Exception t)
+                {
                     Log(t);
                 }
         }
@@ -13777,7 +13775,7 @@ if (Kind == 2)
             for (ik = 0; ik < ElefantMidle; ik++)
                 try
                 {
-                    if (ElephantOnTable == null || ElephantOnTable[ik] == null || ElephantOnTable[ik].ElefantThinking == null || ElephantOnTable[ik].ElefantThinking[0]==null || ElephantOnTable[ik].ElefantThinking[0].IsSup
+                    if (ElephantOnTable == null || ElephantOnTable[ik] == null || ElephantOnTable[ik].ElefantThinking == null || ElephantOnTable[ik].ElefantThinking[0] == null || ElephantOnTable[ik].ElefantThinking[0].IsSup
                         )
                         continue;
                     for (j = 0; j < ElephantOnTable[ik].ElefantThinking[0].HuristicListElefant.Count; j++)
@@ -13809,7 +13807,7 @@ if (Kind == 2)
                             }
                             else
                             {
-                                if(ElephantOnTable[ik].ElefantThinking[0].ReturnHuristic(-1, j, Order, false) > PreviousLessE || ElephantOnTable[ik].ElefantThinking[0].PenaltyRegardListElefant[j].IsPenaltyAction() == 0)
+                                if (ElephantOnTable[ik].ElefantThinking[0].ReturnHuristic(-1, j, Order, false) > PreviousLessE || ElephantOnTable[ik].ElefantThinking[0].PenaltyRegardListElefant[j].IsPenaltyAction() == 0)
                                 {
                                     //ElephantOnTable[ik].ElefantThinking[0].AStarGreedy = null;
                                     //ElephantOnTable[ik] = null;
@@ -13902,7 +13900,7 @@ if (Kind == 2)
             for (ik = 0; ik < CastleMidle; ik++)
                 try
                 {
-                    if (CastlesOnTable == null || CastlesOnTable[ik] == null || CastlesOnTable[ik].CastleThinking == null || CastlesOnTable[ik].CastleThinking[0]==null || CastlesOnTable[ik].CastleThinking[0].IsSup
+                    if (CastlesOnTable == null || CastlesOnTable[ik] == null || CastlesOnTable[ik].CastleThinking == null || CastlesOnTable[ik].CastleThinking[0] == null || CastlesOnTable[ik].CastleThinking[0].IsSup
                         )
                         continue;
                     for (j = 0; j < CastlesOnTable[ik].CastleThinking[0].HuristicListCastle.Count; j++)
@@ -13969,7 +13967,7 @@ if (Kind == 2)
             for (ik = 0; ik < MinisterMidle; ik++)
                 try
                 {
-                    if (MinisterOnTable == null || MinisterOnTable[ik] == null || MinisterOnTable[ik].MinisterThinking==null || MinisterOnTable[ik].MinisterThinking[0]==null || MinisterOnTable[ik].MinisterThinking[0].IsSup
+                    if (MinisterOnTable == null || MinisterOnTable[ik] == null || MinisterOnTable[ik].MinisterThinking == null || MinisterOnTable[ik].MinisterThinking[0] == null || MinisterOnTable[ik].MinisterThinking[0].IsSup
                         )
                         continue;
                     for (j = 0; j < MinisterOnTable[ik].MinisterThinking[0].HuristicListMinister.Count; j++)
@@ -14037,7 +14035,7 @@ if (Kind == 2)
             for (ik = 0; ik < KingMidle; ik++)
                 try
                 {
-                    if (KingOnTable == null || KingOnTable[ik] == null || KingOnTable[ik].KingThinking == null || KingOnTable[ik].KingThinking[0]==null || KingOnTable[ik].KingThinking[0].IsSup
+                    if (KingOnTable == null || KingOnTable[ik] == null || KingOnTable[ik].KingThinking == null || KingOnTable[ik].KingThinking[0] == null || KingOnTable[ik].KingThinking[0].IsSup
                         )
                         continue;
                     for (j = 0; j < KingOnTable[ik].KingThinking[0].HuristicListKing.Count; j++)
@@ -14112,7 +14110,7 @@ if (Kind == 2)
                     //SolderesOnTable[Index[0]].SoldierThinking[0].AStarGreedy[SolderesOnTable[Index[0]].SoldierThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, SolderesOnTable[Index[0]].SoldierThinking[0].TableListSolder[jIndex[0]], Order, false);
                     //ParameterizedThreadStart start = new ParameterizedThreadStart(SolderesOnTable[Index[0]].SoldierThinking[0].AStarGreedy[SolderesOnTable[Index[0]].SoldierThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt);
                     Task array = Task.Factory.StartNew(() => SolderesOnTable[Index[0]].SoldierThinking[0].AStarGreedy[SolderesOnTable[Index[0]].SoldierThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, SolderesOnTable[Index[0]].SoldierThinking[0].RowColumnSoldier[jIndex[0]][0], SolderesOnTable[Index[0]].SoldierThinking[0].RowColumnSoldier[jIndex[0]][1], a, SolderesOnTable[Index[0]].SoldierThinking[0].TableListSolder[jIndex[0]], Order, false, FOUND, LeafAStarGreedy));
-                    Object ttttt = new Object(); lock (ttttt) { tHA.Add(array); }                    
+                    Object ttttt = new Object(); lock (ttttt) { tHA.Add(array); }
                     array.Wait();
                     //array.Name = "S" + i.ToString();
                     //array.Start();
@@ -14374,7 +14372,7 @@ if (Kind == 2)
             for (ik = HourseMidle; ik < HourseHight; ik++)
                 try
                 {
-                    if (HoursesOnTable == null || HoursesOnTable[ik] == null || HoursesOnTable[ik].HourseThinking==null || HoursesOnTable[ik].HourseThinking[0]==null || HoursesOnTable[ik].HourseThinking[0].IsSup
+                    if (HoursesOnTable == null || HoursesOnTable[ik] == null || HoursesOnTable[ik].HourseThinking == null || HoursesOnTable[ik].HourseThinking[0] == null || HoursesOnTable[ik].HourseThinking[0].IsSup
                         )
                         continue;
                     for (j = 0; j < HoursesOnTable[ik].HourseThinking[0].HuristicListHourse.Count; j++)
@@ -14505,7 +14503,7 @@ if (Kind == 2)
             for (ik = CastleMidle; ik < CastleHigh; ik++)
                 try
                 {
-                    if (CastlesOnTable == null || CastlesOnTable[ik] == null || CastlesOnTable[ik].CastleThinking == null || CastlesOnTable[ik].CastleThinking[0]==null || CastlesOnTable[ik].CastleThinking[0].IsSup
+                    if (CastlesOnTable == null || CastlesOnTable[ik] == null || CastlesOnTable[ik].CastleThinking == null || CastlesOnTable[ik].CastleThinking[0] == null || CastlesOnTable[ik].CastleThinking[0].IsSup
                         )
                         continue;
                     for (j = 0; j < CastlesOnTable[ik].CastleThinking[0].HuristicListCastle.Count; j++)
@@ -14571,7 +14569,7 @@ if (Kind == 2)
             for (ik = MinisterMidle; ik < MinisterHigh; ik++)
                 try
                 {
-                    if (MinisterOnTable == null || MinisterOnTable[ik] == null || MinisterOnTable[ik].MinisterThinking == null || MinisterOnTable[ik].MinisterThinking[0]==null || MinisterOnTable[ik].MinisterThinking[0].IsSup
+                    if (MinisterOnTable == null || MinisterOnTable[ik] == null || MinisterOnTable[ik].MinisterThinking == null || MinisterOnTable[ik].MinisterThinking[0] == null || MinisterOnTable[ik].MinisterThinking[0].IsSup
                         )
                         continue;
                     for (j = 0; j < MinisterOnTable[ik].MinisterThinking[0].HuristicListMinister.Count; j++)
@@ -15864,7 +15862,7 @@ if (Kind == 2)
                                                     HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, iii, jjj, aa, Tab, Ord, false, FOUND, LeafAStarGreedy);
                                                     for (int h = 0; h < HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count; h++)
                                                         HoursesOnTable[ik].WinOcuuredatChiled += SumOfObjects(HoursesOnTable[ik].HourseThinking[0].AStarGreedy[h], Order);
-                                                   
+
                                                     {
                                                         for (int h = 0; h < HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count; h++)
                                                             HoursesOnTable[ik].LoseOcuuredatChiled += SumMinusOfObjects(HoursesOnTable[ik].HourseThinking[0].AStarGreedy[h], Order);
@@ -15983,7 +15981,7 @@ if (Kind == 2)
                                                 HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, iii, jjj, aa, Tab, Ord, false, FOUND, LeafAStarGreedy);
                                                 for (int h = 0; h < HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count; h++)
                                                     HoursesOnTable[ik].WinOcuuredatChiled += SumOfObjects(HoursesOnTable[ik].HourseThinking[0].AStarGreedy[h], Order);
-                                               
+
                                                 {
                                                     for (int h = 0; h < HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count; h++)
                                                         HoursesOnTable[ik].LoseOcuuredatChiled += SumMinusOfObjects(HoursesOnTable[ik].HourseThinking[0].AStarGreedy[h], Order);
@@ -16501,7 +16499,7 @@ if (Kind == 2)
                                                 MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                                                 //Task array = Task.Factory.StartNew(() => MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, ii, jj, a, CloneATable(MinisterOnTable[ik].MinisterThinking[0].TableListMinister[j]), Order, false, FOUND, LeafAStarGreedy));
                                                 MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(iAStarGreedy, iii, jjj, aa, Tab, Ord, false, FOUND, LeafAStarGreedy);
-                         
+
                                                 //array.Start();
                                                 /*bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) { ASS = AllDraw.Blitz; }  if (!ASS)
                                                 {
@@ -17416,151 +17414,151 @@ if (Kind == 2)
                 //Soldeir
                 //Initiatye Variables.               
 
-                 Parallel.Invoke(() =>
+                Parallel.Invoke(() =>
 
-                {
-                    Object O1 = new Object();
-                    lock (O1)
-                    {
-                        if (Order == 1)
-                            a = Color.Gray;
-                        else
-                            a = Color.Brown;
-                        int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
-                        int Ord1 = Order;
-                        Color a1 = a;
-                        int iAStarGreedy1 = iAStarGreedy;
-                        Do |= this.FullGameThinkingTreeSoldierGray(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
+               {
+                   Object O1 = new Object();
+                   lock (O1)
+                   {
+                       if (Order == 1)
+                           a = Color.Gray;
+                       else
+                           a = Color.Brown;
+                       int ii1 = ii, jj1 = jj, ik11 = ik1, j11 = j1;
+                       int Ord1 = Order;
+                       Color a1 = a;
+                       int iAStarGreedy1 = iAStarGreedy;
+                       Do |= this.FullGameThinkingTreeSoldierGray(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy);
                         //Task array1 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeSoldierGray(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND));
                         //array1.Start();
                         //Object tttt1 = new Object(); lock (tttt1) { TH.Add(array1); }
 
                         Order = DummyOrder;
-                        ChessRules.CurrentOrder = DummyCurrentOrder;
-                    }
-                }, () =>
-                {
-                    Object O1 = new Object();
-                    lock (O1)
-                    {
-                        if (Order == 1)
-                            a = Color.Gray;
-                        else
-                            a = Color.Brown;
+                       ChessRules.CurrentOrder = DummyCurrentOrder;
+                   }
+               }, () =>
+               {
+                   Object O1 = new Object();
+                   lock (O1)
+                   {
+                       if (Order == 1)
+                           a = Color.Gray;
+                       else
+                           a = Color.Brown;
                         //Order *= -1;
                         //ChessRules.CurrentOrder *= -1;
 
                         int ii2 = ii, jj2 = jj, ik12 = ik1, j12 = j1;
-                        int Ord2 = Order;
-                        Color a2 = a;
-                        int iAStarGreedy2 = iAStarGreedy;
-                        Do |= this.FullGameThinkingTreeElephantGray(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
+                       int Ord2 = Order;
+                       Color a2 = a;
+                       int iAStarGreedy2 = iAStarGreedy;
+                       Do |= this.FullGameThinkingTreeElephantGray(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
                         //Task array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeElephantGray(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND));
                         //array2.Start();
-                       //Object tttt2 = new Object(); lock (tttt2) { TH.Add(array2); }
+                        //Object tttt2 = new Object(); lock (tttt2) { TH.Add(array2); }
 
                         //Initiatye Variables.
                         Order = DummyOrder;
-                        ChessRules.CurrentOrder = DummyCurrentOrder;
-                    }
+                       ChessRules.CurrentOrder = DummyCurrentOrder;
+                   }
 
-                }, () =>
-                {
-                    Object O1 = new Object();
-                    lock (O1)
-                    {
-                        if (Order == 1)
-                            a = Color.Gray;
-                        else
-                            a = Color.Brown;
+               }, () =>
+               {
+                   Object O1 = new Object();
+                   lock (O1)
+                   {
+                       if (Order == 1)
+                           a = Color.Gray;
+                       else
+                           a = Color.Brown;
                         //Order *= -1;
                         //ChessRules.CurrentOrder *= -1;
 
                         int ii3 = ii, jj3 = jj, ik13 = ik1, j13 = j1;
-                        int Ord3 = Order;
-                        Color a3 = a;
-                        int iAStarGreedy3 = iAStarGreedy;
-                        Do |= this.FullGameThinkingTreeHourseGray(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
+                       int Ord3 = Order;
+                       Color a3 = a;
+                       int iAStarGreedy3 = iAStarGreedy;
+                       Do |= this.FullGameThinkingTreeHourseGray(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy);
                         //Task array3 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeHourseGray(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND));
                         ///array3.Start();
                         //Object tttt3 = new Object(); lock (tttt3) { TH.Add(array3); }
 
                         //Initiatye Variables.
                         Order = DummyOrder;
-                        ChessRules.CurrentOrder = DummyCurrentOrder;
-                    }
-                }, () =>
-                {
-                    Object O1 = new Object();
-                    lock (O1)
-                    {
-                        if (Order == 1)
-                            a = Color.Gray;
-                        else
-                            a = Color.Brown;
+                       ChessRules.CurrentOrder = DummyCurrentOrder;
+                   }
+               }, () =>
+               {
+                   Object O1 = new Object();
+                   lock (O1)
+                   {
+                       if (Order == 1)
+                           a = Color.Gray;
+                       else
+                           a = Color.Brown;
                         //Order *= -1;
                         //ChessRules.CurrentOrder *= -1;
 
                         int ii4 = ii, jj4 = jj, ik14 = ik1, j14 = j1;
-                        int Ord4 = Order;
-                        Color a4 = a;
-                        int iAStarGreedy4 = iAStarGreedy;
-                        Do |= this.FullGameThinkingTreeCastleGray(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
+                       int Ord4 = Order;
+                       Color a4 = a;
+                       int iAStarGreedy4 = iAStarGreedy;
+                       Do |= this.FullGameThinkingTreeCastleGray(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy);
                         //Task array4 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeCastleGray(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND));
                         //array4.Start();
                         //Object tttt4 = new Object(); lock (tttt4) { TH.Add(array4); }
 
                         //Initiatye Variables.
                         Order = DummyOrder;
-                        ChessRules.CurrentOrder = DummyCurrentOrder;
-                    }
-                }, () =>
-                {
-                    Object O1 = new Object();
-                    lock (O1)
-                    {
-                        if (Order == 1)
-                            a = Color.Gray;
-                        else
-                            a = Color.Brown;
+                       ChessRules.CurrentOrder = DummyCurrentOrder;
+                   }
+               }, () =>
+               {
+                   Object O1 = new Object();
+                   lock (O1)
+                   {
+                       if (Order == 1)
+                           a = Color.Gray;
+                       else
+                           a = Color.Brown;
                         //Order *= -1;
                         //ChessRules.CurrentOrder *= -1;
                         int ii5 = ii, jj5 = jj, ik15 = ik1, j15 = j1;
-                        int Ord5 = Order;
-                        Color a5 = a;
-                        int iAStarGreedy5 = iAStarGreedy;
-                        Do |= this.FullGameThinkingTreeMinisterGray(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
+                       int Ord5 = Order;
+                       Color a5 = a;
+                       int iAStarGreedy5 = iAStarGreedy;
+                       Do |= this.FullGameThinkingTreeMinisterGray(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy);
                         //Task array5 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeMinisterGray(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND));
                         //array5.Start();
                         //Object tttt5 = new Object(); lock (tttt5) { TH.Add(array5); }
 
                         //Initiatye Variables.
                         Order = DummyOrder;
-                        ChessRules.CurrentOrder = DummyCurrentOrder;
-                    }
-                }, () =>
-                {
-                    Object O1 = new Object();
-                    lock (O1)
-                    {
-                        if (Order == 1)
-                            a = Color.Gray;
-                        else
-                            a = Color.Brown;
+                       ChessRules.CurrentOrder = DummyCurrentOrder;
+                   }
+               }, () =>
+               {
+                   Object O1 = new Object();
+                   lock (O1)
+                   {
+                       if (Order == 1)
+                           a = Color.Gray;
+                       else
+                           a = Color.Brown;
                         //Order *= -1;
                         //ChessRules.CurrentOrder *= -1;
                         int ii6 = ii, jj6 = jj, ik16 = ik1, j16 = j1;
-                        int Ord6 = Order;
-                        Color a6 = a;
-                        int iAStarGreedy6 = iAStarGreedy;
-                        Do |= this.FullGameThinkingTreeKingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
+                       int Ord6 = Order;
+                       Color a6 = a;
+                       int iAStarGreedy6 = iAStarGreedy;
+                       Do |= this.FullGameThinkingTreeKingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy);
                         //Task array6 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeKingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND));
                         //array6.Start();
                         //Object tttt6 = new Object(); lock (tttt6) { TH.Add(array6); }
                         Order = DummyOrder;
-                        ChessRules.CurrentOrder = DummyCurrentOrder;
-                    }
-                });
+                       ChessRules.CurrentOrder = DummyCurrentOrder;
+                   }
+               });
             }
             //For Brown Order Blitz Game Calculate Maximum Table Inclusive AStarGreedy First Game Search.
             else
@@ -17605,7 +17603,7 @@ if (Kind == 2)
                         Do |= this.FullGameThinkingTreeElephantBrown(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy);
                         //Task array2 = Task.Factory.StartNew(() => Do |= this.FullGameThinkingTreeElephantBrown(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND));
                         //array2.Start();
-                       //Object tttt2 = new Object(); lock (tttt2) { TH.Add(array2); }
+                        //Object tttt2 = new Object(); lock (tttt2) { TH.Add(array2); }
 
                         //Initiatye Variables.
                         Order = DummyOrder;
@@ -19636,6 +19634,6 @@ if (Kind == 5)
         }
     }
 }
-   
+
 
 //End of Documentation.

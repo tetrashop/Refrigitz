@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -189,7 +187,7 @@ namespace Formulas
                     IsMinuseOrPluse = true;
                 else
                     if (Sample.ToString() == "-")
-                        IsMinuseOrPluse = true;
+                    IsMinuseOrPluse = true;
             }
             return IsMinuseOrPluse;
         }
@@ -210,7 +208,7 @@ namespace Formulas
                     IsMulOrDiv = true;
                 else
                     if (Sample.ToString() == "/")
-                        IsMulOrDiv = true;
+                    IsMulOrDiv = true;
             }
             return IsMulOrDiv;
         }
@@ -242,19 +240,19 @@ namespace Formulas
                         IsOperator = true;
                     else
                         if (Sample.ToString() == "-")
-                            IsOperator = true;
-                        else
+                        IsOperator = true;
+                    else
                             if (Sample.ToString() == "*")
-                                IsOperator = true;
-                            else
+                        IsOperator = true;
+                    else
                                 if (Sample.ToString() == "/")
-                                    IsOperator = true;
-                                else
+                        IsOperator = true;
+                    else
                                     if (Sample.ToString().ToLower() == "pow")
-                                        IsOperator = true;
-                                    else
+                        IsOperator = true;
+                    else
                                         if (Sample.ToString().ToLower() == "^")
-                                            IsOperator = true;
+                        IsOperator = true;
                 }
             }
             catch (StackOverflowException t)
@@ -283,25 +281,25 @@ namespace Formulas
                     IsFunction = true;
                 else
                     if (Sample.ToString().ToLower() == "cos")
-                        IsFunction = true;
-                    else
+                    IsFunction = true;
+                else
                         if (Sample.ToString().ToLower() == "tan")
-                            IsFunction = true;
-                        else
+                    IsFunction = true;
+                else
                             if (Sample.ToString().ToLower() == "cot")
-                                IsFunction = true;
-                            else
+                    IsFunction = true;
+                else
                                 if (Sample.ToString().ToLower() == "sec")
-                                    IsFunction = true;
-                                else
+                    IsFunction = true;
+                else
                                     if (Sample.ToString().ToLower() == "csc")
-                                        IsFunction = true;
-                                    else
+                    IsFunction = true;
+                else
                                         if (Sample.ToString().ToLower() == "log")
-                                            IsFunction = true;
-                                        else
+                    IsFunction = true;
+                else
                                             if (Sample.ToString().ToLower() == "ln")
-                                                IsFunction = true;
+                    IsFunction = true;
                 if (Sample.ToString().ToLower() == "root")
                     IsFunction = true;
             }

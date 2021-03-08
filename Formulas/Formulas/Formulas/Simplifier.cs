@@ -124,8 +124,6 @@
 //ADDED364565546536465465:The Simplifier of Minus and Plus and Numbers All State Without Paranterized:1394/4/11
 //===============================================            
 using System;
-using System.Collections.Generic;
-using System.Text;
 namespace Formulas
 {
     static class Simplifier
@@ -197,9 +195,9 @@ namespace Formulas
             Dummy = CommonFactorSimlification.CommonFactorSimlificationFx(Dummy, ref UIS);
 
             UIS.SetProgressValue(UIS.progressBar3, UIS.progressBar3.Value + INCREASE);
-            
+
             Dummy = Simplifier.ConstructMinusAndPlusSimplifierFx(Dummy, ref UIS);
-            
+
             UIS.SetProgressValue(UIS.progressBar3, UIS.progressBar3.Value + INCREASE);
 
             //ADDEDCONDITION28736487687 :refer to page 330.
@@ -308,9 +306,9 @@ namespace Formulas
             Dummy = Spliter.SpliterFx(Dummy, ref UIS);
 
             UIS.SetProgressValue(UIS.progressBar3, UIS.progressBar3.Value + INCREASE);
-            
+
             Dummy = Simplifier.ConstructMinusAndPlusSimplifierFx(Dummy, ref UIS);
-            
+
             UIS.SetProgressValue(UIS.progressBar3, UIS.progressBar3.Value + INCREASE);
 
             int END = Integral.NumberOfElements(Dummy);
@@ -319,7 +317,7 @@ namespace Formulas
 
             if (FIRRST < END)
                 return HOLDER;
-            else           
+            else
                 return Dummy;
         }
         static private bool SimplifierFxMulRemainedEditableMUL(AddToTree.Tree Current, AddToTree.Tree Dummy)
@@ -374,10 +372,10 @@ namespace Formulas
                 }
                 else
                     if (EqualToObject.IsEqualWithOutThreadConsiderationCommonly(Dummy.RightSideAccess.ThreadAccess, Dummy.ThreadAccess))
-                    {
+                {
 
-                        Dummy = Dummy.RightSideAccess;
-                    }
+                    Dummy = Dummy.RightSideAccess;
+                }
             }
             catch (NullReferenceException t)
             {
@@ -423,10 +421,10 @@ namespace Formulas
                 }
                 else
                     if (EqualToObject.IsEqualWithOutThreadConsiderationCommonly(Dummy.RightSideAccess.ThreadAccess, Dummy.ThreadAccess))
-                    {
+                {
 
-                        Dummy = Dummy.RightSideAccess;
-                    }
+                    Dummy = Dummy.RightSideAccess;
+                }
             }
             catch (NullReferenceException t)
             {
@@ -824,7 +822,7 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
         static public AddToTree.Tree ConstructMinusAndPlusSimplifierFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
-                return null; 
+                return null;
             int INCREASEZer = Integral.NumberOfElements(Dummy);
             UIS.SetProgressValue(UIS.progressBar18, 0);
             Dummy = Simplifier.ConstructMinusAndPlusAndQuficient(Dummy, ref UIS, 2147483647 / INCREASEZer);
@@ -894,23 +892,23 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
             }
             else
                 if (EqualToObject.IsEqualWithOutThreadConsiderationCommonly(Current.LeftSideAccess, Holder))
-                {
-                    LeftTrueRightFalse = true;
-                    return Current.RightSideAccess;
-                }
-        /*if (Holder.FINDTreeWithOutThreadConsideration(Holder,HolderRight)!=null)
-        {
-            LeftTrueRightFalse = false;
-            return Current.LeftSideAccess;
-        }
-        else
-            if (Holder.FINDTreeWithOutThreadConsideration(Holder, HolderLeft)!=null)
             {
                 LeftTrueRightFalse = true;
                 return Current.RightSideAccess;
             }
-         */
-        END:
+            /*if (Holder.FINDTreeWithOutThreadConsideration(Holder,HolderRight)!=null)
+            {
+                LeftTrueRightFalse = false;
+                return Current.LeftSideAccess;
+            }
+            else
+                if (Holder.FINDTreeWithOutThreadConsideration(Holder, HolderLeft)!=null)
+                {
+                    LeftTrueRightFalse = true;
+                    return Current.RightSideAccess;
+                }
+             */
+            END:
             LeftTrueRightFalse = false;
             return null;
             /*int LeftLevel = Simplifier.NumberOfElements(Current.LeftSideAccess);
@@ -1027,15 +1025,15 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
                             }
                             else
                                 if (Dummy.RightSideAccess.SampleAccess.ToLower() == "c")
+                            {
+                                if (IS.IsNumber(Dummy.LeftSideAccess.SampleAccess))
                                 {
-                                    if (IS.IsNumber(Dummy.LeftSideAccess.SampleAccess))
-                                    {
-                                        Dummy.LeftSideAccess = null;
-                                        Dummy.RightSideAccess = null;
-                                        Dummy.SampleAccess = "C";
-                                        RECURSIVE = true;
-                                    }
+                                    Dummy.LeftSideAccess = null;
+                                    Dummy.RightSideAccess = null;
+                                    Dummy.SampleAccess = "C";
+                                    RECURSIVE = true;
                                 }
+                            }
                         }
                         catch (NullReferenceException t)
                         {
@@ -1073,7 +1071,8 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
                         { ExceptionClass.ExceptionClassMethod(t); }//CORECTIONOFERROR.
                         catch (StackOverflowException t)
                         { ExceptionClass.ExceptionClassMethod(t); }
-                    } UIS.SetProgressValue(UIS.progressBar4, UIS.progressBar4.Value + INCREASE);
+                    }
+                    UIS.SetProgressValue(UIS.progressBar4, UIS.progressBar4.Value + INCREASE);
                     if (Dummy.SampleAccess == "^")
                     {
                         try
@@ -1212,40 +1211,40 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
                             }
                             else
                                 if (Dummy.LeftSideAccess.SampleAccess == null)
+                            {
+                                if (Dummy.ThreadAccess != null)
                                 {
-                                    if (Dummy.ThreadAccess != null)
-                                    {
-                                        bool ISLeftTrueIsRightFalse = true;
-                                        AddToTree.Tree Holder = Dummy.ThreadAccess;
+                                    bool ISLeftTrueIsRightFalse = true;
+                                    AddToTree.Tree Holder = Dummy.ThreadAccess;
 
-                                        if (Holder.LeftSideAccess == Dummy)
-                                            ISLeftTrueIsRightFalse = true;
-                                        else
-                                            ISLeftTrueIsRightFalse = false;
-                                        if (ISLeftTrueIsRightFalse)
-                                        {
-                                            RECURSIVE = true;
-                                            Holder.SetLefTandRightCommonlySide(null, Holder.RightSideAccess);
-                                            Holder.SampleAccess = Holder.RightSideAccess.SampleAccess;
-                                            Holder.RightSideAccess = null;
-                                        }
-                                        else
-                                        {
-                                            RECURSIVE = true;
-                                            Holder.SetLefTandRightCommonlySide(Holder.LeftSideAccess, null);
-                                            Holder.SampleAccess = Holder.LeftSideAccess.SampleAccess;
-                                            Holder.LeftSideAccess = null;
-                                        }
-                                        Dummy = Holder;
+                                    if (Holder.LeftSideAccess == Dummy)
+                                        ISLeftTrueIsRightFalse = true;
+                                    else
+                                        ISLeftTrueIsRightFalse = false;
+                                    if (ISLeftTrueIsRightFalse)
+                                    {
+                                        RECURSIVE = true;
+                                        Holder.SetLefTandRightCommonlySide(null, Holder.RightSideAccess);
+                                        Holder.SampleAccess = Holder.RightSideAccess.SampleAccess;
+                                        Holder.RightSideAccess = null;
                                     }
                                     else
                                     {
                                         RECURSIVE = true;
-                                        Dummy.LeftSideAccess = null;
-                                        Dummy.RightSideAccess = null;
-                                        Dummy.SampleAccess = null;
+                                        Holder.SetLefTandRightCommonlySide(Holder.LeftSideAccess, null);
+                                        Holder.SampleAccess = Holder.LeftSideAccess.SampleAccess;
+                                        Holder.LeftSideAccess = null;
                                     }
+                                    Dummy = Holder;
                                 }
+                                else
+                                {
+                                    RECURSIVE = true;
+                                    Dummy.LeftSideAccess = null;
+                                    Dummy.RightSideAccess = null;
+                                    Dummy.SampleAccess = null;
+                                }
+                            }
                         }
                         catch (NullReferenceException t)
                         { ExceptionClass.ExceptionClassMethod(t); }
@@ -1538,20 +1537,20 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
                                 }
                                 else*/
                                 if ((IS.IsNumber(Dummy.LeftSideAccess.SampleAccess)) && (Dummy.RightSideAccess.SampleAccess.ToLower() == "c"))
-                                {
-                                    Dummy.LeftSideAccess = null;
-                                    Dummy.RightSideAccess = null;
-                                    Dummy.SampleAccess = "C";
-                                    RECURSIVE = true;
-                                }
-                                else
+                            {
+                                Dummy.LeftSideAccess = null;
+                                Dummy.RightSideAccess = null;
+                                Dummy.SampleAccess = "C";
+                                RECURSIVE = true;
+                            }
+                            else
                                     if ((IS.IsNumber(Dummy.RightSideAccess.SampleAccess)) && (Dummy.LeftSideAccess.SampleAccess.ToLower() == "c"))
-                                    {
-                                        Dummy.LeftSideAccess = null;
-                                        Dummy.RightSideAccess = null;
-                                        Dummy.SampleAccess = "C";
-                                        RECURSIVE = true;
-                                    }
+                            {
+                                Dummy.LeftSideAccess = null;
+                                Dummy.RightSideAccess = null;
+                                Dummy.SampleAccess = "C";
+                                RECURSIVE = true;
+                            }
                         }
                         catch (NullReferenceException t)
                         { ExceptionClass.ExceptionClassMethod(t); }
@@ -1717,7 +1716,8 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
                         { ExceptionClass.ExceptionClassMethod(t); }
                         catch (StackOverflowException t)
                         { ExceptionClass.ExceptionClassMethod(t); }
-                    } UIS.SetProgressValue(UIS.progressBar4, UIS.progressBar4.Value + INCREASE);
+                    }
+                    UIS.SetProgressValue(UIS.progressBar4, UIS.progressBar4.Value + INCREASE);
                     if (Dummy.SampleAccess == "+")
                     {
                         try
@@ -2060,35 +2060,35 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
                                         }
                                         else
                                             if (Dummy.RightSideAccess.SampleAccess == "x")
-                                            {
-                                                RECURSIVE = true;
-                                                Dummy.SampleAccess = "*";
+                                        {
+                                            RECURSIVE = true;
+                                            Dummy.SampleAccess = "*";
 
-                                                float num = System.Convert.ToInt16(Dummy.LeftSideAccess.LeftSideAccess.SampleAccess);
-                                                num = num + 1;
-                                                AddToTree.Tree NUM = new AddToTree.Tree(num.ToString(), false);
-                                                AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                                Dummy.LeftSideAccess.SetLefTandRightCommonlySide(null, null);
-                                                Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
-                                                Dummy.SetLefTandRightCommonlySide(NUM, X);
-                                            }
+                                            float num = System.Convert.ToInt16(Dummy.LeftSideAccess.LeftSideAccess.SampleAccess);
+                                            num = num + 1;
+                                            AddToTree.Tree NUM = new AddToTree.Tree(num.ToString(), false);
+                                            AddToTree.Tree X = new AddToTree.Tree("x", false);
+                                            Dummy.LeftSideAccess.SetLefTandRightCommonlySide(null, null);
+                                            Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
+                                            Dummy.SetLefTandRightCommonlySide(NUM, X);
+                                        }
                                     }
                                     else//ERRORCORECTINO317514 :Simplifier has cuase some errors.refer to page 178.and refer to page 256.
                                         if (Dummy.LeftSideAccess.SampleAccess == "x")
-                                            if (Dummy.RightSideAccess.SampleAccess == "*")
-                                                if (IS.IsNumber(Dummy.RightSideAccess.LeftSideAccess.LeftSideAccess.SampleAccess))
-                                                    if (IS.ISindependenceVaribale(Dummy.RightSideAccess.RightSideAccess.SampleAccess))
-                                                    {
-                                                        RECURSIVE = true;
-                                                        Dummy.SampleAccess = "*";
-                                                        float num = (float)System.Convert.ToInt16(Dummy.RightSideAccess.LeftSideAccess.SampleAccess);
-                                                        num = num + 1;
-                                                        AddToTree.Tree NUM = new AddToTree.Tree(num.ToString(), false);
-                                                        AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                                        Dummy.LeftSideAccess.SetLefTandRightCommonlySide(null, null);
-                                                        Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
-                                                        Dummy.SetLefTandRightCommonlySide(NUM, X);
-                                                    }
+                                        if (Dummy.RightSideAccess.SampleAccess == "*")
+                                            if (IS.IsNumber(Dummy.RightSideAccess.LeftSideAccess.LeftSideAccess.SampleAccess))
+                                                if (IS.ISindependenceVaribale(Dummy.RightSideAccess.RightSideAccess.SampleAccess))
+                                                {
+                                                    RECURSIVE = true;
+                                                    Dummy.SampleAccess = "*";
+                                                    float num = (float)System.Convert.ToInt16(Dummy.RightSideAccess.LeftSideAccess.SampleAccess);
+                                                    num = num + 1;
+                                                    AddToTree.Tree NUM = new AddToTree.Tree(num.ToString(), false);
+                                                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                                                    Dummy.LeftSideAccess.SetLefTandRightCommonlySide(null, null);
+                                                    Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
+                                                    Dummy.SetLefTandRightCommonlySide(NUM, X);
+                                                }
                                 }
                         }
                         catch (NullReferenceException t)
@@ -2385,12 +2385,12 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
                                         }
                                         else
                                             if (Dummy.ThreadAccess.SampleAccess != "-")
-                                            {
-                                                RECURSIVE = true;
-                                                Dummy.LeftSideAccess = null;
-                                                Dummy.RightSideAccess = null;
-                                                Dummy.SampleAccess = null;
-                                            }
+                                        {
+                                            RECURSIVE = true;
+                                            Dummy.LeftSideAccess = null;
+                                            Dummy.RightSideAccess = null;
+                                            Dummy.SampleAccess = null;
+                                        }
                         }
                         catch (NullReferenceException t)
                         { ExceptionClass.ExceptionClassMethod(t); }
@@ -2428,32 +2428,33 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
                                         }
                                         else
                                             if (Dummy.RightSideAccess.SampleAccess == "x")
-                                            {
-                                                if (IS.IsNumber(Dummy.LeftSideAccess.LeftSideAccess.SampleAccess))
-                                                    if (IS.ISindependenceVaribale(Dummy.LeftSideAccess.RightSideAccess.SampleAccess))
+                                        {
+                                            if (IS.IsNumber(Dummy.LeftSideAccess.LeftSideAccess.SampleAccess))
+                                                if (IS.ISindependenceVaribale(Dummy.LeftSideAccess.RightSideAccess.SampleAccess))
+                                                {
+                                                    RECURSIVE = true;
+                                                    Dummy.LeftSideAccess.ThreadAccess = Dummy.ThreadAccess;
+                                                    Dummy = Dummy.LeftSideAccess;
+                                                    float num = (float)System.Convert.ToDouble(Dummy.LeftSideAccess.SampleAccess);
+                                                    num = num - 1;
+                                                    if (num == 0)
                                                     {
-                                                        RECURSIVE = true;
-                                                        Dummy.LeftSideAccess.ThreadAccess = Dummy.ThreadAccess;
-                                                        Dummy = Dummy.LeftSideAccess;
-                                                        float num = (float)System.Convert.ToDouble(Dummy.LeftSideAccess.SampleAccess);
-                                                        num = num - 1;
-                                                        if (num == 0)
-                                                        {
-                                                            Dummy.LeftSideAccess = null;
-                                                            Dummy.RightSideAccess = null;
-                                                            Dummy.SampleAccess = null;
-                                                        }
-                                                        else
-                                                            Dummy.LeftSideAccess.SampleAccess = num.ToString();
+                                                        Dummy.LeftSideAccess = null;
+                                                        Dummy.RightSideAccess = null;
+                                                        Dummy.SampleAccess = null;
                                                     }
-                                            }
+                                                    else
+                                                        Dummy.LeftSideAccess.SampleAccess = num.ToString();
+                                                }
+                                        }
                         }
                         catch (NullReferenceException t)
                         { ExceptionClass.ExceptionClassMethod(t); }
                         catch (StackOverflowException t)
                         { ExceptionClass.ExceptionClassMethod(t); }
 
-                    } UIS.SetProgressValue(UIS.progressBar4, UIS.progressBar4.Value + INCREASE);
+                    }
+                    UIS.SetProgressValue(UIS.progressBar4, UIS.progressBar4.Value + INCREASE);
                     if (Dummy.SampleAccess == "/")
                     {
                         try
@@ -2478,21 +2479,21 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
                                                     }
                                                     else
                                                         if (num1 < num2)
-                                                        {
-                                                            Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
-                                                            Dummy.RightSideAccess.SampleAccess = "1";
-                                                            num2 = num2 - num1;
-                                                            Dummy.LeftSideAccess.RightSideAccess.RightSideAccess.SampleAccess = num2.ToString();
+                                                    {
+                                                        Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
+                                                        Dummy.RightSideAccess.SampleAccess = "1";
+                                                        num2 = num2 - num1;
+                                                        Dummy.LeftSideAccess.RightSideAccess.RightSideAccess.SampleAccess = num2.ToString();
 
-                                                        }
-                                                        else
+                                                    }
+                                                    else
                                                             if (num1 == num2)
-                                                            {
-                                                                Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
-                                                                Dummy.RightSideAccess.SampleAccess = "1";
-                                                                Dummy.LeftSideAccess.RightSideAccess.SetLefTandRightCommonlySide(null, null);
-                                                                Dummy.LeftSideAccess.RightSideAccess.SampleAccess = "1";
-                                                            }
+                                                    {
+                                                        Dummy.RightSideAccess.SetLefTandRightCommonlySide(null, null);
+                                                        Dummy.RightSideAccess.SampleAccess = "1";
+                                                        Dummy.LeftSideAccess.RightSideAccess.SetLefTandRightCommonlySide(null, null);
+                                                        Dummy.LeftSideAccess.RightSideAccess.SampleAccess = "1";
+                                                    }
 
                                                 }
 
@@ -2966,14 +2967,14 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
             }
             else
                 if (IS.IsMulAllNode(Dummy.RightSideAccess) && Dummy.SampleAccess == "-")
+            {
+                AddToTree.Tree Number = null;
+                if (IS.ReterunIfIsNumberNode(Dummy.RightSideAccess, ref Number))
                 {
-                    AddToTree.Tree Number = null;
-                    if (IS.ReterunIfIsNumberNode(Dummy.RightSideAccess, ref Number))
-                    {
-                        Dummy.SampleAccess = "+";
-                        Number.SampleAccess = (System.Convert.ToDouble(Number.SampleAccess) * -1).ToString();
-                    }
+                    Dummy.SampleAccess = "+";
+                    Number.SampleAccess = (System.Convert.ToDouble(Number.SampleAccess) * -1).ToString();
                 }
+            }
             if (IS.IsPlusOrMulAllNode(Dummy.LeftSideAccess) && Dummy.SampleAccess == "-")
             {
                 AddToTree.Tree[] Plus = new AddToTree.Tree[Integral.NumberOfElements(Dummy)];
@@ -2990,18 +2991,18 @@ while((Dummy.SampleAccess != "/")&(Dummy!=null))
             }
             else
                 if (IS.IsPlusOrMulAllNode(Dummy.RightSideAccess) && Dummy.SampleAccess == "-")
+            {
+                AddToTree.Tree[] Plus = new AddToTree.Tree[Integral.NumberOfElements(Dummy)];
+                int Len = 0;
+                if (IS.ReterunIfIsPlusNode(Dummy.RightSideAccess, ref Plus, ref Len))
                 {
-                    AddToTree.Tree[] Plus = new AddToTree.Tree[Integral.NumberOfElements(Dummy)];
-                    int Len = 0;
-                    if (IS.ReterunIfIsPlusNode(Dummy.RightSideAccess, ref Plus, ref Len))
+                    for (int i = 0; i < Len; i++)
                     {
-                        for (int i = 0; i < Len; i++)
-                        {
-                            Plus[i].SampleAccess = "-";
+                        Plus[i].SampleAccess = "-";
 
-                        }
                     }
                 }
+            }
             Dummy.LeftSideAccess = ConstructMinusAndPlusAndQuficient(Dummy.LeftSideAccess, ref UIS, INCREASE);
             Dummy.RightSideAccess = ConstructMinusAndPlusAndQuficient(Dummy.RightSideAccess, ref UIS, INCREASE);
             return Dummy;

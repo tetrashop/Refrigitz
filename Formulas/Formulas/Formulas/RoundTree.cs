@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -23,18 +21,18 @@ namespace Formulas
                 return A;
             if (IS.IsNumber(T.SampleAccess) && T.SampleAccess.IndexOf(".") != -1)
             {
-                String S = T.SampleAccess.Substring(T.SampleAccess.IndexOf("."), T.SampleAccess.Length- T.SampleAccess.IndexOf("."));
+                String S = T.SampleAccess.Substring(T.SampleAccess.IndexOf("."), T.SampleAccess.Length - T.SampleAccess.IndexOf("."));
                 if (A < S.Length)
                     A = S.Length;
             }
 
-            int S1=MaxFractionalDesimal(T.LeftSideAccess);
-            int S2=MaxFractionalDesimal(T.RightSideAccess);
+            int S1 = MaxFractionalDesimal(T.LeftSideAccess);
+            int S2 = MaxFractionalDesimal(T.RightSideAccess);
             if (S1 > A)
                 A = S1;
             if (S2 > A)
                 A = S2;
-            return A; 
+            return A;
         }
     }
 }

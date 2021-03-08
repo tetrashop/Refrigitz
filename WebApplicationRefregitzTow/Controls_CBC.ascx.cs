@@ -246,15 +246,15 @@ namespace WebApplicationRefregitzTow
                         }
                     }
                 }
-            //*****************************************
-            //               TODO:
-            //Now add a procedure to do the validation of the move
-            //The logic example Castling or see if valid move, etc
-            //
-            //*****************************************
-            //   PROCEDUREVALIDATEMOVE(MoveFrom,MoveTo)
+                //*****************************************
+                //               TODO:
+                //Now add a procedure to do the validation of the move
+                //The logic example Castling or see if valid move, etc
+                //
+                //*****************************************
+                //   PROCEDUREVALIDATEMOVE(MoveFrom,MoveTo)
 
-            BeginSection:
+                BeginSection:
 
 
                 //Move From Section
@@ -1032,7 +1032,7 @@ namespace WebApplicationRefregitzTow
                 }
 
 
-            EndSection:
+                EndSection:
 
                 //Set the hidden variables
                 lblMove.Text = CheckBoxNr.ToString();

@@ -1,14 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace LearningMachine
 {
     [Serializable]
     public class HermitInterpolation
     {
-        static Double[] SimplifyLxi(Double[] s, Double[] x, int p, int j,int i)
+        static Double[] SimplifyLxi(Double[] s, Double[] x, int p, int j, int i)
         {
             Object o = new Object();
             lock (o)
@@ -154,7 +151,7 @@ namespace LearningMachine
                 return Result;
             }
         }
-        static Double DetaIorward(Double[] x, Double[] f,int index)
+        static Double DetaIorward(Double[] x, Double[] f, int index)
         {
             Object o = new Object();
             lock (o)
@@ -165,7 +162,7 @@ namespace LearningMachine
                 return ad;
             }
         }
-        static Double DeltaiBackward(Double[] x, Double[] f,int index)
+        static Double DeltaiBackward(Double[] x, Double[] f, int index)
         {
             Object o = new Object();
             lock (o)
@@ -186,8 +183,8 @@ namespace LearningMachine
                 return n * Factorial(n - 1);
             }
         }
-            private static int Combinition(int nb,int kb)
-                    {
+        private static int Combinition(int nb, int kb)
+        {
             Object o = new Object();
             lock (o)
             {

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Formulas
 {
     static class IntegralRecursiveMulatFG
@@ -15,23 +11,23 @@ namespace Formulas
         }
         static public bool IntegralRecursiveMulatFPowerGFx(AddToTree.Tree Integral, AddToTree.Tree Dummy, ref UknownIntegralSolver UIS, ref float Queficient)
         {
-           
-        AddToTree.Tree HOLDER = new AddToTree.Tree(null, false);
-         bool Istrue = false;
-      /*  while(!(MulAtFG.ISEmpty()))
-        {
-            HOLDER = MulAtFG.DELETEFromTreeFirstNode();
-           
-            if (HOLDER != null)            
-       */
-         Istrue = EqualToObject.IsEqualWithOutThreadConsiderationByDivision(Integral, Dummy, ref UIS, ref Queficient);
-         /*   else break;
-                     */
+
+            AddToTree.Tree HOLDER = new AddToTree.Tree(null, false);
+            bool Istrue = false;
+            /*  while(!(MulAtFG.ISEmpty()))
+              {
+                  HOLDER = MulAtFG.DELETEFromTreeFirstNode();
+
+                  if (HOLDER != null)            
+             */
+            Istrue = EqualToObject.IsEqualWithOutThreadConsiderationByDivision(Integral, Dummy, ref UIS, ref Queficient);
+            /*   else break;
+                        */
             if (Istrue)
-                return Istrue;       
- 
-        //}
-        return false;
+                return Istrue;
+
+            //}
+            return false;
         }
     }
 }

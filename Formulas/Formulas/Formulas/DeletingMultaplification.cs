@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -8,7 +6,7 @@ namespace Formulas
     {
         static AddToTreeTreeLinkList DELETED = new AddToTreeTreeLinkList();
 
-        static public AddToTree.Tree DeleteingMulFx(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
+        static public AddToTree.Tree DeleteingMulFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             try
             {
@@ -23,8 +21,8 @@ namespace Formulas
         }
         static public AddToTreeTreeLinkList DeletedAccess
         {
-            get {return DELETED;}
-            set {DELETED=value;}
+            get { return DELETED; }
+            set { DELETED = value; }
 
         }
         static AddToTree.Tree ArrangmentToDeleteingMul(AddToTree.Tree Dummy)
@@ -41,16 +39,16 @@ namespace Formulas
                     Dummy.SetLefTandRightCommonlySide(Dummy.RightSideAccess, Dummy.LeftSideAccess);
             return Dummy;
         }
-        static AddToTree.Tree RepeatedlyDeletedAction(AddToTree.Tree Dummy,ref UknownIntegralSolver UIS)
+        static AddToTree.Tree RepeatedlyDeletedAction(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
                 return Dummy;
-            DeletingMultaplification.RepeatedlyDeletedAction(Dummy.LeftSideAccess,ref UIS);
-            DeletingMultaplification.RepeatedlyDeletedAction(Dummy.RightSideAccess,ref UIS);
+            DeletingMultaplification.RepeatedlyDeletedAction(Dummy.LeftSideAccess, ref UIS);
+            DeletingMultaplification.RepeatedlyDeletedAction(Dummy.RightSideAccess, ref UIS);
             AddToTree.Tree Current = Dummy;
             AddToTree.Tree CurrentTow = Dummy.LeftSideAccess;
             //int INCREASE = 2147483647 / 9;
-            
+
             try
             {
                 UIS.SetProgressValue(UIS.progressBar14, 0);
@@ -63,7 +61,7 @@ namespace Formulas
                                     if (CurrentTow != null)
                                         while ((IS.IsMul(CurrentTow.SampleAccess)) && (CurrentTow != null))
                                         {
-                                            
+
 
                                             if (IS.IsNumber(Dummy.LeftSideAccess.SampleAccess))
                                                 if (IS.IsNumber(CurrentTow.LeftSideAccess.SampleAccess))
@@ -89,7 +87,7 @@ namespace Formulas
                                                     DELETED.ADDToTree(Dummy);
                                                 }
 
-                                          
+
 
                                             if (IS.ISindependenceVaribale(Dummy.LeftSideAccess.SampleAccess))
                                                 if (IS.IsNumber(CurrentTow.LeftSideAccess.SampleAccess))
@@ -111,7 +109,7 @@ namespace Formulas
                                                                 Dummy = Dummy.LeftSideAccess;
                                                             DELETED.ADDToTree(Dummy);
                                                         }
-                                          
+
                                             if (IS.ISindependenceVaribale(CurrentTow.RightSideAccess.SampleAccess))
                                                 if (IS.IsNumber(CurrentTow.LeftSideAccess.SampleAccess))
                                                     if ((IS.IsPower(Dummy.LeftSideAccess.SampleAccess)) || (IS.ISindependenceVaribale(CurrentTow.RightSideAccess.SampleAccess)))
@@ -132,7 +130,7 @@ namespace Formulas
                                                                 Dummy = Dummy.LeftSideAccess;
                                                             DELETED.ADDToTree(Dummy);
                                                         }
-                                          
+
 
                                             CurrentTow = CurrentTow.LeftSideAccess;
                                         }
@@ -154,7 +152,7 @@ namespace Formulas
                         if (CurrentTow != null)
                             while (IS.IsMul(CurrentTow.SampleAccess) && (CurrentTow != null))
                             {
-                                
+
 
                                 if (IS.IsNumber(Dummy.LeftSideAccess.SampleAccess))
                                     if (IS.IsNumber(CurrentTow.LeftSideAccess.SampleAccess))
@@ -246,8 +244,8 @@ namespace Formulas
             catch (NullReferenceException t)
             {
                 ExceptionClass.ExceptionClassMethod(t);
-                }
-                UIS.SetProgressValue(UIS.progressBar14, 2147483647);
+            }
+            UIS.SetProgressValue(UIS.progressBar14, 2147483647);
             return Dummy;
         }
 

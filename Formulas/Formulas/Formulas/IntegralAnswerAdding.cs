@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Formulas
 {
     static class IntegralAnswerAdding
@@ -17,7 +13,7 @@ namespace Formulas
         }
         static public AddToTreeTreeLinkList AnswerAccess
         {
-            get 
+            get
             { return Answer; }
             set { Answer = value; }
 

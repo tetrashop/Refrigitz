@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 //Ramin Edjlal.CopyRight 2014.AllRightReserved.
 namespace LearningMachine
 {
@@ -123,7 +121,7 @@ namespace LearningMachine
         public String AA = "";
         public String AB = "";
         public String AC = "";
-  
+
         public String CurrentState = "";
         public QuantumAtamata(int r0, int m0, int k0)
             : base(r0, m0, k0)
@@ -279,9 +277,10 @@ namespace LearningMachine
                 }
             }
         }
-        
+
         public int FirstAtamataState()
-        { Object o = new Object();
+        {
+            Object o = new Object();
             lock (o)
             {
 
@@ -301,7 +300,8 @@ namespace LearningMachine
             }
         }
         public int SecondAtamataState()
-        { Object o = new Object();
+        {
+            Object o = new Object();
             lock (o)
             {
 
@@ -322,7 +322,8 @@ namespace LearningMachine
             }
         }
         public int ThirdAtamataState()
-        { Object o = new Object();
+        {
+            Object o = new Object();
             lock (o)
             {
 

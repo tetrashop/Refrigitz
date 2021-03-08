@@ -44,7 +44,7 @@
                         if (sourceBoundingRect.Contains(templates[i].sample.contour.SourceBoundingRect))
                         {
                             double num4 = templates[i].sample.contour.SourceBoundingRect.Area();
-                            if ((num4 / ((double) num2)) > 0.9)
+                            if ((num4 / ((double)num2)) > 0.9)
                             {
                                 if (templates[num].rate > templates[i].rate)
                                 {
@@ -81,7 +81,7 @@
             List<Contour<Point>> list = new List<Contour<Point>>();
             while (item != null)
             {
-                if (!this.filterContoursBySize || ((((item.Total >= this.minContourLength) && (item.Area >= this.minContourArea)) && (item.Area <= num)) && ((item.Area / ((double) item.Total)) > 1.5)))
+                if (!this.filterContoursBySize || ((((item.Total >= this.minContourLength) && (item.Area >= this.minContourArea)) && (item.Area <= num)) && ((item.Area / ((double)item.Total)) > 1.5)))
                 {
                     if (this.noiseFilter)
                     {
@@ -95,7 +95,7 @@
                     }
                     list.Add(item);
                 }
-            Label_00EA:
+                Label_00EA:
                 item = item.HNext;
             }
             return list;
@@ -117,13 +117,13 @@
             Image<Gray, byte> image2 = null;
             if (this.noiseFilter)
             {
-                image2 = image.Canny(new Gray((double) this.cannyThreshold), new Gray((double) this.cannyThreshold));
+                image2 = image.Canny(new Gray((double)this.cannyThreshold), new Gray((double)this.cannyThreshold));
             }
             if (this.blur)
             {
                 grayFrame = image;
             }
-            CvInvoke.cvAdaptiveThreshold((IntPtr) grayFrame, (IntPtr) grayFrame, 255.0, ADAPTIVE_THRESHOLD_TYPE.CV_ADAPTIVE_THRESH_MEAN_C, THRESH.CV_THRESH_BINARY, (this.adaptiveThresholdBlockSize + (this.adaptiveThresholdBlockSize % 2)) + 1, 1.0);
+            CvInvoke.cvAdaptiveThreshold((IntPtr)grayFrame, (IntPtr)grayFrame, 255.0, ADAPTIVE_THRESHOLD_TYPE.CV_ADAPTIVE_THRESH_MEAN_C, THRESH.CV_THRESH_BINARY, (this.adaptiveThresholdBlockSize + (this.adaptiveThresholdBlockSize % 2)) + 1, 1.0);
             grayFrame._Not();
             if (this.addCanny && (image2 != null))
             {
@@ -145,7 +145,8 @@
             {
                 if (body == null)
                 {
-                    body = delegate (Contour<Point> contour) {
+                    body = delegate (Contour<Point> contour)
+                    {
                         Template item = new Template(contour.ToArray(), contour.Area, this.samples.templateSize);
                         lock (this.samples)
                         {

@@ -1,7 +1,5 @@
 //ERRORCORECTION6465464654:The Sigle Statment Recursive Integral Solved:1394/1/31
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -18,7 +16,7 @@ namespace Formulas
                 return true;
             else
                 if (!(((T1 != null) && (T2 != null))))
-                    return false;
+                return false;
             try
             {
                 //if ((T1.SampleAccess == T2.SampleAccess)&&(T1.NodeNumberAccess==T2.NodeNumberAccess))            
@@ -28,10 +26,10 @@ namespace Formulas
                         Is = true;
                     else
                         if (!(((T1.ThreadAccess != null) && (T2.ThreadAccess != null))))
-                            Is = false;
-                        else
+                        Is = false;
+                    else
                             if (T1.ThreadAccess.SampleAccess == T2.ThreadAccess.SampleAccess)
-                                Is = true;
+                        Is = true;
                 }
                 else
                     Is = false;
@@ -54,7 +52,7 @@ namespace Formulas
                 return true;
             else
                 if (!(((T1 != null) && (T2 != null))))
-                    return false;
+                return false;
             try
             {
                 //if ((T1.SampleAccess == T2.SampleAccess)&&(T1.NodeNumberAccess==T2.NodeNumberAccess))            
@@ -62,9 +60,9 @@ namespace Formulas
                     Is = true;
                 else
                     if (IS.IsNumber(T1.SampleAccess) && IS.IsNumber(T2.SampleAccess) && (System.Math.Abs(System.Convert.ToDouble(T1.SampleAccess) - System.Convert.ToDouble(T2.SampleAccess)) < 0.001))
-                        Is = true;
-                    else
-                        Is = false;
+                    Is = true;
+                else
+                    Is = false;
             }
             catch (NullReferenceException t)
             {
@@ -132,14 +130,14 @@ namespace Formulas
                     }
                     else
                         if (IS.IsNumber(T2.LeftSideAccess.SampleAccess))
-                        {
-                            if (Integral.IntegralSignPositive)
-                                Quficient = (float)(1.0 - Quficient * System.Convert.ToDouble(T2.LeftSideAccess.SampleAccess));
-                            else
-                                Quficient = (float)(1.0 + Quficient * System.Convert.ToDouble(T2.LeftSideAccess.SampleAccess));
+                    {
+                        if (Integral.IntegralSignPositive)
+                            Quficient = (float)(1.0 - Quficient * System.Convert.ToDouble(T2.LeftSideAccess.SampleAccess));
+                        else
+                            Quficient = (float)(1.0 + Quficient * System.Convert.ToDouble(T2.LeftSideAccess.SampleAccess));
 
-                            Is = true;
-                        }
+                        Is = true;
+                    }
 
 
                 }
@@ -159,14 +157,14 @@ namespace Formulas
                         }
                         else
                             if (!IS.IsNumber(T2.SampleAccess))
-                            {
-                                if (Integral.IntegralSignPositive)
-                                    Quficient = (float)(1.0 - Quficient);
-                                else
-                                    Quficient = (float)(1.0 + Quficient);
+                        {
+                            if (Integral.IntegralSignPositive)
+                                Quficient = (float)(1.0 - Quficient);
+                            else
+                                Quficient = (float)(1.0 + Quficient);
 
-                                Is = true;
-                            }
+                            Is = true;
+                        }
 
 
                     }

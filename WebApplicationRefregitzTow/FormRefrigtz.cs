@@ -517,7 +517,7 @@ namespace RefrigtzW
             AllDraw.TableListAction.Clear();
             do
             {
-            Again:
+                Again:
                 try
                 {
 
@@ -1144,7 +1144,7 @@ namespace RefrigtzW
         //Creation of New Tables at DatabaseMethod.
         String CreatTable()
         {
-        Begin12:
+            Begin12:
             try
             {
 
@@ -1193,7 +1193,7 @@ namespace RefrigtzW
         //Creatiopn of Configuration Table
         public void CreateConfigurationTable()
         {
-        Begin12:
+            Begin12:
             if (bookConn == null)
             {
 
@@ -1250,7 +1250,7 @@ namespace RefrigtzW
 
             if (!AllDrawLoad)
             {
-            Begin12:
+                Begin12:
                 try
                 {
 
@@ -1301,7 +1301,7 @@ namespace RefrigtzW
             //if (UpdateConfigurationTableVal)
             {
 
-            Begin12:
+                Begin12:
                 try
                 {
                     TimersSet = false;
@@ -1660,7 +1660,7 @@ namespace RefrigtzW
 
             try
             {
-            Begin1:
+                Begin1:
                 bool StoreStateCC = StateCC;
                 bool StoreStateCP = StateCP;
                 bool StoreStateGe = StateGe;

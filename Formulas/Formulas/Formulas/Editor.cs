@@ -1,10 +1,6 @@
 //ERRORCORECTION6456546464:The Length Of Numbers has determined:1394/3/31
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Editors
@@ -176,7 +172,7 @@ namespace Editors
         }
         public void FiveBasicOprators(int A)
         {
-            
+
             if (X + 32 > this.pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
@@ -186,18 +182,18 @@ namespace Editors
                 g.DrawString("+", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
             else
                 if (A == 1)
-                    g.DrawString("-", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
-                else
+                g.DrawString("-", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
+            else
                     if (A == 2)
-                        g.DrawString("*", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
-                    else
+                g.DrawString("*", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
+            else
                         if (A == 3)
-                            g.DrawString("/", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
-                        else
+                g.DrawString("/", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
+            else
                             if (A == 4)
-                                g.DrawString("^", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
+                g.DrawString("^", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
             X += 32;
-            
+
         }
         public void DrawNumberAndVaribale(String A)
         {
@@ -210,7 +206,7 @@ namespace Editors
             }
             g.DrawString(A, new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30 * A.Length, 30));//ERRORCORECTION6456546464:The Length Of Numbers has determined:1394/3/31
             X += 32 * A.Length;
-            
+
         }
         private void Editor_Paint(object sender, PaintEventArgs e)
         {

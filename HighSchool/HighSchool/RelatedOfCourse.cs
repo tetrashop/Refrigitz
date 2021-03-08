@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace HighSchool
 {
@@ -16,7 +12,7 @@ namespace HighSchool
             InitializeComponent();
         }
 
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             SqlCommand cmd = new SqlCommand();
@@ -45,7 +41,7 @@ namespace HighSchool
 
         }
 
-        
+
         private void realatedOfCourseBindingNavigator_RefreshItems(object sender, EventArgs e)
         {
 

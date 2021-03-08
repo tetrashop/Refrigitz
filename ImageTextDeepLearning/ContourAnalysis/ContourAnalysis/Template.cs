@@ -53,10 +53,10 @@
                 num4 += filter3[index] * norma;
                 num5 += filter4[index] * norma;
             }
-            this.autoCorrDescriptor1 = (int) ((100.0 * num2) / ((double) count));
-            this.autoCorrDescriptor2 = (int) ((100.0 * num3) / ((double) count));
-            this.autoCorrDescriptor3 = (int) ((100.0 * num4) / ((double) count));
-            this.autoCorrDescriptor4 = (int) ((100.0 * num5) / ((double) count));
+            this.autoCorrDescriptor1 = (int)((100.0 * num2) / ((double)count));
+            this.autoCorrDescriptor2 = (int)((100.0 * num3) / ((double)count));
+            this.autoCorrDescriptor3 = (int)((100.0 * num4) / ((double)count));
+            this.autoCorrDescriptor4 = (int)((100.0 * num5) / ((double)count));
         }
 
         public void Draw(Graphics gr, Rectangle rect)
@@ -74,14 +74,14 @@
             Rectangle rectangle2 = Rectangle.Round(contour.GetBoundsRect());
             double width = rectangle2.Width;
             double height = rectangle2.Height;
-            float num3 = (float) Math.Min((double) (((double) rectangle.Width) / width), (double) (((double) rectangle.Height) / height));
+            float num3 = (float)Math.Min((double)(((double)rectangle.Width) / width), (double)(((double)rectangle.Height) / height));
             int num4 = this.startPoint.X - contour.SourceBoundingRect.Left;
             int num5 = this.startPoint.Y - contour.SourceBoundingRect.Top;
-            int num6 = -((int) (rectangle2.Left * num3));
-            int num7 = (int) (rectangle2.Bottom * num3);
+            int num6 = -((int)(rectangle2.Left * num3));
+            int num7 = (int)(rectangle2.Bottom * num3);
             for (num8 = 0; num8 < points.Length; num8++)
             {
-                points[num8] = new Point((rectangle.Left + num6) + ((int) (((points[num8].X - contour.SourceBoundingRect.Left) - num4) * num3)), (rectangle.Top + num7) + ((int) (((points[num8].Y - contour.SourceBoundingRect.Top) - num5) * num3)));
+                points[num8] = new Point((rectangle.Left + num6) + ((int)(((points[num8].X - contour.SourceBoundingRect.Left) - num4) * num3)), (rectangle.Top + num7) + ((int)(((points[num8].Y - contour.SourceBoundingRect.Top) - num5) * num3)));
             }
             gr.DrawPolygon(Pens.Red, points);
             rectangle = new Rectangle((rect.Width / 2) + rect.X, rect.Y, rect.Width / 2, rect.Height);
@@ -91,10 +91,10 @@
             {
                 right = (rectangle.X + 5) + (num8 * 3);
                 Complex complex = contour2[num8 % contour2.Count];
-                int num10 = (int) (complex.Norma * rectangle.Height);
+                int num10 = (int)(complex.Norma * rectangle.Height);
                 gr.FillRectangle(Brushes.Blue, right, rectangle.Bottom - num10, 3, num10);
                 complex = contour2[num8 % contour2.Count];
-                list.Add(new Point(right, rectangle.Bottom - ((int) (rectangle.Height * (0.5 + ((complex.Angle / 2.0) / 3.1415926535897931))))));
+                list.Add(new Point(right, rectangle.Bottom - ((int)(rectangle.Height * (0.5 + ((complex.Angle / 2.0) / 3.1415926535897931))))));
             }
             try
             {

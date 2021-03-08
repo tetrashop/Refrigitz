@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
 using System.IO;
 namespace Refregitz_12
 {
     [Serializable]
     public class DrawHourse
     {
-        
-        
-        
-        
-        public int WinOcuuredatChiled = 0;public int LoseOcuuredatChiled = 0;
+
+
+
+
+        public int WinOcuuredatChiled = 0; public int LoseOcuuredatChiled = 0;
         private readonly object balanceLock = new object();
         private readonly object balanceLockS = new object();
         public static Image[] H = new Image[2];
         //Iniatite Global Variables.
         List<int[]> ValuableSelfSupported = new List<int[]>();
-      
+
         public bool MovementsAStarGreedyHuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
         public bool UsePenaltyRegardMechnisamT = true;
@@ -87,7 +84,7 @@ namespace Refregitz_12
             for (int ii = 0; ii < AllDraw.HourseMovments; ii++)
                 try
                 {
-                    a += HourseThinking[ii].ReturnHuristic(-1, -1, Order,false);
+                    a += HourseThinking[ii].ReturnHuristic(-1, -1, Order, false);
                 }
                 catch (Exception t)
                 {
@@ -96,19 +93,19 @@ namespace Refregitz_12
             return a;
         }
         //Constructor 1.
-       /* public DrawHourse(int CurrentAStarGredy, bool MovementsAStarGreedyHuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments)
-        {
-            CurrentAStarGredyMax = CurrentAStarGredy;
-            MovementsAStarGreedyHuristicFoundT = MovementsAStarGreedyHuristicTFou;
-            IgnoreSelfObjectsT = IgnoreSelfObject;
-            UsePenaltyRegardMechnisamT = UsePenaltyRegardMechnisa;
-            BestMovmentsT = BestMovment;
-            PredictHuristicT = PredictHurist;
-            OnlySelfT = OnlySel;
-            AStarGreedyHuristicT = AStarGreedyHuris;
-            ArrangmentsChanged = Arrangments;
-        }
-        */
+        /* public DrawHourse(int CurrentAStarGredy, bool MovementsAStarGreedyHuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments)
+         {
+             CurrentAStarGredyMax = CurrentAStarGredy;
+             MovementsAStarGreedyHuristicFoundT = MovementsAStarGreedyHuristicTFou;
+             IgnoreSelfObjectsT = IgnoreSelfObject;
+             UsePenaltyRegardMechnisamT = UsePenaltyRegardMechnisa;
+             BestMovmentsT = BestMovment;
+             PredictHuristicT = PredictHurist;
+             OnlySelfT = OnlySel;
+             AStarGreedyHuristicT = AStarGreedyHuris;
+             ArrangmentsChanged = Arrangments;
+         }
+         */
         //Constructpor 2.
         public DrawHourse(int CurrentAStarGredy, bool MovementsAStarGreedyHuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//,ref AllDraw. THIS
             )
@@ -154,7 +151,7 @@ namespace Refregitz_12
                 for (int j = 0; j < 8; j++)
                     Tab[i, j] = this.Table[i, j];
             //Create a Construction Ojects and Initiate a Clone Copy.
-            AA = new DrawHourse( CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, this.Row, this.Column, this.color, this.Table, this.Order, false, this.Current);
+            AA = new DrawHourse(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, this.Row, this.Column, this.color, this.Table, this.Order, false, this.Current);
             AA.ArrangmentsChanged = ArrangmentsChanged;
             for (int i = 0; i < AllDraw.HourseMovments; i++)
             {
@@ -196,14 +193,14 @@ namespace Refregitz_12
                     }
                     if (((int)Row >= 0) && ((int)Row < 8) && ((int)Column >= 0) && ((int)Column < 8))
                     { //Gray Order.
-                        if(Order==1)
+                        if (Order == 1)
                         {
                             Object O1 = new Object();
                             lock (O1)
                             {    //Draw an Instant from File of Gray Soldeirs.
                                  //Draw an Instatnt Gray Hourse on the Table.
                                 g.DrawImage(H[0], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
-                               }
+                            }
                         }
                         else
                         {
@@ -212,7 +209,7 @@ namespace Refregitz_12
                             {    //Draw an Instant from File of Gray Soldeirs.
                                  //Draw an Instatnt Brown Hourse on the Table.
                                 g.DrawImage(H[1], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
-                                }
+                            }
                         }
                     }
                 }

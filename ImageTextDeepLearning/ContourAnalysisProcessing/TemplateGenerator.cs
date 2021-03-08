@@ -1,9 +1,8 @@
 ﻿namespace ContourAnalysisNS
 {
     using Emgu.CV;
-    using System;
-    using System.Drawing;
     using Emgu.CV.Structure;
+    using System.Drawing;
 
     public static class TemplateGenerator
     {
@@ -36,7 +35,7 @@
             foreach (char ch in chars)
             {
                 graphics.Clear(Color.White);
-                graphics.DrawString(ch.ToString(), font, Brushes.Black, (float) 5f, (float) 5f);
+                graphics.DrawString(ch.ToString(), font, Brushes.Black, (float)5f, (float)5f);
                 GenerateTemplate(processor, image, ch.ToString());
             }
             processor.onlyFindContours = false;

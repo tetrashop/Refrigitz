@@ -4,11 +4,8 @@
  * ************************************************************************************************************
  */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace GalleryStudio
 {
 
@@ -117,7 +114,7 @@ namespace GalleryStudio
                 //return Node.al;
             }
         }
-        public RefrigtzDLL.AllDraw LoadJungle(string pathj,bool Quantum, int Order)
+        public RefrigtzDLL.AllDraw LoadJungle(string pathj, bool Quantum, int Order)
         {
             Object o = new Object();
             lock (o)
@@ -240,7 +237,7 @@ namespace GalleryStudio
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
 
-                Formatters.Serialize(DummyFileStream,RefrigtzDLL.AllDraw.indexStep);
+                Formatters.Serialize(DummyFileStream, RefrigtzDLL.AllDraw.indexStep);
                 Formatters.Serialize(DummyFileStream, Current);
                 Current.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
 
@@ -268,7 +265,7 @@ namespace GalleryStudio
                 BinaryFormatter Formatters = new BinaryFormatter();
                 DummyFileStream.Seek(0, SeekOrigin.Begin);
 
-                Formatters.Serialize(DummyFileStream,QuantumRefrigiz.AllDraw.indexStep);
+                Formatters.Serialize(DummyFileStream, QuantumRefrigiz.AllDraw.indexStep);
                 Formatters.Serialize(DummyFileStream, Current);
                 Current.RewriteAllDrawRec(Formatters, DummyFileStream, Order);
 

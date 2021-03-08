@@ -57,9 +57,6 @@
 //=========================================================
 //ERRORCORECTION6546544644544:The Power Integral Power and The Multiplication Integral Recursive Integral resolved:1394/4/9
 //=========================================================
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -67,13 +64,13 @@ namespace Formulas
     {
         static float Queficient = (float)1.0;
         static public bool IntegralSignPositive = false;
-        static AddToTreeTreeLinkList INTEGRALS     = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList ANSWERS       = new AddToTreeTreeLinkList();
+        static AddToTreeTreeLinkList INTEGRALS = new AddToTreeTreeLinkList();
+        static AddToTreeTreeLinkList ANSWERS = new AddToTreeTreeLinkList();
         static AddToTreeTreeLinkList FDeviosionByG = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList FMulAtG       = new AddToTreeTreeLinkList();
+        static AddToTreeTreeLinkList FMulAtG = new AddToTreeTreeLinkList();
         static StackBoolean stk = new StackBoolean();
 
-        static public AddToTree.Tree IntegralOfFX(AddToTree.Tree Node,ref UknownIntegralSolver UIS)
+        static public AddToTree.Tree IntegralOfFX(AddToTree.Tree Node, ref UknownIntegralSolver UIS)
         {
             do
             {
@@ -88,11 +85,11 @@ namespace Formulas
                 FMulAtG.DELETEFromTreeFirstNode();
             } while (!(FMulAtG.ISEmpty()));
 
-            FMulAtG.ADDToTree(Node.CopyNewTree(Node)); 
+            FMulAtG.ADDToTree(Node.CopyNewTree(Node));
 
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             //Node = Simplifier.SimplifierFx(Node);
-            Dummy = Integral.IntegralCalculator(Node.CopyNewTree(Node),ref UIS);
+            Dummy = Integral.IntegralCalculator(Node.CopyNewTree(Node), ref UIS);
             return Dummy;
         }
         static public int NumberOfElements(AddToTree.Tree Dummy)
@@ -123,7 +120,7 @@ namespace Formulas
             if (Dummy == null)
                 return 0;
             else
-                if((Dummy.StringSampleAccess.Length)>=2)
+                if ((Dummy.StringSampleAccess.Length) >= 2)
                 i++;
             i = i + Integral.NumberOfFunctionElementsSet(Dummy.LeftSideAccess);
             i = i + Integral.NumberOfFunctionElementsSet(Dummy.RightSideAccess);
@@ -142,11 +139,11 @@ namespace Formulas
             AddToTree.Tree DummyEqual = new AddToTree.Tree(null, false);
             if (Node == null)
                 return Dummy;
-            
+
 
             //bool IntegralA = false;
             UIS.SetLableValue(UIS.label17, "Integral Begin  Simplifier.");
-            Node = Simplifier.SimplifierFx(Node.CopyNewTree(Node),ref UIS);
+            Node = Simplifier.SimplifierFx(Node.CopyNewTree(Node), ref UIS);
 
             Node = ChangeFunction.ChangeFunctionFx(Node.CopyNewTree(Node), ref UIS);
 
@@ -160,7 +157,8 @@ namespace Formulas
                 UIS.SetLableValue(UIS.label17, "Integral Independence or Variable Finder.");
                 Dummy = Integral.ConsTantFuctionIntegral(Node);
                 return Dummy;
-            } else
+            }
+            else
             if ((IS.IsFunction(Node.SampleAccess)) && (IS.ISindependenceVaribale(Node.LeftSideAccess.SampleAccess)))
             {
                 UIS.SetLableValue(UIS.label17, "Integral Function Finder.");
@@ -197,19 +195,19 @@ namespace Formulas
                                                     DummyONE.LeftSideAccess = null;
                                                     DummyONE.RightSideAccess = null;
 
-                                                  
+
                                                     DummyNumber.LeftSideAccess = null;
                                                     DummyNumber.RightSideAccess = null;
-                                                  
+
                                                     DummyLn.SetLefTandRightCommonlySide(DummyNumber, null);
                                                     DummyLn.LeftSideAccess.ThreadAccess = DummyLn;
                                                     DummyLn.RightSideAccess = null;
-                                                   
+
                                                     DummyDivide.SetLefTandRightCommonlySide(DummyONE, DummyLn);
                                                     DummyDivide.LeftSideAccess.ThreadAccess = DummyDivide;
                                                     DummyDivide.RightSideAccess.ThreadAccess = DummyDivide;
-                                                   
-                                                  
+
+
                                                     Dummy = new AddToTree.Tree("*", false);
                                                     Dummy.SetLefTandRightCommonlySide(DummyDivide, DummyInde);
                                                     Dummy.LeftSideAccess.ThreadAccess = Dummy;
@@ -260,32 +258,32 @@ namespace Formulas
 
                 UIS.SetLableValue(UIS.label17, "Integral F(X)*G(X).");
 
-                
+
 
 
                 UIS.SetProgressValue(UIS.progressBar2, HOLDE);
 
-                DummyDerivationF=Derivasion.DerivasionOfFX(PONE.CopyNewTree(PONE), ref UIS);
+                DummyDerivationF = Derivasion.DerivasionOfFX(PONE.CopyNewTree(PONE), ref UIS);
                 DummyTOW.SetLefTandRightCommonlySide(DummyDerivationF, DummyHOLDE);
                 DummyTOW.LeftSideAccess.ThreadAccess = DummyTOW;
                 DummyTOW.RightSideAccess.ThreadAccess = DummyTOW;
 
-                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
                 DummyTOW = Simplifier.SimplifierFx(DummyTOW, ref UIS);
 
-                DummyONE.SetLefTandRightCommonlySide(PONE.CopyNewTree(PONE),DummyHOLDE.CopyNewTree(DummyHOLDE));
+                DummyONE.SetLefTandRightCommonlySide(PONE.CopyNewTree(PONE), DummyHOLDE.CopyNewTree(DummyHOLDE));
                 DummyONE.LeftSideAccess.ThreadAccess = DummyONE;
                 DummyONE.RightSideAccess.ThreadAccess = DummyONE;
 
-                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
                 DummyONE = Simplifier.SimplifierFx(DummyONE, ref UIS);
 
                 UIS.SetProgressValue(UIS.progressBar2, INCREASE + UIS.progressBar2.Value);
 
-                
-                
+
+
 
                 if (DummyTOW.SampleAccess == null)
                     DummyTOW.SampleAccess = "0";
@@ -294,9 +292,9 @@ namespace Formulas
 
 
 
-                
 
-                
+
+
                 //if ((IntegralRecursiveMulatFG.IntegralRecursiveMulatFGFx(FMulAtG.CopyLinkList(), DummyTOW,ref UIS)))
                 if (!(IntegralRecursiveMulatFG.IntegralRecursiveMulatFPowerGFx(Node, DummyTOW, ref UIS, ref Queficient)))
                 {
@@ -307,39 +305,39 @@ namespace Formulas
                             CIntegralG = System.Convert.ToDouble(DummyHOLDE.LeftSideAccess.SampleAccess);
                         else
                             if (IS.IsNumber(DummyHOLDE.RightSideAccess.SampleAccess))
-                                CIntegralG = System.Convert.ToDouble(DummyHOLDE.RightSideAccess.SampleAccess);
-                            else
-                                CIntegralG = 1.0;
+                            CIntegralG = System.Convert.ToDouble(DummyHOLDE.RightSideAccess.SampleAccess);
+                        else
+                            CIntegralG = 1.0;
 
                     }
                     else
                         if (IS.IsNumber(DummyHOLDE.SampleAccess))
-                            CIntegralG = System.Convert.ToDouble(DummyHOLDE.SampleAccess);
-                        else
-                            CIntegralG = 1.0;
+                        CIntegralG = System.Convert.ToDouble(DummyHOLDE.SampleAccess);
+                    else
+                        CIntegralG = 1.0;
                     if (DummyDerivationF.SampleAccess == "*")
                     {
                         if (IS.IsNumber(DummyDerivationF.LeftSideAccess.SampleAccess))
                             QDerivasion = System.Convert.ToDouble(DummyDerivationF.LeftSideAccess.SampleAccess);
                         else
                             if (IS.IsNumber(DummyDerivationF.RightSideAccess.SampleAccess))
-                                QDerivasion = System.Convert.ToDouble(DummyDerivationF.RightSideAccess.SampleAccess);
-                            else
-                                QDerivasion = 1.0;
+                            QDerivasion = System.Convert.ToDouble(DummyDerivationF.RightSideAccess.SampleAccess);
+                        else
+                            QDerivasion = 1.0;
 
                     }
                     else
                         if (IS.IsNumber(DummyDerivationF.SampleAccess))
-                            QDerivasion = System.Convert.ToDouble(DummyDerivationF.SampleAccess);
-                        else
-                            QDerivasion = 1.0;
+                        QDerivasion = System.Convert.ToDouble(DummyDerivationF.SampleAccess);
+                    else
+                        QDerivasion = 1.0;
                     DummyTOW.SetLefTandRightCommonlySide(null, null);
                     //Queficient = (float)System.Math.Round(1 / Queficient);
                     if (IntegralSignPositive)
                         DummyTOW.SampleAccess = (CIntegralG / (1 - QDerivasion)).ToString();
                     else
                         DummyTOW.SampleAccess = (CIntegralG / (1 + QDerivasion)).ToString();
-                    
+
 
                     Dummy.SampleAccess = "*";
                     Dummy.SetLefTandRightCommonlySide(Node, DummyTOW);
@@ -388,7 +386,7 @@ namespace Formulas
 
 
 
-                
+
 
                 /*
                 AddToTree.Tree P = new AddToTree.Tree(null, false); 
@@ -1150,458 +1148,458 @@ namespace Formulas
             }
             else
                 if (Node.SampleAccess == "/")
-                {
-                    UIS.SetLableValue(UIS.label17, "Integral F(X)/G(X).");
-                    FMulAtG.ADDToTree(null);
+            {
+                UIS.SetLableValue(UIS.label17, "Integral F(X)/G(X).");
+                FMulAtG.ADDToTree(null);
 
-                    INCREASE = INCREASE / 7;
+                INCREASE = INCREASE / 7;
 
-                    UIS.SetProgressValue(UIS.progressBar2, 0);
-   
-                    AddToTree.Tree PONE   = new AddToTree.Tree("/", false);
-                    AddToTree.Tree PTOW   = new AddToTree.Tree(null, false);
-                    AddToTree.Tree PTHREE = new AddToTree.Tree(null, false);
-                    AddToTree.Tree TOW    = new AddToTree.Tree("2", false);
-                    AddToTree.Tree ONE    = new AddToTree.Tree("1", false);
+                UIS.SetProgressValue(UIS.progressBar2, 0);
 
-                    PONE.SetLefTandRightCommonlySide(Node.CopyNewTree(Node.LeftSideAccess),Node.CopyNewTree(Node.RightSideAccess));
-                    PONE.LeftSideAccess.ThreadAccess = PONE;
-                    PONE.RightSideAccess.ThreadAccess = PONE;
+                AddToTree.Tree PONE = new AddToTree.Tree("/", false);
+                AddToTree.Tree PTOW = new AddToTree.Tree(null, false);
+                AddToTree.Tree PTHREE = new AddToTree.Tree(null, false);
+                AddToTree.Tree TOW = new AddToTree.Tree("2", false);
+                AddToTree.Tree ONE = new AddToTree.Tree("1", false);
 
-                    UIS.SetLableValue(UIS.label17, "Derivtion Of G(X).");
+                PONE.SetLefTandRightCommonlySide(Node.CopyNewTree(Node.LeftSideAccess), Node.CopyNewTree(Node.RightSideAccess));
+                PONE.LeftSideAccess.ThreadAccess = PONE;
+                PONE.RightSideAccess.ThreadAccess = PONE;
 
-                    PTOW = Derivasion.DerivasionOfFX(Node.RightSideAccess.CopyNewTree(Node.RightSideAccess), ref UIS);
+                UIS.SetLableValue(UIS.label17, "Derivtion Of G(X).");
 
-                    PTOW = Simplifier.SimplifierFx(PTOW, ref UIS);
+                PTOW = Derivasion.DerivasionOfFX(Node.RightSideAccess.CopyNewTree(Node.RightSideAccess), ref UIS);
 
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                PTOW = Simplifier.SimplifierFx(PTOW, ref UIS);
 
-                    int HOLDE = UIS.progressBar2.Value;
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                    PTOW.SetLefTandRightCommonlySide(PTOW.CopyNewTree(PTOW),Integral.IntegralCalculator(Node.LeftSideAccess.CopyNewTree(Node.LeftSideAccess),ref UIS));
-                    PTOW.LeftSideAccess.ThreadAccess = PTOW;
-                    PTOW.RightSideAccess.ThreadAccess = PTOW;
-                    PTOW.SampleAccess = "*";
+                int HOLDE = UIS.progressBar2.Value;
+
+                PTOW.SetLefTandRightCommonlySide(PTOW.CopyNewTree(PTOW), Integral.IntegralCalculator(Node.LeftSideAccess.CopyNewTree(Node.LeftSideAccess), ref UIS));
+                PTOW.LeftSideAccess.ThreadAccess = PTOW;
+                PTOW.RightSideAccess.ThreadAccess = PTOW;
+                PTOW.SampleAccess = "*";
 
                 UIS.SetProgressValue(UIS.progressBar2, HOLDE);
 
-                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                    TOW.SetLefTandRightCommonlySide(Node.CopyNewTree(Node.RightSideAccess),TOW.CopyNewTree(TOW));
-                    TOW.LeftSideAccess.ThreadAccess = TOW;
-                    TOW.RightSideAccess.ThreadAccess = TOW;
-                    TOW.SampleAccess = "^";
+                TOW.SetLefTandRightCommonlySide(Node.CopyNewTree(Node.RightSideAccess), TOW.CopyNewTree(TOW));
+                TOW.LeftSideAccess.ThreadAccess = TOW;
+                TOW.RightSideAccess.ThreadAccess = TOW;
+                TOW.SampleAccess = "^";
 
-                    AddToTree.Tree C = new AddToTree.Tree("C", false);
+                AddToTree.Tree C = new AddToTree.Tree("C", false);
 
-                    /*PTHREE.SetLefTandRightCommonlySide(C.CopyNewTree(C), Derivasion.DerivasionOfFX(Node.CopyNewTree(Node.RightSideAccess)));
-                    PTHREE.LeftSideAccess.ThreadAccess = PTHREE;
-                    PTHREE.RightSideAccess.ThreadAccess = PTHREE;
-                    PTHREE.SampleAccess = "*";
-                    */
-                    
-                    UIS.SetLableValue(UIS.label17, "Derivtion Of G(X).");
-                    PTHREE = Derivasion.DerivasionOfFX(Node.RightSideAccess.CopyNewTree(Node.RightSideAccess), ref UIS);
+                /*PTHREE.SetLefTandRightCommonlySide(C.CopyNewTree(C), Derivasion.DerivasionOfFX(Node.CopyNewTree(Node.RightSideAccess)));
+                PTHREE.LeftSideAccess.ThreadAccess = PTHREE;
+                PTHREE.RightSideAccess.ThreadAccess = PTHREE;
+                PTHREE.SampleAccess = "*";
+                */
 
-                    PTHREE.SetLefTandRightCommonlySide(PTHREE.CopyNewTree(PTHREE),TOW.CopyNewTree(TOW));
-                    PTHREE.LeftSideAccess.ThreadAccess = PTHREE;
-                    PTHREE.RightSideAccess.ThreadAccess = PTHREE;
-                    PTHREE.SampleAccess = "/";
+                UIS.SetLableValue(UIS.label17, "Derivtion Of G(X).");
+                PTHREE = Derivasion.DerivasionOfFX(Node.RightSideAccess.CopyNewTree(Node.RightSideAccess), ref UIS);
 
-                    PTHREE = Simplifier.SimplifierFx(PTHREE, ref UIS);
+                PTHREE.SetLefTandRightCommonlySide(PTHREE.CopyNewTree(PTHREE), TOW.CopyNewTree(TOW));
+                PTHREE.LeftSideAccess.ThreadAccess = PTHREE;
+                PTHREE.RightSideAccess.ThreadAccess = PTHREE;
+                PTHREE.SampleAccess = "/";
 
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                PTHREE = Simplifier.SimplifierFx(PTHREE, ref UIS);
 
-                    PTOW.SetLefTandRightCommonlySide(PTOW.CopyNewTree(PTOW), TOW);
-                    PTOW.LeftSideAccess.ThreadAccess = PTOW;
-                    PTOW.RightSideAccess.ThreadAccess = PTOW;
-                    PTOW.SampleAccess = "/";
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                PTOW.SetLefTandRightCommonlySide(PTOW.CopyNewTree(PTOW), TOW);
+                PTOW.LeftSideAccess.ThreadAccess = PTOW;
+                PTOW.RightSideAccess.ThreadAccess = PTOW;
+                PTOW.SampleAccess = "/";
 
-                    //PTOW = Simplifier.SimplifierFx(PTOW, ref UIS);
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                //PTOW = Simplifier.SimplifierFx(PTOW, ref UIS);
 
-                    AddToTree.Tree HOLDERONE = new AddToTree.Tree(null, false);
-                    AddToTree.Tree HOLDERTOW = new AddToTree.Tree(null, false);
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-
-                    HOLDERONE = INTEGRALS.DELETEFromTreeFirstNode();
-                    HOLDERTOW = INTEGRALS.DELETEFromTreeFirstNode();
+                AddToTree.Tree HOLDERONE = new AddToTree.Tree(null, false);
+                AddToTree.Tree HOLDERTOW = new AddToTree.Tree(null, false);
 
 
+                HOLDERONE = INTEGRALS.DELETEFromTreeFirstNode();
+                HOLDERTOW = INTEGRALS.DELETEFromTreeFirstNode();
 
-                    if (((EqualToObject.IsEqualWithOutThreadConsiderationCommonly(PTOW.RightSideAccess,HOLDERTOW.RightSideAccess))&&((HOLDERTOW.SampleAccess == PTOW.SampleAccess))&&(IS.IsNumber(HOLDERTOW.LeftSideAccess.SampleAccess))&&(IS.IsNumber(PTOW.LeftSideAccess.SampleAccess)))||((EqualToObject.IsEqualWithOutThreadConsiderationCommonly(PTOW,HOLDERTOW))))                        
-                    {
-                        INTEGRALS.ADDToTree(HOLDERTOW);
-                        INTEGRALS.ADDToTree(HOLDERONE);
-                    }
-                    else
-                    {
-                        INTEGRALS.ADDToTree(HOLDERTOW);
-                        INTEGRALS.ADDToTree(HOLDERONE);
 
-                        HOLDE = UIS.progressBar2.Value;
 
-                        PTOW = ChangeFunction.ChangeFunctionFx(PTOW,ref UIS);
-
-                        PTOW = Integral.IntegralCalculator(PTOW.CopyNewTree(PTOW), ref UIS);
-
-                        UIS.SetProgressValue(UIS.progressBar2, HOLDE);
-                    }
-                    if (((EqualToObject.IsEqualWithOutThreadConsiderationCommonly(PTOW.RightSideAccess,HOLDERTOW.RightSideAccess))&&((HOLDERTOW.SampleAccess == PTOW.SampleAccess))&&(IS.IsNumber(HOLDERTOW.LeftSideAccess.SampleAccess))&&(IS.IsNumber(PTOW.LeftSideAccess.SampleAccess)))||((EqualToObject.IsEqualWithOutThreadConsiderationCommonly(PTOW,HOLDERTOW))))                        
-                    {                    
-                        Dummy.SetLefTandRightCommonlySide(C,PONE);
-                        Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                        Dummy.RightSideAccess.ThreadAccess = Dummy;
-                        Dummy.SampleAccess = "*";
-                        FDeviosionByG.ADDToTree(Dummy);
-                    }
-                    else
-                    {                        
-                        Dummy.SetLefTandRightCommonlySide(PONE,PTOW);
-                        Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                        Dummy.RightSideAccess.ThreadAccess = Dummy;
-                        Dummy.SampleAccess = "+";
-                    }
-
-                    Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
-
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                if (((EqualToObject.IsEqualWithOutThreadConsiderationCommonly(PTOW.RightSideAccess, HOLDERTOW.RightSideAccess)) && ((HOLDERTOW.SampleAccess == PTOW.SampleAccess)) && (IS.IsNumber(HOLDERTOW.LeftSideAccess.SampleAccess)) && (IS.IsNumber(PTOW.LeftSideAccess.SampleAccess))) || ((EqualToObject.IsEqualWithOutThreadConsiderationCommonly(PTOW, HOLDERTOW))))
+                {
+                    INTEGRALS.ADDToTree(HOLDERTOW);
+                    INTEGRALS.ADDToTree(HOLDERONE);
+                }
+                else
+                {
+                    INTEGRALS.ADDToTree(HOLDERTOW);
+                    INTEGRALS.ADDToTree(HOLDERONE);
 
                     HOLDE = UIS.progressBar2.Value;
 
-                    Dummy.SetLefTandRightCommonlySide(Dummy.CopyNewTree(Dummy),Integral.IntegralCalculator(PTHREE.CopyNewTree(PTHREE),ref UIS));
+                    PTOW = ChangeFunction.ChangeFunctionFx(PTOW, ref UIS);
+
+                    PTOW = Integral.IntegralCalculator(PTOW.CopyNewTree(PTOW), ref UIS);
+
+                    UIS.SetProgressValue(UIS.progressBar2, HOLDE);
+                }
+                if (((EqualToObject.IsEqualWithOutThreadConsiderationCommonly(PTOW.RightSideAccess, HOLDERTOW.RightSideAccess)) && ((HOLDERTOW.SampleAccess == PTOW.SampleAccess)) && (IS.IsNumber(HOLDERTOW.LeftSideAccess.SampleAccess)) && (IS.IsNumber(PTOW.LeftSideAccess.SampleAccess))) || ((EqualToObject.IsEqualWithOutThreadConsiderationCommonly(PTOW, HOLDERTOW))))
+                {
+                    Dummy.SetLefTandRightCommonlySide(C, PONE);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                    Dummy.SampleAccess = "*";
+                    FDeviosionByG.ADDToTree(Dummy);
+                }
+                else
+                {
+                    Dummy.SetLefTandRightCommonlySide(PONE, PTOW);
                     Dummy.LeftSideAccess.ThreadAccess = Dummy;
                     Dummy.RightSideAccess.ThreadAccess = Dummy;
                     Dummy.SampleAccess = "+";
+                }
 
-                    UIS.SetProgressValue(UIS.progressBar2, HOLDE);
-/*                    AddToTree.Tree PONE = new AddToTree.Tree(null, false);
-                    AddToTree.Tree PTOW = new AddToTree.Tree("/", false);
-                    AddToTree.Tree ONE = new AddToTree.Tree("1", false);
-                    
-                    AddToTree.Tree DummyONE = new AddToTree.Tree("*", false);
-                    AddToTree.Tree DummyTOW = new AddToTree.Tree("*", false);
-                    
-                    PONE = Node.CopyNewTree(Node.LeftSideAccess);
+                Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
 
-                    UIS.progressBar2.Value=UIS.progressBar2.Value+INCREASE;
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                    PTOW.SetLefTandRightCommonlySide(ONE,Node.CopyNewTree(Node.RightSideAccess));
-                    PTOW.LeftSideAccess.ThreadAccess = PTOW;
-                    PTOW.RightSideAccess.ThreadAccess = PTOW;
-                    
-                    //UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                HOLDE = UIS.progressBar2.Value;
 
-                    
+                Dummy.SetLefTandRightCommonlySide(Dummy.CopyNewTree(Dummy), Integral.IntegralCalculator(PTHREE.CopyNewTree(PTHREE), ref UIS));
+                Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                Dummy.RightSideAccess.ThreadAccess = Dummy;
+                Dummy.SampleAccess = "+";
 
+                UIS.SetProgressValue(UIS.progressBar2, HOLDE);
+                /*                    AddToTree.Tree PONE = new AddToTree.Tree(null, false);
+                                    AddToTree.Tree PTOW = new AddToTree.Tree("/", false);
+                                    AddToTree.Tree ONE = new AddToTree.Tree("1", false);
 
-                    //PTOW = Integral.IntegralCalculator(PTOW, ref UIS);
+                                    AddToTree.Tree DummyONE = new AddToTree.Tree("*", false);
+                                    AddToTree.Tree DummyTOW = new AddToTree.Tree("*", false);
 
-                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                                    PONE = Node.CopyNewTree(Node.LeftSideAccess);
 
-                    PTOW.SetLefTandRightCommonlySide(X.CopyNewTree(X),PTOW.CopyNewTree(PTOW));
-                    PTOW.SampleAccess = "*";
-                    PTOW.LeftSideAccess.ThreadAccess = PTOW;
-                    PTOW.RightSideAccess.ThreadAccess = PTOW;
+                                    UIS.progressBar2.Value=UIS.progressBar2.Value+INCREASE;
 
-                    AddToTree.Tree GPRIN = new AddToTree.Tree(null, false);
-                    AddToTree.Tree GPOWERTOW = new AddToTree.Tree("^", false);
+                                    PTOW.SetLefTandRightCommonlySide(ONE,Node.CopyNewTree(Node.RightSideAccess));
+                                    PTOW.LeftSideAccess.ThreadAccess = PTOW;
+                                    PTOW.RightSideAccess.ThreadAccess = PTOW;
 
-                    GPRIN=Derivasion.DerivasionOfFX(Node.RightSideAccess);
-
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
-
-                    GPRIN.SetLefTandRightCommonlySide(GPRIN.CopyNewTree(GPRIN),X);
-                    GPRIN.SampleAccess = "*";
-                    GPRIN.LeftSideAccess.ThreadAccess = GPRIN;
-                    GPRIN.RightSideAccess.ThreadAccess = GPRIN;
-
-                    AddToTree.Tree TOW = new AddToTree.Tree("2", false);
-
-                    GPOWERTOW.SetLefTandRightCommonlySide(Node.CopyNewTree(Node.RightSideAccess),TOW);
-                    GPOWERTOW.LeftSideAccess.ThreadAccess = GPOWERTOW;
-                    GPOWERTOW.RightSideAccess.ThreadAccess = GPOWERTOW;
-
-                    AddToTree.Tree GINTEGRAL = new AddToTree.Tree("/", false);
-
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
-
-                    GINTEGRAL.SetLefTandRightCommonlySide(GPRIN,GPOWERTOW);
-                    GINTEGRAL.LeftSideAccess.ThreadAccess = GINTEGRAL;
-                    GINTEGRAL.RightSideAccess.ThreadAccess = GINTEGRAL;
-
-                    GINTEGRAL = Simplifier.SimplifierFx(GINTEGRAL, ref UIS);
-
-                    int HOLDE = UIS.progressBar2.Value;
-
-                    GINTEGRAL = Integral.IntegralCalculator(GINTEGRAL, ref UIS);
-
-                    UIS.progressBar2.Value = HOLDE;
-
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
-
-                    PTOW.SetLefTandRightCommonlySide(PTOW.CopyNewTree(PTOW),GINTEGRAL);
-                    PTOW.LeftSideAccess.ThreadAccess = PTOW;                    
-                    PTOW.RightSideAccess.ThreadAccess = PTOW;
-                    PTOW.SampleAccess = "+";
-
-                    
-
-                    UIS.progressBar2.Value=UIS.progressBar2.Value+INCREASE;
-
-                    DummyONE.SetLefTandRightCommonlySide(PONE.CopyNewTree(PONE),PTOW.CopyNewTree(PTOW));
-                    DummyONE.LeftSideAccess.ThreadAccess = DummyONE;
-                    DummyONE.RightSideAccess.ThreadAccess = DummyONE;
-
-                    
-
-                    DummyTOW.SetLefTandRightCommonlySide(Derivasion.DerivasionOfFX(PONE),PTOW);
-                    DummyTOW.LeftSideAccess.ThreadAccess = DummyTOW;
-                    DummyTOW.RightSideAccess.ThreadAccess = DummyTOW;
-
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
-
-                    DummyTOW = Simplifier.SimplifierFx(DummyTOW,ref UIS);
-
-                    
-
-                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
-
-                    HOLDE = UIS.progressBar2.Value;
-
-                    DummyTOW = Integral.IntegralCalculator(DummyTOW,ref UIS);
-
-                    UIS.progressBar2.Value=HOLDE;
-
-                    Dummy.SampleAccess = "-";
-                    Dummy.SetLefTandRightCommonlySide(DummyONE,DummyTOW);
-                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                    Dummy.RightSideAccess.ThreadAccess = Dummy;
-
- */
-                    UIS.SetProgressValue(UIS.progressBar2, 2147483647);
-
-            /*        AddToTree.Tree INTF    = new AddToTree.Tree(null, false);
-                    AddToTree.Tree GPRIN   = new AddToTree.Tree(null, false);
-                    AddToTree.Tree GONE = new AddToTree.Tree(null, false);
-                    AddToTree.Tree GTOW = new AddToTree.Tree(null, false);
-                    AddToTree.Tree GPOWERT = new AddToTree.Tree("^", false);
-                    AddToTree.Tree NUM     = new AddToTree.Tree("2", false);
-                    AddToTree.Tree INTGONE = new AddToTree.Tree(null, false);
-                    AddToTree.Tree INTGTOW = new AddToTree.Tree(null, false);
-
-                    AddToTree.Tree DONETX = new AddToTree.Tree("/", false);
-                    AddToTree.Tree DTOW = new AddToTree.Tree("/", false);
-                    
-                    INTF= Integral.IntegralCalculator(Node.LeftSideAccess,ref UIS);
-                    GONE = Node.CopyNewTree(Node.RightSideAccess);
-                    GTOW = Node.CopyNewTree(Node.RightSideAccess);
-                    
-                    DONETX.SetLefTandRightCommonlySide(INTF,GONE);
-                    DONETX.LeftSideAccess.ThreadAccess = DONETX;
-                    DONETX.RightSideAccess.ThreadAccess = DONETX;
-
-                    GPOWERT.SetLefTandRightCommonlySide(GTOW,NUM);
-                    GPOWERT.LeftSideAccess.ThreadAccess = GPOWERT;
-                    GPOWERT.RightSideAccess.ThreadAccess = GPOWERT;
-
-                    DTOW.SetLefTandRightCommonlySide(GPRIN, GPOWERT);
-                    DTOW.LeftSideAccess.ThreadAccess = DTOW;
-                    DTOW.RightSideAccess.ThreadAccess = DTOW;
-
-                    DTOW = Integral.IntegralCalculator(DTOW,ref UIS);
-
-                    Dummy.SampleAccess = "-";
-                    Dummy.SetLefTandRightCommonlySide(DONETX,DTOW);
-                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                    Dummy.RightSideAccess.ThreadAccess = Dummy;
-
-                    */
+                                    //UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
 
 
-                    /*AddToTreeTreeLinkList STORAGEOfIntegeralSeriece = new AddToTreeTreeLinkList();
-                    AddToTreeTreeLinkList STORAGEOfIntegeralSeriecePartOne = new AddToTreeTreeLinkList();
-                    AddToTreeTreeLinkList STORAGEOfIntegeralSeriecePartTow = new AddToTreeTreeLinkList();
-                    AddToTree.Tree Holder = new AddToTree.Tree(null, false);
-                    AddToTree.Tree HolderPartOne = new AddToTree.Tree(null, false);
-                    AddToTree.Tree HolderPartTow = new AddToTree.Tree(null, false);
 
-                    int i = 0;
-                    while (true)
-                    {
-                         HolderPartOne = Integral.XPowerIMulFXPerGXDerI(i, Node.LeftSideAccess, Node.RightSideAccess);
 
-                        if (HolderPartOne.SampleAccess != null)                      
-                            STORAGEOfIntegeralSeriecePartOne.ADDToTree(HolderPartOne.CopyNewTree(HolderPartOne));                        
+                                    //PTOW = Integral.IntegralCalculator(PTOW, ref UIS);
 
-                        if (HolderPartTow.SampleAccess != null)
-                        {
-                            HolderPartTow = Integral.XMulDerivisionOfFx(i, Node.LeftSideAccess, Node.RightSideAccess);
-                            STORAGEOfIntegeralSeriecePartTow.ADDToTree(HolderPartTow.CopyNewTree(HolderPartTow));
-                        }
-                        if (HolderPartOne.SampleAccess != null)
-                        {if (HolderPartTow.SampleAccess != null)
-                        {
-                                Holder.SetLefTandRightCommonlySide(HolderPartOne.CopyNewTree(HolderPartOne), HolderPartTow.CopyNewTree(HolderPartTow));
-                                Holder.SampleAccess = "+";
-                                Holder.LeftSideAccess.LeftSideAccess = Holder;
-                                Holder.RightSideAccess.ThreadAccess = Holder;
-                        }
-                            else
-                                Holder = HolderPartOne;
-                        }
-                        else
-                            if (HolderPartTow.SampleAccess != null)                        
-                                Holder = HolderPartTow;
-                            
-                        if (Holder.SampleAccess != null)
-                            STORAGEOfIntegeralSeriece.ADDToTree(Holder.CopyNewTree(Holder));
-                        else
-                            break;
-                        i++;
-                    }
-                    Dummy =STORAGEOfIntegeralSeriece.DELETEFromTreeFirstNode();
-                    if(Dummy!=null)
-                    do
-                    {
-                        Holder = STORAGEOfIntegeralSeriece.DELETEFromTreeFirstNode();
-                        if (Holder != null)
-                        {
-                            Dummy.SetLefTandRightCommonlySide(Holder.CopyNewTree(Holder), Dummy.CopyNewTree(Dummy));
-                            Dummy.SampleAccess = "+";
-                            Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                            Dummy.RightSideAccess.ThreadAccess = Dummy;
-                        }
-                    }while(Holder!=null);
-                    */
-                   }
-                else
-                    if (Node.SampleAccess == "+")
-                    {
-                        UIS.SetLableValue(UIS.label17, "Integral F(X)+G(X).");
+                                    AddToTree.Tree X = new AddToTree.Tree("x", false);
 
-                        INCREASE = INCREASE / 2;
+                                    PTOW.SetLefTandRightCommonlySide(X.CopyNewTree(X),PTOW.CopyNewTree(PTOW));
+                                    PTOW.SampleAccess = "*";
+                                    PTOW.LeftSideAccess.ThreadAccess = PTOW;
+                                    PTOW.RightSideAccess.ThreadAccess = PTOW;
 
-                        FMulAtG.ADDToTree(null);
-                        FDeviosionByG.ADDToTree(null);
+                                    AddToTree.Tree GPRIN = new AddToTree.Tree(null, false);
+                                    AddToTree.Tree GPOWERTOW = new AddToTree.Tree("^", false);
 
-                        UIS.SetProgressValue(UIS.progressBar2, 0);
+                                    GPRIN=Derivasion.DerivasionOfFX(Node.RightSideAccess);
 
-                        AddToTree.Tree Left = Node.LeftSideAccess;
-                        Left.ThreadAccess = null;
-                        AddToTree.Tree Right = Node.RightSideAccess;
-                        Right.ThreadAccess = null;
+                                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
 
-                        int Holde = UIS.progressBar2.Value;
+                                    GPRIN.SetLefTandRightCommonlySide(GPRIN.CopyNewTree(GPRIN),X);
+                                    GPRIN.SampleAccess = "*";
+                                    GPRIN.LeftSideAccess.ThreadAccess = GPRIN;
+                                    GPRIN.RightSideAccess.ThreadAccess = GPRIN;
 
-                        Queficient = (float)1.0;
-                        
-                        Left = Integral.IntegralCalculator(Node.LeftSideAccess.CopyNewTree(Node.LeftSideAccess),ref UIS);
-                        
-                        UIS.SetLableValue(UIS.label17, "Integral F(X)+G(X).");
+                                    AddToTree.Tree TOW = new AddToTree.Tree("2", false);
 
-                        UIS.SetProgressValue(UIS.progressBar2, Holde);
+                                    GPOWERTOW.SetLefTandRightCommonlySide(Node.CopyNewTree(Node.RightSideAccess),TOW);
+                                    GPOWERTOW.LeftSideAccess.ThreadAccess = GPOWERTOW;
+                                    GPOWERTOW.RightSideAccess.ThreadAccess = GPOWERTOW;
 
-                        UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                                    AddToTree.Tree GINTEGRAL = new AddToTree.Tree("/", false);
 
-                        UIS.SetProgressValue(UIS.progressBar2, Holde);
+                                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
 
-                        Queficient = (float)1.0;
-                        Right = Integral.IntegralCalculator(Node.RightSideAccess.CopyNewTree(Node.RightSideAccess),ref UIS);
+                                    GINTEGRAL.SetLefTandRightCommonlySide(GPRIN,GPOWERTOW);
+                                    GINTEGRAL.LeftSideAccess.ThreadAccess = GINTEGRAL;
+                                    GINTEGRAL.RightSideAccess.ThreadAccess = GINTEGRAL;
 
-                        UIS.SetLableValue(UIS.label17, "Integral F(X)+G(X).");
+                                    GINTEGRAL = Simplifier.SimplifierFx(GINTEGRAL, ref UIS);
 
-                        UIS.SetProgressValue(UIS.progressBar2, Holde);
+                                    int HOLDE = UIS.progressBar2.Value;
 
-                        if (Right == null)
-                            return Left;
+                                    GINTEGRAL = Integral.IntegralCalculator(GINTEGRAL, ref UIS);
 
-                        Dummy.SampleAccess = "+";
-                        Dummy.SetLefTandRightCommonlySide(Left,Right);
+                                    UIS.progressBar2.Value = HOLDE;
+
+                                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+
+                                    PTOW.SetLefTandRightCommonlySide(PTOW.CopyNewTree(PTOW),GINTEGRAL);
+                                    PTOW.LeftSideAccess.ThreadAccess = PTOW;                    
+                                    PTOW.RightSideAccess.ThreadAccess = PTOW;
+                                    PTOW.SampleAccess = "+";
+
+
+
+                                    UIS.progressBar2.Value=UIS.progressBar2.Value+INCREASE;
+
+                                    DummyONE.SetLefTandRightCommonlySide(PONE.CopyNewTree(PONE),PTOW.CopyNewTree(PTOW));
+                                    DummyONE.LeftSideAccess.ThreadAccess = DummyONE;
+                                    DummyONE.RightSideAccess.ThreadAccess = DummyONE;
+
+
+
+                                    DummyTOW.SetLefTandRightCommonlySide(Derivasion.DerivasionOfFX(PONE),PTOW);
+                                    DummyTOW.LeftSideAccess.ThreadAccess = DummyTOW;
+                                    DummyTOW.RightSideAccess.ThreadAccess = DummyTOW;
+
+                                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+
+                                    DummyTOW = Simplifier.SimplifierFx(DummyTOW,ref UIS);
+
+
+
+                                    UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+
+                                    HOLDE = UIS.progressBar2.Value;
+
+                                    DummyTOW = Integral.IntegralCalculator(DummyTOW,ref UIS);
+
+                                    UIS.progressBar2.Value=HOLDE;
+
+                                    Dummy.SampleAccess = "-";
+                                    Dummy.SetLefTandRightCommonlySide(DummyONE,DummyTOW);
+                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+
+                 */
+                UIS.SetProgressValue(UIS.progressBar2, 2147483647);
+
+                /*        AddToTree.Tree INTF    = new AddToTree.Tree(null, false);
+                        AddToTree.Tree GPRIN   = new AddToTree.Tree(null, false);
+                        AddToTree.Tree GONE = new AddToTree.Tree(null, false);
+                        AddToTree.Tree GTOW = new AddToTree.Tree(null, false);
+                        AddToTree.Tree GPOWERT = new AddToTree.Tree("^", false);
+                        AddToTree.Tree NUM     = new AddToTree.Tree("2", false);
+                        AddToTree.Tree INTGONE = new AddToTree.Tree(null, false);
+                        AddToTree.Tree INTGTOW = new AddToTree.Tree(null, false);
+
+                        AddToTree.Tree DONETX = new AddToTree.Tree("/", false);
+                        AddToTree.Tree DTOW = new AddToTree.Tree("/", false);
+
+                        INTF= Integral.IntegralCalculator(Node.LeftSideAccess,ref UIS);
+                        GONE = Node.CopyNewTree(Node.RightSideAccess);
+                        GTOW = Node.CopyNewTree(Node.RightSideAccess);
+
+                        DONETX.SetLefTandRightCommonlySide(INTF,GONE);
+                        DONETX.LeftSideAccess.ThreadAccess = DONETX;
+                        DONETX.RightSideAccess.ThreadAccess = DONETX;
+
+                        GPOWERT.SetLefTandRightCommonlySide(GTOW,NUM);
+                        GPOWERT.LeftSideAccess.ThreadAccess = GPOWERT;
+                        GPOWERT.RightSideAccess.ThreadAccess = GPOWERT;
+
+                        DTOW.SetLefTandRightCommonlySide(GPRIN, GPOWERT);
+                        DTOW.LeftSideAccess.ThreadAccess = DTOW;
+                        DTOW.RightSideAccess.ThreadAccess = DTOW;
+
+                        DTOW = Integral.IntegralCalculator(DTOW,ref UIS);
+
+                        Dummy.SampleAccess = "-";
+                        Dummy.SetLefTandRightCommonlySide(DONETX,DTOW);
                         Dummy.LeftSideAccess.ThreadAccess = Dummy;
                         Dummy.RightSideAccess.ThreadAccess = Dummy;
 
-                        UIS.SetProgressValue(UIS.progressBar2,  2147483647);
-                //        Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
-                        return Dummy;
+                        */
 
+
+                /*AddToTreeTreeLinkList STORAGEOfIntegeralSeriece = new AddToTreeTreeLinkList();
+                AddToTreeTreeLinkList STORAGEOfIntegeralSeriecePartOne = new AddToTreeTreeLinkList();
+                AddToTreeTreeLinkList STORAGEOfIntegeralSeriecePartTow = new AddToTreeTreeLinkList();
+                AddToTree.Tree Holder = new AddToTree.Tree(null, false);
+                AddToTree.Tree HolderPartOne = new AddToTree.Tree(null, false);
+                AddToTree.Tree HolderPartTow = new AddToTree.Tree(null, false);
+
+                int i = 0;
+                while (true)
+                {
+                     HolderPartOne = Integral.XPowerIMulFXPerGXDerI(i, Node.LeftSideAccess, Node.RightSideAccess);
+
+                    if (HolderPartOne.SampleAccess != null)                      
+                        STORAGEOfIntegeralSeriecePartOne.ADDToTree(HolderPartOne.CopyNewTree(HolderPartOne));                        
+
+                    if (HolderPartTow.SampleAccess != null)
+                    {
+                        HolderPartTow = Integral.XMulDerivisionOfFx(i, Node.LeftSideAccess, Node.RightSideAccess);
+                        STORAGEOfIntegeralSeriecePartTow.ADDToTree(HolderPartTow.CopyNewTree(HolderPartTow));
+                    }
+                    if (HolderPartOne.SampleAccess != null)
+                    {if (HolderPartTow.SampleAccess != null)
+                    {
+                            Holder.SetLefTandRightCommonlySide(HolderPartOne.CopyNewTree(HolderPartOne), HolderPartTow.CopyNewTree(HolderPartTow));
+                            Holder.SampleAccess = "+";
+                            Holder.LeftSideAccess.LeftSideAccess = Holder;
+                            Holder.RightSideAccess.ThreadAccess = Holder;
+                    }
+                        else
+                            Holder = HolderPartOne;
                     }
                     else
-                        if (Node.SampleAccess == "-")
-                        {
-                            UIS.SetLableValue(UIS.label17, "Integral F(X)-G(X).");
-                        FDeviosionByG.ADDToTree(null);
-                        FMulAtG.ADDToTree(null);
+                        if (HolderPartTow.SampleAccess != null)                        
+                            Holder = HolderPartTow;
 
-                        INCREASE = INCREASE / 2;
-
-                        UIS.SetProgressValue(UIS.progressBar2, 0);
-
-                        AddToTree.Tree Left = Node.LeftSideAccess;
-                        Left.ThreadAccess = null;
-                        AddToTree.Tree Right = Node.RightSideAccess;
-                        Right.ThreadAccess = null;
-
-                        int Holde = UIS.progressBar2.Value;
-
-                        Queficient = (float)1.0;
-
-                        Left = Integral.IntegralCalculator(Node.LeftSideAccess.CopyNewTree(Node.LeftSideAccess),ref UIS);
-
-                        UIS.SetLableValue(UIS.label17, "Integral F(X)-G(X).");
-
-                        UIS.SetProgressValue(UIS.progressBar2, Holde);
-
-                        UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
-
-                        Holde = UIS.progressBar2.Value;
-
-                        Queficient = (float)1.0;
-
-                        Right = Integral.IntegralCalculator(Node.RightSideAccess.CopyNewTree(Node.RightSideAccess), ref UIS);
-
-                        UIS.SetLableValue(UIS.label17, "Integral F(X)-G(X).");
-
-                        UIS.SetProgressValue(UIS.progressBar2, Holde);
-                        if (Right == null)
-                            return Left;
-
-                        Dummy.SampleAccess = "-";                        
-                        Dummy.SetLefTandRightCommonlySide(Left,Right);
+                    if (Holder.SampleAccess != null)
+                        STORAGEOfIntegeralSeriece.ADDToTree(Holder.CopyNewTree(Holder));
+                    else
+                        break;
+                    i++;
+                }
+                Dummy =STORAGEOfIntegeralSeriece.DELETEFromTreeFirstNode();
+                if(Dummy!=null)
+                do
+                {
+                    Holder = STORAGEOfIntegeralSeriece.DELETEFromTreeFirstNode();
+                    if (Holder != null)
+                    {
+                        Dummy.SetLefTandRightCommonlySide(Holder.CopyNewTree(Holder), Dummy.CopyNewTree(Dummy));
+                        Dummy.SampleAccess = "+";
                         Dummy.LeftSideAccess.ThreadAccess = Dummy;
                         Dummy.RightSideAccess.ThreadAccess = Dummy;
-                        Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
+                    }
+                }while(Holder!=null);
+                */
+            }
+            else
+                    if (Node.SampleAccess == "+")
+            {
+                UIS.SetLableValue(UIS.label17, "Integral F(X)+G(X).");
 
-                        UIS.progressBar2.Value = 2147483647;
-                        return Dummy;
-                        }
-                        else
-                            if (Node.SampleAccess == "^" )
-                            {
+                INCREASE = INCREASE / 2;
+
+                FMulAtG.ADDToTree(null);
+                FDeviosionByG.ADDToTree(null);
+
+                UIS.SetProgressValue(UIS.progressBar2, 0);
+
+                AddToTree.Tree Left = Node.LeftSideAccess;
+                Left.ThreadAccess = null;
+                AddToTree.Tree Right = Node.RightSideAccess;
+                Right.ThreadAccess = null;
+
+                int Holde = UIS.progressBar2.Value;
+
+                Queficient = (float)1.0;
+
+                Left = Integral.IntegralCalculator(Node.LeftSideAccess.CopyNewTree(Node.LeftSideAccess), ref UIS);
+
+                UIS.SetLableValue(UIS.label17, "Integral F(X)+G(X).");
+
+                UIS.SetProgressValue(UIS.progressBar2, Holde);
+
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
+
+                UIS.SetProgressValue(UIS.progressBar2, Holde);
+
+                Queficient = (float)1.0;
+                Right = Integral.IntegralCalculator(Node.RightSideAccess.CopyNewTree(Node.RightSideAccess), ref UIS);
+
+                UIS.SetLableValue(UIS.label17, "Integral F(X)+G(X).");
+
+                UIS.SetProgressValue(UIS.progressBar2, Holde);
+
+                if (Right == null)
+                    return Left;
+
+                Dummy.SampleAccess = "+";
+                Dummy.SetLefTandRightCommonlySide(Left, Right);
+                Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                Dummy.RightSideAccess.ThreadAccess = Dummy;
+
+                UIS.SetProgressValue(UIS.progressBar2, 2147483647);
+                //        Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
+                return Dummy;
+
+            }
+            else
+                        if (Node.SampleAccess == "-")
+            {
+                UIS.SetLableValue(UIS.label17, "Integral F(X)-G(X).");
+                FDeviosionByG.ADDToTree(null);
+                FMulAtG.ADDToTree(null);
+
+                INCREASE = INCREASE / 2;
+
+                UIS.SetProgressValue(UIS.progressBar2, 0);
+
+                AddToTree.Tree Left = Node.LeftSideAccess;
+                Left.ThreadAccess = null;
+                AddToTree.Tree Right = Node.RightSideAccess;
+                Right.ThreadAccess = null;
+
+                int Holde = UIS.progressBar2.Value;
+
+                Queficient = (float)1.0;
+
+                Left = Integral.IntegralCalculator(Node.LeftSideAccess.CopyNewTree(Node.LeftSideAccess), ref UIS);
+
+                UIS.SetLableValue(UIS.label17, "Integral F(X)-G(X).");
+
+                UIS.SetProgressValue(UIS.progressBar2, Holde);
+
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
+
+                Holde = UIS.progressBar2.Value;
+
+                Queficient = (float)1.0;
+
+                Right = Integral.IntegralCalculator(Node.RightSideAccess.CopyNewTree(Node.RightSideAccess), ref UIS);
+
+                UIS.SetLableValue(UIS.label17, "Integral F(X)-G(X).");
+
+                UIS.SetProgressValue(UIS.progressBar2, Holde);
+                if (Right == null)
+                    return Left;
+
+                Dummy.SampleAccess = "-";
+                Dummy.SetLefTandRightCommonlySide(Left, Right);
+                Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                Dummy.RightSideAccess.ThreadAccess = Dummy;
+                Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
+
+                UIS.progressBar2.Value = 2147483647;
+                return Dummy;
+            }
+            else
+                            if (Node.SampleAccess == "^")
+            {
                 UIS.SetLableValue(UIS.label17, "Integral F(X)^G(X).");
-                                INCREASE = INCREASE / 6;
+                INCREASE = INCREASE / 6;
 
-                                FMulAtG.ADDToTree(Node.CopyNewTree(Node));
-                                FDeviosionByG.ADDToTree(null);
+                FMulAtG.ADDToTree(Node.CopyNewTree(Node));
+                FDeviosionByG.ADDToTree(null);
 
-                                UIS.SetProgressValue(UIS.progressBar2, 0);
+                UIS.SetProgressValue(UIS.progressBar2, 0);
 
-                                //AddToTree.Tree FONETX = Node.CopyNewTree(Node.LeftSideAccess);
-                                AddToTree.Tree FONETX = Node.CopyNewTree(Node.LeftSideAccess);
-                                //AddToTree.Tree FTOWTX = Node.CopyNewTree(Node.LeftSideAccess);
-                                AddToTree.Tree FTOWTX = Node.CopyNewTree(Node.LeftSideAccess);
-                                //AddToTree.Tree FTHREE = Node.CopyNewTree(Node.LeftSideAccess);
-                                AddToTree.Tree FTHREE = Node.CopyNewTree(Node.LeftSideAccess);
-                                AddToTree.Tree FPRIN = Derivasion.DerivasionOfFX(Node.LeftSideAccess.CopyNewTree(Node.LeftSideAccess), ref UIS);
-                                //AddToTree.Tree G = Node.CopyNewTree(Node.RightSideAccess);
-                                AddToTree.Tree G = Node.CopyNewTree(Node.RightSideAccess);
-                                //AddToTree.Tree FGONE = Node.CopyNewTree(Node);
-                                AddToTree.Tree FGONE = Node.CopyNewTree(Node);
-                                //AddToTree.Tree FGTOW = Node.CopyNewTree(Node);
-                                AddToTree.Tree FGTOW = Node.CopyNewTree(Node);
+                //AddToTree.Tree FONETX = Node.CopyNewTree(Node.LeftSideAccess);
+                AddToTree.Tree FONETX = Node.CopyNewTree(Node.LeftSideAccess);
+                //AddToTree.Tree FTOWTX = Node.CopyNewTree(Node.LeftSideAccess);
+                AddToTree.Tree FTOWTX = Node.CopyNewTree(Node.LeftSideAccess);
+                //AddToTree.Tree FTHREE = Node.CopyNewTree(Node.LeftSideAccess);
+                AddToTree.Tree FTHREE = Node.CopyNewTree(Node.LeftSideAccess);
+                AddToTree.Tree FPRIN = Derivasion.DerivasionOfFX(Node.LeftSideAccess.CopyNewTree(Node.LeftSideAccess), ref UIS);
+                //AddToTree.Tree G = Node.CopyNewTree(Node.RightSideAccess);
+                AddToTree.Tree G = Node.CopyNewTree(Node.RightSideAccess);
+                //AddToTree.Tree FGONE = Node.CopyNewTree(Node);
+                AddToTree.Tree FGONE = Node.CopyNewTree(Node);
+                //AddToTree.Tree FGTOW = Node.CopyNewTree(Node);
+                AddToTree.Tree FGTOW = Node.CopyNewTree(Node);
 
                 AddToTree.Tree INTNODEPERFONE = new AddToTree.Tree("/", false);
                 AddToTree.Tree INTNODEPERTOW = new AddToTree.Tree("/", false);
@@ -1616,12 +1614,12 @@ namespace Formulas
 
                     }
                 }
-                                AddToTree.Tree MULONE = new AddToTree.Tree("*", false);
-                                AddToTree.Tree MULTOW = new AddToTree.Tree("*", false);
-                                AddToTree.Tree MULTHREE = new AddToTree.Tree("*", false);
-                                AddToTree.Tree MULFOUR = new AddToTree.Tree("*", false);
-                                AddToTree.Tree DIVONE = new AddToTree.Tree("/", false);
-                                AddToTree.Tree DIVTOW = new AddToTree.Tree("/", false);
+                AddToTree.Tree MULONE = new AddToTree.Tree("*", false);
+                AddToTree.Tree MULTOW = new AddToTree.Tree("*", false);
+                AddToTree.Tree MULTHREE = new AddToTree.Tree("*", false);
+                AddToTree.Tree MULFOUR = new AddToTree.Tree("*", false);
+                AddToTree.Tree DIVONE = new AddToTree.Tree("/", false);
+                AddToTree.Tree DIVTOW = new AddToTree.Tree("/", false);
 
                 INTNODEPERFONE.SetLefTandRightCommonlySide(FGONE, FONETX);
                 INTNODEPERFONE.LeftSideAccess.ThreadAccess = INTNODEPERFONE;
@@ -1663,45 +1661,45 @@ namespace Formulas
                 }    //ERROR279872387  :refer to page 218.
 
 
-                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                      //          INTNODEPERFONE = Simplifier.SimplifierFx(INTNODEPERFONE,ref UIS);
+                //          INTNODEPERFONE = Simplifier.SimplifierFx(INTNODEPERFONE,ref UIS);
 
-                                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                                stk.Push(IntegralSignPositive); 
-                                IntegralSignPositive = !IntegralSignPositive;
+                stk.Push(IntegralSignPositive);
+                IntegralSignPositive = !IntegralSignPositive;
 
-                              //  INTNODEPERFONE = Simplifier.SimplifierFx(INTNODEPERFONE, ref UIS);
+                //  INTNODEPERFONE = Simplifier.SimplifierFx(INTNODEPERFONE, ref UIS);
 
-                                INTNODEPERFONE = ChangeFunction.ChangeFunctionFx(INTNODEPERFONE,ref UIS);
-                                
-                                IntegralSignPositive=stk.Pop();
-                
-                                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                INTNODEPERFONE = ChangeFunction.ChangeFunctionFx(INTNODEPERFONE, ref UIS);
 
-                                //ERROR3170405060 :Refer to page 225.
+                IntegralSignPositive = stk.Pop();
 
-                                int HOLDE = UIS.progressBar2.Value;
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                                Queficient = (float)1.0;
+                //ERROR3170405060 :Refer to page 225.
+
+                int HOLDE = UIS.progressBar2.Value;
+
+                Queficient = (float)1.0;
                 //if (!IS.IsNumberNegative(Node.RightSideAccess.SampleAccess))
                 if (!FRact)
                     INTNODEPERFONE = Integral.IntegralCalculator(INTNODEPERFONE.CopyNewTree(INTNODEPERFONE), ref UIS);
 
-                                UIS.SetLableValue(UIS.label17, "Integral F(X)^G(X).");
+                UIS.SetLableValue(UIS.label17, "Integral F(X)^G(X).");
 
-                                //ERROR02323909 : The invalid error.refer to page 220.
-                                //LOCATION306070 :Refer top page 225.
+                //ERROR02323909 : The invalid error.refer to page 220.
+                //LOCATION306070 :Refer top page 225.
 
-                                UIS.SetProgressValue(UIS.progressBar2, HOLDE);
+                UIS.SetProgressValue(UIS.progressBar2, HOLDE);
 
-                                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                                INTNODEPERFONE = Simplifier.SimplifierFx(INTNODEPERFONE,ref UIS);
+                INTNODEPERFONE = Simplifier.SimplifierFx(INTNODEPERFONE, ref UIS);
 
-                                //ERRORCORECTION09119824 :The error may occured from here.
-                                INTNODEPERTOW = INTNODEPERFONE.CopyNewTree(INTNODEPERFONE);
+                //ERRORCORECTION09119824 :The error may occured from here.
+                INTNODEPERTOW = INTNODEPERFONE.CopyNewTree(INTNODEPERFONE);
                 if (!FRact)
                 {
                     MULONE.SetLefTandRightCommonlySide(FONETX, INTNODEPERFONE);
@@ -1716,21 +1714,21 @@ namespace Formulas
                 }
 
                 MULTOW.SetLefTandRightCommonlySide(FPRIN, INTNODEPERTOW);
-                    MULTOW.LeftSideAccess.ThreadAccess = MULTOW;
-                    MULTOW.RightSideAccess.ThreadAccess = MULTOW;
-               //ERRORCORECTION0921849823 :The number soud mul to minuse one.refer to page 221.
-                                /*AddToTree.Tree MIN = new AddToTree.Tree("1",false);
-                                MULTOW.SetLefTandRightCommonlySide(MULTOW.CopyNewTree(MULTOW),MIN);
-                                MULTOW.SampleAccess="-";
-                                MULTOW.LeftSideAccess.ThreadAccess = MULTOW;
-                                MULTOW.RightSideAccess.ThreadAccess = MULTOW;
-                                */
-                                //LOCATION307060 :Refer to page 227.
-                                //MULTOW = Simplifier.SimplifierFx(MULTOW,ref UIS);
+                MULTOW.LeftSideAccess.ThreadAccess = MULTOW;
+                MULTOW.RightSideAccess.ThreadAccess = MULTOW;
+                //ERRORCORECTION0921849823 :The number soud mul to minuse one.refer to page 221.
+                /*AddToTree.Tree MIN = new AddToTree.Tree("1",false);
+                MULTOW.SetLefTandRightCommonlySide(MULTOW.CopyNewTree(MULTOW),MIN);
+                MULTOW.SampleAccess="-";
+                MULTOW.LeftSideAccess.ThreadAccess = MULTOW;
+                MULTOW.RightSideAccess.ThreadAccess = MULTOW;
+                */
+                //LOCATION307060 :Refer to page 227.
+                //MULTOW = Simplifier.SimplifierFx(MULTOW,ref UIS);
 
-                                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                                HOLDE = UIS.progressBar2.Value;
+                HOLDE = UIS.progressBar2.Value;
                 //MULTOW = Simplifier.SimplifierFx(MULTOW, ref UIS);
                 if (FRact || IntegralRecursiveMulatFG.IntegralRecursiveMulatFPowerGFx(Node, MULTOW, ref UIS, ref Queficient))
                 {
@@ -1796,218 +1794,218 @@ namespace Formulas
                     Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
                     return Dummy;
                 }
-                                UIS.SetProgressValue(UIS.progressBar2,HOLDE);
+                UIS.SetProgressValue(UIS.progressBar2, HOLDE);
 
-                                UIS.SetProgressValue(UIS.progressBar2, 2147483647);
-                                
-                                
+                UIS.SetProgressValue(UIS.progressBar2, 2147483647);
 
 
-                                /*
-                                //FOR determining and 
-                                IntegralA = false;
 
-                                                                MULTOW = FindAndIndicatingRecursiveIntegrals.FindAndIndicatingRecursiveIntegralsFx(Node, MULTOW, INTEGRALS, ANSWERS, out IntegralA, out Queficient);
 
-                                                                if (!IntegralA)
-                                                                {
-                                                                    MULTOW = Integral.IntegralCalculator(MULTOW,ref UIS);
-                                                                    Dummy.SampleAccess = "+";
-                                                                    Dummy.SetLefTandRightCommonlySide(MULONE, MULTOW);
-                                                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                                                }
-                                                                else 
-                                                                {
-                                                                    DummyEqual = MULTOW;
-                                                                    Dummy = MULONE;
-                                                                    //ERRORCORECTION918729348 :The Error is here .refer to page 218.
-                                                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                                                }   
-                                 /*
-                                                                                                AddToTree.Tree GLnF = new AddToTree.Tree(null, false);
-                                                                                               AddToTree.Tree ETX = new AddToTree.Tree("e", false);
-                                                                                              AddToTree.Tree EPowerX = new AddToTree.Tree(null, false);
-                                                                                               AddToTree.Tree POWER = new AddToTree.Tree("^", false);
-                                                                                               AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                                                                               AddToTree.Tree RootArgumnet = new AddToTree.Tree(null, false);
-                                                                                                AddToTree.Tree LeftSideRoot = new AddToTree.Tree(null, false);
-                                                                                                AddToTree.Tree LeftSideFunction = new AddToTree.Tree(null, false);
-                                                                                                AddToTree.Tree Root = new AddToTree.Tree(null, false);
-                                                                                                //AddToTree.Tree FX = Node.CopyNewTree(Node.RightSideAccess);
-                                                                                                AddToTree.Tree FX = new AddToTree.Tree(null, false);
-                                                                                                AddToTree.Tree GX = Node.CopyNewTree(Node.LeftSideAccess);                                
-                                                                                                AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
-                                                                                                AddToTree.Tree NUMD = new AddToTree.Tree("2", false);
-                                                                                                AddToTree.Tree NUMU = new AddToTree.Tree("1", false);
+                /*
+                //FOR determining and 
+                IntegralA = false;
 
-                                                                                                EPowerX.SetLefTandRightCommonlySide(ETX, X);
-                                                                                                EPowerX.SampleAccess = "^";
-                                                                                                EPowerX.LeftSideAccess.ThreadAccess = EPowerX;
-                                                                                                EPowerX.RightSideAccess.ThreadAccess = EPowerX;
+                                                MULTOW = FindAndIndicatingRecursiveIntegrals.FindAndIndicatingRecursiveIntegralsFx(Node, MULTOW, INTEGRALS, ANSWERS, out IntegralA, out Queficient);
 
-                                                                                                Ln.SetLefTandRightCommonlySide(Node.LeftSideAccess, null);
-                                                                                                Ln.LeftSideAccess.ThreadAccess = Ln;
+                                                if (!IntegralA)
+                                                {
+                                                    MULTOW = Integral.IntegralCalculator(MULTOW,ref UIS);
+                                                    Dummy.SampleAccess = "+";
+                                                    Dummy.SetLefTandRightCommonlySide(MULONE, MULTOW);
+                                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                                                }
+                                                else 
+                                                {
+                                                    DummyEqual = MULTOW;
+                                                    Dummy = MULONE;
+                                                    //ERRORCORECTION918729348 :The Error is here .refer to page 218.
+                                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                                                }   
+                 /*
+                                                                                AddToTree.Tree GLnF = new AddToTree.Tree(null, false);
+                                                                               AddToTree.Tree ETX = new AddToTree.Tree("e", false);
+                                                                              AddToTree.Tree EPowerX = new AddToTree.Tree(null, false);
+                                                                               AddToTree.Tree POWER = new AddToTree.Tree("^", false);
+                                                                               AddToTree.Tree X = new AddToTree.Tree("x", false);
+                                                                               AddToTree.Tree RootArgumnet = new AddToTree.Tree(null, false);
+                                                                                AddToTree.Tree LeftSideRoot = new AddToTree.Tree(null, false);
+                                                                                AddToTree.Tree LeftSideFunction = new AddToTree.Tree(null, false);
+                                                                                AddToTree.Tree Root = new AddToTree.Tree(null, false);
+                                                                                //AddToTree.Tree FX = Node.CopyNewTree(Node.RightSideAccess);
+                                                                                AddToTree.Tree FX = new AddToTree.Tree(null, false);
+                                                                                AddToTree.Tree GX = Node.CopyNewTree(Node.LeftSideAccess);                                
+                                                                                AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
+                                                                                AddToTree.Tree NUMD = new AddToTree.Tree("2", false);
+                                                                                AddToTree.Tree NUMU = new AddToTree.Tree("1", false);
 
-                                                                                                //ERROR19824201984  :The FX Has no Sample.
-                                                                                                FX.SetLefTandRightCommonlySide(Node.RightSideAccess,Ln);
-                                                                                                FX.LeftSideAccess.ThreadAccess = FX;
-                                                                                                FX.RightSideAccess.ThreadAccess = FX;
-                                                                                                FX.SampleAccess = "*";
-                                                                                                //ERRORCORECTION209874 :The above error is corected.
+                                                                                EPowerX.SetLefTandRightCommonlySide(ETX, X);
+                                                                                EPowerX.SampleAccess = "^";
+                                                                                EPowerX.LeftSideAccess.ThreadAccess = EPowerX;
+                                                                                EPowerX.RightSideAccess.ThreadAccess = EPowerX;
 
-                               
-                                                                                                GLnF =FX.CopyNewTree(FX);
+                                                                                Ln.SetLefTandRightCommonlySide(Node.LeftSideAccess, null);
+                                                                                Ln.LeftSideAccess.ThreadAccess = Ln;
 
-                                                                                                FX.SetLefTandRightCommonlySide(X, NUMD);
-                                                                                                FX.LeftSideAccess.ThreadAccess = FX;
-                                                                                                FX.RightSideAccess.ThreadAccess = FX;
-                                                                                                FX.SampleAccess = "^";
+                                                                                //ERROR19824201984  :The FX Has no Sample.
+                                                                                FX.SetLefTandRightCommonlySide(Node.RightSideAccess,Ln);
+                                                                                FX.LeftSideAccess.ThreadAccess = FX;
+                                                                                FX.RightSideAccess.ThreadAccess = FX;
+                                                                                FX.SampleAccess = "*";
+                                                                                //ERRORCORECTION209874 :The above error is corected.
 
-                                                                                                RootArgumnet.SetLefTandRightCommonlySide(NUMU, FX);
-                                                                                                RootArgumnet.LeftSideAccess.ThreadAccess = RootArgumnet;
-                                                                                                RootArgumnet.RightSideAccess.ThreadAccess = RootArgumnet;
-                                                                                                RootArgumnet.SampleAccess = "-";
 
-                                                                                                LeftSideRoot.SetLefTandRightCommonlySide(RootArgumnet, null);
-                                                                                                LeftSideRoot.LeftSideAccess.ThreadAccess = LeftSideRoot;
-                                                                                                LeftSideRoot.SampleAccess = "Root";
+                                                                                GLnF =FX.CopyNewTree(FX);
 
-                                                                                                LeftSideFunction.SetLefTandRightCommonlySide(NUMU, LeftSideRoot);
-                                                                                                LeftSideFunction.LeftSideAccess.ThreadAccess = LeftSideFunction;
-                                                                                                LeftSideFunction.RightSideAccess.ThreadAccess = LeftSideFunction;
-                                                                                                LeftSideFunction.SampleAccess = "/";
+                                                                                FX.SetLefTandRightCommonlySide(X, NUMD);
+                                                                                FX.LeftSideAccess.ThreadAccess = FX;
+                                                                                FX.RightSideAccess.ThreadAccess = FX;
+                                                                                FX.SampleAccess = "^";
 
-                                                                                                Dummy.SetLefTandRightCommonlySide(EPowerX, LeftSideFunction);
-                                                                                                Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                                                                Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                                                                Dummy.SampleAccess = "*";
+                                                                                RootArgumnet.SetLefTandRightCommonlySide(NUMU, FX);
+                                                                                RootArgumnet.LeftSideAccess.ThreadAccess = RootArgumnet;
+                                                                                RootArgumnet.RightSideAccess.ThreadAccess = RootArgumnet;
+                                                                                RootArgumnet.SampleAccess = "-";
 
-                                                                                                Dummy = Integral.IntegralCalculator(Dummy);
+                                                                                LeftSideRoot.SetLefTandRightCommonlySide(RootArgumnet, null);
+                                                                                LeftSideRoot.LeftSideAccess.ThreadAccess = LeftSideRoot;
+                                                                                LeftSideRoot.SampleAccess = "Root";
 
-                                                                                                Dummy = Integral.ReplaceXToFX(Dummy, GLnF);
-                                                                                            */
-                            }
-                            else
+                                                                                LeftSideFunction.SetLefTandRightCommonlySide(NUMU, LeftSideRoot);
+                                                                                LeftSideFunction.LeftSideAccess.ThreadAccess = LeftSideFunction;
+                                                                                LeftSideFunction.RightSideAccess.ThreadAccess = LeftSideFunction;
+                                                                                LeftSideFunction.SampleAccess = "/";
+
+                                                                                Dummy.SetLefTandRightCommonlySide(EPowerX, LeftSideFunction);
+                                                                                Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                                                                                Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                                                                                Dummy.SampleAccess = "*";
+
+                                                                                Dummy = Integral.IntegralCalculator(Dummy);
+
+                                                                                Dummy = Integral.ReplaceXToFX(Dummy, GLnF);
+                                                                            */
+            }
+            else
                             if (IS.IsFunction(Node.SampleAccess))
-                            {
-                                UIS.SetLableValue(UIS.label17, "Integral Function.");
+            {
+                UIS.SetLableValue(UIS.label17, "Integral Function.");
 
-                                FDeviosionByG.ADDToTree(null);
-                                FMulAtG.ADDToTree(null);
+                FDeviosionByG.ADDToTree(null);
+                FMulAtG.ADDToTree(null);
 
-                                INCREASE = INCREASE / 4;
+                INCREASE = INCREASE / 4;
 
-                                UIS.SetProgressValue(UIS.progressBar2, 0);
+                UIS.SetProgressValue(UIS.progressBar2, 0);
 
-                                Dummy = Node.CopyNewTree(Node);
+                Dummy = Node.CopyNewTree(Node);
 
-                                AddToTree.Tree U = Node.CopyNewTree(Node.LeftSideAccess);
-                                AddToTree.Tree UPRIN = Node.CopyNewTree(Node.LeftSideAccess);
+                AddToTree.Tree U = Node.CopyNewTree(Node.LeftSideAccess);
+                AddToTree.Tree UPRIN = Node.CopyNewTree(Node.LeftSideAccess);
 
-                                UIS.SetLableValue(UIS.label17, "Derivation Function.");
+                UIS.SetLableValue(UIS.label17, "Derivation Function.");
 
-                                UPRIN = Derivasion.DerivasionOfFX(UPRIN.CopyNewTree(UPRIN), ref UIS);
+                UPRIN = Derivasion.DerivasionOfFX(UPRIN.CopyNewTree(UPRIN), ref UIS);
 
-                                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                                UPRIN = Simplifier.SimplifierFx(UPRIN, ref UIS);
+                UPRIN = Simplifier.SimplifierFx(UPRIN, ref UIS);
 
-                                Dummy.LeftSideAccess.SetLefTandRightCommonlySide(null,null);
-                                Dummy.LeftSideAccess.SampleAccess = "X";
+                Dummy.LeftSideAccess.SetLefTandRightCommonlySide(null, null);
+                Dummy.LeftSideAccess.SampleAccess = "X";
 
-                                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                                if (IS.IsNumber(UPRIN.SampleAccess))
-                                {
-                                    AddToTree.Tree ONE = new AddToTree.Tree("1", false);
-                                    UPRIN.SetLefTandRightCommonlySide(ONE, UPRIN.CopyNewTree(UPRIN));
-                                    UPRIN.LeftSideAccess.ThreadAccess = UPRIN;
-                                    UPRIN.RightSideAccess.ThreadAccess = UPRIN;
-                                    UPRIN.SampleAccess = "/";
+                if (IS.IsNumber(UPRIN.SampleAccess))
+                {
+                    AddToTree.Tree ONE = new AddToTree.Tree("1", false);
+                    UPRIN.SetLefTandRightCommonlySide(ONE, UPRIN.CopyNewTree(UPRIN));
+                    UPRIN.LeftSideAccess.ThreadAccess = UPRIN;
+                    UPRIN.RightSideAccess.ThreadAccess = UPRIN;
+                    UPRIN.SampleAccess = "/";
 
-                                    Dummy.SetLefTandRightCommonlySide(UPRIN, Dummy.CopyNewTree(Dummy));
-                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                    Dummy.SampleAccess = "*";
-                                }
-                                else
-                                    System.Windows.Forms.MessageBox.Show(" knowldege cant not be applied.");
+                    Dummy.SetLefTandRightCommonlySide(UPRIN, Dummy.CopyNewTree(Dummy));
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                    Dummy.SampleAccess = "*";
+                }
+                else
+                    System.Windows.Forms.MessageBox.Show(" knowldege cant not be applied.");
 
-                                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                                int Holde = UIS.progressBar2.Value;
+                int Holde = UIS.progressBar2.Value;
 
-                                UIS.SetLableValue(UIS.label17, "Integral.");
+                UIS.SetLableValue(UIS.label17, "Integral.");
 
-                                Dummy = Integral.IntegralOfFX(Dummy,ref UIS);
+                Dummy = Integral.IntegralOfFX(Dummy, ref UIS);
 
-                                UIS.SetLableValue(UIS.label17, "Integral Function.");
+                UIS.SetLableValue(UIS.label17, "Integral Function.");
 
-                                UIS.SetProgressValue(UIS.progressBar2, Holde);
+                UIS.SetProgressValue(UIS.progressBar2, Holde);
 
-                                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE); 
+                UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
-                                Dummy = ReplacementX.ReplacementXFx(Dummy,U,ref UIS);
+                Dummy = ReplacementX.ReplacementXFx(Dummy, U, ref UIS);
 
-                                UIS.SetProgressValue(UIS.progressBar2, 2147483647);
+                UIS.SetProgressValue(UIS.progressBar2, 2147483647);
 
-                                /*
-                                AddToTree.Tree U = Node.CopyNewTree(Node.LeftSideAccess);
-                                AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                AddToTree.Tree NUMD = new AddToTree.Tree("2", false);
-                                AddToTree.Tree NUMU = new AddToTree.Tree("1", false);
-                                AddToTree.Tree GX = Node.CopyNewTree(Node);
-                                AddToTree.Tree FX = new AddToTree.Tree(null, false);
-                                AddToTree.Tree DFX = new AddToTree.Tree(null, false);
-                                AddToTree.Tree DGX = new AddToTree.Tree(null, false);                            
+                /*
+                AddToTree.Tree U = Node.CopyNewTree(Node.LeftSideAccess);
+                AddToTree.Tree X = new AddToTree.Tree("x", false);
+                AddToTree.Tree NUMD = new AddToTree.Tree("2", false);
+                AddToTree.Tree NUMU = new AddToTree.Tree("1", false);
+                AddToTree.Tree GX = Node.CopyNewTree(Node);
+                AddToTree.Tree FX = new AddToTree.Tree(null, false);
+                AddToTree.Tree DFX = new AddToTree.Tree(null, false);
+                AddToTree.Tree DGX = new AddToTree.Tree(null, false);                            
 
-                            GX.LeftSideAccess.LeftSideAccess = null;
-                            GX.LeftSideAccess.RightSideAccess = null;
-                            GX.LeftSideAccess.SampleAccess = "x";
+            GX.LeftSideAccess.LeftSideAccess = null;
+            GX.LeftSideAccess.RightSideAccess = null;
+            GX.LeftSideAccess.SampleAccess = "x";
 
-                            FX.SetLefTandRightCommonlySide(X, NUMD);
-                            FX.LeftSideAccess.ThreadAccess = FX;
-                            FX.RightSideAccess.ThreadAccess = FX;
-                            FX.SampleAccess = "^";
+            FX.SetLefTandRightCommonlySide(X, NUMD);
+            FX.LeftSideAccess.ThreadAccess = FX;
+            FX.RightSideAccess.ThreadAccess = FX;
+            FX.SampleAccess = "^";
 
-                            FX.SetLefTandRightCommonlySide(NUMU, FX.CopyNewTree(FX));
-                            FX.LeftSideAccess.ThreadAccess = FX;
-                            FX.RightSideAccess.ThreadAccess = FX;
-                            FX.SampleAccess = "-";
+            FX.SetLefTandRightCommonlySide(NUMU, FX.CopyNewTree(FX));
+            FX.LeftSideAccess.ThreadAccess = FX;
+            FX.RightSideAccess.ThreadAccess = FX;
+            FX.SampleAccess = "-";
 
-                            FX.SetLefTandRightCommonlySide(FX.CopyNewTree(FX), null);
-                            FX.LeftSideAccess.ThreadAccess = FX;
-                            FX.SampleAccess = "Root";
+            FX.SetLefTandRightCommonlySide(FX.CopyNewTree(FX), null);
+            FX.LeftSideAccess.ThreadAccess = FX;
+            FX.SampleAccess = "Root";
 
-                            FX.SetLefTandRightCommonlySide(NUMU,FX.CopyNewTree(FX));
-                            FX.LeftSideAccess.ThreadAccess = FX;
-                            FX.RightSideAccess.ThreadAccess = FX;
-                            FX.SampleAccess = "/";
+            FX.SetLefTandRightCommonlySide(NUMU,FX.CopyNewTree(FX));
+            FX.LeftSideAccess.ThreadAccess = FX;
+            FX.RightSideAccess.ThreadAccess = FX;
+            FX.SampleAccess = "/";
 
-                            Dummy.SetLefTandRightCommonlySide(GX,FX.CopyNewTree(FX));
-                            Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                            Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                            Dummy.SampleAccess = "*";
+            Dummy.SetLefTandRightCommonlySide(GX,FX.CopyNewTree(FX));
+            Dummy.LeftSideAccess.ThreadAccess = Dummy;
+            Dummy.LeftSideAccess.ThreadAccess = Dummy;
+            Dummy.SampleAccess = "*";
 
-                            Dummy = Integral.IntegralCalculator(Dummy,ref UIS);
+            Dummy = Integral.IntegralCalculator(Dummy,ref UIS);
 
-                            Dummy = Integral.ReplaceXToFX(Dummy,U);                           
-                                */
-                            }
-        //ERRORCORECTINO18726387 :The error is here .refer to page 221.
+            Dummy = Integral.ReplaceXToFX(Dummy,U);                           
+                */
+            }
+            //ERRORCORECTINO18726387 :The error is here .refer to page 221.
 
-        UIS.SetLableValue(UIS.label17, "Integral End Simplifier.");
-        DummyEqual = Simplifier.SimplifierFx(DummyEqual,ref UIS);
-        Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
+            UIS.SetLableValue(UIS.label17, "Integral End Simplifier.");
+            DummyEqual = Simplifier.SimplifierFx(DummyEqual, ref UIS);
+            Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
 
-        //The location for determining and calculating Recursive Integral.
-        Dummy = RecursiveIntegralAddition.RecursiveIntegralAdditionFx(Node, Dummy, DummyEqual, Queficient, INTEGRALS, ANSWERS);        
+            //The location for determining and calculating Recursive Integral.
+            Dummy = RecursiveIntegralAddition.RecursiveIntegralAdditionFx(Node, Dummy, DummyEqual, Queficient, INTEGRALS, ANSWERS);
 
             ANSWERS.ADDToTree(Dummy);
             return Dummy;
-            
+
         }
         static AddToTree.Tree ConsTantFuctionIntegral(AddToTree.Tree Node)
         {
@@ -2031,251 +2029,251 @@ namespace Formulas
                 }
                 else
                     if (Node.SampleAccess.ToString().ToLower() == "x")
-                    {
-                        AddToTree.Tree X = new AddToTree.Tree("x", false);
-                        AddToTree.Tree DIV = new AddToTree.Tree("/", false);
-                        AddToTree.Tree NUMONE = new AddToTree.Tree("1", false);
-                        AddToTree.Tree NUMTOWONE = new AddToTree.Tree("2", false);
-                        AddToTree.Tree NUMTOWTOW = new AddToTree.Tree("2", false);
-                        AddToTree.Tree POWER = new AddToTree.Tree("^", false);
+                {
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                    AddToTree.Tree DIV = new AddToTree.Tree("/", false);
+                    AddToTree.Tree NUMONE = new AddToTree.Tree("1", false);
+                    AddToTree.Tree NUMTOWONE = new AddToTree.Tree("2", false);
+                    AddToTree.Tree NUMTOWTOW = new AddToTree.Tree("2", false);
+                    AddToTree.Tree POWER = new AddToTree.Tree("^", false);
 
-                        DIV.SetLefTandRightCommonlySide(NUMONE, NUMTOWONE);
-                        DIV.LeftSideAccess.ThreadAccess = DIV;
-                        DIV.RightSideAccess.ThreadAccess = DIV;
+                    DIV.SetLefTandRightCommonlySide(NUMONE, NUMTOWONE);
+                    DIV.LeftSideAccess.ThreadAccess = DIV;
+                    DIV.RightSideAccess.ThreadAccess = DIV;
 
-                        POWER.SetLefTandRightCommonlySide(X, NUMTOWTOW);
-                        POWER.LeftSideAccess.ThreadAccess = POWER;
-                        POWER.RightSideAccess.ThreadAccess = POWER;
+                    POWER.SetLefTandRightCommonlySide(X, NUMTOWTOW);
+                    POWER.LeftSideAccess.ThreadAccess = POWER;
+                    POWER.RightSideAccess.ThreadAccess = POWER;
 
-                        Dummy.SampleAccess = "*";
-                        Dummy.SetLefTandRightCommonlySide(DIV, POWER);
-                        Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                        Dummy.RightSideAccess.ThreadAccess = Dummy;
-                    }
-                    else
+                    Dummy.SampleAccess = "*";
+                    Dummy.SetLefTandRightCommonlySide(DIV, POWER);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                }
+                else
                         if (Node.SampleAccess.ToString().ToLower() == "cos")
-                        {
-                            AddToTree.Tree X = new AddToTree.Tree("x", false);
-                            Dummy.SampleAccess = "Sin";
-                            Dummy.SetLefTandRightCommonlySide(X, null);
-                            Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                            Dummy.RightSideAccess = null;
-                        }
-                        else
+                {
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                    Dummy.SampleAccess = "Sin";
+                    Dummy.SetLefTandRightCommonlySide(X, null);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess = null;
+                }
+                else
                             if (Node.SampleAccess.ToString().ToLower() == "sin")
-                            {
-                                AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                AddToTree.Tree NUM = new AddToTree.Tree("-1", false);
-                                AddToTree.Tree MUL = new AddToTree.Tree("*", false);
+                {
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                    AddToTree.Tree NUM = new AddToTree.Tree("-1", false);
+                    AddToTree.Tree MUL = new AddToTree.Tree("*", false);
 
-                                Dummy.SampleAccess = "Cos";
-                                Dummy.SetLefTandRightCommonlySide(X, null);
-                                Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                Dummy.RightSideAccess = null;
-                                //ERRORCORECTION19824334 :the New Dummy set at MUL.refer o page 240.
-                                AddToTree.Tree DummyNEW = Dummy.CopyNewTree(Dummy);
+                    Dummy.SampleAccess = "Cos";
+                    Dummy.SetLefTandRightCommonlySide(X, null);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess = null;
+                    //ERRORCORECTION19824334 :the New Dummy set at MUL.refer o page 240.
+                    AddToTree.Tree DummyNEW = Dummy.CopyNewTree(Dummy);
 
-                                MUL.SetLefTandRightCommonlySide(NUM, DummyNEW);
-                                MUL.LeftSideAccess.ThreadAccess = MUL;
-                                MUL.RightSideAccess.ThreadAccess = MUL;
+                    MUL.SetLefTandRightCommonlySide(NUM, DummyNEW);
+                    MUL.LeftSideAccess.ThreadAccess = MUL;
+                    MUL.RightSideAccess.ThreadAccess = MUL;
 
-                                Dummy = MUL;
-                            }
-                            else
+                    Dummy = MUL;
+                }
+                else
                                 if (Node.SampleAccess.ToString().ToLower() == "tan")
-                                {
-                                    AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
-                                    AddToTree.Tree Cos = new AddToTree.Tree("Cos", false);
-                                    AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                    AddToTree.Tree CTX = new AddToTree.Tree("CTX", false);
-                                    AddToTree.Tree NUM = new AddToTree.Tree("-1", false);
+                {
+                    AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
+                    AddToTree.Tree Cos = new AddToTree.Tree("Cos", false);
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                    AddToTree.Tree CTX = new AddToTree.Tree("CTX", false);
+                    AddToTree.Tree NUM = new AddToTree.Tree("-1", false);
 
-                                    Cos.SetLefTandRightCommonlySide(X, null);
-                                    Cos.LeftSideAccess.ThreadAccess = Cos;
+                    Cos.SetLefTandRightCommonlySide(X, null);
+                    Cos.LeftSideAccess.ThreadAccess = Cos;
 
-                                    Ln.SetLefTandRightCommonlySide(Cos, null);
-                                    Ln.LeftSideAccess.ThreadAccess = Ln;
+                    Ln.SetLefTandRightCommonlySide(Cos, null);
+                    Ln.LeftSideAccess.ThreadAccess = Ln;
 
-                                    Dummy.SetLefTandRightCommonlySide(NUM, Ln);
-                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                    Dummy.SetLefTandRightCommonlySide(NUM, Ln);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
 
-                                    Dummy.SetLefTandRightCommonlySide(Dummy, CTX);
-                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                    Dummy.SampleAccess = "+";
-                                }
-                                else
+                    Dummy.SetLefTandRightCommonlySide(Dummy, CTX);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                    Dummy.SampleAccess = "+";
+                }
+                else
                                     if (Node.SampleAccess.ToString().ToLower() == "cot")
-                                    {
-                                        AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
-                                        AddToTree.Tree Sin = new AddToTree.Tree("Sin", false);
-                                        AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                        AddToTree.Tree CTX = new AddToTree.Tree("CTX", false);
+                {
+                    AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
+                    AddToTree.Tree Sin = new AddToTree.Tree("Sin", false);
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                    AddToTree.Tree CTX = new AddToTree.Tree("CTX", false);
 
-                                        Sin.SetLefTandRightCommonlySide(X, null);
-                                        Sin.LeftSideAccess.ThreadAccess = Sin;
+                    Sin.SetLefTandRightCommonlySide(X, null);
+                    Sin.LeftSideAccess.ThreadAccess = Sin;
 
-                                        Ln.SetLefTandRightCommonlySide(Sin, null);
-                                        Ln.LeftSideAccess.ThreadAccess = Ln;
+                    Ln.SetLefTandRightCommonlySide(Sin, null);
+                    Ln.LeftSideAccess.ThreadAccess = Ln;
 
-                                        Dummy.SampleAccess = "+";
-                                        Dummy.SetLefTandRightCommonlySide(Ln, CTX);
-                                        Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                        Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                    }
-                                    else
+                    Dummy.SampleAccess = "+";
+                    Dummy.SetLefTandRightCommonlySide(Ln, CTX);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                }
+                else
                                         if (Node.SampleAccess.ToString().ToLower() == "ln")
-                                        {
-                                            AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                            AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
-                                            AddToTree.Tree CTX = new AddToTree.Tree("CTX", false);
+                {
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                    AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
+                    AddToTree.Tree CTX = new AddToTree.Tree("CTX", false);
 
-                                            Ln.SetLefTandRightCommonlySide(X, null);
-                                            Ln.LeftSideAccess.ThreadAccess = Ln;
+                    Ln.SetLefTandRightCommonlySide(X, null);
+                    Ln.LeftSideAccess.ThreadAccess = Ln;
 
-                                            Ln.SetLefTandRightCommonlySide(X, Ln);
-                                            Ln.LeftSideAccess.ThreadAccess = Ln;
-                                            Ln.RightSideAccess.ThreadAccess = Ln;
+                    Ln.SetLefTandRightCommonlySide(X, Ln);
+                    Ln.LeftSideAccess.ThreadAccess = Ln;
+                    Ln.RightSideAccess.ThreadAccess = Ln;
 
-                                            Ln.SetLefTandRightCommonlySide(Ln, X);
-                                            Ln.LeftSideAccess.ThreadAccess = Ln;
-                                            Ln.RightSideAccess.ThreadAccess = Ln;
-                                            Ln.SampleAccess = "-";
+                    Ln.SetLefTandRightCommonlySide(Ln, X);
+                    Ln.LeftSideAccess.ThreadAccess = Ln;
+                    Ln.RightSideAccess.ThreadAccess = Ln;
+                    Ln.SampleAccess = "-";
 
-                                            Dummy.SampleAccess = "+";
-                                            Dummy.SetLefTandRightCommonlySide(Ln, CTX);
-                                            Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                            Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                        }
-                                        else
+                    Dummy.SampleAccess = "+";
+                    Dummy.SetLefTandRightCommonlySide(Ln, CTX);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                }
+                else
                                             if (Node.SampleAccess.ToString().ToLower() == "log")
-                                            {
-                                                AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                                AddToTree.Tree Log = new AddToTree.Tree("Log", false);
-                                                AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
-                                                AddToTree.Tree CTX = new AddToTree.Tree("CTX", false);
-                                                AddToTree.Tree Ten = new AddToTree.Tree("10", false);
+                {
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                    AddToTree.Tree Log = new AddToTree.Tree("Log", false);
+                    AddToTree.Tree Ln = new AddToTree.Tree("Ln", false);
+                    AddToTree.Tree CTX = new AddToTree.Tree("CTX", false);
+                    AddToTree.Tree Ten = new AddToTree.Tree("10", false);
 
-                                                Log.SetLefTandRightCommonlySide(X, null);
-                                                Log.LeftSideAccess.ThreadAccess = Log;
+                    Log.SetLefTandRightCommonlySide(X, null);
+                    Log.LeftSideAccess.ThreadAccess = Log;
 
-                                                Log.SetLefTandRightCommonlySide(X, Log);
-                                                Log.LeftSideAccess.ThreadAccess = Log;
-                                                Log.RightSideAccess.ThreadAccess = Log;
+                    Log.SetLefTandRightCommonlySide(X, Log);
+                    Log.LeftSideAccess.ThreadAccess = Log;
+                    Log.RightSideAccess.ThreadAccess = Log;
 
-                                                Ln.SetLefTandRightCommonlySide(Ten, null);
-                                                Ln.LeftSideAccess.ThreadAccess = Ln;
-                                                Ln.RightSideAccess.ThreadAccess = Ln;
+                    Ln.SetLefTandRightCommonlySide(Ten, null);
+                    Ln.LeftSideAccess.ThreadAccess = Ln;
+                    Ln.RightSideAccess.ThreadAccess = Ln;
 
-                                                X.SetLefTandRightCommonlySide(Ln, X);
-                                                X.LeftSideAccess.ThreadAccess = X;
-                                                X.RightSideAccess.ThreadAccess = X;
+                    X.SetLefTandRightCommonlySide(Ln, X);
+                    X.LeftSideAccess.ThreadAccess = X;
+                    X.RightSideAccess.ThreadAccess = X;
 
-                                                Log.SetLefTandRightCommonlySide(Log, X);
-                                                Log.LeftSideAccess.ThreadAccess = Log;
-                                                Log.RightSideAccess.ThreadAccess = Log;
-                                                Log.SampleAccess = "-";
+                    Log.SetLefTandRightCommonlySide(Log, X);
+                    Log.LeftSideAccess.ThreadAccess = Log;
+                    Log.RightSideAccess.ThreadAccess = Log;
+                    Log.SampleAccess = "-";
 
-                                                Dummy.SampleAccess = "+";
-                                                Dummy.SetLefTandRightCommonlySide(Ln, CTX);
-                                                Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                            }
-                                            else
+                    Dummy.SampleAccess = "+";
+                    Dummy.SetLefTandRightCommonlySide(Ln, CTX);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                }
+                else
                                                 if (Node.SampleAccess.ToString().ToLower() == "sec")
-                                                {
-                                                    AddToTree.Tree Sec = new AddToTree.Tree("Sec", false);
-                                                    AddToTree.Tree Tan = new AddToTree.Tree("Tan", false);
-                                                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                {
+                    AddToTree.Tree Sec = new AddToTree.Tree("Sec", false);
+                    AddToTree.Tree Tan = new AddToTree.Tree("Tan", false);
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
 
-                                                    Sec.SetLefTandRightCommonlySide(X, null);
-                                                    Sec.LeftSideAccess.ThreadAccess = Sec;
-                                                    Sec.RightSideAccess.ThreadAccess = Sec;
+                    Sec.SetLefTandRightCommonlySide(X, null);
+                    Sec.LeftSideAccess.ThreadAccess = Sec;
+                    Sec.RightSideAccess.ThreadAccess = Sec;
 
-                                                    Tan.SetLefTandRightCommonlySide(X, null);
-                                                    Tan.LeftSideAccess.ThreadAccess = Tan;
-                                                    Tan.RightSideAccess.ThreadAccess = Tan;
+                    Tan.SetLefTandRightCommonlySide(X, null);
+                    Tan.LeftSideAccess.ThreadAccess = Tan;
+                    Tan.RightSideAccess.ThreadAccess = Tan;
 
-                                                    Dummy.SetLefTandRightCommonlySide(Sec, Tan);
-                                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                                    Dummy.SampleAccess = "+";
+                    Dummy.SetLefTandRightCommonlySide(Sec, Tan);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                    Dummy.SampleAccess = "+";
 
-                                                    Dummy.SetLefTandRightCommonlySide(Dummy, null);
-                                                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                    Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                                    Dummy.SampleAccess = "Ln";
-                                                }
-                                                else
+                    Dummy.SetLefTandRightCommonlySide(Dummy, null);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                    Dummy.SampleAccess = "Ln";
+                }
+                else
                                                     if (Node.SampleAccess.ToString().ToLower() == "csc")
-                                                    {
-                                                        AddToTree.Tree Csc = new AddToTree.Tree("Csc", false);
-                                                        AddToTree.Tree Cot = new AddToTree.Tree("Cot", false);
-                                                        AddToTree.Tree X = new AddToTree.Tree("x", false);
+                {
+                    AddToTree.Tree Csc = new AddToTree.Tree("Csc", false);
+                    AddToTree.Tree Cot = new AddToTree.Tree("Cot", false);
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
 
-                                                        Csc.SetLefTandRightCommonlySide(X, null);
-                                                        Csc.LeftSideAccess.ThreadAccess = Csc;
-                                                        Csc.RightSideAccess.ThreadAccess = Csc;
+                    Csc.SetLefTandRightCommonlySide(X, null);
+                    Csc.LeftSideAccess.ThreadAccess = Csc;
+                    Csc.RightSideAccess.ThreadAccess = Csc;
 
-                                                        Cot.SetLefTandRightCommonlySide(X, null);
-                                                        Cot.LeftSideAccess.ThreadAccess = Cot;
-                                                        Cot.RightSideAccess.ThreadAccess = Cot;
+                    Cot.SetLefTandRightCommonlySide(X, null);
+                    Cot.LeftSideAccess.ThreadAccess = Cot;
+                    Cot.RightSideAccess.ThreadAccess = Cot;
 
-                                                        Dummy.SetLefTandRightCommonlySide(Csc, Cot);
-                                                        Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                        Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                                        Dummy.SampleAccess = "-";
+                    Dummy.SetLefTandRightCommonlySide(Csc, Cot);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                    Dummy.SampleAccess = "-";
 
-                                                        Dummy.SetLefTandRightCommonlySide(Dummy, null);
-                                                        Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                        Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                                        Dummy.SampleAccess = "Ln";
-                                                    }
-                                                    else
+                    Dummy.SetLefTandRightCommonlySide(Dummy, null);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                    Dummy.SampleAccess = "Ln";
+                }
+                else
                                                         if (Node.SampleAccess.ToString().ToLower() == "root")
-                                                        {
-                                                            AddToTree.Tree X = new AddToTree.Tree("x", false);
-                                                            AddToTree.Tree POWER = new AddToTree.Tree("^", false);
-                                                            AddToTree.Tree MUL = new AddToTree.Tree("*", false);
-                                                            AddToTree.Tree DIV = new AddToTree.Tree("/", false);
-                                                            AddToTree.Tree DIVTOW = new AddToTree.Tree("/", false);
-                                                            AddToTree.Tree NUMTOW = new AddToTree.Tree("2", false);
-                                                            AddToTree.Tree NUMTHREE = new AddToTree.Tree("3", false);
+                {
+                    AddToTree.Tree X = new AddToTree.Tree("x", false);
+                    AddToTree.Tree POWER = new AddToTree.Tree("^", false);
+                    AddToTree.Tree MUL = new AddToTree.Tree("*", false);
+                    AddToTree.Tree DIV = new AddToTree.Tree("/", false);
+                    AddToTree.Tree DIVTOW = new AddToTree.Tree("/", false);
+                    AddToTree.Tree NUMTOW = new AddToTree.Tree("2", false);
+                    AddToTree.Tree NUMTHREE = new AddToTree.Tree("3", false);
 
 
-                                                            DIVTOW.SetLefTandRightCommonlySide(NUMTOW, NUMTHREE);
-                                                            DIVTOW.LeftSideAccess.ThreadAccess = DIVTOW;
-                                                            DIVTOW.RightSideAccess.ThreadAccess = DIVTOW;
+                    DIVTOW.SetLefTandRightCommonlySide(NUMTOW, NUMTHREE);
+                    DIVTOW.LeftSideAccess.ThreadAccess = DIVTOW;
+                    DIVTOW.RightSideAccess.ThreadAccess = DIVTOW;
 
-                                                            DIV.SetLefTandRightCommonlySide(NUMTHREE, NUMTOW);
-                                                            DIV.LeftSideAccess.ThreadAccess = DIV;
-                                                            DIV.RightSideAccess.ThreadAccess = DIV;
+                    DIV.SetLefTandRightCommonlySide(NUMTHREE, NUMTOW);
+                    DIV.LeftSideAccess.ThreadAccess = DIV;
+                    DIV.RightSideAccess.ThreadAccess = DIV;
 
-                                                            POWER.SetLefTandRightCommonlySide(X, DIV);
-                                                            POWER.LeftSideAccess.ThreadAccess = POWER;
-                                                            POWER.RightSideAccess.ThreadAccess = POWER;
+                    POWER.SetLefTandRightCommonlySide(X, DIV);
+                    POWER.LeftSideAccess.ThreadAccess = POWER;
+                    POWER.RightSideAccess.ThreadAccess = POWER;
 
-                                                            Dummy.SetLefTandRightCommonlySide(DIVTOW, POWER);
-                                                            Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                                                            Dummy.RightSideAccess.ThreadAccess = Dummy;
-                                                            Dummy.SampleAccess = "*";
-                                                        }
+                    Dummy.SetLefTandRightCommonlySide(DIVTOW, POWER);
+                    Dummy.LeftSideAccess.ThreadAccess = Dummy;
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
+                    Dummy.SampleAccess = "*";
+                }
             }
-             /* Dummy.SetLefTandRightCommonlySide(Dummy.CopyNewTree(Dummy),C);
-              Dummy.LeftSideAccess.ThreadAccess = Dummy;
-              Dummy.RightSideAccess.ThreadAccess = Dummy;
-              Dummy.SampleAccess = "+";
-              */
+            /* Dummy.SetLefTandRightCommonlySide(Dummy.CopyNewTree(Dummy),C);
+             Dummy.LeftSideAccess.ThreadAccess = Dummy;
+             Dummy.RightSideAccess.ThreadAccess = Dummy;
+             Dummy.SampleAccess = "+";
+             */
             return Dummy;
         }
         static int Fibonatchi(int i)
         {
             if (i == 1)
                 return 1;
-            return i * Fibonatchi(i-1);
+            return i * Fibonatchi(i - 1);
         }
-        static AddToTree.Tree ReplaceXToFX(AddToTree.Tree Dummy,AddToTree.Tree FX)
+        static AddToTree.Tree ReplaceXToFX(AddToTree.Tree Dummy, AddToTree.Tree FX)
         {
 
             if (Dummy.LeftSideAccess != null)
@@ -2296,17 +2294,17 @@ namespace Formulas
                 {
                     Dummy.SetLefTandRightCommonlySide(Dummy.LeftSideAccess, FX);
                     Dummy.LeftSideAccess.ThreadAccess = Dummy;
-                    Dummy.RightSideAccess.ThreadAccess = Dummy;                    
+                    Dummy.RightSideAccess.ThreadAccess = Dummy;
                     return Dummy;
                 }
             }
             else
                 return Dummy;
-            Integral.ReplaceXToFX(Dummy.LeftSideAccess,FX);
-            Integral.ReplaceXToFX(Dummy.RightSideAccess,FX);
+            Integral.ReplaceXToFX(Dummy.LeftSideAccess, FX);
+            Integral.ReplaceXToFX(Dummy.RightSideAccess, FX);
             return Dummy;
         }
-        static AddToTree.Tree XPowerIMulFXPerGXDerI(int i, AddToTree.Tree FX, AddToTree.Tree GX,ref UknownIntegralSolver UIS)
+        static AddToTree.Tree XPowerIMulFXPerGXDerI(int i, AddToTree.Tree FX, AddToTree.Tree GX, ref UknownIntegralSolver UIS)
         {
             AddToTree.Tree Node = new AddToTree.Tree(null, false);
             AddToTree.Tree X = new AddToTree.Tree("x", false);
@@ -2316,15 +2314,15 @@ namespace Formulas
             AddToTree.Tree HolderPartOne = new AddToTree.Tree(null, false);
             AddToTree.Tree CTX = new AddToTree.Tree("CTX", false);
 
-            AddToTree.Tree FXPERGX=null;
-            if(GX!=null)
-            FXPERGX = Integral.FXPerGX(FX, GX);
-            else            
-            FXPERGX = FX;
-                        
-            FXPERGX = Integral.DervisionI(i,FXPERGX,ref UIS);
+            AddToTree.Tree FXPERGX = null;
+            if (GX != null)
+                FXPERGX = Integral.FXPerGX(FX, GX);
+            else
+                FXPERGX = FX;
 
-            FXPERGX = Simplifier.SimplifierFx(FXPERGX,ref UIS);
+            FXPERGX = Integral.DervisionI(i, FXPERGX, ref UIS);
+
+            FXPERGX = Simplifier.SimplifierFx(FXPERGX, ref UIS);
 
             if (FXPERGX.SampleAccess != null)
             {
@@ -2364,33 +2362,33 @@ namespace Formulas
             return Holder;
 
         }
-        static public AddToTree.Tree DervisionI(int t, AddToTree.Tree T,ref UknownIntegralSolver UIS)
+        static public AddToTree.Tree DervisionI(int t, AddToTree.Tree T, ref UknownIntegralSolver UIS)
         {
             int i = 0;
             while (i < t)
             {
-                T = Simplifier.SimplifierFx(T,ref UIS);
+                T = Simplifier.SimplifierFx(T, ref UIS);
                 //ERROR981724 :An Error Has Ocured in DerivasionFX.refer to page 172.it might be of null Derivasion result.
                 T = Derivasion.DerivasionOfFX(T.CopyNewTree(T), ref UIS);
-         
-                
+
+
                 i++;
                 //ERRORCORECTION97918724 :Error corrected.refer to page 180.
                 if (T.SampleAccess == null)
                     break;
             }
-            return T;        
+            return T;
         }
         static AddToTree.Tree FXPerGX(AddToTree.Tree FX, AddToTree.Tree GX)
         {
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
-            Dummy.SetLefTandRightCommonlySide(FX,GX);
+            Dummy.SetLefTandRightCommonlySide(FX, GX);
             Dummy.SampleAccess = "/";
             Dummy.LeftSideAccess.ThreadAccess = Dummy;
             Dummy.RightSideAccess.ThreadAccess = Dummy;
             return Dummy;
         }
-        static AddToTree.Tree XMulDerivisionOfFx(int i,AddToTree.Tree FX,AddToTree.Tree GX,ref UknownIntegralSolver UIS)
+        static AddToTree.Tree XMulDerivisionOfFx(int i, AddToTree.Tree FX, AddToTree.Tree GX, ref UknownIntegralSolver UIS)
         {
 
             AddToTree.Tree FXPerGX = new AddToTree.Tree(null, false);
@@ -2401,16 +2399,16 @@ namespace Formulas
             AddToTree.Tree PowerThree = new AddToTree.Tree(null, false);
             AddToTree.Tree NUM = new AddToTree.Tree(i.ToString(), false);
 
-            FXPerGX.SetLefTandRightCommonlySide(FX,GX);
+            FXPerGX.SetLefTandRightCommonlySide(FX, GX);
 
             if (GX == null)
                 FXPerGX = FX;
             //ERROR307040131222  :Ther method give wrong at (Derivasion I).refre to page 182.
-            FXPerGX = Integral.DervisionI(i,FXPerGX,ref UIS);
+            FXPerGX = Integral.DervisionI(i, FXPerGX, ref UIS);
             FXPerGX = Simplifier.SimplifierFx(FXPerGX, ref UIS);
             //LOCATION9781249843 :Need to Indicating null.refer to page 180.
             //ERRORCORECTION984102934809 :The corection of error.refer to page 180.
-            if (FXPerGX.SampleAccess!= null)
+            if (FXPerGX.SampleAccess != null)
             {
                 Power.SetLefTandRightCommonlySide(X, NUM);
                 Power.LeftSideAccess.ThreadAccess = Power;

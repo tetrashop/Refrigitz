@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Formulas
 {
     class LinkListNodeClass
     {
         AddToTree.Tree Current = new AddToTree.Tree(null, false);
         LinkListNodeClass Next = null;
-        LinkListNodeClass Thread = null;                        
+        LinkListNodeClass Thread = null;
         public LinkListNodeClass()
         {
         }
@@ -48,9 +44,9 @@ namespace Formulas
         }
         public LinkListNodeClass ThreadAccess
         {
-            set { Thread= value; }
+            set { Thread = value; }
             get { return Thread; }
         }
-        
+
     }
 }

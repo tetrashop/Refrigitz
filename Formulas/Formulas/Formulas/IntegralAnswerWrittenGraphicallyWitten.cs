@@ -1,7 +1,4 @@
 //ERRORCORECTION1245678:The Font Scale became smaller:1394/3/28
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -10,51 +7,51 @@ namespace Formulas
         static Editors.Editor Written = new Editors.Editor();
         static public void IntegralAnswerGraphicallyWittenFx(AddToTree.Tree Dummy, UknownIntegralSolver UIS)
         {
-            
+
             IntegralAnswerAdding.IntegralAnswerAddingFx(Dummy);
             //System.Windows.Forms.MessageBox.Show("2-The answer Added");
             IntegralAnswerGraphicallyWitten.IntegralAnswerGraphicallyWittenActionFx(UIS);
-            Written.ShowDialog(); 
-            
+            Written.ShowDialog();
+
         }
         static void IntegralAnswerGraphicallyWittenActionFx(UknownIntegralSolver UIS)
         {
             AddToTreeTreeLinkList DummyLinkList = IntegralAnswerAdding.AnswerAccess.CopyLinkList();
 
-          //  System.Windows.Forms.MessageBox.Show("2.1-The answer Copied.");
+            //  System.Windows.Forms.MessageBox.Show("2.1-The answer Copied.");
 
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
 
-           // System.Windows.Forms.MessageBox.Show("2.2-The Dummy tree newed.");
+            // System.Windows.Forms.MessageBox.Show("2.2-The Dummy tree newed.");
 
             ArrtificialItelligenceForGraphicallyDrawing ArrtificialItelligenceForGraphicallyDrawingFx = UIS.EquationAccess.SenderSampleAccess.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess;
 
-         //   System.Windows.Forms.MessageBox.Show("2.3-The Artificial class loaded.");
+            //   System.Windows.Forms.MessageBox.Show("2.3-The Artificial class loaded.");
 
             Set DummySet = new Set();
             int BigestX = 0, SmallestX = 1000000;
 
-         //   System.Windows.Forms.MessageBox.Show("2.4-The Varibles newed and assigened.");
+            //   System.Windows.Forms.MessageBox.Show("2.4-The Varibles newed and assigened.");
 
             //DummyLinkList = RecursionAndOptimizingLinkList.RecursionAndOptimizingLinkListFx(DummyLinkList);
 
 
-         //   System.Windows.Forms.MessageBox.Show("3-The answer is recurved.");
+            //   System.Windows.Forms.MessageBox.Show("3-The answer is recurved.");
 
             while (!(DummyLinkList.ISEmpty()))
             {
                 Dummy = DummyLinkList.DELETEFromTreeFirstNode();
 
-               // System.Windows.Forms.MessageBox.Show("4-The answer is Loaded from link list.");
+                // System.Windows.Forms.MessageBox.Show("4-The answer is Loaded from link list.");
 
                 if (Dummy != null)
                 {
-                  //  System.Windows.Forms.MessageBox.Show("5-The answer of link list is not null.");
+                    //  System.Windows.Forms.MessageBox.Show("5-The answer of link list is not null.");
                     //DummySet = ArrtificialItelligenceForGraphicallyDrawingFx.CreateGraphicallyNodes(Dummy);
 
                     ArrtificialItelligenceForGraphicallyDrawingFx.InizializingWhenNeedeForAnswerDrawn(Dummy, 40 + BigestX, 40);
 
-                  //  System.Windows.Forms.MessageBox.Show("6-The answer is Converted to set and inzizialized.");
+                    //  System.Windows.Forms.MessageBox.Show("6-The answer is Converted to set and inzizialized.");
 
                     //ArrtificialItelligenceForGraphicallyDrawingFx.CalculatingXAndYAndWhithAndHeight(DummySet, 40 + BigestX, 40, 15, 15,true);
 
@@ -81,10 +78,10 @@ namespace Formulas
                         Written.DrawNumberAndVaribale(Dummy.SampleAccess);
 
                 }
-            
+
 
             }
-           
+
         }
     }
 }

@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formulas
 {
@@ -8,7 +6,7 @@ namespace Formulas
     {
         public static void ExceptionClassMethod(Exception o)
         {
-           //System.Windows.Forms.MessageBox.Show(o.Message.ToString());
+            //System.Windows.Forms.MessageBox.Show(o.Message.ToString());
         }
     }
 }

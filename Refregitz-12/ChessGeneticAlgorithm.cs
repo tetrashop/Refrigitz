@@ -207,9 +207,6 @@
  * *******************************************************************************************************************************************/
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
 using System.IO;
 namespace Refregitz_12
 {
@@ -389,30 +386,30 @@ namespace Refregitz_12
                             }
                             else
                                 if (Order == -1 && j == 1 && i > 0 && i < 7)
+                            {
+                                if (((Cromosom2[i, j - 1] < 0) || (Cromosom2[i + 1, j - 1] < 0 && Cromosom1[i + 1, j - 1] > 0) || (Cromosom2[i - 1, j - 1] < 0 && Cromosom1[i - 1, j - 1] < 0)) && Cromosom1[i, j] == -1)
                                 {
-                                    if (((Cromosom2[i, j - 1] < 0) || (Cromosom2[i + 1, j - 1] < 0 && Cromosom1[i + 1, j - 1] > 0) || (Cromosom2[i - 1, j - 1] < 0 && Cromosom1[i - 1, j - 1] < 0)) && Cromosom1[i, j] == -1)
+                                    CromosomRowFirst = i;
+                                    CromosomColumnFirst = j;
+                                    if (Cromosom2[i, j - 1] > 0)
                                     {
-                                        CromosomRowFirst = i;
-                                        CromosomColumnFirst = j;
-                                        if (Cromosom2[i, j - 1] > 0)
-                                        {
-                                            CromosomRow = i;
-                                            CromosomColumn = j - 1;
-                                        }
-                                        else if (Cromosom2[i + 1, j - 1] > 0 && Cromosom1[i + 1, j - 1] < 0)
-                                        {
-                                            CromosomRow = i + 1;
-                                            CromosomColumn = j - 1;
-                                        }
-                                        else if (Cromosom2[i - 1, j - 1] > 0 && Cromosom1[i - 1, j - 1] < 0)
-                                        {
-                                            CromosomRow = i - 1;
-                                            CromosomColumn = j - 1;
-                                        }
-                                        FindNumber++;
-                                        AllDraw.SodierConversionOcuured = true;
+                                        CromosomRow = i;
+                                        CromosomColumn = j - 1;
                                     }
+                                    else if (Cromosom2[i + 1, j - 1] > 0 && Cromosom1[i + 1, j - 1] < 0)
+                                    {
+                                        CromosomRow = i + 1;
+                                        CromosomColumn = j - 1;
+                                    }
+                                    else if (Cromosom2[i - 1, j - 1] > 0 && Cromosom1[i - 1, j - 1] < 0)
+                                    {
+                                        CromosomRow = i - 1;
+                                        CromosomColumn = j - 1;
+                                    }
+                                    FindNumber++;
+                                    AllDraw.SodierConversionOcuured = true;
                                 }
+                            }
 
                             //Castles King Validity Condition.
                             if (Order == 1 && j == 0)
@@ -431,16 +428,16 @@ namespace Refregitz_12
                                 }
                                 else //Big Briges King Gray.
                                     if (i == 3 && Cromosom2[i, j] == 4 && Cromosom2[i - 1, j] == 6 && Cromosom1[i, j] != 4 && Cromosom1[i - 1, j] != 6)
-                                    {
-                                        CromosomRowFirst = i + 3;
-                                        CromosomColumnFirst = j;
-                                        CromosomRow = i;
-                                        CromosomColumn = j;
-                                        Find = true;
-                                        FindNumber++;
-                                        ChessRules.BigKingCastleGray = true;
-                                        Bri = true;
-                                    }
+                                {
+                                    CromosomRowFirst = i + 3;
+                                    CromosomColumnFirst = j;
+                                    CromosomRow = i;
+                                    CromosomColumn = j;
+                                    Find = true;
+                                    FindNumber++;
+                                    ChessRules.BigKingCastleGray = true;
+                                    Bri = true;
+                                }
 
                             }
                             else if (j == 7)
@@ -463,7 +460,7 @@ namespace Refregitz_12
                                 }
                                 else//Big Castles King Brown.
                                     if (i == 3 && Cromosom2[i, j] == -4 && Cromosom2[i - 1, j] == -6 && Cromosom1[i, j] != -4 && Cromosom1[i - 1, j] != -6)
-                                    {
+                                {
                                     Object O = new Object();
                                     lock (O)
                                     {
@@ -476,7 +473,7 @@ namespace Refregitz_12
                                         ChessRules.BigKingCastleBrown = true;
                                         Bri = true;
                                     }
-                                    }
+                                }
 
                             }
 
@@ -514,31 +511,31 @@ namespace Refregitz_12
                             }
                             else
                                 if (Order == -1 && j == 6 && i > 0 && i < 7)
+                            {
+                                if (((Cromosom2[i, j + 1] < 0) || (Cromosom2[i + 1, j + 1] < 0 && Cromosom1[i + 1, j + 1] > 0) || (Cromosom2[i - 1, j + 1] < 0 && Cromosom1[i - 1, j + 1] < 0)) && Cromosom1[i, j] == -1)
                                 {
-                                    if (((Cromosom2[i, j + 1] < 0) || (Cromosom2[i + 1, j + 1] < 0 && Cromosom1[i + 1, j + 1] > 0) || (Cromosom2[i - 1, j + 1] < 0 && Cromosom1[i - 1, j + 1] < 0)) && Cromosom1[i, j] == -1)
+                                    CromosomRowFirst = i;
+                                    CromosomColumnFirst = j;
+                                    if (Cromosom2[i, j + 1] > 0)
                                     {
-                                        CromosomRowFirst = i;
-                                        CromosomColumnFirst = j;
-                                        if (Cromosom2[i, j + 1] > 0)
-                                        {
-                                            CromosomRow = i;
-                                            CromosomColumn = j + 1;
-                                        }
-                                        else if (Cromosom2[i + 1, j + 1] > 0 && Cromosom1[i + 1, j + 1] < 0)
-                                        {
-                                            CromosomRow = i + 1;
-                                            CromosomColumn = j + 1;
-                                        }
-                                        else if (Cromosom2[i - 1, j + 1] > 0 && Cromosom1[i - 1, j + 1] < 0)
-                                        {
-                                            CromosomRow = i - 1;
-                                            CromosomColumn = j + 1;
-                                        }
-                                        Find = true;
-                                        FindNumber++;
-                                        AllDraw.SodierConversionOcuured = true;
+                                        CromosomRow = i;
+                                        CromosomColumn = j + 1;
                                     }
+                                    else if (Cromosom2[i + 1, j + 1] > 0 && Cromosom1[i + 1, j + 1] < 0)
+                                    {
+                                        CromosomRow = i + 1;
+                                        CromosomColumn = j + 1;
+                                    }
+                                    else if (Cromosom2[i - 1, j + 1] > 0 && Cromosom1[i - 1, j + 1] < 0)
+                                    {
+                                        CromosomRow = i - 1;
+                                        CromosomColumn = j + 1;
+                                    }
+                                    Find = true;
+                                    FindNumber++;
+                                    AllDraw.SodierConversionOcuured = true;
                                 }
+                            }
 
                             //Castles King Validity Condition.
                             if (Order == 1 && j == 7)
@@ -557,16 +554,16 @@ namespace Refregitz_12
                                 }
                                 else //Big Briges King Gray.
                                     if (i == 3 && Cromosom2[i, j] == 4 && Cromosom2[i - 1, j] == 6 && Cromosom1[i, j] != 4 && Cromosom1[i - 1, j] != 6)
-                                    {
-                                        CromosomRowFirst = i + 3;
-                                        CromosomColumnFirst = j;
-                                        CromosomRow = i;
-                                        CromosomColumn = j;
-                                        Find = true;
-                                        FindNumber++;
-                                        ChessRules.BigKingCastleGray = true;
-                                        Bri = true;
-                                    }
+                                {
+                                    CromosomRowFirst = i + 3;
+                                    CromosomColumnFirst = j;
+                                    CromosomRow = i;
+                                    CromosomColumn = j;
+                                    Find = true;
+                                    FindNumber++;
+                                    ChessRules.BigKingCastleGray = true;
+                                    Bri = true;
+                                }
 
                             }
                             else if (j == 0)
@@ -589,7 +586,7 @@ namespace Refregitz_12
                                 }
                                 else//Big Castles King Brown.
                                     if (i == 3 && Cromosom2[i, j] == -4 && Cromosom2[i - 1, j] == -6 && Cromosom1[i, j] != -4 && Cromosom1[i - 1, j] != -6)
-                                    {
+                                {
                                     Object O = new Object();
                                     lock (O)
                                     {
@@ -602,7 +599,7 @@ namespace Refregitz_12
                                         ChessRules.BigKingCastleBrown = true;
                                         Bri = true;
                                     }
-                                    }
+                                }
 
                             }
 
@@ -660,8 +657,8 @@ namespace Refregitz_12
         //Table Foundation of Genetic Alogorithm Method.
         public int[,] GenerateTable(List<int[,]> List, int Index, int Order)
         {
-        //Initiate Local Variables.
-        Begine5:
+            //Initiate Local Variables.
+            Begine5:
             RowColumn.Clear();
             int Store = Index;
             int[,] Cromosom1 = null;
@@ -687,7 +684,7 @@ namespace Refregitz_12
 
 
             //Initiate Global Variables.
-        BeginFind:
+            BeginFind:
             Color color = Color.Gray;
             if (Order == -1)
                 color = Color.Brown;
@@ -832,7 +829,7 @@ namespace Refregitz_12
                 goto BeginFind;
             }
 
-        EndFindAThing:
+            EndFindAThing:
             //Foudn of Some Samness Gen.
             if (Order == 1)
                 Ki = (new Random()).Next(1, 7);

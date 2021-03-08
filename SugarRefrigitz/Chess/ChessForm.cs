@@ -184,8 +184,8 @@ namespace Chess
                 bool B = AllDraw.Blitz;
                 AllDraw.Blitz = false;
                 RefrigtzDLL.ThinkingChess.ThinkingRun = false;
-            ////#pragma warning disable CS0164 // This label has not been referenced
-            Begin4:
+                ////#pragma warning disable CS0164 // This label has not been referenced
+                Begin4:
                 ////#pragma warning restore CS0164 // This label has not been referenced
                 AllDraw Th = Draw.AStarGreedyString;
                 if (Draw.IsAtLeastAllObjectIsNull())
@@ -629,7 +629,7 @@ namespace Chess
                     Helper.WaitOnUsed("output.txt");
                     if (File.Exists("output.txt"))
                     {
-                    Aga:
+                        Aga:
                         try
                         {
                             Helper.WaitOnUsed("output.txt");
@@ -1518,7 +1518,7 @@ namespace Chess
                     {
                         AllDraw.AllowedSupTrue = false;
 
-                    Again:
+                        Again:
                         AllDraw.NextRow = -1;
                         AllDraw.NextColumn = -1;
                         AllDraw.LastRow = -1;

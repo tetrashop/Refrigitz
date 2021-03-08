@@ -1,27 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.IO;
-using System.Net.Mail;
-using System.Globalization;
-using System.Threading;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Security.Cryptography;
 using System.Diagnostics;
-using System.Media;
-using System.Drawing.Drawing2D;
-using System.Resources;
-using System.Web;
-using System.IO.Ports;
-using System.Collections;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 namespace JSONInstaller
 {
     public partial class FormJSONInstaller : Form
@@ -59,7 +39,7 @@ namespace JSONInstaller
             }
 
         }
-        
+
         public FormJSONInstaller()
         {
             InitializeComponent();
@@ -67,7 +47,7 @@ namespace JSONInstaller
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
             if (!FormJSONInstaller.InternalCheck.InternalCheckIsWow64())
             {
                 MessageBox.Show("نصب 32 بیتی");
@@ -267,7 +247,7 @@ namespace JSONInstaller
                 catch (Exception t)
                 {
                 }
-                
+
 
 
                 try
@@ -302,9 +282,9 @@ namespace JSONInstaller
                 MessageBox.Show("پایان نصب کل مراحل");
             }
             Application.Exit();
- 
+
         }
 
-       
+
     }
 }

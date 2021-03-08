@@ -531,9 +531,9 @@ namespace WindowsApplication1
                 {
                     for(int j = 0; j < b[1]; j++)
                     {
-                        geta[i, j, 0] = (a as Bitmap).GetPixel(i, j).R;
+                        geta[i, j, 0] = (a as Bitmap).GetPixel(i, j).B;
                         geta[i, j, 1] = (a as Bitmap).GetPixel(i, j).G;
-                        geta[i, j, 2] = (a as Bitmap).GetPixel(i, j).B;
+                        geta[i, j, 2] = (a as Bitmap).GetPixel(i, j).R;
                     }
                 }
                 b[2] = 3;

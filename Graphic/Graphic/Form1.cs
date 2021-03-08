@@ -874,7 +874,7 @@ namespace WindowsApplication1
                     output.Wait();
 
                     if (a.x > 0)
-                        textBox1.Text = ((int)a.x / (125)).ToString();
+                        textBox1.Text = ((int)a.x / (125) + 2).ToString();
                     else
                         textBox1.Text = "1";
                     lock (pictureBox24)
@@ -930,7 +930,7 @@ namespace WindowsApplication1
                 }
                 label4.Text = Get(aa);
                 if (a.x > 0)
-                    textBox1.Text = ((int)a.x / (125)).ToString();
+                    textBox1.Text = ((int)a.x / (125) + 2).ToString();
                 else
                     textBox1.Text = "1";
                 lock (pictureBox24)
@@ -994,7 +994,7 @@ namespace WindowsApplication1
                     output.Wait();
 
                     if (a.x > 0)
-                        textBox1.Text = ((int)a.x / (125)).ToString();
+                        textBox1.Text = ((int)a.x / (125) + 2).ToString();
                     else
                         textBox1.Text = "1";
                     label4.Text = Get(aa);
@@ -1022,7 +1022,7 @@ namespace WindowsApplication1
                         output.Wait();
 
                         if (a.x > 0)
-                            textBox1.Text = ((int)a.x / (125)).ToString();
+                            textBox1.Text = ((int)a.x / (125) + 2).ToString();
                         else
                             textBox1.Text = "1";
                         label4.Text = Get(pictureBox24.Image);

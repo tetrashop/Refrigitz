@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace WindowsApplication1
@@ -10,6 +11,8 @@ namespace WindowsApplication1
     public class _2dTo3D
 
     {
+        byte[,,] geta = null;
+        public int width = 0,height = 0;
         public double x = 0;
         int cxC = -1, cyC = -1, czC = -1;
         public List<List<double[]>> st = new List<List<double[]>>();
@@ -32,6 +35,22 @@ namespace WindowsApplication1
         public int maxr = int.MinValue;
         int maxteta = int.MinValue;
         int maxfi = int.MinValue;
+        static void Log(Exception ex)
+        {
+            try
+            {
+                Object a = new Object();
+                lock (a as Bitmap)
+                {
+                    string stackTrace = ex.ToString();
+                    //Write to File.
+                   File.AppendAllText("ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
+                }
+            }
+
+            catch (Exception t) { }
+
+        }
         double[] cart2sph(float i, float j, float k)
         {
             double[] s = new double[3];
@@ -50,167 +69,178 @@ namespace WindowsApplication1
         }
         bool SetneighboursSt(Image a, double cxr, double cyr, double i, double j, double maxx, double maxy)
         {
+            bool aa = false;
+
             lock (st)
             {
-                lock (a)
+                lock (a as Bitmap)
                 {
-                    bool aa = false;
-                    if (cxr > 0 && cyr> 0)
+                    try
                     {
-                        if (i >= 0 && j >= 0)
+                        if (cxr > 0 && cyr > 0)
                         {
-                            if (i < a.Width && j < a.Height)
+                            if (i >= 0 && j >= 0)
                             {
-                                if (cxr < maxx - 1 && cyr < maxy - 1)
+                                if (i < width && j < height)
                                 {
+                                    if (cxr < maxx - 1 && cyr < maxy - 1)
+                                    {
 
-                                    aa = System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2)) > 0;
+                                        aa = System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2)) > 0;
 
-                                    if (System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2)) > 0)
-                                    {
-                                        st[(int)cxr][(int)cyr][0] = i;
-                                        st[(int)cxr][(int)cyr][1] = j;
-                                        st[(int)cxr][(int)cyr][2] = (System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0;
-                                    }
-                                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) > 0)
-                                    {
-                                        st[(int)cxr][(int)cyr][3] = i - 1;
-                                        st[(int)cxr][(int)cyr][4] = j;
-                                        st[(int)cxr][(int)cyr][5] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) / 3.0;
-                                    }
-                                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) > 0)
-                                    {
-                                        st[(int)cxr][(int)cyr][6] = i + 1;
-                                        st[(int)cxr][(int)cyr][7] = j;
-                                        st[(int)cxr][(int)cyr][8] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 2))) / 3.0;
-                                    }
-                                    if ((System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 2))) > 0)
-                                    {
-                                        st[(int)cxr][(int)cyr][9] = i;
-                                        st[(int)cxr][(int)cyr][10] = (j - 1);
-                                        st[(int)cxr][(int)cyr][11] = (System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 2))) / 3.0;
-                                    }
-                                    if ((System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 2))) > 0)
-                                    {
-                                        st[(int)cxr][(int)cyr][12] = i;
-                                        st[(int)cxr][(int)cyr][13] = (j + 1);
-                                        st[(int)cxr][(int)cyr][14] = (System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 2))) / 3.0;
-                                    }
-                                    if (System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 2)) > 0)
-                                    {
-                                        st[(int)cxr][(int)cyr][15] = i - 1;
-                                        st[(int)cxr][(int)cyr][16] = (j - 1);
-                                        st[(int)cxr][(int)cyr][17] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0;
-                                    }
-                                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) > 0)
-                                    {
-                                        st[(int)cxr][(int)cyr][18] = i - 1;
-                                        st[(int)cxr][(int)cyr][19] = (j + 1);
-                                        st[(int)cxr][(int)cyr][20] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) / 3.0;
-                                    }
-                                    if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) > 0)
-                                    {
-                                        st[(int)cxr][(int)cyr][21] = i + 1;
-                                        st[(int)cxr][(int)cyr][22] = (j - 1);
-                                        st[(int)cxr][(int)cyr][23] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 2))) / 3.0;
-                                    }
-                                    if ((System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 2))) > 0)
-                                    {
-                                        st[(int)cxr][(int)cyr][24] = i + 1;
-                                        st[(int)cxr][(int)cyr][25] = (j + 1);
-                                        st[(int)cxr][(int)cyr][26] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 2))) / 3.0;
+                                        if (System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2)) > 0)
+                                        {
+                                            st[(int)cxr][(int)cyr][0] = i;
+                                            st[(int)cxr][(int)cyr][1] = j;
+                                            st[(int)cxr][(int)cyr][2] = (System.Convert.ToDouble(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0;
+                                        }
+                                        if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) > 0)
+                                        {
+                                            st[(int)cxr][(int)cyr][3] = i - 1;
+                                            st[(int)cxr][(int)cyr][4] = j;
+                                            st[(int)cxr][(int)cyr][5] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) / 3.0;
+                                        }
+                                        if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)j, 2))) > 0)
+                                        {
+                                            st[(int)cxr][(int)cyr][6] = i + 1;
+                                            st[(int)cxr][(int)cyr][7] = j;
+                                            st[(int)cxr][(int)cyr][8] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)j, 2))) / 3.0;
+                                        }
+                                        if ((System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 2))) > 0)
+                                        {
+                                            st[(int)cxr][(int)cyr][9] = i;
+                                            st[(int)cxr][(int)cyr][10] = (j - 1);
+                                            st[(int)cxr][(int)cyr][11] = (System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j - 1), 2))) / 3.0;
+                                        }
+                                        if ((System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 2))) > 0)
+                                        {
+                                            st[(int)cxr][(int)cyr][12] = i;
+                                            st[(int)cxr][(int)cyr][13] = (j + 1);
+                                            st[(int)cxr][(int)cyr][14] = (System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i), (int)(j + 1), 2))) / 3.0;
+                                        }
+                                        if (System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)(int)j, 2)) > 0)
+                                        {
+                                            st[(int)cxr][(int)cyr][15] = i - 1;
+                                            st[(int)cxr][(int)cyr][16] = (j - 1);
+                                            st[(int)cxr][(int)cyr][17] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToDouble(GetK(a, (int)i, (int)j, 2))) / 3.0;
+                                        }
+                                        if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) > 0)
+                                        {
+                                            st[(int)cxr][(int)cyr][18] = i - 1;
+                                            st[(int)cxr][(int)cyr][19] = (j + 1);
+                                            st[(int)cxr][(int)cyr][20] = (System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) / 3.0;
+                                        }
+                                        if ((System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i - 1), (int)(j + 1), 2))) > 0)
+                                        {
+                                            st[(int)cxr][(int)cyr][21] = i + 1;
+                                            st[(int)cxr][(int)cyr][22] = (j - 1);
+                                            st[(int)cxr][(int)cyr][23] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j - 1), 2))) / 3.0;
+                                        }
+                                        if ((System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 2))) > 0)
+                                        {
+                                            st[(int)cxr][(int)cyr][24] = i + 1;
+                                            st[(int)cxr][(int)cyr][25] = (j + 1);
+                                            st[(int)cxr][(int)cyr][26] = (System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 0)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 1)) + System.Convert.ToDouble(GetK(a, (int)(i + 1), (int)(j + 1), 2))) / 3.0;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    catch (Exception t) {  Log(t); MessageBox.Show(t.ToString()); }
                     return aa;
                 }
             }
+
         }
         void Threaadcal(int i, int j, int k, int ii, int jj)
         {
-            lock (c)
+            try
             {
-                if ((float)(System.Convert.ToInt32(GetK(a, i, j, k))) == 0)
-                    return;
-                float dr = 0;
-                double[] s = new double[3];
-                //[teta, fi, r] = cart2sph(i, j, 0);
-                s = cart2sph(i, j, 1);
-                t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415));
-                f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
-                rr[i, j, k] = (int)Math.Round((double)(s[2]));
-                dr = (float)Math.Round((((maxr - minr) * -1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2)))); ;
-                ddr[i, j, k] = (int)dr;
-                if ((maxr - minr) * ii + dr >= 0// && (t[i, j, k + 1] + 2 < maxteta - minteta) && (t[i, j, k + 1] - 2 > minteta)
-                     )
+                lock (c)
                 {
-                    try
+                    if ((float)(System.Convert.ToInt32(GetK(a, i, j, k))) == 0)
+                        return;
+                    float dr = 0;
+                    double[] s = new double[3];
+                    //[teta, fi, r] = cart2sph(i, j, 0);
+                    s = cart2sph(i, j, 1);
+                    t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415));
+                    f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
+                    rr[i, j, k] = (int)Math.Round((double)(s[2]));
+                    dr = (float)Math.Round((( -1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3 *300 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2)))); ;
+                    ddr[i, j, k] = (int)dr;
+                    if ((maxr - minr) * ii + dr >= 0// && (t[i, j, k + 1] + 2 < maxteta - minteta) && (t[i, j, k + 1] - 2 > minteta)
+                         )
                     {
-                        int cxT = (maxr - minr) * ii + (int)dr;
-                        int cyT1 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] + 2.0));
-                        int cyT2 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0));
-
-                        if ((ii + jj) % 2 == 0)
+                        try
                         {
-                            c[cxT, cyT1, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
-                            //SetneighboursSt(a, cxT, cyT1, cxC, cyC);
-                        }
-                        else
-                        {
-                            c[cxT, cyT2, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
-                            //SetneighboursSt(a, cxT, cyT2, cxC, cyC);
-                        }
-                    }
-                    catch (Exception t)
-                    {
+                            int cxT = (maxr - minr) * ii + (int)dr;
+                            int cyT1 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] + 2.0));
+                            int cyT2 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0));
 
+                            if ((ii + jj) % 2 == 0)
+                            {
+                                c[cxT, cyT1, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
+                                //SetneighboursSt(a, cxT, cyT1, cxC, cyC);
+                            }
+                            else
+                            {
+                                c[cxT, cyT2, k] = (float)(System.Convert.ToInt32(GetK(a, i, j, k)));
+                                //SetneighboursSt(a, cxT, cyT2, cxC, cyC);
+                            }
+                        }
+                        catch (Exception t)
+                        {
+
+                        }
                     }
                 }
             }
+            catch (Exception t) {  Log(t); MessageBox.Show(t.ToString()); }
         }
         void ThreaadcalNeighbour(int i, int j, int k, int ii, int jj)
         {
-            lock (c)
+            try
             {
-                if ((float)(System.Convert.ToInt32(GetK(a, i, j, k))) == 0)
-                    return;
-                float dr = 0;
-                double[] s = new double[3];
-                //[teta, fi, r] = cart2sph(i, j, 0);
-                s = cart2sph(i, j, 1);
-                t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415));
-                f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
-                rr[i, j, k] = (int)Math.Round((double)(s[2]));
-                dr = (float)Math.Round((((maxr - minr) * -1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2)))); ;
-                ddr[i, j, k] = (int)dr;
-                if ((maxr - minr) * ii + dr >= 0// && (t[i, j, k + 1] + 2 < maxteta - minteta) && (t[i, j, k + 1] - 2 > minteta)
-                     )
+                lock (c)
                 {
-                    try
+                    if ((float)(System.Convert.ToInt32(GetK(a, i, j, k))) == 0)
+                        return;
+                    float dr = 0;
+                    double[] s = new double[3];
+                    //[teta, fi, r] = cart2sph(i, j, 0);
+                    s = cart2sph(i, j, 1);
+                    t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415));
+                    f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
+                    rr[i, j, k] = (int)Math.Round((double)(s[2]));
+                    dr = (float)Math.Round(((-1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3 * 300 / (1.0 + System.Convert.ToDouble(GetK(a, i, j, 0)) + System.Convert.ToDouble(GetK(a, i, j, 1)) + System.Convert.ToDouble(GetK(a, i, j, 2)))); ;
+                    ddr[i, j, k] = (int)dr;
+                    if ((maxr - minr) * ii + dr >= 0// && (t[i, j, k + 1] + 2 < maxteta - minteta) && (t[i, j, k + 1] - 2 > minteta)
+                         )
                     {
-                        int cxT = (maxr - minr) * ii + (int)dr;
-                        int cyT1 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] + 2.0));
-                        int cyT2 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0));
-
-                        if ((ii + jj) % 2 == 0)
+                        try
                         {
-                            bool aa = SetneighboursSt(a, cxT, cyT1, i, j, cx, cyp1);
-                            if (aa)
-                                x++;
+                            int cxT = (maxr - minr) * ii + (int)dr;
+                            int cyT1 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] + 2.0));
+                            int cyT2 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0));
+                            if ((ii + jj) % 2 == 0)
+                            {
+                                SetneighboursSt(a, cxT, cyT1, i, j, cx, cyp0);
+                             }
+                            else
+                            {
+                                SetneighboursSt(a, cxT, cyT2, i, j, cx, cyp1);
+                            }
                         }
-                        else
+                        catch (Exception t)
                         {
-                            SetneighboursSt(a, cxT, cyT2, i, j, cx, cyp1);
-                        }
-                    }
-                    catch (Exception t)
-                    {
 
+                        }
                     }
                 }
             }
+            catch (Exception t) {  Log(t); MessageBox.Show(t.ToString()); }
         }
         void Threaadfetch(int i, int j, int k, int ii, int jj)
         {
@@ -220,6 +250,10 @@ namespace WindowsApplication1
                 {
                     try
                     {
+                        if ((int)(ii * (maxr - minr) + ddr[i, j, k]) < 0 || (int)(jj * (maxteta - minteta) + t[i, j, k] + 2) < 0)
+                            return;
+                        if ((int)(ii * (maxr - minr) + ddr[i, j, k]) >= cx || (int)(jj * (maxteta - minteta) + t[i, j, k] + 2) >= cyp1)
+                            return;
                         if (c[(int)(ii * (maxr - minr) + ddr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k] + 2), k] == 0)
                             return;
                         if ((ii + jj) % 2 == 0)
@@ -229,942 +263,769 @@ namespace WindowsApplication1
                     }
                     catch (Exception t)
                     {
-
+                         Log(t); MessageBox.Show(t.ToString());
                     }
                 }
             }
         }
         void Threaaddraw(int i, int j, ref Graphics g, ref Image ar)
         {
-            lock (e)
+            try
             {
-                lock (ar)
+                lock (e)
                 {
-                    lock (g)
+                    lock (ar as Bitmap)
                     {
-                        try
+                        lock (g)
                         {
+
                             (ar as Bitmap).SetPixel(i, j, Color.FromArgb((int)(e[i, j, 0]), (int)(e[i, j, 1]), (int)(e[i, j, 2])));
-                            g.DrawImage(ar, 0, 0, ar.Width, ar.Height);
+                            g.DrawImage(ar, 0, 0, (ar as Bitmap).Width, (ar as Bitmap).Height);
                             g.Save();
-                        }
-                        catch (Exception t)
-                        {
 
                         }
                     }
                 }
+            }
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
             }
         }
         void ContoObject()
         {
-            int r = 0;
-            int teta = 0;
-            int fi = 0;
-            cx = (int)((maxr - minr) * fg + (int)maxr + 1);
-
-            cyp0 = (int)Math.Round((double)(maxteta - minteta) + (double)maxteta + 1.0);
-            cyp1 = (int)Math.Round((double)(maxteta - minteta) * (double)2 + (double)maxteta + 1.0);
-            //cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
-            cxC = (int)((maxr - minr) * fg + (int)maxr + 1);
-            cyC = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
-            czC = 3;
-            for (int i = 0; i < cxC; i++)
+            try
             {
-                st.Add(new List<double[]>());
-                for (int j = 0; j < cyp1; j++)
+                int r = 0;
+                int teta = 0;
+                int fi = 0;
+                cx = (int)((maxr - minr) * fg + (int)maxr + 1);
+
+                cyp0 = (int)Math.Round((double)(maxteta - minteta) + (double)maxteta + 1.0);
+                cyp1 = (int)Math.Round((double)(maxteta - minteta) * (double)2 + (double)maxteta + 1.0);
+                //cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
+                cxC = (int)((maxr - minr) * fg + (int)maxr + 1);
+                cyC = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
+                czC = 3;
+                for (int i = 0; i < cxC; i++)
                 {
-                    st[i].Add(new double[27]);
-                }
-            }
-            c = new float[cxC, cyp1, czC];
-            t = new int[b[0], b[1], 3];
-            rr = new int[b[0], b[1], 3];
-            f = new int[b[0], b[1], 3];
-            ddr = new int[b[0], b[1], 3];
-            int v = 0;
-            int n = 0;
-            int q = 0;
-            int robeta = 0;
-
-            float rb = (float)0.20;// pixel;
-            float Z = (float)0.100;// distance of eye form screen cm;
-            float ra = 0;//varabale;
-            List<Task> th = new List<Task>();
-
-            var output = Task.Factory.StartNew(() =>
-           {
-
-               ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
-                {
-
-                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
+                    st.Add(new List<double[]>());
+                    for (int j = 0; j < cyp1; j++)
                     {
-                       //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                       ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
-                   {
-                       ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
-                       {
-                           ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
-                             {
-                                 var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, ii, jj));
-                                 lock (th) { th.Add(output1); }
-                             });
+                        st[i].Add(new double[27]);
+                    }
+                }
+                c = new float[cxC, cyp1, czC];
+                t = new int[b[0], b[1], 3];
+                rr = new int[b[0], b[1], 3];
+                f = new int[b[0], b[1], 3];
+                ddr = new int[b[0], b[1], 3];
+                int v = 0;
+                int n = 0;
+                int q = 0;
+                int robeta = 0;
+
+                float rb = (float)0.20;// pixel;
+                float Z = (float)0.100;// distance of eye form screen cm;
+                float ra = 0;//varabale;
+                List<Task> th = new List<Task>();
+
+                var output = Task.Factory.StartNew(() =>
+               {
+
+                   ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
+                    {
+
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
+                        {
+                            //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                            ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
+                        {
+                            ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
+                        {
+                            lock (geta)
+                            {
+                                if (geta[i, j, 0] + geta[i, j, 1] + geta[i, j, 2] > 0)
+                                    x++;
+                            }
+                            ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
+                              {
+                                  var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, ii, jj));
+                                  lock (th) { th.Add(output1); }
+                              });
 
 
-                       });
-                   });
+                        });
+                        });
+                        });
                     });
-                });
-           });
-            //output.Wait();
-            th.Add(output);
-            Parallel.ForEach(th, item => Task.WaitAll(item));
+               });
+                //output.Wait();
+                th.Add(output);
+                Parallel.ForEach(th, item => Task.WaitAll(item));
+            }
+            catch (Exception t)
+            {
+                Log(t); MessageBox.Show(t.ToString());
+            }
         }
         void ContoObjectNeighbour()
         {
-            int r = 0;
-            int teta = 0;
-            int fi = 0;
-            cx = (int)((maxr - minr) * fg + (int)maxr + 1);
-
-            cyp0 = (int)Math.Round((double)(maxteta - minteta) + (double)maxteta + 1.0);
-            cyp1 = (int)Math.Round((double)(maxteta - minteta) * (double)2 + (double)maxteta + 1.0);
-            //cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
-            cxC = (int)((maxr - minr) * fg + (int)maxr + 1);
-            cyC = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
-            czC = 3;
-            for (int i = 0; i < cxC; i++)
+            try
             {
-                st.Add(new List<double[]>());
-                for (int j = 0; j < cyp1; j++)
+                int r = 0;
+                int teta = 0;
+                int fi = 0;
+                cx = (int)((maxr - minr) * fg + (int)maxr + 1);
+
+                cyp0 = (int)Math.Round((double)(maxteta - minteta) + (double)maxteta + 1.0);
+                cyp1 = (int)Math.Round((double)(maxteta - minteta) * (double)2 + (double)maxteta + 1.0);
+                //cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
+                cxC = (int)((maxr - minr) * fg + (int)maxr + 1);
+                cyC = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
+                czC = 3;
+                for (int i = 0; i < cxC; i++)
                 {
-                    st[i].Add(new double[27]);
-                }
-            }
-            c = new float[cxC, cyp1, czC];
-            t = new int[b[0], b[1], 3];
-            rr = new int[b[0], b[1], 3];
-            f = new int[b[0], b[1], 3];
-            ddr = new int[b[0], b[1], 3];
-            int v = 0;
-            int n = 0;
-            int q = 0;
-            int robeta = 0;
-
-            float rb = (float)0.20;// pixel;
-            float Z = (float)0.100;// distance of eye form screen cm;
-            float ra = 0;//varabale;
-            List<Task> th = new List<Task>();
-
-            var output = Task.Factory.StartNew(() =>
-            {
-
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
-                {
-
-                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
+                    st.Add(new List<double[]>());
+                    for (int j = 0; j < cyp1; j++)
                     {
-                        //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                        ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
+                        st[i].Add(new double[27]);
+                    }
+                }
+                c = new float[cxC, cyp1, czC];
+                t = new int[b[0], b[1], 3];
+                rr = new int[b[0], b[1], 3];
+                f = new int[b[0], b[1], 3];
+                ddr = new int[b[0], b[1], 3];
+                int v = 0;
+                int n = 0;
+                int q = 0;
+                int robeta = 0;
+
+                float rb = (float)0.20;// pixel;
+                float Z = (float)0.100;// distance of eye form screen cm;
+                float ra = 0;//varabale;
+                List<Task> th = new List<Task>();
+
+                var output = Task.Factory.StartNew(() =>
+                {
+
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
+                    {
+
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
                         {
-                            ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
-                            {
-                                ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 3, delegate (int k)
+                            //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
+                            ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
                                 {
-                                    var output1 = Task.Factory.StartNew(() => ThreaadcalNeighbour(i, j, k, ii, jj));
-                                    lock (th) { th.Add(output1); }
+                                    ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
+                                    {
+                                        lock (geta)
+                                        {
+                                            if (geta[i, j, 0] + geta[i, j, 1] + geta[i, j, 2] > 0)
+                                                x++;
+                                        }
+                                        ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 3, delegate (int k)
+                                        {
+                                            var output1 = Task.Factory.StartNew(() => ThreaadcalNeighbour(i, j, k, ii, jj));
+                                            lock (th) { th.Add(output1); }
+                                        });
+
+
+                                    });
                                 });
-
-
-                            });
                         });
                     });
                 });
-            });
-            //output.Wait();
-           th.Add(output);
-            Parallel.ForEach(th, item => Task.WaitAll(item));
+                //output.Wait();
+                th.Add(output);
+                Parallel.ForEach(th, item => Task.WaitAll(item));
+            }
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
+            }
         }
         byte GetK(Image a, int i, int j, int k)
         {
-            object o = new object();
-            lock (o)
+            try
             {
-                if (i >= (a as Bitmap).Width || j >= (a as Bitmap).Height)
-                    return 0;
-                if (k == 0)
-                    return (a as Bitmap).GetPixel(i, j).R;
-                if (k == 1)
-                    return (a as Bitmap).GetPixel(i, j).G;
-
-                return (a as Bitmap).GetPixel(i, j).B;
-
+                object o = new object();
+                lock (o)
+                {
+                    lock (geta)
+                    {
+                        if (i < 0 || j < 0)
+                            return 0;
+                        if (i >= width || j >= height)
+                            return 0;
+                        return geta[i, j, k];
+                    }
+                }
             }
+            catch (Exception t)
+            {
+                Log(t); MessageBox.Show(t.ToString());
+            }
+            return 0;
         }
         void ConvTo3D()
         {
-            int r = 0;
-            int teta = 0;
-            int fi = 0;
-            e = new float[(int)(b[0] * fg), (int)((b[1])), 3];
-            List<Task> th = new List<Task>();
-
-            var output = Task.Factory.StartNew(() =>
+            try
             {
-                ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
-                 {
-                     ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
-                     {
-                         ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
-                           {
-                               ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
-                               {
-                                   ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
-                                   {
-                                       var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
+                int r = 0;
+                int teta = 0;
+                int fi = 0;
+                e = new float[(int)(b[0] * fg), (int)((b[1])), 3];
+                List<Task> th = new List<Task>();
 
-                                       lock (th) { th.Add(output1); }
+                var output = Task.Factory.StartNew(() =>
+                {
+                    ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
+                     {
+                         ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
+                         {
+                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
+                               {
+                                   ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
+                                   {
+                                       ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
+                                       {
+                                           var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
+
+                                           lock (th) { th.Add(output1); }
+                                       });
                                    });
                                });
-                           });
+                         });
                      });
-                 });
-            });
-           // output.Wait();
-            th.Add(output);
-            Parallel.ForEach(th, item => Task.WaitAll(item));
+                });
+                // output.Wait();
+                th.Add(output);
+                Parallel.ForEach(th, item => Task.WaitAll(item));
+            }
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
+            }
+
         }
         void Initiate()
         {
-            minr = int.MaxValue;
-            minteta = int.MaxValue;
-            minfi = int.MaxValue;
-            maxr = int.MinValue;
-            maxteta = int.MinValue;
-            maxfi = int.MinValue;
-            int r = 0;
-            int teta = 0;
-            int fi = 0;
-            b[0] = a.Width;
-            b[1] = a.Height;
-            b[2] = 3;
-            t = new int[b[0], b[1], 3];
-            rr = new int[b[0], b[1], 3];
-            f = new int[b[0], b[1], 3];
-
-            for (int i = 0; i < b[0]; i++)
+            try
             {
-                for (int j = 0; j < b[1]; j++)
+                x = 0;
+                minr = int.MaxValue;
+                minteta = int.MaxValue;
+                minfi = int.MaxValue;
+                maxr = int.MinValue;
+                maxteta = int.MinValue;
+                maxfi = int.MinValue;
+                int r = 0;
+                int teta = 0;
+                int fi = 0;
+                b[0] = (a as Bitmap).Width;
+                b[1] = (a as Bitmap).Height;
+                geta = new byte[b[0], b[1], 3];
+                for(int i = 0; i < b[0]; i++)
                 {
-                    for (int k = 0; k < 3; k++)
+                    for(int j = 0; j < b[1]; j++)
                     {
-                        double[] s = new double[3];
-                        //[teta, fi, r] = cart2sph(i, j, 0);
-                        s = cart2sph(i, j, 1);
-                        teta = (int)Math.Round(s[0] * 180.0 / 3.1415);
-                        fi = (int)Math.Round(s[1] * 180.0 / 3.1415);
-                        r = (int)Math.Round(s[2]);
-                        if (minr > r)
-                            minr = r;
+                        geta[i, j, 0] = (a as Bitmap).GetPixel(i, j).R;
+                        geta[i, j, 1] = (a as Bitmap).GetPixel(i, j).G;
+                        geta[i, j, 2] = (a as Bitmap).GetPixel(i, j).B;
+                    }
+                }
+                b[2] = 3;
+                t = new int[b[0], b[1], 3];
+                rr = new int[b[0], b[1], 3];
+                f = new int[b[0], b[1], 3];
 
-                        if (maxr < r)
-                            maxr = r;
+                for (int i = 0; i < b[0]; i++)
+                {
+                    for (int j = 0; j < b[1]; j++)
+                    {
+                        for (int k = 0; k < 3; k++)
+                        {
+                            double[] s = new double[3];
+                            //[teta, fi, r] = cart2sph(i, j, 0);
+                            s = cart2sph(i, j, 1);
+                            teta = (int)Math.Round(s[0] * 180.0 / 3.1415);
+                            fi = (int)Math.Round(s[1] * 180.0 / 3.1415);
+                            r = (int)Math.Round(s[2]);
+                            if (minr > r)
+                                minr = r;
 
-                        if (minfi > fi)
-                            minfi = fi;
+                            if (maxr < r)
+                                maxr = r;
 
-                        if (maxfi < fi)
-                            maxfi = fi;
+                            if (minfi > fi)
+                                minfi = fi;
 
-                        if (minteta > teta)
-                            minteta = teta;
+                            if (maxfi < fi)
+                                maxfi = fi;
 
-                        if (maxteta < teta)
-                            maxteta = teta;
+                            if (minteta > teta)
+                                minteta = teta;
+
+                            if (maxteta < teta)
+                                maxteta = teta;
+
+                        }
+
 
                     }
-
-
                 }
+            }
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
             }
         }
         void InitiateIntelli()
         {
-            minr = int.MaxValue;
-            minteta = int.MaxValue;
-            minfi = int.MaxValue;
-            maxr = int.MinValue;
-            maxteta = int.MinValue;
-            maxfi = int.MinValue;
-            int r = 0;
-            int teta = 0;
-            int fi = 0;
-            t = new int[b[0], b[1], 3];
-            rr = new int[b[0], b[1], 3];
-            f = new int[b[0], b[1], 3];
-
-            for (int i = 0; i < b[0]; i++)
+            try
             {
-                for (int j = 0; j < b[1]; j++)
+                minr = int.MaxValue;
+                minteta = int.MaxValue;
+                minfi = int.MaxValue;
+                maxr = int.MinValue;
+                maxteta = int.MinValue;
+                maxfi = int.MinValue;
+                int r = 0;
+                int teta = 0;
+                int fi = 0;
+                t = new int[b[0], b[1], 3];
+                rr = new int[b[0], b[1], 3];
+                f = new int[b[0], b[1], 3];
+
+                for (int i = 0; i < b[0]; i++)
                 {
-                    for (int k = 0; k < 3; k++)
+                    for (int j = 0; j < b[1]; j++)
                     {
-                        double[] s = new double[3];
-                        //[teta, fi, r] = cart2sph(i, j, 0);
-                        s = cart2sph(i, j, 1);
-                        teta = (int)Math.Round(s[0] * 180.0 / 3.1415);
-                        fi = (int)Math.Round(s[1] * 180.0 / 3.1415);
-                        r = (int)Math.Round(s[2]);
-                        if (minr > r)
-                            minr = r;
+                        for (int k = 0; k < 3; k++)
+                        {
+                            double[] s = new double[3];
+                            //[teta, fi, r] = cart2sph(i, j, 0);
+                            s = cart2sph(i, j, 1);
+                            teta = (int)Math.Round(s[0] * 180.0 / 3.1415);
+                            fi = (int)Math.Round(s[1] * 180.0 / 3.1415);
+                            r = (int)Math.Round(s[2]);
+                            if (minr > r)
+                                minr = r;
 
-                        if (maxr < r)
-                            maxr = r;
+                            if (maxr < r)
+                                maxr = r;
 
-                        if (minfi > fi)
-                            minfi = fi;
+                            if (minfi > fi)
+                                minfi = fi;
 
-                        if (maxfi < fi)
-                            maxfi = fi;
+                            if (maxfi < fi)
+                                maxfi = fi;
 
-                        if (minteta > teta)
-                            minteta = teta;
+                            if (minteta > teta)
+                                minteta = teta;
 
-                        if (maxteta < teta)
-                            maxteta = teta;
+                            if (maxteta < teta)
+                                maxteta = teta;
+
+                        }
+
 
                     }
-
-
                 }
+            }
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
             }
         }
         float[,,] uitn8(float[,,] p, int ii, int jj, int kk)
         {
-            float min = float.MaxValue, max = float.MinValue;
-            bool Donemax = false, Donemin = false;
-            for (int i = 0; i < ii; i++)
+            try
             {
-                for (int j = 0; j < jj; j++)
-                {
-                    for (int k = 0; k < kk; k++)
-                    {
-                        if (p[i, j, k] > max)
-                        {
-                            Donemax = true;
-                            max = p[i, j, k];
-                        }
-                        if (p[i, j, k] < min)
-                        {
-                            Donemin = true;
-                            min = p[i, j, k];
-                        }
-                    }
-                }
-
-            }
-            float q = min;
-            if (q < 0.0 && Donemin)
-            {
+                float min = float.MaxValue, max = float.MinValue;
+                bool Donemax = false, Donemin = false;
                 for (int i = 0; i < ii; i++)
                 {
                     for (int j = 0; j < jj; j++)
                     {
                         for (int k = 0; k < kk; k++)
                         {
-                            p[i, j, k] -= q;
+                            if (p[i, j, k] > max)
+                            {
+                                Donemax = true;
+                                max = p[i, j, k];
+                            }
+                            if (p[i, j, k] < min)
+                            {
+                                Donemin = true;
+                                min = p[i, j, k];
+                            }
                         }
                     }
 
                 }
-            }
-            min = float.MaxValue; max = float.MinValue;
-            Donemax = false; Donemin = false;
-            for (int i = 0; i < ii; i++)
-            {
-                for (int j = 0; j < jj; j++)
+                float q = min;
+                if (q < 0.0 && Donemin)
                 {
-                    for (int k = 0; k < kk; k++)
+                    for (int i = 0; i < ii; i++)
                     {
-                        if (p[i, j, k] > max)
+                        for (int j = 0; j < jj; j++)
                         {
-                            Donemax = true;
-                            max = p[i, j, k];
+                            for (int k = 0; k < kk; k++)
+                            {
+                                p[i, j, k] -= q;
+                            }
                         }
-                        if (p[i, j, k] < min)
-                        {
-                            Donemin = true;
-                            min = p[i, j, k];
-                        }
+
                     }
                 }
-
-            }
-            q = (float)255.0 / (max);
-            if (max > 255.0 && Donemax)
-            {
+                min = float.MaxValue; max = float.MinValue;
+                Donemax = false; Donemin = false;
                 for (int i = 0; i < ii; i++)
                 {
                     for (int j = 0; j < jj; j++)
                     {
                         for (int k = 0; k < kk; k++)
                         {
-                            p[i, j, k] *= q;
+                            if (p[i, j, k] > max)
+                            {
+                                Donemax = true;
+                                max = p[i, j, k];
+                            }
+                            if (p[i, j, k] < min)
+                            {
+                                Donemin = true;
+                                min = p[i, j, k];
+                            }
                         }
                     }
 
                 }
+                q = (float)255.0 / (max);
+                if (max > 255.0 && Donemax)
+                {
+                    for (int i = 0; i < ii; i++)
+                    {
+                        for (int j = 0; j < jj; j++)
+                        {
+                            for (int k = 0; k < kk; k++)
+                            {
+                                p[i, j, k] *= q;
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString()); 
             }
             return p;
+
         }
 
         public void reconstruct2dto3d(int succeed)
         {
-            if (succeed > 0)
+            try
             {
+                if (succeed > 0)
+                {
+                    ConvTo3D();
+                    MessageBox.Show("ConvTo3D pass!");
+                    ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                    MessageBox.Show("Graphic begin!!");
+                    Graphics g = Graphics.FromImage(ar as Bitmap);
+
+
+
+                    for (int i = 0; i < (ar as Bitmap).Width; i++)
+                    {
+                        for (int j = 0; j < (ar as Bitmap).Height; j++)
+                        {
+                            Threaaddraw(i, j, ref g, ref ar);
+                        }
+                    }
+                    _3DReady = true;
+                    g.Dispose();
+                }
+                              MessageBox.Show("Graphic finished!!");
+
+            }
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
+            }
+        }
+
+        //convert 2d image to 3d;
+        public _2dTo3D(string ass)
+        {
+            try
+            {
+                a = Image.FromFile(ass);
+                width = (a as Bitmap).Width;
+                height = (a as Bitmap).Height;
+
+                //new _2dTo3D(a, true);
+                Initiate();
+                MessageBox.Show("Initiate pass!");
+                ContoObject();
+                MessageBox.Show("ContoObject pass!");
                 ConvTo3D();
                 MessageBox.Show("ConvTo3D pass!");
+                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
                 ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
                 MessageBox.Show("Graphic begin!!");
-                Graphics g = Graphics.FromImage(ar);
+                Graphics g = Graphics.FromImage(ar as Bitmap);
 
 
 
-                for (int i = 0; i < ar.Width; i++)
+                for (int i = 0; i < (ar as Bitmap).Width; i++)
                 {
-                    for (int j = 0; j < ar.Height; j++)
+                    for (int j = 0; j < (ar as Bitmap).Height; j++)
                     {
                         Threaaddraw(i, j, ref g, ref ar);
                     }
                 }
                 _3DReady = true;
                 g.Dispose();
+                    MessageBox.Show("Graphic finished!!");
+
             }
-            /*  List<Task> th = new List<Task>();
-              var output = Task.Factory.StartNew(() =>
-                  {
-                  lock (ar)
-                  {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
-                      {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
-                          {
-                              var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
-                              lock (th) { th.Add(output1); }
-                          });
-                      });
-                      }
-                  });
-              th.Add(output);
-              Parallel.ForEach(th, item => Task.WaitAll(item));*/
-            /* BitmapData bitmapData = (ar as Bitmap).LockBits(new Rectangle(0, 0, (ar as Bitmap).Width, (ar as Bitmap).Height), ImageLockMode.ReadWrite, (ar as Bitmap).PixelFormat);
-            //http://csharpexamples.com/tag/parallel-bitmap-processing/
-             int bytesPerPixel = Bitmap.GetPixelFormatSize((ar as Bitmap).PixelFormat) / 8;
-             int byteCount = bitmapData.Stride * (ar as Bitmap).Height;
-             byte[] pixels = new byte[byteCount];
-             IntPtr ptrFirstPixel = bitmapData.Scan0;
-             Marshal.Copy(ptrFirstPixel, pixels, 0, pixels.Length);
-             int heightInPixels = bitmapData.Height;
-             int widthInBytes = bitmapData.Width * bytesPerPixel;
-
-             for (int y = 0; y < heightInPixels; y++)
-             {
-                 int currentLine = y * bitmapData.Stride;
-                 for (int x = 0; x < widthInBytes; x = x + bytesPerPixel)
-                 {
-                     int oldBlue = new int();
-                     int oldGreen = new int();
-                     int oldRed = new int();
-
-                     lock (e)
-                     {
-                          oldBlue = (int)e[x / bytesPerPixel, y, 0];                        
-                          oldGreen = (int)e[x / bytesPerPixel, y, 1];
-                          oldRed = (int)e[x / bytesPerPixel, y, 2];
-                     }
-
-                     // calculate new pixel value
-                     pixels[currentLine + x] = (byte)oldBlue;
-                     pixels[currentLine + x + 1] = (byte)oldGreen;
-                     pixels[currentLine + x + 2] = (byte)oldRed;
-                 }
-             }
-
-             // copy modified bytes back
-             Marshal.Copy(pixels, 0, ptrFirstPixel, pixels.Length);
-             (ar as Bitmap).UnlockBits(bitmapData);*/
-            MessageBox.Show("Graphic finished!!");
-
-        }
-
-        //convert 2d image to 3d;
-        public _2dTo3D(string ass)
-        {
-            a = Image.FromFile(ass);
-            Initiate();
-            MessageBox.Show("Initiate pass!");
-            ContoObject();
-            MessageBox.Show("ContoObject pass!");
-            ConvTo3D();
-            MessageBox.Show("ConvTo3D pass!");
-            e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-            ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
-            MessageBox.Show("Graphic begin!!");
-            Graphics g = Graphics.FromImage(ar);
-
-
-
-            for (int i = 0; i < ar.Width; i++)
+            catch (Exception t)
             {
-                for (int j = 0; j < ar.Height; j++)
-                {
-                    Threaaddraw(i, j, ref g, ref ar);
-                }
+                 Log(t); MessageBox.Show(t.ToString());
             }
-            _3DReady = true;
-            g.Dispose();
-            /*  List<Task> th = new List<Task>();
-              var output = Task.Factory.StartNew(() =>
-                  {
-                  lock (ar)
-                  {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
-                      {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
-                          {
-                              var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
-                              lock (th) { th.Add(output1); }
-                          });
-                      });
-                      }
-                  });
-              th.Add(output);
-              Parallel.ForEach(th, item => Task.WaitAll(item));*/
-            /* BitmapData bitmapData = (ar as Bitmap).LockBits(new Rectangle(0, 0, (ar as Bitmap).Width, (ar as Bitmap).Height), ImageLockMode.ReadWrite, (ar as Bitmap).PixelFormat);
-            //http://csharpexamples.com/tag/parallel-bitmap-processing/
-             int bytesPerPixel = Bitmap.GetPixelFormatSize((ar as Bitmap).PixelFormat) / 8;
-             int byteCount = bitmapData.Stride * (ar as Bitmap).Height;
-             byte[] pixels = new byte[byteCount];
-             IntPtr ptrFirstPixel = bitmapData.Scan0;
-             Marshal.Copy(ptrFirstPixel, pixels, 0, pixels.Length);
-             int heightInPixels = bitmapData.Height;
-             int widthInBytes = bitmapData.Width * bytesPerPixel;
-
-             for (int y = 0; y < heightInPixels; y++)
-             {
-                 int currentLine = y * bitmapData.Stride;
-                 for (int x = 0; x < widthInBytes; x = x + bytesPerPixel)
-                 {
-                     int oldBlue = new int();
-                     int oldGreen = new int();
-                     int oldRed = new int();
-
-                     lock (e)
-                     {
-                          oldBlue = (int)e[x / bytesPerPixel, y, 0];                        
-                          oldGreen = (int)e[x / bytesPerPixel, y, 1];
-                          oldRed = (int)e[x / bytesPerPixel, y, 2];
-                     }
-
-                     // calculate new pixel value
-                     pixels[currentLine + x] = (byte)oldBlue;
-                     pixels[currentLine + x + 1] = (byte)oldGreen;
-                     pixels[currentLine + x + 2] = (byte)oldRed;
-                 }
-             }
-
-             // copy modified bytes back
-             Marshal.Copy(pixels, 0, ptrFirstPixel, pixels.Length);
-             (ar as Bitmap).UnlockBits(bitmapData);*/
-            MessageBox.Show("Graphic finished!!");
-
         }
         public _2dTo3D(Image ib, double percent)
         {
-            a = ib;
-            Graphics g = Graphics.FromImage(a);
-
-
-
-            for (int i = 0; i < a.Width; i++)
+            try
             {
-                for (int j = 0; j < a.Height; j++)
+                a = ib;
+                width = (ib as Bitmap).Width;
+                height = (ib as Bitmap).Height;
+                Graphics g = Graphics.FromImage(a as Bitmap);
+
+
+                //new _2dTo3D(a, true);
+
+
+                for (int i = 0; i < (a as Bitmap).Width; i++)
                 {
-                    if (((i + j) % ((int)(1.0 / percent))) == 0)
+                    for (int j = 0; j < (a as Bitmap).Height; j++)
                     {
-                    }
-                    else
-                    {
-                        (a as Bitmap).SetPixel(i, j, Color.Black);
-                        g.DrawImage(a, 0, 0, a.Width, a.Height);
-                        g.Save();
+                        if (((i + j) % ((int)(1.0 / percent))) == 0)
+                        {
+                        }
+                        else
+                        {
+                            (a as Bitmap).SetPixel(i, j, Color.Black);
+                            g.DrawImage(a, 0, 0, (a as Bitmap).Width, (a as Bitmap).Height);
+                            g.Save();
+                        }
                     }
                 }
-            }
-            MessageBox.Show("Simplyified pass!");
+                MessageBox.Show("Simplyified pass!");
 
-            Initiate();
-            MessageBox.Show("Initiate pass!");
-            ContoObject();
-            MessageBox.Show("ContoObject pass!");
-            ConvTo3D();
-            MessageBox.Show("ConvTo3D pass!");
-            e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-            ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
-            MessageBox.Show("Graphic begin!!");
-            g = Graphics.FromImage(ar);
-
+                Initiate();
+                MessageBox.Show("Initiate pass!");
+                ContoObject();
+                MessageBox.Show("ContoObject pass!");
+                ConvTo3D();
+                MessageBox.Show("ConvTo3D pass!");
+                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
+                ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                MessageBox.Show("Graphic begin!!");
+                g = Graphics.FromImage(ar as Bitmap);
 
 
-            for (int i = 0; i < ar.Width; i++)
-            {
-                for (int j = 0; j < ar.Height; j++)
+
+                for (int i = 0; i < (ar as Bitmap).Width; i++)
                 {
-                    Threaaddraw(i, j, ref g, ref ar);
+                    for (int j = 0; j < (ar as Bitmap).Height; j++)
+                    {
+                        Threaaddraw(i, j, ref g, ref ar);
+                    }
                 }
+                _3DReady = true;
+                g.Dispose();
+                        MessageBox.Show("Graphic finished!!");
+
             }
-            _3DReady = true;
-            g.Dispose();
-            /*  List<Task> th = new List<Task>();
-              var output = Task.Factory.StartNew(() =>
-                  {
-                  lock (ar)
-                  {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
-                      {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
-                          {
-                              var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
-                              lock (th) { th.Add(output1); }
-                          });
-                      });
-                      }
-                  });
-              th.Add(output);
-              Parallel.ForEach(th, item => Task.WaitAll(item));*/
-            /* BitmapData bitmapData = (ar as Bitmap).LockBits(new Rectangle(0, 0, (ar as Bitmap).Width, (ar as Bitmap).Height), ImageLockMode.ReadWrite, (ar as Bitmap).PixelFormat);
-            //http://csharpexamples.com/tag/parallel-bitmap-processing/
-             int bytesPerPixel = Bitmap.GetPixelFormatSize((ar as Bitmap).PixelFormat) / 8;
-             int byteCount = bitmapData.Stride * (ar as Bitmap).Height;
-             byte[] pixels = new byte[byteCount];
-             IntPtr ptrFirstPixel = bitmapData.Scan0;
-             Marshal.Copy(ptrFirstPixel, pixels, 0, pixels.Length);
-             int heightInPixels = bitmapData.Height;
-             int widthInBytes = bitmapData.Width * bytesPerPixel;
-
-             for (int y = 0; y < heightInPixels; y++)
-             {
-                 int currentLine = y * bitmapData.Stride;
-                 for (int x = 0; x < widthInBytes; x = x + bytesPerPixel)
-                 {
-                     int oldBlue = new int();
-                     int oldGreen = new int();
-                     int oldRed = new int();
-
-                     lock (e)
-                     {
-                          oldBlue = (int)e[x / bytesPerPixel, y, 0];                        
-                          oldGreen = (int)e[x / bytesPerPixel, y, 1];
-                          oldRed = (int)e[x / bytesPerPixel, y, 2];
-                     }
-
-                     // calculate new pixel value
-                     pixels[currentLine + x] = (byte)oldBlue;
-                     pixels[currentLine + x + 1] = (byte)oldGreen;
-                     pixels[currentLine + x + 2] = (byte)oldRed;
-                 }
-             }
-
-             // copy modified bytes back
-             Marshal.Copy(pixels, 0, ptrFirstPixel, pixels.Length);
-             (ar as Bitmap).UnlockBits(bitmapData);*/
-            MessageBox.Show("Graphic finished!!");
-
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
+            }
         }
         public _2dTo3D(Image ib, bool neighbour)
         {
-            object o = new object();
-            lock (o)
+            try
             {
-                x = 0;
-                a = ib;
-                Graphics g = Graphics.FromImage(a);
-                Initiate();
-                //MessageBox.Show("Initiate pass!");
-                ContoObjectNeighbour();
-                //MessageBox.Show("Neighbour pass!");
+                object o = new object();
+                lock (o)
+                {
+                    x = 0;
+                    a = ib;
+                    width = (a as Bitmap).Width;
+                    height = (a as Bitmap).Height;
+                    Graphics g = Graphics.FromImage(a as Bitmap);
+                    Initiate();
+                    ContoObjectNeighbour();
+                }
+            }
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
             }
         }
         public _2dTo3D(Image ib)
 
         {
-            a = ib;
-            Graphics g = Graphics.FromImage(a);
-            Initiate();
-            MessageBox.Show("Initiate pass!");
-            ContoObject();
-            MessageBox.Show("ContoObject pass!");
-            ConvTo3D();
-            MessageBox.Show("ConvTo3D pass!");
-            e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-            ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
-            MessageBox.Show("Graphic begin!!");
-            g = Graphics.FromImage(ar);
-
-
-
-            for (int i = 0; i < ar.Width; i++)
+            try
             {
-                for (int j = 0; j < ar.Height; j++)
+                width = (ib as Bitmap).Width;
+                height = (ib as Bitmap).Height;
+                a = ib;
+
+                //new _2dTo3D(a, true);
+                Graphics g = Graphics.FromImage(a as Bitmap);
+                Initiate();
+                MessageBox.Show("Initiate pass!");
+                ContoObject();
+                MessageBox.Show("ContoObject pass!");
+                ConvTo3D();
+                MessageBox.Show("ConvTo3D pass!");
+                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
+                ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                MessageBox.Show("Graphic begin!!");
+                g = Graphics.FromImage(ar as Bitmap);
+
+
+
+                for (int i = 0; i < (ar as Bitmap).Width; i++)
                 {
-                    Threaaddraw(i, j, ref g, ref ar);
+                    for (int j = 0; j < (ar as Bitmap).Height; j++)
+                    {
+                        Threaaddraw(i, j, ref g, ref ar);
+                    }
                 }
+                _3DReady = true;
+                g.Dispose();
+                        MessageBox.Show("Graphic finished!!");
+
             }
-            _3DReady = true;
-            g.Dispose();
-            /*  List<Task> th = new List<Task>();
-              var output = Task.Factory.StartNew(() =>
-                  {
-                  lock (ar)
-                  {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
-                      {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
-                          {
-                              var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
-                              lock (th) { th.Add(output1); }
-                          });
-                      });
-                      }
-                  });
-              th.Add(output);
-              Parallel.ForEach(th, item => Task.WaitAll(item));*/
-            /* BitmapData bitmapData = (ar as Bitmap).LockBits(new Rectangle(0, 0, (ar as Bitmap).Width, (ar as Bitmap).Height), ImageLockMode.ReadWrite, (ar as Bitmap).PixelFormat);
-            //http://csharpexamples.com/tag/parallel-bitmap-processing/
-             int bytesPerPixel = Bitmap.GetPixelFormatSize((ar as Bitmap).PixelFormat) / 8;
-             int byteCount = bitmapData.Stride * (ar as Bitmap).Height;
-             byte[] pixels = new byte[byteCount];
-             IntPtr ptrFirstPixel = bitmapData.Scan0;
-             Marshal.Copy(ptrFirstPixel, pixels, 0, pixels.Length);
-             int heightInPixels = bitmapData.Height;
-             int widthInBytes = bitmapData.Width * bytesPerPixel;
-
-             for (int y = 0; y < heightInPixels; y++)
-             {
-                 int currentLine = y * bitmapData.Stride;
-                 for (int x = 0; x < widthInBytes; x = x + bytesPerPixel)
-                 {
-                     int oldBlue = new int();
-                     int oldGreen = new int();
-                     int oldRed = new int();
-
-                     lock (e)
-                     {
-                          oldBlue = (int)e[x / bytesPerPixel, y, 0];                        
-                          oldGreen = (int)e[x / bytesPerPixel, y, 1];
-                          oldRed = (int)e[x / bytesPerPixel, y, 2];
-                     }
-
-                     // calculate new pixel value
-                     pixels[currentLine + x] = (byte)oldBlue;
-                     pixels[currentLine + x + 1] = (byte)oldGreen;
-                     pixels[currentLine + x + 2] = (byte)oldRed;
-                 }
-             }
-
-             // copy modified bytes back
-             Marshal.Copy(pixels, 0, ptrFirstPixel, pixels.Length);
-             (ar as Bitmap).UnlockBits(bitmapData);*/
-            MessageBox.Show("Graphic finished!!");
-
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
+            }
         }
         public void _2dTo3D_reconstructed(Image ib)
 
         {
-            a = ib;
-            Graphics g = Graphics.FromImage(a);
-            Initiate();
-            MessageBox.Show("Initiate pass!");
-            ContoObject();
-            MessageBox.Show("ContoObject pass!");
-            ConvTo3D();
-            MessageBox.Show("ConvTo3D pass!");
-            e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-            ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
-            MessageBox.Show("Graphic begin!!");
-            g = Graphics.FromImage(ar);
-
-
-
-            for (int i = 0; i < ar.Width; i++)
+            try
             {
-                for (int j = 0; j < ar.Height; j++)
+                width = (ib as Bitmap).Width;
+                height = (ib as Bitmap).Height;
+                a = ib;
+
+                //new _2dTo3D(a, true);
+
+                Graphics g = Graphics.FromImage(a as Bitmap);
+                Initiate();
+                MessageBox.Show("Initiate pass!");
+                ContoObject();
+                MessageBox.Show("ContoObject pass!");
+                ConvTo3D();
+                MessageBox.Show("ConvTo3D pass!");
+                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
+                ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                MessageBox.Show("Graphic begin!!");
+                g = Graphics.FromImage(ar as Bitmap);
+
+
+
+                for (int i = 0; i < (ar as Bitmap).Width; i++)
                 {
-                    Threaaddraw(i, j, ref g, ref ar);
+                    for (int j = 0; j < (ar as Bitmap).Height; j++)
+                    {
+                        Threaaddraw(i, j, ref g, ref ar);
+                    }
                 }
+                _3DReady = true;
+                g.Dispose();
+                      MessageBox.Show("Graphic finished!!");
+
             }
-            _3DReady = true;
-            g.Dispose();
-            /*  List<Task> th = new List<Task>();
-              var output = Task.Factory.StartNew(() =>
-                  {
-                  lock (ar)
-                  {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
-                      {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
-                          {
-                              var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
-                              lock (th) { th.Add(output1); }
-                          });
-                      });
-                      }
-                  });
-              th.Add(output);
-              Parallel.ForEach(th, item => Task.WaitAll(item));*/
-            /* BitmapData bitmapData = (ar as Bitmap).LockBits(new Rectangle(0, 0, (ar as Bitmap).Width, (ar as Bitmap).Height), ImageLockMode.ReadWrite, (ar as Bitmap).PixelFormat);
-            //http://csharpexamples.com/tag/parallel-bitmap-processing/
-             int bytesPerPixel = Bitmap.GetPixelFormatSize((ar as Bitmap).PixelFormat) / 8;
-             int byteCount = bitmapData.Stride * (ar as Bitmap).Height;
-             byte[] pixels = new byte[byteCount];
-             IntPtr ptrFirstPixel = bitmapData.Scan0;
-             Marshal.Copy(ptrFirstPixel, pixels, 0, pixels.Length);
-             int heightInPixels = bitmapData.Height;
-             int widthInBytes = bitmapData.Width * bytesPerPixel;
-
-             for (int y = 0; y < heightInPixels; y++)
-             {
-                 int currentLine = y * bitmapData.Stride;
-                 for (int x = 0; x < widthInBytes; x = x + bytesPerPixel)
-                 {
-                     int oldBlue = new int();
-                     int oldGreen = new int();
-                     int oldRed = new int();
-
-                     lock (e)
-                     {
-                          oldBlue = (int)e[x / bytesPerPixel, y, 0];                        
-                          oldGreen = (int)e[x / bytesPerPixel, y, 1];
-                          oldRed = (int)e[x / bytesPerPixel, y, 2];
-                     }
-
-                     // calculate new pixel value
-                     pixels[currentLine + x] = (byte)oldBlue;
-                     pixels[currentLine + x + 1] = (byte)oldGreen;
-                     pixels[currentLine + x + 2] = (byte)oldRed;
-                 }
-             }
-
-             // copy modified bytes back
-             Marshal.Copy(pixels, 0, ptrFirstPixel, pixels.Length);
-             (ar as Bitmap).UnlockBits(bitmapData);*/
-            MessageBox.Show("Graphic finished!!");
-
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
+            }
         }
         public _2dTo3D(string ass, double percent)
         {
-            a = Image.FromFile(ass);
-            Graphics g = Graphics.FromImage(a);
-
-
-
-            for (int i = 0; i < a.Width; i++)
+            try
             {
-                for (int j = 0; j < a.Height; j++)
+               a = Image.FromFile(ass);
+                width = (a as Bitmap).Width;
+                height = (a as Bitmap).Height;
+                Graphics g = Graphics.FromImage(a as Bitmap);
+
+
+                //new _2dTo3D(a, true);
+
+
+                for (int i = 0; i < (a as Bitmap).Width; i++)
                 {
-                    if (((i + j) % ((int)(1.0 / percent))) == 0)
+                    for (int j = 0; j < (a as Bitmap).Height; j++)
                     {
-                        g.DrawImage(a, 0, 0, a.Width, a.Height);
-                        g.Save();
-                    }
-                    else
-                    {
-                        (a as Bitmap).SetPixel(i, j, Color.Black);
-                        g.DrawImage(a, 0, 0, a.Width, a.Height);
-                        g.Save();
+                        if (((i + j) % ((int)(1.0 / percent))) == 0)
+                        {
+                            g.DrawImage(a, 0, 0, (a as Bitmap).Width, (a as Bitmap).Height);
+                            g.Save();
+                        }
+                        else
+                        {
+                            (a as Bitmap).SetPixel(i, j, Color.Black);
+                            g.DrawImage(a, 0, 0, (a as Bitmap).Width, (a as Bitmap).Height);
+                            g.Save();
+                        }
                     }
                 }
-            }
-            MessageBox.Show("Simplyified pass!");
+                MessageBox.Show("Simplyified pass!");
 
-            Initiate();
-            MessageBox.Show("Initiate pass!");
-            ContoObject();
-            MessageBox.Show("ContoObject pass!");
-            ConvTo3D();
-            MessageBox.Show("ConvTo3D pass!");
-            e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-            ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
-            MessageBox.Show("Graphic begin!!");
-            g = Graphics.FromImage(ar);
-
+                Initiate();
+                MessageBox.Show("Initiate pass!");
+                ContoObject();
+                MessageBox.Show("ContoObject pass!");
+                ConvTo3D();
+                MessageBox.Show("ConvTo3D pass!");
+                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
+                ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                MessageBox.Show("Graphic begin!!");
+                g = Graphics.FromImage(ar as Bitmap);
 
 
-            for (int i = 0; i < ar.Width; i++)
-            {
-                for (int j = 0; j < ar.Height; j++)
+
+                for (int i = 0; i < (ar as Bitmap).Width; i++)
                 {
-                    Threaaddraw(i, j, ref g, ref ar);
+                    for (int j = 0; j < (ar as Bitmap).Height; j++)
+                    {
+                        Threaaddraw(i, j, ref g, ref ar);
+                    }
                 }
+                _3DReady = true;
+                g.Dispose();
+                     MessageBox.Show("Graphic finished!!");
+
             }
-            _3DReady = true;
-            g.Dispose();
-            /*  List<Task> th = new List<Task>();
-              var output = Task.Factory.StartNew(() =>
-                  {
-                  lock (ar)
-                  {
-                      ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Width, delegate(int i)
-                      {
-                          ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, ar.Height, delegate(int j) 
-                          {
-                              var output1 = Task.Factory.StartNew(() => Threaaddraw(i, j, ref g, ref ar));
-                              lock (th) { th.Add(output1); }
-                          });
-                      });
-                      }
-                  });
-              th.Add(output);
-              Parallel.ForEach(th, item => Task.WaitAll(item));*/
-            /* BitmapData bitmapData = (ar as Bitmap).LockBits(new Rectangle(0, 0, (ar as Bitmap).Width, (ar as Bitmap).Height), ImageLockMode.ReadWrite, (ar as Bitmap).PixelFormat);
-            //http://csharpexamples.com/tag/parallel-bitmap-processing/
-             int bytesPerPixel = Bitmap.GetPixelFormatSize((ar as Bitmap).PixelFormat) / 8;
-             int byteCount = bitmapData.Stride * (ar as Bitmap).Height;
-             byte[] pixels = new byte[byteCount];
-             IntPtr ptrFirstPixel = bitmapData.Scan0;
-             Marshal.Copy(ptrFirstPixel, pixels, 0, pixels.Length);
-             int heightInPixels = bitmapData.Height;
-             int widthInBytes = bitmapData.Width * bytesPerPixel;
-
-             for (int y = 0; y < heightInPixels; y++)
-             {
-                 int currentLine = y * bitmapData.Stride;
-                 for (int x = 0; x < widthInBytes; x = x + bytesPerPixel)
-                 {
-                     int oldBlue = new int();
-                     int oldGreen = new int();
-                     int oldRed = new int();
-
-                     lock (e)
-                     {
-                          oldBlue = (int)e[x / bytesPerPixel, y, 0];                        
-                          oldGreen = (int)e[x / bytesPerPixel, y, 1];
-                          oldRed = (int)e[x / bytesPerPixel, y, 2];
-                     }
-
-                     // calculate new pixel value
-                     pixels[currentLine + x] = (byte)oldBlue;
-                     pixels[currentLine + x + 1] = (byte)oldGreen;
-                     pixels[currentLine + x + 2] = (byte)oldRed;
-                 }
-             }
-
-             // copy modified bytes back
-             Marshal.Copy(pixels, 0, ptrFirstPixel, pixels.Length);
-             (ar as Bitmap).UnlockBits(bitmapData);*/
-            MessageBox.Show("Graphic finished!!");
-
+            catch (Exception t)
+            {
+                 Log(t); MessageBox.Show(t.ToString());
+            }
         }
     }
+
 }

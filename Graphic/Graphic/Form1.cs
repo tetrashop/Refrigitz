@@ -3,6 +3,7 @@ using Point3Dspaceuser;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
@@ -12,7 +13,7 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
-        int count = 35 * System.Threading.PlatformHelper.ProcessorCount;
+        int count = 1250 * System.Threading.PlatformHelper.ProcessorCount;
         bool go = false;
         bool[,] curvedallpoints = null;
 
@@ -62,6 +63,22 @@ namespace WindowsApplication1
         static int BezierCount = 0;
         static int EllipseCount = 0;
         static int RectangleCount = 0;
+        static void Log(Exception ex)
+        {
+            try
+            {
+                Object a = new Object();
+                lock (a)
+                {
+                    string stackTrace = ex.ToString();
+                    //Write to File.
+                    File.AppendAllText("ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
+                }
+            }
+
+            catch (Exception t) { }
+
+        }
         public Form1()
         {
             InitializeComponent();
@@ -831,8 +848,8 @@ namespace WindowsApplication1
                 lock (aa)
                 {
 
-                    int wid = aa.Width;
-                    int hei = aa.Height;
+                    int wid = (aa as Bitmap).Width;
+                    int hei = (aa as Bitmap).Height;
 
                     if (a.x > 0)
                         return "Dimentin; " + wid.ToString() + "X" + hei.ToString() + "; active pixels :" + a.x.ToString();
@@ -856,9 +873,8 @@ namespace WindowsApplication1
                     });
                     output.Wait();
 
-                    label4.Text = Get(b);
                     if (a.x > 0)
-                        textBox1.Text = ((int)a.x / (35)).ToString();
+                        textBox1.Text = ((int)a.x / (125)).ToString();
                     else
                         textBox1.Text = "1";
                     lock (pictureBox24)
@@ -874,7 +890,7 @@ namespace WindowsApplication1
                     }
                 }
             }
-            catch (Exception t) { }
+            catch (Exception t) { Log(t); MessageBox.Show(t.ToString()); }
         }
 
         private void decreseResulotonCheckersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -893,59 +909,58 @@ namespace WindowsApplication1
 
         private void doToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Image aa = pictureBox24.Image;
-            lock (aa)
+            try
             {
-                if (a.x > count)
+                Image aa = pictureBox24.Image;
+                lock (aa)
                 {
-                    a.x = 0;
-                    a = new _2dTo3D(aa, true);
                     if (a.x > count)
                     {
                         MessageBox.Show("Reduced image size;Desired Less Than " + count.ToString() + "; Current : " + (a.x).ToString());
                         return;
                     }
+                    var output = Task.Factory.StartNew(() =>
+                    {
+                        if (a == null)
+                            a = new _2dTo3D(aa);
+                        else
+                            a._2dTo3D_reconstructed(aa);
+                    });
+                    output.Wait();
                 }
-                var output = Task.Factory.StartNew(() =>
+                label4.Text = Get(aa);
+                if (a.x > 0)
+                    textBox1.Text = ((int)a.x / (125)).ToString();
+                else
+                    textBox1.Text = "1";
+                lock (pictureBox24)
                 {
-                    if (a == null)
-                        a = new _2dTo3D(aa);
-                    else
-                        a._2dTo3D_reconstructed(aa);
-                });
-                output.Wait();
-            } 
-            label4.Text = Get(aa);
-            if (a.x > 0)
-                textBox1.Text = ((int)a.x / (35)).ToString();
-            else
-                textBox1.Text = "1";
-            lock (pictureBox24)
-            {
-                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox24.Visible = true;
-                if (pictureBox24.Image != null)
-                    pictureBox24.Image.Dispose();
-                pictureBox24.Image = a.ar;
-                pictureBox24.Invalidate();
-                pictureBox24.Refresh();
-                pictureBox24.Update();
-                go = true;
+                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox24.Visible = true;
+                    if (pictureBox24.Image != null)
+                        pictureBox24.Image.Dispose();
+                    pictureBox24.Image = a.ar;
+                    pictureBox24.Invalidate();
+                    pictureBox24.Refresh();
+                    pictureBox24.Update();
+                    go = true;
+                }
             }
-        }
+            catch (Exception t) { Log(t); MessageBox.Show(t.ToString()); }
 
+        }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Image a = pictureBox24.Image;
-            lock (a)
+            Image aa = pictureBox24.Image;
+            lock (aa)
             {
-                Graphics g = Graphics.FromImage(a);
+                Graphics g = Graphics.FromImage(aa);
 
 
 
-                for (int i = 0; i < a.Width; i++)
+                for (int i = 0; i < aa.Width; i++)
                 {
-                    for (int j = 0; j < a.Height; j++)
+                    for (int j = 0; j < aa.Height; j++)
                     {
                         if (((i + j) % ((int)(1.0 / percent))) == 0)
                         {
@@ -953,8 +968,8 @@ namespace WindowsApplication1
                         }
                         else
                         {
-                            (a as Bitmap).SetPixel(i, j, Color.Black);
-                            g.DrawImage(a, 0, 0, a.Width, a.Height);
+                            (aa as Bitmap).SetPixel(i, j, Color.Black);
+                            g.DrawImage(aa, 0, 0, aa.Width, aa.Height);
                             g.Save();
                         }
                     }
@@ -968,42 +983,51 @@ namespace WindowsApplication1
             {
                 pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox24.Visible = true;
-                pictureBox24.Image = a;
+                pictureBox24.Image = aa;
                 pictureBox24.Invalidate();
                 pictureBox24.Refresh();
                 pictureBox24.Update();
-            }
+                var output = Task.Factory.StartNew(() =>
+                    {
+                        a = new _2dTo3D(aa, true);
+                    });
+                    output.Wait();
+
+                    if (a.x > 0)
+                        textBox1.Text = ((int)a.x / (125)).ToString();
+                    else
+                        textBox1.Text = "1";
+                    label4.Text = Get(aa);
+                }
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-           
-                Image b = Image.FromFile(openFileDialog1.FileName);
-            lock (b)
+
+            try
             {
-                var output = Task.Factory.StartNew(() =>
+                 lock (pictureBox24)
                 {
-                    a = new _2dTo3D(b, true);
-                });
-                output.Wait();
+                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox24.Visible = true;
+                    pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)((double)(pictureBox24.Image.Width) - ((double)(pictureBox24.Image.Width) * 0.1)), (int)((double)(pictureBox24.Image.Height) - ((double)(pictureBox24.Image.Height) * 0.1)))));
+                    pictureBox24.Invalidate();
+                    pictureBox24.Refresh();
+                    pictureBox24.Update();
+                   
+                        var output = Task.Factory.StartNew(() =>
+                        {
+                            a = new _2dTo3D(pictureBox24.Image, true);
+                        });
+                        output.Wait();
 
-                label4.Text = Get(b);
-            }
-            if (a.x > 0)
-                textBox1.Text = ((int)a.x / (35)).ToString();
-            else
-                textBox1.Text = "1";
-            label4.Text = Get(b);
-            lock (pictureBox24)
-            {
-                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox24.Visible = true;
-                pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)((double)(pictureBox24.Image.Width) - ((double)(pictureBox24.Image.Width) * 0.1)), (int)((double)(pictureBox24.Image.Height) - ((double)(pictureBox24.Image.Height) * 0.1)))));
-                pictureBox24.Invalidate();
-                pictureBox24.Refresh();
-                pictureBox24.Update();
-            }
-
+                        if (a.x > 0)
+                            textBox1.Text = ((int)a.x / (125)).ToString();
+                        else
+                            textBox1.Text = "1";
+                        label4.Text = Get(pictureBox24.Image);
+                }
+            }catch(Exception t) { Log(t); MessageBox.Show(t.ToString()); }
         }
 
         private void eliminateSetOfColorsToolStripMenuItem_Click(object sender, EventArgs e)

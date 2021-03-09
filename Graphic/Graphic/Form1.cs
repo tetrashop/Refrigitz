@@ -684,6 +684,7 @@ namespace WindowsApplication1
                 a = new _2dTo3D(openFileDialog1.FileName);
             });
             output.Wait();
+
             lock (pictureBox24)
             {
                 pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;

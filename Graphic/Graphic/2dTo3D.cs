@@ -773,7 +773,7 @@ namespace WindowsApplication1
                 width = (a as Bitmap).Width;
                 height = (a as Bitmap).Height;
 
-                //new _2dTo3D(a, true);
+                new _2dTo3D(a, true);
                 Initiate();
                 MessageBox.Show("Initiate pass!");
                 ContoObject();

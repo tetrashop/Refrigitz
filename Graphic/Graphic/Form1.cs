@@ -13,6 +13,7 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
+        public bool Strong = false;
         int count = 1250 * System.Threading.PlatformHelper.ProcessorCount;
         bool go = false;
         bool[,] curvedallpoints = null;
@@ -817,12 +818,39 @@ namespace WindowsApplication1
         }
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (pictureBox24.Image != null)
-                pictureBox24.Image.Dispose();
-            pictureBox24.Visible = false;
+            try
+            {
+                if (pictureBox24.Image != null)
+                    pictureBox24.Image.Dispose();
+                pictureBox24.Visible = false;
+                Strong = false;
+                count = 1250 * System.Threading.PlatformHelper.ProcessorCount;
+                go = false;
+                curvedallpoints = null;
+
+                region = null;
+                r = null;
+                teta = null;
+                 rlen = 0;
+                outsidecurved = new List<Point2D>();
+
+                curvedline = new PointF[100000];
+                curvedlinelen = 0;
+                curved = false;
+                Reducedinteligent = false;
+
+                mouseclick = false;
+                time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+
+                Colorset = false;
+                percent = 0.5;
+                elim = false;
+                a = null;
+            }
+            catch (Exception t) { Log(t); MessageBox.Show(t.ToString()); }
         }
 
-        private void doBy1OfPixelsToolStripMenuItem_Click(object sender, EventArgs e)
+    private void doBy1OfPixelsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
 
@@ -1569,6 +1597,23 @@ namespace WindowsApplication1
             }
             catch (Exception t) { }
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                loadToolStripMenuItem.Enabled = false;
+                Strong= true;
+                if (at != null)
+                    pictureBox24.Image = at;
+            }
+            else
+            {
+                loadToolStripMenuItem.Enabled = true;
+                Strong = false;
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             ClickMouse = 0;

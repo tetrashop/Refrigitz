@@ -571,7 +571,7 @@ namespace howto_WPF_3D_triangle_normals
                         object o = new object();
                         lock (o)
                         {
-                            double ind = i * j * k;
+                            double ind = (i + 1) * (j + 1) * (k + 1);
                             za.Content = ((int)((ind / max) * 100)).ToString() + "%";
                             za.InvalidateVisual();
                             if ((new Triangle()).boundry(i, j, k))
@@ -647,7 +647,7 @@ namespace howto_WPF_3D_triangle_normals
                             object o = new object();
                             lock (o)
                             {
-                                double ind = i * j * k;
+                                double ind = (i + 1) * (j + 1) * (k + 1);
 
                                 /*  lock (LockHolder.Lock)
                                   {
@@ -756,32 +756,46 @@ namespace howto_WPF_3D_triangle_normals
 
                             if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
                             {
-                                double minrp0 = minraddpoints(PointsAddp0);
-                                double minrp1 = minraddpoints(PointsAddp0);
-                                MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
-
-
-
-
-
-                                reductFirst(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected, minrp0, minrp1);
-
-                                double minrp = minraddpoints(PointsAddp0);
-
-                                makeListExpand(ref PointsAddp0, ref PointsAddp, ref PointsAddp0Conected, ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
-                                    );
-
-
-                                List<Point3D> xxxp00 = new List<Point3D>();
-                                List<double[]> xxxp00C = new List<double[]>();
-                                minrp = minraddpoints(PointsAddp0);
-                                MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " points. with minrp0 " + minrp.ToString());
-                                if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
+                                //When is not strong
+                                if (!gr.Strong)
                                 {
-                                    reductionSecond(ref PointsAddp0, ref PointsAddp0Conected, ref xxxp00, ref xxxp00C, minrp);
+                                    double minrp0 = minraddpoints(PointsAddp0);
+                                    double minrp1 = minraddpoints(PointsAddp0);
+                                    MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
+
+
+
+
+
+                                    reductFirst(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected, minrp0, minrp1);
+
+                                    double minrp = minraddpoints(PointsAddp0);
+
+                                    makeListExpand(ref PointsAddp0, ref PointsAddp, ref PointsAddp0Conected, ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
+                                        );
+
+
+                                    List<Point3D> xxxp00 = new List<Point3D>();
+                                    List<double[]> xxxp00C = new List<double[]>();
+                                    minrp = minraddpoints(PointsAddp0);
+                                    MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " points. with minrp0 " + minrp.ToString());
+                                    if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
+                                    {
+                                        reductionSecond(ref PointsAddp0, ref PointsAddp0Conected, ref xxxp00, ref xxxp00C, minrp);
+                                    }
+                                    makeListFittness(ref PointsAddp0);
+                                    MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
+                                }//else is strong
+                                else
+                                {
+                                    double minrp = minraddpoints(PointsAddp0);
+
+                                    makeListExpand(ref PointsAddp0, ref PointsAddp, ref PointsAddp0Conected, ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(gr.textBox1.Text))
+                                        );
+
+                                    makeListFittness(ref PointsAddp0);
+                                    MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
                                 }
-                                makeListFittness(ref PointsAddp0);
-                                MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
                                 // Give the camera its initial position.
                                 TheCamera = new PerspectiveCamera();
                                 TheCamera.FieldOfView = 60;
@@ -792,6 +806,7 @@ namespace howto_WPF_3D_triangle_normals
                                 DefineLights();
                                 MeshGeometry3D mesh = new MeshGeometry3D();
                                 Model3DGroup model_group = MainModel3Dgroup;
+
 
 
                                 List<Point3D> PointsAdd = PointsAddp0;

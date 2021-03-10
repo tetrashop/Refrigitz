@@ -130,7 +130,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRefrigitz.Android", "App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRefrigitz.iOS", "AppRefrigitz\AppRefrigitz.iOS\AppRefrigitz.iOS.csproj", "{CEAF687D-2B69-46D6-9EAD-1AAFBEEC005C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRefrigitz", "AppRefrigitz\AppRefrigitz\AppRefrigitz.csproj", "{F8156F90-7103-40F1-A879-70F07C9E8108}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppRefrigitz", "AppRefrigitz\AppRefrigitz\AppRefrigitz.csproj", "{F8156F90-7103-40F1-A879-70F07C9E8108}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C776321D-E5FA-442E-8320-5159D5BB0D8C} = {C776321D-E5FA-442E-8320-5159D5BB0D8C}
+		{1F04B85D-26FD-4B2B-810E-DA7BC0B94DA1} = {1F04B85D-26FD-4B2B-810E-DA7BC0B94DA1}
+		{3335BEE1-9EE2-4CC1-922A-52416CEBD48C} = {3335BEE1-9EE2-4CC1-922A-52416CEBD48C}
+		{AC2B4CF6-3294-46D5-9AF0-C58EE5B637D4} = {AC2B4CF6-3294-46D5-9AF0-C58EE5B637D4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

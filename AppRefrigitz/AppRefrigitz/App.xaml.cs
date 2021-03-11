@@ -8,6 +8,7 @@ namespace AppRefrigitz
 {
     public partial class App : Application
     {
+        Chess.Chess run = null;
 
         public App()
         {
@@ -15,6 +16,7 @@ namespace AppRefrigitz
 
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
+            run = new Chess.Chess();
         }
 
         protected override void OnStart()

@@ -8,7 +8,7 @@ namespace AppRefrigitz
 {
     public partial class App : Application
     {
-        Chess.Chess run = null;
+        //Chess.Chess run = null;
 
         public App()
         {
@@ -16,11 +16,14 @@ namespace AppRefrigitz
 
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
-            run = new Chess.Chess();
+            //run = new Chess.Chess();
         }
 
         protected override void OnStart()
         {
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(Chess.Chess));
+
+            //run.LoadFromXaml<Type.Delimiter>("Chess");
         }
 
         protected override void OnSleep()

@@ -343,7 +343,12 @@ namespace howto_WPF_3D_triangle_normals
             object o = new object();
             lock (o)
             {
-                Point3D p1 = s[i];
+                Point3D p1 = new Point3D();
+                if (i < s.Count)
+                    p1 = s[i];
+                else
+                    return;
+
                 if (!add.Contains(p1))
                 {
                     getclonieslenInsideForInsideFirsIf(ref p1, ref m, ref clonieslen, ref add, ref s, ref p0, minr);

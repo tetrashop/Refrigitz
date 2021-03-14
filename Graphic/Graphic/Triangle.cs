@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace howto_WPF_3D_triangle_normalsuser
 {
+
+
     class Triangle
     {
 
@@ -85,6 +87,44 @@ namespace howto_WPF_3D_triangle_normalsuser
             return (na == nb) && (na == nc) & (na == 0);
 
         }
+        bool exist(Point3D ss, List<List<Point3D>> d)
+        {
+            if (d.Count == 0)
+                return false;
+
+            for (int i = 0; i < d.Count; i++)
+            {
+                for (int j = 0; j < d[i].Count; j++)
+                {
+
+                    if (ss.X == d[i][j].X && ss.Y == d[i][j].Y && ss.Z == d[i][j].Z)
+                        return true;
+                }
+            }
+            return false;
+        }
+        bool exist(Point3D[] ss, List<Point3D[]> d)
+        {
+            if (d.Count == 0)
+                return false;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
+                    return true;
+            }
+            return false;
+        }
+        bool exist(Point3D ss, List<Point3D> d)
+        {
+            if (d.Count == 0)
+                return false;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (ss.X == d[i].X && ss.Y == d[i].Y && ss.Z == d[i].Z)
+                    return true;
+            }
+            return false;
+        }
         bool exist(Point3D ss, Point3D d)
         {
 
@@ -125,28 +165,6 @@ namespace howto_WPF_3D_triangle_normalsuser
                     return true;
                 return false;
             }
-        }
-        bool exist(Point3D[] ss, List<Point3D[]> d)
-        {
-            if (d.Count == 0)
-                return false;
-            for (int i = 0; i < d.Count; i++)
-            {
-                if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
-                    return true;
-            }
-            return false;
-        }
-        bool exist(Point3D ss, List<Point3D> d)
-        {
-            if (d.Count == 0)
-                return false;
-            for (int i = 0; i < d.Count; i++)
-            {
-                if (ss.X == d[i].X && ss.Y == d[i].Y && ss.Z == d[i].Z)
-                    return true;
-            }
-            return false;
         }
         Point3D getd(Point3D p0, Point3D p1)
         {
@@ -224,6 +242,7 @@ namespace howto_WPF_3D_triangle_normalsuser
         }
         public bool boundryssscount(int i, int j, int ssscount)
         {
+
             if (i == j)
                 return true;
 
@@ -305,22 +324,6 @@ namespace howto_WPF_3D_triangle_normalsuser
             }
             return r * block;
         }
-        bool exist(Point3D ss, List<List<Point3D>> d)
-        {
-            if (d.Count == 0)
-                return false;
-
-            for (int i = 0; i < d.Count; i++)
-            {
-                for (int j = 0; j < d[i].Count; j++)
-                {
-
-                    if (ss.X == d[i][j].X && ss.Y == d[i][j].Y && ss.Z == d[i][j].Z)
-                        return true;
-                }
-            }
-            return false;
-        }
         double getclonieslen(List<Point3D> ss, Point3D d, double minr)
         {
             Point3D p0 = d;
@@ -333,24 +336,53 @@ namespace howto_WPF_3D_triangle_normalsuser
             {
                 if (boundryssscount(i, -1, s.Count))
                     return double.MaxValue;
-                Point3D p1 = s[i];
+                getclonieslenInsideFor(i, ref m, ref clonieslen, ref add, ref s, ref p0, minr);
+            }
+            return Math.Sqrt(clonieslen);
+        }
+        void getclonieslenInsideFor(int i, ref double m, ref double clonieslen, ref List<Point3D> add, ref List<Point3D> s, ref Point3D p0, double minr)
+        {
+            object o = new object();
+            lock (o)
+            {
+                Point3D p1 = new Point3D();
+                if (!boundryssscount(i, -1, s.Count))
+                    p1 = s[i];
+                else
+                    return;
+
                 if (!add.Contains(p1))
                 {
-                    double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
-                    if (count > 0 && count <= minr)
+                    getclonieslenInsideForInsideFirsIf(ref p1, ref m, ref clonieslen, ref add, ref s, ref p0, minr);
+                }
+            }
+        }
+        void getclonieslenInsideForInsideFirsIf(ref Point3D p1, ref double m, ref double clonieslen, ref List<Point3D> add, ref List<Point3D> s, ref Point3D p0, double minr)
+        {
+            object o = new object();
+            lock (o)
+            {
+                double count = Math.Sqrt((p0.X - p1.X) * (p0.X - p1.X) + (p0.Y - p1.Y) * (p0.Y - p1.Y) + (p0.Z - p1.Z) * (p0.Z - p1.Z));
+                if (count > 0 && count <= minr)
+                {
+                    if (clonieslen <= m * count)
                     {
-                        if (clonieslen <= m * count)
-                        {
-                            clonieslen = m * count;
-                            s.Remove(p0);
-                            p0 = p1;
-                            add.Add(p1);
-                            m++;
-                        }
+                        getclonieslenInsideForInsideSecondIf(count, ref p1, ref m, ref clonieslen, ref add, ref s, ref p0, minr);
                     }
                 }
             }
-            return Math.Sqrt(clonieslen);
+        }
+        void getclonieslenInsideForInsideSecondIf(double count, ref Point3D p1, ref double m, ref double clonieslen, ref List<Point3D> add, ref List<Point3D> s, ref Point3D p0, double minr)
+        {
+            object o = new object();
+            lock (o)
+            {
+                clonieslen = m * count;
+                s.Remove(p0);
+                p0 = p1;
+                add.Add(p1);
+                m++;
+            }
         }
         bool redductionConfiguration(ref List<Point3D> sss, double minr, ref double clonieslen, ref bool xxadd, ref int i, ref List<List<Point3D>> xxxAddedClonies)
         {
@@ -421,16 +453,17 @@ namespace howto_WPF_3D_triangle_normalsuser
         void reductionSetOfPointsToNumberOfSetsFullP2(ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
         {
 
-
-            add = true;
-            if (!(a))
-                xxxAddedClonies[index].Add(p0);
-            if (!(b))
-                xxxAddedClonies[index].Add(p1);
             int f = sss.IndexOf(p0);
-            sss.Remove(p0);
-            sssCon.RemoveAt(f);
-
+            if (f < sss.Count && f >= 0)
+            {
+                add = true;
+                if (!(a))
+                    xxxAddedClonies[index].Add(p0);
+                if (!(b))
+                    xxxAddedClonies[index].Add(p1);
+                sss.Remove(p0);
+                sssCon.RemoveAt(f);
+            }
 
         }
 
@@ -440,12 +473,31 @@ namespace howto_WPF_3D_triangle_normalsuser
 
 
             int f = sss.IndexOf(p1);
-            sss.Remove(p1);
-            sssCon.RemoveAt(f);
+            if (f < sss.Count && f >= 0)
+            {
+                sss.Remove(p1);
+                sssCon.RemoveAt(f);
 
-            p = p0;
-            done = true;
+                p = p0;
+                done = true;
+            }
+        }
+        void reductionSetOfPointsToNumberOfSetsHulfP(Point3D pp0, Point3D pp1, double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
 
+        {
+            p0 = p;
+            p1 = pp0;
+            a = exist(p0, xxxAddedClonies);
+            b = exist(p1, xxxAddedClonies);
+
+            reductionSetOfPointsToNumberOfSetsHulfPO(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
+
+            p0 = p;
+            p1 = pp1;
+            a = exist(p0, xxxAddedClonies);
+            b = exist(p1, xxxAddedClonies);
+
+            reductionSetOfPointsToNumberOfSetsHulfPT(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
         }
         void reductionSetOfPointsToNumberOfSetsHulfPO(double minr, ref Point3D p, Point3D p0, Point3D p1, bool a, bool b, ref bool add, ref int index, ref bool xxadd, ref List<Point3D> sss, ref List<double[]> sssCon, ref List<List<Point3D>> xxxAddedClonies, ref double clonieslen, ref bool done, ref List<Point3D> xxx, ref List<double[]> xxxCon)
 
@@ -574,20 +626,7 @@ namespace howto_WPF_3D_triangle_normalsuser
                                 }
                                 else
                                 {
-                                    p0 = p;
-                                    p1 = pp0;
-                                    a = exist(p0, xxxAddedClonies);
-                                    b = exist(p1, xxxAddedClonies);
-
-                                    reductionSetOfPointsToNumberOfSetsHulfPO(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
-
-                                    p0 = p;
-                                    p1 = pp1;
-                                    a = exist(p0, xxxAddedClonies);
-                                    b = exist(p1, xxxAddedClonies);
-
-                                    reductionSetOfPointsToNumberOfSetsHulfPT(minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
-
+                                    reductionSetOfPointsToNumberOfSetsHulfP(pp0, pp1, minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
                                 }
                             }
                         });

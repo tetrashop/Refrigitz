@@ -401,17 +401,22 @@ namespace howto_WPF_3D_triangle_normals
             int all = pall.IndexOf(p0);
             if (all >= 0)
             {
-                double i = (double)sall[all][0];
-                double j = (double)sall[all][1];
-                if (i >= 0 && j >= 0)
+                double i = 0;
+                double j = 0;
+                if (all < sall.Count)
                 {
-                    double mountsi = (double)sall[siall][0];
-                    double mountsj = (double)sall[siall][1];
-                    /*double minX = minGetListX(pall);
-                    double minY = minGetListY(pall);
-                    double maxX = maxGetListX(pall);
-                    double maxY = maxGetListY(pall);*/
-                    return IsNeigbourChild(mountsi, mountsj, sall, siall, i, j);
+                    i = (double)sall[all][0];
+                    j = (double)sall[all][1];
+                    if (i >= 0 && j >= 0 && siall >= 0 && siall < sall.Count)
+                    {
+                        double mountsi = (double)sall[siall][0];
+                        double mountsj = (double)sall[siall][1];
+                        /*double minX = minGetListX(pall);
+                        double minY = minGetListY(pall);
+                        double maxX = maxGetListX(pall);
+                        double maxY = maxGetListY(pall);*/
+                        return IsNeigbourChild(mountsi, mountsj, sall, siall, i, j);
+                    }
                 }
             }
             return true;

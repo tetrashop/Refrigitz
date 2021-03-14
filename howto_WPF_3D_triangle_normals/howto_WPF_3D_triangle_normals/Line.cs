@@ -24,7 +24,7 @@ namespace howto_WPF_3D_triangle_normals
             b = normal0.nb;
             c = normal0.nc;
         }
-        bool exist(Point3D p)
+        bool existPointOnCurrentLine(Point3D p)
         {
             if (a == 0 || b == 0 || c == 0)
                 return false;
@@ -37,6 +37,16 @@ namespace howto_WPF_3D_triangle_normals
             double nb = (t0.nc * l1.a) - (t0.na * l1.c);
             double nc = (t0.na * l1.b) - (t0.nb * l1.a);
             return (na == nb) && (na == nc) & (na == 0);
+
+        }
+        //tan(pi/2) is ultimate orthogonal and zero is equal 0<landa<pi/2
+        bool externalMulIsLessTanLanda(Triangle t0, Point3D p0, double landa)
+        {
+            Line l1 = new Line(t0, p0);
+            double na = (t0.nb * l1.c) - (t0.nc * l1.b);
+            double nb = (t0.nc * l1.a) - (t0.na * l1.c);
+            double nc = (t0.na * l1.b) - (t0.nb * l1.a);
+            return System.Math.Abs(na - nb) < System.Math.Tan(landa) || System.Math.Abs(na - nc) < System.Math.Tan(landa) || System.Math.Abs(nb - nc) < System.Math.Tan(landa);
 
         }
         public static double getAlpha(Line l0, Line l1)

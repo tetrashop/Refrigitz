@@ -112,6 +112,7 @@ namespace WindowsApplication1
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.reducedUntilDesireddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -382,6 +383,8 @@ namespace WindowsApplication1
             // 
             // toolStripMenuItem2
             // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reducedUntilDesireddToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(253, 22);
             this.toolStripMenuItem2.Text = "Reduce 10% off fittting image size";
@@ -944,6 +947,13 @@ namespace WindowsApplication1
             this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // reducedUntilDesireddToolStripMenuItem
+            // 
+            this.reducedUntilDesireddToolStripMenuItem.Name = "reducedUntilDesireddToolStripMenuItem";
+            this.reducedUntilDesireddToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.reducedUntilDesireddToolStripMenuItem.Text = "Reduced Until Desiredd";
+            this.reducedUntilDesireddToolStripMenuItem.Click += new System.EventHandler(this.reducedUntilDesireddToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1111,6 +1121,7 @@ namespace WindowsApplication1
         public System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolStripMenuItem reducedUntilDesireddToolStripMenuItem;
     }
 }
 

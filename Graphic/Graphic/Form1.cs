@@ -15,6 +15,7 @@ namespace WindowsApplication1
     {
         public bool Strong = false;
         int count = 1250 * System.Threading.PlatformHelper.ProcessorCount;
+        //int count = 125 * System.Threading.PlatformHelper.ProcessorCount;
         bool go = false;
         bool[,] curvedallpoints = null;
 
@@ -903,7 +904,7 @@ namespace WindowsApplication1
                     output.Wait();
 
                     if (a.x > 0)
-                        textBox1.Text = ((int)a.x / (180)).ToString();
+                        textBox1.Text = ((int)a.x / (200)).ToString();
                     else
                         textBox1.Text = "1";
                     lock (pictureBox24)
@@ -959,7 +960,7 @@ namespace WindowsApplication1
                 }
                 label4.Text = Get(aa);
                 if (a.x > 0)
-                    textBox1.Text = ((int)a.x / (180)).ToString();
+                    textBox1.Text = ((int)a.x / (190)).ToString();
                 else
                     textBox1.Text = "1";
                 lock (pictureBox24)
@@ -1023,7 +1024,7 @@ namespace WindowsApplication1
                     output.Wait();
 
                 if (a.x > 0)
-                    textBox1.Text = ((int)a.x / (180)).ToString();
+                    textBox1.Text = ((int)a.x / (190)).ToString();
                 else
                     textBox1.Text = "1";
                 label4.Text = Get(aa);
@@ -1051,7 +1052,7 @@ namespace WindowsApplication1
                         output.Wait();
 
                     if (a.x > 0)
-                        textBox1.Text = ((int)a.x / (180)).ToString();
+                        textBox1.Text = ((int)a.x / (190)).ToString();
                     else
                         textBox1.Text = "1";
                     label4.Text = Get(pictureBox24.Image);
@@ -1613,6 +1614,38 @@ namespace WindowsApplication1
                 loadToolStripMenuItem.Enabled = true;
                 Strong = false;
             }
+        }
+
+        private void reducedUntilDesireddToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                do
+                {
+                    lock (pictureBox24)
+                    {
+                        pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBox24.Visible = true;
+                        pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)((double)(pictureBox24.Image.Width) - ((double)(pictureBox24.Image.Width) * 0.1)), (int)((double)(pictureBox24.Image.Height) - ((double)(pictureBox24.Image.Height) * 0.1)))));
+                        pictureBox24.Invalidate();
+                        pictureBox24.Refresh();
+                        pictureBox24.Update();
+
+                        var output = Task.Factory.StartNew(() =>
+                        {
+                            a = new _2dTo3D(pictureBox24.Image, true);
+                        });
+                        output.Wait();
+
+                        if (a.x > 0)
+                            textBox1.Text = ((int)a.x / (190)).ToString();
+                        else
+                            textBox1.Text = "1";
+                        label4.Text = Get(pictureBox24.Image);
+                    }
+                } while (a.x > count);
+            }
+            catch (Exception t) { Log(t); MessageBox.Show(t.ToString()); }
         }
 
         private void button2_Click(object sender, EventArgs e)

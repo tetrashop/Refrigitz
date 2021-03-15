@@ -1488,7 +1488,7 @@ namespace WindowsApplication1
 
         private void curvedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-       
+            go = true;
             curved = true;
             pictureBox24.Cursor = Cursors.Cross;
             push();

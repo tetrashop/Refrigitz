@@ -924,7 +924,7 @@ namespace WindowsApplication1
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 36;
-            this.textBox1.Text = "10";
+            this.textBox1.Text = "40";
             // 
             // label3
             // 
@@ -932,9 +932,9 @@ namespace WindowsApplication1
             this.label3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label3.Location = new System.Drawing.Point(28, 492);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 13);
+            this.label3.Size = new System.Drawing.Size(123, 13);
             this.label3.TabIndex = 37;
-            this.label3.Text = "Make same blocks 3dCreation:";
+            this.label3.Text = "Maximum points number ";
             // 
             // label4
             // 

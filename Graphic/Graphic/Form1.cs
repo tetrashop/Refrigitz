@@ -972,9 +972,16 @@ namespace WindowsApplication1
                 }
             }
         }
+        void PointsNumber()
+        {
+            if (a.x > 20 * System.Threading.PlatformHelper.ProcessorCount)
+                textBox1.Text = (20 * System.Threading.PlatformHelper.ProcessorCount).ToString();
+            else
+                textBox1.Text = a.x.ToString();
+        }
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 openFileDialog1.ShowDialog();
@@ -989,10 +996,8 @@ namespace WindowsApplication1
                     });
                     output.Wait();
 
-                    if (a.x > 0)
-                        textBox1.Text = ((int)a.x / (200)).ToString();
-                    else
-                        textBox1.Text = "1";
+                    PointsNumber();
+
                     lock (pictureBox24)
                     {
                         label4.Text = Get(b);
@@ -1002,7 +1007,7 @@ namespace WindowsApplication1
                         pictureBox24.Invalidate();
                         pictureBox24.Refresh();
                         pictureBox24.Update();
-                    
+
                     }
                 }
             }
@@ -1047,10 +1052,9 @@ namespace WindowsApplication1
                     output.Wait();
                 }
                 label4.Text = Get(aa);
-                if (a.x > 0)
-                    textBox1.Text = ((int)a.x / (190)).ToString();
-                else
-                    textBox1.Text = "1";
+
+                PointsNumber();
+                
                 lock (pictureBox24)
                 {
                     pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
@@ -1113,10 +1117,8 @@ namespace WindowsApplication1
                     });
                     output.Wait();
 
-                if (a.x > 0)
-                    textBox1.Text = ((int)a.x / (190)).ToString();
-                else
-                    textBox1.Text = "1";
+                PointsNumber();
+
                 label4.Text = Get(aa);
                 }
             push();
@@ -1142,10 +1144,8 @@ namespace WindowsApplication1
                         });
                         output.Wait();
 
-                    if (a.x > 0)
-                        textBox1.Text = ((int)a.x / (190)).ToString();
-                    else
-                        textBox1.Text = "1";
+                    PointsNumber();
+                    
                     label4.Text = Get(pictureBox24.Image);
                 }
             }catch(Exception t) { Log(t); MessageBox.Show(t.ToString()); }
@@ -1737,10 +1737,8 @@ namespace WindowsApplication1
                         });
                         output.Wait();
 
-                        if (a.x > 0)
-                            textBox1.Text = ((int)a.x / (190)).ToString();
-                        else
-                            textBox1.Text = "1";
+                        PointsNumber();
+                        
                         label4.Text = Get(pictureBox24.Image);
                     }
                 } while (a.x > count);

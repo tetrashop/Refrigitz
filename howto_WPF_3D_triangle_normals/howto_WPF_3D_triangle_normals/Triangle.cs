@@ -9,7 +9,7 @@ namespace howto_WPF_3D_triangle_normals
     class Triangle
     {
 
-        double block = 4;
+        double block = 1;
         double a, b, c, d;
         //normal of plate
         public double na, nb, nc;
@@ -641,13 +641,21 @@ namespace howto_WPF_3D_triangle_normals
         }
         public int reduceCountOfpoints(ref List<Point3D> sss, ref List<double[]> sCon, double ht, double percent, ref List<Point3D> xxx, ref List<double[]> xCon, double bl)
         {
-            block = bl;
-            List<double[]> sssCon = sCon;
-            List<double[]> xxxCon = xCon;
-            xxx = reductionSetOfPointsToNumberOfSets(sss, ref sssCon, ref xxxCon);
-
-            xCon = xxxCon;
-            sCon = sssCon;
+            ///block = bl;
+            int pcou = 0;
+            int equal = 0;
+            do
+            {
+                block++;
+                List<double[]> sssCon = sCon;
+                List<double[]> xxxCon = xCon;
+                pcou = sssCon.Count;
+                 xxx = reductionSetOfPointsToNumberOfSets(sss, ref sssCon, ref xxxCon);
+                if (pcou == sssCon.Count)
+                    equal++;
+                xCon = xxxCon;
+                sCon = sssCon;
+            } while (sss.Count > bl && (equal < 3));
             if (xxx.Count >= 1)
                 return xxx.Count;
 

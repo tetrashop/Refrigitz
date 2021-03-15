@@ -13,6 +13,11 @@ namespace WindowsApplication1
 
     public partial class Form1 : Form
     {
+        
+        public static int stkin = 0;
+        List<Form1> Stk = new List<Form1>();
+        List<Image> StkIm = new List<Image>();
+
         public bool Strong = false;
         int count = 1250 * System.Threading.PlatformHelper.ProcessorCount;
         //int count = 125 * System.Threading.PlatformHelper.ProcessorCount;
@@ -80,6 +85,69 @@ namespace WindowsApplication1
 
             catch (Exception t) { }
 
+        }
+        void push()
+        {
+            Stk.Add(this);
+            StkIm.Add((Image)pictureBox24.Image.Clone());
+            stkin++;
+        }
+        bool PushPop(bool pu)
+        {
+            bool ass = false;
+            if (pu)
+                ass = (stkin - 1 < Stk.Count);
+            else
+                ass = stkin > 0;
+
+            if (ass )
+            {
+                Form1 th = Stk[stkin - 1];
+                Strong = th.Strong;
+
+                count = th.count;
+
+                go = th.go;
+                curvedallpoints = th.curvedallpoints;
+
+                rlen = th.rlen;
+                outsidecurved = th.outsidecurved;
+                curvedline = th.curvedline;
+                curvedlinelen = th.curvedlinelen;
+                curved = th.curved;
+                Reducedinteligent = th.Reducedinteligent;
+
+                mouseclick = th.mouseclick;
+                time = th.time;
+
+                at = th.at;
+                Colorset = th.Colorset;
+                percent = th.percent;
+                elim = th.elim;
+                _2dTo3D a = th.a;
+                Kind = th.Kind;
+                xp0 = th.xp0; yp0 = th.yp0; xp1 = th.xp1; yp1 = th.yp1; xp2 = th.xp2; yp2 = th.yp2; xp3 = th.xp3; yp3 = th.yp3;
+                xz0 = th.xz0; yz0 = th.yz0; xz1 = th.xz1; yz1 = th.yz1; xz2 = th.xz2; yz2 = th.yz2; xz3 = th.xz3; yz3 = th.yz3;
+                xs0 = th.xs0; ys0 = th.ys0; xs1 = th.xs1; ys1 = th.ys1; xs2 = th.xs2; ys2 = th.ys2;// xs3 = 0, ys3 = 0;
+                xb0 = th.xb0; yb0 = th.yb0; xb1 = th.xb1; yb1 = th.yb1; xb2 = th.xb2; yb2 = th.yb2; xb3 = th.xb3; yb3 = th.yb3;
+                xe0 = th.xe0; ye0 = th.ye0; xe1 = th.xe1; ye1 = th.ye1;
+                xr0 = th.xr1; yr0 = th.yr0; xr1 = th.xr1; yr1 = th.yr1;
+                xm = th.xm; ym = th.ym;
+                XP = th.XP; YP = th.YP;
+                ColorBox = th.ColorBox;
+                R = th.R; P = th.P; N = th.N; TetaStart = th.TetaStart; TetaSweep = th.TetaSweep;
+                xprin = th.xprin; yprin = th.yprin;
+                outcode0 =th.outcode0; outcode1 = th.outcode1; outcodeOut = th.outcodeOut;
+                Node = th.Node;
+                Sh = th.Sh;
+                DrawLine = false;
+                SetValue = th.SetValue;
+                SetValueforBezier = th.SetValueforBezier;
+                MoveAllow = th.MoveAllow;
+                Trans = th.Trans;
+                return true;
+            }
+            return false;
         }
         public Form1()
         {
@@ -678,6 +746,7 @@ namespace WindowsApplication1
 
         private void doToolStripMenuItem_Click(object sender, EventArgs e)
         {
+          
             openFileDialog1.ShowDialog();
 
             var output = Task.Factory.StartNew(() =>
@@ -697,12 +766,15 @@ namespace WindowsApplication1
                 pictureBox24.Update();
                 go = true;
             }
+            push();
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
             go = true;
             elim = true;
+            push();
+
         }
 
         private void pictureBox24_Click(object sender, MouseEventArgs e)
@@ -820,6 +892,7 @@ namespace WindowsApplication1
         }
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 if (pictureBox24.Image != null)
@@ -850,10 +923,12 @@ namespace WindowsApplication1
                 a = null;
             }
             catch (Exception t) { Log(t); MessageBox.Show(t.ToString()); }
+            push();
         }
 
-    private void doBy1OfPixelsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void doBy1OfPixelsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             openFileDialog1.ShowDialog();
 
             var output = Task.Factory.StartNew(() =>
@@ -870,6 +945,7 @@ namespace WindowsApplication1
                 pictureBox24.Refresh();
                 pictureBox24.Update();
             }
+            push();
         }
         string Get(Image aa)
         {
@@ -889,6 +965,7 @@ namespace WindowsApplication1
         }
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 openFileDialog1.ShowDialog();
@@ -921,6 +998,7 @@ namespace WindowsApplication1
                 }
             }
             catch (Exception t) { Log(t); MessageBox.Show(t.ToString()); }
+            push();
         }
 
         private void decreseResulotonCheckersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -939,6 +1017,7 @@ namespace WindowsApplication1
 
         private void doToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+        
             try
             {
                 Image aa = pictureBox24.Image;
@@ -977,10 +1056,12 @@ namespace WindowsApplication1
                 }
             }
             catch (Exception t) { Log(t); MessageBox.Show(t.ToString()); }
+            push();
 
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+         
             Image aa = pictureBox24.Image;
             lock (aa)
             {
@@ -1029,11 +1110,12 @@ namespace WindowsApplication1
                     textBox1.Text = "1";
                 label4.Text = Get(aa);
                 }
+            push();
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-
+          
             try
             {
                  lock (pictureBox24)
@@ -1058,13 +1140,16 @@ namespace WindowsApplication1
                     label4.Text = Get(pictureBox24.Image);
                 }
             }catch(Exception t) { Log(t); MessageBox.Show(t.ToString()); }
+            push();
         }
 
         private void eliminateSetOfColorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+        
             go = true;
             elim = true;
             Colorset = true;
+            push();
         }
 
         private void pictureBox24_MouseMove(object sender, MouseEventArgs e)
@@ -1173,6 +1258,7 @@ namespace WindowsApplication1
 
         private void reduce10ColorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+          
             List<Color> ss = new List<Color>();
             for (int r = 0; r < pictureBox24.Image.Width; r++)
             {
@@ -1241,6 +1327,7 @@ namespace WindowsApplication1
                     pictureBox24.Update();
                 }
             }
+            push();
         }
         void addingpoints(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<Point3D> PointsAddp1, ref List<double[]> PointsAddp1Conected)
         {
@@ -1306,6 +1393,7 @@ namespace WindowsApplication1
         }
         private void intelligentRedducedOff3DModdelToolStripMenuItem_Click(object sender, EventArgs e)
         {
+          
             List<Point3D> PointsAddp0 = new List<Point3D>();
             List<Point3D> PointsAddp1 = new List<Point3D>();
             List<double[]> PointsAddp0Conected = new List<double[]>();
@@ -1358,6 +1446,7 @@ namespace WindowsApplication1
                     }
                 }
             }
+            push();
         }
         bool exist(Point3D ss, List<Point3D> d)
         {
@@ -1390,8 +1479,10 @@ namespace WindowsApplication1
 
         private void curvedToolStripMenuItem_Click(object sender, EventArgs e)
         {
+       
             curved = true;
             pictureBox24.Cursor = Cursors.Cross;
+            push();
         }
         void isOutsideofCurvedInit()
         {
@@ -1646,6 +1737,64 @@ namespace WindowsApplication1
                 } while (a.x > count);
             }
             catch (Exception t) { Log(t); MessageBox.Show(t.ToString()); }
+            push();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (stkin  < Stk.Count)
+            {
+                if (PushPop(true))
+                {
+                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox24.Visible = true;
+                    pictureBox24.Image = StkIm[stkin - 1];
+                    pictureBox24.Invalidate();
+                    pictureBox24.Refresh();
+                    pictureBox24.Update();
+                    stkin++;
+                    button12.Enabled = true;
+                }
+            }
+            else
+            {
+                button12.Enabled = true;
+                button11.Enabled = false;
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (stkin > 0)
+            {
+                if (PushPop(false))
+                {
+                    pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox24.Visible = true;
+                    pictureBox24.Image = StkIm[stkin - 1];
+                    pictureBox24.Invalidate();
+                    pictureBox24.Refresh();
+                    pictureBox24.Update();
+                    stkin--;
+                    button11.Enabled = true;
+                }
+            }
+            else
+            {
+                button12.Enabled = false;
+                button11.Enabled = true;
+            }
+
+        }
+
+        private void filtersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void button2_Click(object sender, EventArgs e)

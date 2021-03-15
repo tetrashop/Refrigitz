@@ -99,6 +99,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\3840-2160.jpg" />
+    <None Include="Resources\R470c1c8a499782e53c7d63.jpg" />
+    <None Include="Resources\7d632b8eeeeda6.jpg" />
     <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -69,5 +69,25 @@ namespace WindowsApplication1.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _7d632b8eeeeda6 {
+            get {
+                object obj = ResourceManager.GetObject("7d632b8eeeeda6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap R470c1c8a499782e53c7d63 {
+            get {
+                object obj = ResourceManager.GetObject("R470c1c8a499782e53c7d63", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

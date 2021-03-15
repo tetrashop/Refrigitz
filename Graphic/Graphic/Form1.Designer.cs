@@ -59,6 +59,7 @@ namespace WindowsApplication1
             this.eliminateClicingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminateSetOfColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reducedUntilDesireddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.filtersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reduce10ColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,7 +113,8 @@ namespace WindowsApplication1
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.reducedUntilDesireddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -390,6 +392,13 @@ namespace WindowsApplication1
             this.toolStripMenuItem2.Text = "Reduce 10% off fittting image size";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
+            // reducedUntilDesireddToolStripMenuItem
+            // 
+            this.reducedUntilDesireddToolStripMenuItem.Name = "reducedUntilDesireddToolStripMenuItem";
+            this.reducedUntilDesireddToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.reducedUntilDesireddToolStripMenuItem.Text = "Reduced Until Desiredd";
+            this.reducedUntilDesireddToolStripMenuItem.Click += new System.EventHandler(this.reducedUntilDesireddToolStripMenuItem_Click);
+            // 
             // doToolStripMenuItem1
             // 
             this.doToolStripMenuItem1.Name = "doToolStripMenuItem1";
@@ -404,6 +413,7 @@ namespace WindowsApplication1
             this.filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
             this.filtersToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.filtersToolStripMenuItem.Text = "Filters";
+            this.filtersToolStripMenuItem.Click += new System.EventHandler(this.filtersToolStripMenuItem_Click);
             // 
             // reduce10ColorsToolStripMenuItem
             // 
@@ -426,6 +436,7 @@ namespace WindowsApplication1
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.cutToolStripMenuItem.Text = "Cut";
+            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // curvedToolStripMenuItem
             // 
@@ -947,12 +958,27 @@ namespace WindowsApplication1
             this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // reducedUntilDesireddToolStripMenuItem
+            // button11
             // 
-            this.reducedUntilDesireddToolStripMenuItem.Name = "reducedUntilDesireddToolStripMenuItem";
-            this.reducedUntilDesireddToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.reducedUntilDesireddToolStripMenuItem.Text = "Reduced Until Desiredd";
-            this.reducedUntilDesireddToolStripMenuItem.Click += new System.EventHandler(this.reducedUntilDesireddToolStripMenuItem_Click);
+            this.button11.BackgroundImage = global::WindowsApplication1.Properties.Resources._7d632b8eeeeda6;
+            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button11.Location = new System.Drawing.Point(530, 242);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(34, 33);
+            this.button11.TabIndex = 40;
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.BackgroundImage = global::WindowsApplication1.Properties.Resources.R470c1c8a499782e53c7d63;
+            this.button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button12.Location = new System.Drawing.Point(101, 242);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(33, 33);
+            this.button12.TabIndex = 41;
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // Form1
             // 
@@ -961,6 +987,8 @@ namespace WindowsApplication1
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(611, 517);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button11);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -1122,6 +1150,8 @@ namespace WindowsApplication1
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ToolStripMenuItem reducedUntilDesireddToolStripMenuItem;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
     }
 }
 

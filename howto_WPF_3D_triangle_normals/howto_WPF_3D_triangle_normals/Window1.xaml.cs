@@ -567,6 +567,7 @@ namespace howto_WPF_3D_triangle_normals
         }
         void DrawTriangle(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected, ref List<Point3D> dd, ref List<Point3D[]> d, ref MeshGeometry3D mesh)
         {
+            double x= PointsAdd.Count;;
             for (int i = 0; i < PointsAdd.Count; i++)
             {
                 for (int j = 0; j < PointsAdd.Count; j++)
@@ -576,7 +577,7 @@ namespace howto_WPF_3D_triangle_normals
                         object o = new object();
                         lock (o)
                         {
-                            double ind = (i + 1) * (j + 1) * (k + 1);
+                            double ind = ((i + 1) * x + (j + 1)) * x + (k + 1);
                             za.Content = ((int)((ind / max) * 100)).ToString() + "%";
                             za.InvalidateVisual();
                             if ((new Triangle()).boundry(i, j, k))
@@ -639,6 +640,7 @@ namespace howto_WPF_3D_triangle_normals
         }
         void DrawTriangleParallel(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected, List<Point3D> dd, List<Point3D[]> d, MeshGeometry3D mesh)
         {
+            double x = PointsAdd.Count; ;
             var output = Task.Factory.StartNew(() =>
             {
 
@@ -652,7 +654,7 @@ namespace howto_WPF_3D_triangle_normals
                             object o = new object();
                             lock (o)
                             {
-                                double ind = (i + 1) * (j + 1) * (k + 1);
+                                double ind = ((i + 1) * x + (j + 1)) * x + (k + 1);
 
                                 /*  lock (LockHolder.Lock)
                                   {

@@ -17,6 +17,12 @@ namespace WindowsApplication1
         public static int stkin = 0;
         List<Form1> Stk = new List<Form1>();
         List<Image> StkIm = new List<Image>();
+        List<bool> Stkch = new List<bool>();
+        List<string> Stklb = new List<string>();
+        List<string> Stktx= new List<string>();
+
+
+
 
         public bool Strong = false;
         int count = 1250 * System.Threading.PlatformHelper.ProcessorCount;
@@ -90,19 +96,22 @@ namespace WindowsApplication1
         {
             Stk.Add(this);
             StkIm.Add((Image)pictureBox24.Image.Clone());
-            stkin++;
-        }
+            Stklb.Add(label4.Text);
+            Stktx.Add(textBox1.Text);
+            Stkch.Add(checkBox1.Checked);
+            stkin = Stk.Count - 1;
+       }
         bool PushPop(bool pu)
         {
-            bool ass = false;
+           bool ass = false;
             if (pu)
-                ass = (stkin - 1 < Stk.Count);
+                ass = (stkin  < Stk.Count);
             else
-                ass = stkin > 0;
+                ass = stkin >= 0;
 
             if (ass )
             {
-                Form1 th = Stk[stkin - 1];
+                Form1 th = Stk[stkin ];
                 Strong = th.Strong;
 
                 count = th.count;
@@ -1742,17 +1751,22 @@ namespace WindowsApplication1
 
         private void button11_Click(object sender, EventArgs e)
         {
-            if (stkin  < Stk.Count)
+            if (stkin < Stk.Count)
             {
                 if (PushPop(true))
                 {
+                    if (stkin < Stk.Count - 1)
+                        stkin++;
+                    textBox1.Text = Stktx[stkin ];
+                    checkBox1.Checked = Stkch[stkin ];
+                    label4.Text = Stklb[stkin ];
+
                     pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                     pictureBox24.Visible = true;
-                    pictureBox24.Image = StkIm[stkin - 1];
+                    pictureBox24.Image = StkIm[stkin ];
                     pictureBox24.Invalidate();
                     pictureBox24.Refresh();
                     pictureBox24.Update();
-                    stkin++;
                     button12.Enabled = true;
                 }
             }
@@ -1765,18 +1779,23 @@ namespace WindowsApplication1
 
         private void button12_Click(object sender, EventArgs e)
         {
-            if (stkin > 0)
+            if (stkin >= 0)
             {
                 if (PushPop(false))
                 {
+                    textBox1.Text = Stktx[stkin ];
+                    checkBox1.Checked = Stkch[stkin ];
+                    label4.Text = Stklb[stkin ];
+
                     pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                     pictureBox24.Visible = true;
-                    pictureBox24.Image = StkIm[stkin - 1];
+                    pictureBox24.Image = StkIm[stkin ];
                     pictureBox24.Invalidate();
                     pictureBox24.Refresh();
                     pictureBox24.Update();
-                    stkin--;
                     button11.Enabled = true;
+                    if (stkin > 0)
+                        stkin--;
                 }
             }
             else

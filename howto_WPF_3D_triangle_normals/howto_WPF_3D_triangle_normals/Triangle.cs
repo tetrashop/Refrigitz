@@ -109,14 +109,23 @@ namespace howto_WPF_3D_triangle_normals
                     continue;
                 for (int j = 0; j < x; j++)
                 {
+                    bool add = false;
                     if (exist(e[j], a))
                         continue;
-                    a.Add(new List<Point3D>());
-                    index++;
+                    if (index == -1)
+                    {
+                        a.Add(new List<Point3D>());
+                        index++;
+                    }
+                    else
+                       if (a[index].Count != 0)
+                    {
+                        a.Add(new List<Point3D>());
+                        index++;
 
-                    a[index].Add(e[i]);
-                    a[index].Add(e[j]);
-                    for (int k = 0; k < x; k++)
+                    }
+                 
+                   for (int k = 0; k < x; k++)
                     {
                         if (exist(e[k], a))
                             continue;
@@ -127,9 +136,15 @@ namespace howto_WPF_3D_triangle_normals
                             if (exist(e[p], a))
                                 continue;
                             double an = 0;
-                            bool ann = AngleLessThanLanda(e[i], e[j], e[k], e[p], Math.PI / 90, ref an);
+                            bool ann = AngleLessThanLanda(e[i], e[j], e[k], e[p], Math.PI / 160, ref an);
                             if (ann)
                             {
+                                if (!add)
+                                {
+                                    a[index].Add(e[i]);
+                                    a[index].Add(e[j]);
+                                    add = true;
+                                }
                                 a[index].Add(e[k]);
                                 a[index].Add(e[p]);
                             }

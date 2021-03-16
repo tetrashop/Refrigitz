@@ -940,16 +940,19 @@ namespace howto_WPF_3D_triangle_normals
             double a = 0;
             if (ind == "x")
             {
-                a = (-1 * (j * p0[c][l][1] + k * p0[c][l][2])) / p0[c][l][0];
+                a = (//-1 *
+                     (j * p0[c][l][1] + k * p0[c][l][2])) / p0[c][l][0];
             }
             if (ind == "y")
             {
-                a = (-1 * (i * p0[c][l][0] + k * p0[c][l][2])) / p0[c][l][1];
+                a = (//-1 *
+                     (i * p0[c][l][0] + k * p0[c][l][2])) / p0[c][l][1];
 
             }
             if (ind == "z")
             {
-                a = (-1 * (j * p0[c][l][1] + i * p0[c][l][0])) / p0[c][l][2];
+                a = (//-1 *
+                     (j * p0[c][l][1] + i * p0[c][l][0])) / p0[c][l][2];
 
             }
             return a;

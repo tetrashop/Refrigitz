@@ -553,7 +553,7 @@ namespace howto_WPF_3D_triangle_normals
         }
         void reductionSecond(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<Point3D> xxxp00, ref List<double[]> xxxp00C, double minrp)
         {
-            int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, ref xxxp00C, 1.0 //System.Convert.ToDouble(gr.textBox1.Text) / 3
+            int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, ref xxxp00C, System.Convert.ToDouble(gr.textBox1.Text) //System.Convert.ToDouble(gr.textBox1.Text) / 3
                                       /// (minrp / minrp0)
                                       );
             if (xxxp00.Count > 1)

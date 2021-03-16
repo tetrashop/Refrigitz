@@ -85,6 +85,78 @@ namespace howto_WPF_3D_triangle_normals
             return (na == nb) && (na == nc) & (na == 0);
 
         }
+        public int GetPointsCountOfListOfAngleCollection(List<List<Point3D>> a, Point3D p)
+        {
+            int x = a.Count;
+            for (int i = 0; i < x; i++)
+            {                
+                    if (exist(p, a[i]))
+                        return a[i].Count;              
+            }
+            return 0;
+        }
+        //creation angle list.
+        public List<List<Point3D>> GetListOfAngleCollection(List<Point3D> e)
+        {
+            List<List<Point3D>> a = new List<List<Point3D>>();
+            // List<double> al = new List<double>();
+            int x = e.Count;
+            int index = -1;
+
+            for (int i = 0; i < x; i++)
+            {
+                if (exist(e[i], a))
+                    continue;
+                for (int j = 0; j < x; j++)
+                {
+                    if (exist(e[j], a))
+                        continue;
+                    a.Add(new List<Point3D>());
+                    index++;
+
+                    a[index].Add(e[i]);
+                    a[index].Add(e[j]);
+                    for (int k = 0; k < x; k++)
+                    {
+                        if (exist(e[k], a))
+                            continue;
+                        for (int p = 0; p < x; p++)
+                        {
+                            if (boundry(i, j, k, p))
+                                continue;
+                            if (exist(e[p], a))
+                                continue;
+                            double an = 0;
+                            bool ann = AngleLessThanLanda(e[i], e[j], e[k], e[p], Math.PI / 90, ref an);
+                            if (ann)
+                            {
+                                a[index].Add(e[k]);
+                                a[index].Add(e[p]);
+                            }
+
+                        }
+
+                    }
+                }
+            }
+            return a;
+        }
+        bool AngleLessThanLanda(Point3D pl00, Point3D pl01, Point3D pl12, Point3D pl13, double landa,ref  double an)
+
+        {
+            double a = AngleBetweenTowLine(pl00, pl01, pl12, pl13,ref an);
+            if (a < landa)
+                return true;
+            return false;
+        }
+        //0<teta<pi
+        double AngleBetweenTowLine(Point3D pl00, Point3D pl01, Point3D pl12, Point3D pl13, ref double an)
+        {
+            Line l0 = new Line(pl00, pl01);
+            Line l1 = new Line(pl12, pl13);
+            an = Math.Acos((l0.a * l1.a + l0.b * l1.b + l0.c * l1.c) / ((Math.Sqrt(l0.a * l0.a + l0.b * l0.b + l0.c * l0.c) * Math.Sqrt(l1.a * l1.a + l1.b * l1.b + l1.c * l1.c))));
+            return an;
+        }
         bool exist(Point3D ss, List<List<Point3D>> d)
         {
             if (d.Count == 0)
@@ -644,21 +716,21 @@ namespace howto_WPF_3D_triangle_normals
             ///block = bl;
             int pcou = 0;
             int equal = 0;
-            do
+            while (sss.Count > bl && (equal < 3))
             {
                 block++;
                 List<double[]> sssCon = sCon;
                 List<double[]> xxxCon = xCon;
                 pcou = sssCon.Count;
-                 xxx = reductionSetOfPointsToNumberOfSets(sss, ref sssCon, ref xxxCon);
+                xxx = reductionSetOfPointsToNumberOfSets(sss, ref sssCon, ref xxxCon);
                 if (pcou == sssCon.Count)
                     equal++;
                 xCon = xxxCon;
                 sCon = sssCon;
-            } while (sss.Count > bl && (equal < 3));
-            if (xxx.Count >= 1)
-                return xxx.Count;
-
+            }
+                if (xxx.Count >= 1)
+                    return xxx.Count;
+            
             /*
 
             double countb = sss.Count;

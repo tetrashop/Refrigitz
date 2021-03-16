@@ -949,7 +949,7 @@ namespace howto_WPF_3D_triangle_normals
             }
             if (ind == "z")
             {
-                a = (-1 * (j * p0[c][l][1] + j * p0[c][l][0])) / p0[c][l][2];
+                a = (-1 * (j * p0[c][l][1] + i * p0[c][l][0])) / p0[c][l][2];
 
             }
             return a;
@@ -1041,8 +1041,8 @@ namespace howto_WPF_3D_triangle_normals
                                     //nonCon.Add();(?)
                                     non.Add(x);
                                     nonConst.Add(x);
-                                    nonCon.Add(SetneighboursSt(i, j, disx, disy, minx, minx, minr, x.Z));
-                                    nonCons.Add(SetneighboursSt(i, j, disx, disy, minx, minx, minr, x.Z));
+                                    nonCon.Add(SetneighboursSt(i, j, disx, disy, minx, miny, minr, x.Z));
+                                    nonCons.Add(SetneighboursSt(i, j, disx, disy, minx, miny, minr, x.Z));
 
                                 }
 

@@ -89,9 +89,9 @@ namespace howto_WPF_3D_triangle_normals
         {
             int x = a.Count;
             for (int i = 0; i < x; i++)
-            {                
-                    if (exist(p, a[i]))
-                        return LessDimentionCount(a[i]);              
+            {
+                if (exist(p, a[i]))
+                    return (int)(LessDimentionCount(a[i]));              
             }
             return 0;
         }
@@ -223,9 +223,9 @@ namespace howto_WPF_3D_triangle_normals
             double MaxZ = maxGetListZ(d);
             double MinZ = minGetListZ(d);
 
-            double lenX = ((double)d.Count / (MaxX - MinX));
-            double lenY = ((double)d.Count / (MaxY - MinY));
-            double lenZ = ((double)d.Count / (MaxZ - MinZ));
+            double lenX = ((MaxX - MinX)/ (double)d.Count);
+            double lenY = ((MaxY - MinY)/ (double)d.Count);
+            double lenZ = ((MaxZ - MinZ)/ (double)d.Count);
 
             double MMXY = (MaxX - MinX) * (MaxY - MinY);
             double MMXZ = (MaxX - MinX) * (MaxZ - MinZ);
@@ -235,25 +235,26 @@ namespace howto_WPF_3D_triangle_normals
             {
                 if (divy < divz)
                 {
-                    return (int)(((double)d.Count - (MMZY / lenZ)) / lenZ);
+                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMZY)) / (lenZ * lenZ));
                 }
                 else
                 {
-                    return (int)(((double)d.Count - (MMZY / lenY)) / lenY);
+                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMZY)) / (lenY * lenY));
 
+           
                 }
             } else
                 if (a[0] == divy)
             {
                 if (divx < divz)
                 {
-                    return (int)(((double)d.Count - (MMXZ / lenZ)) / lenZ);
-
+                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMXZ)) / (lenZ * lenZ));
+             
                 }
                 else
                 {
-                    return (int)(((double)d.Count - (MMXZ / lenX)) / lenX);
-
+                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMXZ)) / (lenX * lenX));
+               
                 }
 
             } else
@@ -261,13 +262,13 @@ namespace howto_WPF_3D_triangle_normals
             {
                 if (divx < divy)
                 {
-                    return (int)(((double)d.Count - (MMXY / lenY)) / lenY);
-
+                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMXY)) / (lenY * lenY));
+                 
                 }
                 else
                 {
-                    return (int)(((double)d.Count - (MMXY / lenX)) / lenX);
-
+                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMXY)) / (lenX * lenX));
+            
                 }
             }
             return count;
@@ -905,8 +906,8 @@ namespace howto_WPF_3D_triangle_normals
                                 {
                                     int bl1 = GetPointsCountOfListOfAngleCollection(AngleCol, p0);
                                     int bl2 = GetPointsCountOfListOfAngleCollection(AngleCol, p1);
-                                    if (block > Math.Sqrt((bl1 + bl2) / 2))
-                                        block = Math.Sqrt((bl1 + bl2) / 2);
+                                    if (block > (double)((bl1 + bl2) / 2))
+                                        block = (double)((bl1 + bl2) / 2);
                                     else
                                         block = blockstor;
 
@@ -916,8 +917,8 @@ namespace howto_WPF_3D_triangle_normals
                                 {
                                     int bl1 = GetPointsCountOfListOfAngleCollection(AngleCol, pp0);
                                     int bl2 = GetPointsCountOfListOfAngleCollection(AngleCol, pp1);
-                                    if (block > Math.Sqrt((bl1 + bl2) / 2))
-                                        block = Math.Sqrt((bl1 + bl2) / 2);
+                                    if (block > (double)((bl1 + bl2) / 2))
+                                        block = (double)((bl1 + bl2) / 2);
                                     else
                                         block = blockstor;
                                     reductionSetOfPointsToNumberOfSetsHulfP(pp0, pp1, minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);

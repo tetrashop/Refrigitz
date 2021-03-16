@@ -91,7 +91,7 @@ namespace howto_WPF_3D_triangle_normals
             for (int i = 0; i < x; i++)
             {                
                     if (exist(p, a[i]))
-                        return a[i].Count;              
+                        return LessDimentionCount(a[i]);              
             }
             return 0;
         }
@@ -149,6 +149,215 @@ namespace howto_WPF_3D_triangle_normals
                 return true;
             return false;
         }
+        double MeanX(List<Point3D> x)
+        {
+            double mean = 0;
+            for (int i = 0; i < x.Count; i++)
+                mean += x[i].X;
+            mean /= (double)x.Count;
+            return mean;
+
+        }
+        double MeanY(List<Point3D> y)
+        {
+            double mean = 0;
+            for (int i = 0; i < y.Count; i++)
+                mean += y[i].Y;
+            mean /= (double)y.Count;
+            return mean;
+
+        }
+        double MeanZ(List<Point3D> z)
+        {
+            double mean = 0;
+            for (int i = 0; i < z.Count; i++)
+                mean += z[i].Z;
+            mean /= (double)z.Count;
+            return mean;
+
+        }
+        double DivesionX(List<Point3D> t)
+        {
+            double div = 0;
+            double mean = MeanX(t);
+            for (int i = 0; i < t.Count; i++)
+                div += Math.Abs(t[i].X - mean);
+            div /= (double)t.Count;
+            return div;
+        }
+        double DivesionY(List<Point3D> t)
+        {
+            double div = 0;
+            double mean = MeanY(t);
+            for (int i = 0; i < t.Count; i++)
+                div += Math.Abs(t[i].Y - mean);
+            div /= (double)t.Count;
+            return div;
+        }
+        double DivesionZ(List<Point3D> t)
+        {
+            double div = 0;
+            double mean = MeanZ(t);
+            for (int i = 0; i < t.Count; i++)
+                div += (Math.Abs(t[i].Z - mean));
+            div /= (double)t.Count;
+            return div;
+        }
+        int LessDimentionCount(List<Point3D> d)
+        {
+            int count = 0;
+            double divx = DivesionX(d);
+            double divy = DivesionY(d);
+            double divz = DivesionZ(d);
+            double[] a = new double[3];
+            a[0] = divx;
+            a[1] = divy;
+            a[2] = divz;
+            a = ImprovmentSort.Do(a);
+            double MaxX = maxGetListX(d);
+            double MinX = minGetListX(d);
+
+            double MaxY = maxGetListY(d);
+            double MinY = minGetListY(d);
+
+            double MaxZ = maxGetListZ(d);
+            double MinZ = minGetListZ(d);
+
+            double lenX = ((double)d.Count / (MaxX - MinX));
+            double lenY = ((double)d.Count / (MaxY - MinY));
+            double lenZ = ((double)d.Count / (MaxZ - MinZ));
+
+            double MMXY = (MaxX - MinX) * (MaxY - MinY);
+            double MMXZ = (MaxX - MinX) * (MaxZ - MinZ);
+            double MMZY = (MaxZ - MinZ) * (MaxY - MinY);
+
+            if (a[0] == divx)
+            {
+                if (divy < divz)
+                {
+                    return (int)(((double)d.Count - (MMZY / lenZ)) / lenZ);
+                }
+                else
+                {
+                    return (int)(((double)d.Count - (MMZY / lenY)) / lenY);
+
+                }
+            } else
+                if (a[0] == divy)
+            {
+                if (divx < divz)
+                {
+                    return (int)(((double)d.Count - (MMXZ / lenZ)) / lenZ);
+
+                }
+                else
+                {
+                    return (int)(((double)d.Count - (MMXZ / lenX)) / lenX);
+
+                }
+
+            } else
+                if (a[0] == divz)
+            {
+                if (divx < divy)
+                {
+                    return (int)(((double)d.Count - (MMXY / lenY)) / lenY);
+
+                }
+                else
+                {
+                    return (int)(((double)d.Count - (MMXY / lenX)) / lenX);
+
+                }
+            }
+            return count;
+
+        }
+        static double maxGetListX(List<Point3D> d)
+        {
+            int inex = -1;
+            double max = float.MinValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (max < d[i].X)
+                {
+                    max = d[i].X;
+                    inex = i;
+                }
+            }
+            return d[inex].X;
+        }
+        static double maxGetListY(List<Point3D> d)
+        {
+            int inex = -1;
+            double max = float.MinValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (max < d[i].Y)
+                {
+                    max = d[i].Y;
+                    inex = i;
+                }
+            }
+            return d[inex].Y;
+        }
+        static double maxGetListZ(List<Point3D> d)
+        {
+            int inex = -1;
+            double max = float.MinValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (max < d[i].Z)
+                {
+                    max = d[i].Z;
+                    inex = i;
+                }
+            }
+            return d[inex].Z;
+        }
+        static double minGetListX(List<Point3D> d)
+        {
+            int inex = -1;
+            double min = float.MaxValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (min > d[i].X)
+                {
+                    min = d[i].X;
+                    inex = i;
+                }
+            }
+            return d[inex].X;
+        }
+        static double minGetListY(List<Point3D> d)
+        {
+            int inex = -1;
+            double min = float.MaxValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (min > d[i].X)
+                {
+                    min = d[i].X;
+                    inex = i;
+                }
+            }
+            return d[inex].Y;
+        }
+        static double minGetListZ(List<Point3D> d)
+        {
+            int inex = -1;
+            double min = float.MaxValue;
+            for (int i = 0; i < d.Count; i++)
+            {
+                if (min > d[i].Z)
+                {
+                    min = d[i].Z;
+                    inex = i;
+                }
+            }
+            return d[inex].Z;
+        }
+
         //0<teta<pi
         double AngleBetweenTowLine(Point3D pl00, Point3D pl01, Point3D pl12, Point3D pl13, ref double an)
         {

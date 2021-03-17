@@ -1038,7 +1038,7 @@ namespace howto_WPF_3D_triangle_normals
                             for (int k = (int)disz; k < minz; k += minr)
                             {
                                 Point3D x = new Point3D(getAlphaperStringOfIndependentvars("x", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("y", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("z", p0, c, l, i, j, k));
-                                if (!(x.Z < minz || x.Z > maxz))
+                                if (!(x.Z < minz || x.Z > maxz) && (!((new Triangle()).exist(x, nonConst))))
                                 {
                                     //int f = non.IndexOf(addpoint0.qsystemlistaddpoints[c][l]);
                                     //nonCon.Add();(?)

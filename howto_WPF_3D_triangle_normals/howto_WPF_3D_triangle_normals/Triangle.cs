@@ -238,38 +238,38 @@ namespace howto_WPF_3D_triangle_normals
             double MaxZ = maxGetListZ(d);
             double MinZ = minGetListZ(d);
 
-            double lenX = ((MaxX - MinX)/ (double)d.Count);
-            double lenY = ((MaxY - MinY)/ (double)d.Count);
-            double lenZ = ((MaxZ - MinZ)/ (double)d.Count);
-
-            double MMXY = (MaxX - MinX) * (MaxY - MinY);
-            double MMXZ = (MaxX - MinX) * (MaxZ - MinZ);
-            double MMZY = (MaxZ - MinZ) * (MaxY - MinY);
+            double Px = (MaxX - MinX);
+            double Py = (MaxY - MinY);
+            double Pz = (MaxZ - MinZ);
+            double K = d.Count;
 
             if (a[0] == divx)
             {
                 if (divy < divz)
                 {
-                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMZY)) / (lenZ * lenZ));
+                    double X = Math.Sqrt(K * Py / Pz);
+                    return (int)X;
                 }
                 else
                 {
-                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMZY)) / (lenY * lenY));
+                    double X = Math.Sqrt(K * Pz / Py);
+                    return (int)X;
 
-           
+
                 }
             } else
                 if (a[0] == divy)
             {
                 if (divx < divz)
                 {
-                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMXZ)) / (lenZ * lenZ));
-             
+                    double X = Math.Sqrt(K * Pz / Px);
+                    return (int)X;
                 }
                 else
                 {
-                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMXZ)) / (lenX * lenX));
-               
+                    double X = Math.Sqrt(K * Px / Pz);
+                    return (int)X;
+
                 }
 
             } else
@@ -277,15 +277,32 @@ namespace howto_WPF_3D_triangle_normals
             {
                 if (divx < divy)
                 {
-                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMXY)) / (lenY * lenY));
-                 
+                    double X = Math.Sqrt(K * Py / Px);
+                    return (int)X;
+
                 }
                 else
                 {
-                    return (int)(((double)d.Count + Math.Sqrt((double)d.Count * (double)d.Count - 4 * MMXY)) / (lenX * lenX));
-            
+                    double X = Math.Sqrt(K * Px / Py);
+                    return (int)X;
                 }
             }
+            /*double MaxX = maxGetListX(d);
+            double MinX = minGetListX(d);
+
+            double MaxY = maxGetListY(d);
+            double MinY = minGetListY(d);
+
+            double MaxZ = maxGetListZ(d);
+            double MinZ = minGetListZ(d);
+
+            double Px = (MaxX - MinX);
+            double Py = (MaxY - MinY);
+            double Pz = (MaxZ - MinZ));
+            double K = d.Count;
+
+            double X = Math.Sqrt(K * Px / Py);
+            dou*/
             return count;
 
         }
@@ -409,7 +426,7 @@ namespace howto_WPF_3D_triangle_normals
             }
             return false;
         }
-        bool exist(Point3D ss, List<Point3D> d)
+        public bool exist(Point3D ss, List<Point3D> d)
         {
             if (d.Count == 0)
                 return false;
@@ -865,7 +882,7 @@ namespace howto_WPF_3D_triangle_normals
                 }
             }
         }
-        List<Point3D> reductionSetOfPointsToNumberOfSets(List<Point3D> s, ref List<double[]> sCon, ref List<double[]> xCon)
+        List<Point3D> reductionSetOfPointsToNumberOfSets(ref List<Point3D> s, ref List<double[]> sCon, ref List<double[]> xCon)
         {
             bool reduced = false;
             List<Point3D> sss = s;
@@ -934,8 +951,8 @@ namespace howto_WPF_3D_triangle_normals
                                     int bl2 = GetPointsCountOfListOfAngleCollection(AngleCol, pp1);
                                     if (block > (double)((bl1 + bl2) / 2))
                                         block = (double)((bl1 + bl2) / 2);
-                                    else
-                                        block = blockstor;
+                                   else
+                                       block = blockstor;
                                     reductionSetOfPointsToNumberOfSetsHulfP(pp0, pp1, minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
                                 }
                             }
@@ -959,16 +976,22 @@ namespace howto_WPF_3D_triangle_normals
             ///block = bl;
             int pcou = 0;
             int equal = 0;
-            while (sss.Count > bl && (equal < 3))
+            while (sss.Count > bl && (equal < 5))
             {
-                block++;
-                
+               
                 List<double[]> sssCon = sCon;
                 List<double[]> xxxCon = xCon;
-                pcou = sssCon.Count;
-                xxx = reductionSetOfPointsToNumberOfSets(sss, ref sssCon, ref xxxCon);
-                if (pcou == sssCon.Count)
+                pcou = sss.Count;
+                xxx = reductionSetOfPointsToNumberOfSets(ref sss, ref sssCon, ref xxxCon);
+                if (pcou == sss.Count)
+                {
+                    block++;
                     equal++;
+                }
+                else AngleCol = GetListOfAngleCollection(sss);
+
+
+
                 xCon = xxxCon;
                 sCon = sssCon;
             }

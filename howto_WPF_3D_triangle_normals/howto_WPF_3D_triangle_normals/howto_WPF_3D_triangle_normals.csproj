@@ -62,6 +62,9 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cloo, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cloo.clSharp.1.0.1\lib\netstandard2.0\Cloo.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -125,6 +128,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -135,6 +139,10 @@
     <ProjectReference Include="..\..\Graphic\Graphic\Graphic.csproj">
       <Project>{0ea64c3f-bd75-4059-bca3-315ea19d7c17}</Project>
       <Name>Graphic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenCL\OpenCLlib\OpenCLlib.csproj">
+      <Project>{72fef2df-d7fc-4843-a793-9bdfb75c1fef}</Project>
+      <Name>OpenCLlib</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Refrigtz\bin\Debug\All\All\All.csproj">
       <Project>{ac2b4cf6-3294-46d5-9af0-c58ee5b637d4}</Project>

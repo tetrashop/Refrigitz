@@ -733,87 +733,99 @@ namespace howto_WPF_3D_triangle_normals
             {
 
                 return @"
-        kernel    void Creation3D(global int* message)
+        kernel    void Creation3D(global List<Point3D> * PointsAddp0,global  int* PointsAddp0cou,global  List<Point3D> * PointsAddp1,global  int* PointsAddp1cou,global 
+            List<Point3D> * PointsAddp,global  int* PointsAddpcou
+            ,global  List<double[]>* PointsAddp0Conected,global int* PointsAddp0ConectedCou,global  List<double[]>* PointsAddpConected,global  int* PointsAddpConectedcou,global 
+            List<double[]>* PointsAddp1Conected,global  int* PointsAddp1Conectedcou
+             ,global  double* minrp0,global  double* minrp1,global  double* minrp,global  List<Point3D> * xxxp00,global  int* xxxp00cou,global  List<double[]>* xxxp00C,global int* xxxp00Ccou,global 
+        MeshGeometry3D* mesh,global  Model3DGroup* model_group,global  List<Point3D> * PointsAdd,global  int* PointsAddcou,global  DiffuseMaterial* surface_material,global 
+        double* thickness,global  MeshGeometry3D wireframe,global 
+        DiffuseMaterial* wireframe_material,global  MeshGeometry3D* normals,global  DiffuseMaterial* normals_material,global  ModelVisual3D* model_visual ,global double* minr
+            ,global  List<Point3D[]>* d,global  int* dcou,global  List<Point3D> * dd,global  int* ddcou,global  double* max ,global int* A,global bool s,global  PerspectiveCamera* TheCamer,global  GeometryModel3D* SurfaceMode,global 
+        GeometryModel3D* WireframeMode,global  Model3DGroup* MainModel3Dgrou,global  GeometryModel3D* NormalsMode)
         {
 
-
-
-                        //creation of target
+             //creation of target
 
 
 
-                        CtreatPoints( message[ get_global_id(0)], message[ get_global_id(2)],  message[ get_global_id(6)],  message[ get_global_id(8)]);
-
-                       
+                        CtreatPoints(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected);
 
 
-                        for (int y = 0; y < (int)message[get_global_id(1)]; y++)
-                            message[get_global_id(4)].Add(message[get_global_id(0)][y]);
-                        for (int y = 0; y < (int)message[get_global_id(7)]; y++)
-                            message[get_global_id(8)].Add(message[get_global_id(6)][y]);
 
 
-                        if ((int)message[get_global_id(1)] >= 3 || (int)message[get_global_id(3)] >= 3)
+                        for (int y = 0; y < PointsAddp0cou; y++)
+                            PointsAddp.Add(PointsAddp0[y]);
+                        for (int y = 0; y < PointsAddp0ConectedCou; y++)
+                            PointsAddpConected.Add(PointsAddp0Conected[y]);
+
+
+                        if (PointsAddp0cou >= 3 || PointsAddp1cou >= 3)
                         {
                             //When is not strong
-                            if (!message[get_global_id(37)])
+                            if (!s)
                             {
 
-                                message[get_global_id(12)] = minraddpoints(message[get_global_id(1)]);
-                                message[get_global_id(13)] = minraddpoints(message[get_global_id(3)]);
-                            
+                                minrp0 = minraddpoints(PointsAddp0);
+                                minrp1 = minraddpoints(PointsAddp1);
+                         
 
 
 
 
-                                reductFirst( message[get_global_id(1)], message[get_global_id(3)],  message[get_global_id(6)],  message[get_global_id(10)], message[get_global_id(12)], message[get_global_id(13)]);
+                                reductFirst(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected, minrp0, minrp1);
 
-                message[get_global_id(14)] = minraddpoints(message[get_global_id(0)]);
+                minrp = minraddpoints(PointsAddp0);
 
-                makeListExpand( message[get_global_id(0)],  message[get_global_id(4)],  message[get_global_id(6)],  message[get_global_id(8)], (int)message[get_global_id(14)] * (message[get_global_id(36)])
+                makeListExpand(ref PointsAddp0, ref PointsAddp, ref PointsAddp0Conected, ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(A))
                     );
 
 
 
-                message[get_global_id(14)] = minraddpoints(message[get_global_id(0)]);
-                if ((int)message[get_global_id(1)] >= 3 || (int)message[get_global_id(3)] >= 3)
-                        {
-                    reductionSecond( message[get_global_id(0)],  message[get_global_id(6)],   message[get_global_id(8)],   message[get_global_id(15)], message[get_global_id(16)]);
+                minrp = minraddpoints(PointsAddp0);
+                 if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
+                {
+                    reductionSecond(ref PointsAddp0, ref PointsAddp0Conected, ref xxxp00, ref xxxp00C, minrp);
                 }
-                makeListFittness( message[get_global_id(0)]);
-           }//else is strong
+                makeListFittness(ref PointsAddp0);
+            }//else is strong
                             else
                             {
-                 message[get_global_id(14)] = minraddpoints(message[get_global_id(0)]);
+                minrp = minraddpoints(PointsAddp0);
 
-                     makeListExpand( message[get_global_id(0)],  message[get_global_id(4)],  message[get_global_id(6)],  message[get_global_id(8)], (int)message[get_global_id(14)] * (message[get_global_id(36)])
-               );
+                makeListExpand(ref PointsAddp0, ref PointsAddp, ref PointsAddp0Conected, ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(A))
+                    );
 
-                makeListFittness( message[get_global_id(0)]);
-           }
-          message[get_global_id(38)] = new PerspectiveCamera();
-                            message[get_global_id(38)].FieldOfView = 60;
-                            MainViewport.Camera = message[get_global_id(38)];
+                makeListFittness(ref PointsAddp0);
+            }
+            // Give the camera its initial position.
+            TheCamer = new PerspectiveCamera();
+        TheCamer.FieldOfView = 60;
+                            MainViewport.Camera = TheCamer;
                             PositionCamera();
 
-                            // Define lights.
-                            DefineLights();
+        // Define lights.
+        DefineLights();
 
-                            message[get_global_id(20)] = message[get_global_id(41)];
-
-                            message[get_global_id(4)] = message[get_global_id(1)];
-
-                            makeListCenteralized( message[get_global_id(4)]);
-
-         message[get_global_id(14)] = minraddpoints(message[get_global_id(4)]);
-         message[get_global_id(35)] = (int)message[get_global_id(5)] * (int)message[get_global_id(5)] * (int)message[get_global_id(5)];
+        model_group = MainModel3Dgrou;
 
 
 
+                            PointsAdd = PointsAddp0;
 
-        //DrawTriangleParallel(message[index], message[index], message[index], message[index], message[index], message[index], message[index]);
+                            makeListCenteralized(ref PointsAdd);
 
-        DrawTriangle(message[get_global_id(22)], message[get_global_id(5)], message[get_global_id(35)], message[get_global_id(8)],  message[get_global_id(31)],  message[get_global_id(33)],  message[get_global_id(19)]);
+        minr = minraddpoints(PointsAdd);
+        d = new List<Point3D[]>();
+                             dd = new List<Point3D>();
+                             max = PointsAddcou* PointsAddcou * PointsAddcou;
+
+
+
+
+                            //DrawTriangleParallel(PointsAdd, PointsAddp, max, PointsAddpConected, dd, d, mesh);
+
+                            DrawTriangle(PointsAdd, PointsAddp, max, PointsAddpConected, ref dd, ref d, ref mesh);
 
 
 
@@ -822,48 +834,49 @@ namespace howto_WPF_3D_triangle_normals
 
      
                             // Make the surface's material using a solid green brush.
-                            message[get_global_id(23)] = new DiffuseMaterial(Brushes.LightGreen);
+                            surface_material = new DiffuseMaterial(Brushes.LightGreen);
 
         // Make the surface's model.
-       message[get_global_id(38)] = new GeometryModel3D(message[get_global_id(19)], message[get_global_id(23)]);
+        SurfaceMode = new GeometryModel3D(mesh, surface_material);
 
         // Make the surface visible from both sides.
-       message[get_global_id(38)].BackMaterial = message[get_global_id(23)]
+        SurfaceMode.BackMaterial = surface_material;
 
                             // Add the model to the model groups.
-                            message[get_global_id(20)].Children.Add( message[get_global_id(38)]);
+                            model_group.Children.Add(SurfaceMode);
 
-                            // Make a message[index].
+                            // Make a wireframe.
 
 #if SURFACE2
             thickness = 0.01
 #endif
-                            message[get_global_id(25)] = message[get_global_id(19)].ToWireframe(message[get_global_id(24)]);
-                            message[get_global_id(28)] = new DiffuseMaterial(Brushes.Red);
-        message[get_global_id(40)] = new GeometryModel3D(message[get_global_id(25)], message[get_global_id(26)]);
-        message[get_global_id(20)].Children.Add( message[get_global_id(40)]);
-                           
-                            // Make the message[get_global_id(27)].
-                            message[get_global_id(27)] = message[index].ToTriangleNormals(0.5, thickness);
-                            message[get_global_id(28)] = new DiffuseMaterial(Brushes.Blue);
-        NormalsModel = new GeometryModel3D(message[get_global_id(27)], message[get_global_id(28)]);
-        message[get_global_id(20)].Children.Add(NormalsModel);
-                        
+                            wireframe = mesh.ToWireframe(thickness);
+                            wireframe_material = new DiffuseMaterial(Brushes.Red);
+        WireframeMode = new GeometryModel3D(wireframe, wireframe_material);
+        model_group.Children.Add(WireframeMode);
+
+                            // Make the normals.
+                            normals = mesh.ToTriangleNormals(0.5, thickness);
+                            normals_material = new DiffuseMaterial(Brushes.Blue);
+        NormalsMode = new GeometryModel3D(normals, normals_material);
+        model_group.Children.Add(NormalsMode);
+      
                             // Add the group of models to a ModelVisual3D.
-                            message[get_global_id(29)] = new ModelVisual3D();
-        message[get_global_id(29)].Content = message[get_global_id(41];
+                            model_visual = new ModelVisual3D();
+        model_visual.Content = MainModel3Dgrou;
 
                             // Display the main visual in the viewportt.
-                            MainViewport.Children.Add(message[get_global_id(29)]);
+                            MainViewport.Children.Add(model_visual);
                         }
-    // if ((int)message[index].Count > 0)
+    // if (PointsAdd.Count > 0)
     // Window_Loaded(sender, e);
 
 
-                
+
+
 }
-           
-  ";
+
+";
             }
 
         }

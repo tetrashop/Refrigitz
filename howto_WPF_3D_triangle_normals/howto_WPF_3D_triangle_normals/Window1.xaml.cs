@@ -733,31 +733,29 @@ namespace howto_WPF_3D_triangle_normals
             {
 
                 return @"
-        kernel    void Creation3D(global List<Point3D> * PointsAddp0,global  List<Point3D> * PointsAddp1,global 
-            List<Point3D> * PointsAddp
-            ,global  List<double[]>* PointsAddp0Conected,global  List<double[]>* PointsAddpConected,global 
-            List<double[]>* PointsAddp1Conected
-             ,global  double* minrp0,global  double* minrp1,global  double* minrp,global  List<Point3D> * xxxp00,global  int* xxxp00cou,global  List<double[]>* xxxp00C,global int* xxxp00Ccou,global 
-        MeshGeometry3D* mesh,global  Model3DGroup* model_group,global  List<Point3D> * PointsAdd,global  int* PointsAdd.Count,global  DiffuseMaterial* surface_material,global 
+        kernel    void Creation3D(List<Point3D> PointsAddp0,List<Point3D> PointsAddp1,
+            List<Point3D> PointsAddp
+            ,List<double[]> PointsAddp0Conected,List<double[]> PointsAddpConected,
+            List<double[]> PointsAddp1Conected
+             ,global  double* minrp0,global  double* minrp1,global  double* minrp,List<Point3D> xxxp00,List<double[]> xxxp00C 
+        MeshGeometry3D* mesh,global  Model3DGroup* model_group,List<Point3D> PointsAdd,global  DiffuseMaterial* surface_material,global 
         double* thickness,global  MeshGeometry3D wireframe,global 
         DiffuseMaterial* wireframe_material,global  MeshGeometry3D* normals,global  DiffuseMaterial* normals_material,global  ModelVisual3D* model_visual ,global double* minr
-            ,global  List<Point3D[]>* d,global  List<Point3D> * dd,global  double* max ,global int* A,global bool s,global  PerspectiveCamera* TheCamer,global  GeometryModel3D* SurfaceMode,global 
+            ,List<Point3D[]> d,List<Point3D> dd,global  double* max ,global int* A,global bool s,global  PerspectiveCamera* TheCamer,global  GeometryModel3D* SurfaceMode,global 
         GeometryModel3D* WireframeMode,global  Model3DGroup* MainModel3Dgrou,global  GeometryModel3D* NormalsMode)
         {
 
-             //creation of target
+          //creation of target
 
 
 
-                        CtreatPoints( PointsAddp0, PointsAddp1,  PointsAddp0Conected,  PointsAddp1Conected);
+                        CtreatPoints(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected);
 
 
 
+            addlist(PointsAddp, PointsAddp0, PointsAddp0Conected, PointsAddpConected);
 
-                        for (int y = 0; y < PointsAddp0.Count; y++)
-                            PointsAddp.Add(PointsAddp0[y]);
-                        for (int y = 0; y < PointsAddp0Conected.Count; y++)
-                            PointsAddpConected.Add(PointsAddp0Conected[y]);
+
 
 
                         if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
@@ -765,39 +763,21 @@ namespace howto_WPF_3D_triangle_normals
                             //When is not strong
                             if (!s)
                             {
-
-                                minrp0 = minraddpoints(PointsAddp0);
-                                minrp1 = minraddpoints(PointsAddp1);
-                         
-
-
-
-
-                                reductFirst( PointsAddp0, PointsAddp1,  PointsAddp0Conected,  PointsAddp1Conected, minrp0, minrp1);
-
-                minrp = minraddpoints(PointsAddp0);
-
-                makeListExpand( PointsAddp0,  PointsAddp,  PointsAddp0Conected,  PointsAddpConected, (int)minrp * (System.Convert.ToInt32(A))
-                    );
-
-
-
-                minrp = minraddpoints(PointsAddp0);
-                 if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
-                {
-                    reductionSecond( PointsAddp0,  PointsAddp0Conected,  xxxp00,  xxxp00C, minrp);
-                }
-                makeListFittness( PointsAddp0);
-            }//else is strong
+                    Strong(PointsAddp0, PointsAddp1,
+            PointsAddp
+           , PointsAddp0Conected, PointsAddpConected,
+            PointsAddp1Conected
+            , minrp0, minrp1, minrp);
+                   }//else is strong
                             else
                             {
-                minrp = minraddpoints(PointsAddp0);
+                                minrp = minraddpoints(PointsAddp0);
 
-                makeListExpand( PointsAddp0,  PointsAddp,  PointsAddp0Conected,  PointsAddpConected, (int)minrp * (System.Convert.ToInt32(A))
-                    );
+                                makeListExpand(ref PointsAddp0, ref PointsAddp, ref PointsAddp0Conected, ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(A))
+                                    );
 
-                makeListFittness( PointsAddp0);
-            }
+                                makeListFittness(ref PointsAddp0);
+                            }
             // Give the camera its initial position.
             TheCamer = new PerspectiveCamera();
         TheCamer.FieldOfView = 60;
@@ -813,7 +793,7 @@ namespace howto_WPF_3D_triangle_normals
 
                             PointsAdd = PointsAddp0;
 
-                            makeListCenteralized( PointsAdd);
+                            makeListCenteralized(ref PointsAdd);
 
         minr = minraddpoints(PointsAdd);
         d = new List<Point3D[]>();
@@ -823,16 +803,17 @@ namespace howto_WPF_3D_triangle_normals
 
 
 
-                            //DrawTriangleParallel(PointsAdd, PointsAddp, max, PointsAddpConected, dd, d, mesh);
+        //DrawTriangleParallel(PointsAdd, PointsAddp, max, PointsAddpConected, dd, d, mesh);
 
-                            DrawTriangle(PointsAdd, PointsAddp, max, PointsAddpConected,  dd,  d,  mesh);
-
-
+        DrawTriangle(PointsAdd, PointsAddp, max, PointsAddpConected, ref dd, ref d, ref mesh);
 
 
 
 
-     
+
+
+        // Make a mesh to hold the surface.
+    
                             // Make the surface's material using a solid green brush.
                             surface_material = new DiffuseMaterial(Brushes.LightGreen);
 
@@ -854,13 +835,13 @@ namespace howto_WPF_3D_triangle_normals
                             wireframe_material = new DiffuseMaterial(Brushes.Red);
         WireframeMode = new GeometryModel3D(wireframe, wireframe_material);
         model_group.Children.Add(WireframeMode);
-
+               
                             // Make the normals.
                             normals = mesh.ToTriangleNormals(0.5, thickness);
                             normals_material = new DiffuseMaterial(Brushes.Blue);
         NormalsMode = new GeometryModel3D(normals, normals_material);
         model_group.Children.Add(NormalsMode);
-      
+                           
                             // Add the group of models to a ModelVisual3D.
                             model_visual = new ModelVisual3D();
         model_visual.Content = MainModel3Dgrou;
@@ -868,20 +849,61 @@ namespace howto_WPF_3D_triangle_normals
                             // Display the main visual in the viewportt.
                             MainViewport.Children.Add(model_visual);
                         }
-   
-
-
-}
+                        // if (PointsAdd.Count > 0)
+                        // Window_Loaded(sender, e);
+                 
 
 ";
             }
+
+        }
+        void addlist(List<Point3D> PointsAddp, List<Point3D> PointsAddp0, List<double[]> PointsAddp0Conected, List<double[]> PointsAddpConected)
+        {
+            for (int y = 0; y < PointsAddp0.Count; y++)
+                PointsAddp.Add(PointsAddp0[y]);
+            for (int y = 0; y < PointsAddp0Conected.Count; y++)
+                PointsAddpConected.Add(PointsAddp0Conected[y]);
+
+        }
+        void Strong(List<Point3D> PointsAddp0, List<Point3D> PointsAddp1,
+            List<Point3D> PointsAddp
+            , List<double[]> PointsAddp0Conected, List<double[]> PointsAddpConected,
+            List<double[]> PointsAddp1Conected
+             , double minrp0, double minrp1, double minrp, List<Point3D> xxxp00, List<double[]> xxxp00C, int A
+            )
+        {
+            minrp0 = minraddpoints(PointsAddp0);
+            minrp1 = minraddpoints(PointsAddp1);
+            MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
+
+
+
+
+
+            reductFirst(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected, minrp0, minrp1);
+
+            minrp = minraddpoints(PointsAddp0);
+
+            makeListExpand(ref PointsAddp0, ref PointsAddp, ref PointsAddp0Conected, ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(A))
+                );
+
+
+
+            minrp = minraddpoints(PointsAddp0);
+            MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " points. with minrp0 " + minrp.ToString());
+            if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
+            {
+                reductionSecond(ref PointsAddp0, ref PointsAddp0Conected, ref xxxp00, ref xxxp00C, minrp);
+            }
+            makeListFittness(ref PointsAddp0);
+            MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
 
         }
         void Creation3D(List<Point3D> PointsAddp0, List<Point3D> PointsAddp1,
             List<Point3D> PointsAddp
             , List<double[]> PointsAddp0Conected, List<double[]> PointsAddpConected,
             List<double[]> PointsAddp1Conected
-             , double minrp0, double minrp1, double minrp, List<Point3D> xxxp00, int xxxp00cou, List<double[]> xxxp00C,int xxxp00Ccou,
+             , double minrp0, double minrp1, double minrp, List<Point3D> xxxp00, List<double[]> xxxp00C,
         MeshGeometry3D mesh, Model3DGroup model_group, List<Point3D> PointsAdd, DiffuseMaterial surface_material,
         double thickness, MeshGeometry3D wireframe,
         DiffuseMaterial wireframe_material, MeshGeometry3D normals, DiffuseMaterial normals_material, ModelVisual3D model_visual ,double minr
@@ -898,11 +920,9 @@ namespace howto_WPF_3D_triangle_normals
 
 
 
+            addlist(PointsAddp, PointsAddp0, PointsAddp0Conected, PointsAddpConected);
 
-                        for (int y = 0; y < PointsAddp0.Count; y++)
-                            PointsAddp.Add(PointsAddp0[y]);
-                        for (int y = 0; y < PointsAddp0Conected.Count; y++)
-                            PointsAddpConected.Add(PointsAddp0Conected[y]);
+
 
 
                         if (PointsAddp0.Count >= 3 || PointsAddp1.Count >= 3)
@@ -910,33 +930,12 @@ namespace howto_WPF_3D_triangle_normals
                             //When is not strong
                             if (!s)
                             {
-
-                                minrp0 = minraddpoints(PointsAddp0);
-                                minrp1 = minraddpoints(PointsAddp1);
-                                MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " p1! " + PointsAddp1.Count.ToString() + " points. with minrp0 " + minrp0.ToString() + " with minrp1 " + minrp1.ToString());
-
-
-
-
-
-                                reductFirst(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected, minrp0, minrp1);
-
-                                minrp = minraddpoints(PointsAddp0);
-
-                                makeListExpand(ref PointsAddp0, ref PointsAddp, ref PointsAddp0Conected, ref PointsAddpConected, (int)minrp * (System.Convert.ToInt32(A))
-                                    );
-
-
-
-                                minrp = minraddpoints(PointsAddp0);
-                                MessageBox.Show("Add capable...p0! " + PointsAddp0.Count.ToString() + " points. with minrp0 " + minrp.ToString());
-                                if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
-                                {
-                                    reductionSecond(ref PointsAddp0, ref PointsAddp0Conected, ref xxxp00, ref xxxp00C, minrp);
-                                }
-                                makeListFittness(ref PointsAddp0);
-                                MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
-                            }//else is strong
+                    Strong(PointsAddp0, PointsAddp1,
+            PointsAddp
+           , PointsAddp0Conected, PointsAddpConected,
+            PointsAddp1Conected
+            , minrp0, minrp1, minrp, xxxp00, xxxp00C, A);
+                   }//else is strong
                             else
                             {
                                 minrp = minraddpoints(PointsAddp0);
@@ -1082,7 +1081,7 @@ namespace howto_WPF_3D_triangle_normals
                             MultiCL cl = new MultiCL();
                             //cl.ProgressChangedEvent += Cl_ProgressChangedEvent1;
                             cl.SetKernel(IsCreation3D, "Creation3D");
-                            cl.SetKernel(IsCreation3D, "List");
+                            /*cl.SetKernel(IsCreation3D, "List");
                             cl.SetKernel(IsCreation3D, "PointsAddp0.Add");
                             cl.SetKernel(IsCreation3D, "PointsAddp1.Add");
                             cl.SetKernel(IsCreation3D, "List<Point3D>");
@@ -1092,11 +1091,11 @@ namespace howto_WPF_3D_triangle_normals
                             cl.SetKernel(IsCreation3D, "PointsAddp0.Count");
                             cl.SetKernel(IsCreation3D, "PointsAddp1.Count");
                              cl.SetKernel(IsCreation3D, "PointsAddp0Conected.Count");
-                            cl.SetKernel(IsCreation3D, "d.Count");
+                            cl.SetKernel(IsCreation3D, "d.Count");*/
                             cl.SetParameter(PointsAddp0, PointsAddp1, PointsAddp
                        , PointsAddp0Conected, PointsAddpConected, PointsAddp1Conected
                           , minrp0, minrp1, minrp, xxxp00, xxxp00C,
-                       mesh, model_group, PointsAdd, PointsAdd.Count, surface_material,
+                       mesh, model_group, PointsAdd, surface_material,
                     thickness, wireframe,
                     wireframe_material, normals, normals_material, model_visual, minr, d, dd, max, System.Convert.ToInt32(gr.textBox1.Text),gr.Strong
                     ,  TheCamera,  SurfaceModel,

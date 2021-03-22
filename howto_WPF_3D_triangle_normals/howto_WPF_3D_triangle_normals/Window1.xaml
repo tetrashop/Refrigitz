@@ -6,7 +6,7 @@
     Loaded="Window_Loaded"
     KeyDown="Window_KeyDown">
     <Grid>
-        <Viewport3D Grid.Row="0" Grid.Column="0" Name="MainViewport" Margin="-2,0,2,0" />
+        <Viewport3D Grid.Row="0" Grid.Column="0" Name="MainViewport" Margin="0,-26,0,27" />
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
             Width="Auto" Height="Auto" Orientation="Horizontal" Margin="-2,0,0,0">
             <CheckBox Height="16" HorizontalAlignment="Left" Margin="0"
@@ -22,5 +22,6 @@
         <Button Content="Graphic" HorizontalAlignment="Left" Margin="438,0,0,0" VerticalAlignment="Top" Width="54" Height="22" Click="Button_Click"/>
         <Button Content="3D creation" HorizontalAlignment="Left" Margin="356,0,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click_1"/>
         <Label x:Name="za" Content="" HorizontalAlignment="Left" Margin="366,25,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="GPU" Content="GPU" HorizontalAlignment="Left" Margin="238,21,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

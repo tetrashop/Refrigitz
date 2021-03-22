@@ -1310,18 +1310,18 @@ namespace howto_WPF_3D_triangle_normals
             double a = 0;
             if (ind == "x")
             {
-                a = (//-1 *
+                a = (-1 *
                      (j * p0[c][l][1] + k * p0[c][l][2])) / p0[c][l][0];
             }
             if (ind == "y")
             {
-                a = (//-1 *
+                a = (-1 *
                      (i * p0[c][l][0] + k * p0[c][l][2])) / p0[c][l][1];
 
             }
             if (ind == "z")
             {
-                a = (//-1 *
+                a = (-1 *
                      (j * p0[c][l][1] + i * p0[c][l][0])) / p0[c][l][2];
 
             }
@@ -1408,7 +1408,8 @@ namespace howto_WPF_3D_triangle_normals
                             for (int k = (int)disz; k < minz; k += minr)
                             {
                                 Point3D x = new Point3D(getAlphaperStringOfIndependentvars("x", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("y", p0, c, l, i, j, k), getAlphaperStringOfIndependentvars("z", p0, c, l, i, j, k));
-                                if (!(x.Z < minz || x.Z > maxz) && (!((new Triangle()).exist(x, nonConst))))
+                                if ((!(x.X < minx || x.X > maxx)) && (!(x.Y < miny || x.Y > maxy)) && (!(x.Z < minz || x.Z > maxz))&&
+                                    (!((new Triangle()).exist(x, nonConst))))
                                 {
                                     //int f = non.IndexOf(addpoint0.qsystemlistaddpoints[c][l]);
                                     //nonCon.Add();(?)

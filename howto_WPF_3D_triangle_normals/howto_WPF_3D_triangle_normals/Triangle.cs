@@ -9,7 +9,6 @@ namespace howto_WPF_3D_triangle_normals
     class Triangle
     {
         List<List<Point3D>> AngleCol=null;
-        double block = 1;
         double a, b, c, d;
         //normal of plate
         public double na, nb, nc;
@@ -620,7 +619,8 @@ namespace howto_WPF_3D_triangle_normals
 
         }
 
-        double minraddpoints(List<Point3D> p0)
+        double minraddpoints(List<Point3D> p0, double block)
+     
         {
             double r = double.MaxValue;
             for (int i = 0; i < p0.Count; i++)
@@ -882,7 +882,13 @@ namespace howto_WPF_3D_triangle_normals
                 }
             }
         }
-        List<Point3D> reductionSetOfPointsToNumberOfSets(ref List<Point3D> s, ref List<double[]> sCon, ref List<double[]> xCon)
+        double maxbl1bl2(double bl1,double bl2)
+        {
+            if (bl1 > bl2)
+                return bl1;
+            return bl2;
+        }
+        List<Point3D> reductionSetOfPointsToNumberOfSets(ref List<Point3D> s, ref List<double[]> sCon, ref List<double[]> xCon, double block)
         {
             bool reduced = false;
             List<Point3D> sss = s;
@@ -893,17 +899,17 @@ namespace howto_WPF_3D_triangle_normals
             List<double[]> xxxCon = xCon;
             List<List<Point3D>> xxxAddedClonies = new List<List<Point3D>>();
             xxxAddedClonies.Add(new List<Point3D>());
-            double minr = minraddpoints(s);
+            double minr = minraddpoints(s,block);
             bool add = false;
             double clonieslen = minr;
             int index = 0;
             bool xxadd = false;
             bool done = false;
             double blockstor = block;
-            do
+                do
             {
                 add = false;
-                minr = minraddpoints(sss);
+                minr = minraddpoints(sss,block);
                 var output = Task.Factory.StartNew(() =>
                 {
 
@@ -938,8 +944,8 @@ namespace howto_WPF_3D_triangle_normals
                                 {
                                     int bl1 = GetPointsCountOfListOfAngleCollection(AngleCol, p0);
                                     int bl2 = GetPointsCountOfListOfAngleCollection(AngleCol, p1);
-                                    if (block > (double)((bl1 + bl2) / 2))
-                                        block = (double)((bl1 + bl2) / 2);
+                                    if (block > (double)(maxbl1bl2(bl1, bl2)))
+                                        block = (double)(maxbl1bl2(bl1, bl2));
                                     else
                                         block = blockstor;
 
@@ -949,10 +955,10 @@ namespace howto_WPF_3D_triangle_normals
                                 {
                                     int bl1 = GetPointsCountOfListOfAngleCollection(AngleCol, pp0);
                                     int bl2 = GetPointsCountOfListOfAngleCollection(AngleCol, pp1);
-                                    if (block > (double)((bl1 + bl2) / 2))
-                                        block = (double)((bl1 + bl2) / 2);
-                                   else
-                                       block = blockstor;
+                                    if (block > (double)(maxbl1bl2(bl1, bl2)))
+                                        block = (double)(maxbl1bl2(bl1, bl2));
+                                    else
+                                        block = blockstor;
                                     reductionSetOfPointsToNumberOfSetsHulfP(pp0, pp1, minr, ref p, p0, p1, a, b, ref add, ref index, ref xxadd, ref sss, ref sssCon, ref xxxAddedClonies, ref clonieslen, ref done, ref xxx, ref xxxCon);
                                 }
                             }
@@ -970,6 +976,7 @@ namespace howto_WPF_3D_triangle_normals
         }
         public int reduceCountOfpoints(ref List<Point3D> sss, ref List<double[]> sCon, double ht, double percent, ref List<Point3D> xxx, ref List<double[]> xCon, double bl)
         {
+           double block = 1;
             AngleCol = GetListOfAngleCollection(sss);
             // List<double> al = new List<double>();
 
@@ -982,7 +989,7 @@ namespace howto_WPF_3D_triangle_normals
                 List<double[]> sssCon = sCon;
                 List<double[]> xxxCon = xCon;
                 pcou = sss.Count;
-                xxx = reductionSetOfPointsToNumberOfSets(ref sss, ref sssCon, ref xxxCon);
+                xxx = reductionSetOfPointsToNumberOfSets(ref sss, ref sssCon, ref xxxCon,block);
                 if (pcou == sss.Count)
                 {
                     block++;
@@ -995,8 +1002,8 @@ namespace howto_WPF_3D_triangle_normals
                 xCon = xxxCon;
                 sCon = sssCon;
             }
-            if (xxx.Count >= 1)
-                return xxx.Count;
+            //if (xxx.Count >= 1)
+                //return xxx.Count;
 
             /*
 

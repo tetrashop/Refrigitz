@@ -857,7 +857,7 @@ namespace howto_WPF_3D_triangle_normals
             }
 
         }
-        void addlist(List<Point3D> PointsAddp, List<Point3D> PointsAddp0, List<double[]> PointsAddp0Conected, List<double[]> PointsAddpConected)
+        void addlist(ref List<Point3D> PointsAddp, ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddpConected)
         {
             for (int y = 0; y < PointsAddp0.Count; y++)
                 PointsAddp.Add(PointsAddp0[y]);
@@ -920,7 +920,7 @@ namespace howto_WPF_3D_triangle_normals
 
 
 
-            addlist(PointsAddp, PointsAddp0, PointsAddp0Conected, PointsAddpConected);
+            addlist(ref PointsAddp, ref PointsAddp0,ref PointsAddp0Conected,ref PointsAddpConected);
 
 
 
@@ -1135,25 +1135,18 @@ namespace howto_WPF_3D_triangle_normals
                                 List<Point3D> PointsAdd = null;
 
                                 MeshGeometry3D mesh = new MeshGeometry3D();
-                                Model3DGroup model_group = null;
-
-                                DiffuseMaterial surface_material = null;
+                               
                                 double thickness = 0.03;
 
-                                MeshGeometry3D wireframe = null; ;
-                                DiffuseMaterial wireframe_material = null;
-                                MeshGeometry3D normals = null;
-                                DiffuseMaterial normals_material = null;
-
-                                ModelVisual3D model_visual = new ModelVisual3D();
-
+                            
+                           
 
 
                                 CtreatPoints(ref PointsAddp0, PointsAddp1, ref PointsAddp0Conected, ref PointsAddp1Conected);
 
 
 
-                                addlist(PointsAddp, PointsAddp0, PointsAddp0Conected, PointsAddpConected);
+                                addlist(ref PointsAddp, ref PointsAddp0, ref PointsAddp0Conected, ref PointsAddpConected);
 
 
 
@@ -1188,7 +1181,7 @@ namespace howto_WPF_3D_triangle_normals
                                     // Define lights.
                                     DefineLights();
 
-                                    model_group = MainModel3Dgroup;
+                                    Model3DGroup model_group = MainModel3Dgroup;
 
 
 
@@ -1220,7 +1213,7 @@ namespace howto_WPF_3D_triangle_normals
                                     Console.WriteLine();
 
                                     // Make the surface's material using a solid green brush.
-                                    surface_material = new DiffuseMaterial(Brushes.LightGreen);
+                                    DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.LightGreen);
 
                                     // Make the surface's model.
                                     SurfaceModel = new GeometryModel3D(mesh, surface_material);
@@ -1236,8 +1229,8 @@ namespace howto_WPF_3D_triangle_normals
 #if SURFACE2
             thickness = 0.01
 #endif
-                                    wireframe = mesh.ToWireframe(thickness);
-                                    wireframe_material = new DiffuseMaterial(Brushes.Red);
+                                    MeshGeometry3D wireframe = mesh.ToWireframe(thickness);
+                                    DiffuseMaterial wireframe_material = new DiffuseMaterial(Brushes.Red);
                                     WireframeModel = new GeometryModel3D(wireframe, wireframe_material);
                                     model_group.Children.Add(WireframeModel);
                                     Console.WriteLine("Wireframe: ");
@@ -1246,8 +1239,8 @@ namespace howto_WPF_3D_triangle_normals
                                     Console.WriteLine();
 
                                     // Make the normals.
-                                    normals = mesh.ToTriangleNormals(0.5, thickness);
-                                    normals_material = new DiffuseMaterial(Brushes.Blue);
+                                    MeshGeometry3D normals = mesh.ToTriangleNormals(0.5, thickness);
+                                    DiffuseMaterial normals_material = new DiffuseMaterial(Brushes.Blue);
                                     NormalsModel = new GeometryModel3D(normals, normals_material);
                                     model_group.Children.Add(NormalsModel);
                                     Console.WriteLine("Normals: ");
@@ -1256,7 +1249,7 @@ namespace howto_WPF_3D_triangle_normals
                                     Console.WriteLine();
 
                                     // Add the group of models to a ModelVisual3D.
-                                    model_visual = new ModelVisual3D();
+                                    ModelVisual3D model_visual =  new ModelVisual3D();
                                     model_visual.Content = MainModel3Dgroup;
 
                                     // Display the main visual in the viewportt.

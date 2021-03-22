@@ -865,11 +865,11 @@ namespace howto_WPF_3D_triangle_normals
                 PointsAddpConected.Add(PointsAddp0Conected[y]);
 
         }
-        void Strong(List<Point3D> PointsAddp0, List<Point3D> PointsAddp1,
-            List<Point3D> PointsAddp
-            , List<double[]> PointsAddp0Conected, List<double[]> PointsAddpConected,
-            List<double[]> PointsAddp1Conected
-             , double minrp0, double minrp1, double minrp, List<Point3D> xxxp00, List<double[]> xxxp00C, int A
+        void Strong(ref List<Point3D> PointsAddp0, ref List<Point3D> PointsAddp1,
+            ref List<Point3D> PointsAddp
+            , ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddpConected,
+            ref List<double[]> PointsAddp1Conected
+             , double minrp0, double minrp1, double minrp, ref List<Point3D> xxxp00, ref List<double[]> xxxp00C, int A
             )
         {
             minrp0 = minraddpoints(PointsAddp0);
@@ -930,11 +930,11 @@ namespace howto_WPF_3D_triangle_normals
                             //When is not strong
                             if (!s)
                             {
-                    Strong(PointsAddp0, PointsAddp1,
-            PointsAddp
-           , PointsAddp0Conected, PointsAddpConected,
-            PointsAddp1Conected
-            , minrp0, minrp1, minrp, xxxp00, xxxp00C, A);
+                    Strong(ref PointsAddp0, ref PointsAddp1,
+            ref PointsAddp
+           , ref PointsAddp0Conected, ref PointsAddpConected,
+            ref PointsAddp1Conected
+            , minrp0, minrp1, minrp, ref xxxp00, ref xxxp00C, A);
                    }//else is strong
                             else
                             {
@@ -1163,11 +1163,11 @@ namespace howto_WPF_3D_triangle_normals
                                     //When is not strong
                                     if (!gr.Strong)
                                     {
-                                        Strong(PointsAddp0, PointsAddp1,
-                                PointsAddp
-                               , PointsAddp0Conected, PointsAddpConected,
-                                PointsAddp1Conected
-                                , minrp0, minrp1, minrp, xxxp00, xxxp00C, System.Convert.ToInt32(gr.textBox1.Text));
+                                        Strong(ref PointsAddp0, ref PointsAddp1,
+                                ref PointsAddp
+                               , ref PointsAddp0Conected, ref PointsAddpConected,
+                                ref PointsAddp1Conected
+                                , minrp0, minrp1, minrp, ref xxxp00, ref xxxp00C, System.Convert.ToInt32(gr.textBox1.Text));
                                     }//else is strong
                                     else
                                     {

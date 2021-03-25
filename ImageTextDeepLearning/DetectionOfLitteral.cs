@@ -28,25 +28,25 @@ namespace ImageTextDeepLearning
             try
             {
                 dd = d;
-                //This.SetCallSetLablr("Initiate All Key...");
-                //This.RefCallSetLablr();
+                This.SetCallSetLablr("Initiate All Key...");
+                This.RefCallSetLablr();
                 t.ConvertAllStringToImage(d);
-                //This.SetCallSetLablr("Initiate Conjunction...");
-                //This.RefCallSetLablr();
+                This.SetCallSetLablr("Initiate Conjunction...");
+                This.RefCallSetLablr();
 
                 tt = new ConjunctedShape(d);
-                //This.SetCallSetLablr("Cretion Conjuncted untile Mattix...");
-                //This.RefCallSetLablr();
+                This.SetCallSetLablr("Cretion Conjuncted untile Mattix...");
+                This.RefCallSetLablr();
                 tt.CreateSAhapeFromConjucted(Width, Heigh);
-                //This.SetCallSetLablr("Initiate...");
-                //This.RefCallSetLablr();
+                This.SetCallSetLablr("Initiate...");
+                This.RefCallSetLablr();
                 ConjunctedShapeListRequired = new AllKeyboardOfWorld();
-                //This.SetCallSetLablr("Initiate For Key Matrix...");
-                //This.RefCallSetLablr();
+                This.SetCallSetLablr("Initiate For Key Matrix...");
+                This.RefCallSetLablr();
 
                 ConjunctedShapeListRequired.ConvertAllTempageToMatrix(tt.AllImage);
-                //This.SetCallSetLablr("Detection...");
-                //This.RefCallSetLablr();
+                This.SetCallSetLablr("Detection...");
+                This.RefCallSetLablr();
 
                 Detection(Width, Heigh);
             }

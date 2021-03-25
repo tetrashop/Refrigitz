@@ -96,6 +96,8 @@ namespace ImageTextDeepLearning
                     buttonSplitationConjunction.Text = "Conjunction";
                     MessageBox.Show("Splited!");
                 }
+                else
+                    MessageBox.Show("Unsuccessfull splitation;");
             }
             else//when ready to conjunction
 if (buttonSplitationConjunction.Text == "Conjunction")
@@ -112,6 +114,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     buttonSplitationConjunction.Text = "Splitation";
                     MessageBox.Show("Conjuncted!");
                 }
+                else
+                    MessageBox.Show("Unsuccessfull conjunction;");
+
             }
 
 

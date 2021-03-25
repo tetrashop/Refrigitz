@@ -107,12 +107,13 @@
             // 
             // buttonTxtDetect
             // 
+            this.buttonTxtDetect.BackColor = System.Drawing.SystemColors.Control;
             this.buttonTxtDetect.Location = new System.Drawing.Point(331, 415);
             this.buttonTxtDetect.Name = "buttonTxtDetect";
             this.buttonTxtDetect.Size = new System.Drawing.Size(75, 23);
             this.buttonTxtDetect.TabIndex = 6;
             this.buttonTxtDetect.Text = "TxtDetect";
-            this.buttonTxtDetect.UseVisualStyleBackColor = true;
+            this.buttonTxtDetect.UseVisualStyleBackColor = false;
             this.buttonTxtDetect.Click += new System.EventHandler(this.buttonTxtDetect_Click);
             // 
             // panelImageTextDeepLearning

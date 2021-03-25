@@ -85,7 +85,7 @@ namespace ImageTextDeepLearning
                     return false;
             }
             catch (Exception t)
-            {
+            {                
                 //when is exeption return unsuccessfull
                 return false;
             }

@@ -28,6 +28,7 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
+        public static bool fontsel = false;
         public static Font selfont = null;
         bool Recognized = false;
         //Global vars
@@ -490,12 +491,19 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 AllKeyboardOfWorld a = new AllKeyboardOfWorld();
                 a.ListAllFonts();
                 comboBoxUndetectiveFont.Items.AddRange(AllKeyboardOfWorld.fonts.ToArray());
+                fontsel = true;
             }
         }
 
         private void comboBoxUndetectiveFont_SelectedIndexChanged(object sender, EventArgs e)
         {
+            AllKeyboardOfWorld.fonts.Clear();
             selfont = new System.Drawing.Font((sender).ToString(), 10);
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
 
         //create main detection button

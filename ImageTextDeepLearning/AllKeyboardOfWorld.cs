@@ -82,7 +82,7 @@ namespace ImageTextDeepLearning
         {
             try
             {
-                if (FormImageTextDeepLearning.selfont == null)
+                if (FormImageTextDeepLearning.fontsel == false)
                 {
                     foreach (FontFamily font in System.Drawing.FontFamily.Families)
                     {

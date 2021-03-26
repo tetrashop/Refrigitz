@@ -28,6 +28,7 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
+        public static bool comeng = false;
         public static bool fontsel = false;
         public static Font selfont = null;
         bool Recognized = false;
@@ -504,6 +505,14 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBoxUseCommonEnglish_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                comeng = true;
+            }
         }
 
         //create main detection button

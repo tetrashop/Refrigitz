@@ -53,6 +53,7 @@
             this.checkBoxUndetectiveFont = new System.Windows.Forms.CheckBox();
             this.comboBoxUndetectiveFont = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxUseCommonEnglish = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxTest)).BeginInit();
             this.panelImageTextDeepLearning.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxImageTextDeepLearning)).BeginInit();
@@ -283,11 +284,23 @@
             this.groupBox1.Text = "groupBox1";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // checkBoxUseCommonEnglish
+            // 
+            this.checkBoxUseCommonEnglish.AutoSize = true;
+            this.checkBoxUseCommonEnglish.Location = new System.Drawing.Point(509, 459);
+            this.checkBoxUseCommonEnglish.Name = "checkBoxUseCommonEnglish";
+            this.checkBoxUseCommonEnglish.Size = new System.Drawing.Size(156, 17);
+            this.checkBoxUseCommonEnglish.TabIndex = 15;
+            this.checkBoxUseCommonEnglish.Text = "Use common English letters";
+            this.checkBoxUseCommonEnglish.UseVisualStyleBackColor = true;
+            this.checkBoxUseCommonEnglish.CheckedChanged += new System.EventHandler(this.checkBoxUseCommonEnglish_CheckedChanged);
+            // 
             // FormImageTextDeepLearning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 498);
+            this.Controls.Add(this.checkBoxUseCommonEnglish);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonTxtTemplates);
             this.Controls.Add(this.labelMonitor);
@@ -343,6 +356,7 @@
         private System.Windows.Forms.CheckBox checkBoxUndetectiveFont;
         private System.Windows.Forms.ComboBox comboBoxUndetectiveFont;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox checkBoxUseCommonEnglish;
     }
 }
 

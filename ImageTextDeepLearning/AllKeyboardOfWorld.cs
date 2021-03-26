@@ -15,7 +15,9 @@ namespace ImageTextDeepLearning
     class AllKeyboardOfWorld
     {
         public static List<string> fonts = new List<string>();
-
+        public static char[] engsmal = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+        public static char[] engbig = null;
+        public static char[] engnum = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         public AllKeyboardOfWorld()
         {
             if (fonts.Count == 0)
@@ -37,37 +39,46 @@ namespace ImageTextDeepLearning
         //Crate all able chars on List indevidully
         public bool CreateString()
         {
-            //when not existence
+             //when not existence
             if (KeyboardAllStrings.Count == 0)
             {
                 //clear
                 KeyboardAllStrings.Clear();
+
                 try
                 {
-                    //for all possible
-                    for (int i = 0; i < char.MaxValue; i++)
-                    {
-                        //get type of current
-                        Type t = ((char)i).GetType();
-                        //when is char and visible and is serializable
-                        if (t.Equals(typeof(char)) && t.IsVisible && t.IsSerializable)
+                    if (!FormImageTextDeepLearning.comeng)
+                    {   //for all possible
+                        for (int i = 0; i < char.MaxValue; i++)
                         {
-                            //if (((char)i).ToString().Contains("\\u"))
-                            //continue;
-                            //when existemnce of this conditions continue
-                            int ch = i;
-                            if ((ch >= 0x0020 && ch <= 0xD7FF) ||
-                                    (ch >= 0xE000 && ch <= 0xFFFD) ||
-                                    ch == 0x0009 ||
-                                    ch == 0x000A ||
-                                    ch == 0x000D)
+                            //get type of current
+                            Type t = ((char)i).GetType();
+                            //when is char and visible and is serializable
+                            if (t.Equals(typeof(char)) && t.IsVisible && t.IsSerializable)
                             {
-                                //sdetermine and Store
-                                if (!KeyboardAllStrings.Contains(((char)i).ToString()))
-                                    KeyboardAllStrings.Add(((char)i).ToString());
+                                //if (((char)i).ToString().Contains("\\u"))
+                                //continue;
+                                //when existemnce of this conditions continue
+                                int ch = i;
+                                if ((ch >= 0x0020 && ch <= 0xD7FF) ||
+                                        (ch >= 0xE000 && ch <= 0xFFFD) ||
+                                        ch == 0x0009 ||
+                                        ch == 0x000A ||
+                                        ch == 0x000D)
+                                {
+                                    //sdetermine and Store
+                                    if (!KeyboardAllStrings.Contains(((char)i).ToString()))
+                                        KeyboardAllStrings.Add(((char)i).ToString());
+                                }
                             }
-                        }
 
+                        }
+                    }
+                    else
+                    {
+                        String a = AllKeyboardOfWorld.engsmal.ToString() + engsmal.ToString().ToUpper() + engnum.ToString();
+                        for (int i = 0; i < a.Length; i++)
+                            KeyboardAllStrings.Add((a[i]).ToString());
                     }
 
                 }

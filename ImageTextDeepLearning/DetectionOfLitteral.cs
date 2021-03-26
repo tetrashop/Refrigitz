@@ -59,6 +59,7 @@ namespace ImageTextDeepLearning
                 System.Windows.Forms.MessageBox.Show("Completed Detetcted " + Detected.Count);
             }
         }
+        
         //Detection main similarity method
         double DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei)
         {

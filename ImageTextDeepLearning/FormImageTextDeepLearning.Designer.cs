@@ -50,10 +50,14 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonTxtTemplates = new System.Windows.Forms.Button();
+            this.checkBoxUndetectiveFont = new System.Windows.Forms.CheckBox();
+            this.comboBoxUndetectiveFont = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxTest)).BeginInit();
             this.panelImageTextDeepLearning.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxImageTextDeepLearning)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxImageTextDeepLearning
@@ -73,6 +77,7 @@
             this.buttonOpen.TabIndex = 2;
             this.buttonOpen.Text = "Open";
             this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Visible = false;
             this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             // 
             // openFileDialogImageTextDeepLearning
@@ -87,6 +92,7 @@
             this.buttonSplitationConjunction.TabIndex = 3;
             this.buttonSplitationConjunction.Text = "Splitation";
             this.buttonSplitationConjunction.UseVisualStyleBackColor = true;
+            this.buttonSplitationConjunction.Visible = false;
             this.buttonSplitationConjunction.Click += new System.EventHandler(this.buttonSplitationConjunction_Click);
             // 
             // PictureBoxTest
@@ -157,12 +163,13 @@
             this.CreateConSha.TabIndex = 8;
             this.CreateConSha.Text = "CreateConSha";
             this.CreateConSha.UseVisualStyleBackColor = true;
+            this.CreateConSha.Visible = false;
             this.CreateConSha.Click += new System.EventHandler(this.CreateConSha_Click);
             // 
             // labelMonitor
             // 
             this.labelMonitor.AutoSize = true;
-            this.labelMonitor.Location = new System.Drawing.Point(413, 415);
+            this.labelMonitor.Location = new System.Drawing.Point(66, 453);
             this.labelMonitor.Name = "labelMonitor";
             this.labelMonitor.Size = new System.Drawing.Size(0, 13);
             this.labelMonitor.TabIndex = 9;
@@ -241,13 +248,46 @@
             this.buttonTxtTemplates.TabIndex = 11;
             this.buttonTxtTemplates.Text = "TxtTemplatets";
             this.buttonTxtTemplates.UseVisualStyleBackColor = true;
+            this.buttonTxtTemplates.Visible = false;
             this.buttonTxtTemplates.Click += new System.EventHandler(this.buttonTxtTemplates_Click);
+            // 
+            // checkBoxUndetectiveFont
+            // 
+            this.checkBoxUndetectiveFont.AutoSize = true;
+            this.checkBoxUndetectiveFont.Location = new System.Drawing.Point(21, 20);
+            this.checkBoxUndetectiveFont.Name = "checkBoxUndetectiveFont";
+            this.checkBoxUndetectiveFont.Size = new System.Drawing.Size(108, 17);
+            this.checkBoxUndetectiveFont.TabIndex = 12;
+            this.checkBoxUndetectiveFont.Text = "Undetective Font";
+            this.checkBoxUndetectiveFont.UseVisualStyleBackColor = true;
+            this.checkBoxUndetectiveFont.CheckedChanged += new System.EventHandler(this.checkBoxUndetectiveFont_CheckedChanged);
+            // 
+            // comboBoxUndetectiveFont
+            // 
+            this.comboBoxUndetectiveFont.FormattingEnabled = true;
+            this.comboBoxUndetectiveFont.Location = new System.Drawing.Point(135, 16);
+            this.comboBoxUndetectiveFont.Name = "comboBoxUndetectiveFont";
+            this.comboBoxUndetectiveFont.Size = new System.Drawing.Size(287, 21);
+            this.comboBoxUndetectiveFont.TabIndex = 13;
+            this.comboBoxUndetectiveFont.SelectedIndexChanged += new System.EventHandler(this.comboBoxUndetectiveFont_SelectedIndexChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBoxUndetectiveFont);
+            this.groupBox1.Controls.Add(this.checkBoxUndetectiveFont);
+            this.groupBox1.Location = new System.Drawing.Point(51, 443);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(441, 43);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
             // 
             // FormImageTextDeepLearning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 498);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonTxtTemplates);
             this.Controls.Add(this.labelMonitor);
             this.Controls.Add(this.CreateConSha);
@@ -270,6 +310,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxImageTextDeepLearning)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,6 +339,9 @@
         private System.Windows.Forms.ToolStripMenuItem createConjunctionShapesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem txtDetectionToolStripMenuItem;
         private System.Windows.Forms.Button buttonTxtTemplates;
+        private System.Windows.Forms.CheckBox checkBoxUndetectiveFont;
+        private System.Windows.Forms.ComboBox comboBoxUndetectiveFont;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

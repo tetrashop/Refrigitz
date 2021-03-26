@@ -28,6 +28,7 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
+        public static Font selfont = null;
         bool Recognized = false;
         //Global vars
         DetectionOfLitteral On = null;
@@ -204,7 +205,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             //d.Dispose();
             PictureBoxImageTextDeepLearning.Update();
             PictureBoxImageTextDeepLearning.Refresh();
-
+            CreateConSha.Visible = true;
         }
         //delegates on lables
         delegate void CallRefLable();
@@ -345,6 +346,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         //main detection form
         void CreateOneConShape()
         {
+
             //when cunsoming is ready
             if (!ReferenceEquals(d.frame, null))
             {
@@ -481,6 +483,21 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
         }
 
+        private void checkBoxUndetectiveFont_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                AllKeyboardOfWorld a = new AllKeyboardOfWorld();
+                a.ListAllFonts();
+                comboBoxUndetectiveFont.Items.AddRange(AllKeyboardOfWorld.fonts.ToArray());
+            }
+        }
+
+        private void comboBoxUndetectiveFont_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selfont = new System.Drawing.Font((sender).ToString(), 10);
+        }
+
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {
@@ -500,6 +517,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
 
             }
+            buttonSplitationConjunction.Visible = true;
             /* for (int i = 0; i < On.t.KeyboardAllImage.Count; i++)
              {
                  PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[i];

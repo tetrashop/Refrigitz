@@ -78,13 +78,22 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
-        bool ListAllFonts()
+        public bool ListAllFonts()
         {
             try
             {
-                foreach (FontFamily font in System.Drawing.FontFamily.Families)
+                if (FormImageTextDeepLearning.selfont == null)
                 {
-                    fonts.Add(font.Name);
+                    foreach (FontFamily font in System.Drawing.FontFamily.Families)
+                    {
+                        fonts.Add(font.Name);
+                    }
+                }
+                else
+                {
+
+                    fonts.Add(FormImageTextDeepLearning.selfont.ToString());
+
                 }
             }
             catch (Exception t) { return false; }

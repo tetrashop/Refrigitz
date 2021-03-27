@@ -317,22 +317,22 @@ namespace LearningMachine
                 return ((false || (!Det(Ast, n))));
             }
         }
-        public static double SimilarityB(bool[,] A, bool[,] B, Int32 n)
+        public static double SimilarityB(bool[,] A, bool[,] B, Int32 n,int m)
         {
             Object o = new Object();
             lock (o)
             {
-                bool[,] Ast = new bool[n, n];
+                double Ast = 0;
                 for (int i = 0; i < n; i++)
                 {
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < m; j++)
                     {
-                        Ast[i, j] = System.Convert.ToBoolean(System.Convert.ToDouble(A[i, j]) - System.Convert.ToDouble(B[i, j]));
+                        Ast += System.Math.Abs(System.Convert.ToDouble(System.Convert.ToDouble(A[i, j]) - System.Convert.ToDouble(B[i, j])));
                     }
 
 
                 }
-                return 1 - DetB(Ast, n);
+                return n * m - Ast;
             }
         }
         public static int SimilarityC(bool[,] A, bool[,] B, Int32 n,int m)
@@ -354,7 +354,7 @@ namespace LearningMachine
                 return Ast;
             }
         }
-        public static double SimilarityB(double[,] A, double[,] B, Int32 n)
+        public static double SimilarityB(double[,] A, double[,] B, Int32 n,int m)
         {
             Object o = new Object();
             lock (o)
@@ -362,7 +362,7 @@ namespace LearningMachine
                 double[,] Ast = new double[n, n];
                 for (int i = 0; i < n; i++)
                 {
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < m; j++)
                     {
                         Ast[i, j] = System.Convert.ToDouble(A[i, j]) - System.Convert.ToDouble(B[i, j]);
                     }

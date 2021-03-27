@@ -15,7 +15,7 @@ namespace ImageTextDeepLearning
         //initiate global vars
         int Width = 10, Heigh = 10;
         double Threashold = 0.01;
-        public AllKeyboardOfWorld t = new AllKeyboardOfWorld();
+        public AllKeyboardOfWorld t = null;
         public ConjunctedShape tt = null;
         //AllKeyLocation
         public List<String> Detected = new List<String>();
@@ -30,7 +30,9 @@ namespace ImageTextDeepLearning
                 dd = d;
                 //This.SetCallSetLablr("Initiate All Key...");
                 //This.RefCallSetLablr();
+                t = new AllKeyboardOfWorld();
                 t.ConvertAllStringToImage(d);
+                t.ConvertAllTempageToMatrix(t.KeyboardAllImage);
                 //This.SetCallSetLablr("Initiate Conjunction...");
                 //This.RefCallSetLablr();
 
@@ -68,7 +70,7 @@ namespace ImageTextDeepLearning
                 Dif = 0;
             try
             {
-                Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei);
+                Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei) * (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei);
             }
             catch (Exception t) { return 0; }
             return Dif;
@@ -84,7 +86,7 @@ namespace ImageTextDeepLearning
                 bool Do = false;
 
                 //for evey conjuncted shape retrived matrix items
-                for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrixList.Count; i++)
+                for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
                 {
 
                     //initate
@@ -96,8 +98,8 @@ namespace ImageTextDeepLearning
                     for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
                     {
                         //retrive similarity value
-                        int KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrixList[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
-                        //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrixList[i], t.KeyboardAllConjunctionMatrix[k], Width);
+                        int KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
+                        //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Width);
                         //when is ready and proper
                         //if (System.Math.Abs(1- KeyDif ) < Threashold)
                         if (KeyDif > KeyBoardDif)
@@ -105,8 +107,8 @@ namespace ImageTextDeepLearning
                             //set
                             IndecCurrent = k;
                             KeyBoardDif = KeyDif;
-                            if (KeyDif >= Width * Heigh)
-                                break;
+                            //if (KeyDif >= Width * Heigh)
+                                //break;
 
                         }
                     }

@@ -35,10 +35,9 @@ namespace ImageTextDeepLearning
 
         public List<String> KeyboardAllStringsWithfont = new List<String>();
         public List<String> KeyboardAllStrings = new List<String>();
-        public List<Image> KeyboardAllImage = new List<Image>();
+        public List<Bitmap> KeyboardAllImage = new List<Bitmap>();
         public List<bool[,]> KeyboardAllConjunctionMatrix = new List<bool[,]>();
-        public List<bool[,]> KeyboardAllConjunctionMatrixList = new List<bool[,]>();
-        //Crate all able chars on List indevidully
+       //Crate all able chars on List indevidully
         public bool CreateString()
         {
              //when not existence
@@ -190,7 +189,7 @@ namespace ImageTextDeepLearning
                     Refrigtz.TakeRoot tr = new Refrigtz.TakeRoot();
                     AllKeyboardOfWorld t = tr.Load("KeyboardAllStrings.asd");
                     this.KeyboardAllConjunctionMatrix = t.KeyboardAllConjunctionMatrix;
-                    this.KeyboardAllConjunctionMatrixList = t.KeyboardAllConjunctionMatrixList;
+                    this.KeyboardAllConjunctionMatrix = t.KeyboardAllConjunctionMatrix;
                     this.KeyboardAllImage = t.KeyboardAllImage;
                     this.KeyboardAllStrings = t.KeyboardAllStrings;
 
@@ -210,13 +209,15 @@ namespace ImageTextDeepLearning
         int MinY(Bitmap Im)
         {
             int Mi = 0;
-            int j = 0;
-            for (int k = 0; k < Im.Height; k++)
+            for (int j = 0; j < Im.Width; j++)
             {
-                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                for (int k = 0; k < Im.Height; k++)
                 {
-                    Mi = k;
-                    break;
+                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    {
+                        Mi = k;
+                        break;
+                    }
                 }
             }
             return Mi;
@@ -244,13 +245,15 @@ namespace ImageTextDeepLearning
         int MinX(Bitmap Im)
         {
             int Mi = 0;
-            int k = 0;
-            for (int j = 0; j < Im.Width; j++)
+            for (int k = Im.Height - 1; k >= 0; k--)
             {
-                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                for (int j = 0; j < Im.Width; j++)
                 {
-                    Mi = j;
-                    break;
+                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    {
+                        Mi = j;
+                        break;
+                    }
                 }
             }
             return Mi;
@@ -260,13 +263,15 @@ namespace ImageTextDeepLearning
         int MaxY(Bitmap Im)
         {
             int Ma = 0;
-            int j = 0;
-            for (int k = Im.Height - 1; k >= 0; k--)
+            for (int j = Im.Width - 1; j >= 0; j--)
             {
-                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                for (int k = Im.Height - 1; k >= 0; k--)
                 {
-                    Ma = k;
-                    break;
+                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    {
+                        Ma = k;
+                        break;
+                    }
                 }
             }
             return Ma;
@@ -276,13 +281,15 @@ namespace ImageTextDeepLearning
         int MaxX(Bitmap Im)
         {
             int Ma = 0;
-            int k = 0;
-            for (int j = Im.Width - 1; j >= 0; j--)
+            for (int k = Im.Height - 1; k >= 0; k--)
             {
-                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                for (int j = Im.Width - 1; j >= 0; j--)
                 {
-                    Ma = j;
-                    break;
+                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    {
+                        Ma = j;
+                        break;
+                    }
                 }
             }
             return Ma;
@@ -342,7 +349,7 @@ namespace ImageTextDeepLearning
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, My));
 
                                 //draw string
-                                e.DrawString(KeyboardAllStrings[i], new Font(fonts[0], 1F //* (float)Math.Sqrt(Width * Height)
+                                e.DrawString(KeyboardAllStrings[i], new Font("\"" + fonts[0] + "\"", 1F //* (float)Math.Sqrt(Width * Height)
                                                                                           ), Brushes.Black, new Rectangle(0, 0, Mx, My));
                                 //retrive min and max of tow X and Y
 
@@ -364,6 +371,7 @@ namespace ImageTextDeepLearning
 
                                     }
                                 //Add
+                                KeyboardAllImage.Add(Te);
                                 KeyboardAllConjunctionMatrix.Add(Tem);
                                 KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
 
@@ -387,7 +395,7 @@ namespace ImageTextDeepLearning
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, My));
 
                             //draw string
-                            e.DrawString(KeyboardAllStrings[i], new Font(fonts[0], 1F //* (float)Math.Sqrt(Width * Height)
+                            e.DrawString(KeyboardAllStrings[i], new Font("\"" + fonts[0] + "\"", 1F //* (float)Math.Sqrt(Width * Height)
                                                                                       ), Brushes.Black, new Rectangle(0, 0, Mx, My));
                             //retrive min and max of tow X and Y
                          
@@ -441,10 +449,10 @@ namespace ImageTextDeepLearning
             try
             {
                 //when list is empty
-                if (KeyboardAllConjunctionMatrixList.Count == 0)
+                if (KeyboardAllConjunctionMatrix.Count == 0)
                 {
                     //clear
-                    KeyboardAllConjunctionMatrixList.Clear();
+                    KeyboardAllConjunctionMatrix.Clear();
                     //for all list count
                     for (int i = 0; i < Temp.Count; i++)
                     {
@@ -470,7 +478,7 @@ namespace ImageTextDeepLearning
                             }
                         }
                         //add
-                        KeyboardAllConjunctionMatrixList.Add(Tem);
+                        KeyboardAllConjunctionMatrix.Add(Tem);
 
                     }
                 }

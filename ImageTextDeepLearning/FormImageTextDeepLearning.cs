@@ -499,7 +499,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         private void comboBoxUndetectiveFont_SelectedIndexChanged(object sender, EventArgs e)
         {
             AllKeyboardOfWorld.fonts.Clear();
-            selfont = new System.Drawing.Font((sender).ToString(), 10);
+            selfont = new System.Drawing.Font(comboBoxUndetectiveFont.Text, 10);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

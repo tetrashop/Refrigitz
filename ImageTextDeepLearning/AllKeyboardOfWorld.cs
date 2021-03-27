@@ -349,8 +349,8 @@ namespace ImageTextDeepLearning
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, My));
 
                                 //draw string
-                                e.DrawString(KeyboardAllStrings[i], new Font("\"" + fonts[0] + "\"", 1F //* (float)Math.Sqrt(Width * Height)
-                                                                                          ), Brushes.Black, new Rectangle(0, 0, Mx, My));
+                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h]), 1F //* (float)Math.Sqrt(Width * Height)
+                                                                                      ), Brushes.Black, new Rectangle(0, 0, Mx, My));
                                 //retrive min and max of tow X and Y
 
                                 //crop to proper space
@@ -395,7 +395,7 @@ namespace ImageTextDeepLearning
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, My));
 
                             //draw string
-                            e.DrawString(KeyboardAllStrings[i], new Font("\"" + fonts[0] + "\"", 1F //* (float)Math.Sqrt(Width * Height)
+                            e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0]), 1F //* (float)Math.Sqrt(Width * Height)
                                                                                       ), Brushes.Black, new Rectangle(0, 0, Mx, My));
                             //retrive min and max of tow X and Y
                          

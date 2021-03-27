@@ -335,6 +335,25 @@ namespace LearningMachine
                 return 1 - DetB(Ast, n);
             }
         }
+        public static int SimilarityC(bool[,] A, bool[,] B, Int32 n,int m)
+        {
+            Object o = new Object();
+            lock (o)
+            {
+                int Ast = 0;
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < m; j++)
+                    {
+                        if (A[i, j] == B[i, j])
+                            Ast++;
+                    }
+
+
+                }
+                return Ast;
+            }
+        }
         public static double SimilarityB(double[,] A, double[,] B, Int32 n)
         {
             Object o = new Object();

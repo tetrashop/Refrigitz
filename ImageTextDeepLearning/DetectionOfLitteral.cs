@@ -61,14 +61,14 @@ namespace ImageTextDeepLearning
         }
         
         //Detection main similarity method
-        double DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei)
+        int DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei)
         {
-            double Dif = 0;
+            int Dif = 0;
             if (Wi != Hei)
                 Dif = 0;
             try
             {
-                Dif = LearningMachine.Interpolate.SimilarityB(Key, Src, Wi);
+                Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei);
             }
             catch (Exception t) { return 0; }
             return Dif;
@@ -96,8 +96,8 @@ namespace ImageTextDeepLearning
                     for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
                     {
                         //retrive similarity value
-                        //double KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrixList[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
-                        double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrixList[i], t.KeyboardAllConjunctionMatrix[k], Width);
+                        int KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrixList[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
+                        //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrixList[i], t.KeyboardAllConjunctionMatrix[k], Width);
                         //when is ready and proper
                         //if (System.Math.Abs(1- KeyDif ) < Threashold)
                         if (KeyDif > KeyBoardDif)
@@ -115,8 +115,9 @@ namespace ImageTextDeepLearning
                     {
                         //set items
                         Do = true;
-                        TempDetected.Append(t.KeyboardAllStrings[IndecCurrent]);
-                        Detected.Add(TempDetected.ToString());
+                        TempDetected.Append(t.KeyboardAllStringsWithfont[IndecCurrent]);
+                        //Detected.Add(TempDetected.ToString());
+                        Detected.Add(t.KeyboardAllStringsWithfont[IndecCurrent]);
                     }
                     ///else
                     // return false;

@@ -21,7 +21,7 @@ namespace ImageTextDeepLearning
         public List<String> Detected = new List<String>();
 
         MainForm dd = null;
-        AllKeyboardOfWorld ConjunctedShapeListRequired = null;
+        public AllKeyboardOfWorld ConjunctedShapeListRequired = null;
         //Constructor
         public DetectionOfLitteral(ref ImageTextDeepLearning.FormImageTextDeepLearning This, MainForm d)
         {
@@ -70,7 +70,7 @@ namespace ImageTextDeepLearning
                 Dif = 0;
             try
             {
-                Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei) //* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
+                Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei)* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
                                                                                  ;
             }
             catch (Exception t) { return 0; }

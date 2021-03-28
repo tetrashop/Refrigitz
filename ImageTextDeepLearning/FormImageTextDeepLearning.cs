@@ -28,6 +28,7 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
+        bool DisablePaint = false;
         public static bool comeng = false;
         public static bool fontsel = false;
         public static Font selfont = null;
@@ -240,94 +241,97 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         //main picture boc pain event
         private void PictureBoxImageTextDeepLearning_Paint(object sender, PaintEventArgs e)
         {
-            bool Re = false;
-            //when foregin is ready
-            if (d != null)
+            if (!DisablePaint)
             {
-                //initiate local vars
-                Font font;
-                Brush brush;
-                Brush brush2;
-                Pen pen;
-                bool flag2;
-                //when is ready top detected unconjuncted shapes set draw parameters
-                if (!ReferenceEquals(d.frame, null))
+                bool Re = false;
+                //when foregin is ready
+                if (d != null)
                 {
-                    font = new Font(d.Font.FontFamily, 24f);
-                    e.Graphics.DrawString(d.lbFPS.Text, new Font(d.Font.FontFamily, 16f), Brushes.Yellow, new PointF(1f, 1f));
-                    brush = new SolidBrush(Color.FromArgb(0xff, 0, 0, 0));
-                    brush2 = new SolidBrush(Color.FromArgb(0xff, 0xff, 0xff, 0xff));
-                    pen = new Pen(Color.FromArgb(150, 0, 0xff, 0));
-                    flag2 = false;
-                    if (!flag2)
+                    //initiate local vars
+                    Font font;
+                    Brush brush;
+                    Brush brush2;
+                    Pen pen;
+                    bool flag2;
+                    //when is ready top detected unconjuncted shapes set draw parameters
+                    if (!ReferenceEquals(d.frame, null))
                     {
-                        using (List<Contour<Point>>.Enumerator enumerator = d.processor.contours.GetEnumerator())
+                        font = new Font(d.Font.FontFamily, 24f);
+                        e.Graphics.DrawString(d.lbFPS.Text, new Font(d.Font.FontFamily, 16f), Brushes.Yellow, new PointF(1f, 1f));
+                        brush = new SolidBrush(Color.FromArgb(0xff, 0, 0, 0));
+                        brush2 = new SolidBrush(Color.FromArgb(0xff, 0xff, 0xff, 0xff));
+                        pen = new Pen(Color.FromArgb(150, 0, 0xff, 0));
+                        flag2 = false;
+                        if (!flag2)
+                        {
+                            using (List<Contour<Point>>.Enumerator enumerator = d.processor.contours.GetEnumerator())
+                            {
+                                while (true)
+                                {
+                                    flag2 = enumerator.MoveNext();
+                                    if (!flag2)
+                                    {
+                                        break;
+                                    }
+                                    Contour<Point> current = enumerator.Current;
+                                    if (current.Total > 1)
+                                    {
+                                        e.Graphics.DrawLines(Pens.Red, current.ToArray());
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    lock (d.processor.foundTemplates)
+                    {
+                        using (List<FoundTemplateDesc>.Enumerator enumerator2 = d.processor.foundTemplates.GetEnumerator())
                         {
                             while (true)
                             {
-                                flag2 = enumerator.MoveNext();
+                                flag2 = enumerator2.MoveNext();
                                 if (!flag2)
                                 {
                                     break;
                                 }
-                                Contour<Point> current = enumerator.Current;
-                                if (current.Total > 1)
+                                FoundTemplateDesc current = enumerator2.Current;
+                                if (current.template.name.EndsWith(".png") || current.template.name.EndsWith(".jpg"))
                                 {
-                                    e.Graphics.DrawLines(Pens.Red, current.ToArray());
+                                    d.DrawAugmentedReality(current, e.Graphics);
+                                    continue;
                                 }
-                            }
+                                Rectangle sourceBoundingRect = current.sample.contour.SourceBoundingRect;
+                                Point point = new Point((sourceBoundingRect.Left + sourceBoundingRect.Right) / 2, sourceBoundingRect.Top);
+                                string name = current.template.name;
+                                if (d.showAngle)
+                                {
+                                    name = name + $"angle={((180.0 * current.angle) / 3.1415926535897931):000}°scale={current.scale:0.0}";
 
+                                }
+                                if (!Recognized)
+                                {
+                                    textBoxImageTextDeepLearning.Text += name;
+                                    textBoxImageTextDeepLearning.Refresh();
+                                    textBoxImageTextDeepLearning.Update();
+                                    Re = true;
+                                }
+                                e.Graphics.DrawRectangle(pen, sourceBoundingRect);
+                                e.Graphics.DrawString(name, font, brush, new PointF((float)((point.X + 1) - (font.Height / 3)), (float)((point.Y + 1) - font.Height)));
+                                e.Graphics.DrawString(name, font, brush2, new PointF((float)(point.X - (font.Height / 3)), (float)(point.Y - font.Height)));
+                            }
                         }
                     }
-                }
-                else
-                {
-                    return;
-                }
-                lock (d.processor.foundTemplates)
-                {
-                    using (List<FoundTemplateDesc>.Enumerator enumerator2 = d.processor.foundTemplates.GetEnumerator())
-                    {
-                        while (true)
-                        {
-                            flag2 = enumerator2.MoveNext();
-                            if (!flag2)
-                            {
-                                break;
-                            }
-                            FoundTemplateDesc current = enumerator2.Current;
-                            if (current.template.name.EndsWith(".png") || current.template.name.EndsWith(".jpg"))
-                            {
-                                d.DrawAugmentedReality(current, e.Graphics);
-                                continue;
-                            }
-                            Rectangle sourceBoundingRect = current.sample.contour.SourceBoundingRect;
-                            Point point = new Point((sourceBoundingRect.Left + sourceBoundingRect.Right) / 2, sourceBoundingRect.Top);
-                            string name = current.template.name;
-                            if (d.showAngle)
-                            {
-                                name = name + $"angle={((180.0 * current.angle) / 3.1415926535897931):000}°scale={current.scale:0.0}";
 
-                            }
-                            if (!Recognized)
-                            {
-                                textBoxImageTextDeepLearning.Text += name;
-                                textBoxImageTextDeepLearning.Refresh();
-                                textBoxImageTextDeepLearning.Update();
-                                Re = true;
-                            }
-                            e.Graphics.DrawRectangle(pen, sourceBoundingRect);
-                            e.Graphics.DrawString(name, font, brush, new PointF((float)((point.X + 1) - (font.Height / 3)), (float)((point.Y + 1) - font.Height)));
-                            e.Graphics.DrawString(name, font, brush2, new PointF((float)(point.X - (font.Height / 3)), (float)(point.Y - font.Height)));
-                        }
-                    }
                 }
-
+                if (Re)
+                    Recognized = true;
+                PictureBoxImageTextDeepLearning.Update();
+                PictureBoxImageTextDeepLearning.Refresh();
             }
-            if (Re)
-                Recognized = true;
-            PictureBoxImageTextDeepLearning.Update();
-            PictureBoxImageTextDeepLearning.Refresh();
         }
 
         private void PictureBoxImageTextDeepLearning_Click(object sender, EventArgs e)
@@ -515,20 +519,29 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             }
         }
 
+        private void PictureBoxTest_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {
             Thread t = new Thread(new ThreadStart(CreateOneConShape));
             t.Start();
             t.Join();
+            DisablePaint = true;
             for (int i = 0; i < On.tt.AllImage.Count; i++)
             {
-                PictureBoxTest.BackgroundImage = On.tt.AllImage[i];
-                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
+                PictureBoxTest.BackgroundImage =(Image) On.tt.AllImage[i].Clone();
+                PictureBoxTest.BackgroundImageLayout = ImageLayout.Stretch;
                 PictureBoxTest.Refresh();
                 PictureBoxTest.Update();
+                MessageBox.Show("Next!");
+                PictureBoxTest.BackgroundImage.Dispose();
 
             }
+            DisablePaint = false;
             for (int i = 0; i < On.Detected.Count; i++)
             {
                 textBoxImageTextDeepLearning.AppendText(On.Detected[i]);

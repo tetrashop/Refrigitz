@@ -103,6 +103,7 @@
             this.PictureBoxTest.Size = new System.Drawing.Size(30, 30);
             this.PictureBoxTest.TabIndex = 4;
             this.PictureBoxTest.TabStop = false;
+            this.PictureBoxTest.Click += new System.EventHandler(this.PictureBoxTest_Click);
             // 
             // progressBarCompleted
             // 

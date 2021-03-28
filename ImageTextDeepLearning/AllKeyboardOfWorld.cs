@@ -438,6 +438,7 @@ namespace ImageTextDeepLearning
                                         Tem[k, p] = false;
 
                                 }
+                            KeyboardAllImage.Add(Te);
                             //Add
                             KeyboardAllConjunctionMatrix.Add(Tem);
                             KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
@@ -499,9 +500,10 @@ namespace ImageTextDeepLearning
 
                             }
                         }
+                        KeyboardAllImage.Add(Temp[i]);
+
                         //add
                         KeyboardAllConjunctionMatrix.Add(Tem);
-
                     }
                 }
                 else//othewise return successfull

@@ -322,17 +322,20 @@ namespace LearningMachine
             Object o = new Object();
             lock (o)
             {
-                double Ast = 0;
+                double Ast1 = 0;
+                double Ast2 = 0;
                 for (int i = 0; i < n; i++)
                 {
                     for (int j = 0; j < m; j++)
                     {
-                        Ast += System.Math.Abs(System.Convert.ToDouble(System.Convert.ToDouble(A[i, j]) - System.Convert.ToDouble(B[i, j])));
+                        if (A[i, j])
+                            Ast1++;
+                        if (B[i, j])
+                            Ast2++;
                     }
 
-
                 }
-                return n * m - Ast;
+                return System.Math.Abs(Ast2 - Ast1);
             }
         }
         public static int SimilarityC(bool[,] A, bool[,] B, Int32 n,int m)

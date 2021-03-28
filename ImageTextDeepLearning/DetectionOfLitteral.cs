@@ -70,7 +70,8 @@ namespace ImageTextDeepLearning
                 Dif = 0;
             try
             {
-                Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei) * (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei);
+                Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei) //* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
+                                                                                 ;
             }
             catch (Exception t) { return 0; }
             return Dif;
@@ -93,12 +94,13 @@ namespace ImageTextDeepLearning
                     StringBuilder TempDetected = new StringBuilder();
 
                     int IndecCurrent = -1;
-                    double KeyBoardDif = double.MinValue;
+                    int KeyBoardDif = int.MinValue;
                     //for evey all keyboard able to char matrix of conjunction
+                    int KeyDif = 0;
                     for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
                     {
                         //retrive similarity value
-                        int KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
+                         KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
                         //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Width);
                         //when is ready and proper
                         //if (System.Math.Abs(1- KeyDif ) < Threashold)

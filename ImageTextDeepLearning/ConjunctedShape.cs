@@ -119,18 +119,19 @@ namespace ImageTextDeepLearning
         //Found of Min of X
         int ImMinX(Bitmap Im)
         {
-            int Mi = 0;
-            for (int k = 0; k < Im.Height; k++)
+            int Mi = -1;
+            for (int j = 0; j < Im.Width; j++)
             {
-                for (int j = 0; j < Im.Width; j++)
+                for (int k = 0; k < Im.Height; k++)
                 {
+
                     if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                     {
                         Mi = j;
                         break;
                     }
                 }
-                if (Mi > 0)
+                if (Mi > -1)
                     break;
             }
             return Mi;
@@ -139,26 +140,29 @@ namespace ImageTextDeepLearning
         //Founf Min of Y
         int ImMinY(Bitmap Im)
         {
-            int Mi = 0;
-            for (int j = 0; j < Im.Width; j++)
+            int Mi = -1;
+            for (int k = 0; k < Im.Height; k++)
             {
-                for (int k = 0; k < Im.Height; k++)
+                for (int j = 0; j < Im.Width; j++)
                 {
+
                     if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                     {
                         Mi = k;
                         break;
                     }
                 }
-             }
+                if (Mi > -1)
+                    break;
+            }
             return Mi;
 
         }
         //Found of Max Of Y
         int ImMaxY(Bitmap Im)
         {
-            int Ma = 0;
-            for (int j = Im.Width - 1; j >= 0; j--)
+            int Ma = -1;
+            for (int j = 0; j < Im.Width; j++)
             {
                 for (int k = Im.Height - 1; k >= 0; k--)
                 {
@@ -168,7 +172,7 @@ namespace ImageTextDeepLearning
                         break;
                     }
                 }
-                if (Ma > 0)
+                if (Ma > -1)
                     break;
             }
             return Ma;
@@ -177,7 +181,7 @@ namespace ImageTextDeepLearning
         //Found of Max of X
         int ImMaxX(Bitmap Im)
         {
-            int Ma = 0;
+            int Ma = -1;
             for (int k = Im.Height - 1; k >= 0; k--)
             {
                 for (int j = Im.Width - 1; j >= 0; j--)
@@ -188,7 +192,7 @@ namespace ImageTextDeepLearning
                         break;
                     }
                 }
-                if (Ma > 0)
+                if (Ma > -1)
                     break;
             }
             return Ma;

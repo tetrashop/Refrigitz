@@ -240,27 +240,34 @@ namespace ImageTextDeepLearning
                             Graphics e = Graphics.FromImage(Temp);
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, MaX, MaY));
 
-
-
+                            PointF[] tec = new PointF[Tem.Length];
+                            for (int o = 0; o < Tem.Length; o++)
+                                tec[o] = new PointF(Tem[o].X, Tem[o].Y);
                             //draw all points
-                            e.FillPolygon(Brushes.Black, Tem, System.Drawing.Drawing2D.FillMode.Alternate);
+                            e.DrawPolygon(new Pen(Brushes.Black), tec
+                                );
+                                //, System.Drawing.Drawing2D.FillMode.Alternate
+                              e.Dispose();
+                            Do = ColorizedCountreImageCommmon(ref Temp);
+                            if (!Do)
+                            {
+                                MessageBox.Show("Coloriezed Fatal Error");
+                                return false;
+                            }
 
-
-                         /*   MiX = ImMinX(Temp);
-                            MiY = ImMinY(Temp);
-                            MaX = ImMaxX(Temp);
-                            MaY =ImMaxY(Temp );*/
+                            /*   MiX = ImMinX(Temp);
+                               MiY = ImMinY(Temp);
+                               MaX = ImMaxX(Temp);
+                               MaY =ImMaxY(Temp );*/
 
 
                             Bitmap Te = null;
                             if (MiX < MaX && MiY < MaY)
                             {
-                                if (MiY >= Height / 2 - 1)
-                                    MiY = 0; ;
                                 //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
                                 //crop to proper space
-                                 Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
-                       
+                                Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
+                           
                             }
                             else
                                 Te = Temp;
@@ -273,7 +280,7 @@ namespace ImageTextDeepLearning
                                 */
                             //add image
                             AllImage.Add(Te);
-                            e.Dispose();
+                            //e.Dispose();
 
                         }
                     }
@@ -334,6 +341,7 @@ namespace ImageTextDeepLearning
                                     //draw linnes and free var to coninue
                                     e.DrawLines(Pens.Black, Po);
                                     nu = 0;
+                                    break;
                                 }
                             }
                         }
@@ -389,6 +397,7 @@ namespace ImageTextDeepLearning
                                 //draw linnes and free var to coninue
                                 e.DrawLines(Pens.Black, Po);
                                 nu = 0;
+                                break;
                             }
                         }
                     }

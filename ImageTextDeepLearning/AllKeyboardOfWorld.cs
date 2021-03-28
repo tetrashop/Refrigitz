@@ -365,9 +365,7 @@ namespace ImageTextDeepLearning
                                 Bitmap Te = null;
                                 if (MiX < MaX && MiY < MaY)
                                 {
-                                    if (MiY >= Height / 2 - 1)
-                                        MiY = 0; ;
-                                    //crop to proper space
+                                     //crop to proper space
                                     Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
                                 }
                                 else
@@ -417,8 +415,6 @@ namespace ImageTextDeepLearning
                             Bitmap Te = null;
                             if (MiX < MaX && MiY < MaY)
                             {
-                                if (MiY >= Height / 2 - 1)
-                                    MiY = 0; ;
                                 //crop to proper space
                                  Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
                             }

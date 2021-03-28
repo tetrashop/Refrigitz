@@ -70,7 +70,7 @@ namespace ImageTextDeepLearning
                 Dif = 0;
             try
             {
-                Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei)* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
+                Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei)//* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
                                                                                  ;
             }
             catch (Exception t) { return 0; }

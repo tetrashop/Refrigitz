@@ -234,16 +234,16 @@ namespace ImageTextDeepLearning
                             int Mx = MxM * 2;
                             int My = MyM * 2;
                             //initate new root image empty
-                            Bitmap Temp = new Bitmap(MaX, MaY);
+                         
+                            PointF[] tec = new PointF[Tem.Length];
+                            for (int o = 0; o < Tem.Length; o++)
+                                tec[o] = new PointF(((float)(Width * (Tem[o].X - MiX)) / (float)(MaX - MiX)), (float)(Height * (Tem[o].Y - MiY)) / (float)(MaY - MiY));
+                            //draw all points
+                            Bitmap Temp = new Bitmap(Width, Height);
 
                             //Draw fill white image
                             Graphics e = Graphics.FromImage(Temp);
-                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, MaX, MaY));
-
-                            PointF[] tec = new PointF[Tem.Length];
-                            for (int o = 0; o < Tem.Length; o++)
-                                tec[o] = new PointF(Tem[o].X, Tem[o].Y);
-                            //draw all points
+                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                             e.DrawPolygon(new Pen(Brushes.Black), tec
                                 );
                                 //, System.Drawing.Drawing2D.FillMode.Alternate
@@ -262,14 +262,14 @@ namespace ImageTextDeepLearning
 
 
                             Bitmap Te = null;
-                            if (MiX < MaX && MiY < MaY)
+                            /*if (MiX < MaX && MiY < MaY)
                             {
                                 //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
                                 //crop to proper space
                                 Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
                            
                             }
-                            else
+                            else*/
                                 Te = Temp;
                             /* Do = ColorizedCountreImageCommmon(ref Te);
                                 if (!Do)

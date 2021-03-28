@@ -237,6 +237,8 @@ namespace ImageTextDeepLearning
                         break;
                     }
                 }
+                if (Mi > 0)
+                    break;
             }
             return Mi;
 
@@ -255,6 +257,8 @@ namespace ImageTextDeepLearning
                         break;
                     }
                 }
+                if (Mi > 0)
+                    break;
             }
             return Mi;
 
@@ -273,6 +277,8 @@ namespace ImageTextDeepLearning
                         break;
                     }
                 }
+                if (Ma > 0)
+                    break;
             }
             return Ma;
 
@@ -291,6 +297,8 @@ namespace ImageTextDeepLearning
                         break;
                     }
                 }
+                if (Ma > 0)
+                    break;
             }
             return Ma;
 

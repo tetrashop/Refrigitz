@@ -205,25 +205,7 @@ namespace ImageTextDeepLearning
             //return true
             return true;
         }
-        //Founf Min of Y
-        int MinY(Bitmap Im)
-        {
-            int Mi = 0;
-            for (int j = 0; j < Im.Width; j++)
-            {
-                for (int k = 0; k < Im.Height; k++)
-                {
-                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
-                    {
-                        Mi = k;
-                        break;
-                    }
-                }
-            }
-            return Mi;
-
-        }
-        //Cropping and fitting image
+          //Cropping and fitting image
         Bitmap cropImage(Bitmap img, Rectangle cropArea)
         {
             int X = cropArea.X;
@@ -252,6 +234,24 @@ namespace ImageTextDeepLearning
                     if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                     {
                         Mi = j;
+                        break;
+                    }
+                }
+            }
+            return Mi;
+
+        }
+        //Founf Min of Y
+        int MinY(Bitmap Im)
+        {
+            int Mi = 0;
+            for (int j = 0; j < Im.Width; j++)
+            {
+                for (int k = 0; k < Im.Height; k++)
+                {
+                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    {
+                        Mi = k;
                         break;
                     }
                 }
@@ -336,23 +336,23 @@ namespace ImageTextDeepLearning
                             for (int h = 0; h < fonts.Count; h++)
                             {   //proper empty image coinstruction object
                                 Bitmap Temp = new Bitmap(Width, Height);
-                                 //initate new root image empty
+                                   //initate new root image empty
                                 //create proper image graphics
                                 Graphics e = Graphics.FromImage(Temp);
 
+                                //Draw fill white image
+                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+
+                                //draw string
+                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h]), 1F * (float)Math.Sqrt(Width * Height)
+                                                                                      ), Brushes.Black, new Rectangle(0, 0, Width, Height));
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX + MiX) / 2;
                                 int MyM = (MiY + MaY) / 2;
                                 int Mx = MxM * 2;
                                 int My = MyM * 2;
-                                //Draw fill white image
-                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, My));
 
-                                //draw string
-                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h]), 1F //* (float)Math.Sqrt(Width * Height)
-                                                                                      ), Brushes.Black, new Rectangle(0, 0, Mx, My));
-                              
                                 //crop to proper space
                                 Bitmap Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
 
@@ -382,23 +382,23 @@ namespace ImageTextDeepLearning
                         {
                             //proper empty image coinstruction object
                             Bitmap Temp = new Bitmap(Width, Height);
-                              //initate new root image empty
+                               //initate new root image empty
                             //create proper image graphics
                             Graphics e = Graphics.FromImage(Temp);
 
+                            //Draw fill white image
+                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+
+                            //draw string
+                            e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0]), 1F * (float)Math.Sqrt(Width * Height)
+                                                                                      ), Brushes.Black, new Rectangle(0, 0, Width, Height));
                             //retrive min and max of tow X and Y
                             int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                             int MxM = (MaX + MiX) / 2;
                             int MyM = (MiY + MaY) / 2;
                             int Mx = MxM * 2;
                             int My = MyM * 2;
-                            //Draw fill white image
-                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, My));
 
-                            //draw string
-                            e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0]), 1F //* (float)Math.Sqrt(Width * Height)
-                                                                                      ), Brushes.Black, new Rectangle(0, 0, Mx, My));
-                           
                             //crop to proper space
                             Bitmap Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
 

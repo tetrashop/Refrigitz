@@ -116,6 +116,78 @@ namespace ImageTextDeepLearning
             }
             return bmp;
         }
+        //Found of Min of X
+        int ImMinX(Bitmap Im)
+        {
+            int Mi = 0;
+            for (int k = 0; k < Im.Height; k++)
+            {
+                for (int j = 0; j < Im.Width; j++)
+                {
+                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    {
+                        Mi = j;
+                        break;
+                    }
+                }
+            }
+            return Mi;
+
+        }
+        //Founf Min of Y
+        int ImMinY(Bitmap Im)
+        {
+            int Mi = 0;
+            for (int j = 0; j < Im.Width; j++)
+            {
+                for (int k = 0; k < Im.Height; k++)
+                {
+                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    {
+                        Mi = k;
+                        break;
+                    }
+                }
+            }
+            return Mi;
+
+        }
+        //Found of Max Of Y
+        int ImMaxY(Bitmap Im)
+        {
+            int Ma = 0;
+            for (int j = Im.Width - 1; j >= 0; j--)
+            {
+                for (int k = Im.Height - 1; k >= 0; k--)
+                {
+                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    {
+                        Ma = k;
+                        break;
+                    }
+                }
+            }
+            return Ma;
+
+        }
+        //Found of Max of X
+        int ImMaxX(Bitmap Im)
+        {
+            int Ma = 0;
+            for (int k = Im.Height - 1; k >= 0; k--)
+            {
+                for (int j = Im.Width - 1; j >= 0; j--)
+                {
+                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    {
+                        Ma = j;
+                        break;
+                    }
+                }
+            }
+            return Ma;
+
+        }
         //Create shape of conjuncted countor poins
         public bool CreateSAhapeFromConjucted(int Wi, int Hei)
         {
@@ -164,7 +236,13 @@ namespace ImageTextDeepLearning
                             e.FillPolygon(Brushes.Black, Tem, System.Drawing.Drawing2D.FillMode.Alternate);
 
 
-                            //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
+                            MiX = ImMinX(Temp);
+                            MiY = ImMinY(Temp);
+                            MaX = ImMaxX(Temp);
+                            MaY =ImMaxY(Temp );
+
+
+                          //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
                             //crop to proper space
                             Bitmap Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
 

@@ -32,7 +32,7 @@ namespace ImageTextDeepLearning
                 //This.RefCallSetLablr();
                 t = new AllKeyboardOfWorld();
                 t.ConvertAllStringToImage(d);
-                t.ConvertAllTempageToMatrix(t.KeyboardAllImage);
+                //t.ConvertAllTempageToMatrix(t.KeyboardAllImage);
                 //This.SetCallSetLablr("Initiate Conjunction...");
                 //This.RefCallSetLablr();
 

@@ -229,16 +229,16 @@ namespace ImageTextDeepLearning
 
 
                             //centeralized
-                            int MxM = (MaX + MiX) / 2;
-                            int MyM = (MiY + MaY) / 2;
+                            int MxM = (MaX - MiX) / 2;
+                            int MyM = (MaY - MiY) / 2;
                             int Mx = MxM * 2;
                             int My = MyM * 2;
                             //initate new root image empty
-                            Bitmap Temp = new Bitmap(Mx, My);
+                            Bitmap Temp = new Bitmap(MaX, MaY);
 
                             //Draw fill white image
                             Graphics e = Graphics.FromImage(Temp);
-                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, My));
+                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, MaX, MaY));
 
 
 
@@ -246,10 +246,10 @@ namespace ImageTextDeepLearning
                             e.FillPolygon(Brushes.Black, Tem, System.Drawing.Drawing2D.FillMode.Alternate);
 
 
-                            MiX = ImMinX(Temp);
+                         /*   MiX = ImMinX(Temp);
                             MiY = ImMinY(Temp);
                             MaX = ImMaxX(Temp);
-                            MaY =ImMaxY(Temp );
+                            MaY =ImMaxY(Temp );*/
 
 
                             Bitmap Te = null;
@@ -260,7 +260,7 @@ namespace ImageTextDeepLearning
                                 //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
                                 //crop to proper space
                                  Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
-
+                       
                             }
                             else
                                 Te = Temp;

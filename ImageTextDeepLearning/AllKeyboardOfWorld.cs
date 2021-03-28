@@ -358,8 +358,8 @@ namespace ImageTextDeepLearning
                                                                                       ), Brushes.Black, new Rectangle(0, 0, Width, Height));
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
-                                int MxM = (MaX + MiX) / 2;
-                                int MyM = (MiY + MaY) / 2;
+                                int MxM = (MaX - MiX) / 2;
+                                int MyM = (MaY - MiY) / 2;
                                 int Mx = MxM * 2;
                                 int My = MyM * 2;
                                 Bitmap Te = null;
@@ -410,8 +410,8 @@ namespace ImageTextDeepLearning
                                                                                       ), Brushes.Black, new Rectangle(0, 0, Width, Height));
                             //retrive min and max of tow X and Y
                             int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
-                            int MxM = (MaX + MiX) / 2;
-                            int MyM = (MiY + MaY) / 2;
+                            int MxM = (MaX - MiX) / 2;
+                            int MyM = (MaY - MiY) / 2;
                             int Mx = MxM * 2;
                             int My = MyM * 2;
                             Bitmap Te = null;

@@ -248,18 +248,25 @@ namespace ImageTextDeepLearning
                             MaY =ImMaxY(Temp );
 
 
-                          //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
-                            //crop to proper space
-                            Bitmap Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
+                            Bitmap Te = null;
+                            if (MiX < MaX && MiY < MaY)
+                            {
+                                if (MiY >= Height / 2 - 1)
+                                    MiY = 0; ;
+                                //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
+                                //crop to proper space
+                                 Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
 
-
+                            }
+                            else
+                                Te = Temp;
                             /* Do = ColorizedCountreImageCommmon(ref Te);
-                             if (!Do)
-                             {
-                                 MessageBox.Show("Coloriezed Fatal Error");
-                                 return false;
-                             }
-                             */
+                                if (!Do)
+                                {
+                                    MessageBox.Show("Coloriezed Fatal Error");
+                                    return false;
+                                }
+                                */
                             //add image
                             AllImage.Add(Te);
                             e.Dispose();

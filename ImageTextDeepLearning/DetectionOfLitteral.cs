@@ -76,6 +76,18 @@ namespace ImageTextDeepLearning
             catch (Exception t) { return 0; }
             return Dif;
         }
+        bool IssampleallFalse(bool[,] A,int w,int h)
+        {
+            bool Is = true;
+            for(int i = 0; i < w; i++)
+            {
+                for(int j = 0; j < h; j++)
+                {
+                    Is = Is && (!(A[i, j]));
+                }
+            }
+            return Is;
+        }
         //detection main method
         public bool Detection(int Wi, int Hei)
         {
@@ -100,17 +112,25 @@ namespace ImageTextDeepLearning
                     for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
                     {
                         //retrive similarity value
-                         KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
+                        KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
                         //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Width);
                         //when is ready and proper
                         //if (System.Math.Abs(1- KeyDif ) < Threashold)
+                        if (IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
+                        {
+                            if (t.KeyboardAllStringsWithfont[k] != " ")
+                                continue;
+                        }
+                        else
+                          if (IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei))
+                            continue;
                         if (KeyDif > KeyBoardDif)
                         {
                             //set
                             IndecCurrent = k;
                             KeyBoardDif = KeyDif;
                             //if (KeyDif >= Width * Heigh)
-                                //break;
+                            //break;
 
                         }
                     }

@@ -17,7 +17,7 @@ namespace ImageTextDeepLearning
         public static List<string> fonts = new List<string>();
         public static char[] engsmal = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
         public static char[] engbig = null;
-        public static char[] engnum = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        public static char[] engnum = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
         public AllKeyboardOfWorld()
         {
             if (fonts.Count == 0)
@@ -360,10 +360,16 @@ namespace ImageTextDeepLearning
                                 int MyM = (MiY + MaY) / 2;
                                 int Mx = MxM * 2;
                                 int My = MyM * 2;
-
-                                //crop to proper space
-                                Bitmap Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
-
+                                Bitmap Te = null;
+                                if (MiX < MaX && MiY < MaY)
+                                {
+                                    if (MiY >= Height / 2 - 1)
+                                        MiY = 0; ;
+                                    //crop to proper space
+                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
+                                }
+                                else
+                                    Te = Temp;
                                 //Add
                                 //KeyboardAllImage.Add(Te);
                                 //create proper conjunction matrix
@@ -406,10 +412,16 @@ namespace ImageTextDeepLearning
                             int MyM = (MiY + MaY) / 2;
                             int Mx = MxM * 2;
                             int My = MyM * 2;
-
-                            //crop to proper space
-                            Bitmap Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
-
+                            Bitmap Te = null;
+                            if (MiX < MaX && MiY < MaY)
+                            {
+                                if (MiY >= Height / 2 - 1)
+                                    MiY = 0; ;
+                                //crop to proper space
+                                 Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
+                            }
+                            else
+                                Te = Temp;
                             //Add
                             //KeyboardAllImage.Add(Te);
                             //create proper conjunction matrix

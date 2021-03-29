@@ -8,19 +8,30 @@ namespace ContourAnalysisNS
 {
     public class GraphS
     {
-        GrafeDivergenceMatrix A, B;
+        GraphDivergenceMatrix A, B;
         public GraphS(bool[,] Ab, bool[,] Bb, int n, int m)
         {
-            A = new GrafeDivergenceMatrix(Ab, n, m);
-            B = new GrafeDivergenceMatrix(Bb, n, m);
+            A = new GraphDivergenceMatrix(Ab, n, m);
+            B = new GraphDivergenceMatrix(Bb, n, m);
         }
+        //When the matrix iss  the same  return true;
+        public bool SameRikhtThisIsLessVertex(int x, int y, ref List<Vertex> K)
+        {
+            bool Is = false;
+            if (A.Xv.Count < B.Xv.Count)
+                Is = A.IsSameRikht(0, 0, B, ref K);
+            else
+                Is = B.IsSameRikht(0, 0, A, ref K);
+            return Is;
+        }
+        
     }
-    class GrafeDivergenceMatrix
+    class GraphDivergenceMatrix
     {
-        List<Vertex> Xv = new List<Vertex>();
+        public List<Vertex> Xv = new List<Vertex>();
         List<Line> Xl = new List<Line>();
-        int N, M;
-        public GrafeDivergenceMatrix(bool[,] A, int n, int m)
+        public int N, M;
+        public GraphDivergenceMatrix(bool[,] A, int n, int m)
         {
             N = n;
             M = m;
@@ -52,12 +63,40 @@ namespace ContourAnalysisNS
                     }
                 }
             }
+
+        }
+        public bool IsSameRikht(int x, int y, GraphDivergenceMatrix B, ref List<Vertex> K)
+        {
+            bool Is = false;
+            if (x < 0 || y < 0 || x >= M || y >= N)
+                return false;
+
+            if (K.Count >= this.Xv.Count)
+                return true;
+            for (int i = 0; i < B.Xv.Count; i++)
+            {
+                if (K.Contains(B.Xv[i]))
+                    continue;
+                if (x == B.Xv[i].X && y == B.Xv[i].Y)
+                {
+                    K.Add(B.Xv[i]);
+                    return false;
+                }
+            }
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                Is = Is || IsSameRikht(x++, y++, B, ref K);
+                Is = Is || IsSameRikht(x--, y--, B, ref K);
+                Is = Is || IsSameRikht(x++, y--, B, ref K);
+                Is = Is || IsSameRikht(x--, y++, B, ref K);
+            }
+            return Is;
         }
     }
-    class Vertex
+   public class Vertex
     {
         public int VertexNumber;
-        int X, Y;
+        public int X, Y;
         public Vertex(int Vno, int x, int y)
         {
             VertexNumber = Vno;

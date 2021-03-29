@@ -355,7 +355,7 @@ namespace ImageTextDeepLearning
 
                                 //draw string
                                 e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h]), 1F * (float)Math.Sqrt(Width * Height)
-                                                                                      ), Brushes.Black, new Rectangle(0, 0, Width, Height));
+                                                                                      ),new SolidBrush( Color.Black), new Rectangle(0, 0, Width, Height));
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
@@ -405,7 +405,7 @@ namespace ImageTextDeepLearning
 
                             //draw string
                             e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0]), 1F * (float)Math.Sqrt(Width * Height)
-                                                                                      ), Brushes.Black, new Rectangle(0, 0, Width, Height));
+                                                                                         ), new SolidBrush(Color.Black), new Rectangle(0, 0, Width, Height));
                             //retrive min and max of tow X and Y
                             int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                             int MxM = (MaX - MiX) / 2;

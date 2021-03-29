@@ -531,9 +531,21 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             t.Start();
             t.Join();
             DisablePaint = true;
+            MessageBox.Show("Samples!");
             for (int i = 0; i < On.tt.AllImage.Count; i++)
             {
                 PictureBoxTest.BackgroundImage =(Image) On.tt.AllImage[i].Clone();
+                PictureBoxTest.BackgroundImageLayout = ImageLayout.Stretch;
+                PictureBoxTest.Refresh();
+                PictureBoxTest.Update();
+                MessageBox.Show("Next!");
+                PictureBoxTest.BackgroundImage.Dispose();
+
+            }
+            MessageBox.Show("part of References!");
+            for (int i = 0; i < 4; i++)
+            {
+                PictureBoxTest.BackgroundImage = (Image)On.t.KeyboardAllImage[i].Clone();
                 PictureBoxTest.BackgroundImageLayout = ImageLayout.Stretch;
                 PictureBoxTest.Refresh();
                 PictureBoxTest.Update();

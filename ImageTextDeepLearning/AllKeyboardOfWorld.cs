@@ -269,10 +269,11 @@ namespace ImageTextDeepLearning
         int MaxY(Bitmap Im)
         {
             int Ma = -1;
-            for (int j = 0; j < Im.Width; j++)
+            for (int k = Im.Height - 1; k >= 0; k--)
             {
-                for (int k = Im.Height - 1; k >= 0; k--)
+                for (int j = 0; j < Im.Width; j++)
                 {
+
                     if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                     {
                         Ma = k;
@@ -289,10 +290,11 @@ namespace ImageTextDeepLearning
         int MaxX(Bitmap Im)
         {
             int Ma = -1;
-            for (int k = Im.Height - 1; k >= 0; k--)
+            for (int j = Im.Width - 1; j >= 0; j--)
             {
-                for (int j = Im.Width - 1; j >= 0; j--)
+                for (int k = Im.Height - 1; k >= 0; k--)
                 {
+
                     if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                     {
                         Ma = j;
@@ -354,8 +356,8 @@ namespace ImageTextDeepLearning
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
                                 //draw string
-                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h]), 1F * (float)Math.Sqrt(Width * Height)
-                                                                                      ),new SolidBrush( Color.Black), new Rectangle(0, 0, Width, Height));
+                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(0, fonts[h].IndexOf(" "))), 1F * (float)Math.Sqrt(Width * Height)
+                                                                                      , FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(0, 0, Width, Height));
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
@@ -404,8 +406,8 @@ namespace ImageTextDeepLearning
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
                             //draw string
-                            e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0]), 1F * (float)Math.Sqrt(Width * Height)
-                                                                                         ), new SolidBrush(Color.Black), new Rectangle(0, 0, Width, Height));
+                            e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(0, fonts[0].IndexOf(" "))), 1F * (float)Math.Sqrt(Width * Height)
+                                                                                     , FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(0, 0, Width, Height));
                             //retrive min and max of tow X and Y
                             int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                             int MxM = (MaX - MiX) / 2;

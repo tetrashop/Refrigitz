@@ -162,10 +162,11 @@ namespace ImageTextDeepLearning
         int ImMaxY(Bitmap Im)
         {
             int Ma = -1;
-            for (int j = 0; j < Im.Width; j++)
+            for (int k = Im.Height - 1; k >= 0; k--)
             {
-                for (int k = Im.Height - 1; k >= 0; k--)
+                for (int j = 0; j < Im.Width; j++)
                 {
+
                     if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                     {
                         Ma = k;
@@ -182,10 +183,11 @@ namespace ImageTextDeepLearning
         int ImMaxX(Bitmap Im)
         {
             int Ma = -1;
-            for (int k = Im.Height - 1; k >= 0; k--)
+            for (int j = Im.Width - 1; j >= 0; j--)
             {
-                for (int j = Im.Width - 1; j >= 0; j--)
+                for (int k = Im.Height - 1; k >= 0; k--)
                 {
+
                     if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                     {
                         Ma = j;

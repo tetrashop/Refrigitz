@@ -82,6 +82,7 @@
     <Compile Include="FormImageTextDeepLearning.Designer.cs">
       <DependentUpon>FormImageTextDeepLearning.cs</DependentUpon>
     </Compile>
+    <Compile Include="GrafeDivergenceMatrix.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

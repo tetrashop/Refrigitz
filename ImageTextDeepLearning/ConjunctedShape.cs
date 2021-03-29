@@ -343,8 +343,7 @@ namespace ImageTextDeepLearning
                                     //draw linnes and free var to coninue
                                     e.DrawLines(Pens.Black, Po);
                                     nu = 0;
-                                    break;
-                                }
+                               }
                             }
                         }
                     }
@@ -399,8 +398,7 @@ namespace ImageTextDeepLearning
                                 //draw linnes and free var to coninue
                                 e.DrawLines(Pens.Black, Po);
                                 nu = 0;
-                                break;
-                            }
+                             }
                         }
                     }
                 }

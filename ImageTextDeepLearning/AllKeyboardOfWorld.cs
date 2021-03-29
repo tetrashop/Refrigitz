@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 namespace ImageTextDeepLearning
 {
     //To Store All Keyboard literals
@@ -307,6 +308,116 @@ namespace ImageTextDeepLearning
             return Ma;
 
         }
+        //Colorized list of image
+        bool ColorizedCountreImageCommon(List<Bitmap> Im)
+        {
+            try
+            {
+                //for all list items
+                for (int i = 0; i < Im.Count; i++)
+                {
+                    //create graphics for current image
+                    Graphics e = Graphics.FromImage(Im[i]);
+                    //for all image width
+                    for (int j = 0; j < Im[i].Width; j++)
+                    {
+                        //found of tow orthogonal detinated points
+                        PointF[] Po = new PointF[2];
+                        int nu = 0;
+                        for (int k = 0; k < Im[i].Height; k++)
+                        {
+                            //first
+                            if (nu == 0)
+                            {
+                                if (!(Im[i].GetPixel(j, k).A == 255 && Im[i].GetPixel(j, k).R == 255 && Im[i].GetPixel(j, k).B == 255 && Im[i].GetPixel(j, k).G == 255))
+                                {
+                                    Po[0] = new PointF(j, k);
+                                    nu++;
+                                }
+                            }
+                            else//second
+                            if (nu == 1)
+                            {
+                                if (!(Im[i].GetPixel(j, k).A == 255 && Im[i].GetPixel(j, k).R == 255 && Im[i].GetPixel(j, k).B == 255 && Im[i].GetPixel(j, k).G == 255))
+                                {
+                                    Po[1] = new PointF(j, k);
+                                    nu++;
+                                    //draw linnes and free var to coninue
+                                    e.DrawLines(Pens.Black, Po);
+                                    nu = 0;
+                                }
+                            }
+                        }
+                    }
+                    //Dispose
+                    e.Dispose();
+
+                }
+
+
+            }
+            catch (Exception t)
+            {
+                MessageBox.Show(t.ToString());
+                //return unsuccessfull
+                return false;
+            }
+            //return successfull
+            return true;
+        }
+        //Colorized an image
+        bool ColorizedCountreImageCommmon(ref Bitmap Im)
+        {
+            try
+            {
+
+                //create graphics for current image
+                Graphics e = Graphics.FromImage(Im);
+                //for all image width
+                for (int j = 0; j < Im.Width; j++)
+                {
+                    //found of tow orthogonal detinated points
+                    Point[] Po = new Point[2];
+                    int nu = 0;
+                    for (int k = 0; k < Im.Height; k++)
+                    {
+                        //first
+                        if (nu == 0)
+                        {
+                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            {
+                                Po[0] = new Point(j, k);
+                                nu++;
+                            }
+                        }
+                        else//second
+                        if (nu == 1)
+                        {
+                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            {
+                                Po[1] = new Point(j, k);
+                                nu++;
+                                //draw linnes and free var to coninue
+                                e.DrawLines(Pens.Black, Po);
+                                nu = 0;
+                            }
+                        }
+                    }
+                }
+
+
+
+
+
+            }
+            catch (Exception t)
+            {
+                MessageBox.Show(t.ToString());
+
+                return false;
+            }
+            return true;
+        }
         //store all strings list to proper  images themselves list
         public bool ConvertAllStringToImage(MainForm d)
         {
@@ -347,18 +458,21 @@ namespace ImageTextDeepLearning
                             //Do literal Database for All fonts
                             for (int h = 0; h < fonts.Count; h++)
                             {   //proper empty image coinstruction object
-                                Bitmap Temp = new Bitmap(Width, Height);
+                                Bitmap Temp = new Bitmap(100, 100);
                                    //initate new root image empty
                                 //create proper image graphics
                                 Graphics e = Graphics.FromImage(Temp);
 
                                 //Draw fill white image
-                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
 
+                                StringFormat stringFormat = new StringFormat();
+                                stringFormat.Alignment = StringAlignment.Center;
+                                stringFormat.LineAlignment = StringAlignment.Center;
                                 //draw string
                                 e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",")-(fonts[h].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
-                                                                                      , FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(0, 0, Width, Height));
-                                //retrive min and max of tow X and Y
+                                                                                      , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
+                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
                                 int MyM = (MaY - MiY) / 2;
@@ -397,17 +511,20 @@ namespace ImageTextDeepLearning
                         else//When font not installed
                         {
                             //proper empty image coinstruction object
-                            Bitmap Temp = new Bitmap(Width, Height);
+                            Bitmap Temp = new Bitmap(100, 100);
                                //initate new root image empty
                             //create proper image graphics
                             Graphics e = Graphics.FromImage(Temp);
 
                             //Draw fill white image
-                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
 
+                            StringFormat stringFormat = new StringFormat();
+                            stringFormat.Alignment = StringAlignment.Center;
+                            stringFormat.LineAlignment = StringAlignment.Center;
                             //draw string
                             e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
-                                                                                  , FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(0, 0, Width, Height));
+                                                                                  , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
                             //retrive min and max of tow X and Y
                             int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                             int MxM = (MaX - MiX) / 2;

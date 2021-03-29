@@ -348,7 +348,7 @@ namespace LearningMachine
                 {
                     for (int j = 0; j < m; j++)
                     {
-                        if (A[i, j] == B[i, j])
+                        if ((A[i, j] && B[i, j]) ||((!A[i, j]) && (!B[i, j])))
                             Ast++;
                     }
 

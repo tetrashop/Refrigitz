@@ -82,7 +82,22 @@ namespace ContourAnalysisNS
                     K.Add(B.Xv[i]);
                     return false;
                 }
+                for (int ii = 0; ii < K.Count; ii++)
+                {
+                    for (int j = 0; j < K.Count; j++)
+                    {
+                        if (i == j)
+                            continue;
+                        if (Line.IsPointsInVertexes(K[ii], K[j], x, y))
+                        {
+                            K.Add(B.Xv[i]);
+                            return false;
+                        }
+
+                    }
+                }
             }
+
             for (int i = 0; i < Xv.Count; i++)
             {
                 Is = Is || IsSameRikht(x++, y++, B, ref K);
@@ -113,6 +128,13 @@ namespace ContourAnalysisNS
             VertexIndexX = inx;
             VertexIndexY = iny;
             Weigth = Weit;
+        }
+        public static bool IsPointsInVertexes(Vertex v1,Vertex v2,int x,int y)
+        {
+            bool Is = false;
+            if (((y - v1.Y) - (((v1.X - v2.X) / (v1.Y - v2.Y)) * (x - v1.X))) < 1)
+                Is = true;
+            return Is;
         }
     }
 }

@@ -469,6 +469,7 @@ namespace ImageTextDeepLearning
                                 StringFormat stringFormat = new StringFormat();
                                 stringFormat.Alignment = StringAlignment.Center;
                                 stringFormat.LineAlignment = StringAlignment.Center;
+                                stringFormat.FormatFlags = StringFormatFlags.LineLimit;
                                 //draw string
                                 e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",")-(fonts[h].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
                                                                                       , FontStyle.Strikeout, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
@@ -521,6 +522,7 @@ namespace ImageTextDeepLearning
                             StringFormat stringFormat = new StringFormat();
                             stringFormat.Alignment = StringAlignment.Center;
                             stringFormat.LineAlignment = StringAlignment.Center;
+                            stringFormat.FormatFlags = StringFormatFlags.LineLimit;
                             //draw string
                             e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
                                                                                   , FontStyle.Strikeout, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);

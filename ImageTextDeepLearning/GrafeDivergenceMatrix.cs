@@ -25,6 +25,14 @@ namespace ContourAnalysisNS
             {
                 Is = A.IsSameRikht(0, 0, B, ref K, ref ChechOnFinisshed);
                 GraphDivergenceMatrix RecreatedB = new GraphDivergenceMatrix(ChechOnFinisshed, B.Xl, N, M);
+                if (Is)
+                {
+                    if (GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(A, RecreatedB))
+                        Is = true;
+                }
+                else
+                    Is = false;
+
             }
 
             else
@@ -32,6 +40,13 @@ namespace ContourAnalysisNS
                 Is = B.IsSameRikht(0, 0, A, ref K, ref ChechOnFinisshed);
                 GraphDivergenceMatrix RecreatedA = new GraphDivergenceMatrix(ChechOnFinisshed, A.Xl, N, M);
 
+                if (Is)
+                {
+                    if (GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(B, RecreatedA))
+                        Is = true;
+                }
+                else
+                    Is = false;
             }
             return Is;
         }
@@ -98,14 +113,70 @@ namespace ContourAnalysisNS
                 }
             }
         }
+        public static bool CheckedIsSameRikhtOverLap(GraphDivergenceMatrix sma, GraphDivergenceMatrix Rec)
+        {
+            bool Is = false;
+            List<Vertex> Sames = new List<Vertex>();
+            for (int i = 0; i < sma.Xv.Count; i++)
+            {
+                for (int j = 0; j < Rec.Xv.Count; j++)
+                {
+                    if (sma.Xv[i].X == Rec.Xv[j].X)
+                    {
+                        if (sma.Xv[i].Y == Rec.Xv[j].Y)
+                        {
+                            Sames.Add(new Vertex(sma.Xv[i].VertexNumber, sma.Xv[i].X, sma.Xv[i].Y));
+                        }
+                    }
+                }
+            }
+            if (Sames.Count == Rec.Xv.Count)
+                Is = true;
+            else
+            {
+                for (int i = 0; i < Sames.Count; i++)
+                {
+                    int crein = -1;
+                    for (int j = 0; j < Rec.Xv.Count; j++)
+                    {
+                        if (Sames[i].VertexNumber != Rec.Xv[j].VertexNumber)
+                        {
+                            crein = j;
+                        }
+                        else
+                        {
+                            crein = -1;
+                            break;
+                        }
+                    }
+                    if (crein > -1)
+                    {
+                        for (int j = 0; j < Sames.Count; j++)
+                        {
+                            if (j == i)
+                                continue;
+                            if (Line.IsPointsInVertexes(Sames[i], Sames[j], Rec.Xv[crein].X, Rec.Xv[crein].Y))
+                            {
+                                Sames.Add(new Vertex(Rec.Xv[i].VertexNumber, Rec.Xv[i].X, Rec.Xv[i].Y));
+                                break;
+                            }
+                        }
+                    }
+                }
 
-        public bool IsSameRikht(int x, int y, GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
+            }
+            if (Sames.Count == Rec.Xv.Count)
+                Is = true;
+            return Is;
+        }
+
+         public bool IsSameRikht(int x, int y, GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
         {
             bool Is = false;
             if (x < 0 || y < 0 || x >= M || y >= N)
                 return false;
 
-            if (K.Count >= this.Xv.Count)
+            if (K.Count >= B.Xv.Count)
                 return true;
             for (int i = 0; i < B.Xv.Count; i++)
             {
@@ -146,6 +217,7 @@ namespace ContourAnalysisNS
     }
    public class Vertex
     {
+        
         public int VertexNumber;
         public int X, Y;
         public Vertex(int Vno, int x, int y)

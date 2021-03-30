@@ -27,11 +27,9 @@ namespace ContourAnalysisNS
                 GraphDivergenceMatrix RecreatedB = new GraphDivergenceMatrix(ChechOnFinisshed, B.Xl, N, M);
                 if (Is)
                 {
-                    if (GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(A, RecreatedB))
-                        Is = true;
+                    if (!GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(A, RecreatedB))
+                        Is = false;
                 }
-                else
-                    Is = false;
 
             }
 
@@ -42,11 +40,9 @@ namespace ContourAnalysisNS
 
                 if (Is)
                 {
-                    if (GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(B, RecreatedA))
-                        Is = true;
+                    if (!GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(B, RecreatedA))
+                        Is = false;
                 }
-                else
-                    Is = false;
             }
             return Is;
         }

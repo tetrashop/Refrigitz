@@ -17,10 +17,18 @@ namespace ContourAnalysisNS
             A = new GraphDivergenceMatrix(Ab, n, m);
             B = new GraphDivergenceMatrix(Bb, n, m);
         }
+        public static bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m)
+        {
+            GraphS Z = new GraphS(Ab, Bb, n, m);
+            return Z.SameRikhtThisIsLessVertex();
+        }
+
         //When the matrix iss  the same  return true;
-        public bool SameRikhtThisIsLessVertex(int x, int y, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
+        bool SameRikhtThisIsLessVertex()
         {
             bool Is = false;
+            List<Vertex> K = new List<Vertex>();
+            List<Vertex> ChechOnFinisshed = new List<Vertex>();
             if (A.Xv.Count < B.Xv.Count)
             {
                 Is = A.IsSameRikht(0, 0, B, ref K, ref ChechOnFinisshed);

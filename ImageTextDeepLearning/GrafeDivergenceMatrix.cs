@@ -25,18 +25,18 @@ namespace ContourAnalysisNS
             if (Z.A == null || Z.B == null)
                 return false;
 
-            return Z.SameRikhtThisIsLessVertex();
+            return Z.SameRikhtThisIsLessVertex(Ab,Bb);
         }
 
         //When the matrix iss  the same  return true;
-        bool SameRikhtThisIsLessVertex()
+        bool SameRikhtThisIsLessVertex(bool[,] Ab, bool[,] Bb)
         {
             bool Is = false;
             List<Vertex> K = new List<Vertex>();
             List<Vertex> ChechOnFinisshed = new List<Vertex>();
             if (A.Xv.Count < B.Xv.Count)
             {
-                Is = A.IsSameRikhtVertex(B, ref K, ref ChechOnFinisshed);
+                Is = A.IsSameRikhtVertex(Ab,B, ref K, ref ChechOnFinisshed);
                 GraphDivergenceMatrix RecreatedB = new GraphDivergenceMatrix(ChechOnFinisshed, B.Xl, N, M);
                 if (Is)
                 {
@@ -48,7 +48,7 @@ namespace ContourAnalysisNS
 
             else
             {
-                Is = B.IsSameRikhtVertex(A, ref K, ref ChechOnFinisshed);
+                Is = B.IsSameRikhtVertex(Ab,A, ref K, ref ChechOnFinisshed);
                 GraphDivergenceMatrix RecreatedA = new GraphDivergenceMatrix(ChechOnFinisshed, A.Xl, N, M);
 
                 if (Is)
@@ -61,13 +61,13 @@ namespace ContourAnalysisNS
         }
         
     }
-   public class GraphDivergenceMatrix
+    public class GraphDivergenceMatrix
     {
         public List<Vertex> Xv = new List<Vertex>();
         public List<Line> Xl = new List<Line>();
         public int N, M;
 
-        public bool Exist(int x1, int y1,int x2,int y2)
+        public bool Exist(int x1, int y1, int x2, int y2)
         {
             for (int i = 0; i < Xv.Count; i++)
             {
@@ -196,17 +196,17 @@ namespace ContourAnalysisNS
             return Is;
         }
 
-        public bool IsSameRikhtVertex(GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
+        public bool IsSameRikhtVertex(bool[,] Ab, GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
         {
             bool Is = false;
-        
+
             for (int i = 0; i < Xv.Count; i++)
             {
-                Is = Is || IsSameRikht(Xv[i].X, Xv[i].Y, B, ref K, ref ChechOnFinisshed);
+                Is = Is || IsSameRikht(Ab, Xv[i].X, Xv[i].Y, B, ref K, ref ChechOnFinisshed);
             }
             return Is;
         }
-        bool IsSameRikht(int x, int y, GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
+        bool IsSameRikht(bool[,] Ab, int x, int y, GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
         {
             bool Is = false;
             if (x < 0 || y < 0 || x >= M || y >= N)
@@ -244,10 +244,26 @@ namespace ContourAnalysisNS
                 }
             }
 
-            Is = Is || IsSameRikht(x++, y++, B, ref K, ref ChechOnFinisshed);
-            Is = Is || IsSameRikht(x--, y--, B, ref K, ref ChechOnFinisshed);
-            Is = Is || IsSameRikht(x++, y--, B, ref K, ref ChechOnFinisshed);
-            Is = Is || IsSameRikht(x--, y++, B, ref K, ref ChechOnFinisshed);
+            if (x + 1 >= 0 && y + 1  >= 0 && x + 1 < M && y + 1 < N)
+            {
+                if (!Ab[x + 1, y + 1])
+                    Is = Is || IsSameRikht(Ab, x + 1, y + 1, B, ref K, ref ChechOnFinisshed);
+            }
+            if (x - 1  >= 0 && y - 1  >= 0 && x - 1 < M && y - 1 < N)
+            {
+                if (!Ab[x - 1, y - 1])
+                    Is = Is || IsSameRikht(Ab, x - 1, y - 1, B, ref K, ref ChechOnFinisshed);
+            }
+            if (x + 1  >= 0 && y - 1  >= 0 && x + 1 < M && y - 1 < N)
+            {
+                if (!Ab[x + 1, y - 1])
+                    Is = Is || IsSameRikht(Ab, x + 1, y - 1, B, ref K, ref ChechOnFinisshed);
+            }
+            if (x - 1  >= 0 && y + 1  >= 0 && x - 1 < M && y + 1 < N)
+            {
+                if (!Ab[x - 1, y + 1])
+                    Is = Is || IsSameRikht(Ab, x - 1, y + 1, B, ref K, ref ChechOnFinisshed);
+            }
             return Is;
         }
     }

@@ -471,7 +471,7 @@ namespace ImageTextDeepLearning
                                 stringFormat.LineAlignment = StringAlignment.Center;
                                 //draw string
                                 e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",")-(fonts[h].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
-                                                                                      , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
+                                                                                      , FontStyle.Strikeout, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
                                  //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
@@ -518,13 +518,12 @@ namespace ImageTextDeepLearning
 
                             //Draw fill white image
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
-
                             StringFormat stringFormat = new StringFormat();
                             stringFormat.Alignment = StringAlignment.Center;
                             stringFormat.LineAlignment = StringAlignment.Center;
                             //draw string
                             e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
-                                                                                  , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
+                                                                                  , FontStyle.Strikeout, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
                             //retrive min and max of tow X and Y
                             int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                             int MxM = (MaX - MiX) / 2;

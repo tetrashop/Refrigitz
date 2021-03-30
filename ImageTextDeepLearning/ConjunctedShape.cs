@@ -250,12 +250,12 @@ namespace ImageTextDeepLearning
                                 );
                                 //, System.Drawing.Drawing2D.FillMode.Alternate
                               e.Dispose();
-                            Do = ColorizedCountreImageCommmon(ref Temp);
+                            /*Do = ColorizedCountreImageCommmon(ref Temp);
                             if (!Do)
                             {
                                 MessageBox.Show("Coloriezed Fatal Error");
                                 return false;
-                            }
+                            }*/
 
                             /*   MiX = ImMinX(Temp);
                                MiY = ImMinY(Temp);
@@ -268,7 +268,7 @@ namespace ImageTextDeepLearning
                             {
                                 //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
                                 //crop to proper space
-                                Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
+                                Te = cropImage(Temp, new Rectangle(MiXyy MiY, MaX - MiX, MaY - MiY));
                            
                             }
                             else*/

@@ -8,7 +8,7 @@ namespace ContourAnalysisNS
 {
     public class GraphS
     {
-        GraphDivergenceMatrix A, B;
+        public GraphDivergenceMatrix A, B;
         int N, M;
         public GraphS(bool[,] Ab, bool[,] Bb, int n, int m)
         {
@@ -20,6 +20,11 @@ namespace ContourAnalysisNS
         public static bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m)
         {
             GraphS Z = new GraphS(Ab, Bb, n, m);
+            if (Z.A == null && Z.B == null)
+                return true;
+            if (Z.A == null || Z.B == null)
+                return false;
+
             return Z.SameRikhtThisIsLessVertex();
         }
 
@@ -31,7 +36,7 @@ namespace ContourAnalysisNS
             List<Vertex> ChechOnFinisshed = new List<Vertex>();
             if (A.Xv.Count < B.Xv.Count)
             {
-                Is = A.IsSameRikht(0, 0, B, ref K, ref ChechOnFinisshed);
+                Is = A.IsSameRikhtVertex(B, ref K, ref ChechOnFinisshed);
                 GraphDivergenceMatrix RecreatedB = new GraphDivergenceMatrix(ChechOnFinisshed, B.Xl, N, M);
                 if (Is)
                 {
@@ -43,7 +48,7 @@ namespace ContourAnalysisNS
 
             else
             {
-                Is = B.IsSameRikht(0, 0, A, ref K, ref ChechOnFinisshed);
+                Is = B.IsSameRikhtVertex(A, ref K, ref ChechOnFinisshed);
                 GraphDivergenceMatrix RecreatedA = new GraphDivergenceMatrix(ChechOnFinisshed, A.Xl, N, M);
 
                 if (Is)
@@ -56,11 +61,26 @@ namespace ContourAnalysisNS
         }
         
     }
-    class GraphDivergenceMatrix
+   public class GraphDivergenceMatrix
     {
         public List<Vertex> Xv = new List<Vertex>();
         public List<Line> Xl = new List<Line>();
         public int N, M;
+
+        public bool Exist(int x1, int y1,int x2,int y2)
+        {
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                for (int j = 0; j < Xv.Count; j++)
+                {
+                    if (Xv[i].X == x1 && Xv[i].Y == y1 && Xv[j].X == x2 && Xv[j].Y == y2)
+                        return true;
+                    if (Xv[j].X == x1 && Xv[j].Y == y1 && Xv[i].X == x2 && Xv[i].Y == y2)
+                        return true;
+                }
+            }
+            return false;
+        }
         public GraphDivergenceMatrix(bool[,] A, int n, int m)
         {
             N = n;
@@ -82,6 +102,8 @@ namespace ContourAnalysisNS
                             if (i == j)
                                 continue;
                             if (k == p)
+                                continue;
+                            if (Exist(i, j, k, p))
                                 continue;
                             if (A[i, j] && A[k, p])
                             {
@@ -174,7 +196,17 @@ namespace ContourAnalysisNS
             return Is;
         }
 
-         public bool IsSameRikht(int x, int y, GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
+        public bool IsSameRikhtVertex(GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
+        {
+            bool Is = false;
+        
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                Is = Is || IsSameRikht(Xv[i].X, Xv[i].Y, B, ref K, ref ChechOnFinisshed);
+            }
+            return Is;
+        }
+        bool IsSameRikht(int x, int y, GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
         {
             bool Is = false;
             if (x < 0 || y < 0 || x >= M || y >= N)
@@ -184,8 +216,11 @@ namespace ContourAnalysisNS
                 return true;
             for (int i = 0; i < B.Xv.Count; i++)
             {
-                if (K.Contains(B.Xv[i]))
-                    continue;
+                if (K.Count > 0)
+                {
+                    if (K.Contains(B.Xv[i]))
+                        continue;
+                }
                 if (x == B.Xv[i].X && y == B.Xv[i].Y)
                 {
                     K.Add(B.Xv[i]);
@@ -209,13 +244,10 @@ namespace ContourAnalysisNS
                 }
             }
 
-            for (int i = 0; i < Xv.Count; i++)
-            {
-                Is = Is || IsSameRikht(x++, y++, B, ref K,ref ChechOnFinisshed);
-                Is = Is || IsSameRikht(x--, y--, B, ref K,ref ChechOnFinisshed);
-                Is = Is || IsSameRikht(x++, y--, B, ref K,ref ChechOnFinisshed);
-                Is = Is || IsSameRikht(x--, y++, B, ref K,ref ChechOnFinisshed);
-            }
+            Is = Is || IsSameRikht(x++, y++, B, ref K, ref ChechOnFinisshed);
+            Is = Is || IsSameRikht(x--, y--, B, ref K, ref ChechOnFinisshed);
+            Is = Is || IsSameRikht(x++, y--, B, ref K, ref ChechOnFinisshed);
+            Is = Is || IsSameRikht(x--, y++, B, ref K, ref ChechOnFinisshed);
             return Is;
         }
     }
@@ -231,7 +263,7 @@ namespace ContourAnalysisNS
             Y = y;
         }
     }
-    class Line
+   public class Line
     {
         public int VertexIndexX, VertexIndexY;
         float Weigth;

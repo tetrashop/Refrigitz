@@ -246,7 +246,7 @@ namespace ImageTextDeepLearning
                             //Draw fill white image
                             Graphics e = Graphics.FromImage(Temp);
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
-                            e.DrawPolygon(new Pen(Brushes.Black), tec
+                            e.DrawClosedCurve(new Pen(Brushes.Black), tec
                                 );
                                 //, System.Drawing.Drawing2D.FillMode.Alternate
                               e.Dispose();

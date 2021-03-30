@@ -418,6 +418,59 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
+        //Hollow an image
+        bool HollowCountreImageCommmon(ref Bitmap Im)
+        {
+            try
+            {
+
+                //create graphics for current image
+                Graphics e = Graphics.FromImage(Im);
+                //for all image width
+                for (int j = 0; j < Im.Width; j++)
+                {
+                    //found of tow orthogonal detinated points
+                    Point[] Po = new Point[2];
+                    int nu = 0;
+                    for (int k = 0; k < Im.Height; k++)
+                    {
+                        //first
+                        if (nu == 0)
+                        {
+                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            {
+                                Po[0] = new Point(j, k + 1);
+                                nu++;
+                            }
+                        }
+                        else//second
+                        if (nu == 1)
+                        {
+                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            {
+                                Po[1] = new Point(j, k-1);
+                                nu++;
+                                //draw linnes and free var to coninue
+                                e.DrawLines(Pens.White, Po);
+                                nu = 0;
+                            }
+                        }
+                    }
+                }
+
+
+
+
+
+            }
+            catch (Exception t)
+            {
+                MessageBox.Show(t.ToString());
+
+                return false;
+            }
+            return true;
+        }
         //store all strings list to proper  images themselves list
         public bool ConvertAllStringToImage(MainForm d)
         {
@@ -469,11 +522,17 @@ namespace ImageTextDeepLearning
                                 StringFormat stringFormat = new StringFormat();
                                 stringFormat.Alignment = StringAlignment.Center;
                                 stringFormat.LineAlignment = StringAlignment.Center;
-                                stringFormat.FormatFlags = StringFormatFlags.LineLimit;
                                 //draw string
                                 e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",")-(fonts[h].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
-                                                                                      , FontStyle.Strikeout, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
-                                 //retrive min and max of tow X and Y
+                                                                                      , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
+                                e.Dispose();
+                                Do = HollowCountreImageCommmon(ref Temp);
+                                if (!Do)
+                                {
+                                    MessageBox.Show("Hollowed Fatal Error");
+                                    return false;
+                                }
+                                //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
                                 int MyM = (MaY - MiY) / 2;
@@ -522,10 +581,16 @@ namespace ImageTextDeepLearning
                             StringFormat stringFormat = new StringFormat();
                             stringFormat.Alignment = StringAlignment.Center;
                             stringFormat.LineAlignment = StringAlignment.Center;
-                            stringFormat.FormatFlags = StringFormatFlags.LineLimit;
-                            //draw string
+                             //draw string
                             e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
-                                                                                  , FontStyle.Strikeout, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
+                                                                                  , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
+                            e.Dispose();
+                            Do = HollowCountreImageCommmon(ref Temp);
+                            if (!Do)
+                            {
+                                MessageBox.Show("Hollowed Fatal Error");
+                                return false;
+                            }
                             //retrive min and max of tow X and Y
                             int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                             int MxM = (MaX - MiX) / 2;

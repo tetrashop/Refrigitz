@@ -526,12 +526,7 @@ namespace ImageTextDeepLearning
                                 e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",")-(fonts[h].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
                                                                                       , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
                                 e.Dispose();
-                                Do = HollowCountreImageCommmon(ref Temp);
-                                if (!Do)
-                                {
-                                    MessageBox.Show("Hollowed Fatal Error");
-                                    return false;
-                                }
+                               
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
@@ -546,7 +541,12 @@ namespace ImageTextDeepLearning
                                 }
                                 else
                                     Te = Temp;
-                                //Add
+                                Do = HollowCountreImageCommmon(ref Temp);
+                                if (!Do)
+                                {
+                                    MessageBox.Show("Hollowed Fatal Error");
+                                    return false;
+                                } //Add
                                 //KeyboardAllImage.Add(Te);
                                 //create proper conjunction matrix
                                 bool[,] Tem = new bool[Width, Height];

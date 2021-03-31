@@ -442,7 +442,7 @@ namespace ImageTextDeepLearning
                         {
                             if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                             {
-                                Po[0] = new Point(j, k + 1);
+                                Po[0] = new Point(j, k);
                                 nu++;
 
                             }

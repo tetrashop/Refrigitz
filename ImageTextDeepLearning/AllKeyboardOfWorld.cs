@@ -483,19 +483,18 @@ namespace ImageTextDeepLearning
                             else
                            if (k + 1 < Im.Height)
                             {
+                                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                                 {
-                                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                                    if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
                                     {
-                                        if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
-                                        {
-                                            Po[1] = new Point(j, k);
-                                            nu++;
-                                            //draw linnes and free var to coninue
-                                            e.DrawLines(Pens.White, Po);
-                                            nu = 0;
-                                        }
+                                        Po[1] = new Point(j, k);
+                                        nu++;
+                                        //draw linnes and free var to coninue
+                                        e.DrawLines(Pens.White, Po);
+                                        nu = 0;
                                     }
                                 }
+
                             }
                         }
                     }
@@ -564,7 +563,12 @@ namespace ImageTextDeepLearning
                                 e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",")-(fonts[h].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
                                                                                       , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
                                 e.Dispose();
-                               
+                                Do = HollowCountreImageCommmon(ref Temp);
+                                if (!Do)
+                                {
+                                    MessageBox.Show("Hollowed Fatal Error");
+                                    return false;
+                                }
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
@@ -573,18 +577,13 @@ namespace ImageTextDeepLearning
                                 int My = MyM * 2;
                                 Bitmap Te = null;
                                 if (MiX < MaX && MiY < MaY)
-                                {
+                                { 
                                      //crop to proper space
                                     Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
                                 }
                                 else
                                     Te = Temp;
-                                Do = HollowCountreImageCommmon(ref Te);
-                                if (!Do)
-                                {
-                                    MessageBox.Show("Hollowed Fatal Error");
-                                    return false;
-                                } //Add
+                                 //Add
                                 //KeyboardAllImage.Add(Te);
                                 //create proper conjunction matrix
                                 bool[,] Tem = new bool[Width, Height];

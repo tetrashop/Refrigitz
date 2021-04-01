@@ -15,7 +15,16 @@ namespace ContourAnalysisNS
             N = n;
             M = m;
             A = new GraphDivergenceMatrix(Ab, n, m);
+            if (A != null)
+            {
+                A.IJBelongToLineHaveFalseBolleanA(Ab);
+            }
             B = new GraphDivergenceMatrix(Bb, n, m);
+            
+            if (B != null)
+            {
+               B.IJBelongToLineHaveFalseBolleanA(Bb);
+            }
         }
         public static bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m)
         {
@@ -97,6 +106,7 @@ namespace ContourAnalysisNS
         {
             XiXjDeleteLess();
             XiXjDeleteGreat();
+           
         }
         public void XiXjDeleteGreat()
         {
@@ -205,6 +215,107 @@ namespace ContourAnalysisNS
 
             }
             return Is;
+        }
+       public void IJBelongToLineHaveFalseBolleanA(bool[,] A)
+        {
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                for (int k = 0; k < Xv.Count; k++)
+                {
+                    if (ExistL(Xv[i].X, Xv[i].Y, Xv[k].X, Xv[k].Y))
+                    {
+
+                        int x1 = Xv[i].X;
+                        int y1 = Xv[i].Y;
+                        int x2 = Xv[k].X;
+                        int y2 = Xv[k].Y;
+                        if (x1 < x2)
+                        {
+                            if (y1 < y2)
+                            {
+                                for (int x = x1 + 1; x < x2 - 1; x++)
+                                {
+                                    for (int y = y1 + 1; y < y2 - 1; y++)
+                                    {
+                                        if (!A[x, y])
+                                        {
+                                            Line ds = d(Xv[i], Xv[k]);
+                                            if (ds != null)
+                                            {
+                                                if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
+                                                    Xl.Remove(ds);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                                if (y1 > y2)
+                            {
+                                for (int x = x1 + 1; x < x2 - 1; x++)
+                                {
+                                    for (int y = y2 + 1; y < y1 - 1; y++)
+                                    {
+                                        if (!A[x, y])
+                                        {
+                                            Line ds = d(Xv[i], Xv[k]);
+                                            if (ds != null)
+                                            {
+                                                if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
+                                                    Xl.Remove(ds);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                            if (x2 < x1)
+                        {
+                            if (y1 < y2)
+                            {
+                                for (int x = x2 + 1; x < x1 - 1; x++)
+                                {
+                                    for (int y = y1 + 1; y < y2 - 1; y++)
+                                    {
+                                        if (!A[x, y])
+                                        {
+                                            Line ds = d(Xv[i], Xv[k]);
+                                            if (ds != null)
+                                            {
+                                                if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
+                                                    Xl.Remove(ds);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+             if (y1 > y2)
+                            {
+                                for (int x = x2 + 1; x < x1 - 1; x++)
+                                {
+                                    for (int y = y2 + 1; y < y1 - 1; y++)
+                                    {
+                                        if (!A[x, y])
+                                        {
+                                            Line ds = d(Xv[i], Xv[k]);
+                                            if (ds != null)
+                                            {
+                                                if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
+                                                    Xl.Remove(ds);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        // if (Line.IsPointsInVertexes(Xv[i], Xv[k],))
+                    }
+
+                }
+            }
         }
         public GraphDivergenceMatrix(bool[,] A, int n, int m)
         {

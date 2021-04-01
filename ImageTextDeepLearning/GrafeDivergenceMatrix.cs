@@ -201,12 +201,20 @@ namespace ContourAnalysisNS
             ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xl.Count, i =>
             //for (int i = 0; i < Xl.Count; i++)
             {
+                if (Xl.Count <= i)
+                    return;
                 if (A.VertexNumber == Xl[i].VertexIndexX && B.VertexNumber == Xl[i].VertexIndexY)
                     dd = Xl[i];
+                if (Xl.Count <= i)
+                    return;
                 if (B.VertexNumber == Xl[i].VertexIndexX && A.VertexNumber == Xl[i].VertexIndexY)
                     dd = Xl[i];
+                if (Xl.Count <= i)
+                    return;
                 if (A.VertexNumber == Xl[i].VertexIndexY && B.VertexNumber == Xl[i].VertexIndexX)
                     dd = Xl[i];
+                if (Xl.Count <= i)
+                    return;
                 if (B.VertexNumber == Xl[i].VertexIndexY && A.VertexNumber == Xl[i].VertexIndexX)
                     dd = Xl[i];
             });
@@ -241,6 +249,10 @@ namespace ContourAnalysisNS
                 ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xv.Count, k =>
                 // (int k = 0; k < Xv.Count; k++)
                 {
+                    if (Xl.Count <= i)
+                        return;
+                    if (Xl.Count <= k)
+                        return;
                     if (ExistL(Xv[i].X, Xv[i].Y, Xv[k].X, Xv[k].Y))
                     {
 

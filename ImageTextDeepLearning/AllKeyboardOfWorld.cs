@@ -51,7 +51,7 @@ namespace ImageTextDeepLearning
 
                 try
                 {
-                    if (!FormImageTextDeepLearning.comeng)
+                    if (!FormImageTextDeepLearning.comeng&& FormImageTextDeepLearning.test == false)
                     {   //for all possible
                         for (int i = 0; i < char.MaxValue; i++)
                         {

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace ImageTextDeepLearning
 {
@@ -302,20 +303,26 @@ namespace ImageTextDeepLearning
         int MaxX(Bitmap Im)
         {
             int Ma = -1;
-            for (int j = Im.Width - 1; j >= 0; j--)
+            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Width - 1, 0, j =>
+
             {
-                for (int k = Im.Height - 1; k >= 0; k--)
+                //for (int j = Im.Width - 1; j >= 0; j--)
+                //{
+                ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Height - 1, 0, k =>
+
                 {
+                    // for (int k = Im.Height - 1; k >= 0; k--)
+                    //{
 
                     if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                     {
                         Ma = j;
-                        break;
+                        return;
                     }
-                }
+                });
                 if (Ma > -1)
-                    break;
-            }
+                    return;
+            });
             return Ma;
 
         }
@@ -325,13 +332,19 @@ namespace ImageTextDeepLearning
             try
             {
                 //for all list items
-                for (int i = 0; i < Im.Count; i++)
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im.Count, i =>
+
                 {
+                    ///for (int i = 0; i < Im.Count; i++)
+                //{
                     //create graphics for current image
                     Graphics e = Graphics.FromImage(Im[i]);
                     //for all image width
-                    for (int j = 0; j < Im[i].Width; j++)
+                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im[i].Width, j =>
+
                     {
+                        //for (int j = 0; j < Im[i].Width; j++)
+                        //{
                         //found of tow orthogonal detinated points
                         PointF[] Po = new PointF[2];
                         int nu = 0;
@@ -359,11 +372,11 @@ namespace ImageTextDeepLearning
                                 }
                             }
                         }
-                    }
+                    });
                     //Dispose
                     e.Dispose();
 
-                }
+                });
 
 
             }
@@ -430,16 +443,20 @@ namespace ImageTextDeepLearning
             return true;
         }
         //Hollow an image
-        bool HollowCountreImageCommmon(ref Bitmap Im)
+        bool HollowCountreImageCommmon(ref Bitmap Img)
         {
             try
             {
+                Bitmap Im = Img;
                 bool WidthChanged = false;
                 //create graphics for current image
                 Graphics e = Graphics.FromImage(Im);
                 //for all image width
-                for (int j = 0; j < Im.Width; j++)
+                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im.Width, j =>
+
                 {
+                    // for (int j = 0; j < Im.Width; j++)
+                    //{
                     WidthChanged = true;
                     //found of tow orthogonal detinated points
                     Point[] Po = new Point[2];
@@ -509,7 +526,8 @@ namespace ImageTextDeepLearning
                             }
                         }
                     }
-                }
+                });
+                Img = Im;
             }
             catch (Exception t)
             {
@@ -551,16 +569,22 @@ namespace ImageTextDeepLearning
                     //clear
                     KeyboardAllImage.Clear();
                     //for all lists items
-                    for (int i = 0; i < KeyboardAllStrings.Count; i++)
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KeyboardAllStrings.Count, i =>
+
                     {
+                        //for (int i = 0; i < KeyboardAllStrings.Count; i++)
+                        ///{
                         //For all font prototype
                         if (fonts.Count > 0)
                         {
                             //Do literal Database for All fonts
-                            for (int h = 0; h < fonts.Count; h++)
-                            {   //proper empty image coinstruction object
+                            ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fonts.Count, h =>
+
+                            {
+                                //for (int h = 0; h < fonts.Count; h++)
+                                // {   //proper empty image coinstruction object
                                 Bitmap Temp = new Bitmap(100, 100);
-                                   //initate new root image empty
+                                //initate new root image empty
                                 //create proper image graphics
                                 Graphics e = Graphics.FromImage(Temp);
 
@@ -571,9 +595,9 @@ namespace ImageTextDeepLearning
                                 stringFormat.Alignment = StringAlignment.Center;
                                 stringFormat.LineAlignment = StringAlignment.Center;
                                 //draw string
-                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",")-(fonts[h].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
+                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
                                                                                       , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
-                                
+
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
@@ -582,8 +606,8 @@ namespace ImageTextDeepLearning
                                 int My = MyM * 2;
                                 Bitmap Te = null;
                                 if (MiX < MaX && MiY < MaY)
-                                { 
-                                     //crop to proper space
+                                {
+                                    //crop to proper space
                                     Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
                                 }
                                 else
@@ -593,7 +617,7 @@ namespace ImageTextDeepLearning
                                 if (!Do)
                                 {
                                     MessageBox.Show("Hollowed Fatal Error");
-                                    return false;
+                                    return;
                                 }  //Add
                                 //KeyboardAllImage.Add(Te);
                                 //create proper conjunction matrix
@@ -614,13 +638,13 @@ namespace ImageTextDeepLearning
                                 KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
 
                                 e.Dispose();
-                            }
+                            });
                         }
                         else//When font not installed
                         {
                             //proper empty image coinstruction object
                             Bitmap Temp = new Bitmap(100, 100);
-                               //initate new root image empty
+                            //initate new root image empty
                             //create proper image graphics
                             Graphics e = Graphics.FromImage(Temp);
 
@@ -629,7 +653,7 @@ namespace ImageTextDeepLearning
                             StringFormat stringFormat = new StringFormat();
                             stringFormat.Alignment = StringAlignment.Center;
                             stringFormat.LineAlignment = StringAlignment.Center;
-                             //draw string
+                            //draw string
                             e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
                                                                                   , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
                             e.Dispose();
@@ -637,7 +661,7 @@ namespace ImageTextDeepLearning
                             if (!Do)
                             {
                                 MessageBox.Show("Hollowed Fatal Error");
-                                return false;
+                                return;
                             }
                             //retrive min and max of tow X and Y
                             int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
@@ -649,7 +673,7 @@ namespace ImageTextDeepLearning
                             if (MiX < MaX && MiY < MaY)
                             {
                                 //crop to proper space
-                                 Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
+                                Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
                             }
                             else
                                 Te = Temp;
@@ -673,7 +697,7 @@ namespace ImageTextDeepLearning
                             KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
                             e.Dispose();
                         }
-                    }
+                    });
                     //save all
                     Do = SaveAll();
                     //if (!Do)
@@ -706,19 +730,28 @@ namespace ImageTextDeepLearning
                 {
                     //clear
                     //for all list count
-                    for (int i = 0; i < Temp.Count; i++)
+                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Temp.Count, i =>
+
                     {
+                        //for (int i = 0; i < Temp.Count; i++)
+                        // {
                         //matrix boolean object constructor list
                         List<bool[,]> Te = new List<bool[,]>();
 
                         //boolean object constructor
                         bool[,] Tem = new bool[Width, Height];
                         //for all width
-                        for (int k = 0; k < Width; k++)
+                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Width, k =>
+
                         {
+                            //for (int k = 0; k < Width; k++)
+                            //{
                             //for all height
-                            for (int p = 0; p < Height; p++)
+                            ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Height, p =>
+
                             {
+                                //for (int p = 0; p < Height; p++)
+                                //{
                                 //assigne proper matrix
                                 //Tem[k, p] = Temp[i].GetPixel(k, p).ToArgb();
                                 if (!(Temp[i].GetPixel(k, p).A == 255 && Temp[i].GetPixel(k, p).R == 255 && Temp[i].GetPixel(k, p).B == 255 && Temp[i].GetPixel(k, p).G == 255))
@@ -727,13 +760,13 @@ namespace ImageTextDeepLearning
                                 else
                                     Tem[k, p] = false;
 
-                            }
-                        }
+                            });
+                        });
                         KeyboardAllImage.Add(Temp[i]);
 
                         //add
                         KeyboardAllConjunctionMatrix.Add(Tem);
-                    }
+                    });
                 }
                 else//othewise return successfull
                     return true;

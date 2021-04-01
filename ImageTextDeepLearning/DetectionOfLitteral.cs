@@ -7,6 +7,8 @@ using ContourAnalysisDemo;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+
 namespace ImageTextDeepLearning
 {
     //detection of literal class
@@ -101,8 +103,10 @@ namespace ImageTextDeepLearning
                 bool Do = false;
 
                 //for evey conjuncted shape retrived matrix items
-                for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
+                 for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
+
                 {
+               
 
                     //initate
                     StringBuilder TempDetected = new StringBuilder();

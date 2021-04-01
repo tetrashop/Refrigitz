@@ -86,6 +86,7 @@
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PlatformHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="AllKeyboardOfWorldMemmoty.cs" />
     <Compile Include="ShowContoursForm.cs">

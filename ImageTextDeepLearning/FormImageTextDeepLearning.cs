@@ -288,7 +288,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     {
                         return;
                     }
-                    lock (d.processor.foundTemplates)
+                    //lock (d.processor.foundTemplates)
                     {
                         using (List<FoundTemplateDesc>.Enumerator enumerator2 = d.processor.foundTemplates.GetEnumerator())
                         {

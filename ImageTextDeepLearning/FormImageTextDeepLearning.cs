@@ -549,7 +549,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             MessageBox.Show("Samples!");
             for (int i = 0; i < On.tt.AllImage.Count; i++)
             {
-                PictureBoxTest.BackgroundImage =(Image) On.tt.AllImage[i].Clone();
+                PictureBoxTest.BackgroundImage = (Image)On.tt.AllImage[i].Clone();
                 PictureBoxTest.BackgroundImageLayout = ImageLayout.Stretch;
                 PictureBoxTest.Refresh();
                 PictureBoxTest.Update();
@@ -557,8 +557,12 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 PictureBoxTest.BackgroundImage.Dispose();
 
             }
-            MessageBox.Show("part of References!");
-            for (int i = 0; i < 4; i++)
+            if (!test)
+                MessageBox.Show("part of References!");
+            else
+                MessageBox.Show("References!");
+
+            for (int i = 0; i < 3; i++)
             {
                 PictureBoxTest.BackgroundImage = (Image)On.t.KeyboardAllImage[i].Clone();
                 PictureBoxTest.BackgroundImageLayout = ImageLayout.Stretch;
@@ -585,4 +589,5 @@ if (buttonSplitationConjunction.Text == "Conjunction")
              }*/
         }
     }
+
 }

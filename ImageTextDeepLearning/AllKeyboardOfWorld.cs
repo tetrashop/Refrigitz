@@ -19,6 +19,7 @@ namespace ImageTextDeepLearning
         public static char[] engsmal = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
         public static char[] engbig = null;
         public static char[] engnum = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
+        char[] te = { 'a', 'v', '3', '4' };
         public AllKeyboardOfWorld()
         {
             if (fonts.Count == 0)
@@ -38,10 +39,10 @@ namespace ImageTextDeepLearning
         public List<String> KeyboardAllStrings = new List<String>();
         public List<Bitmap> KeyboardAllImage = new List<Bitmap>();
         public List<bool[,]> KeyboardAllConjunctionMatrix = new List<bool[,]>();
-       //Crate all able chars on List indevidully
+        //Crate all able chars on List indevidully
         public bool CreateString()
         {
-             //when not existence
+            //when not existence
             if (KeyboardAllStrings.Count == 0)
             {
                 //clear
@@ -78,12 +79,23 @@ namespace ImageTextDeepLearning
                     }
                     else
                     {
-                         for (int i = 0; i < engsmal.Length; i++)
-                            KeyboardAllStrings.Add(Convert.ToString(engsmal[i]));
-                        for (int i = 0; i < engsmal.Length; i++)
-                            KeyboardAllStrings.Add(Convert.ToString(engsmal[i]).ToUpper());
-                        for (int i = 0; i < engnum.Length; i++)
-                            KeyboardAllStrings.Add(Convert.ToString(engnum[i]));
+                        if (FormImageTextDeepLearning.test == false)
+                        {
+                            for (int i = 0; i < engsmal.Length; i++)
+                                KeyboardAllStrings.Add(Convert.ToString(engsmal[i]));
+                            for (int i = 0; i < engsmal.Length; i++)
+                                KeyboardAllStrings.Add(Convert.ToString(engsmal[i]).ToUpper());
+                            for (int i = 0; i < engnum.Length; i++)
+                                KeyboardAllStrings.Add(Convert.ToString(engnum[i]));
+                        }
+                        else
+                        {
+                            if (!File.Exists("KeyboardAllStrings.asd"))
+                                File.Delete("KeyboardAllStrings.asd");
+                            for (int i = 0; i < te.Length; i++)
+                                KeyboardAllStrings.Add(Convert.ToString(te[i]));
+
+                        }
                     }
 
                 }
@@ -107,13 +119,8 @@ namespace ImageTextDeepLearning
                 }
                 else
                 {
-                    if (!FormImageTextDeepLearning.test == false)
                         fonts.Add(FormImageTextDeepLearning.selfont.ToString());
-                    else
-                    {
-                        char[] te = { 'a', 'v', '3', '4' };
-                        fonts.Add(te.ToString());
-                    }
+                   
                 }
             }
             catch (Exception t) { return false; }

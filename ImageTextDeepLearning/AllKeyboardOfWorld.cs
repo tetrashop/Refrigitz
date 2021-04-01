@@ -303,26 +303,26 @@ namespace ImageTextDeepLearning
         int MaxX(Bitmap Im)
         {
             int Ma = -1;
-            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Width - 1, 0, j =>
+           // ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Width - 1, 0, j =>
 
-            {
-                //for (int j = Im.Width - 1; j >= 0; j--)
-                //{
-                ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Height - 1, 0, k =>
-
+            //{
+                for (int j = Im.Width - 1; j >= 0; j--)
                 {
-                    // for (int k = Im.Height - 1; k >= 0; k--)
-                    //{
+                //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Height - 1, 0, k =>
+
+               // {
+                    for (int k = Im.Height - 1; k >= 0; k--)
+                    {
 
                     if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
                     {
                         Ma = j;
-                        return;
+                        break;
                     }
-                });
+                }//);
                 if (Ma > -1)
-                    return;
-            });
+                    break;
+            }//);
             return Ma;
 
         }
@@ -332,19 +332,19 @@ namespace ImageTextDeepLearning
             try
             {
                 //for all list items
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im.Count, i =>
+                //ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im.Count, i =>
 
+                ///{
+                    for (int i = 0; i < Im.Count; i++)
                 {
-                    ///for (int i = 0; i < Im.Count; i++)
-                //{
                     //create graphics for current image
                     Graphics e = Graphics.FromImage(Im[i]);
                     //for all image width
-                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im[i].Width, j =>
+                    //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im[i].Width, j =>
 
-                    {
-                        //for (int j = 0; j < Im[i].Width; j++)
-                        //{
+                    //{
+                        for (int j = 0; j < Im[i].Width; j++)
+                        {
                         //found of tow orthogonal detinated points
                         PointF[] Po = new PointF[2];
                         int nu = 0;
@@ -372,11 +372,11 @@ namespace ImageTextDeepLearning
                                 }
                             }
                         }
-                    });
+                    }//);
                     //Dispose
                     e.Dispose();
 
-                });
+                }//);
 
 
             }
@@ -452,11 +452,11 @@ namespace ImageTextDeepLearning
                 //create graphics for current image
                 Graphics e = Graphics.FromImage(Im);
                 //for all image width
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im.Width, j =>
+                //ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im.Width, j =>
 
-                {
-                    // for (int j = 0; j < Im.Width; j++)
-                    //{
+              // {
+                     for (int j = 0; j < Im.Width; j++)
+                    {
                     WidthChanged = true;
                     //found of tow orthogonal detinated points
                     Point[] Po = new Point[2];
@@ -526,7 +526,7 @@ namespace ImageTextDeepLearning
                             }
                         }
                     }
-                });
+                }//);
                 Img = Im;
             }
             catch (Exception t)

@@ -67,7 +67,7 @@ namespace ContourAnalysisNS
         public List<Line> Xl = new List<Line>();
         public int N, M;
 
-        public bool Exist(int x1, int y1, int x2, int y2)
+        public bool ExistV(int x1, int y1, int x2, int y2)
         {
             for (int i = 0; i < Xv.Count; i++)
             {
@@ -81,23 +81,95 @@ namespace ContourAnalysisNS
             }
             return false;
         }
+        public bool ExistL(int x1, int y1, int x2, int y2)
+        {
+            
+                for (int i = 0; i < Xl.Count; i++)
+                {
+                    if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexX == y1 && Xl[i].VertexIndexY == x2 && Xl[i].VertexIndexY == y2)
+                        return true;
+                    if (Xl[i].VertexIndexY == x1 && Xl[i].VertexIndexY == y1 && Xl[i].VertexIndexX == x2 && Xl[i].VertexIndexX == y2)
+                        return true;
+                }
+            return false;
+        }
         public void XiXjDelete()
         {
-            List<Vertex> K = new List<Vertex>();
-            for (int i = 0; i < Xv.Count; i++)
+            XiXjDeleteLess();
+            XiXjDeleteGreat();
+        }
+        public void XiXjDeleteGreat()
+        {
+            try
             {
-                for (int j = 0; j < Xv.Count - 1; j++)
+                List<Vertex> K = new List<Vertex>();
+                for (int i = 0; i < Xv.Count; i++)
                 {
-                    Line ds = d(Xv[i], Xv[j]);
-                    if (ds != null)
+                    for (int j = 0; j < Xv.Count; j++)
                     {
-                        bool Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[i + 1], ref K, ref Xv);
-                        if (Is)
+                        for (int k = 0; k < Xv.Count; k++)
                         {
-                            Xl.Remove(ds);
+                            if (i == j)
+                                continue;
+                            if (i == k)
+                                continue;
+                            if (j == k)
+                                continue;
+                            if ((!(Xv[k].X > Xv[i].X && Xv[k].X > Xv[i].X)) && (!(Xv[k].Y > Xv[i].Y && Xv[k].Y > Xv[i].Y)))
+                                continue;
+                            Line ds = d(Xv[i], Xv[j]);
+                            if (ds != null)
+                            {
+                                bool Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
+                                if (Is)
+                                {
+                                    Xl.Remove(ds);
+                                }
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception t)
+            {
+                return;
+            }
+        }
+        public void XiXjDeleteLess()
+        {
+            try
+            {
+                List<Vertex> K = new List<Vertex>();
+                for (int i = 0; i < Xv.Count; i++)
+                {
+                    for (int j = 0; j < Xv.Count; j++)
+                    {
+                        for (int k = 0; k < Xv.Count; k++)
+                        {
+                            if (i == j)
+                                continue;
+                            if (j == k)
+                                continue;
+                            if (k == j)
+                                continue;
+                            if ((!(Xv[k].X < Xv[i].X && Xv[k].X < Xv[i].X)) && (!(Xv[k].Y < Xv[i].Y && Xv[k].Y < Xv[i].Y)))
+                                continue;
+                            Line ds = d(Xv[i], Xv[j]);
+                            if (ds != null)
+                            {
+                                bool Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
+                                if (Is)
+                                {
+                                    Xl.Remove(ds);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception t)
+            {
+                return;
             }
         }
         Line d(Vertex A,Vertex B)
@@ -106,28 +178,31 @@ namespace ContourAnalysisNS
             {
                 if (A.VertexNumber == Xl[i].VertexIndexX && B.VertexNumber == Xl[i].VertexIndexY)
                     return Xl[i];
+                if (B.VertexNumber == Xl[i].VertexIndexX && A.VertexNumber == Xl[i].VertexIndexY)
+                    return Xl[i];
                 if (A.VertexNumber == Xl[i].VertexIndexY && B.VertexNumber == Xl[i].VertexIndexX)
+                    return Xl[i];
+                if (B.VertexNumber == Xl[i].VertexIndexY && A.VertexNumber == Xl[i].VertexIndexX)
                     return Xl[i];
             }
             return null;
         }
-         bool IsXixJisDeletable(ref Line C, Vertex A,Vertex B,Vertex Next,ref List<Vertex> K, ref List<Vertex> xlv)
+        bool IsXixJisDeletable(ref Line C, Vertex A, Vertex B, Vertex Next, ref List<Vertex> K, ref List<Vertex> xlv)
         {
             bool Is = false;
-            for(int i = 0; i < xlv.Count; i++)
+            for (int i = 0; i < xlv.Count - 1; i++)
             {
-                for(int j=0; j < xlv.Count; j++)
-                {
-                    if (Next.VertexNumber == B.VertexNumber)                    
-                        return true;
-                    
-                    if (xlv[i].VertexNumber==Next.VertexNumber)
-                    {
-                        K.Add(xlv[i]);
-                        Is = Is || IsXixJisDeletable(ref C, A, B, xlv[i], ref K, ref xlv);
-                    }
+                
+                if (Next.VertexNumber == B.VertexNumber)
+                    return true;
 
+                if (xlv[i].VertexNumber == Next.VertexNumber)
+                {
+                    K.Add(xlv[i]);
+                    Is = Is || IsXixJisDeletable(ref C, A, B, xlv[i + 1], ref K, ref xlv);
                 }
+
+
             }
             return Is;
         }
@@ -153,18 +228,23 @@ namespace ContourAnalysisNS
                                 continue;
                             if (k == p)
                                 continue;
-                            if (Exist(i, j, k, p))
-                                continue;
                             if (A[i, j] && A[k, p])
                             {
-                                Xv.Add(new Vertex(++indv, i, j));
-                                Xv.Add(new Vertex(++indv, k, p));
-                                Xl.Add(new Line((float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                if (!ExistV(i, j, k, p))
+                                {
+                                    Xv.Add(new Vertex(++indv, i, j));
+                                    Xv.Add(new Vertex(++indv, k, p));
+                                }
+                                if (!ExistL(i, j, k, p))
+                                {
+                                    Xl.Add(new Line((float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                }
                             }
                         }
                     }
                 }
             }
+            XiXjDelete();
 
         }
         //reconstruction;
@@ -181,9 +261,15 @@ namespace ContourAnalysisNS
                     {
                         if (i == Xl[k].VertexIndexX && j == Xl[k].VertexIndexY)
                         {
-                            Xv.Add(new Vertex(Xl[k].VertexIndexX, A[i].X, A[i].Y));
-                            Xv.Add(new Vertex(Xl[k].VertexIndexY, A[j].X, A[j].Y));
-                            Xl.Add(new Line((float)Math.Sqrt((A[i].X - A[j].X) * (A[i].X - A[j].X) + (A[i].Y - A[j].Y) * (A[i].Y - A[j].Y)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                            if (!ExistV(i, j, Xl[k].VertexIndexX, Xl[k].VertexIndexY))
+                            {
+                                Xv.Add(new Vertex(Xl[k].VertexIndexX, A[i].X, A[i].Y));
+                                Xv.Add(new Vertex(Xl[k].VertexIndexY, A[j].X, A[j].Y));
+                            }
+                            if (!ExistL(i, j, Xl[k].VertexIndexX, Xl[k].VertexIndexY))
+                            {
+                                Xl.Add(new Line((float)Math.Sqrt((A[i].X - A[j].X) * (A[i].X - A[j].X) + (A[i].Y - A[j].Y) * (A[i].Y - A[j].Y)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                            }
                         }
                     }
                 }

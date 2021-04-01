@@ -29,6 +29,7 @@ namespace ImageTextDeepLearning
     public partial class FormImageTextDeepLearning : Form
     {
         bool DisablePaint = false;
+        public static bool test = false;
         public static bool comeng = false;
         public static bool fontsel = false;
         public static Font selfont = null;
@@ -522,6 +523,20 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         private void PictureBoxTest_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                test = true;
+                checkBoxUseCommonEnglish.Enabled = false;
+            }
+            else
+            {
+                test = false;
+                checkBoxUseCommonEnglish.Enabled = true;
+            }
         }
 
         //create main detection button

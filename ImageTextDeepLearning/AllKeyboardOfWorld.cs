@@ -98,7 +98,7 @@ namespace ImageTextDeepLearning
         {
             try
             {
-                if (FormImageTextDeepLearning.fontsel == false)
+                if (FormImageTextDeepLearning.fontsel == false && FormImageTextDeepLearning.test == false)
                 {
                     foreach (FontFamily font in System.Drawing.FontFamily.Families)
                     {
@@ -107,9 +107,13 @@ namespace ImageTextDeepLearning
                 }
                 else
                 {
-
-                    fonts.Add(FormImageTextDeepLearning.selfont.ToString());
-
+                    if (!FormImageTextDeepLearning.test == false)
+                        fonts.Add(FormImageTextDeepLearning.selfont.ToString());
+                    else
+                    {
+                        char[] te = { 'a', 'v', '3', '4' };
+                        fonts.Add(te.ToString());
+                    }
                 }
             }
             catch (Exception t) { return false; }

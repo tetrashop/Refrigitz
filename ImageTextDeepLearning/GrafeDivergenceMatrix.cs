@@ -196,35 +196,35 @@ namespace ContourAnalysisNS
             return Is;
         }
 
-        public bool IsSameRikhtVertex(bool[,] Ab, GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
+        public bool IsSameRikhtVertex(bool[,] Ab, GraphDivergenceMatrix BB, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
         {
             bool Is = false;
 
             for (int i = 0; i < Xv.Count; i++)
             {
-                Is = Is || IsSameRikht(Ab, Xv[i].X, Xv[i].Y, B, ref K, ref ChechOnFinisshed);
+                Is = Is || IsSameRikht(Ab, Xv[i].X, Xv[i].Y, BB, ref K, ref ChechOnFinisshed);
             }
             return Is;
         }
-        bool IsSameRikht(bool[,] Ab, int x, int y, GraphDivergenceMatrix B, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
+        bool IsSameRikht(bool[,] Ab, int x, int y, GraphDivergenceMatrix BB, ref List<Vertex> K, ref List<Vertex> ChechOnFinisshed)
         {
             bool Is = false;
             if (x < 0 || y < 0 || x >= M || y >= N)
                 return false;
 
-            if (K.Count >= B.Xv.Count)
+            if (K.Count >= BB.Xv.Count)
                 return true;
-            for (int i = 0; i < B.Xv.Count; i++)
+            for (int i = 0; i < BB.Xv.Count; i++)
             {
                 if (K.Count > 0)
                 {
-                    if (K.Contains(B.Xv[i]))
+                    if (K.Contains(BB.Xv[i]))
                         continue;
                 }
-                if (x == B.Xv[i].X && y == B.Xv[i].Y)
+                if (x == BB.Xv[i].X && y == BB.Xv[i].Y)
                 {
-                    K.Add(B.Xv[i]);
-                    ChechOnFinisshed.Add(new Vertex(B.Xv[i].VertexNumber, x, y));
+                    K.Add(BB.Xv[i]);
+                    ChechOnFinisshed.Add(new Vertex(BB.Xv[i].VertexNumber, x, y));
                     return false;
                 }
                 for (int ii = 0; ii < K.Count; ii++)
@@ -235,8 +235,8 @@ namespace ContourAnalysisNS
                             continue;
                         if (Line.IsPointsInVertexes(K[ii], K[j], x, y))
                         {
-                            K.Add(B.Xv[i]);
-                            ChechOnFinisshed.Add(new Vertex(B.Xv[i].VertexNumber, x, y));
+                            K.Add(BB.Xv[i]);
+                            ChechOnFinisshed.Add(new Vertex(BB.Xv[i].VertexNumber, x, y));
                             return false;
                         }
 
@@ -247,22 +247,22 @@ namespace ContourAnalysisNS
             if (x + 1 >= 0 && y + 1  >= 0 && x + 1 < M && y + 1 < N)
             {
                 if (!Ab[x + 1, y + 1])
-                    Is = Is || IsSameRikht(Ab, x + 1, y + 1, B, ref K, ref ChechOnFinisshed);
+                    Is = Is || IsSameRikht(Ab, x + 1, y + 1, BB, ref K, ref ChechOnFinisshed);
             }
             if (x - 1  >= 0 && y - 1  >= 0 && x - 1 < M && y - 1 < N)
             {
                 if (!Ab[x - 1, y - 1])
-                    Is = Is || IsSameRikht(Ab, x - 1, y - 1, B, ref K, ref ChechOnFinisshed);
+                    Is = Is || IsSameRikht(Ab, x - 1, y - 1, BB, ref K, ref ChechOnFinisshed);
             }
             if (x + 1  >= 0 && y - 1  >= 0 && x + 1 < M && y - 1 < N)
             {
                 if (!Ab[x + 1, y - 1])
-                    Is = Is || IsSameRikht(Ab, x + 1, y - 1, B, ref K, ref ChechOnFinisshed);
+                    Is = Is || IsSameRikht(Ab, x + 1, y - 1, BB, ref K, ref ChechOnFinisshed);
             }
             if (x - 1  >= 0 && y + 1  >= 0 && x - 1 < M && y + 1 < N)
             {
                 if (!Ab[x - 1, y + 1])
-                    Is = Is || IsSameRikht(Ab, x - 1, y + 1, B, ref K, ref ChechOnFinisshed);
+                    Is = Is || IsSameRikht(Ab, x - 1, y + 1, BB, ref K, ref ChechOnFinisshed);
             }
             return Is;
         }

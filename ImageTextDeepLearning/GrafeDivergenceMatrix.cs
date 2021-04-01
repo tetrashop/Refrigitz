@@ -81,6 +81,56 @@ namespace ContourAnalysisNS
             }
             return false;
         }
+        public void XiXjDelete()
+        {
+            List<Vertex> K = new List<Vertex>();
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                for (int j = 0; j < Xv.Count - 1; j++)
+                {
+                    Line ds = d(Xv[i], Xv[j]);
+                    if (ds != null)
+                    {
+                        bool Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[i + 1], ref K, ref Xv);
+                        if (Is)
+                        {
+                            Xl.Remove(ds);
+                        }
+                    }
+                }
+            }
+        }
+        Line d(Vertex A,Vertex B)
+        {
+           for(int i = 0; i < Xl.Count; i++)
+            {
+                if (A.VertexNumber == Xl[i].VertexIndexX && B.VertexNumber == Xl[i].VertexIndexY)
+                    return Xl[i];
+                if (A.VertexNumber == Xl[i].VertexIndexY && B.VertexNumber == Xl[i].VertexIndexX)
+                    return Xl[i];
+            }
+            return null;
+        }
+         bool IsXixJisDeletable(ref Line C, Vertex A,Vertex B,Vertex Next,ref List<Vertex> K, ref List<Vertex> xlv)
+        {
+            bool Is = false;
+            for(int i = 0; i < xlv.Count; i++)
+            {
+                for(int j=0; j < xlv.Count; j++)
+                {
+                    if (Next.VertexNumber == B.VertexNumber)                    
+                        return true;
+                    
+                    if (xlv[i].VertexNumber==Next.VertexNumber)
+                    {
+                        K.Add(xlv[i]);
+                        Is = Is || IsXixJisDeletable(ref C, A, B, xlv[i], ref K, ref xlv);
+                    }
+
+                }
+            }
+            return Is;
+        }
         public GraphDivergenceMatrix(bool[,] A, int n, int m)
         {
             N = n;
@@ -138,6 +188,7 @@ namespace ContourAnalysisNS
                     }
                 }
             }
+            XiXjDelete();
         }
         public static bool CheckedIsSameRikhtOverLap(GraphDivergenceMatrix sma, GraphDivergenceMatrix Rec)
         {

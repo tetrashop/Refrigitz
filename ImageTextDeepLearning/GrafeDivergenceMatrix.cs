@@ -8,10 +8,14 @@ namespace ContourAnalysisNS
 {
     public class GraphS
     {
+        public static GraphS Z = null;
+        public static bool Drawn = false;
+        public static GraphDivergenceMatrix ZB = null;
         public GraphDivergenceMatrix A, B;
         int N, M;
         public GraphS(bool[,] Ab, bool[,] Bb, int n, int m)
         {
+            Drawn = false;
             N = n;
             M = m;
             A = new GraphDivergenceMatrix(Ab, n, m);
@@ -19,21 +23,22 @@ namespace ContourAnalysisNS
             {
                 A.IJBelongToLineHaveFalseBolleanA(Ab);
             }
+            Drawn = true;
             B = new GraphDivergenceMatrix(Bb, n, m);
 
             if (B != null)
             {
                 B.IJBelongToLineHaveFalseBolleanA(Bb);
             }
+            Drawn = true;
         }
         public static bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m)
         {
-            GraphS Z = new GraphS(Ab, Bb, n, m);
+             Z = new GraphS(Ab, Bb, n, m);
             if (Z.A == null && Z.B == null)
                 return true;
             if (Z.A == null || Z.B == null)
                 return false;
-
             return Z.SameRikhtThisIsLessVertex(Ab, Bb);
         }
 
@@ -50,7 +55,10 @@ namespace ContourAnalysisNS
                 if (Is)
                 {
                     if (!GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(A, RecreatedB))
+                    {
+                        ZB = RecreatedB;
                         Is = false;
+                    }
                 }
 
             }
@@ -63,7 +71,11 @@ namespace ContourAnalysisNS
                 if (Is)
                 {
                     if (!GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(B, RecreatedA))
-                        Is = false;
+                    {
+                        ZB = RecreatedA;
+
+                        Is = false; }
+
                 }
             }
             return Is;
@@ -85,10 +97,14 @@ namespace ContourAnalysisNS
                 ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xv.Count, j =>
                 //for (int j = 0; j < Xv.Count; j++)
                 {
-                    if (Xv[i].X == x1 && Xv[i].Y == y1 && Xv[j].X == x2 && Xv[j].Y == y2)
-                        Is = true;
-                    if (Xv[j].X == x1 && Xv[j].Y == y1 && Xv[i].X == x2 && Xv[i].Y == y2)
-                        Is = true;
+                object hh = new object();
+                    lock (hh)
+                    {
+                        if (Xv[i].X == x1 && Xv[i].Y == y1 && Xv[j].X == x2 && Xv[j].Y == y2)
+                            Is = true;
+                        if (Xv[j].X == x1 && Xv[j].Y == y1 && Xv[i].X == x2 && Xv[i].Y == y2)
+                            Is = true;
+                    }
                 });
             });
             return Is;
@@ -100,10 +116,14 @@ namespace ContourAnalysisNS
             ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xl.Count, i =>
             // for (int i = 0; i < Xl.Count; i++)
             {
-                if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexX == y1 && Xl[i].VertexIndexY == x2 && Xl[i].VertexIndexY == y2)
-                    Is = true;
-                if (Xl[i].VertexIndexY == x1 && Xl[i].VertexIndexY == y1 && Xl[i].VertexIndexX == x2 && Xl[i].VertexIndexX == y2)
-                    Is = true;
+                object hh = new object();
+                lock (hh)
+                {
+                    if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexX == y1 && Xl[i].VertexIndexY == x2 && Xl[i].VertexIndexY == y2)
+                        Is = true;
+                    if (Xl[i].VertexIndexY == x1 && Xl[i].VertexIndexY == y1 && Xl[i].VertexIndexX == x2 && Xl[i].VertexIndexX == y2)
+                        Is = true;
+                }
             });
             return Is;
         }
@@ -130,21 +150,25 @@ namespace ContourAnalysisNS
                         ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xv.Count, k =>
                         //for (int k = 0; k < Xv.Count; k++)
                         {
-                            if (i == j)
-                                return;
-                            if (i == k)
-                                return;
-                            if (j == k)
-                                return;
-                            if ((!(Xv[k].X > Xv[i].X && Xv[k].X > Xv[i].X)))
-                                return;
-                            Line ds = d(Xv[i], Xv[j]);
-                            if (ds != null)
+                        object hh = new object();
+                            lock (hh)
                             {
-                                Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
-                                if (Is)
+                                if (i == j)
+                                    return;
+                                if (i == k)
+                                    return;
+                                if (j == k)
+                                    return;
+                                if ((!(Xv[k].X > Xv[i].X && Xv[k].X > Xv[i].X)))
+                                    return;
+                                Line ds = d(Xv[i], Xv[j]);
+                                if (ds != null)
                                 {
-                                    Xl.Remove(ds);
+                                    Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
+                                    if (Is)
+                                    {
+                                        Xl.Remove(ds);
+                                    }
                                 }
                             }
                         });
@@ -171,21 +195,25 @@ namespace ContourAnalysisNS
                         ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xv.Count, k =>
                         //for (int k = 0; k < Xv.Count; k++)
                         {
-                            if (i == j)
-                                return;
-                            if (i == k)
-                                return;
-                            if (j == k)
-                                return;
-                            if ((!(Xv[k].Y > Xv[i].Y && Xv[k].Y > Xv[i].Y)))
-                                return;
-                            Line ds = d(Xv[i], Xv[j]);
-                            if (ds != null)
+                        object hh = new object();
+                            lock (hh)
                             {
-                                Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
-                                if (Is)
+                                if (i == j)
+                                    return;
+                                if (i == k)
+                                    return;
+                                if (j == k)
+                                    return;
+                                if ((!(Xv[k].Y > Xv[i].Y && Xv[k].Y > Xv[i].Y)))
+                                    return;
+                                Line ds = d(Xv[i], Xv[j]);
+                                if (ds != null)
                                 {
-                                    Xl.Remove(ds);
+                                    Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
+                                    if (Is)
+                                    {
+                                        Xl.Remove(ds);
+                                    }
                                 }
                             }
                         });
@@ -212,21 +240,25 @@ namespace ContourAnalysisNS
                         ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xv.Count, k =>
                         //for (int k = 0; k < Xv.Count; k++)
                         {
-                            if (i == j)
-                                return;
-                            if (j == k)
-                                return;
-                            if (k == j)
-                                return;
-                            if ((!(Xv[k].X < Xv[i].X && Xv[k].X < Xv[i].X)))
-                                return;
-                            Line ds = d(Xv[i], Xv[j]);
-                            if (ds != null)
+                        object hh = new object();
+                            lock (hh)
                             {
-                                Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
-                                if (Is)
+                                if (i == j)
+                                    return;
+                                if (j == k)
+                                    return;
+                                if (k == j)
+                                    return;
+                                if ((!(Xv[k].X < Xv[i].X && Xv[k].X < Xv[i].X)))
+                                    return;
+                                Line ds = d(Xv[i], Xv[j]);
+                                if (ds != null)
                                 {
-                                    Xl.Remove(ds);
+                                    Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
+                                    if (Is)
+                                    {
+                                        Xl.Remove(ds);
+                                    }
                                 }
                             }
                         });
@@ -253,21 +285,25 @@ namespace ContourAnalysisNS
                         ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xv.Count, k =>
                         //for (int k = 0; k < Xv.Count; k++)
                         {
-                            if (i == j)
-                                return;
-                            if (j == k)
-                                return;
-                            if (k == j)
-                                return;
-                            if ((!(Xv[k].Y < Xv[i].Y && Xv[k].Y < Xv[i].Y)))
-                                return;
-                            Line ds = d(Xv[i], Xv[j]);
-                            if (ds != null)
+                        object hh = new object();
+                            lock (hh)
                             {
-                                Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
-                                if (Is)
+                                if (i == j)
+                                    return;
+                                if (j == k)
+                                    return;
+                                if (k == j)
+                                    return;
+                                if ((!(Xv[k].Y < Xv[i].Y && Xv[k].Y < Xv[i].Y)))
+                                    return;
+                                Line ds = d(Xv[i], Xv[j]);
+                                if (ds != null)
                                 {
-                                    Xl.Remove(ds);
+                                    Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
+                                    if (Is)
+                                    {
+                                        Xl.Remove(ds);
+                                    }
                                 }
                             }
                         });
@@ -285,22 +321,26 @@ namespace ContourAnalysisNS
             ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xl.Count, i =>
             //for (int i = 0; i < Xl.Count; i++)
             {
-                if (Xl.Count <= i)
-                    return;
-                if (A.VertexNumber == Xl[i].VertexIndexX && B.VertexNumber == Xl[i].VertexIndexY)
-                    dd = Xl[i];
-                if (Xl.Count <= i)
-                    return;
-                if (B.VertexNumber == Xl[i].VertexIndexX && A.VertexNumber == Xl[i].VertexIndexY)
-                    dd = Xl[i];
-                if (Xl.Count <= i)
-                    return;
-                if (A.VertexNumber == Xl[i].VertexIndexY && B.VertexNumber == Xl[i].VertexIndexX)
-                    dd = Xl[i];
-                if (Xl.Count <= i)
-                    return;
-                if (B.VertexNumber == Xl[i].VertexIndexY && A.VertexNumber == Xl[i].VertexIndexX)
-                    dd = Xl[i];
+            object hh = new object();
+                lock (hh)
+                {
+                    if (Xl.Count <= i)
+                        return;
+                    if (A.VertexNumber == Xl[i].VertexIndexX && B.VertexNumber == Xl[i].VertexIndexY)
+                        dd = Xl[i];
+                    if (Xl.Count <= i)
+                        return;
+                    if (B.VertexNumber == Xl[i].VertexIndexX && A.VertexNumber == Xl[i].VertexIndexY)
+                        dd = Xl[i];
+                    if (Xl.Count <= i)
+                        return;
+                    if (A.VertexNumber == Xl[i].VertexIndexY && B.VertexNumber == Xl[i].VertexIndexX)
+                        dd = Xl[i];
+                    if (Xl.Count <= i)
+                        return;
+                    if (B.VertexNumber == Xl[i].VertexIndexY && A.VertexNumber == Xl[i].VertexIndexX)
+                        dd = Xl[i];
+                }
             });
             return dd;
 
@@ -333,102 +373,105 @@ namespace ContourAnalysisNS
                 ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xv.Count, k =>
                 // (int k = 0; k < Xv.Count; k++)
                 {
-                    if (Xl.Count <= i)
-                        return;
-                    if (Xl.Count <= k)
-                        return;
-                    if (ExistL(Xv[i].X, Xv[i].Y, Xv[k].X, Xv[k].Y))
+                object hh = new object();
+                    lock (hh)
                     {
-
-                        int x1 = Xv[i].X;
-                        int y1 = Xv[i].Y;
-                        int x2 = Xv[k].X;
-                        int y2 = Xv[k].Y;
-                        if (x1 < x2)
+                        if (Xl.Count <= i)
+                            return;
+                        if (Xl.Count <= k)
+                            return;
+                        if (ExistL(Xv[i].X, Xv[i].Y, Xv[k].X, Xv[k].Y))
                         {
-                            if (y1 < y2)
+
+                            int x1 = Xv[i].X;
+                            int y1 = Xv[i].Y;
+                            int x2 = Xv[k].X;
+                            int y2 = Xv[k].Y;
+                            if (x1 < x2)
                             {
-                                for (int x = x1 + 1; x < x2 - 1; x++)
+                                if (y1 < y2)
                                 {
-                                    for (int y = y1 + 1; y < y2 - 1; y++)
+                                    for (int x = x1 + 1; x < x2 - 1; x++)
                                     {
-                                        if (!A[x, y])
+                                        for (int y = y1 + 1; y < y2 - 1; y++)
                                         {
-                                            Line ds = d(Xv[i], Xv[k]);
-                                            if (ds != null)
+                                            if (!A[x, y])
                                             {
-                                                if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
-                                                    Xl.Remove(ds);
+                                                Line ds = d(Xv[i], Xv[k]);
+                                                if (ds != null)
+                                                {
+                                                    if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
+                                                        Xl.Remove(ds);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                    if (y1 > y2)
+                                {
+                                    for (int x = x1 + 1; x < x2 - 1; x++)
+                                    {
+                                        for (int y = y2 + 1; y < y1 - 1; y++)
+                                        {
+                                            if (!A[x, y])
+                                            {
+                                                Line ds = d(Xv[i], Xv[k]);
+                                                if (ds != null)
+                                                {
+                                                    if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
+                                                        Xl.Remove(ds);
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                             else
-                                if (y1 > y2)
+                                if (x2 < x1)
                             {
-                                for (int x = x1 + 1; x < x2 - 1; x++)
+                                if (y1 < y2)
                                 {
-                                    for (int y = y2 + 1; y < y1 - 1; y++)
+                                    for (int x = x2 + 1; x < x1 - 1; x++)
                                     {
-                                        if (!A[x, y])
+                                        for (int y = y1 + 1; y < y2 - 1; y++)
                                         {
-                                            Line ds = d(Xv[i], Xv[k]);
-                                            if (ds != null)
+                                            if (!A[x, y])
                                             {
-                                                if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
-                                                    Xl.Remove(ds);
+                                                Line ds = d(Xv[i], Xv[k]);
+                                                if (ds != null)
+                                                {
+                                                    if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
+                                                        Xl.Remove(ds);
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
-                        }
-                        else
-                            if (x2 < x1)
-                        {
-                            if (y1 < y2)
-                            {
-                                for (int x = x2 + 1; x < x1 - 1; x++)
+                                else
+                 if (y1 > y2)
                                 {
-                                    for (int y = y1 + 1; y < y2 - 1; y++)
+                                    for (int x = x2 + 1; x < x1 - 1; x++)
                                     {
-                                        if (!A[x, y])
+                                        for (int y = y2 + 1; y < y1 - 1; y++)
                                         {
-                                            Line ds = d(Xv[i], Xv[k]);
-                                            if (ds != null)
+                                            if (!A[x, y])
                                             {
-                                                if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
-                                                    Xl.Remove(ds);
+                                                Line ds = d(Xv[i], Xv[k]);
+                                                if (ds != null)
+                                                {
+                                                    if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
+                                                        Xl.Remove(ds);
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
-                            else
-             if (y1 > y2)
-                            {
-                                for (int x = x2 + 1; x < x1 - 1; x++)
-                                {
-                                    for (int y = y2 + 1; y < y1 - 1; y++)
-                                    {
-                                        if (!A[x, y])
-                                        {
-                                            Line ds = d(Xv[i], Xv[k]);
-                                            if (ds != null)
-                                            {
-                                                if (Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
-                                                    Xl.Remove(ds);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
 
+                            }
+                            // if (Line.IsPointsInVertexes(Xv[i], Xv[k],))
                         }
-                        // if (Line.IsPointsInVertexes(Xv[i], Xv[k],))
                     }
-
                 });
             });
         }
@@ -451,24 +494,29 @@ namespace ContourAnalysisNS
                          ParallelOptions pooooo = new ParallelOptions(); pooooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, m, p =>
                          //for (int p = 0; p < m; p++)
                          {
-                             if (i == k)
-                                 return;
-                             if (j == p)
-                                 return;
-                             if (i == j)
-                                 return;
-                             if (k == p)
-                                 return;
-                             if (A[i, j] && A[k, p])
+                             object h = new object();
+                             lock (h)
                              {
-                                 if (!ExistV(i, j, k, p))
+
+                                 if (i == k)
+                                     return;
+                                 if (j == p)
+                                     return;
+                                 if (i == j)
+                                     return;
+                                 if (k == p)
+                                     return;
+                                 if (A[i, j] && A[k, p])
                                  {
-                                     Xv.Add(new Vertex(++indv, i, j));
-                                     Xv.Add(new Vertex(++indv, k, p));
-                                 }
-                                 if (!ExistL(i, j, k, p))
-                                 {
-                                     Xl.Add(new Line((float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                     if (!ExistV(i, j, k, p))
+                                     {
+                                         Xv.Add(new Vertex(++indv, i, j));
+                                         Xv.Add(new Vertex(++indv, k, p));
+                                     }
+                                     if (!ExistL(i, j, k, p))
+                                     {
+                                         Xl.Add(new Line((float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                     }
                                  }
                              }
                          });
@@ -493,16 +541,20 @@ namespace ContourAnalysisNS
                     ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xl.Count, j =>
                     // for (int j = 0; j < A.Count; j++)
                     {
-                        if (i == Xl[k].VertexIndexX && j == Xl[k].VertexIndexY)
+                        object h = new object();
+                        lock (h)
                         {
-                            if (!ExistV(i, j, Xl[k].VertexIndexX, Xl[k].VertexIndexY))
+                            if (i == Xl[k].VertexIndexX && j == Xl[k].VertexIndexY)
                             {
-                                Xv.Add(new Vertex(Xl[k].VertexIndexX, A[i].X, A[i].Y));
-                                Xv.Add(new Vertex(Xl[k].VertexIndexY, A[j].X, A[j].Y));
-                            }
-                            if (!ExistL(i, j, Xl[k].VertexIndexX, Xl[k].VertexIndexY))
-                            {
-                                Xl.Add(new Line((float)Math.Sqrt((A[i].X - A[j].X) * (A[i].X - A[j].X) + (A[i].Y - A[j].Y) * (A[i].Y - A[j].Y)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                if (!ExistV(i, j, Xl[k].VertexIndexX, Xl[k].VertexIndexY))
+                                {
+                                    Xv.Add(new Vertex(Xl[k].VertexIndexX, A[i].X, A[i].Y));
+                                    Xv.Add(new Vertex(Xl[k].VertexIndexY, A[j].X, A[j].Y));
+                                }
+                                if (!ExistL(i, j, Xl[k].VertexIndexX, Xl[k].VertexIndexY))
+                                {
+                                    Xl.Add(new Line((float)Math.Sqrt((A[i].X - A[j].X) * (A[i].X - A[j].X) + (A[i].Y - A[j].Y) * (A[i].Y - A[j].Y)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                }
                             }
                         }
                     });
@@ -520,11 +572,15 @@ namespace ContourAnalysisNS
                 ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Rec.Xv.Count, j =>
                 // for (int j = 0; j < Rec.Xv.Count; j++)
                 {
-                    if (sma.Xv[i].X == Rec.Xv[j].X)
+                    object h = new object();
+                    lock (h)
                     {
-                        if (sma.Xv[i].Y == Rec.Xv[j].Y)
+                        if (sma.Xv[i].X == Rec.Xv[j].X)
                         {
-                            Sames.Add(new Vertex(sma.Xv[i].VertexNumber, sma.Xv[i].X, sma.Xv[i].Y));
+                            if (sma.Xv[i].Y == Rec.Xv[j].Y)
+                            {
+                                Sames.Add(new Vertex(sma.Xv[i].VertexNumber, sma.Xv[i].X, sma.Xv[i].Y));
+                            }
                         }
                     }
                 });
@@ -538,9 +594,12 @@ namespace ContourAnalysisNS
                 ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Sames.Count, i =>
                 // for (int i = 0; i < Sames.Count; i++)
                 {
-                    int crein = -1;
-                    ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Rec.Xv.Count, j =>
-                    // for (int j = 0; j < Rec.Xv.Count; j++)
+                int crein = -1;
+                ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Rec.Xv.Count, j =>
+                // for (int j = 0; j < Rec.Xv.Count; j++)
+                {
+                object h = new object();
+                    lock (h)
                     {
                         if (Sames[i].VertexNumber != Rec.Xv[j].VertexNumber)
                         {
@@ -551,21 +610,26 @@ namespace ContourAnalysisNS
                             crein = -1;
                             return;
                         }
-                    });
+                    }
+                });
                     if (crein > -1)
                     {
                         ParallelOptions poopp = new ParallelOptions(); poopp.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Sames.Count, j =>
                         //for (int j = 0; j < Sames.Count; j++)
                         {
-                            if (Is)
-                                return;
-                            if (j == i)
-                                return;
-                            if (Line.IsPointsInVertexes(Sames[i], Sames[j], Rec.Xv[crein].X, Rec.Xv[crein].Y))
+                            object h = new object();
+                            lock (h)
                             {
-                                Sames.Add(new Vertex(Rec.Xv[i].VertexNumber, Rec.Xv[i].X, Rec.Xv[i].Y));
-                                Is = true;
-                                return;
+                                if (Is)
+                                    return;
+                                if (j == i)
+                                    return;
+                                if (Line.IsPointsInVertexes(Sames[i], Sames[j], Rec.Xv[crein].X, Rec.Xv[crein].Y))
+                                {
+                                    Sames.Add(new Vertex(Rec.Xv[i].VertexNumber, Rec.Xv[i].X, Rec.Xv[i].Y));
+                                    Is = true;
+                                    return;
+                                }
                             }
                         });
                     }
@@ -585,7 +649,11 @@ namespace ContourAnalysisNS
             ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xv.Count, i =>
             //   for (int i = 0; i < Xv.Count; i++)
             {
-                Is = Is || IsSameRikht(Ab, Xv[i].X, Xv[i].Y, BB, ref K, ref ChechOnFinisshed);
+                object h = new object();
+                lock (h)
+                {
+                    Is = Is || IsSameRikht(Ab, Xv[i].X, Xv[i].Y, BB, ref K, ref ChechOnFinisshed);
+                }
             });
             Kk = K;
             ChechOnFinisshedI = ChechOnFinisshed;
@@ -605,44 +673,51 @@ namespace ContourAnalysisNS
             ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, BB.Xv.Count, i =>
             // for (int i = 0; i < BB.Xv.Count; i++)
             {
-                if (exit)
-                    return;
-                if (K.Count > 0)
-                {
-                    if (K.Contains(BB.Xv[i]))
-                        return;
-                }
-                if (x == BB.Xv[i].X && y == BB.Xv[i].Y)
-                {
-                    K.Add(BB.Xv[i]);
-                    ChechOnFinisshed.Add(new Vertex(BB.Xv[i].VertexNumber, x, y));
-                    Is = false;
-                    exit = true;
-                    return;
-                }
-                ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, K.Count, ii =>
-                // for (int ii = 0; ii < K.Count; ii++)
+                object h = new object();
+                lock (h)
                 {
                     if (exit)
                         return;
-
-                    ParallelOptions poopp = new ParallelOptions(); poopp.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, K.Count, j =>
-                    // for (int j = 0; j < K.Count; j++)
+                    if (K.Count > 0)
+                    {
+                        if (K.Contains(BB.Xv[i]))
+                            return;
+                    }
+                    if (x == BB.Xv[i].X && y == BB.Xv[i].Y)
+                    {
+                        K.Add(BB.Xv[i]);
+                        ChechOnFinisshed.Add(new Vertex(BB.Xv[i].VertexNumber, x, y));
+                        Is = false;
+                        exit = true;
+                        return;
+                    }
+                    ParallelOptions poop = new ParallelOptions(); poop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, K.Count, ii =>
+                    // for (int ii = 0; ii < K.Count; ii++)
                     {
                         if (exit)
                             return;
-                        if (i == j)
-                            return;
-                        if (Line.IsPointsInVertexes(K[ii], K[j], x, y))
-                        {
-                            K.Add(BB.Xv[i]);
-                            ChechOnFinisshed.Add(new Vertex(BB.Xv[i].VertexNumber, x, y));
-                            exit = true;
-                            return;
-                        }
 
+                        ParallelOptions poopp = new ParallelOptions(); poopp.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, K.Count, j =>
+                        // for (int j = 0; j < K.Count; j++)
+                        {
+                            object hh = new object();
+                            lock (hh)
+                            {
+                                if (exit)
+                                    return;
+                                if (i == j)
+                                    return;
+                                if (Line.IsPointsInVertexes(K[ii], K[j], x, y))
+                                {
+                                    K.Add(BB.Xv[i]);
+                                    ChechOnFinisshed.Add(new Vertex(BB.Xv[i].VertexNumber, x, y));
+                                    exit = true;
+                                    return;
+                                }
+                            }
+                        });
                     });
-                });
+                }
             });
 
             if (x + 1 >= 0 && y + 1 >= 0 && x + 1 < M && y + 1 < N)

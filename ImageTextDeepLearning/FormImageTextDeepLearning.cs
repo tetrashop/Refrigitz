@@ -242,96 +242,149 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         //main picture boc pain event
         private void PictureBoxImageTextDeepLearning_Paint(object sender, PaintEventArgs e)
         {
-            if (!DisablePaint)
+            if (!GraphS.Drawn)
             {
-                bool Re = false;
-                //when foregin is ready
-                if (d != null)
+                if (!DisablePaint)
                 {
-                    //initiate local vars
-                    Font font;
-                    Brush brush;
-                    Brush brush2;
-                    Pen pen;
-                    bool flag2;
-                    //when is ready top detected unconjuncted shapes set draw parameters
-                    if (!ReferenceEquals(d.frame, null))
+                    bool Re = false;
+                    //when foregin is ready
+                    if (d != null)
                     {
-                        font = new Font(d.Font.FontFamily, 24f);
-                        e.Graphics.DrawString(d.lbFPS.Text, new Font(d.Font.FontFamily, 16f), Brushes.Yellow, new PointF(1f, 1f));
-                        brush = new SolidBrush(Color.FromArgb(0xff, 0, 0, 0));
-                        brush2 = new SolidBrush(Color.FromArgb(0xff, 0xff, 0xff, 0xff));
-                        pen = new Pen(Color.FromArgb(150, 0, 0xff, 0));
-                        flag2 = false;
-                        if (!flag2)
+                        //initiate local vars
+                        Font font;
+                        Brush brush;
+                        Brush brush2;
+                        Pen pen;
+                        bool flag2;
+                        //when is ready top detected unconjuncted shapes set draw parameters
+                        if (!ReferenceEquals(d.frame, null))
                         {
-                            using (List<Contour<Point>>.Enumerator enumerator = d.processor.contours.GetEnumerator())
+                            font = new Font(d.Font.FontFamily, 24f);
+                            e.Graphics.DrawString(d.lbFPS.Text, new Font(d.Font.FontFamily, 16f), Brushes.Yellow, new PointF(1f, 1f));
+                            brush = new SolidBrush(Color.FromArgb(0xff, 0, 0, 0));
+                            brush2 = new SolidBrush(Color.FromArgb(0xff, 0xff, 0xff, 0xff));
+                            pen = new Pen(Color.FromArgb(150, 0, 0xff, 0));
+                            flag2 = false;
+                            if (!flag2)
+                            {
+                                using (List<Contour<Point>>.Enumerator enumerator = d.processor.contours.GetEnumerator())
+                                {
+                                    while (true)
+                                    {
+                                        flag2 = enumerator.MoveNext();
+                                        if (!flag2)
+                                        {
+                                            break;
+                                        }
+                                        Contour<Point> current = enumerator.Current;
+                                        if (current.Total > 1)
+                                        {
+                                            e.Graphics.DrawLines(Pens.Red, current.ToArray());
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            return;
+                        }
+                        //lock (d.processor.foundTemplates)
+                        {
+                            using (List<FoundTemplateDesc>.Enumerator enumerator2 = d.processor.foundTemplates.GetEnumerator())
                             {
                                 while (true)
                                 {
-                                    flag2 = enumerator.MoveNext();
+                                    flag2 = enumerator2.MoveNext();
                                     if (!flag2)
                                     {
                                         break;
                                     }
-                                    Contour<Point> current = enumerator.Current;
-                                    if (current.Total > 1)
+                                    FoundTemplateDesc current = enumerator2.Current;
+                                    if (current.template.name.EndsWith(".png") || current.template.name.EndsWith(".jpg"))
                                     {
-                                        e.Graphics.DrawLines(Pens.Red, current.ToArray());
+                                        d.DrawAugmentedReality(current, e.Graphics);
+                                        continue;
                                     }
-                                }
+                                    Rectangle sourceBoundingRect = current.sample.contour.SourceBoundingRect;
+                                    Point point = new Point((sourceBoundingRect.Left + sourceBoundingRect.Right) / 2, sourceBoundingRect.Top);
+                                    string name = current.template.name;
+                                    if (d.showAngle)
+                                    {
+                                        name = name + $"angle={((180.0 * current.angle) / 3.1415926535897931):000}°scale={current.scale:0.0}";
 
+                                    }
+                                    if (!Recognized)
+                                    {
+                                        textBoxImageTextDeepLearning.Text += name;
+                                        textBoxImageTextDeepLearning.Refresh();
+                                        textBoxImageTextDeepLearning.Update();
+                                        Re = true;
+                                    }
+                                    e.Graphics.DrawRectangle(pen, sourceBoundingRect);
+                                    e.Graphics.DrawString(name, font, brush, new PointF((float)((point.X + 1) - (font.Height / 3)), (float)((point.Y + 1) - font.Height)));
+                                    e.Graphics.DrawString(name, font, brush2, new PointF((float)(point.X - (font.Height / 3)), (float)(point.Y - font.Height)));
+                                }
                             }
                         }
-                    }
-                    else
-                    {
-                        return;
-                    }
-                    //lock (d.processor.foundTemplates)
-                    {
-                        using (List<FoundTemplateDesc>.Enumerator enumerator2 = d.processor.foundTemplates.GetEnumerator())
-                        {
-                            while (true)
-                            {
-                                flag2 = enumerator2.MoveNext();
-                                if (!flag2)
-                                {
-                                    break;
-                                }
-                                FoundTemplateDesc current = enumerator2.Current;
-                                if (current.template.name.EndsWith(".png") || current.template.name.EndsWith(".jpg"))
-                                {
-                                    d.DrawAugmentedReality(current, e.Graphics);
-                                    continue;
-                                }
-                                Rectangle sourceBoundingRect = current.sample.contour.SourceBoundingRect;
-                                Point point = new Point((sourceBoundingRect.Left + sourceBoundingRect.Right) / 2, sourceBoundingRect.Top);
-                                string name = current.template.name;
-                                if (d.showAngle)
-                                {
-                                    name = name + $"angle={((180.0 * current.angle) / 3.1415926535897931):000}°scale={current.scale:0.0}";
 
-                                }
-                                if (!Recognized)
-                                {
-                                    textBoxImageTextDeepLearning.Text += name;
-                                    textBoxImageTextDeepLearning.Refresh();
-                                    textBoxImageTextDeepLearning.Update();
-                                    Re = true;
-                                }
-                                e.Graphics.DrawRectangle(pen, sourceBoundingRect);
-                                e.Graphics.DrawString(name, font, brush, new PointF((float)((point.X + 1) - (font.Height / 3)), (float)((point.Y + 1) - font.Height)));
-                                e.Graphics.DrawString(name, font, brush2, new PointF((float)(point.X - (font.Height / 3)), (float)(point.Y - font.Height)));
-                            }
-                        }
                     }
-
+                    if (Re)
+                        Recognized = true;
+                    PictureBoxImageTextDeepLearning.Update();
+                    PictureBoxImageTextDeepLearning.Refresh();
                 }
-                if (Re)
-                    Recognized = true;
-                PictureBoxImageTextDeepLearning.Update();
-                PictureBoxImageTextDeepLearning.Refresh();
+            }
+            else
+            {
+                if (GraphS.Z != null)
+                {
+                    Bitmap s = new Bitmap(PictureBoxImageTextDeepLearning.Width, PictureBoxImageTextDeepLearning.Height);
+                    Graphics g = Graphics.FromImage(s);
+                    if (ContourAnalysisNS.GraphS.Z.A != null)
+                    {
+                        if (ContourAnalysisNS.GraphS.Z.A.Xv != null)
+                        {
+                            for (int i = 0; i < ContourAnalysisNS.GraphS.Z.A.Xv.Count; i++)
+                            {
+
+                                g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Red), new PointF(ContourAnalysisNS.GraphS.Z.A.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.A.Xv[i].Y * 10));
+
+                            }
+                        }
+                    }
+                    if (ContourAnalysisNS.GraphS.Z.B != null)
+                    {
+                        if (ContourAnalysisNS.GraphS.Z.B.Xv != null)
+                        {
+                            for (int i = 0; i < ContourAnalysisNS.GraphS.Z.B.Xv.Count; i++)
+                            {
+
+                                g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Blue), new PointF(ContourAnalysisNS.GraphS.Z.B.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.B.Xv[i].Y * 10));
+
+                            }
+                        }
+                    }
+                    if (ContourAnalysisNS.GraphS.ZB != null)
+                    {
+                        if (ContourAnalysisNS.GraphS.ZB.Xv != null)
+                        {
+                            for (int i = 0; i < ContourAnalysisNS.GraphS.ZB.Xv.Count; i++)
+                            {
+
+                                g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Green), new PointF(ContourAnalysisNS.GraphS.ZB.Xv[i].X * 10, ContourAnalysisNS.GraphS.ZB.Xv[i].Y * 10));
+
+                            }
+                        }
+                    }
+                    g.Dispose();
+                    PictureBoxImageTextDeepLearning.BackgroundImage = s;
+                    PictureBoxImageTextDeepLearning.Refresh();
+                    PictureBoxImageTextDeepLearning.Update();
+                    Thread.Sleep(100);
+                    GraphS.Drawn = false;
+                }
             }
         }
 
@@ -538,10 +591,18 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 checkBoxUseCommonEnglish.Enabled = true;
             }
         }
+        public void Set()
+        {
+            do { } while (!GraphS.Drawn);
+            PictureBoxImageTextDeepLearning.Invalidate();
+            PictureBoxImageTextDeepLearning.Refresh();
+        }
 
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {
+            Thread tt = new Thread(new ThreadStart(Set));
+            tt.Start();
             Thread t = new Thread(new ThreadStart(CreateOneConShape));
             t.Start();
             t.Join();

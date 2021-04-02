@@ -73,7 +73,7 @@ namespace ImageTextDeepLearning
             try
             {
                 // Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei)//* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
-                if (ContourAnalysisNS.GraphS.GraphSameRikht(Key, Src, Wi, Hei))
+                if ((new ContourAnalysisNS.GraphS(Key, Src, Wi, Hei)).GraphSameRikht(Key, Src, Wi, Hei))
                     Dif = Wi * Hei;
                 
             }
@@ -118,23 +118,34 @@ namespace ImageTextDeepLearning
                     for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
                     {
                         //retrive similarity value
-                        KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
-                        //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Width);
-                        //when is ready and proper
-                        //if (System.Math.Abs(1- KeyDif ) < Threashold)
-                        if (IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
-                        {
+                        if (!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
+                            KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
+                        else
+                        {  //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Width);
+                           //when is ready and proper
+                           //if (System.Math.Abs(1- KeyDif ) < Threashold)
                             if (t.KeyboardAllStringsWithfont[k] != " ")
                                 continue;
+                            else
+                            {
+                                IndecCurrent = k;
+                                KeyDif = Width * Heigh;
+                            }
+                           /* if (IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
+                            {
+                                if (t.KeyboardAllStringsWithfont[k] != " ")
+                                    continue;
+                            }
+                            else
+                              if (IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei))
+                                continue;*/
                         }
-                        else
-                          if (IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei))
-                            continue;
                         if (KeyDif > KeyBoardDif)
                         {
                             //set
                             IndecCurrent = k;
                             KeyBoardDif = KeyDif;
+                            break;
                             //if (KeyDif >= Width * Heigh)
                             //break;
 

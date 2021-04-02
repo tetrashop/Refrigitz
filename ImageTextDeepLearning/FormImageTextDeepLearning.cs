@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
@@ -28,6 +29,8 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
+        bool Resum = false;
+        Task tf = null;
         bool DisablePaint = false;
         public static bool test = false;
         public static bool comeng = false;
@@ -603,15 +606,45 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 }catch(Exception t) { }
             } while (true);
         }
+        void c()
+        {
+            int len = 0;
+            do
+            {
+                if (On != null)
+                {
+                    if (On.Detected != null)
+                    {
+                        if (len != On.Detected.Count)
+                        {
+                            Resum = true;
+                            
+                            Invoke((MethodInvoker)delegate ()
+                            {
+                                textBoxImageTextDeepLearning.Text = "";
+                                for (int i = 0; i < On.Detected.Count; i++)
+                                {
+                                    textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
+                                    textBoxImageTextDeepLearning.Update();
+                                }
+                            });
+                            len = On.Detected.Count;
+                           
+                            Resum = false;
+                        }
+                    }
+                }
+                Thread.Sleep(1000);
 
+            } while (true);
+        }
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {
-           // Thread tt = new Thread(new ThreadStart(Set));
-          //  tt.Start();
-            Thread t = new Thread(new ThreadStart(CreateOneConShape));
-            t.Start();
-            t.Join();
+            //var H = Task.Factory.StartNew(() => c());
+            tf =  Task.Factory.StartNew(() =>CreateOneConShape());
+             tf.Wait();
+
             DisablePaint = true;
             MessageBox.Show("Samples!");
             for (int i = 0; i < On.tt.AllImage.Count; i++)
@@ -643,7 +676,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             for (int i = 0; i < On.Detected.Count; i++)
             {
                 textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
-
+                textBoxImageTextDeepLearning.Update();
             }
             buttonSplitationConjunction.Visible = true;
             /* for (int i = 0; i < On.t.KeyboardAllImage.Count; i++)

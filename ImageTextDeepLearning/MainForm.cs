@@ -453,6 +453,7 @@
             this.pnSettings.Name = "pnSettings";
             this.pnSettings.Size = new System.Drawing.Size(209, 405);
             this.pnSettings.TabIndex = 3;
+            this.pnSettings.Paint += new System.Windows.Forms.PaintEventHandler(this.pnSettings_Paint);
             // 
             // panAndZoomPictureBox1
             // 
@@ -727,6 +728,7 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Source";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // nudAdaptiveThBlockSize
             // 
@@ -1155,6 +1157,16 @@
         }
 
         private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnSettings_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

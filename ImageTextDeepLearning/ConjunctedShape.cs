@@ -250,12 +250,13 @@ namespace ImageTextDeepLearning
                                 );
                                 //, System.Drawing.Drawing2D.FillMode.Alternate
                               e.Dispose();
-                            /*Do = ColorizedCountreImageCommmon(ref Temp);
+                            e.Dispose();
+                            Do = HollowCountreImageCommmon(ref Temp);
                             if (!Do)
                             {
-                                MessageBox.Show("Coloriezed Fatal Error");
+                                MessageBox.Show("Hollowed Fatal Error");
                                 return false;
-                            }*/
+                            }
 
                             /*   MiX = ImMinX(Temp);
                                MiY = ImMinY(Temp);
@@ -407,6 +408,101 @@ namespace ImageTextDeepLearning
 
 
 
+            }
+            catch (Exception t)
+            {
+                MessageBox.Show(t.ToString());
+
+                return false;
+            }
+            return true;
+        }
+        //Hollow an image
+        bool HollowCountreImageCommmon(ref Bitmap Img)
+        {
+            try
+            {
+                Bitmap Im = Img;
+                bool WidthChanged = false;
+                //create graphics for current image
+                Graphics e = Graphics.FromImage(Im);
+                //for all image width
+                //ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im.Width, j =>
+
+                // {
+                for (int j = 0; j < Im.Width; j++)
+                {
+                    WidthChanged = true;
+                    //found of tow orthogonal detinated points
+                    Point[] Po = new Point[2];
+                    int nu = 0;
+
+                    for (int k = 0; k < Im.Height; k++)
+                    {
+                        //first
+
+                        if (nu == 0)
+                        {
+                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            {
+                                Po[0] = new Point(j, k);
+                                nu++;
+
+                            }
+                        }
+                        else//second
+                    if (nu == 1)
+                        {
+                            if (k - 1 >= 0 && k + 1 < Im.Height)
+                            {
+
+                                if ((Im.GetPixel(j, k - 1).A == 255 || Im.GetPixel(j, k - 1).R == 255 || Im.GetPixel(j, k - 1).B == 255 || Im.GetPixel(j, k - 1).G == 255))
+                                {
+                                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                                    {
+                                        if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
+                                        {
+                                            Po[1] = new Point(j, k);
+                                            nu++;
+                                            //draw linnes and free var to coninue
+                                            e.DrawLines(Pens.White, Po);
+                                            nu = 0;
+                                        }
+                                    }
+                                }
+                                else
+                                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                                {
+                                    if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
+                                    {
+                                        Po[1] = new Point(j, k);
+                                        nu++;
+                                        //draw linnes and free var to coninue
+                                        e.DrawLines(Pens.White, Po);
+                                        nu = 0;
+                                    }
+                                }
+                            }
+                            else
+                           if (k + 1 < Im.Height)
+                            {
+                                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                                {
+                                    if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
+                                    {
+                                        Po[1] = new Point(j, k);
+                                        nu++;
+                                        //draw linnes and free var to coninue
+                                        e.DrawLines(Pens.White, Po);
+                                        nu = 0;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }//);
+                Img = Im;
             }
             catch (Exception t)
             {

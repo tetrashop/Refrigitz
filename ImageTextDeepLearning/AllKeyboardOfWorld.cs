@@ -20,7 +20,7 @@ namespace ImageTextDeepLearning
         public static char[] engsmal = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
         public static char[] engbig = null;
         public static char[] engnum = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
-        char[] te = { 'a', 'v', '3', '4' };
+        char[] te = { 'a', 'v', '3', '4', ' ' };
         public AllKeyboardOfWorld()
         {
             if (fonts.Count == 0)

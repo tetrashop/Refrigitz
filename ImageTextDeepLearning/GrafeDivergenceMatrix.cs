@@ -8,7 +8,7 @@ namespace ContourAnalysisNS
 {
     public class GraphS
     {
-        public static GraphS Z = null;
+        //public static GraphS Z = null;
         public static bool Drawn = false;
         public static GraphDivergenceMatrix ZB = null;
         public GraphDivergenceMatrix A, B;
@@ -32,9 +32,21 @@ namespace ContourAnalysisNS
             }
             Drawn = true;
         }
-        public static bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m)
+        protected void Dispose()
         {
-             Z = new GraphS(Ab, Bb, n, m);
+            A.M = 0;
+            A.N = 0;
+            A.Xl.Clear();
+            A.Xv.Clear();
+            B.Xl.Clear();
+            B.Xv.Clear();
+
+        }
+        public bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m)
+        {
+            //if (Z != null)
+                //xZ.Dispose();
+            GraphS Z = new GraphS(Ab, Bb, n, m);
             if (Z.A == null && Z.B == null)
                 return true;
             if (Z.A == null || Z.B == null)
@@ -167,7 +179,11 @@ namespace ContourAnalysisNS
                                     Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
                                     if (Is)
                                     {
-                                        Xl.Remove(ds);
+                                        try
+                                        {
+                                            Xl.Remove(ds);
+                                        }
+                                        catch (Exception t) { }
                                     }
                                 }
                             }
@@ -212,7 +228,11 @@ namespace ContourAnalysisNS
                                     Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
                                     if (Is)
                                     {
-                                        Xl.Remove(ds);
+                                        try
+                                        {
+                                            Xl.Remove(ds);
+                                        }
+                                        catch (Exception t) { }
                                     }
                                 }
                             }
@@ -257,7 +277,11 @@ namespace ContourAnalysisNS
                                     Is = IsXixJisDeletable(ref ds, Xv[i], Xv[j], Xv[k], ref K, ref Xv);
                                     if (Is)
                                     {
-                                        Xl.Remove(ds);
+                                        try
+                                        {
+                                            Xl.Remove(ds);
+                                        }
+                                        catch (Exception t) { }
                                     }
                                 }
                             }
@@ -662,13 +686,20 @@ namespace ContourAnalysisNS
             bool Is = false;
             List<Vertex> ChechOnFinisshed = ChechOnFinisshedI;
             List<Vertex> K = Kk;
+            bool kcounnt = false;
             ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Xv.Count, i =>
             //   for (int i = 0; i < Xv.Count; i++)
             {
                 object h = new object();
                 lock (h)
                 {
+                    if (Is)
+                        return;
+                    if (kcounnt)
+                        return;
                     Is = Is || IsSameRikht(Ab, Xv[i].X, Xv[i].Y, BB, ref K, ref ChechOnFinisshed);
+                    if (K.Count == 0)
+                        kcounnt = true;
                 }
             });
             Kk = K;

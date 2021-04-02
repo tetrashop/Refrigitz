@@ -338,7 +338,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             }
             else
             {
-                if (GraphS.Z != null)
+              /*  if (GraphS.Z != null)
                 {
                     Bitmap s = new Bitmap(PictureBoxImageTextDeepLearning.Width, PictureBoxImageTextDeepLearning.Height);
                     Graphics g = Graphics.FromImage(s);
@@ -384,7 +384,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     PictureBoxImageTextDeepLearning.Update();
                     Thread.Sleep(100);
                     GraphS.Drawn = false;
-                }
+                }*/
             }
         }
 
@@ -593,16 +593,22 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         }
         public void Set()
         {
-            do { } while (!GraphS.Drawn);
-            PictureBoxImageTextDeepLearning.Invalidate();
-            PictureBoxImageTextDeepLearning.Refresh();
+            do
+            {
+                try
+                {
+                    do { } while (!GraphS.Drawn);
+                    PictureBoxImageTextDeepLearning.Invalidate();
+                    PictureBoxImageTextDeepLearning.Refresh();
+                }catch(Exception t) { }
+            } while (true);
         }
 
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {
-            Thread tt = new Thread(new ThreadStart(Set));
-            tt.Start();
+           // Thread tt = new Thread(new ThreadStart(Set));
+          //  tt.Start();
             Thread t = new Thread(new ThreadStart(CreateOneConShape));
             t.Start();
             t.Join();

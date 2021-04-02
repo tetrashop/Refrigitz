@@ -284,7 +284,6 @@ namespace ImageTextDeepLearning
                                 );
                             //, System.Drawing.Drawing2D.FillMode.Alternate
                             e.Dispose();
-                            e.Dispose();
                             Do = HollowCountreImageCommmon(ref Temp);
                             if (!Do)
                             {

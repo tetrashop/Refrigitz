@@ -63,7 +63,7 @@ namespace ImageTextDeepLearning
         }
 
         //Detection main similarity method
-        private int DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei)
+        private int DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei,bool Ach)
         {
             int Dif = 0;
             if (Wi != Hei)
@@ -74,7 +74,7 @@ namespace ImageTextDeepLearning
             try
             {
                 // Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei)//* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
-                if ((new ContourAnalysisNS.GraphS(Key, Src, Wi, Hei)).GraphSameRikht(Key, Src, Wi, Hei))
+                if (ContourAnalysisNS.GraphS.GraphSameRikht(Key, Src, Wi, Hei,Ach))
                 {
                     Dif = Wi * Hei;
                 }
@@ -102,13 +102,13 @@ namespace ImageTextDeepLearning
             {
                 //clear list and initate...
                 Detected.Clear();
-
+                bool Ach = true;
                 //for evey conjuncted shape retrived matrix items
                 for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
 
                 {
 
-
+                    Ach = false;
                     //initate
                     StringBuilder TempDetected = new StringBuilder();
 
@@ -121,7 +121,8 @@ namespace ImageTextDeepLearning
                         //retrive similarity value
                         if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)) && (!IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei)))
                         {
-                            KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
+                            KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei,Ach);
+                            Ach = false;
                         }
                         else
                             if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)))

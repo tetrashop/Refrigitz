@@ -6,22 +6,26 @@ namespace ContourAnalysisNS
 {
     public class GraphS
     {
-        //public static GraphS Z = null;
+        public static GraphS Z = null;
         public static bool Drawn = false;
         public static GraphDivergenceMatrix ZB = null;
         public GraphDivergenceMatrix A, B;
         private readonly int N, M;
-        public GraphS(bool[,] Ab, bool[,] Bb, int n, int m)
+        public GraphS(bool[,] Ab, bool[,] Bb, int n, int m, bool Achange)
         {
             Drawn = false;
             N = n;
             M = m;
-            A = new GraphDivergenceMatrix(Ab, n, m);
-            if (A != null)
+            if (Achange)
             {
-                A.IJBelongToLineHaveFalseBolleanA(Ab);
+               
+                A = new GraphDivergenceMatrix(Ab, n, m);
+                if (A != null)
+                {
+                    A.IJBelongToLineHaveFalseBolleanA(Ab);
+                }
+                Drawn = true;
             }
-            Drawn = true;
             B = new GraphDivergenceMatrix(Bb, n, m);
 
             if (B != null)
@@ -40,22 +44,22 @@ namespace ContourAnalysisNS
             B.Xv.Clear();
 
         }
-        public bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m)
+        public static bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m, bool Achange)
         {
             //if (Z != null)
             //xZ.Dispose();
-            //*GraphS Z = new GraphS(Ab, Bb, n, m);
-            if (A == null && B == null)
+            Z = new GraphS(Ab, Bb, n, m, Achange);
+            if (Z.A == null && Z.B == null)
             {
                 return true;
             }
 
-            if (A == null || B == null)
+            if (Z.A == null || Z.B == null)
             {
                 return false;
             }
 
-            return SameRikhtThisIsLessVertex(Ab, Bb);
+            return Z.SameRikhtThisIsLessVertex(Ab, Bb);
         }
 
         //When the matrix iss  the same  return true;
@@ -916,24 +920,24 @@ namespace ContourAnalysisNS
             bool Is = false;
             List<Vertex> ChechOnFinisshed = ChechOnFinisshedI;
             List<Vertex> K = Kk;
-            bool kcounnt = false;
-            ParallelOptions pop = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, Xv.Count, i =>
-            //   for (int i = 0; i < Xv.Count; i++)
+           bool kcounnt = false;
+            /*    ParallelOptions pop = new ParallelOptions
+                {
+                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                }; Parallel.For(0, Xv.Count, i =>*/
+            for (int i = 0; i < Xv.Count; i++)
             {
                 object h = new object();
                 lock (h)
                 {
                     if (Is)
                     {
-                        return;
+                        return Is;
                     }
 
                     if (kcounnt)
                     {
-                        return;
+                        return Is;
                     }
 
                     Is = Is || IsSameRikht(Ab, Xv[i].X, Xv[i].Y, BB, ref K, ref ChechOnFinisshed);
@@ -942,7 +946,7 @@ namespace ContourAnalysisNS
                         kcounnt = true;
                     }
                 }
-            });
+            }//);
             Kk = K;
             ChechOnFinisshedI = ChechOnFinisshed;
             return Is;

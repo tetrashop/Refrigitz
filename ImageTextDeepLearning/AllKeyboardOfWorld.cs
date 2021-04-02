@@ -91,8 +91,14 @@ namespace ImageTextDeepLearning
                         }
                         else
                         {
-                            if (File.Exists("KeyboardAllStrings.asd"))
-                                File.Delete("KeyboardAllStrings.asd");
+                            try
+                            {
+                                if (File.Exists("KeyboardAllStrings.asd"))
+                                    File.Delete("KeyboardAllStrings.asd");
+                            }catch(Exception t)
+                            {
+
+                            }
                             for (int i = 0; i < te.Length; i++)
                                 KeyboardAllStrings.Add(Convert.ToString(te[i]));
 

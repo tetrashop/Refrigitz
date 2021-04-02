@@ -15,16 +15,16 @@
     public class ShowContoursForm : Form
     {
         //#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
-        private Templates templates;
+        private readonly Templates templates;
         //#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
         //#pragma warning disable CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
-        private Templates samples;
+        private readonly Templates samples;
         //#pragma warning restore CS0246 // The type or namespace name 'Templates' could not be found (are you missing a using directive or an assembly reference?)
         //#pragma warning disable CS0246 // The type or namespace name 'Template' could not be found (are you missing a using directive or an assembly reference?)
         public Template selectedTemplate;
         //#pragma warning restore CS0246 // The type or namespace name 'Template' could not be found (are you missing a using directive or an assembly reference?)
-        private Bitmap bmp;
-        private IContainer components = null;
+        private readonly Bitmap bmp;
+        private readonly IContainer components = null;
         private DataGridView dgvContours;
         private TextBox tbTemplateName;
         private Label label1;
@@ -41,7 +41,7 @@
             bool flag = !ReferenceEquals(image, null);
             if (flag)
             {
-                this.InitializeComponent();
+                InitializeComponent();
                 this.templates = templates;
                 this.samples = samples;
                 this.samples = new Templates();
@@ -58,17 +58,17 @@
                         this.samples.Add(current);
                     }
                 }
-                this.dgvContours.RowCount = samples.Count;
+                dgvContours.RowCount = samples.Count;
                 base.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
                 string fileName = Path.GetTempPath() + @"\temp.bmp";
                 image.Save(fileName);
-                this.bmp = (Bitmap)Image.FromFile(fileName);
+                bmp = (Bitmap)Image.FromFile(fileName);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (this.tbTemplateName.Text == "<template name>")
+            if (tbTemplateName.Text == "<template name>")
             {
                 MessageBox.Show("Enter template name");
             }
@@ -76,9 +76,9 @@
             {
                 try
                 {
-                    int rowIndex = this.dgvContours.SelectedCells[0].RowIndex;
-                    this.samples[rowIndex].name = this.tbTemplateName.Text;
-                    this.templates.Add(this.samples[rowIndex]);
+                    int rowIndex = dgvContours.SelectedCells[0].RowIndex;
+                    samples[rowIndex].name = tbTemplateName.Text;
+                    templates.Add(samples[rowIndex]);
                 }
                 catch (Exception exception1)
                 {
@@ -93,10 +93,10 @@
             e.Handled = true;
             if (e.RowIndex >= 0)
             {
-                Template template = this.samples[e.RowIndex];
+                Template template = samples[e.RowIndex];
                 if (e.ColumnIndex == -1)
                 {
-                    e.Graphics.DrawString(e.RowIndex.ToString(), this.Font, Brushes.Black, (PointF)e.CellBounds.Location);
+                    e.Graphics.DrawString(e.RowIndex.ToString(), Font, Brushes.Black, e.CellBounds.Location);
                 }
                 else
                 {
@@ -105,8 +105,8 @@
                         Rectangle rectangle = new Rectangle(e.CellBounds.X, e.CellBounds.Y, (e.CellBounds.Width - 0x18) / 2, e.CellBounds.Height);
                         rectangle.Inflate(-20, -20);
                         Rectangle sourceBoundingRect = template.contour.SourceBoundingRect;
-                        float num3 = Math.Min((float)((1f * rectangle.Width) / ((float)sourceBoundingRect.Width)), (float)((1f * rectangle.Height) / ((float)sourceBoundingRect.Height)));
-                        e.Graphics.DrawImage(this.bmp, new Rectangle(rectangle.X, rectangle.Y, (int)(sourceBoundingRect.Width * num3), (int)(sourceBoundingRect.Height * num3)), sourceBoundingRect, GraphicsUnit.Pixel);
+                        float num3 = Math.Min((float)((1f * rectangle.Width) / sourceBoundingRect.Width), (float)((1f * rectangle.Height) / sourceBoundingRect.Height));
+                        e.Graphics.DrawImage(bmp, new Rectangle(rectangle.X, rectangle.Y, (int)(sourceBoundingRect.Width * num3), (int)(sourceBoundingRect.Height * num3)), sourceBoundingRect, GraphicsUnit.Pixel);
                     }
                     if (e.ColumnIndex == 0)
                     {
@@ -118,118 +118,118 @@
 
         protected override void Dispose(bool disposing)
         {
-            if (!(!disposing || ReferenceEquals(this.components, null)))
+            if (!(!disposing || ReferenceEquals(components, null)))
             {
-                this.components.Dispose();
+                components.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
-            this.dgvContours = new System.Windows.Forms.DataGridView();
-            this.Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbTemplateName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvContours)).BeginInit();
-            this.SuspendLayout();
+            dgvContours = new System.Windows.Forms.DataGridView();
+            Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            tbTemplateName = new System.Windows.Forms.TextBox();
+            label1 = new System.Windows.Forms.Label();
+            button1 = new System.Windows.Forms.Button();
+            label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(dgvContours)).BeginInit();
+            SuspendLayout();
             // 
             // dgvContours
             // 
-            this.dgvContours.AllowUserToAddRows = false;
-            this.dgvContours.AllowUserToDeleteRows = false;
-            this.dgvContours.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            dgvContours.AllowUserToAddRows = false;
+            dgvContours.AllowUserToDeleteRows = false;
+            dgvContours.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvContours.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvContours.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvContours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvContours.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column});
-            this.dgvContours.Location = new System.Drawing.Point(12, 12);
-            this.dgvContours.Name = "dgvContours";
-            this.dgvContours.ReadOnly = true;
-            this.dgvContours.RowTemplate.Height = 200;
-            this.dgvContours.Size = new System.Drawing.Size(500, 409);
-            this.dgvContours.TabIndex = 0;
-            this.dgvContours.VirtualMode = true;
-            this.dgvContours.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvContours_CellContentClick);
-            this.dgvContours.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvContours_CellPainting);
+            | System.Windows.Forms.AnchorStyles.Right);
+            dgvContours.BackgroundColor = System.Drawing.SystemColors.Control;
+            dgvContours.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dgvContours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvContours.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            Column});
+            dgvContours.Location = new System.Drawing.Point(12, 12);
+            dgvContours.Name = "dgvContours";
+            dgvContours.ReadOnly = true;
+            dgvContours.RowTemplate.Height = 200;
+            dgvContours.Size = new System.Drawing.Size(500, 409);
+            dgvContours.TabIndex = 0;
+            dgvContours.VirtualMode = true;
+            dgvContours.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(dgvContours_CellContentClick);
+            dgvContours.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(dgvContours_CellPainting);
             // 
             // Column
             // 
-            this.Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column.HeaderText = "Contour";
-            this.Column.Name = "Column";
-            this.Column.ReadOnly = true;
+            Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            Column.HeaderText = "Contour";
+            Column.Name = "Column";
+            Column.ReadOnly = true;
             // 
             // tbTemplateName
             // 
-            this.tbTemplateName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbTemplateName.ForeColor = System.Drawing.Color.Gray;
-            this.tbTemplateName.Location = new System.Drawing.Point(205, 431);
-            this.tbTemplateName.Name = "tbTemplateName";
-            this.tbTemplateName.Size = new System.Drawing.Size(114, 20);
-            this.tbTemplateName.TabIndex = 1;
-            this.tbTemplateName.Text = "<template name>";
-            this.tbTemplateName.Enter += new System.EventHandler(this.tbTemplateName_Enter);
+            tbTemplateName.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            tbTemplateName.ForeColor = System.Drawing.Color.Gray;
+            tbTemplateName.Location = new System.Drawing.Point(205, 431);
+            tbTemplateName.Name = "tbTemplateName";
+            tbTemplateName.Size = new System.Drawing.Size(114, 20);
+            tbTemplateName.TabIndex = 1;
+            tbTemplateName.Text = "<template name>";
+            tbTemplateName.Enter += new System.EventHandler(tbTemplateName_Enter);
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 434);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 2;
+            label1.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(12, 434);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(0, 13);
+            label1.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(18, 429);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(181, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Add selected contour as Template:";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            button1.Location = new System.Drawing.Point(18, 429);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(181, 23);
+            button1.TabIndex = 3;
+            button1.Text = "Add selected contour as Template:";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += new System.EventHandler(button1_Click);
             // 
             // label2
             // 
-            this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(325, 431);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 29);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "enter template name or image file name (*.png, *.jpg)";
+            label2.ForeColor = System.Drawing.Color.Gray;
+            label2.Location = new System.Drawing.Point(325, 431);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(174, 29);
+            label2.TabIndex = 4;
+            label2.Text = "enter template name or image file name (*.png, *.jpg)";
             // 
             // ShowContoursForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 459);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbTemplateName);
-            this.Controls.Add(this.dgvContours);
-            this.Name = "ShowContoursForm";
-            this.Text = "Create templates";
-            this.Load += new System.EventHandler(this.ShowContoursForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvContours)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(524, 459);
+            Controls.Add(label2);
+            Controls.Add(button1);
+            Controls.Add(label1);
+            Controls.Add(tbTemplateName);
+            Controls.Add(dgvContours);
+            Name = "ShowContoursForm";
+            Text = "Create templates";
+            Load += new System.EventHandler(ShowContoursForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(dgvContours)).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
         private void tbTemplateName_Enter(object sender, EventArgs e)
         {
-            this.tbTemplateName.ForeColor = Color.Black;
-            if (this.tbTemplateName.Text == "<template name>")
+            tbTemplateName.ForeColor = Color.Black;
+            if (tbTemplateName.Text == "<template name>")
             {
-                this.tbTemplateName.Text = "";
+                tbTemplateName.Text = "";
             }
         }
 

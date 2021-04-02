@@ -19,12 +19,12 @@ namespace ImageTextDeepLearning
 {
     //Class for create conjuncted shape
     [Serializable]
-    class ConjunctedShape
+    internal class ConjunctedShape
     {
         //initiate global vars
-        int Width = 10, Height = 10;
-        MainForm d = null;
-        int Threashold = 5;
+        private readonly int Width = 10, Height = 10;
+        private readonly MainForm d = null;
+        private readonly int Threashold = 5;
         public List<Point[]> Collection = new List<Point[]>();
 
         public List<List<Point[]>> All = new List<List<Point[]>>();
@@ -37,69 +37,89 @@ namespace ImageTextDeepLearning
         }
 
         //Max of list
-        int MaxX(Point[] Tem)
+        private int MaxX(Point[] Tem)
         {
             int te = 0;
             for (int j = 0; j < Tem.Length; j++)
             {
                 if (Tem[j].X > te)
+                {
                     te = Tem[j].X;
+                }
             }
             return te;
         }
+
         //Max of list
-        int MaxY(Point[] Tem)
+        private int MaxY(Point[] Tem)
         {
             int te = 0;
             for (int j = 0; j < Tem.Length; j++)
             {
                 if (Tem[j].Y > te)
+                {
                     te = Tem[j].Y;
+                }
             }
 
             return te;
         }
+
         //Min of list
-        int MinX(Point[] Tem)
+        private int MinX(Point[] Tem)
         {
-            int te = Int32.MaxValue;
+            int te = int.MaxValue;
 
             for (int j = 0; j < Tem.Length; j++)
             {
                 if (Tem[j].X < te)
+                {
                     te = Tem[j].X;
+                }
             }
             return te;
         }
+
         //Min of list
-        int MinY(Point[] Tem)
+        private int MinY(Point[] Tem)
         {
-            int te = Int32.MaxValue;
+            int te = int.MaxValue;
             for (int j = 0; j < Tem.Length; j++)
             {
                 if (Tem[j].Y < te)
+                {
                     te = Tem[j].Y;
+                }
             }
             return te;
         }
+
         //max of to object
-        int MaxMax(int maxx, int maxy)
+        private int MaxMax(int maxx, int maxy)
         {
             if (maxx < maxy)
+            {
                 return maxy;
+            }
+
             return maxx;
 
         }
+
         //min of tor object
-        int MinMin(int minx, int miny)
+        private int MinMin(int minx, int miny)
         {
             if (minx < miny)
+            {
                 return minx;
+            }
+
             return miny;
 
         }
+
         //Cropping and fitting image to correcttly map
-        Bitmap cropImage(Bitmap img, Rectangle cropArea)
+        private Bitmap cropImage(Bitmap img, Rectangle cropArea)
         {
             int X = cropArea.X;
             int Y = cropArea.Y;
@@ -116,8 +136,9 @@ namespace ImageTextDeepLearning
             }
             return bmp;
         }
+
         //Found of Min of X
-        int ImMinX(Bitmap Im)
+        private int ImMinX(Bitmap Im)
         {
             int Mi = -1;
             for (int j = 0; j < Im.Width; j++)
@@ -132,13 +153,16 @@ namespace ImageTextDeepLearning
                     }
                 }
                 if (Mi > -1)
+                {
                     break;
+                }
             }
             return Mi;
 
         }
+
         //Founf Min of Y
-        int ImMinY(Bitmap Im)
+        private int ImMinY(Bitmap Im)
         {
             int Mi = -1;
             for (int k = 0; k < Im.Height; k++)
@@ -153,13 +177,16 @@ namespace ImageTextDeepLearning
                     }
                 }
                 if (Mi > -1)
+                {
                     break;
+                }
             }
             return Mi;
 
         }
+
         //Found of Max Of Y
-        int ImMaxY(Bitmap Im)
+        private int ImMaxY(Bitmap Im)
         {
             int Ma = -1;
             for (int k = Im.Height - 1; k >= 0; k--)
@@ -174,13 +201,16 @@ namespace ImageTextDeepLearning
                     }
                 }
                 if (Ma > -1)
+                {
                     break;
+                }
             }
             return Ma;
 
         }
+
         //Found of Max of X
-        int ImMaxX(Bitmap Im)
+        private int ImMaxX(Bitmap Im)
         {
             int Ma = -1;
             for (int j = Im.Width - 1; j >= 0; j--)
@@ -195,7 +225,9 @@ namespace ImageTextDeepLearning
                     }
                 }
                 if (Ma > -1)
+                {
                     break;
+                }
             }
             return Ma;
 
@@ -236,10 +268,12 @@ namespace ImageTextDeepLearning
                             int Mx = MxM * 2;
                             int My = MyM * 2;
                             //initate new root image empty
-                         
+
                             PointF[] tec = new PointF[Tem.Length];
                             for (int o = 0; o < Tem.Length; o++)
-                                tec[o] = new PointF(((float)(Width * (Tem[o].X - MiX)) / (float)(MaX - MiX)), (float)(Height * (Tem[o].Y - MiY)) / (float)(MaY - MiY));
+                            {
+                                tec[o] = new PointF((Width * (Tem[o].X - MiX) / (float)(MaX - MiX)), Height * (Tem[o].Y - MiY) / (float)(MaY - MiY));
+                            }
                             //draw all points
                             Bitmap Temp = new Bitmap(Width, Height);
 
@@ -248,8 +282,8 @@ namespace ImageTextDeepLearning
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                             e.DrawClosedCurve(new Pen(Brushes.Black), tec
                                 );
-                                //, System.Drawing.Drawing2D.FillMode.Alternate
-                              e.Dispose();
+                            //, System.Drawing.Drawing2D.FillMode.Alternate
+                            e.Dispose();
                             e.Dispose();
                             Do = HollowCountreImageCommmon(ref Temp);
                             if (!Do)
@@ -273,7 +307,7 @@ namespace ImageTextDeepLearning
                            
                             }
                             else*/
-                                Te = Temp;
+                            Te = Temp;
                             /* Do = ColorizedCountreImageCommmon(ref Te);
                                 if (!Do)
                                 {
@@ -295,7 +329,7 @@ namespace ImageTextDeepLearning
                     return false;
                 }
             }
-            catch (Exception t)
+            catch (Exception)
             {
                 //when existence of exeption return unsuccessfull
                 //System.Windows.Forms.MessageBox.Show("Fatual Error!" + t.ToString());
@@ -307,8 +341,9 @@ namespace ImageTextDeepLearning
             Collection.Clear();
             return true;
         }
+
         //Colorized list of image
-        bool ColorizedCountreImageCommon(List<Bitmap> Im)
+        private bool ColorizedCountreImageCommon(List<Bitmap> Im)
         {
             try
             {
@@ -344,7 +379,7 @@ namespace ImageTextDeepLearning
                                     //draw linnes and free var to coninue
                                     e.DrawLines(Pens.Black, Po);
                                     nu = 0;
-                               }
+                                }
                             }
                         }
                     }
@@ -364,8 +399,9 @@ namespace ImageTextDeepLearning
             //return successfull
             return true;
         }
+
         //Colorized an image
-        bool ColorizedCountreImageCommmon(ref Bitmap Im)
+        private bool ColorizedCountreImageCommmon(ref Bitmap Im)
         {
             try
             {
@@ -399,7 +435,7 @@ namespace ImageTextDeepLearning
                                 //draw linnes and free var to coninue
                                 e.DrawLines(Pens.Black, Po);
                                 nu = 0;
-                             }
+                            }
                         }
                     }
                 }
@@ -417,13 +453,13 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
+
         //Hollow an image
-        bool HollowCountreImageCommmon(ref Bitmap Img)
+        private bool HollowCountreImageCommmon(ref Bitmap Img)
         {
             try
             {
                 Bitmap Im = Img;
-                bool WidthChanged = false;
                 //create graphics for current image
                 Graphics e = Graphics.FromImage(Im);
                 //for all image width
@@ -432,7 +468,6 @@ namespace ImageTextDeepLearning
                 // {
                 for (int j = 0; j < Im.Width; j++)
                 {
-                    WidthChanged = true;
                     //found of tow orthogonal detinated points
                     Point[] Po = new Point[2];
                     int nu = 0;
@@ -512,8 +547,9 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
+
         //Create Conjuncted image
-        bool ConjunctedShapeCreate(MainForm d)
+        private bool ConjunctedShapeCreate(MainForm d)
         {
             All.Clear();
             Collection.Clear();
@@ -532,7 +568,9 @@ namespace ImageTextDeepLearning
                             break;
                         }
                         else
+                        {
                             flag = false;
+                        }
 
                         bool flag1 = false, flag2 = false;
                         //while
@@ -567,12 +605,15 @@ namespace ImageTextDeepLearning
                             flag2 = true;
                         }
                         if (flag2)
+                        {
                             All.Add(Collection);
+                        }
+
                         Collection = new List<Point[]>();
                     } while (true);
                 }
             }
-            catch (Exception t)
+            catch (Exception)
             {
                 return false;
             }

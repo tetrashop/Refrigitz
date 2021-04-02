@@ -29,24 +29,27 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
-        bool Resum = false;
-        Task tf = null;
-        bool DisablePaint = false;
+        private bool Resum = false;
+        private Task tf = null;
+        private bool DisablePaint = false;
         public static bool test = false;
         public static bool comeng = false;
         public static bool fontsel = false;
         public static Font selfont = null;
-        bool Recognized = false;
+        private bool Recognized = false;
+
         //Global vars
-        DetectionOfLitteral On = null;
+        private DetectionOfLitteral On = null;
+
         //#pragma warning disable CS0108 // 'FormImageTextDeepLearning.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
         //#pragma warning disable CS0108 // 'FormImageTextDeepLearning.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
-        int Width = 10, Height = 10;
+        private readonly int Width = 10, Height = 10;
+
         //#pragma warning restore CS0108 // 'FormImageTextDeepLearning.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
         //#pragma warning restore CS0108 // 'FormImageTextDeepLearning.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
-        List<ConjunctedShape> conShapes = new List<ConjunctedShape>();
-        SmallImageing t = null;
-        MainForm d = null;
+        private readonly List<ConjunctedShape> conShapes = new List<ConjunctedShape>();
+        private SmallImageing t = null;
+        private MainForm d = null;
         //Main Form constructor
         public FormImageTextDeepLearning()
         {
@@ -105,7 +108,9 @@ namespace ImageTextDeepLearning
                     MessageBox.Show("Splited!");
                 }
                 else
+                {
                     MessageBox.Show("Unsuccessfull splitation;");
+                }
             }
             else//when ready to conjunction
 if (buttonSplitationConjunction.Text == "Conjunction")
@@ -123,8 +128,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     MessageBox.Show("Conjuncted!");
                 }
                 else
+                {
                     MessageBox.Show("Unsuccessfull conjunction;");
-
+                }
             }
 
 
@@ -155,7 +161,8 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         {
 
         }
-        void Progress()
+
+        private void Progress()
         {
             /*  bool init = false;
               do
@@ -214,28 +221,30 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             PictureBoxImageTextDeepLearning.Refresh();
             CreateConSha.Visible = true;
         }
+
         //delegates on lables
-        delegate void CallRefLable();
+        private delegate void CallRefLable();
         public void RefCallSetLablr()
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
                 CallRefLable t = new CallRefLable(RefCallSetLablr);
 
-                this.Invoke(new Action(() => labelMonitor.Refresh()));
+                Invoke(new Action(() => labelMonitor.Refresh()));
 
             }
 
 
         }
-        delegate void CallSetLable(String Text);
-        public void SetCallSetLablr(String Text)
+
+        private delegate void CallSetLable(string Text);
+        public void SetCallSetLablr(string Text)
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
                 CallSetLable t = new CallSetLable(SetCallSetLablr);
 
-                this.Invoke(new Action(() => labelMonitor.Text = Text));
+                Invoke(new Action(() => labelMonitor.Text = Text));
 
             }
 
@@ -326,68 +335,71 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                                         Re = true;
                                     }
                                     e.Graphics.DrawRectangle(pen, sourceBoundingRect);
-                                    e.Graphics.DrawString(name, font, brush, new PointF((float)((point.X + 1) - (font.Height / 3)), (float)((point.Y + 1) - font.Height)));
-                                    e.Graphics.DrawString(name, font, brush2, new PointF((float)(point.X - (font.Height / 3)), (float)(point.Y - font.Height)));
+                                    e.Graphics.DrawString(name, font, brush, new PointF((point.X + 1) - (font.Height / 3), (point.Y + 1) - font.Height));
+                                    e.Graphics.DrawString(name, font, brush2, new PointF(point.X - (font.Height / 3), point.Y - font.Height));
                                 }
                             }
                         }
 
                     }
                     if (Re)
+                    {
                         Recognized = true;
+                    }
+
                     PictureBoxImageTextDeepLearning.Update();
                     PictureBoxImageTextDeepLearning.Refresh();
                 }
             }
             else
             {
-              /*  if (GraphS.Z != null)
-                {
-                    Bitmap s = new Bitmap(PictureBoxImageTextDeepLearning.Width, PictureBoxImageTextDeepLearning.Height);
-                    Graphics g = Graphics.FromImage(s);
-                    if (ContourAnalysisNS.GraphS.Z.A != null)
-                    {
-                        if (ContourAnalysisNS.GraphS.Z.A.Xv != null)
-                        {
-                            for (int i = 0; i < ContourAnalysisNS.GraphS.Z.A.Xv.Count; i++)
-                            {
+                /*  if (GraphS.Z != null)
+                  {
+                      Bitmap s = new Bitmap(PictureBoxImageTextDeepLearning.Width, PictureBoxImageTextDeepLearning.Height);
+                      Graphics g = Graphics.FromImage(s);
+                      if (ContourAnalysisNS.GraphS.Z.A != null)
+                      {
+                          if (ContourAnalysisNS.GraphS.Z.A.Xv != null)
+                          {
+                              for (int i = 0; i < ContourAnalysisNS.GraphS.Z.A.Xv.Count; i++)
+                              {
 
-                                g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Red), new PointF(ContourAnalysisNS.GraphS.Z.A.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.A.Xv[i].Y * 10));
+                                  g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Red), new PointF(ContourAnalysisNS.GraphS.Z.A.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.A.Xv[i].Y * 10));
 
-                            }
-                        }
-                    }
-                    if (ContourAnalysisNS.GraphS.Z.B != null)
-                    {
-                        if (ContourAnalysisNS.GraphS.Z.B.Xv != null)
-                        {
-                            for (int i = 0; i < ContourAnalysisNS.GraphS.Z.B.Xv.Count; i++)
-                            {
+                              }
+                          }
+                      }
+                      if (ContourAnalysisNS.GraphS.Z.B != null)
+                      {
+                          if (ContourAnalysisNS.GraphS.Z.B.Xv != null)
+                          {
+                              for (int i = 0; i < ContourAnalysisNS.GraphS.Z.B.Xv.Count; i++)
+                              {
 
-                                g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Blue), new PointF(ContourAnalysisNS.GraphS.Z.B.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.B.Xv[i].Y * 10));
+                                  g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Blue), new PointF(ContourAnalysisNS.GraphS.Z.B.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.B.Xv[i].Y * 10));
 
-                            }
-                        }
-                    }
-                    if (ContourAnalysisNS.GraphS.ZB != null)
-                    {
-                        if (ContourAnalysisNS.GraphS.ZB.Xv != null)
-                        {
-                            for (int i = 0; i < ContourAnalysisNS.GraphS.ZB.Xv.Count; i++)
-                            {
+                              }
+                          }
+                      }
+                      if (ContourAnalysisNS.GraphS.ZB != null)
+                      {
+                          if (ContourAnalysisNS.GraphS.ZB.Xv != null)
+                          {
+                              for (int i = 0; i < ContourAnalysisNS.GraphS.ZB.Xv.Count; i++)
+                              {
 
-                                g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Green), new PointF(ContourAnalysisNS.GraphS.ZB.Xv[i].X * 10, ContourAnalysisNS.GraphS.ZB.Xv[i].Y * 10));
+                                  g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Green), new PointF(ContourAnalysisNS.GraphS.ZB.Xv[i].X * 10, ContourAnalysisNS.GraphS.ZB.Xv[i].Y * 10));
 
-                            }
-                        }
-                    }
-                    g.Dispose();
-                    PictureBoxImageTextDeepLearning.BackgroundImage = s;
-                    PictureBoxImageTextDeepLearning.Refresh();
-                    PictureBoxImageTextDeepLearning.Update();
-                    Thread.Sleep(100);
-                    GraphS.Drawn = false;
-                }*/
+                              }
+                          }
+                      }
+                      g.Dispose();
+                      PictureBoxImageTextDeepLearning.BackgroundImage = s;
+                      PictureBoxImageTextDeepLearning.Refresh();
+                      PictureBoxImageTextDeepLearning.Update();
+                      Thread.Sleep(100);
+                      GraphS.Drawn = false;
+                  }*/
             }
         }
 
@@ -401,13 +413,18 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             if (d != null)
             {
                 if (checkBoxDisablePaintOnAligns.Checked)
+                {
                     d.DisablePaintOnAligns = true;
+                }
                 else
+                {
                     d.DisablePaintOnAligns = false;
+                }
             }
         }
+
         //main detection form
-        void CreateOneConShape()
+        private void CreateOneConShape()
         {
 
             //when cunsoming is ready
@@ -483,11 +500,12 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 }
             }
         }
-        void Draw()
+
+        private void Draw()
         {
             for (int i = 0; i < On.tt.AllImage.Count; i++)
             {
-                Object O = new Object();
+                object O = new object();
                 lock (O)
                 {
                     try
@@ -498,7 +516,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         PictureBoxTest.Update();
 
                     }
-                    catch (System.Exception t) { }
+                    catch (System.Exception) { }
                 }
             }
         }
@@ -603,10 +621,12 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     do { } while (!GraphS.Drawn);
                     PictureBoxImageTextDeepLearning.Invalidate();
                     PictureBoxImageTextDeepLearning.Refresh();
-                }catch(Exception t) { }
+                }
+                catch (Exception) { }
             } while (true);
         }
-        void c()
+
+        private void c()
         {
             int len = 0;
             do
@@ -618,7 +638,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         if (len != On.Detected.Count)
                         {
                             Resum = true;
-                            
+
                             Invoke((MethodInvoker)delegate ()
                             {
                                 textBoxImageTextDeepLearning.Text = "";
@@ -629,7 +649,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                                 }
                             });
                             len = On.Detected.Count;
-                           
+
                             Resum = false;
                         }
                     }
@@ -642,8 +662,8 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         private void CreateConSha_Click(object sender, EventArgs e)
         {
             //var H = Task.Factory.StartNew(() => c());
-            tf =  Task.Factory.StartNew(() =>CreateOneConShape());
-             tf.Wait();
+            tf = Task.Factory.StartNew(() => CreateOneConShape());
+            tf.Wait();
 
             DisablePaint = true;
             MessageBox.Show("Samples!");
@@ -658,9 +678,13 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
             }
             if (!test)
+            {
                 MessageBox.Show("part of References!");
+            }
             else
+            {
                 MessageBox.Show("References!");
+            }
 
             for (int i = 0; i < 3; i++)
             {

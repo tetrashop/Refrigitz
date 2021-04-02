@@ -7,22 +7,20 @@ using ContourAnalysisDemo;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ImageTextDeepLearning
 {
     //detection of literal class
-    class DetectionOfLitteral
+    internal class DetectionOfLitteral
     {
         //initiate global vars
-        int Width = 10, Heigh = 10;
-        double Threashold = 0.01;
+        private readonly int Width = 10, Heigh = 10;
+        private readonly double Threashold = 0.01;
         public AllKeyboardOfWorld t = null;
         public ConjunctedShape tt = null;
         //AllKeyLocation
-        public List<String> Detected = new List<String>();
-
-        MainForm dd = null;
+        public List<string> Detected = new List<string>();
+        private readonly MainForm dd = null;
         public AllKeyboardOfWorld ConjunctedShapeListRequired = null;
         //Constructor
         public DetectionOfLitteral(ref ImageTextDeepLearning.FormImageTextDeepLearning This, MainForm d)
@@ -63,29 +61,34 @@ namespace ImageTextDeepLearning
                 System.Windows.Forms.MessageBox.Show("Completed Detetcted " + Detected.Count);
             }
         }
-        
+
         //Detection main similarity method
-        int DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei)
+        private int DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei)
         {
             int Dif = 0;
             if (Wi != Hei)
+            {
                 Dif = 0;
+            }
+
             try
             {
                 // Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei)//* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
                 if ((new ContourAnalysisNS.GraphS(Key, Src, Wi, Hei)).GraphSameRikht(Key, Src, Wi, Hei))
+                {
                     Dif = Wi * Hei;
-                
+                }
             }
-            catch (Exception t) { return 0; }
+            catch (Exception) { return 0; }
             return Dif;
         }
-        bool IssampleallFalse(bool[,] A,int w,int h)
+
+        private bool IssampleallFalse(bool[,] A, int w, int h)
         {
             bool Is = true;
-            for(int i = 0; i < w; i++)
+            for (int i = 0; i < w; i++)
             {
-                for(int j = 0; j < h; j++)
+                for (int j = 0; j < h; j++)
                 {
                     Is = Is && (!(A[i, j]));
                 }
@@ -100,13 +103,11 @@ namespace ImageTextDeepLearning
                 //clear list and initate...
                 Detected.Clear();
 
-                bool Do = false;
-
                 //for evey conjuncted shape retrived matrix items
-                 for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
+                for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
 
                 {
-               
+
 
                     //initate
                     StringBuilder TempDetected = new StringBuilder();
@@ -119,26 +120,30 @@ namespace ImageTextDeepLearning
                     {
                         //retrive similarity value
                         if (!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
+                        {
                             KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
+                        }
                         else
                         {  //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Width);
                            //when is ready and proper
                            //if (System.Math.Abs(1- KeyDif ) < Threashold)
                             if (t.KeyboardAllStringsWithfont[k] != " ")
+                            {
                                 continue;
+                            }
                             else
                             {
                                 IndecCurrent = k;
                                 KeyDif = Width * Heigh;
                             }
-                           /* if (IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
-                            {
-                                if (t.KeyboardAllStringsWithfont[k] != " ")
-                                    continue;
-                            }
-                            else
-                              if (IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei))
-                                continue;*/
+                            /* if (IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
+                             {
+                                 if (t.KeyboardAllStringsWithfont[k] != " ")
+                                     continue;
+                             }
+                             else
+                               if (IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei))
+                                 continue;*/
                         }
                         if (KeyDif > KeyBoardDif)
                         {
@@ -154,8 +159,6 @@ namespace ImageTextDeepLearning
                     //when found
                     if (IndecCurrent > -1)
                     {
-                        //set items
-                        Do = true;
                         TempDetected.Append(t.KeyboardAllStringsWithfont[IndecCurrent]);
                         //Detected.Add(TempDetected.ToString());
                         Detected.Add(t.KeyboardAllStringsWithfont[IndecCurrent]);
@@ -167,7 +170,7 @@ namespace ImageTextDeepLearning
                 }
 
             }
-            catch (Exception t)
+            catch (Exception)
             {
                 //when exist exeption return unsuccessfull 
                 return false;

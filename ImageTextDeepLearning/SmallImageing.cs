@@ -11,7 +11,7 @@ using System.Drawing;
 namespace ImageTextDeepLearning
 {
     //Splitation and conjunction class
-    class SmallImageing
+    internal class SmallImageing
     {
         //Initiate global vars
         public int i = 0, j = 0;
@@ -53,7 +53,7 @@ namespace ImageTextDeepLearning
                         //Parallel.For(0, Root.Height, j =>
                         for (j = 0; j < Root.Height; j += PiceY)
                         {
-                            Object O = new Object();
+                            object O = new object();
                             lock (O)
                             {
                                 //create a image of picex and picey to an image
@@ -61,7 +61,7 @@ namespace ImageTextDeepLearning
                                 //increase
                                 index++;
                                 //write pices to an empty image
-                                var graphics = Graphics.FromImage(imgarray[imgarray.Count - 1]);
+                                Graphics graphics = Graphics.FromImage(imgarray[imgarray.Count - 1]);
                                 graphics.DrawImage(Root, new Rectangle(0, 0, PiceX, PiceY), new Rectangle(i, j, PiceX, PiceY), GraphicsUnit.Pixel);
                                 graphics.Dispose();
                                 //show image on main picture box
@@ -82,10 +82,12 @@ namespace ImageTextDeepLearning
                     Conjucted = false;
                 }
                 else//when is not ready return unssuccessfull
+                {
                     return false;
+                }
             }
-            catch (Exception t)
-            {                
+            catch (Exception)
+            {
                 //when is exeption return unsuccessfull
                 return false;
             }
@@ -109,11 +111,11 @@ namespace ImageTextDeepLearning
                     //Parallel.For(0, index, i =>
                     for (i = 0; i < index; i++)
                     {
-                        Object O = new Object();
+                        object O = new object();
                         lock (O)
                         {
                             //create graphics of main empty image
-                            var graphics = Graphics.FromImage(RootConjuction);
+                            Graphics graphics = Graphics.FromImage(RootConjuction);
                             //store index
                             int k = imgarrayindex[i][0];
                             int p = imgarrayindex[i][1];
@@ -137,9 +139,11 @@ namespace ImageTextDeepLearning
                     imgarray.Clear();
                 }
                 else//when is not ready return unsuccessfull
+                {
                     return false;
+                }
             }
-            catch (Exception t)
+            catch (Exception)
             {
                 //when there is an exeption return unsuccessfull
                 return false;

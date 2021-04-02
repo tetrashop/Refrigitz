@@ -11,8 +11,7 @@ namespace GalleryStudio
 {
     //clas for store in file
     [Serializable]
-
-    class AllKeyboardOfWorldMemmoty
+    internal class AllKeyboardOfWorldMemmoty
     {
 
         //initiate global vars
@@ -26,9 +25,9 @@ namespace GalleryStudio
 
 
         //async rewite on file
-        void RewriteAllDrawRec(BinaryFormatter Formatters, FileStream DummyFileStream)
+        private void RewriteAllDrawRec(BinaryFormatter Formatters, FileStream DummyFileStream)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 //when exist
@@ -43,9 +42,9 @@ namespace GalleryStudio
         }
 
         //write on disk main
-        public void RewriteAllKeyboardOfWorld(String SAllKeyboardOfWorld)
+        public void RewriteAllKeyboardOfWorld(string SAllKeyboardOfWorld)
         {
-            Object oo = new Object();
+            object oo = new object();
             lock (oo)
             {
                 //initiate and call
@@ -61,9 +60,9 @@ namespace GalleryStudio
         }
 
         //Load main
-        public AllKeyboardOfWorld Load(String SAllKeyboardOfWorld)
+        public AllKeyboardOfWorld Load(string SAllKeyboardOfWorld)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 //initiate and call
@@ -83,7 +82,7 @@ namespace GalleryStudio
         {
             //Local vars
             AllKeyboardOfWorld Dummy = null;
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 //begin

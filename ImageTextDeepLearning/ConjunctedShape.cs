@@ -531,9 +531,13 @@ namespace ImageTextDeepLearning
                             });
                             if (Is)
                             {
-                                Im.SetPixel(X, Y, Color.White);
-                                Img = Im;
-                                return false;
+                                object oo = new object();
+                                lock (oo)
+                                {
+                                    Im.SetPixel(X, Y, Color.White);
+                                    Img = Im;
+                                    return false;
+                                }
                             }
                         }
                     }

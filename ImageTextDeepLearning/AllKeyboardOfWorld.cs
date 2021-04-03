@@ -551,7 +551,9 @@ namespace ImageTextDeepLearning
                                 Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
 
                             });
-                            if (Is)
+
+                            object oo = new object();
+                            lock (oo)
                             {
                                 Im.SetPixel(X, Y, Color.White);
                                 Img = Im;

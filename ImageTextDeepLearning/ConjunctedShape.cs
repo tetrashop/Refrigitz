@@ -493,22 +493,25 @@ namespace ImageTextDeepLearning
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
                     return false;
                 bool Is = true;
-
-                if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                object o = new object();
+                lock (o)
                 {
-                    if (!(x == X && y == Y))
+                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
                     {
-                        if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                        if (!(x == X && y == Y))
                         {
-                            return true;
+                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            {
+                                return true;
+                            }
                         }
+                        Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y++, wi, he, X, Y);
+                        Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y--, wi, he, X, Y);
+                        Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y++, wi, he, X, Y);
+                        Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
+                        if (Is)
+                            Im.SetPixel(X, Y, Color.White);
                     }
-                    Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y++, wi, he, X, Y);
-                    Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y--, wi, he, X, Y);
-                    Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y++, wi, he, X, Y);
-                    Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
-                    if (Is)
-                        Im.SetPixel(X, Y, Color.White);
                 }
             }
             catch (Exception t)

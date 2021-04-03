@@ -670,7 +670,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             for (int i = 0; i < On.tt.AllImage.Count; i++)
             {
                 PictureBoxTest.BackgroundImage = (Image)On.tt.AllImage[i].Clone();
-                PictureBoxTest.BackgroundImageLayout = ImageLayout.Stretch;
+                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
                 PictureBoxTest.Refresh();
                 PictureBoxTest.Update();
                 MessageBox.Show("Next!");
@@ -686,10 +686,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 MessageBox.Show("References!");
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 PictureBoxTest.BackgroundImage = (Image)On.t.KeyboardAllImage[i].Clone();
-                PictureBoxTest.BackgroundImageLayout = ImageLayout.Stretch;
+                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
                 PictureBoxTest.Refresh();
                 PictureBoxTest.Update();
                 MessageBox.Show("Next!");

@@ -146,7 +146,7 @@ namespace ImageTextDeepLearning
                 for (int k = 0; k < Im.Height; k++)
                 {
 
-                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Mi = j;
                         break;
@@ -170,7 +170,7 @@ namespace ImageTextDeepLearning
                 for (int j = 0; j < Im.Width; j++)
                 {
 
-                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Mi = k;
                         break;
@@ -194,7 +194,7 @@ namespace ImageTextDeepLearning
                 for (int j = 0; j < Im.Width; j++)
                 {
 
-                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Ma = k;
                         break;
@@ -218,7 +218,7 @@ namespace ImageTextDeepLearning
                 for (int k = Im.Height - 1; k >= 0; k--)
                 {
 
-                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Ma = j;
                         break;
@@ -270,9 +270,19 @@ namespace ImageTextDeepLearning
                             //initate new root image empty
 
                             PointF[] tec = new PointF[Tem.Length];
-                            for (int o = 0; o < Tem.Length; o++)
+                            if ((MaX - MiX) < (MaY - MiY))
                             {
-                                tec[o] = new PointF((Width * (Tem[o].X - MiX) / (float)(MaX - MiX)), Height * (Tem[o].Y - MiY) / (float)(MaY - MiY));
+                                for (int o = 0; o < Tem.Length; o++)
+                                {
+                                    tec[o] = new PointF((Width * (Tem[o].X - MiX) / (float)(MaY - MiY)), Height * (Tem[o].Y - MiY) / (float)(MaY - MiY));
+                                }
+                            }
+                            else
+                            {
+                                for (int o = 0; o < Tem.Length; o++)
+                                {
+                                    tec[o] = new PointF((Width * (Tem[o].X - MiX) / (float)(MaX - MiX)), Height * (Tem[o].Y - MiY) / (float)(MaX - MiX));
+                                }
                             }
                             //draw all points
                             Bitmap Temp = new Bitmap(Width, Height);
@@ -280,7 +290,7 @@ namespace ImageTextDeepLearning
                             //Draw fill white image
                             Graphics e = Graphics.FromImage(Temp);
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
-                            e.DrawClosedCurve(new Pen(Brushes.Black), tec
+                            e.DrawLines(new Pen(Color.Black), tec
                                 );
                             //, System.Drawing.Drawing2D.FillMode.Alternate
                             e.Dispose();
@@ -362,7 +372,7 @@ namespace ImageTextDeepLearning
                             //first
                             if (nu == 0)
                             {
-                                if (!(Im[i].GetPixel(j, k).A == 255 && Im[i].GetPixel(j, k).R == 255 && Im[i].GetPixel(j, k).B == 255 && Im[i].GetPixel(j, k).G == 255))
+                                if ((Im[i].GetPixel(j, k).ToArgb()==Color.Black.ToArgb()))
                                 {
                                     Po[0] = new PointF(j, k);
                                     nu++;
@@ -371,7 +381,7 @@ namespace ImageTextDeepLearning
                             else//second
                             if (nu == 1)
                             {
-                                if (!(Im[i].GetPixel(j, k).A == 255 && Im[i].GetPixel(j, k).R == 255 && Im[i].GetPixel(j, k).B == 255 && Im[i].GetPixel(j, k).G == 255))
+                                if ((Im[i].GetPixel(j, k).ToArgb()==Color.Black.ToArgb()))
                                 {
                                     Po[1] = new PointF(j, k);
                                     nu++;
@@ -418,7 +428,7 @@ namespace ImageTextDeepLearning
                         //first
                         if (nu == 0)
                         {
-                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                             {
                                 Po[0] = new Point(j, k);
                                 nu++;
@@ -427,7 +437,7 @@ namespace ImageTextDeepLearning
                         else//second
                         if (nu == 1)
                         {
-                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                             {
                                 Po[1] = new Point(j, k);
                                 nu++;
@@ -477,11 +487,16 @@ namespace ImageTextDeepLearning
 
                         if (nu == 0)
                         {
-                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            if (k + 1 < Im.Height)
                             {
-                                Po[0] = new Point(j, k);
-                                nu++;
-
+                                if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                                {
+                                    if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
+                                    {
+                                        Po[0] = new Point(j, k);
+                                        nu++;
+                                    }
+                                }
                             }
                         }
                         else//second
@@ -490,11 +505,11 @@ namespace ImageTextDeepLearning
                             if (k - 1 >= 0 && k + 1 < Im.Height)
                             {
 
-                                if ((Im.GetPixel(j, k - 1).A == 255 || Im.GetPixel(j, k - 1).R == 255 || Im.GetPixel(j, k - 1).B == 255 || Im.GetPixel(j, k - 1).G == 255))
+                                if (!(Im.GetPixel(j, k - 1).ToArgb()==0))
                                 {
-                                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                                     {
-                                        if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
+                                        if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
                                         {
                                             Po[1] = new Point(j, k);
                                             nu++;
@@ -505,24 +520,27 @@ namespace ImageTextDeepLearning
                                     }
                                 }
                                 else
-                                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                               if (k + 1 < Im.Height)
                                 {
-                                    if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
+                                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                                     {
-                                        Po[1] = new Point(j, k);
-                                        nu++;
-                                        //draw linnes and free var to coninue
-                                        e.DrawLines(Pens.White, Po);
-                                        nu = 0;
+                                        if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
+                                        {
+                                            Po[1] = new Point(j, k);
+                                            nu++;
+                                            //draw linnes and free var to coninue
+                                            e.DrawLines(Pens.White, Po);
+                                            nu = 0;
+                                        }
                                     }
                                 }
                             }
                             else
                            if (k + 1 < Im.Height)
                             {
-                                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                                if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                                 {
-                                    if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
+                                    if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
                                     {
                                         Po[1] = new Point(j, k);
                                         nu++;

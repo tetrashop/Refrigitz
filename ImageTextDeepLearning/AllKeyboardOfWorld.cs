@@ -259,7 +259,9 @@ namespace ImageTextDeepLearning
             using (Graphics gph = Graphics.FromImage(bmp))
             {
                 gph.DrawImage(img, new Rectangle(0, 0, Width, Height), new Rectangle(X, Y, XX, YY), GraphicsUnit.Pixel);
+                gph.Dispose();
             }
+            
             return bmp;
         }
 
@@ -272,7 +274,7 @@ namespace ImageTextDeepLearning
                 for (int k = 0; k < Im.Height; k++)
                 {
 
-                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Mi = j;
                         break;
@@ -296,7 +298,7 @@ namespace ImageTextDeepLearning
                 for (int j = 0; j < Im.Width; j++)
                 {
 
-                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Mi = k;
                         break;
@@ -320,7 +322,7 @@ namespace ImageTextDeepLearning
                 for (int j = 0; j < Im.Width; j++)
                 {
 
-                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Ma = k;
                         break;
@@ -347,10 +349,10 @@ namespace ImageTextDeepLearning
                 //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Height - 1, 0, k =>
 
                 // {
-                for (int k = Im.Height - 1; k >= 0; k--)
+                for (int k = 0; k < Im.Height; k++)
                 {
 
-                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Ma = j;
                         break;
@@ -392,7 +394,7 @@ namespace ImageTextDeepLearning
                             //first
                             if (nu == 0)
                             {
-                                if (!(Im[i].GetPixel(j, k).A == 255 && Im[i].GetPixel(j, k).R == 255 && Im[i].GetPixel(j, k).B == 255 && Im[i].GetPixel(j, k).G == 255))
+                                if ((Im[i].GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                                 {
                                     Po[0] = new PointF(j, k);
                                     nu++;
@@ -401,7 +403,7 @@ namespace ImageTextDeepLearning
                             else//second
                             if (nu == 1)
                             {
-                                if (!(Im[i].GetPixel(j, k).A == 255 && Im[i].GetPixel(j, k).R == 255 && Im[i].GetPixel(j, k).B == 255 && Im[i].GetPixel(j, k).G == 255))
+                                if ((Im[i].GetPixel(j, k).ToArgb()==Color.Black.ToArgb()))
                                 {
                                     Po[1] = new PointF(j, k);
                                     nu++;
@@ -448,7 +450,7 @@ namespace ImageTextDeepLearning
                         //first
                         if (nu == 0)
                         {
-                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                             {
                                 Po[0] = new Point(j, k);
                                 nu++;
@@ -457,7 +459,7 @@ namespace ImageTextDeepLearning
                         else//second
                         if (nu == 1)
                         {
-                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                             {
                                 Po[1] = new Point(j, k);
                                 nu++;
@@ -507,11 +509,16 @@ namespace ImageTextDeepLearning
 
                         if (nu == 0)
                         {
-                            if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                            if (k + 1 < Im.Height)
                             {
-                                Po[0] = new Point(j, k);
-                                nu++;
-
+                                if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                                {
+                                    if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
+                                    {
+                                        Po[0] = new Point(j, k);
+                                        nu++;
+                                    }
+                                }
                             }
                         }
                         else//second
@@ -520,11 +527,11 @@ namespace ImageTextDeepLearning
                             if (k - 1 >= 0 && k + 1 < Im.Height)
                             {
 
-                                if ((Im.GetPixel(j, k - 1).A == 255 || Im.GetPixel(j, k - 1).R == 255 || Im.GetPixel(j, k - 1).B == 255 || Im.GetPixel(j, k - 1).G == 255))
+                                if (!(Im.GetPixel(j, k - 1).ToArgb() == Color.Black.ToArgb()))
                                 {
-                                    if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                                     {
-                                        if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
+                                        if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
                                         {
                                             Po[1] = new Point(j, k);
                                             nu++;
@@ -535,24 +542,27 @@ namespace ImageTextDeepLearning
                                     }
                                 }
                                 else
-                                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                                if (k + 1 < Im.Height)
                                 {
-                                    if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
+                                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                                     {
-                                        Po[1] = new Point(j, k);
-                                        nu++;
-                                        //draw linnes and free var to coninue
-                                        e.DrawLines(Pens.White, Po);
-                                        nu = 0;
+                                        if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
+                                        {
+                                            Po[1] = new Point(j, k);
+                                            nu++;
+                                            //draw linnes and free var to coninue
+                                            e.DrawLines(Pens.White, Po);
+                                            nu = 0;
+                                        }
                                     }
                                 }
                             }
                             else
                            if (k + 1 < Im.Height)
                             {
-                                if (!(Im.GetPixel(j, k).A == 255 && Im.GetPixel(j, k).R == 255 && Im.GetPixel(j, k).B == 255 && Im.GetPixel(j, k).G == 255))
+                                if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                                 {
-                                    if (!(Im.GetPixel(j, k + 1).A == 255 && Im.GetPixel(j, k + 1).R == 255 && Im.GetPixel(j, k + 1).B == 255 && Im.GetPixel(j, k + 1).G == 255))
+                                    if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
                                     {
                                         Po[1] = new Point(j, k);
                                         nu++;
@@ -632,14 +642,10 @@ namespace ImageTextDeepLearning
                                 //Draw fill white image
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
 
-                                StringFormat stringFormat = new StringFormat
-                                {
-                                    Alignment = StringAlignment.Center,
-                                    LineAlignment = StringAlignment.Center
-                                };
+                                
                                 //draw string
-                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
-                                                                                      , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
+                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1))),(float)((Width + Height))
+                                                                                      , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100));
 
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
@@ -648,14 +654,29 @@ namespace ImageTextDeepLearning
                                 int Mx = MxM * 2;
                                 int My = MyM * 2;
                                 Bitmap Te = null;
-                                if (MiX < MaX && MiY < MaY)
+                                if ((MaX - MiX) < (MaY - MiY))
                                 {
-                                    //crop to proper space
-                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
+                                    if (MiX < MaX && MiY < MaY)
+                                    {
+                                        //crop to proper space
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                    }
+                                    else
+                                    {
+                                        Te = Temp;
+                                    }
                                 }
                                 else
                                 {
-                                    Te = Temp;
+                                    if (MiX < MaX && MiY < MaY)
+                                    {
+                                        //crop to proper space
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                    }
+                                    else
+                                    {
+                                        Te = Temp;
+                                    }
                                 }
 
                                 e.Dispose();
@@ -664,7 +685,8 @@ namespace ImageTextDeepLearning
                                 {
                                     MessageBox.Show("Hollowed Fatal Error");
                                     return false;
-                                }  //Add
+                                }
+                                //Add
                                 //KeyboardAllImage.Add(Te);
                                 //create proper conjunction matrix
                                 bool[,] Tem = new bool[Width, Height];
@@ -673,7 +695,7 @@ namespace ImageTextDeepLearning
                                     for (int p = 0; p < Height; p++)
                                     {
                                         // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
-                                        if (!(Te.GetPixel(k, p).A == 255 && Te.GetPixel(k, p).R == 255 && Te.GetPixel(k, p).B == 255 && Te.GetPixel(k, p).G == 255))
+                                        if (!(Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                         {
                                             Tem[k, p] = true;
                                         }
@@ -701,14 +723,10 @@ namespace ImageTextDeepLearning
 
                             //Draw fill white image
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
-                            StringFormat stringFormat = new StringFormat
-                            {
-                                Alignment = StringAlignment.Center,
-                                LineAlignment = StringAlignment.Center
-                            };
+                            
                             //draw string
-                            e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))), 1F * (float)(Math.Sqrt(Width * Height) * 0.5)
-                                                                                  , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100), stringFormat);
+                            e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))),  (float)((Width + Height))
+                                                                                  , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100));
                             
                             //retrive min and max of tow X and Y
                             int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
@@ -717,14 +735,29 @@ namespace ImageTextDeepLearning
                             int Mx = MxM * 2;
                             int My = MyM * 2;
                             Bitmap Te = null;
-                            if (MiX < MaX && MiY < MaY)
+                            if ((MaX - MiX) < (MaY - MiY))
                             {
-                                //crop to proper space
-                                Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaY - MiY));
+                                if (MiX < MaX && MiY < MaY)
+                                {
+                                    //crop to proper space
+                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                }
+                                else
+                                {
+                                    Te = Temp;
+                                }
                             }
                             else
                             {
-                                Te = Temp;
+                                if (MiX < MaX && MiY < MaY)
+                                {
+                                    //crop to proper space
+                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                }
+                                else
+                                {
+                                    Te = Temp;
+                                }
                             }
                             e.Dispose();
                             Do = HollowCountreImageCommmon(ref Te);
@@ -732,7 +765,8 @@ namespace ImageTextDeepLearning
                             {
                                 MessageBox.Show("Hollowed Fatal Error");
                                 return false;
-                            } //Add
+                            }
+                            //Add
                             //KeyboardAllImage.Add(Te);
                             //create proper conjunction matrix
                             bool[,] Tem = new bool[Width, Height];
@@ -741,7 +775,7 @@ namespace ImageTextDeepLearning
                                 for (int p = 0; p < Height; p++)
                                 {
                                     // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
-                                    if (!(Te.GetPixel(k, p).A == 255 && Te.GetPixel(k, p).R == 255 && Te.GetPixel(k, p).B == 255 && Te.GetPixel(k, p).G == 255))
+                                    if (!(Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                     {
                                         Tem[k, p] = true;
                                     }
@@ -815,7 +849,7 @@ namespace ImageTextDeepLearning
                             {
                                 //assigne proper matrix
                                 //Tem[k, p] = Temp[i].GetPixel(k, p).ToArgb();
-                                if (!(Temp[i].GetPixel(k, p).A == 255 && Temp[i].GetPixel(k, p).R == 255 && Temp[i].GetPixel(k, p).B == 255 && Temp[i].GetPixel(k, p).G == 255))
+                                if (!(Temp[i].GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                 {
                                     Tem[k, p] = true;
                                 }

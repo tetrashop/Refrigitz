@@ -486,97 +486,50 @@ namespace ImageTextDeepLearning
         }
 
         //Hollow an image
-        private bool HollowCountreImageCommmon(ref Bitmap Img)
+        private bool HollowCountreImageCommmon(ref Bitmap Im)
         {
             try
             {
-                Bitmap Im = Img;
-                //create graphics for current image
-                Graphics e = Graphics.FromImage(Im);
-                //for all image width
-                //ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im.Width, j =>
-
-                // {
-                for (int j = 0; j < Im.Width; j++)
+                for (int x = 0; x < Im.Width; x++)
                 {
-                    //found of tow orthogonal detinated points
-                    Point[] Po = new Point[2];
-                    int nu = 0;
-
-                    for (int k = 0; k < Im.Height; k++)
+                    for (int y = 0; y < Im.Height; y++)
                     {
-                        //first
-
-                        if (nu == 0)
-                        {
-                            if (k + 1 < Im.Height)
-                            {
-                                if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
-                                {
-                                    if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
-                                    {
-                                        Po[0] = new Point(j, k);
-                                        nu++;
-                                    }
-                                }
-                            }
-                        }
-                        else//second
-                    if (nu == 1)
-                        {
-                            if (k - 1 >= 0 && k + 1 < Im.Height)
-                            {
-
-                                if (!(Im.GetPixel(j, k - 1).ToArgb() == Color.Black.ToArgb()))
-                                {
-                                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
-                                    {
-                                        if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
-                                        {
-                                            Po[1] = new Point(j, k);
-                                            nu++;
-                                            //draw linnes and free var to coninue
-                                            e.DrawLines(Pens.White, Po);
-                                            nu = 0;
-                                        }
-                                    }
-                                }
-                                else
-                                if (k + 1 < Im.Height)
-                                {
-                                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
-                                    {
-                                        if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
-                                        {
-                                            Po[1] = new Point(j, k);
-                                            nu++;
-                                            //draw linnes and free var to coninue
-                                            e.DrawLines(Pens.White, Po);
-                                            nu = 0;
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                           if (k + 1 < Im.Height)
-                            {
-                                if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
-                                {
-                                    if ((Im.GetPixel(j, k + 1).ToArgb() == Color.Black.ToArgb()))
-                                    {
-                                        Po[1] = new Point(j, k);
-                                        nu++;
-                                        //draw linnes and free var to coninue
-                                        e.DrawLines(Pens.White, Po);
-                                        nu = 0;
-                                    }
-                                }
-
-                            }
-                        }
+                        HollowCountreImageCommmonXY(ref Im, x, y, Width, Height, x, y);
                     }
-                }//);
-                Img = Im;
+
+                }
+            }
+            catch (Exception t)
+            {
+                MessageBox.Show(t.ToString());
+
+                return false;
+            }
+            return true;
+        }
+
+        private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y)
+        {
+            try
+            {
+                if (!(x >= 0 && y >= 0 && x < wi && y < he))
+                    return false;
+                bool Is = true;
+                if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                {
+
+                    if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                    {
+                        return true;
+                    }
+
+                    Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y++, wi, he, X, Y);
+                    Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y--, wi, he, X, Y);
+                    Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y++, wi, he, X, Y);
+                    Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
+                    if (Is)
+                        Im.SetPixel(X, Y, Color.White);
+                }
             }
             catch (Exception t)
             {

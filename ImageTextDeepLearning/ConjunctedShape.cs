@@ -515,29 +515,27 @@ namespace ImageTextDeepLearning
                                 MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                             }; Parallel.Invoke(() =>
                             {
-                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y++, wi, he, X, Y);
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y, wi, he, X, Y);
                             }, () =>
                             {
-                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y--, wi, he, X, Y);
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y, wi, he, X, Y);
 
                             }, () =>
                             {
-                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y++, wi, he, X, Y);
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x, y++, wi, he, X, Y);
 
                             }, () =>
                             {
-                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x, y--, wi, he, X, Y);
 
                             });
-                            if (Is)
+
+                            object oo = new object();
+                            lock (oo)
                             {
-                                object oo = new object();
-                                lock (oo)
-                                {
-                                    Im.SetPixel(X, Y, Color.White);
-                                    Img = Im;
-                                    return false;
-                                }
+                                Im.SetPixel(X, Y, Color.White);
+                                Img = Im;
+                                return false;
                             }
                         }
                     }

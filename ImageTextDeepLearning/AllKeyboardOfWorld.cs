@@ -537,18 +537,18 @@ namespace ImageTextDeepLearning
                                 MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                             }; Parallel.Invoke(() =>
                             {
-                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y++, wi, he, X, Y);
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y, wi, he, X, Y);
                             }, () =>
                             {
-                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y--, wi, he, X, Y);
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y, wi, he, X, Y);
 
                             }, () =>
                             {
-                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y++, wi, he, X, Y);
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x, y++, wi, he, X, Y);
 
                             }, () =>
                             {
-                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
+                                Is = Is && HollowCountreImageCommmonXY(ref Im,x, y--, wi, he, X, Y);
 
                             });
 

@@ -13,6 +13,7 @@ using Emgu.CV;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ImageTextDeepLearning
@@ -486,8 +487,10 @@ namespace ImageTextDeepLearning
             return true;
         }
 
-        private bool HollowCountreImageCommmonXY(ref Bitmap Im,int x,int y,int wi,int he,int X,int Y)
+        private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y)
         {
+            Bitmap Im = Img;
+
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -505,21 +508,47 @@ namespace ImageTextDeepLearning
                                 return true;
                             }
                         }
-                        Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y++, wi, he, X, Y);
-                        Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y--, wi, he, X, Y);
-                        Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y++, wi, he, X, Y);
-                        Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
-                        if (Is)
-                            Im.SetPixel(X, Y, Color.White);
+                        else
+                        {
+                            ParallelOptions po = new ParallelOptions
+                            {
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.Invoke(() =>
+                            {
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y++, wi, he, X, Y);
+                            }, () =>
+                            {
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y--, wi, he, X, Y);
+
+                            }, () =>
+                            {
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y++, wi, he, X, Y);
+
+                            }, () =>
+                            {
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
+
+                            });
+                            if (Is)
+                            {
+                                Im.SetPixel(X, Y, Color.White);
+                                Img = Im;
+                                return false;
+                            }
+                        }
                     }
                 }
             }
             catch (Exception t)
             {
+                Img = Im;
+
                 MessageBox.Show(t.ToString());
 
                 return false;
             }
+            Img = Im;
+
             return true;
         }
 

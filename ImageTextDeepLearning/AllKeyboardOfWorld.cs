@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace ImageTextDeepLearning
 {
@@ -508,35 +509,68 @@ namespace ImageTextDeepLearning
             return true;
         }
 
-        private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y)
+        private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y)
         {
+            Bitmap Im = Img;
+
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
                     return false;
-                bool Is = true;
-                if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                 bool Is = true;
+                object o = new object();
+                lock (o)
                 {
-
-                    if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
                     {
-                        return true;
-                    }
+                        if (!(x == X && y == Y))
+                        {
+                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            ParallelOptions po = new ParallelOptions
+                            {
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.Invoke(() =>
+                            {
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y++, wi, he, X, Y);
+                            }, () =>
+                            {
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y--, wi, he, X, Y);
 
-                    Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y++, wi, he, X, Y);
-                    Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y--, wi, he, X, Y);
-                    Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y++, wi, he, X, Y);
-                    Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
-                    if (Is)
-                        Im.SetPixel(X, Y, Color.White);
+                            }, () =>
+                            {
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y++, wi, he, X, Y);
+
+                            }, () =>
+                            {
+                                Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y--, wi, he, X, Y);
+
+                            });
+                            if (Is)
+                            {
+                                Im.SetPixel(X, Y, Color.White);
+                                Img = Im;
+                                return false;
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception t)
             {
+                Img = Im;
+
                 MessageBox.Show(t.ToString());
 
                 return false;
             }
+            Img = Im;
+
             return true;
         }
         //store all strings list to proper  images themselves list

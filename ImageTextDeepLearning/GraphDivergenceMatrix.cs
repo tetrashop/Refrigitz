@@ -61,7 +61,9 @@ namespace ContourAnalysisNS
                 return false;
             }
             if (Z.A.numberOfClosedCurved == Z.B.numberOfClosedCurved)
+            {
                 return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+            }
             return false;
         }
 
@@ -206,6 +208,7 @@ namespace ContourAnalysisNS
         public void CreateClosedCurved()
         {
             bool IsNext = false;
+            int noIsNext = 0;
             do
             {
                 IsNext = false;
@@ -245,7 +248,21 @@ namespace ContourAnalysisNS
                     }
                 }
                 IsClosedCurved.Add(IsNext);
-            } while (NoCloCur() != Xv.Count);
+
+                if (!IsNext)
+                {
+                    for (int h = 0; h < IsClosedCurved.Count; h++)
+                    {
+                        if (!IsClosedCurved[h])
+                        {
+                            IsClosedCurved.RemoveAt(h);
+                            ClosedCurved.RemoveAt(h);
+                        }
+                    }
+                    noIsNext++;
+                }
+
+            } while (NoCloCur() != Xv.Count && noIsNext < Xv.Count);
          }
 
         public bool ExistV(int x1, int y1, int x2, int y2)

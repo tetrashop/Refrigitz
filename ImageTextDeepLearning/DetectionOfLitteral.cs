@@ -78,10 +78,10 @@ namespace ImageTextDeepLearning
                 {
                     Dif = Wi * Hei;
                 }
-                //(new FormImageTextDeepLearning()).GraphsDrawn();
+                //(new FormImageTextDeepLearning()).GraphsDrawn(ContourAnalysisNS.GraphS.Z.A, ContourAnalysisNS.GraphS.Z.B);
                 //MessageBox.Show("Next!");
             }
-            catch (Exception) { return 0; }
+            catch (Exception t) { MessageBox.Show(t.ToString()); return 0; }
             return Dif;
         }
 

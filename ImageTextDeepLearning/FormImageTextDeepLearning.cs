@@ -402,55 +402,62 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                   }*/
             }
         }
-        public void GraphsDrawn()
+        public void GraphsDrawn(GraphDivergenceMatrix A, GraphDivergenceMatrix B)
         {
-
-            if (GraphS.Z != null)
+            Bitmap ss = new Bitmap(PictureBoxImageTextDeepLearning.Width, PictureBoxImageTextDeepLearning.Height);
+            PictureBoxImageTextDeepLearning.BackgroundImage = ss;
+            Graphics g = Graphics.FromImage(PictureBoxImageTextDeepLearning.BackgroundImage);
+            if (A != null)
             {
-                Bitmap s = new Bitmap(PictureBoxImageTextDeepLearning.Width, PictureBoxImageTextDeepLearning.Height);
-                Graphics g = Graphics.FromImage(s);
-                if (ContourAnalysisNS.GraphS.Z.A != null)
+                if (A.Xv != null)
                 {
-                    if (ContourAnalysisNS.GraphS.Z.A.Xv != null)
+                    for (int i = 0; i < A.Xv.Count; i++)
                     {
-                        for (int i = 0; i < ContourAnalysisNS.GraphS.Z.A.Xv.Count; i++)
+                        g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Red), new PointF(A.Xv[i].X * 10, A.Xv[i].Y * 10));
+
+                        for (int j = 0; j < A.Xv.Count; j++)
                         {
 
-                            g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Red), new PointF(ContourAnalysisNS.GraphS.Z.A.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.A.Xv[i].Y * 10));
+                            if (A.d(A.Xv[i], A.Xv[j]) != null)
+                                g.DrawLine(new Pen(Color.Red), new Point(A.Xv[i].X * 10, A.Xv[i].Y * 10), new Point(A.Xv[j].X * 10, A.Xv[j].Y * 10));
 
                         }
                     }
                 }
-                if (ContourAnalysisNS.GraphS.Z.B != null)
-                {
-                    if (ContourAnalysisNS.GraphS.Z.B.Xv != null)
-                    {
-                        for (int i = 0; i < ContourAnalysisNS.GraphS.Z.B.Xv.Count; i++)
-                        {
-
-                            g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Blue), new PointF(ContourAnalysisNS.GraphS.Z.B.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.B.Xv[i].Y * 10));
-
-                        }
-                    }
-                }
-                if (ContourAnalysisNS.GraphS.ZB != null)
-                {
-                    if (ContourAnalysisNS.GraphS.ZB.Xv != null)
-                    {
-                        for (int i = 0; i < ContourAnalysisNS.GraphS.ZB.Xv.Count; i++)
-                        {
-
-                            g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Green), new PointF(ContourAnalysisNS.GraphS.ZB.Xv[i].X * 10, ContourAnalysisNS.GraphS.ZB.Xv[i].Y * 10));
-
-                        }
-                    }
-                }
-                g.Dispose();
-                PictureBoxImageTextDeepLearning.BackgroundImage = s;
-                PictureBoxImageTextDeepLearning.Refresh();
-                PictureBoxImageTextDeepLearning.Update();
-                GraphS.Drawn = false;
             }
+            if (B != null)
+            {
+                if (B.Xv != null)
+                {
+                    for (int i = 0; i < B.Xv.Count; i++)
+                    {
+                        g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Blue), new PointF(B.Xv[i].X * 10, B.Xv[i].Y * 10));
+
+                        for (int j = 0; j < B.Xv.Count; j++)
+                        {
+
+                            if (B.d(B.Xv[i], B.Xv[j]) != null)
+                                g.DrawLine(new Pen(Color.Blue), new Point(B.Xv[i].X * 10, B.Xv[i].Y * 10), new Point(B.Xv[j].X * 10, B.Xv[j].Y * 10));
+
+                        }
+                    }
+                }
+            }
+            /*if (ContourAnalysisNS.GraphS.ZB != null)
+            {
+                if (ContourAnalysisNS.GraphS.ZB.Xv != null)
+                {
+                    for (int i = 0; i < ContourAnalysisNS.GraphS.ZB.Xv.Count; i++)
+                    {
+
+                        g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Green), new PointF(ContourAnalysisNS.GraphS.ZB.Xv[i].X * 10, ContourAnalysisNS.GraphS.ZB.Xv[i].Y * 10));
+
+                    }
+                }
+            }*/
+            g.Dispose();
+            PictureBoxImageTextDeepLearning.Refresh();
+            PictureBoxImageTextDeepLearning.Update();
         }
         private void PictureBoxImageTextDeepLearning_Click(object sender, EventArgs e)
         {

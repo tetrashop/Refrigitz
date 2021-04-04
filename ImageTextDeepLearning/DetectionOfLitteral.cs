@@ -124,7 +124,7 @@ namespace ImageTextDeepLearning
                         if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)) && (!IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei)))
                         {
                             KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei,Ach);
-                            Ach = false;
+                            Ach = true;
                         }
                         else
                             if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)))

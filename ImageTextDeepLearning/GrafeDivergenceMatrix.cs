@@ -105,6 +105,7 @@ namespace ContourAnalysisNS
     }
     public class GraphDivergenceMatrix
     {
+        float MaxWe = 4;
         public List<Vertex> Xv = new List<Vertex>();
         public List<Line> Xl = new List<Line>();
         public int N, M;
@@ -127,12 +128,15 @@ namespace ContourAnalysisNS
                     object hh = new object();
                     lock (hh)
                     {
-                        if (Xv[i].X == x1 && Xv[i].Y == y1 && Xv[j].X == x2 && Xv[j].Y == y2)
+                        if (i >= Xv.Count)
+                            return;
+
+                        if (Xv[i].X == x1 && Xv[i].Y == y1 && Xv[j].X == x2 && Xv[j].Y == y2 && i < Xv.Count)
                         {
                             Is = true;
                         }
 
-                        if (Xv[j].X == x1 && Xv[j].Y == y1 && Xv[i].X == x2 && Xv[i].Y == y2)
+                        if (Xv[j].X == x1 && Xv[j].Y == y1 && Xv[i].X == x2 && Xv[i].Y == y2 && i < Xv.Count)
                         {
                             Is = true;
                         }
@@ -222,7 +226,7 @@ namespace ContourAnalysisNS
                                     return;
                                 if (i >= Xv.Count)
                                     return;
-                                if ((!(Xv[k].X > Xv[i].X && Xv[k].X > Xv[i].X))&& k >= Xv.Count&& i >= Xv.Count)
+                                if ((!(Xv[k].X > Xv[i].X && Xv[k].X > Xv[i].X))|| k >= Xv.Count|| i >= Xv.Count)
                                 {
                                     return;
                                 }
@@ -296,7 +300,7 @@ namespace ContourAnalysisNS
                                     return;
                                 if (i >= Xv.Count)
                                     return;
-                                if ((!(Xv[k].Y > Xv[i].Y && Xv[k].Y > Xv[i].X)) && k >= Xv.Count && i >= Xv.Count)
+                                if ((!(Xv[k].Y > Xv[i].Y && Xv[k].Y > Xv[i].X)) || k >= Xv.Count || i >= Xv.Count)
                                 {
                                     return;
                                 }
@@ -373,7 +377,7 @@ namespace ContourAnalysisNS
                                     return;
                                 if (i >= Xv.Count)
                                     return;
-                                if ((!(Xv[k].X < Xv[i].X && Xv[k].X < Xv[i].X)) && k >= Xv.Count && i >= Xv.Count)
+                                if ((!(Xv[k].X < Xv[i].X && Xv[k].X < Xv[i].X)) || k >= Xv.Count || i >= Xv.Count)
                                 {
                                     return;
                                 }
@@ -449,7 +453,7 @@ namespace ContourAnalysisNS
                                     return;
                                 if (i >= Xv.Count)
                                     return;
-                                if ((!(Xv[k].Y < Xv[i].Y && Xv[k].Y < Xv[i].Y)) && k >= Xv.Count && i >= Xv.Count)
+                                if ((!(Xv[k].Y < Xv[i].Y && Xv[k].Y < Xv[i].Y)) || k >= Xv.Count || i >= Xv.Count)
                                 {
                                     return;
                                 }
@@ -753,7 +757,10 @@ namespace ContourAnalysisNS
                                     }
                                     if (!ExistL(i, j, k, p))
                                     {
-                                        Xl.Add(new Line((float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                        if (we > MaxWe)
+                                            return;
+                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                     }
                                 }
                             }
@@ -816,8 +823,11 @@ namespace ContourAnalysisNS
                                 }
                                 if (!ExistL(i, j, Xl[k].VertexIndexX, Xl[k].VertexIndexY) && (Xl.Count > k) && (A.Count > j) && (A.Count > i))
                                 {
-                                    Xl.Add(new Line((float)Math.Sqrt((A[i].X - A[j].X) * (A[i].X - A[j].X) + (A[i].Y - A[j].Y) * (A[i].Y - A[j].Y)), Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                }
+                                    float we = (float)Math.Sqrt((A[i].X - A[j].X) * (A[i].X - A[j].X) + (A[i].Y - A[j].Y) * (A[i].Y - A[j].Y));
+                                    if (we > MaxWe)
+                                        return;
+                                    Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                  }
                             }
                         }
                     });

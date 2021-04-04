@@ -16,6 +16,7 @@ namespace ImageTextDeepLearning
     [Serializable]
     internal class AllKeyboardOfWorld
     {
+        bool Hollowed = false;
         public static List<string> fonts = new List<string>();
         public static char[] engsmal = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
         public static char[] engbig = null;
@@ -491,18 +492,28 @@ namespace ImageTextDeepLearning
         {
             try
             {
+                int wi = Img.Width;
+                int he = Img.Height;
                 Bitmap Im = Img;
                 List<Task> th = new List<Task>();
-                for (int x = 0; x < Im.Width; x++)
+                do
                 {
-                    for (int y = 0; y < Im.Height; y++)
+                    Hollowed = false;
+                    for (int x = 0; x < wi; x++)
                     {
-                        var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, Width, Height, x, y));
-                        //th.Add(H);
-                        H.Wait();
-                    }
+                        for (int y = 0; y < he; y++)
+                        {
+                            object o = new object();
+                            lock (o)
+                            {
+                                var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y));
+                                //th.Add(H);
+                                H.Wait();
+                            }
+                        }
 
-                }
+                    }
+                } while (Hollowed);
                 //Parallel.ForEach(th, item => Task.WaitAll(item));
                 Img = Im;
             }
@@ -583,6 +594,7 @@ namespace ImageTextDeepLearning
                             {
                                 Im.SetPixel(X, Y, Color.White);
                                 Img = Im;
+                                Hollowed = true;
                                 return false;
                             }
                         }

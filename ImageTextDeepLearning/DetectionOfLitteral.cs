@@ -7,7 +7,7 @@ using ContourAnalysisDemo;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Windows.Forms;
 namespace ImageTextDeepLearning
 {
     //detection of literal class
@@ -78,6 +78,8 @@ namespace ImageTextDeepLearning
                 {
                     Dif = Wi * Hei;
                 }
+                //(new FormImageTextDeepLearning()).GraphsDrawn();
+                //MessageBox.Show("Next!");
             }
             catch (Exception) { return 0; }
             return Dif;

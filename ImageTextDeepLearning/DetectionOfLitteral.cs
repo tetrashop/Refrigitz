@@ -123,8 +123,7 @@ namespace ImageTextDeepLearning
                         //retrive similarity value
                         if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)) && (!IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei)))
                         {
-                            KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei,Ach);
-                            Ach = true;
+                            KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei, Ach);
                         }
                         else
                             if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)))
@@ -150,6 +149,7 @@ namespace ImageTextDeepLearning
                                if (IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei))
                                  continue;*/
                         }
+                     
                         if (KeyDif > KeyBoardDif)
                         {
                             //set
@@ -160,6 +160,7 @@ namespace ImageTextDeepLearning
                             //break;
 
                         }
+                        Ach = true;
                     }
                     //when found
                     if (IndecCurrent > -1)

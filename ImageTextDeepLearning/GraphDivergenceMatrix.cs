@@ -113,8 +113,8 @@ namespace ContourAnalysisNS
         public int numberOfClosedCurved = 0;
         List<List<Vertex>> ClosedCurved = new List<List<Vertex>>();
         List<bool> IsClosedCurved = new List<bool>();
+        List<int>  ClosedCurvedIndexI = new List<int>();
 
-        float MaxWe = 4;
         public List<Vertex> Xv = new List<Vertex>();
         public List<Line> Xl = new List<Line>();
         public int N, M;
@@ -205,53 +205,100 @@ namespace ContourAnalysisNS
             }//);
             return Is;
         }
+        int GetVerInd(int VertNo)
+        {
+            int vern = 0;
+            for(int i = 0; i < Xv.Count; i++)
+            {
+                if (Xv[i].VertexNumber == VertNo)
+                    return i;
+            }
+            return vern;
+        }
+        int GetNotClosedCurvedIndexI()
+        {
+            int v = -1;
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                bool Is = false;
+                for (int j = 0; j < ClosedCurvedIndexI.Count; j++)
+                {
+                    if (ClosedCurvedIndexI[j] == (i))
+                    {
+                        Is = true;
+                        break;
+                    }
+                }
+                if (!Is)
+                    return i;
+            }
+            return v;
+        }
         public void CreateClosedCurved()
         {
             bool IsNext = false;
             int noIsNext = 0;
+            int i = 0;
+
             do
             {
                 IsNext = false;
                 ClosedCurved.Add(new List<Vertex>());
-
-                for (int i = 0; i < Xv.Count; i++)
+             
+                int j = 0;
+                while (j < Xv.Count)
                 {
-                    for (int j = 0; j < Xv.Count; j++)
+                    if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
                     {
-                        if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
-                        {
-                            if (!ExistCloCurContinuse(Xv[i].X, Xv[i].Y))
-                                continue;
-                        }
-                        else
+                        i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
+                        ClosedCurvedIndexI.Add(i);
+                    }
+                    else
+                    {
+                        if (!ExistCloCur(Xv[i].X, Xv[i].Y))
                         {
                             ClosedCurved[ClosedCurved.Count - 1].Add(Xv[i]);
-                            continue;
-                        }
-
-                        if (ExistCloCur(Xv[j].X, Xv[j].Y))
-                            continue;
-                        Line ds = d(Xv[i], Xv[j]);
-                        if (ds == null)
-                            continue;
-                        if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
-                            continue;
-
-                        if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
-                        {
-                            IsNext = true;
-                            ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                            numberOfClosedCurved++;
-                            break;
-                        }
-                        ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                            i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
+                            ClosedCurvedIndexI.Add(i);
+                         }
                     }
+
+                    if (ExistCloCur(Xv[j].X, Xv[j].Y))
+                    {
+                        j++;
+                        continue;
+                    }
+                    Line ds = d(Xv[i], Xv[j]);
+                    if (ds == null)
+                    {
+                        j++;
+                        continue;
+                    }
+                    if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
+                    {
+                        j++;
+                        continue;
+                    }
+
+                    if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
+                    {
+                        IsNext = true;
+                        ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                        numberOfClosedCurved++;
+                        break;
+                    }
+                    ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                    j = 0;
                 }
+
                 IsClosedCurved.Add(IsNext);
 
                 if (!IsNext)
                 {
-                    for (int h = 0; h < IsClosedCurved.Count; h++)
+                    i = GetNotClosedCurvedIndexI();
+                    if (i == -1)
+                        noIsNext = Xv.Count;
+                     for (int h = 0; h < IsClosedCurved.Count; h++)
                     {
                         if (!IsClosedCurved[h])
                         {
@@ -263,7 +310,7 @@ namespace ContourAnalysisNS
                 }
 
             } while (NoCloCur() != Xv.Count && noIsNext < Xv.Count);
-         }
+        }
 
         public bool ExistV(int x1, int y1, int x2, int y2)
         {
@@ -913,9 +960,7 @@ namespace ContourAnalysisNS
                                     if (!ExistL(i, j, k, p))
                                     {
                                         float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                        if (we > MaxWe)
-                                            return;
-                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                         Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                     }
                                 }
                             }
@@ -979,8 +1024,6 @@ namespace ContourAnalysisNS
                                 if (!ExistL(i, j, Xl[k].VertexIndexX, Xl[k].VertexIndexY) && (Xl.Count > k) && (A.Count > j) && (A.Count > i))
                                 {
                                     float we = (float)Math.Sqrt((A[i].X - A[j].X) * (A[i].X - A[j].X) + (A[i].Y - A[j].Y) * (A[i].Y - A[j].Y));
-                                    if (we > MaxWe)
-                                        return;
                                     Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                   }
                             }

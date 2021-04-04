@@ -218,8 +218,11 @@ namespace ContourAnalysisNS
                                 {
                                     return;
                                 }
-
-                                if ((!(Xv[k].X > Xv[i].X && Xv[k].X > Xv[i].X)))
+                                if (k >= Xv.Count)
+                                    return;
+                                if (i >= Xv.Count)
+                                    return;
+                                if ((!(Xv[k].X > Xv[i].X && Xv[k].X > Xv[i].X))&& k >= Xv.Count&& i >= Xv.Count)
                                 {
                                     return;
                                 }
@@ -289,11 +292,18 @@ namespace ContourAnalysisNS
                                     return;
                                 }
 
+                                if (k >= Xv.Count)
+                                    return;
+                                if (i >= Xv.Count)
+                                    return;
+                                if ((!(Xv[k].Y > Xv[i].Y && Xv[k].Y > Xv[i].X)) && k >= Xv.Count && i >= Xv.Count)
+                                {
+                                    return;
+                                }
                                 if ((!(Xv[k].Y > Xv[i].Y && Xv[k].Y > Xv[i].Y)))
                                 {
                                     return;
                                 }
-
                                 Line ds = d(Xv[i], Xv[j]);
                                 if (ds != null)
                                 {
@@ -359,10 +369,16 @@ namespace ContourAnalysisNS
                                     return;
                                 }
 
-                                if ((!(Xv[k].X < Xv[i].X && Xv[k].X < Xv[i].X)))
+                                if (k >= Xv.Count)
+                                    return;
+                                if (i >= Xv.Count)
+                                    return;
+                                if ((!(Xv[k].X < Xv[i].X && Xv[k].X < Xv[i].X)) && k >= Xv.Count && i >= Xv.Count)
                                 {
                                     return;
                                 }
+
+
 
                                 Line ds = d(Xv[i], Xv[j]);
                                 if (ds != null)
@@ -429,10 +445,15 @@ namespace ContourAnalysisNS
                                     return;
                                 }
 
-                                if ((!(Xv[k].Y < Xv[i].Y && Xv[k].Y < Xv[i].Y)))
+                                if (k >= Xv.Count)
+                                    return;
+                                if (i >= Xv.Count)
+                                    return;
+                                if ((!(Xv[k].Y < Xv[i].Y && Xv[k].Y < Xv[i].Y)) && k >= Xv.Count && i >= Xv.Count)
                                 {
                                     return;
                                 }
+                               
 
                                 Line ds = d(Xv[i], Xv[j]);
                                 if (ds != null)

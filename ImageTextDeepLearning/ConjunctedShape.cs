@@ -147,7 +147,7 @@ namespace ImageTextDeepLearning
                 for (int k = 0; k < Im.Height; k++)
                 {
 
-                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Mi = j;
                         break;
@@ -171,7 +171,7 @@ namespace ImageTextDeepLearning
                 for (int j = 0; j < Im.Width; j++)
                 {
 
-                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Mi = k;
                         break;
@@ -195,7 +195,7 @@ namespace ImageTextDeepLearning
                 for (int j = 0; j < Im.Width; j++)
                 {
 
-                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Ma = k;
                         break;
@@ -219,7 +219,7 @@ namespace ImageTextDeepLearning
                 for (int k = Im.Height - 1; k >= 0; k--)
                 {
 
-                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Ma = j;
                         break;
@@ -295,12 +295,12 @@ namespace ImageTextDeepLearning
                                 );
                             //, System.Drawing.Drawing2D.FillMode.Alternate
                             e.Dispose();
-                            Do = HollowCountreImageCommmon(ref Temp);
+                           /* Do = HollowCountreImageCommmon(ref Temp);
                             if (!Do)
                             {
                                 MessageBox.Show("Hollowed Fatal Error");
                                 return false;
-                            }
+                            }*/
 
                             /*   MiX = ImMinX(Temp);
                                MiY = ImMinY(Temp);
@@ -318,13 +318,8 @@ namespace ImageTextDeepLearning
                             }
                             else*/
                             Te = Temp;
-                            /* Do = ColorizedCountreImageCommmon(ref Te);
-                                if (!Do)
-                                {
-                                    MessageBox.Show("Coloriezed Fatal Error");
-                                    return false;
-                                }
-                                */
+                             
+                                
                             //add image
                             AllImage.Add(Te);
                             //e.Dispose();
@@ -373,7 +368,7 @@ namespace ImageTextDeepLearning
                             //first
                             if (nu == 0)
                             {
-                                if ((Im[i].GetPixel(j, k).ToArgb()==Color.Black.ToArgb()))
+                                if ((Im[i].GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                                 {
                                     Po[0] = new PointF(j, k);
                                     nu++;
@@ -382,7 +377,7 @@ namespace ImageTextDeepLearning
                             else//second
                             if (nu == 1)
                             {
-                                if ((Im[i].GetPixel(j, k).ToArgb()==Color.Black.ToArgb()))
+                                if ((Im[i].GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                                 {
                                     Po[1] = new PointF(j, k);
                                     nu++;
@@ -429,7 +424,7 @@ namespace ImageTextDeepLearning
                         //first
                         if (nu == 0)
                         {
-                            if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                            if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                             {
                                 Po[0] = new Point(j, k);
                                 nu++;
@@ -438,7 +433,7 @@ namespace ImageTextDeepLearning
                         else//second
                         if (nu == 1)
                         {
-                            if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                            if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                             {
                                 Po[1] = new Point(j, k);
                                 nu++;
@@ -476,11 +471,12 @@ namespace ImageTextDeepLearning
                     for (int y = 0; y < Im.Height; y++)
                     {
                         var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, Width, Height, x, y));
-                        th.Add(H);
+                        //th.Add(H);
+                        H.Wait();
                     }
 
                 }
-                Parallel.ForEach(th, item => Task.WaitAll(item));
+                //Parallel.ForEach(th, item => Task.WaitAll(item));
                 Img = Im;
             }
             catch (Exception t)
@@ -506,46 +502,64 @@ namespace ImageTextDeepLearning
                 {
                     if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
                     {
-                        if (!(x == X && y == Y))
+                        if ((x != X && y != Y))
                         {
                             if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
                             {
                                 return true;
                             }
                         }
-                        else
+
+                        var output = Task.Factory.StartNew(() =>
                         {
-                            var output = Task.Factory.StartNew(() =>
+                            ParallelOptions po = new ParallelOptions
                             {
-                                ParallelOptions po = new ParallelOptions
-                                {
-                                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                                }; Parallel.Invoke(() =>
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.Invoke(() =>
+                            {
+                                object ooo = new object();
+                                lock (ooo)
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y, wi, he, X, Y));
-                                }, () =>
+                                }
+
+                            }, () =>
+                            {
+                            object ooo = new object();
+                                lock (ooo)
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y, wi, he, X, Y));
 
-                                }, () =>
+                                }
+                            }, () =>
+                            {
+                            object ooo = new object();
+                                lock (ooo)
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x, y++, wi, he, X, Y));
-
-                                }, () =>
+                                }
+                            }, () =>
+                            {
+                            object ooo = new object();
+                                lock (ooo)
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x, y--, wi, he, X, Y));
 
-                                });
+                                }
                             });
-                            output.Wait();
-                            object oo = new object();
-                            lock (oo)
+                        });
+                        output.Wait();
+                        object oo = new object();
+                        lock (oo)
+                        {
+                            if (Is)
                             {
                                 Im.SetPixel(X, Y, Color.White);
                                 Img = Im;
                                 return false;
                             }
                         }
+
                     }
                 }
             }
@@ -553,14 +567,14 @@ namespace ImageTextDeepLearning
             {
                 Img = Im;
 
-                MessageBox.Show(t.ToString());
+                //MessageBox.Show(t.ToString());
 
                 return false;
             }
             Img = Im;
 
             return true;
-        }
+        } 
 
         //Create Conjuncted image
         private bool ConjunctedShapeCreate(MainForm d)

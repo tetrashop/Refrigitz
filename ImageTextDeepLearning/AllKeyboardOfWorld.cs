@@ -498,11 +498,12 @@ namespace ImageTextDeepLearning
                     for (int y = 0; y < Im.Height; y++)
                     {
                         var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, Width, Height, x, y));
-                        th.Add(H);
+                        //th.Add(H);
+                        H.Wait();
                     }
 
                 }
-                Parallel.ForEach(th, item => Task.WaitAll(item));
+                //Parallel.ForEach(th, item => Task.WaitAll(item));
                 Img = Im;
             }
             catch (Exception t)
@@ -522,52 +523,70 @@ namespace ImageTextDeepLearning
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
                     return false;
-                 bool Is = true;
+                bool Is = true;
                 object o = new object();
                 lock (o)
                 {
                     if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
                     {
-                        if (!(x == X && y == Y))
+                        if ((x != X && y != Y))
                         {
                             if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
                             {
                                 return true;
                             }
                         }
-                        else
+
+                        var output = Task.Factory.StartNew(() =>
                         {
-                            var output = Task.Factory.StartNew(() =>
+                            ParallelOptions po = new ParallelOptions
                             {
-                                ParallelOptions po = new ParallelOptions
-                                {
-                                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                                }; Parallel.Invoke(() =>
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.Invoke(() =>
+                            {
+                                object ooo = new object();
+                                lock (ooo)
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y, wi, he, X, Y));
-                                }, () =>
+                                }
+
+                            }, () =>
+                            {
+                                object ooo = new object();
+                                lock (ooo)
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y, wi, he, X, Y));
 
-                                }, () =>
+                                }
+                            }, () =>
+                            {
+                                object ooo = new object();
+                                lock (ooo)
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x, y++, wi, he, X, Y));
-
-                                }, () =>
+                                }
+                            }, () =>
+                            {
+                                object ooo = new object();
+                                lock (ooo)
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x, y--, wi, he, X, Y));
 
-                                });
+                                }
                             });
-                            output.Wait();
-                            object oo = new object();
-                            lock (oo)
+                        });
+                        output.Wait();
+                        object oo = new object();
+                        lock (oo)
+                        {
+                            if (Is)
                             {
                                 Im.SetPixel(X, Y, Color.White);
                                 Img = Im;
                                 return false;
                             }
                         }
+
                     }
                 }
             }
@@ -575,7 +594,7 @@ namespace ImageTextDeepLearning
             {
                 Img = Im;
 
-                MessageBox.Show(t.ToString());
+                //MessageBox.Show(t.ToString());
 
                 return false;
             }
@@ -583,6 +602,7 @@ namespace ImageTextDeepLearning
 
             return true;
         }
+
         //store all strings list to proper  images themselves list
         public bool ConvertAllStringToImage(MainForm d)
         {
@@ -692,7 +712,7 @@ namespace ImageTextDeepLearning
                                     for (int p = 0; p < Height; p++)
                                     {
                                         // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
-                                        if (!(Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                        if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                         {
                                             Tem[k, p] = true;
                                         }
@@ -772,7 +792,7 @@ namespace ImageTextDeepLearning
                                 for (int p = 0; p < Height; p++)
                                 {
                                     // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
-                                    if (!(Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                    if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                     {
                                         Tem[k, p] = true;
                                     }
@@ -846,7 +866,7 @@ namespace ImageTextDeepLearning
                             {
                                 //assigne proper matrix
                                 //Tem[k, p] = Temp[i].GetPixel(k, p).ToArgb();
-                                if (!(Temp[i].GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                if (!(Temp[i].GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                 {
                                     Tem[k, p] = true;
                                 }

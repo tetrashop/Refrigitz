@@ -16,7 +16,7 @@ namespace ContourAnalysisNS
             Drawn = false;
             N = n;
             M = m;
-            if (Achange)
+            if (!Achange)
             {
                
                 A = new GraphDivergenceMatrix(Ab, n, m);
@@ -154,12 +154,14 @@ namespace ContourAnalysisNS
                 object hh = new object();
                 lock (hh)
                 {
-                    if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexX == y1 && Xl[i].VertexIndexY == x2 && Xl[i].VertexIndexY == y2)
+                    if (i >= Xl.Count)
+                        return;
+                    if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexX == y1 && Xl[i].VertexIndexY == x2 && Xl[i].VertexIndexY == y2 && i < Xl.Count)
                     {
                         Is = true;
                     }
 
-                    if (Xl[i].VertexIndexY == x1 && Xl[i].VertexIndexY == y1 && Xl[i].VertexIndexX == x2 && Xl[i].VertexIndexX == y2)
+                    if (Xl[i].VertexIndexY == x1 && Xl[i].VertexIndexY == y1 && Xl[i].VertexIndexX == x2 && Xl[i].VertexIndexX == y2 && i < Xl.Count)
                     {
                         Is = true;
                     }

@@ -23,6 +23,7 @@ namespace ContourAnalysisNS
                 if (A != null)
                 {
                     A.IJBelongToLineHaveFalseBolleanA(Ab);
+                    A.CreateClosedCurved();
                 }
                 Drawn = true;
             }
@@ -31,6 +32,7 @@ namespace ContourAnalysisNS
             if (B != null)
             {
                 B.IJBelongToLineHaveFalseBolleanA(Bb);
+                B.CreateClosedCurved();
             }
             Drawn = true;
         }
@@ -58,8 +60,9 @@ namespace ContourAnalysisNS
             {
                 return false;
             }
-
-            return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+            if (Z.A.numberOfClosedCurved == Z.B.numberOfClosedCurved)
+                return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+            return false;
         }
 
         //When the matrix iss  the same  return true;
@@ -105,10 +108,81 @@ namespace ContourAnalysisNS
     }
     public class GraphDivergenceMatrix
     {
+        public int numberOfClosedCurved = 0;
+        List<List<Vertex>> ClosedCurved = new List<List<Vertex>>();
+        List<bool> IsClosedCurved = new List<bool>();
+
         float MaxWe = 4;
         public List<Vertex> Xv = new List<Vertex>();
         public List<Line> Xl = new List<Line>();
         public int N, M;
+        bool ExistCloCur(int x1, int y1)
+        {
+            bool Is = false;
+            ParallelOptions po = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+            }; Parallel.For(0, ClosedCurved.Count, i =>
+            //   for (int i = 0; i < Xv.Count; i++)
+            {
+                ParallelOptions poo = new ParallelOptions
+                {
+                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                }; Parallel.For(0, ClosedCurved[i].Count, j =>
+                //for (int j = 0; j < Xv.Count; j++)
+                {
+                    object hh = new object();
+                    lock (hh)
+                    {
+                        if (i >= Xv.Count)
+                            return;
+
+                        if (ClosedCurved[i][j].X == x1 && ClosedCurved[i][j].Y == y1)
+                        {
+                            Is = true;
+                        }
+                    }
+                });
+            });
+            return Is;
+        }
+       public void CreateClosedCurved()
+        {
+            bool IsNext = false;
+            do
+            {
+                IsNext = false;
+                ClosedCurved.Add(new List<Vertex>());
+
+                for (int i = 0; i < Xv.Count; i++)
+                {
+                    for (int j = 0; j < Xv.Count; j++)
+                    {
+                        if (!ExistCloCur(Xv[i].X, Xv[i].Y))
+                            continue;
+                        if (ExistCloCur(Xv[j].X, Xv[j].Y))
+                            continue;
+                        Line ds = d(Xv[i], Xv[j]);
+                        if (ds == null)
+                            continue;
+                        if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
+                            continue;
+
+                        if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
+                        {
+                            IsNext = true;
+                            ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                            numberOfClosedCurved++;
+                            break;
+                        }
+                        ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                    }
+                }
+                IsClosedCurved.Add(IsNext);
+            } while (IsNext);
+            ClosedCurved.RemoveAt(ClosedCurved.Count - 1);
+            IsClosedCurved.RemoveAt(IsClosedCurved.Count - 1);
+        }
 
         public bool ExistV(int x1, int y1, int x2, int y2)
         {

@@ -296,12 +296,30 @@ namespace ImageTextDeepLearning
                                 );
                             //, System.Drawing.Drawing2D.FillMode.Alternate
                             e.Dispose();
-                           /* Do = HollowCountreImageCommmon(ref Temp);
+                            e.Dispose();
+                            bool[,] TemB = new bool[Width, Height];
+                            for (int k = 0; k < Width; k++)
+                            {
+                                for (int p = 0; p < Height; p++)
+                                {
+                                    // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                    if (!(Temp.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
+                                    {
+                                        TemB[k, p] = true;
+                                    }
+                                    else
+                                    {
+                                        TemB[k, p] = false;
+                                    }
+                                }
+                            }
+                            Do = HollowCountreImageCommmon(ref Temp, TemB);
                             if (!Do)
                             {
                                 MessageBox.Show("Hollowed Fatal Error");
                                 return false;
-                            }*/
+                            }
+                            //Add
 
                             /*   MiX = ImMinX(Temp);
                                MiY = ImMinY(Temp);
@@ -461,7 +479,7 @@ namespace ImageTextDeepLearning
         }
 
         //Hollow an image
-        private bool HollowCountreImageCommmon(ref Bitmap Img)
+        private bool HollowCountreImageCommmon(ref Bitmap Img, bool[,] Ab)
         {
             try
             {
@@ -479,9 +497,11 @@ namespace ImageTextDeepLearning
                             object o = new object();
                             lock (o)
                             {
-                                var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y));
+
+                                var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
                                 //th.Add(H);
                                 H.Wait();
+
                             }
                         }
 
@@ -499,7 +519,7 @@ namespace ImageTextDeepLearning
             return true;
         }
 
-        private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y)
+        private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab)
         {
             Bitmap Im = Img;
 
@@ -521,6 +541,7 @@ namespace ImageTextDeepLearning
                             }
                         }
 
+
                         var output = Task.Factory.StartNew(() =>
                         {
                             ParallelOptions po = new ParallelOptions
@@ -531,39 +552,65 @@ namespace ImageTextDeepLearning
                                 object ooo = new object();
                                 lock (ooo)
                                 {
-                                    var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x++, y, wi, he, X, Y));
+                                    if (x + 1 < wi)
+                                    {
+                                        if (Ab[x + 1, y])
+                                        {
+                                            var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab));
+                                        }
+                                    }
                                 }
 
                             }, () =>
                             {
-                            object ooo = new object();
-                                lock (ooo)
+                                object oioo = new object();
+                                lock (oioo)
                                 {
-                                    var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x--, y, wi, he, X, Y));
-
+                                    if (x - 1 >= 0)
+                                    {
+                                        if (Ab[x - 1, y])
+                                        {
+                                            var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x - 1, y, wi, he, X, Y, Ab));
+                                        }
+                                    }
                                 }
                             }, () =>
                             {
-                            object ooo = new object();
-                                lock (ooo)
+                                object pooo = new object();
+                                lock (pooo)
                                 {
-                                    var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x, y++, wi, he, X, Y));
+                                    if (y + 1 < he)
+                                    {
+                                        if (Ab[x, y + 1])
+                                        {
+                                            var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x, y + 1, wi, he, X, Y, Ab));
+                                        }
+                                    }
                                 }
                             }, () =>
                             {
-                            object ooo = new object();
-                                lock (ooo)
+                                object nooo = new object();
+                                lock (nooo)
                                 {
-                                    var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x, y--, wi, he, X, Y));
+                                    if (y - 1 >= 0)
+                                    {
+                                        if (Ab[x, y - 1])
+                                        {
+                                            var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXY(ref Im, x, y - 1, wi, he, X, Y, Ab));
 
+                                        }
+                                    }
                                 }
                             });
                         });
                         output.Wait();
-                        object oo = new object();
-                        lock (oo)
+                    }
+                    object oo = new object();
+                    lock (oo)
+                    {
+                        if (Is)
                         {
-                            if (Is)
+                            if ((x != X && y != Y))
                             {
                                 Im.SetPixel(X, Y, Color.White);
                                 Img = Im;
@@ -571,9 +618,10 @@ namespace ImageTextDeepLearning
                                 return false;
                             }
                         }
-
                     }
+
                 }
+
             }
             catch (Exception t)
             {
@@ -586,7 +634,8 @@ namespace ImageTextDeepLearning
             Img = Im;
 
             return true;
-        } 
+        }
+
 
         //Create Conjuncted image
         private bool ConjunctedShapeCreate(MainForm d)

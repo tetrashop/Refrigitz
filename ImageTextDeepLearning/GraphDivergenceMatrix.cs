@@ -17,9 +17,9 @@ namespace ContourAnalysisNS
             Drawn = false;
             N = n;
             M = m;
-            if (!Achange)
+            // if (!Achange)
             {
-               
+
                 A = new GraphDivergenceMatrix(Ab, n, m);
                 if (A != null)
                 {
@@ -51,12 +51,15 @@ namespace ContourAnalysisNS
         {
             //if (Z != null)
             //xZ.Dispose();
-            GraphDivergenceMatrix A = null;
+            /*GraphDivergenceMatrix A = null;
             if (Z != null)
+            {
                 A = Z.A;
+                
+            }*/
             Z = new GraphS(Ab, Bb, n, m, Achange);
-            if (Achange)
-                Z.A = A;
+            /*if (Achange)
+                Z.A = A;*/
             if (Z.A == null && Z.B == null)
             {
                 return true;
@@ -234,11 +237,13 @@ namespace ContourAnalysisNS
                 bool Is = false;
                 for (int j = 0; j < ClosedCurvedIndexI.Count; j++)
                 {
-                    if (ClosedCurvedIndexI[j] == (i))
-                    {
-                        Is = true;
-                        break;
-                    }
+                    
+                        if (ClosedCurvedIndexI[j] == (i))
+                        {
+                            Is = true;
+                            break;
+                        }
+                   
                 }
                 if (!Is)
                     return i;
@@ -310,10 +315,10 @@ namespace ContourAnalysisNS
 
                     if (!IsNext)
                     {
-                        i = GetNotClosedCurvedIndexI();
+                         i = GetNotClosedCurvedIndexI();
                         if (i == -1)
                             noIsNext = Xv.Count;
-                        for (int h = 0; h < IsClosedCurved.Count; h++)
+    for (int h = 0; h < IsClosedCurved.Count; h++)
                         {
                             if (!IsClosedCurved[h])
                             {
@@ -321,6 +326,7 @@ namespace ContourAnalysisNS
                                 ClosedCurved.RemoveAt(h);
                             }
                         }
+                     
                         noIsNext++;
                     }
 

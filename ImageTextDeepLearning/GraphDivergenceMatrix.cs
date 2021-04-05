@@ -784,21 +784,22 @@ namespace ContourAnalysisNS
             {
                 if (Is)
                     return Is;
-
-                if (Next.VertexNumber == B.VertexNumber)
+                if (i < xlv.Count)
                 {
-                    return true;
+                    if (Next.VertexNumber == B.VertexNumber)
+                    {
+                        return true;
+                    }
+
+                    if (xlv[i].VertexNumber == Next.VertexNumber)
+                    {
+
+                        K.Add(xlv[i]);
+                        Is = Is || IsXixJisDeletable(ref C, A, B, xlv[i + 1], ref K, ref xlv, i + 1);
+
+                    }
+
                 }
-
-                if (xlv[i].VertexNumber == Next.VertexNumber)
-                {
-
-                    K.Add(xlv[i]);
-                    Is = Is || IsXixJisDeletable(ref C, A, B, xlv[i + 1], ref K, ref xlv, i + 1);
-
-                }
-
-
             }
             return Is;
         }
@@ -844,7 +845,7 @@ namespace ContourAnalysisNS
                                     {
                                         for (int y = y1 + 1; y < y2 - 1; y++)
                                         {
-                                            if (!A[x, y])
+                                            if ((!A[x, y]) && Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
                                             {
                                                 Line ds = d(Xv[i], Xv[k]);
                                                 if (ds != null)
@@ -865,7 +866,7 @@ namespace ContourAnalysisNS
                                     {
                                         for (int y = y2 + 1; y < y1 - 1; y++)
                                         {
-                                            if (!A[x, y])
+                                            if ((!A[x, y]) && Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
                                             {
                                                 Line ds = d(Xv[i], Xv[k]);
                                                 if (ds != null)
@@ -889,7 +890,7 @@ namespace ContourAnalysisNS
                                     {
                                         for (int y = y1 + 1; y < y2 - 1; y++)
                                         {
-                                            if (!A[x, y])
+                                            if ((!A[x, y]) && Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
                                             {
                                                 Line ds = d(Xv[i], Xv[k]);
                                                 if (ds != null)
@@ -910,7 +911,7 @@ namespace ContourAnalysisNS
                                     {
                                         for (int y = y2 + 1; y < y1 - 1; y++)
                                         {
-                                            if (!A[x, y])
+                                            if ((!A[x, y]) && Line.IsPointsInVertexes(Xv[i], Xv[k], x, y))
                                             {
                                                 Line ds = d(Xv[i], Xv[k]);
                                                 if (ds != null)

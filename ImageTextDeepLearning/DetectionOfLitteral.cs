@@ -115,7 +115,7 @@ namespace ImageTextDeepLearning
                     StringBuilder TempDetected = new StringBuilder();
 
                     int IndecCurrent = -1;
-                    int KeyBoardDif = int.MinValue;
+                    int KeyBoardDif = 0;
                     //for evey all keyboard able to char matrix of conjunction
                     int KeyDif = 0;
                     for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
@@ -132,12 +132,16 @@ namespace ImageTextDeepLearning
                            //if (System.Math.Abs(1- KeyDif ) < Threashold)
                             if (t.KeyboardAllStringsWithfont[k] != " ")
                             {
+                                Ach = true;
+
                                 continue;
                             }
                             else
                             {
                                 IndecCurrent = k;
                                 KeyDif = Width * Heigh;
+                                Ach = true;
+
                                 break;
                             }
                             /* if (IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
@@ -149,7 +153,8 @@ namespace ImageTextDeepLearning
                                if (IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei))
                                  continue;*/
                         }
-                     
+                        Ach = true;
+
                         if (KeyDif > KeyBoardDif)
                         {
                             //set
@@ -160,7 +165,6 @@ namespace ImageTextDeepLearning
                             //break;
 
                         }
-                        Ach = true;
                     }
                     //when found
                     if (IndecCurrent > -1)

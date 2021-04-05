@@ -51,7 +51,12 @@ namespace ContourAnalysisNS
         {
             //if (Z != null)
             //xZ.Dispose();
+            GraphDivergenceMatrix A = null;
+            if (Z != null)
+                A = Z.A;
             Z = new GraphS(Ab, Bb, n, m, Achange);
+            if (Achange)
+                Z.A = A;
             if (Z.A == null && Z.B == null)
             {
                 return true;
@@ -77,7 +82,7 @@ namespace ContourAnalysisNS
             if (A.Xv.Count < B.Xv.Count)
             {
                 Is = A.IsSameRikhtVertex(Ab, B, ref K, ref ChechOnFinisshed);
-               /* GraphDivergenceMatrix RecreatedB = new GraphDivergenceMatrix(ChechOnFinisshed, B.Xl, N, M);
+              /* GraphDivergenceMatrix RecreatedB = new GraphDivergenceMatrix(ChechOnFinisshed, B.Xl, N, M);
                 if (Is)
                 {
                     if (!GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(A, RecreatedB))
@@ -91,7 +96,7 @@ namespace ContourAnalysisNS
 
             else
             {
-                Is = B.IsSameRikhtVertex(Ab, A, ref K, ref ChechOnFinisshed);
+                Is = B.IsSameRikhtVertex(Bb, A, ref K, ref ChechOnFinisshed);
                 /* GraphDivergenceMatrix RecreatedA = new GraphDivergenceMatrix(ChechOnFinisshed, A.Xl, N, M);
 
                  if (Is)

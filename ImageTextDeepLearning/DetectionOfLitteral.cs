@@ -50,15 +50,15 @@ namespace ImageTextDeepLearning
                 //This.SetCallSetLablr("Detection...");
                 //This.RefCallSetLablr();
 
-                //Detection(Width, Heigh);
+                Detection(Width, Heigh);
             }
             catch (Exception te)
             {
-                //System.Windows.Forms.MessageBox.Show("Fatual Error!" + te.ToString());
+                System.Windows.Forms.MessageBox.Show("Fatual Error!" + te.ToString());
             }
             finally
             {
-                //System.Windows.Forms.MessageBox.Show("Completed Detetcted " + Detected.Count);
+                System.Windows.Forms.MessageBox.Show("Completed Detetcted " + Detected.Count);
             }
         }
 
@@ -180,8 +180,9 @@ namespace ImageTextDeepLearning
                 }
 
             }
-            catch (Exception)
+            catch (Exception t)
             {
+                MessageBox.Show(t.ToString());
                 //when exist exeption return unsuccessfull 
                 return false;
             }

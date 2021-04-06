@@ -754,6 +754,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
             }
             DisablePaint = false;
+            
             for (int i = 0; i < On.Detected.Count; i++)
             {
                 textBoxImageTextDeepLearning.AppendText(On.Detected[i]);

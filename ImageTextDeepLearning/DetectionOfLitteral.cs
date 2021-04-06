@@ -50,7 +50,7 @@ namespace ImageTextDeepLearning
                 //This.SetCallSetLablr("Detection...");
                 //This.RefCallSetLablr();
 
-                Detection(Width, Heigh);
+                //Detection(Width, Heigh);
             }
             catch (Exception te)
             {

@@ -499,11 +499,14 @@ namespace ImageTextDeepLearning
                             object o = new object();
                             lock (o)
                             {
+                                if (Ab[x, y])
+                                {
 
-                                var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
-                                //th.Add(H);
-                                H.Wait();
+                                    var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
+                                    //th.Add(H);
+                                    H.Wait();
 
+                                }
                             }
                         }
 

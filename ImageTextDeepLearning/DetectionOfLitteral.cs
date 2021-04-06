@@ -106,8 +106,8 @@ namespace ImageTextDeepLearning
                 Detected.Clear();
                 bool Ach = true;
                 //for evey conjuncted shape retrived matrix items
-                for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
-
+                for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
+            
                 {
 
                     Ach = false;
@@ -118,12 +118,12 @@ namespace ImageTextDeepLearning
                     int KeyBoardDif = 0;
                     //for evey all keyboard able to char matrix of conjunction
                     int KeyDif = 0;
-                    for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
+                    for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
                     {
                         //retrive similarity value
                         if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)) && (!IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei)))
                         {
-                            KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei, Ach);
+                            KeyDif = DifferentBool(t.KeyboardAllConjunctionMatrix[k], ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei, Ach);
                         }
                         else
                             if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)))

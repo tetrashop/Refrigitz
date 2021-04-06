@@ -718,14 +718,15 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         private void CreateConSha_Click(object sender, EventArgs e)
         {
             //var H = Task.Factory.StartNew(() => c());
-            tf = Task.Factory.StartNew(() => CreateOneConShape());
-            tf.Wait();
+            //tf = Task.Factory.StartNew(() => CreateOneConShape());
+            //tf.Wait();
+            CreateOneConShape();
 
             DisablePaint = true;
             MessageBox.Show("Samples!");
-            for (int i = 0; i < On.tt.AllImage.Count; i++)
+            for (int i = 0; i < On.ConjunctedShapeListRequired.KeyboardAllImage.Count; i++)
             {
-                PictureBoxTest.BackgroundImage = (Image)On.tt.AllImage[i].Clone();
+                PictureBoxTest.BackgroundImage = On.ConjunctedShapeListRequired.KeyboardAllImage[i];
                 PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
                 PictureBoxTest.Refresh();
                 PictureBoxTest.Update();
@@ -742,9 +743,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 MessageBox.Show("References!");
             }
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < On.t.KeyboardAllImage.Count; i++)
             {
-                PictureBoxTest.BackgroundImage = (Image)On.t.KeyboardAllImage[i].Clone();
+                PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[i];
                 PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
                 PictureBoxTest.Refresh();
                 PictureBoxTest.Update();

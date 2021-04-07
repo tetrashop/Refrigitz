@@ -936,15 +936,129 @@ namespace ImageTextDeepLearning
                     //{
                     for (int i = 0; i < KeyboardAllStrings.Count; i++)
                     {
-                        //For all font prototype
-                        if (fonts.Count > 0)
+                        if (KeyboardAllStrings[i] != " ")
                         {
-                            //Do literal Database for All fonts
-                            //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fonts.Count, h =>
+                            //For all font prototype
+                            if (fonts.Count > 0)
+                            {
+                                //Do literal Database for All fonts
+                                //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fonts.Count, h =>
 
-                            //{
-                            for (int h = 0; h < fonts.Count; h++)
-                            {   //proper empty image coinstruction object
+                                //{
+                                for (int h = 0; h < fonts.Count; h++)
+                                {   //proper empty image coinstruction object
+                                    Bitmap Temp = new Bitmap(100, 100);
+                                    //initate new root image empty
+                                    //create proper image graphics
+                                    Graphics e = Graphics.FromImage(Temp);
+
+                                    //Draw fill white image
+                                    e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
+
+
+                                    //draw string
+                                    e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1))), (float)((Width + Height))
+                                                                                          , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100));
+
+                                    //retrive min and max of tow X and Y
+                                    int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
+                                    int MxM = (MaX - MiX) / 2;
+                                    int MyM = (MaY - MiY) / 2;
+                                    int Mx = MxM * 2;
+                                    int My = MyM * 2;
+                                    Bitmap Te = null;
+                                    e.Dispose();
+                                    if ((MaX - MiX) < (MaY - MiY))
+                                    {
+                                        if (MiX < MaX && MiY < MaY)
+                                        {
+                                            //crop to proper space
+                                            Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        }
+                                        else
+                                        {
+                                            Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (MiX < MaX && MiY < MaY)
+                                        {
+                                            //crop to proper space
+                                            Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                        }
+                                        else
+                                        {
+                                            Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+
+                                        }
+                                    }
+                                    e = Graphics.FromImage(Te);
+
+                                    bool[,] TemB = new bool[Width, Height];
+                                    for (int k = 0; k < Width; k++)
+                                    {
+                                        for (int p = 0; p < Height; p++)
+                                        {
+                                            object o = new object();
+                                            lock (o)
+                                            {  // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                                if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                                {
+                                                    TemB[k, p] = true;
+                                                }
+                                                else
+                                                {
+                                                    TemB[k, p] = false;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    e.Dispose();
+                                    Do = HollowCountreImageCommmon(ref Te, TemB);
+                                    if (!Do)
+                                    {
+                                        MessageBox.Show("Hollowed Fatal Error");
+                                        return false;
+                                    }
+                                    e = Graphics.FromImage(Te);
+                                    //Add
+                                    //KeyboardAllImage.Add(Te);
+                                    //create proper conjunction matrix
+                                    bool[,] Tem = new bool[Width, Height];
+                                    for (int k = 0; k < Width; k++)
+                                    {
+                                        for (int p = 0; p < Height; p++)
+                                        {
+                                            object o = new object();
+                                            lock (o)
+                                            {
+                                                // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                                if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                                {
+                                                    Tem[k, p] = true;
+                                                }
+                                                else
+                                                {
+                                                    Tem[k, p] = false;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    //Add
+                                    e.Dispose();
+                                    KeyboardAllImage.Add(Te);
+                                    KeyboardAllConjunctionMatrix.Add(Tem);
+                                    KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
+                                    Temp.Dispose();
+                                    //Te.Dispose();
+                                }///);
+                            }
+                            else//When font not installed
+                            {
+                                //proper empty image coinstruction object
                                 Bitmap Temp = new Bitmap(100, 100);
                                 //initate new root image empty
                                 //create proper image graphics
@@ -953,12 +1067,11 @@ namespace ImageTextDeepLearning
                                 //Draw fill white image
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
 
-                                
                                 //draw string
-                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1))),(float)((Width + Height))
+                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))), (float)((Width + Height))
                                                                                       , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100));
 
-                                 //retrive min and max of tow X and Y
+                                //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
                                 int MyM = (MaY - MiY) / 2;
@@ -966,6 +1079,7 @@ namespace ImageTextDeepLearning
                                 int My = MyM * 2;
                                 Bitmap Te = null;
                                 e.Dispose();
+
                                 if ((MaX - MiX) < (MaY - MiY))
                                 {
                                     if (MiX < MaX && MiY < MaY)
@@ -989,11 +1103,10 @@ namespace ImageTextDeepLearning
                                     else
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
                                     }
                                 }
+                                e.Dispose();
                                 e = Graphics.FromImage(Te);
-
                                 bool[,] TemB = new bool[Width, Height];
                                 for (int k = 0; k < Width; k++)
                                 {
@@ -1001,7 +1114,7 @@ namespace ImageTextDeepLearning
                                     {
                                         object o = new object();
                                         lock (o)
-                                        {  // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                        { // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
                                             if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                             {
                                                 TemB[k, p] = true;
@@ -1014,16 +1127,17 @@ namespace ImageTextDeepLearning
                                     }
                                 }
                                 e.Dispose();
-                                Do = HollowCountreImageCommmon(ref Te,TemB);
+                                Do = HollowCountreImageCommmon(ref Te, TemB);
                                 if (!Do)
                                 {
                                     MessageBox.Show("Hollowed Fatal Error");
                                     return false;
                                 }
-                                e = Graphics.FromImage(Te);
                                 //Add
                                 //KeyboardAllImage.Add(Te);
                                 //create proper conjunction matrix
+                                e.Dispose();
+                                e = Graphics.FromImage(Te);
                                 bool[,] Tem = new bool[Width, Height];
                                 for (int k = 0; k < Width; k++)
                                 {
@@ -1031,8 +1145,7 @@ namespace ImageTextDeepLearning
                                     {
                                         object o = new object();
                                         lock (o)
-                                        {
-                                            // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                        {    // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
                                             if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                             {
                                                 Tem[k, p] = true;
@@ -1044,98 +1157,23 @@ namespace ImageTextDeepLearning
                                         }
                                     }
                                 }
-                         
-                                //Add
                                 e.Dispose();
                                 KeyboardAllImage.Add(Te);
                                 KeyboardAllConjunctionMatrix.Add(Tem);
                                 KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
                                 Temp.Dispose();
-                                //Te.Dispose();
-                            }///);
+                            }
                         }
-                        else//When font not installed
+                        else
                         {
-                            //proper empty image coinstruction object
-                            Bitmap Temp = new Bitmap(100, 100);
+                            Bitmap Temp = new Bitmap(Width, Height);
                             //initate new root image empty
                             //create proper image graphics
                             Graphics e = Graphics.FromImage(Temp);
 
                             //Draw fill white image
-                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
-                            
-                            //draw string
-                            e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))),  (float)((Width + Height))
-                                                                                  , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100));
-                            
-                            //retrive min and max of tow X and Y
-                            int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
-                            int MxM = (MaX - MiX) / 2;
-                            int MyM = (MaY - MiY) / 2;
-                            int Mx = MxM * 2;
-                            int My = MyM * 2;
-                            Bitmap Te = null;
+                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                             e.Dispose();
-                        
-                            if ((MaX - MiX) < (MaY - MiY))
-                            {
-                                if (MiX < MaX && MiY < MaY)
-                                {
-                                    //crop to proper space
-                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
-                                }
-                                else
-                                {
-                                    Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
-                                }
-                            }
-                            else
-                            {
-                                if (MiX < MaX && MiY < MaY)
-                                {
-                                    //crop to proper space
-                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
-                                }
-                                else
-                                {
-                                    Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                }
-                            }
-                            e.Dispose();
-                            e = Graphics.FromImage(Te);
-                            bool[,] TemB = new bool[Width, Height];
-                            for (int k = 0; k < Width; k++)
-                            {
-                                for (int p = 0; p < Height; p++)
-                                {
-                                    object o = new object();
-                                    lock (o)
-                                    { // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
-                                        if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
-                                        {
-                                            TemB[k, p] = true;
-                                        }
-                                        else
-                                        {
-                                            TemB[k, p] = false;
-                                        }
-                                    }
-                                }
-                            }
-                            e.Dispose();
-                            Do = HollowCountreImageCommmon(ref Te, TemB);
-                            if (!Do)
-                            {
-                                MessageBox.Show("Hollowed Fatal Error");
-                                return false;
-                            }
-                            //Add
-                            //KeyboardAllImage.Add(Te);
-                            //create proper conjunction matrix
-                            e.Dispose();
-                            e = Graphics.FromImage(Te);
                             bool[,] Tem = new bool[Width, Height];
                             for (int k = 0; k < Width; k++)
                             {
@@ -1143,25 +1181,20 @@ namespace ImageTextDeepLearning
                                 {
                                     object o = new object();
                                     lock (o)
-                                    {    // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
-                                        if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
-                                        {
-                                            Tem[k, p] = true;
-                                        }
-                                        else
-                                        {
+                                    {
+                                        
                                             Tem[k, p] = false;
-                                        }
+                                        
                                     }
                                 }
                             }
-                            e.Dispose();
-                            KeyboardAllImage.Add(Te);
+                            KeyboardAllImage.Add(Temp);
                             KeyboardAllConjunctionMatrix.Add(Tem);
                             KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
-                            Temp.Dispose();
+                       
                         }
-                    }//);
+                    }
+                    //);
                     //save all
                     //Do = SaveAll();
                     //if (!Do)
@@ -1175,7 +1208,7 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                MessageBox.Show(t.ToString());
+                //MessageBox.Show(t.ToString());
                 //when existence of exeptio return false
                 //System.Windows.Forms.MessageBox.Show("Fatual Error!");
                 return false;
@@ -1200,55 +1233,20 @@ namespace ImageTextDeepLearning
                     //{
                     for (int i = 0; i < TempI.Count; i++)
                     {
-                        //Bitmap Temp = cropImage(TempI[i], new Rectangle(0, 0, TempI[i].Width, TempI[i].Height));
-
-                        //int wi = Temp.Width;
-                        //int he = Temp.Height;
                         //matrix boolean object constructor list
                         List<bool[,]> Te = new List<bool[,]>();
 
                         //boolean object constructor
                         bool[,] Tem = new bool[TempI[i].Width, TempI[i].Height];
-                        //for all wi
-                        //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, wi, k =>
-                        bool[,] TemB = new bool[TempI[i].Width, TempI[i].Height];
-                        /* Graphics e = Graphics.FromImage(Temp[i]);
-                         for (int k = 0; k < wi; k++)
-                         {
-                             for (int p = 0; p < he; p++)
-                             {
-                                 // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
-                                 if ((Temp[i].GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
-                                 {
-                                     TemB[k, p] = true;
-                                 }
-                                 else
-                                 {
-                                     TemB[k, p] = false;
-                                 }
-                             }
-                         }
-                         e.Dispose();*/
-
-                        /*bool Do = HollowCountreImageCommmon(ref Temp, TemB);
-                        if (!Do)
-                        {
-                            MessageBox.Show("Hollowed Fatal Error");
-                            return false;
-                        }*/
-                        Graphics e = Graphics.FromImage(TempI[i]);
+                    
+                          Graphics e = Graphics.FromImage(TempI[i]);
 
                         //{
                         for (int k = 0; k < TempI[i].Width; k++)
                         {
-                            //for all he
-                            //ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, he, p =>
-
-                            // {
-                            for (int p = 0; p < TempI[i].Height; p++)
+                              for (int p = 0; p < TempI[i].Height; p++)
                             {
                                 //assigne proper matrix
-                                //Tem[k, p] = Temp[i].GetPixel(k, p).ToArgb();
                                 if ((TempI[i].GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                 {
                                     Tem[k, p] = true;
@@ -1257,15 +1255,14 @@ namespace ImageTextDeepLearning
                                 {
                                     Tem[k, p] = false;
                                 }
-                            }//);
-                        }//);
+                            }
+                        }
                         e.Dispose();
 
-                        KeyboardAllImage.Add(TempI[i]);
-
                         //add
+                        KeyboardAllImage.Add((Bitmap)TempI[i].Clone());
                         KeyboardAllConjunctionMatrix.Add(Tem);
-                     }//);
+                     }
                 }
                 else//othewise return successfull
                 {

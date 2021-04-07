@@ -139,7 +139,6 @@ namespace ImageTextDeepLearning
             return bmp;
         }
 
-        //Found of Min of X
         private int ImMinX(Bitmap Im)
         {
             int Mi = -1;
@@ -215,9 +214,15 @@ namespace ImageTextDeepLearning
         private int ImMaxX(Bitmap Im)
         {
             int Ma = -1;
+            // ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Width - 1, 0, j =>
+
+            //{
             for (int j = Im.Width - 1; j >= 0; j--)
             {
-                for (int k = Im.Height - 1; k >= 0; k--)
+                //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Height - 1, 0, k =>
+
+                // {
+                for (int k = 0; k < Im.Height; k++)
                 {
 
                     if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
@@ -225,12 +230,12 @@ namespace ImageTextDeepLearning
                         Ma = j;
                         break;
                     }
-                }
+                }//);
                 if (Ma > -1)
                 {
                     break;
                 }
-            }
+            }//);
             return Ma;
 
         }
@@ -250,46 +255,46 @@ namespace ImageTextDeepLearning
                     //for all items
                     for (int i = 0; i < All.Count; i++)
                     {
-                        //for (int j = 0; j < All[i].Count; j++)
+
+                        //retrive min and max of tow X and Y
+                        Bitmap Temp = new Bitmap(Width, Height);
+                        Graphics e = Graphics.FromImage(Temp);
+                        //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, Mx));
+                        Point[] te = All[i].ToArray();
+                        Point[] tec = new Point[All[i].ToArray().Length];
+                        int MiX = MinX(te), MiY = MinY(te), MaX = MaxX(te), MaY = MaxY(te);
+
+
+                        //centeralized
+                        int MxM = (MaX - MiX) / 2;
+                        int MyM = (MaY - MiY) / 2;
+                        int Mx = MxM * 2;
+                        int My = MyM * 2;
+                        //initate new root image empty
+                        if (!(MaX == MiX || MaY == MiY))
                         {
-                            //initate constructor object and initate...
-                            List<Bitmap> TempAllImage = new List<Bitmap>();
-
-
-
-                            //Point[] Tem = null;
-                            //retrive current item
-                            // = All[i][j];
-                            //retrive min and max of tow X and Y
-                            int MiX = MinX(All[i].ToArray()), MiY = MinY(All[i].ToArray()), MaX = MaxX(All[i].ToArray()), MaY = MaxY(All[i].ToArray());
-
-
-                            //centeralized
-                            int MxM = (MaX - MiX) / 2;
-                            int MyM = (MaY - MiY) / 2;
-                            int Mx = MxM * 2;
-                            int My = MyM * 2;
-                            //initate new root image empty
-
-                            Point[] tec = new Point[All[i].ToArray().Length];
                             if ((MaX - MiX) < (MaY - MiY))
                             {
                                 for (int o = 0; o < All[i].ToArray().Length; o++)
                                 {
-                                    tec[o] = new Point((int)((float)Width * (float)(All[i].ToArray()[o].X - MiX) / (float)(MaY - MiY)), (int)((float)Height * (float)(All[i].ToArray()[o].Y - MiY) / (float)(MaY - MiY)));
+                                    tec[o] = new Point((int)((float)Width * (float)(te[o].X - MiX) / (float)(MaX - MiX)), (int)((float)Height * (float)(te[o].Y - MiY) / (float)(MaY - MiY)));
                                 }
                             }
                             else
                             {
                                 for (int o = 0; o < All[i].ToArray().Length; o++)
                                 {
-                                    tec[o] = new Point((int)((float)Width * (float)(All[i].ToArray()[o].X - MiX) / (float)(MaX - MiX)), (int)((float)Height * (float)(All[i].ToArray()[o].Y - MiY) / (float)(MaX - MiX)));
+                                    tec[o] = new Point((int)((float)Width * (float)(te[o].X - MiX) / (float)(MaX - MiX)), (int)((float)Height * (float)(te[o].Y - MiY) / (float)(MaY - MiY)));
                                 }
                             }
-                            MiX = MinX(tec);
-                            MiY = MinY(tec);
-                            MaX = MaxX(tec);
-                            MaY = MaxY(tec);
+                            e.DrawLines(Pens.Black, tec);
+                            //, System.Drawing.Drawing2D.FillMode.Alternate
+                            e.Dispose();
+
+                            MiX = ImMinX(Temp);
+                            MiY = ImMinY(Temp);
+                            MaX = ImMaxX(Temp);
+                            MaY = ImMaxY(Temp);
 
 
                             //centeralized
@@ -298,18 +303,35 @@ namespace ImageTextDeepLearning
                             Mx = MxM * 2;
                             My = MyM * 2;
                             //draw all points
-                             if (Mx > My)
+                            if (Mx > My)
                             {
-                                Bitmap Temp = new Bitmap(Mx, Mx);
-                                Graphics e = Graphics.FromImage(Temp);
-                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, Mx));
-                                e.DrawLines(new Pen(Color.Black), tec
+                                Bitmap Te = null;
+                                if ((MaX - MiX) < (MaY - MiY))
+                                {
+                                    if (MiX < MaX && MiY < MaY)
+                                    {
+                                        //crop to proper space
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                    }
+                                    else
+                                    {
+                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
 
-                                   );
-                                //, System.Drawing.Drawing2D.FillMode.Alternate
-                                e.Dispose();
-                                Bitmap Te = cropImage(Temp, new Rectangle(0, 0, Mx, Mx));
-                                //add image
+                                    }
+                                }
+                                else
+                                {
+                                    if (MiX < MaX && MiY < MaY)
+                                    {
+                                        //crop to proper space
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                    }
+                                    else
+                                    {
+                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+
+                                    }
+                                }       //add image
                                 bool[,] TemB = new bool[Width, Height];
                                 e = Graphics.FromImage(Te);
 
@@ -335,103 +357,74 @@ namespace ImageTextDeepLearning
                                     MessageBox.Show("Hollowed Fatal Error");
                                     return false;
                                 }
-                                AllImage.Add(Te);
+                                
+                                AllImage.Add((Bitmap)Te.Clone());
                                 //e.Dispose();
                             }
                             else
                             {
-                                Bitmap Temp = new Bitmap(My, My);
-                                Graphics e = Graphics.FromImage(Temp);
-
-                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, My, My));
-                                e.DrawLines(new Pen(Color.Black), tec
-
-                                     );
-                                //, System.Drawing.Drawing2D.FillMode.Alternate
-                                e.Dispose();
-                                Bitmap Te = cropImage(Temp, new Rectangle(0, 0, My, My));
-
-                                //add image
-                                bool[,] TemB = new bool[Width, Height];
-                                e = Graphics.FromImage(Te);
-
-                                for (int k = 0; k < Width; k++)
+                                Bitmap Te = null;
+                                if ((MaX - MiX) < (MaY - MiY))
                                 {
-                                    for (int p = 0; p < Height; p++)
+                                    if (MiX < MaX && MiY < MaY)
                                     {
-                                        // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
-                                        if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
-                                        {
-                                            TemB[k, p] = true;
-                                        }
-                                        else
-                                        {
-                                            TemB[k, p] = false;
-                                        }
+                                        //crop to proper space
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                    }
+                                    else
+                                    {
+                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+
                                     }
                                 }
-                                e.Dispose();
-                                Do = HollowCountreImageCommmon(ref Te, TemB);
-                                if (!Do)
-                                {
-                                    MessageBox.Show("Hollowed Fatal Error");
-                                    return false;
-                                }
-                                AllImage.Add(Te);
-                                //e.Dispose();
-                            }
-                            //crop to proper space
-
-
-
-
-                            /*Bitmap Te = null;
-
-                            if ((MaX - MiX) < (MaY - MiY))
-                            {
-                                if (MiX < MaX && MiY < MaY)
-                                {
-                                    //crop to proper space
-                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
-                                }
                                 else
                                 {
-                                    Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+                                    if (MiX < MaX && MiY < MaY)
+                                    {
+                                        //crop to proper space
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                    }
+                                    else
+                                    {
+                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
 
+                                    }
                                 }
+                                bool[,] TemB = new bool[Width, Height];
+                                 e = Graphics.FromImage(Te);
+
+                                 for (int k = 0; k < Width; k++)
+                                 {
+                                     for (int p = 0; p < Height; p++)
+                                     {
+                                         // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                         if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                         {
+                                             TemB[k, p] = true;
+                                         }
+                                         else
+                                         {
+                                             TemB[k, p] = false;
+                                         }
+                                     }
+                                 }
+                                 e.Dispose();
+                                 Do = HollowCountreImageCommmon(ref Te, TemB);
+                                 if (!Do)
+                                 {
+                                     MessageBox.Show("Hollowed Fatal Error");
+                                     return false;
+                                 }
+                                AllImage.Add((Bitmap)Te.Clone());
                             }
-                            else
-                            {
-                                if (MiX < MaX && MiY < MaY)
-                                {
-                                    //crop to proper space
-                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
-                                }
-                                else
-                                {
-                                    Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
-                                }
-                            }       */
-                 
-                            //Add
-
-                            /*   MiX = ImMinX(Temp);
-                               MiY = ImMinY(Temp);
-                               MaX = ImMaxX(Temp);
-                               MaY =ImMaxY(Temp );*/
-
-
-                            /*if (MiX < MaX && MiY < MaY)
-                           {
-                               //Rectangle cropArea = new Rectangle(MiX, MiY, MaX, MaY);
-                               //crop to proper space
-                               Te = cropImage(Temp, new Rectangle(MiXyy MiY, MaX - MiX, MaY - MiY));
-
-                           }
-                           else*/
-
-
+                        }
+                        else
+                        {
+                            Temp = new Bitmap(Width, Height);
+                            e = Graphics.FromImage(Temp);
+                            e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+                            e.Dispose();
+                            AllImage.Add((Bitmap)Temp.Clone());
 
                         }
                     }
@@ -591,29 +584,29 @@ namespace ImageTextDeepLearning
                     {
                         MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                     }; Parallel.For(0, wi, x =>
+                    {
+                        /// for (int y = 0; y < he; y++)
+                        //{
+                        ParallelOptions poo = new ParallelOptions
                         {
-                            /// for (int y = 0; y < he; y++)
-                            //{
-                            ParallelOptions poo = new ParallelOptions
+                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                        }; Parallel.For(0, wi, y =>
+                        {
+                            object o = new object();
+                            lock (o)
                             {
-                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                            }; Parallel.For(0, he, y =>
-                            {
-                                object o = new object();
-                                lock (o)
+                                if (Ab[x, y])
                                 {
-                                    if (Ab[x, y])
-                                    {
 
-                                        var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
-                                        //th.Add(H);
-                                        //H.Wait();
-                                    }
+                                    var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
+                                    //th.Add(H);
+                                    //H.Wait();
                                 }
-                            });
-
-
+                            }
                         });
+
+
+                    });
                 });
                 output.Wait();
                 //} while (Hollowed);
@@ -733,7 +726,7 @@ namespace ImageTextDeepLearning
                             }
                         }
                     }
-                   
+
 
                 }
 

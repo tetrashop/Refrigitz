@@ -1472,15 +1472,21 @@ namespace ContourAnalysisNS
                 {
                     double an = 0;
 
+                    Point3Dspaceuser.Point3D[] c = new Point3Dspaceuser.Point3D[2];
+                    c[0] = p0;
+                    c[1] = p1;
                     howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLineS(ad[i][j][0], ad[i][j][1], p0, p1, ref an);
                     if (an < Math.PI / 90)
                     {
                         if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p0))
                             continue;
-                        Point3Dspaceuser.Point3D[] c= new Point3Dspaceuser.Point3D[2];
-                        c[0] = p0;
-                        c[1] = p1;
                         ad[i].Add(c);
+                        return true;
+                    }
+                    else
+                    {
+                        ad.Add(new List<Point3Dspaceuser.Point3D[]>());
+                        ad[ad.Count - 1].Add(c);
                         return true;
                     }
                 }

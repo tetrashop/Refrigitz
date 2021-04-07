@@ -1,4 +1,6 @@
-﻿namespace Point3Dspaceuser
+﻿using System.Collections.Generic;
+
+namespace Point3Dspaceuser
 {
     public class Point3D
     {
@@ -21,6 +23,19 @@
         }
         public Point3D()
         {
+        }
+        public static bool Exist(List<Point3D> lp, Point3D p)
+        {
+            bool Is = false;
+            for(int i = 0; i < lp.Count; i++)
+            {
+                if (lp[i].X == p.X&&lp[i].Y==p.Y&&lp[i].Z==p.Z)
+                {
+                    Is = true;
+                    break;
+                }
+            }
+            return Is;
         }
     }
 }

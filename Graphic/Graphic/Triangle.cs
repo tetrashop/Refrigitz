@@ -8,7 +8,7 @@ namespace howto_WPF_3D_triangle_normalsuser
 {
 
 
-    class Triangle
+    public class Triangle
     {
         List<List<Point3D>> AngleCol = null;
         double block = 1;

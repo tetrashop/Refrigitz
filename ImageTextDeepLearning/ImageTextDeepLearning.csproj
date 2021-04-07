@@ -132,6 +132,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Graphic\Graphic\Graphic.csproj">
+      <Project>{0ea64c3f-bd75-4059-bca3-315ea19d7c17}</Project>
+      <Name>Graphic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Refrigtz\bin\Debug\All\All\All.csproj">
       <Project>{ac2b4cf6-3294-46d5-9af0-c58ee5b637d4}</Project>
       <Name>All</Name>

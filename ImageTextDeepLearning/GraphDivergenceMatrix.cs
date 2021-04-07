@@ -9,15 +9,15 @@ namespace ContourAnalysisNS
     {
         public static GraphS Z = null;
         public static bool Drawn = false;
-        public static GraphDivergenceMatrix ZB = null;
-        public GraphDivergenceMatrix A, B;
+        public static SameRikhEquvalent ZB = null;
+        public SameRikhEquvalent A, B;
         private readonly int N, M;
         public GraphS(bool[,] Ab, bool[,] Bb, int n, int m, bool Achange)
         {
             Drawn = false;
             N = n;
             M = m;
-            A = new GraphDivergenceMatrix(Ab, n, m);
+            A = new SameRikhEquvalent(Ab, n, m);
 
             if (A != null)
             {
@@ -27,7 +27,7 @@ namespace ContourAnalysisNS
 
                 Drawn = true;
             }
-            B = new GraphDivergenceMatrix(Bb, n, m);
+            B = new SameRikhEquvalent(Bb, n, m);
 
             if (B != null)
             {
@@ -121,316 +121,11 @@ namespace ContourAnalysisNS
     }
     public class GraphDivergenceMatrix
     {
-        public int Angle = 0, Liens = 0;
-        public List<howto_WPF_3D_triangle_normalsuser.Line> XlLineshow = new List<howto_WPF_3D_triangle_normalsuser.Line>();
-        public int numberOfClosedCurved = 0;
-        List<List<Vertex>> ClosedCurved = new List<List<Vertex>>();
-        List<bool> IsClosedCurved = new List<bool>();
-        List<int> ClosedCurvedIndexI = new List<int>();
 
         public List<Vertex> Xv = new List<Vertex>();
         public List<Line> Xl = new List<Line>();
         public int N, M;
-        int NoCloCur()
-        {
-            int Is = 0;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, ClosedCurved.Count, i =>
-            */
-            for (int i = 0; i < ClosedCurved.Count; i++)
-            {
-                /* ParallelOptions poo = new ParallelOptions
-                 {
-                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                 }; Parallel.For(0, ClosedCurved[i].Count, j =>
-                */ //
-                for (int j = 0; j < ClosedCurved[i].Count; j++)
-                {
-                    object hh = new object();
-                    lock (hh)
-                    {
-                        //   if (i >= Xv.Count)
-                        // return;
 
-                        Is++;
-                    }
-                }//);
-            }//);
-            return Is;
-        }
-        public void CreateAngleAndLines()
-        {
-
-            List<Point3Dspaceuser.Point3D> ad = new List<Point3Dspaceuser.Point3D>();
-            for (int i = 0; i < Xv.Count; i++)
-            {
-                Point3Dspaceuser.Point3D p0 = new Point3Dspaceuser.Point3D(Xv[i].X, Xv[i].Y, 0);
-
-                for (int j = 0; j < Xv.Count; j++)
-                {
-                    Point3Dspaceuser.Point3D p1 = new Point3Dspaceuser.Point3D(Xv[j].X, Xv[j].Y, 0);
-                    bool Is = false;
-                    for (int k = 0; k < Xv.Count; k++)
-                    {
-                        Point3Dspaceuser.Point3D p2 = new Point3Dspaceuser.Point3D(Xv[k].X, Xv[k].Y, 0);
-
-                        for (int p = 0; p < Xv.Count; p++)
-                        {
-                            Point3Dspaceuser.Point3D p3 = new Point3Dspaceuser.Point3D(Xv[p].X, Xv[p].Y, 0);
-
-                                if (i == j)
-                                                continue;
-                                            if (i == k)
-                                                continue;
-                                            if (i == p)
-                                                continue;
-                                            if (j == k)
-                                                continue;
-                                            if (j == p)
-                                                continue;
-                                            if (k == p)
-                                                continue;
-                                       if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
-                            {
-                                if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
-                                {
-                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
-                                    {
-                                        if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
-                                        {
-                                             howto_WPF_3D_triangle_normalsuser.Line l0 = new howto_WPF_3D_triangle_normalsuser.Line(p0, p1);
-                                            howto_WPF_3D_triangle_normalsuser.Line l1 = new howto_WPF_3D_triangle_normalsuser.Line(p2, p3);
-                                            double an = 0;
-                                            howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLine(l0, l1, ref an);
-
-                                            if (an > Math.PI / 15.0)
-                                            {
-                                                bool adlip0 = true;
-                                                bool adlip1 = true;
-                                                if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
-                                                    ad.Add(p0);
-                                                else
-                                                    adlip0 = false;
-                                                if (!adlip0)
-                                                {
-                                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
-                                                        ad.Add(p1);
-                                                    else
-                                                        adlip0 = false;
-                                                }
-                                                if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
-                                                    ad.Add(p2);
-                                                else
-                                                    adlip1 = false;
-                                                if (!adlip1)
-                                                {
-                                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
-                                                        ad.Add(p3);
-                                                    else
-                                                        adlip1 = false;
-                                                }
-                                                if (adlip0)
-                                                    XlLineshow.Add(l0);
-                                                if (adlip1)
-                                                    XlLineshow.Add(l1);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            //XlLineshow.Add(p0, p1);
-                        }
-                    }
-                    if (Is)
-                        Angle++;
-                }
-            }
-
-            Liens = Angle;
-        }
-        bool ExistCloCur(int x1, int y1)
-        {
-            bool Is = false;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, ClosedCurved.Count, i =>
-            */
-            for (int i = 0; i < ClosedCurved.Count; i++)
-            {
-                /* ParallelOptions poo = new ParallelOptions
-                 {
-                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                 }; Parallel.For(0, ClosedCurved[i].Count, j =>
-                */ //
-                for (int j = 0; j < ClosedCurved[i].Count; j++)
-                {
-                    object hh = new object();
-                    lock (hh)
-                    {
-                        //   if (i >= Xv.Count)
-                        // return;
-
-                        if (ClosedCurved[i][j].X == x1 && ClosedCurved[i][j].Y == y1)
-                        {
-                            Is = true;
-                        }
-                    }
-                }//);
-            }//);
-            return Is;
-        }
-        bool ExistCloCurContinuse(int x1, int y1)
-        {
-            bool Is = false;
-            /* ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, ClosedCurved.Count, i =>*/
-            for (int i = 0; i < ClosedCurved.Count; i++)
-            {
-
-                object hh = new object();
-                lock (hh)
-                {
-                    if (i >= Xv.Count)
-                        continue;
-                    if (ClosedCurved[i].Count == 0)
-                        continue;
-                    if (ClosedCurved[i][ClosedCurved[i].Count - 1].X == x1 && ClosedCurved[i][ClosedCurved[i].Count - 1].Y == y1)
-                    {
-                        Is = true;
-                    }
-                }
-
-            }//);
-            return Is;
-        }
-        int GetVerInd(int VertNo)
-        {
-            int vern = 0;
-            for (int i = 0; i < Xv.Count; i++)
-            {
-                if (Xv[i].VertexNumber == VertNo)
-                    return i;
-            }
-            return vern;
-        }
-        int GetVerId(int id)
-        {
-
-            return Xv[id].VertexNumber;
-        }
-        int GetNotClosedCurvedIndexI()
-        {
-            int v = -1;
-            for (int i = 0; i < Xv.Count; i++)
-            {
-                bool Is = false;
-                for (int j = 0; j < ClosedCurvedIndexI.Count; j++)
-                {
-
-                    if (ClosedCurvedIndexI[j] == (i))
-                    {
-                        Is = true;
-                        break;
-                    }
-
-                }
-                if (!Is)
-                    return i;
-            }
-            return v;
-        }
-        public void CreateClosedCurved()
-        {
-            bool IsNext = false;
-            int noIsNext = 0;
-            int i = 0;
-            try
-            {
-                do
-                {
-                    IsNext = false;
-                    ClosedCurved.Add(new List<Vertex>());
-
-                    int j = 0;
-                    while (j < Xv.Count)
-                    {
-                        if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
-                        {
-                            i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                            ClosedCurvedIndexI.Add(i);
-                        }
-                        else
-                        {
-                            if (!ExistCloCur(Xv[i].X, Xv[i].Y))
-                            {
-                                ClosedCurved[ClosedCurved.Count - 1].Add(Xv[i]);
-                                i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                                ClosedCurvedIndexI.Add(i);
-                            }
-                        }
-
-                        if (ExistCloCur(Xv[j].X, Xv[j].Y))
-                        {
-                            j++;
-                            continue;
-                        }
-                        Line ds = d(Xv[i], Xv[j]);
-                        if (ds == null)
-                        {
-                            j++;
-                            continue;
-                        }
-                        if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
-                        {
-                            j++;
-                            continue;
-                        }
-                        if (j < Xv.Count && ClosedCurved[ClosedCurved.Count - 1].Count > 0)
-                        {
-                            if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
-                            {
-                                IsNext = true;
-                                ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                                numberOfClosedCurved++;
-                                break;
-                            }
-                        }
-                        if (j < Xv.Count)
-                            ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                        j = 0;
-                    }
-
-                    IsClosedCurved.Add(IsNext);
-
-                    if (!IsNext)
-                    {
-                        i = GetNotClosedCurvedIndexI();
-                        if (i == -1)
-                            noIsNext = Xv.Count;
-                        for (int h = 0; h < IsClosedCurved.Count; h++)
-                        {
-                            if (!IsClosedCurved[h])
-                            {
-                                IsClosedCurved.RemoveAt(h);
-                                ClosedCurved.RemoveAt(h);
-                            }
-                        }
-
-                        noIsNext++;
-                    }
-
-                } while (NoCloCur() != Xv.Count && noIsNext < Xv.Count);
-            }
-            catch (Exception t)
-            {
-                MessageBox.Show(t.ToString());
-            }
-        }
 
         public bool ExistV(int x1, int y1)
         {
@@ -1076,19 +771,12 @@ namespace ContourAnalysisNS
             if (!Achange)
             {
 
-                GraphDivergenceMatrix AA = new GraphDivergenceMatrix(A, n, m);
+                SameRikhEquvalent AA = new SameRikhEquvalent(A, n, m);
                 if (AA != null)
                 {
                     AA.IJBelongToLineHaveFalseBolleanA(A);
                     AA.CreateClosedCurved();
-                    for (int i = 0; i < AA.Xv.Count; i++)
-                    {
-                        for (int j = 0; j < AA.Xv.Count; j++)
-                        {
-                            if (AA.d(AA.Xv[i], AA.Xv[j]) != null)
-                                AA.XlLineshow.Add(new howto_WPF_3D_triangle_normalsuser.Line(new Point3Dspaceuser.Point3D(AA.Xv[i].X, AA.Xv[i].Y, 0), new Point3Dspaceuser.Point3D(AA.Xv[j].X, AA.Xv[j].Y, 0)));
-                        }
-                    }
+                    AA.CreateAngleAndLines();
                     return AA;
                 }
 
@@ -1356,7 +1044,21 @@ namespace ContourAnalysisNS
             XiXjDelete();
 
         }
-        //reconstruction;
+        int GetVerInd(int VertNo)
+        {
+            int vern = 0;
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                if (Xv[i].VertexNumber == VertNo)
+                    return i;
+            }
+            return vern;
+        }
+        int GetVerId(int id)
+        {
+
+            return Xv[id].VertexNumber;
+        } //reconstruction;
         public GraphDivergenceMatrix(List<Vertex> A, List<Line> Xl, int n, int m)
         {
             N = n;
@@ -1745,4 +1447,321 @@ namespace ContourAnalysisNS
             return Is;
         }
     }
+    public class SameRikhEquvalent : GraphDivergenceMatrix
+    {
+        public int Angle = 0, Liens = 0;
+        public List<howto_WPF_3D_triangle_normalsuser.Line> XlLineshow = new List<howto_WPF_3D_triangle_normalsuser.Line>();
+        public int numberOfClosedCurved = 0;
+        List<List<Vertex>> ClosedCurved = new List<List<Vertex>>();
+        List<bool> IsClosedCurved = new List<bool>();
+        List<int> ClosedCurvedIndexI = new List<int>();
+        public SameRikhEquvalent(bool[,] A, int n, int m) : base(A, n, m)
+        {
+
+        }
+        public SameRikhEquvalent(List<Vertex> A, List<Line> Xl, int n, int m) : base(A, Xl, n, m)
+        {
+
+        }
+        int GetVerInd(int VertNo)
+        {
+            int vern = 0;
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                if (Xv[i].VertexNumber == VertNo)
+                    return i;
+            }
+            return vern;
+        }
+        int GetVerId(int id)
+        {
+
+            return Xv[id].VertexNumber;
+        }
+        public void CreateAngleAndLines()
+        {
+
+            List<Point3Dspaceuser.Point3D> ad = new List<Point3Dspaceuser.Point3D>();
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                Point3Dspaceuser.Point3D p0 = new Point3Dspaceuser.Point3D(Xv[i].X, Xv[i].Y, 0);
+
+                for (int j = 0; j < Xv.Count; j++)
+                {
+                    Point3Dspaceuser.Point3D p1 = new Point3Dspaceuser.Point3D(Xv[j].X, Xv[j].Y, 0);
+                    bool Is = false;
+                    for (int k = 0; k < Xv.Count; k++)
+                    {
+                        Point3Dspaceuser.Point3D p2 = new Point3Dspaceuser.Point3D(Xv[k].X, Xv[k].Y, 0);
+
+                        for (int p = 0; p < Xv.Count; p++)
+                        {
+                            Point3Dspaceuser.Point3D p3 = new Point3Dspaceuser.Point3D(Xv[p].X, Xv[p].Y, 0);
+
+                            if (i == j)
+                                continue;
+                            if (i == k)
+                                continue;
+                            if (i == p)
+                                continue;
+                            if (j == k)
+                                continue;
+                            if (j == p)
+                                continue;
+                            if (k == p)
+                                continue;
+                            if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
+                            {
+                                if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
+                                {
+                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
+                                    {
+                                        if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
+                                        {
+                                            howto_WPF_3D_triangle_normalsuser.Line l0 = new howto_WPF_3D_triangle_normalsuser.Line(p0, p1);
+                                            howto_WPF_3D_triangle_normalsuser.Line l1 = new howto_WPF_3D_triangle_normalsuser.Line(p2, p3);
+                                            double an = 0;
+                                            howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLine(l0, l1, ref an);
+
+                                            if (an > Math.PI / 15.0)
+                                            {
+                                                bool adlip0 = true;
+                                                bool adlip1 = true;
+                                                if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
+                                                    ad.Add(p0);
+                                                else
+                                                    adlip0 = false;
+                                                if (!adlip0)
+                                                {
+                                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
+                                                        ad.Add(p1);
+                                                    else
+                                                        adlip0 = false;
+                                                }
+                                                if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
+                                                    ad.Add(p2);
+                                                else
+                                                    adlip1 = false;
+                                                if (!adlip1)
+                                                {
+                                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
+                                                        ad.Add(p3);
+                                                    else
+                                                        adlip1 = false;
+                                                }
+                                                if (adlip0)
+                                                    XlLineshow.Add(l0);
+                                                if (adlip1)
+                                                    XlLineshow.Add(l1);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            //XlLineshow.Add(p0, p1);
+                        }
+                    }
+                    if (Is)
+                        Angle++;
+                }
+            }
+
+            Liens = Angle;
+        }
+        int NoCloCur()
+        {
+            int Is = 0;
+            /*ParallelOptions po = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+            }; Parallel.For(0, ClosedCurved.Count, i =>
+            */
+            for (int i = 0; i < ClosedCurved.Count; i++)
+            {
+                /* ParallelOptions poo = new ParallelOptions
+                 {
+                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                 }; Parallel.For(0, ClosedCurved[i].Count, j =>
+                */ //
+                for (int j = 0; j < ClosedCurved[i].Count; j++)
+                {
+                    object hh = new object();
+                    lock (hh)
+                    {
+                        //   if (i >= Xv.Count)
+                        // return;
+
+                        Is++;
+                    }
+                }//);
+            }//);
+            return Is;
+        }
+        bool ExistCloCur(int x1, int y1)
+        {
+            bool Is = false;
+            /*ParallelOptions po = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+            }; Parallel.For(0, ClosedCurved.Count, i =>
+            */
+            for (int i = 0; i < ClosedCurved.Count; i++)
+            {
+                /* ParallelOptions poo = new ParallelOptions
+                 {
+                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                 }; Parallel.For(0, ClosedCurved[i].Count, j =>
+                */ //
+                for (int j = 0; j < ClosedCurved[i].Count; j++)
+                {
+                    object hh = new object();
+                    lock (hh)
+                    {
+                        //   if (i >= Xv.Count)
+                        // return;
+
+                        if (ClosedCurved[i][j].X == x1 && ClosedCurved[i][j].Y == y1)
+                        {
+                            Is = true;
+                        }
+                    }
+                }//);
+            }//);
+            return Is;
+        }
+        bool ExistCloCurContinuse(int x1, int y1)
+        {
+            bool Is = false;
+            /* ParallelOptions po = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+            }; Parallel.For(0, ClosedCurved.Count, i =>*/
+            for (int i = 0; i < ClosedCurved.Count; i++)
+            {
+
+                object hh = new object();
+                lock (hh)
+                {
+                    if (i >= Xv.Count)
+                        continue;
+                    if (ClosedCurved[i].Count == 0)
+                        continue;
+                    if (ClosedCurved[i][ClosedCurved[i].Count - 1].X == x1 && ClosedCurved[i][ClosedCurved[i].Count - 1].Y == y1)
+                    {
+                        Is = true;
+                    }
+                }
+
+            }//);
+            return Is;
+        }
+        int GetNotClosedCurvedIndexI()
+        {
+            int v = -1;
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                bool Is = false;
+                for (int j = 0; j < ClosedCurvedIndexI.Count; j++)
+                {
+
+                    if (ClosedCurvedIndexI[j] == (i))
+                    {
+                        Is = true;
+                        break;
+                    }
+
+                }
+                if (!Is)
+                    return i;
+            }
+            return v;
+        }
+        public void CreateClosedCurved()
+        {
+            bool IsNext = false;
+            int noIsNext = 0;
+            int i = 0;
+            try
+            {
+                do
+                {
+                    IsNext = false;
+                    ClosedCurved.Add(new List<Vertex>());
+
+                    int j = 0;
+                    while (j < Xv.Count)
+                    {
+                        if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
+                        {
+                            i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
+                            ClosedCurvedIndexI.Add(i);
+                        }
+                        else
+                        {
+                            if (!ExistCloCur(Xv[i].X, Xv[i].Y))
+                            {
+                                ClosedCurved[ClosedCurved.Count - 1].Add(Xv[i]);
+                                i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
+                                ClosedCurvedIndexI.Add(i);
+                            }
+                        }
+
+                        if (ExistCloCur(Xv[j].X, Xv[j].Y))
+                        {
+                            j++;
+                            continue;
+                        }
+                        Line ds = d(Xv[i], Xv[j]);
+                        if (ds == null)
+                        {
+                            j++;
+                            continue;
+                        }
+                        if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
+                        {
+                            j++;
+                            continue;
+                        }
+                        if (j < Xv.Count && ClosedCurved[ClosedCurved.Count - 1].Count > 0)
+                        {
+                            if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
+                            {
+                                IsNext = true;
+                                ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                                numberOfClosedCurved++;
+                                break;
+                            }
+                        }
+                        if (j < Xv.Count)
+                            ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                        j = 0;
+                    }
+
+                    IsClosedCurved.Add(IsNext);
+
+                    if (!IsNext)
+                    {
+                        i = GetNotClosedCurvedIndexI();
+                        if (i == -1)
+                            noIsNext = Xv.Count;
+                        for (int h = 0; h < IsClosedCurved.Count; h++)
+                        {
+                            if (!IsClosedCurved[h])
+                            {
+                                IsClosedCurved.RemoveAt(h);
+                                ClosedCurved.RemoveAt(h);
+                            }
+                        }
+
+                        noIsNext++;
+                    }
+
+                } while (NoCloCur() != Xv.Count && noIsNext < Xv.Count);
+            }
+            catch (Exception t)
+            {
+                MessageBox.Show(t.ToString());
+            }
+        }
+    };
 }

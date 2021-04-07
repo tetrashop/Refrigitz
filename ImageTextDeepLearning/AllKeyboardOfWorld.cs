@@ -488,7 +488,7 @@ namespace ImageTextDeepLearning
             return true;
         }
 
-        private bool HollowCountreImageCommmon(ref Bitmap Img, bool[,] Ab)
+         private bool HollowCountreImageCommmon(ref Bitmap Img, bool[,] Ab)
         {
             try
             {
@@ -502,24 +502,40 @@ namespace ImageTextDeepLearning
                 // {
                 Hollowed = false;
 
-                for (int x = 0; x < wi; x++)
+                var output = Task.Factory.StartNew(() =>
                 {
-                    for (int y = 0; y < he; y++)
+                    // for (int x = 0; x < wi; x++)
+                    //{
+
+                    ParallelOptions po = new ParallelOptions
                     {
-                        object o = new object();
-                        lock (o)
+                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                    }; Parallel.For(0, wi, x =>
                         {
-                            if (Ab[x, y])
+                            /// for (int y = 0; y < he; y++)
+                            //{
+                            ParallelOptions poo = new ParallelOptions
                             {
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.For(0, wi, y =>
+                            {
+                                object o = new object();
+                                lock (o)
+                                {
+                                    if (Ab[x, y])
+                                    {
 
-                                var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
-                                //th.Add(H);
-                                H.Wait();
-                            }
-                        }
-                    }
+                                        var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
+                                        //th.Add(H);
+                                        //H.Wait();
+                                    }
+                                }
+                            });
 
-                }
+
+                        });
+                });
+                output.Wait();
                 //} while (Hollowed);
                 e.Dispose();
                 //Parallel.ForEach(th, item => Task.WaitAll(item));
@@ -534,7 +550,7 @@ namespace ImageTextDeepLearning
             return true;
 
         }
-        private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab)
+       private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab)
         {
             Bitmap Im = Img;
 
@@ -687,7 +703,7 @@ namespace ImageTextDeepLearning
                         {
                             if (x + 1 < wi)
                             {
-                                //if (Ab[x + 1, y])
+                                if (Ab[x + 1, y])
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref Is));
                                 }
@@ -741,7 +757,7 @@ namespace ImageTextDeepLearning
                         {
                             if (x - 1 >= 0)
                             {
-                                //if (Ab[x - 1, y])
+                                if (Ab[x - 1, y])
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref Is));
                                 }
@@ -802,7 +818,7 @@ namespace ImageTextDeepLearning
                         {
                             if (y + 1 < he)
                             {
-                                //if (Ab[x, y + 1])
+                                if (Ab[x, y + 1])
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref Is));
                                 }
@@ -854,7 +870,7 @@ namespace ImageTextDeepLearning
                         {
                             if (y + 1 < he)
                             {
-                                //if (Ab[x, y + 1])
+                                if (Ab[x, y + 1])
                                 {
                                     var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref Is));
                                 }
@@ -1184,56 +1200,56 @@ namespace ImageTextDeepLearning
                     //{
                     for (int i = 0; i < TempI.Count; i++)
                     {
-                        Bitmap Temp = cropImage(TempI[i], new Rectangle(0, 0, TempI[i].Width, TempI[i].Height));
+                        //Bitmap Temp = cropImage(TempI[i], new Rectangle(0, 0, TempI[i].Width, TempI[i].Height));
 
-                        int wi = Temp.Width;
-                        int he = Temp.Height;
+                        //int wi = Temp.Width;
+                        //int he = Temp.Height;
                         //matrix boolean object constructor list
                         List<bool[,]> Te = new List<bool[,]>();
 
                         //boolean object constructor
-                        bool[,] Tem = new bool[wi, he];
+                        bool[,] Tem = new bool[TempI[i].Width, TempI[i].Height];
                         //for all wi
                         //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, wi, k =>
-                        bool[,] TemB = new bool[wi, he];
-                        Graphics e = Graphics.FromImage(Temp);
-                        for (int k = 0; k < wi; k++)
-                        {
-                            for (int p = 0; p < he; p++)
-                            {
-                                // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
-                                if ((Temp.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
-                                {
-                                    TemB[k, p] = true;
-                                }
-                                else
-                                {
-                                    TemB[k, p] = false;
-                                }
-                            }
-                        }
-                        e.Dispose();
-                      
-                        bool Do = HollowCountreImageCommmon(ref Temp, TemB);
+                        bool[,] TemB = new bool[TempI[i].Width, TempI[i].Height];
+                        /* Graphics e = Graphics.FromImage(Temp[i]);
+                         for (int k = 0; k < wi; k++)
+                         {
+                             for (int p = 0; p < he; p++)
+                             {
+                                 // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                 if ((Temp[i].GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                 {
+                                     TemB[k, p] = true;
+                                 }
+                                 else
+                                 {
+                                     TemB[k, p] = false;
+                                 }
+                             }
+                         }
+                         e.Dispose();*/
+
+                        /*bool Do = HollowCountreImageCommmon(ref Temp, TemB);
                         if (!Do)
                         {
                             MessageBox.Show("Hollowed Fatal Error");
                             return false;
-                        }
-                        e = Graphics.FromImage(Temp);
+                        }*/
+                        Graphics e = Graphics.FromImage(TempI[i]);
 
                         //{
-                        for (int k = 0; k < wi; k++)
+                        for (int k = 0; k < TempI[i].Width; k++)
                         {
                             //for all he
                             //ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, he, p =>
 
                             // {
-                            for (int p = 0; p < he; p++)
+                            for (int p = 0; p < TempI[i].Height; p++)
                             {
                                 //assigne proper matrix
                                 //Tem[k, p] = Temp[i].GetPixel(k, p).ToArgb();
-                                if ((Temp.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                if ((TempI[i].GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                 {
                                     Tem[k, p] = true;
                                 }
@@ -1245,7 +1261,7 @@ namespace ImageTextDeepLearning
                         }//);
                         e.Dispose();
 
-                        KeyboardAllImage.Add(Temp);
+                        KeyboardAllImage.Add(TempI[i]);
 
                         //add
                         KeyboardAllConjunctionMatrix.Add(Tem);

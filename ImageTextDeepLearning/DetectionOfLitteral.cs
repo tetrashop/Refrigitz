@@ -54,11 +54,11 @@ namespace ImageTextDeepLearning
             }
             catch (Exception te)
             {
-                System.Windows.Forms.MessageBox.Show("Fatual Error!" + te.ToString());
+                //System.Windows.Forms.MessageBox.Show("Fatual Error!" + te.ToString());
             }
             finally
             {
-                System.Windows.Forms.MessageBox.Show("Completed Detetcted " + Detected.Count);
+                //System.Windows.Forms.MessageBox.Show("Completed Detetcted " + Detected.Count);
             }
         }
 

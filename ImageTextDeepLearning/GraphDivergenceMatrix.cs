@@ -1449,7 +1449,8 @@ namespace ContourAnalysisNS
     }
     public class SameRikhEquvalent : GraphDivergenceMatrix
     {
-        public int Angle = 0, Liens = 0;
+        List<List<Point3Dspaceuser.Point3D[]>> ad = new List<List<Point3Dspaceuser.Point3D[]>>();
+            public int Angle = 0, Liens = 0;
         public List<howto_WPF_3D_triangle_normalsuser.Line> XlLineshow = new List<howto_WPF_3D_triangle_normalsuser.Line>();
         public int numberOfClosedCurved = 0;
         List<List<Vertex>> ClosedCurved = new List<List<Vertex>>();
@@ -1462,6 +1463,29 @@ namespace ContourAnalysisNS
         public SameRikhEquvalent(List<Vertex> A, List<Line> Xl, int n, int m) : base(A, Xl, n, m)
         {
 
+        }
+        bool AddIng(Point3Dspaceuser.Point3D p0, Point3Dspaceuser.Point3D p1)
+        {
+            for (int i = 0; i < ad.Count; i++)
+            {
+                for (int j= 0; j< ad.Count; j++)
+                {
+                    double an = 0;
+
+                    howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLineS(ad[i][j][0], ad[i][j][1], p0, p1, ref an);
+                    if (an < Math.PI / 90)
+                    {
+                        if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p0))
+                            continue;
+                        Point3Dspaceuser.Point3D[] c= new Point3Dspaceuser.Point3D[2];
+                        c[0] = p0;
+                        c[1] = p1;
+                        ad[i].Add(c);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
         int GetVerInd(int VertNo)
         {
@@ -1481,7 +1505,6 @@ namespace ContourAnalysisNS
         public void CreateAngleAndLines()
         {
 
-            List<Point3Dspaceuser.Point3D> ad = new List<Point3Dspaceuser.Point3D>();
             for (int i = 0; i < Xv.Count; i++)
             {
                 Point3Dspaceuser.Point3D p0 = new Point3Dspaceuser.Point3D(Xv[i].X, Xv[i].Y, 0);
@@ -1523,37 +1546,13 @@ namespace ContourAnalysisNS
                                             double an = 0;
                                             howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLine(l0, l1, ref an);
 
-                                            if (an > Math.PI / 15.0)
-                                            {
-                                                bool adlip0 = true;
-                                                bool adlip1 = true;
-                                                if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
-                                                    ad.Add(p0);
-                                                else
-                                                    adlip0 = false;
-                                                if (!adlip0)
-                                                {
-                                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
-                                                        ad.Add(p1);
-                                                    else
-                                                        adlip0 = false;
-                                                }
-                                                if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
-                                                    ad.Add(p2);
-                                                else
-                                                    adlip1 = false;
-                                                if (!adlip1)
-                                                {
-                                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
-                                                        ad.Add(p3);
-                                                    else
-                                                        adlip1 = false;
-                                                }
-                                                if (adlip0)
-                                                    XlLineshow.Add(l0);
-                                                if (adlip1)
-                                                    XlLineshow.Add(l1);
-                                            }
+                                            Is = AddIng(p0, p1);
+                                            if (Is)
+                                                XlLineshow.Add(l0);
+                                            Is = AddIng(p2, p3);
+                                            if (Is)
+                                                XlLineshow.Add(l1);
+                                            
                                         }
                                     }
                                 }
@@ -1561,12 +1560,10 @@ namespace ContourAnalysisNS
                             //XlLineshow.Add(p0, p1);
                         }
                     }
-                    if (Is)
-                        Angle++;
-                }
+                 }
             }
-
-            Liens = Angle;
+            Liens = ad.Count;
+            Angle = ad.Count;
         }
         int NoCloCur()
         {

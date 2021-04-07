@@ -24,15 +24,23 @@ namespace Point3Dspaceuser
         public Point3D()
         {
         }
-        public static bool Exist(List<Point3D> lp, Point3D p)
+        public static bool Exist(List<List<Point3D[]>> lp, Point3D p)
         {
             bool Is = false;
-            for(int i = 0; i < lp.Count; i++)
+            for (int i = 0; i < lp.Count; i++)
             {
-                if (lp[i].X == p.X&&lp[i].Y==p.Y&&lp[i].Z==p.Z)
+                for (int j = 0; j < lp[i].Count; j++)
                 {
-                    Is = true;
-                    break;
+                    if (lp[i][j][0].X == p.X && lp[i][j][0].Y == p.Y && lp[i][j][0].Z == p.Z)
+                    {
+                        Is = true;
+                        break;
+                    }
+                    if (lp[i][j][1].X == p.X && lp[i][j][1].Y == p.Y && lp[i][j][1].Z == p.Z)
+                    {
+                        Is = true;
+                        break;
+                    }
                 }
             }
             return Is;

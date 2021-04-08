@@ -199,7 +199,7 @@ namespace ContourAnalysisNS
                 {
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.For(0, Xv.Count, j =>*/
-                for (int j = 0; j < Xv.Count; j++)
+                //for (int j = 0; j < Xv.Count; j++)
                 {
                     object hh = new object();
                     lock (hh)
@@ -844,7 +844,7 @@ namespace ContourAnalysisNS
         }
         public GraphDivergenceMatrix(bool[,] A, int n, int m)
         {
-            int First = 1;
+            int First = 0;
             N = n;
             M = m;
             int indv = 0;
@@ -882,27 +882,15 @@ namespace ContourAnalysisNS
                                 {
                                     continue;
                                 }
-                                if (i == j)
-                                {
-                                    continue;
-                                }
-                                if (i == p)
-                                {
-                                    continue;
-                                }
-                                if (j == k)
-                                {
-                                    continue;
-                                }
+                                
+                                
+                                
 
                                 if (j == p)
                                 {
                                     continue;
                                 }
-                                if (k == p)
-                                {
-                                    continue;
-                                }
+                                
                                 if (A[i, j] && A[k, p])
                                 {
 
@@ -910,13 +898,14 @@ namespace ContourAnalysisNS
                                     {
                                         if (Xv[First].X == k && Xv[First].Y == p)
                                         {
-                                            Xv.Add(new Vertex(indv, i, j));
-                                            Xv.Add(new Vertex(First, k, p));
-                                            if (!ExistL(indv - 1, First))
+                                            if (!ExistV(i, j))
+                                                Xv.Add(new Vertex(++indv, i, j));
+                                            Xv.Add(new Vertex(First + 1, k, p));
+                                            if (!ExistL(Xv[Xv.Count - 1].VertexNumber, First + 1))
                                             {
                                                 float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                 Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                First = indv + 1;
+                                                First = indv;
                                             }
                                         }
                                         else
@@ -1146,19 +1135,12 @@ namespace ContourAnalysisNS
                         lock (h)
                         {
 
-                            if (i == k)
-                            {
-                                continue;
-                            }
+                           
                             if (i == j)
                             {
                                 continue;
                             }
 
-                            if (j == k)
-                            {
-                                continue;
-                            }
 
 
 
@@ -1584,35 +1566,35 @@ namespace ContourAnalysisNS
             return div;
         }
 
-        bool AddIng(Point3Dspaceuser.Point3D p0, Point3Dspaceuser.Point3D p1,ref int ii,ref int jj)
+        bool AddIng(Point3Dspaceuser.Point3D p0, Point3Dspaceuser.Point3D p1, ref int ii, ref int jj)
         {
+            Point3Dspaceuser.Point3D[] c = new Point3Dspaceuser.Point3D[2];
+            c[0] = p0;
+            c[1] = p1;
             for (int i = 0; i < ad.Count; i++)
             {
-                for (int j= 0; j< ad.Count; j++)
+                if (ad[i].Count == 0)
+                {
+                    ad[ad.Count - 1].Add(c);
+                    ii = ad.Count - 1;
+                    jj = 0;
+                    return true;
+                }
+                for (int j = 0; j < ad[i].Count; j++)
                 {
                     double an = 0;
 
-                    Point3Dspaceuser.Point3D[] c = new Point3Dspaceuser.Point3D[2];
-                    c[0] = p0;
-                    c[1] = p1;
                     howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLineS(ad[i][j][0], ad[i][j][1], p0, p1, ref an);
                     if (an < Math.PI / 90)
                     {
-                        if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p0))
+                        if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1))
                             continue;
                         ad[i].Add(c);
                         ii = i;
                         jj = j;
                         return true;
                     }
-                    else
-                    {
-                        ad.Add(new List<Point3Dspaceuser.Point3D[]>());
-                        ad[ad.Count - 1].Add(c);
-                        ii = ad.Count - 1;
-                        jj = 0;
-                        return true;
-                    }
+
                 }
             }
             return false;
@@ -1621,24 +1603,22 @@ namespace ContourAnalysisNS
         {
             if (i < ld.Count)
             {
-                if (j == ld[i].Count - 2)
+                if (j == 0)
+                {
+                    ld.Add(new List<Line>());
+                    sd.Add(new List<float>());
+                    ld[ld.Count - 1].Add(l0);
+                    sd[ld.Count - 1].Add(we);
+                    return true;
+                }
+                if (j - 1 == ld[i].Count - 1)
                 {
                     ld[i].Add(l0);
                     sd[i].Add(we);
                     return true;
                 }
-            }
-            else
-            {
-                if (j == 0)
-                {
-                    ld.Add(new List<Line>());
-                    ld[ad.Count - 1].Add(l0);
-                    sd[ad.Count - 1].Add(we);
-                    return true;
-                }
-
-            }
+               
+            }            
             return false;
         }
         int GetVerInd(int VertNo)
@@ -1658,7 +1638,10 @@ namespace ContourAnalysisNS
         }
         public void CreateAngleAndLines()
         {
-
+            ad.Add(new List<Point3Dspaceuser.Point3D[]>());
+            sd.Add(new List<float>());
+            ld.Add(new List<Line>());
+        
             for (int i = 0; i < Xv.Count; i++)
             {
                 Point3Dspaceuser.Point3D p0 = new Point3Dspaceuser.Point3D(Xv[i].X, Xv[i].Y, 0);
@@ -1695,10 +1678,6 @@ namespace ContourAnalysisNS
                                     {
                                         if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
                                         {
-                                            howto_WPF_3D_triangle_normalsuser.Line l0 = new howto_WPF_3D_triangle_normalsuser.Line(p0, p1);
-                                            howto_WPF_3D_triangle_normalsuser.Line l1 = new howto_WPF_3D_triangle_normalsuser.Line(p2, p3);
-                                            double an = 0;
-                                            howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLine(l0, l1, ref an);
                                             int ii = -1, jj = -1;
                                             Is = AddIng(p0, p1, ref ii, ref jj);
                                             if (Is)
@@ -1723,6 +1702,12 @@ namespace ContourAnalysisNS
                          }
                     }
                 }
+            }
+            if (ad[0].Count == 0)
+            {
+                ad.Clear();
+                sd.Clear();
+                ld.Clear();
             }
             Liens = ad.Count;
             Angle = ad.Count;

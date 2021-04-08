@@ -27,7 +27,7 @@ namespace Point3Dspaceuser
         public static bool Exist(List<List<Point3D[]>> lp, Point3D p)
         {
             bool Is = false;
-            for (int i = 0; i < lp.Count; i++)
+             for (int i = 0; i < lp.Count; i++)
             {
                 for (int j = 0; j < lp[i].Count; j++)
                 {

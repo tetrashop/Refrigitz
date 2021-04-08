@@ -14,6 +14,38 @@ namespace howto_WPF_3D_triangle_normals
             return Sort(a, d, n);
 
         }
+        static Point3D[] Sort(float[] a, float[] d, int n)
+        {
+            float[] c = new float[n];
+            int H = 0;
+            while (H < n)
+            {
+                int Lastindex = -1;
+                bool FirstIndex = false;
+                for (int i = 0; i < n; i++)
+                {
+                    if ((i == d[i]))
+                        continue;
+                    else
+                    {
+                        if (!FirstIndex)
+                        {
+                            Lastindex = i;
+                            FirstIndex = true;
+                        }
+                        if (a[Lastindex] < a[i])
+                            Lastindex = i;
+                    }
+                }
+                if ((Lastindex != -1) & (H <= n))
+                {
+                    d[Lastindex] = Lastindex;
+                    c[n - 1 - H] = a[Lastindex];
+                    H++;
+                }
+            }
+            return c;
+        }
         public static double[] Do(double[] a)
         {
             int n = 3;

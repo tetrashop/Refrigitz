@@ -7,6 +7,7 @@ namespace ContourAnalysisNS
 {
     public class GraphS
     {
+        public static float SumWeighEveryLinesDiffferention = 1;
         public static GraphS Z = null;
         public static bool Drawn = false;
         public static SameRikhEquvalent ZB = null;
@@ -72,7 +73,10 @@ namespace ContourAnalysisNS
             {
                 if (Z.A.Angle == Z.B.Angle)
                 {
-                    return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+                    if (System.Math.Abs(Z.A.diverstionSumWeighEveryLines - Z.B.diverstionSumWeighEveryLines) < SumWeighEveryLinesDiffferention)
+                    {
+                        return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+                    }
                 }
             }
             return false;
@@ -1449,8 +1453,12 @@ namespace ContourAnalysisNS
     }
     public class SameRikhEquvalent : GraphDivergenceMatrix
     {
+        public float diverstionSumWeighEveryLines = 0;
+        List<float> SumWeighEveryLines = new List<float>();
+        List<List<float>> sd = new List<List<float>>();
         List<List<Point3Dspaceuser.Point3D[]>> ad = new List<List<Point3Dspaceuser.Point3D[]>>();
-            public int Angle = 0, Liens = 0;
+        List<List<Line>> ld = new List<List<Line>>();
+        public int Angle = 0, Liens = 0;
         public List<howto_WPF_3D_triangle_normalsuser.Line> XlLineshow = new List<howto_WPF_3D_triangle_normalsuser.Line>();
         public int numberOfClosedCurved = 0;
         List<List<Vertex>> ClosedCurved = new List<List<Vertex>>();
@@ -1464,7 +1472,26 @@ namespace ContourAnalysisNS
         {
 
         }
-        bool AddIng(Point3Dspaceuser.Point3D p0, Point3Dspaceuser.Point3D p1)
+        float Mean(List<float> z)
+        {
+            float mean = 0;
+            for (int i = 0; i < z.Count; i++)
+                mean += z[i];
+            mean /= (float)z.Count;
+            return mean;
+
+        }
+        float Divesion(List<float> t)
+        {
+            float div = 0;
+            float mean = Mean(t);
+            for (int i = 0; i < t.Count; i++)
+                div += Math.Abs(t[i] - mean);
+            div /= (float)t.Count;
+            return div;
+        }
+
+        bool AddIng(Point3Dspaceuser.Point3D p0, Point3Dspaceuser.Point3D p1,ref int ii,ref int jj)
         {
             for (int i = 0; i < ad.Count; i++)
             {
@@ -1481,15 +1508,43 @@ namespace ContourAnalysisNS
                         if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p0))
                             continue;
                         ad[i].Add(c);
+                        ii = i;
+                        jj = j;
                         return true;
                     }
                     else
                     {
                         ad.Add(new List<Point3Dspaceuser.Point3D[]>());
                         ad[ad.Count - 1].Add(c);
+                        ii = ad.Count - 1;
+                        jj = 0;
                         return true;
                     }
                 }
+            }
+            return false;
+        }
+        bool AddIngL(Line l0, int i, int j,float we)
+        {
+            if (i < ld.Count)
+            {
+                if (j == ld[i].Count - 2)
+                {
+                    ld[i].Add(l0);
+                    sd[i].Add(we);
+                    return true;
+                }
+            }
+            else
+            {
+                if (j == 0)
+                {
+                    ld.Add(new List<Line>());
+                    ld[ad.Count - 1].Add(l0);
+                    sd[ad.Count - 1].Add(we);
+                    return true;
+                }
+
             }
             return false;
         }
@@ -1551,25 +1606,42 @@ namespace ContourAnalysisNS
                                             howto_WPF_3D_triangle_normalsuser.Line l1 = new howto_WPF_3D_triangle_normalsuser.Line(p2, p3);
                                             double an = 0;
                                             howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLine(l0, l1, ref an);
-
-                                            Is = AddIng(p0, p1);
+                                            int ii = -1, jj = -1;
+                                            Is = AddIng(p0, p1, ref ii, ref jj);
                                             if (Is)
-                                                XlLineshow.Add(l0);
-                                            Is = AddIng(p2, p3);
+                                            {
+                                                float we = (float)Math.Sqrt((Xv[i].X - Xv[j].X) * (Xv[i].X - Xv[j].X) + (Xv[i].Y - Xv[j].Y) * (Xv[i].Y - Xv[j].Y));
+                                                Line ll0 = new Line(we, Xv[i].VertexNumber, Xv[j].VertexNumber);
+                                                AddIngL(ll0, ii, jj, we);
+                                            }
+                                            ii = -1;
+                                            jj = -1;
+                                            Is = AddIng(p2, p3, ref ii, ref jj);
                                             if (Is)
-                                                XlLineshow.Add(l1);
-                                            
+                                            {
+                                                float we = (float)Math.Sqrt((Xv[k].X - Xv[p].X) * (Xv[k].X - Xv[p].X) + (Xv[k].Y - Xv[p].Y) * (Xv[k].Y - Xv[p].Y));
+                                                Line ll0 = new Line(we, Xv[k].VertexNumber, Xv[p].VertexNumber);
+                                                AddIngL(ll0, ii, jj, we);
+                                            }
                                         }
                                     }
                                 }
                             }
-                            //XlLineshow.Add(p0, p1);
-                        }
+                         }
                     }
-                 }
+                }
             }
             Liens = ad.Count;
             Angle = ad.Count;
+            for(int i = 0; i < sd.Count; i++)
+            {
+                SumWeighEveryLines.Add(new float());
+                for(int j = 0; j < sd[i].Count; j++)
+                {
+                    SumWeighEveryLines[SumWeighEveryLines.Count - 1] += sd[i][j];
+                }
+            }
+            diverstionSumWeighEveryLines = Divesion(SumWeighEveryLines);
         }
         int NoCloCur()
         {

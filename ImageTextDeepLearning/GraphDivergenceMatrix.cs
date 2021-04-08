@@ -7,7 +7,7 @@ namespace ContourAnalysisNS
 {
     public class GraphS
     {
-        List<float> SumWeighEveryLines = new List<float>();
+         List<float> SumWeighEveryLines = new List<float>();
         public static float SumWeighEveryLinesDiffferention = 1;
         public static GraphS Z = null;
         public static bool Drawn = false;
@@ -102,12 +102,19 @@ namespace ContourAnalysisNS
 
             if (Z.A.numberOfClosedCurved == Z.B.numberOfClosedCurved)
             {
-                if (Z.A.Angle == Z.B.Angle)
+                if (Z.A.numberOfClosedCurved > 1)
                 {
-                    if (Z.SameSumWeigth())
+                    
+                }
+                else
+                {
+                    if (Z.A.Angle == Z.B.Angle)
                     {
+                        if (Z.SameSumWeigth())
+                        {
 
-                        return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+                            return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+                        }
                     }
                 }
             }
@@ -1485,6 +1492,8 @@ namespace ContourAnalysisNS
     }
     public class SameRikhEquvalent : GraphDivergenceMatrix
     {
+        List<bool[,]> GreaterThanOneCuurvvedMatrix = new List<bool[,]>();
+        public List<SameRikhEquvalent> GreaterThanOneCuurvved = new List<SameRikhEquvalent>();
         public float diverstionSumWeighEveryLines = 0;
         public List<float> SumWeighEveryLines = new List<float>();
         List<List<float>> sd = new List<List<float>>();
@@ -1503,6 +1512,37 @@ namespace ContourAnalysisNS
         public SameRikhEquvalent(List<Vertex> A, List<Line> Xl, int n, int m) : base(A, Xl, n, m)
         {
 
+        }
+        bool[,] CreateBooleanSubGraph(int i)
+        {
+            bool[,] c = new bool[N, M];
+            if (numberOfClosedCurved > 0)
+            {
+                for (int j = 0; j < ClosedCurved[i].Count; j++)
+                {
+                    c[ClosedCurved[i][j].X, ClosedCurved[i][j].Y] = true;
+                }
+
+            }
+            return c;
+        }
+        void CreateBolleanMatrixOfSubGraph()
+        {
+            if (numberOfClosedCurved > 0)
+            {
+                for (int i = 0; i < ClosedCurved.Count; i++)
+                {
+                    GreaterThanOneCuurvvedMatrix.Add(CreateBooleanSubGraph(i));
+                }
+            }
+        }
+        public  void CreateSubSameEquValentGraph()
+        {
+            if (GreaterThanOneCuurvvedMatrix.Count > 0)
+            {
+                for (int i = 0; i < GreaterThanOneCuurvvedMatrix.Count; i++)
+                    GreaterThanOneCuurvved.Add(new SameRikhEquvalent(GreaterThanOneCuurvvedMatrix[i], N, M));
+            }
         }
         float Mean(List<float> z)
         {
@@ -1675,7 +1715,10 @@ namespace ContourAnalysisNS
             }
             SumWeighEveryLines = howto_WPF_3D_triangle_normalsuser.ImprovmentSort.Do(SumWeighEveryLines);
             diverstionSumWeighEveryLines = Divesion(SumWeighEveryLines);
-            
+
+            CreateBolleanMatrixOfSubGraph();
+
+            CreateSubSameEquValentGraph();
         }
         int NoCloCur()
         {

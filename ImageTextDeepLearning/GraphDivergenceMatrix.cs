@@ -1498,6 +1498,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
     }
     public class SameRikhEquvalent : GraphDivergenceMatrix
     {
+        double Maxan = Math.PI / 90;
         public List<bool[,]> GreaterThanOneCuurvvedMatrix = new List<bool[,]>();
         public List<SameRikhEquvalent> GreaterThanOneCuurvved = new List<SameRikhEquvalent>();
     
@@ -1601,7 +1602,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     double an = 0;
 
                     howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLineS(ad[i][j][0], ad[i][j][1], p0, p1, ref an);
-                    if (an < Math.PI / 90)
+                    if (an < Maxan)
                     {
                         if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1))
                             continue;
@@ -1662,68 +1663,81 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
         }
         public void CreateAngleAndLines()
         {
-           
-            for (int i = 0; i < Xv.Count; i++)
+
+            do
             {
-                Point3Dspaceuser.Point3D p0 = new Point3Dspaceuser.Point3D(Xv[i].X, Xv[i].Y, 0);
-
-                for (int j = 0; j < Xv.Count; j++)
+                for (int i = 0; i < Xv.Count; i++)
                 {
-                    Point3Dspaceuser.Point3D p1 = new Point3Dspaceuser.Point3D(Xv[j].X, Xv[j].Y, 0);
-                    bool Is = false;
-                    for (int k = 0; k < Xv.Count; k++)
+                    Point3Dspaceuser.Point3D p0 = new Point3Dspaceuser.Point3D(Xv[i].X, Xv[i].Y, 0);
+
+                    for (int j = 0; j < Xv.Count; j++)
                     {
-                        Point3Dspaceuser.Point3D p2 = new Point3Dspaceuser.Point3D(Xv[k].X, Xv[k].Y, 0);
-
-                        for (int p = 0; p < Xv.Count; p++)
+                        Point3Dspaceuser.Point3D p1 = new Point3Dspaceuser.Point3D(Xv[j].X, Xv[j].Y, 0);
+                        bool Is = false;
+                        for (int k = 0; k < Xv.Count; k++)
                         {
-                            Point3Dspaceuser.Point3D p3 = new Point3Dspaceuser.Point3D(Xv[p].X, Xv[p].Y, 0);
+                            Point3Dspaceuser.Point3D p2 = new Point3Dspaceuser.Point3D(Xv[k].X, Xv[k].Y, 0);
 
-                            if (i == j)
-                                continue;
-                            if (i == k)
-                                continue;
-                            if (i == p)
-                                continue;
-                            if (j == k)
-                                continue;
-                            if (j == p)
-                                continue;
-                            if (k == p)
-                                continue;
-                            if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
+                            for (int p = 0; p < Xv.Count; p++)
                             {
-                                if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
+                                Point3Dspaceuser.Point3D p3 = new Point3Dspaceuser.Point3D(Xv[p].X, Xv[p].Y, 0);
+
+                                if (i == j)
+                                    continue;
+                                if (i == k)
+                                    continue;
+                                if (i == p)
+                                    continue;
+                                if (j == k)
+                                    continue;
+                                if (j == p)
+                                    continue;
+                                if (k == p)
+                                    continue;
+                                if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
                                 {
-                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
+                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
                                     {
-                                        if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
+                                        if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
                                         {
-                                            int ii = -1, jj = -1;
-                                            Is = AddIng(p0, p1, ref ii, ref jj);
-                                            if (Is)
+                                            if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
                                             {
-                                                float we = (float)Math.Sqrt((Xv[i].X - Xv[j].X) * (Xv[i].X - Xv[j].X) + (Xv[i].Y - Xv[j].Y) * (Xv[i].Y - Xv[j].Y));
-                                                Line ll0 = new Line(we, Xv[i].VertexNumber, Xv[j].VertexNumber);
-                                                AddIngL(ll0, ii, jj, we);
-                                            }
-                                            ii = -1;
-                                            jj = -1;
-                                            Is = AddIng(p2, p3, ref ii, ref jj);
-                                            if (Is)
-                                            {
-                                                float we = (float)Math.Sqrt((Xv[k].X - Xv[p].X) * (Xv[k].X - Xv[p].X) + (Xv[k].Y - Xv[p].Y) * (Xv[k].Y - Xv[p].Y));
-                                                Line ll0 = new Line(we, Xv[k].VertexNumber, Xv[p].VertexNumber);
-                                                AddIngL(ll0, ii, jj, we);
+                                                int ii = -1, jj = -1;
+                                                Is = AddIng(p0, p1, ref ii, ref jj);
+                                                if (Is)
+                                                {
+                                                    float we = (float)Math.Sqrt((Xv[i].X - Xv[j].X) * (Xv[i].X - Xv[j].X) + (Xv[i].Y - Xv[j].Y) * (Xv[i].Y - Xv[j].Y));
+                                                    Line ll0 = new Line(we, Xv[i].VertexNumber, Xv[j].VertexNumber);
+                                                    AddIngL(ll0, ii, jj, we);
+                                                }
+                                                ii = -1;
+                                                jj = -1;
+                                                Is = AddIng(p2, p3, ref ii, ref jj);
+                                                if (Is)
+                                                {
+                                                    float we = (float)Math.Sqrt((Xv[k].X - Xv[p].X) * (Xv[k].X - Xv[p].X) + (Xv[k].Y - Xv[p].Y) * (Xv[k].Y - Xv[p].Y));
+                                                    Line ll0 = new Line(we, Xv[k].VertexNumber, Xv[p].VertexNumber);
+                                                    AddIngL(ll0, ii, jj, we);
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-                         }
+                        }
                     }
                 }
-            }
+                if (Maxan > Math.PI)
+                    break;
+                if (GetadCount() != Xv.Count || GetldCount() != Xl.Count)
+                {
+                    Maxan += 0.1;
+                    ad.Clear();
+                    ld.Clear();
+                    sd.Clear();
+                }
+                
+            } while (GetadCount() != Xv.Count || GetldCount() != Xl.Count);
             if (ad.Count > 0)
             {
                 if (ad[0].Count == 0)
@@ -1749,6 +1763,33 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
             CreateBolleanMatrixOfSubGraph();
 
             CreateSubSameEquValentGraph();
+        }
+        int GetsdCount()
+        {
+            int ind= 0;
+            for(int i = 0; i < sd.Count;i++)
+            {
+                ind+= sd[i].Count;
+            }
+            return ind;
+        }
+        int GetldCount()
+        {
+            int ind = 0;
+            for (int i = 0; i < ld.Count; i++)
+            {
+                ind+= ld[i].Count;
+            }
+            return ind;
+        }
+        int GetadCount()
+        {
+            int ind = 0;
+            for (int i = 0; i < ad.Count; i++)
+            {
+                ind+= ad[i].Count;
+            }
+            return ind;
         }
         int NoCloCur()
         {

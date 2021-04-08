@@ -25,7 +25,17 @@ namespace howto_WPF_3D_triangle_normalsuser
             return Sort(a, d, n);
 
         }
-        static Point3D[] Sort(float[] a, float[] d, int n)
+        public static float[] Do(float[] a)
+        {
+            int n = 3;
+            float[] c = new float[n];
+            float[] d = new float[n];
+            for (int i = 0; i < n; i++)
+                d[i] = -1;
+            return Sort(a, d, n);
+
+        }
+        static float[] Sort(float[] a, float[] d, int n)
         {
             float[] c = new float[n];
             int H = 0;

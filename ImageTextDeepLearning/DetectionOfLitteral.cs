@@ -82,7 +82,8 @@ namespace ImageTextDeepLearning
                 //MessageBox.Show("Next!");
             }
             catch (Exception t) { 
-                MessageBox.Show(t.ToString()); return 0; 
+                MessageBox.Show(t.ToString()); 
+                return 0; 
             }
             return Dif;
         }

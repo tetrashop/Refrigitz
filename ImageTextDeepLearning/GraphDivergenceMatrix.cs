@@ -16,30 +16,38 @@ namespace ContourAnalysisNS
         private readonly int N, M;
         public GraphS(bool[,] Ab, bool[,] Bb, int n, int m, bool Achange)
         {
-            Drawn = false;
-            N = n;
-            M = m;
-            A = new SameRikhEquvalent(Ab, n, m);
-
-            if (A != null)
+            try
             {
-                A.IJBelongToLineHaveFalseBolleanA(Ab);
-                A.CreateClosedCurved();
-                A.CreateAngleAndLines();
+                Drawn = false;
+                N = n;
+                M = m;
+                A = new SameRikhEquvalent(Ab, n, m);
 
+                if (A != null)
+                {
+                    A.IJBelongToLineHaveFalseBolleanA(Ab);
+                    A.CreateClosedCurved();
+                    A.CreateAngleAndLines();
+
+                    Drawn = true;
+                }
+                B = new SameRikhEquvalent(Bb, n, m);
+
+                if (B != null)
+                {
+                    B.IJBelongToLineHaveFalseBolleanA(Bb);
+                    B.CreateClosedCurved();
+                    B.CreateAngleAndLines();
+                }
                 Drawn = true;
             }
-            B = new SameRikhEquvalent(Bb, n, m);
-
-            if (B != null)
+            catch (Exception t)
             {
-                B.IJBelongToLineHaveFalseBolleanA(Bb);
-                B.CreateClosedCurved();
-                B.CreateAngleAndLines();
+                MessageBox.Show(t.ToString());
+                return;
             }
-            Drawn = true;
         }
-        bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
+bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
         {
             bool Is = false;
             if (A.Count != B.Count)
@@ -62,8 +70,8 @@ namespace ContourAnalysisNS
             float div = 0;
             float mean = Mean(t);
             for (int i = 0; i < t.Count; i++)
-                div += Math.Abs(t[i] - mean);
-            div /= (float)t.Count;
+                div += (float)Math.Pow(t[i] - mean, 2);
+            div /= ((float)t.Count * ((float)t.Count - 1));
             return div;
         }
         public bool SameSumWeigth()
@@ -75,7 +83,7 @@ namespace ContourAnalysisNS
                 SumWeighEveryLines.Add(A.SumWeighEveryLines[i] / B.SumWeighEveryLines[i]);
             }
             float ad = Divesion(SumWeighEveryLines);
-            if (ad == 0)
+            if (ad < 1)
                 return true;
             return false;
         }
@@ -1561,8 +1569,8 @@ namespace ContourAnalysisNS
             float div = 0;
             float mean = Mean(t);
             for (int i = 0; i < t.Count; i++)
-                div += Math.Abs(t[i] - mean);
-            div /= (float)t.Count;
+                div += (float)Math.Pow(t[i] - mean, 2);
+            div /= ((float)t.Count * ((float)t.Count - 1));
             return div;
         }
 
@@ -1571,6 +1579,14 @@ namespace ContourAnalysisNS
             Point3Dspaceuser.Point3D[] c = new Point3Dspaceuser.Point3D[2];
             c[0] = p0;
             c[1] = p1;
+            if (ad.Count == 0)
+            {
+                ad.Add(new List<Point3Dspaceuser.Point3D[]>());
+                ad[ad.Count - 1].Add(c);
+                ii = ad.Count - 1;
+                jj = 0;
+                return true;
+            }
             for (int i = 0; i < ad.Count; i++)
             {
                 if (ad[i].Count == 0)
@@ -1601,6 +1617,14 @@ namespace ContourAnalysisNS
         }
         bool AddIngL(Line l0, int i, int j,float we)
         {
+            if (ld.Count == i)
+            {
+                ld.Add(new List<Line>());
+                sd.Add(new List<float>());
+                ld[ld.Count - 1].Add(l0);
+                sd[ld.Count - 1].Add(we);
+                return true;
+            }
             if (i < ld.Count)
             {
                 if (j == 0)
@@ -1638,10 +1662,7 @@ namespace ContourAnalysisNS
         }
         public void CreateAngleAndLines()
         {
-            ad.Add(new List<Point3Dspaceuser.Point3D[]>());
-            sd.Add(new List<float>());
-            ld.Add(new List<Line>());
-        
+           
             for (int i = 0; i < Xv.Count; i++)
             {
                 Point3Dspaceuser.Point3D p0 = new Point3Dspaceuser.Point3D(Xv[i].X, Xv[i].Y, 0);
@@ -1703,24 +1724,27 @@ namespace ContourAnalysisNS
                     }
                 }
             }
-            if (ad[0].Count == 0)
+            if (ad.Count > 0)
             {
-                ad.Clear();
-                sd.Clear();
-                ld.Clear();
-            }
-            Liens = ad.Count;
-            Angle = ad.Count;
-            for(int i = 0; i < sd.Count; i++)
-            {
-                SumWeighEveryLines.Add(new float());
-                for(int j = 0; j < sd[i].Count; j++)
+                if (ad[0].Count == 0)
                 {
-                    SumWeighEveryLines[SumWeighEveryLines.Count - 1] += sd[i][j];
+                    ad.Clear();
+                    sd.Clear();
+                    ld.Clear();
                 }
+                Liens = ad.Count;
+                Angle = ad.Count;
+                for (int i = 0; i < sd.Count; i++)
+                {
+                    SumWeighEveryLines.Add(new float());
+                    for (int j = 0; j < sd[i].Count; j++)
+                    {
+                        SumWeighEveryLines[SumWeighEveryLines.Count - 1] += sd[i][j];
+                    }
+                }
+                SumWeighEveryLines = howto_WPF_3D_triangle_normalsuser.ImprovmentSort.Do(SumWeighEveryLines);
+                diverstionSumWeighEveryLines = Divesion(SumWeighEveryLines);
             }
-            SumWeighEveryLines = howto_WPF_3D_triangle_normalsuser.ImprovmentSort.Do(SumWeighEveryLines);
-            diverstionSumWeighEveryLines = Divesion(SumWeighEveryLines);
 
             CreateBolleanMatrixOfSubGraph();
 

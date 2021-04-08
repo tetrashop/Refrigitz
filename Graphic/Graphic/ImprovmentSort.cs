@@ -1,9 +1,10 @@
 ﻿
 using Point3Dspaceuser;
+using System.Collections.Generic;
 
 namespace howto_WPF_3D_triangle_normalsuser
 {
-    static class ImprovmentSort
+    public static class ImprovmentSort
     {
         public static Point3D[] Do(Point3D[] a)
         {
@@ -38,6 +39,49 @@ namespace howto_WPF_3D_triangle_normalsuser
         static float[] Sort(float[] a, float[] d, int n)
         {
             float[] c = new float[n];
+            int H = 0;
+            while (H < n)
+            {
+                int Lastindex = -1;
+                bool FirstIndex = false;
+                for (int i = 0; i < n; i++)
+                {
+                    if ((i == d[i]))
+                        continue;
+                    else
+                    {
+                        if (!FirstIndex)
+                        {
+                            Lastindex = i;
+                            FirstIndex = true;
+                        }
+                        if (a[Lastindex] < a[i])
+                            Lastindex = i;
+                    }
+                }
+                if ((Lastindex != -1) & (H <= n))
+                {
+                    d[Lastindex] = Lastindex;
+                    c[n - 1 - H] = a[Lastindex];
+                    H++;
+                }
+            }
+            return c;
+        }
+        public static List<float> Do(List<float> a)
+        {
+            int n = a.Count;
+            float[] d = new float[n];
+            for (int i = 0; i < n; i++)
+                d[i] = -1;
+            return Sort(a, d, n);
+
+        }
+        static List<float> Sort(List<float> a, float[] d, int n)
+        {
+            List<float> c = new List<float>();
+            for (int i = 0; i < n; i++)
+                c.Add(new float());
             int H = 0;
             while (H < n)
             {

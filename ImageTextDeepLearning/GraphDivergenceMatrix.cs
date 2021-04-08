@@ -7,6 +7,7 @@ namespace ContourAnalysisNS
 {
     public class GraphS
     {
+        List<float> SumWeighEveryLines = new List<float>();
         public static float SumWeighEveryLinesDiffferention = 1;
         public static GraphS Z = null;
         public static bool Drawn = false;
@@ -38,7 +39,37 @@ namespace ContourAnalysisNS
             }
             Drawn = true;
         }
+        float Mean(List<float> z)
+        {
+            float mean = 0;
+            for (int i = 0; i < z.Count; i++)
+                mean += z[i];
+            mean /= (float)z.Count;
+            return mean;
 
+        }
+        float Divesion(List<float> t)
+        {
+            float div = 0;
+            float mean = Mean(t);
+            for (int i = 0; i < t.Count; i++)
+                div += Math.Abs(t[i] - mean);
+            div /= (float)t.Count;
+            return div;
+        }
+        bool SameSumWeigth()
+        {
+            if (A.SumWeighEveryLines.Count != B.SumWeighEveryLines.Count)
+                return false;
+            for(int i = 0; i < A.SumWeighEveryLines.Count; i++)
+            {
+                SumWeighEveryLines.Add(A.SumWeighEveryLines[i] / B.SumWeighEveryLines[i]);
+            }
+            float ad = Divesion(SumWeighEveryLines);
+            if (ad == 0)
+                return true;
+            return false;
+        }
         protected void Dispose()
         {
             A.M = 0;
@@ -73,8 +104,9 @@ namespace ContourAnalysisNS
             {
                 if (Z.A.Angle == Z.B.Angle)
                 {
-                    if (System.Math.Abs(Z.A.diverstionSumWeighEveryLines - Z.B.diverstionSumWeighEveryLines) < SumWeighEveryLinesDiffferention)
+                    if (Z.SameSumWeigth())
                     {
+
                         return Z.SameRikhtThisIsLessVertex(Ab, Bb);
                     }
                 }
@@ -1454,7 +1486,7 @@ namespace ContourAnalysisNS
     public class SameRikhEquvalent : GraphDivergenceMatrix
     {
         public float diverstionSumWeighEveryLines = 0;
-        List<float> SumWeighEveryLines = new List<float>();
+        public List<float> SumWeighEveryLines = new List<float>();
         List<List<float>> sd = new List<List<float>>();
         List<List<Point3Dspaceuser.Point3D[]>> ad = new List<List<Point3Dspaceuser.Point3D[]>>();
         List<List<Line>> ld = new List<List<Line>>();
@@ -1641,7 +1673,9 @@ namespace ContourAnalysisNS
                     SumWeighEveryLines[SumWeighEveryLines.Count - 1] += sd[i][j];
                 }
             }
+            SumWeighEveryLines = howto_WPF_3D_triangle_normalsuser.ImprovmentSort.Do(SumWeighEveryLines);
             diverstionSumWeighEveryLines = Divesion(SumWeighEveryLines);
+            
         }
         int NoCloCur()
         {

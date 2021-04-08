@@ -39,6 +39,15 @@ namespace ContourAnalysisNS
             }
             Drawn = true;
         }
+        bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
+        {
+            bool Is = false;
+            if (A.Count != B.Count)
+                return Is;
+            for (int i = 0; i < A.Count; i++)
+                Is = Is && (A[i].Angle == B[i].Angle);
+            return Is;
+        }
         float Mean(List<float> z)
         {
             float mean = 0;
@@ -57,7 +66,7 @@ namespace ContourAnalysisNS
             div /= (float)t.Count;
             return div;
         }
-        bool SameSumWeigth()
+        public bool SameSumWeigth()
         {
             if (A.SumWeighEveryLines.Count != B.SumWeighEveryLines.Count)
                 return false;
@@ -104,7 +113,14 @@ namespace ContourAnalysisNS
             {
                 if (Z.A.numberOfClosedCurved > 1)
                 {
-                    
+
+                    bool Is = true;
+                    if(Z.TowSubGraphEqualiity(Z.A.GreaterThanOneCuurvved,Z.B.GreaterThanOneCuurvved))
+                    {
+                        for (int i = 0; i < Z.A.GreaterThanOneCuurvved.Count; i++)
+                            Is = Is && GraphS.GraphSameRikht(Z.A.GreaterThanOneCuurvvedMatrix[i], Z.B.GreaterThanOneCuurvvedMatrix[i], Z.N, Z.M, false);
+                        return Is;
+                    }  
                 }
                 else
                 {
@@ -122,7 +138,7 @@ namespace ContourAnalysisNS
         }
 
         //When the matrix iss  the same  return true;
-        private bool SameRikhtThisIsLessVertex(bool[,] Ab, bool[,] Bb)
+        public bool SameRikhtThisIsLessVertex(bool[,] Ab, bool[,] Bb)
         {
             bool Is = false;
             List<Vertex> K = new List<Vertex>();
@@ -1492,7 +1508,7 @@ namespace ContourAnalysisNS
     }
     public class SameRikhEquvalent : GraphDivergenceMatrix
     {
-        List<bool[,]> GreaterThanOneCuurvvedMatrix = new List<bool[,]>();
+        public List<bool[,]> GreaterThanOneCuurvvedMatrix = new List<bool[,]>();
         public List<SameRikhEquvalent> GreaterThanOneCuurvved = new List<SameRikhEquvalent>();
         public float diverstionSumWeighEveryLines = 0;
         public List<float> SumWeighEveryLines = new List<float>();
@@ -1542,8 +1558,12 @@ namespace ContourAnalysisNS
             {
                 for (int i = 0; i < GreaterThanOneCuurvvedMatrix.Count; i++)
                     GreaterThanOneCuurvved.Add(new SameRikhEquvalent(GreaterThanOneCuurvvedMatrix[i], N, M));
+
+                GreaterThanOneCuurvved = ImageTextDeepLearning.ImprovmentSort.Do(GreaterThanOneCuurvved);
             }
+
         }
+
         float Mean(List<float> z)
         {
             float mean = 0;

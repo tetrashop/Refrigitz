@@ -1510,6 +1510,7 @@ namespace ContourAnalysisNS
     {
         public List<bool[,]> GreaterThanOneCuurvvedMatrix = new List<bool[,]>();
         public List<SameRikhEquvalent> GreaterThanOneCuurvved = new List<SameRikhEquvalent>();
+    
         public float diverstionSumWeighEveryLines = 0;
         public List<float> SumWeighEveryLines = new List<float>();
         List<List<float>> sd = new List<List<float>>();
@@ -1559,7 +1560,7 @@ namespace ContourAnalysisNS
                 for (int i = 0; i < GreaterThanOneCuurvvedMatrix.Count; i++)
                     GreaterThanOneCuurvved.Add(new SameRikhEquvalent(GreaterThanOneCuurvvedMatrix[i], N, M));
 
-                GreaterThanOneCuurvved = ImageTextDeepLearning.ImprovmentSort.Do(GreaterThanOneCuurvved);
+                GreaterThanOneCuurvved = ImageTextDeepLearning.ImprovmentSort.Do(GreaterThanOneCuurvved, ref GreaterThanOneCuurvvedMatrix);
             }
 
         }

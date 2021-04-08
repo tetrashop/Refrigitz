@@ -111,18 +111,21 @@ namespace ImageTextDeepLearning
             }
             return c;
         }
-        public static List<SameRikhEquvalent> Do(List<SameRikhEquvalent> a)
+        public static List<SameRikhEquvalent> Do(List<SameRikhEquvalent> a,ref List<bool[,]> GreaterThanOneCuurvvedMatrix)
         {
             int n = a.Count;
             float[] d = new float[n];
             for (int i = 0; i < n; i++)
                 d[i] = -1;
-            return Sort(a, d, n);
+            return Sort(a, d, n,ref GreaterThanOneCuurvvedMatrix);
 
         }
-        static List<SameRikhEquvalent> Sort(List<SameRikhEquvalent> a, float[] d, int n)
+        static List<SameRikhEquvalent> Sort(List<SameRikhEquvalent> a, float[] d, int n, ref List<bool[,]> GreaterThanOneCuurvvedMatrix)
         {
             List<SameRikhEquvalent> c = new List<SameRikhEquvalent>();
+            List<bool[,]> cGreaterThanOneCuurvvedMatrix = new List<bool[,]>();
+            for (int i = 0; i < a.Count; i++)
+                cGreaterThanOneCuurvvedMatrix.Add(new bool[a[i].N, a[i].M]);
             for (int i = 0; i < n; i++)
                 c.Add(a[i]);
             int H = 0;
@@ -149,9 +152,11 @@ namespace ImageTextDeepLearning
                 {
                     d[Lastindex] = Lastindex;
                     c[n - 1 - H] = a[Lastindex];
+                    cGreaterThanOneCuurvvedMatrix[n - 1 - H] = GreaterThanOneCuurvvedMatrix[Lastindex];
                     H++;
                 }
             }
+            GreaterThanOneCuurvvedMatrix = cGreaterThanOneCuurvvedMatrix;
             return c;
         }
         static Point3D[] Sort(Point3D[] a, double[] d, int n)

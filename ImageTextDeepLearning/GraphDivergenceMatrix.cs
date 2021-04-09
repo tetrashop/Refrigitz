@@ -1597,7 +1597,8 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     jj = 0;
                     return true;
                 }
-               
+                for (int j = 0; j < ad[i].Count; j++)
+                {
                     double an = 0;
 
                     howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLineS(ad[i][j][0], ad[i][j][1], p0, p1, ref an);
@@ -1607,11 +1608,11 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                             continue;
                         ad[i].Add(c);
                         ii = i;
-                        jj = ad[i].Count - 1;
+                        jj = j;
                         return true;
                     }
 
-                
+                }
             }
             return false;
         }
@@ -1693,13 +1694,13 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                                     continue;
                                 if (k == p)
                                     continue;
-                                if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
+                                //if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
                                 {
-                                    if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
+                                    //if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
                                     {
-                                        if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
+                                        ////if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
                                         {
-                                            if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
+                                            //if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
                                             {
                                                 int ii = -1, jj = -1;
                                                 Is = AddIng(p0, p1, ref ii, ref jj);

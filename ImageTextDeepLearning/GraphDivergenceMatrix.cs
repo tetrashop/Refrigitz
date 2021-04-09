@@ -1694,37 +1694,32 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                                     continue;
                                 if (k == p)
                                     continue;
-                                //if (!Point3Dspaceuser.Point3D.Exist(ad, p0))
+                                if (!(Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1)))
                                 {
-                                    //if (!Point3Dspaceuser.Point3D.Exist(ad, p1))
+                                    if (!(Point3Dspaceuser.Point3D.Exist(ad, p2) && Point3Dspaceuser.Point3D.Exist(ad, p3)))
                                     {
-                                        ////if (!Point3Dspaceuser.Point3D.Exist(ad, p2))
+                                        int ii = -1, jj = -1;
+                                        Is = AddIng(p0, p1, ref ii, ref jj);
+                                        if (Is)
                                         {
-                                            //if (!Point3Dspaceuser.Point3D.Exist(ad, p3))
-                                            {
-                                                int ii = -1, jj = -1;
-                                                Is = AddIng(p0, p1, ref ii, ref jj);
-                                                if (Is)
-                                                {
-                                                    float we = (float)Math.Sqrt((Xv[i].X - Xv[j].X) * (Xv[i].X - Xv[j].X) + (Xv[i].Y - Xv[j].Y) * (Xv[i].Y - Xv[j].Y));
-                                                    Line ll0 = new Line(we, Xv[i].VertexNumber, Xv[j].VertexNumber);
-                                                    AddIngL(ll0, ii, jj, we);
-                                                }
-                                                ii = -1;
-                                                jj = -1;
-                                                Is = AddIng(p2, p3, ref ii, ref jj);
-                                                if (Is)
-                                                {
-                                                    float we = (float)Math.Sqrt((Xv[k].X - Xv[p].X) * (Xv[k].X - Xv[p].X) + (Xv[k].Y - Xv[p].Y) * (Xv[k].Y - Xv[p].Y));
-                                                    Line ll0 = new Line(we, Xv[k].VertexNumber, Xv[p].VertexNumber);
-                                                    AddIngL(ll0, ii, jj, we);
-                                                }
-                                            }
+                                            float we = (float)Math.Sqrt((Xv[i].X - Xv[j].X) * (Xv[i].X - Xv[j].X) + (Xv[i].Y - Xv[j].Y) * (Xv[i].Y - Xv[j].Y));
+                                            Line ll0 = new Line(we, Xv[i].VertexNumber, Xv[j].VertexNumber);
+                                            AddIngL(ll0, ii, jj, we);
+                                        }
+                                        ii = -1;
+                                        jj = -1;
+                                        Is = AddIng(p2, p3, ref ii, ref jj);
+                                        if (Is)
+                                        {
+                                            float we = (float)Math.Sqrt((Xv[k].X - Xv[p].X) * (Xv[k].X - Xv[p].X) + (Xv[k].Y - Xv[p].Y) * (Xv[k].Y - Xv[p].Y));
+                                            Line ll0 = new Line(we, Xv[k].VertexNumber, Xv[p].VertexNumber);
+                                            AddIngL(ll0, ii, jj, we);
                                         }
                                     }
                                 }
                             }
                         }
+
                     }
                 }
                 if (Maxan > Math.PI)
@@ -1736,7 +1731,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     ld.Clear();
                     sd.Clear();
                 }
-                
+
             } while (GetadCount() != Xv.Count || GetldCount() != Xl.Count);
             if (ad.Count > 0)
             {

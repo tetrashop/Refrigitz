@@ -686,6 +686,9 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     {
                         return true;
                     }
+                    if (Next.VertexNumber == xlv[i + 1].VertexNumber)
+                        continue;
+
                     Line ds = d(Next, xlv[i + 1]);
                     if (ds == null)
                         continue;
@@ -1521,6 +1524,64 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
         {
 
         }
+        public bool ExistAd(int x1, int y1)
+        {
+            bool Is = false;
+            /*ParallelOptions po = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+            }; Parallel.For(0, Xv.Count, i =>*/
+            for (int i = 0; i < ad.Count; i++)
+            {
+                /*ParallelOptions poo = new ParallelOptions
+                {
+                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                }; Parallel.For(0, Xv.Count, j =>*/
+                for (int j = 0; j < ad[i].Count; j++)
+                {
+                    object hh = new object();
+                    lock (hh)
+                    {
+
+                        if ((int)(ad[i][j][0].X) == x1 && ((int)ad[i][j][0].Y) == y1 && (int)(ad[i][j][1].X) == x1 && ((int)ad[i][j][1].Y) == y1)
+                        {
+                            Is = true;
+                        }
+
+                    }
+                }//);
+            }//);
+            return Is;
+        }
+        public bool ExistLd(int x1, int y1)
+        {
+
+            bool Is = false;
+            /*ParallelOptions po = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+            }; Parallel.For(0, Xl.Count, i =>*/
+            for (int i = 0; i < ld.Count; i++)
+            {
+                for (int j = 0; j < ld[i].Count; j++)
+                {
+                    object hh = new object();
+                    lock (hh)
+                    {
+                         if (ld[i][j].VertexIndexX == x1 && ld[i][j].VertexIndexY == y1)
+                        {
+                            Is = true;
+                        }
+
+                        if (ld[i][j].VertexIndexY == x1 && ld[i][j].VertexIndexX == y1)
+                        {
+                            Is = true;
+                        }
+                    }
+                }//);
+            }
+            return Is;
+        }
         bool[,] CreateBooleanSubGraph(int i)
         {
             bool[,] c = new bool[N, M];
@@ -1577,11 +1638,14 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
 
         bool AddIng(Point3Dspaceuser.Point3D p0, Point3Dspaceuser.Point3D p1, ref int ii, ref int jj)
         {
+            if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1))
+                return false;
             Point3Dspaceuser.Point3D[] c = new Point3Dspaceuser.Point3D[2];
             c[0] = p0;
             c[1] = p1;
             if (ad.Count == 0)
             {
+                Maxan = Math.PI / 90;
                 ad.Add(new List<Point3Dspaceuser.Point3D[]>());
                 ad[ad.Count - 1].Add(c);
                 ii = ad.Count - 1;
@@ -1592,6 +1656,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
             {
                 if (ad[i].Count == 0)
                 {
+                    Maxan = Math.PI / 90;
                     ad[ad.Count - 1].Add(c);
                     ii = ad.Count - 1;
                     jj = 0;
@@ -1604,8 +1669,8 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLineS(ad[i][j][0], ad[i][j][1], p0, p1, ref an);
                     if (an < Maxan)
                     {
-                        if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1))
-                            continue;
+                        //if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1))
+                            //continue;
                         ad[i].Add(c);
                         ii = i;
                         jj = j;
@@ -1618,6 +1683,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
         }
         bool AddIngL(Line l0, int i, int j,float we)
         {
+            
             if (ld.Count == i)
             {
                 ld.Add(new List<Line>());
@@ -1704,7 +1770,8 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                                         {
                                             float we = (float)Math.Sqrt((Xv[i].X - Xv[j].X) * (Xv[i].X - Xv[j].X) + (Xv[i].Y - Xv[j].Y) * (Xv[i].Y - Xv[j].Y));
                                             Line ll0 = new Line(we, Xv[i].VertexNumber, Xv[j].VertexNumber);
-                                            AddIngL(ll0, ii, jj, we);
+                                            if (!ExistLd(ll0.VertexIndexX, ll0.VertexIndexY))
+                                                AddIngL(ll0, ii, jj, we);
                                         }
                                         ii = -1;
                                         jj = -1;
@@ -1713,7 +1780,8 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                                         {
                                             float we = (float)Math.Sqrt((Xv[k].X - Xv[p].X) * (Xv[k].X - Xv[p].X) + (Xv[k].Y - Xv[p].Y) * (Xv[k].Y - Xv[p].Y));
                                             Line ll0 = new Line(we, Xv[k].VertexNumber, Xv[p].VertexNumber);
-                                            AddIngL(ll0, ii, jj, we);
+                                            if (!ExistLd(ll0.VertexIndexX, ll0.VertexIndexY))
+                                                AddIngL(ll0, ii, jj, we);
                                         }
                                     }
                                 }
@@ -1724,15 +1792,12 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                 }
                 if (Maxan > Math.PI)
                     break;
-                if (GetadCount() != Xv.Count || GetldCount() != Xl.Count)
+                if (GetldCount() < Xl.Count)
                 {
                     Maxan += 0.1;
-                    ad.Clear();
-                    ld.Clear();
-                    sd.Clear();
                 }
 
-            } while (GetadCount() != Xv.Count || GetldCount() != Xl.Count);
+            } while (GetldCount() < Xl.Count);
             if (ad.Count > 0)
             {
                 if (ad[0].Count == 0)

@@ -25,7 +25,7 @@ namespace ContourAnalysisNS
 
                 if (A != null)
                 {
-                    A.IJBelongToLineHaveFalseBolleanA(Ab);
+                    //A.IJBelongToLineHaveFalseBolleanA(Ab);
                     A.CreateClosedCurved();
                     A.CreateAngleAndLines();
 
@@ -35,7 +35,7 @@ namespace ContourAnalysisNS
 
                 if (B != null)
                 {
-                    B.IJBelongToLineHaveFalseBolleanA(Bb);
+                    //B.IJBelongToLineHaveFalseBolleanA(Bb);
                     B.CreateClosedCurved();
                     B.CreateAngleAndLines();
                 }
@@ -101,6 +101,14 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
         {
             if (Z != null)
             {
+                if (Z.A == null && Z.B == null)
+                {
+                    return true;
+                }
+                if (Z.A == null || Z.B == null)
+                {
+                    return false;
+                }
                 Z.A.Reco(Ab, n, m, Achange);
                 Z.B.Reco(Bb, n, m, false);
             }
@@ -212,9 +220,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     object hh = new object();
                     lock (hh)
                     {
-                        if (i >= Xv.Count)
-                            continue;
-
+                      
                         if (Xv[i].X == x1 && Xv[i].Y == y1)
                         {
                             Is = true;
@@ -244,9 +250,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     object hh = new object();
                     lock (hh)
                     {
-                        if (i >= K.Count)
-                            continue;
-
+                    
                         if (K[i].X == x1 && K[i].Y == y1)
                         {
                             Is = true;
@@ -271,14 +275,12 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                 object hh = new object();
                 lock (hh)
                 {
-                    if (i >= Xl.Count)
-                        continue;
-                    if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexY == y1 && i < Xl.Count)
+                     if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexY == y1)
                     {
                         Is = true;
                     }
 
-                    if (Xl[i].VertexIndexY == x1 && Xl[i].VertexIndexX == y1 && i < Xl.Count)
+                    if (Xl[i].VertexIndexY == x1 && Xl[i].VertexIndexX == y1)
                     {
                         Is = true;
                     }
@@ -855,6 +857,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
         }
         public GraphDivergenceMatrix(bool[,] A, int n, int m)
         {
+            bool FirstCchanged = false;
             int First = 0;
             N = n;
             M = m;
@@ -910,100 +913,149 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                                         if (Xv[First].X == k && Xv[First].Y == p)
                                         {
                                             if (!ExistV(i, j))
-                                                Xv.Add(new Vertex(++indv, i, j));
+                                                continue;
                                             Xv.Add(new Vertex(First + 1, k, p));
                                             if (!ExistL(Xv[Xv.Count - 1].VertexNumber, First + 1))
                                             {
                                                 float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                 Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                 First = indv;
+                                                indv++;
+                                                FirstCchanged = true;
                                             }
                                         }
                                         else
                                         {
-                                            /*int gh = indv;
-                                            bool fou = false;
-                                            int kj = k, pj = p;
-                                            for (int g = 0; g < n; g++)
+                                            if (FirstCchanged)
                                             {
-                                                for (int f = 0; f < m; f++)
+                                                int inh = indv;
+                                                int inh1 = indv;
+                                                int inh2 = indv;
+                                                bool Is1 = false;
+                                                bool Is2 = false;
+                                                if (!ExistV(i, j))
                                                 {
-                                                    if (i == g && f == j)
-                                                        continue;
-                                                    indv = gh;
-                                                    if (A[i, j] && A[g, f])
+                                                    FirstCchanged = false;
+                                                    Xv.Add(new Vertex(++indv, i, j));
+                                                    inh1 = indv;
+                                                }
+                                                else
+                                                    Is1 = true;
+
+                                                if (!ExistV(k, p))
+                                                {
+                                                    FirstCchanged = false;
+                                                    Xv.Add(new Vertex(++indv, k, p));
+                                                    inh2 = indv;
+                                                }
+                                                else
+                                                    Is2 = true;
+
+                                                if (Is1 && Is2)
+                                                    continue;
+                                                if (inh1 != inh2)
+                                                {
+                                                    if (inh == indv - 1)
                                                     {
-                                                        Vertex vx1 = new Vertex(indv, i, j);
-                                                        Vertex vx2 = new Vertex(++indv, g, f);
-                                                        if (ExistV(vx2.X, vx2.Y))
-                                                            continue;
-                                                        float we = (float)Math.Sqrt((i - g) * (i - g) + (j - f) * (j - f));
-                                                        Line df = new Line(we, vx1.VertexNumber, vx2.VertexNumber);
-                                                        if (df == null)
-                                                            continue;
-                                                        if (df.Weigth < wei)
+                                                        //Xv.RemoveAt(Xv.Count - 1);
+                                                        continue;
+                                                    }
+                                                    else
+                                                    {
+                                                        if (!ExistL(inh1, inh2))
                                                         {
-                                                            k = g;
-                                                            p = f;
-                                                            wei = df.Weigth;
-                                                            fou = true;
+                                                            float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                            Xl.Add(new Line(we, inh1, inh2));
                                                         }
                                                     }
                                                 }
-                                            }
-                                            indv = gh;
-                                            if (!fou)
-                                            {
-                                                k = kj;
-                                                p = pj;
-                                                continue;
-                                            }
-                                            */
-                                            int inh = indv;
-                                            int inh1 = indv;
-                                            int inh2 = indv;
-                                            bool Is1 = false;
-                                            bool Is2 = false;
-                                            if (!ExistV(i, j))
-                                            {
-                                                Xv.Add(new Vertex(++indv, i, j));
-                                                inh1 = indv;
-                                            }
-                                            else
-                                                Is1 = true;
 
-                                            if (!ExistV(k, p))
-                                            {
-                                                Xv.Add(new Vertex(++indv, k, p));
-                                                inh2 = indv;
                                             }
                                             else
-                                                Is2 = true;
-                                            if (Is1 && Is2)
-                                                continue;
-                                            if (inh1 != inh2)
                                             {
-                                                if (inh == indv - 1)
+                                                /*int gh = indv;
+                                                                      bool fou = false;
+                                                                      int kj = k, pj = p;
+                                                                      for (int g = 0; g < n; g++)
+                                                                      {
+                                                                          for (int f = 0; f < m; f++)
+                                                                          {
+                                                                              if (i == g && f == j)
+                                                                                  continue;
+                                                                              indv = gh;
+                                                                              if (A[i, j] && A[g, f])
+                                                                              {
+                                                                                  Vertex vx1 = new Vertex(indv, i, j);
+                                                                                  Vertex vx2 = new Vertex(++indv, g, f);
+                                                                                  if (ExistV(vx2.X, vx2.Y))
+                                                                                      continue;
+                                                                                  float we = (float)Math.Sqrt((i - g) * (i - g) + (j - f) * (j - f));
+                                                                                  Line df = new Line(we, vx1.VertexNumber, vx2.VertexNumber);
+                                                                                  if (df == null)
+                                                                                      continue;
+                                                                                  if (df.Weigth < wei)
+                                                                                  {
+                                                                                      k = g;
+                                                                                      p = f;
+                                                                                      wei = df.Weigth;
+                                                                                      fou = true;
+                                                                                  }
+                                                                              }
+                                                                          }
+                                                                      }
+                                                                      indv = gh;
+                                                                      if (!fou)
+                                                                      {
+                                                                          k = kj;
+                                                                          p = pj;
+                                                                          continue;
+                                                                      }
+                                                                      */
+                                                int inh = indv;
+                                                int inh1 = indv;
+                                                int inh2 = indv;
+                                                bool Is1 = false;
+                                                bool Is2 = false;
+                                                if (!ExistV(i, j))
                                                 {
-                                                    if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
-                                                    {
-                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                    }
+                                                    Xv.Add(new Vertex(++indv, i, j));
+                                                    inh1 = indv;
                                                 }
                                                 else
+                                                    Is1 = true;
+
+                                                if (!ExistV(k, p))
                                                 {
-                                                    if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                    Xv.Add(new Vertex(++indv, k, p));
+                                                    inh2 = indv;
+                                                }
+                                                else
+                                                    Is2 = true;
+                                                if (Is1 && Is2)
+                                                    continue;
+                                                if (inh1 != inh2)
+                                                {
+                                                    if (inh == indv - 1)
                                                     {
-                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                        if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                        {
+                                                            float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                            Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                        {
+                                                            float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                            Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                        }
                                                     }
                                                 }
+                                                /*i = k;
+                                                                                            j = p;*/
                                             }
-                                            /*i = k;
-                                                                                        j = p;*/
                                         }
-
                                     }
                                     else
                                     {
@@ -1048,7 +1100,52 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
 
 
                                         */
+                                        if (FirstCchanged)
+                                        {
+                                            int inh = indv;
+                                            int inh1 = indv;
+                                            int inh2 = indv;
+                                            bool Is1 = false;
+                                            bool Is2 = false;
+                                            if (!ExistV(i, j))
+                                            {
+                                                FirstCchanged = false;
+                                                Xv.Add(new Vertex(++indv, i, j));
+                                                inh1 = indv;
+                                            }
+                                            else
+                                                Is1 = true;
 
+                                            if (!ExistV(k, p))
+                                            {
+                                                FirstCchanged = false;
+                                                Xv.Add(new Vertex(++indv, k, p));
+                                                inh2 = indv;
+                                            }
+                                            else
+                                                Is2 = true;
+
+                                            if (Is1 && Is2)
+                                                continue;
+                                            if (inh1 != inh2)
+                                            {
+                                                if (inh == indv - 1)
+                                                {
+
+                                                    continue;
+                                                }
+                                                else
+                                                {
+                                                    if (!ExistL(inh1, inh2))
+                                                    {
+                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                        Xl.Add(new Line(we, inh1, inh2));
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else { 
                                         int inh = indv;
                                         int inh1 = indv;
                                         int inh2 = indv;
@@ -1071,22 +1168,19 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                                             Is2 = true;
                                         if (Is1 && Is2)
                                             continue;
-                                        if (inh1 != inh2)
-                                        {
-                                            if (inh == indv - 1)
+                                            if (inh1 != inh2)
                                             {
-                                                if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                if (inh == indv - 1)
                                                 {
-                                                    float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                    Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                    continue;
                                                 }
-                                            }
-                                            else
-                                            {
-                                                if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                else
                                                 {
-                                                    float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                    Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                    if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                    {
+                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                    }
                                                 }
                                             }
                                         }
@@ -1491,7 +1585,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                 return false;
             }
 
-            if (((y - v1.Y) - (((v1.X - v2.X) / (v1.Y - v2.Y)) * (x - v1.X))) < 1)
+            if ((float)((float)(y - v1.Y) - (((float)(v1.X - v2.X) / (float)(v1.Y - v2.Y)) * (float)(x - v1.X))) < 1)
             {
                 Is = true;
             }
@@ -1722,12 +1816,17 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
             }
             return vern;
         }
-        int GetVerId(int id)
+        Vertex GetVerId(int VertNo)
         {
-
-            return Xv[id].VertexNumber;
+            int vern = 0;
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                if (Xv[i].VertexNumber == VertNo)
+                    return Xv[i];
+            }
+            return null;
         }
-        public void CreateAngleAndLines()
+       public void CreateAngleAndLines()
         {
 
             do
@@ -1964,82 +2063,184 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
             bool IsNext = false;
             int noIsNext = 0;
             int i = 0;
+            ClosedCurved.Add(new List<Vertex>());
             try
             {
-                do
+              /*  do
                 {
                     IsNext = false;
                     ClosedCurved.Add(new List<Vertex>());
 
                     int j = 0;
                     while (j < Xv.Count)
+                     {
+                         if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
+                         {
+                             i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
+                             ClosedCurvedIndexI.Add(i);
+                         }
+                         else
+                         {
+                             if (!ExistCloCur(Xv[i].X, Xv[i].Y))
+                             {
+                                 ClosedCurved[ClosedCurved.Count - 1].Add(Xv[i]);
+                                 i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
+                                 ClosedCurvedIndexI.Add(i);
+                             }
+                         }
+
+                         if (ExistCloCur(Xv[j].X, Xv[j].Y))
+                         {
+                             j++;
+                             continue;
+                         }
+                         Line ds = d(Xv[i], Xv[j]);
+                         if (ds == null)
+                         {
+                             j++;
+                             continue;
+                         }
+                         if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
+                         {
+                             j++;
+                             continue;
+                         }
+                         if (j < Xv.Count && ClosedCurved[ClosedCurved.Count - 1].Count > 0)
+                         {
+                             if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
+                             {
+                                 IsNext = true;
+                                 ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                                 numberOfClosedCurved++;
+                                 break;
+                             }
+                         }
+                         if (j < Xv.Count)
+                             ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                         j = 0;
+                     }
+
+                 */
+                    int first = 1;
+                for (int h = 0; h < Xl.Count; h++)
+                {
+                    if ((Xl[h].VertexIndexX == first || Xl[h].VertexIndexY == first) && first != 1)
                     {
-                        if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
+                        int vxx = Xl[h].VertexIndexX;
+                        int vyy = Xl[h].VertexIndexY;
+
+                        Vertex tx = GetVerId(vxx);
+                        Vertex ty = GetVerId(vyy);
+
+                        if (vxx < vyy)
                         {
-                            i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                            ClosedCurvedIndexI.Add(i);
+                            first = GetVerId(ty.VertexNumber).VertexNumber + 1;
+
+                            if (!ExistCloCur(tx.X, tx.Y))
+                            {
+                                if (tx != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(tx);
+                                else
+                                    return;
+                            }
                         }
                         else
                         {
-                            if (!ExistCloCur(Xv[i].X, Xv[i].Y))
+                            first = GetVerId(tx.VertexNumber).VertexNumber + 1;
+                           
+                            if(!ExistCloCur(ty.X, ty.Y))
                             {
-                                ClosedCurved[ClosedCurved.Count - 1].Add(Xv[i]);
-                                i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                                ClosedCurvedIndexI.Add(i);
-                            }
-                        }
+                                if (ty != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(ty);
+                                else
+                                    return; }
 
-                        if (ExistCloCur(Xv[j].X, Xv[j].Y))
-                        {
-                            j++;
-                            continue;
                         }
-                        Line ds = d(Xv[i], Xv[j]);
-                        if (ds == null)
-                        {
-                            j++;
-                            continue;
-                        }
-                        if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
-                        {
-                            j++;
-                            continue;
-                        }
-                        if (j < Xv.Count && ClosedCurved[ClosedCurved.Count - 1].Count > 0)
-                        {
-                            if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
-                            {
-                                IsNext = true;
-                                ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                                numberOfClosedCurved++;
-                                break;
-                            }
-                        }
-                        if (j < Xv.Count)
-                            ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                        j = 0;
+                        IsClosedCurved.Add(true);
+                        ClosedCurved.Add(new List<Vertex>());
                     }
-
-                    IsClosedCurved.Add(IsNext);
-
-                    if (!IsNext)
+                    else
                     {
-                        i = GetNotClosedCurvedIndexI();
-                        if (i == -1)
-                            noIsNext = Xv.Count;
-                        for (int h = 0; h < IsClosedCurved.Count; h++)
+                        int vx = Xl[h].VertexIndexX;
+                        int vy = Xl[h].VertexIndexY;
+                        if (vx < vy)
                         {
-                            if (!IsClosedCurved[h])
+                            Vertex tx = GetVerId(vx);
+                            Vertex ty = GetVerId(vy);
+                            if (!ExistCloCur(tx.X, tx.Y))
                             {
-                                IsClosedCurved.RemoveAt(h);
-                                ClosedCurved.RemoveAt(h);
+                                if (tx != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(tx);
+                                else
+                                    return;
+                            }
+                            if (!ExistCloCur(ty.X, ty.Y))
+                            {
+                                if (ty != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(ty);
+                                else
+                                    return;
                             }
                         }
-
-                        noIsNext++;
+                        else
+                        {
+                            Vertex tx = GetVerId(vx);
+                            Vertex ty = GetVerId(vy);
+                            if (!ExistCloCur(ty.X, ty.Y))
+                            {
+                                if (ty != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(ty);
+                                else
+                                    return;
+                            }
+                            if (!ExistCloCur(tx.X, tx.Y))
+                            {
+                                if (tx != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(tx);
+                                else
+                                    return;
+                            }
+                        }
                     }
+                }
+                if (ClosedCurved.Count == IsClosedCurved.Count + 1)
+                    IsClosedCurved.Add(false);
+                for (int h = 0; h < IsClosedCurved.Count; h++)
+                {
+                    if (ClosedCurved[h].Count == 0)
+                    {
+                        ClosedCurved.RemoveAt(h);
+                        IsClosedCurved.RemoveAt(h);
+                        h = 0;
+                        continue;
+                    }
+                    if (!IsClosedCurved[h])
+                    {
+                        IsClosedCurved.RemoveAt(h);
+                        ClosedCurved.RemoveAt(h);
+                        h = 0;
+                    }
+                }
+                /*
+                               if (!IsNext)
+                                {
+                                    i = GetNotClosedCurvedIndexI();
+                                    if (i == -1)
+                                        noIsNext = Xv.Count;
+                                    for (int h = 0; h < IsClosedCurved.Count; h++)
+                                    {
+                                        if (!IsClosedCurved[h])
+                                        {
+                                            IsClosedCurved.RemoveAt(h);
+                                            ClosedCurved.RemoveAt(h);
+                                        }
+                                    }
 
-                } while (NoCloCur() != Xv.Count && noIsNext < Xv.Count);
+                                    noIsNext++;
+                                }
+
+                            } while (NoCloCur() < Xv.Count// && noIsNext < Xv.Count
+                                                          );*/
             }
             catch (Exception t)
             {

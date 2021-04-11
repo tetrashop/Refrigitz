@@ -1,4 +1,44 @@
-﻿using System;
+/**************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+*************TETRASHOP.IR**************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+***************************************
+**************************************/
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,20 +62,17 @@ namespace ContourAnalysisNS
                 N = n;
                 M = m;
                 A = new SameRikhEquvalent(Ab, n, m);
-
                 if (A != null)
                 {
-                    //A.IJBelongToLineHaveFalseBolleanA(Ab);
+                    
                     A.CreateClosedCurved();
                     A.CreateAngleAndLines();
-
                     Drawn = true;
                 }
                 B = new SameRikhEquvalent(Bb, n, m);
-
                 if (B != null)
                 {
-                    //B.IJBelongToLineHaveFalseBolleanA(Bb);
+                    
                     B.CreateClosedCurved();
                     B.CreateAngleAndLines();
                 }
@@ -63,7 +100,6 @@ namespace ContourAnalysisNS
                 mean += z[i];
             mean /= (float)z.Count;
             return mean;
-
         }
         float Divesion(List<float> t)
         {
@@ -95,7 +131,6 @@ namespace ContourAnalysisNS
             A.Xv.Clear();
             B.Xl.Clear();
             B.Xv.Clear();
-
         }
         public static bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m, bool Achange)
         {
@@ -114,22 +149,18 @@ namespace ContourAnalysisNS
             }
             else
                 Z = new GraphS(Ab, Bb, n, m, Achange);
-
             if (Z.A == null && Z.B == null)
             {
                 return true;
             }
-
             if (Z.A == null || Z.B == null)
             {
                 return false;
             }
-
             if (Z.A.numberOfClosedCurved == Z.B.numberOfClosedCurved)
             {
                 if (Z.A.numberOfClosedCurved > 1)
                 {
-
                     bool Is = true;
                     if (Z.TowSubGraphEqualiity(Z.A.GreaterThanOneCuurvved, Z.B.GreaterThanOneCuurvved))
                     {
@@ -144,7 +175,6 @@ namespace ContourAnalysisNS
                     {
                         if (Z.SameSumWeigth())
                         {
-
                             return Z.SameRikhtThisIsLessVertex(Ab, Bb);
                         }
                     }
@@ -152,8 +182,7 @@ namespace ContourAnalysisNS
             }
             return false;
         }
-
-        //When the matrix iss  the same  return true;
+        
         public bool SameRikhtThisIsLessVertex(bool[,] Ab, bool[,] Bb)
         {
             bool Is = false;
@@ -162,114 +191,70 @@ namespace ContourAnalysisNS
             if (A.Xv.Count < B.Xv.Count)
             {
                 Is = A.IsSameRikhtVertex(Ab, B, ref K, ref ChechOnFinisshed);
-                /* GraphDivergenceMatrix RecreatedB = new GraphDivergenceMatrix(ChechOnFinisshed, B.Xl, N, M);
-                  if (Is)
-                  {
-                      if (!GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(A, RecreatedB))
-                      {
-                          ZB = RecreatedB;
-                          Is = false;
-                      }
-                  }*/
-
+                
             }
-
             else
             {
                 Is = B.IsSameRikhtVertex(Bb, A, ref K, ref ChechOnFinisshed);
-                /* GraphDivergenceMatrix RecreatedA = new GraphDivergenceMatrix(ChechOnFinisshed, A.Xl, N, M);
-
-                 if (Is)
-                 {
-                     if (!GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(B, RecreatedA))
-                     {
-                         ZB = RecreatedA;
-
-                         Is = false;
-                     }
-
-                 }*/
+                
             }
             return Is;
         }
-
     }
     public class GraphDivergenceMatrix
     {
-
         public List<Vertex> Xv = new List<Vertex>();
         public List<Line> Xl = new List<Line>();
         public int N, M;
 
-
         public bool ExistV(int x1, int y1)
         {
             bool Is = false;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, Xv.Count, i =>*/
+            
             for (int i = 0; i < Xv.Count; i++)
             {
-                /*ParallelOptions poo = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Xv.Count, j =>*/
-                //for (int j = 0; j < Xv.Count; j++)
+                
+                
                 {
                     object hh = new object();
                     lock (hh)
                     {
-
                         if (Xv[i].X == x1 && Xv[i].Y == y1)
                         {
                             Is = true;
                         }
 
-
                     }
-                }//);
-            }//);
+                }
+            }
             return Is;
         }
         public bool ExistK(int x1, int y1, List<Vertex> K)
         {
             bool Is = false;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, Xv.Count, i =>*/
+            
             for (int i = 0; i < K.Count; i++)
             {
-                /*ParallelOptions poo = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Xv.Count, j =>*/
+                
                 for (int j = 0; j < K.Count; j++)
                 {
                     object hh = new object();
                     lock (hh)
                     {
-
                         if (K[i].X == x1 && K[i].Y == y1)
                         {
                             Is = true;
                         }
 
-
                     }
-                }//);
-            }//);
+                }
+            }
             return Is;
         }
         public bool ExistL(int x1, int y1)
         {
-
             bool Is = false;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, Xl.Count, i =>*/
+            
             for (int i = 0; i < Xl.Count; i++)
             {
                 object hh = new object();
@@ -279,13 +264,12 @@ namespace ContourAnalysisNS
                     {
                         Is = true;
                     }
-
                     if (Xl[i].VertexIndexY == x1 && Xl[i].VertexIndexX == y1)
                     {
                         Is = true;
                     }
                 }
-            }//);
+            }
             return Is;
         }
         public void XiXjDelete()
@@ -308,22 +292,13 @@ namespace ContourAnalysisNS
             {
                 List<Vertex> K = new List<Vertex>();
                 bool Is = false;
-                /*ParallelOptions po = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Xv.Count, i =>*/
+                
                 for (int i = 0; i < Xv.Count; i++)
                 {
-                    /*ParallelOptions poo = new ParallelOptions
-                    {
-                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                    }; Parallel.For(0, Xv.Count, j =>*/
+                    
                     for (int j = 0; j < Xv.Count; j++)
                     {
-                        /*ParallelOptions pooo = new ParallelOptions
-                        {
-                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                        }; Parallel.For(0, Xv.Count, k =>*/
+                        
                         for (int k = 0; k < Xv.Count; k++)
                         {
                             object hh = new object();
@@ -333,12 +308,10 @@ namespace ContourAnalysisNS
                                 {
                                     continue;
                                 }
-
                                 if (i == k)
                                 {
                                     continue;
                                 }
-
                                 if (j == k)
                                 {
                                     continue;
@@ -351,7 +324,6 @@ namespace ContourAnalysisNS
                                 {
                                     continue;
                                 }
-
                                 Line ds = d(Xv[i], Xv[j]);
                                 if (ds != null)
                                 {
@@ -369,9 +341,9 @@ namespace ContourAnalysisNS
                                     }
                                 }
                             }
-                        }//);
-                    }//);
-                }//);
+                        }
+                    }
+                }
             }
             catch (Exception)
             {
@@ -384,22 +356,13 @@ namespace ContourAnalysisNS
             {
                 List<Vertex> K = new List<Vertex>();
                 bool Is = false;
-                /*ParallelOptions po = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Xv.Count, i =>*/
+                
                 for (int i = 0; i < Xv.Count; i++)
                 {
-                    /*ParallelOptions poo = new ParallelOptions
-                    {
-                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                    }; Parallel.For(0, Xv.Count, j =>*/
+                    
                     for (int j = 0; j < Xv.Count; j++)
                     {
-                        /*ParallelOptions pooo = new ParallelOptions
-                        {
-                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                        }; Parallel.For(0, Xv.Count, k =>*/
+                        
                         for (int k = 0; k < Xv.Count; k++)
                         {
                             object hh = new object();
@@ -409,12 +372,10 @@ namespace ContourAnalysisNS
                                 {
                                     continue;
                                 }
-
                                 if (i == k)
                                 {
                                     continue;
                                 }
-
                                 if (j == k)
                                 {
                                     continue;
@@ -423,7 +384,6 @@ namespace ContourAnalysisNS
                                 {
                                     continue;
                                 }
-
                                 if ((!(Xv[k].Y > Xv[i].Y && Xv[k].Y > Xv[j].Y)))
                                 {
                                     continue;
@@ -445,9 +405,9 @@ namespace ContourAnalysisNS
                                     }
                                 }
                             }
-                        }//);
-                    }//);
-                }//);
+                        }
+                    }
+                }
             }
             catch (Exception)
             {
@@ -460,22 +420,13 @@ namespace ContourAnalysisNS
             {
                 List<Vertex> K = new List<Vertex>();
                 bool Is = false;
-                /*ParallelOptions po = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Xv.Count, i =>*/
+                
                 for (int i = 0; i < Xv.Count; i++)
                 {
-                    /*ParallelOptions poo = new ParallelOptions
-                    {
-                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                    }; Parallel.For(0, Xv.Count, j =>*/
+                    
                     for (int j = 0; j < Xv.Count; j++)
                     {
-                        /*ParallelOptions pooo = new ParallelOptions
-                        {
-                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                        }; Parallel.For(0, Xv.Count, k =>*/
+                        
                         for (int k = 0; k < Xv.Count; k++)
                         {
                             object hh = new object();
@@ -485,12 +436,10 @@ namespace ContourAnalysisNS
                                 {
                                     continue;
                                 }
-
                                 if (i == k)
                                 {
                                     continue;
                                 }
-
                                 if (j == k)
                                 {
                                     continue;
@@ -504,8 +453,6 @@ namespace ContourAnalysisNS
                                     continue;
                                 }
 
-
-
                                 Line ds = d(Xv[i], Xv[j]);
                                 if (ds != null)
                                 {
@@ -523,9 +470,9 @@ namespace ContourAnalysisNS
                                     }
                                 }
                             }
-                        }//);
-                    }//);
-                }//);
+                        }
+                    }
+                }
             }
             catch (Exception)
             {
@@ -538,22 +485,13 @@ namespace ContourAnalysisNS
             {
                 List<Vertex> K = new List<Vertex>();
                 bool Is = false;
-                /*ParallelOptions po = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Xv.Count, i =>*/
+                
                 for (int i = 0; i < Xv.Count; i++)
                 {
-                    /*ParallelOptions poo = new ParallelOptions
-                    {
-                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                    }; Parallel.For(0, Xv.Count, j =>*/
+                    
                     for (int j = 0; j < Xv.Count; j++)
                     {
-                        /*ParallelOptions pooo = new ParallelOptions
-                        {
-                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                        }; Parallel.For(0, Xv.Count, k =>*/
+                        
                         for (int k = 0; k < Xv.Count; k++)
                         {
                             object hh = new object();
@@ -563,12 +501,10 @@ namespace ContourAnalysisNS
                                 {
                                     continue;
                                 }
-
                                 if (i == k)
                                 {
                                     continue;
                                 }
-
                                 if (j == k)
                                 {
                                     continue;
@@ -582,7 +518,6 @@ namespace ContourAnalysisNS
                                     continue;
                                 }
 
-
                                 Line ds = d(Xv[i], Xv[j]);
                                 if (ds != null)
                                 {
@@ -600,23 +535,19 @@ namespace ContourAnalysisNS
                                     }
                                 }
                             }
-                        }//);
-                    }//);
-                }//);
+                        }
+                    }
+                }
             }
             catch (Exception)
             {
                 return;
             }
         }
-
         public Line d(Vertex A, Vertex B)
         {
             Line dd = null;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, Xl.Count, i =>*/
+            
             for (int i = 0; i < Xl.Count; i++)
             {
                 object hh = new object();
@@ -626,39 +557,32 @@ namespace ContourAnalysisNS
                     {
                         continue;
                     }
-
                     try
                     {
                         if (A.VertexNumber == Xl[i].VertexIndexX && B.VertexNumber == Xl[i].VertexIndexY && (Xl.Count > i))
                         {
                             dd = Xl[i];
                         }
-
                         if (Xl.Count <= i)
                         {
                             continue;
                         }
-
                         if (B.VertexNumber == Xl[i].VertexIndexX && A.VertexNumber == Xl[i].VertexIndexY && (Xl.Count > i))
                         {
                             dd = Xl[i];
                         }
-
                         if (Xl.Count <= i)
                         {
                             continue;
                         }
-
                         if (A.VertexNumber == Xl[i].VertexIndexY && B.VertexNumber == Xl[i].VertexIndexX && (Xl.Count > i))
                         {
                             dd = Xl[i];
                         }
-
                         if (Xl.Count <= i)
                         {
                             continue;
                         }
-
                         if (B.VertexNumber == Xl[i].VertexIndexY && A.VertexNumber == Xl[i].VertexIndexX && (Xl.Count > i))
                         {
                             dd = Xl[i];
@@ -666,11 +590,9 @@ namespace ContourAnalysisNS
                     }
                     catch (Exception) { }
                 }
-            }//);
+            }
             return dd;
-
         }
-
         private bool IsXixJisDeletable(ref Line C, Vertex A, Vertex B, Vertex Next, ref List<Vertex> K, ref List<Vertex> xlv)
         {
             bool Is = false;
@@ -690,7 +612,6 @@ namespace ContourAnalysisNS
                     }
                     if (Next.VertexNumber == xlv[i + 1].VertexNumber)
                         continue;
-
                     Line ds = d(Next, xlv[i + 1]);
                     if (ds == null)
                         continue;
@@ -698,28 +619,19 @@ namespace ContourAnalysisNS
                         continue;
                     if (xlv[i].VertexNumber == Next.VertexNumber)
                     {
-
                         K.Add(xlv[i]);
                         Is = Is || IsXixJisDeletable(ref C, A, B, xlv[i + 1], ref K, ref xlv);
-
                     }
-
                 }
             }
             return Is;
         }
         public void IJBelongToLineHaveFalseBolleanA(bool[,] A)
         {
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, Xv.Count, i =>*/
+            
             for (int i = 0; i < Xv.Count; i++)
             {
-                /* ParallelOptions poo = new ParallelOptions
-                 {
-                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                 }; Parallel.For(0, Xv.Count, k =>*/
+                
                 for (int k = 0; k < Xv.Count; k++)
                 {
                     object hh = new object();
@@ -729,15 +641,12 @@ namespace ContourAnalysisNS
                         {
                             continue;
                         }
-
                         if (Xl.Count <= k)
                         {
                             continue;
                         }
-
                         if (ExistL(Xv[i].VertexNumber, Xv[k].VertexNumber))
                         {
-
                             int x1 = Xv[i].X;
                             int y1 = Xv[i].Y;
                             int x2 = Xv[k].X;
@@ -830,19 +739,17 @@ namespace ContourAnalysisNS
                                         }
                                     }
                                 }
-
                             }
                             // if (Line.IsPointsInVertexes(Xv[i], Xv[k],))
                         }
                     }
-                }//);
-            }//);
+                }
+            }
         }
         public GraphDivergenceMatrix Reco(bool[,] A, int n, int m, bool Achange)
         {
             if (!Achange)
             {
-
                 SameRikhEquvalent AA = new SameRikhEquvalent(A, n, m);
                 if (AA != null)
                 {
@@ -851,7 +758,6 @@ namespace ContourAnalysisNS
                     AA.CreateAngleAndLines();
                     return AA;
                 }
-
             }
             return null;
         }
@@ -862,28 +768,16 @@ namespace ContourAnalysisNS
             N = n;
             M = m;
             int indv = 0;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, n, i =>*/
+            
             for (int i = 0; i < n; i++)
             {
-                /*ParallelOptions poo = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, m, j =>*/
+                
                 for (int j = 0; j < m; j++)
                 {
-                    /* ParallelOptions pooo = new ParallelOptions
-                     {
-                         MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                     }; Parallel.For(0, n, k =>*/
+                    
                     for (int k = 0; k < n; k++)
                     {
-                        /*ParallelOptions pooooo = new ParallelOptions
-                        {
-                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                        }; Parallel.For(0, m, p =>*/
+                        
                         for (int p = 0; p < m; p++)
                         {
                             float wei = float.MaxValue;
@@ -891,23 +785,18 @@ namespace ContourAnalysisNS
                             lock (h)
                             {
 
-
                                 if (i == k)
                                 {
                                     continue;
                                 }
 
 
-
-
                                 if (j == p)
                                 {
                                     continue;
                                 }
-
                                 if (A[i, j] && A[k, p])
                                 {
-
                                     if (Xv.Count > 0)
                                     {
                                         if (Xv[First].X == k && Xv[First].Y == p)
@@ -941,7 +830,6 @@ namespace ContourAnalysisNS
                                                 }
                                                 else
                                                     Is1 = true;
-
                                                 if (!ExistV(k, p))
                                                 {
                                                     FirstCchanged = false;
@@ -950,14 +838,13 @@ namespace ContourAnalysisNS
                                                 }
                                                 else
                                                     Is2 = true;
-
                                                 if (Is1 && Is2)
                                                     continue;
                                                 if (inh1 != inh2)
                                                 {
                                                     if (inh == indv - 1)
                                                     {
-                                                        //Xv.RemoveAt(Xv.Count - 1);
+                                                        
                                                         continue;
                                                     }
                                                     else
@@ -969,48 +856,10 @@ namespace ContourAnalysisNS
                                                         }
                                                     }
                                                 }
-
                                             }
                                             else
                                             {
-                                                /*int gh = indv;
-                                                                      bool fou = false;
-                                                                      int kj = k, pj = p;
-                                                                      for (int g = 0; g < n; g++)
-                                                                      {
-                                                                          for (int f = 0; f < m; f++)
-                                                                          {
-                                                                              if (i == g && f == j)
-                                                                                  continue;
-                                                                              indv = gh;
-                                                                              if (A[i, j] && A[g, f])
-                                                                              {
-                                                                                  Vertex vx1 = new Vertex(indv, i, j);
-                                                                                  Vertex vx2 = new Vertex(++indv, g, f);
-                                                                                  if (ExistV(vx2.X, vx2.Y))
-                                                                                      continue;
-                                                                                  float we = (float)Math.Sqrt((i - g) * (i - g) + (j - f) * (j - f));
-                                                                                  Line df = new Line(we, vx1.VertexNumber, vx2.VertexNumber);
-                                                                                  if (df == null)
-                                                                                      continue;
-                                                                                  if (df.Weigth < wei)
-                                                                                  {
-                                                                                      k = g;
-                                                                                      p = f;
-                                                                                      wei = df.Weigth;
-                                                                                      fou = true;
-                                                                                  }
-                                                                              }
-                                                                          }
-                                                                      }
-                                                                      indv = gh;
-                                                                      if (!fou)
-                                                                      {
-                                                                          k = kj;
-                                                                          p = pj;
-                                                                          continue;
-                                                                      }
-                                                                      */
+                                                
                                                 int inh = indv;
                                                 int inh1 = indv;
                                                 int inh2 = indv;
@@ -1023,7 +872,6 @@ namespace ContourAnalysisNS
                                                 }
                                                 else
                                                     Is1 = true;
-
                                                 if (!ExistV(k, p))
                                                 {
                                                     Xv.Add(new Vertex(++indv, k, p));
@@ -1052,54 +900,13 @@ namespace ContourAnalysisNS
                                                         }
                                                     }
                                                 }
-                                                /*i = k;
-                                                                                            j = p;*/
+                                                
                                             }
                                         }
                                     }
                                     else
                                     {
-
-                                        /*int gh = indv;
-                                        bool fou = false;
-                                        int kj = k, pj = p;
-                                        for (int g = 0; g < n; g++)
-                                        {
-                                            for (int f = 0; f < m; f++)
-                                            {
-                                                if (i == g && f == j)
-                                                    continue;
-                                                indv = gh;
-                                                if (A[i, j] && A[g, f])
-                                                {
-                                                    Vertex vx1 = new Vertex(indv, i, j);
-                                                    Vertex vx2 = new Vertex(++indv, g, f);
-                                                    if (ExistV(vx2.X, vx2.Y))
-                                                        continue;
-                                                    float we = (float)Math.Sqrt((i - g) * (i - g) + (j - f) * (j - f));
-                                                    Line df = new Line(we, vx1.VertexNumber, vx2.VertexNumber);
-                                                    if (df == null)
-                                                        continue;
-                                                    if (df.Weigth < wei)
-                                                    {
-                                                        k = g;
-                                                        p = f;
-                                                        wei = df.Weigth;
-                                                        fou = true;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        indv = gh;
-                                        if (!fou)
-                                        {
-                                            k = kj;
-                                            p = pj;
-                                            continue;
-                                        }
-
-
-                                        */
+                                        
                                         if (FirstCchanged)
                                         {
                                             int inh = indv;
@@ -1115,7 +922,6 @@ namespace ContourAnalysisNS
                                             }
                                             else
                                                 Is1 = true;
-
                                             if (!ExistV(k, p))
                                             {
                                                 FirstCchanged = false;
@@ -1124,14 +930,12 @@ namespace ContourAnalysisNS
                                             }
                                             else
                                                 Is2 = true;
-
                                             if (Is1 && Is2)
                                                 continue;
                                             if (inh1 != inh2)
                                             {
                                                 if (inh == indv - 1)
                                                 {
-
                                                     continue;
                                                 }
                                                 else
@@ -1143,7 +947,6 @@ namespace ContourAnalysisNS
                                                     }
                                                 }
                                             }
-
                                         }
                                         else
                                         {
@@ -1159,7 +962,6 @@ namespace ContourAnalysisNS
                                             }
                                             else
                                                 Is1 = true;
-
                                             if (!ExistV(k, p))
                                             {
                                                 Xv.Add(new Vertex(++indv, k, p));
@@ -1185,18 +987,15 @@ namespace ContourAnalysisNS
                                                 }
                                             }
                                         }
-                                        /*i = k;
-                                        j = p;*/
+                                        
                                     }
-
                                 }
                             }
-                        }//);
-                    }//);
-                }//);
-            }//);
+                        }
+                    }
+                }
+            }
             XiXjDelete();
-
         }
         int GetVerInd(int VertNo)
         {
@@ -1210,37 +1009,25 @@ namespace ContourAnalysisNS
         }
         int GetVerId(int id)
         {
-
             return Xv[id].VertexNumber;
-        } //reconstruction;
+        } 
         public GraphDivergenceMatrix(List<Vertex> A, List<Line> Xl, int n, int m)
         {
             N = n;
             M = m;
             //To Do Create Graph mininimum graph
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, Xl.Count, k =>*/
+            
             for (int k = 0; k < Xl.Count; k++)
             {
-                /*ParallelOptions poo = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Xl.Count, i =>*/
+                
                 for (int i = 0; i < A.Count; i++)
                 {
-                    /* ParallelOptions pooo = new ParallelOptions
-                     {
-                         MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                     }; Parallel.For(0, Xl.Count, j =>*/
+                    
                     for (int j = 0; j < A.Count; j++)
                     {
-
                         object h = new object();
                         lock (h)
                         {
-
 
                             if (i == j)
                             {
@@ -1248,17 +1035,13 @@ namespace ContourAnalysisNS
                             }
 
 
-
-
                             if (!ExistV(Xv[i].X, Xv[j].Y) && (Xl.Count > k) && (A.Count > j))
                             {
                                 Xv.Add(new Vertex(Xl[k].VertexIndexX, A[i].X, A[i].Y));
-
                             }
                             if (!ExistV(Xv[GetVerInd(Xl[k].VertexIndexX)].X, Xv[GetVerInd(Xl[k].VertexIndexY)].Y) && (Xl.Count > k) && (A.Count > j))
                             {
                                 Xv.Add(new Vertex(Xl[k].VertexIndexY, A[j].X, A[j].Y));
-
                             }
                             if (!ExistL(Xl[k].VertexIndexX, Xl[k].VertexIndexY) && (Xl.Count > k) && (A.Count > j) && (A.Count > i))
                             {
@@ -1266,28 +1049,20 @@ namespace ContourAnalysisNS
                                 Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                             }
 
-
-
                         }
-                    }//);
-                }//);
-            }//);
+                    }
+                }
+            }
             XiXjDelete();
         }
         public static bool CheckedIsSameRikhtOverLap(GraphDivergenceMatrix sma, GraphDivergenceMatrix Rec)
         {
             bool Is = false;
             List<Vertex> Sames = new List<Vertex>();
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, sma.Xv.Count, i =>*/
+            
             for (int i = 0; i < sma.Xv.Count; i++)
             {
-                /*ParallelOptions poo = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Rec.Xv.Count, j =>*/
+                
                 for (int j = 0; j < Rec.Xv.Count; j++)
                 {
                     object h = new object();
@@ -1301,8 +1076,8 @@ namespace ContourAnalysisNS
                             }
                         }
                     }
-                }//);
-            }//);
+                }
+            }
             if (Sames.Count == Rec.Xv.Count)
             {
                 Is = true;
@@ -1313,18 +1088,11 @@ namespace ContourAnalysisNS
                 {
                     return Is;
                 }
-
-                /* ParallelOptions pop = new ParallelOptions
-                 {
-                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                 }; Parallel.For(0, Sames.Count, i =>*/
+                
                 for (int i = 0; i < Sames.Count; i++)
                 {
                     int crein = -1;
-                    /*ParallelOptions poop = new ParallelOptions
-                    {
-                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                    }; Parallel.For(0, Rec.Xv.Count, j =>*/
+                    
                     for (int j = 0; j < Rec.Xv.Count; j++)
                     {
                         object h = new object();
@@ -1340,13 +1108,10 @@ namespace ContourAnalysisNS
                                 continue;
                             }
                         }
-                    }//);
+                    }
                     if (crein > -1)
                     {
-                        /*ParallelOptions poopp = new ParallelOptions
-                        {
-                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                        }; Parallel.For(0, Sames.Count, j =>*/
+                        
                         for (int j = 0; j < Sames.Count; j++)
                         {
                             object h = new object();
@@ -1356,17 +1121,14 @@ namespace ContourAnalysisNS
                                 {
                                     continue;
                                 }
-
                                 if (j == i)
                                 {
                                     continue;
                                 }
-
                                 if (Rec.Xv.Count <= i)
                                 {
                                     continue;
                                 }
-
                                 if (Line.IsPointsInVertexes(Sames[i], Sames[j], Rec.Xv[crein].X, Rec.Xv[crein].Y) && (Rec.Xv.Count > i))
                                 {
                                     Sames.Add(new Vertex(Rec.Xv[i].VertexNumber, Rec.Xv[i].X, Rec.Xv[i].Y));
@@ -1374,29 +1136,23 @@ namespace ContourAnalysisNS
                                     continue;
                                 }
                             }
-                        }//);
+                        }
                     }
-                }//);
-
+                }
             }
             if (Sames.Count == Rec.Xv.Count)
             {
                 Is = true;
             }
-
             return Is;
         }
-
         public bool IsSameRikhtVertex(bool[,] Ab, GraphDivergenceMatrix BB, ref List<Vertex> Kk, ref List<Vertex> ChechOnFinisshedI)
         {
             bool Is = false;
             List<Vertex> ChechOnFinisshed = ChechOnFinisshedI;
             List<Vertex> K = Kk;
             bool kcounnt = false;
-            /*    ParallelOptions pop = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Xv.Count, i =>*/
+            
             for (int i = 0; i < Xv.Count; i++)
             {
                 object h = new object();
@@ -1406,24 +1162,21 @@ namespace ContourAnalysisNS
                     {
                         return Is;
                     }
-
                     if (kcounnt)
                     {
                         return Is;
                     }
-
                     Is = Is || IsSameRikht(Ab, Xv[i].X, Xv[i].Y, BB, ref K, ref ChechOnFinisshed);
                     if (K.Count == 0)
                     {
                         kcounnt = true;
                     }
                 }
-            }//);
+            }
             Kk = K;
             ChechOnFinisshedI = ChechOnFinisshed;
             return Is;
         }
-
         private bool IsSameRikht(bool[,] Ab, int x, int y, GraphDivergenceMatrix BB, ref List<Vertex> Kk, ref List<Vertex> ChechOnFinisshedI)
         {
             bool exit = false;
@@ -1434,18 +1187,13 @@ namespace ContourAnalysisNS
             {
                 return false;
             }
-
             if (K.Count >= BB.Xv.Count)
             {
                 return true;
             }
-
             try
             {
-                /*ParallelOptions pop = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, BB.Xv.Count, i =>*/
+                
                 for (int i = 0; i < BB.Xv.Count; i++)
                 {
                     try
@@ -1457,7 +1205,6 @@ namespace ContourAnalysisNS
                             {
                                 return Is;
                             }
-
                             if (K.Count > 0)
                             {
                                 if (K.Contains(BB.Xv[i]))
@@ -1474,23 +1221,16 @@ namespace ContourAnalysisNS
                                 return Is;
                             }
                         }
-                        /*ParallelOptions poop = new ParallelOptions
-                        {
-                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                        }; Parallel.For(0, K.Count, ii =>*/
+                        
                         for (int ii = 0; ii < K.Count; ii++)
                         {
                             if (exit)
                             {
                                 return Is;
                             }
-
                             try
                             {
-                                /*ParallelOptions poopp = new ParallelOptions
-                                {
-                                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                                }; Parallel.For(0, K.Count, j =>*/
+                                
                                 for (int j = 0; j < K.Count; j++)
                                 {
                                     object hh = new object();
@@ -1500,12 +1240,10 @@ namespace ContourAnalysisNS
                                         {
                                             return Is;
                                         }
-
                                         if (i == j)
                                         {
                                             continue;
                                         }
-
                                         if (Line.IsPointsInVertexes(K[ii], K[j], x, y))
                                         {
                                             K.Add(BB.Xv[i]);
@@ -1514,13 +1252,13 @@ namespace ContourAnalysisNS
                                             return Is;
                                         }
                                     }
-                                }//);
+                                }
                             }
                             catch (Exception) { }
-                        }//);
+                        }
                     }
                     catch (Exception) { }
-                }//);
+                }
             }
             catch (Exception) { }
             if (x + 1 >= 0 && y + 1 >= 0 && x + 1 < M && y + 1 < N)
@@ -1558,7 +1296,6 @@ namespace ContourAnalysisNS
     }
     public class Vertex
     {
-
         public int VertexNumber;
         public int X, Y;
         public Vertex(int Vno, int x, int y)
@@ -1585,12 +1322,10 @@ namespace ContourAnalysisNS
             {
                 return false;
             }
-
             if ((float)((float)(y - v1.Y) - (((float)(v1.X - v2.X) / (float)(v1.Y - v2.Y)) * (float)(x - v1.X))) < 1)
             {
                 Is = true;
             }
-
             return Is;
         }
     }
@@ -1599,7 +1334,6 @@ namespace ContourAnalysisNS
         double Maxan = Math.PI / 90;
         public List<bool[,]> GreaterThanOneCuurvvedMatrix = new List<bool[,]>();
         public List<SameRikhEquvalent> GreaterThanOneCuurvved = new List<SameRikhEquvalent>();
-
         public float diverstionSumWeighEveryLines = 0;
         public List<float> SumWeighEveryLines = new List<float>();
         List<List<float>> sd = new List<List<float>>();
@@ -1613,49 +1347,35 @@ namespace ContourAnalysisNS
         List<int> ClosedCurvedIndexI = new List<int>();
         public SameRikhEquvalent(bool[,] A, int n, int m) : base(A, n, m)
         {
-
         }
         public SameRikhEquvalent(List<Vertex> A, List<Line> Xl, int n, int m) : base(A, Xl, n, m)
         {
-
         }
         public bool ExistAd(int x1, int y1)
         {
             bool Is = false;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, Xv.Count, i =>*/
+            
             for (int i = 0; i < ad.Count; i++)
             {
-                /*ParallelOptions poo = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                }; Parallel.For(0, Xv.Count, j =>*/
+                
                 for (int j = 0; j < ad[i].Count; j++)
                 {
                     object hh = new object();
                     lock (hh)
                     {
-
                         if ((int)(ad[i][j][0].X) == x1 && ((int)ad[i][j][0].Y) == y1 && (int)(ad[i][j][1].X) == x1 && ((int)ad[i][j][1].Y) == y1)
                         {
                             Is = true;
                         }
-
                     }
-                }//);
-            }//);
+                }
+            }
             return Is;
         }
         public bool ExistLd(int x1, int y1)
         {
-
             bool Is = false;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, Xl.Count, i =>*/
+            
             for (int i = 0; i < ld.Count; i++)
             {
                 for (int j = 0; j < ld[i].Count; j++)
@@ -1667,13 +1387,12 @@ namespace ContourAnalysisNS
                         {
                             Is = true;
                         }
-
                         if (ld[i][j].VertexIndexY == x1 && ld[i][j].VertexIndexX == y1)
                         {
                             Is = true;
                         }
                     }
-                }//);
+                }
             }
             return Is;
         }
@@ -1686,7 +1405,6 @@ namespace ContourAnalysisNS
                 {
                     c[ClosedCurved[i][j].X, ClosedCurved[i][j].Y] = true;
                 }
-
             }
             return c;
         }
@@ -1706,12 +1424,9 @@ namespace ContourAnalysisNS
             {
                 for (int i = 0; i < GreaterThanOneCuurvvedMatrix.Count; i++)
                     GreaterThanOneCuurvved.Add(new SameRikhEquvalent(GreaterThanOneCuurvvedMatrix[i], N, M));
-
                 GreaterThanOneCuurvved = ImageTextDeepLearning.ImprovmentSort.Do(GreaterThanOneCuurvved, ref GreaterThanOneCuurvvedMatrix);
             }
-
         }
-
         float Mean(List<float> z)
         {
             float mean = 0;
@@ -1719,7 +1434,6 @@ namespace ContourAnalysisNS
                 mean += z[i];
             mean /= (float)z.Count;
             return mean;
-
         }
         float Divesion(List<float> t)
         {
@@ -1730,7 +1444,6 @@ namespace ContourAnalysisNS
             div /= ((float)t.Count * ((float)t.Count - 1));
             return div;
         }
-
         bool AddIng(Point3Dspaceuser.Point3D p0, Point3Dspaceuser.Point3D p1, ref int ii, ref int jj)
         {
             if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1))
@@ -1760,25 +1473,22 @@ namespace ContourAnalysisNS
                 for (int j = 0; j < ad[i].Count; j++)
                 {
                     double an = 0;
-
                     howto_WPF_3D_triangle_normalsuser.Line.AngleBetweenTowLineS(ad[i][j][0], ad[i][j][1], p0, p1, ref an);
                     if (an < Maxan)
                     {
                         //if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1))
-                        //continue;
+                        
                         ad[i].Add(c);
                         ii = i;
                         jj = j;
                         return true;
                     }
-
                 }
             }
             return false;
         }
         bool AddIngL(Line l0, int i, int j, float we)
         {
-
             if (ld.Count == i)
             {
                 ld.Add(new List<Line>());
@@ -1803,7 +1513,6 @@ namespace ContourAnalysisNS
                     sd[i].Add(we);
                     return true;
                 }
-
             }
             return false;
         }
@@ -1829,13 +1538,11 @@ namespace ContourAnalysisNS
         }
         public void CreateAngleAndLines()
         {
-
             do
             {
                 for (int i = 0; i < Xv.Count; i++)
                 {
                     Point3Dspaceuser.Point3D p0 = new Point3Dspaceuser.Point3D(Xv[i].X, Xv[i].Y, 0);
-
                     for (int j = 0; j < Xv.Count; j++)
                     {
                         Point3Dspaceuser.Point3D p1 = new Point3Dspaceuser.Point3D(Xv[j].X, Xv[j].Y, 0);
@@ -1843,11 +1550,9 @@ namespace ContourAnalysisNS
                         for (int k = 0; k < Xv.Count; k++)
                         {
                             Point3Dspaceuser.Point3D p2 = new Point3Dspaceuser.Point3D(Xv[k].X, Xv[k].Y, 0);
-
                             for (int p = 0; p < Xv.Count; p++)
                             {
                                 Point3Dspaceuser.Point3D p3 = new Point3Dspaceuser.Point3D(Xv[p].X, Xv[p].Y, 0);
-
                                 if (i == j)
                                     continue;
                                 if (i == k)
@@ -1887,7 +1592,6 @@ namespace ContourAnalysisNS
                                 }
                             }
                         }
-
                     }
                 }
                 if (Maxan > Math.PI)
@@ -1896,7 +1600,6 @@ namespace ContourAnalysisNS
                 {
                     Maxan += 0.1;
                 }
-
             } while (GetldCount() < Xl.Count);
             if (ad.Count > 0)
             {
@@ -1919,9 +1622,7 @@ namespace ContourAnalysisNS
                 SumWeighEveryLines = howto_WPF_3D_triangle_normalsuser.ImprovmentSort.Do(SumWeighEveryLines);
                 diverstionSumWeighEveryLines = Divesion(SumWeighEveryLines);
             }
-
             CreateBolleanMatrixOfSubGraph();
-
             CreateSubSameEquValentGraph();
         }
         int GetsdCount()
@@ -1954,74 +1655,52 @@ namespace ContourAnalysisNS
         int NoCloCur()
         {
             int Is = 0;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, ClosedCurved.Count, i =>
-            */
+            
             for (int i = 0; i < ClosedCurved.Count; i++)
             {
-                /* ParallelOptions poo = new ParallelOptions
-                 {
-                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                 }; Parallel.For(0, ClosedCurved[i].Count, j =>
-                */ //
+                 //
                 for (int j = 0; j < ClosedCurved[i].Count; j++)
                 {
                     object hh = new object();
                     lock (hh)
                     {
                         //   if (i >= Xv.Count)
-                        // return;
-
+                        
                         Is++;
                     }
-                }//);
-            }//);
+                }
+            }
             return Is;
         }
         bool ExistCloCur(int x1, int y1)
         {
             bool Is = false;
-            /*ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, ClosedCurved.Count, i =>
-            */
+            
             for (int i = 0; i < ClosedCurved.Count; i++)
             {
-                /* ParallelOptions poo = new ParallelOptions
-                 {
-                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-                 }; Parallel.For(0, ClosedCurved[i].Count, j =>
-                */ //
+                 //
                 for (int j = 0; j < ClosedCurved[i].Count; j++)
                 {
                     object hh = new object();
                     lock (hh)
                     {
                         //   if (i >= Xv.Count)
-                        // return;
-
+                        
                         if (ClosedCurved[i][j].X == x1 && ClosedCurved[i][j].Y == y1)
                         {
                             Is = true;
                         }
                     }
-                }//);
-            }//);
+                }
+            }
             return Is;
         }
         bool ExistCloCurContinuse(int x1, int y1)
         {
             bool Is = false;
-            /* ParallelOptions po = new ParallelOptions
-            {
-                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
-            }; Parallel.For(0, ClosedCurved.Count, i =>*/
+            
             for (int i = 0; i < ClosedCurved.Count; i++)
             {
-
                 object hh = new object();
                 lock (hh)
                 {
@@ -2034,8 +1713,7 @@ namespace ContourAnalysisNS
                         Is = true;
                     }
                 }
-
-            }//);
+            }
             return Is;
         }
         int GetNotClosedCurvedIndexI()
@@ -2046,13 +1724,11 @@ namespace ContourAnalysisNS
                 bool Is = false;
                 for (int j = 0; j < ClosedCurvedIndexI.Count; j++)
                 {
-
                     if (ClosedCurvedIndexI[j] == (i))
                     {
                         Is = true;
                         break;
                     }
-
                 }
                 if (!Is)
                     return i;
@@ -2067,61 +1743,7 @@ namespace ContourAnalysisNS
             ClosedCurved.Add(new List<Vertex>());
             try
             {
-                /*  do
-                  {
-                      IsNext = false;
-                      ClosedCurved.Add(new List<Vertex>());
-
-                      int j = 0;
-                      while (j < Xv.Count)
-                       {
-                           if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
-                           {
-                               i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                               ClosedCurvedIndexI.Add(i);
-                           }
-                           else
-                           {
-                               if (!ExistCloCur(Xv[i].X, Xv[i].Y))
-                               {
-                                   ClosedCurved[ClosedCurved.Count - 1].Add(Xv[i]);
-                                   i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                                   ClosedCurvedIndexI.Add(i);
-                               }
-                           }
-
-                           if (ExistCloCur(Xv[j].X, Xv[j].Y))
-                           {
-                               j++;
-                               continue;
-                           }
-                           Line ds = d(Xv[i], Xv[j]);
-                           if (ds == null)
-                           {
-                               j++;
-                               continue;
-                           }
-                           if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
-                           {
-                               j++;
-                               continue;
-                           }
-                           if (j < Xv.Count && ClosedCurved[ClosedCurved.Count - 1].Count > 0)
-                           {
-                               if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
-                               {
-                                   IsNext = true;
-                                   ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                                   numberOfClosedCurved++;
-                                   break;
-                               }
-                           }
-                           if (j < Xv.Count)
-                               ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                           j = 0;
-                       }
-
-                   */
+                
                 int first = 1;
                 for (int h = 0; h < Xl.Count - 1; h++)
                 {
@@ -2129,14 +1751,11 @@ namespace ContourAnalysisNS
                     {
                         int vxx = Xl[h].VertexIndexX;
                         int vyy = Xl[h].VertexIndexY;
-
                         Vertex tx = GetVerId(vxx);
                         Vertex ty = GetVerId(vyy);
-
                         if (vxx < vyy)
                         {
                             first = GetVerId(ty.VertexNumber).VertexNumber;
-
                             if (!ExistCloCur(tx.X, tx.Y))
                             {
                                 if (tx != null)
@@ -2148,7 +1767,6 @@ namespace ContourAnalysisNS
                         else
                         {
                             first = GetVerId(tx.VertexNumber).VertexNumber;
-
                             if (!ExistCloCur(ty.X, ty.Y))
                             {
                                 if (ty != null)
@@ -2156,7 +1774,6 @@ namespace ContourAnalysisNS
                                 else
                                     return;
                             }
-
                         }
                         IsClosedCurved.Add(true);
                         ClosedCurved.Add(new List<Vertex>());
@@ -2166,20 +1783,15 @@ namespace ContourAnalysisNS
                     {
                         int vxx = Xl[h].VertexIndexX;
                         int vyy = Xl[h].VertexIndexY;
-
                         Vertex tx = GetVerId(vxx);
                         Vertex ty = GetVerId(vyy);
-
                         if (vxx < vyy)
                         {
                             first = GetVerId(ty.VertexNumber).VertexNumber;
-
                         }
                         else
                         {
                             first = GetVerId(tx.VertexNumber).VertexNumber;
-
-
 
                         }
                         IsClosedCurved.Add(false);
@@ -2228,7 +1840,6 @@ namespace ContourAnalysisNS
                                     return;
                             }
                         }
-
                     }
                 }
                 if (ClosedCurved.Count == IsClosedCurved.Count + 1)
@@ -2249,26 +1860,7 @@ namespace ContourAnalysisNS
                         h = 0;
                     }
                 }
-                /*
-                               if (!IsNext)
-                                {
-                                    i = GetNotClosedCurvedIndexI();
-                                    if (i == -1)
-                                        noIsNext = Xv.Count;
-                                    for (int h = 0; h < IsClosedCurved.Count; h++)
-                                    {
-                                        if (!IsClosedCurved[h])
-                                        {
-                                            IsClosedCurved.RemoveAt(h);
-                                            ClosedCurved.RemoveAt(h);
-                                        }
-                                    }
-
-                                    noIsNext++;
-                                }
-
-                            } while (NoCloCur() < Xv.Count// && noIsNext < Xv.Count
-                                                          );*/
+                
             }
             catch (Exception t)
             {

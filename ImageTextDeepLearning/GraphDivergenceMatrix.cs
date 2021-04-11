@@ -7,7 +7,7 @@ namespace ContourAnalysisNS
 {
     public class GraphS
     {
-         List<float> SumWeighEveryLines = new List<float>();
+        List<float> SumWeighEveryLines = new List<float>();
         public static float SumWeighEveryLinesDiffferention = 1;
         public static GraphS Z = null;
         public static bool Drawn = false;
@@ -47,7 +47,7 @@ namespace ContourAnalysisNS
                 return;
             }
         }
-bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
+        bool TowSubGraphEqualiity(List<SameRikhEquvalent> A, List<SameRikhEquvalent> B)
         {
             bool Is = false;
             if (A.Count != B.Count)
@@ -78,7 +78,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
         {
             if (A.SumWeighEveryLines.Count != B.SumWeighEveryLines.Count)
                 return false;
-            for(int i = 0; i < A.SumWeighEveryLines.Count; i++)
+            for (int i = 0; i < A.SumWeighEveryLines.Count; i++)
             {
                 SumWeighEveryLines.Add(A.SumWeighEveryLines[i] / B.SumWeighEveryLines[i]);
             }
@@ -131,12 +131,12 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                 {
 
                     bool Is = true;
-                    if(Z.TowSubGraphEqualiity(Z.A.GreaterThanOneCuurvved,Z.B.GreaterThanOneCuurvved))
+                    if (Z.TowSubGraphEqualiity(Z.A.GreaterThanOneCuurvved, Z.B.GreaterThanOneCuurvved))
                     {
                         for (int i = 0; i < Z.A.GreaterThanOneCuurvved.Count; i++)
                             Is = Is && GraphS.GraphSameRikht(Z.A.GreaterThanOneCuurvvedMatrix[i], Z.B.GreaterThanOneCuurvvedMatrix[i], Z.N, Z.M, false);
                         return Is;
-                    }  
+                    }
                 }
                 else
                 {
@@ -220,7 +220,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     object hh = new object();
                     lock (hh)
                     {
-                      
+
                         if (Xv[i].X == x1 && Xv[i].Y == y1)
                         {
                             Is = true;
@@ -250,7 +250,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     object hh = new object();
                     lock (hh)
                     {
-                    
+
                         if (K[i].X == x1 && K[i].Y == y1)
                         {
                             Is = true;
@@ -275,7 +275,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                 object hh = new object();
                 lock (hh)
                 {
-                     if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexY == y1)
+                    if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexY == y1)
                     {
                         Is = true;
                     }
@@ -896,15 +896,15 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                                 {
                                     continue;
                                 }
-                                
-                                
-                                
+
+
+
 
                                 if (j == p)
                                 {
                                     continue;
                                 }
-                                
+
                                 if (A[i, j] && A[k, p])
                                 {
 
@@ -1145,29 +1145,30 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                                             }
 
                                         }
-                                        else { 
-                                        int inh = indv;
-                                        int inh1 = indv;
-                                        int inh2 = indv;
-                                        bool Is1 = false;
-                                        bool Is2 = false;
-                                        if (!ExistV(i, j))
-                                        {
-                                            Xv.Add(new Vertex(++indv, i, j));
-                                            inh1 = indv;
-                                        }
                                         else
-                                            Is1 = true;
+                                        {
+                                            int inh = indv;
+                                            int inh1 = indv;
+                                            int inh2 = indv;
+                                            bool Is1 = false;
+                                            bool Is2 = false;
+                                            if (!ExistV(i, j))
+                                            {
+                                                Xv.Add(new Vertex(++indv, i, j));
+                                                inh1 = indv;
+                                            }
+                                            else
+                                                Is1 = true;
 
-                                        if (!ExistV(k, p))
-                                        {
-                                            Xv.Add(new Vertex(++indv, k, p));
-                                            inh2 = indv;
-                                        }
-                                        else
-                                            Is2 = true;
-                                        if (Is1 && Is2)
-                                            continue;
+                                            if (!ExistV(k, p))
+                                            {
+                                                Xv.Add(new Vertex(++indv, k, p));
+                                                inh2 = indv;
+                                            }
+                                            else
+                                                Is2 = true;
+                                            if (Is1 && Is2)
+                                                continue;
                                             if (inh1 != inh2)
                                             {
                                                 if (inh == indv - 1)
@@ -1240,7 +1241,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                         lock (h)
                         {
 
-                           
+
                             if (i == j)
                             {
                                 continue;
@@ -1598,7 +1599,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
         double Maxan = Math.PI / 90;
         public List<bool[,]> GreaterThanOneCuurvvedMatrix = new List<bool[,]>();
         public List<SameRikhEquvalent> GreaterThanOneCuurvved = new List<SameRikhEquvalent>();
-    
+
         public float diverstionSumWeighEveryLines = 0;
         public List<float> SumWeighEveryLines = new List<float>();
         List<List<float>> sd = new List<List<float>>();
@@ -1662,7 +1663,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     object hh = new object();
                     lock (hh)
                     {
-                         if (ld[i][j].VertexIndexX == x1 && ld[i][j].VertexIndexY == y1)
+                        if (ld[i][j].VertexIndexX == x1 && ld[i][j].VertexIndexY == y1)
                         {
                             Is = true;
                         }
@@ -1699,7 +1700,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                 }
             }
         }
-        public  void CreateSubSameEquValentGraph()
+        public void CreateSubSameEquValentGraph()
         {
             if (GreaterThanOneCuurvvedMatrix.Count > 0)
             {
@@ -1764,7 +1765,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     if (an < Maxan)
                     {
                         //if (Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1))
-                            //continue;
+                        //continue;
                         ad[i].Add(c);
                         ii = i;
                         jj = j;
@@ -1775,9 +1776,9 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
             }
             return false;
         }
-        bool AddIngL(Line l0, int i, int j,float we)
+        bool AddIngL(Line l0, int i, int j, float we)
         {
-            
+
             if (ld.Count == i)
             {
                 ld.Add(new List<Line>());
@@ -1802,8 +1803,8 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                     sd[i].Add(we);
                     return true;
                 }
-               
-            }            
+
+            }
             return false;
         }
         int GetVerInd(int VertNo)
@@ -1826,7 +1827,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
             }
             return null;
         }
-       public void CreateAngleAndLines()
+        public void CreateAngleAndLines()
         {
 
             do
@@ -1925,10 +1926,10 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
         }
         int GetsdCount()
         {
-            int ind= 0;
-            for(int i = 0; i < sd.Count;i++)
+            int ind = 0;
+            for (int i = 0; i < sd.Count; i++)
             {
-                ind+= sd[i].Count;
+                ind += sd[i].Count;
             }
             return ind;
         }
@@ -1937,7 +1938,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
             int ind = 0;
             for (int i = 0; i < ld.Count; i++)
             {
-                ind+= ld[i].Count;
+                ind += ld[i].Count;
             }
             return ind;
         }
@@ -1946,7 +1947,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
             int ind = 0;
             for (int i = 0; i < ad.Count; i++)
             {
-                ind+= ad[i].Count;
+                ind += ad[i].Count;
             }
             return ind;
         }
@@ -2066,65 +2067,65 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
             ClosedCurved.Add(new List<Vertex>());
             try
             {
-              /*  do
+                /*  do
+                  {
+                      IsNext = false;
+                      ClosedCurved.Add(new List<Vertex>());
+
+                      int j = 0;
+                      while (j < Xv.Count)
+                       {
+                           if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
+                           {
+                               i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
+                               ClosedCurvedIndexI.Add(i);
+                           }
+                           else
+                           {
+                               if (!ExistCloCur(Xv[i].X, Xv[i].Y))
+                               {
+                                   ClosedCurved[ClosedCurved.Count - 1].Add(Xv[i]);
+                                   i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
+                                   ClosedCurvedIndexI.Add(i);
+                               }
+                           }
+
+                           if (ExistCloCur(Xv[j].X, Xv[j].Y))
+                           {
+                               j++;
+                               continue;
+                           }
+                           Line ds = d(Xv[i], Xv[j]);
+                           if (ds == null)
+                           {
+                               j++;
+                               continue;
+                           }
+                           if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
+                           {
+                               j++;
+                               continue;
+                           }
+                           if (j < Xv.Count && ClosedCurved[ClosedCurved.Count - 1].Count > 0)
+                           {
+                               if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
+                               {
+                                   IsNext = true;
+                                   ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                                   numberOfClosedCurved++;
+                                   break;
+                               }
+                           }
+                           if (j < Xv.Count)
+                               ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
+                           j = 0;
+                       }
+
+                   */
+                int first = 1;
+                for (int h = 0; h < Xl.Count - 1; h++)
                 {
-                    IsNext = false;
-                    ClosedCurved.Add(new List<Vertex>());
-
-                    int j = 0;
-                    while (j < Xv.Count)
-                     {
-                         if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
-                         {
-                             i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                             ClosedCurvedIndexI.Add(i);
-                         }
-                         else
-                         {
-                             if (!ExistCloCur(Xv[i].X, Xv[i].Y))
-                             {
-                                 ClosedCurved[ClosedCurved.Count - 1].Add(Xv[i]);
-                                 i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                                 ClosedCurvedIndexI.Add(i);
-                             }
-                         }
-
-                         if (ExistCloCur(Xv[j].X, Xv[j].Y))
-                         {
-                             j++;
-                             continue;
-                         }
-                         Line ds = d(Xv[i], Xv[j]);
-                         if (ds == null)
-                         {
-                             j++;
-                             continue;
-                         }
-                         if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
-                         {
-                             j++;
-                             continue;
-                         }
-                         if (j < Xv.Count && ClosedCurved[ClosedCurved.Count - 1].Count > 0)
-                         {
-                             if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
-                             {
-                                 IsNext = true;
-                                 ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                                 numberOfClosedCurved++;
-                                 break;
-                             }
-                         }
-                         if (j < Xv.Count)
-                             ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                         j = 0;
-                     }
-
-                 */
-                    int first = 1;
-                for (int h = 0; h < Xl.Count; h++)
-                {
-                    if ((Xl[h].VertexIndexX == first || Xl[h].VertexIndexY == first) && first != 1)
+                    if ((Xl[h].VertexIndexX == first || Xl[h].VertexIndexY == first) && (h != 0))
                     {
                         int vxx = Xl[h].VertexIndexX;
                         int vyy = Xl[h].VertexIndexY;
@@ -2134,7 +2135,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
 
                         if (vxx < vyy)
                         {
-                            first = GetVerId(ty.VertexNumber).VertexNumber + 1;
+                            first = GetVerId(ty.VertexNumber).VertexNumber;
 
                             if (!ExistCloCur(tx.X, tx.Y))
                             {
@@ -2146,24 +2147,50 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                         }
                         else
                         {
-                            first = GetVerId(tx.VertexNumber).VertexNumber + 1;
-                           
-                            if(!ExistCloCur(ty.X, ty.Y))
+                            first = GetVerId(tx.VertexNumber).VertexNumber;
+
+                            if (!ExistCloCur(ty.X, ty.Y))
                             {
                                 if (ty != null)
                                     ClosedCurved[ClosedCurved.Count - 1].Add(ty);
                                 else
-                                    return; }
+                                    return;
+                            }
 
                         }
                         IsClosedCurved.Add(true);
                         ClosedCurved.Add(new List<Vertex>());
                     }
                     else
+                        if ((Xl[h].VertexIndexX != Xl[h + 1].VertexIndexX) && (Xl[h].VertexIndexY != Xl[h + 1].VertexIndexX) && (Xl[h].VertexIndexX != Xl[h + 1].VertexIndexY) && (Xl[h].VertexIndexY != Xl[h + 1].VertexIndexY))
+                    {
+                        int vxx = Xl[h].VertexIndexX;
+                        int vyy = Xl[h].VertexIndexY;
+
+                        Vertex tx = GetVerId(vxx);
+                        Vertex ty = GetVerId(vyy);
+
+                        if (vxx < vyy)
+                        {
+                            first = GetVerId(ty.VertexNumber).VertexNumber;
+
+                        }
+                        else
+                        {
+                            first = GetVerId(tx.VertexNumber).VertexNumber;
+
+
+
+                        }
+                        IsClosedCurved.Add(false);
+                        ClosedCurved.Add(new List<Vertex>());
+                        continue;
+                    }
+                    else
                     {
                         int vx = Xl[h].VertexIndexX;
                         int vy = Xl[h].VertexIndexY;
-                        if (vx < vy)
+                        if (vx > vy)
                         {
                             Vertex tx = GetVerId(vx);
                             Vertex ty = GetVerId(vy);
@@ -2201,6 +2228,7 @@ bool TowSubGraphEqualiity(List<SameRikhEquvalent> A,List<SameRikhEquvalent> B)
                                     return;
                             }
                         }
+
                     }
                 }
                 if (ClosedCurved.Count == IsClosedCurved.Count + 1)

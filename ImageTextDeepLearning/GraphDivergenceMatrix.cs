@@ -811,58 +811,170 @@ namespace ContourAnalysisNS
             N = n;
             M = m;
             int indv = 0;
-            
-            for (int i = 0; i < n; i++)
+            bool Occurred = false;
+
+            do
             {
-                
-                for (int j = 0; j < m; j++)
+                Occurred = false;
+
+                for (int i = 0; i < n; i++)
                 {
-                    
-                    for (int k = 0; k < n; k++)
+
+                    for (int j = 0; j < m; j++)
                     {
-                        
-                        for (int p = 0; p < m; p++)
+
+                        for (int k = 0; k < n; k++)
                         {
-                            float wei = float.MaxValue;
-                            object h = new object();
-                            lock (h)
+
+                            for (int p = 0; p < m; p++)
                             {
-
-                                if (i == k)
+                                float wei = float.MaxValue;
+                                object h = new object();
+                                lock (h)
                                 {
-                                    continue;
-                                }
 
-
-                                if (j == p)
-                                {
-                                    continue;
-                                }
-                                if (A[i, j] && A[k, p])
-                                {
-                                    float weB = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-
-                                    if (!IsLineMinimumNotInXl(A, weB, n, m))
-                                        continue;
-
-                                    if (Xv.Count > 0)
+                                    if (i == k)
                                     {
-                                        if (Xv[First].X == k && Xv[First].Y == p)
+                                        continue;
+                                    }
+
+
+                                    if (j == p)
+                                    {
+                                        continue;
+                                    }
+                                    if (A[i, j] && A[k, p])
+                                    {
+                                        float weB = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+
+                                        if (!IsLineMinimumNotInXl(A, weB, n, m))
+                                            continue;
+
+                                        if (Xv.Count > 0)
                                         {
-                                            if (!ExistV(i, j))
-                                                continue;
-                                            Xv.Add(new Vertex(First + 1, k, p));
-                                            if (!ExistL(Xv[Xv.Count - 1].VertexNumber, First + 1))
+                                            if (Xv[First].X == k && Xv[First].Y == p)
                                             {
-                                                float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                First = indv;
-                                                indv++;
-                                                FirstCchanged = true;
+                                                if (!ExistV(i, j))
+                                                    continue;
+                                                Xv.Add(new Vertex(First + 1, k, p));
+                                                if (!ExistL(Xv[Xv.Count - 1].VertexNumber, First + 1))
+                                                {
+                                                    float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                    Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                    First = indv;
+                                                    indv++;
+                                                    FirstCchanged = true;
+                                                    i = k;
+                                                    j = p;
+                                                    Occurred = true;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (FirstCchanged)
+                                                {
+                                                    int inh = indv;
+                                                    int inh1 = indv;
+                                                    int inh2 = indv;
+                                                    bool Is1 = false;
+                                                    bool Is2 = false;
+                                                    if (!ExistV(i, j))
+                                                    {
+                                                        FirstCchanged = false;
+                                                        Xv.Add(new Vertex(++indv, i, j));
+                                                        inh1 = indv;
+                                                    }
+                                                    else
+                                                        Is1 = true;
+                                                    if (!ExistV(k, p))
+                                                    {
+                                                        FirstCchanged = false;
+                                                        Xv.Add(new Vertex(++indv, k, p));
+                                                        inh2 = indv;
+                                                    }
+                                                    else
+                                                        Is2 = true;
+                                                    if (Is1 && Is2)
+                                                        continue;
+                                                    if (inh1 != inh2)
+                                                    {
+                                                        if (inh == indv - 1)
+                                                        {
+                                                            float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                            Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                            i = k;
+                                                            j = p;
+                                                            Occurred = true;
+                                                        }
+                                                        else
+                                                        {
+                                                            if (!ExistL(inh1, inh2))
+                                                            {
+                                                                float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                                Xl.Add(new Line(we, inh1, inh2));
+                                                                i = k;
+                                                                j = p;
+                                                                Occurred = true;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+
+                                                    int inh = indv;
+                                                    int inh1 = indv;
+                                                    int inh2 = indv;
+                                                    bool Is1 = false;
+                                                    bool Is2 = false;
+                                                    if (!ExistV(i, j))
+                                                    {
+                                                        Xv.Add(new Vertex(++indv, i, j));
+                                                        inh1 = indv;
+                                                    }
+                                                    else
+                                                        Is1 = true;
+                                                    if (!ExistV(k, p))
+                                                    {
+                                                        Xv.Add(new Vertex(++indv, k, p));
+                                                        inh2 = indv;
+                                                    }
+                                                    else
+                                                        Is2 = true;
+                                                    if (Is1 && Is2)
+                                                        continue;
+                                                    if (inh1 != inh2)
+                                                    {
+                                                        if (inh == indv - 1)
+                                                        {
+                                                            if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                            {
+                                                                float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                                Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                                i = k;
+                                                                j = p;
+                                                                Occurred = true;
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                            {
+                                                                float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                                Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                                i = k;
+                                                                j = p;
+                                                                Occurred = true;
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
                                             }
                                         }
                                         else
                                         {
+
                                             if (FirstCchanged)
                                             {
                                                 int inh = indv;
@@ -892,8 +1004,7 @@ namespace ContourAnalysisNS
                                                 {
                                                     if (inh == indv - 1)
                                                     {
-                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                        continue;
                                                     }
                                                     else
                                                     {
@@ -901,13 +1012,15 @@ namespace ContourAnalysisNS
                                                         {
                                                             float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                             Xl.Add(new Line(we, inh1, inh2));
+                                                            i = k;
+                                                            j = p;
+                                                            Occurred = true;
                                                         }
                                                     }
                                                 }
                                             }
                                             else
                                             {
-                                                
                                                 int inh = indv;
                                                 int inh1 = indv;
                                                 int inh2 = indv;
@@ -933,11 +1046,11 @@ namespace ContourAnalysisNS
                                                 {
                                                     if (inh == indv - 1)
                                                     {
-                                                        if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
-                                                        {
-                                                            float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                            Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                        }
+                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                        i = k;
+                                                        j = p;
+                                                        Occurred = true;
                                                     }
                                                     else
                                                     {
@@ -945,105 +1058,22 @@ namespace ContourAnalysisNS
                                                         {
                                                             float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                             Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                            i = k;
+                                                            j = p;
+                                                            Occurred = true;
                                                         }
                                                     }
                                                 }
-                                                
                                             }
+
                                         }
-                                    }
-                                    else
-                                    {
-                                        
-                                        if (FirstCchanged)
-                                        {
-                                            int inh = indv;
-                                            int inh1 = indv;
-                                            int inh2 = indv;
-                                            bool Is1 = false;
-                                            bool Is2 = false;
-                                            if (!ExistV(i, j))
-                                            {
-                                                FirstCchanged = false;
-                                                Xv.Add(new Vertex(++indv, i, j));
-                                                inh1 = indv;
-                                            }
-                                            else
-                                                Is1 = true;
-                                            if (!ExistV(k, p))
-                                            {
-                                                FirstCchanged = false;
-                                                Xv.Add(new Vertex(++indv, k, p));
-                                                inh2 = indv;
-                                            }
-                                            else
-                                                Is2 = true;
-                                            if (Is1 && Is2)
-                                                continue;
-                                            if (inh1 != inh2)
-                                            {
-                                                if (inh == indv - 1)
-                                                {
-                                                    continue;
-                                                }
-                                                else
-                                                {
-                                                    if (!ExistL(inh1, inh2))
-                                                    {
-                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                        Xl.Add(new Line(we, inh1, inh2));
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else
-                                        {
-                                            int inh = indv;
-                                            int inh1 = indv;
-                                            int inh2 = indv;
-                                            bool Is1 = false;
-                                            bool Is2 = false;
-                                            if (!ExistV(i, j))
-                                            {
-                                                Xv.Add(new Vertex(++indv, i, j));
-                                                inh1 = indv;
-                                            }
-                                            else
-                                                Is1 = true;
-                                            if (!ExistV(k, p))
-                                            {
-                                                Xv.Add(new Vertex(++indv, k, p));
-                                                inh2 = indv;
-                                            }
-                                            else
-                                                Is2 = true;
-                                            if (Is1 && Is2)
-                                                continue;
-                                            if (inh1 != inh2)
-                                            {
-                                                if (inh == indv - 1)
-                                                {
-                                                    float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                    Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                }
-                                                else
-                                                {
-                                                    if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
-                                                    {
-                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
+            } while (Occurred);
             XiXjDelete();
         }
         int GetVerInd(int VertNo)

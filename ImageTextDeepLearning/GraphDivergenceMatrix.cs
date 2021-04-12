@@ -844,8 +844,8 @@ namespace ContourAnalysisNS
                                                 {
                                                     if (inh == indv - 1)
                                                     {
-                                                        
-                                                        continue;
+                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                     }
                                                     else
                                                     {
@@ -975,7 +975,8 @@ namespace ContourAnalysisNS
                                             {
                                                 if (inh == indv - 1)
                                                 {
-                                                    continue;
+                                                    float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                    Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                 }
                                                 else
                                                 {
@@ -1555,10 +1556,10 @@ namespace ContourAnalysisNS
                                 if (k == p)
                                     continue;
                                 bool AB = Point3Dspaceuser.Point3D.Exist(ad, p0), BB = Point3Dspaceuser.Point3D.Exist(ad, p1);
-                                if ((AB && (!BB)) || ((!AB) && BB))
+                                if (!((AB && (!BB)) || ((!AB) && BB)))
                                 {
                                     AB = Point3Dspaceuser.Point3D.Exist(ad, p2); BB = Point3Dspaceuser.Point3D.Exist(ad, p3);
-                                    if ((AB && (!BB)) || ((!AB) && BB))
+                                    if (!((AB && (!BB)) || ((!AB) && BB)))
                                     {
                                         int ii = -1, jj = -1;
                                         Is = AddIng(p0, p1, ref ii, ref jj);

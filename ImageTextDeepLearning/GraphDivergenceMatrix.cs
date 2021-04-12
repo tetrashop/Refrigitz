@@ -1499,20 +1499,9 @@ namespace ContourAnalysisNS
             }
             if (i < ld.Count)
             {
-                if (j == 0)
-                {
-                    ld.Add(new List<Line>());
-                    sd.Add(new List<float>());
-                    ld[ld.Count - 1].Add(l0);
-                    sd[ld.Count - 1].Add(we);
-                    return true;
-                }
-                if (j - 1 == ld[i].Count - 1)
-                {
-                    ld[i].Add(l0);
-                    sd[i].Add(we);
-                    return true;
-                }
+                ld[i].Add(l0);
+                sd[i].Add(we);
+                return true;
             }
             return false;
         }
@@ -1565,9 +1554,11 @@ namespace ContourAnalysisNS
                                     continue;
                                 if (k == p)
                                     continue;
-                                if (!(Point3Dspaceuser.Point3D.Exist(ad, p0) && Point3Dspaceuser.Point3D.Exist(ad, p1)))
+                                bool AB = Point3Dspaceuser.Point3D.Exist(ad, p0), BB = Point3Dspaceuser.Point3D.Exist(ad, p1);
+                                if ((AB && (!BB)) || ((!AB) && BB))
                                 {
-                                    if (!(Point3Dspaceuser.Point3D.Exist(ad, p2) && Point3Dspaceuser.Point3D.Exist(ad, p3)))
+                                    AB = Point3Dspaceuser.Point3D.Exist(ad, p2); BB = Point3Dspaceuser.Point3D.Exist(ad, p3);
+                                    if ((AB && (!BB)) || ((!AB) && BB))
                                     {
                                         int ii = -1, jj = -1;
                                         Is = AddIng(p0, p1, ref ii, ref jj);

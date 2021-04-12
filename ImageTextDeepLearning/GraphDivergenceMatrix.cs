@@ -210,11 +210,11 @@ namespace ContourAnalysisNS
         public bool ExistV(int x1, int y1)
         {
             bool Is = false;
-            
+
             for (int i = 0; i < Xv.Count; i++)
             {
-                
-                
+
+
                 {
                     object hh = new object();
                     lock (hh)
@@ -232,10 +232,10 @@ namespace ContourAnalysisNS
         public bool ExistK(int x1, int y1, List<Vertex> K)
         {
             bool Is = false;
-            
+
             for (int i = 0; i < K.Count; i++)
             {
-                
+
                 for (int j = 0; j < K.Count; j++)
                 {
                     object hh = new object();
@@ -254,7 +254,7 @@ namespace ContourAnalysisNS
         public bool ExistL(int x1, int y1)
         {
             bool Is = false;
-            
+
             for (int i = 0; i < Xl.Count; i++)
             {
                 object hh = new object();
@@ -292,13 +292,13 @@ namespace ContourAnalysisNS
             {
                 List<Vertex> K = new List<Vertex>();
                 bool Is = false;
-                
+
                 for (int i = 0; i < Xv.Count; i++)
                 {
-                    
+
                     for (int j = 0; j < Xv.Count; j++)
                     {
-                        
+
                         for (int k = 0; k < Xv.Count; k++)
                         {
                             object hh = new object();
@@ -356,13 +356,13 @@ namespace ContourAnalysisNS
             {
                 List<Vertex> K = new List<Vertex>();
                 bool Is = false;
-                
+
                 for (int i = 0; i < Xv.Count; i++)
                 {
-                    
+
                     for (int j = 0; j < Xv.Count; j++)
                     {
-                        
+
                         for (int k = 0; k < Xv.Count; k++)
                         {
                             object hh = new object();
@@ -420,13 +420,13 @@ namespace ContourAnalysisNS
             {
                 List<Vertex> K = new List<Vertex>();
                 bool Is = false;
-                
+
                 for (int i = 0; i < Xv.Count; i++)
                 {
-                    
+
                     for (int j = 0; j < Xv.Count; j++)
                     {
-                        
+
                         for (int k = 0; k < Xv.Count; k++)
                         {
                             object hh = new object();
@@ -485,13 +485,13 @@ namespace ContourAnalysisNS
             {
                 List<Vertex> K = new List<Vertex>();
                 bool Is = false;
-                
+
                 for (int i = 0; i < Xv.Count; i++)
                 {
-                    
+
                     for (int j = 0; j < Xv.Count; j++)
                     {
-                        
+
                         for (int k = 0; k < Xv.Count; k++)
                         {
                             object hh = new object();
@@ -547,7 +547,7 @@ namespace ContourAnalysisNS
         public Line d(Vertex A, Vertex B)
         {
             Line dd = null;
-            
+
             for (int i = 0; i < Xl.Count; i++)
             {
                 object hh = new object();
@@ -628,10 +628,10 @@ namespace ContourAnalysisNS
         }
         public void IJBelongToLineHaveFalseBolleanA(bool[,] A)
         {
-            
+
             for (int i = 0; i < Xv.Count; i++)
             {
-                
+
                 for (int k = 0; k < Xv.Count; k++)
                 {
                     object hh = new object();
@@ -761,6 +761,49 @@ namespace ContourAnalysisNS
             }
             return null;
         }
+        bool IsLineMinimumNotInXl(bool[,] A,float weB,int n,int m)
+        {
+            bool Is = true;
+            for (int i = 0; i < n; i++)
+            {
+
+                for (int j = 0; j < m; j++)
+                {
+                    for (int k = 0; k < n; k++)
+                    {
+
+                        for (int p = 0; p < m; p++)
+                        {
+                            if (i == k)
+                            {
+                                continue;
+                            }
+
+
+                            if (j == p)
+                            {
+                                continue;
+                            }
+                            if (A[i, j] && A[k, p])
+                            {
+                                float wei = float.MaxValue;
+                                object h = new object();
+                                lock (h)
+                                {
+                                    if (ExistV(i, j) && ExistV(k, p))
+                                        continue;
+                                    float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                    if (we < weB)
+                                        return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return Is;
+        }
+    
         public GraphDivergenceMatrix(bool[,] A, int n, int m)
         {
             bool FirstCchanged = false;
@@ -797,6 +840,11 @@ namespace ContourAnalysisNS
                                 }
                                 if (A[i, j] && A[k, p])
                                 {
+                                    float weB = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+
+                                    if (!IsLineMinimumNotInXl(A, weB, n, m))
+                                        continue;
+
                                     if (Xv.Count > 0)
                                     {
                                         if (Xv[First].X == k && Xv[First].Y == p)

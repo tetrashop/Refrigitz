@@ -130,7 +130,7 @@ namespace ImageTextDeepLearning
                             KeyDif = DifferentBool(t.KeyboardAllConjunctionMatrix[k], ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei, Ach);
                         }
                         else
-                            if ((!a))
+                            if ((a))
                         {  //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Width);
                            //when is ready and proper
                            //if (System.Math.Abs(1- KeyDif ) < Threashold)

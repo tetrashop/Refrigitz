@@ -114,12 +114,18 @@ namespace ContourAnalysisNS
         {
             if (A.SumWeighEveryLines.Count != B.SumWeighEveryLines.Count)
                 return false;
+            
             for (int i = 0; i < A.SumWeighEveryLines.Count; i++)
             {
                 SumWeighEveryLines.Add(A.SumWeighEveryLines[i] / B.SumWeighEveryLines[i]);
             }
-            float ad = Divesion(SumWeighEveryLines);
-            if (ad < 1)
+            if (SumWeighEveryLines.Count > 1)
+            {
+                float ad = Divesion(SumWeighEveryLines);
+                if (ad < 1)
+                    return true;
+            }
+            else
                 return true;
             return false;
         }
@@ -1374,6 +1380,12 @@ namespace ContourAnalysisNS
                 }
             }
             catch (Exception) { }
+            if (Ab[x, y])
+            {
+                Kk = K;
+                ChechOnFinisshedI = ChechOnFinisshed;
+                return false;
+            }
             if (x + 1 >= 0 && y + 1 >= 0 && x + 1 < M && y + 1 < N)
             {
                 if (!Ab[x + 1, y + 1])
@@ -1964,7 +1976,7 @@ namespace ContourAnalysisNS
                         h = 0;
                     }
                 }
-                
+                numberOfClosedCurved = ClosedCurved.Count;
             }
             catch (Exception t)
             {

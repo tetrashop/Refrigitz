@@ -357,9 +357,9 @@ namespace ImageTextDeepLearning
                                     MessageBox.Show("Hollowed Fatal Error");
                                     return false;
                                 }
-                                
-                                AllImage.Add((Bitmap)Te.Clone());
-                                //e.Dispose();
+
+                                // AllImage.Add((Bitmap)Te.Clone());
+                                AllImage.Add(Te);
                             }
                             else
                             {
@@ -415,7 +415,8 @@ namespace ImageTextDeepLearning
                                      MessageBox.Show("Hollowed Fatal Error");
                                      return false;
                                  }
-                                AllImage.Add((Bitmap)Te.Clone());
+                                // AllImage.Add((Bitmap)Te.Clone());
+                                AllImage.Add(Te);
                             }
                         }
                         else

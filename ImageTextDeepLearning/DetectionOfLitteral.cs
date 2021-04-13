@@ -109,8 +109,7 @@ namespace ImageTextDeepLearning
                 Detected.Clear();
                 bool Ach = true;
                 //for evey conjuncted shape retrived matrix items
-                for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
-            
+              for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)                  
                 {
 
                     Ach = false;
@@ -121,15 +120,17 @@ namespace ImageTextDeepLearning
                     int KeyBoardDif = 0;
                     //for evey all keyboard able to char matrix of conjunction
                     int KeyDif = 0;
-                    for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
+                    for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
                     {
+                        bool a = IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei);
+                        bool b = IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
                         //retrive similarity value
-                        if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)) && (!IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei)))
+                        if ((!a) && (!b))
                         {
                             KeyDif = DifferentBool(t.KeyboardAllConjunctionMatrix[k], ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei, Ach);
                         }
                         else
-                            if ((!IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei)))
+                            if ((!a))
                         {  //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Width);
                            //when is ready and proper
                            //if (System.Math.Abs(1- KeyDif ) < Threashold)

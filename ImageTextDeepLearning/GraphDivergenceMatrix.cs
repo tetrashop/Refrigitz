@@ -1019,6 +1019,7 @@ namespace ContourAnalysisNS
                                                 {
                                                     FirstCchanged = false;
                                                     Xv.Add(new Vertex(++indv, i, j));
+                                                    First = indv;
                                                     inh1 = indv;
                                                 }
                                                 else

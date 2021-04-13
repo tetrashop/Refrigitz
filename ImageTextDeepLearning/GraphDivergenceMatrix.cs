@@ -812,7 +812,7 @@ namespace ContourAnalysisNS
             M = m;
             int indv = 0;
             bool Occurred = false;
-
+            int I = -1, J = -1;
             do
             {
                 Occurred = false;
@@ -822,7 +822,13 @@ namespace ContourAnalysisNS
 
                     for (int j = 0; j < m; j++)
                     {
-
+                        if (I != -1 && J != -1)
+                        {
+                            i = I;
+                            j = J;
+                            I = -1;
+                            J = -1;
+                        }
                         for (int k = 0; k < n; k++)
                         {
 
@@ -864,8 +870,8 @@ namespace ContourAnalysisNS
                                                     First = indv;
                                                     indv++;
                                                     FirstCchanged = true;
-                                                    i = k;
-                                                    j = p;
+                                                    I = k;
+                                                    J = p;
                                                     Occurred = true;
                                                 }
                                             }
@@ -902,8 +908,8 @@ namespace ContourAnalysisNS
                                                         {
                                                             float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                             Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                            i = k;
-                                                            j = p;
+                                                            I = k;
+                                                            J = p;
                                                             Occurred = true;
                                                         }
                                                         else
@@ -912,8 +918,8 @@ namespace ContourAnalysisNS
                                                             {
                                                                 float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                                 Xl.Add(new Line(we, inh1, inh2));
-                                                                i = k;
-                                                                j = p;
+                                                                I = k;
+                                                                J = p;
                                                                 Occurred = true;
                                                             }
                                                         }
@@ -951,8 +957,8 @@ namespace ContourAnalysisNS
                                                             {
                                                                 float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                                 Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                                i = k;
-                                                                j = p;
+                                                                I = k;
+                                                                J = p;
                                                                 Occurred = true;
                                                             }
                                                         }
@@ -962,8 +968,8 @@ namespace ContourAnalysisNS
                                                             {
                                                                 float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                                 Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                                i = k;
-                                                                j = p;
+                                                                I = k;
+                                                                J = p;
                                                                 Occurred = true;
                                                             }
                                                         }
@@ -1012,8 +1018,8 @@ namespace ContourAnalysisNS
                                                         {
                                                             float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                             Xl.Add(new Line(we, inh1, inh2));
-                                                            i = k;
-                                                            j = p;
+                                                            I = k;
+                                                            J = p;
                                                             Occurred = true;
                                                         }
                                                     }
@@ -1048,8 +1054,8 @@ namespace ContourAnalysisNS
                                                     {
                                                         float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                         Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                        i = k;
-                                                        j = p;
+                                                        I = k;
+                                                        J = p;
                                                         Occurred = true;
                                                     }
                                                     else
@@ -1058,8 +1064,8 @@ namespace ContourAnalysisNS
                                                         {
                                                             float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                             Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                            i = k;
-                                                            j = p;
+                                                            I = k;
+                                                            J = p;
                                                             Occurred = true;
                                                         }
                                                     }

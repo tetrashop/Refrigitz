@@ -181,11 +181,14 @@ namespace ContourAnalysisNS
                     {
                         if (Z.SameSumWeigth())
                         {
-                            return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+                            return true;
                         }
+                        else
+                            return Z.SameRikhtThisIsLessVertex(Ab, Bb);
                     }
                 }
             }
+
             return false;
         }
         

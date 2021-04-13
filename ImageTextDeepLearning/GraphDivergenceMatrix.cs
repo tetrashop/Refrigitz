@@ -860,20 +860,47 @@ namespace ContourAnalysisNS
                                         {
                                             if (Xv[First].X == k && Xv[First].Y == p)
                                             {
+
+                                                int inh = indv;
+                                                int inh1 = indv;
+                                                int inh2 = indv;
+                                                bool Is1 = false;
+                                                bool Is2 = false;
                                                 if (!ExistV(i, j))
-                                                    continue;
-                                                Xv.Add(new Vertex(First + 1, k, p));
-                                                if (!ExistL(Xv[Xv.Count - 1].VertexNumber, First + 1))
                                                 {
-                                                    float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
-                                                    Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                    First = indv;
-                                                    indv++;
-                                                    FirstCchanged = true;
-                                                    I = k;
-                                                    J = p;
-                                                    Occurred = true;
+                                                    FirstCchanged = false;
+                                                    Xv.Add(new Vertex(++indv, i, j));
+                                                    inh1 = indv;
+                                                    First = Xv.Count - 1;
                                                 }
+                                                else
+                                                    Is1 = true;
+                                                if (!ExistV(k, p))
+                                                {
+                                                    FirstCchanged = false;
+                                                    Xv.Add(new Vertex(First + 1, k, p));
+                                                    inh2 = First;
+                                                    First = Xv.Count - 1;
+                                                }
+                                                else
+                                                    Is2 = true;
+                                                if (Is1 && Is2)
+                                                    continue;
+                                                if (inh1 != inh2)
+                                                {
+                                                    if (!ExistL(Xv[Xv.Count - 1].VertexNumber, First + 1))
+                                                    {
+                                                        float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
+                                                        Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                        First = Xv.Count - 1;
+                                                        indv++;
+                                                        FirstCchanged = true;
+                                                        I = k;
+                                                        J = p;
+                                                        Occurred = true;
+                                                    }
+                                                }
+                                                
                                             }
                                             else
                                             {

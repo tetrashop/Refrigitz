@@ -56,9 +56,9 @@ namespace ImageTextDeepLearning
             {
                 System.Windows.Forms.MessageBox.Show("Fatual Error!" + te.ToString());
             }
-            finally
+            //finally
             {
-                System.Windows.Forms.MessageBox.Show("Completed Detetcted " + Detected.Count);
+                //System.Windows.Forms.MessageBox.Show("Completed Detetcted " + Detected.Count);
             }
         }
 

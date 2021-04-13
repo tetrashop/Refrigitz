@@ -759,13 +759,12 @@ namespace ContourAnalysisNS
                 SameRikhEquvalent AA = new SameRikhEquvalent(A, n, m);
                 if (AA != null)
                 {
-                    AA.IJBelongToLineHaveFalseBolleanA(A);
                     AA.CreateClosedCurved();
                     AA.CreateAngleAndLines();
                     return AA;
                 }
             }
-            return null;
+            return this;
         }
         bool IsLineMinimumNotInXl(bool[,] A,float weB,int n,int m)
         {
@@ -1859,7 +1858,7 @@ namespace ContourAnalysisNS
             ClosedCurved.Add(new List<Vertex>());
             try
             {
-                
+
                 int first = 1;
                 for (int h = 0; h < Xl.Count - 1; h++)
                 {
@@ -1974,6 +1973,14 @@ namespace ContourAnalysisNS
                         IsClosedCurved.RemoveAt(h);
                         ClosedCurved.RemoveAt(h);
                         h = 0;
+                    }
+                }
+                if (ClosedCurved.Count > 0)
+                {
+                    if (!IsClosedCurved[0])
+                    {
+                        ClosedCurved.Clear();
+                        IsClosedCurved.Clear();
                     }
                 }
                 numberOfClosedCurved = ClosedCurved.Count;

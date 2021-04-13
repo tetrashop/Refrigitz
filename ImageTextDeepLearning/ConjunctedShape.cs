@@ -287,7 +287,8 @@ namespace ImageTextDeepLearning
                                     tec[o] = new Point((int)((float)Width * (float)(te[o].X - MiX) / (float)(MaX - MiX)), (int)((float)Height * (float)(te[o].Y - MiY) / (float)(MaY - MiY)));
                                 }
                             }
-                            e.DrawLines(Pens.Black, tec);
+                            //e.DrawLines(Pens.Black, tec);
+                            e.DrawPolygon(new Pen(Color.Black), tec);
                             //, System.Drawing.Drawing2D.FillMode.Alternate
                             e.Dispose();
 
@@ -311,7 +312,8 @@ namespace ImageTextDeepLearning
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        //Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
                                     else
                                     {
@@ -324,7 +326,8 @@ namespace ImageTextDeepLearning
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                        //Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
                                     else
                                     {
@@ -332,7 +335,7 @@ namespace ImageTextDeepLearning
 
                                     }
                                 }       //add image
-                                bool[,] TemB = new bool[Width, Height];
+                                /*bool[,] TemB = new bool[Width, Height];
                                 e = Graphics.FromImage(Te);
 
                                 for (int k = 0; k < Width; k++)
@@ -356,7 +359,7 @@ namespace ImageTextDeepLearning
                                 {
                                     MessageBox.Show("Hollowed Fatal Error");
                                     return false;
-                                }
+                                }*/
 
                                 // AllImage.Add((Bitmap)Te.Clone());
                                 AllImage.Add(Te);
@@ -369,7 +372,8 @@ namespace ImageTextDeepLearning
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        //Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
                                     else
                                     {
@@ -382,7 +386,8 @@ namespace ImageTextDeepLearning
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                        //Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
                                     else
                                     {
@@ -390,7 +395,7 @@ namespace ImageTextDeepLearning
 
                                     }
                                 }
-                                bool[,] TemB = new bool[Width, Height];
+                               /* bool[,] TemB = new bool[Width, Height];
                                  e = Graphics.FromImage(Te);
 
                                  for (int k = 0; k < Width; k++)
@@ -409,12 +414,12 @@ namespace ImageTextDeepLearning
                                      }
                                  }
                                  e.Dispose();
-                                 Do = HollowCountreImageCommmon(ref Te, TemB);
+                                Do = HollowCountreImageCommmon(ref Te, TemB);
                                  if (!Do)
                                  {
                                      MessageBox.Show("Hollowed Fatal Error");
                                      return false;
-                                 }
+                                 }*/
                                 // AllImage.Add((Bitmap)Te.Clone());
                                 AllImage.Add(Te);
                             }

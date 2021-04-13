@@ -1271,7 +1271,7 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                MessageBox.Show(t.ToString());
+                //MessageBox.Show(t.ToString());
                 //when is exeption return unsuccessfull
                 return false;
             }

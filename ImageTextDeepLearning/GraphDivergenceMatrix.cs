@@ -1479,6 +1479,17 @@ namespace ContourAnalysisNS
             VertexIndexY = iny;
             Weigth = Weit;
         }
+        public static bool IsTowLineIsIntersect(Vertex v0, Vertex v1, Vertex v2, Vertex v3, int n, int m)
+        {
+            bool Is = false;
+            howto_WPF_3D_triangle_normalsuser.Line l0 = new howto_WPF_3D_triangle_normalsuser.Line(new Point3Dspaceuser.Point3D(v0.X, v0.Y, 0), new Point3Dspaceuser.Point3D(v1.X, v1.Y, 0));
+            for (int i = 0; i < n; i++)
+            {
+                if (Line.IsPointsInVertexes(v2, v3, i, (int)((l0.y0 - l0.a * i) / l0.b)))
+                    return true;                
+            }
+            return Is;
+        }
         public static bool IsPointsInVertexes(Vertex v1, Vertex v2, int x, int y)
         {
             bool Is = false;

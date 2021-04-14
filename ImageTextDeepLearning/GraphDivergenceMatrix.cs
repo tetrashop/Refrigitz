@@ -1930,81 +1930,135 @@ namespace ContourAnalysisNS
             bool IsNext = false;
             int noIsNext = 0;
             int i = 0;
+            ClosedCurved.Add(new List<Vertex>());
             try
             {
-                do
-                {
-                    IsNext = false;
-                    ClosedCurved.Add(new List<Vertex>());
 
-                    int j = 0;
-                    while (j < Xv.Count)
+                int first = 1;
+                for (int h = 0; h < Xl.Count - 1; h++)
+                {
+                    if ((Xl[h + 1].VertexIndexX == first || Xl[h + 1].VertexIndexY == first) && (h != 0))
                     {
-                        if (ClosedCurved[ClosedCurved.Count - 1].Count > 0)
+                        int vxx = Xl[h + 1].VertexIndexX;
+                        int vyy = Xl[h + 1].VertexIndexY;
+                        Vertex tx = GetVerId(vxx);
+                        Vertex ty = GetVerId(vyy);
+                        if (vxx < vyy)
                         {
-                            i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                            ClosedCurvedIndexI.Add(i);
+                            first = GetVerId(ty.VertexNumber).VertexNumber;
+                            if (!ExistCloCur(tx.X, tx.Y))
+                            {
+                                if (tx != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(tx);
+                                else
+                                    return;
+                            }
                         }
                         else
                         {
-                            if (!ExistCloCur(Xv[i].X, Xv[i].Y))
+                            first = GetVerId(tx.VertexNumber).VertexNumber;
+                            if (!ExistCloCur(ty.X, ty.Y))
                             {
-                                ClosedCurved[ClosedCurved.Count - 1].Add(Xv[i]);
-                                i = GetVerInd(ClosedCurved[ClosedCurved.Count - 1][ClosedCurved[ClosedCurved.Count - 1].Count - 1].VertexNumber);
-                                ClosedCurvedIndexI.Add(i);
+                                if (ty != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(ty);
+                                else
+                                    return;
                             }
                         }
-
-                        if (ExistCloCur(Xv[j].X, Xv[j].Y))
-                        {
-                            j++;
-                            continue;
-                        }
-                        Line ds = d(Xv[i], Xv[j]);
-                        if (ds == null)
-                        {
-                            j++;
-                            continue;
-                        }
-                        if (!(ds.VertexIndexX == Xv[j].VertexNumber || ds.VertexIndexY == Xv[j].VertexNumber))
-                        {
-                            j++;
-                            continue;
-                        }
-                        if (j < Xv.Count && ClosedCurved[ClosedCurved.Count - 1].Count > 0)
-                        {
-                            if ((ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber || ClosedCurved[ClosedCurved.Count - 1][0].VertexNumber == Xv[j].VertexNumber))
-                            {
-                                IsNext = true;
-                                ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                                numberOfClosedCurved++;
-                                break;
-                            }
-                        }
-                        if (j < Xv.Count)
-                            ClosedCurved[ClosedCurved.Count - 1].Add(Xv[j]);
-                        j = 0;
+                        IsClosedCurved.Add(true);
+                        ClosedCurved.Add(new List<Vertex>());
                     }
-
-                    IsClosedCurved.Add(IsNext);
-                    if (!IsNext)
+                    else
+                        if ((Xl[h].VertexIndexX != Xl[h + 1].VertexIndexX) && (Xl[h].VertexIndexY != Xl[h + 1].VertexIndexX) && (Xl[h].VertexIndexX != Xl[h + 1].VertexIndexY) && (Xl[h].VertexIndexY != Xl[h + 1].VertexIndexY))
                     {
-                        i = GetNotClosedCurvedIndexI();
-                        if (i == -1)
-                            noIsNext = Xv.Count;
-                        for (int h = 0; h < IsClosedCurved.Count; h++)
+                        int vxx = Xl[h].VertexIndexX;
+                        int vyy = Xl[h].VertexIndexY;
+                        Vertex tx = GetVerId(vxx);
+                        Vertex ty = GetVerId(vyy);
+                        if (vxx < vyy)
                         {
-                            if (!IsClosedCurved[h])
+                            first = GetVerId(ty.VertexNumber).VertexNumber;
+                        }
+                        else
+                        {
+                            first = GetVerId(tx.VertexNumber).VertexNumber;
+
+                        }
+                        IsClosedCurved.Add(false);
+                        ClosedCurved.Add(new List<Vertex>());
+                        continue;
+                    }
+                    else
+                    {
+                        int vx = Xl[h].VertexIndexX;
+                        int vy = Xl[h].VertexIndexY;
+                        if (vx > vy)
+                        {
+                            Vertex tx = GetVerId(vx);
+                            Vertex ty = GetVerId(vy);
+                            if (!ExistCloCur(tx.X, tx.Y))
                             {
-                                IsClosedCurved.RemoveAt(h);
-                                ClosedCurved.RemoveAt(h);
+                                if (tx != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(tx);
+                                else
+                                    return;
+                            }
+                            if (!ExistCloCur(ty.X, ty.Y))
+                            {
+                                if (ty != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(ty);
+                                else
+                                    return;
                             }
                         }
-
-                        noIsNext++;
+                        else
+                        {
+                            Vertex tx = GetVerId(vx);
+                            Vertex ty = GetVerId(vy);
+                            if (!ExistCloCur(ty.X, ty.Y))
+                            {
+                                if (ty != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(ty);
+                                else
+                                    return;
+                            }
+                            if (!ExistCloCur(tx.X, tx.Y))
+                            {
+                                if (tx != null)
+                                    ClosedCurved[ClosedCurved.Count - 1].Add(tx);
+                                else
+                                    return;
+                            }
+                        }
                     }
-
-                } while (NoCloCur() != Xv.Count && noIsNext < Xv.Count);
+                }
+                if (ClosedCurved.Count == IsClosedCurved.Count + 1)
+                    IsClosedCurved.Add(false);
+                for (int h = 0; h < IsClosedCurved.Count; h++)
+                {
+                    if (ClosedCurved[h].Count == 0)
+                    {
+                        ClosedCurved.RemoveAt(h);
+                        IsClosedCurved.RemoveAt(h);
+                        h = 0;
+                        continue;
+                    }
+                    if (!IsClosedCurved[h])
+                    {
+                        IsClosedCurved.RemoveAt(h);
+                        ClosedCurved.RemoveAt(h);
+                        h = 0;
+                    }
+                }
+                if (ClosedCurved.Count > 0)
+                {
+                    if (!IsClosedCurved[0])
+                    {
+                        ClosedCurved.Clear();
+                        IsClosedCurved.Clear();
+                    }
+                }
+                numberOfClosedCurved = ClosedCurved.Count;
             }
             catch (Exception t)
             {

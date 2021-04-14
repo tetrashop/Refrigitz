@@ -125,7 +125,7 @@ namespace ImageTextDeepLearning
                         bool a = IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei);
                         bool b = IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
                         //retrive similarity value
-                        if ((!a) && (!b))
+                        if (!(a || b))
                         {
                             KeyDif = DifferentBool(t.KeyboardAllConjunctionMatrix[k], ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei, Ach);
                         }

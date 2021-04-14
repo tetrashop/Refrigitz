@@ -758,6 +758,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             for (int i = 0; i < On.Detected.Count; i++)
             {
                 textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
+                textBoxImageTextDeepLearning.Refresh();
                 textBoxImageTextDeepLearning.Update();
             }
             buttonSplitationConjunction.Visible = true;

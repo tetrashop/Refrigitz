@@ -64,7 +64,7 @@
             // 
             // textBoxImageTextDeepLearning
             // 
-            this.textBoxImageTextDeepLearning.Location = new System.Drawing.Point(564, -6);
+            this.textBoxImageTextDeepLearning.Location = new System.Drawing.Point(564, 7);
             this.textBoxImageTextDeepLearning.Multiline = true;
             this.textBoxImageTextDeepLearning.Name = "textBoxImageTextDeepLearning";
             this.textBoxImageTextDeepLearning.ScrollBars = System.Windows.Forms.ScrollBars.Both;

@@ -1670,41 +1670,48 @@ namespace ContourAnalysisNS
                             {
                                 Point3Dspaceuser.Point3D p3 = new Point3Dspaceuser.Point3D(Xv[p].X, Xv[p].Y, 0);
                                 if (i == j)
-                                    continue;
-                                if (i == k)
-                                    continue;
-                                if (i == p)
-                                    continue;
-                                if (j == k)
-                                    continue;
-                                if (j == p)
-                                    continue;
+                                   continue;
+                                //if (i == k)
+                                    //;
+                               // if (i == p)
+                                  //  continue;
+                                //if (j == k)
+                                   // continue;
+                                //if (j == p)
+                                   //continue;
                                 if (k == p)
-                                    continue;
+                                   continue;
                                 bool AB = Point3Dspaceuser.Point3D.Exist(ad, p0), BB = Point3Dspaceuser.Point3D.Exist(ad, p1);
-                                if (!((AB && (!BB)) || ((!AB) && BB)))
+                                if ((!AB) || (!BB))
                                 {
                                     AB = Point3Dspaceuser.Point3D.Exist(ad, p2); BB = Point3Dspaceuser.Point3D.Exist(ad, p3);
-                                    if (!((AB && (!BB)) || ((!AB) && BB)))
+                                    if ((!AB) || (!BB))
                                     {
                                         int ii = -1, jj = -1;
-                                        Is = AddIng(p0, p1, ref ii, ref jj);
-                                        if (Is)
+                                        float we = (float)Math.Sqrt((Xv[i].X - Xv[j].X) * (Xv[i].X - Xv[j].X) + (Xv[i].Y - Xv[j].Y) * (Xv[i].Y - Xv[j].Y));
+                                        Line ll0 = new Line(we, Xv[i].VertexNumber, Xv[j].VertexNumber);
+                                        if (ExistL(ll0.VertexIndexX, ll0.VertexIndexY))
                                         {
-                                            float we = (float)Math.Sqrt((Xv[i].X - Xv[j].X) * (Xv[i].X - Xv[j].X) + (Xv[i].Y - Xv[j].Y) * (Xv[i].Y - Xv[j].Y));
-                                            Line ll0 = new Line(we, Xv[i].VertexNumber, Xv[j].VertexNumber);
-                                            if (!ExistLd(ll0.VertexIndexX, ll0.VertexIndexY))
-                                                AddIngL(ll0, ii, jj, we);
+                                            Is = AddIng(p0, p1, ref ii, ref jj);
+                                            if (Is)
+                                            {
+
+                                                if (!ExistLd(ll0.VertexIndexX, ll0.VertexIndexY))
+                                                    AddIngL(ll0, ii, jj, we);
+                                            }
                                         }
                                         ii = -1;
                                         jj = -1;
-                                        Is = AddIng(p2, p3, ref ii, ref jj);
-                                        if (Is)
+                                        float wep = (float)Math.Sqrt((Xv[k].X - Xv[p].X) * (Xv[k].X - Xv[p].X) + (Xv[k].Y - Xv[p].Y) * (Xv[k].Y - Xv[p].Y));
+                                        Line ll0p = new Line(we, Xv[k].VertexNumber, Xv[p].VertexNumber);
+                                        if (ExistL(ll0p.VertexIndexX, ll0p.VertexIndexY))
                                         {
-                                            float we = (float)Math.Sqrt((Xv[k].X - Xv[p].X) * (Xv[k].X - Xv[p].X) + (Xv[k].Y - Xv[p].Y) * (Xv[k].Y - Xv[p].Y));
-                                            Line ll0 = new Line(we, Xv[k].VertexNumber, Xv[p].VertexNumber);
-                                            if (!ExistLd(ll0.VertexIndexX, ll0.VertexIndexY))
-                                                AddIngL(ll0, ii, jj, we);
+                                            Is = AddIng(p2, p3, ref ii, ref jj);
+                                            if (Is)
+                                            {
+                                                if (!ExistLd(ll0p.VertexIndexX, ll0p.VertexIndexY))
+                                                    AddIngL(ll0p, ii, jj, wep);
+                                            }
                                         }
                                     }
                                 }

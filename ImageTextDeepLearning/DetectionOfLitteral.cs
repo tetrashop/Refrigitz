@@ -74,7 +74,7 @@ namespace ImageTextDeepLearning
             try
             {
                 // Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei)//* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
-                if (ContourAnalysisNS.GraphS.GraphSameRikht(Key, Src, Wi, Hei,Ach))
+                if ((new ContourAnalysisNS.GraphS()).GraphSameRikht(Key, Src, Wi, Hei,Ach))
                 {
                     Dif = Wi * Hei;
                 }

@@ -84,6 +84,9 @@ namespace ContourAnalysisNS
                 return;
             }
         }
+        public GraphS()
+        {
+        }
         bool TowSubGraphEqualiity(List<SameRikhEquvalent> A, List<SameRikhEquvalent> B)
         {
             bool Is = false;
@@ -138,9 +141,9 @@ namespace ContourAnalysisNS
             B.Xl.Clear();
             B.Xv.Clear();
         }
-        public static bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m, bool Achange)
+        public bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m, bool Achange)
         {
-            if (Z != null)
+            /*if (Z != null)
             {
                 if (Z.A == null && Z.B == null)
                 {
@@ -153,8 +156,8 @@ namespace ContourAnalysisNS
                 Z.A.Reco(Ab, n, m, Achange);
                 Z.B.Reco(Bb, n, m, false);
             }
-            else
-                Z = new GraphS(Ab, Bb, n, m, Achange);
+            else*/
+            Z = new GraphS(Ab, Bb, n, m, Achange);
             if (Z.A == null && Z.B == null)
             {
                 return true;
@@ -171,7 +174,7 @@ namespace ContourAnalysisNS
                     if (Z.TowSubGraphEqualiity(Z.A.GreaterThanOneCuurvved, Z.B.GreaterThanOneCuurvved))
                     {
                         for (int i = 0; i < Z.A.GreaterThanOneCuurvved.Count; i++)
-                            Is = Is && GraphS.GraphSameRikht(Z.A.GreaterThanOneCuurvvedMatrix[i], Z.B.GreaterThanOneCuurvvedMatrix[i], Z.N, Z.M, false);
+                            Is = Is && (new GraphS()).GraphSameRikht(Z.A.GreaterThanOneCuurvvedMatrix[i], Z.B.GreaterThanOneCuurvvedMatrix[i], Z.N, Z.M, false);
                         return Is;
                     }
                 }
@@ -1181,6 +1184,10 @@ namespace ContourAnalysisNS
                         }
                     }
                 } while (Occurred);
+
+                XiXjDelete();
+                IJBelongToLineHaveFalseBolleanA(A);
+
                 OverAgain = false;
                 for (int i = 0; i < Xl.Count; i++)
                 {
@@ -1220,7 +1227,6 @@ namespace ContourAnalysisNS
                     IgnoreLess = false;
                  }
             } while (OverAgain);
-            //XiXjDelete();
         }
         Vertex GetVerIdO(int VertNo)
         {

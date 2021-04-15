@@ -674,6 +674,13 @@ namespace ImageTextDeepLearning
                                             var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut1));
                                         }
                                     }
+                                    if (y + 1 < he)
+                                    {
+                                        if (Ab[x, y + 1])
+                                        {
+                                            var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYRigthX(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut1));
+                                        }
+                                    }
                                 }
 
                             }, () =>
@@ -686,6 +693,13 @@ namespace ImageTextDeepLearning
                                         if (Ab[x - 1, y])
                                         {
                                             var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut2));
+                                        }
+                                    }
+                                    if (y - 1 >= 0)
+                                    {
+                                        if (Ab[x, y - 1])
+                                        {
+                                            var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYLeftX(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut2));
                                         }
                                     }
                                 }
@@ -701,6 +715,13 @@ namespace ImageTextDeepLearning
                                             var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYUpY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut3));
                                         }
                                     }
+                                    if (x + 1 < wi)
+                                    {
+                                        if (Ab[x + 1, y])
+                                        {
+                                            var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYUpY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut3));
+                                        }
+                                    }
                                 }
                             }, () =>
                             {
@@ -712,6 +733,14 @@ namespace ImageTextDeepLearning
                                         if (Ab[x, y - 1])
                                         {
                                             var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut4));
+
+                                        }
+                                    }
+                                    if (x - 1 >= 0)
+                                    {
+                                        if (Ab[x - 1, y])
+                                        {
+                                            var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut4));
 
                                         }
                                     }

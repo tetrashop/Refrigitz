@@ -196,7 +196,7 @@ namespace ContourAnalysisNS
                         {
                             return true;
                         }
-                        else 
+                        else
                             return Z.SameRikhtThisIsLessVertex(Ab, Bb);
                     }
                 }
@@ -212,13 +212,35 @@ namespace ContourAnalysisNS
             List<Vertex> ChechOnFinisshed = new List<Vertex>();
             if (A.Xv.Count < B.Xv.Count)
             {
+
                 Is = A.IsSameRikhtVertex(Ab, B, ref K, ref ChechOnFinisshed);
+                SameRikhEquvalent RecreatedB = new SameRikhEquvalent(ChechOnFinisshed, B.Xl, N, M);
+                if (Is)
+                {
+                    if (!GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(A, RecreatedB))
+                    {
+                        ZB = RecreatedB;
+                        Is = false;
+                    }
+                }
 
             }
+
             else
             {
                 Is = B.IsSameRikhtVertex(Bb, A, ref K, ref ChechOnFinisshed);
+                SameRikhEquvalent RecreatedA = new SameRikhEquvalent(ChechOnFinisshed, A.Xl, N, M);
 
+                if (Is)
+                {
+                    if (!GraphDivergenceMatrix.CheckedIsSameRikhtOverLap(B, RecreatedA))
+                    {
+                        ZB = RecreatedA;
+
+                        Is = false;
+                    }
+
+                }
             }
             return Is;
         }

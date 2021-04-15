@@ -63,7 +63,7 @@ namespace ImageTextDeepLearning
         }
 
         //Detection main similarity method
-        private int DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei,bool Ach)
+        private int DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei, bool Ach)
         {
             int Dif = 0;
             if (Wi != Hei)
@@ -74,16 +74,17 @@ namespace ImageTextDeepLearning
             try
             {
                 // Dif = LearningMachine.Interpolate.SimilarityC(Key, Src, Wi, Hei)//* (int)LearningMachine.Interpolate.SimilarityB(Key, Src, Wi, Hei)
-                if ((new ContourAnalysisNS.GraphS()).GraphSameRikht(Key, Src, Wi, Hei,Ach))
+                if ((new ContourAnalysisNS.GraphS()).GraphSameRikht(Key, Src, Wi, Hei, Ach))
                 {
                     Dif = Wi * Hei;
                 }
                 //(new FormImageTextDeepLearning()).GraphsDrawn(ContourAnalysisNS.GraphS.Z.A, ContourAnalysisNS.GraphS.Z.B);
                 //MessageBox.Show("Next!");
             }
-            catch (Exception t) { 
-                MessageBox.Show(t.ToString()); 
-                return 0; 
+            catch (Exception t)
+            {
+                MessageBox.Show(t.ToString());
+                return 0;
             }
             return Dif;
         }
@@ -109,10 +110,10 @@ namespace ImageTextDeepLearning
                 Detected.Clear();
                 bool Ach = true;
                 //for evey conjuncted shape retrived matrix items
-              for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)                  
-                {
+                    for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
+                    {
 
-                    Ach = false;
+                        Ach = false;
                     //initate
                     StringBuilder TempDetected = new StringBuilder();
 
@@ -127,7 +128,7 @@ namespace ImageTextDeepLearning
                         //retrive similarity value
                         if (!(a || b))
                         {
-                            KeyDif = DifferentBool(t.KeyboardAllConjunctionMatrix[k], ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei, Ach);
+                            KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei, Ach);
                         }
                         else
                             if ((a))
@@ -136,8 +137,7 @@ namespace ImageTextDeepLearning
                            //if (System.Math.Abs(1- KeyDif ) < Threashold)
                             if (t.KeyboardAllStringsWithfont[k] != " ")
                             {
-                                Ach = true;
-
+                                
                                 continue;
                             }
                             else

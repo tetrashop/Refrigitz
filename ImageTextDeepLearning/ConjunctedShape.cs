@@ -335,7 +335,7 @@ namespace ImageTextDeepLearning
 
                                     }
                                 }       //add image
-                                /*bool[,] TemB = new bool[Width, Height];
+                                bool[,] TemB = new bool[Width, Height];
                                 e = Graphics.FromImage(Te);
 
                                 for (int k = 0; k < Width; k++)
@@ -359,7 +359,7 @@ namespace ImageTextDeepLearning
                                 {
                                     MessageBox.Show("Hollowed Fatal Error");
                                     return false;
-                                }*/
+                                }
 
                                 // AllImage.Add((Bitmap)Te.Clone());
                                 AllImage.Add(Te);
@@ -395,7 +395,7 @@ namespace ImageTextDeepLearning
 
                                     }
                                 }
-                               /* bool[,] TemB = new bool[Width, Height];
+                                bool[,] TemB = new bool[Width, Height];
                                  e = Graphics.FromImage(Te);
 
                                  for (int k = 0; k < Width; k++)
@@ -419,7 +419,7 @@ namespace ImageTextDeepLearning
                                  {
                                      MessageBox.Show("Hollowed Fatal Error");
                                      return false;
-                                 }*/
+                                 }
                                 // AllImage.Add((Bitmap)Te.Clone());
                                 AllImage.Add(Te);
                             }

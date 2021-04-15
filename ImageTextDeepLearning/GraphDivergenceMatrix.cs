@@ -184,9 +184,19 @@ namespace ContourAnalysisNS
                     {
                         if (Z.SameSumWeigth())
                         {
+
                             return true;
                         }
                         else
+                            return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+                    }
+                    else
+                    {
+                        if (Z.SameSumWeigth())
+                        {
+                            return true;
+                        }
+                        else 
                             return Z.SameRikhtThisIsLessVertex(Ab, Bb);
                     }
                 }
@@ -1749,6 +1759,7 @@ namespace ContourAnalysisNS
 
                 }
                 Maxan = Math.PI / 90;
+                ad.Add(new List<Point3Dspaceuser.Point3D[]>());
                 ad[ad.Count - 1].Add(c);
                 ii = ad.Count - 1;
                 jj = 0;

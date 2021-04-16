@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using WindowsApplication1;
 using OpenCL;
+using howto_WPF_3D_triangle_normalsuser;
 
 namespace howto_WPF_3D_triangle_normals
 {
@@ -587,7 +588,7 @@ namespace howto_WPF_3D_triangle_normals
                             ss[0] = PointsAdd[i];
                             ss[1] = PointsAdd[j];
                             ss[2] = PointsAdd[k];
-                            ss = ImprovmentSort.Do(ss);
+                            ss =ImprovmentSort.Do(ss);
                             //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
                             //continue;
                             if (!exist(ss, d))
@@ -667,7 +668,7 @@ namespace howto_WPF_3D_triangle_normals
                                 ss[0] = PointsAdd[i];
                                 ss[1] = PointsAdd[j];
                                 ss[2] = PointsAdd[k];
-                                ss = ImprovmentSort.Do(ss);
+                                ss =ImprovmentSort.Do(ss);
                                 //if (!(new Triangle()).distancesaticfied(ss[0], ss[1], ss[2], minr))
                                 //continue;
 

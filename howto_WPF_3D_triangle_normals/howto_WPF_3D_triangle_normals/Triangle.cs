@@ -1,4 +1,5 @@
-﻿using LearningMachine;
+﻿using howto_WPF_3D_triangle_normalsuser;
+using LearningMachine;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

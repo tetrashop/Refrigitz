@@ -8,3 +8,4 @@
 # There are math and artificial inteligence and their gadjets project in same reprository! 
 # Thanks in advances 
 # tetrashop team
+![Donate](https://github.com/tetrashop/Refrigitz/blob/Othermaster/Donate.jpg)

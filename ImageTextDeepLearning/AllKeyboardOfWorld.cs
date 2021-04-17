@@ -7,6 +7,7 @@ using ContourAnalysisDemo;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -261,6 +262,7 @@ namespace ImageTextDeepLearning
             Bitmap bmp = new Bitmap(Width, Height);
             using (Graphics gph = Graphics.FromImage(bmp))
             {
+                gph.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 gph.DrawImage(img, new Rectangle(0, 0, Width, Height), new Rectangle(X, Y, XX, YY), GraphicsUnit.Pixel);
                 gph.Dispose();
             }
@@ -498,6 +500,7 @@ namespace ImageTextDeepLearning
                 List<Task> th = new List<Task>();
 
                 Graphics e = Graphics.FromImage(Im);
+                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 //do
                 // {
                 Hollowed = false;
@@ -981,6 +984,7 @@ namespace ImageTextDeepLearning
                                     //create proper image graphics
                                     Graphics e = Graphics.FromImage(Temp);
 
+                                    e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Draw fill white image
                                     e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
 
@@ -1025,6 +1029,7 @@ namespace ImageTextDeepLearning
                                     }
                                     e = Graphics.FromImage(Te);
 
+                                    e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     bool[,] TemB = new bool[Width, Height];
                                     for (int k = 0; k < Width; k++)
                                     {
@@ -1052,6 +1057,7 @@ namespace ImageTextDeepLearning
                                         return false;
                                     }
                                     e = Graphics.FromImage(Te);
+                                    e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Add
                                     //KeyboardAllImage.Add(Te);
                                     //create proper conjunction matrix
@@ -1093,6 +1099,7 @@ namespace ImageTextDeepLearning
                                 //create proper image graphics
                                 Graphics e = Graphics.FromImage(Temp);
 
+                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 //Draw fill white image
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
 
@@ -1136,6 +1143,7 @@ namespace ImageTextDeepLearning
                                 }
                                 e.Dispose();
                                 e = Graphics.FromImage(Te);
+                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 bool[,] TemB = new bool[Width, Height];
                                 for (int k = 0; k < Width; k++)
                                 {
@@ -1167,6 +1175,7 @@ namespace ImageTextDeepLearning
                                 //create proper conjunction matrix
                                 e.Dispose();
                                 e = Graphics.FromImage(Te);
+                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 bool[,] Tem = new bool[Width, Height];
                                 for (int k = 0; k < Width; k++)
                                 {
@@ -1202,6 +1211,7 @@ namespace ImageTextDeepLearning
 
                             //Draw fill white image
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+                            e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                             e.Dispose();
                             bool[,] Tem = new bool[Width, Height];
                             for (int k = 0; k < Width; k++)

@@ -13,6 +13,7 @@ using Emgu.CV;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -134,7 +135,9 @@ namespace ImageTextDeepLearning
             Bitmap bmp = new Bitmap(Width, Height);
             using (Graphics gph = Graphics.FromImage(bmp))
             {
+                gph.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 gph.DrawImage(img, new Rectangle(0, 0, Width, Height), new Rectangle(X, Y, XX, YY), GraphicsUnit.Pixel);
+                gph.Dispose();
             }
             return bmp;
         }
@@ -259,6 +262,7 @@ namespace ImageTextDeepLearning
                         //retrive min and max of tow X and Y
                         Bitmap Temp = new Bitmap(Width, Height);
                         Graphics e = Graphics.FromImage(Temp);
+                        e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, Mx));
                         Point[] te = All[i].ToArray();
                         Point[] tec = new Point[All[i].ToArray().Length];
@@ -287,8 +291,8 @@ namespace ImageTextDeepLearning
                                     tec[o] = new Point((int)((float)Width * (float)(te[o].X - MiX) / (float)(MaX - MiX)), (int)((float)Height * (float)(te[o].Y - MiY) / (float)(MaY - MiY)));
                                 }
                             }
-                            //e.DrawLines(Pens.Black, tec);
-                            e.DrawPolygon(new Pen(Color.Black), tec);
+                            e.DrawLines(Pens.Black, tec);
+                            //e.DrawPolygon(new Pen(Color.Black), tec);
                             //, System.Drawing.Drawing2D.FillMode.Alternate
                             e.Dispose();
 
@@ -338,6 +342,7 @@ namespace ImageTextDeepLearning
                                 bool[,] TemB = new bool[Width, Height];
                                 e = Graphics.FromImage(Te);
 
+                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 for (int k = 0; k < Width; k++)
                                 {
                                     for (int p = 0; p < Height; p++)
@@ -354,12 +359,12 @@ namespace ImageTextDeepLearning
                                     }
                                 }
                                 e.Dispose();
-                                Do = HollowCountreImageCommmon(ref Te, TemB);
+                                /*Do = HollowCountreImageCommmon(ref Te, TemB);
                                 if (!Do)
                                 {
                                     MessageBox.Show("Hollowed Fatal Error");
                                     return false;
-                                }
+                                }*/
 
                                 // AllImage.Add((Bitmap)Te.Clone());
                                 AllImage.Add(Te);
@@ -398,7 +403,8 @@ namespace ImageTextDeepLearning
                                 bool[,] TemB = new bool[Width, Height];
                                  e = Graphics.FromImage(Te);
 
-                                 for (int k = 0; k < Width; k++)
+                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                for (int k = 0; k < Width; k++)
                                  {
                                      for (int p = 0; p < Height; p++)
                                      {
@@ -414,12 +420,12 @@ namespace ImageTextDeepLearning
                                      }
                                  }
                                  e.Dispose();
-                                Do = HollowCountreImageCommmon(ref Te, TemB);
+                                /*Do = HollowCountreImageCommmon(ref Te, TemB);
                                  if (!Do)
                                  {
                                      MessageBox.Show("Hollowed Fatal Error");
                                      return false;
-                                 }
+                                 }*/
                                 // AllImage.Add((Bitmap)Te.Clone());
                                 AllImage.Add(Te);
                             }
@@ -428,6 +434,7 @@ namespace ImageTextDeepLearning
                         {
                             Temp = new Bitmap(Width, Height);
                             e = Graphics.FromImage(Temp);
+                            e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                             e.Dispose();
                             AllImage.Add((Bitmap)Temp.Clone());
@@ -577,6 +584,7 @@ namespace ImageTextDeepLearning
                 List<Task> th = new List<Task>();
 
                 Graphics e = Graphics.FromImage(Im);
+                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 //do
                 // {
                 Hollowed = false;

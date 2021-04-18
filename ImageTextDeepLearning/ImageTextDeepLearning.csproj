@@ -105,6 +105,7 @@
     <Compile Include="PlatformHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="AllKeyboardOfWorldMemmoty.cs" />
+    <Compile Include="ResultsOfSupposed.cs" />
     <Compile Include="ShowContoursForm.cs">
       <SubType>Form</SubType>
     </Compile>

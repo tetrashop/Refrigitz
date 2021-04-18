@@ -9,6 +9,7 @@ namespace ContourAnalysisNS
     public class ResultsOfSupposed
     {
         public static List<string> mined = new List<string>();
+        static List<string> Strlogic = new List<string>();
         public static bool MindedIsVerb(List<string> te, List<List<string>> telo)
         {
             bool Is = false;
@@ -17,6 +18,7 @@ namespace ContourAnalysisNS
             {
                 for (int q = 0; q < telo.Count; q++)
                 {
+                    MindedIsVerb(te, telo, true, true, false, false);
                     if (p == q)
                         continue;
 
@@ -26,6 +28,7 @@ namespace ContourAnalysisNS
                             continue;
                         if (q == r)
                             continue;
+                        MindedIsVerb(te, telo, true, true, true, false);
 
                         for (int s = 0; s < telo.Count; s++)
                         {
@@ -36,6 +39,7 @@ namespace ContourAnalysisNS
                             if (s == r)
                                 continue;
 
+                            MindedIsVerb(te, telo, true, true, true, true);
 
                         }
                     }
@@ -43,10 +47,11 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
-        public static List<string> MindedIsVerb(List<string> te, List<List<string>> telo,bool p,bool q,bool r,bool s)
+        public static void MindedIsVerb(List<string> te, List<List<string>> telo,bool p,bool q,bool r,bool s)
         {
             string se = "";
-            List<string> Strlogic = new List<string>();
+            Strlogic.Clear();
+
             PandPgivesQIsQ(p, q, ref se);
             Strlogic.Add(se);
             se = "";
@@ -95,8 +100,7 @@ namespace ContourAnalysisNS
             Strlogic.Add(se);
             se = "";
 
-            return Strlogic;
-
+   
         }
         public static bool PandPgivesQIsQ(bool p, bool q, ref string Re)
         {

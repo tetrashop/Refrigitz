@@ -30,6 +30,7 @@ namespace ImageTextDeepLearning
     public partial class FormImageTextDeepLearning : Form
     {
         List<string> TextMined = new List<string>();
+       List< List<string>> TextMinedLogics = new List<List<string>>();
         private bool Resum = false;
         private Task tf = null;
         private bool DisablePaint = false;
@@ -764,6 +765,49 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 textBoxImageTextDeepLearning.Text += TextMined[i];
             textBoxImageTextDeepLearning.Refresh();
             textBoxImageTextDeepLearning.Update();
+
+            List<string> mined =new List<string>();
+            for (int i = 0; i < TextMined.Count; i++)
+                mined.Add(TextMined[i]);
+            for (int i = 0; i < mined.Count; i++)
+            {
+                TextMinedLogics.Add(new List<string>());
+                string s = mined[i];
+
+                int no = 0;
+                string c = s;
+                do
+                {
+                    if (c[0] == ' ')
+                    {
+                        c = c.Remove(0, 1);
+                    }
+                    else
+                        break;
+                } while (true);
+                int len = -1;
+                do
+                {
+                    len = c.IndexOf(" ");
+                    if (len > -1)
+                    {
+                        no++;
+                        TextMinedLogics[TextMinedLogics.Count - 1].Add(c.Substring(0, len));
+                        c = c.Remove(0, len + 1);
+                    }
+                    else
+                    {
+                        len = c.IndexOf(".");
+                        if (len > -1)
+                        {
+                            no++;
+                           //TextMinedLogics[TextMinedLogics.Count - 1].Add(c.Substring(0, len));
+                            c = c.Remove(0, len + 1);
+                        }
+                    }
+                } while (c.Length > 0);
+                
+            }
         }
 
         //create main detection button

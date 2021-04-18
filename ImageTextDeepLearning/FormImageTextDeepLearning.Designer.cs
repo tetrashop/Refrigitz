@@ -55,6 +55,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBoxUseCommonEnglish = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxTest)).BeginInit();
             this.panelImageTextDeepLearning.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxImageTextDeepLearning)).BeginInit();
@@ -68,7 +69,7 @@
             this.textBoxImageTextDeepLearning.Multiline = true;
             this.textBoxImageTextDeepLearning.Name = "textBoxImageTextDeepLearning";
             this.textBoxImageTextDeepLearning.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxImageTextDeepLearning.Size = new System.Drawing.Size(224, 402);
+            this.textBoxImageTextDeepLearning.Size = new System.Drawing.Size(304, 402);
             this.textBoxImageTextDeepLearning.TabIndex = 1;
             // 
             // buttonOpen
@@ -110,7 +111,7 @@
             // 
             this.progressBarCompleted.Location = new System.Drawing.Point(530, 415);
             this.progressBarCompleted.Name = "progressBarCompleted";
-            this.progressBarCompleted.Size = new System.Drawing.Size(258, 23);
+            this.progressBarCompleted.Size = new System.Drawing.Size(338, 23);
             this.progressBarCompleted.TabIndex = 5;
             this.progressBarCompleted.Click += new System.EventHandler(this.progressBarCompleted_Click);
             // 
@@ -185,7 +186,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(880, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStripImageTextDeepLearning";
             // 
@@ -308,11 +309,22 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(767, 459);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Text Mining";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormImageTextDeepLearning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 498);
+            this.ClientSize = new System.Drawing.Size(880, 498);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.checkBoxUseCommonEnglish);
             this.Controls.Add(this.groupBox1);
@@ -372,6 +384,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBoxUseCommonEnglish;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

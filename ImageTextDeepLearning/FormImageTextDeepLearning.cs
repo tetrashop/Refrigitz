@@ -29,6 +29,7 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
+        List<string> TextMined = new List<string>();
         private bool Resum = false;
         private Task tf = null;
         private bool DisablePaint = false;
@@ -714,6 +715,24 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
             } while (true);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            do
+            {
+
+                string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
+                if (s.Contains("است."))
+                    TextMined.Add(s);
+                textBoxImageTextDeepLearning.Text = textBoxImageTextDeepLearning.Text.Remove(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
+            } while (textBoxImageTextDeepLearning.Text.Contains("."));
+            textBoxImageTextDeepLearning.Text = "";
+            for (int i = 0; i < TextMined.Count; i++)
+                textBoxImageTextDeepLearning.Text += TextMined[i];
+            textBoxImageTextDeepLearning.Refresh();
+            textBoxImageTextDeepLearning.Update();
+        }
+
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {

@@ -71,6 +71,7 @@
             this.textBoxImageTextDeepLearning.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxImageTextDeepLearning.Size = new System.Drawing.Size(304, 402);
             this.textBoxImageTextDeepLearning.TabIndex = 1;
+            this.textBoxImageTextDeepLearning.Text = "سارا دختر خوبی است. دختر خوب است. علی خوب است.. سارا با علی دوست است.";
             // 
             // buttonOpen
             // 

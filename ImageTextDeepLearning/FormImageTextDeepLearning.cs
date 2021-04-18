@@ -715,14 +715,47 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
             } while (true);
         }
-
+        int WordNumber(string s)
+        {
+            int no = 0;
+            string c = s;
+            do
+            {
+                if (c[0] == ' ')
+                {
+                    c = c.Remove(0, 1);
+                }
+                else
+                    break;
+            } while (true);
+            int len = -1;
+            do
+            {
+                len = c.IndexOf(" ");
+                if (len > -1)
+                {
+                    no++;
+                    c = c.Remove(0, len + 1);
+                }
+                else
+                {
+                    len = c.IndexOf(".");
+                    if (len > -1)
+                    {
+                        no++;
+                        c = c.Remove(0, len + 1);
+                    }
+                }
+            } while (c.Length > 0);
+            return no;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             do
             {
 
                 string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
-                if (s.Contains("است."))
+                if (s.Contains("است.") && WordNumber(s) == 3)
                     TextMined.Add(s);
                 textBoxImageTextDeepLearning.Text = textBoxImageTextDeepLearning.Text.Remove(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
             } while (textBoxImageTextDeepLearning.Text.Contains("."));

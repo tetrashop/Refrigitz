@@ -9,4 +9,4 @@
 # Thanks in advances 
 # tetrashop team
 # please don't forget donate us as a cup rea
-![Donate](https://github.com/tetrashop/Refrigitz/blob/Othermaster/Donate.jpg)
+

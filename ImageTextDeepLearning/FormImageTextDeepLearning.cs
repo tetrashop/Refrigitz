@@ -894,7 +894,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
             }
             textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
-            ResultsOfSupposed.MindedIsVerb(TextMinedWas, TextMinedLogicsWs);
+            ResultsOfSupposed.MindedWasVerb(TextMinedWas, TextMinedLogicsWs);
             //MessageBox.Show("نتایج!");
             for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)
                 textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];

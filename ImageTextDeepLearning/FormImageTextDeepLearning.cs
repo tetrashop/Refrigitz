@@ -29,8 +29,10 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
-        List<string> TextMined = new List<string>();
-       List< List<string>> TextMinedLogics = new List<List<string>>();
+        List<string> TextMinedIs = new List<string>();
+       List< List<string>> TextMinedLogicsIs = new List<List<string>>();
+        List<string> TextMinedWas = new List<string>();
+        List<List<string>> TextMinedLogicsWs = new List<List<string>>();
         private bool Resum = false;
         private Task tf = null;
         private bool DisablePaint = false;
@@ -750,28 +752,54 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             } while (c.Length > 0);
             return no;
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            string Con = textBoxImageTextDeepLearning.Text;
+
             do
             {
 
                 string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
                 if (s.Contains("است.") && WordNumber(s) == 3)
-                    TextMined.Add(s);
+                    TextMinedIs.Add(s);
                 textBoxImageTextDeepLearning.Text = textBoxImageTextDeepLearning.Text.Remove(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
             } while (textBoxImageTextDeepLearning.Text.Contains("."));
             textBoxImageTextDeepLearning.Text = "";
-            for (int i = 0; i < TextMined.Count; i++)
-                textBoxImageTextDeepLearning.Text += TextMined[i];
+            Is();
+            textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
+            textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
+            textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
+
+            string IsCon = textBoxImageTextDeepLearning.Text;
+
+            textBoxImageTextDeepLearning.Text = Con;
+
+            do
+            {
+
+                string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
+                if (s.Contains("بود.") && WordNumber(s) == 3)
+                    TextMinedWas.Add(s);
+                textBoxImageTextDeepLearning.Text = textBoxImageTextDeepLearning.Text.Remove(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
+            } while (textBoxImageTextDeepLearning.Text.Contains("."));
+            textBoxImageTextDeepLearning.Text = "";
+            Was();
+            textBoxImageTextDeepLearning.Text = IsCon + textBoxImageTextDeepLearning.Text;
+        }
+        void Is()
+        {
+             for (int i = 0; i < TextMinedIs.Count; i++)
+                textBoxImageTextDeepLearning.Text += TextMinedIs[i];
             textBoxImageTextDeepLearning.Refresh();
             textBoxImageTextDeepLearning.Update();
 
-            List<string> mined =new List<string>();
-            for (int i = 0; i < TextMined.Count; i++)
-                mined.Add(TextMined[i]);
+            List<string> mined = new List<string>();
+            for (int i = 0; i < TextMinedIs.Count; i++)
+                mined.Add(TextMinedIs[i]);
             for (int i = 0; i < mined.Count; i++)
             {
-                TextMinedLogics.Add(new List<string>());
+                TextMinedLogicsIs.Add(new List<string>());
                 string s = mined[i];
 
                 int no = 0;
@@ -792,7 +820,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     if (len > -1)
                     {
                         no++;
-                        TextMinedLogics[TextMinedLogics.Count - 1].Add(c.Substring(0, len));
+                        TextMinedLogicsIs[TextMinedLogicsIs.Count - 1].Add(c.Substring(0, len));
                         c = c.Remove(0, len + 1);
                     }
                     else
@@ -801,23 +829,78 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         if (len > -1)
                         {
                             no++;
-                           //TextMinedLogics[TextMinedLogics.Count - 1].Add(c.Substring(0, len));
+                            //TextMinedLogics[TextMinedLogics.Count - 1].Add(c.Substring(0, len));
                             c = c.Remove(0, len + 1);
                         }
                     }
                 } while (c.Length > 0);
-                
+
             }
             textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
-            ResultsOfSupposed.MindedIsVerb(TextMined, TextMinedLogics);
+            ResultsOfSupposed.MindedIsVerb(TextMinedIs, TextMinedLogicsIs);
             //MessageBox.Show("نتایج!");
             for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)
-                 textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];
+                textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];
+            textBoxImageTextDeepLearning.Refresh();
+            textBoxImageTextDeepLearning.Update();
+        }
+        void Was()
+        {
+            for (int i = 0; i < TextMinedWas.Count; i++)
+                textBoxImageTextDeepLearning.Text += TextMinedWas[i];
             textBoxImageTextDeepLearning.Refresh();
             textBoxImageTextDeepLearning.Update();
 
-        }
+            List<string> mined = new List<string>();
+            for (int i = 0; i < TextMinedWas.Count; i++)
+                mined.Add(TextMinedWas[i]);
+            for (int i = 0; i < mined.Count; i++)
+            {
+                TextMinedLogicsWs.Add(new List<string>());
+                string s = mined[i];
 
+                int no = 0;
+                string c = s;
+                do
+                {
+                    if (c[0] == ' ')
+                    {
+                        c = c.Remove(0, 1);
+                    }
+                    else
+                        break;
+                } while (true);
+                int len = -1;
+                do
+                {
+                    len = c.IndexOf(" ");
+                    if (len > -1)
+                    {
+                        no++;
+                        TextMinedLogicsWs[TextMinedLogicsWs.Count - 1].Add(c.Substring(0, len));
+                        c = c.Remove(0, len + 1);
+                    }
+                    else
+                    {
+                        len = c.IndexOf(".");
+                        if (len > -1)
+                        {
+                            no++;
+                            //TextMinedLogics[TextMinedLogics.Count - 1].Add(c.Substring(0, len));
+                            c = c.Remove(0, len + 1);
+                        }
+                    }
+                } while (c.Length > 0);
+
+            }
+            textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
+            ResultsOfSupposed.MindedIsVerb(TextMinedWas, TextMinedLogicsWs);
+            //MessageBox.Show("نتایج!");
+            for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)
+                textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];
+            textBoxImageTextDeepLearning.Refresh();
+            textBoxImageTextDeepLearning.Update();
+        }
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {

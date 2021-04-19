@@ -808,7 +808,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 } while (c.Length > 0);
                 
             }
-            textBoxImageTextDeepLearning.Text += "\r\n========================================";
+            textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
             ResultsOfSupposed.MindedIsVerb(TextMined, TextMinedLogics);
             //MessageBox.Show("نتایج!");
             for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)

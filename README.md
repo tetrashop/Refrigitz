@@ -8,5 +8,5 @@
 # There are math and artificial inteligence and their gadjets project in same reprository! 
 # Thanks in advances 
 # tetrashop team
-# please don't forget donate us as a cup rea
+
 

@@ -11,12 +11,14 @@ namespace ContourAnalysisNS
         public static List<string> mined = new List<string>();
         static List< List<string>> Strlogic = new List<List<string>>();
         static List<List<int[]>> StrlogicIndex = new List<List<int[]>>();
+        static List<List<string>> teloIndex = new List<List<string>>();
         public static bool MindedIsVerb(List<string> te, List<List<string>> telo)
         {
             bool Is = false;
             Strlogic.Clear();
             mined.Clear();
             StrlogicIndex.Clear();
+            teloIndex.Clear();
 
             for (int p = 0; p < telo.Count; p++)
             {
@@ -24,13 +26,13 @@ namespace ContourAnalysisNS
                 {
                     MindedIsVerb(te, telo, true, true, false, false, p, q, -1, -1);
 
-                    for (int r = 0; r < telo.Count; r++)
+                    for (int r = 0; r < telo[p].Count; r++)
                     {
-                        if (p == r)
+                        if (q == r)
                             continue;
                         MindedIsVerb(te, telo, true, true, true, false, p, q, r, -1);
 
-                        for (int s = 0; s < telo[r].Count; s++)
+                        for (int s = 0; s < telo[p].Count; s++)
                         {
                             if (s == q)
                                 continue;
@@ -48,53 +50,57 @@ namespace ContourAnalysisNS
 
                     if (Strlogic[p][q] == "q")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + "! \r\n";
+                        string s = teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "p->r")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][2]] + " است. \r\n";
+                        string s = teloIndex[p][q] + " " + teloIndex[p][q] + " است. \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "~p")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " نیست. \r\n";
+                        string s = teloIndex[p][q] + " نیست. \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "p&&q")
                     {
-                        string s = " نیست" + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " نباشد که " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + " نیست. \r\n";
+                        string s = " نیست" + teloIndex[p][q] + " نباشد که " + teloIndex[p][q] + " نیست. \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "S")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + "! \r\n";
+                        string s = "";
+                        if (StrlogicIndex[p][q][0] > 1)
+                            s = teloIndex[p][0] + "! \r\n";
+                        else
+                            s = teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "p->q")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + " است. \r\n";
+                        string s = teloIndex[p][q] + teloIndex[p][q] + " است. \r\n";
                     }
 
                     if (Strlogic[p][q] == "p")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + "! \r\n";
+                        string s = teloIndex[p][q] + "! \r\n";
                     }
 
                     if (Strlogic[p][q] == "r")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][2]] + "! \r\n";
+                        string s = teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "p||q->r")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " یا " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + " " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][2]] + " است. \r\n";
+                        string s = teloIndex[p][q] + " یا " + teloIndex[p][q] + " " + teloIndex[p][q] + " است. \r\n";
                         mined.Add(s);
                     }
 
@@ -102,15 +108,15 @@ namespace ContourAnalysisNS
                     {
                         string s = "";
                         if (StrlogicIndex[p][q][2] != -1)
-                            s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + " یا " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][2]] + "! \r\n";
+                            s = teloIndex[p][q] + " یا " + teloIndex[p][q] + "! \r\n";
                         else
-                            s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + "! \r\n";
+                            s = teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "!p||!q")
                     {
-                        string s = "نه " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " نه " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + "! \r\n";
+                        string s = "نه " + teloIndex[p][q] + " نه " + teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
@@ -120,12 +126,127 @@ namespace ContourAnalysisNS
 
             return Is;
         }
+        public static bool MindedSomeVerb(List<string> te, List<List<string>> telo,string verb)
+        {
+            bool Is = false;
+            Strlogic.Clear();
+            mined.Clear();
+            StrlogicIndex.Clear();
+            teloIndex.Clear();
+            for (int p = 0; p < telo.Count; p++)
+                {
+                    for (int q = 0; q < telo[p].Count; q++)
+                    {
+                        MindedIsVerb(te, telo, true, true, false, false, p, q, -1, -1);
+
+                        for (int r = 0; r < telo[p].Count; r++)
+                        {
+                            if (p == r)
+                                continue;
+                            MindedIsVerb(te, telo, true, true, true, false, p, q, r, -1);
+
+                            for (int s = 0; s < telo[p].Count; s++)
+                            {
+                                if (s == q)
+                                    continue;
+
+                                MindedIsVerb(te, telo, true, true, true, true, p, q, r, s);
+
+                            }
+                        }
+                    }
+                }
+                for (int p = 0; p < Strlogic.Count; p++)
+                {
+                    for (int q = 0; q < Strlogic[p].Count; q++)
+                    {
+
+                        if (Strlogic[p][q] == "q")
+                        {
+                            string s = teloIndex[p][q] + "! \r\n";
+                            mined.Add(s);
+                        }
+
+                        if (Strlogic[p][q] == "p->r")
+                        {
+                            string s = teloIndex[p][q] + " " + teloIndex[p][q] + " " + verb + ". \r\n";
+                            mined.Add(s);
+                        }
+
+                        if (Strlogic[p][q] == "~p")
+                        {
+                            string s = teloIndex[p][q] + " " + "ن" + verb + " \r\n";
+                            mined.Add(s);
+                        }
+
+                        if (Strlogic[p][q] == "p&&q")
+                        {
+                            string s = "ن" + verb + " " + teloIndex[p][q] + " نباشد که " + teloIndex[p][q] + " " + "ن" + verb +". \r\n";
+                            mined.Add(s);
+                        }
+
+                        if (Strlogic[p][q] == "S")
+                        {
+                        string s = "";
+                        if (StrlogicIndex[p][q][0] > 1)
+                            s = teloIndex[p][0] + "! \r\n";
+                        else
+                            s = teloIndex[p][q] + "! \r\n";
+                        mined.Add(s);
+                    }
+
+                    if (Strlogic[p][q] == "p->q")
+                        {
+                            string s = teloIndex[p][q] + teloIndex[p][q] + " " + "ن" + verb + " \r\n";
+                        }
+
+                        if (Strlogic[p][q] == "p")
+                        {
+                            string s = teloIndex[p][q] + "! \r\n";
+                        }
+
+                        if (Strlogic[p][q] == "r")
+                        {
+                            string s = teloIndex[p][q] + "! \r\n";
+                            mined.Add(s);
+                        }
+
+                        if (Strlogic[p][q] == "p||q->r")
+                        {
+                            string s = teloIndex[p][q] + " یا " + teloIndex[p][q] + " " + teloIndex[p][q] + " " + verb + " \r\n";
+                            mined.Add(s);
+                        }
+
+                        if (Strlogic[p][q] == "q||s")
+                        {
+                            string s = "";
+                            if (StrlogicIndex[p][q][2] != -1)
+                                s = teloIndex[p][q] + " یا " + teloIndex[p][q] + "! \r\n";
+                            else
+                                s = teloIndex[p][q] + "! \r\n";
+                            mined.Add(s);
+                        }
+
+                        if (Strlogic[p][q] == "!p||!q")
+                        {
+                            string s = "نه " + teloIndex[p][q] + " نه " + teloIndex[p][q] + "! \r\n";
+                            mined.Add(s);
+                        }
+
+                    }
+
+                } 
+            
+
+            return Is;
+        }
         public static bool MindedWasVerb(List<string> te, List<List<string>> telo)
         {
             bool Is = false;
             Strlogic.Clear();
             mined.Clear();
             StrlogicIndex.Clear();
+            teloIndex.Clear();
 
             for (int p = 0; p < telo.Count; p++)
             {
@@ -133,13 +254,13 @@ namespace ContourAnalysisNS
                 {
                     MindedIsVerb(te, telo, true, true, false, false, p, q, -1, -1);
 
-                    for (int r = 0; r < telo.Count; r++)
+                    for (int r = 0; r < telo[p].Count; r++)
                     {
                         if (p == r)
                             continue;
                         MindedIsVerb(te, telo, true, true, true, false, p, q, r, -1);
 
-                        for (int s = 0; s < telo[r].Count; s++)
+                        for (int s = 0; s < telo[p].Count; s++)
                         {
                             if (s == q)
                                 continue;
@@ -157,53 +278,57 @@ namespace ContourAnalysisNS
 
                     if (Strlogic[p][q] == "q")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + "! \r\n";
+                        string s = teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "p->r")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][2]] + " بود. \r\n";
+                        string s = teloIndex[p][q] + " " + teloIndex[p][q] + " بود. \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "~p")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " نبود. \r\n";
+                        string s = teloIndex[p][q] + " نبود. \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "p&&q")
                     {
-                        string s = " نبود" + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " نباشد که " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + " نبود. \r\n";
+                        string s = " نبود" + teloIndex[p][q] + " نباشد که " + teloIndex[p][q] + " نبود. \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "S")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + "! \r\n";
+                        string s = "";
+                        if (StrlogicIndex[p][q][0] > 1)
+                            s = teloIndex[p][0] + "! \r\n";
+                        else
+                            s = teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "p->q")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + " بود. \r\n";
+                        string s = teloIndex[p][q] + teloIndex[p][q] + " بود. \r\n";
                     }
 
                     if (Strlogic[p][q] == "p")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + "! \r\n";
+                        string s = teloIndex[p][q] + "! \r\n";
                     }
 
                     if (Strlogic[p][q] == "r")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][2]] + "! \r\n";
+                        string s = teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "p||q->r")
                     {
-                        string s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " یا " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + " " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][2]] + " بود. \r\n";
+                        string s = teloIndex[p][q] + " یا " + teloIndex[p][q] + " " + teloIndex[p][q] + " بود. \r\n";
                         mined.Add(s);
                     }
 
@@ -211,15 +336,15 @@ namespace ContourAnalysisNS
                     {
                         string s = "";
                         if (StrlogicIndex[p][q][2] != -1)
-                            s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + " یا " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][2]] + "! \r\n";
+                            s = teloIndex[p][q] + " یا " + teloIndex[p][q] + "! \r\n";
                         else
-                            s = telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + "! \r\n";
+                            s = teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
                     if (Strlogic[p][q] == "!p||!q")
                     {
-                        string s = "نه " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][0]] + " نه " + telo[StrlogicIndex[p][q][0]][StrlogicIndex[p][q][1]] + "! \r\n";
+                        string s = "نه " + teloIndex[p][q] + " نه " + teloIndex[p][q] + "! \r\n";
                         mined.Add(s);
                     }
 
@@ -239,64 +364,78 @@ namespace ContourAnalysisNS
             n[3] = ss;
             Strlogic.Add(new List<string>());
             StrlogicIndex.Add(new List<int[]>());
+            teloIndex.Add(new List<string>());
 
             PandPgivesQIsQ(p, q, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
 
             PgivesQandQgivesRIsPgivesR(p, q, r, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
 
             PgivesQandnotQIsnotP(p, q, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
 
             PQIsPANDQ(p, q, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
 
             Contradiction(p, q, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
 
             ContradictionSample(p, q, r, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
 
             /*PandQ(p, q, ref se);
             Strlogic[Strlogic.Count-1].Add(se);
-                 StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
+          teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
+            StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
       se = "";*/
 
             /*PorQandnotPgivesQ(p, q, ref se);
             Strlogic[Strlogic.Count-1].Add(se);
-     StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
+       teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
+        
+           StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
       se = "";*/
 
             PQandPgivesQgivesRisR(p, q, r, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
 
             PgivesQandQgivesRisPOrQgivesR(p, q, r, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
 
             PgivesQandRgivesSandPorRIsQorS(p, q, r, s, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
 
             PgivesQandRgivesSandnotPornotRIsnotPornotQ(p, q, r, s, ref se);
             Strlogic[Strlogic.Count - 1].Add(se);
+            teloIndex[teloIndex.Count - 1].Add(telo[pp][qq]);
             StrlogicIndex[StrlogicIndex.Count - 1].Add(n);
             se = "";
         }

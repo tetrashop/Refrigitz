@@ -1000,6 +1000,24 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 }
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (((TextBox)(sender)).Text != "")
+            {
+                buttonAddVerb.Visible = true;
+
+            }
+            else
+                buttonAddVerb.Visible = false;
+        }
+
+        private void buttonAddVerb_Click(object sender, EventArgs e)
+        {
+            if (!Verb.Contains(textBox1.Text))
+                Verb.Add(textBox1.Text);
+        }
+
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {

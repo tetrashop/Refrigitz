@@ -1,7 +1,6 @@
-﻿using ContourAnalysisNS;
+using ContourAnalysisNS;
 using Point3Dspaceuser;
 using System.Collections.Generic;
-
 namespace ImageTextDeepLearning
 {
     public static class ImprovmentSort
@@ -14,7 +13,6 @@ namespace ImageTextDeepLearning
             for (int i = 0; i < n; i++)
                 d[i] = -1;
             return Sort(a, d, n);
-
         }
         public static double[] Do(double[] a)
         {
@@ -24,7 +22,6 @@ namespace ImageTextDeepLearning
             for (int i = 0; i < n; i++)
                 d[i] = -1;
             return Sort(a, d, n);
-
         }
         public static float[] Do(float[] a)
         {
@@ -34,7 +31,6 @@ namespace ImageTextDeepLearning
             for (int i = 0; i < n; i++)
                 d[i] = -1;
             return Sort(a, d, n);
-
         }
         static float[] Sort(float[] a, float[] d, int n)
         {
@@ -75,7 +71,6 @@ namespace ImageTextDeepLearning
             for (int i = 0; i < n; i++)
                 d[i] = -1;
             return Sort(a, d, n);
-
         }
         static List<float> Sort(List<float> a, float[] d, int n)
         {
@@ -118,7 +113,6 @@ namespace ImageTextDeepLearning
             for (int i = 0; i < n; i++)
                 d[i] = -1;
             return Sort(a, d, n,ref GreaterThanOneCuurvvedMatrix);
-
         }
         static List<SameRikhEquvalent> Sort(List<SameRikhEquvalent> a, float[] d, int n, ref List<bool[,]> GreaterThanOneCuurvvedMatrix)
         {

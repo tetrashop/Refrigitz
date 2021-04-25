@@ -1,4 +1,4 @@
-﻿namespace ContourAnalysisDemo
+namespace ContourAnalysisDemo
 {
     //#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
     using ContourAnalysisNS;

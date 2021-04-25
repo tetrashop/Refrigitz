@@ -1,9 +1,3 @@
-﻿/***********************************************************************************
- * Ramin Edjlal*********************************************************************
- CopyRighted 1398/0802**************************************************************
- TetraShop.Ir***********************************************************************
- https://www.codingdefined.com/2015/04/solved-bitmapclone-out-of-memory.html********
- ***********************************************************************************/
 //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 using ContourAnalysisDemo;
 //#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
@@ -16,7 +10,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace ImageTextDeepLearning
 {
     //Class for create conjuncted shape
@@ -29,16 +22,13 @@ namespace ImageTextDeepLearning
         private readonly MainForm d = null;
         private readonly int Threashold = 5;
         public Contour<Point> Collection = null;
-
         public List<Contour<Point>> All = new List<Contour<Point>>();
         public List<Bitmap> AllImage = new List<Bitmap>();
         //Constructor
         public ConjunctedShape(MainForm dd)
         {
-
             d = dd;
         }
-
         //Max of list
         private int MaxX(Point[] Tem)
         {
@@ -52,7 +42,6 @@ namespace ImageTextDeepLearning
             }
             return te;
         }
-
         //Max of list
         private int MaxY(Point[] Tem)
         {
@@ -64,15 +53,12 @@ namespace ImageTextDeepLearning
                     te = Tem[j].Y;
                 }
             }
-
             return te;
         }
-
         //Min of list
         private int MinX(Point[] Tem)
         {
             int te = int.MaxValue;
-
             for (int j = 0; j < Tem.Length; j++)
             {
                 if (Tem[j].X < te)
@@ -82,7 +68,6 @@ namespace ImageTextDeepLearning
             }
             return te;
         }
-
         //Min of list
         private int MinY(Point[] Tem)
         {
@@ -96,7 +81,6 @@ namespace ImageTextDeepLearning
             }
             return te;
         }
-
         //max of to object
         private int MaxMax(int maxx, int maxy)
         {
@@ -104,11 +88,8 @@ namespace ImageTextDeepLearning
             {
                 return maxy;
             }
-
             return maxx;
-
         }
-
         //min of tor object
         private int MinMin(int minx, int miny)
         {
@@ -116,11 +97,8 @@ namespace ImageTextDeepLearning
             {
                 return minx;
             }
-
             return miny;
-
         }
-
         //Cropping and fitting image to correcttly map
         private Bitmap cropImage(Bitmap img, Rectangle cropArea)
         {
@@ -128,8 +106,6 @@ namespace ImageTextDeepLearning
             int Y = cropArea.Y;
             int XX = cropArea.Width;
             int YY = cropArea.Height;
-
-
 
 
             Bitmap bmp = new Bitmap(Width, Height);
@@ -141,7 +117,6 @@ namespace ImageTextDeepLearning
             }
             return bmp;
         }
-
         private int ImMinX(Bitmap Im)
         {
             int Mi = -1;
@@ -149,7 +124,6 @@ namespace ImageTextDeepLearning
             {
                 for (int k = 0; k < Im.Height; k++)
                 {
-
                     if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Mi = j;
@@ -162,9 +136,7 @@ namespace ImageTextDeepLearning
                 }
             }
             return Mi;
-
         }
-
         //Founf Min of Y
         private int ImMinY(Bitmap Im)
         {
@@ -173,7 +145,6 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-
                     if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Mi = k;
@@ -186,9 +157,7 @@ namespace ImageTextDeepLearning
                 }
             }
             return Mi;
-
         }
-
         //Found of Max Of Y
         private int ImMaxY(Bitmap Im)
         {
@@ -197,7 +166,6 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-
                     if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Ma = k;
@@ -210,24 +178,19 @@ namespace ImageTextDeepLearning
                 }
             }
             return Ma;
-
         }
-
         //Found of Max of X
         private int ImMaxX(Bitmap Im)
         {
             int Ma = -1;
             // ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Width - 1, 0, j =>
-
             //{
             for (int j = Im.Width - 1; j >= 0; j--)
             {
                 //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Height - 1, 0, k =>
-
                 // {
                 for (int k = 0; k < Im.Height; k++)
                 {
-
                     if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Ma = j;
@@ -240,14 +203,12 @@ namespace ImageTextDeepLearning
                 }
             }//);
             return Ma;
-
         }
         //Create shape of conjuncted countor poins
         public bool CreateSAhapeFromConjucted(int Wi, int Hei)
         {
             //create shapes at list
             bool Do = ConjunctedShapeCreate(d);
-
             try
             {
                 //when is true
@@ -258,7 +219,6 @@ namespace ImageTextDeepLearning
                     //for all items
                     for (int i = 0; i < All.Count; i++)
                     {
-
                         //retrive min and max of tow X and Y
                         Bitmap Temp = new Bitmap(Width, Height);
                         Graphics e = Graphics.FromImage(Temp);
@@ -267,7 +227,6 @@ namespace ImageTextDeepLearning
                         Point[] te = All[i].ToArray();
                         Point[] tec = new Point[All[i].ToArray().Length];
                         int MiX = MinX(te), MiY = MinY(te), MaX = MaxX(te), MaY = MaxY(te);
-
 
                         //centeralized
                         int MxM = (MaX - MiX) / 2;
@@ -295,12 +254,10 @@ namespace ImageTextDeepLearning
                             //e.DrawPolygon(new Pen(Color.Black), tec);
                             //, System.Drawing.Drawing2D.FillMode.Alternate
                             e.Dispose();
-
                             MiX = ImMinX(Temp);
                             MiY = ImMinY(Temp);
                             MaX = ImMaxX(Temp);
                             MaY = ImMaxY(Temp);
-
 
                             //centeralized
                             MxM = (MaX - MiX) / 2;
@@ -322,7 +279,6 @@ namespace ImageTextDeepLearning
                                     else
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
                                     }
                                 }
                                 else
@@ -336,12 +292,10 @@ namespace ImageTextDeepLearning
                                     else
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
                                     }
                                 }       //add image
                                 bool[,] TemB = new bool[Width, Height];
                                 e = Graphics.FromImage(Te);
-
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 for (int k = 0; k < Width; k++)
                                 {
@@ -359,13 +313,7 @@ namespace ImageTextDeepLearning
                                     }
                                 }
                                 e.Dispose();
-                                /*Do = HollowCountreImageCommmon(ref Te, TemB);
-                                if (!Do)
-                                {
-                                    MessageBox.Show("Hollowed Fatal Error");
-                                    return false;
-                                }*/
-
+                                
                                 // AllImage.Add((Bitmap)Te.Clone());
                                 AllImage.Add(Te);
                             }
@@ -383,7 +331,6 @@ namespace ImageTextDeepLearning
                                     else
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
                                     }
                                 }
                                 else
@@ -397,12 +344,10 @@ namespace ImageTextDeepLearning
                                     else
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
                                     }
                                 }
                                 bool[,] TemB = new bool[Width, Height];
                                  e = Graphics.FromImage(Te);
-
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 for (int k = 0; k < Width; k++)
                                  {
@@ -420,12 +365,7 @@ namespace ImageTextDeepLearning
                                      }
                                  }
                                  e.Dispose();
-                                /*Do = HollowCountreImageCommmon(ref Te, TemB);
-                                 if (!Do)
-                                 {
-                                     MessageBox.Show("Hollowed Fatal Error");
-                                     return false;
-                                 }*/
+                                
                                 // AllImage.Add((Bitmap)Te.Clone());
                                 AllImage.Add(Te);
                             }
@@ -438,10 +378,8 @@ namespace ImageTextDeepLearning
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                             e.Dispose();
                             AllImage.Add((Bitmap)Temp.Clone());
-
                         }
                     }
-
                 }
                 else
                 {
@@ -453,7 +391,6 @@ namespace ImageTextDeepLearning
             {
                 //when existence of exeption return unsuccessfull
                 //System.Windows.Forms.MessageBox.Show("Fatual Error!" + t.ToString());
-
                 return false;
             }
             //clear unneed and free memmory
@@ -461,7 +398,6 @@ namespace ImageTextDeepLearning
             //Collection.Clear();
             return true;
         }
-
         //Colorized list of image
         private bool ColorizedCountreImageCommon(List<Bitmap> Im)
         {
@@ -505,9 +441,7 @@ namespace ImageTextDeepLearning
                     }
                     //Dispose
                     e.Dispose();
-
                 }
-
 
             }
             catch (Exception t)
@@ -519,13 +453,11 @@ namespace ImageTextDeepLearning
             //return successfull
             return true;
         }
-
         //Colorized an image
         private bool ColorizedCountreImageCommmon(ref Bitmap Im)
         {
             try
             {
-
                 //create graphics for current image
                 Graphics e = Graphics.FromImage(Im);
                 //for all image width
@@ -561,19 +493,14 @@ namespace ImageTextDeepLearning
                 }
 
 
-
-
-
             }
             catch (Exception t)
             {
                 MessageBox.Show(t.ToString());
-
                 return false;
             }
             return true;
         }
-
         private bool HollowCountreImageCommmon(ref Bitmap Img, bool[,] Ab)
         {
             try
@@ -582,18 +509,15 @@ namespace ImageTextDeepLearning
                 int he = Img.Height;
                 Bitmap Im = Img;
                 List<Task> th = new List<Task>();
-
                 Graphics e = Graphics.FromImage(Im);
                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 //do
                 // {
                 Hollowed = false;
-
                 var output = Task.Factory.StartNew(() =>
                 {
                     // for (int x = 0; x < wi; x++)
                     //{
-
                     ParallelOptions po = new ParallelOptions
                     {
                         MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
@@ -611,14 +535,12 @@ namespace ImageTextDeepLearning
                             {
                                 if (Ab[x, y])
                                 {
-
                                     var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
                                     //th.Add(H);
                                     //H.Wait();
                                 }
                             }
                         });
-
 
                     });
                 });
@@ -631,16 +553,13 @@ namespace ImageTextDeepLearning
             catch (Exception t)
             {
                 MessageBox.Show(t.ToString());
-
                 return false;
             }
             return true;
-
         }
         private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab)
         {
             Bitmap Im = Img;
-
             try
             {
                 bool IsOut1 = false;
@@ -662,8 +581,6 @@ namespace ImageTextDeepLearning
                                 return true;
                             }
                         }
-
-
 
                         var output = Task.Factory.StartNew(() =>
                         {
@@ -690,7 +607,6 @@ namespace ImageTextDeepLearning
                                         }
                                     }
                                 }
-
                             }, () =>
                             {
                                 object oioo = new object();
@@ -741,7 +657,6 @@ namespace ImageTextDeepLearning
                                         if (Ab[x, y - 1])
                                         {
                                             var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut4));
-
                                         }
                                     }
                                     if (x - 1 >= 0)
@@ -749,7 +664,6 @@ namespace ImageTextDeepLearning
                                         if (Ab[x - 1, y])
                                         {
                                             var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut4));
-
                                         }
                                     }
                                 }
@@ -761,7 +675,6 @@ namespace ImageTextDeepLearning
                         {
                             if (Is)
                             {
-
                                 Im.SetPixel(X, Y, Color.White);
                                 Img = Im;
                                 Hollowed = true;
@@ -770,29 +683,22 @@ namespace ImageTextDeepLearning
                         }
                     }
 
-
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
                 //MessageBox.Show(t.ToString());
-
                 return false;
             }
             Img = Im;
-
             return true;
         }
-
 
         private bool HollowCountreImageCommmonXYRigthX(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             Bitmap Im = Img;
             bool Is = false;
-
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -810,10 +716,8 @@ namespace ImageTextDeepLearning
                                 return true;
                             }
                         }
-
                         if (IsOut)
                             return IsOut;
-
                         object ooo = new object();
                         lock (ooo)
                         {
@@ -827,25 +731,20 @@ namespace ImageTextDeepLearning
                         }
                     }
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
                 //MessageBox.Show(t.ToString());
-
                 return false;
             }
             Img = Im;
-
             return Is;
         }
         private bool HollowCountreImageCommmonXYLeftX(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             Bitmap Im = Img;
             bool Is = false;
-
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -864,10 +763,8 @@ namespace ImageTextDeepLearning
                             }
                         }
 
-
                         if (IsOut)
                             return IsOut;
-
                         object oioo = new object();
                         lock (oioo)
                         {
@@ -879,34 +776,26 @@ namespace ImageTextDeepLearning
                                 }
                             }
                         }
-
                     }
                     object oo = new object();
                     lock (oo)
                     {
-
                     }
-
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
                 //MessageBox.Show(t.ToString());
-
                 return false;
             }
             Img = Im;
-
             return Is;
         }
         private bool HollowCountreImageCommmonXYUpY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             Bitmap Im = Img;
             bool Is = false;
-
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -924,10 +813,8 @@ namespace ImageTextDeepLearning
                                 return true;
                             }
                         }
-
                         if (IsOut)
                             return IsOut;
-
 
                         object pooo = new object();
                         lock (pooo)
@@ -942,25 +829,20 @@ namespace ImageTextDeepLearning
                         }
                     }
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
                 //MessageBox.Show(t.ToString());
-
                 return false;
             }
             Img = Im;
-
             return Is;
         }
         private bool HollowCountreImageCommmonXYDowwnY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             Bitmap Im = Img;
             bool Is = false;
-
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -981,7 +863,6 @@ namespace ImageTextDeepLearning
                         if (IsOut)
                             return IsOut;
 
-
                         object pooo = new object();
                         lock (pooo)
                         {
@@ -993,26 +874,19 @@ namespace ImageTextDeepLearning
                                 }
                             }
                         }
-
                     }
 
-
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
                 //MessageBox.Show(t.ToString());
-
                 return false;
             }
             Img = Im;
-
             return Is;
         }
-
 
         //Create Conjuncted image
         private bool ConjunctedShapeCreate(MainForm d)
@@ -1037,36 +911,25 @@ namespace ImageTextDeepLearning
                         {
                             flag = false;
                         }
-
                         bool flag1 = false, flag2 = false;
                         //while
                         while (true)
                         {
                             //when there is not and is not empty at list
-                            /*  if (!All.Contains(Collection) && Collection.Count > 1)
-                              {
-                                  //add collection
-                                  All.Add(Collection);
-                                  Collection = new List<Point[]>();
-
-                              }*/
+                            
                             //next enumerator
                             flag1 = enumerator1.MoveNext();
                             //when is finished break 
                             if (!flag1)
                             {
 
-
-
                                 break;
                             }
                             //current target
                             Contour<Point> current1 = enumerator1.Current;
-
                             //current points
                             //Point[] PointP1 = current1.ToArray();
                             All.Add(current1);
-
 
                             //Collection.Add(current1);
                             flag2 = true;
@@ -1074,7 +937,6 @@ namespace ImageTextDeepLearning
                         if (flag2)
                         {
                         }
-
                         //Collection = new Contour<Point>();
                     } while (true);
                 }
@@ -1085,7 +947,6 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
-
 
     }
 }

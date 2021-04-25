@@ -1,8 +1,3 @@
-﻿/***********************************************************************************
- * Ramin Edjlal*********************************************************************
- CopyRighted 1398/0802**************************************************************
- TetraShop.Ir***********************************************************************
- ***********************************************************************************/
 using ContourAnalysisDemo;
 using System;
 using System.Collections.Generic;
@@ -22,7 +17,7 @@ namespace ImageTextDeepLearning
         public static char[] engsmal = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
         public static char[] engbig = null;
         public static char[] engnum = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
-        //private readonly char[] te = { 'a', 'v', '3', '4', ' ' };
+        
         private readonly char[] te = { 'v', '3', ' ' };
         public AllKeyboardOfWorld()
         {
@@ -35,12 +30,9 @@ namespace ImageTextDeepLearning
                     fonts.Clear();
                 }
             }
-
         }
-
         //Initiate global vars
         private readonly int Width = 10, Height = 10;
-
         public List<string> KeyboardAllStringsWithfont = new List<string>();
         public List<string> KeyboardAllStrings = new List<string>();
         public List<Bitmap> KeyboardAllImage = new List<Bitmap>();
@@ -53,7 +45,6 @@ namespace ImageTextDeepLearning
             {
                 //clear
                 KeyboardAllStrings.Clear();
-
                 try
                 {
                     if (!FormImageTextDeepLearning.comeng && FormImageTextDeepLearning.test == false)
@@ -66,7 +57,7 @@ namespace ImageTextDeepLearning
                             if (t.Equals(typeof(char)) && t.IsVisible && t.IsSerializable)
                             {
                                 //if (((char)i).ToString().Contains("\\u"))
-                                //continue;
+                                
                                 //when existemnce of this conditions continue
                                 int ch = i;
                                 if ((ch >= 0x0020 && ch <= 0xD7FF) ||
@@ -82,7 +73,6 @@ namespace ImageTextDeepLearning
                                     }
                                 }
                             }
-
                         }
                     }
                     else
@@ -93,12 +83,10 @@ namespace ImageTextDeepLearning
                             {
                                 KeyboardAllStrings.Add(Convert.ToString(engsmal[i]));
                             }
-
                             for (int i = 0; i < engsmal.Length; i++)
                             {
                                 KeyboardAllStrings.Add(Convert.ToString(engsmal[i]).ToUpper());
                             }
-
                             for (int i = 0; i < engnum.Length; i++)
                             {
                                 KeyboardAllStrings.Add(Convert.ToString(engnum[i]));
@@ -115,7 +103,6 @@ namespace ImageTextDeepLearning
                             }
                             catch (Exception)
                             {
-
                             }
                             for (int i = 0; i < te.Length; i++)
                             {
@@ -123,7 +110,6 @@ namespace ImageTextDeepLearning
                             }
                         }
                     }
-
                 }
                 catch (Exception)
                 {
@@ -146,13 +132,11 @@ namespace ImageTextDeepLearning
                 else
                 {
                     fonts.Add(FormImageTextDeepLearning.selfont.ToString());
-
                 }
             }
             catch (Exception) { return false; }
             return true;
         }
-
         //Savle all
         private bool SaveAll()
         {
@@ -161,20 +145,12 @@ namespace ImageTextDeepLearning
                 //when file dos not exist
                 if (!File.Exists("KeyboardAllStrings.asd"))
                 {
-
-                    /*   lock (KeyboardAllStrings)
-                       {
-                           for (int i = 0; i < KeyboardAllStrings.Count; i++)
-                           {
-                               File.AppendAllText("KeyboardAllStrings.asd", KeyboardAllStrings[i]);
-                           }
-                       }*/
+                    
                     //serialized on take root
                     if (KeyboardAllImage.Count > 0)
                     {
                         Refrigtz.TakeRoot t = new Refrigtz.TakeRoot();
                         t.Save(this, "KeyboardAllStrings.asd");
-
                     }
                 }
                 else
@@ -184,19 +160,15 @@ namespace ImageTextDeepLearning
                     {
                         Refrigtz.TakeRoot t = new Refrigtz.TakeRoot();
                         t.Save(this, "KeyboardAllStrings.asd");
-
                     }
                 }
-
             }
-
             catch (Exception)
             {
-                //System.Windows.Forms.MessageBox.Show("Fatual Error!" + t.ToString()); return false;
+                
             }
             return true;
         }
-
         //read all
         private bool ReadAll()
         {
@@ -210,21 +182,7 @@ namespace ImageTextDeepLearning
                     KeyboardAllImage.Clear();
                     KeyboardAllConjunctionMatrix.Clear();
 
-
-                    /* String Tem = File.ReadAllText("KeyboardAllStrings.asd");
-                     if (Tem.Length > 0)
-                     {
-                         for (int i = 0; i < Tem.Length; i++)
-                         {
-                             KeyboardAllStrings.Add(Tem[i].ToString());
-                         }
-                     }
-                     else
-                     {
-                         bool Do = CreateString();
-                         if (!Do)
-                             return false;
-                     }*/
+                    
                     //serilized
                     Refrigtz.TakeRoot tr = new Refrigtz.TakeRoot();
                     AllKeyboardOfWorld t = tr.Load("KeyboardAllStrings.asd");
@@ -232,7 +190,6 @@ namespace ImageTextDeepLearning
                     KeyboardAllConjunctionMatrix = t.KeyboardAllConjunctionMatrix;
                     KeyboardAllImage = t.KeyboardAllImage;
                     KeyboardAllStrings = t.KeyboardAllStrings;
-
                 }
                 else//others retiurn unsuccessfull
                 {
@@ -247,7 +204,6 @@ namespace ImageTextDeepLearning
             //return true
             return true;
         }
-
         //Cropping and fitting image
         private Bitmap cropImage(Bitmap img, Rectangle cropArea)
         {
@@ -255,8 +211,6 @@ namespace ImageTextDeepLearning
             int Y = cropArea.Y;
             int XX = cropArea.Width;
             int YY = cropArea.Height;
-
-
 
 
             Bitmap bmp = new Bitmap(Width, Height);
@@ -269,7 +223,6 @@ namespace ImageTextDeepLearning
             
             return bmp;
         }
-
         //Found of Min of X
         private int MinX(Bitmap Im)
         {
@@ -278,7 +231,6 @@ namespace ImageTextDeepLearning
             {
                 for (int k = 0; k < Im.Height; k++)
                 {
-
                     if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Mi = j;
@@ -291,9 +243,7 @@ namespace ImageTextDeepLearning
                 }
             }
             return Mi;
-
         }
-
         //Founf Min of Y
         private int MinY(Bitmap Im)
         {
@@ -302,7 +252,6 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-
                     if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Mi = k;
@@ -315,9 +264,7 @@ namespace ImageTextDeepLearning
                 }
             }
             return Mi;
-
         }
-
         //Found of Max Of Y
         private int MaxY(Bitmap Im)
         {
@@ -326,7 +273,6 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-
                     if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
                     {
                         Ma = k;
@@ -339,55 +285,46 @@ namespace ImageTextDeepLearning
                 }
             }
             return Ma;
-
         }
-
         //Found of Max of X
         private int MaxX(Bitmap Im)
         {
             int Ma = -1;
-            // ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Width - 1, 0, j =>
-
+            
             //{
             for (int j = Im.Width - 1; j >= 0; j--)
             {
-                //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(Im.Height - 1, 0, k =>
-
+                
                 // {
                 for (int k = 0; k < Im.Height; k++)
                 {
-
                     if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
                     {
                         Ma = j;
                         break;
                     }
-                }//);
+                }
                 if (Ma > -1)
                 {
                     break;
                 }
-            }//);
+            }
             return Ma;
-
         }
-
         //Colorized list of image
         private bool ColorizedCountreImageCommon(List<Bitmap> Im)
         {
             try
             {
                 //for all list items
-                //ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im.Count, i =>
-
+                
                 ///{
                 for (int i = 0; i < Im.Count; i++)
                 {
                     //create graphics for current image
                     Graphics e = Graphics.FromImage(Im[i]);
                     //for all image width
-                    //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Im[i].Width, j =>
-
+                    
                     //{
                     for (int j = 0; j < Im[i].Width; j++)
                     {
@@ -418,12 +355,10 @@ namespace ImageTextDeepLearning
                                 }
                             }
                         }
-                    }//);
+                    }
                     //Dispose
                     e.Dispose();
-
-                }//);
-
+                }
 
             }
             catch (Exception t)
@@ -435,13 +370,11 @@ namespace ImageTextDeepLearning
             //return successfull
             return true;
         }
-
         //Colorized an image
         private bool ColorizedCountreImageCommmon(ref Bitmap Im)
         {
             try
             {
-
                 //create graphics for current image
                 Graphics e = Graphics.FromImage(Im);
                 //for all image width
@@ -477,19 +410,14 @@ namespace ImageTextDeepLearning
                 }
 
 
-
-
-
             }
             catch (Exception t)
             {
                 MessageBox.Show(t.ToString());
-
                 return false;
             }
             return true;
         }
-
          private bool HollowCountreImageCommmon(ref Bitmap Img, bool[,] Ab)
         {
             try
@@ -498,24 +426,21 @@ namespace ImageTextDeepLearning
                 int he = Img.Height;
                 Bitmap Im = Img;
                 List<Task> th = new List<Task>();
-
                 Graphics e = Graphics.FromImage(Im);
                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 //do
                 // {
                 Hollowed = false;
-
                 var output = Task.Factory.StartNew(() =>
                 {
-                    // for (int x = 0; x < wi; x++)
+                    
                     //{
-
                     ParallelOptions po = new ParallelOptions
                     {
                         MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                     }; Parallel.For(0, wi, x =>
                         {
-                            /// for (int y = 0; y < he; y++)
+                            
                             //{
                             ParallelOptions poo = new ParallelOptions
                             {
@@ -527,36 +452,31 @@ namespace ImageTextDeepLearning
                                 {
                                     if (Ab[x, y])
                                     {
-
                                         var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
-                                        //th.Add(H);
-                                        //H.Wait();
+                                        
+                                        
                                     }
                                 }
                             });
 
-
                         });
                 });
                 output.Wait();
-                //} while (Hollowed);
+                
                 e.Dispose();
-                //Parallel.ForEach(th, item => Task.WaitAll(item));
+                
                 Img = Im;
             }
             catch (Exception t)
             {
                 MessageBox.Show(t.ToString());
-
                 return false;
             }
             return true;
-
         }
         private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab)
         {
             Bitmap Im = Img;
-
             try
             {
                 bool IsOut1 = false;
@@ -578,8 +498,6 @@ namespace ImageTextDeepLearning
                                 return true;
                             }
                         }
-
-
 
                         var output = Task.Factory.StartNew(() =>
                         {
@@ -606,7 +524,6 @@ namespace ImageTextDeepLearning
                                         }
                                     }
                                 }
-
                             }, () =>
                             {
                                 object oioo = new object();
@@ -657,7 +574,6 @@ namespace ImageTextDeepLearning
                                         if (Ab[x, y - 1])
                                         {
                                             var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut4));
-
                                         }
                                     }
                                     if (x - 1 >= 0)
@@ -665,7 +581,6 @@ namespace ImageTextDeepLearning
                                         if (Ab[x - 1, y])
                                         {
                                             var H = Task.Factory.StartNew(() => Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut4));
-
                                         }
                                     }
                                 }
@@ -677,7 +592,6 @@ namespace ImageTextDeepLearning
                         {
                             if (Is)
                             {
-
                                 Im.SetPixel(X, Y, Color.White);
                                 Img = Im;
                                 Hollowed = true;
@@ -686,29 +600,22 @@ namespace ImageTextDeepLearning
                         }
                     }
 
-
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
-                //MessageBox.Show(t.ToString());
-
+                
                 return false;
             }
             Img = Im;
-
             return true;
         }
-
 
         private bool HollowCountreImageCommmonXYRigthX(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             Bitmap Im = Img;
             bool Is = false;
-
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -726,10 +633,8 @@ namespace ImageTextDeepLearning
                                 return true;
                             }
                         }
-
                         if (IsOut)
                             return IsOut;
-
                         object ooo = new object();
                         lock (ooo)
                         {
@@ -743,25 +648,20 @@ namespace ImageTextDeepLearning
                         }
                     }
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
-                //MessageBox.Show(t.ToString());
-
+                
                 return false;
             }
             Img = Im;
-
             return Is;
         }
         private bool HollowCountreImageCommmonXYLeftX(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             Bitmap Im = Img;
             bool Is = false;
-
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -780,10 +680,8 @@ namespace ImageTextDeepLearning
                             }
                         }
 
-
                         if (IsOut)
                             return IsOut;
-
                         object oioo = new object();
                         lock (oioo)
                         {
@@ -795,34 +693,26 @@ namespace ImageTextDeepLearning
                                 }
                             }
                         }
-
                     }
                     object oo = new object();
                     lock (oo)
                     {
-
                     }
-
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
-                //MessageBox.Show(t.ToString());
-
+                
                 return false;
             }
             Img = Im;
-
             return Is;
         }
         private bool HollowCountreImageCommmonXYUpY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
              Bitmap Im = Img;
             bool Is = false;
-
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -840,10 +730,8 @@ namespace ImageTextDeepLearning
                                 return true;
                             }
                         }
-
                         if (IsOut)
                             return IsOut;
-
 
                         object pooo = new object();
                         lock (pooo)
@@ -858,24 +746,19 @@ namespace ImageTextDeepLearning
                         }
                     }
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
-                //MessageBox.Show(t.ToString());
-
+                
                 return false;
             }
             Img = Im;
-
             return Is;
         }
         private bool HollowCountreImageCommmonXYDowwnY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {     Bitmap Im = Img;
             bool Is = false;
-
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -896,7 +779,6 @@ namespace ImageTextDeepLearning
                         if (IsOut)
                             return IsOut;
 
-
                         object pooo = new object();
                         lock (pooo)
                         {
@@ -908,23 +790,17 @@ namespace ImageTextDeepLearning
                                 }
                             }
                         }
-
                     }
 
-
                 }
-
             }
             catch (Exception t)
             {
                 Img = Im;
-
-                //MessageBox.Show(t.ToString());
-
+                
                 return false;
             }
             Img = Im;
-
             return Is;
         }
         //store all strings list to proper  images themselves list
@@ -935,27 +811,9 @@ namespace ImageTextDeepLearning
                 bool Do = false;
                 Do = CreateString();
                 //when is not ok
-                /*if (!ReadAll())
-                {
-                    //create list
-                    Do = CreateString();
-                    //when is successfull 
-                    if (Do)//Save
-                    {
-                        Do = SaveAll();
-                    }
-                    //when not return successfull
-                    if (!Do)
-                    {
-                        //System.Windows.Forms.MessageBox.Show("Fatual Error!");
-                        return false;
-                    }
-                }
-                else//else return successfull
-                */
+                
                 {
                     Do = true;
-
                 }
                 //when existence os string list and empty od image list
                 if (Do && KeyboardAllImage.Count == 0)
@@ -963,8 +821,7 @@ namespace ImageTextDeepLearning
                     //clear
                     KeyboardAllImage.Clear();
                     //for all lists items
-                    //ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, KeyboardAllStrings.Count, i =>
-
+                    
                     //{
                     for (int i = 0; i < KeyboardAllStrings.Count; i++)
                     {
@@ -974,8 +831,7 @@ namespace ImageTextDeepLearning
                             if (fonts.Count > 0)
                             {
                                 //Do literal Database for All fonts
-                                //ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fonts.Count, h =>
-
+                                
                                 //{
                                 for (int h = 0; h < fonts.Count; h++)
                                 {   //proper empty image coinstruction object
@@ -983,16 +839,13 @@ namespace ImageTextDeepLearning
                                     //initate new root image empty
                                     //create proper image graphics
                                     Graphics e = Graphics.FromImage(Temp);
-
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Draw fill white image
                                     e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
 
-
                                     //draw string
                                     e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1))), (float)((Width + Height))
                                                                                           , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100));
-
                                     //retrive min and max of tow X and Y
                                     int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                     int MxM = (MaX - MiX) / 2;
@@ -1011,7 +864,6 @@ namespace ImageTextDeepLearning
                                         else
                                         {
                                             Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
                                         }
                                     }
                                     else
@@ -1024,11 +876,9 @@ namespace ImageTextDeepLearning
                                         else
                                         {
                                             Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
                                         }
                                     }
                                     e = Graphics.FromImage(Te);
-
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     bool[,] TemB = new bool[Width, Height];
                                     for (int k = 0; k < Width; k++)
@@ -1037,7 +887,7 @@ namespace ImageTextDeepLearning
                                         {
                                             object o = new object();
                                             lock (o)
-                                            {  // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                            {  
                                                 if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                                 {
                                                     TemB[k, p] = true;
@@ -1059,7 +909,7 @@ namespace ImageTextDeepLearning
                                     e = Graphics.FromImage(Te);
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Add
-                                    //KeyboardAllImage.Add(Te);
+                                    
                                     //create proper conjunction matrix
                                     bool[,] Tem = new bool[Width, Height];
                                     for (int k = 0; k < Width; k++)
@@ -1069,7 +919,7 @@ namespace ImageTextDeepLearning
                                             object o = new object();
                                             lock (o)
                                             {
-                                                // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                                
                                                 if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                                 {
                                                     Tem[k, p] = true;
@@ -1081,15 +931,14 @@ namespace ImageTextDeepLearning
                                             }
                                         }
                                     }
-
                                     //Add
                                     e.Dispose();
                                     KeyboardAllImage.Add(Te);
                                     KeyboardAllConjunctionMatrix.Add(Tem);
                                     KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
                                     Temp.Dispose();
-                                    //Te.Dispose();
-                                }///);
+                                    
+                                }
                             }
                             else//When font not installed
                             {
@@ -1098,15 +947,12 @@ namespace ImageTextDeepLearning
                                 //initate new root image empty
                                 //create proper image graphics
                                 Graphics e = Graphics.FromImage(Temp);
-
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 //Draw fill white image
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
-
                                 //draw string
                                 e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))), (float)((Width + Height))
                                                                                       , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100));
-
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
@@ -1115,7 +961,6 @@ namespace ImageTextDeepLearning
                                 int My = MyM * 2;
                                 Bitmap Te = null;
                                 e.Dispose();
-
                                 if ((MaX - MiX) < (MaY - MiY))
                                 {
                                     if (MiX < MaX && MiY < MaY)
@@ -1126,7 +971,6 @@ namespace ImageTextDeepLearning
                                     else
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-
                                     }
                                 }
                                 else
@@ -1151,7 +995,7 @@ namespace ImageTextDeepLearning
                                     {
                                         object o = new object();
                                         lock (o)
-                                        { // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                        { 
                                             if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                             {
                                                 TemB[k, p] = true;
@@ -1171,7 +1015,7 @@ namespace ImageTextDeepLearning
                                     return false;
                                 }
                                 //Add
-                                //KeyboardAllImage.Add(Te);
+                                
                                 //create proper conjunction matrix
                                 e.Dispose();
                                 e = Graphics.FromImage(Te);
@@ -1183,7 +1027,7 @@ namespace ImageTextDeepLearning
                                     {
                                         object o = new object();
                                         lock (o)
-                                        {    // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
+                                        {    
                                             if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                             {
                                                 Tem[k, p] = true;
@@ -1208,7 +1052,6 @@ namespace ImageTextDeepLearning
                             //initate new root image empty
                             //create proper image graphics
                             Graphics e = Graphics.FromImage(Temp);
-
                             //Draw fill white image
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                             e.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -1233,27 +1076,26 @@ namespace ImageTextDeepLearning
                        
                         }
                     }
-                    //);
+                    
                     //save all
-                    //Do = SaveAll();
+                    
                     //if (!Do)
-                    //System.Windows.Forms.MessageBox.Show("Fatual Error!");
+                    
                     //else
-                    //System.Windows.Forms.MessageBox.Show("Completed " + KeyboardAllConjunctionMatrix.Count + " .");
+                    
                 }
                 //else
-                //System.Windows.Forms.MessageBox.Show("Fatual Error!");
-
+                
             }
             catch (Exception t)
             {
-                //MessageBox.Show(t.ToString());
+                
                 //when existence of exeptio return false
-                //System.Windows.Forms.MessageBox.Show("Fatual Error!");
+                
                 return false;
             }
             //return successfulll
-            //KeyboardAllImage.Clear();
+            
             return true;
         }
         //Convert image list to conjunction matrix
@@ -1267,19 +1109,16 @@ namespace ImageTextDeepLearning
                 {
                     //clear
                     //for all list count
-                    //ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, Temp.Count, i =>
-
+                    
                     //{
                     for (int i = 0; i < TempI.Count; i++)
                     {
                         //matrix boolean object constructor list
                         List<bool[,]> Te = new List<bool[,]>();
-
                         //boolean object constructor
                         bool[,] Tem = new bool[TempI[i].Width, TempI[i].Height];
                     
                           Graphics e = Graphics.FromImage(TempI[i]);
-
                         //{
                         for (int k = 0; k < TempI[i].Width; k++)
                         {
@@ -1297,7 +1136,6 @@ namespace ImageTextDeepLearning
                             }
                         }
                         e.Dispose();
-
                         //add
                         KeyboardAllImage.Add((Bitmap)TempI[i].Clone());
                         KeyboardAllConjunctionMatrix.Add(Tem);
@@ -1310,15 +1148,12 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                //MessageBox.Show(t.ToString());
+                
                 //when is exeption return unsuccessfull
                 return false;
             }
             //when save is not valid return successfull
-            /*if (!SaveAll())
-            {
-                return false;
-            }*/
+            
             //return successfull
             return true;
         }

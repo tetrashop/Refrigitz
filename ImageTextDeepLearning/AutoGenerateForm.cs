@@ -1,11 +1,10 @@
-﻿namespace ContourAnalysisDemo
+namespace ContourAnalysisDemo
 {
     using ContourAnalysisNS;
     using System;
     using System.ComponentModel;
     using System.Drawing;
     using System.Windows.Forms;
-
     public class AutoGenerateForm : Form
     {
         private readonly IContainer components = null;
@@ -24,7 +23,6 @@
             tbFont.Text = new FontConverter().ConvertToString(tbChars.Font);
             processor = processo;
         }
-
         private void btFont_Click(object sender, EventArgs e)
         {
             if (fontDialog1.ShowDialog() == DialogResult.OK)
@@ -33,7 +31,6 @@
                 tbFont.Text = new FontConverter().ConvertToString(tbChars.Font);
             }
         }
-
         private void btGenerate_Click(object sender, EventArgs e)
         {
             try
@@ -51,7 +48,6 @@
                 MessageBox.Show(exception1.Message);
             }
         }
-
         protected override void Dispose(bool disposing)
         {
             if (!(!disposing || ReferenceEquals(components, null)))
@@ -60,7 +56,6 @@
             }
             base.Dispose(disposing);
         }
-
         private void InitializeComponent()
         {
             fontDialog1 = new FontDialog();
@@ -137,4 +132,3 @@
         }
     }
 }
-

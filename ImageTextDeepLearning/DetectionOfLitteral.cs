@@ -1,8 +1,3 @@
-﻿/***********************************************************************************
- * Ramin Edjlal*********************************************************************
- CopyRighted 1398/0802**************************************************************
- TetraShop.Ir***********************************************************************
- ***********************************************************************************/
 using ContourAnalysisDemo;
 using System;
 using System.Collections.Generic;
@@ -28,28 +23,25 @@ namespace ImageTextDeepLearning
             try
             {
                 dd = d;
-                //This.SetCallSetLablr("Initiate All Key...");
-                //This.RefCallSetLablr();
+                
+                
                 t = new AllKeyboardOfWorld();
                 t.ConvertAllStringToImage(d);
-                //t.ConvertAllTempageToMatrix(t.KeyboardAllImage);
-                //This.SetCallSetLablr("Initiate Conjunction...");
-                //This.RefCallSetLablr();
-
+                
+                
+                
                 tt = new ConjunctedShape(d);
-                //This.SetCallSetLablr("Cretion Conjuncted untile Mattix...");
-                //This.RefCallSetLablr();
+                
+                
                 tt.CreateSAhapeFromConjucted(Width, Heigh);
-                //This.SetCallSetLablr("Initiate...");
-                //This.RefCallSetLablr();
+                
+                
                 ConjunctedShapeListRequired = new AllKeyboardOfWorld();
-                //This.SetCallSetLablr("Initiate For Key Matrix...");
-                //This.RefCallSetLablr();
-
+                
+                
                 ConjunctedShapeListRequired.ConvertAllTempageToMatrix(tt.AllImage);
-                //This.SetCallSetLablr("Detection...");
-                //This.RefCallSetLablr();
-
+                
+                
                 Detection(Width, Heigh);
             }
             catch (Exception te)
@@ -58,10 +50,9 @@ namespace ImageTextDeepLearning
             }
             //finally
             {
-                //System.Windows.Forms.MessageBox.Show("Completed Detetcted " + Detected.Count);
+                
             }
         }
-
         //Detection main similarity method
         private int DifferentBool(bool[,] Key, bool[,] Src, int Wi, int Hei, bool Ach)
         {
@@ -88,7 +79,6 @@ namespace ImageTextDeepLearning
             }
             return Dif;
         }
-
         private bool IssampleallFalse(bool[,] A, int w, int h)
         {
             bool Is = true;
@@ -101,7 +91,6 @@ namespace ImageTextDeepLearning
             }
             return Is;
         }
-        //detection main method
         public bool Detection(int Wi, int Hei)
         {
             try
@@ -110,10 +99,10 @@ namespace ImageTextDeepLearning
                 Detected.Clear();
                 bool Ach = true;
                 //for evey conjuncted shape retrived matrix items
-                    for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
-                    {
+                for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
+                {
 
-                        Ach = false;
+                    Ach = false;
                     //initate
                     StringBuilder TempDetected = new StringBuilder();
 
@@ -137,7 +126,7 @@ namespace ImageTextDeepLearning
                            //if (System.Math.Abs(1- KeyDif ) < Threashold)
                             if (t.KeyboardAllStringsWithfont[k] != " ")
                             {
-                                
+
                                 continue;
                             }
                             else

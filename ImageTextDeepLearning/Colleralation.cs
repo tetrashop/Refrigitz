@@ -1,4 +1,3 @@
-﻿/*https://stackoverflow.com/questions/8869006/multiple-dimension-correlation-in-c-sharp*/
 
 namespace ImageTextDeepLearning
 {
@@ -8,8 +7,7 @@ namespace ImageTextDeepLearning
         public static int GetCorrelationScore(bool[,] seriesA, bool[,] seriesB, int n)
         {
             int correlationScore = 0;
-
-            for (int i = 0; i < //seriesA.Length
+            for (int i = 0; i < 
                 n; i++)
             {
                 bool A = true;
@@ -32,8 +30,7 @@ namespace ImageTextDeepLearning
         public static int GetCorrelationScore(int[,] seriesA, int[,] seriesB, int n)
         {
             int correlationScore = 0;
-
-            for (int i = 0; i < //seriesA.Length
+            for (int i = 0; i < 
                 n; i++)
             {
                 bool A = true;
@@ -53,15 +50,12 @@ namespace ImageTextDeepLearning
             }
             return correlationScore;
         }
-
         private static bool areEqual(double value1, double value2, double allowedVariance)
         {
             double lowValue1 = value1 - allowedVariance;
             double highValue1 = value1 + allowedVariance;
-
             return (lowValue1 < value2 && highValue1 > value2);
         }
-
 
     }
 }

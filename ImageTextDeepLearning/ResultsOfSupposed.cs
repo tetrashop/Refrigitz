@@ -9,7 +9,7 @@ namespace ContourAnalysisNS
     public class ResultsOfSupposed
     {
         public static List<string> mined = new List<string>();
-        static List< List<string>> Strlogic = new List<List<string>>();
+        static List<List<string>> Strlogic = new List<List<string>>();
         static List<List<int[]>> StrlogicIndex = new List<List<int[]>>();
         static List<List<string>> teloIndex = new List<List<string>>();
         public static bool MindedIsVerb(List<string> te, List<List<string>> telo)
@@ -126,7 +126,7 @@ namespace ContourAnalysisNS
 
             return Is;
         }
-        public static bool MindedSomeVerb(List<string> te, List<List<string>> telo,string verb)
+        public static bool MindedSomeVerb(List<string> te, List<List<string>> telo, string verb)
         {
             bool Is = false;
             Strlogic.Clear();
@@ -134,59 +134,59 @@ namespace ContourAnalysisNS
             StrlogicIndex.Clear();
             teloIndex.Clear();
             for (int p = 0; p < telo.Count; p++)
+            {
+                for (int q = 0; q < telo[p].Count; q++)
                 {
-                    for (int q = 0; q < telo[p].Count; q++)
+                    MindedIsVerb(te, telo, true, true, false, false, p, q, -1, -1);
+
+                    for (int r = 0; r < telo[p].Count; r++)
                     {
-                        MindedIsVerb(te, telo, true, true, false, false, p, q, -1, -1);
+                        if (p == r)
+                            continue;
+                        MindedIsVerb(te, telo, true, true, true, false, p, q, r, -1);
 
-                        for (int r = 0; r < telo[p].Count; r++)
+                        for (int s = 0; s < telo[p].Count; s++)
                         {
-                            if (p == r)
+                            if (s == q)
                                 continue;
-                            MindedIsVerb(te, telo, true, true, true, false, p, q, r, -1);
 
-                            for (int s = 0; s < telo[p].Count; s++)
-                            {
-                                if (s == q)
-                                    continue;
+                            MindedIsVerb(te, telo, true, true, true, true, p, q, r, s);
 
-                                MindedIsVerb(te, telo, true, true, true, true, p, q, r, s);
-
-                            }
                         }
                     }
                 }
-                for (int p = 0; p < Strlogic.Count; p++)
+            }
+            for (int p = 0; p < Strlogic.Count; p++)
+            {
+                for (int q = 0; q < Strlogic[p].Count; q++)
                 {
-                    for (int q = 0; q < Strlogic[p].Count; q++)
+
+                    if (Strlogic[p][q] == "q")
                     {
+                        string s = teloIndex[p][q] + "! \r\n";
+                        mined.Add(s);
+                    }
 
-                        if (Strlogic[p][q] == "q")
-                        {
-                            string s = teloIndex[p][q] + "! \r\n";
-                            mined.Add(s);
-                        }
+                    if (Strlogic[p][q] == "p->r")
+                    {
+                        string s = teloIndex[p][q] + " " + teloIndex[p][q] + " " + verb + ". \r\n";
+                        mined.Add(s);
+                    }
 
-                        if (Strlogic[p][q] == "p->r")
-                        {
-                            string s = teloIndex[p][q] + " " + teloIndex[p][q] + " " + verb + ". \r\n";
-                            mined.Add(s);
-                        }
+                    if (Strlogic[p][q] == "~p")
+                    {
+                        string s = teloIndex[p][q] + " " + "ن" + verb + " \r\n";
+                        mined.Add(s);
+                    }
 
-                        if (Strlogic[p][q] == "~p")
-                        {
-                            string s = teloIndex[p][q] + " " + "ن" + verb + " \r\n";
-                            mined.Add(s);
-                        }
+                    if (Strlogic[p][q] == "p&&q")
+                    {
+                        string s = "ن" + verb + " " + teloIndex[p][q] + " نباشد که " + teloIndex[p][q] + " " + "ن" + verb + ". \r\n";
+                        mined.Add(s);
+                    }
 
-                        if (Strlogic[p][q] == "p&&q")
-                        {
-                            string s = "ن" + verb + " " + teloIndex[p][q] + " نباشد که " + teloIndex[p][q] + " " + "ن" + verb +". \r\n";
-                            mined.Add(s);
-                        }
-
-                        if (Strlogic[p][q] == "S")
-                        {
+                    if (Strlogic[p][q] == "S")
+                    {
                         string s = "";
                         if (StrlogicIndex[p][q][0] > 1)
                             s = teloIndex[p][0] + "! \r\n";
@@ -196,47 +196,47 @@ namespace ContourAnalysisNS
                     }
 
                     if (Strlogic[p][q] == "p->q")
-                        {
-                            string s = teloIndex[p][q] + teloIndex[p][q] + " " + "ن" + verb + " \r\n";
-                        }
-
-                        if (Strlogic[p][q] == "p")
-                        {
-                            string s = teloIndex[p][q] + "! \r\n";
-                        }
-
-                        if (Strlogic[p][q] == "r")
-                        {
-                            string s = teloIndex[p][q] + "! \r\n";
-                            mined.Add(s);
-                        }
-
-                        if (Strlogic[p][q] == "p||q->r")
-                        {
-                            string s = teloIndex[p][q] + " یا " + teloIndex[p][q] + " " + teloIndex[p][q] + " " + verb + " \r\n";
-                            mined.Add(s);
-                        }
-
-                        if (Strlogic[p][q] == "q||s")
-                        {
-                            string s = "";
-                            if (StrlogicIndex[p][q][2] != -1)
-                                s = teloIndex[p][q] + " یا " + teloIndex[p][q] + "! \r\n";
-                            else
-                                s = teloIndex[p][q] + "! \r\n";
-                            mined.Add(s);
-                        }
-
-                        if (Strlogic[p][q] == "!p||!q")
-                        {
-                            string s = "نه " + teloIndex[p][q] + " نه " + teloIndex[p][q] + "! \r\n";
-                            mined.Add(s);
-                        }
-
+                    {
+                        string s = teloIndex[p][q] + teloIndex[p][q] + " " + "ن" + verb + " \r\n";
                     }
 
-                } 
-            
+                    if (Strlogic[p][q] == "p")
+                    {
+                        string s = teloIndex[p][q] + "! \r\n";
+                    }
+
+                    if (Strlogic[p][q] == "r")
+                    {
+                        string s = teloIndex[p][q] + "! \r\n";
+                        mined.Add(s);
+                    }
+
+                    if (Strlogic[p][q] == "p||q->r")
+                    {
+                        string s = teloIndex[p][q] + " یا " + teloIndex[p][q] + " " + teloIndex[p][q] + " " + verb + " \r\n";
+                        mined.Add(s);
+                    }
+
+                    if (Strlogic[p][q] == "q||s")
+                    {
+                        string s = "";
+                        if (StrlogicIndex[p][q][2] != -1)
+                            s = teloIndex[p][q] + " یا " + teloIndex[p][q] + "! \r\n";
+                        else
+                            s = teloIndex[p][q] + "! \r\n";
+                        mined.Add(s);
+                    }
+
+                    if (Strlogic[p][q] == "!p||!q")
+                    {
+                        string s = "نه " + teloIndex[p][q] + " نه " + teloIndex[p][q] + "! \r\n";
+                        mined.Add(s);
+                    }
+
+                }
+
+            }
+
 
             return Is;
         }

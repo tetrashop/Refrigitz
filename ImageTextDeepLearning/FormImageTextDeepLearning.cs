@@ -1,8 +1,3 @@
-﻿/***********************************************************************************
- * Ramin Edjlal*********************************************************************
- CopyRighted 1398/0802**************************************************************
- TetraShop.Ir***********************************************************************
- ***********************************************************************************/
 using ContourAnalysisDemo;
 //#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
 using ContourAnalysisNS;
@@ -23,7 +18,6 @@ using System.Windows.Forms;
 //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 //#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
-
 namespace ImageTextDeepLearning
 {
     //Constructor
@@ -44,14 +38,11 @@ namespace ImageTextDeepLearning
         public static bool fontsel = false;
         public static Font selfont = null;
         private bool Recognized = false;
-
         //Global vars
         private DetectionOfLitteral On = null;
-
         //#pragma warning disable CS0108 // 'FormImageTextDeepLearning.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
         //#pragma warning disable CS0108 // 'FormImageTextDeepLearning.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
         private readonly int Width = 10, Height = 10;
-
         //#pragma warning restore CS0108 // 'FormImageTextDeepLearning.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
         //#pragma warning restore CS0108 // 'FormImageTextDeepLearning.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
         private readonly List<ConjunctedShape> conShapes = new List<ConjunctedShape>();
@@ -76,19 +67,15 @@ namespace ImageTextDeepLearning
             openFileDialogImageTextDeepLearning.ShowDialog();
             //Assign content of image on main picture box
             PictureBoxImageTextDeepLearning.BackgroundImage = Image.FromFile(openFileDialogImageTextDeepLearning.FileName);
-            //PictureBoxImageTextDeepLearning.Size = new Size(PictureBoxImageTextDeepLearning.BackgroundImage.Width, PictureBoxImageTextDeepLearning.BackgroundImage.Height);
+            
             //set scale
             PictureBoxImageTextDeepLearning.BackgroundImageLayout = ImageLayout.Stretch;
             //refresh and update to pain event occured
             PictureBoxImageTextDeepLearning.Refresh();
             PictureBoxImageTextDeepLearning.Update();
-
-
         }
-
         private void openFileDialogImageTextDeepLearning_FileOk(object sender, CancelEventArgs e)
         {
-
         }
         //splitation and conjunction of one load image deterministic
         private void buttonSplitationConjunction_Click(object sender, EventArgs e)
@@ -139,96 +126,33 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     MessageBox.Show("Unsuccessfull conjunction;");
                 }
             }
-
-
         }
-
         private void progressBarCompleted_Click(object sender, EventArgs e)
         {
-            /*  if (t.SplitedBegin)
-              {
-                  int Total = t.RootWidth * t.RootWidth;
-                  int Cuurent = t.i * t.j;
-                  progressBarCompleted.Maximum = Total;
-                  progressBarCompleted.Minimum = 0;
-                  progressBarCompleted.Value = Cuurent;
-              }
-              else
-  if (t.ConjuctedBegin)
-              {
-                  int Total = t.imgarray.Count;
-                  int Cuurent = t.i;
-                  progressBarCompleted.Maximum = Total;
-                  progressBarCompleted.Minimum = 0;
-                  progressBarCompleted.Value = Cuurent;
-              }*/
+            
         }
-
         private void backgroundWorkerProgress_DoWork(object sender, DoWorkEventArgs e)
         {
-
         }
-
         private void Progress()
         {
-            /*  bool init = false;
-              do
-              {
-                  if (t != null)
-                  {
-                      if (t.SplitedBegin)
-                      {
-                          int Cuurent = t.i * t.j;
-                          int Total = t.RootWidth * t.RootHeight;
-
-                          d.Invoke((MethodInvoker)delegate ()
-                          {
-                               progressBarCompleted.Maximum = Total;
-                              progressBarCompleted.Minimum = 0;
-
-                              progressBarCompleted.Value = Cuurent;
-                              progressBarCompleted.Update();
-                          });
-                      }
-                      else
-      if (t.ConjuctedBegin)
-                      {
-                          int Total = t.imgarray.Count;
-                          int Cuurent = t.i;
-
-
-                          d.Invoke((MethodInvoker)delegate ()
-                          {
-                              progressBarCompleted.Maximum = Total;
-                              progressBarCompleted.Minimum = 0;
-
-                              progressBarCompleted.Value = Cuurent;
-                              progressBarCompleted.Update();
-                          });
-                      }
-                  }
-              } while (true);*/
+            
         }
         //detect of literalson image to be text 
         private void buttonTxtDetect_Click(object sender, EventArgs e)
         {
             Recognized = false;
             textBoxImageTextDeepLearning.Text = "";
-
             //detection foregin unnkown app constructor
             d = new MainForm();
             d.ShowDialog();
-
-
-
-            //textBoxImageTextDeepLearning.Refresh();
-            //textBoxImageTextDeepLearning.Update();
-            //d.Dispose();
+            
+            
+            
             PictureBoxImageTextDeepLearning.Update();
             PictureBoxImageTextDeepLearning.Refresh();
             CreateConSha.Visible = true;
         }
-
         //delegates on lables
         private delegate void CallRefLable();
         public void RefCallSetLablr()
@@ -236,28 +160,18 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             if (InvokeRequired)
             {
                 CallRefLable t = new CallRefLable(RefCallSetLablr);
-
                 Invoke(new Action(() => labelMonitor.Refresh()));
-
             }
-
-
         }
-
         private delegate void CallSetLable(string Text);
         public void SetCallSetLablr(string Text)
         {
             if (InvokeRequired)
             {
                 CallSetLable t = new CallSetLable(SetCallSetLablr);
-
                 Invoke(new Action(() => labelMonitor.Text = Text));
-
             }
-
-
         }
-
         //main picture boc pain event
         private void PictureBoxImageTextDeepLearning_Paint(object sender, PaintEventArgs e)
         {
@@ -301,7 +215,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                                             e.Graphics.DrawLines(Pens.Red, current.ToArray());
                                         }
                                     }
-
                                 }
                             }
                         }
@@ -332,7 +245,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                                     if (d.showAngle)
                                     {
                                         name = name + $"angle={((180.0 * current.angle) / 3.1415926535897931):000}°scale={current.scale:0.0}";
-
                                     }
                                     if (!Recognized)
                                     {
@@ -347,66 +259,17 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                                 }
                             }
                         }
-
                     }
                     if (Re)
                     {
                         Recognized = true;
                     }
-
                     PictureBoxImageTextDeepLearning.Update();
                     PictureBoxImageTextDeepLearning.Refresh();
                 }
             }
             else
-            {/*
-                  if (GraphS.Z != null)
-                  {
-                      Bitmap s = new Bitmap(PictureBoxImageTextDeepLearning.Width, PictureBoxImageTextDeepLearning.Height);
-                      Graphics g = Graphics.FromImage(s);
-                      if (ContourAnalysisNS.GraphS.Z.A != null)
-                      {
-                          if (ContourAnalysisNS.GraphS.Z.A.Xv != null)
-                          {
-                              for (int i = 0; i < ContourAnalysisNS.GraphS.Z.A.Xv.Count; i++)
-                              {
-
-                                  g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Red), new PointF(ContourAnalysisNS.GraphS.Z.A.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.A.Xv[i].Y * 10));
-
-                              }
-                          }
-                      }
-                      if (ContourAnalysisNS.GraphS.Z.B != null)
-                      {
-                          if (ContourAnalysisNS.GraphS.Z.B.Xv != null)
-                          {
-                              for (int i = 0; i < ContourAnalysisNS.GraphS.Z.B.Xv.Count; i++)
-                              {
-
-                                  g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Blue), new PointF(ContourAnalysisNS.GraphS.Z.B.Xv[i].X * 10, ContourAnalysisNS.GraphS.Z.B.Xv[i].Y * 10));
-
-                              }
-                          }
-                      }
-                      if (ContourAnalysisNS.GraphS.ZB != null)
-                      {
-                          if (ContourAnalysisNS.GraphS.ZB.Xv != null)
-                          {
-                              for (int i = 0; i < ContourAnalysisNS.GraphS.ZB.Xv.Count; i++)
-                              {
-
-                                  g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Green), new PointF(ContourAnalysisNS.GraphS.ZB.Xv[i].X * 10, ContourAnalysisNS.GraphS.ZB.Xv[i].Y * 10));
-
-                              }
-                          }
-                      }
-                      g.Dispose();
-                      PictureBoxImageTextDeepLearning.BackgroundImage = s;
-                      PictureBoxImageTextDeepLearning.Refresh();
-                      PictureBoxImageTextDeepLearning.Update();
-                      Thread.Sleep(100);
-                      GraphS.Drawn = false;
-                  }*/
+            {
             }
         }
         public void GraphsDrawn(GraphDivergenceMatrix A, GraphDivergenceMatrix B)
@@ -421,13 +284,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     for (int i = 0; i < A.Xv.Count; i++)
                     {
                         g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Red), new PointF(A.Xv[i].X * 10, A.Xv[i].Y * 10));
-
                         for (int j = 0; j < A.Xv.Count; j++)
                         {
-
                             if (A.d(A.Xv[i], A.Xv[j]) != null)
                                 g.DrawLine(new Pen(Color.Red), new Point(A.Xv[i].X * 10, A.Xv[i].Y * 10), new Point(A.Xv[j].X * 10, A.Xv[j].Y * 10));
-
                         }
                     }
                 }
@@ -439,36 +299,21 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     for (int i = 0; i < B.Xv.Count; i++)
                     {
                         g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Blue), new PointF(B.Xv[i].X * 10, B.Xv[i].Y * 10));
-
                         for (int j = 0; j < B.Xv.Count; j++)
                         {
-
                             if (B.d(B.Xv[i], B.Xv[j]) != null)
                                 g.DrawLine(new Pen(Color.Blue), new Point(B.Xv[i].X * 10, B.Xv[i].Y * 10), new Point(B.Xv[j].X * 10, B.Xv[j].Y * 10));
-
                         }
                     }
                 }
             }
-            /*if (ContourAnalysisNS.GraphS.ZB != null)
-            {
-                if (ContourAnalysisNS.GraphS.ZB.Xv != null)
-                {
-                    for (int i = 0; i < ContourAnalysisNS.GraphS.ZB.Xv.Count; i++)
-                    {
-
-                        g.DrawString("*", new Font("Tahoma", 10F), new SolidBrush(Color.Green), new PointF(ContourAnalysisNS.GraphS.ZB.Xv[i].X * 10, ContourAnalysisNS.GraphS.ZB.Xv[i].Y * 10));
-
-                    }
-                }
-            }*/
+            
             g.Dispose();
             PictureBoxImageTextDeepLearning.Refresh();
             PictureBoxImageTextDeepLearning.Update();
         }
         private void PictureBoxImageTextDeepLearning_Click(object sender, EventArgs e)
         {
-
         }
         //disable algins paint on foregin form
         private void checkBoxDisablePaintOnAligns_CheckedChanged(object sender, EventArgs e)
@@ -485,30 +330,20 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 }
             }
         }
-
         //main detection form
         private void CreateOneConShape()
         {
-
             //when cunsoming is ready
             if (!ReferenceEquals(d.frame, null))
             {
                 lock (d.processor.foundTemplates)
                 {
-                    /* ConjunctedShape One = new ConjunctedShape(d);
-                     One.CreateSAhapeFromConjucted(Width, Height);
-                     AllKeyboardOfWorld Tow = new AllKeyboardOfWorld();
-                     Tow.ConvertAllImageToMatrix(One.AllImage);
-                     AllKeyboardOfWorld Three = new AllKeyboardOfWorld();
-                     Three.ConvertAllStringToImage(d);
-
-                 */
+                    
                     //call detection constructor
                     FormImageTextDeepLearning This = this;
                     On = new DetectionOfLitteral(ref This, d);
                 }
             }
-
         }
         //about
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -520,14 +355,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         {
             openFileDialogImageTextDeepLearning.ShowDialog();
             PictureBoxImageTextDeepLearning.BackgroundImage = Image.FromFile(openFileDialogImageTextDeepLearning.FileName);
-            //PictureBoxImageTextDeepLearning.Size = new Size(PictureBoxImageTextDeepLearning.BackgroundImage.Width, PictureBoxImageTextDeepLearning.BackgroundImage.Height);
-
+            
             PictureBoxImageTextDeepLearning.BackgroundImageLayout = ImageLayout.Stretch;
-
             PictureBoxImageTextDeepLearning.Refresh();
             PictureBoxImageTextDeepLearning.Update();
-
-
         }
         //Open file and load
         private void splitationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -540,9 +371,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             if (buttonSplitationConjunction.Text == "Splitation")
             {
                 t = new SmallImageing(PictureBoxImageTextDeepLearning.BackgroundImage);
-
                 bool Do = t.Splitation(PictureBoxTest);
-
                 if (Do)
                 {
                     buttonSplitationConjunction.Text = "Conjunction";
@@ -563,7 +392,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 }
             }
         }
-
         private void Draw()
         {
             for (int i = 0; i < On.tt.AllImage.Count; i++)
@@ -577,7 +405,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
                         PictureBoxTest.Refresh();
                         PictureBoxTest.Update();
-
                     }
                     catch (System.Exception) { }
                 }
@@ -592,41 +419,26 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             t = new Thread(new ThreadStart(Draw));
             t.Start();
             t.Join();
-
             for (int i = 0; i < On.Detected.Count; i++)
             {
                 textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
-
             }
-            /* for (int i = 0; i < On.t.KeyboardAllImage.Count; i++)
-             {
-                 PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[i];
-                 PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
-                 PictureBoxTest.Refresh();
-                 PictureBoxTest.Update();
-                 
-             }*/
+            
         }
         //detection form munue strip
         private void txtDetectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             d = new MainForm();
             d.ShowDialog();
-
-
-
-            //textBoxImageTextDeepLearning.Refresh();
-            //textBoxImageTextDeepLearning.Update();
-            //d.Dispose();
+            
+            
+            
             PictureBoxImageTextDeepLearning.Update();
             PictureBoxImageTextDeepLearning.Refresh();
         }
-
         private void buttonTxtTemplates_Click(object sender, EventArgs e)
         {
-
         }
-
         private void checkBoxUndetectiveFont_CheckedChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked)
@@ -637,18 +449,14 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 fontsel = true;
             }
         }
-
         private void comboBoxUndetectiveFont_SelectedIndexChanged(object sender, EventArgs e)
         {
             AllKeyboardOfWorld.fonts.Clear();
             selfont = new System.Drawing.Font(comboBoxUndetectiveFont.Text, 10);
         }
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
         }
-
         private void checkBoxUseCommonEnglish_CheckedChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked)
@@ -656,12 +464,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 comeng = true;
             }
         }
-
         private void PictureBoxTest_Click(object sender, EventArgs e)
         {
-
         }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked)
@@ -688,7 +493,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 catch (Exception) { }
             } while (true);
         }
-
         private void c()
         {
             int len = 0;
@@ -701,7 +505,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         if (len != On.Detected.Count)
                         {
                             Resum = true;
-
                             Invoke((MethodInvoker)delegate ()
                             {
                                 textBoxImageTextDeepLearning.Text = "";
@@ -712,13 +515,11 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                                 }
                             });
                             len = On.Detected.Count;
-
                             Resum = false;
                         }
                     }
                 }
                 Thread.Sleep(1000);
-
             } while (true);
         }
         int WordNumber(string s)
@@ -755,14 +556,11 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             } while (c.Length > 0);
             return no;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string Con = textBoxImageTextDeepLearning.Text;
-
             do
             {
-
                 string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
                 if (s.Contains("است.") && WordNumber(s) == 3)
                     TextMinedIs.Add(s);
@@ -773,14 +571,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
             textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
             textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
-
             string IsCon = textBoxImageTextDeepLearning.Text;
-
             textBoxImageTextDeepLearning.Text = Con;
-
             do
             {
-
                 string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
                 if (s.Contains("بود.") && WordNumber(s) == 3)
                     TextMinedWas.Add(s);
@@ -789,9 +583,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             textBoxImageTextDeepLearning.Text = "";
             Was();
             textBoxImageTextDeepLearning.Text = IsCon + textBoxImageTextDeepLearning.Text;
-
             IsCon = textBoxImageTextDeepLearning.Text;
-
             textBoxImageTextDeepLearning.Text = Con;
             Verb.Add("می داد.");
             Verb.Add("می شود.");
@@ -801,7 +593,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 TextMinedVerb.Add(new List<string>());
                 do
                 {
-
                     string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
                     if (s.Contains(Verb[i]) && WordNumber(s) == 3)
                         TextMinedVerb[TextMinedVerb.Count - 1].Add(s);
@@ -818,7 +609,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 textBoxImageTextDeepLearning.Text += TextMinedIs[i];
             textBoxImageTextDeepLearning.Refresh();
             textBoxImageTextDeepLearning.Update();
-
             List<string> mined = new List<string>();
             for (int i = 0; i < TextMinedIs.Count; i++)
                 mined.Add(TextMinedIs[i]);
@@ -826,7 +616,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             {
                 TextMinedLogicsIs.Add(new List<string>());
                 string s = mined[i];
-
                 int no = 0;
                 string c = s;
                 do
@@ -854,16 +643,15 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         if (len > -1)
                         {
                             no++;
-                            //TextMinedLogics[TextMinedLogics.Count - 1].Add(c.Substring(0, len));
+                            
                             c = c.Remove(0, len + 1);
                         }
                     }
                 } while (c.Length > 0);
-
             }
             textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
             ResultsOfSupposed.MindedIsVerb(TextMinedIs, TextMinedLogicsIs);
-            //MessageBox.Show("نتایج!");
+            
             for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)
                 textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];
             textBoxImageTextDeepLearning.Refresh();
@@ -875,7 +663,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 textBoxImageTextDeepLearning.Text += TextMinedWas[i];
             textBoxImageTextDeepLearning.Refresh();
             textBoxImageTextDeepLearning.Update();
-
             List<string> mined = new List<string>();
             for (int i = 0; i < TextMinedWas.Count; i++)
                 mined.Add(TextMinedWas[i]);
@@ -883,7 +670,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             {
                 TextMinedLogicsWs.Add(new List<string>());
                 string s = mined[i];
-
                 int no = 0;
                 string c = s;
                 do
@@ -911,16 +697,15 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         if (len > -1)
                         {
                             no++;
-                            //TextMinedLogics[TextMinedLogics.Count - 1].Add(c.Substring(0, len));
+                            
                             c = c.Remove(0, len + 1);
                         }
                     }
                 } while (c.Length > 0);
-
             }
             textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
             ResultsOfSupposed.MindedWasVerb(TextMinedWas, TextMinedLogicsWs);
-            //MessageBox.Show("نتایج!");
+            
             for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)
                 textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];
             textBoxImageTextDeepLearning.Refresh();
@@ -937,12 +722,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 try
                 {
                     TextMinedLogicsVerb.Add(new List<List<string>>());
-
                     for (int i = 0; i < TextMinedVerb[k].Count; i++)
                         textBoxImageTextDeepLearning.Text += TextMinedVerb[k][i];
                     textBoxImageTextDeepLearning.Refresh();
                     textBoxImageTextDeepLearning.Update();
-
                     List<string> mined = new List<string>();
                     for (int i = 0; i < TextMinedVerb.Count; i++)
                         mined.Add(TextMinedVerb[k][i]);
@@ -950,7 +733,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     {
                         TextMinedLogicsVerb[k].Add(new List<string>());
                         string s = mined[i];
-
                         int no = 0;
                         string c = s;
                         do
@@ -978,21 +760,20 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                                 if (len > -1)
                                 {
                                     no++;
-                                    //TextMinedLogics[TextMinedLogics.Count - 1].Add(c.Substring(0, len));
+                                    
                                     c = c.Remove(0, len + 1);
                                 }
                             }
                         } while (c.Length > 0);
                     
                     }
-
                 }
                 catch (Exception) { }
                 if (Is)
                 {
                     textBoxImageTextDeepLearning.Text += "\r\n========================================\r\n";
                     ResultsOfSupposed.MindedSomeVerb(TextMinedVerb[k], TextMinedLogicsVerb[k], Verb[k]);
-                    //MessageBox.Show("نتایج!");
+                    
                     for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)
                         textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];
                     textBoxImageTextDeepLearning.Refresh();
@@ -1000,32 +781,28 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 }
             }
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (((TextBox)(sender)).Text != "")
             {
                 buttonAddVerb.Visible = true;
-
             }
             else
                 buttonAddVerb.Visible = false;
         }
-
         private void buttonAddVerb_Click(object sender, EventArgs e)
         {
             if (!Verb.Contains(textBox1.Text))
                 Verb.Add(textBox1.Text);
+            textBox1.Text = "";
         }
-
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {
-            //var H = Task.Factory.StartNew(() => c());
-            //tf = Task.Factory.StartNew(() => CreateOneConShape());
-            //tf.Wait();
+            
+            
+            
             CreateOneConShape();
-
             DisablePaint = true;
             MessageBox.Show("Samples!");
             for (int i = 0; i < On.ConjunctedShapeListRequired.KeyboardAllImage.Count; i++)
@@ -1036,7 +813,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 PictureBoxTest.Update();
                 MessageBox.Show("Next!");
                 PictureBoxTest.BackgroundImage.Dispose();
-
             }
             if (!test)
             {
@@ -1046,7 +822,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             {
                 MessageBox.Show("References!");
             }
-
             for (int i = 0; i < On.t.KeyboardAllImage.Count; i++)
             {
                 PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[i];
@@ -1055,7 +830,6 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 PictureBoxTest.Update();
                 MessageBox.Show("Next!");
                 PictureBoxTest.BackgroundImage.Dispose();
-
             }
             DisablePaint = false;
             
@@ -1066,15 +840,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 textBoxImageTextDeepLearning.Update();
             }
             buttonSplitationConjunction.Visible = true;
-            /* for (int i = 0; i < On.t.KeyboardAllImage.Count; i++)
-             {
-                 PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[i];
-                 PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
-                 PictureBoxTest.Refresh();
-                 PictureBoxTest.Update();
-
-             }*/
+            
         }
     }
-
 }

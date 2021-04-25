@@ -250,10 +250,19 @@ namespace ImageTextDeepLearning
                                     tec[o] = new Point((int)((float)Width * (float)(te[o].X - MiX) / (float)(MaX - MiX)), (int)((float)Height * (float)(te[o].Y - MiY) / (float)(MaY - MiY)));
                                 }
                             }
-                            e.DrawLines(Pens.Black, tec);
-                            //e.DrawPolygon(new Pen(Color.Black), tec);
-                            //, System.Drawing.Drawing2D.FillMode.Alternate
-                            e.Dispose();
+
+                            for (int o = 0; o < tec.Length; o++)
+                            {  // Use the addition operator to get the end point.
+                                Point startPoint = new Point(tec[o].X, tec[o].Y);
+                                Point endPoint = startPoint + new Size(1, 1);
+
+                                e.DrawLine(Pens.Black, startPoint, endPoint);
+                            }
+
+                                // e.DrawLines(Pens.Black, tec);
+                                //e.DrawPolygon(new Pen(Color.Black), tec);
+                                //, System.Drawing.Drawing2D.FillMode.Alternate
+                                e.Dispose();
                             MiX = ImMinX(Temp);
                             MiY = ImMinY(Temp);
                             MaX = ImMaxX(Temp);

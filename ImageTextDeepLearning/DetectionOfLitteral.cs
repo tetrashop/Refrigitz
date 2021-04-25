@@ -42,7 +42,7 @@ namespace ImageTextDeepLearning
                 ConjunctedShapeListRequired.ConvertAllTempageToMatrix(tt.AllImage);
                 
                 
-                Detection(Width, Heigh);
+                //Detection(Width, Heigh);
             }
             catch (Exception te)
             {

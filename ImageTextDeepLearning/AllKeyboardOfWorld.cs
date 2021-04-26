@@ -515,7 +515,7 @@ namespace ImageTextDeepLearning
                                     {
                                         if (y - 1 >= 0)
                                         {
-                                            if (x + 1 < he)
+                                            if (x + 1 < wi)
                                             {
                                                 if (x - 1 >= 0)
                                                 {
@@ -543,7 +543,7 @@ namespace ImageTextDeepLearning
                                     {
                                         if (y - 1 >= 0)
                                         {
-                                            if (x + 1 < he)
+                                            if (x + 1 < wi)
                                             {
                                                 if (x - 1 >= 0)
                                                 {
@@ -569,13 +569,13 @@ namespace ImageTextDeepLearning
                                 object pooo = new object();
                                 lock (pooo)
                                 {
-                                    if (x + 1 < he)
+                                    if (y + 1 < he)
                                     {
-                                        if (x - 1 >= 0)
+                                        if (y - 1 >= 0)
                                         {
-                                            if (y + 1 < he)
+                                            if (x + 1 < wi)
                                             {
-                                                if (y - 1 >= 0)
+                                                if (x - 1 >= 0)
                                                 {
                                                     if (((Ab[x, y + 1]) && (Ab[x, y - 1])) || (((!Ab[x + 1, y]) || (!Ab[x + 1, y]))))
                                                         return;
@@ -597,13 +597,13 @@ namespace ImageTextDeepLearning
                                 object nooo = new object();
                                 lock (nooo)
                                 {
-                                    if (x + 1 < he)
+                                    if (y + 1 < he)
                                     {
-                                        if (x - 1 >= 0)
+                                        if (y - 1 >= 0)
                                         {
-                                            if (y + 1 < he)
+                                            if (x + 1 < wi)
                                             {
-                                                if (y - 1 >= 0)
+                                                if (x - 1 >= 0)
                                                 {
                                                     if (((Ab[x, y + 1]) && (Ab[x, y - 1])) || (((!Ab[x + 1, y]) || (!Ab[x + 1, y]))))
                                                         return;

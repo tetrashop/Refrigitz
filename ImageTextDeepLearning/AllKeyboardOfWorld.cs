@@ -442,9 +442,10 @@ namespace ImageTextDeepLearning
                         {
                             if (Ab[x, y])
                             {
+                                bool Is = false;
                                 /*var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
                                 H.Wait();*/
-                                HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab);
+                                HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab, ref Is);
                             }
                         }
                     }
@@ -459,7 +460,7 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
-        private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab)
+        private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             try
             {
@@ -469,19 +470,13 @@ namespace ImageTextDeepLearning
                 bool IsOut4 = false;
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
                     return false;
-                bool Is = false;
+                bool Is = true;
                 object o = new object();
                 lock (o)
                 {
                     if ((Ab[X, Y]))
                     {
-                        if ((x != X || y != Y))
-                        {
-                            if ((Ab[x, y]))
-                            {
-                                return true;
-                            }
-                        }
+                       
 
 
 
@@ -490,8 +485,8 @@ namespace ImageTextDeepLearning
                         if (x + 1 < wi)
                         {
 
-                             Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut1);
-                      
+                            Is = Is && HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut1);
+
                         }
 
 
@@ -499,31 +494,31 @@ namespace ImageTextDeepLearning
 
                         if (x - 1 >= 0)
                         {
-                           Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut2);
-                    
+                            Is = Is && HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut2);
+
                         }
 
 
                         if (y + 1 < he)
                         {
 
-                             Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut3);
-                            
+                            Is = Is && HollowCountreImageCommmonXYUpY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut3);
+
                         }
 
 
                         if (y - 1 >= 0)
                         {
 
-                             Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut4);
-                          
+                            Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut4);
+
                         }
 
 
                         object oo = new object();
                         lock (oo)
                         {
-                            if (IsOut1 && IsOut2 && IsOut3 && IsOut4)
+                            if (Is)
                             {
                                 Im.SetPixel(X, Y, Color.White);
                                 Hollowed = true;
@@ -533,6 +528,7 @@ namespace ImageTextDeepLearning
                     }
 
                 }
+                IsOut = IsOut1 || IsOut2 || IsOut3 || IsOut4;
             }
             catch (Exception t)
             {
@@ -569,19 +565,20 @@ namespace ImageTextDeepLearning
                             if (x + 1 < wi)
                             {
 
-                                 Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+                                Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+                                //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
 
-                             }
+                            }
                         }
                     }
                 }
             }
             catch (Exception t)
             {
-                
+
                 return false;
             }
-            
+
             return Is;
         }
         private bool HollowCountreImageCommmonXYLeftX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
@@ -615,6 +612,7 @@ namespace ImageTextDeepLearning
                             {
 
                                 Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut);
+                                //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
                             }
                         }
                     }
@@ -626,10 +624,10 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                
+
                 return false;
             }
-            
+
             return Is;
         }
         private bool HollowCountreImageCommmonXYUpY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
@@ -662,6 +660,7 @@ namespace ImageTextDeepLearning
                             {
 
                                 Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut);
+                                //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
                             }
                         }
                     }
@@ -669,10 +668,10 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                
+
                 return false;
             }
-            
+
             return Is;
         }
         private bool HollowCountreImageCommmonXYDowwnY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
@@ -704,8 +703,9 @@ namespace ImageTextDeepLearning
                             if (y + 1 < he)
                             {
 
-                                 Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut);
-                          
+                                Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut);
+                                //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+
                             }
                         }
                     }
@@ -714,10 +714,10 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                
+
                 return false;
             }
-            
+
             return Is;
         }
         //store all strings list to proper  images themselves list

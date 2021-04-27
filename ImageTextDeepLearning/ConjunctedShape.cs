@@ -338,7 +338,7 @@ namespace ImageTextDeepLearning
                                         object o = new object();
                                         lock (o)
                                         {
-                                            if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                            if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                             {
                                                 TemB[k, p] = true;
                                             }
@@ -400,7 +400,7 @@ namespace ImageTextDeepLearning
                                         object o = new object();
                                         lock (o)
                                         {
-                                            if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                            if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                             {
                                                 TemB[k, p] = true;
                                             }
@@ -555,13 +555,13 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
-        private bool HollowCountreImageCommmon(ref Bitmap Img, bool[,] Ab)
+        private bool HollowCountreImageCommmon(ref Bitmap Im, bool[,] Ab)
         {
             try
             {
-                int wi = Img.Width;
-                int he = Img.Height;
-                Bitmap Im = Img;
+                int wi = Im.Width;
+                int he = Im.Height;
+             
                 List<Task> th = new List<Task>();
                 Graphics e = Graphics.FromImage(Im);
                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -579,15 +579,15 @@ namespace ImageTextDeepLearning
                         {
                             if (Ab[x, y])
                             {
-                                var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
-
-
+                                /*var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
+                                H.Wait();*/
+                                HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab);
                             }
                         }
                     }
                 }
                 e.Dispose();
-                Img = Im;
+       
             }
             catch (Exception t)
             {
@@ -596,9 +596,8 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
-        private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab)
+        private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab)
         {
-            Bitmap Im = Img;
             try
             {
                 bool IsOut1 = false;
@@ -611,11 +610,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if ((Ab[X, Y]))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if ((Ab[x, y]))
                             {
                                 return true;
                             }
@@ -628,8 +627,7 @@ namespace ImageTextDeepLearning
                         if (x + 1 < wi)
                         {
 
-                            var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut1));
-                            H.Wait();
+                            Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut1);
 
                         }
 
@@ -638,8 +636,7 @@ namespace ImageTextDeepLearning
 
                         if (x - 1 >= 0)
                         {
-                            var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut2));
-                            H.Wait();
+                            Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut2);
 
                         }
 
@@ -647,16 +644,15 @@ namespace ImageTextDeepLearning
                         if (y + 1 < he)
                         {
 
-                            var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut3));
-                            H.Wait();
+                            Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut3);
+
                         }
 
 
                         if (y - 1 >= 0)
                         {
 
-                            var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut4));
-                            H.Wait();
+                            Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut4);
 
                         }
 
@@ -667,7 +663,6 @@ namespace ImageTextDeepLearning
                             if (IsOut1 && IsOut2 && IsOut3 && IsOut4)
                             {
                                 Im.SetPixel(X, Y, Color.White);
-                                Img = Im;
                                 Hollowed = true;
                                 return false;
                             }
@@ -678,17 +673,14 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                Img = Im;
                 //MessageBox.Show(t.ToString());
                 return false;
             }
-            Img = Im;
             return true;
         }
-        private bool HollowCountreImageCommmonXYRigthX(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
+        private bool HollowCountreImageCommmonXYRigthX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
-            Bitmap Im = Img;
-            bool Is = IsOut;
+            bool Is = false;
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -696,11 +688,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if ((Ab[X, Y]))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if ((Ab[x, y]))
                             {
                                 IsOut = true;
                                 return true;
@@ -713,9 +705,9 @@ namespace ImageTextDeepLearning
                         {
                             if (x + 1 < wi)
                             {
-                            
-                                    var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref Is));
-                             
+
+                                Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+
                             }
                         }
                     }
@@ -723,18 +715,16 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                Img = Im;
-                IsOut = Is;
+                
                 return false;
             }
-            Img = Im;
-            IsOut = Is;
+            
             return Is;
         }
-        private bool HollowCountreImageCommmonXYLeftX(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
+        private bool HollowCountreImageCommmonXYLeftX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
-            Bitmap Im = Img;
-            bool Is = IsOut;
+
+            bool Is = false;
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -742,11 +732,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if ((Ab[X, Y]))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if ((Ab[x, y]))
                             {
                                 IsOut = true;
                                 return true;
@@ -760,9 +750,8 @@ namespace ImageTextDeepLearning
                         {
                             if (x - 1 >= 0)
                             {
-                         
-                                    var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref Is));
-                    
+
+                                Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut);
                             }
                         }
                     }
@@ -774,18 +763,15 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                Img = Im;
-                IsOut = Is;
+                
                 return false;
             }
-            Img = Im;
-            IsOut = Is;
+            
             return Is;
         }
-        private bool HollowCountreImageCommmonXYUpY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
+        private bool HollowCountreImageCommmonXYUpY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
-            Bitmap Im = Img;
-            bool Is = IsOut;
+            bool Is = false;
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -793,11 +779,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if ((Ab[X, Y]))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if ((Ab[x, y]))
                             {
                                 IsOut = true;
                                 return true;
@@ -811,9 +797,8 @@ namespace ImageTextDeepLearning
                         {
                             if (y + 1 < he)
                             {
-                        
-                                    var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref Is));
-                           
+
+                                Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut);
                             }
                         }
                     }
@@ -821,18 +806,15 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                Img = Im;
-                IsOut = Is;
+                
                 return false;
             }
-            Img = Im;
-            IsOut = Is;
+            
             return Is;
         }
-        private bool HollowCountreImageCommmonXYDowwnY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
+        private bool HollowCountreImageCommmonXYDowwnY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
-            Bitmap Im = Img;
-            bool Is = IsOut;
+            bool Is = false;
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
@@ -840,11 +822,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if ((Ab[X, Y]))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if ((Ab[x, y]))
                             {
                                 IsOut = true;
                                 return true;
@@ -858,9 +840,9 @@ namespace ImageTextDeepLearning
                         {
                             if (y + 1 < he)
                             {
-                              
-                                    var H = Task.Factory.StartNew(() => Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref Is));
-                          
+
+                                Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut);
+
                             }
                         }
                     }
@@ -869,15 +851,12 @@ namespace ImageTextDeepLearning
             }
             catch (Exception t)
             {
-                Img = Im;
-                IsOut = Is;
+                
                 return false;
             }
-            Img = Im;
-            IsOut = Is;
+            
             return Is;
         }
-
         //Create Conjuncted image
         private bool ConjunctedShapeCreate(MainForm d)
         {

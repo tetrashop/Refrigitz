@@ -1152,6 +1152,27 @@ namespace ContourAnalysisNS
                  }
             } while (OverAgain);
         }
+        
+        int GetVerIndV(int VertNo, List<Vertex> XvE)
+        {
+            int vern = 0;
+            for (int i = 0; i < XvE.Count; i++)
+            {
+                if (XvE[i].VertexNumber == VertNo)
+                    return i;
+            }
+            return vern;
+        }
+        Vertex GetVerIdOE(int VertNo, List<Vertex> XvE)
+        {
+            int vern = 0;
+            for (int i = 0; i < XvE.Count; i++)
+            {
+                if (XvE[i].VertexNumber == VertNo)
+                    return XvE[i];
+            }
+            return null;
+        }
         Vertex GetVerIdO(int VertNo)
         {
             int vern = 0;
@@ -1161,6 +1182,16 @@ namespace ContourAnalysisNS
                     return Xv[i];
             }
             return null;
+        }
+        int GetVerIndE(int VertNo, List<Vertex> XvE)
+        {
+            int vern = 0;
+            for (int i = 0; i < XvE.Count; i++)
+            {
+                if (XvE[i].VertexNumber == VertNo)
+                    return i;
+            }
+            return vern;
         }
         int GetVerInd(int VertNo)
         {
@@ -1176,12 +1207,16 @@ namespace ContourAnalysisNS
         {
             return Xv[id].VertexNumber;
         }
-        public GraphDivergenceMatrix(List<Vertex> A, List<Line> Xl, int n, int m)
+        int GetVerId(int id, List<Vertex> XvE)
+        {
+            return XvE[id].VertexNumber;
+        }
+        public GraphDivergenceMatrix(List<Vertex> A, List<Line> XlE, int n, int m)
         {
             N = n;
             M = m;
             //To Do Create Graph mininimum graph
-            for (int k = 0; k < Xl.Count; k++)
+            for (int k = 0; k < XlE.Count; k++)
             {
                 for (int i = 0; i < A.Count; i++)
                 {
@@ -1195,19 +1230,21 @@ namespace ContourAnalysisNS
                                 continue;
                             }
 
-                            if (!ExistV(Xv[i].X, Xv[j].Y) && (Xl.Count > k) && (A.Count > j))
+                            if (!ExistV(A[i].X, A[j].Y) && (XlE.Count > k) && (A.Count > j))
                             {
-                                Xv.Add(new Vertex(Xl[k].VertexIndexX, A[i].X, A[i].Y));
+                                Xv.Add(new Vertex(XlE[k].VertexIndexX, A[i].X, A[i].Y));
                             }
-                            if (!ExistV(Xv[GetVerInd(Xl[k].VertexIndexX)].X, Xv[GetVerInd(Xl[k].VertexIndexY)].Y) && (Xl.Count > k) && (A.Count > j))
+                            if (!ExistV(A[GetVerIndE(XlE[k].VertexIndexX, A)].X, A[GetVerIndE(XlE[k].VertexIndexY, A)].Y) && (XlE.Count > k) && (A.Count > j))
                             {
-                                Xv.Add(new Vertex(Xl[k].VertexIndexY, A[j].X, A[j].Y));
+                                Xv.Add(new Vertex(XlE[k].VertexIndexY, A[j].X, A[j].Y));
                             }
-                            if (!ExistL(Xl[k].VertexIndexX, Xl[k].VertexIndexY) && (Xl.Count > k) && (A.Count > j) && (A.Count > i))
+
+                            if (!ExistL(XlE[k].VertexIndexX, XlE[k].VertexIndexY) && (XlE.Count > k) && (A.Count > j) && (A.Count > i))
                             {
                                 float we = (float)Math.Sqrt((A[i].X - A[j].X) * (A[i].X - A[j].X) + (A[i].Y - A[j].Y) * (A[i].Y - A[j].Y));
-                                Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                Xl.Add(new Line(we, A[A.Count - 2].VertexNumber, A[A.Count - 1].VertexNumber));
                             }
+
                         }
                     }
                 }

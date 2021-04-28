@@ -753,13 +753,13 @@ namespace ImageTextDeepLearning
                                 //{
                                 for (int h = 0; h < fonts.Count; h++)
                                 {   //proper empty image coinstruction object
-                                    Bitmap Temp = new Bitmap(100, 100);
+                                    Bitmap Temp = new Bitmap(Width, Height);
                                     //initate new root image empty
                                     //create proper image graphics
                                     Graphics e = Graphics.FromImage(Temp);
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Draw fill white image
-                                    e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
+                                    e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
                                     GraphicsPath path = new GraphicsPath(FillMode.Alternate);
                                     //draw string
@@ -771,74 +771,76 @@ namespace ImageTextDeepLearning
                                             sf.Alignment = StringAlignment.Center;
                                             sf.LineAlignment = StringAlignment.Center;
                                             path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                                (int)FontStyle.Bold, (Width + Height),
-                                                new Rectangle(0, 0, 100, 100), sf);
+                                                (int)FontStyle.Bold, (1F),
+                                                new Rectangle(0, 0, Width, Height), sf);
                                         }
                                     }
                                     using (Pen pen = new Pen(Color.Black, 1))
                                     {
                                         e.DrawPath(pen, path);
                                     }
+                                 
                                     //retrive min and max of tow X and Y
-                                    int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
-                                    int MxM = (MaX - MiX) / 2;
-                                    int MyM = (MaY - MiY) / 2;
-                                    int Mx = MxM * 2;
-                                    int My = MyM * 2;
                                     Bitmap Te = null;
-                                    e.Dispose();
-                                    if ((MaX - MiX) < (MaY - MiY))
-                                    {
-                                        if (MiX < MaX && MiY < MaY)
-                                        {
-                                            //crop to proper space
-                                            Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
-                                        }
-                                        else
-                                        {
-                                            Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (MiX < MaX && MiY < MaY)
-                                        {
-                                            //crop to proper space
-                                            Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
-                                        }
-                                        else
-                                        {
-                                            Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                        }
-                                    }/*
-e = Graphics.FromImage(Te);
-                                    e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                                    bool[,] TemB = new bool[Width, Height];
-                                    for (int k = 0; k < Width; k++)
-                                    {
-                                        for (int p = 0; p < Height; p++)
-                                        {
-                                            object o = new object();
-                                            lock (o)
-                                            {  
-                                                if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
-                                                {
-                                                    TemB[k, p] = true;
-                                                }
-                                                else
-                                                {
-                                                    TemB[k, p] = false;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    e.Dispose();
-                                    Do = HollowCountreImageCommmon(ref Te, TemB);
-                                    if (!Do)
-                                    {
-                                        MessageBox.Show("Hollowed Fatal Error");
-                                        return false;
-                                    }*/
+                                    Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+                                    /*int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
+                                                                       int MxM = (MaX - MiX) / 2;
+                                                                       int MyM = (MaY - MiY) / 2;
+                                                                       int Mx = MxM * 2;
+                                                                       int My = MyM * 2;
+                                                                       e.Dispose();
+                                                                       if ((MaX - MiX) < (MaY - MiY))
+                                                                       {
+                                                                           if (MiX < MaX && MiY < MaY)
+                                                                           {
+                                                                               //crop to proper space
+                                                                               Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                                                           }
+                                                                           else
+                                                                           {
+                                                                               Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+                                                                           }
+                                                                       }
+                                                                       else
+                                                                       {
+                                                                           if (MiX < MaX && MiY < MaY)
+                                                                           {
+                                                                               //crop to proper space
+                                                                               Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                                                           }
+                                                                           else
+                                                                           {
+                                                                               Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+                                                                           }
+                                                                       }
+                                   e = Graphics.FromImage(Te);
+                                                                       e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                                                       bool[,] TemB = new bool[Width, Height];
+                                                                       for (int k = 0; k < Width; k++)
+                                                                       {
+                                                                           for (int p = 0; p < Height; p++)
+                                                                           {
+                                                                               object o = new object();
+                                                                               lock (o)
+                                                                               {  
+                                                                                   if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                                                                   {
+                                                                                       TemB[k, p] = true;
+                                                                                   }
+                                                                                   else
+                                                                                   {
+                                                                                       TemB[k, p] = false;
+                                                                                   }
+                                                                               }
+                                                                           }
+                                                                       }
+                                                                       e.Dispose();
+                                                                       Do = HollowCountreImageCommmon(ref Te, TemB);
+                                                                       if (!Do)
+                                                                       {
+                                                                           MessageBox.Show("Hollowed Fatal Error");
+                                                                           return false;
+                                                                       }*/
                                     e = Graphics.FromImage(Te);
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Add
@@ -875,14 +877,14 @@ e = Graphics.FromImage(Te);
                             else//When font not installed
                             {
                                 //proper empty image coinstruction object
-                                Bitmap Temp = new Bitmap(100, 100);
+                                Bitmap Temp = new Bitmap(Width, Height);
                                 //initate new root image empty
                                 //create proper image graphics
                                 Graphics e = Graphics.FromImage(Temp);
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 //Draw fill white image
-                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
-                                //draw string
+                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+
                                 GraphicsPath path = new GraphicsPath(FillMode.Alternate);
                                 //draw string
                                 e.SmoothingMode = SmoothingMode.AntiAlias;
@@ -893,21 +895,22 @@ e = Graphics.FromImage(Te);
                                         sf.Alignment = StringAlignment.Center;
                                         sf.LineAlignment = StringAlignment.Center;
                                         path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                            (int)FontStyle.Bold, (Width + Height),
-                                            new Rectangle(0, 0, 100, 100), sf);
+                                            (int)FontStyle.Bold, (1F),
+                                            new Rectangle(0, 0, Width, Height), sf);
                                     }
                                 }
                                 using (Pen pen = new Pen(Color.Black, 1))
                                 {
                                     e.DrawPath(pen, path);
                                 }
+                                Bitmap Te = null;
+                                Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                 //retrive min and max of tow X and Y
-                                int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
+                                /*int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
                                 int MyM = (MaY - MiY) / 2;
                                 int Mx = MxM * 2;
                                 int My = MyM * 2;
-                                Bitmap Te = null;
                                 e.Dispose();
                                 if ((MaX - MiX) < (MaY - MiY))
                                 {
@@ -934,7 +937,7 @@ e = Graphics.FromImage(Te);
                                     }
                                 }
                                 e.Dispose();
-                                /*e = Graphics.FromImage(Te);
+                                e = Graphics.FromImage(Te);
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 bool[,] TemB = new bool[Width, Height];
                                 for (int k = 0; k < Width; k++)
@@ -963,7 +966,7 @@ e = Graphics.FromImage(Te);
                                     return false;
                                 }*/
                                 //Add
-                                
+
                                 //create proper conjunction matrix
                                 e.Dispose();
                                 e = Graphics.FromImage(Te);

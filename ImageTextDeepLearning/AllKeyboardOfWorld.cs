@@ -761,9 +761,24 @@ namespace ImageTextDeepLearning
                                     //Draw fill white image
                                     e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
 
+                                    GraphicsPath path = new GraphicsPath(FillMode.Alternate);
                                     //draw string
-                                    e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1))), (float)((Width + Height))
-                                                                                          , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100));
+                                    e.SmoothingMode = SmoothingMode.AntiAlias;
+                                    using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1)))))
+                                    {
+                                        using (StringFormat sf = new StringFormat())
+                                        {
+                                            sf.Alignment = StringAlignment.Center;
+                                            sf.LineAlignment = StringAlignment.Center;
+                                            path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
+                                                (int)FontStyle.Bold, (Width + Height),
+                                                new Rectangle(0, 0, 100, 100), sf);
+                                        }
+                                    }
+                                    using (Pen pen = new Pen(Color.Black, 1))
+                                    {
+                                        e.DrawPath(pen, path);
+                                    }
                                     //retrive min and max of tow X and Y
                                     int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                     int MxM = (MaX - MiX) / 2;
@@ -796,7 +811,7 @@ namespace ImageTextDeepLearning
                                             Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                         }
                                     }
-                                    e = Graphics.FromImage(Te);
+e = Graphics.FromImage(Te);
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     bool[,] TemB = new bool[Width, Height];
                                     for (int k = 0; k < Width; k++)
@@ -868,8 +883,24 @@ namespace ImageTextDeepLearning
                                 //Draw fill white image
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
                                 //draw string
-                                e.DrawString(Convert.ToString(KeyboardAllStrings[i]), new Font(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1))), (float)((Width + Height))
-                                                                                      , FontStyle.Bold, GraphicsUnit.Point), new SolidBrush(Color.Black), new Rectangle(0, 0, 100, 100));
+                                GraphicsPath path = new GraphicsPath(FillMode.Alternate);
+                                //draw string
+                                e.SmoothingMode = SmoothingMode.AntiAlias;
+                                using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))
+                                {
+                                    using (StringFormat sf = new StringFormat())
+                                    {
+                                        sf.Alignment = StringAlignment.Center;
+                                        sf.LineAlignment = StringAlignment.Center;
+                                        path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
+                                            (int)FontStyle.Bold, (Width + Height),
+                                            new Rectangle(0, 0, 100, 100), sf);
+                                    }
+                                }
+                                using (Pen pen = new Pen(Color.Black, 1))
+                                {
+                                    e.DrawPath(pen, path);
+                                }
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;

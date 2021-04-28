@@ -220,13 +220,8 @@ namespace ImageTextDeepLearning
                     for (int i = 0; i < All.Count; i++)
                     {
                         //retrive min and max of tow X and Y
-                        Bitmap Temp = new Bitmap(Width, Height);
-                        Graphics e = Graphics.FromImage(Temp);
-                        e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
-                        e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                        //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, Mx));
+                         //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, Mx));
                         Point[] te = All[i].ToArray();
-                        Point[] tec = new Point[All[i].ToArray().Length];
                         int MiX = MinX(te), MiY = MinY(te), MaX = MaxX(te), MaY = MaxY(te);
 
                         //centeralized
@@ -234,59 +229,33 @@ namespace ImageTextDeepLearning
                         int MyM = (MaY - MiY) / 2;
                         int Mx = MxM * 2;
                         int My = MyM * 2;
+                        Bitmap Temp = new Bitmap(MaX, MaY);
+                        Graphics e = Graphics.FromImage(Temp);
+                        e.FillRectangle(Brushes.White, new Rectangle(0, 0, MaX, MaY));
+                        e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         //initate new root image empty
                         if (!(MaX == MiX || MaY == MiY))
                         {
-                            if ((MaX - MiX) < (MaY - MiY))
+
+
+                            GraphicsPath path = new GraphicsPath(FillMode.Alternate);
+                            //draw string
+                            e.SmoothingMode = SmoothingMode.AntiAlias;
+                            path.AddLines(te);
+                            if (Width > MaX)
                             {
-                                for (int o = 0; o < All[i].ToArray().Length; o++)
+                                using (Pen pen = new Pen(Color.Black, (Width / MaX) / 5))
                                 {
-                                    tec[o] = new Point((int)(te[o].X - MiX), (int)(te[o].Y - MiY));
+                                    e.DrawPath(pen, path);
                                 }
                             }
                             else
                             {
-                                for (int o = 0; o < All[i].ToArray().Length; o++)
+                                using (Pen pen = new Pen(Color.Black, (MaX / Width) / 5))
                                 {
-                                    tec[o] = new Point((int)(te[o].X - MiX), (int)(te[o].Y - MiY));
+                                    e.DrawPath(pen, path);
                                 }
                             }
-                            MiX = MinX(tec);
-                            MiY = MinY(tec);
-                            MaX = MaxX(tec);
-                            MaY = MaxY(tec);
-
-                            //centeralized
-                            MxM = (MaX - MiX) / 2;
-                            MyM = (MaY - MiY) / 2;
-                            Mx = MxM * 2;
-                            My = MyM * 2;
-
-                            if ((MaX - MiX) < (MaY - MiY))
-                            {
-                                for (int o = 0; o < All[i].ToArray().Length; o++)
-                                {
-                                    tec[o] = new Point((int)((float)Width * (float)(tec[o].X) / (float)(MaY - MiY)), (int)((float)Height * (float)(tec[o].Y) / (float)(MaY - MiY)));
-                                }
-                            }
-                            else
-                            {
-                                for (int o = 0; o < All[i].ToArray().Length; o++)
-                                {
-                                    tec[o] = new Point((int)((float)Width * (float)(tec[o].X) / (float)(MaX - MiX)), (int)((float)Height * (float)(tec[o].Y) / (float)(MaX - MiX)));
-                                }
-                            }
-                            for (int o = 0; o < tec.Length; o++)
-                            {  // Use the addition operator to get the end point.
-                                Point startPoint = new Point(tec[o].X, tec[o].Y);
-                                Point endPoint = startPoint + new Size(1, 1);
-
-                                e.DrawLine(Pens.Black, startPoint, endPoint);
-                            }
-
-                            // e.DrawLines(Pens.Black, tec);
-                            //e.DrawPolygon(new Pen(Color.Black), tec);
-                            //, System.Drawing.Drawing2D.FillMode.Alternate
                             e.Dispose();
                             MiX = ImMinX(Temp);
                             MiY = ImMinY(Temp);
@@ -307,8 +276,7 @@ namespace ImageTextDeepLearning
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        //Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
                                     }
                                     else
                                     {
@@ -320,15 +288,15 @@ namespace ImageTextDeepLearning
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        //Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
                                     }
                                     else
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
-                                }       //add image
-                                bool[,] TemB = new bool[Width, Height];
+                                }
+                                //add image
+                                /*bool[,] TemB = new bool[Width, Height];
                                 e = Graphics.FromImage(Te);
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 for (int k = 0; k < Width; k++)
@@ -356,7 +324,7 @@ namespace ImageTextDeepLearning
                                     MessageBox.Show("Hollowed Fatal Error");
                                     return false;
                                 }
-                               
+                                */
 
                                 // AllImage.Add((Bitmap)Te.Clone());
                                 AllImage.Add(Te);
@@ -369,8 +337,7 @@ namespace ImageTextDeepLearning
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        //Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
                                     }
                                     else
                                     {
@@ -382,8 +349,7 @@ namespace ImageTextDeepLearning
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        //Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
                                     }
                                     else
                                     {

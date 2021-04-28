@@ -810,7 +810,7 @@ namespace ImageTextDeepLearning
                                         {
                                             Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                         }
-                                    }
+                                    }/*
 e = Graphics.FromImage(Te);
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     bool[,] TemB = new bool[Width, Height];
@@ -838,7 +838,7 @@ e = Graphics.FromImage(Te);
                                     {
                                         MessageBox.Show("Hollowed Fatal Error");
                                         return false;
-                                    }
+                                    }*/
                                     e = Graphics.FromImage(Te);
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Add
@@ -934,7 +934,7 @@ e = Graphics.FromImage(Te);
                                     }
                                 }
                                 e.Dispose();
-                                e = Graphics.FromImage(Te);
+                                /*e = Graphics.FromImage(Te);
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 bool[,] TemB = new bool[Width, Height];
                                 for (int k = 0; k < Width; k++)
@@ -961,7 +961,7 @@ e = Graphics.FromImage(Te);
                                 {
                                     MessageBox.Show("Hollowed Fatal Error");
                                     return false;
-                                }
+                                }*/
                                 //Add
                                 
                                 //create proper conjunction matrix

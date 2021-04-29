@@ -139,8 +139,8 @@ namespace ContourAnalysisNS
                         {
                             return true;
                         }
-                        else
-                            return Z.SameRikhtThisIsLessVertex(Ab, Bb);
+                        //else
+                            //return Z.SameRikhtThisIsLessVertex(Ab, Bb);
                     }
                 }
             }

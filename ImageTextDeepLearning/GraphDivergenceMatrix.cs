@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using howto_WPF_3D_triangle_normalsuser;
 namespace ContourAnalysisNS
 {
+    //main graph
     public class GraphS
     {
         List<float> SumWeighEveryLines = new List<float>();
@@ -14,6 +15,7 @@ namespace ContourAnalysisNS
         public static SameRikhEquvalent ZB = null;
         public SameRikhEquvalent A, B;
         private readonly int N, M;
+        //constructore
         public GraphS(bool[,] Ab, bool[,] Bb, int n, int m, bool Achange)
         {
             try
@@ -21,6 +23,7 @@ namespace ContourAnalysisNS
                 Drawn = false;
                 N = n;
                 M = m;
+                //create inherent graph first 
                 A = new SameRikhEquvalent(Ab, n, m);
                 if (A != null)
                 {
@@ -28,6 +31,7 @@ namespace ContourAnalysisNS
                     A.CreateAngleAndLines();
                     Drawn = true;
                 }
+                //create inherent graph second
                 B = new SameRikhEquvalent(Bb, n, m);
                 if (B != null)
                 {
@@ -45,6 +49,7 @@ namespace ContourAnalysisNS
         public GraphS()
         {
         }
+        //sub graphs ordered angle compairing
         bool TowSubGraphEqualiity(List<SameRikhEquvalent> A, List<SameRikhEquvalent> B)
         {
             bool Is = false;
@@ -71,6 +76,7 @@ namespace ContourAnalysisNS
             div /= ((float)t.Count * ((float)t.Count - 1));
             return div;
         }
+        //consider calculated tow graph lines weigth linearity creation (all continuse lines with threshold below make connected line)
         public bool SameSumWeigth()
         {
             if (A.SumWeighEveryLines.Count != B.SumWeighEveryLines.Count)
@@ -98,6 +104,7 @@ namespace ContourAnalysisNS
             B.Xl.Clear();
             B.Xv.Clear();
         }
+        //main method creation and decision
         public bool GraphSameRikht(bool[,] Ab, bool[,] Bb, int n, int m, bool Achange)
         {
             
@@ -146,6 +153,7 @@ namespace ContourAnalysisNS
             }
             return false;
         }
+        //deep learning main method
         public bool SameRikhtThisIsLessVertex(bool[,] Ab, bool[,] Bb)
         {
             bool Is = false;
@@ -180,12 +188,14 @@ namespace ContourAnalysisNS
             return Is;
         }
     }
+    //main containing class, core basic class
     public class GraphDivergenceMatrix
     {
         public List<Vertex> Xv = new List<Vertex>();
         public List<Line> Xl = new List<Line>();
         public int N, M;
         public List<Line> XlOverLap = new List<Line>();
+        //consider existance of vertex in a graph basically
         public bool ExistV(int x1, int y1)
         {
             bool Is = false;
@@ -205,6 +215,7 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+        //consider existance of line in a graph parameterlly
         public bool ExistK(int x1, int y1, List<Vertex> K)
         {
             bool Is = false;
@@ -224,6 +235,7 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+        //consider existance of line in a graph basically
         public bool ExistL(int x1, int y1)
         {
             bool Is = false;
@@ -246,6 +258,8 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+        //consider existance of overlap of parameter line in a graph basically
+
         public bool ExistLOverLap(int x1, int y1)
         {
             bool Is = false;
@@ -266,6 +280,7 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+        //delete extera lines basically main method
         public void XiXjDelete()
         {
             try
@@ -280,6 +295,7 @@ namespace ContourAnalysisNS
                 MessageBox.Show(t.ToString());
             }
         }
+        //greater than horisentally
         public void XiXjDeleteGreatX()
         {
             try
@@ -341,6 +357,7 @@ namespace ContourAnalysisNS
                 return;
             }
         }
+        //greater than vertically
         public void XiXjDeleteGreatY()
         {
             try
@@ -402,6 +419,7 @@ namespace ContourAnalysisNS
                 return;
             }
         }
+        //less than horisentally
         public void XiXjDeleteLessX()
         {
             try
@@ -463,6 +481,7 @@ namespace ContourAnalysisNS
                 return;
             }
         }
+        //less than vertically
         public void XiXjDeleteLessY()
         {
             try
@@ -524,6 +543,7 @@ namespace ContourAnalysisNS
                 return;
             }
         }
+        //create line object
         public Line d(Vertex A, Vertex B)
         {
             Line dd = null;
@@ -572,6 +592,7 @@ namespace ContourAnalysisNS
             }
             return dd;
         }
+        //determin deletable
         private bool IsXixJisDeletable(ref Line C, Vertex A, Vertex B, Vertex Next, ref List<Vertex> K, ref List<Vertex> xlv)
         {
             bool Is = false;
@@ -605,6 +626,7 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+        //delete lines in hollowed section
         public void IJBelongToLineHaveFalseBolleanA(bool[,] A)
         {
             for (int i = 0; i < Xv.Count; i++)
@@ -723,6 +745,7 @@ namespace ContourAnalysisNS
                 }
             }
         }
+        //reduced from extera opp
         public GraphDivergenceMatrix Reco(bool[,] A, int n, int m, bool Achange)
         {
             if (!Achange)
@@ -737,6 +760,7 @@ namespace ContourAnalysisNS
             }
             return this;
         }
+        //proper minimum line not existance basically
         bool IsLineMinimumNotInXl(bool[,] A, float weB, int n, int m)
         {
             bool Is = true;
@@ -776,6 +800,7 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+        //constructor main of graph
         public GraphDivergenceMatrix(bool[,] A, int n, int m)
         {
             bool FirstCchanged = false;
@@ -1173,6 +1198,7 @@ namespace ContourAnalysisNS
             }
             return null;
         }
+        //return verex object by number bassically
         Vertex GetVerIdO(int VertNo)
         {
             int vern = 0;
@@ -1182,7 +1208,8 @@ namespace ContourAnalysisNS
                     return Xv[i];
             }
             return null;
-        }
+        }  
+        //return verex index by number parameterlly
         int GetVerIndE(int VertNo, List<Vertex> XvE)
         {
             int vern = 0;
@@ -1211,6 +1238,8 @@ namespace ContourAnalysisNS
         {
             return XvE[id].VertexNumber;
         }
+        //reconstructor main of graph after deep learning
+
         public GraphDivergenceMatrix(List<Vertex> A, List<Line> XlE, int n, int m)
         {
             N = n;
@@ -1251,6 +1280,7 @@ namespace ContourAnalysisNS
             }
             XiXjDelete();
         }
+        //check validity reconstructed main of graph after deep learning
         public static bool CheckedIsSameRikhtOverLap(GraphDivergenceMatrix sma, GraphDivergenceMatrix Rec)
         {
             bool Is = false;
@@ -1337,6 +1367,8 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+
+        //deep learning core method
         public bool IsSameRikhtVertex(bool[,] Ab, GraphDivergenceMatrix BB, ref List<Vertex> Kk, ref List<Vertex> ChechOnFinisshedI)
         {
             bool Is = false;
@@ -1367,6 +1399,7 @@ namespace ContourAnalysisNS
             ChechOnFinisshedI = ChechOnFinisshed;
             return Is;
         }
+        //deep learning sub core method
         private bool IsSameRikht(bool[,] Ab, int x, int y, GraphDivergenceMatrix BB, ref List<Vertex> Kk, ref List<Vertex> ChechOnFinisshedI)
         {
             bool exit = false;
@@ -1487,10 +1520,12 @@ namespace ContourAnalysisNS
             return Is;
         }
     }
+    //vertex class
     public class Vertex
     {
         public int VertexNumber;
         public int X, Y;
+        //constructore
         public Vertex(int Vno, int x, int y)
         {
             VertexNumber = Vno;
@@ -1498,16 +1533,19 @@ namespace ContourAnalysisNS
             Y = y;
         }
     }
+    //line class
     public class Line
     {
         public int VertexIndexX, VertexIndexY;
         public float Weigth;
+        //constructor
         public Line(float Weit, int inx, int iny)
         {
             VertexIndexX = inx;
             VertexIndexY = iny;
             Weigth = Weit;
         }
+        //when to line have intersect or overlap
         public static bool IsTowLineIsIntersect(Vertex v0, Vertex v1, Vertex v2, Vertex v3, int n, int m)
         {
             bool Is = false;
@@ -1526,6 +1564,7 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+        //is points in vertexes of line
         public static bool IsPointsInVertexes(Vertex v1, Vertex v2, int x, int y)
         {
             bool Is = false;
@@ -1540,6 +1579,7 @@ namespace ContourAnalysisNS
             return Is;
         }
     }
+    //inhereted class
     public class SameRikhEquvalent : GraphDivergenceMatrix
     {
         double Maxan = Math.PI / 90;
@@ -1557,9 +1597,11 @@ namespace ContourAnalysisNS
         List<List<Vertex>> ClosedCurved = new List<List<Vertex>>();
         List<bool> IsClosedCurved = new List<bool>();
         List<int> ClosedCurvedIndexI = new List<int>();
+        //constructor only
         public SameRikhEquvalent(bool[,] A, int n, int m) : base(A, n, m)
         {
         }
+        //constructor only
         public SameRikhEquvalent(List<Vertex> A, List<Line> Xl, int n, int m) : base(A, Xl, n, m)
         {
         }
@@ -1582,6 +1624,7 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+
         public bool ExistLd(int x1, int y1)
         {
             bool Is = false;
@@ -1605,6 +1648,7 @@ namespace ContourAnalysisNS
             }
             return Is;
         }
+        //create sub graph boolean matrix by index
         bool[,] CreateBooleanSubGraph(int i)
         {
             bool[,] c = new bool[N, M];
@@ -1617,6 +1661,7 @@ namespace ContourAnalysisNS
             }
             return c;
         }
+        //list sub graph matrix
         void CreateBolleanMatrixOfSubGraph()
         {
             if (numberOfClosedCurved > 0)
@@ -1627,6 +1672,7 @@ namespace ContourAnalysisNS
                 }
             }
         }
+        //list sub graph
         public void CreateSubSameEquValentGraph()
         {
             if (GreaterThanOneCuurvvedMatrix.Count > 0)
@@ -1653,6 +1699,7 @@ namespace ContourAnalysisNS
             div /= ((float)t.Count * ((float)t.Count - 1));
             return div;
         }
+        
         bool AddIng(Point3Dspaceuser.Point3D p0, Point3Dspaceuser.Point3D p1, ref int ii, ref int jj)
         {
             Point3Dspaceuser.Point3D[] c = new Point3Dspaceuser.Point3D[2];
@@ -1753,6 +1800,7 @@ namespace ContourAnalysisNS
             }
             return null;
         }
+        //create angle and lines
         public void CreateAngleAndLines()
         {
             do
@@ -1959,6 +2007,7 @@ namespace ContourAnalysisNS
             }
             return v;
         }
+        //create closed curved
         public void CreateClosedCurved()
         {
             bool IsNext = false;

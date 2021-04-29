@@ -11,7 +11,10 @@ namespace ImageTextDeepLearning
             Point3D[] c = new Point3D[n];
             double[] d = new double[n];
             for (int i = 0; i < n; i++)
+            {
                 d[i] = -1;
+            }
+
             return Sort(a, d, n);
         }
         public static double[] Do(double[] a)
@@ -20,7 +23,10 @@ namespace ImageTextDeepLearning
             Point3D[] c = new Point3D[n];
             double[] d = new double[n];
             for (int i = 0; i < n; i++)
+            {
                 d[i] = -1;
+            }
+
             return Sort(a, d, n);
         }
         public static float[] Do(float[] a)
@@ -29,10 +35,14 @@ namespace ImageTextDeepLearning
             float[] c = new float[n];
             float[] d = new float[n];
             for (int i = 0; i < n; i++)
+            {
                 d[i] = -1;
+            }
+
             return Sort(a, d, n);
         }
-        static float[] Sort(float[] a, float[] d, int n)
+
+        private static float[] Sort(float[] a, float[] d, int n)
         {
             float[] c = new float[n];
             int H = 0;
@@ -43,7 +53,9 @@ namespace ImageTextDeepLearning
                 for (int i = 0; i < n; i++)
                 {
                     if ((i == d[i]))
+                    {
                         continue;
+                    }
                     else
                     {
                         if (!FirstIndex)
@@ -52,7 +64,9 @@ namespace ImageTextDeepLearning
                             FirstIndex = true;
                         }
                         if (a[Lastindex] < a[i])
+                        {
                             Lastindex = i;
+                        }
                     }
                 }
                 if ((Lastindex != -1) & (H <= n))
@@ -69,14 +83,21 @@ namespace ImageTextDeepLearning
             int n = a.Count;
             float[] d = new float[n];
             for (int i = 0; i < n; i++)
+            {
                 d[i] = -1;
+            }
+
             return Sort(a, d, n);
         }
-        static List<float> Sort(List<float> a, float[] d, int n)
+
+        private static List<float> Sort(List<float> a, float[] d, int n)
         {
             List<float> c = new List<float>();
             for (int i = 0; i < n; i++)
+            {
                 c.Add(new float());
+            }
+
             int H = 0;
             while (H < n)
             {
@@ -85,7 +106,9 @@ namespace ImageTextDeepLearning
                 for (int i = 0; i < n; i++)
                 {
                     if ((i == d[i]))
+                    {
                         continue;
+                    }
                     else
                     {
                         if (!FirstIndex)
@@ -94,7 +117,9 @@ namespace ImageTextDeepLearning
                             FirstIndex = true;
                         }
                         if (a[Lastindex] < a[i])
+                        {
                             Lastindex = i;
+                        }
                     }
                 }
                 if ((Lastindex != -1) & (H <= n))
@@ -111,17 +136,27 @@ namespace ImageTextDeepLearning
             int n = a.Count;
             float[] d = new float[n];
             for (int i = 0; i < n; i++)
+            {
                 d[i] = -1;
+            }
+
             return Sort(a, d, n,ref GreaterThanOneCuurvvedMatrix);
         }
-        static List<SameRikhEquvalent> Sort(List<SameRikhEquvalent> a, float[] d, int n, ref List<bool[,]> GreaterThanOneCuurvvedMatrix)
+
+        private static List<SameRikhEquvalent> Sort(List<SameRikhEquvalent> a, float[] d, int n, ref List<bool[,]> GreaterThanOneCuurvvedMatrix)
         {
             List<SameRikhEquvalent> c = new List<SameRikhEquvalent>();
             List<bool[,]> cGreaterThanOneCuurvvedMatrix = new List<bool[,]>();
             for (int i = 0; i < a.Count; i++)
+            {
                 cGreaterThanOneCuurvvedMatrix.Add(new bool[a[i].N, a[i].M]);
+            }
+
             for (int i = 0; i < n; i++)
+            {
                 c.Add(a[i]);
+            }
+
             int H = 0;
             while (H < n)
             {
@@ -130,7 +165,9 @@ namespace ImageTextDeepLearning
                 for (int i = 0; i < n; i++)
                 {
                     if ((i == d[i]))
+                    {
                         continue;
+                    }
                     else
                     {
                         if (!FirstIndex)
@@ -139,7 +176,9 @@ namespace ImageTextDeepLearning
                             FirstIndex = true;
                         }
                         if (a[Lastindex].Angle < a[i].Angle)
+                        {
                             Lastindex = i;
+                        }
                     }
                 }
                 if ((Lastindex != -1) & (H <= n))
@@ -153,7 +192,8 @@ namespace ImageTextDeepLearning
             GreaterThanOneCuurvvedMatrix = cGreaterThanOneCuurvvedMatrix;
             return c;
         }
-        static Point3D[] Sort(Point3D[] a, double[] d, int n)
+
+        private static Point3D[] Sort(Point3D[] a, double[] d, int n)
         {
             Point3D[] c = new Point3D[n];
             int H = 0;
@@ -164,7 +204,9 @@ namespace ImageTextDeepLearning
                 for (int i = 0; i < n; i++)
                 {
                     if ((i == d[i]))
+                    {
                         continue;
+                    }
                     else
                     {
                         if (!FirstIndex)
@@ -173,7 +215,9 @@ namespace ImageTextDeepLearning
                             FirstIndex = true;
                         }
                         if (a[Lastindex].X < a[i].X)
+                        {
                             Lastindex = i;
+                        }
                     }
                 }
                 if ((Lastindex != -1) & (H <= n))
@@ -185,7 +229,8 @@ namespace ImageTextDeepLearning
             }
             return c;
         }
-        static double[] Sort(double[] a, double[] d, int n)
+
+        private static double[] Sort(double[] a, double[] d, int n)
         {
             double[] c = new double[n];
             int H = 0;
@@ -196,7 +241,9 @@ namespace ImageTextDeepLearning
                 for (int i = 0; i < n; i++)
                 {
                     if ((i == d[i]))
+                    {
                         continue;
+                    }
                     else
                     {
                         if (!FirstIndex)
@@ -205,7 +252,9 @@ namespace ImageTextDeepLearning
                             FirstIndex = true;
                         }
                         if (a[Lastindex] < a[i])
+                        {
                             Lastindex = i;
+                        }
                     }
                 }
                 if ((Lastindex != -1) & (H <= n))

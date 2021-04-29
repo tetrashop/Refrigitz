@@ -16,7 +16,7 @@ namespace ImageTextDeepLearning
     [Serializable]
     internal class ConjunctedShape
     {
-        bool Hollowed = false;
+        private bool Hollowed = false;
         //initiate global vars
         private readonly int Width = 10, Height = 10;
         private readonly MainForm d = null;
@@ -573,7 +573,10 @@ namespace ImageTextDeepLearning
                 bool IsOut3 = false;
                 bool IsOut4 = false;
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
+                {
                     return false;
+                }
+
                 bool Is = true;
                 object o = new object();
                 lock (o)
@@ -634,7 +637,7 @@ namespace ImageTextDeepLearning
                 }
                 IsOut = IsOut1 || IsOut2 || IsOut3 || IsOut4;
             }
-            catch (Exception t)
+            catch (Exception)
             {
                 //MessageBox.Show(t.ToString());
                 return false;
@@ -647,7 +650,10 @@ namespace ImageTextDeepLearning
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
+                {
                     return false;
+                }
+
                 object o = new object();
                 lock (o)
                 {
@@ -662,7 +668,10 @@ namespace ImageTextDeepLearning
                             }
                         }
                         if (IsOut)
+                        {
                             return IsOut;
+                        }
+
                         object ooo = new object();
                         lock (ooo)
                         {
@@ -677,7 +686,7 @@ namespace ImageTextDeepLearning
                     }
                 }
             }
-            catch (Exception t)
+            catch (Exception)
             {
 
                 return false;
@@ -692,7 +701,10 @@ namespace ImageTextDeepLearning
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
+                {
                     return false;
+                }
+
                 object o = new object();
                 lock (o)
                 {
@@ -708,7 +720,10 @@ namespace ImageTextDeepLearning
                         }
 
                         if (IsOut)
+                        {
                             return IsOut;
+                        }
+
                         object oioo = new object();
                         lock (oioo)
                         {
@@ -726,7 +741,7 @@ namespace ImageTextDeepLearning
                     }
                 }
             }
-            catch (Exception t)
+            catch (Exception)
             {
 
                 return false;
@@ -740,7 +755,10 @@ namespace ImageTextDeepLearning
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
+                {
                     return false;
+                }
+
                 object o = new object();
                 lock (o)
                 {
@@ -755,7 +773,9 @@ namespace ImageTextDeepLearning
                             }
                         }
                         if (IsOut)
+                        {
                             return IsOut;
+                        }
 
                         object pooo = new object();
                         lock (pooo)
@@ -770,7 +790,7 @@ namespace ImageTextDeepLearning
                     }
                 }
             }
-            catch (Exception t)
+            catch (Exception)
             {
 
                 return false;
@@ -784,7 +804,10 @@ namespace ImageTextDeepLearning
             try
             {
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
+                {
                     return false;
+                }
+
                 object o = new object();
                 lock (o)
                 {
@@ -799,7 +822,9 @@ namespace ImageTextDeepLearning
                             }
                         }
                         if (IsOut)
+                        {
                             return IsOut;
+                        }
 
                         object pooo = new object();
                         lock (pooo)
@@ -816,7 +841,7 @@ namespace ImageTextDeepLearning
 
                 }
             }
-            catch (Exception t)
+            catch (Exception)
             {
 
                 return false;

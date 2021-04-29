@@ -23,15 +23,15 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
-        List<string> Verb = new List<string>();
-        List<string> TextMinedIs = new List<string>();
-       List< List<string>> TextMinedLogicsIs = new List<List<string>>();
-       List< List<string>> TextMinedVerb = new List<List<string>>();
-       List< List<List<string>>> TextMinedLogicsVerb = new List<List<List<string>>>();
-        List<string> TextMinedWas = new List<string>();
-        List<List<string>> TextMinedLogicsWs = new List<List<string>>();
+        private readonly List<string> Verb = new List<string>();
+        private readonly List<string> TextMinedIs = new List<string>();
+        private readonly List< List<string>> TextMinedLogicsIs = new List<List<string>>();
+        private readonly List< List<string>> TextMinedVerb = new List<List<string>>();
+        private readonly List< List<List<string>>> TextMinedLogicsVerb = new List<List<List<string>>>();
+        private readonly List<string> TextMinedWas = new List<string>();
+        private readonly List<List<string>> TextMinedLogicsWs = new List<List<string>>();
         private bool Resum = false;
-        private Task tf = null;
+        private readonly Task tf = null;
         private bool DisablePaint = false;
         public static bool test = false;
         public static bool comeng = false;
@@ -287,7 +287,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         for (int j = 0; j < A.Xv.Count; j++)
                         {
                             if (A.d(A.Xv[i], A.Xv[j]) != null)
+                            {
                                 g.DrawLine(new Pen(Color.Red), new Point(A.Xv[i].X * 10, A.Xv[i].Y * 10), new Point(A.Xv[j].X * 10, A.Xv[j].Y * 10));
+                            }
                         }
                     }
                 }
@@ -302,7 +304,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         for (int j = 0; j < B.Xv.Count; j++)
                         {
                             if (B.d(B.Xv[i], B.Xv[j]) != null)
+                            {
                                 g.DrawLine(new Pen(Color.Blue), new Point(B.Xv[i].X * 10, B.Xv[i].Y * 10), new Point(B.Xv[j].X * 10, B.Xv[j].Y * 10));
+                            }
                         }
                     }
                 }
@@ -522,7 +526,8 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 Thread.Sleep(1000);
             } while (true);
         }
-        int WordNumber(string s)
+
+        private int WordNumber(string s)
         {
             int no = 0;
             string c = s;
@@ -533,7 +538,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     c = c.Remove(0, 1);
                 }
                 else
+                {
                     break;
+                }
             } while (true);
             int len = -1;
             do
@@ -563,7 +570,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             {
                 string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
                 if (s.Contains("است.") && WordNumber(s) == 3)
+                {
                     TextMinedIs.Add(s);
+                }
+
                 textBoxImageTextDeepLearning.Text = textBoxImageTextDeepLearning.Text.Remove(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
             } while (textBoxImageTextDeepLearning.Text.Contains("."));
             textBoxImageTextDeepLearning.Text = "";
@@ -577,7 +587,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             {
                 string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
                 if (s.Contains("بود.") && WordNumber(s) == 3)
+                {
                     TextMinedWas.Add(s);
+                }
+
                 textBoxImageTextDeepLearning.Text = textBoxImageTextDeepLearning.Text.Remove(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
             } while (textBoxImageTextDeepLearning.Text.Contains("."));
             textBoxImageTextDeepLearning.Text = "";
@@ -595,7 +608,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 {
                     string s = textBoxImageTextDeepLearning.Text.Substring(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
                     if (s.Contains(Verb[i]) && WordNumber(s) == 3)
+                    {
                         TextMinedVerb[TextMinedVerb.Count - 1].Add(s);
+                    }
+
                     textBoxImageTextDeepLearning.Text = textBoxImageTextDeepLearning.Text.Remove(0, textBoxImageTextDeepLearning.Text.IndexOf(".") + 1);
                 } while (textBoxImageTextDeepLearning.Text.Contains("."));
             }
@@ -603,15 +619,22 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             SomeVerbsAddable();
             textBoxImageTextDeepLearning.Text = IsCon + textBoxImageTextDeepLearning.Text;
         }
-        void Is()
+
+        private void Is()
         {
              for (int i = 0; i < TextMinedIs.Count; i++)
+            {
                 textBoxImageTextDeepLearning.Text += TextMinedIs[i];
+            }
+
             textBoxImageTextDeepLearning.Refresh();
             textBoxImageTextDeepLearning.Update();
             List<string> mined = new List<string>();
             for (int i = 0; i < TextMinedIs.Count; i++)
+            {
                 mined.Add(TextMinedIs[i]);
+            }
+
             for (int i = 0; i < mined.Count; i++)
             {
                 TextMinedLogicsIs.Add(new List<string>());
@@ -625,7 +648,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         c = c.Remove(0, 1);
                     }
                     else
+                    {
                         break;
+                    }
                 } while (true);
                 int len = -1;
                 do
@@ -653,19 +678,29 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             ResultsOfSupposed.MindedIsVerb(TextMinedIs, TextMinedLogicsIs);
             
             for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)
+            {
                 textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];
+            }
+
             textBoxImageTextDeepLearning.Refresh();
             textBoxImageTextDeepLearning.Update();
         }
-        void Was()
+
+        private void Was()
         {
             for (int i = 0; i < TextMinedWas.Count; i++)
+            {
                 textBoxImageTextDeepLearning.Text += TextMinedWas[i];
+            }
+
             textBoxImageTextDeepLearning.Refresh();
             textBoxImageTextDeepLearning.Update();
             List<string> mined = new List<string>();
             for (int i = 0; i < TextMinedWas.Count; i++)
+            {
                 mined.Add(TextMinedWas[i]);
+            }
+
             for (int i = 0; i < mined.Count; i++)
             {
                 TextMinedLogicsWs.Add(new List<string>());
@@ -679,7 +714,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         c = c.Remove(0, 1);
                     }
                     else
+                    {
                         break;
+                    }
                 } while (true);
                 int len = -1;
                 do
@@ -707,28 +744,41 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             ResultsOfSupposed.MindedWasVerb(TextMinedWas, TextMinedLogicsWs);
             
             for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)
+            {
                 textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];
+            }
+
             textBoxImageTextDeepLearning.Refresh();
             textBoxImageTextDeepLearning.Update();
         }
-        void SomeVerbsAddable()
+
+        private void SomeVerbsAddable()
         {
             bool Is = false;
             for (int k = 0; k < Verb.Count; k++)
             {
                 if (TextMinedVerb.Count == 0)
+                {
                     continue;
+                }
+
                 Is = true;
                 try
                 {
                     TextMinedLogicsVerb.Add(new List<List<string>>());
                     for (int i = 0; i < TextMinedVerb[k].Count; i++)
+                    {
                         textBoxImageTextDeepLearning.Text += TextMinedVerb[k][i];
+                    }
+
                     textBoxImageTextDeepLearning.Refresh();
                     textBoxImageTextDeepLearning.Update();
                     List<string> mined = new List<string>();
                     for (int i = 0; i < TextMinedVerb.Count; i++)
+                    {
                         mined.Add(TextMinedVerb[k][i]);
+                    }
+
                     for (int i = 0; i < mined.Count; i++)
                     {
                         TextMinedLogicsVerb[k].Add(new List<string>());
@@ -742,7 +792,9 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                                 c = c.Remove(0, 1);
                             }
                             else
+                            {
                                 break;
+                            }
                         } while (true);
                         int len = -1;
                         do
@@ -775,7 +827,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     ResultsOfSupposed.MindedSomeVerb(TextMinedVerb[k], TextMinedLogicsVerb[k], Verb[k]);
                     
                     for (int i = 0; i < ResultsOfSupposed.mined.Count; i++)
+                    {
                         textBoxImageTextDeepLearning.Text += ResultsOfSupposed.mined[i];
+                    }
+
                     textBoxImageTextDeepLearning.Refresh();
                     textBoxImageTextDeepLearning.Update();
                 }
@@ -788,12 +843,17 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 buttonAddVerb.Visible = true;
             }
             else
+            {
                 buttonAddVerb.Visible = false;
+            }
         }
         private void buttonAddVerb_Click(object sender, EventArgs e)
         {
             if (!Verb.Contains(textBox1.Text))
+            {
                 Verb.Add(textBox1.Text);
+            }
+
             textBox1.Text = "";
         }
         //create main detection button

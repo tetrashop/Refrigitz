@@ -117,34 +117,35 @@ namespace ImageTextDeepLearning
                         //retrive similarity value
                         if (!(a || b))
                         {
+                            //when is ready and proper
                             KeyDif = DifferentBool(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Wi, Hei, Ach);
                         }
                         else
+                        {
                             if ((a))
-                        {  //double KeyDif = Colleralation.GetCorrelationScore(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], t.KeyboardAllConjunctionMatrix[k], Width);
-                           //when is ready and proper
-                           //if (System.Math.Abs(1- KeyDif ) < Threashold)
-                            if (t.KeyboardAllStringsWithfont[k] != " ")
                             {
+                                if (t.KeyboardAllStringsWithfont[k] != " ")
+                                {
 
-                                continue;
-                            }
-                            else
-                            {
-                                IndecCurrent = k;
-                                KeyDif = Width * Heigh;
-                                Ach = true;
+                                    continue;
+                                }
+                                else
+                                {
+                                    IndecCurrent = k;
+                                    KeyDif = Width * Heigh;
+                                    Ach = true;
 
-                                break;
+                                    break;
+                                }
+                                /* if (IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
+                                 {
+                                     if (t.KeyboardAllStringsWithfont[k] != " ")
+                                         continue;
+                                 }
+                                 else
+                                   if (IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei))
+                                     continue;*/
                             }
-                            /* if (IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei))
-                             {
-                                 if (t.KeyboardAllStringsWithfont[k] != " ")
-                                     continue;
-                             }
-                             else
-                               if (IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei))
-                                 continue;*/
                         }
                         Ach = true;
 

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ContourAnalysisNS
 {
     public class ResultsOfSupposed
     {
         public static List<string> mined = new List<string>();
-        static List<List<string>> Strlogic = new List<List<string>>();
-        static List<List<int[]>> StrlogicIndex = new List<List<int[]>>();
-        static List<List<string>> teloIndex = new List<List<string>>();
+        private static readonly List<List<string>> Strlogic = new List<List<string>>();
+        private static readonly List<List<int[]>> StrlogicIndex = new List<List<int[]>>();
+        private static readonly List<List<string>> teloIndex = new List<List<string>>();
         public static bool MindedIsVerb(List<string> te, List<List<string>> telo)
         {
             bool Is = false;
@@ -29,13 +25,18 @@ namespace ContourAnalysisNS
                     for (int r = 0; r < telo[p].Count; r++)
                     {
                         if (q == r)
+                        {
                             continue;
+                        }
+
                         MindedIsVerb(te, telo, true, true, true, false, p, q, r, -1);
 
                         for (int s = 0; s < telo[p].Count; s++)
                         {
                             if (s == q)
+                            {
                                 continue;
+                            }
 
                             MindedIsVerb(te, telo, true, true, true, true, p, q, r, s);
 
@@ -76,9 +77,14 @@ namespace ContourAnalysisNS
                     {
                         string s = "";
                         if (StrlogicIndex[p][q][0] > 1)
+                        {
                             s = teloIndex[p][0] + "! \r\n";
+                        }
                         else
+                        {
                             s = teloIndex[p][q] + "! \r\n";
+                        }
+
                         mined.Add(s);
                     }
 
@@ -108,9 +114,14 @@ namespace ContourAnalysisNS
                     {
                         string s = "";
                         if (StrlogicIndex[p][q][2] != -1)
+                        {
                             s = teloIndex[p][q] + " یا " + teloIndex[p][q] + "! \r\n";
+                        }
                         else
+                        {
                             s = teloIndex[p][q] + "! \r\n";
+                        }
+
                         mined.Add(s);
                     }
 
@@ -142,13 +153,18 @@ namespace ContourAnalysisNS
                     for (int r = 0; r < telo[p].Count; r++)
                     {
                         if (p == r)
+                        {
                             continue;
+                        }
+
                         MindedIsVerb(te, telo, true, true, true, false, p, q, r, -1);
 
                         for (int s = 0; s < telo[p].Count; s++)
                         {
                             if (s == q)
+                            {
                                 continue;
+                            }
 
                             MindedIsVerb(te, telo, true, true, true, true, p, q, r, s);
 
@@ -189,9 +205,14 @@ namespace ContourAnalysisNS
                     {
                         string s = "";
                         if (StrlogicIndex[p][q][0] > 1)
+                        {
                             s = teloIndex[p][0] + "! \r\n";
+                        }
                         else
+                        {
                             s = teloIndex[p][q] + "! \r\n";
+                        }
+
                         mined.Add(s);
                     }
 
@@ -221,9 +242,14 @@ namespace ContourAnalysisNS
                     {
                         string s = "";
                         if (StrlogicIndex[p][q][2] != -1)
+                        {
                             s = teloIndex[p][q] + " یا " + teloIndex[p][q] + "! \r\n";
+                        }
                         else
+                        {
                             s = teloIndex[p][q] + "! \r\n";
+                        }
+
                         mined.Add(s);
                     }
 
@@ -257,13 +283,18 @@ namespace ContourAnalysisNS
                     for (int r = 0; r < telo[p].Count; r++)
                     {
                         if (p == r)
+                        {
                             continue;
+                        }
+
                         MindedIsVerb(te, telo, true, true, true, false, p, q, r, -1);
 
                         for (int s = 0; s < telo[p].Count; s++)
                         {
                             if (s == q)
+                            {
                                 continue;
+                            }
 
                             MindedIsVerb(te, telo, true, true, true, true, p, q, r, s);
 
@@ -304,9 +335,14 @@ namespace ContourAnalysisNS
                     {
                         string s = "";
                         if (StrlogicIndex[p][q][0] > 1)
+                        {
                             s = teloIndex[p][0] + "! \r\n";
+                        }
                         else
+                        {
                             s = teloIndex[p][q] + "! \r\n";
+                        }
+
                         mined.Add(s);
                     }
 
@@ -336,9 +372,14 @@ namespace ContourAnalysisNS
                     {
                         string s = "";
                         if (StrlogicIndex[p][q][2] != -1)
+                        {
                             s = teloIndex[p][q] + " یا " + teloIndex[p][q] + "! \r\n";
+                        }
                         else
+                        {
                             s = teloIndex[p][q] + "! \r\n";
+                        }
+
                         mined.Add(s);
                     }
 
@@ -448,7 +489,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
         public static bool PgivesQandQgivesRIsPgivesR(bool p, bool q, bool r, ref string Re)
         {
@@ -459,7 +502,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
         public static bool PgivesQandnotQIsnotP(bool p, bool q, ref string Re)
         {
@@ -470,7 +515,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
         public static bool PQIsPANDQ(bool p, bool q, ref string Re)
         {
@@ -481,7 +528,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
         public static bool Contradiction(bool s, bool f, ref string Re)
         {
@@ -492,7 +541,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
         public static bool ContradictionSample(bool p, bool q, bool f, ref string Re)
         {
@@ -503,7 +554,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
         /*public static bool PandQ(bool p, bool q, ref string Re)
         {
@@ -536,7 +589,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
         public static bool PgivesQandQgivesRisPOrQgivesR(bool p, bool q, bool r, ref string Re)
         {
@@ -547,7 +602,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
         public static bool PgivesQandRgivesSandPorRIsQorS(bool p, bool q, bool r, bool s, ref string Re)
         {
@@ -558,7 +615,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
         public static bool PgivesQandRgivesSandnotPornotRIsnotPornotQ(bool p, bool q, bool r, bool s, ref string Re)
         {
@@ -569,7 +628,9 @@ namespace ContourAnalysisNS
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
     }
 }

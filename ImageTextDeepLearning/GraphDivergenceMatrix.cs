@@ -1246,15 +1246,21 @@ namespace ContourAnalysisNS
 
                         if (Line.IsTowLineIsIntersect(GetVerIdO(Xl[i].VertexIndexX), GetVerIdO(Xl[i].VertexIndexY), GetVerIdO(Xl[j].VertexIndexX), GetVerIdO(Xl[j].VertexIndexY), n, m))
                         {
-                            if (!ExistLOverLap(Xl[i].VertexIndexX, Xl[i].VertexIndexY))
+                            if (Xl[i].Weigth > Xl[j].Weigth)
                             {
-                                XlOverLap.Add(Xl[i]);
-                                OverAgain = true;
+                                if (!ExistLOverLap(Xl[i].VertexIndexX, Xl[i].VertexIndexY))
+                                {
+                                    XlOverLap.Add(Xl[i]);
+                                    OverAgain = true;
+                                }
                             }
-                            if (!ExistLOverLap(Xl[j].VertexIndexX, Xl[j].VertexIndexY))
+                            else
                             {
-                                OverAgain = true;
-                                XlOverLap.Add(Xl[j]);
+                                if (!ExistLOverLap(Xl[j].VertexIndexX, Xl[j].VertexIndexY))
+                                {
+                                    OverAgain = true;
+                                    XlOverLap.Add(Xl[j]);
+                                }
                             }
                         }
                     }

@@ -1,8 +1,4 @@
-//#pragma warning restore CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 using ContourAnalysisDemo;
-//#pragma warning disable CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning restore CS0246 // The type or namespace name 'ContourAnalysisNS' could not be found (are you missing a using directive or an assembly reference?)
-//#pragma warning disable CS0246 // The type or namespace name 'Emgu' could not be found (are you missing a using directive or an assembly reference?)
 using Emgu.CV;
 using System;
 using System.Collections.Generic;
@@ -295,39 +291,7 @@ namespace ImageTextDeepLearning
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
                                 }
-                                //add image
-                                /*bool[,] TemB = new bool[Width, Height];
-                                e = Graphics.FromImage(Te);
-                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                                for (int k = 0; k < Width; k++)
-                                {
-                                    for (int p = 0; p < Height; p++)
-                                    {
-                                        object o = new object();
-                                        lock (o)
-                                        {
-                                            if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
-                                            {
-                                                TemB[k, p] = true;
-                                            }
-                                            else
-                                            {
-                                                TemB[k, p] = false;
-                                            }
-                                        }
-                                    }
-                                }
-                                e.Dispose();
-                                Do = HollowCountreImageCommmon(ref Te, TemB);
-                                if (!Do)
-                                {
-                                    MessageBox.Show("Hollowed Fatal Error");
-                                    return false;
-                                }
-                                */
-
-                                // AllImage.Add((Bitmap)Te.Clone());
-                                AllImage.Add(Te);
+                                 AllImage.Add(Te);
                             }
                             else
                             {
@@ -378,12 +342,7 @@ namespace ImageTextDeepLearning
                                     }
                                 }
                                 e.Dispose();
-                                Do = HollowCountreImageCommmon(ref Te, TemB);
-                                if (!Do)
-                                {
-                                    MessageBox.Show("Hollowed Fatal Error");
-                                    return false;
-                                }
+                                
 
 
                                 // AllImage.Add((Bitmap)Te.Clone());
@@ -521,6 +480,7 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
+        //making  hollow and emptyy inside.
         private bool HollowCountreImageCommmon(ref Bitmap Im, bool[,] Ab)
         {
             try
@@ -564,6 +524,7 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
+        //main sub method
         private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             try
@@ -644,6 +605,7 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
+        //sub method
         private bool HollowCountreImageCommmonXYRigthX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             bool Is = false;
@@ -694,6 +656,7 @@ namespace ImageTextDeepLearning
 
             return Is;
         }
+        //sub method
         private bool HollowCountreImageCommmonXYLeftX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
 
@@ -749,6 +712,7 @@ namespace ImageTextDeepLearning
 
             return Is;
         }
+        //sub method
         private bool HollowCountreImageCommmonXYUpY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             bool Is = false;
@@ -798,6 +762,7 @@ namespace ImageTextDeepLearning
 
             return Is;
         }
+        //sub method
         private bool HollowCountreImageCommmonXYDowwnY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             bool Is = false;

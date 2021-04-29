@@ -74,11 +74,13 @@ namespace ImageTextDeepLearning
                                 }
                             }
                         }
-                    }
+                    }//speciall
                     else
                     {
+                        //when list of english
                         if (FormImageTextDeepLearning.test == false)
                         {
+
                             for (int i = 0; i < engsmal.Length; i++)
                             {
                                 KeyboardAllStrings.Add(Convert.ToString(engsmal[i]));
@@ -92,7 +94,7 @@ namespace ImageTextDeepLearning
                                 KeyboardAllStrings.Add(Convert.ToString(engnum[i]));
                             }
                         }
-                        else
+                        else//when test
                         {
                             try
                             {
@@ -418,7 +420,8 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
-       private bool HollowCountreImageCommmon(ref Bitmap Im, bool[,] Ab)
+        //making  hollow and emptyy inside.
+        private bool HollowCountreImageCommmon(ref Bitmap Im, bool[,] Ab)
         {
             try
             {
@@ -461,6 +464,7 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
+        //main sub method
         private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             try
@@ -541,6 +545,7 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
+        //sub method
         private bool HollowCountreImageCommmonXYRigthX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             bool Is = false;
@@ -591,6 +596,7 @@ namespace ImageTextDeepLearning
 
             return Is;
         }
+        //sub method
         private bool HollowCountreImageCommmonXYLeftX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
 
@@ -646,6 +652,7 @@ namespace ImageTextDeepLearning
 
             return Is;
         }
+        //sub method
         private bool HollowCountreImageCommmonXYUpY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             bool Is = false;
@@ -695,6 +702,7 @@ namespace ImageTextDeepLearning
 
             return Is;
         }
+        //sub method
         private bool HollowCountreImageCommmonXYDowwnY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
         {
             bool Is = false;
@@ -812,6 +820,7 @@ namespace ImageTextDeepLearning
                                     int My = MyM * 2;
                                     Bitmap Te = null;
                                     e.Dispose();
+                                    //crop to proper space
                                     if ((MaX - MiX) < (MaY - MiY))
                                     {
                                         if (MiX < MaX && MiY < MaY)
@@ -828,45 +837,15 @@ namespace ImageTextDeepLearning
                                     {
                                         if (MiX < MaX && MiY < MaY)
                                         {
-                                            //crop to proper space
-                                            Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                             Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
                                         }
                                         else
                                         {
                                             Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                         }
-                                    }/*
-e = Graphics.FromImage(Te);
-                                    e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                                    bool[,] TemB = new bool[Width, Height];
-                                    for (int k = 0; k < Width; k++)
-                                    {
-                                        for (int p = 0; p < Height; p++)
-                                        {
-                                            object o = new object();
-                                            lock (o)
-                                            {  
-                                                if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
-                                                {
-                                                    TemB[k, p] = true;
-                                                }
-                                                else
-                                                {
-                                                    TemB[k, p] = false;
-                                                }
-                                            }
-                                        }
                                     }
-                                    e.Dispose();
-                                    Do = HollowCountreImageCommmon(ref Te, TemB);
-                                    if (!Do)
-                                    {
-                                        MessageBox.Show("Hollowed Fatal Error");
-                                        return false;
-                                    }*/
                                     e = Graphics.FromImage(Te);
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                                    //Add
                                     
                                     //create proper conjunction matrix
                                     bool[,] Tem = new bool[Width, Height];
@@ -901,7 +880,6 @@ e = Graphics.FromImage(Te);
                             {
                                 //proper empty image coinstruction object
                                 Bitmap Temp = new Bitmap(100, 100);
-                                //initate new root image empty
                                 //create proper image graphics
                                 Graphics e = Graphics.FromImage(Temp);
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -934,6 +912,7 @@ e = Graphics.FromImage(Te);
                                 int My = MyM * 2;
                                 Bitmap Te = null;
                                 e.Dispose();
+                                //crop to proper space
                                 if ((MaX - MiX) < (MaY - MiY))
                                 {
                                     if (MiX < MaX && MiY < MaY)
@@ -950,7 +929,6 @@ e = Graphics.FromImage(Te);
                                 {
                                     if (MiX < MaX && MiY < MaY)
                                     {
-                                        //crop to proper space
                                         Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
                                     }
                                     else
@@ -959,35 +937,7 @@ e = Graphics.FromImage(Te);
                                     }
                                 }
                                 e.Dispose();
-                                /*e = Graphics.FromImage(Te);
-                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                                bool[,] TemB = new bool[Width, Height];
-                                for (int k = 0; k < Width; k++)
-                                {
-                                    for (int p = 0; p < Height; p++)
-                                    {
-                                        object o = new object();
-                                        lock (o)
-                                        { 
-                                            if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
-                                            {
-                                                TemB[k, p] = true;
-                                            }
-                                            else
-                                            {
-                                                TemB[k, p] = false;
-                                            }
-                                        }
-                                    }
-                                }
-                                e.Dispose();
-                                Do = HollowCountreImageCommmon(ref Te, TemB);
-                                if (!Do)
-                                {
-                                    MessageBox.Show("Hollowed Fatal Error");
-                                    return false;
-                                }*/
-                                //Add
+                                
                                 
                                 //create proper conjunction matrix
                                 e.Dispose();
@@ -1049,12 +999,6 @@ e = Graphics.FromImage(Te);
                         }
                     }
                     
-                    //save all
-                    
-                    //if (!Do)
-                    
-                    //else
-                    
                 }
                 //else
                 
@@ -1079,11 +1023,7 @@ e = Graphics.FromImage(Te);
                 KeyboardAllConjunctionMatrix.Clear();
                 if (KeyboardAllConjunctionMatrix.Count == 0)
                 {
-                    //clear
-                    //for all list count
-                    
-                    //{
-                    for (int i = 0; i < TempI.Count; i++)
+                      for (int i = 0; i < TempI.Count; i++)
                     {
                         //matrix boolean object constructor list
                         List<bool[,]> Te = new List<bool[,]>();

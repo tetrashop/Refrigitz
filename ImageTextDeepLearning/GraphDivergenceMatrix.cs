@@ -957,7 +957,8 @@ namespace ContourAnalysisNS
                                             {
                                                 if (!IgnoreLess)
                                                 {
-                                                    if (!((Xv[First - 1].X == k && Xv[First - 1].Y == p) || (Xv[First - 1].X == i && Xv[First - 1].Y == j)) && (Xv.Count > First))
+                                                    if (!((Xv[First - 1].X == k && Xv[First - 1].Y == p) //|| (Xv[First - 1].X == i && Xv[First - 1].Y == j)
+                                                                                                         ) && (Xv.Count > First))
                                                     {
                                                         if (!IsLineMinimumNotInXl(A, weB, n, m))
                                                         {
@@ -979,7 +980,8 @@ namespace ContourAnalysisNS
                                             LessNootFound = true;
                                             if (Xv.Count > (First) && (!Again))
                                             {
-                                                if (((Xv[First - 1].X == k && Xv[First - 1].Y == p) || (Xv[First - 1].X == i && Xv[First - 1].Y == j)))
+                                                if (((Xv[First - 1].X == k && Xv[First - 1].Y == p) //|| (Xv[First - 1].X == i && Xv[First - 1].Y == j)
+                                                                                                   ))
                                                 {
                                                     if (!FirstCchanged)
                                                     {
@@ -2281,7 +2283,7 @@ namespace ContourAnalysisNS
                 int first = 1;
                 for (int h = 0; h < Xl.Count - 1; h++)
                 {
-                    if ((Xl[h + 1].VertexIndexX == first || Xl[h + 1].VertexIndexY == first) && (h != 0))
+                    if ((Xl[h + 1].VertexIndexX == first || Xl[h + 1].VertexIndexY == first) && (h != 0) && (h != (first - 2)))
                     {
                         int vxx = Xl[h + 1].VertexIndexX;
                         int vyy = Xl[h + 1].VertexIndexY;
@@ -2289,7 +2291,7 @@ namespace ContourAnalysisNS
                         Vertex ty = GetVerId(vyy);
                         if (vxx > vyy)
                         {
-                            first = GetVerId(ty.VertexNumber).VertexNumber;
+                            first = GetVerId(tx.VertexNumber).VertexNumber + 1;
                             if (!ExistCloCur(tx.X, tx.Y))
                             {
                                 if (tx != null)
@@ -2304,7 +2306,7 @@ namespace ContourAnalysisNS
                         }
                         else
                         {
-                            first = GetVerId(tx.VertexNumber).VertexNumber;
+                            first = GetVerId(ty.VertexNumber).VertexNumber + 1;
                             if (!ExistCloCur(ty.X, ty.Y))
                             {
                                 if (ty != null)
@@ -2324,20 +2326,20 @@ namespace ContourAnalysisNS
                     {
                         if ((Xl[h].VertexIndexX != Xl[h + 1].VertexIndexX) && (Xl[h].VertexIndexY != Xl[h + 1].VertexIndexX) && (Xl[h].VertexIndexX != Xl[h + 1].VertexIndexY) && (Xl[h].VertexIndexY != Xl[h + 1].VertexIndexY))
                         {
-                            int vxx = Xl[h].VertexIndexX;
+                            /*int vxx = Xl[h].VertexIndexX;
                             int vyy = Xl[h].VertexIndexY;
                             Vertex tx = GetVerId(vxx);
                             Vertex ty = GetVerId(vyy);
                             if (vxx < vyy)
                             {
-                                first = GetVerId(ty.VertexNumber).VertexNumber;
+                                first = GetVerId(ty.VertexNumber).VertexNumber + 1;
                             }
                             else
                             {
-                                first = GetVerId(tx.VertexNumber).VertexNumber;
+                                first = GetVerId(tx.VertexNumber).VertexNumber + 1;
                             }
-                            IsClosedCurved.Add(false);
-                            ClosedCurved.Add(new List<Vertex>());
+                            //IsClosedCurved.Add(false);
+                            ClosedCurved.Add(new List<Vertex>());*/
                             continue;
                         }
                         else

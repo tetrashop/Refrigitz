@@ -859,7 +859,7 @@ namespace ContourAnalysisNS
         public GraphDivergenceMatrix(bool[,] A, int n, int m)
         {
             bool FirstCchanged = false;
-            int First = 0;
+            int First = 1;
             N = n;
             M = m;
             int indv = 0;
@@ -870,6 +870,7 @@ namespace ContourAnalysisNS
             bool LessNootFound = false;
             bool IgnoreLess = false;
             bool OverAgain = false;
+            bool Again = false;
             do
             {
                 do
@@ -894,6 +895,10 @@ namespace ContourAnalysisNS
                                     J = -1;
                                     OccurredBreak = false;
                                 }
+                                else
+                                {
+                                      OccurredBreak = false;
+                                }
                             }
                             else
                             {
@@ -905,6 +910,10 @@ namespace ContourAnalysisNS
                                     i = I;
                                     j = J;
                                     OccurredBreak = false;
+                                }
+                                else
+                                {
+                                      OccurredBreak = false;
                                 }
                             }
                             for (int k = 0; k < n; k++)
@@ -943,15 +952,12 @@ namespace ContourAnalysisNS
                                         }
                                         if (A[i, j] && A[k, p])
                                         {
-                                            int d = Xl.Count;
-                                            if (d == 18)
-                                                d = 18;
                                             float weB = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                             if (Xv.Count > First)
                                             {
                                                 if (!IgnoreLess)
                                                 {
-                                                    if (!(Xv[First].X == i && Xv[First].Y == j))
+                                                    if (!((Xv[First - 1].X == k && Xv[First - 1].Y == p) || (Xv[First - 1].X == i && Xv[First - 1].Y == j)) && (Xv.Count > First))
                                                     {
                                                         if (!IsLineMinimumNotInXl(A, weB, n, m))
                                                         {
@@ -971,16 +977,16 @@ namespace ContourAnalysisNS
                                                 }
                                             }
                                             LessNootFound = true;
-                                            if (Xv.Count > 0)
+                                            if (Xv.Count > (First) && (!Again))
                                             {
-                                                if ((Xv[First].X == i && Xv[First].Y == j) && (Xv.Count > First))
+                                                if (((Xv[First - 1].X == k && Xv[First - 1].Y == p) || (Xv[First - 1].X == i && Xv[First - 1].Y == j)))
                                                 {
                                                     if (!FirstCchanged)
                                                     {
-                                                        if (!ExistL(Xv[Xv.Count - 1].VertexNumber, Xv[First].VertexNumber))
+                                                        if (!ExistL(Xv[Xv.Count - 1].VertexNumber, Xv[First - 1].VertexNumber))
                                                         {
-                                                            float we = (float)Math.Sqrt((Xv[First].X - Xv[Xv.Count - 1].X) * (Xv[First].X - Xv[Xv.Count - 1].X) + (Xv[First].Y - Xv[Xv.Count - 1].Y) * (Xv[First].Y - Xv[Xv.Count - 1].Y));
-                                                            Xl.Add(new Line(we, Xv[Xv.Count - 1].VertexNumber, Xv[First].VertexNumber));
+                                                            float we = (float)Math.Sqrt((Xv[First - 1].X - Xv[Xv.Count - 1].X) * (Xv[First - 1].X - Xv[Xv.Count - 1].X) + (Xv[First - 1].Y - Xv[Xv.Count - 1].Y) * (Xv[First - 1].Y - Xv[Xv.Count - 1].Y));
+                                                            Xl.Add(new Line(we, Xv[Xv.Count - 1].VertexNumber, Xv[First - 1].VertexNumber));
                                                             First = Xv.Count + 1;
                                                             FirstCchanged = true;
                                                             indv = Xv.Count;
@@ -988,6 +994,7 @@ namespace ContourAnalysisNS
                                                             J = -1;
                                                             Occurred = true;
                                                             OccurredBreak = true;
+                                                            Again = true;
                                                             continue;
                                                         }
                                                     }
@@ -1178,13 +1185,14 @@ namespace ContourAnalysisNS
                                                     {
                                                         if (inh == indv - 1)
                                                         {
-                                                            if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                            if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber) && (!Again))
                                                             {
                                                                 float we = (float)Math.Sqrt((Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) * (Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) + (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y) * (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y));
                                                                 Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                                 I = k;
                                                                 J = p;
                                                                 Occurred = true;
+                                                                Again = false;
                                                             }
                                                             else
                                                             {
@@ -1201,6 +1209,7 @@ namespace ContourAnalysisNS
                                                                 I = k;
                                                                 J = p;
                                                                 Occurred = true;
+                                                                Again = false;
                                                             }
                                                             else
                                                             {
@@ -1248,11 +1257,20 @@ namespace ContourAnalysisNS
                                                     {
                                                         if (inh == indv - 1)
                                                         {
-                                                            float we = (float)Math.Sqrt((Xv[Xv.Count - 2].X - k) * (Xv[Xv.Count - 2].X - k) + (Xv[Xv.Count - 2].Y - p) * (Xv[Xv.Count - 2].Y - p));
-                                                            Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
-                                                            I = k;
-                                                            J = p;
-                                                            Occurred = true;
+                                                            if ((!Again))
+                                                            {
+                                                                float we = (float)Math.Sqrt((Xv[Xv.Count - 2].X - k) * (Xv[Xv.Count - 2].X - k) + (Xv[Xv.Count - 2].Y - p) * (Xv[Xv.Count - 2].Y - p));
+                                                                Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
+                                                                I = k;
+                                                                J = p;
+                                                                Occurred = true;
+                                                                Again = false;
+                                                            }
+                                                            else
+                                                            {
+                                                                Xv.RemoveAt(Xv.Count - 1);
+                                                                indv--;
+                                                            }
                                                         }
                                                         else
                                                         {
@@ -1263,6 +1281,7 @@ namespace ContourAnalysisNS
                                                                 I = k;
                                                                 J = p;
                                                                 Occurred = true;
+                                                                Again = false;
                                                             }
                                                             else
                                                             {
@@ -1327,7 +1346,7 @@ namespace ContourAnalysisNS
                     Xv.Clear();
                     Xl.Clear();
                     FirstCchanged = false;
-                    First = 0;
+                    First = 1;
                     N = n;
                     M = m;
                     indv = 0;
@@ -1744,7 +1763,7 @@ namespace ContourAnalysisNS
             for (int i = X1 + 1; i < X2 - 1; i++)
             {
                 int y = (int)((l0.y0 - l0.a * i) / l0.b);
-                if (y < Y1 || y > Y2)
+                if (y <= Y1 || y >= Y2)
                     continue;
                 if (Line.IsPointsInVertexes(v2, v3, i, y))
                 {
@@ -1909,7 +1928,7 @@ namespace ContourAnalysisNS
             c[1] = p1;
             if (ad.Count == 0)
             {
-                Maxan = Math.PI / 90;
+                //Maxan = Math.PI / 90;
                 ad.Add(new List<Point3Dspaceuser.Point3D[]>());
                 ad[ad.Count - 1].Add(c);
                 ii = ad.Count - 1;
@@ -1938,7 +1957,7 @@ namespace ContourAnalysisNS
                     }
 
                 }
-                Maxan = Math.PI / 90;
+                //Maxan = Math.PI / 90;
                 ad.Add(new List<Point3Dspaceuser.Point3D[]>());
                 ad[ad.Count - 1].Add(c);
                 ii = ad.Count - 1;
@@ -2107,7 +2126,7 @@ namespace ContourAnalysisNS
                 if (GetldCount() < Xl.Count)
                 {
                     Maxan += 0.1;
-                }
+                 }
             } while (GetldCount() < Xl.Count);
             if (ad.Count > 0)
             {

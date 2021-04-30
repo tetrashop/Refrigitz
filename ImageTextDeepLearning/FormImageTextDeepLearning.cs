@@ -856,13 +856,14 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
             textBox1.Text = "";
         }
-        //create main detection button
-        private void CreateConSha_Click(object sender, EventArgs e)
+        void SetTotal()
         {
-            
-            
-            
-            CreateOneConShape();
+            var output = Task.Factory.StartNew(() => CreateOneConShape());
+            do { Thread.Sleep(10); } while (DetectionOfLitteral.total == -1 || DetectionOfLitteral.current == -1);
+            progressBarCompleted.Maximum = DetectionOfLitteral.total;
+            var outputC = Task.Factory.StartNew(() => Current());
+            output.Wait();
+
             DisablePaint = true;
             MessageBox.Show("Samples!");
             for (int i = 0; i < On.ConjunctedShapeListRequired.KeyboardAllImage.Count; i++)
@@ -892,7 +893,8 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 PictureBoxTest.BackgroundImage.Dispose();
             }
             DisablePaint = false;
-            
+
+            textBoxImageTextDeepLearning.Text = "";
             for (int i = 0; i < On.Detected.Count; i++)
             {
                 textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
@@ -900,7 +902,43 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 textBoxImageTextDeepLearning.Update();
             }
             buttonSplitationConjunction.Visible = true;
-            
+        }
+
+        private void progressBarCompleted_Validating(object sender, CancelEventArgs e)
+        {
+         }
+
+        private void progressBarCompleted_VisibleChanged(object sender, EventArgs e)
+        {
+    
+        }
+        void Current()
+        {
+            int count = 0;
+            do
+            {
+                progressBarCompleted.Value = DetectionOfLitteral.current;
+                if (count < On.Detected.Count)
+                {
+                    textBoxImageTextDeepLearning.Text = "";
+                    for (int i = 0; i < On.Detected.Count; i++)
+                    {
+                        textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
+                        textBoxImageTextDeepLearning.Refresh();
+                        textBoxImageTextDeepLearning.Update();
+                        count = On.Detected.Count;
+                    }
+                }
+            } while (DetectionOfLitteral.current < DetectionOfLitteral.total);
+        }
+        //create main detection button
+        private void CreateConSha_Click(object sender, EventArgs e)
+        {
+
+            var output = Task.Factory.StartNew(() => SetTotal());
+
+
+
         }
     }
 }

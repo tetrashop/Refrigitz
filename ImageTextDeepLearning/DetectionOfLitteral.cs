@@ -8,6 +8,8 @@ namespace ImageTextDeepLearning
     //detection of literal class
     internal class DetectionOfLitteral
     {
+        public static int total = -1;
+        public static int current = -1;
         //initiate global vars
         private readonly int Width = 10, Heigh = 10;
         private readonly double Threashold = 0.01;
@@ -98,6 +100,7 @@ namespace ImageTextDeepLearning
                 //clear list and initate...
                 Detected.Clear();
                 bool Ach = true;
+                total = ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count * t.KeyboardAllConjunctionMatrix.Count;
                 //for evey conjuncted shape retrived matrix items
                 for (int i = 0; i < ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
                 {
@@ -112,6 +115,7 @@ namespace ImageTextDeepLearning
                     int KeyDif = 0;
                     for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
                     {
+                        current = (i + 1) * ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count + k + 1;
                         bool a = IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei);
                         bool b = IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
                         //retrive similarity value

@@ -117,7 +117,9 @@
             this.progressBarCompleted.Name = "progressBarCompleted";
             this.progressBarCompleted.Size = new System.Drawing.Size(391, 23);
             this.progressBarCompleted.TabIndex = 5;
+            this.progressBarCompleted.VisibleChanged += new System.EventHandler(this.progressBarCompleted_VisibleChanged);
             this.progressBarCompleted.Click += new System.EventHandler(this.progressBarCompleted_Click);
+            this.progressBarCompleted.Validating += new System.ComponentModel.CancelEventHandler(this.progressBarCompleted_Validating);
             // 
             // buttonTxtDetect
             // 

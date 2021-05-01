@@ -794,7 +794,7 @@ namespace ImageTextDeepLearning
                                     //Draw fill white image
                                     e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
-                                    GraphicsPath path = new GraphicsPath(FillMode.Alternate);
+                                    GraphicsPath path = new GraphicsPath();
                                     //draw string
                                     e.SmoothingMode = SmoothingMode.AntiAlias;
                                     using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1)))))
@@ -886,7 +886,7 @@ namespace ImageTextDeepLearning
                                 //Draw fill white image
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                                 //draw string
-                                GraphicsPath path = new GraphicsPath(FillMode.Alternate);
+                                GraphicsPath path = new GraphicsPath();
                                 //draw string
                                 e.SmoothingMode = SmoothingMode.AntiAlias;
                                 using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))

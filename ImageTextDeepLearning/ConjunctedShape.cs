@@ -238,7 +238,7 @@ namespace ImageTextDeepLearning
                                 te[ii] = new Point((int)((float)(Width * te[ii].X) / (float)(MaX - MiX)), (int)((float)(Height * te[ii].Y) / (float)(MaY - MiY)));
                             }
 
-                            GraphicsPath path = new GraphicsPath(FillMode.Alternate);
+                            GraphicsPath path = new GraphicsPath();
                             //draw string
                             e.SmoothingMode = SmoothingMode.AntiAlias;
                             path.AddLines(te);

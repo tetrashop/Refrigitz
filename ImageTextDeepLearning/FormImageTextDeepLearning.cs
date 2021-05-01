@@ -1065,9 +1065,82 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         private void CreateConSha_Click(object sender, EventArgs e)
         {
 
-            var output = Task.Factory.StartNew(() => SetTotal());
+            //var output = Task.Factory.StartNew(() => SetTotal());
+
+            var output = Task.Factory.StartNew(() => CreateOneConShape());
+            if (!ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly)
+            {
+                do { Thread.Sleep(10); } while (DetectionOfLitteral.total == -1 || DetectionOfLitteral.current == -1);
+                progressBarCompleted.Maximum = DetectionOfLitteral.total;
+                var outputC = Task.Factory.StartNew(() => Current());
+                output.Wait();
+            }
+            else
+            {
+                output.Wait();
+                if (On != null)
+                {
+                    if (On.ConjunctedShapeListRequired != null)
+                    {
+                        if (On.ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count > 0)
+                        {
+                            if (checkBoxCheckonly.Checked)
+                            {
+                                ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly = true;
+                                buttonUpdate.Visible = true;
+                                comboBoxKind.Visible = true;
+                            }
+                            else
+                            {
+                                ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly = false;
+                                buttonUpdate.Visible = false;
+                                comboBoxKind.Visible = false;
+                            }
+                        }
+                    }
+                }
+                return;
+            }
 
 
+            DisablePaint = true;
+            MessageBox.Show("Samples!");
+            for (int i = 0; i < On.ConjunctedShapeListRequired.KeyboardAllImage.Count; i++)
+            {
+                PictureBoxTest.BackgroundImage = On.ConjunctedShapeListRequired.KeyboardAllImage[i];
+                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
+                PictureBoxTest.Refresh();
+                PictureBoxTest.Update();
+                MessageBox.Show("Next!");
+                PictureBoxTest.BackgroundImage.Dispose();
+            }
+            if (!test)
+            {
+                MessageBox.Show("part of References!");
+            }
+            else
+            {
+                MessageBox.Show("References!");
+            }
+            for (int i = 0; i < On.t.KeyboardAllImage.Count; i++)
+            {
+                PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[i];
+                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
+                PictureBoxTest.Refresh();
+                PictureBoxTest.Update();
+                MessageBox.Show("Next!");
+                PictureBoxTest.BackgroundImage.Dispose();
+            }
+            DisablePaint = false;
+
+            textBoxImageTextDeepLearning.Text = "";
+            for (int i = 0; i < On.Detected.Count; i++)
+            {
+                textBoxImageTextDeepLearning.AppendText(On.Detected[i]);
+                textBoxImageTextDeepLearning.Refresh();
+                textBoxImageTextDeepLearning.Update();
+            }
+            buttonSplitationConjunction.Visible = true;
 
         }
     }

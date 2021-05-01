@@ -18,7 +18,7 @@ namespace ImageTextDeepLearning
         public static char[] engbig = null;
         public static char[] engnum = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
 
-        private readonly char[] te = { 'a', 'v', '3', 'i', 'j', ' ' };
+        private readonly char[] te = { 'a', '3', 'i', ' ' };
         public AllKeyboardOfWorld()
         {
             if (fonts.Count == 0)

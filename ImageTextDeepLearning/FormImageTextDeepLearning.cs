@@ -23,6 +23,7 @@ namespace ImageTextDeepLearning
     //Constructor
     public partial class FormImageTextDeepLearning : Form
     {
+        public static bool Checkonly = false;
         private readonly List<string> Verb = new List<string>();
         private readonly List<string> TextMinedIs = new List<string>();
         private readonly List< List<string>> TextMinedLogicsIs = new List<List<string>>();
@@ -931,6 +932,109 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 }
             } while (DetectionOfLitteral.current < DetectionOfLitteral.total);
         }
+
+        private void checkBoxCheckonly_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)(sender)).Checked)
+            {
+                ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly = true;
+                buttonUpdate.Visible = true;
+                comboBoxKind.Visible = true;
+            }
+            else
+            {
+                ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly = false;
+                buttonUpdate.Visible = false;
+                comboBoxKind.Visible = false;
+            }
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBoxItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxKind.Text == "Sample")
+            {
+                textBoxImageTextDeepLearning.Text = "";
+                if (comboBoxItem.Text != "")
+                {
+                    for (int i = 0; i < Width; i++)
+                    {
+                        for (int j = 0; j < Height; j++)
+                        {
+                            if (On.ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[System.Convert.ToInt32(comboBoxItem.Text)][i, j])
+                            {
+                                textBoxImageTextDeepLearning.AppendText(".");
+                            }
+                            else
+                            {
+                                textBoxImageTextDeepLearning.AppendText(" ");
+
+                            }
+                        }
+                        textBoxImageTextDeepLearning.AppendText("\r\n");                          
+
+                    }
+                }
+            }
+            else
+            {
+                textBoxImageTextDeepLearning.Text = "";
+                if (comboBoxItem.Text != "")
+                {
+                    for (int i = 0; i < Width; i++)
+                    {
+                        for (int j = 0; j < Height; j++)
+                        {
+                            if (On.t.KeyboardAllConjunctionMatrix[System.Convert.ToInt32(comboBoxItem.Text)][i, j])
+                            {
+                                textBoxImageTextDeepLearning.AppendText(".");
+                            }
+                            else
+                            {
+                                textBoxImageTextDeepLearning.AppendText(" ");
+
+                            }
+                        }
+                        textBoxImageTextDeepLearning.AppendText("\r\n");
+
+                    }
+                }
+            }
+        }
+
+        private void comboBoxKind_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (On != null)
+            {
+                if (comboBoxKind.Text == "Sample")
+                {
+                    comboBoxItem.Visible = true;
+                    comboBoxItem.Items.Clear();
+                    for (int i = 0; i < On.ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count; i++)
+                    {
+                        comboBoxItem.Items.Add(i.ToString() + "\r\n");
+                    }
+                    textBoxImageTextDeepLearning.Text = "";
+
+                }
+                else
+                {
+                    if (comboBoxKind.Text == "Reference")
+                    {
+                        comboBoxItem.Items.Clear();
+                        for (int i = 0; i < On.t.KeyboardAllConjunctionMatrix.Count; i++)
+                        {
+                            comboBoxItem.Items.Add(i.ToString() + "\r\n");
+                        }
+                    }
+                }
+            }
+        }
+
         //create main detection button
         private void CreateConSha_Click(object sender, EventArgs e)
         {

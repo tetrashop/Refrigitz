@@ -58,6 +58,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonAddVerb = new System.Windows.Forms.Button();
+            this.checkBoxCheckonly = new System.Windows.Forms.CheckBox();
+            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.comboBoxKind = new System.Windows.Forms.ComboBox();
+            this.comboBoxItem = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxTest)).BeginInit();
             this.panelImageTextDeepLearning.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxImageTextDeepLearning)).BeginInit();
@@ -309,15 +313,15 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(671, 459);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(100, 17);
+            this.checkBox1.Size = new System.Drawing.Size(83, 17);
             this.checkBox1.TabIndex = 16;
-            this.checkBox1.Text = "use {a,v,3, i, j, }";
+            this.checkBox1.Text = "use {a,3, i, }";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(767, 459);
+            this.button1.Location = new System.Drawing.Point(767, 448);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 17;
@@ -344,11 +348,60 @@
             this.buttonAddVerb.Visible = false;
             this.buttonAddVerb.Click += new System.EventHandler(this.buttonAddVerb_Click);
             // 
+            // checkBoxCheckonly
+            // 
+            this.checkBoxCheckonly.AutoSize = true;
+            this.checkBoxCheckonly.Location = new System.Drawing.Point(509, 480);
+            this.checkBoxCheckonly.Name = "checkBoxCheckonly";
+            this.checkBoxCheckonly.Size = new System.Drawing.Size(80, 17);
+            this.checkBoxCheckonly.TabIndex = 20;
+            this.checkBoxCheckonly.Text = "Only check";
+            this.checkBoxCheckonly.UseVisualStyleBackColor = true;
+            this.checkBoxCheckonly.CheckedChanged += new System.EventHandler(this.checkBoxCheckonly_CheckedChanged);
+            // 
+            // buttonUpdate
+            // 
+            this.buttonUpdate.Location = new System.Drawing.Point(595, 474);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdate.TabIndex = 21;
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Visible = false;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+            // 
+            // comboBoxKind
+            // 
+            this.comboBoxKind.FormattingEnabled = true;
+            this.comboBoxKind.Items.AddRange(new object[] {
+            "Sample",
+            "Reference"});
+            this.comboBoxKind.Location = new System.Drawing.Point(676, 476);
+            this.comboBoxKind.Name = "comboBoxKind";
+            this.comboBoxKind.Size = new System.Drawing.Size(77, 21);
+            this.comboBoxKind.TabIndex = 22;
+            this.comboBoxKind.Visible = false;
+            this.comboBoxKind.SelectedIndexChanged += new System.EventHandler(this.comboBoxKind_SelectedIndexChanged);
+            // 
+            // comboBoxItem
+            // 
+            this.comboBoxItem.FormattingEnabled = true;
+            this.comboBoxItem.Location = new System.Drawing.Point(761, 474);
+            this.comboBoxItem.Name = "comboBoxItem";
+            this.comboBoxItem.Size = new System.Drawing.Size(73, 21);
+            this.comboBoxItem.TabIndex = 23;
+            this.comboBoxItem.Visible = false;
+            this.comboBoxItem.SelectedIndexChanged += new System.EventHandler(this.comboBoxItem_SelectedIndexChanged);
+            // 
             // FormImageTextDeepLearning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 498);
+            this.Controls.Add(this.comboBoxItem);
+            this.Controls.Add(this.comboBoxKind);
+            this.Controls.Add(this.buttonUpdate);
+            this.Controls.Add(this.checkBoxCheckonly);
             this.Controls.Add(this.buttonAddVerb);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
@@ -414,6 +467,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonAddVerb;
+        private System.Windows.Forms.CheckBox checkBoxCheckonly;
+        private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.ComboBox comboBoxKind;
+        private System.Windows.Forms.ComboBox comboBoxItem;
     }
 }
 

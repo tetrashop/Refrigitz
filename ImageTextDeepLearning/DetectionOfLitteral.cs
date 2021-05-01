@@ -42,9 +42,9 @@ namespace ImageTextDeepLearning
                 
                 
                 ConjunctedShapeListRequired.ConvertAllTempageToMatrix(tt.AllImage);
-                
-                
-                Detection(Width, Heigh);
+
+                if (!FormImageTextDeepLearning.Checkonly)
+                    Detection(Width, Heigh);
             }
             catch (Exception te)
             {
@@ -115,7 +115,7 @@ namespace ImageTextDeepLearning
                     int KeyDif = 0;
                     for (int k = 0; k < t.KeyboardAllConjunctionMatrix.Count; k++)
                     {
-                        current = (i + 1) * ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count + k + 1;
+                        current = (i) * ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count + k + 1;
                         bool a = IssampleallFalse(ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[i], Wi, Hei);
                         bool b = IssampleallFalse(t.KeyboardAllConjunctionMatrix[k], Wi, Hei);
                         //retrive similarity value

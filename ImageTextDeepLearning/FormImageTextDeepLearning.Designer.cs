@@ -357,6 +357,7 @@
             this.checkBoxCheckonly.TabIndex = 20;
             this.checkBoxCheckonly.Text = "Only check";
             this.checkBoxCheckonly.UseVisualStyleBackColor = true;
+            this.checkBoxCheckonly.Visible = false;
             this.checkBoxCheckonly.CheckedChanged += new System.EventHandler(this.checkBoxCheckonly_CheckedChanged);
             // 
             // buttonUpdate

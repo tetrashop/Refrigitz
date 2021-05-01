@@ -225,14 +225,18 @@ namespace ImageTextDeepLearning
                         int MyM = (MaY - MiY) / 2;
                         int Mx = MxM * 2;
                         int My = MyM * 2;
-                        Bitmap Temp = new Bitmap(MaX, MaY);
+                        Bitmap Temp = new Bitmap(Width, Height);
                         Graphics e = Graphics.FromImage(Temp);
-                        e.FillRectangle(Brushes.White, new Rectangle(0, 0, MaX, MaY));
+                        e.FillRectangle(Brushes.White, new Rectangle(0, 0,Width, Height));
                         e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         //initate new root image empty
                         if (!(MaX == MiX || MaY == MiY))
                         {
-
+                            for (int ii = 0; ii < te.Length; ii++)
+                            {
+                                te[ii] = new Point(te[ii].X - MiX, te[ii].Y - MiY);
+                                te[ii] = new Point((int)((float)(Width * te[ii].X) / (float)(MaX - MiX)), (int)((float)(Height * te[ii].Y) / (float)(MaY - MiY)));
+                            }
 
                             GraphicsPath path = new GraphicsPath(FillMode.Alternate);
                             //draw string
@@ -240,14 +244,14 @@ namespace ImageTextDeepLearning
                             path.AddLines(te);
                             if (Width > MaX)
                             {
-                                using (Pen pen = new Pen(Color.Black, (Width / MaX) / 5))
+                                using (Pen pen = new Pen(Color.Black, 1))
                                 {
                                     e.DrawPath(pen, path);
                                 }
                             }
                             else
                             {
-                                using (Pen pen = new Pen(Color.Black, (MaX / Width) / 5))
+                                using (Pen pen = new Pen(Color.Black, 1))
                                 {
                                     e.DrawPath(pen, path);
                                 }
@@ -267,12 +271,12 @@ namespace ImageTextDeepLearning
                             if (Mx > My)
                             {
                                 Bitmap Te = null;
-                                if ((MaX - MiX) < (MaY - MiY))
+                                if ((MaX) < (MaY))
                                 {
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY, MaY));
                                     }
                                     else
                                     {
@@ -283,25 +287,24 @@ namespace ImageTextDeepLearning
                                 {
                                     if (MiX < MaX && MiY < MaY)
                                     {
-                                        //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX, MaX));
                                     }
                                     else
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
                                 }
-                                 AllImage.Add(Te);
+                                AllImage.Add(Te);
                             }
                             else
                             {
                                 Bitmap Te = null;
-                                if ((MaX - MiX) < (MaY - MiY))
+                                if ((MaX) < (MaY))
                                 {
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY, MaY));
                                     }
                                     else
                                     {
@@ -312,8 +315,7 @@ namespace ImageTextDeepLearning
                                 {
                                     if (MiX < MaX && MiY < MaY)
                                     {
-                                        //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX, MaX));
                                     }
                                     else
                                     {

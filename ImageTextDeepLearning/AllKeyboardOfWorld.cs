@@ -786,13 +786,13 @@ namespace ImageTextDeepLearning
                                 //{
                                 for (int h = 0; h < fonts.Count; h++)
                                 {   //proper empty image coinstruction object
-                                    Bitmap Temp = new Bitmap(100, 100);
+                                    Bitmap Temp = new Bitmap(Width, Height);
                                     //initate new root image empty
                                     //create proper image graphics
                                     Graphics e = Graphics.FromImage(Temp);
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Draw fill white image
-                                    e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
+                                    e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
                                     GraphicsPath path = new GraphicsPath(FillMode.Alternate);
                                     //draw string
@@ -804,8 +804,8 @@ namespace ImageTextDeepLearning
                                             sf.Alignment = StringAlignment.Center;
                                             sf.LineAlignment = StringAlignment.Center;
                                             path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                                (int)FontStyle.Bold, (Width + Height),
-                                                new Rectangle(0, 0, 100, 100), sf);
+                                                (int)FontStyle.Bold, Width,
+                                                new Rectangle(0, 0, Width, Height), sf);
                                         }
                                     }
                                     using (Pen pen = new Pen(Color.Black, 1))
@@ -818,15 +818,15 @@ namespace ImageTextDeepLearning
                                     int MyM = (MaY - MiY) / 2;
                                     int Mx = MxM * 2;
                                     int My = MyM * 2;
-                                    Bitmap Te = null;
+                                    Bitmap Te = Temp;
                                     e.Dispose();
                                     //crop to proper space
-                                    if ((MaX - MiX) < (MaY - MiY))
+                                   /* if ((MaX) < (MaY ))
                                     {
                                         if (MiX < MaX && MiY < MaY)
                                         {
                                             //crop to proper space
-                                            Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                            Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY, MaY));
                                         }
                                         else
                                         {
@@ -837,13 +837,13 @@ namespace ImageTextDeepLearning
                                     {
                                         if (MiX < MaX && MiY < MaY)
                                         {
-                                             Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                             Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX, MaX ));
                                         }
                                         else
                                         {
                                             Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                         }
-                                    }
+                                    }*/
                                     e = Graphics.FromImage(Te);
                                     e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     
@@ -857,7 +857,7 @@ namespace ImageTextDeepLearning
                                             lock (o)
                                             {
                                                 
-                                                if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                                if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                                 {
                                                     Tem[k, p] = true;
                                                 }
@@ -879,12 +879,12 @@ namespace ImageTextDeepLearning
                             else//When font not installed
                             {
                                 //proper empty image coinstruction object
-                                Bitmap Temp = new Bitmap(100, 100);
+                                Bitmap Temp = new Bitmap(Width, Height);
                                 //create proper image graphics
                                 Graphics e = Graphics.FromImage(Temp);
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 //Draw fill white image
-                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, 100, 100));
+                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                                 //draw string
                                 GraphicsPath path = new GraphicsPath(FillMode.Alternate);
                                 //draw string
@@ -896,8 +896,8 @@ namespace ImageTextDeepLearning
                                         sf.Alignment = StringAlignment.Center;
                                         sf.LineAlignment = StringAlignment.Center;
                                         path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                            (int)FontStyle.Bold, (Width + Height),
-                                            new Rectangle(0, 0, 100, 100), sf);
+                                            (int)FontStyle.Bold, Width,
+                                            new Rectangle(0, 0, Width, Height), sf);
                                     }
                                 }
                                 using (Pen pen = new Pen(Color.Black, 1))
@@ -910,15 +910,15 @@ namespace ImageTextDeepLearning
                                 int MyM = (MaY - MiY) / 2;
                                 int Mx = MxM * 2;
                                 int My = MyM * 2;
-                                Bitmap Te = null;
+                                Bitmap Te = Temp;
                                 e.Dispose();
                                 //crop to proper space
-                                if ((MaX - MiX) < (MaY - MiY))
+                                /*if ((MaX) < (MaY))
                                 {
                                     if (MiX < MaX && MiY < MaY)
                                     {
                                         //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY, MaY));
                                     }
                                     else
                                     {
@@ -929,18 +929,16 @@ namespace ImageTextDeepLearning
                                 {
                                     if (MiX < MaX && MiY < MaY)
                                     {
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX, MaX));
                                     }
                                     else
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
-                                }
-                                e.Dispose();
-                                
+                                }*/
+                                 
                                 
                                 //create proper conjunction matrix
-                                e.Dispose();
                                 e = Graphics.FromImage(Te);
                                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 bool[,] Tem = new bool[Width, Height];
@@ -951,7 +949,7 @@ namespace ImageTextDeepLearning
                                         object o = new object();
                                         lock (o)
                                         {    
-                                            if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                            if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                             {
                                                 Tem[k, p] = true;
                                             }
@@ -1037,7 +1035,7 @@ namespace ImageTextDeepLearning
                               for (int p = 0; p < TempI[i].Height; p++)
                             {
                                 //assigne proper matrix
-                                if ((TempI[i].GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                if (!(TempI[i].GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                 {
                                     Tem[k, p] = true;
                                 }

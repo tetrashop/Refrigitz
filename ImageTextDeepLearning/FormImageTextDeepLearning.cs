@@ -147,12 +147,12 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             //detection foregin unnkown app constructor
             d = new MainForm();
             d.ShowDialog();
-            
-            
+
             
             PictureBoxImageTextDeepLearning.Update();
             PictureBoxImageTextDeepLearning.Refresh();
             CreateConSha.Visible = true;
+            checkBoxCheckonly.Visible = true;
         }
         //delegates on lables
         private delegate void CallRefLable();
@@ -860,11 +860,41 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         void SetTotal()
         {
             var output = Task.Factory.StartNew(() => CreateOneConShape());
-            do { Thread.Sleep(10); } while (DetectionOfLitteral.total == -1 || DetectionOfLitteral.current == -1);
-            progressBarCompleted.Maximum = DetectionOfLitteral.total;
-            var outputC = Task.Factory.StartNew(() => Current());
-            output.Wait();
+            if (!ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly)
+            {
+                do { Thread.Sleep(10); } while (DetectionOfLitteral.total == -1 || DetectionOfLitteral.current == -1);
+                progressBarCompleted.Maximum = DetectionOfLitteral.total;
+                var outputC = Task.Factory.StartNew(() => Current());
+                output.Wait();
+            }
+            else
+            {
+                output.Wait();
+                if (On != null)
+                {
+                    if (On.ConjunctedShapeListRequired != null)
+                    {
+                        if (On.ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix.Count > 0)
+                        {
+                            if (checkBoxCheckonly.Checked)
+                            {
+                                ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly = true;
+                                buttonUpdate.Visible = true;
+                                comboBoxKind.Visible = true;
+                            }
+                            else
+                            {
+                                ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly = false;
+                                buttonUpdate.Visible = false;
+                                comboBoxKind.Visible = false;
+                            }
+                        }
+                    }
+                }
+                return ;
+            }
 
+            
             DisablePaint = true;
             MessageBox.Show("Samples!");
             for (int i = 0; i < On.ConjunctedShapeListRequired.KeyboardAllImage.Count; i++)
@@ -935,17 +965,13 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
         private void checkBoxCheckonly_CheckedChanged(object sender, EventArgs e)
         {
-            if (((CheckBox)(sender)).Checked)
+            if (checkBoxCheckonly.Checked)
             {
                 ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly = true;
-                buttonUpdate.Visible = true;
-                comboBoxKind.Visible = true;
             }
             else
             {
                 ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly = false;
-                buttonUpdate.Visible = false;
-                comboBoxKind.Visible = false;
             }
         }
 

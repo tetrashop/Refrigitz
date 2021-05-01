@@ -967,7 +967,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         {
                             if (On.ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[System.Convert.ToInt32(comboBoxItem.Text)][i, j])
                             {
-                                textBoxImageTextDeepLearning.AppendText(".");
+                                textBoxImageTextDeepLearning.AppendText("+");
                             }
                             else
                             {
@@ -991,7 +991,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         {
                             if (On.t.KeyboardAllConjunctionMatrix[System.Convert.ToInt32(comboBoxItem.Text)][i, j])
                             {
-                                textBoxImageTextDeepLearning.AppendText(".");
+                                textBoxImageTextDeepLearning.AppendText("+");
                             }
                             else
                             {

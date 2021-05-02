@@ -25,22 +25,22 @@ namespace ImageTextDeepLearning
             try
             {
                 dd = d;
-                
-                
+
+
                 t = new AllKeyboardOfWorld();
                 t.ConvertAllStringToImage(d);
-                
-                
-                
+
+
+
                 tt = new ConjunctedShape(d);
-                
-                
+
+
                 tt.CreateSAhapeFromConjucted(Width, Heigh);
-                
-                
+
+
                 ConjunctedShapeListRequired = new AllKeyboardOfWorld();
-                
-                
+
+
                 ConjunctedShapeListRequired.ConvertAllTempageToMatrix(tt.AllImage);
 
                 if (!FormImageTextDeepLearning.Checkonly)

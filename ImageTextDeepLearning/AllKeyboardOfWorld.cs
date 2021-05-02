@@ -794,9 +794,9 @@ namespace ImageTextDeepLearning
                                     //Draw fill white image
                                     e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
-                                    GraphicsPath path = new GraphicsPath();
+                                    GraphicsPath path = new GraphicsPath(FillMode.Alternate);
                                     //draw string
-                                    e.SmoothingMode = SmoothingMode.AntiAlias;
+                                    e.SmoothingMode = SmoothingMode.HighQuality;
                                     using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1)))))
                                     {
                                         using (StringFormat sf = new StringFormat())
@@ -804,7 +804,7 @@ namespace ImageTextDeepLearning
                                             sf.Alignment = StringAlignment.Center;
                                             sf.LineAlignment = StringAlignment.Center;
                                             path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                                (int)FontStyle.Bold, Width,
+                                                (int)FontStyle.Regular, ((Width - 3) + (Height - 3)),
                                                 new Rectangle(0, 0, Width, Height), sf);
                                         }
                                     }
@@ -821,28 +821,14 @@ namespace ImageTextDeepLearning
                                     Bitmap Te = Temp;
                                     e.Dispose();
                                     //crop to proper space
-                                   /* if ((MaX) < (MaY ))
+                                    /*if (MaX - MiX > MaY - MiY)
                                     {
-                                        if (MiX < MaX && MiY < MaY)
-                                        {
-                                            //crop to proper space
-                                            Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY, MaY));
-                                        }
-                                        else
-                                        {
-                                            Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                        }
+                                        //crop to proper space
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
                                     }
                                     else
                                     {
-                                        if (MiX < MaX && MiY < MaY)
-                                        {
-                                             Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX, MaX ));
-                                        }
-                                        else
-                                        {
-                                            Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                        }
+                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
                                     }*/
                                     e = Graphics.FromImage(Te);
                                     //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -886,9 +872,9 @@ namespace ImageTextDeepLearning
                                 //Draw fill white image
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                                 //draw string
-                                GraphicsPath path = new GraphicsPath();
+                                GraphicsPath path = new GraphicsPath(FillMode.Alternate);
                                 //draw string
-                                e.SmoothingMode = SmoothingMode.AntiAlias;
+                                e.SmoothingMode = SmoothingMode.HighQuality;
                                 using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))
                                 {
                                     using (StringFormat sf = new StringFormat())
@@ -896,7 +882,7 @@ namespace ImageTextDeepLearning
                                         sf.Alignment = StringAlignment.Center;
                                         sf.LineAlignment = StringAlignment.Center;
                                         path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                            (int)FontStyle.Bold, Width,
+                                            (int)FontStyle.Regular , ((Width - 3) + (Height - 3)),
                                             new Rectangle(0, 0, Width, Height), sf);
                                     }
                                 }
@@ -913,31 +899,19 @@ namespace ImageTextDeepLearning
                                 Bitmap Te = Temp;
                                 e.Dispose();
                                 //crop to proper space
-                                /*if ((MaX) < (MaY))
+
+                                /*if (MaX - MiX > MaY - MiY)
                                 {
-                                    if (MiX < MaX && MiY < MaY)
-                                    {
-                                        //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY, MaY));
-                                    }
-                                    else
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                    }
+                                    //crop to proper space
+                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
                                 }
                                 else
                                 {
-                                    if (MiX < MaX && MiY < MaY)
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX, MaX));
-                                    }
-                                    else
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                    }
+                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
                                 }*/
-                                 
-                                
+
+
+
                                 //create proper conjunction matrix
                                 e = Graphics.FromImage(Te);
                                 //e.InterpolationMode = InterpolationMode.HighQualityBicubic;

@@ -26,9 +26,9 @@ namespace ImageTextDeepLearning
             d = dd;
         }
         //Max of list
-        private int MaxX(Point[] Tem)
+        private float MaxX(PointF[] Tem)
         {
-            int te = 0;
+            float te = 0;
             for (int j = 0; j < Tem.Length; j++)
             {
                 if (Tem[j].X > te)
@@ -39,9 +39,9 @@ namespace ImageTextDeepLearning
             return te;
         }
         //Max of list
-        private int MaxY(Point[] Tem)
+        private float MaxY(PointF[] Tem)
         {
-            int te = 0;
+            float te = 0;
             for (int j = 0; j < Tem.Length; j++)
             {
                 if (Tem[j].Y > te)
@@ -52,9 +52,9 @@ namespace ImageTextDeepLearning
             return te;
         }
         //Min of list
-        private int MinX(Point[] Tem)
+        private float MinX(PointF[] Tem)
         {
-            int te = int.MaxValue;
+            float te = float.MaxValue;
             for (int j = 0; j < Tem.Length; j++)
             {
                 if (Tem[j].X < te)
@@ -65,9 +65,9 @@ namespace ImageTextDeepLearning
             return te;
         }
         //Min of list
-        private int MinY(Point[] Tem)
+        private float MinY(PointF[] Tem)
         {
-            int te = int.MaxValue;
+            float te = float.MaxValue;
             for (int j = 0; j < Tem.Length; j++)
             {
                 if (Tem[j].Y < te)
@@ -217,14 +217,17 @@ namespace ImageTextDeepLearning
                     {
                         //retrive min and max of tow X and Y
                          //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, Mx));
-                        Point[] te = All[i].ToArray();
-                        int MiX = MinX(te), MiY = MinY(te), MaX = MaxX(te), MaY = MaxY(te);
+                        Point[] tec = All[i].ToArray();
+                        PointF[] te = new PointF[tec.Length];
+                        for (int ii = 0; ii < te.Length; ii++)
+                            te[ii] = new PointF(tec[ii].X, tec[ii].Y);
+                        float MiX = MinX(te), MiY = MinY(te), MaX = MaxX(te), MaY = MaxY(te);
 
                         //centeralized
-                        int MxM = (MaX - MiX) / 2;
-                        int MyM = (MaY - MiY) / 2;
-                        int Mx = MxM * 2;
-                        int My = MyM * 2;
+                        float MxM = (MaX - MiX) / 2;
+                        float MyM = (MaY - MiY) / 2;
+                        float Mx = MxM * 2;
+                        float My = MyM * 2;
                         Bitmap Temp = new Bitmap(Width, Height);
                         Graphics e = Graphics.FromImage(Temp);
                         e.FillRectangle(Brushes.White, new Rectangle(0, 0,Width, Height));
@@ -234,14 +237,15 @@ namespace ImageTextDeepLearning
                         {
                             for (int ii = 0; ii < te.Length; ii++)
                             {
-                                te[ii] = new Point(te[ii].X - MiX, te[ii].Y - MiY);
-                                te[ii] = new Point((int)((float)(Width * te[ii].X) / (float)(MaX - MiX)), (int)((float)(Height * te[ii].Y) / (float)(MaY - MiY)));
+                                te[ii] = new PointF(te[ii].X - MiX, te[ii].Y - MiY);
+                                te[ii] = new PointF(te[ii].X + 3, te[ii].Y + 3);
+                                te[ii] = new PointF(((float)((Width - 3) * te[ii].X) / (float)(MaX - MiX)), ((float)((Height - 3) * te[ii].Y) / (float)(MaY - MiY)));
                             }
 
-                            GraphicsPath path = new GraphicsPath();
+                            GraphicsPath path = new GraphicsPath(FillMode.Alternate);
                             //draw string
                             e.SmoothingMode = SmoothingMode.AntiAlias;
-                            path.AddLines(te);
+                            path.AddPolygon(te);
                             if (Width > MaX)
                             {
                                 using (Pen pen = new Pen(Color.Black, 1))
@@ -270,8 +274,8 @@ namespace ImageTextDeepLearning
                             //draw all points
                             if (Mx > My)
                             {
-                                Bitmap Te = null;
-                                if ((MaX) < (MaY))
+                                Bitmap Te = Temp;
+                                /*if ((MaX) < (MaY))
                                 {
                                     if (MiX < MaX && MiY < MaY)
                                     {
@@ -293,13 +297,13 @@ namespace ImageTextDeepLearning
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
-                                }
+                                }*/
                                 AllImage.Add(Te);
                             }
                             else
                             {
-                                Bitmap Te = null;
-                                if ((MaX) < (MaY))
+                                Bitmap Te = Temp;
+                                /*if ((MaX) < (MaY))
                                 {
                                     if (MiX < MaX && MiY < MaY)
                                     {
@@ -321,7 +325,7 @@ namespace ImageTextDeepLearning
                                     {
                                         Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
                                     }
-                                }
+                                }*/
                                 bool[,] TemB = new bool[Width, Height];
                                 e = Graphics.FromImage(Te);
                                 //e.InterpolationMode = InterpolationMode.HighQualityBicubic;

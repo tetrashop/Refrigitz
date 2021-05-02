@@ -843,7 +843,7 @@ namespace ImageTextDeepLearning
                                             lock (o)
                                             {
                                                 
-                                                if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
+                                                if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                                 {
                                                     Tem[k, p] = true;
                                                 }
@@ -923,7 +923,7 @@ namespace ImageTextDeepLearning
                                         object o = new object();
                                         lock (o)
                                         {    
-                                            if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
+                                            if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                             {
                                                 Tem[k, p] = true;
                                             }
@@ -1009,7 +1009,7 @@ namespace ImageTextDeepLearning
                               for (int p = 0; p < TempI[i].Height; p++)
                             {
                                 //assigne proper matrix
-                                if (!(TempI[i].GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
+                                if ((TempI[i].GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
                                 {
                                     Tem[k, p] = true;
                                 }

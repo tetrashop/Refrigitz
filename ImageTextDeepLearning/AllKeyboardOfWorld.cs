@@ -421,7 +421,7 @@ namespace ImageTextDeepLearning
             return true;
         }
         //making  hollow and emptyy inside.
-        private bool HollowCountreImageCommmon(ref Bitmap Im, bool[,] Ab)
+        private bool HollowCountreImageCommmon(ref Bitmap Im)
         {
             try
             {
@@ -443,12 +443,12 @@ namespace ImageTextDeepLearning
                             object o = new object();
                             lock (o)
                             {
-                                if (Ab[x, y])
+                                if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
                                 {
                                     bool Is = false;
                                     /*var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
                                     H.Wait();*/
-                                    HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab, ref Is);
+                                    HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, ref Is);
                                 }
                             }
                         }
@@ -465,7 +465,7 @@ namespace ImageTextDeepLearning
             return true;
         }
         //main sub method
-        private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
+        private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, ref bool IsOut)
         {
             try
             {
@@ -482,7 +482,7 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
                     {
 
 
@@ -493,7 +493,7 @@ namespace ImageTextDeepLearning
                         if (x + 1 < wi)
                         {
 
-                            Is = Is && HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut1);
+                            Is = Is && HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, ref IsOut1);
 
                         }
 
@@ -502,7 +502,7 @@ namespace ImageTextDeepLearning
 
                         if (x - 1 >= 0)
                         {
-                            Is = Is && HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut2);
+                            Is = Is && HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, ref IsOut2);
 
                         }
 
@@ -510,7 +510,7 @@ namespace ImageTextDeepLearning
                         if (y + 1 < he)
                         {
 
-                            Is = Is && HollowCountreImageCommmonXYUpY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut3);
+                            Is = Is && HollowCountreImageCommmonXYUpY(ref Im, x, y + 1, wi, he, X, Y, ref IsOut3);
 
                         }
 
@@ -518,7 +518,7 @@ namespace ImageTextDeepLearning
                         if (y - 1 >= 0)
                         {
 
-                            Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut4);
+                            Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, ref IsOut4);
 
                         }
 
@@ -526,9 +526,9 @@ namespace ImageTextDeepLearning
                         object oo = new object();
                         lock (oo)
                         {
-                            if (Is && (Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                            if (Is && (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb())))
                             {
-                                Im.SetPixel(X, Y, Color.White);
+                                Im.SetPixel(X, Y, Color.Black);
                                 Hollowed = true;
                                 return false;
                             }
@@ -546,7 +546,7 @@ namespace ImageTextDeepLearning
             return true;
         }
         //sub method
-        private bool HollowCountreImageCommmonXYRigthX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
+        private bool HollowCountreImageCommmonXYRigthX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, ref bool IsOut)
         {
             bool Is = false;
             try
@@ -559,11 +559,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
                             {
                                 IsOut = true;
                                 return true;
@@ -580,7 +580,7 @@ namespace ImageTextDeepLearning
                             if (x + 1 < wi)
                             {
 
-                                Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+                                Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, ref IsOut);
                                 //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
 
                             }
@@ -597,7 +597,7 @@ namespace ImageTextDeepLearning
             return Is;
         }
         //sub method
-        private bool HollowCountreImageCommmonXYLeftX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
+        private bool HollowCountreImageCommmonXYLeftX(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, ref bool IsOut)
         {
 
             bool Is = false;
@@ -611,11 +611,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
                             {
                                 IsOut = true;
                                 return true;
@@ -633,7 +633,7 @@ namespace ImageTextDeepLearning
                             if (x - 1 >= 0)
                             {
 
-                                Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, Ab, ref IsOut);
+                                Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, ref IsOut);
                                 //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
                             }
                         }
@@ -653,7 +653,7 @@ namespace ImageTextDeepLearning
             return Is;
         }
         //sub method
-        private bool HollowCountreImageCommmonXYUpY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
+        private bool HollowCountreImageCommmonXYUpY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, ref bool IsOut)
         {
             bool Is = false;
             try
@@ -666,11 +666,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
                             {
                                 IsOut = true;
                                 return true;
@@ -687,7 +687,7 @@ namespace ImageTextDeepLearning
                             if (y + 1 < he)
                             {
 
-                                Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y - 1, wi, he, X, Y, Ab, ref IsOut);
+                                Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y - 1, wi, he, X, Y, ref IsOut);
                                 //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
                             }
                         }
@@ -703,7 +703,7 @@ namespace ImageTextDeepLearning
             return Is;
         }
         //sub method
-        private bool HollowCountreImageCommmonXYDowwnY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, bool[,] Ab, ref bool IsOut)
+        private bool HollowCountreImageCommmonXYDowwnY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, ref bool IsOut)
         {
             bool Is = false;
             try
@@ -716,11 +716,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
                             {
                                 IsOut = true;
                                 return true;
@@ -737,7 +737,7 @@ namespace ImageTextDeepLearning
                             if (y + 1 < he)
                             {
 
-                                Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y + 1, wi, he, X, Y, Ab, ref IsOut);
+                                Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y + 1, wi, he, X, Y, ref IsOut);
                                 //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
 
                             }
@@ -754,7 +754,63 @@ namespace ImageTextDeepLearning
 
             return Is;
         }
-          //store all strings list to proper  images themselves list
+        bool[,] GetBolleanFromArgb(Bitmap Temp)
+        {
+            int[,] TemI = new int[Width, Height];
+            bool[,] TemB = new bool[Width, Height];
+
+            Graphics e = Graphics.FromImage(Temp);
+            //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            for (int k = 0; k < Width; k++)
+            {
+                for (int p = 0; p < Height; p++)
+                {
+                    object o = new object();
+                    lock (o)
+                    {
+                        TemI[k, p] = Temp.GetPixel(k, p).ToArgb();
+
+                    }
+                }
+
+            }
+            e.Dispose();
+            int Max = int.MinValue;
+            for (int k = 0; k < Width; k++)
+            {
+                for (int p = 0; p < Height; p++)
+                {
+                    object o = new object();
+                    lock (o)
+                    {
+                        if (TemI[k, p] > Max)
+                        {
+                            Max = TemI[k, p];
+                        }
+                    }
+                }
+            }
+            for (int k = 0; k < Width; k++)
+            {
+                for (int p = 0; p < Height; p++)
+                {
+                    object o = new object();
+                    lock (o)
+                    {
+                        if (TemI[k, p] < (Max / 2))
+                        {
+                            TemB[k, p] = true;
+                        }
+                        else
+                        {
+                            TemB[k, p] = false;
+                        }
+                    }
+                }
+            }
+            return TemB;
+        }
+        //store all strings list to proper  images themselves list
         public bool ConvertAllStringToImage(MainForm d)
         {
             try
@@ -792,9 +848,9 @@ namespace ImageTextDeepLearning
                                     Graphics e = Graphics.FromImage(Temp);
                                     //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Draw fill white image
-                                    e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+                                    //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
-                                    GraphicsPath path = new GraphicsPath(FillMode.Alternate);
+                                    GraphicsPath path = new GraphicsPath();
                                     //draw string
                                     e.SmoothingMode = SmoothingMode.HighQuality;
                                     using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1)))))
@@ -804,7 +860,7 @@ namespace ImageTextDeepLearning
                                             sf.Alignment = StringAlignment.Center;
                                             sf.LineAlignment = StringAlignment.Center;
                                             path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                                (int)FontStyle.Regular, ((Width ) + (Height )),
+                                                (int)FontStyle.Regular, 16,
                                                 new Rectangle(0, 0, Width, Height), sf);
                                         }
                                     }
@@ -830,32 +886,12 @@ namespace ImageTextDeepLearning
                                     {
                                         Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
                                     }*/
-                                    e = Graphics.FromImage(Te);
-                                    //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                                    
+                                    Do = HollowCountreImageCommmon(ref Te);
+                                    if (!Do)
+                                        MessageBox.Show("fault on hollow!");
+
                                     //create proper conjunction matrix
-                                    bool[,] Tem = new bool[Width, Height];
-                                    for (int k = 0; k < Width; k++)
-                                    {
-                                        for (int p = 0; p < Height; p++)
-                                        {
-                                            object o = new object();
-                                            lock (o)
-                                            {
-                                                
-                                                if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
-                                                {
-                                                    Tem[k, p] = true;
-                                                }
-                                                else
-                                                {
-                                                    Tem[k, p] = false;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    //Add
-                                    e.Dispose();
+                                    bool[,] Tem = GetBolleanFromArgb(Te);
                                     KeyboardAllImage.Add(Te);
                                     KeyboardAllConjunctionMatrix.Add(Tem);
                                     KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
@@ -870,9 +906,9 @@ namespace ImageTextDeepLearning
                                 Graphics e = Graphics.FromImage(Temp);
                                 //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 //Draw fill white image
-                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+                                //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                                 //draw string
-                                GraphicsPath path = new GraphicsPath(FillMode.Alternate);
+                                GraphicsPath path = new GraphicsPath();
                                 //draw string
                                 e.SmoothingMode = SmoothingMode.HighQuality;
                                 using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))
@@ -882,7 +918,7 @@ namespace ImageTextDeepLearning
                                         sf.Alignment = StringAlignment.Center;
                                         sf.LineAlignment = StringAlignment.Center;
                                         path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                            (int)FontStyle.Regular , ((Width ) + (Height )),
+                                            (int)FontStyle.Regular , 16,
                                             new Rectangle(0, 0, Width, Height), sf);
                                     }
                                 }
@@ -911,30 +947,13 @@ namespace ImageTextDeepLearning
                                 }*/
 
 
+                                Do = HollowCountreImageCommmon(ref Te);
+                                if (!Do)
+                                    MessageBox.Show("fault on hollow!");
 
                                 //create proper conjunction matrix
-                                e = Graphics.FromImage(Te);
-                                //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                                bool[,] Tem = new bool[Width, Height];
-                                for (int k = 0; k < Width; k++)
-                                {
-                                    for (int p = 0; p < Height; p++)
-                                    {
-                                        object o = new object();
-                                        lock (o)
-                                        {    
-                                            if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
-                                            {
-                                                Tem[k, p] = true;
-                                            }
-                                            else
-                                            {
-                                                Tem[k, p] = false;
-                                            }
-                                        }
-                                    }
-                                }
-                                e.Dispose();
+                                //create proper conjunction matrix
+                                bool [,] Tem = GetBolleanFromArgb(Te);
                                 KeyboardAllImage.Add(Te);
                                 KeyboardAllConjunctionMatrix.Add(Tem);
                                 KeyboardAllStringsWithfont.Add(KeyboardAllStrings[i]);
@@ -998,28 +1017,9 @@ namespace ImageTextDeepLearning
                       for (int i = 0; i < TempI.Count; i++)
                     {
                         //matrix boolean object constructor list
-                        List<bool[,]> Te = new List<bool[,]>();
-                        //boolean object constructor
-                        bool[,] Tem = new bool[TempI[i].Width, TempI[i].Height];
-                    
-                          Graphics e = Graphics.FromImage(TempI[i]);
-                        //{
-                        for (int k = 0; k < TempI[i].Width; k++)
-                        {
-                              for (int p = 0; p < TempI[i].Height; p++)
-                            {
-                                //assigne proper matrix
-                                if (!(TempI[i].GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
-                                {
-                                    Tem[k, p] = true;
-                                }
-                                else
-                                {
-                                    Tem[k, p] = false;
-                                }
-                            }
-                        }
-                        e.Dispose();
+                        //create proper conjunction matrix
+                        bool[,] Tem = GetBolleanFromArgb(TempI[i]);
+
                         //add
                         KeyboardAllImage.Add(TempI[i]);
                         KeyboardAllConjunctionMatrix.Add(Tem);

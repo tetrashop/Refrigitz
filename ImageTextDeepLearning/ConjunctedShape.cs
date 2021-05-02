@@ -120,7 +120,7 @@ namespace ImageTextDeepLearning
             {
                 for (int k = 0; k < Im.Height; k++)
                 {
-                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
+                    if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
                     {
                         Mi = j;
                         break;
@@ -141,7 +141,7 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
+                    if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
                     {
                         Mi = k;
                         break;
@@ -162,7 +162,7 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
+                    if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
                     {
                         Ma = k;
                         break;
@@ -187,7 +187,7 @@ namespace ImageTextDeepLearning
                 // {
                 for (int k = 0; k < Im.Height; k++)
                 {
-                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
+                    if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
                     {
                         Ma = j;
                         break;
@@ -239,7 +239,7 @@ namespace ImageTextDeepLearning
                             {
                                 te[ii] = new PointF(te[ii].X - MiX, te[ii].Y - MiY);
                                 te[ii] = new PointF(te[ii].X + 3, te[ii].Y + 3);
-                                te[ii] = new PointF(((float)((Width - 3) * te[ii].X) / (float)(MaX - MiX)), ((float)((Height - 3) * te[ii].Y) / (float)(MaY - MiY)));
+                                te[ii] = new PointF(((float)((Width ) * te[ii].X) / (float)(MaX - MiX)), ((float)((Height ) * te[ii].Y) / (float)(MaY - MiY)));
                             }
 
                             GraphicsPath path = new GraphicsPath(FillMode.Alternate);
@@ -336,7 +336,7 @@ namespace ImageTextDeepLearning
                                         object o = new object();
                                         lock (o)
                                         {
-                                            if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                            if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                             {
                                                 TemB[k, p] = true;
                                             }
@@ -404,7 +404,7 @@ namespace ImageTextDeepLearning
                             //first
                             if (nu == 0)
                             {
-                                if ((Im[i].GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
+                                if (Im[i].GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
                                 {
                                     Po[0] = new PointF(j, k);
                                     nu++;
@@ -413,7 +413,7 @@ namespace ImageTextDeepLearning
                             else//second
                             if (nu == 1)
                             {
-                                if ((Im[i].GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
+                                if (Im[i].GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
                                 {
                                     Po[1] = new PointF(j, k);
                                     nu++;
@@ -456,7 +456,7 @@ namespace ImageTextDeepLearning
                         //first
                         if (nu == 0)
                         {
-                            if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
+                            if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
                             {
                                 Po[0] = new Point(j, k);
                                 nu++;
@@ -465,7 +465,7 @@ namespace ImageTextDeepLearning
                         else//second
                         if (nu == 1)
                         {
-                            if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
+                            if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
                             {
                                 Po[1] = new Point(j, k);
                                 nu++;
@@ -548,7 +548,7 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb())
                     {
 
 
@@ -625,11 +625,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb())
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb())
                             {
                                 IsOut = true;
                                 return true;
@@ -677,11 +677,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb())
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb())
                             {
                                 IsOut = true;
                                 return true;
@@ -732,11 +732,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb())
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb())
                             {
                                 IsOut = true;
                                 return true;
@@ -782,11 +782,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb())
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb())
                             {
                                 IsOut = true;
                                 return true;

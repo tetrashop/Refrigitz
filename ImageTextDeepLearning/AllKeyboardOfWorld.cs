@@ -804,7 +804,7 @@ namespace ImageTextDeepLearning
                                             sf.Alignment = StringAlignment.Center;
                                             sf.LineAlignment = StringAlignment.Center;
                                             path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                                (int)FontStyle.Regular, ((Width - 3) + (Height - 3)),
+                                                (int)FontStyle.Regular, ((Width ) + (Height )),
                                                 new Rectangle(0, 0, Width, Height), sf);
                                         }
                                     }
@@ -843,7 +843,7 @@ namespace ImageTextDeepLearning
                                             lock (o)
                                             {
                                                 
-                                                if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                                if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                                 {
                                                     Tem[k, p] = true;
                                                 }
@@ -882,7 +882,7 @@ namespace ImageTextDeepLearning
                                         sf.Alignment = StringAlignment.Center;
                                         sf.LineAlignment = StringAlignment.Center;
                                         path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                            (int)FontStyle.Regular , ((Width - 3) + (Height - 3)),
+                                            (int)FontStyle.Regular , ((Width ) + (Height )),
                                             new Rectangle(0, 0, Width, Height), sf);
                                     }
                                 }
@@ -923,7 +923,7 @@ namespace ImageTextDeepLearning
                                         object o = new object();
                                         lock (o)
                                         {    
-                                            if ((Te.GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                            if (!(Te.GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                             {
                                                 Tem[k, p] = true;
                                             }
@@ -1009,7 +1009,7 @@ namespace ImageTextDeepLearning
                               for (int p = 0; p < TempI[i].Height; p++)
                             {
                                 //assigne proper matrix
-                                if ((TempI[i].GetPixel(k, p).ToArgb() == Color.Black.ToArgb()))
+                                if (!(TempI[i].GetPixel(k, p).ToArgb() == Color.White.ToArgb()))
                                 {
                                     Tem[k, p] = true;
                                 }

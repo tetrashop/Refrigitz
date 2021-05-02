@@ -228,7 +228,7 @@ namespace ImageTextDeepLearning
                         Bitmap Temp = new Bitmap(Width, Height);
                         Graphics e = Graphics.FromImage(Temp);
                         e.FillRectangle(Brushes.White, new Rectangle(0, 0,Width, Height));
-                        e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         //initate new root image empty
                         if (!(MaX == MiX || MaY == MiY))
                         {
@@ -324,7 +324,7 @@ namespace ImageTextDeepLearning
                                 }
                                 bool[,] TemB = new bool[Width, Height];
                                 e = Graphics.FromImage(Te);
-                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 for (int k = 0; k < Width; k++)
                                 {
                                     for (int p = 0; p < Height; p++)
@@ -355,7 +355,7 @@ namespace ImageTextDeepLearning
                         {
                             Temp = new Bitmap(Width, Height);
                             e = Graphics.FromImage(Temp);
-                            e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                            //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                             e.Dispose();
                             AllImage.Add((Bitmap)Temp.Clone());
@@ -492,7 +492,7 @@ namespace ImageTextDeepLearning
 
                 List<Task> th = new List<Task>();
                 Graphics e = Graphics.FromImage(Im);
-                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 do
                 {
                     Hollowed = false;

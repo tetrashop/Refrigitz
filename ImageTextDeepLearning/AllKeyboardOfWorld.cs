@@ -430,7 +430,7 @@ namespace ImageTextDeepLearning
 
                 List<Task> th = new List<Task>();
                 Graphics e = Graphics.FromImage(Im);
-                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 do
                 {
                     Hollowed = false;
@@ -790,7 +790,7 @@ namespace ImageTextDeepLearning
                                     //initate new root image empty
                                     //create proper image graphics
                                     Graphics e = Graphics.FromImage(Temp);
-                                    e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                    //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Draw fill white image
                                     e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
@@ -845,7 +845,7 @@ namespace ImageTextDeepLearning
                                         }
                                     }*/
                                     e = Graphics.FromImage(Te);
-                                    e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                    //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     
                                     //create proper conjunction matrix
                                     bool[,] Tem = new bool[Width, Height];
@@ -882,7 +882,7 @@ namespace ImageTextDeepLearning
                                 Bitmap Temp = new Bitmap(Width, Height);
                                 //create proper image graphics
                                 Graphics e = Graphics.FromImage(Temp);
-                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 //Draw fill white image
                                 e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                                 //draw string
@@ -940,7 +940,7 @@ namespace ImageTextDeepLearning
                                 
                                 //create proper conjunction matrix
                                 e = Graphics.FromImage(Te);
-                                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 bool[,] Tem = new bool[Width, Height];
                                 for (int k = 0; k < Width; k++)
                                 {
@@ -974,7 +974,7 @@ namespace ImageTextDeepLearning
                             Graphics e = Graphics.FromImage(Temp);
                             //Draw fill white image
                             e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
-                            e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                            //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                             e.Dispose();
                             bool[,] Tem = new bool[Width, Height];
                             for (int k = 0; k < Width; k++)

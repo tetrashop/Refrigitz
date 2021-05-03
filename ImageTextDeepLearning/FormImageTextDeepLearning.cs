@@ -984,13 +984,14 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         {
             if (comboBoxKind.Text == "Sample")
             {
-                PictureBoxTest.BackgroundImage = On.ConjunctedShapeListRequired.KeyboardAllImage[System.Convert.ToInt32(comboBoxItem.Text)];
-                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
-                PictureBoxTest.Refresh();
-                PictureBoxTest.Update();
-                textBoxImageTextDeepLearning.Text = "";
                 if (comboBoxItem.Text != "")
                 {
+                    PictureBoxTest.BackgroundImage = On.ConjunctedShapeListRequired.KeyboardAllImage[System.Convert.ToInt32(comboBoxItem.Text)];
+                    PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
+                    PictureBoxTest.Refresh();
+                    PictureBoxTest.Update();
+                    textBoxImageTextDeepLearning.Text = "";
+
                     for (int i = 0; i < Width; i++)
                     {
                         for (int j = 0; j < Height; j++)
@@ -1005,20 +1006,22 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
                             }
                         }
-                        textBoxImageTextDeepLearning.AppendText("\r\n");                          
+                        textBoxImageTextDeepLearning.AppendText("\r\n");
 
                     }
+                    DrawGraph(On.ConjunctedShapeListRequired.KeyboardAllConjunctionMatrix[System.Convert.ToInt32(comboBoxItem.Text)], Width, Height);
                 }
             }
             else
             {
-                PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[System.Convert.ToInt32(comboBoxItem.Text)];
-                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
-                PictureBoxTest.Refresh();
-                PictureBoxTest.Update();
-                textBoxImageTextDeepLearning.Text = "";
                 if (comboBoxItem.Text != "")
                 {
+                    PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[System.Convert.ToInt32(comboBoxItem.Text)];
+                    PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
+                    PictureBoxTest.Refresh();
+                    PictureBoxTest.Update();
+                    textBoxImageTextDeepLearning.Text = "";
+
                     for (int i = 0; i < Width; i++)
                     {
                         for (int j = 0; j < Height; j++)
@@ -1036,10 +1039,35 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                         textBoxImageTextDeepLearning.AppendText("\r\n");
 
                     }
+
+                    DrawGraph(On.t.KeyboardAllConjunctionMatrix[System.Convert.ToInt32(comboBoxItem.Text)], Width, Height);
                 }
             }
         }
+        void DrawGraph(bool[,] Ab, int m, int n)
+        {
+            GraphDivergenceMatrix A = new GraphDivergenceMatrix(Ab, m, n);
+            Graphics e = Graphics.FromImage(PictureBoxImageTextDeepLearning.Image);
+            e.FillRectangle(new SolidBrush(Color.White), new Rectangle(0, 0, PictureBoxImageTextDeepLearning.Image.Width, PictureBoxImageTextDeepLearning.Image.Height));
+            for (int i = 0; i < A.Xv.Count; i++)
+            {
+                for (int j = 0; j < A.Xv.Count; j++)
+                {if (i == j)
+                        continue;
+                    Line sd = A.d(A.Xv[i], A.Xv[j]);
+                    if (sd != null)
+                    {
+                        e.FillEllipse(new SolidBrush(Color.Red), new RectangleF(A.Xv[i].X * 20, A.Xv[i].Y * 20, 10, 10));
+                        e.FillEllipse(new SolidBrush(Color.Red), new RectangleF(A.Xv[j].X * 20, A.Xv[j].Y * 20, 10, 10));
+                        e.DrawLine(new Pen(new SolidBrush(Color.Blue), 6), new Point(A.Xv[i].X * 20, A.Xv[i].Y * 20), new Point(A.Xv[i].X * 20, A.Xv[j].Y * 20));
+                    }
+                }
+            }
+            PictureBoxTest.Refresh();
+            PictureBoxTest.Update();
+            e.Dispose();
 
+        }
         private void comboBoxKind_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (On != null)

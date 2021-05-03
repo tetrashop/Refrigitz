@@ -546,8 +546,8 @@ namespace ImageTextDeepLearning
                 List<Task> th = new List<Task>();
                 Graphics e = Graphics.FromImage(Im);
                 //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                do
-                {
+                //do
+                //{
                     Hollowed = false;
 
                     for (int x = 0; x < wi; x++)
@@ -558,7 +558,7 @@ namespace ImageTextDeepLearning
                             object o = new object();
                             lock (o)
                             {
-                                if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
+                                if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
                                 {
                                     bool Is = false;
                                     /*var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
@@ -568,7 +568,7 @@ namespace ImageTextDeepLearning
                             }
                         }
                     }
-                } while (Hollowed);
+                //} while (Hollowed);
                 e.Dispose();
 
             }
@@ -599,7 +599,7 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
+                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
                     {
 
 
@@ -652,7 +652,7 @@ namespace ImageTextDeepLearning
                         object oo = new object();
                         lock (oo)
                         {
-                            if (Is && (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb())))
+                            if (Is && (!(Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb())))
                             {
                                 Im.SetPixel(X, Y, Color.Black);
                                 Hollowed = true;
@@ -688,11 +688,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
+                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
                     {
                         if ((x != X || y != Y))
                         {
-                            if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
+                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
                             {
                                 IsOut = true;
                                 return true;
@@ -740,11 +740,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
+                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
                     {
                         if ((x != X || y != Y))
                         {
-                            if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
+                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
                             {
                                 IsOut = true;
                                 return true;
@@ -795,11 +795,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
+                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
                     {
                         if ((x != X || y != Y))
                         {
-                            if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
+                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
                             {
                                 IsOut = true;
                                 return true;
@@ -845,11 +845,11 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (!(Im.GetPixel(X, Y).ToArgb() == Color.White.ToArgb()))
+                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
                     {
                         if ((x != X || y != Y))
                         {
-                            if (!(Im.GetPixel(x, y).ToArgb() == Color.White.ToArgb()))
+                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
                             {
                                 IsOut = true;
                                 return true;

@@ -984,6 +984,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         {
             if (comboBoxKind.Text == "Sample")
             {
+                PictureBoxTest.BackgroundImage = On.ConjunctedShapeListRequired.KeyboardAllImage[System.Convert.ToInt32(comboBoxItem.Text)];
+                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
+                PictureBoxTest.Refresh();
+                PictureBoxTest.Update();
                 textBoxImageTextDeepLearning.Text = "";
                 if (comboBoxItem.Text != "")
                 {
@@ -1008,6 +1012,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             }
             else
             {
+                PictureBoxTest.BackgroundImage = On.t.KeyboardAllImage[System.Convert.ToInt32(comboBoxItem.Text)];
+                PictureBoxTest.BackgroundImageLayout = ImageLayout.Zoom;
+                PictureBoxTest.Refresh();
+                PictureBoxTest.Update();
                 textBoxImageTextDeepLearning.Text = "";
                 if (comboBoxItem.Text != "")
                 {

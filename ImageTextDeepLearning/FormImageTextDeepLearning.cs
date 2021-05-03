@@ -1059,7 +1059,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     {
                         e.FillEllipse(new SolidBrush(Color.Red), new RectangleF(A.Xv[i].X * 20, A.Xv[i].Y * 20, 10, 10));
                         e.FillEllipse(new SolidBrush(Color.Red), new RectangleF(A.Xv[j].X * 20, A.Xv[j].Y * 20, 10, 10));
-                        e.DrawLine(new Pen(new SolidBrush(Color.Blue), 6), new Point(A.Xv[i].X * 20, A.Xv[i].Y * 20), new Point(A.Xv[i].X * 20, A.Xv[j].Y * 20));
+                        e.DrawLine(new Pen(new SolidBrush(Color.Blue), 6), new Point(A.Xv[i].X * 20, A.Xv[i].Y * 20), new Point(A.Xv[j].X * 20, A.Xv[j].Y * 20));
                     }
                 }
             }

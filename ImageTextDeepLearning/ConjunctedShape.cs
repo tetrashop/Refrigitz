@@ -243,13 +243,14 @@ namespace ImageTextDeepLearning
                     object o = new object();
                     lock (o)
                     {
-                        if (TemI[k, p] < (Max / 2))
+                        if (TemI[k, p] < 4//(Max / 2)
+                                         )
                         {
-                            TemB[k, p] = true;
+                            TemB[k, p] = false;
                         }
                         else
                         {
-                            TemB[k, p] = false;
+                            TemB[k, p] = true;
                         }
                     }
                 }

@@ -304,7 +304,7 @@ namespace ContourAnalysisNS
                     {
                         Is = true;
                     }
-                    if (XlOverLap[i][0].X == y1.X && XlOverLap[i][0].Y == y1.Y && XlOverLap[i][1].X == x1.X && XlOverLap[i][1].Y == y1.Y)
+                    if (XlOverLap[i][0].X == y1.X && XlOverLap[i][0].Y == y1.Y && XlOverLap[i][1].X == x1.X && XlOverLap[i][1].Y == x1.Y)
                     {
                         Is = true;
                     }
@@ -919,7 +919,7 @@ namespace ContourAnalysisNS
                                 }
                                 else
                                 {
-                                      OccurredBreak = false;
+                                    OccurredBreak = false;
                                 }
                             }
                             else
@@ -935,7 +935,7 @@ namespace ContourAnalysisNS
                                 }
                                 else
                                 {
-                                      OccurredBreak = false;
+                                    OccurredBreak = false;
                                 }
                             }
                             for (int k = 0; k < n; k++)
@@ -1077,7 +1077,7 @@ namespace ContourAnalysisNS
                                                                 {
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
-                                                                  }
+                                                                }
                                                             }
                                                             else
                                                             {
@@ -1224,7 +1224,7 @@ namespace ContourAnalysisNS
                                                             {
                                                                 Xv.RemoveAt(Xv.Count - 1);
                                                                 indv--;
-                                                           }
+                                                            }
                                                         }
                                                         else
                                                         {
@@ -1330,6 +1330,8 @@ namespace ContourAnalysisNS
                 XiXjDelete();
                 //IJBelongToLineHaveFalseBolleanA(A);
                 OverAgain = false;
+                //this migth lead to infinit cycle
+                //XlOverLap.Clear();
                 for (int i = 0; i < Xl.Count; i++)
                 {
                     for (int j = 0; j < Xl.Count; j++)
@@ -1348,7 +1350,7 @@ namespace ContourAnalysisNS
                                     Vertex[] vx = new Vertex[2];
                                     vx[0] = GetVerIdO(Xl[i].VertexIndexX);
                                     vx[1] = GetVerIdO(Xl[i].VertexIndexY);
-
+                                    //this may lead to sparcity
                                     XlOverLap.Add(vx);
                                     OverAgain = true;
                                 }
@@ -1361,6 +1363,7 @@ namespace ContourAnalysisNS
                                     vx[0] = GetVerIdO(Xl[j].VertexIndexX);
                                     vx[1] = GetVerIdO(Xl[j].VertexIndexY);
                                     OverAgain = true;
+                                    //this may lead to sparcity
                                     XlOverLap.Add(vx);
                                 }
                             }
@@ -1382,7 +1385,7 @@ namespace ContourAnalysisNS
                     J = -1;
                     LessNootFound = false;
                     IgnoreLess = false;
-                 }
+                }
             } while (OverAgain);
         }
 
@@ -1766,7 +1769,7 @@ namespace ContourAnalysisNS
             VertexIndexY = iny;
             Weigth = Weit;
         }
-        //when to line have intersect or overlap
+        //when tow line have intersect or overlap
         public static bool IsTowLineIsIntersect(Vertex v0, Vertex v1, Vertex v2, Vertex v3, int n, int m)
         {
             bool Is = false;
@@ -1785,11 +1788,11 @@ namespace ContourAnalysisNS
                 Y1 = Y2;
                 Y2 = v;
             }
-            for (int i = X1 +1; i < X2; i++)
+            for (int i = X1 + 1; i < X2 - 1; i++)
             {
                 int y = (int)(((float)(v0.Y - v1.Y) / (float)(v0.X - v1.X)) * (float)(i - v0.X) + (float)v0.Y);
-                //if (y <= Y1 || y >= Y2)
-                    //continue;
+                if (y <= Y1 || y >= Y2)
+                    continue;
                 if (Line.IsPointsInVertexes(v2, v3, i, y))
                 {
                     return true;

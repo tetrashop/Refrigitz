@@ -1046,7 +1046,7 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         }
         void DrawGraph(bool[,] Ab, int m, int n)
         {
-            GraphDivergenceMatrix A = new GraphDivergenceMatrix(Ab, m, n);
+            SameRikhEquvalent A = new SameRikhEquvalent(Ab, m, n);
             Graphics e = Graphics.FromImage(PictureBoxImageTextDeepLearning.Image);
             e.FillRectangle(new SolidBrush(Color.White), new Rectangle(0, 0, PictureBoxImageTextDeepLearning.Image.Width, PictureBoxImageTextDeepLearning.Image.Height));
             for (int i = 0; i < A.Xv.Count; i++)

@@ -304,13 +304,35 @@ namespace ContourAnalysisNS
                     {
                         Is = true;
                     }
-                    if (XlOverLap[i][0].X == y1.X && XlOverLap[i][0].Y == y1.Y && XlOverLap[i][1].X == x1.X && XlOverLap[i][1].Y == x1.Y)
+                    if (XlOverLap[i][0].X == y1.X && XlOverLap[i][0].Y == y1.Y && XlOverLap[i][1].X == x1.X && XlOverLap[i][1].Y == y1.Y)
                     {
                         Is = true;
                     }
                 }
             }
             return Is;
+        }
+        public bool ExistLOverLap(int x1, int y1, int x2, int y2)
+        {
+            bool Is = false;
+            for (int i = 0; i < XlOverLap.Count; i++)
+            {
+                object hh = new object();
+                lock (hh)
+                {
+                    if (XlOverLap[i][0].X == x1 && XlOverLap[i][0].Y == y1 && XlOverLap[i][1].X == x2 && XlOverLap[i][1].Y == y2)
+                    {
+                        Is = true;
+                    }
+                    if (XlOverLap[i][0].X == x2 && XlOverLap[i][0].Y == y2 && XlOverLap[i][1].X == x1 && XlOverLap[i][1].Y == y1)
+                    {
+                        Is = true;
+
+                    }
+                }
+            }
+            return Is;
+
         }
         //delete extera lines basically main method
         public void XiXjDelete()
@@ -952,6 +974,8 @@ namespace ContourAnalysisNS
                                         }
                                         if (A[i, j] && A[k, p])
                                         {
+                                            if (ExistLOverLap(i, j, k, p))
+                                                continue;
                                             float weB = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                             if (Xv.Count > First)
                                             {
@@ -1399,8 +1423,7 @@ namespace ContourAnalysisNS
             }
             return null;
         }
-
-        //return verex index by number parameterlly
+                //return verex index by number parameterlly
         private int GetVerIndE(int VertNo, List<Vertex> XvE)
         {
             int vern = 0;
@@ -1747,7 +1770,7 @@ namespace ContourAnalysisNS
         public static bool IsTowLineIsIntersect(Vertex v0, Vertex v1, Vertex v2, Vertex v3, int n, int m)
         {
             bool Is = false;
-            howto_WPF_3D_triangle_normalsuser.Line l0 = new howto_WPF_3D_triangle_normalsuser.Line(new Point3Dspaceuser.Point3D(v0.X, v0.Y, 0), new Point3Dspaceuser.Point3D(v1.X, v1.Y, 0));
+            //howto_WPF_3D_triangle_normalsuser.Line l0 = new howto_WPF_3D_triangle_normalsuser.Line(new Point3Dspaceuser.Point3D(v0.X, v0.Y, 0), new Point3Dspaceuser.Point3D(v1.X, v1.Y, 0));
             int X1 = v0.X, X2 = v1.X;
             if (X1 > X2)
             {
@@ -1762,11 +1785,11 @@ namespace ContourAnalysisNS
                 Y1 = Y2;
                 Y2 = v;
             }
-            for (int i = X1 + 1; i < X2 - 1; i++)
+            for (int i = X1 +1; i < X2; i++)
             {
-                int y = (int)((l0.y0 - l0.a * i) / l0.b);
-                if (y <= Y1 || y >= Y2)
-                    continue;
+                int y = (int)(((float)(v0.Y - v1.Y) / (float)(v0.X - v1.X)) * (float)(i - v0.X) + (float)v0.Y);
+                //if (y <= Y1 || y >= Y2)
+                    //continue;
                 if (Line.IsPointsInVertexes(v2, v3, i, y))
                 {
                     return true;
@@ -1782,7 +1805,7 @@ namespace ContourAnalysisNS
             {
                 return false;
             }
-            if ((float)(y - v1.Y - (((v1.X - v2.X) / (float)(v1.Y - v2.Y)) * (x - v1.X))) < 1)
+            if (((float)(y- v1.Y) * (float)(x - v2.X)) / ((float)(y - v2.Y) * (float)(x - v1.X)) < 1)
             {
                 Is = true;
             }

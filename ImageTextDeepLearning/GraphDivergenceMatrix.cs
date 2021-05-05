@@ -221,6 +221,7 @@ namespace ContourAnalysisNS
         public List<Line> Xl = new List<Line>();
         public int N, M;
         public List<Vertex[]> XlOverLap = new List<Vertex[]>();
+        List<List<Vertex[]>> XloverlapsLisf = new List<List<Vertex[]>>();
         //consider existance of vertex in a graph basically
         public bool ExistV(int x1, int y1)
         {
@@ -1330,8 +1331,12 @@ namespace ContourAnalysisNS
                 XiXjDelete();
                 //IJBelongToLineHaveFalseBolleanA(A);
                 OverAgain = false;
-                //this migth lead to infinit cycle
-                //XlOverLap.Clear();
+                //Unknown applicable
+                if (!IsOverLapIterative())
+                    XloverlapsLisf.Add(XlOverLap);
+                else
+                    //this migth lead to infinit cycle
+                    XlOverLap.Clear();
                 for (int i = 0; i < Xl.Count; i++)
                 {
                     for (int j = 0; j < Xl.Count; j++)
@@ -1388,7 +1393,29 @@ namespace ContourAnalysisNS
                 }
             } while (OverAgain);
         }
-
+        bool IsOverLapIterative()
+        {
+            bool Is = false;
+            for (int i = 0; i < XloverlapsLisf.Count; i++)
+            {
+                if (XloverlapsLisf[i].Count == XlOverLap.Count)
+                {
+                    Is = true;
+                    for (int j = 0; j < XloverlapsLisf[i].Count; j++)
+                    {
+                        if (!((XloverlapsLisf[i][j][0].X == XlOverLap[i][0].X || XloverlapsLisf[i][j][1].X == XlOverLap[i][1].X) &&
+                            (XloverlapsLisf[i][j][0].Y == XlOverLap[i][0].Y || XloverlapsLisf[i][j][1].Y == XlOverLap[i][1].Y)))
+                        {
+                            Is = false;
+                            
+                        }
+                    }
+                    if (Is)
+                        return Is;
+                }
+            }
+            return Is;
+        }
         private int GetVerIndV(int VertNo, List<Vertex> XvE)
         {
             int vern = 0;
@@ -1885,10 +1912,34 @@ namespace ContourAnalysisNS
             return Is;
         }
 
+        bool[,] ZerosB()
+        {
+            bool[,] TemB = new bool[M, N];
+            for (int i = 0; i < M; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    TemB[i, j] = false;
+                }
+            }
+            return TemB;
+        }
+        int[,] ZerosI()
+        {
+            int[,] TemB = new int[N, M];
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    TemB[i, j] = 0;
+                }
+            }
+            return TemB;
+        }
         //create sub graph boolean matrix by index
         private bool[,] CreateBooleanSubGraph(int i)
         {
-            bool[,] c = new bool[N, M];
+            bool[,] c = ZerosB();
             if (numberOfClosedCurved > 0)
             {
                 for (int j = 0; j < ClosedCurved[i].Count; j++)

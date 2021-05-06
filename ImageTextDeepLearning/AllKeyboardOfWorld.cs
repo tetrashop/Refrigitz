@@ -780,9 +780,9 @@ namespace ImageTextDeepLearning
         }
         bool[,] GetBolleanFromArgb(Bitmap Temp)
         {
-            int[,] TemI = ZerosI();
+            Color[,] TemI = new Color[Width, Height];
             bool[,] TemB = ZerosB();
-            int black = Color.Black.ToArgb();
+            Color black = Color.Black;
             Graphics e = Graphics.FromImage(Temp);
             //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
             for (int k = 0; k < Width; k++)
@@ -792,14 +792,14 @@ namespace ImageTextDeepLearning
                     object o = new object();
                     lock (o)
                     {
-                        TemI[k, p] = Temp.GetPixel(k, p).ToArgb();
+                        TemI[k, p] = Temp.GetPixel(k, p);
 
                     }
                 }
 
             }
             e.Dispose();
-            int Max = int.MinValue;
+            /*int Max = int.MinValue;
             for (int k = 0; k < Width; k++)
             {
                 for (int p = 0; p < Height; p++)
@@ -813,7 +813,7 @@ namespace ImageTextDeepLearning
                         }
                     }
                 }
-            }
+            }*/
             for (int k = 0; k < Width; k++)
             {
                 for (int p = 0; p < Height; p++)
@@ -903,19 +903,7 @@ namespace ImageTextDeepLearning
                                     Bitmap Te = Temp;
                                     e.Dispose();
                                     //crop to proper space
-                                    /*if (MaX - MiX > MaY - MiY)
-                                    {
-                                        //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
-                                    }
-                                    else
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
-                                    }*/
-                                    /*Do = HollowCountreImageCommmon(ref Te);
-                                    if (!Do)
-                                        MessageBox.Show("fault on hollow!");*/
-
+                                    
                                     //create proper conjunction matrix
                                     bool[,] Tem = GetBolleanFromArgb(Te);
                                     KeyboardAllImage.Add(Te);

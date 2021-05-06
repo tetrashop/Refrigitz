@@ -202,9 +202,9 @@ namespace ImageTextDeepLearning
         }
         bool[,] GetBolleanFromArgb(Bitmap Temp)
         {
-            int[,] TemI = ZerosI();
+            Color[,] TemI = new Color[Width, Height];
             bool[,] TemB = ZerosB();
-            int black = Color.Black.ToArgb();
+            Color black = Color.Black;
             Graphics e = Graphics.FromImage(Temp);
             //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
             for (int k = 0; k < Width; k++)
@@ -214,28 +214,14 @@ namespace ImageTextDeepLearning
                     object o = new object();
                     lock (o)
                     {
-                        TemI[k, p] = Temp.GetPixel(k, p).ToArgb();
+                        TemI[k, p] = Temp.GetPixel(k, p);
 
                     }
                 }
 
             }
             e.Dispose();
-            int Max = int.MinValue;
-            for (int k = 0; k < Width; k++)
-            {
-                for (int p = 0; p < Height; p++)
-                {
-                    object o = new object();
-                    lock (o)
-                    {
-                        if (TemI[k, p] > Max)
-                        {
-                            Max = TemI[k, p];
-                        }
-                    }
-                }
-            }
+            
             for (int k = 0; k < Width; k++)
             {
                 for (int p = 0; p < Height; p++)

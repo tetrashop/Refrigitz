@@ -204,7 +204,7 @@ namespace ImageTextDeepLearning
         {
             int[,] TemI = ZerosI();
             bool[,] TemB = ZerosB();
-
+            int black = Color.Black.ToArgb();
             Graphics e = Graphics.FromImage(Temp);
             //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
             for (int k = 0; k < Width; k++)
@@ -243,7 +243,7 @@ namespace ImageTextDeepLearning
                     object o = new object();
                     lock (o)
                     {
-                        if (TemI[k, p] != 0//(Max / 2)
+                        if (TemI[k, p] != black//(Max / 2)
                                         )
                         {
                             TemB[k, p] = false;
@@ -330,9 +330,17 @@ namespace ImageTextDeepLearning
                             My = MyM * 2;
                             for (int ii = 0; ii < te.Length; ii++)
                             {
-                                   te[ii] = new PointF(((float)((Width) * te[ii].X) / (float)(MaX - MiX)), ((float)((Height) * te[ii].Y) / (float)(MaY - MiY)));
+                                if (MaX - MiX < MaY - MiY)
+                                {
+                                    //crop to proper space
+                                    te[ii] = new PointF(((float)((Width - 2) * te[ii].X) / (float)(MaY - MiY)), ((float)((Height - 2) * te[ii].Y) / (float)(MaY - MiY)));
+                                }
+                                else
+                                {
+                                    te[ii] = new PointF(((float)((Width - 2) * te[ii].X) / (float)(MaX - MiX)), ((float)((Height - 2) * te[ii].Y) / (float)(MaX - MiX)));
+                                }
                             }
-                            GraphicsPath path = new GraphicsPath();
+                            GraphicsPath path = new GraphicsPath(FillMode.Winding);
                             //draw string
                             e.SmoothingMode = SmoothingMode.AntiAlias;
                             path.AddPolygon(te);
@@ -389,11 +397,11 @@ namespace ImageTextDeepLearning
                                     }
                                 }*/
 
-                                Do = HollowCountreImageCommmon(ref Te);
+                                /*Do = HollowCountreImageCommmon(ref Te);
                                 if (!Do)
                                     MessageBox.Show("fault on hollow!");
 
-
+                                */
                                 AllImage.Add(Te);
                             }
                             else

@@ -782,7 +782,7 @@ namespace ImageTextDeepLearning
         {
             int[,] TemI = ZerosI();
             bool[,] TemB = ZerosB();
-
+            int black = Color.Black.ToArgb();
             Graphics e = Graphics.FromImage(Temp);
             //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
             for (int k = 0; k < Width; k++)
@@ -821,7 +821,7 @@ namespace ImageTextDeepLearning
                     object o = new object();
                     lock (o)
                     {
-                        if (TemI[k, p] != 0//(Max / 2)
+                        if (TemI[k, p] != black//(Max / 2)
                                         )
                         {
                             TemB[k, p] = false;
@@ -875,7 +875,7 @@ namespace ImageTextDeepLearning
                                     //Draw fill white image
                                     //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
-                                    GraphicsPath path = new GraphicsPath();
+                                    GraphicsPath path = new GraphicsPath(FillMode.Winding);
                                     //draw string
                                     e.SmoothingMode = SmoothingMode.HighQuality;
                                     using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1)))))
@@ -884,8 +884,9 @@ namespace ImageTextDeepLearning
                                         {
                                             sf.Alignment = StringAlignment.Center;
                                             sf.LineAlignment = StringAlignment.Center;
+                                            
                                             path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                                (int)FontStyle.Regular, 16,
+                                                (int)FontStyle.Regular, 12,
                                                 new Rectangle(0, 0, Width, Height), sf);
                                         }
                                     }
@@ -911,9 +912,9 @@ namespace ImageTextDeepLearning
                                     {
                                         Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
                                     }*/
-                                    Do = HollowCountreImageCommmon(ref Te);
+                                    /*Do = HollowCountreImageCommmon(ref Te);
                                     if (!Do)
-                                        MessageBox.Show("fault on hollow!");
+                                        MessageBox.Show("fault on hollow!");*/
 
                                     //create proper conjunction matrix
                                     bool[,] Tem = GetBolleanFromArgb(Te);
@@ -933,7 +934,7 @@ namespace ImageTextDeepLearning
                                 //Draw fill white image
                                 //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                                 //draw string
-                                GraphicsPath path = new GraphicsPath();
+                                GraphicsPath path = new GraphicsPath(FillMode.Winding);
                                 //draw string
                                 e.SmoothingMode = SmoothingMode.HighQuality;
                                 using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))
@@ -943,7 +944,7 @@ namespace ImageTextDeepLearning
                                         sf.Alignment = StringAlignment.Center;
                                         sf.LineAlignment = StringAlignment.Center;
                                         path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                            (int)FontStyle.Regular , 16,
+                                            (int)FontStyle.Regular , 12,
                                             new Rectangle(0, 0, Width, Height), sf);
                                     }
                                 }
@@ -972,9 +973,9 @@ namespace ImageTextDeepLearning
                                 }*/
 
 
-                                Do = HollowCountreImageCommmon(ref Te);
+                                /*Do = HollowCountreImageCommmon(ref Te);
                                 if (!Do)
-                                    MessageBox.Show("fault on hollow!");
+                                    MessageBox.Show("fault on hollow!");*/
 
                                 //create proper conjunction matrix
                                 //create proper conjunction matrix

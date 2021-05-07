@@ -200,12 +200,20 @@ namespace ImageTextDeepLearning
             }//);
             return Ma;
         }
+        bool Equality(Color a, Color b)
+        {
+            bool Is = false;
+            if (a.A != 0 && a.G == b.G && a.B == b.B && a.R == b.R)
+                Is = true;
+            return Is;
+        }
         bool[,] GetBolleanFromArgb(Bitmap Temp)
         {
             Color[,] TemI = new Color[Width, Height];
             bool[,] TemB = ZerosB();
             Color black = Color.Black;
             Graphics e = Graphics.FromImage(Temp);
+            Color realColor = e.GetNearestColor(black);
             //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
             for (int k = 0; k < Width; k++)
             {
@@ -221,7 +229,7 @@ namespace ImageTextDeepLearning
 
             }
             e.Dispose();
-            
+            /*int Max = int.MinValue;
             for (int k = 0; k < Width; k++)
             {
                 for (int p = 0; p < Height; p++)
@@ -229,7 +237,21 @@ namespace ImageTextDeepLearning
                     object o = new object();
                     lock (o)
                     {
-                        if (TemI[k, p] != black//(Max / 2)
+                        if (TemI[k, p] > Max)
+                        {
+                            Max = TemI[k, p];
+                        }
+                    }
+                }
+            }*/
+            for (int k = 0; k < Width; k++)
+            {
+                for (int p = 0; p < Height; p++)
+                {
+                    object o = new object();
+                    lock (o)
+                    {
+                        if (!Equality(TemI[k, p], black)//(Max / 2)
                                         )
                         {
                             TemB[k, p] = false;

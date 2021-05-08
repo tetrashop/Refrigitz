@@ -405,11 +405,10 @@ namespace ImageTextDeepLearning
                                     }
                                 }*/
 
-                                /*Do = HollowCountreImageCommmon(ref Te);
+                                Do = HollowCountreImageCommmon(ref Te);
                                 if (!Do)
                                     MessageBox.Show("fault on hollow!");
 
-                                */
                                 AllImage.Add(Te);
                             }
                             else
@@ -439,6 +438,9 @@ namespace ImageTextDeepLearning
                                     }
                                 }*/
 
+                                Do = HollowCountreImageCommmon(ref Te);
+                                if (!Do)
+                                    MessageBox.Show("fault on hollow!");
 
 
                                 // AllImage.Add((Bitmap)Te.Clone());
@@ -589,26 +591,26 @@ namespace ImageTextDeepLearning
                 //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 //do
                 //{
-                    Hollowed = false;
+                Hollowed = false;
 
-                    for (int x = 0; x < wi; x++)
+                for (int x = 0; x < wi; x++)
+                {
+
+                    for (int y = 0; y < he; y++)
                     {
-
-                        for (int y = 0; y < he; y++)
+                        object o = new object();
+                        lock (o)
                         {
-                            object o = new object();
-                            lock (o)
+                            if (Equality(Im.GetPixel(x, y), Color.Black))
                             {
-                                if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
-                                {
-                                    bool Is = false;
-                                    /*var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
-                                    H.Wait();*/
-                                    HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, ref Is);
-                                }
+                                bool Is = false;
+                                /*var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
+                                H.Wait();*/
+                                HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, ref Is);
                             }
                         }
                     }
+                }
                 //} while (Hollowed);
                 e.Dispose();
 
@@ -620,10 +622,9 @@ namespace ImageTextDeepLearning
             }
             return true;
         }
-       //main sub method
-        private bool HollowCountreImageCommmonXY(ref Bitmap Img, int x, int y, int wi, int he, int X, int Y, ref bool IsOut)
+        //main sub method
+        private bool HollowCountreImageCommmonXY(ref Bitmap Im, int x, int y, int wi, int he, int X, int Y, ref bool IsOut)
         {
-            Bitmap Im = Img;
             try
             {
                 bool IsOut1 = false;
@@ -632,7 +633,6 @@ namespace ImageTextDeepLearning
                 bool IsOut4 = false;
                 if (!(x >= 0 && y >= 0 && x < wi && y < he))
                 {
-                    Img = Im;
                     return false;
                 }
 
@@ -640,64 +640,54 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Equality(Im.GetPixel(X, Y), Color.Black))
                     {
 
 
 
-                        var output = Task.Factory.StartNew(() =>
+
+
+
+                        if (x + 1 < wi)
                         {
-                            Parallel.Invoke(() =>
-                            {
 
+                            Is = Is && HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, ref IsOut1);
 
-                                if (x + 1 < wi)
-                                {
-
-                                    Is = Is && HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, ref IsOut1);
-
-                                }
-                            }, () =>
-                            {
+                        }
 
 
 
-                                if (x - 1 >= 0)
-                                {
-                                    Is = Is && HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, ref IsOut2);
 
-                                }
-                            }, () =>
-                            {
+                        if (x - 1 >= 0)
+                        {
+                            Is = Is && HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, ref IsOut2);
 
-                                if (y + 1 < he)
-                                {
-
-                                    Is = Is && HollowCountreImageCommmonXYUpY(ref Im, x, y + 1, wi, he, X, Y, ref IsOut3);
-
-                                }
+                        }
 
 
-                            }, () =>
-                            {
-                                if (y - 1 >= 0)
-                                {
+                        if (y + 1 < he)
+                        {
 
-                                    Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, ref IsOut4);
+                            Is = Is && HollowCountreImageCommmonXYUpY(ref Im, x, y + 1, wi, he, X, Y, ref IsOut3);
 
-                                }
-                            });
-                        });
-                        output.Wait();
+                        }
+
+
+                        if (y - 1 >= 0)
+                        {
+
+                            Is = Is && HollowCountreImageCommmonXYDowwnY(ref Im, x, y - 1, wi, he, X, Y, ref IsOut4);
+
+                        }
+
 
                         object oo = new object();
                         lock (oo)
                         {
-                            if (Is && (!(Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb())))
+                            if (Is && (Equality(Im.GetPixel(X, Y), Color.Black)))
                             {
-                                Im.SetPixel(X, Y, Color.Black);
+                                Im.SetPixel(X, Y, Color.White);
                                 Hollowed = true;
-                                Img = Im;
                                 return false;
                             }
                         }
@@ -709,10 +699,8 @@ namespace ImageTextDeepLearning
             catch (Exception)
             {
                 //MessageBox.Show(t.ToString());
-                Img = Im;
                 return false;
             }
-            Img = Im;
             return true;
         }
         //sub method
@@ -729,19 +717,19 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Equality(Im.GetPixel(X, Y), Color.Black))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (Equality(Im.GetPixel(x, y), Color.Black))
                             {
-                                IsOut = true;
+                                Is = true;
                                 return true;
                             }
                         }
-                        if (IsOut)
+                        if (Is)
                         {
-                            return IsOut;
+                            return Is;
                         }
 
                         object ooo = new object();
@@ -781,20 +769,19 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Equality(Im.GetPixel(X, Y), Color.Black))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (Equality(Im.GetPixel(x, y), Color.Black))
                             {
-                                IsOut = true;
+                                Is = true;
                                 return true;
                             }
                         }
-
-                        if (IsOut)
+                        if (Is)
                         {
-                            return IsOut;
+                            return Is;
                         }
 
                         object oioo = new object();
@@ -836,19 +823,19 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Equality(Im.GetPixel(X, Y), Color.Black))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (Equality(Im.GetPixel(x, y), Color.Black))
                             {
-                                IsOut = true;
+                                Is = true;
                                 return true;
                             }
                         }
-                        if (IsOut)
+                        if (Is)
                         {
-                            return IsOut;
+                            return Is;
                         }
 
                         object pooo = new object();
@@ -886,19 +873,19 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if ((Im.GetPixel(X, Y).ToArgb() == Color.Black.ToArgb()))
+                    if (Equality(Im.GetPixel(X, Y), Color.Black))
                     {
                         if ((x != X || y != Y))
                         {
-                            if ((Im.GetPixel(x, y).ToArgb() == Color.Black.ToArgb()))
+                            if (Equality(Im.GetPixel(x, y), Color.Black))
                             {
-                                IsOut = true;
+                                Is = true;
                                 return true;
                             }
                         }
-                        if (IsOut)
+                        if (Is)
                         {
-                            return IsOut;
+                            return Is;
                         }
 
                         object pooo = new object();

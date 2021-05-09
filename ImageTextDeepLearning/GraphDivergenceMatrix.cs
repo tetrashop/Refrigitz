@@ -1801,23 +1801,23 @@ namespace ContourAnalysisNS
         {
             bool Is = false;
             //howto_WPF_3D_triangle_normalsuser.Line l0 = new howto_WPF_3D_triangle_normalsuser.Line(new Point3Dspaceuser.Point3D(v0.X, v0.Y, 0), new Point3Dspaceuser.Point3D(v1.X, v1.Y, 0));
-            int X1 = v0.X, X2 = v1.X;
+            float X1 = (float)v0.X, X2 = (float)v1.X;
             if (X1 > X2)
             {
-                int v = X1;
+                float v = X1;
                 X1 = X2;
                 X2 = v;
             }
-            int Y1 = v0.Y, Y2 = v1.Y;
+            float Y1 = (float)v0.Y, Y2 = (float)v1.Y;
             if (Y1 > Y2)
             {
-                int v = Y1;
+                float v = Y1;
                 Y1 = Y2;
                 Y2 = v;
             }
-            for (int i = X1 + 1; i < X2 - 1; i++)
+            for (float i = (float)X1 + (float)1; i < (float)X2 - (float)1; i += (float)0.1)
             {
-                int y = (int)(((float)(v0.Y - v1.Y) / (float)(v0.X - v1.X)) * (float)(i - v0.X) + (float)v0.Y);
+                float y = (((float)((float)v0.Y - (float)v1.Y) / (float)((float)v0.X - (float)v1.X)) * (float)(i - (float)v0.X) + (float)v0.Y);
                 if (y <= Y1 || y >= Y2)
                     continue;
                 if (Line.IsPointsInVertexes(v2, v3, i, y))
@@ -1836,6 +1836,19 @@ namespace ContourAnalysisNS
                 return false;
             }
             if (((float)(y- v1.Y) * (float)(x - v2.X)) / ((float)(y - v2.Y) * (float)(x - v1.X)) < 1)
+            {
+                Is = true;
+            }
+            return Is;
+        }
+        public static bool IsPointsInVertexes(Vertex v1, Vertex v2, float x, float y)
+        {
+            bool Is = false;
+            if (v1.Y == v2.Y)
+            {
+                return false;
+            }
+            if (((float)(y - (float)v1.Y) * (float)(x - (float)v2.X)) / ((float)(y - (float)v2.Y) * (float)(x - (float)v1.X)) < (float)0.1)
             {
                 Is = true;
             }

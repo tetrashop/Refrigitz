@@ -1787,6 +1787,7 @@ namespace ContourAnalysisNS
     //line class
     public class Line
     {
+        static float  interval = (float)0.5;
         public int VertexIndexX, VertexIndexY;
         public float Weigth;
         //constructor
@@ -1815,7 +1816,7 @@ namespace ContourAnalysisNS
                 Y1 = Y2;
                 Y2 = v;
             }
-            for (float i = (float)X1 + (float)1; i < (float)X2 - (float)1; i += (float)0.1)
+            for (float i = (float)X1 + (float)1.0; i < (float)X2 - (float)1.0; i += interval)
             {
                 float y = (((float)((float)v0.Y - (float)v1.Y) / (float)((float)v0.X - (float)v1.X)) * (float)(i - (float)v0.X) + (float)v0.Y);
                 if (y <= Y1 || y >= Y2)
@@ -1835,7 +1836,7 @@ namespace ContourAnalysisNS
             {
                 return false;
             }
-            if (((float)(y- v1.Y) * (float)(x - v2.X)) / ((float)(y - v2.Y) * (float)(x - v1.X)) < 1)
+            if (((float)(y- v1.Y) * (float)(x - v2.X)) / ((float)(y - v2.Y) * (float)(x - v1.X)) <1)
             {
                 Is = true;
             }
@@ -1848,7 +1849,7 @@ namespace ContourAnalysisNS
             {
                 return false;
             }
-            if (((float)(y - (float)v1.Y) * (float)(x - (float)v2.X)) / ((float)(y - (float)v2.Y) * (float)(x - (float)v1.X)) < (float)0.1)
+            if (((float)(y - (float)v1.Y) * (float)(x - (float)v2.X)) / ((float)(y - (float)v2.Y) * (float)(x - (float)v1.X)) <interval)
             {
                 Is = true;
             }

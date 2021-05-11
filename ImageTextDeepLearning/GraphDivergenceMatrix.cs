@@ -936,7 +936,7 @@ namespace ContourAnalysisNS
             bool IgnoreLess = false;
             bool OverAgain = false;
             bool Again = false;
-            int ii = 0, jj = 0;
+            int ii = 0, jj = 0, kk = 0, pp;
             do
             {
                 do
@@ -1000,6 +1000,11 @@ namespace ContourAnalysisNS
                                     {
                                         break;
                                     }
+
+                                    //prevention time consuming
+                                    kk = k;
+                                    pp = p;
+
                                     object h = new object();
                                     lock (h)
                                     {
@@ -1525,7 +1530,7 @@ namespace ContourAnalysisNS
                 {
                     OverAgain = true;
                     XlOverLap.Clear();
-                    XloverlapsLisf.Clear();
+                    //XloverlapsLisf.Clear();
 
                 }
                 if (OverAgain)
@@ -1556,11 +1561,14 @@ namespace ContourAnalysisNS
                     Is = true;
                     for (int j = 0; j < XloverlapsLisf[i].Count; j++)
                     {
-                        if (!((XloverlapsLisf[i][j][0].X == XlOverLap[i][0].X || XloverlapsLisf[i][j][1].X == XlOverLap[i][1].X) &&
-                            (XloverlapsLisf[i][j][0].Y == XlOverLap[i][0].Y || XloverlapsLisf[i][j][1].Y == XlOverLap[i][1].Y)))
+                        for (int k = 0; k < XlOverLap.Count; k++)
                         {
-                            Is = false;
-                            
+                            if (!((XloverlapsLisf[i][j][0].X == XlOverLap[k][0].X || XloverlapsLisf[i][j][1].X == XlOverLap[k][1].X) &&
+                                (XloverlapsLisf[i][j][0].Y == XlOverLap[k][0].Y || XloverlapsLisf[i][j][1].Y == XlOverLap[k][1].Y)))
+                            {
+                                Is = false;
+
+                            }
                         }
                     }
                     if (Is)
@@ -2066,6 +2074,8 @@ namespace ContourAnalysisNS
             bool Is = false;
             if (v1.Y == v2.Y)
             {
+                if (v1.Y == y)
+                    return true;
                 return false;
             }
             if (((float)(y- v1.Y) * (float)(x - v2.X)) / ((float)(y - v2.Y) * (float)(x - v1.X)) <1)

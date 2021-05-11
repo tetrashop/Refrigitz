@@ -233,7 +233,7 @@ namespace ImageTextDeepLearning
             {
                 for (int k = 0; k < Im.Height; k++)
                 {
-                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                    if (Equality(Im.GetPixel(j, k) , Color.Black))
                     {
                         Mi = j;
                         break;
@@ -254,7 +254,7 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                    if (Equality(Im.GetPixel(j, k) , Color.Black))
                     {
                         Mi = k;
                         break;
@@ -275,7 +275,7 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-                    if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                    if (Equality(Im.GetPixel(j, k) , Color.Black))
                     {
                         Ma = k;
                         break;
@@ -300,7 +300,7 @@ namespace ImageTextDeepLearning
                 // {
                 for (int k = 0; k < Im.Height; k++)
                 {
-                    if ((Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb()))
+                    if ((Equality(Im.GetPixel(j, k) , Color.Black)))
                     {
                         Ma = j;
                         break;
@@ -390,7 +390,7 @@ namespace ImageTextDeepLearning
                         //first
                         if (nu == 0)
                         {
-                            if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                            if (Equality(Im.GetPixel(j, k) , Color.Black))
                             {
                                 Po[0] = new Point(j, k);
                                 nu++;
@@ -399,7 +399,7 @@ namespace ImageTextDeepLearning
                         else//second
                         if (nu == 1)
                         {
-                            if ((Im.GetPixel(j, k).ToArgb()== Color.Black.ToArgb()))
+                            if (Equality(Im.GetPixel(j, k) , Color.Black))
                             {
                                 Po[1] = new Point(j, k);
                                 nu++;
@@ -911,6 +911,12 @@ namespace ImageTextDeepLearning
                                     e.Dispose();
                                     //crop to proper space
 
+
+
+                                    //crop to proper space
+                                    Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
+
+
                                     Do = HollowCountreImageCommmon(ref Te);
                                     if (!Do)
                                         MessageBox.Show("fault on hollow!");
@@ -958,17 +964,11 @@ namespace ImageTextDeepLearning
                                 int My = MyM * 2;
                                 Bitmap Te = Temp;
                                 e.Dispose();
-                                //crop to proper space
 
-                                /*if (MaX - MiX > MaY - MiY)
-                                {
-                                    //crop to proper space
-                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX - MiX, MaX - MiX));
-                                }
-                                else
-                                {
-                                    Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY - MiY, MaY - MiY));
-                                }*/
+
+                                //crop to proper space
+                                Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
+
 
 
                                 Do = HollowCountreImageCommmon(ref Te);

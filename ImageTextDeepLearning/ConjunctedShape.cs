@@ -120,7 +120,7 @@ namespace ImageTextDeepLearning
             {
                 for (int k = 0; k < Im.Height; k++)
                 {
-                    if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
+                    if (Equality(Im.GetPixel(j, k) , Color.Black))
                     {
                         Mi = j;
                         break;
@@ -141,7 +141,7 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-                    if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
+                    if (Equality(Im.GetPixel(j, k) , Color.Black))
                     {
                         Mi = k;
                         break;
@@ -162,7 +162,7 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-                    if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
+                    if (Equality(Im.GetPixel(j, k) , Color.Black))
                     {
                         Ma = k;
                         break;
@@ -187,7 +187,7 @@ namespace ImageTextDeepLearning
                 // {
                 for (int k = 0; k < Im.Height; k++)
                 {
-                    if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
+                    if (Equality(Im.GetPixel(j, k) , Color.Black))
                     {
                         Ma = j;
                         break;
@@ -381,29 +381,10 @@ namespace ImageTextDeepLearning
                             if (Mx > My)
                             {
                                 Bitmap Te = Temp;
-                                /*if ((MaX) < (MaY))
-                                {
-                                    if (MiX < MaX && MiY < MaY)
-                                    {
-                                        //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY, MaY));
-                                    }
-                                    else
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                    }
-                                }
-                                else
-                                {
-                                    if (MiX < MaX && MiY < MaY)
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX, MaX));
-                                    }
-                                    else
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                    }
-                                }*/
+                            
+                                //crop to proper space
+                                Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
+
 
                                 Do = HollowCountreImageCommmon(ref Te);
                                 if (!Do)
@@ -414,29 +395,9 @@ namespace ImageTextDeepLearning
                             else
                             {
                                 Bitmap Te = Temp;
-                                /*if ((MaX) < (MaY))
-                                {
-                                    if (MiX < MaX && MiY < MaY)
-                                    {
-                                        //crop to proper space
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaY, MaY));
-                                    }
-                                    else
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                    }
-                                }
-                                else
-                                {
-                                    if (MiX < MaX && MiY < MaY)
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(MiX, MiY, MaX, MaX));
-                                    }
-                                    else
-                                    {
-                                        Te = cropImage(Temp, new Rectangle(0, 0, Temp.Width, Temp.Height));
-                                    }
-                                }*/
+
+                                //crop to proper space
+                                Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
 
                                 Do = HollowCountreImageCommmon(ref Te);
                                 if (!Do)
@@ -548,7 +509,7 @@ namespace ImageTextDeepLearning
                         //first
                         if (nu == 0)
                         {
-                            if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
+                            if (Equality(Im.GetPixel(j, k) , Color.Black))
                             {
                                 Po[0] = new Point(j, k);
                                 nu++;
@@ -557,7 +518,7 @@ namespace ImageTextDeepLearning
                         else//second
                         if (nu == 1)
                         {
-                            if (Im.GetPixel(j, k).ToArgb() == Color.Black.ToArgb())
+                            if (Equality(Im.GetPixel(j, k) , Color.Black))
                             {
                                 Po[1] = new Point(j, k);
                                 nu++;

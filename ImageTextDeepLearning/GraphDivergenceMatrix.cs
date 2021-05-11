@@ -1119,9 +1119,12 @@ namespace ContourAnalysisNS
                                                                         Xv.RemoveAt(Xv.Count - 1);
                                                                         indv--;
                                                                         Xl.RemoveAt(Xl.Count - 1);
+                                                                        I = -1;
+                                                                        J = -1;
                                                                     }
-                                                                    else
+                                                                    else                                                                    
                                                                         Occurred = true;
+                                                                    
                                                                 }
                                                                 else
                                                                 {
@@ -1144,6 +1147,8 @@ namespace ContourAnalysisNS
                                                                         Xv.RemoveAt(Xv.Count - 1);
                                                                         indv--;
                                                                         Xl.RemoveAt(Xl.Count - 1);
+                                                                        I = -1;
+                                                                        J = -1;
                                                                     }
                                                                     else
                                                                         Occurred = true;
@@ -1206,6 +1211,8 @@ namespace ContourAnalysisNS
                                                                         Xv.RemoveAt(Xv.Count - 1);
                                                                         indv--;
                                                                         Xl.RemoveAt(Xl.Count - 1);
+                                                                        I = -1;
+                                                                        J = -1;
                                                                     }
                                                                     else
                                                                         Occurred = true;
@@ -1232,6 +1239,8 @@ namespace ContourAnalysisNS
                                                                         Xv.RemoveAt(Xv.Count - 1);
                                                                         indv--;
                                                                         Xl.RemoveAt(Xl.Count - 1);
+                                                                        I = -1;
+                                                                        J = -1;
                                                                     }
                                                                     else
                                                                         Occurred = true;
@@ -1302,6 +1311,8 @@ namespace ContourAnalysisNS
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
                                                                     Xl.RemoveAt(Xl.Count - 1);
+                                                                    I = -1;
+                                                                    J = -1;
                                                                 }
                                                                 else
                                                                 {
@@ -1330,6 +1341,8 @@ namespace ContourAnalysisNS
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
                                                                     Xl.RemoveAt(Xl.Count - 1);
+                                                                    I = -1;
+                                                                    J = -1;
                                                                 }
                                                                 else
                                                                 {
@@ -1396,6 +1409,8 @@ namespace ContourAnalysisNS
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
                                                                     Xl.RemoveAt(Xl.Count - 1);
+                                                                    I = -1;
+                                                                    J = -1;
                                                                 }
                                                                 else
                                                                 {
@@ -1424,6 +1439,8 @@ namespace ContourAnalysisNS
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
                                                                     Xl.RemoveAt(Xl.Count - 1);
+                                                                    I = -1;
+                                                                    J = -1;
                                                                 }
                                                                 else
                                                                 {

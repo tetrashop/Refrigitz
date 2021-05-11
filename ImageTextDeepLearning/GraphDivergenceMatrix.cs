@@ -1530,7 +1530,7 @@ namespace ContourAnalysisNS
                 {
                     OverAgain = true;
                     XlOverLap.Clear();
-                    //XloverlapsLisf.Clear();
+                    XloverlapsLisf.Clear();
 
                 }
                 if (OverAgain)
@@ -1548,12 +1548,15 @@ namespace ContourAnalysisNS
                     J = -1;
                     LessNootFound = false;
                     IgnoreLess = false;
+                    XlOverLap.Clear();
                 }
             } while (OverAgain);
         }
         bool IsOverLapIterative()
         {
             bool Is = false;
+            if (XlOverLap.Count == 0)
+                return Is;
             for (int i = 0; i < XloverlapsLisf.Count; i++)
             {
                 if (XloverlapsLisf[i].Count == XlOverLap.Count)
@@ -2023,7 +2026,7 @@ namespace ContourAnalysisNS
     //line class
     public class Line
     {
-        static float  interval = (float)0.5;
+        static float  interval = (float)1.0;
         public int VertexIndexX, VertexIndexY;
         public float Weigth;
         //constructor
@@ -2164,6 +2167,8 @@ namespace ContourAnalysisNS
             bool Is = false;
             if (v1.Y == v2.Y)
             {
+                if (v1.Y == y)
+                    return true;
                 return false;
             }
             if (((float)(y - (float)v1.Y) * (float)(x - (float)v2.X)) / ((float)(y - (float)v2.Y) * (float)(x - (float)v1.X)) <interval)

@@ -1521,7 +1521,13 @@ namespace ContourAnalysisNS
                         }
                     }
                 }
+                if (Xl.Count == 0)
+                {
+                    OverAgain = true;
+                    XlOverLap.Clear();
+                    XloverlapsLisf.Clear();
 
+                }
                 if (OverAgain)
                 {
                     Xv.Clear();

@@ -1953,7 +1953,7 @@ namespace ContourAnalysisNS
         static bool IsSame(Vertex x, Vertex y, Vertex z)
         {
             bool Is = false;
-            if (x.X == y.X && y.X == x.X)
+            if (x.X == y.X && y.X == z.X)
             {
                 if (x.Y == y.Y && y.Y == z.Y)
                     Is = true;

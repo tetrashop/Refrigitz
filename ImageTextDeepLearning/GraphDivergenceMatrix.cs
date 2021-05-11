@@ -1318,9 +1318,7 @@ namespace ContourAnalysisNS
                                                                 if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
                                                                 {
                                                                     Xv.RemoveAt(Xv.Count - 1);
-                                                                    indv--;
-                                                                    Xv.RemoveAt(Xv.Count - 1);
-                                                                    indv--;
+                                                                    indv--;                                                              
                                                                     Xl.RemoveAt(Xl.Count - 1);
                                                                     I = -1;
                                                                     J = -1;
@@ -1415,8 +1413,6 @@ namespace ContourAnalysisNS
                                                                 J = p;
                                                                 if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
                                                                 {
-                                                                    Xv.RemoveAt(Xv.Count - 1);
-                                                                    indv--;
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
                                                                     Xl.RemoveAt(Xl.Count - 1);
@@ -1530,7 +1526,7 @@ namespace ContourAnalysisNS
                 {
                     OverAgain = true;
                     XlOverLap.Clear();
-                    XloverlapsLisf.Clear();
+                    //XloverlapsLisf.Clear();
 
                 }
                 if (OverAgain)
@@ -1548,8 +1544,7 @@ namespace ContourAnalysisNS
                     J = -1;
                     LessNootFound = false;
                     IgnoreLess = false;
-                    XlOverLap.Clear();
-                }
+                 }
             } while (OverAgain);
         }
         bool IsOverLapIterative()
@@ -2136,7 +2131,7 @@ namespace ContourAnalysisNS
             }
             for (float i = (float)X1 + (float)1.0; i < (float)X2 - (float)1.0; i += interval)
             {
-                float y = (((float)((float)v0.Y - (float)v1.Y) / (float)((float)v0.X - (float)v1.X)) * (float)(i - (float)v0.X) + (float)v0.Y);
+                float y = ((((float)((float)v0.Y - (float)v1.Y) / (float)((float)v0.X - (float)v1.X)) * (float)(i - (float)v0.X)) + (float)v0.Y);
                 if (y <= Y1 || y >= Y2)
                     continue;
                 if (Line.IsPointsInVertexes(v2, v3, i, y))
@@ -2156,7 +2151,7 @@ namespace ContourAnalysisNS
                     return true;
                 return false;
             }
-            if (((float)(y- v1.Y) * (float)(x - v2.X)) / ((float)(y - v2.Y) * (float)(x - v1.X)) <1)
+            if (Math.Abs(((float)(y - v1.Y) * (float)(x - v2.X)) / ((float)(y - v2.Y) * (float)(x - v1.X))) < 1)
             {
                 Is = true;
             }
@@ -2171,7 +2166,7 @@ namespace ContourAnalysisNS
                     return true;
                 return false;
             }
-            if (((float)(y - (float)v1.Y) * (float)(x - (float)v2.X)) / ((float)(y - (float)v2.Y) * (float)(x - (float)v1.X)) <interval)
+            if (Math.Abs(((float)(y - (float)v1.Y) * (float)(x - (float)v2.X)) / ((float)(y - (float)v2.Y) * (float)(x - (float)v1.X))) < interval)
             {
                 Is = true;
             }

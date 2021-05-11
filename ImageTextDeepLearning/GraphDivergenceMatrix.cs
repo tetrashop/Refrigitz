@@ -219,9 +219,11 @@ namespace ContourAnalysisNS
     {
         public List<Vertex> Xv = new List<Vertex>();
         public List<Line> Xl = new List<Line>();
+        public List<List<Vertex>> XlDegree = new List<List<Vertex>>();
         public int N, M;
         public List<Vertex[]> XlOverLap = new List<Vertex[]>();
         List<List<Vertex[]>> XloverlapsLisf = new List<List<Vertex[]>>();
+        List<List<Vertex>> XloverlapsLisInsider = new List<List<Vertex>>();
         //consider existance of vertex in a graph basically
         public bool ExistV(int x1, int y1)
         {
@@ -263,6 +265,46 @@ namespace ContourAnalysisNS
             return Is;
         }
         //consider existance of line in a graph basically
+        public bool ExistL(Vertex x1, Vertex y1)
+        {
+            bool Is = false;
+            Vertex[] vx = new Vertex[2];
+            vx[0] = x1;
+            vx[1] = y1;
+            if (ExistLOverLap(vx[0], vx[1]))
+            {
+                return true;
+            }
+
+            for (int i = 0; i < Xl.Count; i++)
+            {
+                object hh = new object();
+                lock (hh)
+                {
+                    if (Xl[i].VertexIndexX == x1.VertexNumber && Xl[i].VertexIndexY == y1.VertexNumber)
+                    {
+                        Is = true;
+                    }
+                    /*if (GetVerIdO( Xl[i].VertexIndexX).X == x1.X &&GetVerIdO( Xl[i].VertexIndexY).Y == y1.Y)
+                    {
+                        Is = true;
+                    }*/
+                    if (Xl[i].VertexIndexY == x1.VertexNumber && Xl[i].VertexIndexX == y1.VertexNumber)
+                    {
+                        Is = true;
+                    }
+                    /*if (GetVerIdO(Xl[i].VertexIndexY).X == x1.X && GetVerIdO(Xl[i].VertexIndexX).Y == y1.Y)
+                    {
+                        Is = true;
+                    }*/
+                }
+            }
+            
+
+            return Is;
+        }
+        
+        //consider existance of line in a graph basically
         public bool ExistL(int x1, int y1)
         {
             bool Is = false;
@@ -279,7 +321,7 @@ namespace ContourAnalysisNS
                 object hh = new object();
                 lock (hh)
                 {
-                    if (Xl[i].VertexIndexX == x1 && Xl[i].VertexIndexY == y1)
+                    if (Xl[i].VertexIndexX == x1&& Xl[i].VertexIndexY == y1)
                     {
                         Is = true;
                     }
@@ -717,7 +759,7 @@ namespace ContourAnalysisNS
                         {
                             continue;
                         }
-                        if (ExistL(Xv[i].VertexNumber, Xv[k].VertexNumber))
+                        if (ExistL(Xv[i], Xv[k]))
                         {
                             int x1 = Xv[i].X;
                             int y1 = Xv[i].Y;
@@ -1010,7 +1052,7 @@ namespace ContourAnalysisNS
                                                 {
                                                     if (!FirstCchanged)
                                                     {
-                                                        if (!ExistL(Xv[Xv.Count - 1].VertexNumber, Xv[First - 1].VertexNumber))
+                                                        if (!ExistL(Xv[Xv.Count - 1], Xv[First - 1]))
                                                         {
                                                             float we = (float)Math.Sqrt((Xv[First - 1].X - Xv[Xv.Count - 1].X) * (Xv[First - 1].X - Xv[Xv.Count - 1].X) + (Xv[First - 1].Y - Xv[Xv.Count - 1].Y) * (Xv[First - 1].Y - Xv[Xv.Count - 1].Y));
                                                             Xl.Add(new Line(we, Xv[Xv.Count - 1].VertexNumber, Xv[First - 1].VertexNumber));
@@ -1066,13 +1108,20 @@ namespace ContourAnalysisNS
                                                         {
                                                             if (inh == indv - 1)
                                                             {
-                                                                if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                                if (!ExistL(Xv[Xv.Count - 2], Xv[Xv.Count - 1]))
                                                                 {
                                                                     float we = (float)Math.Sqrt((Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) * (Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) + (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y) * (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y));
                                                                     Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                                     I = k;
                                                                     J = p;
-                                                                    Occurred = true;
+                                                                    if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
+                                                                    {
+                                                                        Xv.RemoveAt(Xv.Count - 1);
+                                                                        indv--;
+                                                                        Xl.RemoveAt(Xl.Count - 1);
+                                                                    }
+                                                                    else
+                                                                        Occurred = true;
                                                                 }
                                                                 else
                                                                 {
@@ -1088,7 +1137,17 @@ namespace ContourAnalysisNS
                                                                     Xl.Add(new Line(we, inh1, inh2));
                                                                     I = k;
                                                                     J = p;
-                                                                    Occurred = true;
+                                                                    if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
+                                                                    {
+                                                                        Xv.RemoveAt(Xv.Count - 1);
+                                                                        indv--;
+                                                                        Xv.RemoveAt(Xv.Count - 1);
+                                                                        indv--;
+                                                                        Xl.RemoveAt(Xl.Count - 1);
+                                                                    }
+                                                                    else
+                                                                        Occurred = true;
+
                                                                 }
                                                                 else
                                                                 {
@@ -1136,13 +1195,21 @@ namespace ContourAnalysisNS
                                                         {
                                                             if (inh == indv - 1)
                                                             {
-                                                                if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                                if (!ExistL(Xv[Xv.Count - 2], Xv[Xv.Count - 1]))
                                                                 {
                                                                     float we = (float)Math.Sqrt((Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) * (Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) + (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y) * (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y));
                                                                     Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                                     I = k;
                                                                     J = p;
-                                                                    Occurred = true;
+                                                                    if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
+                                                                    {
+                                                                        Xv.RemoveAt(Xv.Count - 1);
+                                                                        indv--;
+                                                                        Xl.RemoveAt(Xl.Count - 1);
+                                                                    }
+                                                                    else
+                                                                        Occurred = true;
+
                                                                 }
                                                                 else
                                                                 {
@@ -1152,13 +1219,23 @@ namespace ContourAnalysisNS
                                                             }
                                                             else
                                                             {
-                                                                if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                                if (!ExistL(Xv[Xv.Count - 2], Xv[Xv.Count - 1]))
                                                                 {
                                                                     float we = (float)Math.Sqrt((Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) * (Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) + (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y) * (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y));
                                                                     Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                                     I = k;
                                                                     J = p;
-                                                                    Occurred = true;
+                                                                    if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
+                                                                    {
+                                                                        Xv.RemoveAt(Xv.Count - 1);
+                                                                        indv--;
+                                                                        Xv.RemoveAt(Xv.Count - 1);
+                                                                        indv--;
+                                                                        Xl.RemoveAt(Xl.Count - 1);
+                                                                    }
+                                                                    else
+                                                                        Occurred = true;
+
                                                                 }
                                                                 else
                                                                 {
@@ -1212,14 +1289,25 @@ namespace ContourAnalysisNS
                                                     {
                                                         if (inh == indv - 1)
                                                         {
-                                                            if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber) && (!Again))
+                                                            if (!ExistL(Xv[Xv.Count - 2], Xv[Xv.Count - 1]) && (!Again))
                                                             {
                                                                 float we = (float)Math.Sqrt((Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) * (Xv[Xv.Count - 2].X - Xv[Xv.Count - 1].X) + (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y) * (Xv[Xv.Count - 2].Y - Xv[Xv.Count - 1].Y));
                                                                 Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                                 I = k;
                                                                 J = p;
-                                                                Occurred = true;
-                                                                Again = false;
+                                                                if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
+                                                                {
+                                                                    Xv.RemoveAt(Xv.Count - 1);
+                                                                    indv--;
+                                                                    Xv.RemoveAt(Xv.Count - 1);
+                                                                    indv--;
+                                                                    Xl.RemoveAt(Xl.Count - 1);
+                                                                }
+                                                                else
+                                                                {
+                                                                    Again = false;
+                                                                    Occurred = true;
+                                                                }
                                                             }
                                                             else
                                                             {
@@ -1235,8 +1323,19 @@ namespace ContourAnalysisNS
                                                                 Xl.Add(new Line(we, inh1, inh2));
                                                                 I = k;
                                                                 J = p;
-                                                                Occurred = true;
-                                                                Again = false;
+                                                                if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
+                                                                {
+                                                                    Xv.RemoveAt(Xv.Count - 1);
+                                                                    indv--;
+                                                                    Xv.RemoveAt(Xv.Count - 1);
+                                                                    indv--;
+                                                                    Xl.RemoveAt(Xl.Count - 1);
+                                                                }
+                                                                else
+                                                                {
+                                                                    Again = false;
+                                                                    Occurred = true;
+                                                                }
                                                             }
                                                             else
                                                             {
@@ -1290,8 +1389,19 @@ namespace ContourAnalysisNS
                                                                 Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                                 I = k;
                                                                 J = p;
-                                                                Occurred = true;
-                                                                Again = false;
+                                                                if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
+                                                                {
+                                                                    Xv.RemoveAt(Xv.Count - 1);
+                                                                    indv--;
+                                                                    Xv.RemoveAt(Xv.Count - 1);
+                                                                    indv--;
+                                                                    Xl.RemoveAt(Xl.Count - 1);
+                                                                }
+                                                                else
+                                                                {
+                                                                    Again = false;
+                                                                    Occurred = true;
+                                                                }
                                                             }
                                                             else
                                                             {
@@ -1301,14 +1411,25 @@ namespace ContourAnalysisNS
                                                         }
                                                         else
                                                         {
-                                                            if (!ExistL(Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber))
+                                                            if (!ExistL(Xv[Xv.Count - 2], Xv[Xv.Count - 1]))
                                                             {
                                                                 float we = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                                                 Xl.Add(new Line(we, Xv[Xv.Count - 2].VertexNumber, Xv[Xv.Count - 1].VertexNumber));
                                                                 I = k;
                                                                 J = p;
-                                                                Occurred = true;
-                                                                Again = false;
+                                                                if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
+                                                                {
+                                                                    Xv.RemoveAt(Xv.Count - 1);
+                                                                    indv--;
+                                                                    Xv.RemoveAt(Xv.Count - 1);
+                                                                    indv--;
+                                                                    Xl.RemoveAt(Xl.Count - 1);
+                                                                }
+                                                                else
+                                                                {
+                                                                    Again = false;
+                                                                    Occurred = true;
+                                                                }
                                                             }
                                                             else
                                                             {
@@ -1332,6 +1453,8 @@ namespace ContourAnalysisNS
                 //IJBelongToLineHaveFalseBolleanA(A);
                 OverAgain = false;
                 //Unknown applicable
+
+
                 if (!IsOverLapIterative())
                     XloverlapsLisf.Add(XlOverLap);
                 else
@@ -1375,6 +1498,7 @@ namespace ContourAnalysisNS
                         }
                     }
                 }
+
                 if (OverAgain)
                 {
                     Xv.Clear();
@@ -1519,7 +1643,7 @@ namespace ContourAnalysisNS
                                 Xv.Add(new Vertex(XlE[k].VertexIndexY, A[j].X, A[j].Y));
                             }
 
-                            if (!ExistL(XlE[k].VertexIndexX, XlE[k].VertexIndexY) && (XlE.Count > k) && (A.Count > j) && (A.Count > i))
+                            if (!ExistL(GetVerIdO( XlE[k].VertexIndexX),GetVerIdO( XlE[k].VertexIndexY)) && (XlE.Count > k) && (A.Count > j) && (A.Count > i))
                             {
                                 float we = (float)Math.Sqrt((A[i].X - A[j].X) * (A[i].X - A[j].X) + (A[i].Y - A[j].Y) * (A[i].Y - A[j].Y));
                                 Xl.Add(new Line(we, A[A.Count - 2].VertexNumber, A[A.Count - 1].VertexNumber));
@@ -1796,6 +1920,85 @@ namespace ContourAnalysisNS
             VertexIndexX = inx;
             VertexIndexY = iny;
             Weigth = Weit;
+        }
+        //return verex object by number bassically
+        private static Vertex GetVerIdO(int VertNo, List<Vertex> Xv)
+        {
+            for (int i = 0; i < Xv.Count; i++)
+            {
+                if (Xv[i].VertexNumber == VertNo)
+                {
+                    return Xv[i];
+                }
+            }
+            return null;
+        }
+        static bool IsSame(Vertex x, Vertex y, Vertex z)
+        {
+            bool Is = false;
+            if (x.X == y.X && y.X == x.X)
+            {
+                if (x.Y == y.Y && y.Y == z.Y)
+                    Is = true;
+            }
+            return Is;
+        }
+        public static bool IsThereAtXlDegreeGreaterThanTow(List<Line> xl, List<Vertex> xv)
+        {
+            bool Is = false;
+            for (int i = 0; i < xl.Count; i++)
+            {
+                Vertex x1 = GetVerIdO(xl[i].VertexIndexX, xv);
+                Vertex x2 = GetVerIdO(xl[i].VertexIndexY, xv);
+
+                for (int j = 0; j < xl.Count; j++)
+                {
+                    if (i == j)
+                        continue;
+                    Vertex y1 = GetVerIdO(xl[j].VertexIndexX, xv);
+                    Vertex y2 = GetVerIdO(xl[j].VertexIndexY, xv);
+                    for (int k = 0; k < xl.Count; k++)
+                    {
+                        if (i == k)
+                            continue;
+                        if (j == k)
+                            continue;
+                        Vertex z1 = GetVerIdO(xl[k].VertexIndexX, xv);
+                        Vertex z2 = GetVerIdO(xl[k].VertexIndexY, xv);
+
+                        if (IsSame(x1, y1, z1))
+                            Is = true;
+
+                        if (IsSame(x1, y2, z1))
+                            Is = true;
+
+                        if (IsSame(x1, y1, z2))
+                            Is = true;
+
+                        if (IsSame(x1, y2, z2))
+                            Is = true;
+
+                        if (IsSame(x2, y1, z1))
+                            Is = true;
+
+                        if (IsSame(x2, y2, z1))
+                            Is = true;
+
+                        if (IsSame(x2, y1, z2))
+                            Is = true;
+
+                        if (IsSame(x2, y2, z2))
+                            Is = true;
+                        if (Is)
+                            break;
+                    }
+                    if (Is)
+                        break;
+                }
+                if (Is)
+                    break;
+            }
+            return Is;
         }
         //when tow line have intersect or overlap
         public static bool IsTowLineIsIntersect(Vertex v0, Vertex v1, Vertex v2, Vertex v3, int n, int m)
@@ -2179,7 +2382,7 @@ namespace ContourAnalysisNS
                                         int ii = -1, jj = -1;
                                         float we = (float)Math.Sqrt((Xv[i].X - Xv[j].X) * (Xv[i].X - Xv[j].X) + (Xv[i].Y - Xv[j].Y) * (Xv[i].Y - Xv[j].Y));
                                         Line ll0 = new Line(we, Xv[i].VertexNumber, Xv[j].VertexNumber);
-                                        if (ExistL(ll0.VertexIndexX, ll0.VertexIndexY))
+                                        if (ExistL(GetVerId( ll0.VertexIndexX),GetVerId( ll0.VertexIndexY)))
                                         {
                                             Is = AddIng(p0, p1, ref ii, ref jj);
                                             if (Is)
@@ -2194,7 +2397,7 @@ namespace ContourAnalysisNS
                                         
                                         float wep = (float)Math.Sqrt((Xv[k].X - Xv[p].X) * (Xv[k].X - Xv[p].X) + (Xv[k].Y - Xv[p].Y) * (Xv[k].Y - Xv[p].Y));
                                         Line ll0p = new Line(we, Xv[k].VertexNumber, Xv[p].VertexNumber);
-                                        if (ExistL(ll0p.VertexIndexX, ll0p.VertexIndexY))
+                                        if (ExistL(GetVerId( ll0p.VertexIndexX),GetVerId( ll0p.VertexIndexY)))
                                         {
                                             Is = AddIng(p2, p3, ref ii, ref jj);
                                             if (Is)

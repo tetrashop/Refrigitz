@@ -1558,25 +1558,100 @@ namespace ContourAnalysisNS
             {
                 if (XloverlapsLisf[i].Count == XlOverLap.Count)
                 {
-                    Is = true;
-                    for (int j = 0; j < XloverlapsLisf[i].Count; j++)
-                    {
-                        for (int k = 0; k < XlOverLap.Count; k++)
-                        {
-                            if (!((XloverlapsLisf[i][j][0].X == XlOverLap[k][0].X || XloverlapsLisf[i][j][1].X == XlOverLap[k][1].X) &&
-                                (XloverlapsLisf[i][j][0].Y == XlOverLap[k][0].Y || XloverlapsLisf[i][j][1].Y == XlOverLap[k][1].Y)))
-                            {
-                                Is = false;
+                    Is = IsEquality(XloverlapsLisf[i], XlOverLap);
 
-                            }
-                        }
-                    }
                     if (Is)
                         return Is;
                 }
             }
             return Is;
         }
+        bool IsEquality(List<Vertex[]> x1, List<Vertex[]> x2)
+        {
+            bool Is = false;
+
+            if (x1.Count != x2.Count)
+                return Is;
+            List<Vertex[]> xl1 = new List<Vertex[]>();
+            List<Vertex[]> xl2 = new List<Vertex[]>();
+            for (int i = 0; i < x1.Count; i++)
+            {
+                xl1.Add(new Vertex[2]);
+                xl1[i][0] = new Vertex(x1[i][0].VertexNumber, x1[i][0].X, x1[i][0].Y);
+                xl1[i][1] = new Vertex(x1[i][1].VertexNumber, x1[i][1].X, x1[i][1].Y);
+            }
+
+            for (int i = 0; i < x2.Count; i++)
+            {
+                xl2.Add(new Vertex[2]);
+                xl2[i][0] = new Vertex(x2[i][0].VertexNumber, x2[i][0].X, x2[i][0].Y);
+                xl2[i][1] = new Vertex(x2[i][1].VertexNumber, x2[i][1].X, x2[i][1].Y);
+            }
+            bool Do = false;
+
+            do
+            {
+                Do = false;
+                for (int i = 0; i < xl1.Count; i++)
+                {
+
+                    if (xl1[i][0] == null && xl1[i][1] == null)
+                    {
+                        xl1.RemoveAt(i);
+                        continue;
+                    }
+                    for (int j = 0; j < xl2.Count; j++)
+                    {
+
+                        if (xl2[j][0] == null && xl2[j][1] == null)
+                        {
+                            xl2.RemoveAt(j);
+                            continue;
+                        }
+                        if (xl1[i][0] != null && xl2[j][0] != null)
+                        {
+                            if (xl1[i][0].X == xl2[j][0].X && xl1[i][0].Y == xl2[j][0].Y)
+                            {
+                                xl1[i][0] = null;
+                                xl2[j][0] = null;
+                                Do = true;
+                            }
+                        }
+                        if (xl1[i][1] != null && xl2[j][1] != null)
+                        {
+                            if (xl1[i][1].X == xl2[j][1].X && xl1[i][1].Y == xl2[j][1].Y)
+                            {
+                                xl1[i][1] = null;
+                                xl2[j][1] = null;
+                                Do = true;
+                            }
+                        }
+                        if (xl1[i][0] != null && xl2[j][1] != null)
+                        {
+                            if (xl1[i][0].X == xl2[j][1].X && xl1[i][0].Y == xl2[j][1].Y)
+                            {
+                                xl1[i][0] = null;
+                                xl2[j][1] = null;
+                                Do = true;
+                            }
+                        }
+                        if (xl1[i][1] != null && xl2[j][0] != null)
+                        {
+                            if (xl1[i][1].X == xl2[j][0].X && xl1[i][1].Y == xl2[j][0].Y)
+                            {
+                                xl1[i][1] = null;
+                                xl2[j][0] = null;
+                                Do = true;
+                            }
+                        }
+                    }
+                }
+            } while (xl1.Count != 0 && xl2.Count != 0 && Do);
+            if (xl1.Count == 0 && xl2.Count == 0)
+                Is = true;
+            return Is;
+        }
+            
         private int GetVerIndV(int VertNo, List<Vertex> XvE)
         {
             int vern = 0;

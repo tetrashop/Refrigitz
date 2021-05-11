@@ -936,6 +936,7 @@ namespace ContourAnalysisNS
             bool IgnoreLess = false;
             bool OverAgain = false;
             bool Again = false;
+            int ii = 0, jj = 0;
             do
             {
                 do
@@ -943,9 +944,9 @@ namespace ContourAnalysisNS
                     KPNotFound = true;
                     LessNootFound = true;
                     Occurred = false;
-                    for (int i = 0; i < n; i++)
+                    for (int i = ii; i < n; i++)
                     {
-                        for (int j = 0; j < m; j++)
+                        for (int j = jj; j < m; j++)
                         {
                             if (KPNotFound && LessNootFound)
                             {
@@ -954,6 +955,11 @@ namespace ContourAnalysisNS
                                 LessNootFound = false;
                                 if (I != -1 && J != -1)
                                 {
+                                    //prevention iterative
+                                    ii = I;
+                                    jj = J;
+
+
                                     i = I;
                                     j = J;
                                     I = -1;

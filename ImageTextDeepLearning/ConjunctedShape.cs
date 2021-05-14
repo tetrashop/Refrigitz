@@ -207,9 +207,9 @@ namespace ImageTextDeepLearning
         }
         bool Equality(Color a, Color b)
         {
-            bool Is = false;
-            if (a.A != 0 && a.G == b.G && a.B == b.B && a.R == b.R && a.R == 0)
-                Is = true;
+            bool Is = true;
+            if (a.G == b.G && a.B == b.B && a.R == b.R && a.R == 255)
+                Is = false;
             return Is;
         }
         bool[,] GetBolleanFromArgb(Bitmap Temp)
@@ -310,7 +310,7 @@ namespace ImageTextDeepLearning
                     for (int i = 0; i < All.Count; i++)
                     {
                         //retrive min and max of tow X and Y
-                         //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, Mx));
+                        //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Mx, Mx));
                         Point[] tec = All[i].ToArray();
                         PointF[] te = new PointF[tec.Length];
                         for (int ii = 0; ii < te.Length; ii++)
@@ -343,34 +343,17 @@ namespace ImageTextDeepLearning
                             My = MyM * 2;
                             for (int ii = 0; ii < te.Length; ii++)
                             {
-                                if (MaX - MiX < MaY - MiY)
-                                {
-                                    //crop to proper space
-                                    te[ii] = new PointF(((float)((Width - 2) * te[ii].X) / (float)(MaY - MiY)), ((float)((Height - 2) * te[ii].Y) / (float)(MaY - MiY)));
-                                }
-                                else
-                                {
-                                    te[ii] = new PointF(((float)((Width - 2) * te[ii].X) / (float)(MaX - MiX)), ((float)((Height - 2) * te[ii].Y) / (float)(MaX - MiX)));
-                                }
+                                te[ii] = new PointF(((float)((Width) * te[ii].X) / (float)(MaX - MiX)), ((float)((Height) * te[ii].Y) / (float)(MaY - MiY)));
                             }
-                            GraphicsPath path = new GraphicsPath(FillMode.Winding);
+                            GraphicsPath path = new GraphicsPath();
                             //draw string
-                            e.SmoothingMode = SmoothingMode.AntiAlias;
-                            path.AddPolygon(te);
-                            if (Width > MaX)
+                             path.AddPolygon(te);
+
+                            using (Pen pen = new Pen(Color.Black, 1))
                             {
-                                using (Pen pen = new Pen(Color.Black, 2))
-                                {
-                                    e.DrawPath(pen, path);
-                                }
+                                e.DrawPath(pen, path);
                             }
-                            else
-                            {
-                                using (Pen pen = new Pen(Color.Black, 2))
-                                {
-                                    e.DrawPath(pen, path);
-                                }
-                            }
+
                             e.Dispose();
                             MiX = ImMinX(Temp);
                             MiY = ImMinY(Temp);
@@ -386,9 +369,9 @@ namespace ImageTextDeepLearning
                             if (Mx > My)
                             {
                                 Bitmap Te = Temp;
-                            
+
                                 //crop to proper space
-                                Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
+                                //Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
 
 
                                 Do = HollowCountreImageCommmon(ref Te);
@@ -402,11 +385,11 @@ namespace ImageTextDeepLearning
                                 Bitmap Te = Temp;
 
                                 //crop to proper space
-                                Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
+                                //Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
 
-                                Do = HollowCountreImageCommmon(ref Te);
+                                /*Do = HollowCountreImageCommmon(ref Te);
                                 if (!Do)
-                                    MessageBox.Show("fault on hollow!");
+                                    MessageBox.Show("fault on hollow!");*/
 
 
                                 // AllImage.Add((Bitmap)Te.Clone());

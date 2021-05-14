@@ -435,8 +435,8 @@ namespace ImageTextDeepLearning
                 List<Task> th = new List<Task>();
                 Graphics e = Graphics.FromImage(Im);
                 //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                //do
-                //{
+                do
+                {
                     Hollowed = false;
 
                     for (int x = 0; x < wi; x++)
@@ -447,7 +447,7 @@ namespace ImageTextDeepLearning
                             object o = new object();
                             lock (o)
                             {
-                                if (Equality(Im.GetPixel(x, y) , Color.Black))
+                                if (!Equality(Im.GetPixel(x, y) , Color.White))
                                 {
                                     bool Is = false;
                                     /*var H = Task.Factory.StartNew(() => HollowCountreImageCommmonXY(ref Im, x, y, wi, he, x, y, Ab));
@@ -457,7 +457,7 @@ namespace ImageTextDeepLearning
                             }
                         }
                     }
-                //} while (Hollowed);
+                } while (Hollowed);
                 e.Dispose();
 
             }
@@ -486,7 +486,7 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (Equality(Im.GetPixel(X, Y), Color.Black))
+                    if (!Equality(Im.GetPixel(X,Y) , Color.White))
                     {
 
 
@@ -530,7 +530,7 @@ namespace ImageTextDeepLearning
                         object oo = new object();
                         lock (oo)
                         {
-                            if (Is && (Equality(Im.GetPixel(X, Y), Color.Black)))
+                            if (Is && (!Equality(Im.GetPixel(X,Y) , Color.White)))
                             {
                                 Im.SetPixel(X, Y, Color.White);
                                 Hollowed = true;
@@ -563,30 +563,31 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (Equality(Im.GetPixel(X, Y), Color.Black))
+                    if (!Equality(Im.GetPixel(X, Y), Color.White))
                     {
                         if ((x != X || y != Y))
                         {
-                            if (Equality(Im.GetPixel(x, y), Color.Black))
+                            if (!Equality(Im.GetPixel(x, y), Color.White))
                             {
                                 Is = true;
                                 return true;
                             }
-                        }
-                        if (Is)
-                        {
-                            return Is;
-                        }
 
-                        object ooo = new object();
-                        lock (ooo)
-                        {
-                            if (x + 1 < wi)
+                            if (Is)
                             {
+                                return Is;
+                            }
 
-                                Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, ref IsOut);
-                                //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+                            object ooo = new object();
+                            lock (ooo)
+                            {
+                                if (x + 1 < wi)
+                                {
 
+                                    Is = Is || HollowCountreImageCommmonXYRigthX(ref Im, x + 1, y, wi, he, X, Y, ref IsOut);
+                                    //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+
+                                }
                             }
                         }
                     }
@@ -615,29 +616,30 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (Equality(Im.GetPixel(X, Y), Color.Black))
+                    if (!Equality(Im.GetPixel(X, Y), Color.White))
                     {
                         if ((x != X || y != Y))
                         {
-                            if (Equality(Im.GetPixel(x, y), Color.Black))
+                            if (!Equality(Im.GetPixel(x, y), Color.White))
                             {
                                 Is = true;
                                 return true;
                             }
-                        }
-                        if (Is)
-                        {
-                            return Is;
-                        }
 
-                        object oioo = new object();
-                        lock (oioo)
-                        {
-                            if (x - 1 >= 0)
+                            if (Is)
                             {
+                                return Is;
+                            }
 
-                                Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, ref IsOut);
-                                //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+                            object oioo = new object();
+                            lock (oioo)
+                            {
+                                if (x - 1 >= 0)
+                                {
+
+                                    Is = Is || HollowCountreImageCommmonXYLeftX(ref Im, x - 1, y, wi, he, X, Y, ref IsOut);
+                                    //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+                                }
                             }
                         }
                     }
@@ -669,29 +671,30 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (Equality(Im.GetPixel(X, Y), Color.Black))
+                    if (!Equality(Im.GetPixel(X, Y), Color.White))
                     {
                         if ((x != X || y != Y))
                         {
-                            if (Equality(Im.GetPixel(x, y), Color.Black))
+                            if (!Equality(Im.GetPixel(x, y), Color.White))
                             {
                                 Is = true;
                                 return true;
                             }
-                        }
-                        if (Is)
-                        {
-                            return Is;
-                        }
 
-                        object pooo = new object();
-                        lock (pooo)
-                        {
-                            if (y + 1 < he)
+                            if (Is)
                             {
+                                return Is;
+                            }
 
-                                Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y - 1, wi, he, X, Y, ref IsOut);
-                                //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+                            object pooo = new object();
+                            lock (pooo)
+                            {
+                                if (y + 1 < he)
+                                {
+
+                                    Is = Is || HollowCountreImageCommmonXYUpY(ref Im, x, y - 1, wi, he, X, Y, ref IsOut);
+                                    //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+                                }
                             }
                         }
                     }
@@ -719,34 +722,34 @@ namespace ImageTextDeepLearning
                 object o = new object();
                 lock (o)
                 {
-                    if (Equality(Im.GetPixel(X, Y), Color.Black))
+                    if (!Equality(Im.GetPixel(X, Y), Color.White))
                     {
                         if ((x != X || y != Y))
                         {
-                            if (Equality(Im.GetPixel(x, y), Color.Black))
+                            if (!Equality(Im.GetPixel(x, y), Color.White))
                             {
                                 Is = true;
                                 return true;
                             }
-                        }
-                        if (Is)
-                        {
-                            return Is;
-                        }
 
-                        object pooo = new object();
-                        lock (pooo)
-                        {
-                            if (y + 1 < he)
+                            if (Is)
                             {
+                                return Is;
+                            }
 
-                                Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y + 1, wi, he, X, Y, ref IsOut);
-                                //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+                            object pooo = new object();
+                            lock (pooo)
+                            {
+                                if (y + 1 < he)
+                                {
 
+                                    Is = Is || HollowCountreImageCommmonXYDowwnY(ref Im, x, y + 1, wi, he, X, Y, ref IsOut);
+                                    //Is = Is || HollowCountreImageCommmonXY(ref Im, x + 1, y, wi, he, X, Y, Ab, ref IsOut);
+
+                                }
                             }
                         }
                     }
-
                 }
             }
             catch (Exception)
@@ -784,7 +787,7 @@ namespace ImageTextDeepLearning
         bool Equality(Color a, Color b)
         {
             bool Is = false;
-            if (a.A != 0 && a.G == b.G && a.B == b.B && a.R == b.R && a.R == 0)
+            if (a.G == b.G && a.B == b.B && a.R == b.R)
                 Is = true;
             return Is;
         }
@@ -792,9 +795,9 @@ namespace ImageTextDeepLearning
         {
             Color[,] TemI = new Color[Width, Height];
             bool[,] TemB = ZerosB();
-            Color black = Color.Black;
+            Color wigth = Color.White;
             Graphics e = Graphics.FromImage(Temp);
-            Color realColor = e.GetNearestColor(black);
+            Color realColor = e.GetNearestColor(wigth);
             //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
             for (int k = 0; k < Width; k++)
             {
@@ -832,7 +835,7 @@ namespace ImageTextDeepLearning
                     object o = new object();
                     lock (o)
                     {
-                        if (!Equality(TemI[k, p], black)//(Max / 2)
+                        if (Equality(TemI[k, p], wigth)//(Max / 2)
                                         )
                         {
                             TemB[k, p] = false;
@@ -846,7 +849,15 @@ namespace ImageTextDeepLearning
             }
             return TemB;
         }
-        //store all strings list to proper  images themselves list
+        GraphicsPath GetStringPath(string s, float dpi, RectangleF rect, Font font, StringFormat format)
+        {
+            GraphicsPath path = new GraphicsPath();
+            // Convert font size into appropriate coordinates
+            float emSize = dpi * font.SizeInPoints / 72;
+            path.AddString(s, font.FontFamily, (int)font.Style, emSize, rect, format);
+
+            return path;
+        }//store all strings list to proper  images themselves list
         public bool ConvertAllStringToImage(MainForm d)
         {
             try
@@ -884,27 +895,26 @@ namespace ImageTextDeepLearning
                                     Graphics e = Graphics.FromImage(Temp);
                                     //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                     //Draw fill white image
-                                    //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+                                    e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
-                                    GraphicsPath path = new GraphicsPath(FillMode.Winding);
-                                    //draw string
                                     e.SmoothingMode = SmoothingMode.HighQuality;
-                                    using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[h].Substring(fonts[h].IndexOf("=") + 1, fonts[h].IndexOf(",") - (fonts[h].IndexOf("=") + 1)))))
+                                    using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))
                                     {
                                         using (StringFormat sf = new StringFormat())
                                         {
                                             sf.Alignment = StringAlignment.Center;
                                             sf.LineAlignment = StringAlignment.Center;
-                                            
-                                            path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                                (int)FontStyle.Regular, 12,
-                                                new Rectangle(0, 0, Width, Height), sf);
+                                            float dpi = e.DpiY;
+                                            using (GraphicsPath path = GetStringPath(Convert.ToString(KeyboardAllStrings[i]), dpi, new Rectangle(0, 0, Width, Height), new Font(font_family, 12, FontStyle.Bold, GraphicsUnit.Pixel), sf))
+                                            {
+                                                using (Pen pen = new Pen(Color.Black, 1))
+                                                {
+                                                    e.DrawPath(pen, path);
+                                                }
+                                            }
                                         }
                                     }
-                                    using (Pen pen = new Pen(Color.Black, 2))
-                                    {
-                                        e.DrawPath(pen, path);
-                                    }
+
                                     //retrive min and max of tow X and Y
                                     int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                     int MxM = (MaX - MiX) / 2;
@@ -918,7 +928,7 @@ namespace ImageTextDeepLearning
 
 
                                     //crop to proper space
-                                    Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
+                                    //Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
 
 
                                     Do = HollowCountreImageCommmon(ref Te);
@@ -940,10 +950,10 @@ namespace ImageTextDeepLearning
                                 Graphics e = Graphics.FromImage(Temp);
                                 //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 //Draw fill white image
-                                //e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
+                                e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
                                 //draw string
-                                GraphicsPath path = new GraphicsPath(FillMode.Winding);
                                 //draw string
+
                                 e.SmoothingMode = SmoothingMode.HighQuality;
                                 using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))
                                 {
@@ -951,15 +961,17 @@ namespace ImageTextDeepLearning
                                     {
                                         sf.Alignment = StringAlignment.Center;
                                         sf.LineAlignment = StringAlignment.Center;
-                                        path.AddString(Convert.ToString(KeyboardAllStrings[i]), font_family,
-                                            (int)FontStyle.Regular , 12,
-                                            new Rectangle(0, 0, Width, Height), sf);
+                                        float dpi = e.DpiY;
+                                        using (GraphicsPath path = GetStringPath(Convert.ToString(KeyboardAllStrings[i]), dpi, new Rectangle(0, 0, Width, Height), new Font(font_family, 12, FontStyle.Bold, GraphicsUnit.Pixel), sf))
+                                        {
+                                            using (Pen pen = new Pen(Color.Black, 1))
+                                            {
+                                                e.DrawPath(pen, path);
+                                            }
+                                        }
                                     }
                                 }
-                                using (Pen pen = new Pen(Color.Black, 2))
-                                {
-                                    e.DrawPath(pen, path);
-                                }
+
                                 //retrive min and max of tow X and Y
                                 int MiX = MinX(Temp), MiY = MinY(Temp), MaX = MaxX(Temp), MaY = MaxY(Temp);
                                 int MxM = (MaX - MiX) / 2;
@@ -971,7 +983,7 @@ namespace ImageTextDeepLearning
 
 
                                 //crop to proper space
-                                Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
+                                //Te = cropImage(Temp, new Rectangle((int)MiX, (int)MiY, (int)(MaX - MiX), (int)(MaY - MiY)));
 
 
 

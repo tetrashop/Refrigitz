@@ -233,7 +233,9 @@ namespace ImageTextDeepLearning
             {
                 for (int k = 0; k < Im.Height; k++)
                 {
-                    if (Equality(Im.GetPixel(j, k) , Color.Black))
+
+
+                    if (Equality(Im.GetPixel(j, k), Color.Black))
                     {
                         Mi = j;
                         break;
@@ -250,11 +252,13 @@ namespace ImageTextDeepLearning
         private int MinY(Bitmap Im)
         {
             int Mi = -1;
+
             for (int k = 0; k < Im.Height; k++)
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-                    if (Equality(Im.GetPixel(j, k) , Color.Black))
+
+                    if (Equality(Im.GetPixel(j, k), Color.Black))
                     {
                         Mi = k;
                         break;
@@ -275,7 +279,9 @@ namespace ImageTextDeepLearning
             {
                 for (int j = 0; j < Im.Width; j++)
                 {
-                    if (Equality(Im.GetPixel(j, k) , Color.Black))
+
+
+                    if (Equality(Im.GetPixel(j, k), Color.Black))
                     {
                         Ma = k;
                         break;
@@ -292,15 +298,13 @@ namespace ImageTextDeepLearning
         private int MaxX(Bitmap Im)
         {
             int Ma = -1;
-            
+
             //{
             for (int j = Im.Width - 1; j >= 0; j--)
             {
-                
-                // {
                 for (int k = 0; k < Im.Height; k++)
                 {
-                    if ((Equality(Im.GetPixel(j, k) , Color.Black)))
+                    if ((Equality(Im.GetPixel(j, k), Color.Black)))
                     {
                         Ma = j;
                         break;
@@ -780,7 +784,7 @@ namespace ImageTextDeepLearning
         bool Equality(Color a, Color b)
         {
             bool Is = false;
-            if (a.A != 0 && a.G == b.G && a.B == b.B && a.R == b.R)
+            if (a.A != 0 && a.G == b.G && a.B == b.B && a.R == b.R && a.R == 0)
                 Is = true;
             return Is;
         }
@@ -897,7 +901,7 @@ namespace ImageTextDeepLearning
                                                 new Rectangle(0, 0, Width, Height), sf);
                                         }
                                     }
-                                    using (Pen pen = new Pen(Color.Black, 1))
+                                    using (Pen pen = new Pen(Color.Black, 2))
                                     {
                                         e.DrawPath(pen, path);
                                     }
@@ -952,7 +956,7 @@ namespace ImageTextDeepLearning
                                             new Rectangle(0, 0, Width, Height), sf);
                                     }
                                 }
-                                using (Pen pen = new Pen(Color.Black, 1))
+                                using (Pen pen = new Pen(Color.Black, 2))
                                 {
                                     e.DrawPath(pen, path);
                                 }

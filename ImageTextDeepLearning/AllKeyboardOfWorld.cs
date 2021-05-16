@@ -795,9 +795,9 @@ namespace ImageTextDeepLearning
         {
             Color[,] TemI = new Color[Width, Height];
             bool[,] TemB = ZerosB();
-            Color wigth = Color.White;
+            Color black = Color.Black;
             Graphics e = Graphics.FromImage(Temp);
-            Color realColor = e.GetNearestColor(wigth);
+            Color realColor = e.GetNearestColor(black);
             //e.InterpolationMode = InterpolationMode.HighQualityBicubic;
             for (int k = 0; k < Width; k++)
             {
@@ -835,7 +835,7 @@ namespace ImageTextDeepLearning
                     object o = new object();
                     lock (o)
                     {
-                        if (Equality(TemI[k, p], wigth)//(Max / 2)
+                        if (!Equality(TemI[k, p], black)//(Max / 2)
                                         )
                         {
                             TemB[k, p] = false;
@@ -897,8 +897,7 @@ namespace ImageTextDeepLearning
                                     //Draw fill white image
                                     e.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 
-                                    e.SmoothingMode = SmoothingMode.HighQuality;
-                                    using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))
+                                   using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))
                                     {
                                         using (StringFormat sf = new StringFormat())
                                         {
@@ -954,7 +953,6 @@ namespace ImageTextDeepLearning
                                 //draw string
                                 //draw string
 
-                                e.SmoothingMode = SmoothingMode.HighQuality;
                                 using (FontFamily font_family = new FontFamily(Convert.ToString(fonts[0].Substring(fonts[0].IndexOf("=") + 1, fonts[0].IndexOf(",") - (fonts[0].IndexOf("=") + 1)))))
                                 {
                                     using (StringFormat sf = new StringFormat())

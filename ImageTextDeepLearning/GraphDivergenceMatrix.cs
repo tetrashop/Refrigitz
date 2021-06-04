@@ -1481,9 +1481,9 @@ namespace ContourAnalysisNS
 
                 if (!IsOverLapIterative())
                     XloverlapsLisf.Add(XlOverLap);
-                else
+                ////else
                     //this migth lead to infinit cycle
-                    XlOverLap.Clear();
+                    //XlOverLap.Clear();
                 for (int i = 0; i < Xl.Count; i++)
                 {
                     for (int j = 0; j < Xl.Count; j++)
@@ -1497,7 +1497,7 @@ namespace ContourAnalysisNS
                         {
                             if (Xl[i].Weigth > Xl[j].Weigth)
                             {
-                                if (!ExistLOverLap(GetVerIdO(Xl[i].VertexIndexX), GetVerIdO(Xl[i].VertexIndexY)))
+                                //if (!ExistLOverLap(GetVerIdO(Xl[i].VertexIndexX), GetVerIdO(Xl[i].VertexIndexY)))
                                 {
                                     Vertex[] vx = new Vertex[2];
                                     vx[0] = GetVerIdO(Xl[i].VertexIndexX);
@@ -1509,7 +1509,7 @@ namespace ContourAnalysisNS
                             }
                             else
                             {
-                                if (!ExistLOverLap(GetVerIdO(Xl[j].VertexIndexX), GetVerIdO(Xl[j].VertexIndexY)))
+                                //if (!ExistLOverLap(GetVerIdO(Xl[j].VertexIndexX), GetVerIdO(Xl[j].VertexIndexY)))
                                 {
                                     Vertex[] vx = new Vertex[2];
                                     vx[0] = GetVerIdO(Xl[j].VertexIndexX);
@@ -1526,7 +1526,7 @@ namespace ContourAnalysisNS
                 {
                     OverAgain = true;
                     XlOverLap.Clear();
-                    //XloverlapsLisf.Clear();
+                   XloverlapsLisf.Clear();
 
                 }
                 if (OverAgain)
@@ -1586,7 +1586,6 @@ namespace ContourAnalysisNS
                 xl2[i][1] = new Vertex(x2[i][1].VertexNumber, x2[i][1].X, x2[i][1].Y);
             }
             bool Do = false;
-
             do
             {
                 Do = false;
@@ -1645,6 +1644,36 @@ namespace ContourAnalysisNS
                     }
                 }
             } while (xl1.Count != 0 && xl2.Count != 0 && Do);
+            int ii = 0;
+            do
+            {
+                if (xl1.Count > 0)
+                {
+                    if (xl1[ii][0] == null && xl1[ii][1] == null)
+                    {
+                        xl1.RemoveAt(ii);
+                        ii = 0;
+                        continue;
+                    }
+                    else
+                        ii++;
+                }
+            } while (ii < xl1.Count);
+            ii = 0;
+            do
+            {
+                if (xl2.Count > 0)
+                {
+                    if (xl2[ii][0] == null && xl2[ii][1] == null)
+                    {
+                        xl2.RemoveAt(ii);
+                        ii = 0;
+                        continue;
+                    }
+                    else
+                        ii++;
+                }
+            } while (ii < xl1.Count);
             if (xl1.Count == 0 && xl2.Count == 0)
                 Is = true;
             return Is;
@@ -2164,7 +2193,6 @@ namespace ContourAnalysisNS
             {
                 if (v1.Y == y)
                     return true;
-                return false;
             }
             if (Math.Abs(((float)(y - (float)v1.Y) * (float)(x - (float)v2.X)) / ((float)(y - (float)v2.Y) * (float)(x - (float)v1.X))) < interval)
             {

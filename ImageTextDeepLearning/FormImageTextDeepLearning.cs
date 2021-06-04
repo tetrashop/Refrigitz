@@ -265,8 +265,8 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     {
                         Recognized = true;
                     }
-                    PictureBoxImageTextDeepLearning.Update();
-                    PictureBoxImageTextDeepLearning.Refresh();
+                    //PictureBoxImageTextDeepLearning.Update();
+                    //PictureBoxImageTextDeepLearning.Refresh();
                 }
             }
             else
@@ -1063,8 +1063,8 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                     }
                 }
             }
-            PictureBoxTest.Refresh();
-            PictureBoxTest.Update();
+            PictureBoxImageTextDeepLearning.Refresh();
+            panelImageTextDeepLearning.Update();
             e.Dispose();
 
         }

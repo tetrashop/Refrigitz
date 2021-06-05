@@ -2094,7 +2094,7 @@ namespace ContourAnalysisNS
     //line class
     public class Line
     {
-        static float  interval = (float)0.1;
+        static float  interval = (float)1.0;
         public int VertexIndexX, VertexIndexY;
         public float Weigth;
         //constructor

@@ -973,7 +973,10 @@ namespace ContourAnalysisNS
                             }
                             else
                             {
-                                IgnoreLess = false;
+                                if (LessNootFound)
+                                    IgnoreLess = true;
+                                else
+                                    IgnoreLess = false;
                                 KPNotFound = false;
                                 LessNootFound = false;
                                 if (I != -1 && J != -1)
@@ -1022,12 +1025,14 @@ namespace ContourAnalysisNS
                                             if (!A[k, p])
                                             {
                                                 KPNotFound = true;
+                                                LessNootFound = true;
                                                 continue;
                                             }
 
                                         }
                                         if (A[i, j] && A[k, p])
                                         {
+
                                             if (ExistLOverLap(i, j, k, p))
                                                 continue;
                                             float weB = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
@@ -1062,7 +1067,7 @@ namespace ContourAnalysisNS
                                                     }
                                                 }
                                             }
-                                             if (Xv.Count > (First) && (!Again))
+                                            if (Xv.Count > (First) && (!Again))
                                             {
                                                 if (((Xv[First - 1].X == k && Xv[First - 1].Y == p) //|| (Xv[First - 1].X == i && Xv[First - 1].Y == j)
                                                                                                    ))
@@ -1151,6 +1156,7 @@ namespace ContourAnalysisNS
                                                                 {
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
+                                                                    LessNootFound = true;
                                                                 }
                                                             }
                                                             else
@@ -1184,6 +1190,7 @@ namespace ContourAnalysisNS
                                                                     indv--;
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
+                                                                    LessNootFound = true;
                                                                 }
                                                             }
                                                         }
@@ -1249,6 +1256,7 @@ namespace ContourAnalysisNS
                                                                 {
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
+                                                                    LessNootFound = true;
                                                                 }
                                                             }
                                                             else
@@ -1282,6 +1290,7 @@ namespace ContourAnalysisNS
                                                                     indv--;
                                                                     Xv.RemoveAt(Xv.Count - 1);
                                                                     indv--;
+                                                                    LessNootFound = true;
                                                                 }
                                                             }
                                                         }
@@ -1348,12 +1357,13 @@ namespace ContourAnalysisNS
                                                                     Again = false;
                                                                     Occurred = true;
                                                                     LessNootFound = false;
-                                                              }
+                                                                }
                                                             }
                                                             else
                                                             {
                                                                 Xv.RemoveAt(Xv.Count - 1);
                                                                 indv--;
+                                                                LessNootFound = true;
                                                             }
                                                         }
                                                         else
@@ -1380,7 +1390,7 @@ namespace ContourAnalysisNS
                                                                     Again = false;
                                                                     Occurred = true;
                                                                     LessNootFound = false;
-                                                               }
+                                                                }
                                                             }
                                                             else
                                                             {
@@ -1388,6 +1398,7 @@ namespace ContourAnalysisNS
                                                                 indv--;
                                                                 Xv.RemoveAt(Xv.Count - 1);
                                                                 indv--;
+                                                                LessNootFound = true;
                                                             }
                                                         }
                                                     }
@@ -1448,12 +1459,13 @@ namespace ContourAnalysisNS
                                                                     Again = false;
                                                                     Occurred = true;
                                                                     LessNootFound = false;
-                                                               }
+                                                                }
                                                             }
                                                             else
                                                             {
                                                                 Xv.RemoveAt(Xv.Count - 1);
                                                                 indv--;
+                                                                LessNootFound = true;
                                                             }
                                                         }
                                                         else
@@ -1488,6 +1500,7 @@ namespace ContourAnalysisNS
                                                                 indv--;
                                                                 Xv.RemoveAt(Xv.Count - 1);
                                                                 indv--;
+                                                                LessNootFound = true;
                                                             }
                                                         }
                                                     }
@@ -1499,6 +1512,8 @@ namespace ContourAnalysisNS
                             }
                         }
                     }
+                    if (Occurred && LessNootFound)
+                        Occurred = false;
                 } while (Occurred);
                 XiXjDelete();
                 //IJBelongToLineHaveFalseBolleanA(A);

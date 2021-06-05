@@ -877,12 +877,12 @@ namespace ContourAnalysisNS
         }
 
         //proper minimum line not existance basically
-        private bool IsLineMinimumNotInXl(bool[,] A, float weB, int n, int m)
+        private bool IsLineMinimumNotInXl(bool[,] A, float weB,int i,int j, int n, int m)
         {
             bool Is = true;
-            for (int i = 0; i < n; i++)
+            //for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < m; j++)
+                //for (int j = 0; j < m; j++)
                 {
                     for (int k = 0; k < n; k++)
                     {
@@ -1043,14 +1043,14 @@ namespace ContourAnalysisNS
                                                     if (!((Xv[First - 1].X == k && Xv[First - 1].Y == p) //|| (Xv[First - 1].X == i && Xv[First - 1].Y == j)
                                                                                                          ) && (Xv.Count > First))
                                                     {
-                                                        if (!IsLineMinimumNotInXl(A, weB, n, m))
+                                                        if (!IsLineMinimumNotInXl(A, weB, i, j, n, m))
                                                         {
                                                             continue;
                                                         }
                                                     }
                                                     else
                                                     {
-                                                        if (!IsLineMinimumNotInXl(A, weB, n, m))
+                                                        if (!IsLineMinimumNotInXl(A, weB, i, j, n, m))
                                                         {
                                                             continue;
                                                         }
@@ -1061,7 +1061,7 @@ namespace ContourAnalysisNS
                                             {
                                                 if (!IgnoreLess)
                                                 {
-                                                    if (!IsLineMinimumNotInXl(A, weB, n, m))
+                                                    if (!IsLineMinimumNotInXl(A, weB, i, j, n, m))
                                                     {
                                                         continue;
                                                     }
@@ -1519,7 +1519,7 @@ namespace ContourAnalysisNS
                 //IJBelongToLineHaveFalseBolleanA(A);
                 OverAgain = false;
                 //Unknown applicable
-                
+
 
                 if (!IsOverLapIterative())
                     XloverlapsLisf.Add(XlOverLap);

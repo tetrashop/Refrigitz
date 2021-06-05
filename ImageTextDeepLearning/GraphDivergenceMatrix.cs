@@ -1562,6 +1562,8 @@ namespace ContourAnalysisNS
                                 }
                             }
                         }
+                        else
+                            Occurred = false;
                     }
                 }
                 if (Xl.Count == 0)
@@ -2186,23 +2188,23 @@ namespace ContourAnalysisNS
         {
             bool Is = false;
             //howto_WPF_3D_triangle_normalsuser.Line l0 = new howto_WPF_3D_triangle_normalsuser.Line(new Point3Dspaceuser.Point3D(v0.X, v0.Y, 0), new Point3Dspaceuser.Point3D(v1.X, v1.Y, 0));
-            float X1 = (float)v0.X, X2 = (float)v1.X;
+            float X1 = (float)v2.X, X2 = (float)v3.X;
             if (X1 > X2)
             {
                 float v = X1;
                 X1 = X2;
                 X2 = v;
             }
-            float Y1 = (float)v0.Y, Y2 = (float)v1.Y;
+            float Y1 = (float)v2.Y, Y2 = (float)v3.Y;
             if (Y1 > Y2)
             {
                 float v = Y1;
                 Y1 = Y2;
                 Y2 = v;
             }
-            for (float i = (float)X1 + (float)1.0; i < (float)X2 - (float)1.0; i += interval)
+            for (float i = (float)X1 + interval; i < (float)X2 - interval; i += interval)
             {
-                float y = ((((float)((float)v0.Y - (float)v1.Y) / (float)((float)v0.X - (float)v1.X)) * (float)(i - (float)v0.X)) + (float)v0.Y);
+                float y = ((((float)((float)v0.Y - (float)v1.Y) / (float)((float)v0.X - (float)v1.X)) * (float)(i - (float)v2.X)) + (float)v2.Y);
                  if (Line.IsPointsInVertexes(v2, v3, i, y))
                 {
                     return true;

@@ -936,7 +936,7 @@ namespace ContourAnalysisNS
             bool IgnoreLess = false;
             bool OverAgain = false;
             bool Again = false;
-            int ii = 0, jj = 0, kk = 0, pp;
+            int ii = 0, jj = 0, kk = 0, pp, max = int.MinValue;
             do
             {
                 do
@@ -1043,6 +1043,13 @@ namespace ContourAnalysisNS
                                                             continue;
                                                         }
                                                     }
+                                                    else
+                                                    {
+                                                        if (!IsLineMinimumNotInXl(A, weB, n, m))
+                                                        {
+                                                            continue;
+                                                        }
+                                                    }
                                                 }
                                             }
                                             else
@@ -1055,8 +1062,7 @@ namespace ContourAnalysisNS
                                                     }
                                                 }
                                             }
-                                            LessNootFound = true;
-                                            if (Xv.Count > (First) && (!Again))
+                                             if (Xv.Count > (First) && (!Again))
                                             {
                                                 if (((Xv[First - 1].X == k && Xv[First - 1].Y == p) //|| (Xv[First - 1].X == i && Xv[First - 1].Y == j)
                                                                                                    ))
@@ -1075,6 +1081,7 @@ namespace ContourAnalysisNS
                                                             Occurred = true;
                                                             OccurredBreak = true;
                                                             Again = true;
+                                                            LessNootFound = false;
                                                             continue;
                                                         }
                                                     }
@@ -1132,10 +1139,13 @@ namespace ContourAnalysisNS
                                                                         Xl.RemoveAt(Xl.Count - 1);
                                                                         I = -1;
                                                                         J = -1;
+                                                                        LessNootFound = true;
                                                                     }
-                                                                    else                                                                    
+                                                                    else
+                                                                    {
                                                                         Occurred = true;
-                                                                    
+                                                                        LessNootFound = false;
+                                                                    }
                                                                 }
                                                                 else
                                                                 {
@@ -1160,10 +1170,13 @@ namespace ContourAnalysisNS
                                                                         Xl.RemoveAt(Xl.Count - 1);
                                                                         I = -1;
                                                                         J = -1;
+                                                                        LessNootFound = true;
                                                                     }
                                                                     else
+                                                                    {
                                                                         Occurred = true;
-
+                                                                        LessNootFound = false;
+                                                                    }
                                                                 }
                                                                 else
                                                                 {
@@ -1224,10 +1237,13 @@ namespace ContourAnalysisNS
                                                                         Xl.RemoveAt(Xl.Count - 1);
                                                                         I = -1;
                                                                         J = -1;
+                                                                        LessNootFound = true;
                                                                     }
                                                                     else
+                                                                    {
                                                                         Occurred = true;
-
+                                                                        LessNootFound = false;
+                                                                    }
                                                                 }
                                                                 else
                                                                 {
@@ -1252,10 +1268,13 @@ namespace ContourAnalysisNS
                                                                         Xl.RemoveAt(Xl.Count - 1);
                                                                         I = -1;
                                                                         J = -1;
+                                                                        LessNootFound = true;
                                                                     }
                                                                     else
+                                                                    {
                                                                         Occurred = true;
-
+                                                                        LessNootFound = false;
+                                                                    }
                                                                 }
                                                                 else
                                                                 {
@@ -1318,16 +1337,18 @@ namespace ContourAnalysisNS
                                                                 if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
                                                                 {
                                                                     Xv.RemoveAt(Xv.Count - 1);
-                                                                    indv--;                                                              
+                                                                    indv--;
                                                                     Xl.RemoveAt(Xl.Count - 1);
                                                                     I = -1;
                                                                     J = -1;
+                                                                    LessNootFound = true;
                                                                 }
                                                                 else
                                                                 {
                                                                     Again = false;
                                                                     Occurred = true;
-                                                                }
+                                                                    LessNootFound = false;
+                                                              }
                                                             }
                                                             else
                                                             {
@@ -1352,12 +1373,14 @@ namespace ContourAnalysisNS
                                                                     Xl.RemoveAt(Xl.Count - 1);
                                                                     I = -1;
                                                                     J = -1;
+                                                                    LessNootFound = true;
                                                                 }
                                                                 else
                                                                 {
                                                                     Again = false;
                                                                     Occurred = true;
-                                                                }
+                                                                    LessNootFound = false;
+                                                               }
                                                             }
                                                             else
                                                             {
@@ -1418,12 +1441,14 @@ namespace ContourAnalysisNS
                                                                     Xl.RemoveAt(Xl.Count - 1);
                                                                     I = -1;
                                                                     J = -1;
+                                                                    LessNootFound = true;
                                                                 }
                                                                 else
                                                                 {
                                                                     Again = false;
                                                                     Occurred = true;
-                                                                }
+                                                                    LessNootFound = false;
+                                                               }
                                                             }
                                                             else
                                                             {
@@ -1448,11 +1473,13 @@ namespace ContourAnalysisNS
                                                                     Xl.RemoveAt(Xl.Count - 1);
                                                                     I = -1;
                                                                     J = -1;
+                                                                    LessNootFound = true;
                                                                 }
                                                                 else
                                                                 {
                                                                     Again = false;
                                                                     Occurred = true;
+                                                                    LessNootFound = false;
                                                                 }
                                                             }
                                                             else
@@ -1477,13 +1504,13 @@ namespace ContourAnalysisNS
                 //IJBelongToLineHaveFalseBolleanA(A);
                 OverAgain = false;
                 //Unknown applicable
-
+                
 
                 if (!IsOverLapIterative())
                     XloverlapsLisf.Add(XlOverLap);
                 ////else
-                    //this migth lead to infinit cycle
-                    //XlOverLap.Clear();
+                //this migth lead to infinit cycle
+                //XlOverLap.Clear();
                 for (int i = 0; i < Xl.Count; i++)
                 {
                     for (int j = 0; j < Xl.Count; j++)
@@ -1497,7 +1524,7 @@ namespace ContourAnalysisNS
                         {
                             if (Xl[i].Weigth > Xl[j].Weigth)
                             {
-                                //if (!ExistLOverLap(GetVerIdO(Xl[i].VertexIndexX), GetVerIdO(Xl[i].VertexIndexY)))
+                                if (!ExistLOverLap(GetVerIdO(Xl[i].VertexIndexX), GetVerIdO(Xl[i].VertexIndexY)))
                                 {
                                     Vertex[] vx = new Vertex[2];
                                     vx[0] = GetVerIdO(Xl[i].VertexIndexX);
@@ -1509,7 +1536,7 @@ namespace ContourAnalysisNS
                             }
                             else
                             {
-                                //if (!ExistLOverLap(GetVerIdO(Xl[j].VertexIndexX), GetVerIdO(Xl[j].VertexIndexY)))
+                                if (!ExistLOverLap(GetVerIdO(Xl[j].VertexIndexX), GetVerIdO(Xl[j].VertexIndexY)))
                                 {
                                     Vertex[] vx = new Vertex[2];
                                     vx[0] = GetVerIdO(Xl[j].VertexIndexX);
@@ -1526,7 +1553,7 @@ namespace ContourAnalysisNS
                 {
                     OverAgain = true;
                     XlOverLap.Clear();
-                   XloverlapsLisf.Clear();
+                    XloverlapsLisf.Clear();
 
                 }
                 if (OverAgain)
@@ -1544,7 +1571,7 @@ namespace ContourAnalysisNS
                     J = -1;
                     LessNootFound = false;
                     IgnoreLess = false;
-                 }
+                }
             } while (OverAgain);
         }
         bool IsOverLapIterative()
@@ -2050,7 +2077,7 @@ namespace ContourAnalysisNS
     //line class
     public class Line
     {
-        static float  interval = (float)1.0;
+        static float  interval = (float)0.1;
         public int VertexIndexX, VertexIndexY;
         public float Weigth;
         //constructor
@@ -2161,9 +2188,7 @@ namespace ContourAnalysisNS
             for (float i = (float)X1 + (float)1.0; i < (float)X2 - (float)1.0; i += interval)
             {
                 float y = ((((float)((float)v0.Y - (float)v1.Y) / (float)((float)v0.X - (float)v1.X)) * (float)(i - (float)v0.X)) + (float)v0.Y);
-                if (y <= Y1 || y >= Y2)
-                    continue;
-                if (Line.IsPointsInVertexes(v2, v3, i, y))
+                 if (Line.IsPointsInVertexes(v2, v3, i, y))
                 {
                     return true;
                 }
@@ -2180,7 +2205,7 @@ namespace ContourAnalysisNS
                     return true;
                 return false;
             }
-            if (Math.Abs(((float)(y - v1.Y) * (float)(x - v2.X)) / ((float)(y - v2.Y) * (float)(x - v1.X))) < 1)
+            if (Math.Abs(((float)(y - v1.Y) - ((((float)(v1.Y - v2.Y)) / (float)(v1.X - v2.X)) * (float)(x - v1.X)))) < 1)
             {
                 Is = true;
             }
@@ -2193,8 +2218,9 @@ namespace ContourAnalysisNS
             {
                 if (v1.Y == y)
                     return true;
+                return false;
             }
-            if (Math.Abs(((float)(y - (float)v1.Y) * (float)(x - (float)v2.X)) / ((float)(y - (float)v2.Y) * (float)(x - (float)v1.X))) < interval)
+            if (Math.Abs(((float)(y - v1.Y) - ((((float)(v1.Y - v2.Y)) / (float)(v1.X - v2.X)) * (float)(x - v1.X)))) < 1)
             {
                 Is = true;
             }

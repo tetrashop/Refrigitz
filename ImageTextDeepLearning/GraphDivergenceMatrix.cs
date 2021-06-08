@@ -1080,7 +1080,7 @@ namespace ContourAnalysisNS
                                                             Xl.Add(new Line(we, Xv[Xv.Count - 1].VertexNumber, Xv[First - 1].VertexNumber));
                                                             if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
                                                             {
-                                                                  Xl.RemoveAt(Xl.Count - 1);
+                                                                Xl.RemoveAt(Xl.Count - 1);
                                                                 I = -1;
                                                                 J = -1;
                                                                 LessNootFound = true;
@@ -1528,14 +1528,6 @@ namespace ContourAnalysisNS
                 XiXjDelete();
                 //IJBelongToLineHaveFalseBolleanA(A);
                 OverAgain = false;
-                //Unknown applicable
-
-
-                if (!IsOverLapIterative())
-                    XloverlapsLisf.Add(XlOverLap);
-                ////else
-                //this migth lead to infinit cycle
-                //XlOverLap.Clear();
                 for (int i = 0; i < Xl.Count; i++)
                 {
                     for (int j = 0; j < Xl.Count; j++)
@@ -1572,12 +1564,23 @@ namespace ContourAnalysisNS
                                 }
                             }
                         }
-                     }
+                    }
                 }
+                if (!IsOverLapIterative())
+                    XloverlapsLisf.Add(XlOverLap);
+                else
+                if (I != -1 && J != -1)
+                {
+                    ii = I;
+                    jj = J;
+                }
+                ////else
+                //this migth lead to infinit cycle
+                //XlOverLap.Clear();
                 if (Xl.Count == 0)
                 {
                     OverAgain = true;
-                    XlOverLap.Clear();
+                    XlOverLap = new List<Vertex[]>();
                     XloverlapsLisf.Clear();
 
                 }
@@ -1585,7 +1588,7 @@ namespace ContourAnalysisNS
                 {
                     Xv.Clear();
                     Xl.Clear();
-                    XlOverLap.Clear();
+                    XlOverLap = new List<Vertex[]>();
                     FirstCchanged = false;
                     First = 1;
                     N = n;
@@ -1657,6 +1660,15 @@ namespace ContourAnalysisNS
                         {
                             xl2.RemoveAt(j);
                             continue;
+                        }
+                        if (xl1[i][0] != null && xl2[j][0] != null)
+                        {
+                            if (xl1[i][0].X == xl2[j][0].X && xl1[i][0].Y == xl2[j][0].Y)
+                            {
+                                xl1[i][0] = null;
+                                xl2[j][0] = null;
+                                Do = true;
+                            }
                         }
                         if (xl1[i][0] != null && xl2[j][0] != null)
                         {

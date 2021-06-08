@@ -1078,16 +1078,28 @@ namespace ContourAnalysisNS
                                                         {
                                                             float we = (float)Math.Sqrt((Xv[First - 1].X - Xv[Xv.Count - 1].X) * (Xv[First - 1].X - Xv[Xv.Count - 1].X) + (Xv[First - 1].Y - Xv[Xv.Count - 1].Y) * (Xv[First - 1].Y - Xv[Xv.Count - 1].Y));
                                                             Xl.Add(new Line(we, Xv[Xv.Count - 1].VertexNumber, Xv[First - 1].VertexNumber));
-                                                            First = Xv.Count + 1;
-                                                            FirstCchanged = true;
-                                                            indv = Xv.Count;
-                                                            I = -1;
-                                                            J = -1;
-                                                            Occurred = true;
-                                                            OccurredBreak = true;
-                                                            Again = true;
-                                                            LessNootFound = false;
-                                                            continue;
+                                                            if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
+                                                            {
+                                                                Xv.RemoveAt(Xv.Count - 1);
+                                                                indv--;
+                                                                Xl.RemoveAt(Xl.Count - 1);
+                                                                I = -1;
+                                                                J = -1;
+                                                                LessNootFound = true;
+                                                            }
+                                                            else
+                                                            {
+                                                                First = Xv.Count + 1;
+                                                                FirstCchanged = true;
+                                                                indv = Xv.Count;
+                                                                I = -1;
+                                                                J = -1;
+                                                                Occurred = true;
+                                                                OccurredBreak = true;
+                                                                Again = true;
+                                                                LessNootFound = false;
+                                                                continue;
+                                                            }
                                                         }
                                                     }
                                                 }

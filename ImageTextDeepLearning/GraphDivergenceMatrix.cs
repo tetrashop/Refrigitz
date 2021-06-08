@@ -1080,9 +1080,7 @@ namespace ContourAnalysisNS
                                                             Xl.Add(new Line(we, Xv[Xv.Count - 1].VertexNumber, Xv[First - 1].VertexNumber));
                                                             if (Line.IsThereAtXlDegreeGreaterThanTow(Xl, Xv))
                                                             {
-                                                                Xv.RemoveAt(Xv.Count - 1);
-                                                                indv--;
-                                                                Xl.RemoveAt(Xl.Count - 1);
+                                                                  Xl.RemoveAt(Xl.Count - 1);
                                                                 I = -1;
                                                                 J = -1;
                                                                 LessNootFound = true;

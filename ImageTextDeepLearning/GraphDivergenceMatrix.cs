@@ -1572,9 +1572,7 @@ namespace ContourAnalysisNS
                                 }
                             }
                         }
-                        else
-                            Occurred = false;
-                    }
+                     }
                 }
                 if (Xl.Count == 0)
                 {
@@ -1587,6 +1585,7 @@ namespace ContourAnalysisNS
                 {
                     Xv.Clear();
                     Xl.Clear();
+                    XlOverLap.Clear();
                     FirstCchanged = false;
                     First = 1;
                     N = n;
@@ -2104,7 +2103,7 @@ namespace ContourAnalysisNS
     //line class
     public class Line
     {
-        static float  interval = (float)1.0;
+        static float  interval = (float)0.1;
         public int VertexIndexX, VertexIndexY;
         public float Weigth;
         //constructor

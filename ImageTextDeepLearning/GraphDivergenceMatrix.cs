@@ -2140,6 +2140,13 @@ namespace ContourAnalysisNS
                         continue;
                     Vertex y1 = GetVerIdO(xl[j].VertexIndexX, xv);
                     Vertex y2 = GetVerIdO(xl[j].VertexIndexY, xv);
+
+                    if (IsSame(x1, x2, y1))
+                        Is = true;
+
+                    if (IsSame(x1, x2, y2))
+                        Is = true;
+
                     for (int k = 0; k < xl.Count; k++)
                     {
                         if (i == k)
@@ -2148,6 +2155,12 @@ namespace ContourAnalysisNS
                             continue;
                         Vertex z1 = GetVerIdO(xl[k].VertexIndexX, xv);
                         Vertex z2 = GetVerIdO(xl[k].VertexIndexY, xv);
+
+                        if (IsSame(x1, x2, z1))
+                            Is = true;
+
+                        if (IsSame(x1, x2, z2))
+                            Is = true;
 
                         if (IsSame(x1, y1, z1))
                             Is = true;

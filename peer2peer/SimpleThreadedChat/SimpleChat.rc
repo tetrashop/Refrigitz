@@ -1,0 +1,345 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\SimpleChat.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\SimpleChat.ico"
+IDI_ABOUT               ICON    DISCARDABLE     "res\\icon1.ico"
+IDR_MAINFRAME_OLD       ICON    DISCARDABLE     "res\\idr_main.ico"
+IDI_ABOUT_OLD           ICON    DISCARDABLE     "res\\about1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 58
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About SimpleChat"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_ABOUT,IDC_STATIC,17,15,20,20,SS_REALSIZEIMAGE
+    LTEXT           "SimpleChat Version 1.0",IDC_STATIC,49,10,119,8,
+                    SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,178,6,50,14,WS_GROUP
+    LTEXT           "Copyright (C) 2000, Marat Bedretdinov",IDC_STATIC,49,25,
+                    124,12
+    LTEXT           "Partition copyright (C) 1998, Guy Gascoigne",IDC_STATIC,
+                    49,36,145,8
+END
+
+IDD_SIMPLECHAT_DIALOG DIALOGEX 0, 0, 320, 321
+STYLE WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "SimpleChat"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Your IP Address:",IDED_ADDRESS,12,25,60,8,0,
+                    WS_EX_TRANSPARENT
+    CONTROL         "IPAddress1",IDC_IPADDRESS,"SysIPAddress32",WS_TABSTOP,
+                    74,23,74,14
+    LTEXT           "Port:",IDC_STATIC,156,25,16,8,0,WS_EX_TRANSPARENT
+    EDITTEXT        IDED_PORT,174,23,43,14,ES_AUTOHSCROLL
+    EDITTEXT        IDED_TEXT,7,239,251,28,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    WS_VSCROLL
+    DEFPUSHBUTTON   "&Send",IDBT_SEND,263,238,50,14
+    PUSHBUTTON      "&Go!",IDBT_GO,223,23,26,14
+    PUSHBUTTON      "&Clear",IDBT_CLEAR,263,253,50,14
+    PUSHBUTTON      "&Disconnect",IDBT_DISCONNECT,254,23,51,14
+    LTEXT           "Greetings:",IDST_WELCOME,119,72,33,8
+    COMBOBOX        IDCB_WELCOME_MESSAGE,119,81,92,65,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "At parting:",IDST_GOODBYE,218,72,33,8
+    COMBOBOX        IDCB_GOODBYE_MESSAGE,217,81,89,65,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Nick name:",IDST_NICK_NAME,18,71,37,8
+    COMBOBOX        IDCB_NICK_NAME,18,81,93,65,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Progress1",IDC_PROGRESS_RECEIVED,"msctls_progress32",
+                    WS_BORDER,125,289,127,7
+    LTEXT           "",IDST_RECEIVED,125,281,127,8,0,WS_EX_STATICEDGE
+    CONTROL         "Progress1",IDC_PROGRESS_SENT,"msctls_progress32",
+                    WS_BORDER,13,289,98,7
+    LTEXT           "",IDST_SENT,13,281,98,8,0,WS_EX_STATICEDGE
+    PUSHBUTTON      "Clear All &Messages",IDBT_CLEAR_CHAT,231,101,82,13
+    PUSHBUTTON      "S&end...",IDBT_SEND_FILE,13,299,47,13
+    LTEXT           "",IDC_QUEUE_SIZE,287,64,17,8,NOT WS_VISIBLE
+    PUSHBUTTON      "Ca&ncel",IDBT_SEND_CANCEL,63,299,47,13
+    PUSHBUTTON      "Cance&l",IDBT_RECEIVE_CANCEL,212,299,40,13
+    LTEXT           "",IDST_STATUS,8,101,219,13,SS_SUNKEN,WS_EX_TRANSPARENT
+    GROUPBOX        "",IDST_USE_NAMES,7,57,306,41,BS_CENTER,
+                    WS_EX_TRANSPARENT
+    CONTROL         "Use names",IDCH_USE_THIS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,57,51,10,WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_STATIC,7,8,306,44
+    CONTROL         "C&onnect to a peer",IDRB_CONNECT,"Button",
+                    BS_AUTORADIOBUTTON,11,7,73,10,WS_EX_TRANSPARENT
+    CONTROL         "&Await for a peer",IDRB_LISTEN,"Button",
+                    BS_AUTORADIOBUTTON,90,7,65,10,WS_EX_TRANSPARENT
+    CONTROL         "",IDST_CONNECT_STATUS,"Static",SS_LEFTNOWORDWRAP | 
+                    SS_SUNKEN | WS_GROUP,13,40,291,8
+    PUSHBUTTON      "Acce&pt...",IDBT_RECEIVE_ACCEPT,125,299,40,13,
+                    WS_DISABLED
+    PUSHBUTTON      "&Reject",IDBT_RECEIVE_REJECT,168,299,41,13,WS_DISABLED
+    GROUPBOX        "Receive a File",IDST_RECEIVE,119,272,140,43,0,
+                    WS_EX_TRANSPARENT
+    GROUPBOX        "Send a File",IDST_SEND,7,272,109,43,0,WS_EX_TRANSPARENT
+    LTEXT           "",IDST_PERCENTAGE_RECEIVED,175,272,78,8,NOT WS_VISIBLE
+    LTEXT           "",IDST_PERCENTAGE_SENT,55,272,57,8,NOT WS_VISIBLE
+    LTEXT           "P",IDST_PIN_POINT,266,261,8,8,NOT WS_VISIBLE
+    CONTROL         "",IDRE_MESSAGES,"RICHEDIT",ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | WS_BORDER | WS_VSCROLL | 
+                    WS_TABSTOP,7,116,306,118
+    CONTROL         "Show background image",IDCH_SHOW_BK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,163,7,95,10,
+                    WS_EX_TRANSPARENT
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "SimpleChat MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "SimpleChat\0"
+            VALUE "LegalCopyright", "Copyright (C) 2000\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "SimpleChat.EXE\0"
+            VALUE "ProductName", "SimpleChat Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 51
+    END
+
+    IDD_SIMPLECHAT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 314
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_SIMPLECHAT_DIALOG DLGINIT
+BEGIN
+    IDCB_WELCOME_MESSAGE, 0x403, 22, 0
+0x6548, 0x6c6c, 0x2e6f, 0x4820, 0x776f, 0x6420, 0x206f, 0x6f79, 0x2075, 
+0x6f64, 0x003f, 
+    IDCB_WELCOME_MESSAGE, 0x403, 20, 0
+0x6548, 0x6c6c, 0x2e6f, 0x4820, 0x776f, 0x6120, 0x6572, 0x7920, 0x756f, 
+0x003f, 
+    IDCB_WELCOME_MESSAGE, 0x403, 21, 0
+0x6948, 0x2021, 0x6f48, 0x2077, 0x7369, 0x6920, 0x2074, 0x6f67, 0x6e69, 
+0x3f67, "\000" 
+    IDCB_WELCOME_MESSAGE, 0x403, 15, 0
+0x6948, 0x2021, 0x6857, 0x7461, 0x7327, 0x7520, 0x3f70, "\000" 
+    IDCB_WELCOME_MESSAGE, 0x403, 20, 0
+0x6f59, 0x2021, 0x6857, 0x7461, 0x7327, 0x7320, 0x6168, 0x696b, 0x676e, 
+0x003f, 
+    IDCB_GOODBYE_MESSAGE, 0x403, 9, 0
+0x6f47, 0x646f, 0x7962, 0x2e65, "\000" 
+    IDCB_GOODBYE_MESSAGE, 0x403, 5, 0
+0x7942, 0x2e65, "\000" 
+    IDCB_GOODBYE_MESSAGE, 0x403, 10, 0
+0x7942, 0x2c65, 0x6220, 0x6579, 0x002e, 
+    IDCB_GOODBYE_MESSAGE, 0x403, 8, 0
+0x6553, 0x2065, 0x6179, 0x0021, 
+    IDCB_GOODBYE_MESSAGE, 0x403, 13, 0
+0x6148, 0x6576, 0x6120, 0x6220, 0x6c61, 0x216c, "\000" 
+    IDCB_GOODBYE_MESSAGE, 0x403, 17, 0
+0x614c, 0x6574, 0x2072, 0x6c61, 0x696c, 0x6167, 0x6f74, 0x2172, "\000" 
+    IDCB_GOODBYE_MESSAGE, 0x403, 17, 0
+0x6148, 0x6576, 0x6120, 0x6720, 0x6f6f, 0x2064, 0x6164, 0x2e79, "\000" 
+    IDCB_GOODBYE_MESSAGE, 0x403, 18, 0
+0x6148, 0x6576, 0x6120, 0x6e20, 0x6369, 0x2065, 0x696c, 0x6566, 0x002e, 
+
+    IDCB_GOODBYE_MESSAGE, 0x403, 11, 0
+0x6148, 0x6576, 0x6120, 0x2e20, 0x2e2e, "\000" 
+    IDCB_GOODBYE_MESSAGE, 0x403, 21, 0
+0x654e, 0x6576, 0x2072, 0x6163, 0x6c6c, 0x6d20, 0x2065, 0x6761, 0x6961, 
+0x216e, "\000" 
+    IDCB_NICK_NAME, 0x403, 1, 0
+"\000" 
+    IDCB_NICK_NAME, 0x403, 10, 0
+0x6e41, 0x6e6f, 0x6d79, 0x756f, 0x0073, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_ABOUT               BITMAP  DISCARDABLE     "res\\Icon.bmp"
+IDB_ABOUT_OLD           BITMAP  DISCARDABLE     "res\\about_ol.bmp"
+IDB_BACK                BITMAP  DISCARDABLE     "res\\Back.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_TRAY MENU DISCARDABLE 
+BEGIN
+    POPUP "TRAY"
+    BEGIN
+        MENUITEM "Restore",                     IDM_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About SimpleChat..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\SimpleChat.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

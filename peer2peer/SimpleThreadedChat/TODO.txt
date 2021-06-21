@@ -1,0 +1,36 @@
+* CFileInfo is a node in a hierarchy of files of a local file system. 
+
+* CNetFileHdr class takes a pointer to CFileInfo.
+  It calculates and saves the number of packet to be sent.
+  It saves the local path as well .
+  It can tell whether this is a file or a directory
+  It can tell the total size of the file.
+  It can ask the CNetPacket of its size.
+
+* Okay now I have an OS file tree built and I can generate
+  a net header class (CNetFileHdr) for a file/directory represented by CFileInfo.
+
+? What do I do with a recursive copy? What if a directory is selected for copy?
+
+* There has got to be a send/receive controller then. It will have a pointer
+  to a root node (CFileInfo) and will send/receieve all subfiles/subdirectories
+  from there. Let's call it CSendReceiveController. CSendReceiveController will have
+    - AttachProviderStream();
+    - AttachConsumerStream();
+
+  Sending	: Set a pointer to a root CFileInfo in CSendReceiveController.
+              CSendReceiveController will iterate through all subitems of CFileInfo.
+			  For each CFileInfo create a CNetFileHdr and pass a pointer to CFileInfo into it.
+			  Create a CNetFile and pass a pointer to CNetFileHdr into it.
+			  Call CNetFile::SendReceive(CSendReceiveController::GetProviderStream(), CSendReceiveController::GetConsumerStream()), which
+			  will receive a CNetPacket at a time from ProviderStream and send this packet to the Consumer stream
+  Receiving : 
+
+CNetFile class take CNetFileInfo with local/remote file info
+CNetFile attaches to ProviderStream()
+CNetFile attaches to ConsumerStream()
+CNetFile
+NetStream >> NetFileInfo
+
+NetFile
+NetFile

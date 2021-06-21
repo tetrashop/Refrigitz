@@ -1,0 +1,7 @@
+; GDI.def : Declares the module parameters for the DLL.
+
+LIBRARY      "GDI"
+DESCRIPTION  'GDI Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

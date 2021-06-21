@@ -25,7 +25,7 @@
   #include <fstream> 
   #include <winsock2.h>
   #include <process.h>
-  #include <typeinfo.h>
+  #include <typeinfo>
   using namespace std;
 #else
   #include <iostream.h>

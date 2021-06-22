@@ -19,6 +19,7 @@
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
+#include "SafeVector.h"
 
 template <class T> void safe_vector<T>::push_back(const T& x)
 {
@@ -91,10 +92,10 @@ template <class T> void safe_vector<T>::pop_at(unsigned int i)
 
 /////////////////////////////////////////////////////////////////
 
-template <class T> list<T>::reference safe_list<T>::back()
+template <class T> list<T>& safe_list<T>::back()
 {
   m_mutex.Lock();
-  list<T>::reference r = m_vecItems.back();
+  list<T>& r = m_vecItems.back();
   m_mutex.Unlock();
   return r;
 }
@@ -115,10 +116,10 @@ template <class T> void safe_list<T>::pop_back()
   m_mutex.Unlock();
 }
 
-template <class T> list<T>::reference safe_list<T>::front()
+template <class T> list<T>& safe_list<T>::front()
 {
   m_mutex.Lock();
-  list<T>::reference r = m_vecItems.front();
+  list<T>& r = m_vecItems.front();
   m_mutex.Unlock();
   return r;
 }

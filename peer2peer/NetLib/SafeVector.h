@@ -46,12 +46,12 @@ public:
 	                         safe_list() {}
     virtual                 ~safe_list() {}
 
-	   list<T>::reference    front();
+	   list<T>&    front();
 			         void    push_front(const T&);
 					 void    pop_front();
                         T    retrieve_front();
 
-       list<T>::reference    back();
+       list<T>&    back();
 			         void    push_back(const T&);
 					 void    pop_back();
 

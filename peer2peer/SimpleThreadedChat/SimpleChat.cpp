@@ -15,7 +15,8 @@
 // (in whatever form you wish).// This file is provided "as is" with no expressed or implied warranty.
 // The author accepts no liability if it causes any damage whatsoever.
 // It's free - so you get what you pay for.//
-#include <vector>
+
+
 #include "stdafx.h"
 #include "SimpleChat.h"
 #include "SimpleChatDlg.h"
@@ -61,13 +62,13 @@ CSimpleChatApp theApp;
 
 BOOL CSimpleChatApp::InitInstance()
 {
-  std::vector* pVec;
+  vector<int> pVec= vector<int>();
   vector<int> vecInt;
   vecInt.push_back(0);
   vecInt.push_back(1);
-  pVec = (std::vector*)&vecInt;
-  int n1 = (*((vector<int>*)pVec))[0];
-  int n2 = (*((vector<int>*)pVec))[1];
+  pVec = (vector<int>)vecInt;
+  int n1 = (((vector<int>)pVec))[0];
+  int n2 = (((vector<int>)pVec))[1];
 
 	AfxEnableControlContainer();
     AfxInitRichEdit(); 

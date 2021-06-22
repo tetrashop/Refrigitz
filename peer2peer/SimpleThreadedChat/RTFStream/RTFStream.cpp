@@ -110,7 +110,12 @@ int CRTFStreambuf::overflow( int ch )
 	Flush();
 	if (ch != EOF)
 		if (pbase() == epptr())
-			SetText( CString( ch ) );
+		{
+			CString msg;
+			msg.Format("%d", ch);
+			SetText(msg);
+		}
+
 		else        
 			sputc(ch); 
 	return streambuf::overflow( ch );
@@ -127,7 +132,7 @@ void CRTFStreambuf::Flush()
 {
 	ASSERT( this );
 	*pptr() = '\0';         // NULL terminate
-	SetText( m_pBuffer );
+	SetText((CString) m_pBuffer );
 	setp( m_pBuffer, m_pBuffer + m_BufferSize );
 	setg( 0, 0, 0);
 }
@@ -192,7 +197,7 @@ CString CRTFStreambuf::RTFprepare( const CString & str )
 	return ret;
 }
 
-void CRTFStreambuf::SetText( const CString & str )
+void CRTFStreambuf::SetText(  CString & str )
 {
 	if ( m_hWnd )
 	{

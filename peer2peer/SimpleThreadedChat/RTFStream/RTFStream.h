@@ -59,7 +59,7 @@ protected:
 	CString m_default;
 
 	HWND m_hWnd;
-	void SetText( const CString & str );
+	void SetText(  CString & str );
 	CString RTFprepare( const CString & str );
 };
 

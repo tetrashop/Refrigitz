@@ -15,11 +15,11 @@
 // (in whatever form you wish).// This file is provided "as is" with no expressed or implied warranty.
 // The author accepts no liability if it causes any damage whatsoever.
 // It's free - so you get what you pay for.//
-
+#include <vector>
 #include "stdafx.h"
 #include "SimpleChat.h"
 #include "SimpleChatDlg.h"
-
+using namespace std;
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -61,11 +61,11 @@ CSimpleChatApp theApp;
 
 BOOL CSimpleChatApp::InitInstance()
 {
-  vector* pVec;
+  std::vector* pVec;
   vector<int> vecInt;
   vecInt.push_back(0);
   vecInt.push_back(1);
-  pVec = (vector*)&vecInt;
+  pVec = (std::vector*)&vecInt;
   int n1 = (*((vector<int>*)pVec))[0];
   int n2 = (*((vector<int>*)pVec))[1];
 

@@ -171,11 +171,12 @@ BOOL CHoverButton::LoadBitmap(UINT bitmapid, COLORREF crTrans)
 
 
 
-void CHoverButton::OnMouseHover(WPARAM wparam, LPARAM lparam) 
+LRESULT CHoverButton::OnMouseHover(WPARAM wparam, LPARAM lparam)
 {
 	// TODO: Add your message handler code here and/or call default
 	m_bHover=TRUE;
 	Invalidate();
+	return 0;
 }
 
 

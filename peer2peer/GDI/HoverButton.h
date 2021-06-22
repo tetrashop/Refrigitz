@@ -54,7 +54,7 @@ protected:
 	//{{AFX_MSG(CHoverButton)
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg LRESULT OnMouseLeave(WPARAM wparam, LPARAM lparam);
-	afx_msg void OnMouseHover(WPARAM wparam, LPARAM lparam) ;
+	afx_msg LRESULT OnMouseHover(WPARAM wparam, LPARAM lparam) ;
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()

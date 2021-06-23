@@ -132,7 +132,7 @@ void CMsgChatConverter::DoList()
 	m_pDlg->WriteSystem("Cannot create file! Bailing out.");
 	return;
   }
-  for (int i=0; i<pNetList->GetElemN(); i++) {
+  for (int i=0; i<(int)pNetList->GetElemN(); i++) {
 	CNetPacket* pPacket = dynamic_cast<CNetPacket*>(pNetList->GetElem(i));
 	file.Write(pPacket->GetData(), pPacket->GetSize());
   }

@@ -117,7 +117,7 @@ bool CNetScanThread::GetNextAddress(string& addr)
 // "port='" + up to 10 digits in 'int' type + "';"
   char port[19];
 // make up a string out of the port number and increase for the next query
-  sprintf(port, "port='%d';", m_nNow++);
+  sprintf_s(port, "port='%d';", m_nNow++);
   addr += port;
   return true;
 }

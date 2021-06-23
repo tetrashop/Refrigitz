@@ -160,9 +160,9 @@ void CNetIPAddress::SetConnectString(sockaddr* sockAddr)
  addr=(char*)(&InetSockAddr->sin_addr);
 
 // Make a string 
- sprintf(ip,"%u.%u.%u.%u",0xFF&addr[0],0xFF&addr[1],0xFF&addr[2],0xFF&addr[3]);
+ sprintf_s(ip,"%u.%u.%u.%u",0xFF&addr[0],0xFF&addr[1],0xFF&addr[2],0xFF&addr[3]);
 // Get the port number
- sprintf(port, "%u", ntohs(InetSockAddr->sin_port));
+ sprintf_s(port, "%u", ntohs(InetSockAddr->sin_port));
 
 // form the connect string
  string s = "addr='";

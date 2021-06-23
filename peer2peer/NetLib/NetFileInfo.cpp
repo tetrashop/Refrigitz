@@ -39,7 +39,7 @@ m_nDepth(0)
 {
   memset(&m_fdata, 0, sizeof(m_fdata));
 
-  strcpy(m_fdata.cFileName, filter);
+  strcpy_s(m_fdata.cFileName, filter);
 
   string s = m_path;
   s += '\\';

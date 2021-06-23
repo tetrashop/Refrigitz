@@ -36,7 +36,7 @@ string  g_addr_uts(const ulong one)
   string strIP;
   char buff[20]; // should be enough
 // extract the digits from 'one' ulong into a string buffer
-  sprintf(buff, "%u.%u.%u.%u", one >> 24, one >> 16, one >> 8); // ?? & 0xFF
+  sprintf_s(buff, "%u.%u.%u.%u", one >> 24, one >> 16, one >> 8); // ?? & 0xFF
   strIP = buff;
   return strIP;
 }

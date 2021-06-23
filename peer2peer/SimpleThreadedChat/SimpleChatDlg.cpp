@@ -201,7 +201,7 @@ void CSimpleChatDlg::OnGo()
   BYTE d0, d1, d2, d3;
   m_ctrlAddress.GetAddress(d0, d1, d2, d3);
   char buff[20];
-  sprintf(buff, "%d.%d.%d.%d", d0, d1, d2, d3);
+  sprintf_s(buff, "%d.%d.%d.%d", d0, d1, d2, d3);
   if (atoi(m_strPort) <= 0) return;
   
   string addr = "addr='";
@@ -421,10 +421,10 @@ LRESULT CSimpleChatDlg::OnFileProgressReceive(WPARAM wParam, LPARAM)
   const CNotifProgressFile_Receive* pEvent = (const CNotifProgressFile_Receive*)wParam;
   const CNetFileTransmitInfo& info = pEvent->getInfo();
   char szBuff[200];
-  sprintf(szBuff, "%d%% completed", info.GetCompletePercentage());
+  sprintf_s(szBuff, "%d%% completed", info.GetCompletePercentage());
   SetDlgItemText(IDST_PERCENTAGE_RECEIVED, szBuff);
   m_ctrlProgressReceived.SetPos(info.GetCompletePercentage());
-  sprintf(szBuff, "%.2d of %.2d Kbytes", info.GetData().m_nCurrentSz / 1024, info.GetData().m_nTotalSz / 1024);
+  sprintf_s(szBuff, "%.2d of %.2d Kbytes", info.GetData().m_nCurrentSz / 1024, info.GetData().m_nTotalSz / 1024);
   SetDlgItemText(IDST_RECEIVED, szBuff);
   delete pEvent;
   return 0;
@@ -435,10 +435,10 @@ LRESULT CSimpleChatDlg::OnFileProgressSend(WPARAM wParam, LPARAM)
   const CNotifProgressFile_Send* pEvent = (const CNotifProgressFile_Send*)wParam;
   const CNetFileTransmitInfo& info = pEvent->getInfo();
   char szBuff[100];
-  sprintf(szBuff, "%d%% completed", info.GetCompletePercentage());
+  sprintf_s(szBuff, "%d%% completed", info.GetCompletePercentage());
   SetDlgItemText(IDST_PERCENTAGE_SENT, szBuff);
   m_ctrlProgressSent.SetPos(info.GetCompletePercentage());
-  sprintf(szBuff, "%.2d of %.2d Kbytes", info.GetData().m_nCurrentSz / 1024, info.GetData().m_nTotalSz / 1024);
+  sprintf_s(szBuff, "%.2d of %.2d Kbytes", info.GetData().m_nCurrentSz / 1024, info.GetData().m_nTotalSz / 1024);
   SetDlgItemText(IDST_SENT, szBuff);
   delete pEvent;
   return 0;
@@ -1023,7 +1023,7 @@ void CSimpleChatDlg::OnTimer(UINT nIDEvent)
   while (IsThereEvent()) {
     unsigned int sz = GetQueueSize();
 	char buff[20];
-	sprintf(buff, "%d", sz);
+	sprintf_s(buff, "%d", sz);
 	SetDlgItemText(IDC_QUEUE_SIZE, buff);
 	CNotifEvent* pEvent = GetEvent();
 	SendMessage(pEvent->event_id(), (WPARAM)pEvent);

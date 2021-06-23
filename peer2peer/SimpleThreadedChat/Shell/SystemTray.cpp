@@ -95,8 +95,8 @@ BOOL CSystemTray::Create(CWnd* pParent, UINT uCallbackMessage, LPCTSTR szToolTip
                          HICON icon, UINT uID)
 {
     // this is only for Windows 95 (or higher)
-    VERIFY(m_bEnabled = ( GetVersion() & 0xff ) >= 4);
-    if (!m_bEnabled) return FALSE;
+    //VERIFY(m_bEnabled = ( GetVersion() & 0xff ) >= 4);
+    //if (!m_bEnabled) return FALSE;
 
     // Make sure Notification window is valid (not needed - CJM)
     // VERIFY(m_bEnabled = (pParent && ::IsWindow(pParent->GetSafeHwnd())));
@@ -118,7 +118,7 @@ BOOL CSystemTray::Create(CWnd* pParent, UINT uCallbackMessage, LPCTSTR szToolTip
     m_tnd.hIcon  = icon;
     m_tnd.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
     m_tnd.uCallbackMessage = uCallbackMessage;
-    _tcscpy(m_tnd.szTip, szToolTip);
+    strcpy_s(m_tnd.szTip, szToolTip);
 
     // Set the tray icon
     VERIFY(m_bEnabled = Shell_NotifyIcon(NIM_ADD, &m_tnd));
@@ -305,7 +305,7 @@ BOOL CSystemTray::SetTooltipText(LPCTSTR pszTip)
     if (!m_bEnabled) return FALSE;
 
     m_tnd.uFlags = NIF_TIP;
-    _tcscpy(m_tnd.szTip, pszTip);
+    strcpy_s(m_tnd.szTip, pszTip);
 
     return Shell_NotifyIcon(NIM_MODIFY, &m_tnd);
 }

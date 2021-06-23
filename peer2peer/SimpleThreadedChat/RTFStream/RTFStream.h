@@ -89,16 +89,19 @@ protected:
 // them output to the specific ostream type.
 // There is probably a better way of doing this, but so far I havn't found it.
 
-class CRtfString : public CString
+class CRtfString //: public CString
 {
 public:
-	CRtfString( CString & s ) : CString( s ) {}
-	CRtfString( LPCSTR s ) : CString( s ) {}
+	CRtfString( CString & s )// : CString( s )
+	{}
+	CRtfString( LPCSTR s ) //: CString( s )
+	{}
 };
 
 inline std::ostream & operator<<( std::ostream & os, CRtfString s )
 {
-	return os << (dynamic_cast<CRTFStream*>(&os) ? (LPCSTR)s : "" );
+	return os << (dynamic_cast<CRTFStream*>(&os) ? //(LPCSTR)
+		s : "" );
 }
 
 namespace rtf

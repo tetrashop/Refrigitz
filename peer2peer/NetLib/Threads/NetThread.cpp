@@ -127,7 +127,7 @@ bool CNetThread::Unsubscribe(CNotifSubscriber* pSubscriber)
 
 void CNetThread::Notify(CNotifEvent* pEvent)
 {
-  for (int i=0; i<m_vecNotifees.size(); i++) {
+  for (int i=0; i<(int)m_vecNotifees.size(); i++) {
     m_vecNotifees[i]->OnEvent(pEvent);
   }
 }

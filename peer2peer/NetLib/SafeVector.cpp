@@ -40,7 +40,7 @@ template <class T> void safe_vector<T>::pop_back()
 template <class T> int safe_vector<T>::find(const T& proto)
 {
   m_mutex.Lock();
-  for (int i=0; i<m_vecItems.size(); i++)
+  for (int i=0; i<(int)m_vecItems.size(); i++)
     if (m_vecItems.at(i) == proto) {
 	  m_mutex.Unlock();
 	  return i;

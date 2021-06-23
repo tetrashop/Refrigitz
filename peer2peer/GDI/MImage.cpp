@@ -30,10 +30,10 @@ static char THIS_FILE[]=__FILE__;
 
 int _convert = 0; UINT _acp = GetACP(); LPCWSTR _lpw = NULL; LPCSTR _lpa = NULL;
 
-#define A2W(lpa) (\
+/*#define A2W(lpa) (\
 	((_lpa = lpa) == NULL) ? NULL : (\
 		_convert = (lstrlenA(_lpa)+1),\
-		ATLA2WHELPER((LPWSTR) alloca(_convert*2), _lpa, _convert)))
+		ATLA2WHELPER((LPWSTR) alloca(_convert*2), _lpa, _convert)))*/
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

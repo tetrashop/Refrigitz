@@ -529,7 +529,7 @@ CNetObject& CNetList::operator=(const CNetObject& obj)
 
   DeleteAllElem();
 
-  for (int i=0; i<list.m_vecElem.size(); i++) {
+  for (int i=0; i<(int)list.m_vecElem.size(); i++) {
     CNetMsg* pMsg = list.m_vecElem[i]->Clone();
 	*pMsg = *list.m_vecElem[i];
 	m_vecElem.push_back(pMsg);
@@ -546,7 +546,7 @@ bool CNetList::operator==(const CNetObject& obj)
   ulong nSz = m_vecElem.size();
   if ( nSz != list.m_vecElem.size())
 	return false;
-  for (int i=0; i<nSz; i++)
+  for (int i=0; i< (int)nSz; i++)
 	if (!(m_vecElem[i] == list.m_vecElem[i]))
 	  return false;
   return true;
@@ -554,7 +554,7 @@ bool CNetList::operator==(const CNetObject& obj)
 
 void CNetList::DeleteAllElem()
 {
-  for (int i=0; i<m_vecElem.size(); i++)
+  for (int i=0; i< (int)m_vecElem.size(); i++)
 	delete m_vecElem[i];
   m_vecElem.clear();
 }

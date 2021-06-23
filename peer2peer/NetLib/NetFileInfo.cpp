@@ -79,7 +79,7 @@ CNetFileInfo::~CNetFileInfo()
 
 void CNetFileInfo::Cleanup()
 {
-  for (int i=0; i<m_vecFiles.size(); i++)
+  for (int i=0; i<(int)m_vecFiles.size(); i++)
     delete m_vecFiles[i];
   m_vecFiles.clear();
 }
@@ -127,7 +127,7 @@ CNetFileInfo* CNetFileInfo::FindChild(const char* path)
 {
   if (!strcmp(GetPath(), path)) 
 	return this;
-  for (int i=0; i<m_vecFiles.size(); i++) {
+  for (int i=0; i< (int)m_vecFiles.size(); i++) {
 	CNetFileInfo* pFound = m_vecFiles[i]->FindChild(path);
 	if (pFound) return pFound;
   }

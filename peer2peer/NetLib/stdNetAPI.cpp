@@ -22,7 +22,7 @@ ulong  g_addr_stu(const char* strAddr)
 {
   ulong ip[4], one;
 // parse out the digits
-  sscanf(strAddr,"%d.%d.%d.%d",&ip[0],&ip[1],&ip[2],&ip[3]);
+  sscanf_s(strAddr,"%d.%d.%d.%d",&ip[0],&ip[1],&ip[2],&ip[3]);
 // save the digits in one ulong
   one = (((((ip[0] << 8) + ip[1]) << 8) + ip[2]) << 8) + ip[3];
   return one;
@@ -36,7 +36,8 @@ string  g_addr_uts(const ulong one)
   string strIP;
   char buff[20]; // should be enough
 // extract the digits from 'one' ulong into a string buffer
-  sprintf_s(buff, "%u.%u.%u.%u", one >> 24, one >> 16, one >> 8); // ?? & 0xFF
+  //sprintf_s(buff, "%u.%u.%u.%u", one >> 24, one >> 16, one >> 8); // ?? & 0xFF
+  sprintf_s(buff, "%u.%u.%u.%u",one>>31, one >> 24, one >> 16, one >> 8); // ?? & 0xFF
   strIP = buff;
   return strIP;
 }

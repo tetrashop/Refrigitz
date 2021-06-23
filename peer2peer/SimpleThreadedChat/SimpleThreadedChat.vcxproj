@@ -43,7 +43,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug</OutDir>
+    <OutDir>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\peer2peer\NetLib\Debug;C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\peer2peer\GDI\Debug;C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\pic;$(IncludePath)</IncludePath>
@@ -95,7 +95,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>nafxcwd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <OutputFile>../Bin/Debug/SimpleThreadedChat.exe</OutputFile>
+      <OutputFile>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug/SimpleThreadedChat.exe</OutputFile>
       <AdditionalLibraryDirectories>../Bin/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ws2_32.lib;GDI.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>

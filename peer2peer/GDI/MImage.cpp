@@ -111,6 +111,7 @@ void CMImage::CreateLogicalPalette()
 
 // create a logical palette for the bitmap
   DIBSECTION ds;
+  ZeroMemory(&ds, sizeof(ds));
   BITMAPINFOHEADER &bmInfo = ds.dsBmih;
   m_pbmSource->GetObject(sizeof(ds), &ds);
 

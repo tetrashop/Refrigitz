@@ -59,10 +59,10 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug</OutDir>
+    <OutDir>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\temp\SimpleThreadedChat</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\temp\SimpleThreadedChat;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -144,7 +144,7 @@
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\GDI.dll</OutputFile>
+      <OutputFile>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\temp\SimpleThreadedChat\GDI.dll</OutputFile>
       <ImportLibrary>../Bin/Debug/GDI.lib</ImportLibrary>
       <ModuleDefinitionFile>.\GDI.def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>

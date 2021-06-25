@@ -35,6 +35,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.buttonChatAndJungle = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -93,12 +94,23 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // buttonChatAndJungle
+            // 
+            this.buttonChatAndJungle.Location = new System.Drawing.Point(761, 2);
+            this.buttonChatAndJungle.Name = "buttonChatAndJungle";
+            this.buttonChatAndJungle.Size = new System.Drawing.Size(152, 258);
+            this.buttonChatAndJungle.TabIndex = 5;
+            this.buttonChatAndJungle.Text = "chat and jungle transfer";
+            this.buttonChatAndJungle.UseVisualStyleBackColor = true;
+            this.buttonChatAndJungle.Click += new System.EventHandler(this.buttonChatAndJungle_Click);
+            // 
             // Chess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(784, 261);
+            this.ClientSize = new System.Drawing.Size(925, 261);
+            this.Controls.Add(this.buttonChatAndJungle);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.Computer);
@@ -121,5 +133,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button buttonChatAndJungle;
     }
 }

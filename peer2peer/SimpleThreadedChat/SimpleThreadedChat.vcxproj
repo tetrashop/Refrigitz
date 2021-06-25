@@ -43,7 +43,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\</OutDir>
+    <OutDir>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\temp\SimpleThreadedChat\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\peer2peer\NetLib\Debug;C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\peer2peer\GDI\Debug;C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\pic;$(IncludePath)</IncludePath>
@@ -62,7 +62,7 @@
       <WarningLevel>Level3</WarningLevel>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>../GDI;C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug;../NetLib;../../NetLib;../NetLib/Threads;../NetLib/Notifications;RTFStream;Shell;Threads;Messages;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../GDI;C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\temp\SimpleThreadedChat;../NetLib;../../NetLib;../NetLib/Threads;../NetLib/Notifications;RTFStream;Shell;Threads;Messages;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
@@ -94,8 +94,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>nafxcwd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <OutputFile>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug/SimpleThreadedChat.exe</OutputFile>
-      <AdditionalLibraryDirectories>../Bin/Debug;C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\temp\SimpleThreadedChat/SimpleThreadedChat.exe</OutputFile>
+      <AdditionalLibraryDirectories>../Bin/Debug;C:\Users\Ramin\Source\Repos\tetrashop\Refrigitz\Chess\bin\Debug\temp\SimpleThreadedChat;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ws2_32.lib;NetLib.lib;msvcrtd.lib;MSVCRT.lib;atls.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>

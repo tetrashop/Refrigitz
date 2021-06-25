@@ -2,6 +2,7 @@
 ////tetrashop.ir
 ///////////////
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -1818,6 +1819,21 @@ namespace Chess
         private void Chess_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonChatAndJungle_Click(object sender, EventArgs e)
+        {
+            String FolderLocation = "temp\\SimpleThreadedChat";
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = FolderLocation + "\\" + "SimpleThreadedChat.exe";
+             // Run the external process & wait for it to finish                                   
+
+            using (Process proc = Process.Start(start))
+            {
+                proc.WaitForExit();
+                // Retrieve the app's exit code
+                int exitCode = proc.ExitCode;
+            }
         }
     }
 }

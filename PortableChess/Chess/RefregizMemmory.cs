@@ -14,7 +14,7 @@ namespace RefrigtzChessPortable
     public class RefregizMemmory //:AllDraw
     {
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6
-        public static String AllDrawKindString = "";
+        public static string AllDrawKindString = "";
 
         public int iii = 0, jjj = 0;
         public bool MovementsAStarGreedyHeuristicFoundT = false;
@@ -25,52 +25,70 @@ namespace RefrigtzChessPortable
         public bool OnlySelfT = false;
         public bool AStarGreedyHeuristicT = false;
         public bool ArrangmentsT = false;
-        string SAllDraw = "";
+        private string SAllDraw = "";
         public int Kind = 0;
         //static RefregizMemmory Node;
         public AllDraw Current = null;
+
         //bool NewListOfNextBegins = true;
 
 
 
-        void SetAllDrawKindString()
+        private void SetAllDrawKindString()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (AllDrawKind == 4)
+                {
                     AllDrawKindString = "S_AllDrawBT.asd";
+                }
                 else
                 if (AllDrawKind == 3)
+                {
                     AllDrawKindString = "S_AllDrawFFST.asd";
+                }
                 else
                 if (AllDrawKind == 2)
+                {
                     AllDrawKindString = "S_AllDrawFTSF.asd";
+                }
                 else
                 if (AllDrawKind == 1)
+                {
                     AllDrawKindString = "S_AllDrawFFSF.asd";
-
+                }
             }
         }
         public RefregizMemmory(bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments//) : base(MovementsAStarGreedyHeuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments
             )
         {
             if (UsePenaltyRegardMechnisa && AStarGreedyHuris)
+            {
                 AllDrawKind = 4;
+            }
             else
                                            if ((!UsePenaltyRegardMechnisa) && AStarGreedyHuris)
+            {
                 AllDrawKind = 3;
+            }
+
             if (UsePenaltyRegardMechnisa && (!AStarGreedyHuris))
+            {
                 AllDrawKind = 2;
+            }
+
             if ((!UsePenaltyRegardMechnisa) && (!AStarGreedyHuris))
+            {
                 AllDrawKind = 1;
+            }
             //Set Configuration To True for some unknown reason!.
             //UpdateConfigurationTableVal = true;                             
             SetAllDrawKindString();
             SAllDraw = AllDrawKindString;
 
 
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 MovementsAStarGreedyHeuristicFoundT = MovementsAStarGreedyHeuristicTFou;
@@ -84,14 +102,16 @@ namespace RefrigtzChessPortable
         }
         public AllDraw Load(bool Quantum, int Order)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (File.Exists(SAllDraw))
                 {
                     FileInfo A = new FileInfo(SAllDraw);
                     if (A.Length == 0)
+                    {
                         return null;
+                    }
 
                     AllDraw tt = new AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                     FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
@@ -102,8 +122,11 @@ namespace RefrigtzChessPortable
                     AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
                     tt = (AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
+                    {
                         return tt;
-                    tt = (AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+                    }
+
+                    tt = tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
 
                     DummyFileStream.Flush();
                     DummyFileStream.Close();
@@ -118,7 +141,7 @@ namespace RefrigtzChessPortable
         }
         public AllDraw LoadJungle(string pathj, bool Quantum, int Order)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 SAllDraw = pathj;
@@ -126,7 +149,9 @@ namespace RefrigtzChessPortable
                 {
                     FileInfo A = new FileInfo(SAllDraw);
                     if (A.Length == 0)
+                    {
                         return null;
+                    }
 
                     AllDraw tt = new AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                     FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
@@ -137,8 +162,11 @@ namespace RefrigtzChessPortable
                     AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
                     tt = (AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
+                    {
                         return tt;
-                    tt = (AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+                    }
+
+                    tt = tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
 
                     DummyFileStream.Flush();
                     DummyFileStream.Close();
@@ -153,7 +181,7 @@ namespace RefrigtzChessPortable
         }
         public void RewriteAllDraw(int Order)
         {
-            Object oo = new Object();
+            object oo = new object();
             lock (oo)
             {
 
@@ -182,10 +210,8 @@ namespace RefrigtzChessPortable
 
         public AllDraw AllDrawCurrentAccess
         {
-            get
-            { return Current; }
-            set
-            { Current = value; }
+            get => Current;
+            set => Current = value;
         }
 
     }

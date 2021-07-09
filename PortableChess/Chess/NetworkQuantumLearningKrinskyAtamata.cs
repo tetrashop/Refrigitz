@@ -10,11 +10,12 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class NetworkQuantumLearningKrinskyAtamata : LearningKrinskyAtamata
     {
-        public static String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-        static void Log(Exception ex)
+        public static string Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+
+        private static void Log(Exception ex)
         {
 
-            Object a = new Object();
+            object a = new object();
             lock (a)
             {
                 string stackTrace = ex.ToString();
@@ -23,20 +24,24 @@ namespace RefrigtzChessPortable
 
         }
 
-        int r, m, k;
-        LearningKrinskyAtamata[,] Netfi;
+        private readonly int r, m, k;
+        private readonly LearningKrinskyAtamata[,] Netfi;
 
 
         public NetworkQuantumLearningKrinskyAtamata(int r0, int m0, int k0) : base(r0, m0, k0)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 Netfi = new LearningKrinskyAtamata[m0, k0];
 
                 for (int j = 0; j < m0; j++)
+                {
                     for (int p = 0; p < k0; p++)
+                    {
                         Netfi[j, p] = new LearningKrinskyAtamata(r0, m0, k0);
+                    }
+                }
 
                 r = r0;
                 m = m0;
@@ -45,7 +50,7 @@ namespace RefrigtzChessPortable
         }
         public double LearningAlgorithmRegardNet(int Row, int Column)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
 
@@ -59,28 +64,34 @@ namespace RefrigtzChessPortable
         }
         public int IsRewardActionNet(int Row, int Column)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (Netfi[Row, Column].IsReward)
+                {
                     return 1;
+                }
+
                 return -1;
             }
         }
 
         public double IsPenaltyActionNet(int Row, int Column)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (Netfi[Row, Column].IsPenalty)
+                {
                     return 0;
+                }
+
                 return -1;
             }
         }
         public double LearningAlgorithmPenaltyNet(int Row, int Column)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 double Hu = 1;
@@ -93,7 +104,7 @@ namespace RefrigtzChessPortable
         }
         public double LearingValue(int Row, int Column)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 double Hu = 1;

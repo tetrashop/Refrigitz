@@ -6,15 +6,16 @@ namespace Chess
     //main
     public class PGNToArraycs
     {
-        public String[] Lines;
+        public string[] Lines;
         public List<PGN> Game = new List<PGN>();
-        public List<String> gamese = new List<String>();
+        public List<string> gamese = new List<string>();
 
-        public PGNToArraycs(String filename)
+        public PGNToArraycs(string filename)
         {
             Lines = System.IO.File.ReadAllLines(filename);
         }
-        PGNToArraycs()
+
+        private PGNToArraycs()
         {
         }
         public void PGNToArraycsMethod()
@@ -38,7 +39,7 @@ namespace Chess
     }
     public class PGN
     {
-        public List<String> MoveText = new List<String>();
+        public List<string> MoveText = new List<string>();
 
         public static int Index = 1;
         public static int Len = 0;
@@ -47,7 +48,7 @@ namespace Chess
         {
 
         }
-        public void PGNToArraycsSplit(String Game)
+        public void PGNToArraycsSplit(string Game)
         {
 
 
@@ -61,7 +62,7 @@ namespace Chess
                 } while (true);
 
             }
-            catch (Exception t)
+            catch (Exception)
             {
 
                 try
@@ -69,7 +70,7 @@ namespace Chess
                     MoveText.Add(Game.Substring(Game.IndexOf(System.Convert.ToString(Index) + "."), Game.IndexOf("1-0") - Game.IndexOf(System.Convert.ToString(Index) + ".")));
 
                 }
-                catch (Exception tt)
+                catch (Exception)
                 {
                     MoveText.Add(Game.Substring(Game.IndexOf(System.Convert.ToString(Index) + "."), Game.IndexOf("0-1") - Game.IndexOf(System.Convert.ToString(Index) + ".")));
 

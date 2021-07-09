@@ -5,12 +5,12 @@ namespace ChessFirst
     [Serializable]
     public class QuantumLearningKrinskyAtamata : QuantumAtamata
     {
-        int r = 0, k = 0, m = 0;
-        double Alpha = 0;
+        private readonly int r = 0, k = 0, m = 0;
+        private readonly double Alpha = 0;
         public QuantumLearningKrinskyAtamata(int r0, int m0, int k0, double Alpha0)
             : base(r0, m0, k0)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 r = new int();

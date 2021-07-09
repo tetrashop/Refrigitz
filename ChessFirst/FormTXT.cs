@@ -11,15 +11,16 @@ namespace Refrigtz
     public partial class FormTXT : Form
     {
         //#pragma warning disable CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
-        ChessFirst.AllDraw D = null;
+        private readonly ChessFirst.AllDraw D = null;
+
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
-        Thread t = null;
+        private readonly Thread t = null;
         //#pragma warning disable CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         public FormTXT(ChessFirst.AllDraw TG)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
             InitializeComponent();
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 D = TG;
@@ -43,7 +44,7 @@ namespace Refrigtz
                 TextBoxTXT.Text = File.ReadAllText(FormRefrigtz.Root + "\\Database\\Monitor.html");
             }*/
             //backgroundWorkertreeView.RunWorkerAsync();
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 CreateTree(D);
@@ -71,11 +72,14 @@ namespace Refrigtz
         public void CreateTree(ChessFirst.AllDraw Draw)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 while (Draw.AStarGreedyString != null)
+                {
                     Draw = Draw.AStarGreedyString;
+                }
+
                 Invoke((MethodInvoker)delegate ()
                 {
                     treeViewRefregitzDraw.BeginUpdate();
@@ -95,105 +99,153 @@ namespace Refrigtz
             }
 
         }
-        String Alphabet(int RowRealesed)
+
+        private string Alphabet(int RowRealesed)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
-                String A = "";
+                string A = "";
                 if (RowRealesed == 0)
+                {
                     A = "a";
+                }
                 else
                     if (RowRealesed == 1)
+                {
                     A = "b";
+                }
                 else
                         if (RowRealesed == 2)
+                {
                     A = "c";
+                }
                 else
                             if (RowRealesed == 3)
+                {
                     A = "d";
+                }
                 else
                                 if (RowRealesed == 4)
+                {
                     A = "e";
+                }
                 else
                                     if (RowRealesed == 5)
+                {
                     A = "f";
+                }
                 else
                                         if (RowRealesed == 6)
+                {
                     A = "g";
+                }
                 else
                                             if (RowRealesed == 7)
+                {
                     A = "h";
+                }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Alphabet:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
 
                 return A;
             }
         }
-        String Number(int ColumnRealeased)
+
+        private string Number(int ColumnRealeased)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
 
-                String A = "";
+                string A = "";
                 if (ColumnRealeased == 7)
+                {
                     A = "0";
+                }
                 else
                     if (ColumnRealeased == 6)
+                {
                     A = "1";
+                }
                 else
                         if (ColumnRealeased == 5)
+                {
                     A = "2";
+                }
                 else
                             if (ColumnRealeased == 4)
+                {
                     A = "3";
+                }
                 else
                                 if (ColumnRealeased == 3)
+                {
                     A = "4";
+                }
                 else
                                     if (ColumnRealeased == 2)
+                {
                     A = "5";
+                }
                 else
                                         if (ColumnRealeased == 1)
+                {
                     A = "6";
+                }
                 else
                                             if (ColumnRealeased == 0)
+                {
                     A = "7";
+                }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Number:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return A;
             }
         }
-        String CheM(int A)
+
+        private string CheM(int A)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            String AA = "";
+            string AA = "";
             if (A <= -1 && A < 0)
+            {
                 AA = "+SelfChecked ";
+            }
 
             if (A >= 1 && A > 0)
+            {
                 AA = "+EnemeyChecked ";
+            }
 
             if (A <= -2 && A < 0)
+            {
                 AA = "++SelfMate ";
+            }
 
             if (A >= 2 && A > 0)
+            {
                 AA = "++EnemeyMate ";
+            }
 
             if (A <= -3 && A < 0)
+            {
                 AA = "++SelfFinished ";
+            }
 
             if (A >= 3 && A > 0)
+            {
                 AA = "++EnemeyFinsished ";
+            }
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheM:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             return AA;
         }
+
         //#pragma warning disable CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
-        string MoveS(ChessFirst.ThinkingChessFirst t, int kind, int j)
+        private string MoveS(ChessFirst.ThinkingChessFirst t, int kind, int j)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int RowDestination = -1, ColumnDestination = -1;
@@ -239,10 +291,14 @@ namespace Refrigtz
                 }
                 string move = Alphabet(t.Row) + Number(t.Column) + Alphabet(RowDestination) + Number(ColumnDestination);
                 if (t.IsThereMateOfSelf[j] || t.IsThereMateOfEnemy[j])
+                {
                     move += "++";
+                }
                 else
                 if (t.KishSelf[j] || t.KishEnemy[j])
+                {
                     move += "+";
+                }
 
                 return move;
             }
@@ -251,23 +307,28 @@ namespace Refrigtz
         private void PopulateTreeViewS(int parentId, TreeNode parentNode, ChessFirst.AllDraw Draw)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 bool Call = true;
 
                 if (Draw == null)
+                {
                     return;
+                }
+
                 TreeNode childNode = new TreeNode();
                 for (int i = 0; i < Draw.SodierHigh; i++)
                 {
                     if (Draw.SolderesOnTable == null)
                     {
                         Call = false;
-                        TreeNode t = new TreeNode();
-                        t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Tag = parentId;
+                        TreeNode t = new TreeNode
+                        {
+                            Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Tag = parentId
+                        };
                         if (parentNode == null)
                         {
                             Invoke((MethodInvoker)delegate ()
@@ -291,10 +352,12 @@ namespace Refrigtz
                         if (Draw.SolderesOnTable[i] == null)
                         {
                             Call = false;
-                            TreeNode t = new TreeNode();
-                            t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -315,10 +378,12 @@ namespace Refrigtz
                         }
                         else
                         {
-                            TreeNode t = new TreeNode();
-                            t.Text = "SoldierOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "SoldierOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "SoldierOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "SoldierOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
 
                             if (parentNode == null)
                             {
@@ -338,10 +403,12 @@ namespace Refrigtz
                             TreeNode HeuristicSoldier = new TreeNode();
                             for (int j = 0; Draw.SolderesOnTable[i].SoldierThinking != null && Draw.SolderesOnTable[i].SoldierThinking[0] != null && Draw.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder != null && j < Draw.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Count; j++)
                             {
-                                TreeNode tt = new TreeNode();
-                                tt.Text = "HeuristicSoldier" + j.ToString() + "_CountHurSo:" + ReturnbCal(Draw.SolderesOnTable[i].SoldierThinking[0], 1, j).ToString() + "_MoveString:" + MoveS(Draw.SolderesOnTable[i].SoldierThinking[0], 1, j).ToString();
-                                tt.Name = "HeuristicSoldier" + j.ToString() + "_CountHurSo:" + ReturnbCal(Draw.SolderesOnTable[i].SoldierThinking[0], 1, j).ToString() + "_MoveString:" + MoveS(Draw.SolderesOnTable[i].SoldierThinking[0], 1, j).ToString();
-                                tt.Tag = j;
+                                TreeNode tt = new TreeNode
+                                {
+                                    Text = "HeuristicSoldier" + j.ToString() + "_CountHurSo:" + ReturnbCal(Draw.SolderesOnTable[i].SoldierThinking[0], 1, j).ToString() + "_MoveString:" + MoveS(Draw.SolderesOnTable[i].SoldierThinking[0], 1, j).ToString(),
+                                    Name = "HeuristicSoldier" + j.ToString() + "_CountHurSo:" + ReturnbCal(Draw.SolderesOnTable[i].SoldierThinking[0], 1, j).ToString() + "_MoveString:" + MoveS(Draw.SolderesOnTable[i].SoldierThinking[0], 1, j).ToString(),
+                                    Tag = j
+                                };
                                 if (childNode == null)
                                 {
                                     Invoke((MethodInvoker)delegate ()
@@ -364,33 +431,52 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.SolderesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                {
                                     tt.BackColor = Color.RosyBrown;
+                                }
                                 else
                                 if (Draw.SolderesOnTable[i].SoldierThinking[0].LoseChiled.Count == Draw.SolderesOnTable[i].SoldierThinking[0].HeuristicListSolder.Count)
                                 {
                                     if (Draw.SolderesOnTable[i].SoldierThinking[0].LoseChiled[j] < 0)
+                                    {
                                         tt.BackColor = Color.Cyan;
+                                    }
                                 }
                                 else
                                 if (Draw.IsCurrentDraw)
+                                {
                                     tt.BackColor = Color.Orange;
+                                }
                                 else
                        if (Draw.SolderesOnTable[i].SoldierThinking[0].IsThereMateOfSelf[j])
+                                {
                                     tt.BackColor = Color.Red;
+                                }
                                 else
                      if (Draw.SolderesOnTable[i].SoldierThinking[0].IsThereMateOfEnemy[j])
+                                {
                                     tt.BackColor = Color.Green;
+                                }
 
                                 if (Draw.SolderesOnTable[i].SoldierThinking[0].KishEnemy[j])
+                                {
                                     tt.BackColor = Color.Blue;
+                                }
                                 else
                           if (Draw.SolderesOnTable[i].SoldierThinking[0].KishSelf[j])
+                                {
                                     tt.BackColor = Color.Yellow;
+                                }
                                 else
                                 if (Draw.HaveKilled > 0)
+                                {
                                     tt.BackColor = Color.Gray;
+                                }
                                 else if (Draw.HaveKilled < 0)
+                                {
                                     tt.BackColor = Color.Brown;
+                                }
+
                                 tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].OrderP.ToString();
                                 tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].OrderP.ToString();
                                 tt.Tag = j;
@@ -431,13 +517,15 @@ namespace Refrigtz
         private void PopulateTreeViewE(int parentId, TreeNode parentNode, ChessFirst.AllDraw Draw)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 bool Call = true;
 
                 if (Draw == null)
+                {
                     return;
+                }
 
                 TreeNode childNode = new TreeNode();
                 for (int i = 0; i < Draw.ElefantHigh; i++)
@@ -445,10 +533,12 @@ namespace Refrigtz
                     if (Draw.SolderesOnTable == null)
                     {
                         Call = false;
-                        TreeNode t = new TreeNode();
-                        t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Tag = parentId;
+                        TreeNode t = new TreeNode
+                        {
+                            Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Tag = parentId
+                        };
                         if (parentNode == null)
                         {
                             Invoke((MethodInvoker)delegate ()
@@ -472,10 +562,12 @@ namespace Refrigtz
                         if (Draw.ElephantOnTable[i] == null)
                         {
                             Call = false;
-                            TreeNode t = new TreeNode();
-                            t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -497,10 +589,12 @@ namespace Refrigtz
                         }
                         else
                         {
-                            TreeNode t = new TreeNode();
-                            t.Text = "ElephantOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "ElephantOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "ElephantOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "ElephantOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -522,33 +616,52 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.ElephantOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                {
                                     tt.BackColor = Color.RosyBrown;
+                                }
                                 else
                                  if (Draw.ElephantOnTable[i].ElefantThinking[0].LoseChiled.Count == Draw.ElephantOnTable[i].ElefantThinking[0].HeuristicListElefant.Count)
                                 {
                                     if (Draw.ElephantOnTable[i].ElefantThinking[0].LoseChiled[j] < 0)
+                                    {
                                         tt.BackColor = Color.Cyan;
+                                    }
                                 }
                                 else
                                if (Draw.IsCurrentDraw)
+                                {
                                     tt.BackColor = Color.Orange;
+                                }
                                 else
                            if (Draw.ElephantOnTable[i].ElefantThinking[0].IsThereMateOfSelf[j])
+                                {
                                     tt.BackColor = Color.Red;
+                                }
                                 else
                          if (Draw.ElephantOnTable[i].ElefantThinking[0].IsThereMateOfEnemy[j])
+                                {
                                     tt.BackColor = Color.Green;
+                                }
 
                                 if (Draw.ElephantOnTable[i].ElefantThinking[0].KishEnemy[j])
+                                {
                                     tt.BackColor = Color.Blue;
+                                }
                                 else
                           if (Draw.ElephantOnTable[i].ElefantThinking[0].KishSelf[j])
+                                {
                                     tt.BackColor = Color.Yellow;
+                                }
                                 else
                                 if (Draw.HaveKilled > 0)
+                                {
                                     tt.BackColor = Color.Gray;
+                                }
                                 else if (Draw.HaveKilled < 0)
+                                {
                                     tt.BackColor = Color.Brown;
+                                }
+
                                 tt.Text = "HeuristicElephant" + j.ToString() + "_CountHurEl:" + ReturnbCal(Draw.ElephantOnTable[i].ElefantThinking[0], 2, j).ToString() + "_MoveString:" + MoveS(Draw.ElephantOnTable[i].ElefantThinking[0], 2, j).ToString();
                                 tt.Name = "HeuristicElephant" + j.ToString() + "_CountHurEl:" + ReturnbCal(Draw.ElephantOnTable[i].ElefantThinking[0], 2, j).ToString() + "_MoveString:" + MoveS(Draw.ElephantOnTable[i].ElefantThinking[0], 2, j).ToString();
                                 tt.Tag = j;
@@ -572,10 +685,12 @@ namespace Refrigtz
                             TreeNode AstarGreedy = new TreeNode();
                             for (int j = 0; Draw.ElephantOnTable[i].ElefantThinking != null && Draw.ElephantOnTable[i].ElefantThinking[0] != null && Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && j < Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count; j++)
                             {
-                                TreeNode tt = new TreeNode();
-                                tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Tag = j;
+                                TreeNode tt = new TreeNode
+                                {
+                                    Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Tag = j
+                                };
 
                                 if (childNode == null)
                                 {
@@ -614,13 +729,15 @@ namespace Refrigtz
         private void PopulateTreeViewH(int parentId, TreeNode parentNode, ChessFirst.AllDraw Draw)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 bool Call = true;
 
                 if (Draw == null)
+                {
                     return;
+                }
 
                 TreeNode childNode = new TreeNode();
                 for (int i = 0; i < Draw.HourseHight; i++)
@@ -628,10 +745,12 @@ namespace Refrigtz
                     if (Draw.HoursesOnTable == null)
                     {
                         Call = false;
-                        TreeNode t = new TreeNode();
-                        t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Tag = parentId;
+                        TreeNode t = new TreeNode
+                        {
+                            Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Tag = parentId
+                        };
                         if (parentNode == null)
                         {
                             Invoke((MethodInvoker)delegate ()
@@ -655,10 +774,12 @@ namespace Refrigtz
                         if (Draw.HoursesOnTable[i] == null)
                         {
                             Call = false;
-                            TreeNode t = new TreeNode();
-                            t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -680,10 +801,12 @@ namespace Refrigtz
                         }
                         else
                         {
-                            TreeNode t = new TreeNode();
-                            t.Text = "HoursesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "HoursesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "HoursesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "HoursesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -705,33 +828,52 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.HoursesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                {
                                     tt.BackColor = Color.RosyBrown;
+                                }
                                 else
                              if (Draw.HoursesOnTable[i].HourseThinking[0].LoseChiled.Count == Draw.HoursesOnTable[i].HourseThinking[0].HeuristicListHourse.Count)
                                 {
                                     if (Draw.HoursesOnTable[i].HourseThinking[0].LoseChiled[j] < 0)
+                                    {
                                         tt.BackColor = Color.Cyan;
+                                    }
                                 }
                                 else
                                 if (Draw.IsCurrentDraw)
+                                {
                                     tt.BackColor = Color.Orange;
+                                }
                                 else
                          if (Draw.HoursesOnTable[i].HourseThinking[0].IsThereMateOfSelf[j])
+                                {
                                     tt.BackColor = Color.Red;
+                                }
                                 else
                        if (Draw.HoursesOnTable[i].HourseThinking[0].IsThereMateOfEnemy[j])
+                                {
                                     tt.BackColor = Color.Green;
+                                }
 
                                 if (Draw.HoursesOnTable[i].HourseThinking[0].KishEnemy[j])
+                                {
                                     tt.BackColor = Color.Blue;
+                                }
                                 else
                           if (Draw.HoursesOnTable[i].HourseThinking[0].KishSelf[j])
+                                {
                                     tt.BackColor = Color.Yellow;
+                                }
                                 else
                                 if (Draw.HaveKilled > 0)
+                                {
                                     tt.BackColor = Color.Gray;
+                                }
                                 else if (Draw.HaveKilled < 0)
+                                {
                                     tt.BackColor = Color.Brown;
+                                }
+
                                 tt.Text = "HeuristicHourse" + j.ToString() + "_CountHurHo:" + ReturnbCal(Draw.HoursesOnTable[i].HourseThinking[0], 3, j).ToString() + "_MoveString:" + MoveS(Draw.HoursesOnTable[i].HourseThinking[0], 3, j).ToString();
                                 tt.Name = "HeuristicHourse" + j.ToString() + "_CountHurHo:" + ReturnbCal(Draw.HoursesOnTable[i].HourseThinking[0], 3, j).ToString() + "_MoveString:" + MoveS(Draw.HoursesOnTable[i].HourseThinking[0], 3, j).ToString();
                                 tt.Tag = j;
@@ -756,10 +898,12 @@ namespace Refrigtz
                             TreeNode AstarGreedy = new TreeNode();
                             for (int j = 0; Draw.HoursesOnTable[i].HourseThinking != null && Draw.HoursesOnTable[i].HourseThinking[0] != null && Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy != null && j < Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count; j++)
                             {
-                                TreeNode tt = new TreeNode();
-                                tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Tag = j;
+                                TreeNode tt = new TreeNode
+                                {
+                                    Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Tag = j
+                                };
 
                                 if (childNode == null)
                                 {
@@ -798,12 +942,14 @@ namespace Refrigtz
         private void PopulateTreeViewC(int parentId, TreeNode parentNode, ChessFirst.AllDraw Draw)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 bool Call = true;
                 if (Draw == null)
+                {
                     return;
+                }
 
                 TreeNode childNode = new TreeNode();
                 for (int i = 0; i < Draw.CastleHigh; i++)
@@ -811,10 +957,12 @@ namespace Refrigtz
                     if (Draw.CastlesOnTable == null)
                     {
                         Call = false;
-                        TreeNode t = new TreeNode();
-                        t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Tag = parentId;
+                        TreeNode t = new TreeNode
+                        {
+                            Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Tag = parentId
+                        };
                         if (parentNode == null)
                         {
                             Invoke((MethodInvoker)delegate ()
@@ -838,10 +986,12 @@ namespace Refrigtz
                         if (Draw.CastlesOnTable[i] == null)
                         {
                             Call = false;
-                            TreeNode t = new TreeNode();
-                            t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -862,10 +1012,12 @@ namespace Refrigtz
                         }
                         else
                         {
-                            TreeNode t = new TreeNode();
-                            t.Text = "CastlesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "CastlesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "CastlesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "CastlesOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
 
                             if (parentNode == null)
                             {
@@ -888,34 +1040,52 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.CastlesOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                {
                                     tt.BackColor = Color.RosyBrown;
+                                }
                                 else
                                  if (Draw.CastlesOnTable[i].CastleThinking[0].LoseChiled[j] < 0)
                                 {
                                     if (Draw.CastlesOnTable[i].CastleThinking[0].LoseChiled.Count == Draw.CastlesOnTable[i].CastleThinking[0].HeuristicListCastle.Count)
+                                    {
                                         tt.BackColor = Color.Cyan;
+                                    }
                                 }
                                 else
                               if (Draw.IsCurrentDraw)
-
+                                {
                                     tt.BackColor = Color.Orange;
+                                }
                                 else
                       if (Draw.CastlesOnTable[i].CastleThinking[0].IsThereMateOfSelf[j])
+                                {
                                     tt.BackColor = Color.Red;
+                                }
                                 else
                     if (Draw.CastlesOnTable[i].CastleThinking[0].IsThereMateOfEnemy[j])
+                                {
                                     tt.BackColor = Color.Green;
+                                }
 
                                 if (Draw.CastlesOnTable[i].CastleThinking[0].KishEnemy[j])
+                                {
                                     tt.BackColor = Color.Blue;
+                                }
                                 else
                           if (Draw.CastlesOnTable[i].CastleThinking[0].KishSelf[j])
+                                {
                                     tt.BackColor = Color.Yellow;
+                                }
                                 else
                                 if (Draw.HaveKilled > 0)
+                                {
                                     tt.BackColor = Color.Gray;
+                                }
                                 else if (Draw.HaveKilled < 0)
+                                {
                                     tt.BackColor = Color.Brown;
+                                }
+
                                 tt.Text = "HeuristicCastle" + j.ToString() + "_CountHurCa:" + ReturnbCal(Draw.CastlesOnTable[i].CastleThinking[0], 4, j).ToString() + "_MoveString:" + MoveS(Draw.CastlesOnTable[i].CastleThinking[0], 4, j).ToString();
                                 tt.Name = "HeuristicCastle" + j.ToString() + "_CountHurCa:" + ReturnbCal(Draw.CastlesOnTable[i].CastleThinking[0], 4, j).ToString() + "_MoveString:" + MoveS(Draw.CastlesOnTable[i].CastleThinking[0], 4, j).ToString();
                                 tt.Tag = j;
@@ -940,10 +1110,12 @@ namespace Refrigtz
                             TreeNode AstarGreedy = new TreeNode();
                             for (int j = 0; Draw.CastlesOnTable[i].CastleThinking != null && Draw.CastlesOnTable[i].CastleThinking[0] != null && Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy != null && j < Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count; j++)
                             {
-                                TreeNode tt = new TreeNode();
-                                tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Tag = j;
+                                TreeNode tt = new TreeNode
+                                {
+                                    Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Tag = j
+                                };
 
                                 if (childNode == null)
                                 {
@@ -978,11 +1150,12 @@ namespace Refrigtz
                 }
             }
         }
+
         //#pragma warning disable CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
-        int ReturnbCal(ChessFirst.ThinkingChessFirst t, int Kind, int j)
+        private int ReturnbCal(ChessFirst.ThinkingChessFirst t, int Kind, int j)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (Kind == 1)
@@ -1088,13 +1261,15 @@ namespace Refrigtz
         private void PopulateTreeViewM(int parentId, TreeNode parentNode, ChessFirst.AllDraw Draw)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 bool Call = true;
 
                 if (Draw == null)
+                {
                     return;
+                }
 
                 TreeNode childNode = new TreeNode();
                 for (int i = 0; i < Draw.MinisterHigh; i++)
@@ -1102,10 +1277,12 @@ namespace Refrigtz
                     if (Draw.MinisterOnTable == null)
                     {
                         Call = false;
-                        TreeNode t = new TreeNode();
-                        t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Tag = parentId;
+                        TreeNode t = new TreeNode
+                        {
+                            Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Tag = parentId
+                        };
                         if (parentNode == null)
                         {
                             Invoke((MethodInvoker)delegate ()
@@ -1129,10 +1306,12 @@ namespace Refrigtz
                         if (Draw.MinisterOnTable[i] == null)
                         {
                             Call = false;
-                            TreeNode t = new TreeNode();
-                            t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -1154,10 +1333,12 @@ namespace Refrigtz
                         }
                         else
                         {
-                            TreeNode t = new TreeNode();
-                            t.Text = "MinisterOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "MinisterOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "MinisterOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "MinisterOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -1179,33 +1360,52 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.MinisterOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                {
                                     tt.BackColor = Color.RosyBrown;
+                                }
                                 else
                                 if (Draw.MinisterOnTable[i].MinisterThinking[0].LoseChiled.Count == Draw.MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.Count)
                                 {
                                     if (Draw.MinisterOnTable[i].MinisterThinking[0].LoseChiled[j] < 0)
+                                    {
                                         tt.BackColor = Color.Cyan;
+                                    }
                                 }
                                 else
                                if (Draw.IsCurrentDraw)
+                                {
                                     tt.BackColor = Color.Orange;
+                                }
                                 else
                          if (Draw.MinisterOnTable[i].MinisterThinking[0].IsThereMateOfSelf[j])
+                                {
                                     tt.BackColor = Color.Red;
+                                }
                                 else
                        if (Draw.MinisterOnTable[i].MinisterThinking[0].IsThereMateOfEnemy[j])
+                                {
                                     tt.BackColor = Color.Green;
+                                }
 
                                 if (Draw.MinisterOnTable[i].MinisterThinking[0].KishEnemy[j])
+                                {
                                     tt.BackColor = Color.Blue;
+                                }
                                 else
                           if (Draw.MinisterOnTable[i].MinisterThinking[0].KishSelf[j])
+                                {
                                     tt.BackColor = Color.Yellow;
+                                }
                                 else
                                 if (Draw.HaveKilled > 0)
+                                {
                                     tt.BackColor = Color.Gray;
+                                }
                                 else if (Draw.HaveKilled < 0)
+                                {
                                     tt.BackColor = Color.Brown;
+                                }
+
                                 tt.Text = "HeuristicMinister" + j.ToString() + "_CountHurMi:" + ReturnbCal(Draw.MinisterOnTable[i].MinisterThinking[0], 5, j).ToString() + "_MoveString:" + MoveS(Draw.MinisterOnTable[i].MinisterThinking[0], 5, j).ToString();
                                 tt.Name = "HeuristicMinister" + j.ToString() + "_CountHurMi:" + ReturnbCal(Draw.MinisterOnTable[i].MinisterThinking[0], 5, j).ToString() + "_MoveString:" + MoveS(Draw.MinisterOnTable[i].MinisterThinking[0], 5, j).ToString();
                                 tt.Tag = j;
@@ -1230,10 +1430,12 @@ namespace Refrigtz
                             TreeNode AstarGreedy = new TreeNode();
                             for (int j = 0; Draw.MinisterOnTable[i].MinisterThinking != null && Draw.MinisterOnTable[i].MinisterThinking[0] != null && Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy != null && j < Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count; j++)
                             {
-                                TreeNode tt = new TreeNode();
-                                tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Tag = j;
+                                TreeNode tt = new TreeNode
+                                {
+                                    Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Tag = j
+                                };
 
                                 if (childNode == null)
                                 {
@@ -1270,14 +1472,16 @@ namespace Refrigtz
         private void PopulateTreeViewK(int parentId, TreeNode parentNode, ChessFirst.AllDraw Draw)
         //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 bool Call = true;
 
 
                 if (Draw == null)
+                {
                     return;
+                }
 
                 TreeNode childNode = new TreeNode();
                 for (int i = 0; i < Draw.KingHigh; i++)
@@ -1285,10 +1489,12 @@ namespace Refrigtz
                     if (Draw.KingOnTable == null)
                     {
                         Call = false;
-                        TreeNode t = new TreeNode();
-                        t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Tag = parentId;
+                        TreeNode t = new TreeNode
+                        {
+                            Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Tag = parentId
+                        };
                         if (parentNode == null)
                         {
                             Invoke((MethodInvoker)delegate ()
@@ -1313,10 +1519,12 @@ namespace Refrigtz
                         {
                             Call = false;
 
-                            TreeNode t = new TreeNode();
-                            t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -1337,10 +1545,12 @@ namespace Refrigtz
                         }
                         else
                         {
-                            TreeNode t = new TreeNode();
-                            t.Text = "KingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "KingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "KingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "KingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -1363,33 +1573,52 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.KingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                {
                                     tt.BackColor = Color.RosyBrown;
+                                }
                                 else
                                    if (Draw.KingOnTable[i].KingThinking[0].LoseChiled.Count == Draw.KingOnTable[i].KingThinking[0].HeuristicListKing.Count)
                                 {
                                     if (Draw.KingOnTable[i].KingThinking[0].LoseChiled[j] < 0)
+                                    {
                                         tt.BackColor = Color.Cyan;
+                                    }
                                 }
                                 else
                              if (Draw.IsCurrentDraw)
+                                {
                                     tt.BackColor = Color.Orange;
+                                }
                                 else
                         if (Draw.KingOnTable[i].KingThinking[0].IsThereMateOfSelf[j])
+                                {
                                     tt.BackColor = Color.Red;
+                                }
                                 else
                       if (Draw.KingOnTable[i].KingThinking[0].IsThereMateOfEnemy[j])
+                                {
                                     tt.BackColor = Color.Green;
+                                }
 
                                 if (Draw.KingOnTable[i].KingThinking[0].KishEnemy[j])
+                                {
                                     tt.BackColor = Color.Blue;
+                                }
                                 else
                           if (Draw.KingOnTable[i].KingThinking[0].KishSelf[j])
+                                {
                                     tt.BackColor = Color.Yellow;
+                                }
                                 else
                                 if (Draw.HaveKilled > 0)
+                                {
                                     tt.BackColor = Color.Gray;
+                                }
                                 else if (Draw.HaveKilled < 0)
+                                {
                                     tt.BackColor = Color.Brown;
+                                }
+
                                 tt.Text = "HeuristicKing" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.KingOnTable[i].KingThinking[0], 6, j).ToString() + "_MoveString:" + MoveS(Draw.KingOnTable[i].KingThinking[0], 6, j).ToString();
                                 tt.Name = "HeuristicKing" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.KingOnTable[i].KingThinking[0], 6, j).ToString() + "_MoveString:" + MoveS(Draw.KingOnTable[i].KingThinking[0], 6, j).ToString();
                                 tt.Tag = j;
@@ -1415,10 +1644,12 @@ namespace Refrigtz
                             TreeNode AstarGreedy = new TreeNode();
                             for (int j = 0; Draw.KingOnTable[i].KingThinking != null && Draw.KingOnTable[i].KingThinking[0] != null && Draw.KingOnTable[i].KingThinking[0].AStarGreedy != null && j < Draw.KingOnTable[i].KingThinking[0].AStarGreedy.Count; j++)
                             {
-                                TreeNode tt = new TreeNode();
-                                tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.KingOnTable[i].KingThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.KingOnTable[i].KingThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Tag = j;
+                                TreeNode tt = new TreeNode
+                                {
+                                    Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.KingOnTable[i].KingThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.KingOnTable[i].KingThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Tag = j
+                                };
 
                                 if (childNode == null)
                                 {
@@ -1455,14 +1686,16 @@ namespace Refrigtz
         private void PopulateTreeViewA(int parentId, TreeNode parentNode, ChessFirst.AllDraw Draw)
         //#pragma warning restore CS0246 // The type or namespace name 'ChessFirst' could not be found (are you missing a using directive or an assembly reference?)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 bool Call = true;
 
 
                 if (Draw == null)
+                {
                     return;
+                }
 
                 TreeNode childNode = new TreeNode();
                 for (int i = 0; i < 1; i++)
@@ -1470,10 +1703,12 @@ namespace Refrigtz
                     if (Draw.CastlingOnTable == null)
                     {
                         Call = false;
-                        TreeNode t = new TreeNode();
-                        t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                        t.Tag = parentId;
+                        TreeNode t = new TreeNode
+                        {
+                            Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                            Tag = parentId
+                        };
                         if (parentNode == null)
                         {
                             Invoke((MethodInvoker)delegate ()
@@ -1498,10 +1733,12 @@ namespace Refrigtz
                         {
                             Call = false;
 
-                            TreeNode t = new TreeNode();
-                            t.Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "NULL" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -1522,10 +1759,12 @@ namespace Refrigtz
                         }
                         else
                         {
-                            TreeNode t = new TreeNode();
-                            t.Text = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Name = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString();
-                            t.Tag = parentId;
+                            TreeNode t = new TreeNode
+                            {
+                                Text = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Name = "CastlingOnTable" + i.ToString() + ":Order=" + Draw.OrderP.ToString(),
+                                Tag = parentId
+                            };
                             if (parentNode == null)
                             {
                                 Invoke((MethodInvoker)delegate ()
@@ -1548,33 +1787,52 @@ namespace Refrigtz
                             {
                                 TreeNode tt = new TreeNode();
                                 if (Draw.CastlingOnTable[i].LoseOcuuredatChiled[0] < 0)
+                                {
                                     tt.BackColor = Color.RosyBrown;
+                                }
                                 else
                                    if (Draw.CastlingOnTable[i].CastlingThinking[0].LoseChiled.Count == Draw.CastlingOnTable[i].CastlingThinking[0].HeuristicListCastling.Count)
                                 {
                                     if (Draw.CastlingOnTable[i].CastlingThinking[0].LoseChiled[j] < 0)
+                                    {
                                         tt.BackColor = Color.Cyan;
+                                    }
                                 }
                                 else
                              if (Draw.IsCurrentDraw)
+                                {
                                     tt.BackColor = Color.Orange;
+                                }
                                 else
                         if (Draw.CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf[j])
+                                {
                                     tt.BackColor = Color.Red;
+                                }
                                 else
                       if (Draw.CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy[j])
+                                {
                                     tt.BackColor = Color.Green;
+                                }
 
                                 if (Draw.CastlingOnTable[i].CastlingThinking[0].KishEnemy[j])
+                                {
                                     tt.BackColor = Color.Blue;
+                                }
                                 else
                           if (Draw.CastlingOnTable[i].CastlingThinking[0].KishSelf[j])
+                                {
                                     tt.BackColor = Color.Yellow;
+                                }
                                 else
                                 if (Draw.HaveKilled > 0)
+                                {
                                     tt.BackColor = Color.Gray;
+                                }
                                 else if (Draw.HaveKilled < 0)
+                                {
                                     tt.BackColor = Color.Brown;
+                                }
+
                                 tt.Text = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString();
                                 tt.Name = "HeuristicCastling" + j.ToString() + "_CountHurKi:" + ReturnbCal(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString() + "_MoveString:" + MoveS(Draw.CastlingOnTable[i].CastlingThinking[0], 7, j).ToString();
                                 tt.Tag = j;
@@ -1600,10 +1858,12 @@ namespace Refrigtz
                             TreeNode AstarGreedy = new TreeNode();
                             for (int j = 0; Draw.CastlingOnTable[i].CastlingThinking != null && Draw.CastlingOnTable[i].CastlingThinking[0] != null && Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && j < Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; j++)
                             {
-                                TreeNode tt = new TreeNode();
-                                tt.Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].OrderP.ToString();
-                                tt.Tag = j;
+                                TreeNode tt = new TreeNode
+                                {
+                                    Text = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Name = "AstarGreedy" + j.ToString() + "_Order:" + Draw.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].OrderP.ToString(),
+                                    Tag = j
+                                };
 
                                 if (childNode == null)
                                 {
@@ -1648,7 +1908,7 @@ namespace Refrigtz
         {
             do
             {
-                Object O = new Object();
+                object O = new object();
                 lock (O)
                 {
                     treeViewRefregitzDraw.Nodes.Clear();
@@ -1663,9 +1923,10 @@ namespace Refrigtz
         {
 
         }
-        void Create()
+
+        private void Create()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 Invoke((MethodInvoker)delegate ()

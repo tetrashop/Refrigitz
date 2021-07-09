@@ -9,11 +9,8 @@ namespace RefrigtzChessPortable
     [Serializable]
     public class ChessRules
     {
-
-        StringBuilder Space = new StringBuilder("&nbsp;");
-
-
-        int Spaces = 0;
+        private readonly StringBuilder Space = new StringBuilder("&nbsp;");
+        private readonly int Spaces = 0;
 
         //
 
@@ -29,8 +26,8 @@ namespace RefrigtzChessPortable
         public bool PredictHeuristicT = true;
         public bool OnlySelfT = false;
         public bool AStarGreedyHeuristicT = false;
-        static int NumbersofKingMovesToPatGray = 0;
-        static int NumbersofKingMovesToPatBrown = 0;
+        private static int NumbersofKingMovesToPatGray = 0;
+        private static int NumbersofKingMovesToPatBrown = 0;
         public static bool PatCheckedInKingRule = false;
         public static bool CastleKingAllowedGray = true;
         public static bool CastleKingAllowedBrown = true;
@@ -67,20 +64,22 @@ namespace RefrigtzChessPortable
         public static int CheckBrownRemovableValueColumnj = 0;
         public static int CheckBrownRemovableValueRowii = 0;
         public static int CheckBrownRemovableValueColumnjj = 0;
-        int Kind;
-        int KindNA;
-        int Row, Column;
-        int[,] TableS = new int[8, 8];
-        int Order = 0;
+        private readonly int Kind;
+        private readonly int KindNA;
+        private readonly int Row, Column;
+        private readonly int[,] TableS = new int[8, 8];
+        private int Order = 0;
+
         //public bool ExistInDestinationEnemy = false;
-        bool ArrangmentsBoard = false;
-        int CurrentAStarGredyMax = -1;
-        static void Log(Exception ex)
+        private bool ArrangmentsBoard = false;
+        private readonly int CurrentAStarGredyMax = -1;
+
+        private static void Log(Exception ex)
         {
 
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -126,7 +125,7 @@ namespace RefrigtzChessPortable
         //Constructor 
         public ChessRules(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool ArrangmentsChanged, int Ki, int[,] A, int Ord, int i, int j)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             { //long Time = TimeElapced.TimeNow();Spaces++;
 
@@ -161,49 +160,77 @@ namespace RefrigtzChessPortable
             , bool SelfHomeStatCP = true
             )
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (RowFirst == RowSecond && ColumnFirst == ColumnSecond)
+                {
                     return false;
+                }
+
                 int[,] Table = CloneATable(TableS);
 
                 if (RowFirst == RowSecond && ColumnFirst == ColumnSecond)
+                {
                     return false;
+                }
+
                 if (Order == 1 && Table[RowFirst, ColumnFirst] < 0)
+                {
                     return false;
+                }
+
                 if (Order == -1 && Table[RowFirst, ColumnFirst] > 0)
+                {
                     return false;
+                }
 
                 if (Order == 1 && Table[RowFirst, ColumnFirst] == 0)
+                {
                     return false;
+                }
+
                 if (Order == -1 && Table[RowFirst, ColumnFirst] == 0)
+                {
                     return false;
+                }
                 //long Time = TimeElapced.TimeNow();Spaces++;
 
 
                 if (Table[RowFirst, ColumnFirst] > 0 && Table[RowSecond, ColumnSecond] > 0)
                 {
                     if (!SelfHomeStatCP)
+                    {
                         IgnoreSelfObject = true;
+                    }
                     else
+                    {
                         IgnoreSelfObject = false;
+                    }
                 }
                 else
+                {
                     IgnoreSelfObject = false;
+                }
 
                 if (Table[RowFirst, ColumnFirst] < 0 && Table[RowSecond, ColumnSecond] < 0)
                 {
                     if (!SelfHomeStatCP)
+                    {
                         IgnoreSelfObject = true;
+                    }
                     else
+                    {
                         IgnoreSelfObject = false;
+                    }
                 }
                 else
+                {
                     IgnoreSelfObject = false;
+                }
 
                 //Initaite Global Varibales.
-                Object O1 = new Object();
+                object O1 = new object();
                 lock (O1)
                 {
                     CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKingHaveSupporter = false;
@@ -320,7 +347,7 @@ namespace RefrigtzChessPortable
         //Castle King Movment Consideration.
         public bool CastleKing(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] Table = CloneATable(TableS);
@@ -343,7 +370,7 @@ namespace RefrigtzChessPortable
 
                                     if (((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond - 2, ColumnSecond] == 6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == 4)
                                     {
-                                        Object OO = new Object();
+                                        object OO = new object();
                                         lock (OO)
                                         {
                                             CastleActGray = true;
@@ -362,7 +389,7 @@ namespace RefrigtzChessPortable
 
                                     if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
                                     {
-                                        Object OO = new Object();
+                                        object OO = new object();
                                         lock (OO)
                                         {
                                             CastleActGray = true;
@@ -393,7 +420,7 @@ namespace RefrigtzChessPortable
                                     if (((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == -6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == -4)
                                     {
                                         //CastleActBrown = true;
-                                        Object O1 = new Object();
+                                        object O1 = new object();
                                         lock (O1)
                                         {
                                             CastleActBrown = true;
@@ -413,7 +440,7 @@ namespace RefrigtzChessPortable
                                     if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
                                     {
                                         //CastleActBrown = true;
-                                        Object OO = new Object();
+                                        object OO = new object();
                                         lock (OO)
                                         {
                                             CastleActBrown = true;
@@ -521,7 +548,7 @@ namespace RefrigtzChessPortable
         //Simulation and Consdtruction of Check.
         public bool CheckConstructor(Color color, int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, int Ki, int Order)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {    //long Time = TimeElapced.TimeNow();Spaces++;
                  //Initiate a Local Variable.
@@ -537,18 +564,22 @@ namespace RefrigtzChessPortable
                 {
                     //When int of Order is Gray Check return Check State.
                     if (Order == 1)
+                    {
                         if (CheckGray)
                         {
                             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheckConstructor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                             return true;
                         }
+                    }
                     //When int is Brown State  there is Check State return Check State.
                     if (Order == -1)
+                    {
                         if (CheckBrown)
                         {
                             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheckConstructor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                             return true;
                         }
+                    }
                 }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheckConstructor:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //Return Non Check State.
@@ -558,7 +589,7 @@ namespace RefrigtzChessPortable
         //Method of Self Home int Objects Consideration.
         private bool ExistSelfHome(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] Table = CloneATable(TableS);
@@ -571,10 +602,14 @@ namespace RefrigtzChessPortable
                 {
                     //If the Same Gray int Return Self Home. 
                     if (Table[RowSecond, ColumnSecond] > 0 && Table[RowFirst, ColumnFirst] > 0)
+                    {
                         NotExistInDestinationSelfHome = true;
+                    }
                     else//If The Same int Brown Return Self Home.
                         if (Table[RowSecond, ColumnSecond] < 0 && Table[RowFirst, ColumnFirst] < 0)
+                    {
                         NotExistInDestinationSelfHome = true;
+                    }
                 }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ExistSelfHome:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return NotExistInDestinationSelfHome;
@@ -584,14 +619,18 @@ namespace RefrigtzChessPortable
         //Object Danger Consideration
         public bool ObjectDangourKingMove(int Order, int[,] Table, bool DoIgnore)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {     //long Time = TimeElapced.TimeNow();Spaces++;
                 int[,] Tab = new int[8, 8];
                 //Clone a Copy
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Tab[i, j] = Table[i, j];
+                    }
+                }
                 //Initiate Variables.
                 CheckGray = false;
                 CheckBrown = false;
@@ -619,25 +658,34 @@ namespace RefrigtzChessPortable
                     if (FindGrayKing(CloneATable(Tab), ref RowG, ref ColumnG))
                     {
                         //For Enemy Brown.
-                        for (var ii = 0; ii < 8; ii++)
+                        for (int ii = 0; ii < 8; ii++)
                         {
-                            for (var jj = 0; jj < 8; jj++)
+                            for (int jj = 0; jj < 8; jj++)
                             {
 
                                 //Ignore Gray.
                                 if (Tab[ii, jj] >= 0)
-                                    continue;
-                                //For Current Gray and Empty.
-                                for (var iii = 0; iii < 8; iii++)
                                 {
-                                    for (var jjj = 0; jjj < 8; jjj++)
+                                    continue;
+                                }
+                                //For Current Gray and Empty.
+                                for (int iii = 0; iii < 8; iii++)
+                                {
+                                    for (int jjj = 0; jjj < 8; jjj++)
                                     {
-                                        for (var i = 0; i < 8; i++)
-                                            for (var j = 0; j < 8; j++)
+                                        for (int i = 0; i < 8; i++)
+                                        {
+                                            for (int j = 0; j < 8; j++)
+                                            {
                                                 Tab[i, j] = Table[i, j];
+                                            }
+                                        }
                                         //Ignore Brown.
                                         if (Tab[iii, jjj] < 0)
+                                        {
                                             continue;
+                                        }
+
                                         RefrigtzChessPortable.ThinkingRefrigtzChessPortable AA = new RefrigtzChessPortable.ThinkingRefrigtzChessPortable(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, ii, jj);
                                         //When There is Attacked to Gray from Brown.
                                         if (AA.Attack(CloneATable(Tab), ii, jj, iii, jjj, Color.Brown, Order * -1))
@@ -648,8 +696,13 @@ namespace RefrigtzChessPortable
                                             Tab[ii, jj] = 0;
                                             int[,] Tabl = new int[8, 8];
                                             for (int h = 0; h < 8; h++)
+                                            {
                                                 for (int g = 0; g < 8; g++)
+                                                {
                                                     Tabl[h, g] = Tab[h, g];
+                                                }
+                                            }
+
                                             RefrigtzChessPortable.ChessRules AAA = new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Tabl[iii, jjj], CloneATable(Tabl), Order, iii, jjj);
                                             //When there is checked or checkmate.
                                             if (AAA.CheckMate(Tabl, Order))
@@ -664,19 +717,24 @@ namespace RefrigtzChessPortable
                                             //CheckGrayObjectDangour = true;
                                         }
                                         if (CheckGrayObjectDangour)
+                                        {
                                             break;
-
+                                        }
                                     }
                                     if (CheckGrayObjectDangour)
+                                    {
                                         break;
+                                    }
                                 }
                                 if (CheckGrayObjectDangour)
+                                {
                                     break;
-
+                                }
                             }
                             if (CheckGrayObjectDangour)
+                            {
                                 break;
-
+                            }
                         }
                     }
                 }
@@ -687,24 +745,32 @@ namespace RefrigtzChessPortable
                     {
 
                         //For Gray Enemy.
-                        for (var ii = 0; ii < 8; ii++)
+                        for (int ii = 0; ii < 8; ii++)
                         {
-                            for (var jj = 0; jj < 8; jj++)
+                            for (int jj = 0; jj < 8; jj++)
                             {
                                 //Ignore Brown
                                 if (Tab[ii, jj] <= 0)
-                                    continue;
-                                //For Current Brown.
-                                for (var iii = 0; iii < 8; iii++)
                                 {
-                                    for (var jjj = 0; jjj < 8; jjj++)
+                                    continue;
+                                }
+                                //For Current Brown.
+                                for (int iii = 0; iii < 8; iii++)
+                                {
+                                    for (int jjj = 0; jjj < 8; jjj++)
                                     {
-                                        for (var i = 0; i < 8; i++)
-                                            for (var j = 0; j < 8; j++)
+                                        for (int i = 0; i < 8; i++)
+                                        {
+                                            for (int j = 0; j < 8; j++)
+                                            {
                                                 Tab[i, j] = Table[i, j];
+                                            }
+                                        }
                                         //Ignore Gray.
                                         if (Tab[iii, jjj] > 0)
+                                        {
                                             continue;
+                                        }
 
                                         RefrigtzChessPortable.ThinkingRefrigtzChessPortable AA = new RefrigtzChessPortable.ThinkingRefrigtzChessPortable(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, ii, jj);
                                         //When There is Attack to Brown.
@@ -716,8 +782,13 @@ namespace RefrigtzChessPortable
                                             Tab[ii, jj] = 0;
                                             int[,] Tabl = new int[8, 8];
                                             for (int h = 0; h < 8; h++)
+                                            {
                                                 for (int g = 0; g < 8; g++)
+                                                {
                                                     Tabl[h, g] = Tab[h, g];
+                                                }
+                                            }
+
                                             RefrigtzChessPortable.ChessRules AAA = new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Tabl[iii, jjj], CloneATable(Tabl), Order, iii, jjj);
                                             //When There is Check or Checkedmate
                                             if (AAA.CheckMate(Tabl, Order))
@@ -735,18 +806,24 @@ namespace RefrigtzChessPortable
 
                                         }
                                         if (CheckBrownObjectDangour)
+                                        {
                                             break;
+                                        }
                                     }
                                     if (CheckBrownObjectDangour)
+                                    {
                                         break;
+                                    }
                                 }
                                 if (CheckBrownObjectDangour)
+                                {
                                     break;
-
+                                }
                             }
                             if (CheckBrownObjectDangour)
+                            {
                                 break;
-
+                            }
                         }
                     }
                 }
@@ -781,14 +858,18 @@ namespace RefrigtzChessPortable
         }
         public bool ObjectDangourKingMove(int Order, int[,] Table)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {   //long Time = TimeElapced.TimeNow();Spaces++;
                 int[,] Tab = new int[8, 8];
                 //Clone a Copy
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Tab[i, j] = Table[i, j];
+                    }
+                }
                 //Initiate Variables.
                 CheckGray = false;
                 CheckBrown = false;
@@ -816,25 +897,34 @@ namespace RefrigtzChessPortable
                     if (FindGrayKing(CloneATable(Tab), ref RowG, ref ColumnG))
                     {
                         //For Enemy Brown.
-                        for (var ii = 0; ii < 8; ii++)
+                        for (int ii = 0; ii < 8; ii++)
                         {
-                            for (var jj = 0; jj < 8; jj++)
+                            for (int jj = 0; jj < 8; jj++)
                             {
 
                                 //Ignore Gray.
                                 if (Tab[ii, jj] >= 0)
-                                    continue;
-                                //For Current Gray and Empty.
-                                for (var iii = 0; iii < 8; iii++)
                                 {
-                                    for (var jjj = 0; jjj < 8; jjj++)
+                                    continue;
+                                }
+                                //For Current Gray and Empty.
+                                for (int iii = 0; iii < 8; iii++)
+                                {
+                                    for (int jjj = 0; jjj < 8; jjj++)
                                     {
-                                        for (var i = 0; i < 8; i++)
-                                            for (var j = 0; j < 8; j++)
+                                        for (int i = 0; i < 8; i++)
+                                        {
+                                            for (int j = 0; j < 8; j++)
+                                            {
                                                 Tab[i, j] = Table[i, j];
+                                            }
+                                        }
                                         //Ignore Brown.
                                         if (Tab[iii, jjj] < 0)
+                                        {
                                             continue;
+                                        }
+
                                         RefrigtzChessPortable.ThinkingRefrigtzChessPortable AA = new RefrigtzChessPortable.ThinkingRefrigtzChessPortable(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, ii, jj);
                                         //When There is Attacked to Gray from Brown.
                                         if (AA.Attack(CloneATable(Tab), ii, jj, iii, jjj, Color.Brown, Order * -1))
@@ -845,8 +935,13 @@ namespace RefrigtzChessPortable
                                             Tab[ii, jj] = 0;
                                             int[,] Tabl = new int[8, 8];
                                             for (int h = 0; h < 8; h++)
+                                            {
                                                 for (int g = 0; g < 8; g++)
+                                                {
                                                     Tabl[h, g] = Tab[h, g];
+                                                }
+                                            }
+
                                             RefrigtzChessPortable.ChessRules AAA = new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Tabl[iii, jjj], CloneATable(Tabl), Order, iii, jjj);
                                             //When there is checked or checkmate.
                                             if (AAA.Check(Tabl, Order))
@@ -861,19 +956,24 @@ namespace RefrigtzChessPortable
                                             //CheckGrayObjectDangour = true;
                                         }
                                         if (CheckGrayObjectDangour)
+                                        {
                                             break;
-
+                                        }
                                     }
                                     if (CheckGrayObjectDangour)
+                                    {
                                         break;
+                                    }
                                 }
                                 if (CheckGrayObjectDangour)
+                                {
                                     break;
-
+                                }
                             }
                             if (CheckGrayObjectDangour)
+                            {
                                 break;
-
+                            }
                         }
                     }
                 }
@@ -884,24 +984,32 @@ namespace RefrigtzChessPortable
                     {
 
                         //For Gray Enemy.
-                        for (var ii = 0; ii < 8; ii++)
+                        for (int ii = 0; ii < 8; ii++)
                         {
-                            for (var jj = 0; jj < 8; jj++)
+                            for (int jj = 0; jj < 8; jj++)
                             {
                                 //Ignore Brown
                                 if (Tab[ii, jj] <= 0)
-                                    continue;
-                                //For Current Brown.
-                                for (var iii = 0; iii < 8; iii++)
                                 {
-                                    for (var jjj = 0; jjj < 8; jjj++)
+                                    continue;
+                                }
+                                //For Current Brown.
+                                for (int iii = 0; iii < 8; iii++)
+                                {
+                                    for (int jjj = 0; jjj < 8; jjj++)
                                     {
-                                        for (var i = 0; i < 8; i++)
-                                            for (var j = 0; j < 8; j++)
+                                        for (int i = 0; i < 8; i++)
+                                        {
+                                            for (int j = 0; j < 8; j++)
+                                            {
                                                 Tab[i, j] = Table[i, j];
+                                            }
+                                        }
                                         //Ignore Gray.
                                         if (Tab[iii, jjj] > 0)
+                                        {
                                             continue;
+                                        }
 
                                         RefrigtzChessPortable.ThinkingRefrigtzChessPortable AA = new RefrigtzChessPortable.ThinkingRefrigtzChessPortable(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, ii, jj);
                                         //When There is Attack to Brown.
@@ -913,8 +1021,13 @@ namespace RefrigtzChessPortable
                                             Tab[ii, jj] = 0;
                                             int[,] Tabl = new int[8, 8];
                                             for (int h = 0; h < 8; h++)
+                                            {
                                                 for (int g = 0; g < 8; g++)
+                                                {
                                                     Tabl[h, g] = Tab[h, g];
+                                                }
+                                            }
+
                                             RefrigtzChessPortable.ChessRules AAA = new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Tabl[iii, jjj], CloneATable(Tabl), Order, iii, jjj);
                                             //When There is Check or Checkedmate
                                             if (AAA.Check(Tabl, Order))
@@ -932,18 +1045,24 @@ namespace RefrigtzChessPortable
 
                                         }
                                         if (CheckBrownObjectDangour)
+                                        {
                                             break;
+                                        }
                                     }
                                     if (CheckBrownObjectDangour)
+                                    {
                                         break;
+                                    }
                                 }
                                 if (CheckBrownObjectDangour)
+                                {
                                     break;
-
+                                }
                             }
                             if (CheckBrownObjectDangour)
+                            {
                                 break;
-
+                            }
                         }
                     }
                 }
@@ -975,25 +1094,35 @@ namespace RefrigtzChessPortable
                 return false;
             }
         }
-        bool AchmazCheckByMoveByRule(int[,] Tabl, int RowF, int ColumnF, int RowS, int ColumnS, int Order)
+
+        private bool AchmazCheckByMoveByRule(int[,] Tabl, int RowF, int ColumnF, int RowS, int ColumnS, int Order)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {    //long Time = TimeElapced.TimeNow();Spaces++;
                 bool Achmaz = false;
                 int[,] Table = new int[8, 8];
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tabl[i, j];
+                    }
+                }
+
                 Table[RowS, ColumnS] = Table[RowF, ColumnF];
                 Table[RowF, ColumnF] = 0;
                 if (Check(CloneATable(Table), Order))
                 {
                     if (Order == 1 && CheckGray)
+                    {
                         Achmaz = true;
-                    if (Order == -1 && CheckBrown)
-                        Achmaz = true;
+                    }
 
+                    if (Order == -1 && CheckBrown)
+                    {
+                        Achmaz = true;
+                    }
                 }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("AchmazCheckByMoveByRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Achmaz;
@@ -1001,24 +1130,30 @@ namespace RefrigtzChessPortable
         }
         public bool ObjectDangourKingMove(int Order, int[,] Table, bool DoIgnore, int ii, int jj)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             { //long Time = TimeElapced.TimeNow();Spaces++;
                 int[,] Tab = new int[8, 8];
                 //Clone a Copy
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Tab[i, j] = Table[i, j];
+                    }
+                }
                 //Initiate Variables.
                 CheckGray = false;
                 CheckBrown = false;
                 CheckGrayObjectDangour = false;
                 CheckBrownObjectDangour = false;
-                Object OO = new Object();
+                object OO = new object();
                 lock (OO)
                 {
                     if (DoIgnore)
+                    {
                         RefrigtzChessPortable.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = true;
+                    }
                 }
 
                 //Check identification.
@@ -1030,9 +1165,14 @@ namespace RefrigtzChessPortable
                 {
                     //Check meand achmaz.
                     if (CheckBrown)
+                    {
                         CheckBrownObjectDangour = true;
+                    }
+
                     if (CheckGray)
+                    {
                         CheckGrayObjectDangour = true;
+                    }
                     ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ObjectDangourKingMove:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                     return true;
 
@@ -1047,35 +1187,52 @@ namespace RefrigtzChessPortable
                     RefrigtzChessPortable.ChessRules.CurrentOrder = -1;
                     Order = -1;
                     //For Enemies.
-                    for (var i = 0; i < 8; i++)
+                    for (int i = 0; i < 8; i++)
                     {
-                        for (var j = 0; j < 8; j++)
+                        for (int j = 0; j < 8; j++)
                         {
                             //Ignore of current.
                             if (Order == 1 && Tab[i, i] >= 0)
-                                continue;
-                            if (Order == -1 && Tab[i, i] <= 0)
-                                continue;
-                            //For All Current
-                            for (var iii = 0; iii < 8; iii++)
                             {
-                                for (var jjj = 0; jjj < 8; jjj++)
+                                continue;
+                            }
+
+                            if (Order == -1 && Tab[i, i] <= 0)
+                            {
+                                continue;
+                            }
+                            //For All Current
+                            for (int iii = 0; iii < 8; iii++)
+                            {
+                                for (int jjj = 0; jjj < 8; jjj++)
                                 {
                                     //Ignore of enemies.
                                     if (Order == 1 && Tab[iii, jjj] <= 0)
+                                    {
                                         continue;
+                                    }
+
                                     if (Order == -1 && Tab[iii, jjj] >= 0)
+                                    {
                                         continue;
+                                    }
 
 
                                     //Clone a Copy
-                                    for (var ik = 0; ik < 8; ik++)
-                                        for (var jk = 0; jk < 8; jk++)
+                                    for (int ik = 0; ik < 8; ik++)
+                                    {
+                                        for (int jk = 0; jk < 8; jk++)
+                                        {
                                             Tab[ik, jk] = Table[ik, jk];
+                                        }
+                                    }
+
                                     RefrigtzChessPortable.ChessRules A = new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Tab[i, j], CloneATable(Tab), Order * -1, i, j);
                                     Color a = Color.Gray;
                                     if (Order * -1 == -1)
+                                    {
                                         a = Color.Brown;
+                                    }
                                     //When Enemies can gard King
                                     if (A.Rules(i, j, iii, jjj, a, Tab[i, j]))
                                     {
@@ -1086,15 +1243,20 @@ namespace RefrigtzChessPortable
                                             if (Order == 1 && A.CheckMateGray)
                                             {
                                                 //For Current.
-                                                for (var iiii = 0; iiii < 8; iiii++)
+                                                for (int iiii = 0; iiii < 8; iiii++)
                                                 {
-                                                    for (var jjjj = 0; jjjj < 8; jjjj++)
+                                                    for (int jjjj = 0; jjjj < 8; jjjj++)
                                                     {
                                                         //Ignore of enemies.
                                                         if (Order == 1 && Tab[iiii, jjjj] <= 0)
+                                                        {
                                                             continue;
+                                                        }
+
                                                         if (Order == -1 && Tab[iiii, jjjj] >= 0)
+                                                        {
                                                             continue;
+                                                        }
                                                         //For Enemies and Emety.
                                                         for (int iiiii = 0; iiiii < 8; iiiii++)
                                                         {
@@ -1102,12 +1264,23 @@ namespace RefrigtzChessPortable
                                                             {
                                                                 //Ignore of Current.
                                                                 if (Order == 1 && Tab[iiiii, jjjjj] > 0)
+                                                                {
                                                                     continue;
+                                                                }
+
                                                                 if (Order == -1 && Tab[iiiii, jjjjj] < 0)
+                                                                {
                                                                     continue;
-                                                                for (var ik = 0; ik < 8; ik++)
-                                                                    for (var jk = 0; jk < 8; jk++)
+                                                                }
+
+                                                                for (int ik = 0; ik < 8; ik++)
+                                                                {
+                                                                    for (int jk = 0; jk < 8; jk++)
+                                                                    {
                                                                         Tab[ik, jk] = Table[ik, jk];
+                                                                    }
+                                                                }
+
                                                                 Tab[iii, jjj] = Tab[i, j];
                                                                 Tab[i, j] = 0;
 
@@ -1141,15 +1314,20 @@ namespace RefrigtzChessPortable
                                             {
 
                                                 //For Current.
-                                                for (var iiii = 0; iiii < 8; iiii++)
+                                                for (int iiii = 0; iiii < 8; iiii++)
                                                 {
-                                                    for (var jjjj = 0; jjjj < 8; jjjj++)
+                                                    for (int jjjj = 0; jjjj < 8; jjjj++)
                                                     {
                                                         //Ignore of enemies.
                                                         if (Order == 1 && Tab[iiii, jjjj] <= 0)
+                                                        {
                                                             continue;
+                                                        }
+
                                                         if (Order == -1 && Tab[iiii, jjjj] >= 0)
+                                                        {
                                                             continue;
+                                                        }
                                                         //For Enemies and Emety.
                                                         for (int iiiii = 0; iiiii < 8; iiiii++)
                                                         {
@@ -1157,12 +1335,23 @@ namespace RefrigtzChessPortable
                                                             {
                                                                 //Ignore of Current.
                                                                 if (Order == 1 && Tab[iiiii, jjjjj] > 0)
+                                                                {
                                                                     continue;
+                                                                }
+
                                                                 if (Order == -1 && Tab[iiiii, jjjjj] < 0)
+                                                                {
                                                                     continue;
-                                                                for (var ik = 0; ik < 8; ik++)
-                                                                    for (var jk = 0; jk < 8; jk++)
+                                                                }
+
+                                                                for (int ik = 0; ik < 8; ik++)
+                                                                {
+                                                                    for (int jk = 0; jk < 8; jk++)
+                                                                    {
                                                                         Tab[ik, jk] = Table[ik, jk];
+                                                                    }
+                                                                }
+
                                                                 Tab[iii, jjj] = Tab[i, j];
                                                                 Tab[i, j] = 0;
 
@@ -1214,12 +1403,13 @@ namespace RefrigtzChessPortable
         //Gray King Founder.
         public bool FindGrayKing(int[,] Table, ref int Row, ref int Column)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {   //long Time = TimeElapced.TimeNow();Spaces++;
                 //For All Home Table.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
                     {
                         //If Current is Gray Home 
                         if (Table[i, j] == 6)
@@ -1231,68 +1421,116 @@ namespace RefrigtzChessPortable
                             return true;
                         }
                     }
+                }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("FindGrayKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //Not Found.
                 return false;
             }
         }
+
         //Alpahber Object Consideration.
-        static String ThingsAlphabet(int i)
+        private static string ThingsAlphabet(int i)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             { //long Time = TimeElapced.TimeNow();
               //Initiate a Local Varibale. 
-                String A = "";
+                string A = "";
                 //Determinbe Gray Or Brown Movment.
                 if (i < 0)
+                {
                     A = "Brown:";
+                }
+
                 if (i > 0)
+                {
                     A = "Gray:";
+                }
                 //Determine Object Alhpabet. 
                 if (System.Math.Abs(i) == 1)
+                {
                     A += "(S)";
+                }
+
                 if (System.Math.Abs(i) == 2)
+                {
                     A += "(E)";
+                }
+
                 if (System.Math.Abs(i) == 3)
+                {
                     A += "(H)";
+                }
+
                 if (System.Math.Abs(i) == 4)
+                {
                     A += "(B)";
+                }
+
                 if (System.Math.Abs(i) == 5)
+                {
                     A += "(M)";
+                }
+
                 if (System.Math.Abs(i) == 6)
+                {
                     A += "(K)";
+                }
                 //Retrun Alphabet.
                 ////AllDraw.OutPut.Append("\r\nThingsAlphabet:" + (TimeElapced.TimeNow() - Time).ToString());
                 return A;
 
             }
         }
+
         //Row Alphabet Consideration.
-        static String RowAlphabet(int i)
+        private static string RowAlphabet(int i)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {        //long Time = TimeElapced.TimeNow();
                      //Initiate Local Variable.
-                String A = "";
+                string A = "";
                 //Row Alphabet Consideration.
                 if (i == 0)
+                {
                     A = "a";
+                }
+
                 if (i == 1)
+                {
                     A = "b";
+                }
+
                 if (i == 2)
+                {
                     A = "c";
+                }
+
                 if (i == 3)
+                {
                     A = "d";
+                }
+
                 if (i == 4)
+                {
                     A = "e";
+                }
+
                 if (i == 5)
+                {
                     A = "f";
+                }
+
                 if (i == 6)
+                {
                     A = "g";
+                }
+
                 if (i == 7)
+                {
                     A = "h";
+                }
                 //Return Row Alphabet.
                 ////AllDraw.OutPut.Append("\r\nRowAlphabet:" + (TimeElapced.TimeNow() - Time).ToString());
                 return A;
@@ -1300,12 +1538,12 @@ namespace RefrigtzChessPortable
             }
         }
         //Create Syntax of Movments.
-        public String CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool CastleKing, bool SodierConvert//, ref AllDraw. THIS
+        public string CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool CastleKing, bool SodierConvert//, ref AllDraw. THIS
 
             )
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object OOO = new Object();
+            object OOO = new object();
             lock (OOO)
             {
                 ArrangmentsBoard = Arrange;
@@ -1313,13 +1551,17 @@ namespace RefrigtzChessPortable
                 bool ms = false;
                 int bn = Movments;
                 if (((bn) % 2) == 1)
+                {
                     ms = true;
+                }
                 //Movments String Number Creation in String.
-                bn = ((int)(bn / 2)) + 1;
-                String SN = "";
-                String S = "";
+                bn = bn / 2 + 1;
+                string SN = "";
+                string S = "";
                 if (ms)
+                {
                     SN = bn.ToString() + ".";
+                }
 
 
                 //Consider CheckMate Condition of Table.
@@ -1330,11 +1572,14 @@ namespace RefrigtzChessPortable
                 AA.ObjectDangourKingMove(Order, CloneATable(Tab), false);
                 Color a = Color.Gray;
                 if (Order == -1)
+                {
                     a = Color.Brown;
+                }
+
                 AAA.Pat(CloneATable(Tab), Order, a);
                 if (A.CheckGray)
                 {
-                    Object O2 = new Object();
+                    object O2 = new object();
                     lock (O2)
                     {
                         RefrigtzChessPortable.ChessRules.CastleKingAllowedGray = false;
@@ -1344,7 +1589,7 @@ namespace RefrigtzChessPortable
                 }
                 else if (A.CheckBrown)
                 {
-                    Object O2 = new Object();
+                    object O2 = new object();
                     lock (O2)
                     {
                         RefrigtzChessPortable.ChessRules.CastleActBrown = true;
@@ -1354,11 +1599,20 @@ namespace RefrigtzChessPortable
                 }
                 bool Castles = false;
                 if (Order == 1)
+                {
                     if (RefrigtzChessPortable.ChessRules.SmallKingCastleGray || RefrigtzChessPortable.ChessRules.BigKingCastleGray)
+                    {
                         Castles = true;
+                    }
+                }
+
                 if (Order == -1)
+                {
                     if (RefrigtzChessPortable.ChessRules.SmallKingCastleBrown || RefrigtzChessPortable.ChessRules.BigKingCastleBrown)
+                    {
                         Castles = true;
+                    }
+                }
                 //When Solder Converted or Castles King Acts.
                 if (SodierConvert || (CastleKing && Castles))
                 {
@@ -1368,12 +1622,12 @@ namespace RefrigtzChessPortable
                         //Castles Brown King.
                         if (RefrigtzChessPortable.ChessRules.SmallKingCastleGray)
                         {
-                            Object O2 = new Object();
+                            object O2 = new object();
                             lock (O2)
                             {
                                 RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableGray = true;
                                 S += "Gray-BK-S";
-                                Object O = new Object();
+                                object O = new object();
                                 lock (O)
                                 {
                                     if (!AllDraw.Stockfish)
@@ -1388,12 +1642,12 @@ namespace RefrigtzChessPortable
                             if (RefrigtzChessPortable.ChessRules.BigKingCastleGray)
                         //Castles Brown King.                    
                         {
-                            Object O2 = new Object();
+                            object O2 = new object();
                             lock (O2)
                             {
                                 S += "Gray-BK-B";
                                 RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableGray = true;
-                                Object O = new Object();
+                                object O = new object();
                                 lock (O)
                                 {
                                     if (!AllDraw.Stockfish)
@@ -1408,12 +1662,12 @@ namespace RefrigtzChessPortable
                                 if (RefrigtzChessPortable.ChessRules.SmallKingCastleBrown)
                         //Castles Brown King.                    
                         {
-                            Object O2 = new Object();
+                            object O2 = new object();
                             lock (O2)
                             {
                                 S += "Brown-BK-S";
                                 RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableBrown = true;
-                                Object O = new Object();
+                                object O = new object();
                                 lock (O)
                                 {
                                     if (!AllDraw.Stockfish)
@@ -1429,12 +1683,12 @@ namespace RefrigtzChessPortable
                         //Castles Brown King.                    
                         {
 
-                            Object O2 = new Object();
+                            object O2 = new object();
                             lock (O2)
                             {
                                 S += "Brown-BK-B";
                                 RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableBrown = true;
-                                Object O = new Object();
+                                object O = new object();
                                 lock (O)
                                 {
                                     if (!AllDraw.Stockfish)
@@ -1458,7 +1712,7 @@ namespace RefrigtzChessPortable
                         //If Hit Acts.
                         if (Hit)
                         {
-                            Object O = new Object();
+                            object O = new object();
                             lock (O)
                             {
                                 ObjectHittedRow = Row;
@@ -1486,7 +1740,7 @@ namespace RefrigtzChessPortable
                             S += "+";
                             if (A.CheckBrown && Order == -1)
                             {
-                                Object O2 = new Object();
+                                object O2 = new object();
                                 lock (O2)
                                 {
                                     RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableBrown = true;
@@ -1496,7 +1750,7 @@ namespace RefrigtzChessPortable
                             }
                             if (A.CheckGray && Order == 1)
                             {
-                                Object O2 = new Object();
+                                object O2 = new object();
                                 lock (O2)
                                 {
                                     RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableGray = true;
@@ -1510,7 +1764,7 @@ namespace RefrigtzChessPortable
 
                             if (AA.CheckGrayObjectDangour && Order == -1)
                             {
-                                Object O2 = new Object();
+                                object O2 = new object();
                                 lock (O2)
                                 {
                                     RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableBrown = true;
@@ -1519,7 +1773,7 @@ namespace RefrigtzChessPortable
                             }
                             if (AA.CheckBrownObjectDangour && Order == 1)
                             {
-                                Object O2 = new Object();
+                                object O2 = new object();
                                 lock (O2)
                                 {
                                     RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableGray = true;
@@ -1537,7 +1791,7 @@ namespace RefrigtzChessPortable
                     //Hit Consideration.
                     if (Hit)
                     {
-                        Object O = new Object();
+                        object O = new object();
                         lock (O)
                         {
                             ObjectHittedRow = Row;
@@ -1566,7 +1820,7 @@ namespace RefrigtzChessPortable
                         S += "+";
                         if (A.CheckBrown && Order == -1)
                         {
-                            Object O2 = new Object();
+                            object O2 = new object();
                             lock (O2)
                             {
                                 RefrigtzChessPortable.ChessRules.BigKingCastleBrown = false;
@@ -1577,7 +1831,7 @@ namespace RefrigtzChessPortable
                         }
                         if (A.CheckGray && Order == 1)
                         {
-                            Object O2 = new Object();
+                            object O2 = new object();
                             lock (O2)
                             {
                                 RefrigtzChessPortable.ChessRules.BigKingCastleGray = false;
@@ -1592,7 +1846,7 @@ namespace RefrigtzChessPortable
 
                         if (AA.CheckGrayObjectDangour && Order == -1)
                         {
-                            Object O2 = new Object();
+                            object O2 = new object();
                             lock (O2)
                             {
                                 RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableBrown = true;
@@ -1601,7 +1855,7 @@ namespace RefrigtzChessPortable
                         }
                         if (AA.CheckBrownObjectDangour && Order == 1)
                         {
-                            Object O2 = new Object();
+                            object O2 = new object();
                             lock (O2)
                             {
                                 RefrigtzChessPortable.ThinkingRefrigtzChessPortable.KingMaovableGray = true;
@@ -1614,28 +1868,35 @@ namespace RefrigtzChessPortable
                 }
                 //Separate.
                 if (AllDraw.Less != int.MinValue)
+                {
                     S += " With Heuristic (" + AllDraw.Less.ToString() + ")--";
+                }
                 else
+                {
                     S += " --";
+                }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CreateStatistic:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //Return String Sysntax.
                 return SN + S;
             }
         }
+
         //Consideration of Existing Table in List.
-        bool ArrayInList(List<int[]> List, int[] A)
+        private bool ArrayInList(List<int[]> List, int[] A)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {    //long Time = TimeElapced.TimeNow();Spaces++;
                  //Initiate Local Variables.
                 bool Is = false;
                 //For each Items of a Tow Part List.
-                for (var i = 0; i < List.Count; i++)
+                for (int i = 0; i < List.Count; i++)
                 {
                     //If Listis Equal Setting of Local Variable Equality.
                     if (A[0] == List[i][0] && A[1] == List[i][1])
+                    {
                         Is = true;
+                    }
                 }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ArrayInList:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //Retrun Condition.
@@ -1645,12 +1906,13 @@ namespace RefrigtzChessPortable
         //Find a Specific Objects.
         public bool FindAThing(int[,] Table, ref int Row, ref int Column, int Thing, bool BeMovable, List<int[]> List)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {     //long Time = TimeElapced.TimeNow();Spaces++;
                   //For All Items In Table Home.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
                     {
                         //Initiate Local Variables.
                         int[] AA = new int[2];
@@ -1664,7 +1926,9 @@ namespace RefrigtzChessPortable
                             {
                                 //If Array Exist In List Continue Traversal Back.
                                 if (ArrayInList(List, AA))
+                                {
                                     continue;
+                                }
                                 //Iniatiate Local Varibales.
                                 Row = i;
                                 Column = j;
@@ -1677,17 +1941,22 @@ namespace RefrigtzChessPortable
                                 //Iniatiate Local Variables.
                                 Color A = Color.Gray;
                                 if (Order == -1)
+                                {
                                     A = Color.Brown;
+                                }
                                 //For All Second Home.
-                                for (var ii = 0; ii < 8; ii++)
-                                    for (var jj = 0; jj < 8; jj++)
+                                for (int ii = 0; ii < 8; ii++)
+                                {
+                                    for (int jj = 0; jj < 8; jj++)
                                     {
                                         //If First Home is Movable to Second Home.
                                         if ((new RefrigtzChessPortable.ThinkingRefrigtzChessPortable(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, i, j)).Movable(CloneATable(Table), i, j, ii, jj, A, Order))
                                         {
                                             //If Array Exist in Home.
                                             if (ArrayInList(List, AA))
+                                            {
                                                 continue;
+                                            }
                                             //Initaite Local Variables.
                                             Row = i;
                                             Column = j;
@@ -1697,10 +1966,12 @@ namespace RefrigtzChessPortable
                                         }
 
                                     }
+                                }
                             }
 
                         }
                     }
+                }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("FindAThing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //Not Found State.
                 return false;
@@ -1709,12 +1980,13 @@ namespace RefrigtzChessPortable
         //Brown King Found  Consideration.
         public bool FindBrownKing(int[,] Table, ref int Row, ref int Column)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {    //long Time = TimeElapced.TimeNow();Spaces++;
                  //For All Home Table.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
                     {
                         //If Current Home is Brown King.
                         if (Table[i, j] == -6)
@@ -1727,6 +1999,7 @@ namespace RefrigtzChessPortable
                             return true;
                         }
                     }
+                }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("FindBrownKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //Not Found.
                 return false;
@@ -1735,17 +2008,21 @@ namespace RefrigtzChessPortable
         //A Constraint Check Removed Unused Method.
         public bool CheckRemovableByAttack(int[,] Table, int Order)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {     //long Time = TimeElapced.TimeNow();Spaces++;
                   //Initiate Local Variables.
                 int[,] Tabl = new int[8, 8];
                 //Clone a Copy.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Tabl[i, j] = Table[i, j];
+                    }
+                }
                 //Initiate Global Variables.
-                Object OO = new Object();
+                object OO = new object();
                 lock (OO)
                 {
                     CheckGrayRemovable = true;
@@ -1757,14 +2034,19 @@ namespace RefrigtzChessPortable
                 //if (Order == -1)
                 {
                     //For All Home Tables in Fourth Second Traversal.
-                    for (var i = 0; i < 8; i++)
-                        for (var j = 0; j < 8; j++)
-                            for (var ii = 0; ii < 8; ii++)
-                                for (var jj = 0; jj < 8; jj++)
+                    for (int i = 0; i < 8; i++)
+                    {
+                        for (int j = 0; j < 8; j++)
+                        {
+                            for (int ii = 0; ii < 8; ii++)
+                            {
+                                for (int jj = 0; jj < 8; jj++)
                                 {
                                     //If Tow How is the Same Continue Traversal Back.
                                     if (i == ii && j == jj)
+                                    {
                                         continue;
+                                    }
                                     //If is Brown Order.
                                     if (Table[i, j] < 0)
                                     {
@@ -1774,20 +2056,24 @@ namespace RefrigtzChessPortable
                                             //Initiate Local Variables.
                                             int[,] Tab = new int[8, 8];
                                             //Clone  a Copy.
-                                            for (var iii = 0; iii < 8; iii++)
-                                                for (var jjj = 0; jjj < 8; jjj++)
+                                            for (int iii = 0; iii < 8; iii++)
+                                            {
+                                                for (int jjj = 0; jjj < 8; jjj++)
                                                 {
                                                     Tab[iii, jjj] = Table[iii, jjj];
                                                 }
+                                            }
                                             //If Is Movable.
                                             if ((new RefrigtzChessPortable.ThinkingRefrigtzChessPortable(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, i, j)).Movable(CloneATable(Tab), i, j, ii, jj, Color.Brown, -1))
                                             {
                                                 //Clone a Copy.
-                                                for (var iii = 0; iii < 8; iii++)
-                                                    for (var jjj = 0; jjj < 8; jjj++)
+                                                for (int iii = 0; iii < 8; iii++)
+                                                {
+                                                    for (int jjj = 0; jjj < 8; jjj++)
                                                     {
                                                         Tab[iii, jjj] = Table[iii, jjj];
                                                     }
+                                                }
                                                 //If Brown Check.
                                                 if (CheckBrown)
                                                 {
@@ -1803,7 +2089,7 @@ namespace RefrigtzChessPortable
                                                             //Initiate and Move.
                                                             Tab[i, j] = Table[ii, jj];
                                                             Tab[ii, jj] = 0;
-                                                            Object O1 = new Object();
+                                                            object O1 = new object();
                                                             lock (O1)
                                                             {
                                                                 CheckBrownRemovableValueRowi = i;
@@ -1824,17 +2110,25 @@ namespace RefrigtzChessPortable
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
                 }
                 {
                     //For All Second Traversal Homes.
-                    for (var i = 0; i < 8; i++)
-                        for (var j = 0; j < 8; j++)
-                            for (var ii = 0; ii < 8; ii++)
-                                for (var jj = 0; jj < 8; jj++)
+                    for (int i = 0; i < 8; i++)
+                    {
+                        for (int j = 0; j < 8; j++)
+                        {
+                            for (int ii = 0; ii < 8; ii++)
+                            {
+                                for (int jj = 0; jj < 8; jj++)
                                 {
                                     //if The Tow Traversal are the ame Continue Traversal Back.
                                     if (i == ii && j == jj)
+                                    {
                                         continue;
+                                    }
                                     //If the Gray.
                                     if (Table[i, j] > 0)
                                     {
@@ -1844,19 +2138,23 @@ namespace RefrigtzChessPortable
                                             //Inaitate Local Variables.
                                             int[,] Tab = new int[8, 8];
                                             //Clone a Copy.
-                                            for (var iii = 0; iii < 8; iii++)
-                                                for (var jjj = 0; jjj < 8; jjj++)
+                                            for (int iii = 0; iii < 8; iii++)
+                                            {
+                                                for (int jjj = 0; jjj < 8; jjj++)
                                                 {
                                                     Tab[iii, jjj] = Table[iii, jjj];
                                                 }
+                                            }
                                             //Moveable Movemnts in the Tow Traversal Kind.
                                             if ((new RefrigtzChessPortable.ThinkingRefrigtzChessPortable(-1, 0, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, i, j)).Movable(CloneATable(Tab), i, j, ii, jj, Color.Gray, 1))
                                             {
-                                                for (var iii = 0; iii < 8; iii++)
-                                                    for (var jjj = 0; jjj < 8; jjj++)
+                                                for (int iii = 0; iii < 8; iii++)
+                                                {
+                                                    for (int jjj = 0; jjj < 8; jjj++)
                                                     {
                                                         Tab[iii, jjj] = Table[iii, jjj];
                                                     }
+                                                }
                                                 //If the Gray Check.
                                                 if (CheckGray)
                                                 {
@@ -1872,7 +2170,7 @@ namespace RefrigtzChessPortable
                                                             //Move and Initaite Local and Global Variables.
                                                             Tab[i, j] = Table[ii, jj];
                                                             Tab[ii, jj] = 0;
-                                                            Object O1 = new Object();
+                                                            object O1 = new object();
                                                             lock (O1)
                                                             {
                                                                 CheckBrownRemovableValueRowi = i;
@@ -1894,32 +2192,45 @@ namespace RefrigtzChessPortable
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
                 }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheckRemovableByAttack:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //If Check Remoavbe Brown Or Gray Return Removable.
                 if (CheckBrownRemovable || CheckGrayRemovable)
+                {
                     return true;
+                }
                 //Return Not Removable.
                 return false;
             }
         }
-        bool[,] VeryFye(int[,] Table, int Order, Color a, int ii, int jj)
+
+        private bool[,] VeryFye(int[,] Table, int Order, Color a, int ii, int jj)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {   //long Time = TimeElapced.TimeNow();Spaces++;
                 int Cdummy = RefrigtzChessPortable.ChessRules.CurrentOrder;
                 if (Order == 1)
+                {
                     RefrigtzChessPortable.ChessRules.CurrentOrder = 1;
+                }
                 else
+                {
                     RefrigtzChessPortable.ChessRules.CurrentOrder = -1;
+                }
+
                 bool[,] Tab = new bool[8, 8];
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
                     {
                         if (i == ii && j == jj)
+                        {
                             continue;
-
+                        }
 
                         if ((new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Table[ii, jj], CloneATable(Table), Order, ii, jj)).Rules(ii, jj, i, j, a, Table[ii, jj]))
                         {
@@ -1930,6 +2241,8 @@ namespace RefrigtzChessPortable
                             Tab[i, j] = true;
                         }
                     }
+                }
+
                 RefrigtzChessPortable.ChessRules.CurrentOrder = Cdummy;
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("VeryFye:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Tab;
@@ -1937,11 +2250,12 @@ namespace RefrigtzChessPortable
         }
         public bool OnlyKingMovable(int[,] Tab, bool[,] TabB, int Order)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {    //long Time = TimeElapced.TimeNow();Spaces++;
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
                     {
                         if (TabB[i, j])
                         {
@@ -1962,41 +2276,52 @@ namespace RefrigtzChessPortable
                         }
 
                     }
+                }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("OnlyKingMovable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return true;
 
             }
         }
-        int[,] CloneATable(int[,] Tab)
+
+        private int[,] CloneATable(int[,] Tab)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 int[,] Table = new int[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Table;
             }
 
         }
-        bool[,] CloneATable(bool[,] Tab)
+
+        private bool[,] CloneATable(bool[,] Tab)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 bool[,] Table = new bool[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Table;
@@ -2006,15 +2331,20 @@ namespace RefrigtzChessPortable
 
         public bool Pat(int[,] Tab, int Order, Color a)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {     //long Time = TimeElapced.TimeNow();Spaces++;
                 int[,] Table = new int[8, 8];
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
+
                 bool Pat = false;
-                Object OO = new Object();
+                object OO = new object();
                 lock (OO)
                 {
                     PatCheckedInKingRule = true;
@@ -2024,34 +2354,42 @@ namespace RefrigtzChessPortable
                     bool[,] TableS = new bool[8, 8];
                     //  if (Order == -1)
 
-                    for (var ii = 0; ii < 8; ii++)
-                        for (var jj = 0; jj < 8; jj++)
+                    for (int ii = 0; ii < 8; ii++)
+                    {
+                        for (int jj = 0; jj < 8; jj++)
                         {
                             if (Table[ii, jj] > 0)
                             {
                                 bool[,] TableSS = VeryFye(CloneATable(Table), 1, Color.Gray, ii, jj);
 
-                                for (var iii = 0; iii < 8; iii++)
-                                    for (var jjj = 0; jjj < 8; jjj++)
+                                for (int iii = 0; iii < 8; iii++)
+                                {
+                                    for (int jjj = 0; jjj < 8; jjj++)
                                     {
                                         TableS[iii, jjj] |= TableSS[iii, jjj];
                                     }
+                                }
                             }
                         }
+                    }
+
                     if (OnlyKingMovable(CloneATable(Table), CloneATable(TableS), 1))
                     {
                         NumbersofKingMovesToPatGray++;
                     }
                     Pat = false;
-                    for (var ii = 0; ii < 8; ii++)
-                        for (var jj = 0; jj < 8; jj++)
+                    for (int ii = 0; ii < 8; ii++)
+                    {
+                        for (int jj = 0; jj < 8; jj++)
                         {
                             Pat |= TableS[ii, jj];
                         }
+                    }
+
                     Pat = !Pat;
                     if (Pat || NumbersofKingMovesToPatGray > 16)
                     {
-                        Object On = new Object();
+                        object On = new object();
                         lock (On)
                         {
                             AllDraw.EndOfGame = true;
@@ -2060,33 +2398,41 @@ namespace RefrigtzChessPortable
                     }
                     TableS = new bool[8, 8];
 
-                    for (var ii = 0; ii < 8; ii++)
-                        for (var jj = 0; jj < 8; jj++)
+                    for (int ii = 0; ii < 8; ii++)
+                    {
+                        for (int jj = 0; jj < 8; jj++)
                         {
                             if (Table[ii, jj] < 0)
                             {
                                 bool[,] TableSS = VeryFye(CloneATable(Table), -1, Color.Brown, ii, jj);
-                                for (var iii = 0; iii < 8; iii++)
-                                    for (var jjj = 0; jjj < 8; jjj++)
+                                for (int iii = 0; iii < 8; iii++)
+                                {
+                                    for (int jjj = 0; jjj < 8; jjj++)
                                     {
                                         TableS[iii, jjj] |= TableSS[iii, jjj];
                                     }
+                                }
                             }
                         }
+                    }
+
                     if (OnlyKingMovable(CloneATable(Table), CloneATable(TableS), -1))
                     {
                         NumbersofKingMovesToPatBrown++;
                     }
                     Pat = false;
-                    for (var ii = 0; ii < 8; ii++)
-                        for (var jj = 0; jj < 8; jj++)
+                    for (int ii = 0; ii < 8; ii++)
+                    {
+                        for (int jj = 0; jj < 8; jj++)
                         {
                             Pat |= TableS[ii, jj];
                         }
+                    }
+
                     Pat = !Pat;
                     if (Pat || NumbersofKingMovesToPatBrown >= 16)
                     {
-                        Object On = new Object();
+                        object On = new object();
                         lock (On)
                         {
                             AllDraw.EndOfGame = true;
@@ -2094,18 +2440,23 @@ namespace RefrigtzChessPortable
                         }
                     }
                     if (PatkGray || PatBrown)
+                    {
                         Pat = true;
+                    }
                 }
                 else
                 {
                     if (CheckGray)
+                    {
                         NumbersofKingMovesToPatGray = 0;
+                    }
                     else
                         if (CheckBrown)
+                    {
                         NumbersofKingMovesToPatBrown = 0;
-
+                    }
                 }
-                Object O1 = new Object();
+                object O1 = new object();
                 lock (O1)
                 {
                     PatCheckedInKingRule = false;
@@ -2114,44 +2465,68 @@ namespace RefrigtzChessPortable
                 return Pat;
             }
         }
-        void CheckKing(int[,] Table, int Order, int RowK, int ColumnK)
+
+        private void CheckKing(int[,] Table, int Order, int RowK, int ColumnK)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {    //long Time = TimeElapced.TimeNow();Spaces++;
                 int[,] Tab = new int[8, 8];
                 //Clone a Copy.
-                for (var ii = 0; ii < 8; ii++)
-                    for (var jj = 0; jj < 8; jj++)
+                for (int ii = 0; ii < 8; ii++)
+                {
+                    for (int jj = 0; jj < 8; jj++)
+                    {
                         Tab[ii, jj] = Table[ii, jj];
+                    }
+                }
+
                 int Ord = Order;
                 Color aa = Color.Gray;
                 if (Ord == -1)
+                {
                     aa = Color.Brown;
+                }
+
                 bool BREAK = false;
                 //For All Home Table.
-                for (var i = 0; i < 8; i++)
+                for (int i = 0; i < 8; i++)
                 {
-                    for (var j = 0; j < 8; j++)
+                    for (int j = 0; j < 8; j++)
                     {
                         //If The Current Home is the Gray King Continue Traversal Back.
                         if (i == RowK && j == ColumnK)
+                        {
                             continue;
+                        }
+
                         if (Ord == 1 & Tab[i, j] <= 0)
+                        {
                             continue;
+                        }
+
                         if (Ord == -1 & Tab[i, j] >= 0)
+                        {
                             continue;
+                        }
                         //Initiate Global Variables.
                         int Dummt = RefrigtzChessPortable.ChessRules.CurrentOrder;
                         RefrigtzChessPortable.ChessRules.CurrentOrder = -1;
                         //Clone a Copy.
-                        for (var ii = 0; ii < 8; ii++)
-                            for (var jj = 0; jj < 8; jj++)
+                        for (int ii = 0; ii < 8; ii++)
+                        {
+                            for (int jj = 0; jj < 8; jj++)
+                            {
                                 Tab[ii, jj] = Table[ii, jj];
+                            }
+                        }
 
                         Color a = Color.Gray;
                         if (Ord == -1)
+                        {
                             a = Color.Brown;
+                        }
+
                         RefrigtzChessPortable.ChessRules A = new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Table[i, j], CloneATable(Table), Ord, i, j);
                         if (Ord == 1)
                         {
@@ -2180,7 +2555,9 @@ namespace RefrigtzChessPortable
 
                     }
                     if (BREAK)
+                    {
                         break;
+                    }
                 }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheckKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             }
@@ -2188,19 +2565,24 @@ namespace RefrigtzChessPortable
         //Check Consideration Method.
         public bool Check(int[,] Table, int Ord)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {  //long Time = TimeElapced.TimeNow();Spaces++;
                //A player is not required to move their king out of check and the game concludes when there is a 100 % probability that one of the kings has been taken. As a result there is no checkmate.
                 if (DrawKing.KingGrayNotCheckedByQuantumMove && Ord == 1)
+                {
                     return false;
+                }
                 else
                 if (DrawKing.KingBrownNotCheckedByQuantumMove && Ord == -1)
+                {
                     return false;
+                }
+
                 int DummyOrder = Ord;
                 //Initiate Local and Global Briables.
                 bool Store = RefrigtzChessPortable.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing;
-                Object OO = new Object();
+                object OO = new object();
                 lock (OO)
                 {
                     RefrigtzChessPortable.ChessRules.CheckObjectDangourIgnoreSelfThingBetweenTowEnemyKing = false;
@@ -2214,24 +2596,31 @@ namespace RefrigtzChessPortable
 
                 //Foud of Gray King.
                 if (FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG))
+                {
                     CheckKing(CloneATable(Table), -1, RowG, ColumnG);
+                }
 
                 //Found of Brown King.
                 if (FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB))
+                {
                     CheckKing(CloneATable(Table), 1, RowB, ColumnB);
+                }
 
                 Ord = DummyOrder;
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Check:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 //If Gray Check Or brwon Check return Check..
                 if (CheckBrown || CheckGray)
+                {
                     return true;
+                }
                 //Return Non Check.
                 return false;
             }
         }
-        void CheckMateKing(int[,] Tab, int Ord, bool CheckGrayDummy, bool CheckBrownDummy, int RowK, int ColumnK, ref bool ActMove, bool Checked)
+
+        private void CheckMateKing(int[,] Tab, int Ord, bool CheckGrayDummy, bool CheckBrownDummy, int RowK, int ColumnK, ref bool ActMove, bool Checked)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] Table = CloneATable(TableS);
@@ -2239,14 +2628,19 @@ namespace RefrigtzChessPortable
                 //long Time = TimeElapced.TimeNow();Spaces++;
                 int DummyOrder = Order;
                 //For All Home Table.
-                for (var i = 0; i < 8; i++)
+                for (int i = 0; i < 8; i++)
                 {
-                    for (var j = 0; j < 8; j++)
+                    for (int j = 0; j < 8; j++)
                     {
                         if (Ord == 1 && Tab[i, j] > 0)
+                        {
                             continue;
+                        }
+
                         if (Ord == -1 && Tab[i, j] < 0)
+                        {
                             continue;
+                        }
 
                         //Clone a Copy.
                         CheckGray = CheckGrayDummy;
@@ -2259,14 +2653,22 @@ namespace RefrigtzChessPortable
                             //Ig Gray King is Movable to First Home Table.
                             Color a = Color.Gray;
                             if (Ord == -1)
+                            {
                                 a = Color.Brown;
+                            }
+
                             RefrigtzChessPortable.ChessRules A = new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Table[RowK, ColumnK], CloneATable(Table), Ord, RowK, ColumnK);
                             Order = DummyOrder;
                             ///Table[ii, jj] = 0;
                             //Menen Parameter is Moveble to Second Parameters Location returm Movable.
                             for (int k = 0; k < 8; k++)
+                            {
                                 for (int p = 0; p < 8; p++)
+                                {
                                     Table[k, p] = Tab[k, p];
+                                }
+                            }
+
                             if (A.Rules(RowK, ColumnK, i, j, a, Ord))
                             {
                                 Order = DummyOrder;
@@ -2326,15 +2728,18 @@ namespace RefrigtzChessPortable
                     }
                     //If One of The Not Movable.
                     if (!ActMove)
+                    {
                         break;
+                    }
                 }
                 Order = DummyOrder;
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheckMateKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             }
         }
-        void CheckMateNotKing(int[,] Tab, int Ord, bool CheckGrayDummy, bool CheckBrownDummy, ref bool ActMove)
+
+        private void CheckMateNotKing(int[,] Tab, int Ord, bool CheckGrayDummy, bool CheckBrownDummy, ref bool ActMove)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] Table = CloneATable(TableS);
@@ -2342,14 +2747,19 @@ namespace RefrigtzChessPortable
                 //long Time = TimeElapced.TimeNow();Spaces++;
                 int DummyOrder = Ord;
                 //For All Home Table.
-                for (var i = 0; i < 8; i++)
+                for (int i = 0; i < 8; i++)
                 {
-                    for (var j = 0; j < 8; j++)
+                    for (int j = 0; j < 8; j++)
                     {
                         if (Ord == 1 && Tab[i, j] <= 0)
+                        {
                             continue;
+                        }
+
                         if (Ord == -1 && Tab[i, j] >= 0)
+                        {
                             continue;
+                        }
                         //Initiate Global varibales. 
                         CheckGray = CheckGrayDummy;
                         CheckBrown = CheckBrownDummy;
@@ -2360,22 +2770,30 @@ namespace RefrigtzChessPortable
                         //Initiate Local Varibale.
                         ActMove = true;
                         //For All Second Home Table.
-                        for (var ii = 0; ii < 8; ii++)
+                        for (int ii = 0; ii < 8; ii++)
                         {
 
-                            for (var jj = 0; jj < 8; jj++)
+                            for (int jj = 0; jj < 8; jj++)
                             {
                                 if (Ord == 1 && Tab[ii, jj] > 0)
+                                {
                                     continue;
+                                }
+
                                 if (Ord == -1 && Tab[ii, jj] < 0)
+                                {
                                     continue;
+                                }
                                 //Clone a Copy.
 
                                 Table = CloneATable(Tab);
 
                                 Color a = Color.Gray;
                                 if (Ord == -1)
+                                {
                                     a = Color.Brown;
+                                }
+
                                 RefrigtzChessPortable.ChessRules A = new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Table[i, j], CloneATable(Table), Ord, i, j);
                                 ///Table[ii, jj] = 0;
                                 //Menen Parameter is Moveble to Second Parameters Location returm Movable.
@@ -2450,15 +2868,21 @@ namespace RefrigtzChessPortable
                             }
                             //If Not Movable Break.
                             if (!ActMove)
+                            {
                                 break;
+                            }
                         }
 
                         if (!ActMove)
+                        {
                             break;
+                        }
                     }
                     //If Not Movable Break.
                     if (!ActMove)
+                    {
                         break;
+                    }
                 }
                 Order = DummyOrder;
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CheckMateNotKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
@@ -2467,16 +2891,20 @@ namespace RefrigtzChessPortable
         //CheckMate Consideration.QC-OK
         public bool CheckMate(int[,] Tab, int Ord)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {     //long Time = TimeElapced.TimeNow();Spaces++;
 
                 //Initiate Local and Global  Varibales.
                 int[,] Table = new int[8, 8];
 
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
 
                 CheckGray = false;
                 CheckBrown = false;
@@ -2498,21 +2926,30 @@ namespace RefrigtzChessPortable
                 ActMoveG = true;
                 ActMoveGF = true;
 
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
+
                 RefrigtzChessPortable.ChessRules A = new RefrigtzChessPortable.ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsBoard, Table[RowG, ColumnG], CloneATable(Table), Ord, RowG, ColumnG);
 
                 //Found of Gray King.
                 if (FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG))
+                {
                     A.CheckMateKing(CloneATable(Table), 1, CheckGrayDummy, CheckBrownDummy, RowG, ColumnG, ref ActMoveG, CheckGray);
+                }
 
                 Table = CloneATable(Tab);
 
 
                 //Found of Gray King.
                 if (FindGrayKing(CloneATable(Table), ref RowG, ref ColumnG))
+                {
                     A.CheckMateNotKing(CloneATable(Table), 1, CheckGrayDummy, CheckBrownDummy, ref ActMoveGF);
+                }
 
                 //Intiate Global Variables.
                 CheckGray = CheckGrayDummy;
@@ -2520,8 +2957,9 @@ namespace RefrigtzChessPortable
 
                 //Condition of CheckMate Gray King.
                 if (CheckGray && (ActMoveG && ActMoveGF))
+                {
                     CheckMateGray = true;
-
+                }
 
                 ActMoveB = true;
                 ActMoveBF = true;
@@ -2533,13 +2971,22 @@ namespace RefrigtzChessPortable
 
                 //Found of Brown King.
                 if (FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB))
+                {
                     AA.CheckMateKing(CloneATable(Table), -1, CheckGrayDummy, CheckBrownDummy, RowB, ColumnB, ref ActMoveB, CheckBrown);
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                }
+
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Found of Brown King.
                 if (FindBrownKing(CloneATable(Table), ref RowB, ref ColumnB))
+                {
                     AA.CheckMateNotKing(CloneATable(Table), -1, CheckGrayDummy, CheckBrownDummy, ref ActMoveBF);
+                }
 
 
                 //Initiate Global Varibales.
@@ -2547,7 +2994,9 @@ namespace RefrigtzChessPortable
                 CheckBrown = CheckBrownDummy;
                 //Condition of Brown CheckMate.
                 if (CheckBrown && (ActMoveB && ActMoveBF))
+                {
                     CheckMateBrown = true;
+                }
 
                 //Initiate Global Variables.
                 Ord = DumnyOrder;
@@ -2557,7 +3006,7 @@ namespace RefrigtzChessPortable
                     //Initiate Global Variable and Return CheckMate.
                     CheckGray = CheckGrayDummy;
                     CheckBrown = CheckBrownDummy;
-                    Object On = new Object();
+                    object On = new object();
                     lock (On)
                     {
                         AllDraw.EndOfGame = true;
@@ -2576,7 +3025,7 @@ namespace RefrigtzChessPortable
         //Internal Rule of RefrigtzChessPortable Method.
         private bool Rule(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki, bool SelfHomeStatCP)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {     //long Time = TimeElapced.TimeNow();Spaces++;
                   //When is Not Castles King State.
@@ -2598,7 +3047,7 @@ namespace RefrigtzChessPortable
                     return false;
                 }
                 //Initiate Global Variable.
-                Object OO = new Object();
+                object OO = new object();
                 lock (OO)
                 {
                     KingAttacker = false;
@@ -2609,14 +3058,18 @@ namespace RefrigtzChessPortable
                     //Rule of Soldeir.
                     case 1:
                         if (System.Math.Abs(TableS[RowFirst, ColumnFirst]) != Kind)
+                        {
                             return false;
+                        }
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                         return SoldierRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
 
 
                     case 4://Rule of Castles.
                         if (System.Math.Abs(TableS[RowFirst, ColumnFirst]) != Kind)
+                        {
                             return false;
+                        }
 
 
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
@@ -2625,26 +3078,35 @@ namespace RefrigtzChessPortable
 
                     case 3://Rule of Hourses.
                         if (System.Math.Abs(TableS[RowFirst, ColumnFirst]) != Kind)
+                        {
                             return false;
+                        }
+
                         return HourseRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy);
 
                     case 2://Rule of Elephant.
 
                         if (System.Math.Abs(TableS[RowFirst, ColumnFirst]) != Kind)
+                        {
                             return false;
+                        }
 
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                         return ElefantRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
                     case 5://Rule of Ministers.
                         if (System.Math.Abs(TableS[RowFirst, ColumnFirst]) != Kind)
+                        {
                             return false;
+                        }
 
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                         return MinisterRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
 
                     case 6://Rule of Kings.
                         if (System.Math.Abs(TableS[RowFirst, ColumnFirst]) != Kind)
+                        {
                             return false;
+                        }
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                         return KingRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
                     case 7://Rule of Castles King.
@@ -2664,7 +3126,7 @@ namespace RefrigtzChessPortable
         //King Rule Method.
         public bool KingRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {     //long Time = TimeElapced.TimeNow();Spaces++;
                 bool Move = false;
@@ -2682,19 +3144,23 @@ namespace RefrigtzChessPortable
         //Rules of Minister Method.
         public bool MinisterRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {    //long Time = TimeElapced.TimeNow();Spaces++;
                 bool Move = false;
                 //When is Castles Rule.
                 if (CastleRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki))
+                {
                     //Return Validity.,
                     Move = true;
+                }
                 else
                     //When is Elephant Rule.
                     if (ElefantRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki))
+                {
                     //Return Validity.,
                     Move = true;
+                }
                 //Return Not Valididty.
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("MinisterRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Move;
@@ -2704,7 +3170,7 @@ namespace RefrigtzChessPortable
         //Castles Rule Method.
         public bool CastleRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] Table = CloneATable(TableS);
@@ -2720,14 +3186,26 @@ namespace RefrigtzChessPortable
                     int ColD = ColumnFirst, ColU = ColumnSecond;
                     int Rowf = 1, Colf = 1;
                     if (RowU < RowD)
+                    {
                         Rowf = -1;
+                    }
+
                     if (ColU < ColD)
+                    {
                         Colf = -1;
+                    }
+
                     int incf = 0, incR = 0;
                     if (Rowf < 0)
+                    {
                         incf = -1;
+                    }
+
                     if (Colf < 0)
+                    {
                         incR = -1;
+                    }
+
                     int F = 0, G = 0;
                     int A = 0, B = 0;
                     if (incf < 0)
@@ -2754,10 +3232,12 @@ namespace RefrigtzChessPortable
                     }
                     {
                         //For Variation of Row Home.
-                        for (var i = F; i <= G; i++)
+                        for (int i = F; i <= G; i++)
                         {
                             if (IgnoreSelfObject && i == RowSecond)
+                            {
                                 continue;
+                            }
                             //When is Not Current Source Home.
                             if (i != RowFirst)
                             {
@@ -2795,8 +3275,9 @@ namespace RefrigtzChessPortable
                         }
                     }
                     if (!Act)
+                    {
                         Move = true;
-
+                    }
                 }
                 //When There is Only Column Variation Home Changes.
                 if (System.Math.Abs(ColumnFirst - ColumnSecond) != 0 && System.Math.Abs(RowFirst - RowSecond) == 0)
@@ -2806,14 +3287,26 @@ namespace RefrigtzChessPortable
                     int ColD = ColumnFirst, ColU = ColumnSecond;
                     int Rowf = 1, Colf = 1;
                     if (RowU < RowD)
+                    {
                         Rowf = -1;
+                    }
+
                     if (ColU < ColD)
+                    {
                         Colf = -1;
+                    }
+
                     int incf = 0, incR = 0;
                     if (Rowf < 0)
+                    {
                         incf = -1;
+                    }
+
                     if (Colf < 0)
+                    {
                         incR = -1;
+                    }
+
                     int F = 0, G = 0;
                     int A = 0, B = 0;
                     if (incf < 0)
@@ -2840,10 +3333,12 @@ namespace RefrigtzChessPortable
                     }
 
                     //For All Column Home Variation.
-                    for (var j = A; j <= B; j++)
+                    for (int j = A; j <= B; j++)
                     {
                         if (IgnoreSelfObject && j == ColumnSecond)
+                        {
                             continue;
+                        }
                         //When The Source is Not The Current.
                         if (j != ColumnFirst)
                         {
@@ -2881,7 +3376,9 @@ namespace RefrigtzChessPortable
                     }
                     //Return Validity.
                     if (!Act)
+                    {
                         Move = true;
+                    }
                 }
 
                 //Return Not Validity.
@@ -2895,7 +3392,7 @@ namespace RefrigtzChessPortable
         //Elephant Rule Method.
         public bool ElefantRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy, int Ki)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] Table = CloneATable(TableS);
@@ -2911,14 +3408,26 @@ namespace RefrigtzChessPortable
                     int ColD = ColumnFirst, ColU = ColumnSecond;
                     int Rowf = 1, Colf = 1;
                     if (RowU < RowD)
+                    {
                         Rowf = -1;
+                    }
+
                     if (ColU < ColD)
+                    {
                         Colf = -1;
+                    }
+
                     int incf = 0, incR = 0;
                     if (Rowf < 0)
+                    {
                         incf = -1;
+                    }
+
                     if (Colf < 0)
+                    {
                         incR = -1;
+                    }
+
                     int F = 0, G = 0;
                     int A = 0, B = 0;
                     if (incf < 0)
@@ -2944,15 +3453,20 @@ namespace RefrigtzChessPortable
 
                     }
                     //For All Root Source to Destination.
-                    for (var i = F; i <= G; i++)
-                        for (var j = A; j <= B; j++)
+                    for (int i = F; i <= G; i++)
+                    {
+                        for (int j = A; j <= B; j++)
                         {
                             if (IgnoreSelfObject && i == RowSecond && j == ColumnSecond)
+                            {
                                 continue;
+                            }
 
                             //If Abs Derivation is Not One Continue. 
                             if (System.Math.Abs(i - RowFirst) != System.Math.Abs(j - ColumnFirst))
+                            {
                                 continue;
+                            }
                             //If the Current is Not Source Home.
                             if (i != RowFirst && j != ColumnFirst)
                             {
@@ -2989,9 +3503,12 @@ namespace RefrigtzChessPortable
                             }
 
                         }
+                    }
                     //Return Validity.
                     if (!Act)
+                    {
                         Move = true;
+                    }
                 }
 
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ElephantRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
@@ -3002,7 +3519,7 @@ namespace RefrigtzChessPortable
         //Hource Rule Method.
         public bool HourseRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {   //long Time = TimeElapced.TimeNow();Spaces++;
                 bool Move = false;
@@ -3026,7 +3543,7 @@ namespace RefrigtzChessPortable
         }
         public bool SoldierRulesaArrangmentsBoardOne(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] Table = CloneATable(TableS);
@@ -3038,14 +3555,18 @@ namespace RefrigtzChessPortable
                 {
                     //If Not Forward Return Not Validity.
                     if (ColumnFirst < ColumnSecond)
+                    {
                         Move = false;
+                    }
                 }
                 else//int of Brown.
                     if (Order == -1)
                 {
                     //If Not Back Wrad Return Not Vlaidity.
                     if (ColumnFirst > ColumnSecond)
+                    {
                         Move = false;
+                    }
                 }
                 //When Soldier Not Moved in Original Location do
                 if (NotMoved)
@@ -3061,9 +3582,13 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else
                             if ((ColumnFirst + 1 < 8) &&
@@ -3071,9 +3596,13 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else//Hit Brown Soldier Rulments.
                                 if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
@@ -3103,9 +3632,13 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else
                             if ((ColumnSecond + 1 < 8) &&
@@ -3113,21 +3646,30 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else//Hit Condition Enemy Movments.
                                 if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
                         {
                             if ((RowSecond + 1 < 8) &&
                                 (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
                                 //Return Validity.
                                 Move = true;
+                            }
+
                             if ((RowSecond - 1 >= 0) &&
                                     (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
                                 //Return Validity.
                                 Move = true;
+                            }
                         }
 
                     }
@@ -3144,9 +3686,13 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else//Hit Brown Soldier Rulments.                            
                             if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
@@ -3175,21 +3721,30 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else//Hit Condition Enemy Movments.
                             if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
                         {
                             if ((RowSecond + 1 < 8) &&
                                 (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
                                 //Return Validity.
                                 Move = true;
+                            }
+
                             if ((RowSecond - 1 >= 0) &&
                                     (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
                                 //Return Validity.
                                 Move = true;
+                            }
                         }
 
                     }
@@ -3201,7 +3756,7 @@ namespace RefrigtzChessPortable
         public bool SoldierRulesaArrangmentsBoardZero(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy)
         {
 
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] Table = CloneATable(TableS);
@@ -3213,14 +3768,18 @@ namespace RefrigtzChessPortable
                 {
                     //If Not Forward Return Not Validity.
                     if (ColumnFirst > ColumnSecond)
+                    {
                         Move = false;
+                    }
                 }
                 else//int of Brown.
                     if (Order == -1)
                 {
                     //If Not Back Wrad Return Not Vlaidity.
                     if (ColumnFirst < ColumnSecond)
+                    {
                         Move = false;
+                    }
                 }
                 //When Soldier Not Moved in Original Location do
                 if (NotMoved)
@@ -3236,9 +3795,13 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else
                             if ((ColumnFirst + 1 < 8) &&
@@ -3246,9 +3809,13 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else//Hit Gray Soldier Rulments.
                                 if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
@@ -3278,9 +3845,13 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else
                             if ((ColumnSecond + 1 < 8) &&
@@ -3288,21 +3859,30 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else//Hit Condition Enemy Movments.
                                 if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
                         {
                             if ((RowSecond + 1 < 8) &&
                                 (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
                                 //Return Validity.
                                 Move = true;
+                            }
+
                             if ((RowSecond - 1 >= 0) &&
                                     (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
                                 //Return Validity.
                                 Move = true;
+                            }
                         }
 
                     }
@@ -3319,9 +3899,13 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else//Hit Gray Soldier Rulments.                            
                             if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
@@ -3350,21 +3934,30 @@ namespace RefrigtzChessPortable
                         {
                             //When Destination is The Empty Return Validity Else Return Not Validity.
                             if (Table[RowSecond, ColumnSecond] == 0)
+                            {
                                 Move = true;
+                            }
                             else
+                            {
                                 Move = false;
+                            }
                         }
                         else//Hit Condition Enemy Movments.
                             if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
                         {
                             if ((RowSecond + 1 < 8) &&
                                 (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
                                 //Return Validity.
                                 Move = true;
+                            }
+
                             if ((RowSecond - 1 >= 0) &&
                                     (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            {
                                 //Return Validity.
                                 Move = true;
+                            }
                         }
 
                     }
@@ -3377,7 +3970,7 @@ namespace RefrigtzChessPortable
         //Solder Rule Method.
         public bool SoldierRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, bool ExistInDestinationEnemy)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //long Time = TimeElapced.TimeNow();Spaces++;

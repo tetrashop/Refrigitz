@@ -9,20 +9,21 @@ namespace ChessFirst
     {
         //bool WaitOnplay = false;
 
-        readonly String path3 = @"temp";
-        String AllDrawReplacement = "";
+        private readonly string path3 = @"temp";
+        private string AllDrawReplacement = "";
 
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6
-        public static String AllDrawKindString = "";
+        public static string AllDrawKindString = "";
 
         public AllDraw t = null;
+
         //public QuantumRefrigiz.AllDraw tt = null;
 
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -31,45 +32,64 @@ namespace ChessFirst
             }
             catch (Exception t) { Log(t); }
         }
-        void SetAllDrawKindString()
+
+        private void SetAllDrawKindString()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (AllDrawKind == 4)
+                {
                     AllDrawKindString = "F_AllDrawBT.asd";
+                }
                 else
                 if (AllDrawKind == 3)
+                {
                     AllDrawKindString = "F_AllDrawFFST.asd";
+                }
                 else
                 if (AllDrawKind == 2)
+                {
                     AllDrawKindString = "F_AllDrawFTSF.asd";
+                }
                 else
                 if (AllDrawKind == 1)
+                {
                     AllDrawKindString = "F_AllDrawFFSF.asd";
-
+                }
             }
         }
-        void SetAllDrawKind(bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
+
+        private void SetAllDrawKind(bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
         {
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 if (UsePenaltyRegardMechnisam && AStarGreedyHeuristic)
+                {
                     AllDrawKind = 4;
+                }
                 else
           if ((!UsePenaltyRegardMechnisam) && AStarGreedyHeuristic)
+                {
                     AllDrawKind = 3;
+                }
+
                 if (UsePenaltyRegardMechnisam && (!AStarGreedyHeuristic))
+                {
                     AllDrawKind = 2;
+                }
+
                 if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHeuristic))
+                {
                     AllDrawKind = 1;
+                }
             }
         }
 
-        bool DrawManagement(bool FOUND, bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
+        private bool DrawManagement(bool FOUND, bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
         {
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 SetAllDrawKind(UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
@@ -80,7 +100,7 @@ namespace ChessFirst
 
 
                 bool Found = false;
-                String P = Path.GetFullPath(path3);
+                string P = Path.GetFullPath(path3);
                 AllDrawReplacement = Path.Combine(P, AllDrawKindString);
 
                 Logger y = new Logger(AllDrawReplacement);
@@ -92,13 +112,16 @@ namespace ChessFirst
                 if (File.Exists(AllDrawReplacement))
                 {
                     if (AllDraw.HarasAct)
+                    {
                         File.Delete(AllDrawReplacement);
+                    }
                 }
                 if (File.Exists(AllDrawKindString))
                 {
                     if (AllDraw.HarasAct)
+                    {
                         File.Delete(AllDrawKindString);
-
+                    }
                 }
                 AllDraw.HarasAct = false;
                 if (File.Exists(AllDrawKindString))
@@ -115,7 +138,10 @@ namespace ChessFirst
                         else if (((new System.IO.FileInfo(AllDrawKindString).Length) > (new System.IO.FileInfo(AllDrawReplacement)).Length))
                         {
                             if (File.Exists(AllDrawReplacement))
+                            {
                                 File.Delete(AllDrawReplacement);
+                            }
+
                             File.Copy(AllDrawKindString, AllDrawReplacement);
                             Found = true;
                         }
@@ -123,7 +149,10 @@ namespace ChessFirst
                     else
                     {
                         if (!Directory.Exists(Path.GetFullPath(path3)))
+                        {
                             Directory.CreateDirectory(Path.GetFullPath(path3));
+                        }
+
                         File.Copy(AllDrawKindString, AllDrawReplacement);
                         Found = true;
 
@@ -139,9 +168,9 @@ namespace ChessFirst
                 return Found;
             }
         }
-        public bool LoadJungle(String path, bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
+        public bool LoadJungle(string path, bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 bool DrawDrawen = false;
@@ -157,7 +186,7 @@ namespace ChessFirst
                             //if (!Quantum)
                             {
                                 RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                t = (AllDraw)tr.LoadJungle(path, Quantum, ChessFirstForm.OrderPlate);
+                                t = tr.LoadJungle(path, Quantum, ChessFirstForm.OrderPlate);
                                 if (t != null)
                                 {
                                     Curent.Draw = t;
@@ -212,7 +241,7 @@ namespace ChessFirst
 
         public bool Load(bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
@@ -228,7 +257,7 @@ namespace ChessFirst
                             //if (!Quantum)
                             {
                                 RefregizMemmory tr = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                t = (AllDraw)tr.Load(Quantum, ChessFirstForm.OrderPlate);
+                                t = tr.Load(Quantum, ChessFirstForm.OrderPlate);
                                 if (t != null)
                                 {
                                     Curent.Draw = t;
@@ -280,9 +309,9 @@ namespace ChessFirst
             }
         }
 
-        void Wait()
+        private void Wait()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 PerformanceCounter myAppCpu =
@@ -298,7 +327,7 @@ namespace ChessFirst
 
         public bool Save(bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 object o = new object();
@@ -306,8 +335,9 @@ namespace ChessFirst
                 {
 
                     if (!AllDraw.ChangedInTreeOccured)
+                    {
                         return true;
-
+                    }
                 }
                 //System.Threading.Thread ttt = new System.Threading.Thread(new System.Threading.ThreadStart(Wait));
                 //ttt.Start();
@@ -417,7 +447,7 @@ namespace ChessFirst
         }
         public bool SaveJungle(bool FOUND, bool Quantum, ChessFirstForm Curent, ref bool LoadTree, bool MovementsAStarGreedyHeuristicFound, bool IInoreSelfObjects, bool UsePenaltyRegardMechnisam, bool BestMovments, bool PredictHeuristic, bool OnlySelf, bool AStarGreedyHeuristic, bool ArrangmentsChanged)
         {
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 object o = new object();

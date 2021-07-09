@@ -18,49 +18,49 @@ namespace ChessFirst
         public bool freezCalculation = false;
 
         public bool ComStop = false;
-        bool freezBoard = false;
-        ArtificialInteligenceMove f = null;
+        private bool freezBoard = false;
+        private ArtificialInteligenceMove f = null;
         public bool LoadP = false;
-        static readonly bool UsePenaltyRegardMechnisam = false;
-        static readonly bool AStarGreedyHeuristic = false;
-        int AllDrawKind = 0;
-        bool NotFoundBegin = false;
-        bool Deeperthandeeper = false;
-        readonly String path3 = @"temp";
-        String AllDrawReplacement = "";
+        private static readonly bool UsePenaltyRegardMechnisam = false;
+        private static readonly bool AStarGreedyHeuristic = false;
+        private int AllDrawKind = 0;
+        private bool NotFoundBegin = false;
+        private bool Deeperthandeeper = false;
+        private readonly string path3 = @"temp";
+        private string AllDrawReplacement = "";
 
         public static int MovmentsNumber = 0;
-        public static String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-        public static String AllDrawKindString = "";
+        public static string Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+        public static string AllDrawKindString = "";
         public static int OrderPlate = 1;
-        bool CoPermit = true;
+        private bool CoPermit = true;
         public int ConClick = -1;
-        PictureBox[] Con = new PictureBox[4];
-        bool WaitOnplay = false;
+        private readonly PictureBox[] Con = new PictureBox[4];
+        private bool WaitOnplay = false;
         public ChessFirst.ChessFirstGeneticAlgorithm R = new ChessFirst.ChessFirstGeneticAlgorithm(false, false, UsePenaltyRegardMechnisam, false, false, false, false, true);
-        bool Person = true;
+        private bool Person = true;
         public ChessFirst.AllDraw Draw = new AllDraw(-1, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-        int[,] Table = null;
-        bool FOUND = false;
+        private int[,] Table = null;
+        private bool FOUND = false;
         #region These are the global variables and objects for ChessFirstForm class
         private PictureBox[,] pb;
         private ListBox lb;
-        Label label1;
-        Label label2;
-        Label label3;
-        Label label4;
-        Label label5;
-        Label label6;
-        Label label7;
-        Label label8;
-        Label labela;
-        Label labelb;
-        Label labelc;
-        Label labeld;
-        Label labele;
-        Label labelf;
-        Label labelg;
-        Label labelh;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private Label labela;
+        private Label labelb;
+        private Label labelc;
+        private Label labeld;
+        private Label labele;
+        private Label labelf;
+        private Label labelg;
+        private Label labelh;
         private int cl;
         private int order;
         private int x1;
@@ -97,7 +97,7 @@ namespace ChessFirst
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.Container components = null;
+        private readonly System.ComponentModel.Container components = null;
         #endregion
         [field: NonSerialized]
         private readonly CancellationTokenSource feedCancellationTokenSource =
@@ -132,10 +132,11 @@ namespace ChessFirst
             GC.SuppressFinalize(this);
             base.Dispose(disposing);
         }
+
         //tetrashop.ir
-        void Initiate(Color a, int Order)
+        private void Initiate(Color a, int Order)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int LeafAStarGrteedy = 0;
@@ -144,13 +145,14 @@ namespace ChessFirst
                 Draw.AStarGreedyString = THIS;
             }
         }
+
         //tetrashop.ir
-        void BobAction(int Order)
+        private void BobAction(int Order)
         {
 
 
 
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 bool B = AllDraw.Blitz;
@@ -178,22 +180,31 @@ namespace ChessFirst
 
 
         }
+
         //tetrashop.ir
-        void DisposeConv()
+        private void DisposeConv()
         {
             for (int i = 0; i < 4; i++)
+            {
                 Con[i].Dispose();
+            }
         }
+
         //tetrashop.ir
-        void InitConv(int j)
+        private void InitConv(int j)
         {
             for (int i = j; i < 4 + j; i++)
             {
                 Con[i - j] = new PictureBox();
                 if (i % 2 == 0)
+                {
                     Con[i - j].BackColor = System.Drawing.Color.White;
+                }
                 else
+                {
                     Con[i - j].BackColor = System.Drawing.Color.Silver;
+                }
+
                 Con[i - j].Location = new System.Drawing.Point(30 + i * 60, 10 + 1 * 60);
                 Con[i - j].Name = "con";
                 Con[i - j].Size = new System.Drawing.Size(60, 60);
@@ -203,24 +214,46 @@ namespace ChessFirst
                 if (i % 2 == 0)
                 {
                     if (i == j)
+                    {
                         Con[i - j].Image = img7;
+                    }
+
                     if (i == j + 1)
+                    {
                         Con[i - j].Image = img1;
+                    }
+
                     if (i == j + 2)
+                    {
                         Con[i - j].Image = img3;
+                    }
+
                     if (i == j + 3)
+                    {
                         Con[i - j].Image = img5;
+                    }
                 }
                 else
                 {
                     if (i == j)
+                    {
                         Con[i - j].Image = img8;
+                    }
+
                     if (i == j + 1)
+                    {
                         Con[i - j].Image = img2;
+                    }
+
                     if (i == j + 2)
+                    {
                         Con[i - j].Image = img4;
+                    }
+
                     if (i == j + 3)
+                    {
                         Con[i - j].Image = img6;
+                    }
                 }
             }
             Con[0].Click += new System.EventHandler(Con1_Click1);
@@ -234,239 +267,281 @@ namespace ChessFirst
             pb = new PictureBox[8, 8];
             brd = new Board();
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     pb[i, j] = new PictureBox();
                     if (brd.getbcolor(i, j) == 2)
-                        this.pb[i, j].BackColor = System.Drawing.Color.White;
+                    {
+                        pb[i, j].BackColor = System.Drawing.Color.White;
+                    }
                     else
-                        this.pb[i, j].BackColor = System.Drawing.Color.Silver;
-                    this.pb[i, j].Location = new System.Drawing.Point(30 + i * 60, 10 + j * 60);
-                    this.pb[i, j].Name = "pb1";
-                    this.pb[i, j].Size = new System.Drawing.Size(60, 60);
-                    this.pb[i, j].TabIndex = i;
-                    this.pb[i, j].TabStop = false;
-                    this.Controls.AddRange(new System.Windows.Forms.Control[] { this.pb[i, j] });
+                    {
+                        pb[i, j].BackColor = System.Drawing.Color.Silver;
+                    }
+
+                    pb[i, j].Location = new System.Drawing.Point(30 + i * 60, 10 + j * 60);
+                    pb[i, j].Name = "pb1";
+                    pb[i, j].Size = new System.Drawing.Size(60, 60);
+                    pb[i, j].TabIndex = i;
+                    pb[i, j].TabStop = false;
+                    Controls.AddRange(new System.Windows.Forms.Control[] { pb[i, j] });
                 }
-            lb = new ListBox();
-            this.lb.Location = new System.Drawing.Point(530, 10);
-            this.lb.Name = "lb";
-            this.lb.Size = new System.Drawing.Size(150, 500);
-            this.lb.TabIndex = 64;
-            this.lb.TabStop = false;
-            this.Controls.AddRange(new Control[] { this.lb });
-            label1 = new Label();
-            this.label1.Location = new System.Drawing.Point(10, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 20);
-            this.label1.TabIndex = 65;
-            this.label1.TabStop = false;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            label1.Text = "1";
-            this.Controls.AddRange(new Control[] { this.label1 });
-            label2 = new Label();
-            this.label2.Location = new System.Drawing.Point(10, 90);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 20);
-            this.label2.TabIndex = 65;
-            this.label2.TabStop = false;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            label2.Text = "2";
-            this.Controls.AddRange(new Control[] { this.label2 });
-            label3 = new Label();
-            this.label3.Location = new System.Drawing.Point(10, 150);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(20, 20);
-            this.label3.TabIndex = 65;
-            this.label3.TabStop = false;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            label3.Text = "3";
-            this.Controls.AddRange(new Control[] { this.label3 });
-            label4 = new Label();
-            this.label4.Location = new System.Drawing.Point(10, 210);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 20);
-            this.label4.TabIndex = 65;
-            this.label4.TabStop = false;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            label4.Text = "4";
-            this.Controls.AddRange(new Control[] { this.label4 });
-            label5 = new Label();
-            this.label5.Location = new System.Drawing.Point(10, 270);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(20, 20);
-            this.label5.TabIndex = 65;
-            this.label5.TabStop = false;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            label5.Text = "5";
-            this.Controls.AddRange(new Control[] { this.label5 });
-            label6 = new Label();
-            this.label6.Location = new System.Drawing.Point(10, 330);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(20, 20);
-            this.label6.TabIndex = 65;
-            this.label6.TabStop = false;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            label6.Text = "6";
-            this.Controls.AddRange(new Control[] { this.label6 });
-            label7 = new Label();
-            this.label7.Location = new System.Drawing.Point(10, 390);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(20, 20);
-            this.label7.TabIndex = 65;
-            this.label7.TabStop = false;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            label7.Text = "7";
-            this.Controls.AddRange(new Control[] { this.label7 });
-            label8 = new Label();
-            this.label8.Location = new System.Drawing.Point(10, 450);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(20, 20);
-            this.label8.TabIndex = 65;
-            this.label8.TabStop = false;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            label8.Text = "8";
-            this.Controls.AddRange(new Control[] { this.label8 });
-            labelh = new Label();
-            this.labelh.Location = new System.Drawing.Point(50, 490);
-            this.labelh.Name = "labelh";
-            this.labelh.Size = new System.Drawing.Size(20, 20);
-            this.labelh.TabIndex = 65;
-            this.labelh.TabStop = false;
-            this.labelh.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            labelh.Text = "h";
-            this.Controls.AddRange(new Control[] { this.labelh });
-            labelg = new Label();
-            this.labelg.Location = new System.Drawing.Point(110, 490);
-            this.labelg.Name = "labelg";
-            this.labelg.Size = new System.Drawing.Size(20, 30);
-            this.labelg.TabIndex = 65;
-            this.labelg.TabStop = false;
-            this.labelg.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            labelg.Text = "g";
-            this.Controls.AddRange(new Control[] { this.labelg });
-            labelf = new Label();
-            this.labelf.Location = new System.Drawing.Point(175, 490);
-            this.labelf.Name = "labelf";
-            this.labelf.Size = new System.Drawing.Size(20, 20);
-            this.labelf.TabIndex = 65;
-            this.labelf.TabStop = false;
-            this.labelf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            labelf.Text = "f";
-            this.Controls.AddRange(new Control[] { this.labelf });
-            labele = new Label();
-            this.labele.Location = new System.Drawing.Point(230, 490);
-            this.labele.Name = "labele";
-            this.labele.Size = new System.Drawing.Size(20, 20);
-            this.labele.TabIndex = 65;
-            this.labele.TabStop = false;
-            this.labele.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            labele.Text = "e";
-            this.Controls.AddRange(new Control[] { this.labele });
-            labeld = new Label();
-            this.labeld.Location = new System.Drawing.Point(290, 490);
-            this.labeld.Name = "labeld";
-            this.labeld.Size = new System.Drawing.Size(20, 20);
-            this.labeld.TabIndex = 65;
-            this.labeld.TabStop = false;
-            this.labeld.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            labeld.Text = "d";
-            this.Controls.AddRange(new Control[] { this.labeld });
-            labelc = new Label();
-            this.labelc.Location = new System.Drawing.Point(350, 490);
-            this.labelc.Name = "labelc";
-            this.labelc.Size = new System.Drawing.Size(20, 20);
-            this.labelc.TabIndex = 65;
-            this.labelc.TabStop = false;
-            this.labelc.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            labelc.Text = "c";
-            this.Controls.AddRange(new Control[] { this.labelc });
-            labelb = new Label();
-            this.labelb.Location = new System.Drawing.Point(410, 490);
-            this.labelb.Name = "labelb";
-            this.labelb.Size = new System.Drawing.Size(20, 20);
-            this.labelb.TabIndex = 65;
-            this.labelb.TabStop = false;
-            this.labelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            labelb.Text = "b";
-            this.Controls.AddRange(new Control[] { this.labelb });
-            labela = new Label();
-            this.labela.Location = new System.Drawing.Point(470, 490);
-            this.labela.Name = "labela";
-            this.labela.Size = new System.Drawing.Size(20, 20);
-            this.labela.TabIndex = 65;
-            this.labela.TabStop = false;
-            this.labela.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(162)));
-            labela.Text = "a";
-            this.Controls.AddRange(new Control[] { this.labela });
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(700, 520);
-            this.Name = "ChessFirstForm";
-            this.Text = "برنامه شطرنج";
-            this.pb[0, 0].Click += new System.EventHandler(Pb_Click1);
-            this.pb[1, 0].Click += new System.EventHandler(Pb_Click2);
-            this.pb[2, 0].Click += new System.EventHandler(Pb_Click3);
-            this.pb[3, 0].Click += new System.EventHandler(Pb_Click4);
-            this.pb[4, 0].Click += new System.EventHandler(Pb_Click5);
-            this.pb[5, 0].Click += new System.EventHandler(Pb_Click6);
-            this.pb[6, 0].Click += new System.EventHandler(Pb_Click7);
-            this.pb[7, 0].Click += new System.EventHandler(Pb_Click8);
-            this.pb[0, 1].Click += new System.EventHandler(Pb_Click9);
-            this.pb[1, 1].Click += new System.EventHandler(Pb_Click10);
-            this.pb[2, 1].Click += new System.EventHandler(Pb_Click11);
-            this.pb[3, 1].Click += new System.EventHandler(Pb_Click12);
-            this.pb[4, 1].Click += new System.EventHandler(Pb_Click13);
-            this.pb[5, 1].Click += new System.EventHandler(Pb_Click14);
-            this.pb[6, 1].Click += new System.EventHandler(Pb_Click15);
-            this.pb[7, 1].Click += new System.EventHandler(Pb_Click16);
-            this.pb[0, 2].Click += new System.EventHandler(Pb_Click17);
-            this.pb[1, 2].Click += new System.EventHandler(Pb_Click18);
-            this.pb[2, 2].Click += new System.EventHandler(Pb_Click19);
-            this.pb[3, 2].Click += new System.EventHandler(Pb_Click20);
-            this.pb[4, 2].Click += new System.EventHandler(Pb_Click21);
-            this.pb[5, 2].Click += new System.EventHandler(Pb_Click22);
-            this.pb[6, 2].Click += new System.EventHandler(Pb_Click23);
-            this.pb[7, 2].Click += new System.EventHandler(Pb_Click24);
-            this.pb[0, 3].Click += new System.EventHandler(Pb_Click25);
-            this.pb[1, 3].Click += new System.EventHandler(Pb_Click26);
-            this.pb[2, 3].Click += new System.EventHandler(Pb_Click27);
-            this.pb[3, 3].Click += new System.EventHandler(Pb_Click28);
-            this.pb[4, 3].Click += new System.EventHandler(Pb_Click29);
-            this.pb[5, 3].Click += new System.EventHandler(Pb_Click30);
-            this.pb[6, 3].Click += new System.EventHandler(Pb_Click31);
-            this.pb[7, 3].Click += new System.EventHandler(Pb_Click32);
-            this.pb[0, 4].Click += new System.EventHandler(Pb_Click33);
-            this.pb[1, 4].Click += new System.EventHandler(Pb_Click34);
-            this.pb[2, 4].Click += new System.EventHandler(Pb_Click35);
-            this.pb[3, 4].Click += new System.EventHandler(Pb_Click36);
-            this.pb[4, 4].Click += new System.EventHandler(Pb_Click37);
-            this.pb[5, 4].Click += new System.EventHandler(Pb_Click38);
-            this.pb[6, 4].Click += new System.EventHandler(Pb_Click39);
-            this.pb[7, 4].Click += new System.EventHandler(Pb_Click40);
-            this.pb[0, 5].Click += new System.EventHandler(Pb_Click41);
-            this.pb[1, 5].Click += new System.EventHandler(Pb_Click42);
-            this.pb[2, 5].Click += new System.EventHandler(Pb_Click43);
-            this.pb[3, 5].Click += new System.EventHandler(Pb_Click44);
-            this.pb[4, 5].Click += new System.EventHandler(Pb_Click45);
-            this.pb[5, 5].Click += new System.EventHandler(Pb_Click46);
-            this.pb[6, 5].Click += new System.EventHandler(Pb_Click47);
-            this.pb[7, 5].Click += new System.EventHandler(Pb_Click48);
-            this.pb[0, 6].Click += new System.EventHandler(Pb_Click49);
-            this.pb[1, 6].Click += new System.EventHandler(Pb_Click50);
-            this.pb[2, 6].Click += new System.EventHandler(Pb_Click51);
-            this.pb[3, 6].Click += new System.EventHandler(Pb_Click52);
-            this.pb[4, 6].Click += new System.EventHandler(Pb_Click53);
-            this.pb[5, 6].Click += new System.EventHandler(Pb_Click54);
-            this.pb[6, 6].Click += new System.EventHandler(Pb_Click55);
-            this.pb[7, 6].Click += new System.EventHandler(Pb_Click56);
-            this.pb[0, 7].Click += new System.EventHandler(Pb_Click57);
-            this.pb[1, 7].Click += new System.EventHandler(Pb_Click58);
-            this.pb[2, 7].Click += new System.EventHandler(Pb_Click59);
-            this.pb[3, 7].Click += new System.EventHandler(Pb_Click60);
-            this.pb[4, 7].Click += new System.EventHandler(Pb_Click61);
-            this.pb[5, 7].Click += new System.EventHandler(Pb_Click62);
-            this.pb[6, 7].Click += new System.EventHandler(Pb_Click63);
-            this.pb[7, 7].Click += new System.EventHandler(Pb_Click64);
+            }
+
+            lb = new ListBox
+            {
+                Location = new System.Drawing.Point(530, 10),
+                Name = "lb",
+                Size = new System.Drawing.Size(150, 500),
+                TabIndex = 64,
+                TabStop = false
+            };
+            Controls.AddRange(new Control[] { lb });
+            label1 = new Label
+            {
+                Location = new System.Drawing.Point(10, 30),
+                Name = "label1",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "1"
+            };
+            Controls.AddRange(new Control[] { label1 });
+            label2 = new Label
+            {
+                Location = new System.Drawing.Point(10, 90),
+                Name = "label2",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "2"
+            };
+            Controls.AddRange(new Control[] { label2 });
+            label3 = new Label
+            {
+                Location = new System.Drawing.Point(10, 150),
+                Name = "label3",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "3"
+            };
+            Controls.AddRange(new Control[] { label3 });
+            label4 = new Label
+            {
+                Location = new System.Drawing.Point(10, 210),
+                Name = "label4",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "4"
+            };
+            Controls.AddRange(new Control[] { label4 });
+            label5 = new Label
+            {
+                Location = new System.Drawing.Point(10, 270),
+                Name = "label5",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "5"
+            };
+            Controls.AddRange(new Control[] { label5 });
+            label6 = new Label
+            {
+                Location = new System.Drawing.Point(10, 330),
+                Name = "label6",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "6"
+            };
+            Controls.AddRange(new Control[] { label6 });
+            label7 = new Label
+            {
+                Location = new System.Drawing.Point(10, 390),
+                Name = "label7",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "7"
+            };
+            Controls.AddRange(new Control[] { label7 });
+            label8 = new Label
+            {
+                Location = new System.Drawing.Point(10, 450),
+                Name = "label8",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "8"
+            };
+            Controls.AddRange(new Control[] { label8 });
+            labelh = new Label
+            {
+                Location = new System.Drawing.Point(50, 490),
+                Name = "labelh",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "h"
+            };
+            Controls.AddRange(new Control[] { labelh });
+            labelg = new Label
+            {
+                Location = new System.Drawing.Point(110, 490),
+                Name = "labelg",
+                Size = new System.Drawing.Size(20, 30),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "g"
+            };
+            Controls.AddRange(new Control[] { labelg });
+            labelf = new Label
+            {
+                Location = new System.Drawing.Point(175, 490),
+                Name = "labelf",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "f"
+            };
+            Controls.AddRange(new Control[] { labelf });
+            labele = new Label
+            {
+                Location = new System.Drawing.Point(230, 490),
+                Name = "labele",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "e"
+            };
+            Controls.AddRange(new Control[] { labele });
+            labeld = new Label
+            {
+                Location = new System.Drawing.Point(290, 490),
+                Name = "labeld",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "d"
+            };
+            Controls.AddRange(new Control[] { labeld });
+            labelc = new Label
+            {
+                Location = new System.Drawing.Point(350, 490),
+                Name = "labelc",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "c"
+            };
+            Controls.AddRange(new Control[] { labelc });
+            labelb = new Label
+            {
+                Location = new System.Drawing.Point(410, 490),
+                Name = "labelb",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "b"
+            };
+            Controls.AddRange(new Control[] { labelb });
+            labela = new Label
+            {
+                Location = new System.Drawing.Point(470, 490),
+                Name = "labela",
+                Size = new System.Drawing.Size(20, 20),
+                TabIndex = 65,
+                TabStop = false,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162),
+                Text = "a"
+            };
+            Controls.AddRange(new Control[] { labela });
+            AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            ClientSize = new System.Drawing.Size(700, 520);
+            Name = "ChessFirstForm";
+            Text = "برنامه شطرنج";
+            pb[0, 0].Click += new System.EventHandler(Pb_Click1);
+            pb[1, 0].Click += new System.EventHandler(Pb_Click2);
+            pb[2, 0].Click += new System.EventHandler(Pb_Click3);
+            pb[3, 0].Click += new System.EventHandler(Pb_Click4);
+            pb[4, 0].Click += new System.EventHandler(Pb_Click5);
+            pb[5, 0].Click += new System.EventHandler(Pb_Click6);
+            pb[6, 0].Click += new System.EventHandler(Pb_Click7);
+            pb[7, 0].Click += new System.EventHandler(Pb_Click8);
+            pb[0, 1].Click += new System.EventHandler(Pb_Click9);
+            pb[1, 1].Click += new System.EventHandler(Pb_Click10);
+            pb[2, 1].Click += new System.EventHandler(Pb_Click11);
+            pb[3, 1].Click += new System.EventHandler(Pb_Click12);
+            pb[4, 1].Click += new System.EventHandler(Pb_Click13);
+            pb[5, 1].Click += new System.EventHandler(Pb_Click14);
+            pb[6, 1].Click += new System.EventHandler(Pb_Click15);
+            pb[7, 1].Click += new System.EventHandler(Pb_Click16);
+            pb[0, 2].Click += new System.EventHandler(Pb_Click17);
+            pb[1, 2].Click += new System.EventHandler(Pb_Click18);
+            pb[2, 2].Click += new System.EventHandler(Pb_Click19);
+            pb[3, 2].Click += new System.EventHandler(Pb_Click20);
+            pb[4, 2].Click += new System.EventHandler(Pb_Click21);
+            pb[5, 2].Click += new System.EventHandler(Pb_Click22);
+            pb[6, 2].Click += new System.EventHandler(Pb_Click23);
+            pb[7, 2].Click += new System.EventHandler(Pb_Click24);
+            pb[0, 3].Click += new System.EventHandler(Pb_Click25);
+            pb[1, 3].Click += new System.EventHandler(Pb_Click26);
+            pb[2, 3].Click += new System.EventHandler(Pb_Click27);
+            pb[3, 3].Click += new System.EventHandler(Pb_Click28);
+            pb[4, 3].Click += new System.EventHandler(Pb_Click29);
+            pb[5, 3].Click += new System.EventHandler(Pb_Click30);
+            pb[6, 3].Click += new System.EventHandler(Pb_Click31);
+            pb[7, 3].Click += new System.EventHandler(Pb_Click32);
+            pb[0, 4].Click += new System.EventHandler(Pb_Click33);
+            pb[1, 4].Click += new System.EventHandler(Pb_Click34);
+            pb[2, 4].Click += new System.EventHandler(Pb_Click35);
+            pb[3, 4].Click += new System.EventHandler(Pb_Click36);
+            pb[4, 4].Click += new System.EventHandler(Pb_Click37);
+            pb[5, 4].Click += new System.EventHandler(Pb_Click38);
+            pb[6, 4].Click += new System.EventHandler(Pb_Click39);
+            pb[7, 4].Click += new System.EventHandler(Pb_Click40);
+            pb[0, 5].Click += new System.EventHandler(Pb_Click41);
+            pb[1, 5].Click += new System.EventHandler(Pb_Click42);
+            pb[2, 5].Click += new System.EventHandler(Pb_Click43);
+            pb[3, 5].Click += new System.EventHandler(Pb_Click44);
+            pb[4, 5].Click += new System.EventHandler(Pb_Click45);
+            pb[5, 5].Click += new System.EventHandler(Pb_Click46);
+            pb[6, 5].Click += new System.EventHandler(Pb_Click47);
+            pb[7, 5].Click += new System.EventHandler(Pb_Click48);
+            pb[0, 6].Click += new System.EventHandler(Pb_Click49);
+            pb[1, 6].Click += new System.EventHandler(Pb_Click50);
+            pb[2, 6].Click += new System.EventHandler(Pb_Click51);
+            pb[3, 6].Click += new System.EventHandler(Pb_Click52);
+            pb[4, 6].Click += new System.EventHandler(Pb_Click53);
+            pb[5, 6].Click += new System.EventHandler(Pb_Click54);
+            pb[6, 6].Click += new System.EventHandler(Pb_Click55);
+            pb[7, 6].Click += new System.EventHandler(Pb_Click56);
+            pb[0, 7].Click += new System.EventHandler(Pb_Click57);
+            pb[1, 7].Click += new System.EventHandler(Pb_Click58);
+            pb[2, 7].Click += new System.EventHandler(Pb_Click59);
+            pb[3, 7].Click += new System.EventHandler(Pb_Click60);
+            pb[4, 7].Click += new System.EventHandler(Pb_Click61);
+            pb[5, 7].Click += new System.EventHandler(Pb_Click62);
+            pb[6, 7].Click += new System.EventHandler(Pb_Click63);
+            pb[7, 7].Click += new System.EventHandler(Pb_Click64);
         }
         private void Init2()
         {
@@ -531,8 +606,9 @@ namespace ChessFirst
             pb[6, 6].Image = img31;
             pb[7, 6].Image = img32;
         }
+
         //tetrashop.ir
-        void ClearTableInitiationPreventionOfMultipleMove()
+        private void ClearTableInitiationPreventionOfMultipleMove()
         {
             for (int i = 0; i < 8; i++)
             {
@@ -541,7 +617,9 @@ namespace ChessFirst
                     if (Table[i, j] == 0)
                     {
                         if (ChessFirst.ThinkingChessFirst.TableInitiationPreventionOfMultipleMove[i, j] != 0)
+                        {
                             ChessFirst.ThinkingChessFirst.TableInitiationPreventionOfMultipleMove[i, j] = ChessFirst.ThinkingChessFirst.NoOfMovableAllObjectMove - 1;
+                        }
                     }
                 }
             }
@@ -550,7 +628,7 @@ namespace ChessFirst
         public void Form1_Load(object sender, System.EventArgs e)
         {
             //tetrashop.ir
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (!LoadP)
@@ -593,7 +671,10 @@ namespace ChessFirst
                                 int Ord = OrderPlate;
                                 Color aa = Color.Gray;
                                 if (Ord == -1)
+                                {
                                     aa = Color.Brown;
+                                }
+
                                 bool B = AllDraw.Blitz;
                                 AllDraw.Blitz = false;
                                 //ChessFirst.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
@@ -632,15 +713,14 @@ namespace ChessFirst
                     }
                     else
                     {
-                        Object OO = new Object();
+                        object OO = new object();
                         lock (OO)
                         {
                             SetAllDrawKind();
                             //Set Configuration To True for some unknown reason!.
 
                             SetAllDrawKindString();
-                            bool Found = false;
-                            String P = Path.GetFullPath(path3);
+                            string P = Path.GetFullPath(path3);
                             AllDrawReplacement = Path.Combine(P, AllDrawKindString);
 
 
@@ -650,7 +730,6 @@ namespace ChessFirst
                                 {
                                     File.Delete(AllDrawKindString);
                                     File.Copy(AllDrawReplacement, AllDrawKindString);
-                                    Found = true;
                                 }
                             }
                             else
@@ -684,7 +763,10 @@ namespace ChessFirst
                                 int Ord = OrderPlate;
                                 Color aa = Color.Gray;
                                 if (Ord == -1)
+                                {
                                     aa = Color.Brown;
+                                }
+
                                 bool B = AllDraw.Blitz;
                                 AllDraw.Blitz = false;
                                 //ChessFirst.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
@@ -739,7 +821,10 @@ namespace ChessFirst
                             int Ord = OrderPlate;
                             Color aa = Color.Gray;
                             if (Ord == -1)
+                            {
                                 aa = Color.Brown;
+                            }
+
                             bool B = AllDraw.Blitz;
                             AllDraw.Blitz = false;
                             //ChessFirst.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
@@ -775,13 +860,16 @@ namespace ChessFirst
 
                 f = new ArtificialInteligenceMove(this);
                 if (!ComStop)
+                {
                     Play(-1, -1);
+                }
             }
         }
+
         //tetrashop.ir
-        void ClickedSimAtClOne(int i, int j)
+        private void ClickedSimAtClOne(int i, int j)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 int ii = new int();
@@ -811,11 +899,12 @@ namespace ChessFirst
                 Person = true;
             }
         }
+
         //tetrashop.ir
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
 
-            Object a = new Object();
+            object a = new object();
             lock (a)
             {
                 string stackTrace = ex.ToString();
@@ -823,33 +912,40 @@ namespace ChessFirst
             }
 
         }
+
         //tetrashop.ir
-        int[,] CloneATable(int[,] Tab)
+        private int[,] CloneATable(int[,] Tab)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] Tabl = new int[8, 8];
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Tabl[i, j] = Tab[i, j];
+                    }
+                }
 
                 return Tabl;
             }
         }
+
         //tetrashop.ir
-        void WaitCon()
+        private void WaitCon()
         {
             do { } while (ConClick == -1);
         }
+
         //tetrashop.ir
-        void WaitOnly()
+        private void WaitOnly()
         {
             do { } while (WaitOnplay);
         }
         public int Play(int i, int j)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
 
@@ -862,7 +958,9 @@ namespace ChessFirst
                     lock (f)
                     {
                         if (freezBoard)
+                        {
                             return 0;
+                        }
 
                         if (AllDraw.CalIdle == 0)
                         {
@@ -880,8 +978,9 @@ namespace ChessFirst
                         }
                         else
                             if (!freezBoard)
+                        {
                             return 0;
-
+                        }
                     }
                     bool Com = false;
                     //tetrashop.ir
@@ -909,7 +1008,7 @@ namespace ChessFirst
 
 
                         freezBoard = true;
-                        var newTask = Task.Factory.StartNew(() => BobAction(1));
+                        Task newTask = Task.Factory.StartNew(() => BobAction(1));
                         newTask.Wait();
                         newTask.Dispose();
                         if (Draw.TableZero(Table))
@@ -930,7 +1029,10 @@ namespace ChessFirst
                             if (ArtificialInteligenceMove.UpdateIsRunning)
                             {
                                 if (AllDraw.CalIdle == 0)
+                                {
                                     return 0;
+                                }
+
                                 if (AllDraw.CalIdle == 2)
                                 {
                                     AllDraw.CalIdle = 1;
@@ -939,7 +1041,9 @@ namespace ChessFirst
                             }
                             else
                             if (!freezBoard)
+                            {
                                 return 0;
+                            }
                             //AllDraw.indexStep--;//no to axelirity speed
 
                             goto Again;
@@ -949,7 +1053,10 @@ namespace ChessFirst
                         if (ArtificialInteligenceMove.UpdateIsRunning)
                         {
                             if (AllDraw.CalIdle == 0)
+                            {
                                 return 0;
+                            }
+
                             if (AllDraw.CalIdle == 2)
                             {
                                 AllDraw.CalIdle = 1;
@@ -958,8 +1065,9 @@ namespace ChessFirst
                         }
                         else
                             if (!freezBoard)
+                        {
                             return 0;
-
+                        }
 
                         AllDraw.TableListAction.Add(CloneATable(Table));
                         R = new ChessFirstGeneticAlgorithm(false, false, false, false, false, false, false, true);
@@ -1003,9 +1111,13 @@ namespace ChessFirst
 
                             cl = 0;
                             if (AllDraw.OrderPlateDraw == 1)
+                            {
                                 ThinkingChessFirst.NoOfBoardMovedGray++;
+                            }
                             else
+                            {
                                 ThinkingChessFirst.NoOfBoardMovedBrown++;
+                            }
                         }
                         else
                         {
@@ -1051,13 +1163,15 @@ namespace ChessFirst
                         freezCalculation = true;
                         x1 = i;
                         y1 = j;
-                        this.pb[i, j].BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+                        pb[i, j].BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
                         cl = 1;
-                        Object oo = new Object();
+                        object oo = new object();
                         lock (oo)
                         {
                             if ((!Person) && i != -1 && j != -1)
+                            {
                                 ClickedSimAtClOne(i, j);
+                            }
                         }
                         return 0;
                     }
@@ -1068,8 +1182,13 @@ namespace ChessFirst
                         King king2 = new King(order, x1, y1);
                         int y, z;
                         for (y = 0; y < 8; y++)
+                        {
                             for (z = 0; z < 8; z++)
+                            {
                                 b.setSquare(brd.getInfo(y, z), y, z);
+                            }
+                        }
+
                         switch (m)
                         {
                             case 1:
@@ -1080,7 +1199,7 @@ namespace ChessFirst
                                     b.setSquare(1, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1115,7 +1234,7 @@ namespace ChessFirst
                                     b.setSquare(2, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1150,7 +1269,7 @@ namespace ChessFirst
                                     b.setSquare(3, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1185,7 +1304,7 @@ namespace ChessFirst
                                     b.setSquare(4, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1220,7 +1339,7 @@ namespace ChessFirst
                                     b.setSquare(5, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1245,7 +1364,7 @@ namespace ChessFirst
                                     b.setSquare(5, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1268,7 +1387,7 @@ namespace ChessFirst
                                     b.setSquare(5, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1300,7 +1419,7 @@ namespace ChessFirst
                                     b.setSquare(6, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1429,7 +1548,7 @@ namespace ChessFirst
                                     b.setSquare(7, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1464,7 +1583,7 @@ namespace ChessFirst
                                     b.setSquare(8, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1499,7 +1618,7 @@ namespace ChessFirst
                                     b.setSquare(9, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1534,7 +1653,7 @@ namespace ChessFirst
                                     b.setSquare(10, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1569,7 +1688,7 @@ namespace ChessFirst
                                     b.setSquare(11, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1595,7 +1714,7 @@ namespace ChessFirst
                                     b.setSquare(11, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1618,7 +1737,7 @@ namespace ChessFirst
                                     b.setSquare(11, i, j);
                                     if (king2.isChecked(b) == 1)
                                     {
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         cl = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
@@ -1651,7 +1770,7 @@ namespace ChessFirst
                                     if (king2.isChecked(b) == 1)
                                     {
                                         cl = 0;
-                                        this.pb[x1, y1].BorderStyle = 0;
+                                        pb[x1, y1].BorderStyle = 0;
                                         MessageBox.Show("شما نمی توانید این حرکت را انجام دهید");
                                         return 0;
                                     }
@@ -1776,7 +1895,7 @@ namespace ChessFirst
                         ChessFirst.ThinkingChessFirst.TableInitiationPreventionOfMultipleMove[x1, y1]++;
                         ChessFirst.ThinkingChessFirst.TableInitiationPreventionOfMultipleMove[i, j]++;
 
-                        this.pb[x1, y1].BorderStyle = 0;
+                        pb[x1, y1].BorderStyle = 0;
                         cl = 0;
                         string str, str2;
                         King king = new King(order, x1, y1);
@@ -1849,18 +1968,20 @@ namespace ChessFirst
                         {
                             if (brd.isMated(order) == 1)
                             {
-                                this.lb.Items.AddRange(new object[] { lstr });
+                                lb.Items.AddRange(new object[] { lstr });
                                 lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() + " Hu:" + AllDraw.Less.ToString();
                                 MessageBox.Show(str + " " + "مات شد");
                                 if (!ComStop)
+                                {
                                     Application.Exit();
+                                }
                             }
                             else
                             {
                                 lstr = str2 + " کیش  " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() + " Hu:" + AllDraw.Less.ToString();
-                                this.lb.Items.AddRange(new object[] { lstr });
+                                lb.Items.AddRange(new object[] { lstr });
                                 MessageBox.Show(" کیش توسط" + " " + str2);
-                                Object oo = new Object();
+                                object oo = new object();
                                 //tetrashop.ir
                                 lock (oo)
                                 {
@@ -1879,7 +2000,10 @@ namespace ChessFirst
                                         int Ord = OrderPlate;
                                         Color aa = Color.Gray;
                                         if (Ord == -1)
+                                        {
                                             aa = Color.Brown;
+                                        }
+
                                         bool B = AllDraw.Blitz;
                                         AllDraw.Blitz = false;
                                         //ChessFirst.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
@@ -1925,7 +2049,9 @@ namespace ChessFirst
                               if (Com && (order == 1))
                                     {
                                         if (ComStop && (!freezBoard))
+                                        {
                                             AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
+                                        }
 
                                         freezBoard = false;
 
@@ -1951,10 +2077,10 @@ namespace ChessFirst
                         else
                         {
                             lstr = str2 + " " + lstr + " " + lstr3 + (y1 + 1).ToString() + " To " + lstr2 + (j + 1).ToString() + " Hu:" + AllDraw.Less.ToString();
-                            this.lb.Items.AddRange(new object[] { lstr });
+                            lb.Items.AddRange(new object[] { lstr });
                         }
                         //tetrashop.ir
-                        Object oi = new Object();
+                        object oi = new object();
                         lock (oi)
                         {
                             if (Com && (order == 2))
@@ -1971,7 +2097,10 @@ namespace ChessFirst
                                 int Ord = OrderPlate;
                                 Color aa = Color.Gray;
                                 if (Ord == -1)
+                                {
                                     aa = Color.Brown;
+                                }
+
                                 bool B = AllDraw.Blitz;
                                 AllDraw.Blitz = false;
                                 //ChessFirst.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
@@ -2022,7 +2151,9 @@ namespace ChessFirst
                             {
 
                                 if (ComStop && (!freezBoard))
+                                {
                                     AllDraw.TableListAction.Add(CloneATable(brd.GetTable()));
+                                }
 
                                 freezBoard = false;
                                 Table = brd.GetTable();
@@ -2046,10 +2177,11 @@ namespace ChessFirst
                 return 0;
             }
         }
+
         //tetrashop.ir
-        void Wait()
+        private void Wait()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 PerformanceCounter myAppCpu =
@@ -2342,97 +2474,97 @@ namespace ChessFirst
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChessFirstForm));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.junglesMakeTreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialogjunglesMakeTree = new System.Windows.Forms.OpenFileDialog();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
+            menuStrip1 = new System.Windows.Forms.MenuStrip();
+            toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            treeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            junglesMakeTreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            AboutHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            openFileDialogjunglesMakeTree = new System.Windows.Forms.OpenFileDialog();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(500, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            toolStripMenuItem1,
+            helpToolStripMenuItem});
+            menuStrip1.Location = new System.Drawing.Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new System.Drawing.Size(500, 24);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
             //tetrashop.ir
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.treeViewToolStripMenuItem,
-            this.junglesMakeTreeToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
-            this.toolStripMenuItem1.Text = "View";
+            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            treeViewToolStripMenuItem,
+            junglesMakeTreeToolStripMenuItem});
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
+            toolStripMenuItem1.Text = "View";
             //tetrashop.ir
             // 
             // treeViewToolStripMenuItem
             // 
-            this.treeViewToolStripMenuItem.Name = "treeViewToolStripMenuItem";
-            this.treeViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.treeViewToolStripMenuItem.Text = "Tree View";
-            this.treeViewToolStripMenuItem.Click += new System.EventHandler(this.treeViewToolStripMenuItem_Click);
+            treeViewToolStripMenuItem.Name = "treeViewToolStripMenuItem";
+            treeViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            treeViewToolStripMenuItem.Text = "Tree View";
+            treeViewToolStripMenuItem.Click += new System.EventHandler(treeViewToolStripMenuItem_Click);
             //tetrashop.ir
             // 
             // junglesMakeTreeToolStripMenuItem
             // 
-            this.junglesMakeTreeToolStripMenuItem.Name = "junglesMakeTreeToolStripMenuItem";
-            this.junglesMakeTreeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.junglesMakeTreeToolStripMenuItem.Text = "Jungles make Tree";
-            this.junglesMakeTreeToolStripMenuItem.Click += new System.EventHandler(this.junglesMakeTreeToolStripMenuItem_Click);
+            junglesMakeTreeToolStripMenuItem.Name = "junglesMakeTreeToolStripMenuItem";
+            junglesMakeTreeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            junglesMakeTreeToolStripMenuItem.Text = "Jungles make Tree";
+            junglesMakeTreeToolStripMenuItem.Click += new System.EventHandler(junglesMakeTreeToolStripMenuItem_Click);
             //tetrashop.ir
             // 
             // helpToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutToolStripMenuItem,
-            this.AboutHelpToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.helpToolStripMenuItem.Text = "راهنما";
+            helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            AboutToolStripMenuItem,
+            AboutHelpToolStripMenuItem});
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            helpToolStripMenuItem.Text = "راهنما";
             //tetrashop.ir
             // 
             // AboutToolStripMenuItem
             // 
-            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.AboutToolStripMenuItem.Text = "درباره";
-            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            AboutToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            AboutToolStripMenuItem.Text = "درباره";
+            AboutToolStripMenuItem.Click += new System.EventHandler(AboutToolStripMenuItem_Click);
             //tetrashop.ir
             // 
             // AboutHelpToolStripMenuItem
             // 
-            this.AboutHelpToolStripMenuItem.Name = "AboutHelpToolStripMenuItem";
-            this.AboutHelpToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.AboutHelpToolStripMenuItem.Text = "درباره یاری ";
-            this.AboutHelpToolStripMenuItem.Click += new System.EventHandler(this.AboutHelpToolStripMenuItem_Click);
+            AboutHelpToolStripMenuItem.Name = "AboutHelpToolStripMenuItem";
+            AboutHelpToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            AboutHelpToolStripMenuItem.Text = "درباره یاری ";
+            AboutHelpToolStripMenuItem.Click += new System.EventHandler(AboutHelpToolStripMenuItem_Click);
             // 
             // openFileDialogjunglesMakeTree
             // 
-            this.openFileDialogjunglesMakeTree.Filter = "asd|*asd";
+            openFileDialogjunglesMakeTree.Filter = "asd|*asd";
             // 
             // ChessFirstForm
             // 
-            this.ClientSize = new System.Drawing.Size(500, 500);
-            this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "ChessFirstForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            ClientSize = new System.Drawing.Size(500, 500);
+            Controls.Add(menuStrip1);
+            Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            MainMenuStrip = menuStrip1;
+            Name = "ChessFirstForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Load += new System.EventHandler(Form1_Load);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
         //tetrashop.ir
@@ -2448,7 +2580,7 @@ namespace ChessFirst
         //tetrashop.ir
         public ChessFirst.AllDraw RootFound()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 try
@@ -2686,11 +2818,14 @@ namespace ChessFirst
                 }
     */
 
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 if (Draw == null)
+                {
                     return;
+                }
+
                 int Dummy = OrderPlate;
 
                 ChessFirst.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
@@ -2704,7 +2839,7 @@ namespace ChessFirst
 
 
 
-                Object O = new Object();
+                object O = new object();
                 lock (O)
                 {
                     FOUND = false;
@@ -2715,7 +2850,7 @@ namespace ChessFirst
                     //else
                     int Ord = OrderPlate;
                     AllDraw.OrderPlate = Ord;
-                    var output = Task.Factory.StartNew(() => Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND));
+                    Task<AllDraw> output = Task.Factory.StartNew(() => Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND));
                     output.Wait();
                     output.Dispose();
                     if (FOUND)
@@ -2741,7 +2876,10 @@ namespace ChessFirst
 
                         Color aa = Color.Gray;
                         if (Ord == -1)
+                        {
                             aa = Color.Brown;
+                        }
+
                         bool B = AllDraw.Blitz;
                         AllDraw.Blitz = false;
                         //ChessFirst.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount * 2;
@@ -2799,7 +2937,9 @@ namespace ChessFirst
                         {
                             Draw = THISStore;
                             if (MovmentsNumber == 1)
+                            {
                                 NotFoundBegin = true;
+                            }
 
                             bool LoadTree = true;
 
@@ -2824,7 +2964,10 @@ namespace ChessFirst
                 }
 
                 if (ChessFirst.AllDraw.FirstTraversalTree)
+                {
                     FOUND = false;
+                }
+
                 FOUNDI = FOUND;
                 THISI = THIS;
                 FirstI = First;
@@ -2832,10 +2975,11 @@ namespace ChessFirst
             }
 
         }
+
         //tetrashop.ir
-        bool DrawManagement()
+        private bool DrawManagement()
         {
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 SetAllDrawKind();
@@ -2843,7 +2987,7 @@ namespace ChessFirst
 
                 SetAllDrawKindString();
                 bool Found = false;
-                String P = Path.GetFullPath(path3);
+                string P = Path.GetFullPath(path3);
                 AllDrawReplacement = Path.Combine(P, AllDrawKindString);
                 Logger y = new Logger(AllDrawReplacement);
 
@@ -2852,13 +2996,16 @@ namespace ChessFirst
                 if (File.Exists(AllDrawReplacement))
                 {
                     if (AllDraw.HarasAct)
+                    {
                         File.Delete(AllDrawReplacement);
+                    }
                 }
                 if (File.Exists(AllDrawKindString))
                 {
                     if (AllDraw.HarasAct)
+                    {
                         File.Delete(AllDrawKindString);
-
+                    }
                 }
                 AllDraw.HarasAct = false;
 
@@ -2885,7 +3032,10 @@ namespace ChessFirst
                             else if (((new System.IO.FileInfo(AllDrawKindString).Length) > (new System.IO.FileInfo(AllDrawReplacement)).Length))
                             {
                                 if (File.Exists(AllDrawReplacement))
+                                {
                                     File.Delete(AllDrawReplacement);
+                                }
+
                                 File.Copy(AllDrawKindString, AllDrawReplacement);
                                 Found = true;
                             }
@@ -2893,7 +3043,10 @@ namespace ChessFirst
                         else
                         {
                             if (!Directory.Exists(Path.GetFullPath(path3)))
+                            {
                                 Directory.CreateDirectory(Path.GetFullPath(path3));
+                            }
+
                             File.Copy(AllDrawKindString, AllDrawReplacement);
                             Found = true;
                         }
@@ -2908,55 +3061,81 @@ namespace ChessFirst
                 else
                 {
                     if (File.Exists(AllDrawKindString))
+                    {
                         File.Delete(AllDrawKindString);
+                    }
+
                     if (File.Exists(AllDrawReplacement))
+                    {
                         File.Delete(AllDrawReplacement);
+                    }
+
                     NotFoundBegin = false;
                 }
                 return Found;
             }
         }
+
         //tetrashop.ir
-        void SetAllDrawKindString()
+        private void SetAllDrawKindString()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (AllDrawKind == 4)
+                {
                     AllDrawKindString = "F_AllDrawBT.asd";
+                }
                 else
                 if (AllDrawKind == 3)
+                {
                     AllDrawKindString = "F_AllDrawFFST.asd";
+                }
                 else
                 if (AllDrawKind == 2)
+                {
                     AllDrawKindString = "F_AllDrawFTSF.asd";
+                }
                 else
                 if (AllDrawKind == 1)
+                {
                     AllDrawKindString = "F_AllDrawFFSF.asd";
-
+                }
             }
         }
+
         //tetrashop.ir
-        void SetAllDrawKind()
+        private void SetAllDrawKind()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (UsePenaltyRegardMechnisam && AStarGreedyHeuristic)
+                {
                     AllDrawKind = 4;
+                }
                 else
           if ((!UsePenaltyRegardMechnisam) && AStarGreedyHeuristic)
+                {
                     AllDrawKind = 3;
+                }
+
                 if (UsePenaltyRegardMechnisam && (!AStarGreedyHeuristic))
+                {
                     AllDrawKind = 2;
+                }
+
                 if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHeuristic))
+                {
                     AllDrawKind = 1;
+                }
             }
         }
+
         //tetrashop.ir
-        void SetDrawFound()
+        private void SetDrawFound()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 FOUND = false;
@@ -2967,7 +3146,7 @@ namespace ChessFirst
         //tetrashop.ir
         private void treeViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 try
@@ -3004,7 +3183,9 @@ namespace ChessFirst
                     Application.Exit();
                 }
                 else
+                {
                     MessageBox.Show("هیچ تغییری ایجاد نشد.");
+                }
             }
         }
     }

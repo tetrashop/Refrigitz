@@ -2,13 +2,11 @@ using System.Windows.Forms;
 
 namespace ChessCom
 {
-
-
-    static class Program
+    internal static class Program
     {
         //Main Programm.
 
-        static void Main()
+        private static void Main()
         {
             Application.Run(new ChessComForm());
         }

@@ -1,13 +1,12 @@
 //
 //www.IranProject.Ir
 //
-using System;
 namespace RefrigtzChessPortable
 {
     /// <summary>
     /// Summary description for Board.
     /// </summary>
-    public class Board : System.Object
+    public class Board : object
     {
         private int[,] square;
 
@@ -37,150 +36,238 @@ namespace RefrigtzChessPortable
             square[6, 7] = 8;//White knight
             square[7, 7] = 7;//White castle
             for (i = 0; i < 8; i++)
+            {
                 for (j = 2; j < 6; j++)
+                {
                     square[i, j] = 0;//Empty
+                }
+            }
         }
         public void Setsqure(int[,] Table)
         {
             square = new int[8, 8];
 
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == -1)
+                    {
                         square[i, j] = 6;
+                    }
                     else
                     if (Table[i, j] == 1)
+                    {
                         square[i, j] = 12;
+                    }
                     else
                     if (Table[i, j] == 2)
+                    {
                         square[i, j] = 9;
+                    }
                     else
                     if (Table[i, j] == -2)
+                    {
                         square[i, j] = 3;
+                    }
                     else
                     if (Table[i, j] == -3)
+                    {
                         square[i, j] = 2;
+                    }
                     else
                     if (Table[i, j] == 3)
+                    {
                         square[i, j] = 8;
+                    }
                     else
                     if (Table[i, j] == 4)
+                    {
                         square[i, j] = 7;
+                    }
                     else
                     if (Table[i, j] == -4)
+                    {
                         square[i, j] = 1;
+                    }
                     else
                     if (Table[i, j] == 5)
+                    {
                         square[i, j] = 10;
+                    }
                     else
                   if (Table[i, j] == -5)
+                    {
                         square[i, j] = 4;
+                    }
                     else
                   if (Table[i, j] == -6)
+                    {
                         square[i, j] = 5;
+                    }
                     else
                     if (Table[i, j] == 6)
+                    {
                         square[i, j] = 11;
+                    }
                     else
+                    {
                         square[i, j] = 0;
-
+                    }
                 }
-
+            }
         }
         public int[,] GetTable()
         {
             int[,] Table = new int[8, 8];
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (square[i, j] == 6)
+                    {
                         Table[i, j] = -1;
+                    }
                     else
                           if (square[i, j] == 12)
+                    {
                         Table[i, j] = 1;
+                    }
                     else
                           if (square[i, j] == 9)
+                    {
                         Table[i, j] = 2;
+                    }
                     else
                           if (square[i, j] == 2)
+                    {
                         Table[i, j] = -3;
+                    }
                     else
                           if (square[i, j] == 3)
+                    {
                         Table[i, j] = -2;
+                    }
                     else
                           if (square[i, j] == 8)
+                    {
                         Table[i, j] = 3;
+                    }
                     else
                           if (square[i, j] == 7)
+                    {
                         Table[i, j] = 4;
+                    }
                     else
                           if (square[i, j] == 1)
+                    {
                         Table[i, j] = -4;
+                    }
                     else
                           if (square[i, j] == 10)
+                    {
                         Table[i, j] = 5;
+                    }
                     else
                         if (square[i, j] == 4)
+                    {
                         Table[i, j] = -5;
+                    }
                     else
                         if (square[i, j] == 5)
+                    {
                         Table[i, j] = -6;
+                    }
                     else
                           if (square[i, j] == 11)
+                    {
                         Table[i, j] = 6;
+                    }
                     else
+                    {
                         Table[i, j] = 0;
+                    }
                 }
+            }
+
             return Table;
         }
         public int[,] GetSqure(int[,] Table)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 int[,] square = new int[8, 8];
                 for (int i = 0; i < 8; i++)
+                {
                     for (int j = 0; j < 8; j++)
                     {
                         if (Table[i, j] == -1)
+                        {
                             square[i, j] = 6;
+                        }
                         else
                     if (Table[i, j] == 1)
+                        {
                             square[i, j] = 12;
+                        }
                         else
                     if (Table[i, j] == 2)
+                        {
                             square[i, j] = 9;
+                        }
                         else
                     if (Table[i, j] == -2)
+                        {
                             square[i, j] = 3;
+                        }
                         else
                     if (Table[i, j] == -3)
+                        {
                             square[i, j] = 2;
+                        }
                         else
                     if (Table[i, j] == 3)
+                        {
                             square[i, j] = 8;
+                        }
                         else
                     if (Table[i, j] == 4)
+                        {
                             square[i, j] = 7;
+                        }
                         else
                     if (Table[i, j] == -4)
+                        {
                             square[i, j] = 1;
+                        }
                         else
                     if (Table[i, j] == 5)
+                        {
                             square[i, j] = 10;
+                        }
                         else
                   if (Table[i, j] == -5)
+                        {
                             square[i, j] = 4;
+                        }
                         else
                   if (Table[i, j] == -6)
+                        {
                             square[i, j] = 5;
+                        }
                         else
                     if (Table[i, j] == 6)
+                        {
                             square[i, j] = 11;
+                        }
                         else
+                        {
                             square[i, j] = 0;
+                        }
                     }
+                }
+
                 return square;
             }
         }
@@ -192,9 +279,13 @@ namespace RefrigtzChessPortable
         public int getbcolor(int i, int j)
         {
             if ((i + j) % 2 == 0)
+            {
                 return 2;//back color of the board is white
+            }
             else
+            {
                 return 1;//back color of the board is black
+            }
         }
 
         public void setSquare(int value, int i, int j)
@@ -206,6 +297,7 @@ namespace RefrigtzChessPortable
             Point p = new Point();
             int i, j;
             for (i = 0; i < 8; i++)
+            {
                 for (j = 0; j < 8; j++)
                 {
                     if (getInfo(i, j) == (3 + (2 * color * color)))
@@ -215,12 +307,17 @@ namespace RefrigtzChessPortable
                         return p;
                     }
                 }
+            }
 
             string str;
             if (color == 1)
+            {
                 str = "White ";
+            }
             else
+            {
                 str = "Black ";
+            }
 
             System.Windows.Forms.MessageBox.Show(str);
             return p;
@@ -233,9 +330,13 @@ namespace RefrigtzChessPortable
             if (king.isChecked(this) == 1)
             {
                 if (canDefend(color) == 1)
+                {
                     return 0;
+                }
                 else
+                {
                     return 1;
+                }
             }
             return 0;
         }
@@ -250,11 +351,17 @@ namespace RefrigtzChessPortable
             Queen queen = new Queen(color, 0, 0);
             int i, j, m, n, f = 0;
             for (i = 0; i < 8; i++)
+            {
                 for (j = 0; j < 8; j++)
-                    b.setSquare(this.getInfo(i, j), i, j);
+                {
+                    b.setSquare(getInfo(i, j), i, j);
+                }
+            }
+
             Point p = b.searchKing(color);
             King king = new King(color, p.x, p.y);
             for (i = 0; i < 8; i++)
+            {
                 for (j = 0; j < 8; j++)
                 {
                     if (b.getInfo(i, j) == 0)
@@ -265,6 +372,7 @@ namespace RefrigtzChessPortable
                         castle.x = i;
                         castle.y = j;
                         for (m = 0; m < 8; m++)
+                        {
                             for (n = 0; n < 8; n++)
                             {
                                 if (castle.move(b, m, n) == 1)
@@ -281,12 +389,14 @@ namespace RefrigtzChessPortable
 
                                 }
                             }
+                        }
                     }
                     else if (b.getInfo(i, j) == (color == 1 ? 2 : 8))
                     {
                         knight.x = i;
                         knight.y = j;
                         for (m = 0; m < 8; m++)
+                        {
                             for (n = 0; n < 8; n++)
                             {
                                 if (knight.move(b, m, n) == 1)
@@ -302,12 +412,14 @@ namespace RefrigtzChessPortable
                                     b.setSquare(f, m, n);
                                 }
                             }
+                        }
                     }
                     else if (b.getInfo(i, j) == (color == 1 ? 3 : 9))
                     {
                         bishop.x = i;
                         bishop.y = j;
                         for (m = 0; m < 8; m++)
+                        {
                             for (n = 0; n < 8; n++)
                             {
                                 if (bishop.move(b, m, n) == 1)
@@ -323,12 +435,14 @@ namespace RefrigtzChessPortable
                                     b.setSquare(f, m, n);
                                 }
                             }
+                        }
                     }
                     else if (b.getInfo(i, j) == (color == 1 ? 4 : 10))
                     {
                         queen.x = i;
                         queen.y = j;
                         for (m = 0; m < 8; m++)
+                        {
                             for (n = 0; n < 8; n++)
                             {
                                 if (queen.move(b, m, n) == 1)
@@ -344,11 +458,13 @@ namespace RefrigtzChessPortable
                                     b.setSquare(f, m, n);
                                 }
                             }
+                        }
                     }
 
                     else if (b.getInfo(i, j) == (color == 1 ? 5 : 11))
                     {
                         for (m = 0; m < 8; m++)
+                        {
                             for (n = 0; n < 8; n++)
                             {
                                 if (king.move(b, m, n) == 1)
@@ -368,6 +484,7 @@ namespace RefrigtzChessPortable
                                     king.y = p.y;
                                 }
                             }
+                        }
                     }
 
                     else if (b.getInfo(i, j) == (color == 1 ? 6 : 12))
@@ -375,6 +492,7 @@ namespace RefrigtzChessPortable
                         pawn.x = i;
                         pawn.y = j;
                         for (m = 0; m < 8; m++)
+                        {
                             for (n = 0; n < 8; n++)
                             {
                                 if (pawn.move(b, m, n) == 1)
@@ -390,8 +508,11 @@ namespace RefrigtzChessPortable
                                     b.setSquare(f, m, n);
                                 }
                             }
+                        }
                     }
                 }
+            }
+
             return 0;
         }
     }

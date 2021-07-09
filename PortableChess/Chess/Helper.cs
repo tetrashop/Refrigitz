@@ -3,8 +3,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 internal static class Helper
 {
-    const int ERROR_SHARING_VIOLATION = 32;
-    const int ERROR_LOCK_VIOLATION = 33;
+    private const int ERROR_SHARING_VIOLATION = 32;
+    private const int ERROR_LOCK_VIOLATION = 33;
 
     private static bool IsFileLocked(Exception exception)
     {
@@ -26,7 +26,10 @@ internal static class Helper
             //are left undisposed.
             using (FileStream fileStream = File.Open(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
             {
-                if (fileStream != null) fileStream.Close();  //This line is me being overly cautious, fileStream will never be null unless an exception occurs... and I know the "using" does it but its helpful to be explicit - especially when we encounter errors - at least for me anyway!
+                if (fileStream != null)
+                {
+                    fileStream.Close();  //This line is me being overly cautious, fileStream will never be null unless an exception occurs... and I know the "using" does it but its helpful to be explicit - especially when we encounter errors - at least for me anyway!
+                }
             }
         }
         catch (IOException ex)

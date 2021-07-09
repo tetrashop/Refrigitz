@@ -7,12 +7,10 @@ using System.Windows.Forms;
 
 namespace ChessFirst
 {
-
-
-    static class Program
+    internal static class Program
     {
         //Main Programm.
-        static void CoordinationDataStructures()
+        private static void CoordinationDataStructures()
         {
             /*Not to be outshined, our concurrent collections and synchronization
              primitives have also been improved.This again follows the principle
@@ -29,9 +27,9 @@ namespace ChessFirst
                 while (!AllDraw.ThinkingRunInBothSide) { Thread.Sleep(1); }
 
 
-                var cd = new ConcurrentDictionary<int, int>();
+                ConcurrentDictionary<int, int> cd = new ConcurrentDictionary<int, int>();
 
-                var sw = Stopwatch.StartNew();
+                Stopwatch sw = Stopwatch.StartNew();
 
                 cd.TryAdd(42, 0);
 
@@ -48,7 +46,8 @@ namespace ChessFirst
             }
 
         }
-        static void TaskParallelLibrary()
+
+        private static void TaskParallelLibrary()
 
         {
             /*Just by upgrading from .NET 4 to.NET 4.5, on the machine on which I’m 
@@ -56,7 +55,7 @@ namespace ChessFirst
              a microbenchmark that’s purely measuring a particular kind of overhead, 
              but nevertheless it should give you a glimpse into the kind of improvements
              that exist in the runtime.*/
-            var sw = new Stopwatch();
+            Stopwatch sw = new Stopwatch();
 
             while (true)
 
@@ -71,17 +70,18 @@ namespace ChessFirst
 
 
 
-                var tcs = new TaskCompletionSource<object>();
+                TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
 
-                var t = tcs.Task;
+                Task<object> t = tcs.Task;
 
                 sw.Restart();
 
                 for (int i = 0; i < 1000000; i++)
-
+                {
                     t = t.ContinueWith(_ => (object)null);
+                }
 
-                var elapsed = sw.Elapsed;
+                TimeSpan elapsed = sw.Elapsed;
 
                 GC.KeepAlive(tcs);
 
@@ -93,7 +93,7 @@ namespace ChessFirst
 
         }
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             /* Task ttap = new Task(new Action(TaskParallelLibrary));
              ttap.Start();

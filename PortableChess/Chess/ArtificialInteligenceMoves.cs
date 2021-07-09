@@ -8,34 +8,34 @@ public class ArtificialInteligenceMove
 {
     public static bool UpdateIsRunning = true;
     public static ArtificialInteligenceMove tta;
-    int LevelMul = 1;
-    int Order = 1;
+    private int LevelMul = 1;
+    private readonly int Order = 1;
     public int x, y, x1, y1;
-
-    RefrigtzChessPortableForm t = null;
-
-    bool Idle = false;
+    private readonly RefrigtzChessPortableForm t = null;
+    private bool Idle = false;
     public static bool IdleProgress = true;
     public ArtificialInteligenceMove(RefrigtzChessPortableForm tt)
     {
         //Awake ();
         t = tt;
-        var ttt = new Thread(new ThreadStart(ThinkingIdle));
+        Thread ttt = new Thread(new ThreadStart(ThinkingIdle));
         ttt.Start();
 
         //ttt.Join ();
 
     }
 
-
-    Color OrderColor(int Ord)
+    private Color OrderColor(int Ord)
     {
-        Object O = new Object();
+        object O = new object();
         lock (O)
         {
             Color a = Color.Gray;
             if (Ord == -1)
+            {
                 a = Color.Brown;
+            }
+
             return a;
         }
     }
@@ -67,7 +67,7 @@ public class ArtificialInteligenceMove
                             AllDraw.MaxAStarGreedy = AllDraw.PlatformHelperProcessorCount * LevelMul;
                             AllDraw.StoreInitMaxAStarGreedy = t.Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
 
-                            var arrayA = Task.Factory.StartNew(() => t.Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 1, 4, OrderColor(t.Draw.OrderP), CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
+                            Task<AllDraw> arrayA = Task.Factory.StartNew(() => t.Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 1, 4, OrderColor(t.Draw.OrderP), CloneATable(t.brd.GetTable()), t.Draw.OrderP, false, false, 0));
                             //var arrayA =Task.Factory.StartNew(() =>	t.Play(-1,-1));
                             arrayA.Wait();
                             object i = new object();
@@ -125,15 +125,20 @@ public class ArtificialInteligenceMove
 
         }
     }
-    int[,] CloneATable(int[,] Tab)
+
+    private int[,] CloneATable(int[,] Tab)
     {
         object O = new object();
         lock (O)
         {
             int[,] Tabl = new int[8, 8];
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
                     Tabl[i, j] = Tab[i, j];
+                }
+            }
 
             return Tabl;
         }

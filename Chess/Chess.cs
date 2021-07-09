@@ -12,25 +12,26 @@ namespace Chess
 {
     public partial class Chess : Form
     {
-        bool GaveOver = false;
+        private bool GaveOver = false;
+
         // PgnReader reader = null;
         // Database gameDb = null;
-        PGNToArraycs gameDb = null;
-
-        String[] SS;
-        String PgnGames = "";
-        RefrigtzChessPortable.RefrigtzChessPortableForm S = null;
-        ChessFirst.ChessFirstForm F = null;
+        private PGNToArraycs gameDb = null;
+        private readonly string[] SS;
+        private string PgnGames = "";
+        private RefrigtzChessPortable.RefrigtzChessPortableForm S = null;
+        private ChessFirst.ChessFirstForm F = null;
         public bool W = true;
         public bool B = true;
-        ChessCom.ChessComForm BB = null;
+        private ChessCom.ChessComForm BB = null;
         public static ChessCom.ChessComForm BBS = null;
         public bool frize = true;
-        static void Log(Exception ex)
+
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -86,7 +87,8 @@ namespace Chess
             }
             W = true;
         }
-        void Play()
+
+        private void Play()
         {
             do
             {
@@ -179,28 +181,39 @@ namespace Chess
 
             } while (true);
         }
-        String Convert(String src)
+
+        private string Convert(string src)
         {
-            String des = "";
+            string des = "";
 
             if (src.Length == 2)
+            {
                 des = ConLen2(src);
+            }
             else
                 if (src.Length == 3)
+            {
                 des = ConLen3(src);
+            }
             else
                 if (src.Length == 4)
+            {
                 des = ConLen4(src);
+            }
             else
                 if (src.Length == 5)
+            {
                 des = ConLen5(src);
+            }
+
             return des;
 
 
         }
-        int SetRowColumn(String A)
+
+        private int SetRowColumn(string A)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
 
@@ -208,133 +221,205 @@ namespace Chess
 
 
                 if (A[0] == 'a')
+                {
                     BBS.rf = 0;
+                }
                 else
                     if (A[0] == 'b')
+                {
                     BBS.rf = 1;
+                }
                 else
                         if (A[0] == 'c')
+                {
                     BBS.rf = 2;
+                }
                 else
                             if (A[0] == 'd')
+                {
                     BBS.rf = 3;
+                }
                 else
                                 if (A[0] == 'e')
+                {
                     BBS.rf = 4;
+                }
                 else
                                     if (A[0] == 'f')
+                {
                     BBS.rf = 5;
+                }
                 else
                                         if (A[0] == 'g')
+                {
                     BBS.rf = 6;
+                }
                 else
                                             if (A[0] == 'h')
+                {
                     BBS.rf = 7;
+                }
                 /* if(!Sugar)
-                 BBS.cf = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
-                 else
-                  */
+BBS.cf = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
+else
+ */
                 BBS.cf = ((System.Convert.ToInt32(A[1].ToString())));
 
                 if (A[2] == 'a')
+                {
                     BBS.rs = 0;
+                }
                 else
                     if (A[2] == 'b')
+                {
                     BBS.rs = 1;
+                }
                 else
                         if (A[2] == 'c')
+                {
                     BBS.rs = 2;
+                }
                 else
                             if (A[2] == 'd')
+                {
                     BBS.rs = 3;
+                }
                 else
                                 if (A[2] == 'e')
+                {
                     BBS.rs = 4;
+                }
                 else
                                     if (A[2] == 'f')
+                {
                     BBS.rs = 5;
+                }
                 else
                                         if (A[2] == 'g')
+                {
                     BBS.rs = 6;
+                }
                 else
                                             if (A[2] == 'h')
+                {
                     BBS.rs = 7;
+                }
                 /*if (!Sugar)
-                     BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-                 else*/
+    BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+else*/
                 BBS.cs = ((System.Convert.ToInt32(A[3].ToString())));
 
                 if (A.Length == 5)
                 {
                     if (A[4] == 'p')
+                    {
                         return -1;
+                    }
                     else
                         if (A[4] == 'n')
+                    {
                         return -3;
+                    }
                     else
                             if (A[4] == 'b')
+                    {
                         return -2;
+                    }
                     else
                                 if (A[4] == 'r')
+                    {
                         return -4;
+                    }
                     else
                                     if (A[4] == 'q')
+                    {
                         return -5;
+                    }
                     else
                                         if (A[4] == 'P')
+                    {
                         return 1;
+                    }
                     else
                                             if (A[4] == 'N')
+                    {
                         return 3;
+                    }
                     else
                                                 if (A[4] == 'B')
+                    {
                         return 2;
+                    }
                     else
                                                     if (A[4] == 'R')
+                    {
                         return 4;
+                    }
                     else
                                                         if (A[4] == 'Q')
+                    {
                         return 5;
+                    }
                 }
                 else
              if (BBS.rf > -1 && BBS.cf > -1 && BBS.rs > -1 && BBS.cs > -1)
+                {
                     if (BBS.rf < 8 && BBS.cf < 8 && BBS.rs < 8 && BBS.cs < 8)
+                    {
                         return 10;
-
-
+                    }
+                }
 
                 return -11;
 
             }
         }
+
         //pawn orthogonal move one or to depend of priority
-        String ConLen2(String src)
+        private string ConLen2(string src)
         {
-            String des = "";
+            string des = "";
             int column = -1;
             if (src[0] == 'a')
+            {
                 column = 0;
+            }
             else
                            if (src[0] == 'b')
+            {
                 column = 1;
+            }
             else
                                if (src[0] == 'c')
+            {
                 column = 2;
+            }
             else
                                    if (src[0] == 'd')
+            {
                 column = 3;
+            }
             else
                                        if (src[0] == 'e')
+            {
                 column = 4;
+            }
             else
                                            if (src[0] == 'f')
+            {
                 column = 5;
+            }
             else
                                                if (src[0] == 'g')
+            {
                 column = 6;
+            }
             else
                                                    if (src[0] == 'h')
+            {
                 column = 7;
+            }
+
             string srca = "";
             if (column != -1)
             {
@@ -391,81 +476,122 @@ namespace Chess
             return des;
 
         }
+
         //common non pawn objects move
-        String ConLen3(String des, int Dublicated = -1)
+        private string ConLen3(string des, int Dublicated = -1)
         {
-            String src = "";
+            string src = "";
 
             if (des[2] == '#')
             {
                 src = ConLen2(des.Remove(2, 1));
                 if (src != "")
+                {
                     GaveOver = true;
-
+                }
             }
             if (des[2] == '+')
+            {
                 src = ConLen2(des.Remove(2, 1));
+            }
 
             if (src != "")
+            {
                 return src;
+            }
 
             //small castling
             if (des == "O-O" || des == "o-o")
             {
                 if (W)
+                {
                     return "e7g7";
+                }
                 else
+                {
                     return "e0g0";
+                }
             }
             int Kind = 0;
             if (des[0] == 'K')
+            {
                 Kind = 6;
+            }
             else
                 if (des[0] == 'Q')
+            {
                 Kind = 5;
+            }
             else
                 if (des[0] == 'R')
+            {
                 Kind = 4;
+            }
             else
                 if (des[0] == 'N')
+            {
                 Kind = 3;
+            }
             else
                 if (des[0] == 'B')
+            {
                 Kind = 2;
+            }
             else
+            {
                 Kind = 1;
+            }
 
             int oBJ = Kind;
             if (B)
+            {
                 oBJ *= -1;
+            }
+
             int row = -1, column = -1;
             //destination
             if (des[1] == 'a')
+            {
                 row = 0;
+            }
             else
                 if (des[1] == 'b')
+            {
                 row = 1;
+            }
             else
                     if (des[1] == 'c')
+            {
                 row = 2;
+            }
             else
                         if (des[1] == 'd')
+            {
                 row = 3;
+            }
             else
                             if (des[1] == 'e')
+            {
                 row = 4;
+            }
             else
                                 if (des[1] == 'f')
+            {
                 row = 5;
+            }
             else
                                     if (des[1] == 'g')
+            {
                 row = 6;
+            }
             else
                                         if (des[1] == 'h')
+            {
                 row = 7;
+            }
             /*if (!Sugar)
-                 BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-             else*/
+    BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+else*/
             column = 7 - ((System.Convert.ToInt32(des[2].ToString())) - 1);
 
 
@@ -488,7 +614,9 @@ namespace Chess
                         if (Dublicated != -1)
                         {
                             if (i != Dublicated)
+                            {
                                 continue;
+                            }
                         }
                         int[,] tab = CloneATable(S.brd.GetTable());
                         ChessFirst.ChessRules C = new ChessFirst.ChessRules(0, false, false, false, false, false, false, false, true, Kind, tab, ord, i, j);
@@ -515,34 +643,51 @@ namespace Chess
                     }
                 }
                 if (found)
+                {
                     break;
+                }
             }
             if (found)
             {
                 if (r == 0)
+                {
                     src = "a";
+                }
                 else
                   if (r == 1)
+                {
                     src = "b";
+                }
                 else
                       if (r == 2)
+                {
                     src = "c";
+                }
                 else
                           if (r == 3)
+                {
                     src = "d";
+                }
                 else
                               if (r == 4)
+                {
                     src = "e";
+                }
                 else
                                   if (r == 5)
+                {
                     src = "f";
+                }
                 else
                                       if (r == 6)
+                {
                     src = "g";
+                }
                 else
                                           if (r == 7)
+                {
                     src = "h";
-
+                }
 
                 src += c.ToString();
                 src += des[1].ToString() + column.ToString();
@@ -550,41 +695,60 @@ namespace Chess
             return src;
 
         }
-        String ConLen4(String des)
+
+        private string ConLen4(string des)
         {
-            String src = "";
+            string src = "";
             int sc = -1;
             if (des[1] != 'x' && (des[3] != '+' && des[3] != '#'))
             {
                 if (des.ToUpper()[1] == 'A')
+                {
                     sc = 0;
+                }
                 else
                                if (des.ToUpper()[1] == 'B')
+                {
                     sc = 1;
+                }
                 else
                                    if (des.ToUpper()[1] == 'C')
+                {
                     sc = 2;
+                }
                 else
                                        if (des.ToUpper()[1] == 'D')
+                {
                     sc = 3;
+                }
                 else
                                            if (des.ToUpper()[1] == 'E')
+                {
                     sc = 4;
+                }
                 else
                                                if (des.ToUpper()[1] == 'F')
+                {
                     sc = 5;
+                }
                 else
                                                    if (des.ToUpper()[1] == 'G')
+                {
                     sc = 6;
+                }
                 else
                                                        if (des.ToUpper()[1] == 'H')
+                {
                     sc = 7;
+                }
 
                 if (sc != -1)
                 {
                     src = ConLen3(des.Remove(1, 1), sc);
                     if (src != "")
+                    {
                         return src;
+                    }
                 }
             }
             else
@@ -595,29 +759,44 @@ namespace Chess
                     {
                         sc = -1;
                         if (des[0] == 'a')
+                        {
                             sc = 0;
+                        }
                         else
                                    if (des[0] == 'b')
+                        {
                             sc = 1;
+                        }
                         else
                                        if (des[0] == 'c')
+                        {
                             sc = 2;
+                        }
                         else
                                            if (des[0] == 'd')
+                        {
                             sc = 3;
+                        }
                         else
                                                if (des[0] == 'e')
+                        {
                             sc = 4;
+                        }
                         else
                                                    if (des[0] == 'f')
+                        {
                             sc = 5;
+                        }
                         else
                                                        if (des[0] == 'g')
+                        {
                             sc = 6;
+                        }
                         else
                                                            if (des[0] == 'h')
+                        {
                             sc = 7;
-
+                        }
 
                         int row = 7 - (System.Math.Abs(System.Convert.ToInt32(des[3].ToString())) - 1);
                         int r = -1;
@@ -670,28 +849,39 @@ namespace Chess
 
             }
             if (src != "")
+            {
                 return src;
+            }
 
             if (des[3] == '#')
             {
                 src = ConLen3(des.Remove(3, 1));
                 if (src != "")
+                {
                     GaveOver = true;
+                }
             }
             if (des[3] == '+')
+            {
                 src = ConLen3(des.Remove(3, 1));
+            }
 
             if (src != "")
+            {
                 return src;
+            }
             //when non pawn hit enemy
             if (des[1] == 'x')
+            {
                 src = ConLen3(des.Remove(1, 1), 8);
+            }
 
             return src;
         }
-        String ConLen5(String des)
+
+        private string ConLen5(string des)
         {
-            String src = "";
+            string src = "";
             if (des[4] == '#')
             {
 
@@ -701,7 +891,9 @@ namespace Chess
             }
 
             if (src != "")
+            {
                 return src;
+            }
 
             if (des[4] == '+')
             {
@@ -711,30 +903,41 @@ namespace Chess
                 src = ConLen4(src);
             }
             if (src != "")
+            {
                 return src;
+            }
 
             if (des[4] == '#')
             {
                 src = ConLen4(des.Remove(4, 1));
                 if (src != "")
+                {
                     GaveOver = true;
+                }
             }
 
             if (src != "")
+            {
                 return src;
+            }
             //big castling
             if (des == "O-O-O" || des == "o-o-o")
             {
                 if (W)
+                {
                     src = "e7c7";
+                }
                 else
+                {
                     src = "e0c0";
+                }
             }
             return src;
         }
-        String ConLen6(String des)
+
+        private string ConLen6(string des)
         {
-            String src = "";
+            string src = "";
             if (des[5] == '#')
             {
 
@@ -743,12 +946,16 @@ namespace Chess
                 src = ConLen5(src);
 
                 if (src != "")
+                {
                     GaveOver = true;
+                }
             }
 
 
             if (src != "")
+            {
                 return src;
+            }
 
             if (des[5] == '+')
             {
@@ -759,15 +966,16 @@ namespace Chess
                 src = ConLen5(src);
 
                 if (src != "")
+                {
                     return src;
-
+                }
             }
             return src;
         }
 
-        int SetRowColumnA(String A)
+        private int SetRowColumnA(string A)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
 
@@ -775,21 +983,33 @@ namespace Chess
                 {
                     int Obj = 0;
                     if (A[1] == 'K')
+                    {
                         Obj = 6;
+                    }
                     else
                     if (A[1] == 'Q')
+                    {
                         Obj = 5;
+                    }
                     else
                     if (A[1] == 'R')
+                    {
                         Obj = 4;
+                    }
                     else
                     if (A[1] == 'N')
+                    {
                         Obj = 3;
+                    }
                     else
                      if (A[1] == 'B')
+                    {
                         Obj = 2;
+                    }
                     else
+                    {
                         Obj = 1;
+                    }
 
                     A = A.Remove('+');
 
@@ -801,31 +1021,47 @@ namespace Chess
 
                             //destination
                             if (A[1] == 'a')
+                            {
                                 BBS.rs = 0;
+                            }
                             else
                                 if (A[1] == 'b')
+                            {
                                 BBS.rs = 1;
+                            }
                             else
                                     if (A[1] == 'c')
+                            {
                                 BBS.rs = 2;
+                            }
                             else
                                         if (A[1] == 'd')
+                            {
                                 BBS.rs = 3;
+                            }
                             else
                                             if (A[1] == 'e')
+                            {
                                 BBS.rs = 4;
+                            }
                             else
                                                 if (A[1] == 'f')
+                            {
                                 BBS.rs = 5;
+                            }
                             else
                                                     if (A[1] == 'g')
+                            {
                                 BBS.rs = 6;
+                            }
                             else
                                                         if (A[1] == 'h')
+                            {
                                 BBS.rs = 7;
+                            }
                             /*if (!Sugar)
-                                 BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-                             else*/
+    BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+else*/
                             BBS.cs = ((System.Convert.ToInt32(A[1]) - 48) - 1);
 
 
@@ -863,7 +1099,9 @@ namespace Chess
                                         return 1;
                                     }
                                     else
+                                    {
                                         break;
+                                    }
                                 }
                             }
                             for (int i = 0; i < BBS.cs; i++)
@@ -882,7 +1120,9 @@ namespace Chess
                                         return 1;
                                     }
                                     else
+                                    {
                                         break;
+                                    }
                                 }
                                 /*else
                                 if (B)
@@ -909,31 +1149,47 @@ namespace Chess
                             if (A[1] == 'x')
                             {                         //destination
                                 if (A[1] == 'a')
+                                {
                                     BBS.rs = 0;
+                                }
                                 else
                                     if (A[1] == 'b')
+                                {
                                     BBS.rs = 1;
+                                }
                                 else
                                         if (A[1] == 'c')
+                                {
                                     BBS.rs = 2;
+                                }
                                 else
                                             if (A[1] == 'd')
+                                {
                                     BBS.rs = 3;
+                                }
                                 else
                                                 if (A[1] == 'e')
+                                {
                                     BBS.rs = 4;
+                                }
                                 else
                                                     if (A[1] == 'f')
+                                {
                                     BBS.rs = 5;
+                                }
                                 else
                                                         if (A[1] == 'g')
+                                {
                                     BBS.rs = 6;
+                                }
                                 else
                                                             if (A[1] == 'h')
+                                {
                                     BBS.rs = 7;
+                                }
                                 /*if (!Sugar)
-                                     BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-                                 else*/
+    BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+else*/
                                 BBS.cs = ((System.Convert.ToInt32(A[2]) - 48) - 1);
 
                                 //source
@@ -1016,60 +1272,94 @@ namespace Chess
                             {
                                 int src = -1;
                                 if (A[1] == 'a')
+                                {
                                     src = 0;
+                                }
                                 else
                                      if (A[1] == 'b')
+                                {
                                     src = 1;
+                                }
                                 else
                                          if (A[1] == 'c')
+                                {
                                     src = 2;
+                                }
                                 else
                                              if (A[1] == 'd')
+                                {
                                     src = 3;
+                                }
                                 else
                                                  if (A[1] == 'e')
+                                {
                                     src = 4;
+                                }
                                 else
                                                      if (A[1] == 'f')
+                                {
                                     src = 5;
+                                }
                                 else
                                                          if (A[1] == 'g')
+                                {
                                     src = 6;
+                                }
                                 else
                                                              if (A[1] == 'h')
+                                {
                                     src = 7;
+                                }
 
                                 //destination
                                 if (A[2] == 'a')
+                                {
                                     BBS.rs = 0;
+                                }
                                 else
                                     if (A[2] == 'b')
+                                {
                                     BBS.rs = 1;
+                                }
                                 else
                                         if (A[2] == 'c')
+                                {
                                     BBS.rs = 2;
+                                }
                                 else
                                             if (A[2] == 'd')
+                                {
                                     BBS.rs = 3;
+                                }
                                 else
                                                 if (A[2] == 'e')
+                                {
                                     BBS.rs = 4;
+                                }
                                 else
                                                     if (A[2] == 'f')
+                                {
                                     BBS.rs = 5;
+                                }
                                 else
                                                         if (A[2] == 'g')
+                                {
                                     BBS.rs = 6;
+                                }
                                 else
                                                             if (A[2] == 'h')
+                                {
                                     BBS.rs = 7;
+                                }
                                 /*if (!Sugar)
-                                     BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-                                 else*/
+    BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+else*/
                                 BBS.cs = ((System.Convert.ToInt32(A[3]) - 48) - 1);
 
                                 if (src == -1)
+                                {
                                     return -1;
+                                }
 
 
                                 //source
@@ -1149,62 +1439,96 @@ namespace Chess
                                 int src = -1;
                                 int srcObj = -1;
                                 if (A[3] == 'a')
+                                {
                                     srcObj = 0;
+                                }
                                 else
                                      if (A[3] == 'b')
+                                {
                                     srcObj = 1;
+                                }
                                 else
                                          if (A[3] == 'c')
+                                {
                                     srcObj = 2;
+                                }
                                 else
                                              if (A[3] == 'd')
+                                {
                                     srcObj = 3;
+                                }
                                 else
                                                  if (A[3] == 'e')
+                                {
                                     srcObj = 4;
+                                }
                                 else
                                                      if (A[3] == 'f')
+                                {
                                     srcObj = 5;
+                                }
                                 else
                                                          if (A[3] == 'g')
+                                {
                                     srcObj = 6;
+                                }
                                 else
                                                              if (A[3] == 'h')
+                                {
                                     srcObj = 7;
+                                }
 
 
 
                                 //destination
                                 if (A[1] == 'a')
+                                {
                                     BBS.rs = 0;
+                                }
                                 else
                                     if (A[1] == 'b')
+                                {
                                     BBS.rs = 1;
+                                }
                                 else
                                         if (A[1] == 'c')
+                                {
                                     BBS.rs = 2;
+                                }
                                 else
                                             if (A[1] == 'd')
+                                {
                                     BBS.rs = 3;
+                                }
                                 else
                                                 if (A[1] == 'e')
+                                {
                                     BBS.rs = 4;
+                                }
                                 else
                                                     if (A[1] == 'f')
+                                {
                                     BBS.rs = 5;
+                                }
                                 else
                                                         if (A[1] == 'g')
+                                {
                                     BBS.rs = 6;
+                                }
                                 else
                                                             if (A[1] == 'h')
+                                {
                                     BBS.rs = 7;
+                                }
                                 /*if (!Sugar)
-                                     BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-                                 else*/
+    BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+else*/
                                 BBS.cs = ((System.Convert.ToInt32(A[1]) - 48) - 1);
 
                                 if (srcObj == -1)
+                                {
                                     return -1;
+                                }
 
                                 Obj = srcObj;
 
@@ -1292,97 +1616,149 @@ namespace Chess
                     else
                     {
                         if (A[1] == 'a')
+                        {
                             BBS.rf = 0;
+                        }
                         else
                             if (A[1] == 'b')
+                        {
                             BBS.rf = 1;
+                        }
                         else
                                 if (A[1] == 'c')
+                        {
                             BBS.rf = 2;
+                        }
                         else
                                     if (A[1] == 'd')
+                        {
                             BBS.rf = 3;
+                        }
                         else
                                         if (A[1] == 'e')
+                        {
                             BBS.rf = 4;
+                        }
                         else
                                             if (A[1] == 'f')
+                        {
                             BBS.rf = 5;
+                        }
                         else
                                                 if (A[1] == 'g')
+                        {
                             BBS.rf = 6;
+                        }
                         else
                                                     if (A[1] == 'h')
+                        {
                             BBS.rf = 7;
+                        }
                         /* if(!Sugar)
-                         BBS.cf = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
-                         else
-                          */
+BBS.cf = 7 - ((System.Convert.ToInt32(A[1]) - 48) - 1);
+else
+ */
                         BBS.cf = ((System.Convert.ToInt32(A[1]) - 48) - 1);
 
                         if (A[1] == 'a')
+                        {
                             BBS.rs = 0;
+                        }
                         else
                             if (A[2] == 'b')
+                        {
                             BBS.rs = 1;
+                        }
                         else
                                 if (A[2] == 'c')
+                        {
                             BBS.rs = 2;
+                        }
                         else
                                     if (A[2] == 'd')
+                        {
                             BBS.rs = 3;
+                        }
                         else
                                         if (A[2] == 'e')
+                        {
                             BBS.rs = 4;
+                        }
                         else
                                             if (A[2] == 'f')
+                        {
                             BBS.rs = 5;
+                        }
                         else
                                                 if (A[2] == 'g')
+                        {
                             BBS.rs = 6;
+                        }
                         else
                                                     if (A[2] == 'h')
+                        {
                             BBS.rs = 7;
+                        }
                         /*if (!Sugar)
-                             BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
-                         else*/
+    BBS.cs = 7 - ((System.Convert.ToInt32(A[3]) - 48) - 1);
+else*/
                         BBS.cs = ((System.Convert.ToInt32(A[3]) - 48) - 1);
 
                         if (A.Length == 5)
                         {
                             if (A[4] == 'p')
+                            {
                                 return -1;
+                            }
                             else
                                 if (A[4] == 'n')
+                            {
                                 return -3;
+                            }
                             else
                                     if (A[4] == 'b')
+                            {
                                 return -2;
+                            }
                             else
                                         if (A[4] == 'r')
+                            {
                                 return -4;
+                            }
                             else
                                             if (A[4] == 'q')
+                            {
                                 return -5;
+                            }
                             else
                                                 if (A[4] == 'P')
+                            {
                                 return 1;
+                            }
                             else
                                                     if (A[4] == 'N')
+                            {
                                 return 3;
+                            }
                             else
                                                         if (A[4] == 'B')
+                            {
                                 return 2;
+                            }
                             else
                                                             if (A[4] == 'R')
+                            {
                                 return 4;
+                            }
                             else
                                                                 if (A[4] == 'Q')
+                            {
                                 return 5;
+                            }
                         }
                     }
                 }
-                catch (Exception t)
+                catch (Exception)
                 {
                     return -1;
                 }
@@ -1398,12 +1774,18 @@ namespace Chess
                 do
                 {
                     if (SS[I].Contains("1. "))
+                    {
                         break;
+                    }
+
                     I++;
                 } while (I < SS.Length);
                 if (I >= SS.Length)
+                {
                     return;
-                String A = SS[I];
+                }
+
+                string A = SS[I];
                 PgnGames = A;
                 I = 1;
                 do
@@ -1419,7 +1801,7 @@ namespace Chess
                             A = A.Replace(z, "");
 
                         }
-                        catch (Exception t)
+                        catch (Exception)
                         {
                             return;
                         }
@@ -1428,14 +1810,17 @@ namespace Chess
                             z = z.Remove(0, 2);
                             string b = z.Substring(2, z.IndexOf(" "));
                             if (SetRowColumn(b) == -1)
+                            {
                                 return;
+                            }
                         }
                         else
                         {
                             string b = z.Substring(1, z.IndexOf(" "));
                             if (SetRowColumn(b) == -1)
+                            {
                                 return;
-
+                            }
                         }
                     } while (BBS.rf == -1 || BBS.cf == -1 || BBS.rs == -1 || BBS.cs == -1);
                     if (W)
@@ -1498,7 +1883,10 @@ namespace Chess
             int I = 0, o = 0;
 
             if (System.IO.File.Exists("a.txt"))
+            {
                 System.IO.File.Delete("a.txt");
+            }
+
             System.IO.File.AppendAllText("a.txt", "PlayTeachPGNConvertedToChessBase started");
 
             do
@@ -1508,13 +1896,24 @@ namespace Chess
                 {
                     System.IO.File.AppendAllText("a.txt", "\r\r\rPlayTeachPGNConvertedToChessBase started #" + o.ToString());
                     if (F != null)
+                    {
                         F.Dispose();
+                    }
+
                     if (S != null)
+                    {
                         S.Dispose();
+                    }
+
                     if (BBS != null)
+                    {
                         BBS.Dispose();
-                    F = new ChessFirst.ChessFirstForm();
-                    F.ComStop = true;
+                    }
+
+                    F = new ChessFirst.ChessFirstForm
+                    {
+                        ComStop = true
+                    };
                     F.Show();
                     S = (new RefrigtzChessPortable.RefrigtzChessPortableForm());
                     S.ComStop = true;
@@ -1524,8 +1923,10 @@ namespace Chess
                     S.Hide();
                     W = true;
                     B = false;
-                    BBS = new ChessCom.ChessComForm();
-                    BBS.ComStop = true;
+                    BBS = new ChessCom.ChessComForm
+                    {
+                        ComStop = true
+                    };
                     BBS.Show();
                     GaveOver = false;
                     do { System.Threading.Thread.Sleep(2000); } while (!(BBS.LoadP));
@@ -1538,7 +1939,7 @@ namespace Chess
 
                     do
                     {
-                        String z = gameDb.Game[o].MoveText[I].ToString();
+                        string z = gameDb.Game[o].MoveText[I].ToString();
                         int k = 0;
                         do
                         {
@@ -1555,9 +1956,13 @@ namespace Chess
                                         z = z.Remove(0, z.IndexOf(' ') + 1);
                                         string b = "";
                                         if (z.Contains(' '))
+                                        {
                                             b = z.Substring(0, z.IndexOf(" "));
+                                        }
                                         else
+                                        {
                                             b = z.Substring(0, z.Length);
+                                        }
 
                                         System.IO.File.AppendAllText("a.txt", "\r" + b);
                                         string t = Convert(b);
@@ -1583,9 +1988,14 @@ namespace Chess
                                         z = z.Remove(0, z.IndexOf(' ') + 1);
                                         string b = "";
                                         if (z.Contains(' '))
+                                        {
                                             b = z.Substring(0, z.IndexOf(" "));
+                                        }
                                         else
+                                        {
                                             b = z.Substring(0, z.Length);
+                                        }
+
                                         System.IO.File.AppendAllText("a.txt", "\r" + b);
                                         string t = Convert(b);
                                         System.IO.File.AppendAllText("a.txt", "\r" + t);
@@ -1642,7 +2052,9 @@ namespace Chess
                                 Wr = false;
                                 System.IO.File.AppendAllText("a.txt", "\r" + "White finished");
                                 if (GaveOver)
+                                {
                                     break;
+                                }
                             }
                             else
                             {
@@ -1679,20 +2091,29 @@ namespace Chess
                                 Wr = false;
                                 System.IO.File.AppendAllText("a.txt", "\r" + "Black finished");
                                 if (GaveOver)
+                                {
                                     break;
+                                }
                             }
                             k++;
                             if (GaveOver)
+                            {
                                 break;
+                            }
                         } while (k < 2);
                         if (GaveOver)
+                        {
                             break;
+                        }
                     } while (I < gameDb.Game[o].MoveText.Count);
                     if (!gamenf)
+                    {
                         MessageBox.Show("یک بازی ذخیره شد");
+                    }
                     else
+                    {
                         MessageBox.Show("نیمه یک بازی ذخیره شد");
-
+                    }
                 }
                 catch (Exception y)
                 {
@@ -1710,8 +2131,10 @@ namespace Chess
         {
             frize = true;
 
-            F = new ChessFirst.ChessFirstForm();
-            F.ComStop = true;
+            F = new ChessFirst.ChessFirstForm
+            {
+                ComStop = true
+            };
             F.Show();
             S = (new RefrigtzChessPortable.RefrigtzChessPortableForm());
             S.ComStop = true;
@@ -1723,7 +2146,7 @@ namespace Chess
             B = false;
             BB = new ChessCom.ChessComForm();
             BB.Show();
-            var th = Task.Factory.StartNew(() => Play());
+            Task th = Task.Factory.StartNew(() => Play());
 
             frize = false;
 
@@ -1733,8 +2156,10 @@ namespace Chess
         {
             frize = true;
 
-            F = new ChessFirst.ChessFirstForm();
-            F.ComStop = true;
+            F = new ChessFirst.ChessFirstForm
+            {
+                ComStop = true
+            };
             F.Show();
             S = (new RefrigtzChessPortable.RefrigtzChessPortableForm());
             S.ComStop = true;
@@ -1746,7 +2171,7 @@ namespace Chess
             B = false;
             BBS = new ChessCom.ChessComForm();
             BBS.Show();
-            var th = Task.Factory.StartNew(() => PlayTeach());
+            Task th = Task.Factory.StartNew(() => PlayTeach());
 
             frize = false;
         }
@@ -1781,8 +2206,10 @@ namespace Chess
             MessageBox.Show("PGN load completed.");
             //PlayTeachPGNConvertedToChessBase();
 
-            F = new ChessFirst.ChessFirstForm();
-            F.ComStop = true;
+            F = new ChessFirst.ChessFirstForm
+            {
+                ComStop = true
+            };
             F.Show();
             S = (new RefrigtzChessPortable.RefrigtzChessPortableForm());
             S.ComStop = true;
@@ -1792,25 +2219,32 @@ namespace Chess
             S.Hide();
             W = true;
             B = false;
-            BBS = new ChessCom.ChessComForm();
-            BBS.ComStop = true;
+            BBS = new ChessCom.ChessComForm
+            {
+                ComStop = true
+            };
             BBS.Show();
-            var th = Task.Factory.StartNew(() => PlayTeachPGNConvertedToChessBase());
+            Task th = Task.Factory.StartNew(() => PlayTeachPGNConvertedToChessBase());
 
             frize = false;
 
         }   //Clone A Table
-        int[,] CloneATable(int[,] Tab)
+
+        private int[,] CloneATable(int[,] Tab)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 int[,] Table = new int[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
                 return Table;
             }
@@ -1823,10 +2257,12 @@ namespace Chess
 
         private void buttonChatAndJungle_Click(object sender, EventArgs e)
         {
-            String FolderLocation = "temp\\SimpleThreadedChat";
-            ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = FolderLocation + "\\" + "SimpleThreadedChat.exe";
-             // Run the external process & wait for it to finish                                   
+            string FolderLocation = "temp\\SimpleThreadedChat";
+            ProcessStartInfo start = new ProcessStartInfo
+            {
+                FileName = FolderLocation + "\\" + "SimpleThreadedChat.exe"
+            };
+            // Run the external process & wait for it to finish                                   
 
             using (Process proc = Process.Start(start))
             {

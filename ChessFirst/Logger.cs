@@ -3,11 +3,11 @@ using System.IO;
 
 namespace ChessFirst
 {
-    class Logger ////: IDisposable
+    internal class Logger ////: IDisposable
     {
-        private FileStream file; //Only this instance have a right to own it
-        private StreamWriter writer;
-        private object mutex; //Mutex for synchronizing
+        private readonly FileStream file; //Only this instance have a right to own it
+        private readonly StreamWriter writer;
+        private readonly object mutex; //Mutex for synchronizing
 
         public Logger(string logPath)
         {

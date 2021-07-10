@@ -760,7 +760,8 @@ namespace ImageTextDeepLearning
 
             return Is;
         }
-        bool[,] ZerosB()
+
+        private bool[,] ZerosB()
         {
             bool[,] TemB = new bool[Width, Height];
             for (int i = 0; i < Width; i++)
@@ -772,7 +773,8 @@ namespace ImageTextDeepLearning
             }
             return TemB;
         }
-        int[,] ZerosI()
+
+        private int[,] ZerosI()
         {
             int[,] TemB = new int[Width, Height];
             for (int i = 0; i < Width; i++)
@@ -784,14 +786,19 @@ namespace ImageTextDeepLearning
             }
             return TemB;
         }
-        bool Equality(Color a, Color b)
+
+        private bool Equality(Color a, Color b)
         {
             bool Is = false;
             if (a.G == b.G && a.B == b.B && a.R == b.R)
+            {
                 Is = true;
+            }
+
             return Is;
         }
-        bool[,] GetBolleanFromArgb(Bitmap Temp)
+
+        private bool[,] GetBolleanFromArgb(Bitmap Temp)
         {
             Color[,] TemI = new Color[Width, Height];
             bool[,] TemB = ZerosB();
@@ -849,7 +856,8 @@ namespace ImageTextDeepLearning
             }
             return TemB;
         }
-        GraphicsPath GetStringPath(string s, float dpi, RectangleF rect, Font font, StringFormat format)
+
+        private GraphicsPath GetStringPath(string s, float dpi, RectangleF rect, Font font, StringFormat format)
         {
             GraphicsPath path = new GraphicsPath();
             // Convert font size into appropriate coordinates
@@ -932,7 +940,9 @@ namespace ImageTextDeepLearning
 
                                     Do = HollowCountreImageCommmon(ref Te);
                                     if (!Do)
+                                    {
                                         MessageBox.Show("fault on hollow!");
+                                    }
                                     //create proper conjunction matrix
                                     bool[,] Tem = GetBolleanFromArgb(Te);
                                     KeyboardAllImage.Add(Te);
@@ -987,7 +997,9 @@ namespace ImageTextDeepLearning
 
                                 Do = HollowCountreImageCommmon(ref Te);
                                 if (!Do)
+                                {
                                     MessageBox.Show("fault on hollow!");
+                                }
 
                                 //create proper conjunction matrix
                                 //create proper conjunction matrix

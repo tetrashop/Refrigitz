@@ -28,12 +28,14 @@ namespace Formulas
 {
     public partial class UknownIntegralSolver : Form
     {
-        delegate void SetProgressValueCallback(ProgressBar dat, int state);
+        private delegate void SetProgressValueCallback(ProgressBar dat, int state);
 
         public void SetProgressMaxValue(ProgressBar dat, int state)
         {
             if (state > dat.Maximum || state < dat.Minimum)
+            {
                 return;
+            }
 
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
@@ -48,9 +50,10 @@ namespace Formulas
                 dat.Maximum = state;
             }
         }
-        delegate void SetLableValueCallback(Label dat, String state);
 
-        public void SetLableValue(Label dat, String state)
+        private delegate void SetLableValueCallback(Label dat, string state);
+
+        public void SetLableValue(Label dat, string state)
         {
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
@@ -70,7 +73,9 @@ namespace Formulas
         public void SetProgressValue(ProgressBar dat, int state)
         {
             if (state > dat.Maximum || state < dat.Minimum)
+            {
                 return;
+            }
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
@@ -111,8 +116,10 @@ namespace Formulas
             button1.Enabled = false;
 
         }
-        int A = 0;
-        void Verifing()
+
+        private int A = 0;
+
+        private void Verifing()
         {
             while (true)
             {
@@ -145,18 +152,21 @@ namespace Formulas
         private AddToTree.Tree Solver()
         {
             UknownIntegralSolver UNKNOWN = this;
-            this.SetProgressValue(progressBar1, 0);
+            SetProgressValue(progressBar1, 0);
 
             int INCREASE = 2147483647 / 10;
 
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
 
             //ERRORCUASE1715 :ERRROR cause of ERROR317142.the copy operation is not valid.
             //ERROR3175 :Error in data structure .
             //ERRORCAUSE0981243  ;The cause ERROR3175 of  is at here.Error on copy tree.refer to page 177.
             if (Enterface.SenderAccess.AutoSenderAccess.NodeAccess.SampleAccess == null && Enterface.SenderAccess.AutoSenderAccess != null)
+            {
                 Enterface.SenderAccess.AutoSenderAccess.NodeAccess = new AddToTree.Tree(Enterface.SenderAccess.AutoSenderAccess.CurrentStirngAccess, false);
+            }
+
             AddToTree.Tree Copy = Enterface.SenderAccess.AutoSenderAccess.NodeAccess.CopyNewTree(Enterface.SenderAccess.AutoSenderAccess.NodeAccess);
             //Copy = TransmisionToDeleteingMinusPluse.TrasmisionToDeleteingMinusPluseFx(Copy);
             //ERROR918243 :The error at splitation.refer to page 176.
@@ -164,27 +174,27 @@ namespace Formulas
 
             AddToTree.Tree CopyNode = null;
             CopyNode = Copy.CopyNewTree(Copy);
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
             Copy = DeleteingMinusPluseTree.DeleteingMinusPluseFx(Copy);
 
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
             Copy = Spliter.SpliterFx(Copy, ref UNKNOWN);
 
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
             Copy = Simplifier.ArrangmentForSpliter(Copy);
             //ERROR30175541  :SIMPLIFIER HAS CUASED TO SOME ERRRO.refer to page 176.
             //ERROR312317 & ERRROR317140 :Error in simplification.refer to page 182.
 
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
             //Copy = Simplifier.SimplifierFx(Copy,ref UNKNOWN);
             //ERROR30174213  :The Simplified is invalid here.refer to page 180.            
             //Copy = Derivasion.DerivasionOfFX(Copy);
 
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
             Copy = Integral.IntegralOfFX(Copy, ref UNKNOWN);
             /*int i = 0;
@@ -203,19 +213,19 @@ namespace Formulas
             //LOCATION13174253. refer to page 208.
             //ERROR3070405060 :The error is here.refer to page 220.
             //int NUM1 = Integral.NumberOfElements(Copy);
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
             int NUM1 = Integral.NumberOfElements(Copy);
 
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
             Copy = Simplifier.SimplifierFx(Copy, ref UNKNOWN);
 
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
             int NUM2 = Integral.NumberOfElements(Copy);
 
-            this.SetProgressValue(progressBar1, this.progressBar1.Value + INCREASE);
+            SetProgressValue(progressBar1, progressBar1.Value + INCREASE);
 
             //Copy = RoundTree.RoundTreeMethod(Copy,0);
 
@@ -249,9 +259,10 @@ namespace Formulas
             Tr.Start();
 
         }
-        void SolverThread()
+
+        private void SolverThread()
         {
-            this.DrawIntegralAnswer(this.Solver());
+            DrawIntegralAnswer(Solver());
 
         }
         private void DrawIntegralAnswer(AddToTree.Tree DummyAnswer)

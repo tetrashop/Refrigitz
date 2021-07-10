@@ -2,7 +2,7 @@ using System;
 
 namespace Formulas
 {
-    static class ConvertClass
+    internal static class ConvertClass
     {
         public static AddToTree.Tree ConverSetToAddTreeFx(Set Dummy)
         {
@@ -14,7 +14,9 @@ namespace Formulas
             HolderDummy = ConvertClass.ConverSetToAddTreeActionFx(Dummy);
 
             while (Dummy.ThreadAccess != null)
+            {
                 Dummy = Dummy.ThreadAccess;
+            }
 
             TreeDummy = ConvertClass.ConverSetToAddTreeActionFx(Dummy);
 
@@ -25,7 +27,10 @@ namespace Formulas
         private static AddToTree.Tree ConverSetToAddTreeActionFx(Set Dummy)
         {
             if (Dummy == null)
+            {
                 return null;
+            }
+
             AddToTree.Tree TreeDummy = new AddToTree.Tree(null, false);
             try
             {

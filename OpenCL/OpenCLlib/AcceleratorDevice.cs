@@ -1,9 +1,6 @@
 ﻿using Cloo;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenCL
 {
@@ -11,21 +8,9 @@ namespace OpenCL
     {
         public static AcceleratorDevice[] All = ComputePlatform.Platforms.Select(x => x.Devices).SelectMany(i => i).Select(x => new AcceleratorDevice(x)).ToArray();
 
-        public static bool HasCPU
-        {
-            get
-            {
-                return All.Any(x => x.Type == ComputeDeviceTypes.Cpu);
-            }
-        }
+        public static bool HasCPU => All.Any(x => x.Type == ComputeDeviceTypes.Cpu);
 
-        public static bool HasGPU
-        {
-            get
-            {
-                return All.Any(x => x.Type == ComputeDeviceTypes.Gpu);
-            }
-        }
+        public static bool HasGPU => All.Any(x => x.Type == ComputeDeviceTypes.Gpu);
 
         //http://www.nvidia.com/Download/index.aspx?lang=en-us
         //http://support.amd.com/en-us/download
@@ -66,9 +51,9 @@ namespace OpenCL
         public AcceleratorDevice(ComputeDevice Device)
         {
             this.Device = Device;
-            this.Name = Device.Name;
-            this.Vendor = Device.Vendor;
-            this.Type = Device.Type;
+            Name = Device.Name;
+            Vendor = Device.Vendor;
+            Type = Device.Type;
         }
 
         public override string ToString()

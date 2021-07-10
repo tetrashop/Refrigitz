@@ -4,19 +4,23 @@ using System;
 
 namespace Formulas
 {
-    static class ConvertAllMinuseToPluse
+    internal static class ConvertAllMinuseToPluse
     {
-        static public AddToTree.Tree ConvertAllMinuseToPluseFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree ConvertAllMinuseToPluseFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             Dummy = ConvertAllMinuseToPluse.ConvertAllMinuseToPluseActionFx(Dummy, ref UIS);
             //ERROR31754015 :Refer to page 338.
             Dummy = NumberDivMul.NumberDivMulFx(Dummy, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree ConvertAllMinuseToPluseActionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree ConvertAllMinuseToPluseActionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             int INCREASE = 2147483647 / 3;
             bool SecOND = true;
             try

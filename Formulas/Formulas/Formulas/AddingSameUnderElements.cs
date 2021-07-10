@@ -5,17 +5,21 @@ using System;
 
 namespace Formulas
 {
-    static class AddingSameUnderElements
+    internal static class AddingSameUnderElements
     {
-        static public AddToTree.Tree AddingSameUnderElementsFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree AddingSameUnderElementsFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             bool CllingRightTrueLeftFalse = false;
             return AddingSameUnderElements.AddingSameUnderElementsSenderActionFx(Dummy, Dummy, ref CllingRightTrueLeftFalse, ref UIS);
         }
-        static AddToTree.Tree AddingSameUnderElementsSenderActionFx(AddToTree.Tree Node, AddToTree.Tree Dummy, ref bool CllingRightTrueLeftFalse, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree AddingSameUnderElementsSenderActionFx(AddToTree.Tree Node, AddToTree.Tree Dummy, ref bool CllingRightTrueLeftFalse, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             try
             {
                 if ((IS.IsPluSinNode(Dummy)))
@@ -23,8 +27,9 @@ namespace Formulas
                     CllingRightTrueLeftFalse = false;
                     Dummy.LeftSideAccess = AddingSameUnderElements.AddingSameUnderElementsSenderActionFx(Node, Dummy.LeftSideAccess, ref CllingRightTrueLeftFalse, ref UIS);
                     if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess.ThreadAccess, Dummy.ThreadAccess))
+                    {
                         Dummy = Dummy.LeftSideAccess;
-
+                    }
                 }
             }
             catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
@@ -36,17 +41,24 @@ namespace Formulas
                     Dummy.RightSideAccess = AddingSameUnderElements.AddingSameUnderElementsSenderActionFx(Node, Dummy.RightSideAccess, ref CllingRightTrueLeftFalse, ref UIS);
                     //ERRORCORECTION6654444:The Deleting Unregular Plus Operator From Sin(x)^2 Integral:1394/4/6
                     if (Dummy.RightSideAccess.ThreadAccess != null && EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess.ThreadAccess, Dummy.ThreadAccess))
+                    {
                         Dummy = Dummy.RightSideAccess;
+                    }
                 }
             }
             catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
             if (Dummy.ThreadAccess != null)
+            {
                 if (!(((IS.IsMinuseOrPluse(Dummy.ThreadAccess.SampleAccess)))))
+                {
                     return Dummy;
+                }
+            }
 
             try
             {
                 if ((Dummy.ThreadAccess == null) || (Dummy.ThreadAccess.SampleAccess == "+"))
+                {
                     if (Dummy.SampleAccess == "/")
                     {
                         /*            if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.ThreadAccess.RightSideAccess, Dummy))
@@ -58,21 +70,29 @@ namespace Formulas
                         Dummy.ThreadAccess = AddingSameUnderElements.AddingSameUnderElementsActionReciverFx(Node, Dummy.ThreadAccess, Dummy, ref CllingRightTrueLeftFalse, ref UIS);
 
                     }
-
+                }
             }
             catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
             return Dummy;
         }
-        static AddToTree.Tree OptimizeNode(AddToTree.Tree Dummy)
+
+        private static AddToTree.Tree OptimizeNode(AddToTree.Tree Dummy)
         {
             while (Dummy.ThreadAccess != null)
+            {
                 Dummy = Dummy.ThreadAccess;
+            }
+
             return Dummy.CopyReferenclyTree(Dummy);
         }
-        static AddToTree.Tree AddingSameUnderElementsActionReciverFx(AddToTree.Tree Node, AddToTree.Tree Dummy, AddToTree.Tree DummySender, ref bool CllingRightTrueLeftFalse, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree AddingSameUnderElementsActionReciverFx(AddToTree.Tree Node, AddToTree.Tree Dummy, AddToTree.Tree DummySender, ref bool CllingRightTrueLeftFalse, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             try
             {
                 if ((IS.IsPluSinNode(Dummy)))
@@ -131,7 +151,9 @@ namespace Formulas
 
                     Node = Dummy.CopyReferenclyTree(Dummy);
                     while (Node.ThreadAccess != null)
+                    {
                         Node = Node.ThreadAccess;
+                    }
 
                     Dummy = Dummy.FINDTreeWithOutThreadConsideration(Node, DummySender);
 
@@ -154,10 +176,14 @@ namespace Formulas
 
                     Node = Dummy.CopyReferenclyTree(Dummy);
                     while (Node.ThreadAccess != null)
+                    {
                         Node = Node.ThreadAccess;
+                    }
 
                     if (!(EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy, Node)))
+                    {
                         Dummy = Dummy.FINDTreeWithOutThreadConsideration(HOLDER, Node);
+                    }
 
                     CurrentSimplification = true;
 

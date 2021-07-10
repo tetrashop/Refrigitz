@@ -4,16 +4,20 @@ using System;
 
 namespace Formulas
 {
-    static class LocalSearchMulDivisionEqualSimplifier
+    internal static class LocalSearchMulDivisionEqualSimplifier
     {
-        static public AddToTree.Tree LocalSearchMulDivisionEqualSimplifierFx(AddToTree.Tree Dummy, ref bool MULDIVISIONEQUAL, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree LocalSearchMulDivisionEqualSimplifierFx(AddToTree.Tree Dummy, ref bool MULDIVISIONEQUAL, ref UknownIntegralSolver UIS)
         {
             return LocalSearchMulDivisionEqualSimplifier.LocalSearchMulDivisionEqualSimplifierActionFx(Dummy, ref MULDIVISIONEQUAL, ref UIS);
         }
-        static AddToTree.Tree LocalSearchMulDivisionEqualSimplifierActionFx(AddToTree.Tree Dummy, ref bool MULDIVISIONEQUAL, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree LocalSearchMulDivisionEqualSimplifierActionFx(AddToTree.Tree Dummy, ref bool MULDIVISIONEQUAL, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             bool SimplifiedTrueOtherWiseFalse = false;
             bool Suitable = false;
             bool DivTrueMulFalse = false;
@@ -39,10 +43,14 @@ namespace Formulas
             LocalSearchMulDivisionEqualSimplifier.LocalSearchMulDivisionEqualSimplifierActionFx(Dummy.RightSideAccess, ref MULDIVISIONEQUAL, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree SuitableToSimplifierLocalThatToSimplifiedLocatedAtRight(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, ref bool Suitable, ref bool DivTrueMulFalse, ref bool SimplifiedTrueOtherWiseFalse)
+
+        private static AddToTree.Tree SuitableToSimplifierLocalThatToSimplifiedLocatedAtRight(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, ref bool Suitable, ref bool DivTrueMulFalse, ref bool SimplifiedTrueOtherWiseFalse)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             try
             {
                 if (IS.IsMul(Dummy.SampleAccess))
@@ -122,7 +130,9 @@ namespace Formulas
                     Suitable = true;
                 }
                 else
+                {
                     return Dummy;
+                }
             }
             catch (NullReferenceException t)
             { ExceptionClass.ExceptionClassMethod(t); }
@@ -130,10 +140,14 @@ namespace Formulas
             LocalSearchMulDivisionEqualSimplifier.SuitableToSimplifierLocalThatToSimplifiedLocatedAtRight(Dummy.RightSideAccess, ToSimplified, ref Suitable, ref DivTrueMulFalse, ref SimplifiedTrueOtherWiseFalse);
             return Dummy;
         }
-        static AddToTree.Tree SuitableToSimplifierLocalThatToSimplifiedLocatedAtLeft(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, ref bool Suitable, ref bool DivTrueMulFalse, ref bool SimplifiedTrueOtherWiseFalse)
+
+        private static AddToTree.Tree SuitableToSimplifierLocalThatToSimplifiedLocatedAtLeft(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, ref bool Suitable, ref bool DivTrueMulFalse, ref bool SimplifiedTrueOtherWiseFalse)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             try
             {
 
@@ -183,7 +197,9 @@ namespace Formulas
                     }
                 }
                 else
+                {
                     return Dummy;
+                }
             }
             catch (NullReferenceException t)
             { ExceptionClass.ExceptionClassMethod(t); }

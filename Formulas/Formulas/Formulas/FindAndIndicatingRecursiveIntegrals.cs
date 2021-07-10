@@ -1,13 +1,13 @@
 namespace Formulas
 {
-    static class FindAndIndicatingRecursiveIntegrals
+    internal static class FindAndIndicatingRecursiveIntegrals
     {
-        static public AddToTree.Tree FindAndIndicatingRecursiveIntegralsFx(AddToTree.Tree Node, AddToTree.Tree Dummy, AddToTreeTreeLinkList INTEGRAL, AddToTreeTreeLinkList ANSWER, out bool IntegralA, out float Queficient)
+        public static AddToTree.Tree FindAndIndicatingRecursiveIntegralsFx(AddToTree.Tree Node, AddToTree.Tree Dummy, AddToTreeTreeLinkList INTEGRAL, AddToTreeTreeLinkList ANSWER, out bool IntegralA, out float Queficient)
         {
             Dummy = FindAndIndicatingRecursiveIntegrals.FindAndIndicatingRecursiveIntegralsFxLinrearFx(Node, Dummy, out IntegralA, out Queficient);
             return Dummy;
         }
-        static private AddToTree.Tree FindAndIndicatingRecursiveIntegralsFxLinrearFx(AddToTree.Tree Node, AddToTree.Tree MULTOW, out bool IntegralA, out float Queficient)
+        private static AddToTree.Tree FindAndIndicatingRecursiveIntegralsFxLinrearFx(AddToTree.Tree Node, AddToTree.Tree MULTOW, out bool IntegralA, out float Queficient)
         {
             if (MULTOW.SampleAccess == "*")
             {

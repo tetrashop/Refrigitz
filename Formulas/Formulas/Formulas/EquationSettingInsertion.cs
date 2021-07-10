@@ -6,7 +6,7 @@ namespace Setting
     public partial class EquationSettingInsertion : Form
     {
         //this variable hold the previous node in order to replace when needed.
-        AddToTree.Tree Holder = new AddToTree.Tree(null, false);
+        private AddToTree.Tree Holder = new AddToTree.Tree(null, false);
         //this Form is due to show setting for insertion equation on tree to be correctly.
         public EquationSettingInsertion()
         {

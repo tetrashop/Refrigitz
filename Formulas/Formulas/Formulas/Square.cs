@@ -13,6 +13,7 @@ namespace Graphic
             lwBase = new int[(destinx) / 40, (destiny) / 40, 4];
             lwUp = new int[(destinx) / 40, (destiny) / 40, 4];
             for (int i = 0; i < destinx; i = i + 40)
+            {
                 for (int j = 0; j < destiny; j = j + 40)
                 {
                     lwBase[i / 40, j / 40, 0] = i;
@@ -24,7 +25,7 @@ namespace Graphic
                     lwUp[i / 40, j / 40, 2] = i + 40 - 3;
                     lwUp[i / 40, j / 40, 3] = j + 40 - 3;
                 }
-
+            }
         }
     }
 }

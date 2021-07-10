@@ -113,7 +113,11 @@ namespace howto_WPF_3D_triangle_normals
 
             // If we've already added this segment for
             // another triangle, do nothing.
-            if (already_drawn.ContainsKey(segment_id)) return;
+            if (already_drawn.ContainsKey(segment_id))
+            {
+                return;
+            }
+
             already_drawn.Add(segment_id, segment_id);
 
             // Create the segment.
@@ -152,7 +156,9 @@ namespace howto_WPF_3D_triangle_normals
             Vector3D segment = point2 - point1;
             segment.Normalize();
             if (Math.Abs(Vector3D.DotProduct(up, segment)) > 0.9)
+            {
                 up = new Vector3D(1, 0, 0);
+            }
 
             // Add the segment.
             AddSegment(mesh, point1, point2, up, thickness, extend);

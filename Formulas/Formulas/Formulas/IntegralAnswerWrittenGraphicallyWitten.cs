@@ -2,10 +2,10 @@
 
 namespace Formulas
 {
-    static class IntegralAnswerGraphicallyWitten
+    internal static class IntegralAnswerGraphicallyWitten
     {
-        static Editors.Editor Written = new Editors.Editor();
-        static public void IntegralAnswerGraphicallyWittenFx(AddToTree.Tree Dummy, UknownIntegralSolver UIS)
+        private static readonly Editors.Editor Written = new Editors.Editor();
+        public static void IntegralAnswerGraphicallyWittenFx(AddToTree.Tree Dummy, UknownIntegralSolver UIS)
         {
 
             IntegralAnswerAdding.IntegralAnswerAddingFx(Dummy);
@@ -14,7 +14,8 @@ namespace Formulas
             Written.ShowDialog();
 
         }
-        static void IntegralAnswerGraphicallyWittenActionFx(UknownIntegralSolver UIS)
+
+        private static void IntegralAnswerGraphicallyWittenActionFx(UknownIntegralSolver UIS)
         {
             AddToTreeTreeLinkList DummyLinkList = IntegralAnswerAdding.AnswerAccess.CopyLinkList();
 
@@ -65,18 +66,29 @@ namespace Formulas
                     ArrtificialItelligenceForGraphicallyDrawingFx.TheBigestValueNodeXForcalculationMethode(DummySet, ref BigestX);
                     ArrtificialItelligenceForGraphicallyDrawingFx.TheSmallestValue(DummySet, ref SmallestX);
                     if (Dummy.Equals("+"))//ERRORCORECTION1245678:The Font Scale became smaller:1394/3/28
+                    {
                         Written.FiveBasicOprators(0);
+                    }
                     else if (Dummy.Equals("-"))
+                    {
                         Written.FiveBasicOprators(1);
+                    }
                     else if (Dummy.Equals("*"))
+                    {
                         Written.FiveBasicOprators(2);
+                    }
                     else if (Dummy.Equals("/"))
+                    {
                         Written.FiveBasicOprators(3);
+                    }
                     else if (Dummy.Equals("^"))
+                    {
                         Written.FiveBasicOprators(4);
+                    }
                     else
+                    {
                         Written.DrawNumberAndVaribale(Dummy.SampleAccess);
-
+                    }
                 }
 
 

@@ -44,7 +44,9 @@ namespace ImageTextDeepLearning
                 ConjunctedShapeListRequired.ConvertAllTempageToMatrix(tt.AllImage);
 
                 if (!FormImageTextDeepLearning.Checkonly)
+                {
                     Detection(Width, Heigh);
+                }
             }
             catch (Exception te)
             {

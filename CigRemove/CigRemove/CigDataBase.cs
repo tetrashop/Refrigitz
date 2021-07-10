@@ -7,16 +7,15 @@ using System.Windows.Forms;
 
 namespace CigReaderDatabase
 {
-    class CigDatabase
+    internal class CigDatabase
     {
-        OleDbConnection bookConnJs;
-        OleDbCommand oleDbCmdJs = new OleDbCommand();
-        List<String> Words = new List<String>();
-        String connParamJs = "";
-
-        OleDbConnection bookConnWo;
-        OleDbCommand oleDbCmdWo = new OleDbCommand();
-        String connParamWo = "";
+        private OleDbConnection bookConnJs;
+        private OleDbCommand oleDbCmdJs = new OleDbCommand();
+        private readonly List<string> Words = new List<string>();
+        private string connParamJs = "";
+        private OleDbConnection bookConnWo;
+        private OleDbCommand oleDbCmdWo = new OleDbCommand();
+        private string connParamWo = "";
 
         public CigDatabase()
         {
@@ -24,8 +23,9 @@ namespace CigReaderDatabase
             connParamJs = connParamJs.Replace("\\", "/");
 
         }
-        delegate void SetprogressBarJSONValueCalBack(ProgressBar JSON, Int32 value);
-        private void SetprogressBarJSONValue(ProgressBar JSON, Int32 value)
+
+        private delegate void SetprogressBarJSONValueCalBack(ProgressBar JSON, int value);
+        private void SetprogressBarJSONValue(ProgressBar JSON, int value)
         {
             try
             {
@@ -44,8 +44,9 @@ namespace CigReaderDatabase
                 Log(t);
             }
         }
-        delegate void SetprogressBarJSONMaxValueCalBack(ProgressBar JSON, Int32 value);
-        private void SetprogressBarJSONMaxValue(ProgressBar JSON, Int32 value)
+
+        private delegate void SetprogressBarJSONMaxValueCalBack(ProgressBar JSON, int value);
+        private void SetprogressBarJSONMaxValue(ProgressBar JSON, int value)
         {
             try
             {
@@ -64,8 +65,9 @@ namespace CigReaderDatabase
                 Log(t);
             }
         }
-        delegate void SetlableJSONMaxValueCalBack(Label JSON, String value);
-        private void SetlableJSONMaxValue(Label JSON, String value)
+
+        private delegate void SetlableJSONMaxValueCalBack(Label JSON, string value);
+        private void SetlableJSONMaxValue(Label JSON, string value)
         {
             try
             {
@@ -84,7 +86,8 @@ namespace CigReaderDatabase
                 Log(t);
             }
         }
-        delegate void SetDataGridViewDataSourceCallback(DataGridView dat, object state);
+
+        private delegate void SetDataGridViewDataSourceCallback(DataGridView dat, object state);
 
         private void SetDataGridViewDataSource(DataGridView dat, object state)
         {
@@ -101,13 +104,14 @@ namespace CigReaderDatabase
                 dat.DataSource = state;
             }
         }
-        static void Log(Exception ex)
+
+        private static void Log(Exception ex)
         {
             string stackTrace = ex.ToString();
             File.AppendAllText("ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); // path of file where stack trace will be stored.
         }
 
-        public bool CigRead(ref DataGridView dataGridViewCig, ref List<String> CigRead)
+        public bool CigRead(ref DataGridView dataGridViewCig, ref List<string> CigRead)
         {
             bool OK = false;
             try
@@ -121,7 +125,7 @@ namespace CigReaderDatabase
                 DataTable dt = new DataTable();
                 ds.Tables.Add(dt);
                 OleDbDataAdapter da = new OleDbDataAdapter();
-                String AAA = "";
+                string AAA = "";
 
                 AAA = "select * from CigTable";
 
@@ -145,7 +149,7 @@ namespace CigReaderDatabase
             return OK;
 
         }
-        public bool CigRead(ref DataGridView dataGridViewCig, ref List<String> CigRead, String fileName)
+        public bool CigRead(ref DataGridView dataGridViewCig, ref List<string> CigRead, string fileName)
         {
             bool OK = false;
             try
@@ -159,7 +163,7 @@ namespace CigReaderDatabase
                 DataTable dt = new DataTable();
                 ds.Tables.Add(dt);
                 OleDbDataAdapter da = new OleDbDataAdapter();
-                String AAA = "";
+                string AAA = "";
 
                 AAA = "select * from CigTable";
 
@@ -197,19 +201,19 @@ namespace CigReaderDatabase
                 DataTable dt = new DataTable();
                 ds.Tables.Add(dt);
                 OleDbDataAdapter da = new OleDbDataAdapter();
-                String AAA = "";
+                string AAA = "";
 
                 AAA = "select * from JSONWord";
 
                 da = new OleDbDataAdapter(AAA, conObj);
                 da.Fill(dt);
-                this.SetDataGridViewDataSource(dataGridViewJSON, dt.DefaultView);
+                SetDataGridViewDataSource(dataGridViewJSON, dt.DefaultView);
                 conObj.Close();
                 conObj.Dispose();
                 da.Dispose();
                 OK = true;
             }
-            catch (Exception t)
+            catch (Exception)
             {
             }
             return OK;
@@ -232,7 +236,9 @@ namespace CigReaderDatabase
 
                 int Len = 0, MaxLen = 0;
                 while (Ree.Read())
+                {
                     MaxLen++;
+                }
 
                 bookConnJs.Close();
                 bookConnJs.Dispose();
@@ -254,19 +260,22 @@ namespace CigReaderDatabase
                     Len++;
                     SetprogressBarJSONValue(progressBarJSON, Len);
                     Words.Clear();
-                    String Dummy = Ree["QueryTextS"].ToString();
+                    string Dummy = Ree["QueryTextS"].ToString();
                     Dummy = Dummy.Replace("'", "");
                     int G = 0;
                     while (G <= Dummy.Length && Dummy.IndexOf(" ") != -1)
                     {
-                        String Word = Dummy.Substring(0, Dummy.IndexOf(" "));
+                        string Word = Dummy.Substring(0, Dummy.IndexOf(" "));
                         G += (Word.Length + 1);
                         Dummy = Dummy.Remove(0, Dummy.IndexOf(" ") + 1);
 
                         Words.Add(Word);
                     }
                     if (Dummy.IndexOf(" ") == -1)
+                    {
                         Words.Add(Dummy);
+                    }
+
                     for (int j = 0; j < Words.Count; j++)
                     {
                         connParamWo = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\" + "WordsJSONFreuency.accdb;Persist Security Info=true;Jet OLEDB:Database Password='ddfg!asdsax*Ghklk('";
@@ -281,8 +290,10 @@ namespace CigReaderDatabase
                         {
                             connParamWo = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\" + "WordsJSONFreuency.accdb;Persist Security Info=true;Jet OLEDB:Database Password='ddfg!asdsax*Ghklk('";
                             oleDbCmdWo.Dispose();
-                            oleDbCmdWo = new OleDbCommand();
-                            oleDbCmdWo.CommandText = "UPDATE JSONWord SET Words=@Words, FrequencyS=@FrequencyS Where ID=" + Re["ID"].ToString();
+                            oleDbCmdWo = new OleDbCommand
+                            {
+                                CommandText = "UPDATE JSONWord SET Words=@Words, FrequencyS=@FrequencyS Where ID=" + Re["ID"].ToString()
+                            };
                             oleDbCmdWo.Parameters.AddWithValue("@Words", Words[j]);
                             oleDbCmdWo.Parameters.AddWithValue("@FrequencyS", System.Convert.ToInt32(Re["FrequencyS"]) + 1);
 
@@ -292,7 +303,10 @@ namespace CigReaderDatabase
 
                             temp = oleDbCmdWo.ExecuteNonQuery();
                             if (temp <= 0)
+                            {
                                 MessageBox.Show("خطای ورود رکورد.");
+                            }
+
                             oleDbCmdWo.Dispose();
                             bookConnWo.Close();
                             bookConnWo.Dispose();
@@ -310,7 +324,10 @@ namespace CigReaderDatabase
                             oleDbCmdWo.Parameters.AddWithValue("@FrequencyS", 1);
                             temp = oleDbCmdWo.ExecuteNonQuery();
                             if (temp <= 0)
+                            {
                                 MessageBox.Show("خطای ورود رکورد.");
+                            }
+
                             oleDbCmdWo.Dispose();
                             bookConnWo.Close();
                             bookConnWo.Dispose();
@@ -320,7 +337,7 @@ namespace CigReaderDatabase
                     T2 = DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000 + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond;
                     if (T1 != 0 && T2 != 0)
                     {
-                        String Dum = "";
+                        string Dum = "";
                         Dum += "About ";
                         T = ((T * (Len - 1)) + (T2 - T1)) / Len;
                         DateTime Time = new DateTime();
@@ -336,7 +353,10 @@ namespace CigReaderDatabase
                         if (Time.Minute != 0)
                         {
                             if (and)
+                            {
                                 Dum += " and ";
+                            }
+
                             Dum += Time.Minute.ToString();
                             Dum += " Minute ";
                             and = true;
@@ -344,11 +364,15 @@ namespace CigReaderDatabase
                         if (Time.Second != 0)
                         {
                             if (and)
+                            {
                                 Dum += " and ";
+                            }
+
                             Dum += Time.Second.ToString();
                             if (and)
+                            {
                                 Dum += " Second ";
-
+                            }
                         }
                         Dum += " Remining";
                         SetlableJSONMaxValue(lableJSON, Dum);
@@ -368,7 +392,7 @@ namespace CigReaderDatabase
             return OK;
         }
 
-        public bool CigInsert(String CigDateS)
+        public bool CigInsert(string CigDateS)
         {
             bool OK = false;
             try
@@ -383,9 +407,14 @@ namespace CigReaderDatabase
                 int temp = 0;
                 temp = oleDbCmdJs.ExecuteNonQuery();
                 if (temp <= 0)
+                {
                     MessageBox.Show("خطای ورود رکورد.");
+                }
                 else
+                {
                     MessageBox.Show("موفقیت در ورود اطلاعات.");
+                }
+
                 oleDbCmdJs.Dispose();
                 bookConnJs.Close();
                 bookConnJs.Dispose();
@@ -414,9 +443,14 @@ namespace CigReaderDatabase
                 int temp = 0;
                 temp = oleDbCmdJs.ExecuteNonQuery();
                 if (temp <= 0)
+                {
                     MessageBox.Show("خطای حذف.");
+                }
                 else
+                {
                     MessageBox.Show("موفقیت حذف.");
+                }
+
                 oleDbCmdJs.Dispose();
                 bookConnJs.Close();
                 bookConnJs.Dispose();

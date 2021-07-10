@@ -3,7 +3,7 @@ using System;
 
 namespace howto_WPF_3D_triangle_normalsuser
 {
-   public class Line
+    public class Line
     {
         public double a, b, c, x0, y0, z0;
         public Line(Point3D p0, Point3D p1)
@@ -25,13 +25,18 @@ namespace howto_WPF_3D_triangle_normalsuser
             b = normal0.nb;
             c = normal0.nc;
         }
-        bool exist(Point3D p)
+
+        private bool exist(Point3D p)
         {
             if (a == 0 || b == 0 || c == 0)
+            {
                 return false;
+            }
+
             return (((p.X - x0) / a) == (p.Y - y0) / b) && ((p.X - x0) / a) == ((p.Z - z0) / c);
         }
-        bool externalMulIsEqual(Triangle t0, Point3D p0)
+
+        private bool externalMulIsEqual(Triangle t0, Point3D p0)
         {
             Line l1 = new Line(t0, p0);
             double na = (t0.nb * l1.c) - (t0.nc * l1.b);

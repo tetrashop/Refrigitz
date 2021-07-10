@@ -5,17 +5,16 @@ using System.Windows.Media.Media3D;
 
 namespace howto_WPF_3D_triangle_normals
 {
-    class CurvedSystems
+    internal class CurvedSystems
     {
-        List<double[]> q = new List<double[]>();
-        List<double> qddd = new List<double>();
-        List<Point3D> qdddpoints = new List<Point3D>();
-        List<List<Point3D>> listofssemipoints = null;
-
-        List<Point3D> source = null;
-        List<List<double[]>> qlist = new List<List<double[]>>();
-        List<List<double>> qdddlist = new List<List<double>>();
-        List<List<Point3D>> qdddpointslist = new List<List<Point3D>>();
+        private readonly List<double[]> q = new List<double[]>();
+        private readonly List<double> qddd = new List<double>();
+        private readonly List<Point3D> qdddpoints = new List<Point3D>();
+        private readonly List<List<Point3D>> listofssemipoints = null;
+        private readonly List<Point3D> source = null;
+        private readonly List<List<double[]>> qlist = new List<List<double[]>>();
+        private readonly List<List<double>> qdddlist = new List<List<double>>();
+        private readonly List<List<Point3D>> qdddpointslist = new List<List<Point3D>>();
         public List<List<double[]>> qsystemlist = new List<List<double[]>>();
         public List<List<Point3D>> qsystemlistaddpoints = new List<List<Point3D>>();
         public CurvedSystems(List<Point3D> ss)
@@ -138,14 +137,19 @@ namespace howto_WPF_3D_triangle_normals
 
             }
             if (qsystemlist.Count > 0)
+            {
                 return qsystemlist;
+            }
 
             return null;
         }
-        bool exist(Point3D ss, List<List<Point3D>> d)
+
+        private bool exist(Point3D ss, List<List<Point3D>> d)
         {
             if (d.Count == 0)
+            {
                 return false;
+            }
 
             for (int i = 0; i < d.Count; i++)
             {
@@ -153,7 +157,9 @@ namespace howto_WPF_3D_triangle_normals
                 {
 
                     if (ss.X == d[i][j].X && ss.Y == d[i][j].Y && ss.Z == d[i][j].Z)
+                    {
                         return true;
+                    }
                 }
             }
             return false;
@@ -161,18 +167,33 @@ namespace howto_WPF_3D_triangle_normals
         public bool boundry(int i, int j, int k)
         {
             if (i != -1 && j != -1)
+            {
                 if (i == j)
+                {
                     return true;
+                }
+            }
+
             if (i != -1 && k != -1)
+            {
                 if (i == k)
+                {
                     return true;
+                }
+            }
+
             if (k != -1 && j != -1)
+            {
                 if (j == k)
+                {
                     return true;
+                }
+            }
 
             return false;
         }
-        void getlistOfSemilineuniqeKernel(List<Point3D> s, int i, int j, int k, ref int ii, ref int jj, ref int kk, ref double min, ref bool found, ref Point3D next)
+
+        private void getlistOfSemilineuniqeKernel(List<Point3D> s, int i, int j, int k, ref int ii, ref int jj, ref int kk, ref double min, ref bool found, ref Point3D next)
         {
             //external point
             Line l0 = new Line(s[i], s[j]);
@@ -190,7 +211,7 @@ namespace howto_WPF_3D_triangle_normals
         }
 
         //create list of semi curved; continusly
-        List<List<Point3D>> getlistOfSemilineuniqe(List<Point3D> s)
+        private List<List<Point3D>> getlistOfSemilineuniqe(List<Point3D> s)
         {
             List<List<Point3D>> ListOfSemiLineUniq = new List<List<Point3D>>();
             bool found = false;
@@ -201,7 +222,7 @@ namespace howto_WPF_3D_triangle_normals
             do
             {
 
-                var output = Task.Factory.StartNew(() =>
+                Task output = Task.Factory.StartNew(() =>
 
                 {
 
@@ -221,24 +242,33 @@ namespace howto_WPF_3D_triangle_normals
                             next = new Point3D(-1, -1, -1);
                         }
                         if (boundry(i, -1, -1))
-                            continue; ;
+                        {
+                            continue;
+                        };
                         for (int j = 0; j < s.Count; j++)
                         {
                             if (boundry(i, j, -1))
-                                continue; ;
+                            {
+                                continue;
+                            };
 
                             for (int k = 0; k < s.Count; k++)
                             {
 
                                 if (boundry(i, j, k))
+                                {
                                     continue;
+                                }
+
                                 bool a = exist(s[i], ListOfSemiLineUniq);
                                 bool b = s[i] == next;
                                 bool c = exist(next, ListOfSemiLineUniq);
                                 bool d = exist(s[j], ListOfSemiLineUniq);
                                 bool e = exist(s[k], ListOfSemiLineUniq);
                                 if (((!a) || ((b) && (c))) && (!d) && (!e))
+                                {
                                     getlistOfSemilineuniqeKernel(s, i, j, k, ref ii, ref jj, ref kk, ref min, ref found, ref next);
+                                }
                             }
                         }
                     }
@@ -254,13 +284,24 @@ namespace howto_WPF_3D_triangle_normals
                     if (((!a) || ((b) && (c))) && (!d) && (!e))
                     {
                         if (ListOfSemiLineUniq.Count == 0)
+                        {
                             ListOfSemiLineUniq.Add(new List<Point3D>());
+                        }
+
                         if ((!a))
+                        {
                             ListOfSemiLineUniq[semiscount].Add(s[ii]);
+                        }
+
                         if ((!d))
+                        {
                             ListOfSemiLineUniq[semiscount].Add(s[jj]);
+                        }
+
                         if ((!e))
+                        {
                             ListOfSemiLineUniq[semiscount].Add(s[kk]);
+                        }
                     }
                 }
                 if (!found)

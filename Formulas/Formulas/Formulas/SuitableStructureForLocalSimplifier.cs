@@ -8,20 +8,26 @@ using System;
 
 namespace Formulas
 {
-    static class SuitableStructureForLocalSimplifier
+    internal static class SuitableStructureForLocalSimplifier
     {
-        static public AddToTree.Tree SuitableStructureForLocalSimplifierFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree SuitableStructureForLocalSimplifierFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             Dummy = Simplifier.SimplifierFxSimpler(Dummy, ref UIS);
 
             return SuitableStructureForLocalSimplifier.SuitableStructureForLocalSimplifierFxAction(Dummy, ref UIS);
         }
-        static public AddToTree.Tree SuitableStructureForLocalSimplifierConverstionOfDivToMul(AddToTree.Tree Dummy, ref bool CONVERSION, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree SuitableStructureForLocalSimplifierConverstionOfDivToMul(AddToTree.Tree Dummy, ref bool CONVERSION, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             if (CONVERSION)
+            {
                 return Dummy;
+            }
+
             bool CUREENTCONVERSION = false;
             AddToTree.Tree HOLDER = Dummy;
             AddToTree.Tree HOLDERTOMUL = new AddToTree.Tree(null, false);
@@ -75,7 +81,9 @@ namespace Formulas
                             }
                              */
                             if (BREAK)
+                            {
                                 break;
+                            }
                         }
                         else
                         {
@@ -107,7 +115,8 @@ namespace Formulas
             catch (StackOverflowException t) { ExceptionClass.ExceptionClassMethod(t); }
             return Dummy;
         }
-        static AddToTree.Tree SuitableStructureForLocalSimplifierFxAction(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree SuitableStructureForLocalSimplifierFxAction(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             Dummy = SuitableStructureForLocalSimplifier.SuitableStructureForLocalSimplifierFxNumberSorter(Dummy);
             //CORECTION1982798724 :Refer to page 289.
@@ -115,13 +124,20 @@ namespace Formulas
             Dummy = SuitableStructureForLocalSimplifier.SuitableStructureForLocalSimplifierConverstionOfDivToMul(Dummy, ref CONVERSION, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree SuitableStructureForLocalSimplifierFxNumberSorter(AddToTree.Tree Dummy)
+
+        private static AddToTree.Tree SuitableStructureForLocalSimplifierFxNumberSorter(AddToTree.Tree Dummy)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             if (Dummy.SampleAccess == "*")
+            {
                 if (!IS.IsNumber(Dummy.LeftSideAccess.SampleAccess))
+                {
                     if (Dummy.RightSideAccess.SampleAccess == "*")
+                    {
                         if (IS.IsNumber(Dummy.RightSideAccess.LeftSideAccess.SampleAccess))
                         {
                             AddToTree.Tree HOLDER = Dummy.CopyNewTree(Dummy.LeftSideAccess);
@@ -132,9 +148,16 @@ namespace Formulas
                             Dummy.LeftSideAccess.ThreadAccess = Dummy;
                             Dummy = Dummy.ThreadAccess;
                         }
+                    }
+                }
+            }
+
             if (Dummy.SampleAccess == "*")
+            {
                 if (!IS.IsNumber(Dummy.LeftSideAccess.SampleAccess))
+                {
                     if (Dummy.RightSideAccess.SampleAccess == "*")
+                    {
                         if (IS.IsNumber(Dummy.RightSideAccess.RightSideAccess.SampleAccess))
                         {
                             AddToTree.Tree HOLDER = Dummy.CopyNewTree(Dummy.LeftSideAccess);
@@ -145,6 +168,10 @@ namespace Formulas
                             Dummy.RightSideAccess.ThreadAccess = Dummy;
                             Dummy = Dummy.ThreadAccess;
                         }
+                    }
+                }
+            }
+
             Dummy.LeftSideAccess = SuitableStructureForLocalSimplifier.SuitableStructureForLocalSimplifierFxNumberSorter(Dummy.LeftSideAccess);
             Dummy.RightSideAccess = SuitableStructureForLocalSimplifier.SuitableStructureForLocalSimplifierFxNumberSorter(Dummy.RightSideAccess);
             return Dummy;

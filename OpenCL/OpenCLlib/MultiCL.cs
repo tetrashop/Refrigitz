@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace OpenCL
@@ -17,8 +13,8 @@ namespace OpenCL
 
         public MultiCL()
         {
-            this.Accelerators = AcceleratorDevice.All;
-            this.Context = Accelerators.Select(x => new OpenCL() { Accelerator = x }).ToArray();
+            Accelerators = AcceleratorDevice.All;
+            Context = Accelerators.Select(x => new OpenCL() { Accelerator = x }).ToArray();
         }
 
         public void SetKernel(string Kernel, string Method)
@@ -31,12 +27,12 @@ namespace OpenCL
             SetOnAll(x => x.SetParameter(Arguments));
         }
 
-        Task Enqueue(int from, int to, OpenCL acc)
+        private Task Enqueue(int from, int to, OpenCL acc)
         {
             return Task.Run(() => acc.Execute(from, to - from, -1));
         }
 
-        void SetOnAll(Action<OpenCL> Setvar)
+        private void SetOnAll(Action<OpenCL> Setvar)
         {
             Parallel.ForEach(Context, (ctx) =>
             {
@@ -60,11 +56,14 @@ namespace OpenCL
                 Tuple<int, int> local = new Tuple<int, int>(i * delta, (i + 1) * delta);
                 parts.Enqueue(local);
             }
-            if (Parts * delta != ToInclusive) parts.Enqueue(new Tuple<int, int>(Parts * delta, ToInclusive));
+            if (Parts * delta != ToInclusive)
+            {
+                parts.Enqueue(new Tuple<int, int>(Parts * delta, ToInclusive));
+            }
 
             int startlen = parts.Count;
-            var worktodo = parts.Dequeue();
-            var worktodo2 = parts.Dequeue();
+            Tuple<int, int> worktodo = parts.Dequeue();
+            Tuple<int, int> worktodo2 = parts.Dequeue();
 
             List<Task> Tasks = new List<Task>(); //Initialize Tasks Array
             for(int i=0; i < Context.Length && i <= ToInclusive; i++)
@@ -74,7 +73,7 @@ namespace OpenCL
 
             while (parts.Count >= 1) //finishes when all work is started
             {
-                var nextwork = parts.Dequeue();
+                Tuple<int, int> nextwork = parts.Dequeue();
                 int finishedindex = Task.WaitAny(Tasks.ToArray()); //device on which invoke was called
                 Tasks[finishedindex] = Enqueue(nextwork.Item1, nextwork.Item2, Context[finishedindex]); //start next workitem
 

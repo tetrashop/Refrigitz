@@ -3,19 +3,25 @@
 
 namespace Formulas
 {
-    static class MinusPluseSorteStructure
+    internal static class MinusPluseSorteStructure
     {
-        static public AddToTree.Tree MinusPluseSorteStructureFx(AddToTree.Tree Dummy)
+        public static AddToTree.Tree MinusPluseSorteStructureFx(AddToTree.Tree Dummy)
         {
             bool Sorted = true;
             return MinusPluseSorteStructure.MinusPluseSorteStructureActionFx(Dummy, ref Sorted);
         }
-        static AddToTree.Tree MinusPluseSorteStructureActionFx(AddToTree.Tree Dummy, ref bool Sorted)
+
+        private static AddToTree.Tree MinusPluseSorteStructureActionFx(AddToTree.Tree Dummy, ref bool Sorted)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             if (!Sorted)
+            {
                 return Dummy;
+            }
             else
             {
                 //if (Dummy.ThreadAccess == null)//LOCATION98124 : Refer to page 279.

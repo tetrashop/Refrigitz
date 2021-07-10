@@ -4,7 +4,7 @@ using System.Windows.Media.Media3D;
 
 namespace howto_WPF_3D_triangle_normals
 {
-    class SemiLines
+    internal class SemiLines
     {
         public List<List<Line>> lineslistoflines = null;
         public List<Point3D> source = null;
@@ -13,10 +13,13 @@ namespace howto_WPF_3D_triangle_normals
             source = ss;
             GetListOfLinesList(getlistOfSemilineuniqe(ss));
         }
-        bool exist(Point3D ss, List<List<Point3D>> d)
+
+        private bool exist(Point3D ss, List<List<Point3D>> d)
         {
             if (d.Count == 0)
+            {
                 return false;
+            }
 
             for (int i = 0; i < d.Count; i++)
             {
@@ -24,7 +27,9 @@ namespace howto_WPF_3D_triangle_normals
                 {
 
                     if (ss.X == d[i][j].X && ss.Y == d[i][j].Y && ss.Z == d[i][j].Z)
+                    {
                         return true;
+                    }
                 }
             }
             return false;
@@ -32,15 +37,24 @@ namespace howto_WPF_3D_triangle_normals
         public bool boundry(int i, int j, int k)
         {
             if (i == j)
+            {
                 return true;
+            }
+
             if (i == k)
+            {
                 return true;
+            }
+
             if (j == k)
+            {
                 return true;
+            }
 
             return false;
         }
-        List<List<Line>> GetListOfLinesList(List<List<Point3D>> s)
+
+        private List<List<Line>> GetListOfLinesList(List<List<Point3D>> s)
         {
             lineslistoflines = new List<List<Line>>();
 
@@ -50,7 +64,8 @@ namespace howto_WPF_3D_triangle_normals
             }
             return lineslistoflines;
         }
-        List<Line> GetQueficentEquation(List<Point3D> s)
+
+        private List<Line> GetQueficentEquation(List<Point3D> s)
         {
             List<Line> linesq = new List<Line>();
 
@@ -60,9 +75,10 @@ namespace howto_WPF_3D_triangle_normals
             }
             return linesq;
         }
+
         //create list of semi curved; continusly
 
-        List<List<Point3D>> getlistOfSemilineuniqe(List<Point3D> s)
+        private List<List<Point3D>> getlistOfSemilineuniqe(List<Point3D> s)
         {
             List<List<Point3D>> ListOfSemiLineUniq = new List<List<Point3D>>();
             bool found = false;
@@ -73,7 +89,7 @@ namespace howto_WPF_3D_triangle_normals
             do
             {
 
-                var output = Task.Factory.StartNew(() =>
+                Task output = Task.Factory.StartNew(() =>
 
                 {
 
@@ -82,8 +98,14 @@ namespace howto_WPF_3D_triangle_normals
                     ii = -1;
                     jj = -1;
                     if (next == null)
+                    {
                         kk = -1;
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, i =>
+                    }
+
+                    ParallelOptions po = new ParallelOptions
+                    {
+                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                    }; Parallel.For(0, s.Count, i =>
                     {
                         if (next != null)
                         {
@@ -91,17 +113,30 @@ namespace howto_WPF_3D_triangle_normals
                             kk = -1;
                         }
                         if (boundry(i, -1, -1))
+                        {
                             return;
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, j =>
+                        }
+
+                        ParallelOptions poo = new ParallelOptions
+                        {
+                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                        }; Parallel.For(0, s.Count, j =>
                         {
                             if (boundry(i, j, -1))
+                            {
                                 return;
+                            }
 
-                            ParallelOptions poi = new ParallelOptions(); poi.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, s.Count, k =>
+                            ParallelOptions poi = new ParallelOptions
+                            {
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.For(0, s.Count, k =>
                             {
 
                                 if (boundry(i, j, k))
+                                {
                                     return;
+                                }
                                 //external point
                                 Line l0 = new Line(s[i], s[j]);
                                 Line l1 = new Line(s[j], s[k]);
@@ -125,11 +160,19 @@ namespace howto_WPF_3D_triangle_normals
                     if (((!exist(s[ii], ListOfSemiLineUniq)) || ((s[ii] == next) && (exist(next, ListOfSemiLineUniq)))) && (!exist(s[jj], ListOfSemiLineUniq)) && (!exist(s[kk], ListOfSemiLineUniq)))
                     {
                         if ((!exist(s[ii], ListOfSemiLineUniq)))
+                        {
                             ListOfSemiLineUniq[semiscount].Add(s[ii]);
+                        }
+
                         if ((!exist(s[jj], ListOfSemiLineUniq)))
+                        {
                             ListOfSemiLineUniq[semiscount].Add(s[jj]);
+                        }
+
                         if ((!exist(s[kk], ListOfSemiLineUniq)))
+                        {
                             ListOfSemiLineUniq[semiscount].Add(s[kk]);
+                        }
                     }
                 }
                 if (!found)

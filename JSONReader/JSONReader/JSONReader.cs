@@ -4,25 +4,31 @@ using System.IO;
 
 namespace JSONReader
 {
-    class JSONReader
+    internal class JSONReader
     {
-        String Read;
-        List<String> Item;
+        private string Read;
+        private readonly List<string> Item;
         public List<SearchGoogle> ItemSearch;
         public bool OKResult = false;
-        public JSONReader(String Path)
+        public JSONReader(string Path)
         {
-            Item = new List<String>();
+            Item = new List<string>();
             Read = File.ReadAllText(Path);
             if (ReadJSON())
             {
                 if (!ConvertToSearchGooleItem())
+                {
                     System.Windows.Forms.MessageBox.Show("خطای خوادن رشته2 ");
+                }
                 else
+                {
                     OKResult = true;
+                }
             }
             else
+            {
                 System.Windows.Forms.MessageBox.Show(" 1خطای خوادن رشته");
+            }
         }
         private DateTime ConvertJsonStringToDateTime(string jsonTime)
         {
@@ -31,30 +37,32 @@ namespace JSONReader
             return A;
         }
 
-        bool ReadJSON()
+        private bool ReadJSON()
         {
             bool OK = false;
             try
             {
                 while (Read != "")
                 {
-                    String Dummy = Read;
+                    string Dummy = Read;
                     Item.Add(Read.Substring(0, Read.IndexOf("}}") + 2));
                     Read = Read.Remove(0, Read.IndexOf(",") + 1);
                     if (Dummy == Read)
+                    {
                         Read = "";
-
+                    }
                 }
                 OK = true;
             }
-            catch (Exception t)
+            catch (Exception)
             {
                 OK = false;
             }
 
             return OK;
         }
-        bool ConvertToSearchGooleItem()
+
+        private bool ConvertToSearchGooleItem()
         {
 
             bool OK = false;
@@ -63,7 +71,7 @@ namespace JSONReader
                 ItemSearch = new List<SearchGoogle>();
                 int Len = 0;
                 int LenDum = 0;
-                String DummyA = "";
+                string DummyA = "";
                 while (Len < Item.Count)
                 {
                     try
@@ -77,7 +85,7 @@ namespace JSONReader
                         Len += 2;
                         LenDum++;
                     }
-                    catch (Exception t)
+                    catch (Exception)
                     {
                         try
                         {
@@ -88,7 +96,7 @@ namespace JSONReader
                             Len++;
                             LenDum++;
                         }
-                        catch (Exception tt)
+                        catch (Exception)
                         {
                             if (DummyA == Read)
                             {

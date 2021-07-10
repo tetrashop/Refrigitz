@@ -20,11 +20,11 @@ using System;
 
 namespace Formulas
 {
-    static class Spliter
+    internal static class Spliter
     {
         //static SenderSample Sender = new SenderSample(new Equation());
-        static AddToTreeTreeLinkList SPLITED = new AddToTreeTreeLinkList();
-        static public AddToTree.Tree SpliterFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        private static readonly AddToTreeTreeLinkList SPLITED = new AddToTreeTreeLinkList();
+        public static AddToTree.Tree SpliterFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             try
             {
@@ -41,41 +41,63 @@ namespace Formulas
                 {
                     CONTINUSE = false;
                     if (Spliter.ISAtLeastOneDivisionAtNode(Dummy))
+                    {
                         Dummy = Spliter.SpliterCalculator(Dummy, ref CONTINUSE, ref UIS);
+                    }
                 }
                 while (CONTINUSE);
             }
             catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
             return Dummy;
         }
-        static AddToTree.Tree TheRightSideOperandOfDivision(AddToTree.Tree Current)
+
+        private static AddToTree.Tree TheRightSideOperandOfDivision(AddToTree.Tree Current)
         {
             if (Current == null)
+            {
                 return Current;
+            }
+
             while (Current.SampleAccess != "/")
+            {
                 Current = Current.ThreadAccess;
+            }
+
             return Current.RightSideAccess;
         }
-        static bool ISAtLeastOneDivisionAtNode(AddToTree.Tree Node)
+
+        private static bool ISAtLeastOneDivisionAtNode(AddToTree.Tree Node)
         {
             bool Is = false;
             if (Node == null)
+            {
                 return Is;
+            }
+
             if (Node.SampleAccess == "/")
+            {
                 Is = true;
+            }
+
             Is = Is || ISAtLeastOneDivisionAtNode(Node.LeftSideAccess);
             Is = Is || ISAtLeastOneDivisionAtNode(Node.RightSideAccess);
             return Is;
         }
-        static AddToTree.Tree SpliterCalculator(AddToTree.Tree Dummy, ref bool Again, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree SpliterCalculator(AddToTree.Tree Dummy, ref bool Again, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             Dummy.LeftSideAccess = Spliter.SpliterCalculator(Dummy.LeftSideAccess, ref Again, ref UIS);
             try
             {
                 if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess.ThreadAccess, Dummy.ThreadAccess))
+                {
                     Dummy = Dummy.LeftSideAccess;
+                }
             }
             catch (NullReferenceException t)
             { ExceptionClass.ExceptionClassMethod(t); }
@@ -83,7 +105,9 @@ namespace Formulas
             try
             {
                 if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess.ThreadAccess, Dummy.ThreadAccess))
+                {
                     Dummy = Dummy.LeftSideAccess;
+                }
             }
             catch (NullReferenceException t)
             { ExceptionClass.ExceptionClassMethod(t); }
@@ -221,11 +245,15 @@ namespace Formulas
                 }*/
             return Dummy;
         }
-        static AddToTree.Tree DivisionSpliter(AddToTree.Tree Dummy, AddToTree.Tree DummyDown, int level)
+
+        private static AddToTree.Tree DivisionSpliter(AddToTree.Tree Dummy, AddToTree.Tree DummyDown, int level)
         {
 
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             AddToTree.Tree Holder = new AddToTree.Tree("/", false);
             Holder.SetLefTandRightCommonlySide(Dummy, DummyDown);
             Holder.LeftSideAccess.ThreadAccess = Holder;

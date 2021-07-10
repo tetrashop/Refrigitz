@@ -5,8 +5,8 @@ namespace NumberVar
 {
     public partial class NumberAndVariable : Form
     {
-        Formulas.Equation EqationVariable = null;
-        static String Contained = "";
+        private readonly Formulas.Equation EqationVariable = null;
+        private static string Contained = "";
         public NumberAndVariable(ref NumberAndVariable E, ref Formulas.Equation A)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace NumberVar
         {
 
         }
-        public String GetContained()
+        public string GetContained()
         {
             return Contained;
         }

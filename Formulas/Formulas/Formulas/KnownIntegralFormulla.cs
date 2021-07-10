@@ -2,9 +2,9 @@ using System;
 
 namespace Formulas
 {
-    static public class KnownIntegralFormulla
+    public static class KnownIntegralFormulla
     {
-        static public AddToTree.Tree KnownIntegralFormullaFx(AddToTree.Tree Dummy)
+        public static AddToTree.Tree KnownIntegralFormullaFx(AddToTree.Tree Dummy)
         {
             try
             {

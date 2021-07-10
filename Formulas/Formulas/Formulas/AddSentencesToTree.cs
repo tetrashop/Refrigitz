@@ -54,13 +54,12 @@ namespace AddToTree
         private Tree Thread = null;
 
         private bool Splitable = true;
-
-        String Sample;
-        private bool Integration = true;
-        AddToTree.Tree DummyFind = null;
+        private string Sample;
+        private readonly bool Integration = true;
+        private AddToTree.Tree DummyFind = null;
         //int NodeNumber = 0;
         //static int NumberOfNode = 0;
-        public Tree(String SD0, bool INT)
+        public Tree(string SD0, bool INT)
         {
             Sample = SD0;
             Integration = INT;
@@ -70,35 +69,47 @@ namespace AddToTree
         public Tree FINDTreeWithThreadConsideration(AddToTree.Tree Base, AddToTree.Tree Holder)
         {
             DummyFind = null;
-            DummyFind = this.FINDTreeWithThreadConsiderationAction(Base, Holder);
+            DummyFind = FINDTreeWithThreadConsiderationAction(Base, Holder);
             return DummyFind;
         }
         private Tree FINDTreeWithThreadConsiderationAction(AddToTree.Tree Base, AddToTree.Tree Holder)
         {
 
             if (Base == null)
+            {
                 return DummyFind;
-            this.FINDTreeWithThreadConsiderationAction(Base.LeftSideAccess, Holder);
-            this.FINDTreeWithThreadConsiderationAction(Base.RightSideAccess, Holder);
+            }
+
+            FINDTreeWithThreadConsiderationAction(Base.LeftSideAccess, Holder);
+            FINDTreeWithThreadConsiderationAction(Base.RightSideAccess, Holder);
             if (Formulas.EqualToObject.IsEqualWithThreadConsiderationCommonly(Base, Holder))
+            {
                 DummyFind = Base;
+            }
+
             return DummyFind;
         }
         public Tree FINDTreeWithOutThreadConsideration(AddToTree.Tree Base, AddToTree.Tree Holder)
         {
             DummyFind = null;
-            DummyFind = this.FINDTreeWithOutThreadConsiderationAction(Base, Holder);
+            DummyFind = FINDTreeWithOutThreadConsiderationAction(Base, Holder);
             return DummyFind;
         }
         private Tree FINDTreeWithOutThreadConsiderationAction(AddToTree.Tree Base, AddToTree.Tree Holder)
         {
 
             if (Base == null)
+            {
                 return DummyFind;
-            this.FINDTreeWithOutThreadConsiderationAction(Base.LeftSideAccess, Holder);
-            this.FINDTreeWithOutThreadConsiderationAction(Base.RightSideAccess, Holder);
+            }
+
+            FINDTreeWithOutThreadConsiderationAction(Base.LeftSideAccess, Holder);
+            FINDTreeWithOutThreadConsiderationAction(Base.RightSideAccess, Holder);
             if (Formulas.EqualToObject.IsEqualWithOutThreadConsiderationCommonly(Base, Holder))
+            {
                 DummyFind = Base;
+            }
+
             return DummyFind;
         }
         public Tree FINDTreeWithOutThreadConsiderationWithMoreeficiency(AddToTree.Tree Base, AddToTree.Tree Holder)
@@ -106,18 +117,24 @@ namespace AddToTree
             DummyFind = null;
             Formulas.UknownIntegralSolver UIS = new Formulas.UknownIntegralSolver();
             UIS.Hide();
-            DummyFind = this.FINDTreeWithOutThreadConsiderationActionWithMoreeficiency(Base, Holder, ref UIS);
+            DummyFind = FINDTreeWithOutThreadConsiderationActionWithMoreeficiency(Base, Holder, ref UIS);
             return DummyFind;
         }
         private Tree FINDTreeWithOutThreadConsiderationActionWithMoreeficiency(AddToTree.Tree Base, AddToTree.Tree Holder, ref Formulas.UknownIntegralSolver UIS)
         {
 
             if (Base == null)
+            {
                 return DummyFind;
-            this.FINDTreeWithOutThreadConsiderationActionWithMoreeficiency(Base.LeftSideAccess, Holder, ref UIS);
-            this.FINDTreeWithOutThreadConsiderationActionWithMoreeficiency(Base.RightSideAccess, Holder, ref UIS);
+            }
+
+            FINDTreeWithOutThreadConsiderationActionWithMoreeficiency(Base.LeftSideAccess, Holder, ref UIS);
+            FINDTreeWithOutThreadConsiderationActionWithMoreeficiency(Base.RightSideAccess, Holder, ref UIS);
             if (Formulas.EqualToObject.IsEqualWithOutThreadConsiderationByDivision(Base, Holder, ref UIS))
+            {
                 DummyFind = Base;
+            }
+
             return DummyFind;
         }
         public Tree CopyNewTree(AddToTree.Tree Exsit)
@@ -133,12 +150,17 @@ namespace AddToTree
                 return Current;
             }
             else
+            {
                 return null;
+            }
         }
         public Tree CopyNewTreeAction(AddToTree.Tree Exsit)
         {
             if (Exsit == null)
+            {
                 return null;
+            }
+
             AddToTree.Tree Current = new AddToTree.Tree(null, false);
             try
             {
@@ -157,7 +179,10 @@ namespace AddToTree
         public Tree CopyReferenclyTree(AddToTree.Tree Exsit)
         {
             if (Exsit == null)
+            {
                 return null;
+            }
+
             AddToTree.Tree Current = new AddToTree.Tree(null, false);
             try
             {
@@ -174,12 +199,18 @@ namespace AddToTree
             return Current;
 
         }
-        static public Tree DeleteTree(AddToTree.Tree Exsit, AddToTree.Tree Deleted)
+        public static Tree DeleteTree(AddToTree.Tree Exsit, AddToTree.Tree Deleted)
         {
             if (Exsit == null)
+            {
                 return null;
+            }
+
             if (Deleted == null)
+            {
                 return null;
+            }
+
             AddToTree.Tree Current = new AddToTree.Tree(null, false);
             if (!Formulas.EqualToObject.IsEqualWithThreadConsiderationCommonly(Exsit, Deleted))
             {
@@ -204,16 +235,16 @@ namespace AddToTree
             return Current;
 
         }
-        public String GetSample()
+        public string GetSample()
         {
-            return this.Sample;
+            return Sample;
         }
         /*public void SetSample(String SD)
         { 
          Sample=SD;
         }
          */
-        public String SampleAccess
+        public string SampleAccess
         {
             get { return Sample; }
             set { Sample = value; }
@@ -263,12 +294,12 @@ namespace AddToTree
     }
     public class reciverContractionTree
     {
-        static private TreeConstruction TreeConstructionVariable = null;
+        private static TreeConstruction TreeConstructionVariable = null;
         public reciverContractionTree()
         {
             TreeConstructionVariable = new TreeConstruction();
         }
-        public bool ResivedTaskFunction(String Oprator, String LeftSide, String RightSide, int Stage, AddToTree.Tree Dummy, ref bool ACT)
+        public bool ResivedTaskFunction(string Oprator, string LeftSide, string RightSide, int Stage, AddToTree.Tree Dummy, ref bool ACT)
         {
             bool ResivedTaskvariable = false;
             ResivedTaskvariable = TreeConstructionVariable.ConstructionTree(Oprator, LeftSide, RightSide, Stage, Dummy, ref ACT);
@@ -303,10 +334,11 @@ namespace AddToTree
             return TreeConstructionVariable.GetRightSideOfLastStageByParantez();
         }
     }
-    class TreeConstruction
+
+    internal class TreeConstruction
     {
         //To do just Addition oprations
-        private AddOpration AddOprationVariable = null;
+        private readonly AddOpration AddOprationVariable = null;
         //Contained Tree Constructed
         private Tree Node = null;
         private Tree Current = new Tree(null, true);
@@ -334,68 +366,104 @@ namespace AddToTree
             get { return AddOprationVariable.NodeReturnAndAccess; }
             set { AddOprationVariable.NodeReturnAndAccess = value; }
         }
-        public bool ConstructionTree(String Oprator, String LeftSide, String RightSide, int Stage, AddToTree.Tree Dummy, ref bool ACT)
+        public bool ConstructionTree(string Oprator, string LeftSide, string RightSide, int Stage, AddToTree.Tree Dummy, ref bool ACT)
         {
             bool Construction = false;
             if (Node == null)
+            {
                 Node = Current;
+            }
+
             if (Oprator.ToString() == "/")
+            {
                 AddOprationVariable.AddOprations("/", LeftSide, RightSide, false, Dummy, ref ACT);
+            }
             //Construction=this.ConstructionTreeDivisionOprator(LeftSide, RightSide);
             else
                 if (Oprator.ToString() == "*")
+            {
                 AddOprationVariable.AddOprations("*", LeftSide, RightSide, false, Dummy, ref ACT);
+            }
             //Construction=this.ConstructionTreeMultiplicationOprator(LeftSide, RightSide);
             else
                     if (Oprator.ToString() == "+")
+            {
                 AddOprationVariable.AddOprations("+", LeftSide, RightSide, false, Dummy, ref ACT);
+            }
             //Construction=this.ConstructionTreeAdditionOprator(LeftSide, RightSide);
             else
                         if (Oprator.ToString() == "-")
+            {
                 AddOprationVariable.AddOprations("-", LeftSide, RightSide, false, Dummy, ref ACT);
+            }
             //Construction=this.ConstructionTreeSubtractionOprator(LeftSide, RightSide);
             else
                             if (Oprator.ToString() == "^")
+            {
                 AddOprationVariable.AddOprations("^", LeftSide, RightSide, false, Dummy, ref ACT);
+            }
             //Construction=this.ConstructionTreePowerOprator(LeftSide, RightSide);
             else
                                 if (Oprator.ToString().ToLower() == "sin")
+            {
                 AddOprationVariable.AddOprations("Sin", LeftSide, null, false, Dummy, ref ACT);
+            }
             //Construction=this.ConstructionTreeSinOprator(LeftSide,null);
             else
                                     if (Oprator.ToString().ToLower() == "cos")
+            {
                 AddOprationVariable.AddOprations("Cos", LeftSide, null, false, Dummy, ref ACT);
+            }
             //    Construction=this.ConstructionTreeCosOprator(LeftSide, null);
             else
                                         if (Oprator.ToString().ToLower() == "tan")
+            {
                 AddOprationVariable.AddOprations("Tan", LeftSide, null, false, Dummy, ref ACT);
+            }
             //  Construction=this.ConstructionTreeTanOprator(LeftSide, null);
             else
                                             if (Oprator.ToString().ToLower() == "cot")
+            {
                 AddOprationVariable.AddOprations("Cot", LeftSide, null, false, Dummy, ref ACT);
+            }
             //Construction=this.ConstructionTreeCotOprator(LeftSide, null);
             else
                                                 if (Oprator.ToString().ToLower() == "sec")
+            {
                 AddOprationVariable.AddOprations("Sec", LeftSide, null, false, Dummy, ref ACT);
+            }
             // Construction = this.ConstructionTreeSecOprator(LeftSide, null);
             else
                                                     if (Oprator.ToString().ToLower() == "csc")
+            {
                 AddOprationVariable.AddOprations("Csc", LeftSide, null, false, Dummy, ref ACT);
+            }
             // Construction = this.ConstructionTreeCscOprator(LeftSide, null);
             else
                                                         if (Oprator.ToString().ToLower() == "ln")
+            {
                 AddOprationVariable.AddOprations("Ln", LeftSide, null, false, Dummy, ref ACT);
+            }
             else
                                                             if (Oprator.ToString().ToLower() == "=")
+            {
                 AddOprationVariable.AddOprations("=", null, RightSide, false, Dummy, ref ACT);
+            }
             else
                                                             if (LeftSide == null)
+            {
                 if (RightSide == null)
+                {
                     AddOprationVariable.AddOprations(null, null, Oprator, false, Dummy, ref ACT);
+                }
+            }
 
             // Construction = this.ConstructionTreeLnOprator(LeftSide, null);            
             if (Current != null)
+            {
                 Current = Current.RightSideAccess;
+            }
+
             return Construction;
         }
         /*public Tree GetRightSideOfLastStage()
@@ -412,8 +480,9 @@ namespace AddToTree
             return AddOprationVariable.GetRightSideOfLastStageByParantez();
         }
     }
+
     //for just addition
-    class AddOpration
+    internal class AddOpration
     {
         private Tree Node = null;
 
@@ -426,7 +495,7 @@ namespace AddToTree
             get { return Node; }
             set { Node = value; }
         }
-        public bool AddOprations(String Sample, String LeftSentence, String RightSentecne, bool INT, AddToTree.Tree DummyTree, ref bool ACT)
+        public bool AddOprations(string Sample, string LeftSentence, string RightSentecne, bool INT, AddToTree.Tree DummyTree, ref bool ACT)
         {
             Tree Dummy = new Tree(null, false);
             Tree DummyRightSide = new Tree(null, false);
@@ -439,17 +508,23 @@ namespace AddToTree
                 if (Dummy != null)
                 {
                     while (Dummy.RightSideAccess != null)
+                    {
                         Dummy = Dummy.RightSideAccess;
+                    }
                 }
             }
             else
+            {
                 Dummy = DummyTree;
+            }
+
             Tree LeftDummy = new Tree(null, INT);
             Tree RightDummy = new Tree(null, INT);
 
             if (Dummy.GetSample() != null)
             {
                 if (Sample == null)
+                {
                     if (LeftSentence == null)
                     {//tL
                         RightDummy.SampleAccess = RightSentecne;
@@ -458,8 +533,9 @@ namespace AddToTree
                         Dummy.RightSideAccess.ThreadAccess = Dummy;
                         ACT = true;
                     }
+                }
 
-                if ((this.IsOperator(Sample)) && (this.IsNumber(RightSentecne)))
+                if ((IsOperator(Sample)) && (IsNumber(RightSentecne)))
                 {
                     //txj
                     RightDummy.SampleAccess = Sample;
@@ -470,7 +546,7 @@ namespace AddToTree
                     Dummy.RightSideAccess.ThreadAccess = Dummy;
                     ACT = true;
                 }
-                if ((this.IsFunction(Sample)) && (this.IsNumber(RightSentecne)))
+                if ((IsFunction(Sample)) && (IsNumber(RightSentecne)))
                 {
                     //txi
                     RightDummy.SampleAccess = Sample;
@@ -482,8 +558,10 @@ namespace AddToTree
                     ACT = true;
                 }
                 //ERORRCORECTION890758746789 :The Last Sample of Parantez Closeed. refer to page 93.
-                if (this.IsFunction(Sample) || this.ISindependenceVaribale(Sample) || this.IsNumber(Sample))
+                if (IsFunction(Sample) || ISindependenceVaribale(Sample) || IsNumber(Sample))
+                {
                     if (RightSentecne == null)
+                    {
                         if (LeftSentence == null)
                         {
                             //tw
@@ -491,7 +569,7 @@ namespace AddToTree
                             if (Dummy.LeftSideAccess == null)
                             {
                                 //ERRORCORECTION760947638 : The condition added.
-                                if (!this.IsFunction(Dummy.GetSample()))
+                                if (!IsFunction(Dummy.GetSample()))
                                 {
                                     LeftDummy.SampleAccess = Sample;
                                     Dummy.SetLefTandRightCommonlySide(LeftDummy, null);
@@ -519,7 +597,10 @@ namespace AddToTree
                                 ACT = true;
                             }
                         }
-                if ((this.IsOperator(Sample)) && (this.ISindependenceVaribale(LeftSentence)))
+                    }
+                }
+
+                if ((IsOperator(Sample)) && (ISindependenceVaribale(LeftSentence)))
                 {   //tziep
                     RightDummy.SampleAccess = Sample;
                     LeftDummy.SampleAccess = LeftSentence;
@@ -529,7 +610,7 @@ namespace AddToTree
                     Dummy.RightSideAccess.ThreadAccess = Dummy;
                     ACT = true;
                 }
-                if (this.IsParantez(Sample))
+                if (IsParantez(Sample))
                 {   //y
                     RightDummy.SampleAccess = RightSentecne;
                     Dummy.SetLefTandRightCommonlySide(Dummy.LeftSideAccess, RightDummy);
@@ -538,7 +619,7 @@ namespace AddToTree
                     ACT = true;
                 }
                 //ERRORCORECTION981274 :The Structure is corected.refer to page 108.
-                if (this.IsEqualWithThreadConsiderationCommonly(Sample))
+                if (IsEqualWithThreadConsiderationCommonly(Sample))
                 {
                     DummyRightSide.SampleAccess = RightSentecne;
                     Dummy.SetLefTandRightCommonlySide(Dummy.LeftSideAccess, DummyRightSide);
@@ -549,7 +630,7 @@ namespace AddToTree
             }
             else//
             {
-                if ((this.ISindependenceVaribale(Sample)) && (this.IsOperator(RightSentecne)))
+                if ((ISindependenceVaribale(Sample)) && (IsOperator(RightSentecne)))
                 {
                     //t
                     LeftDummy.SampleAccess = RightSentecne;
@@ -561,7 +642,7 @@ namespace AddToTree
                 }
                 //ERROR9823748 :The Structure is not valid.In x^2+x-2.refer to page 103.error occured when next condition is taken also.
                 //ERRORCORECTION1897246872 :goto added.
-                if (this.IsOperator(Sample))
+                if (IsOperator(Sample))
                 {
                     //t
                     Dummy.SampleAccess = Sample;
@@ -574,7 +655,7 @@ namespace AddToTree
                     goto End;
                 }
             }
-            if (this.IsOperator(Sample) && ((this.ISindependenceVaribale(LeftSentence) || (this.IsNumber(LeftSentence)))))
+            if (IsOperator(Sample) && ((ISindependenceVaribale(LeftSentence) || (IsNumber(LeftSentence)))))
             {
                 if (Dummy.RightSideAccess == null)
                 {
@@ -626,8 +707,11 @@ namespace AddToTree
                             ChangerLocation.SetLefTandRightCommonlySide(Dummy, ChangerLocation.RightSideAccess);
                             Dummy.ThreadAccess = ChangerLocation;
                             while (Dummy.ThreadAccess != null)
+                            {
                                 Dummy = Dummy.ThreadAccess;
-                            this.NodeAcess = Dummy;
+                            }
+
+                            NodeAcess = Dummy;
                             ACT = true;
                             //Dummy.SetLefTandRightCommonlySide(Dummy.LeftSideAccess, RightDummy);
                         }
@@ -652,149 +736,228 @@ namespace AddToTree
             End:
             return true;
         }
-        private bool IsEqualWithThreadConsiderationCommonly(String Sample)
+        private bool IsEqualWithThreadConsiderationCommonly(string Sample)
         {
             bool Is = false;
             if (Sample == "=")
+            {
                 Is = true;
+            }
             else
+            {
                 Is = false;
+            }
+
             return Is;
         }
-        public bool IsNumber(String Sample)
+        public bool IsNumber(string Sample)
         {
             bool IsNumber = false;
             if (Sample != null)
             {
-                if ((!this.IsFunction(Sample)) && (!this.IsOperator(Sample)) && (!this.ISindependenceVaribale(Sample)))
+                if ((!IsFunction(Sample)) && (!IsOperator(Sample)) && (!ISindependenceVaribale(Sample)))
+                {
                     IsNumber = true;
+                }
             }
             return IsNumber;
         }
-        public bool IsOperator(String Sample)
+        public bool IsOperator(string Sample)
         {
             bool IsOperator = false;
             if (Sample != null)
             {
                 if (Sample.ToString() == "+")
+                {
                     IsOperator = true;
+                }
                 else
                     if (Sample.ToString() == "-")
+                {
                     IsOperator = true;
+                }
                 else
                         if (Sample.ToString() == "*")
+                {
                     IsOperator = true;
+                }
                 else
                             if (Sample.ToString() == "/")
+                {
                     IsOperator = true;
+                }
                 else
                                 if (Sample.ToString().ToLower() == "pow")
+                {
                     IsOperator = true;
+                }
                 else
                                     if (Sample.ToString().ToLower() == "^")
+                {
                     IsOperator = true;
+                }
             }
             return IsOperator;
         }
-        public bool IsParantez(String Sample)
+        public bool IsParantez(string Sample)
         {
             bool IsPrantez = false;
             if (Sample != null)
+            {
                 if (Sample.ToString() == "()")
+                {
                     IsPrantez = true;
+                }
+            }
 
             return IsPrantez;
         }
-        public bool IsFunction(String Sample)
+        public bool IsFunction(string Sample)
         {
             bool IsFunction = false;
             if (Sample != null)
             {
                 if (Sample.ToString().ToLower() == "sin")
+                {
                     IsFunction = true;
+                }
                 else
                     if (Sample.ToString().ToLower() == "cos")
+                {
                     IsFunction = true;
+                }
                 else
                         if (Sample.ToString().ToLower() == "tan")
+                {
                     IsFunction = true;
+                }
                 else
                             if (Sample.ToString().ToLower() == "cot")
+                {
                     IsFunction = true;
+                }
                 else
                                 if (Sample.ToString().ToLower() == "sec")
+                {
                     IsFunction = true;
+                }
                 else
                                     if (Sample.ToString().ToLower() == "csc")
+                {
                     IsFunction = true;
+                }
                 else
                                         if (Sample.ToString().ToLower() == "log")
+                {
                     IsFunction = true;
+                }
                 else
                                             if (Sample.ToString().ToLower() == "ln")
+                {
                     IsFunction = true;
+                }
+
                 if (Sample.ToString().ToLower() == "root")
+                {
                     IsFunction = true;
+                }
             }
             return IsFunction;
         }
-        public bool ISindependenceVaribale(String Sample)
+        public bool ISindependenceVaribale(string Sample)
         {
             bool ISindePendenceVariable = false;
             if (Sample != null)
             {
                 if (Sample.ToString().ToLower() == "x")
+                {
                     ISindePendenceVariable = true;
+                }
                 else
+                {
                     ISindePendenceVariable = false;
+                }
             }
             return ISindePendenceVariable;
         }
         public void Optimizer(Tree L, Tree R)
         {
             if ((L == null) || (R == null))
+            {
                 return;
+            }
 
-            this.Optimizer(L.LeftSideAccess, R.LeftSideAccess);
+            Optimizer(L.LeftSideAccess, R.LeftSideAccess);
 
             if (L.LeftSideAccess != null)
+            {
                 if (L.LeftSideAccess.GetSample() == null)
+                {
                     L.SetLefTandRightCommonlySide(null, L.RightSideAccess);
+                }
+            }
 
             if (R.LeftSideAccess != null)
+            {
                 if (R.LeftSideAccess.GetSample() == null)
+                {
                     R.SetLefTandRightCommonlySide(null, R.RightSideAccess);
+                }
+            }
 
-
-            this.Optimizer(L.RightSideAccess, R.RightSideAccess);
+            Optimizer(L.RightSideAccess, R.RightSideAccess);
 
             if (L.RightSideAccess != null)
+            {
                 if (L.RightSideAccess.GetSample() == null)
+                {
                     L.SetLefTandRightCommonlySide(L.LeftSideAccess, null);
+                }
+            }
 
             if (R.RightSideAccess != null)
+            {
                 if (R.RightSideAccess.GetSample() == null)
+                {
                     R.SetLefTandRightCommonlySide(R.LeftSideAccess, null);
+                }
+            }
 
-            this.Optimizer(L.LeftSideAccess, R.RightSideAccess);
+            Optimizer(L.LeftSideAccess, R.RightSideAccess);
 
             if (L.LeftSideAccess != null)
+            {
                 if (L.LeftSideAccess.GetSample() == null)
+                {
                     L.SetLefTandRightCommonlySide(null, L.RightSideAccess);
+                }
+            }
 
             if (R.RightSideAccess != null)
+            {
                 if (R.RightSideAccess.GetSample() == null)
+                {
                     R.SetLefTandRightCommonlySide(R.LeftSideAccess, null);
+                }
+            }
 
-            this.Optimizer(L.RightSideAccess, R.LeftSideAccess); ;
+            Optimizer(L.RightSideAccess, R.LeftSideAccess); ;
 
             if (L.RightSideAccess != null)
+            {
                 if (L.RightSideAccess.GetSample() == null)
+                {
                     L.SetLefTandRightCommonlySide(L.LeftSideAccess, null);
+                }
+            }
 
             if (R.LeftSideAccess != null)
+            {
                 if (R.LeftSideAccess.GetSample() == null)
+                {
                     R.SetLefTandRightCommonlySide(null, L.RightSideAccess);
+                }
+            }
 
             /*if (L != null)
             {
@@ -842,7 +1005,7 @@ namespace AddToTree
         public bool IsLastRightNumberOrIndependenceVariale()
         {
             bool IsLastRightNumberOrIndependenceVarial = false;
-            this.Optimizer(Node.LeftSideAccess, Node.RightSideAccess);
+            Optimizer(Node.LeftSideAccess, Node.RightSideAccess);
             Tree Dummy = new Tree(null, false);
 
             Dummy = /*Node;      
@@ -850,11 +1013,14 @@ namespace AddToTree
                while (Dummy.RightSideAccess != null)
                    Dummy = Dummy.RightSideAccess;
             */
-                Dummy = this.GetRightSideOfLastStage();
+                Dummy = GetRightSideOfLastStage();
 
-            if (this.IsNumber(Dummy.GetSample()) ||
-                    this.ISindependenceVaribale(Dummy.GetSample()))
+            if (IsNumber(Dummy.GetSample()) ||
+                    ISindependenceVaribale(Dummy.GetSample()))
+            {
                 IsLastRightNumberOrIndependenceVarial = true;
+            }
+
             return IsLastRightNumberOrIndependenceVarial;
         }
         public Tree GetRightSideOfLastStage()
@@ -877,8 +1043,12 @@ namespace AddToTree
                }
              */
             if (Dummy != null)
+            {
                 while (Dummy.RightSideAccess != null)
+                {
                     Dummy = Dummy.RightSideAccess;
+                }
+            }
 
             return Dummy;
         }
@@ -888,14 +1058,21 @@ namespace AddToTree
             Tree Holder = new Tree(null, false);
             Dummy = Node;
             Holder = Dummy;
-            while (Dummy != null && (!this.IsFunction(Dummy.GetSample())))
+            while (Dummy != null && (!IsFunction(Dummy.GetSample())))
+            {
                 Dummy = Dummy.RightSideAccess;
+            }
+
             if (Dummy != null)
             {
                 Dummy = Dummy.LeftSideAccess;
                 if (Dummy != null)
+                {
                     while (Dummy.RightSideAccess != null)
+                    {
                         Dummy = Dummy.RightSideAccess;
+                    }
+                }
             }
             return Dummy;
         }

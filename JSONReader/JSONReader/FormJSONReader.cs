@@ -6,34 +6,41 @@ namespace JSONReader
 {
     public partial class FormJSONReader : Form
     {
-        JSONReader Reader = null;
-        Thread t = null;
+        private JSONReader Reader = null;
+        private Thread t = null;
         public FormJSONReader()
         {
             InitializeComponent();
         }
-        String PersianDate(DateTime A)
+
+        private string PersianDate(DateTime A)
         {
-            String S = "";
+            string S = "";
             PersianCalendar p = new PersianCalendar();
             DateTime dmiladi = new DateTime();
             dmiladi = A;
             //string year = p.GetYear(dmiladi).ToString();
             if (A.Year != 1)
+            {
                 S = p.GetYear(dmiladi).ToString() + "/" + p.GetMonth(dmiladi).ToString() + "/" + p.GetDayOfMonth(dmiladi).ToString() + "/" + p.GetDayOfWeek(dmiladi).ToString() + ": " + p.GetHour(dmiladi) + ":" + p.GetMinute(dmiladi) + ":" + p.GetSecond(dmiladi);
+            }
+
             return S;
         }
         private void buttonOpen_Click(object sender, EventArgs e)
         {
             if (t != null)
+            {
                 t.Abort();
+            }
+
             try
             {
                 openFileDialogJSONFile.Filter = "JSON Files|*.JSON";
                 openFileDialogJSONFile.ShowDialog();
                 Reader = new JSONReader(openFileDialogJSONFile.FileName);
             }
-            catch (Exception tt)
+            catch (Exception)
             {
             }
 
@@ -42,7 +49,9 @@ namespace JSONReader
         private void FormJSONReader_Load(object sender, EventArgs e)
         {
             if (t != null)
+            {
                 t.Abort();
+            }
         }
         private void ReadJSON()
         {
@@ -51,11 +60,16 @@ namespace JSONReader
             {
                 while (Len < Reader.ItemSearch.Count)
                 {
-                    String Dummy = "";
+                    string Dummy = "";
                     if (radioButtonPersianDate.Checked)
+                    {
                         Dummy = "timestamp_usec:  " + PersianDate(Reader.ItemSearch[Len].timestamp_usec) + " ,query_text: " + Reader.ItemSearch[Len].query_text;
+                    }
                     else
+                    {
                         Dummy = "timestamp_usec:  " + Reader.ItemSearch[Len].timestamp_usec.ToString() + " ,query_text: " + Reader.ItemSearch[Len].query_text;
+                    }
+
                     textBoxReadJSON(textBoxJSON, Dummy);
                     AppendtextBoxReadJSON(textBoxJSON, "\r\n");
                     Len++;
@@ -64,42 +78,44 @@ namespace JSONReader
             }
 
         }
-        delegate void SettextBoxReadJSONCalBack(TextBox JSON, String Text);
-        private void textBoxReadJSON(TextBox JSON, String Text)
+
+        private delegate void SettextBoxReadJSONCalBack(TextBox JSON, string Text);
+        private void textBoxReadJSON(TextBox JSON, string Text)
         {
             try
             {
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
                     SettextBoxReadJSONCalBack d = new SettextBoxReadJSONCalBack(textBoxReadJSON);
-                    this.Invoke(new Action(() => JSON.Text += Text));
+                    Invoke(new Action(() => JSON.Text += Text));
                 }
                 else
                 {
                     JSON.Text += Text;
                 }
             }
-            catch (Exception t)
+            catch (Exception)
             {
             }
 
         }
-        delegate void AppendtextBoxReadJSONCalBack(TextBox JSON, String Text);
-        private void AppendtextBoxReadJSON(TextBox JSON, String Text)
+
+        private delegate void AppendtextBoxReadJSONCalBack(TextBox JSON, string Text);
+        private void AppendtextBoxReadJSON(TextBox JSON, string Text)
         {
             try
             {
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
                     AppendtextBoxReadJSONCalBack d = new AppendtextBoxReadJSONCalBack(textBoxReadJSON);
-                    this.Invoke(new Action(() => JSON.AppendText(Text)));
+                    Invoke(new Action(() => JSON.AppendText(Text)));
                 }
                 else
                 {
                     JSON.AppendText(Text);
                 }
             }
-            catch (Exception t)
+            catch (Exception)
             {
             }
         }

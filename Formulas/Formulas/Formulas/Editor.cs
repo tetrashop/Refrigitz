@@ -7,16 +7,16 @@ namespace Editors
 {
     public partial class Editor : Form
     {
-        Graphics g = null;
-        Image Map;
-        static int X = 10, Y = 10;
+        private Graphics g = null;
+        private readonly Image Map;
+        private static int X = 10, Y = 10;
         public Editor()
         {
             InitializeComponent();
-            this.pictureBoxInOut.Location = new Point(10, 10);
-            this.pictureBoxInOut.Size = new System.Drawing.Size(this.Width - 40, this.Height - 40);
-            Map = new Bitmap(this.Width - 30, this.Height - 30);
-            this.pictureBoxInOut.Image = Map;
+            pictureBoxInOut.Location = new Point(10, 10);
+            pictureBoxInOut.Size = new System.Drawing.Size(Width - 40, Height - 40);
+            Map = new Bitmap(Width - 30, Height - 30);
+            pictureBoxInOut.Image = Map;
             g = Graphics.FromImage(Map);
             pictureBoxInOut.Refresh();
         }
@@ -44,7 +44,7 @@ namespace Editors
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "Integral.gif"), new Rectangle(X, Y, 30, 30));
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -57,7 +57,7 @@ namespace Editors
              (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
              + "Line.gif"), new Rectangle(X, Y, 30, 30));
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -72,7 +72,7 @@ namespace Editors
                 + "Trianglic.gif"), new Rectangle(X, Y, 30, 30));
 
             X += 32;
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -85,7 +85,7 @@ namespace Editors
 
                 + "Cerices.gif"), new Rectangle(X, Y, 30, 30));
             X += 32;
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -98,7 +98,7 @@ namespace Editors
 
                  + "Root.gif"), new Rectangle(X, Y, 30, 30));
             X += 32;
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -111,7 +111,7 @@ namespace Editors
 
               + "Parantez.gif"), new Rectangle(X, Y, 30, 30));
             X += 32;
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -124,7 +124,7 @@ namespace Editors
 
               + "ToUp.gif"), new Rectangle(X, Y, 30, 30));
             X += 32;
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -137,7 +137,7 @@ namespace Editors
 
               + "ToDown.gif"), new Rectangle(X, Y, 30, 30));
             X += 32;
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -151,7 +151,7 @@ namespace Editors
 
               + "ToLeft.gif"), new Rectangle(X, Y, 30, 30));
             X += 32;
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -164,7 +164,7 @@ namespace Editors
 
               + "ToRight.gif"), new Rectangle(X, Y, 30, 30));
             X += 32;
-            if (X > this.pictureBoxInOut.Image.Width - 40)
+            if (X > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -173,33 +173,47 @@ namespace Editors
         public void FiveBasicOprators(int A)
         {
 
-            if (X + 32 > this.pictureBoxInOut.Image.Width - 40)
+            if (X + 32 > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
             }
             if (A == 0)
+            {
                 g.DrawString("+", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
+            }
             else
                 if (A == 1)
+            {
                 g.DrawString("-", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
+            }
             else
                     if (A == 2)
+            {
                 g.DrawString("*", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
+            }
             else
                         if (A == 3)
+            {
                 g.DrawString("/", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
+            }
             else
                             if (A == 4)
+            {
                 g.DrawString("^", new Font("Times New Roman", 15, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(X, Y, 30, 30));
+            }
+
             X += 32;
 
         }
-        public void DrawNumberAndVaribale(String A)
+        public void DrawNumberAndVaribale(string A)
         {
             if (A == null)
+            {
                 return;
-            if (X + 32 * A.Length > this.pictureBoxInOut.Image.Width - 40)
+            }
+
+            if (X + 32 * A.Length > pictureBoxInOut.Image.Width - 40)
             {
                 X = 10;
                 Y += 70;
@@ -220,9 +234,9 @@ namespace Editors
 
         private void pictureBoxInOut_Paint(object sender, PaintEventArgs e)
         {
-            this.pictureBoxInOut.Location = new Point(10, 10);
-            this.pictureBoxInOut.Size = new System.Drawing.Size(this.Width - 40, this.Height - 40);
-            this.pictureBoxInOut.Image = Map;
+            pictureBoxInOut.Location = new Point(10, 10);
+            pictureBoxInOut.Size = new System.Drawing.Size(Width - 40, Height - 40);
+            pictureBoxInOut.Image = Map;
             pictureBoxInOut.Refresh();
 
         }

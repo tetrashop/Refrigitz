@@ -1,28 +1,21 @@
 ﻿using Cloo;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OpenCL
 {
     public class EasyCL
     {
-        ComputeContext context;
-        ComputeCommandQueue queue;
-        ComputeProgram program;
-
-        AcceleratorDevice _device;
+        private ComputeContext context;
+        private ComputeCommandQueue queue;
+        private ComputeProgram program;
+        private AcceleratorDevice _device;
         public AcceleratorDevice Accelerator
         {
-            get
-            {
-                return _device;
-            }
+            get => _device;
             set
             {
                 if (value != _device)
@@ -42,7 +35,7 @@ namespace OpenCL
             return new ComputeMethod(Kernel, Method, Device);
         }
 
-        static double GetGFlops(ComputeMethod Method,bool IsFloat)
+        private static double GetGFlops(ComputeMethod Method,bool IsFloat)
         {
             int upper = 10000000;
 
@@ -73,7 +66,11 @@ namespace OpenCL
                     Method.Invoke(worksize); 
                 }
 
-                if (worksize == upper) break;
+                if (worksize == upper)
+                {
+                    break;
+                }
+
                 worksize = Math.Min(worksize * 2, upper);
             }
 
@@ -110,17 +107,17 @@ namespace OpenCL
             double GBytespersec = bytespersec / (8 * 1000 * 1000 * 1000.0);
             return GBytespersec;
         }
-        
-        void CreateContext()
+
+        private void CreateContext()
         {
             context = new ComputeContext(_device.Type, new ComputeContextPropertyList(Accelerator.Device.Platform), null, IntPtr.Zero);
             queue = new ComputeCommandQueue(context, context.Devices[0], ComputeCommandQueueFlags.None);
         }
 
-        string kernel;
+        private string kernel;
         public void LoadKernel(string Kernel)
         {
-            this.kernel = Kernel;
+            kernel = Kernel;
             program = new ComputeProgram(context, Kernel);
 
             try
@@ -134,9 +131,12 @@ namespace OpenCL
             }
         }
 
-        void Setargument(ComputeKernel kernel, int index, object arg)
+        private void Setargument(ComputeKernel kernel, int index, object arg)
         {
-            if (arg == null) throw new ArgumentException("Argument " + index + " is null");
+            if (arg == null)
+            {
+                throw new ArgumentException("Argument " + index + " is null");
+            }
 
             Type argtype = arg.GetType();
             if (argtype.IsArray)
@@ -155,12 +155,15 @@ namespace OpenCL
             }
         }
 
-        ComputeKernel LastKernel = null;
-        string LastMethod = null;
+        private ComputeKernel LastKernel = null;
+        private string LastMethod = null;
 
-        ComputeKernel CreateKernel(string Method, object[] args)
+        private ComputeKernel CreateKernel(string Method, object[] args)
         {
-            if (args == null) throw new ArgumentException("You have to pass an argument to a kernel");
+            if (args == null)
+            {
+                throw new ArgumentException("You have to pass an argument to a kernel");
+            }
 
             ComputeKernel kernel;
             if (LastMethod == Method && LastKernel != null) //Kernel caching, do not compile twice
@@ -187,7 +190,10 @@ namespace OpenCL
         /// </summary>
         public void Invoke(string Method, long Offset, long Worksize)
         {
-            if (LastKernel == null) throw new InvalidOperationException("You need to call Invoke with arguments before. All Arguments are saved");
+            if (LastKernel == null)
+            {
+                throw new InvalidOperationException("You need to call Invoke with arguments before. All Arguments are saved");
+            }
 
             ComputeEventList eventList = new ComputeEventList();
             InvokeStarted?.Invoke(this, EventArgs.Empty);
@@ -216,7 +222,7 @@ namespace OpenCL
         }
 
         //waits for event to be fired
-        Dictionary<string, AsyncManualResetEvent> CompletionLocks = new Dictionary<string, AsyncManualResetEvent>();
+        private readonly Dictionary<string, AsyncManualResetEvent> CompletionLocks = new Dictionary<string, AsyncManualResetEvent>();
         public async Task InvokeAsync(string Method, long worksize, params object[] Args)
         {
             ComputeKernel kernel = CreateKernel(Method, Args);

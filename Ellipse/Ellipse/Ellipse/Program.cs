@@ -2,9 +2,9 @@ using System;
 
 namespace Ellipse
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //I/O of Parameters.
             double a, b, c;

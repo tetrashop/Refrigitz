@@ -24,10 +24,10 @@ using System;
 
 namespace Formulas
 {
-    static class MulDivisionSorter
+    internal static class MulDivisionSorter
     {
-        static AddToTreeTreeLinkList MULATED = new AddToTreeTreeLinkList();
-        static public AddToTree.Tree MulDivisionSorterFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        private static readonly AddToTreeTreeLinkList MULATED = new AddToTreeTreeLinkList();
+        public static AddToTree.Tree MulDivisionSorterFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             Dummy = MulDivisionSorter.ArrangmentNumberAndX(Dummy);
             bool CONTINUE = false;
@@ -38,12 +38,18 @@ namespace Formulas
             } while (CONTINUE);
             return Dummy;
         }
-        static AddToTree.Tree ArrangmentNumberAndX(AddToTree.Tree Dummy)
+
+        private static AddToTree.Tree ArrangmentNumberAndX(AddToTree.Tree Dummy)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             if (Dummy.LeftSideAccess != null)
+            {
                 if (Dummy.RightSideAccess != null)
+                {
                     if ((Dummy.SampleAccess == "*") || (Dummy.SampleAccess == "+"))
                     {
                         if (Dummy.ThreadAccess != null)
@@ -53,7 +59,9 @@ namespace Formulas
                                 //if (IS.ISindependenceVaribaleOrNumber(Dummy.LeftSideAccess.SampleAccess))
                                 //if (!IS.IsOperator(Dummy.LeftSideAccess.SampleAccess))
                                 if (IS.IsDiv(Dummy.RightSideAccess.SampleAccess))
+                                {
                                     Dummy.SetLefTandRightCommonlySide(Dummy.RightSideAccess, Dummy.LeftSideAccess);
+                                }
                             }
                             else
                                 if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.ThreadAccess.RightSideAccess, Dummy))
@@ -61,7 +69,9 @@ namespace Formulas
                                 //if (IS.ISindependenceVaribaleOrNumber(Dummy.RightSideAccess.SampleAccess))
                                 //if(!IS.IsOperator(Dummy.RightSideAccess.SampleAccess))
                                 if (IS.IsDiv(Dummy.LeftSideAccess.SampleAccess))
+                                {
                                     Dummy.SetLefTandRightCommonlySide(Dummy.RightSideAccess, Dummy.LeftSideAccess);
+                                }
                             }
                         }
                         /*
@@ -69,15 +79,21 @@ namespace Formulas
                    Dummy.SetLefTandRightCommonlySide(Dummy.RightSideAccess, Dummy.LeftSideAccess);
                          */
                     }
+                }
+            }
 
             MulDivisionSorter.ArrangmentNumberAndX(Dummy.LeftSideAccess);
             MulDivisionSorter.ArrangmentNumberAndX(Dummy.RightSideAccess);
             return Dummy;
         }
-        static AddToTree.Tree MulDivisionSorterFxAction(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS, ref bool CONTINUE)
+
+        private static AddToTree.Tree MulDivisionSorterFxAction(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS, ref bool CONTINUE)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             AddToTree.Tree Holder = Dummy;
             Dummy.LeftSideAccess = MulDivisionSorter.MulDivisionSorterFxAction(Dummy.LeftSideAccess, ref UIS, ref CONTINUE);
             try
@@ -122,41 +138,73 @@ namespace Formulas
             {
                 AddToTree.Tree HolderCurrent = Dummy;
                 if (MULATED.FINDTreeWithThreadConsideration(Dummy))
+                {
                     break;
+                }
+
                 if (IS.IsFunction(Dummy.SampleAccess))
+                {
                     break;
+                }
+
                 Current = Dummy.RightSideAccess;
                 if (!IS.IsDiv(Current.SampleAccess))
+                {
                     break;
+                }
+
                 if (IS.IsOperator(Dummy.SampleAccess) && (!((Dummy.SampleAccess == "*") || (Dummy.SampleAccess == "/"))))
+                {
                     BREAK = true;
+                }
 
                 UIS.SetProgressValue(UIS.progressBar13, INCREASE + UIS.progressBar13.Value);
 
                 if (!BREAK)
+                {
                     while ((Current != null) && (Current.RightSideAccess != null))
                     {
                         if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy, Current))
+                        {
                             break;
+                        }
+
                         if (IS.IsFunction(Current.SampleAccess))
+                        {
                             break;
+                        }
                         //ERRORCORECTION1982748234 :Refer to page 249.
                         if (!((Dummy.SampleAccess == "*") && (Current.SampleAccess == "/")))
+                        {
                             break;
+                        }
+
                         if (MULATED.FINDTreeWithThreadConsideration(Current))
+                        {
                             break;
+                        }
+
                         if (MULATED.FINDTreeWithThreadConsideration(Dummy))
+                        {
                             break;
+                        }
+
                         if (IS.IsOperator(Dummy.SampleAccess) && (!((Dummy.SampleAccess == "*") || (Dummy.SampleAccess == "/"))))
+                        {
                             BREAK = true;//LOCATION98174723742 :Rfer to page 249.                    
-                                         //ERROR1892386124 :The Same node of Current and Dummy node.refer to page 238.
+                        }
+                        //ERROR1892386124 :The Same node of Current and Dummy node.refer to page 238.
                         if (!BREAK)//ERRORCORECTION897123 :The ERROR31704152 corrected.
+                        {
                             if ((Current.SampleAccess == "/") && (Dummy.SampleAccess == "*"))
                             {
                                 UIS.SetProgressValue(UIS.progressBar13, INCREASE + UIS.progressBar13.Value);
 
                                 if (Dummy.FINDTreeWithThreadConsideration(Current, Dummy) != null)
+                                {
                                     break;
+                                }
+
                                 CONTINUE = true;
                                 AddToTree.Tree LOCAL = Dummy;
                                 //ERROR1928749712 :The *** Mraked edited.refer to page 256.
@@ -173,7 +221,9 @@ namespace Formulas
                                 AddToTree.Tree Contained = Dummy;
 
                                 while (!(EqualToObject.IsEqualWithThreadConsiderationCommonly(Current, Dummy)))
+                                {
                                     Dummy = Dummy.RightSideAccess;
+                                }
                                 //====
 
                                 //LOCATION30415071.refer to page 256.
@@ -224,17 +274,28 @@ namespace Formulas
                                 //          Dummy = Dummy.RightSideAccess;                                                                         
                                 break;
                             }
+                        }
+
                         Current = Current.RightSideAccess;
                     }
+                }
+
                 if (BREAK)
+                {
                     break;
+                }
+
                 if (!CONTINUE)
                 {
                     if (Dummy.RightSideAccess != null)
+                    {
                         Dummy = Dummy.RightSideAccess;
+                    }
                 }
                 else
+                {
                     break;
+                }
                 //               if (Dummy.RightSideAccess != null)
                 //             Current = Dummy.RightSideAccess;
 
@@ -252,39 +313,72 @@ namespace Formulas
             while ((Dummy != null) && (Dummy.LeftSideAccess != null))
             {
                 if (MULATED.FINDTreeWithThreadConsideration(Dummy))
+                {
                     break;
+                }
+
                 if (IS.IsFunction(Dummy.SampleAccess))
+                {
                     break;
+                }
+
                 Current = Dummy.LeftSideAccess;
                 if (!IS.IsDiv(Current.SampleAccess))
+                {
                     break;
+                }
+
                 AddToTree.Tree HolderCurrent = Dummy;
                 if (IS.IsOperator(Dummy.SampleAccess) && (!((Dummy.SampleAccess == "*") || (Dummy.SampleAccess == "/"))))
+                {
                     BREAK = true;
+                }
+
                 if (!BREAK)
+                {
                     while ((Current != null) && (Current.LeftSideAccess != null))
                     {
                         if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy, Current))
+                        {
                             break;
+                        }
+
                         if (MULATED.FINDTreeWithThreadConsideration(Current))
+                        {
                             break;
+                        }
                         //ERRORCORECTINO1782647 :On four Section of while added thwe non function condition.refre to page 226.
                         if (IS.IsFunction(Current.SampleAccess))
+                        {
                             break;
+                        }
+
                         if (MULATED.FINDTreeWithThreadConsideration(Dummy))
+                        {
                             break;
+                        }
+
                         if (IS.IsOperator(Dummy.SampleAccess) && (!((Dummy.SampleAccess == "*") || (Dummy.SampleAccess == "/"))))
+                        {
                             BREAK = true;
+                        }
                         //ERRORCORECTION1982748234 :Refer to page 249.
                         if (!((Dummy.SampleAccess == "*") && (Current.SampleAccess == "/")))
+                        {
                             break;//LOCATION98174723741 :Refer to page 249                    
+                        }
+
                         if (!BREAK)//ERRORCORECTION897123 :The ERROR31704152 corrected.
+                        {
                             if ((Current.SampleAccess == "/") && (Dummy.SampleAccess == "*"))
                             {
                                 UIS.SetProgressValue(UIS.progressBar13, INCREASE + UIS.progressBar13.Value);
 
                                 if (Dummy.FINDTreeWithThreadConsideration(Current, Dummy) != null)
+                                {
                                     break;
+                                }
+
                                 CONTINUE = true;
                                 AddToTree.Tree LOCAL = Dummy;
                                 AddToTree.Tree MUL = new AddToTree.Tree("*", false);
@@ -300,7 +394,9 @@ namespace Formulas
                                 AddToTree.Tree Contained = Dummy;
 
                                 while (!(EqualToObject.IsEqualWithThreadConsiderationCommonly(Current, Dummy)))
+                                {
                                     Dummy = Dummy.LeftSideAccess;
+                                }
                                 //ERRRORCORECTION1297192 :Replacement mul on non-proper location.reer to page 218.
 
                                 //Dummy = Dummy.LeftSideAccess;
@@ -355,17 +451,28 @@ namespace Formulas
                                 //  Dummy = Dummy.ThreadAccess;                       
                                 break;
                             }
+                        }
+
                         Current = Current.LeftSideAccess;
                     }
+                }
+
                 if (BREAK)
+                {
                     break;
+                }
+
                 if (!CONTINUE)
                 {
                     if (Dummy.LeftSideAccess != null)
+                    {
                         Dummy = Dummy.LeftSideAccess;
+                    }
                 }
                 else
+                {
                     break;
+                }
                 //             
                 //if (Dummy.LeftSideAccess != null)
                 //  Current = Dummy.LeftSideAccess;

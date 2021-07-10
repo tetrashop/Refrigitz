@@ -2,9 +2,9 @@ using System;
 
 namespace Formulas
 {
-    static class RecursionAndOptimizingLinkList
+    internal static class RecursionAndOptimizingLinkList
     {
-        static public AddToTreeTreeLinkList RecursionAndOptimizingLinkListFx(AddToTreeTreeLinkList Dummy)
+        public static AddToTreeTreeLinkList RecursionAndOptimizingLinkListFx(AddToTreeTreeLinkList Dummy)
         {
             if (Dummy.CurrentSizeAccess > -1)
             {
@@ -21,9 +21,13 @@ namespace Formulas
                     try
                     {
                         if (DummyTree.SampleAccess == null)
+                        {
                             continue;
+                        }
                         else
+                        {
                             Stack.Push(DummyTree);
+                        }
                     }
                     catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); continue; }
                 }
@@ -31,7 +35,9 @@ namespace Formulas
                 // System.Windows.Forms.MessageBox.Show("2.4.2.Stack pushed.");
 
                 while (!(Stack.IsEmpty()))
+                {
                     Dummy.ADDToTree(Stack.Pop());
+                }
 
                 // System.Windows.Forms.MessageBox.Show("2.4.3.End Of Recursion.");
             }

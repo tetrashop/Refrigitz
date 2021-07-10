@@ -1,5 +1,7 @@
 ﻿//#define SURFACE2
 
+using howto_WPF_3D_triangle_normalsuser;
+using OpenCL;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,8 +12,6 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using WindowsApplication1;
-using OpenCL;
-using howto_WPF_3D_triangle_normalsuser;
 
 namespace howto_WPF_3D_triangle_normals
 {
@@ -20,11 +20,11 @@ namespace howto_WPF_3D_triangle_normals
     /// </summary>
     public partial class Window1 : Window
     {
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -40,9 +40,10 @@ namespace howto_WPF_3D_triangle_normals
         {
             InitializeComponent();
         }
-        WindowsApplication1.Form1 gr = null;
+
+        private WindowsApplication1.Form1 gr = null;
         // The main object model group.
-        private Model3DGroup MainModel3Dgroup = new Model3DGroup();
+        private readonly Model3DGroup MainModel3Dgroup = new Model3DGroup();
 
 
         // The camera.
@@ -81,8 +82,10 @@ namespace howto_WPF_3D_triangle_normals
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Give the camera its initial position.
-            TheCamera = new PerspectiveCamera();
-            TheCamera.FieldOfView = 60;
+            TheCamera = new PerspectiveCamera
+            {
+                FieldOfView = 60
+            };
             MainViewport.Camera = TheCamera;
             PositionCamera();
 
@@ -93,8 +96,10 @@ namespace howto_WPF_3D_triangle_normals
             //DefineModel(MainModel3Dgroup);
 
             // Add the group of models to a ModelVisual3D.
-            ModelVisual3D model_visual = new ModelVisual3D();
-            model_visual.Content = MainModel3Dgroup;
+            ModelVisual3D model_visual = new ModelVisual3D
+            {
+                Content = MainModel3Dgroup
+            };
 
             // Display the main visual in the viewportt.
             MainViewport.Children.Add(model_visual);
@@ -157,10 +162,12 @@ namespace howto_WPF_3D_triangle_normals
             DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.LightGreen);
 
             // Make the surface's model.
-            SurfaceModel = new GeometryModel3D(mesh, surface_material);
+            SurfaceModel = new GeometryModel3D(mesh, surface_material)
+            {
 
-            // Make the surface visible from both sides.
-            SurfaceModel.BackMaterial = surface_material;
+                // Make the surface visible from both sides.
+                BackMaterial = surface_material
+            };
 
             // Add the model to the model groups.
             model_group.Children.Add(SurfaceModel);
@@ -225,7 +232,7 @@ namespace howto_WPF_3D_triangle_normals
         }
 
         // A dictionary to hold points for fast lookup.
-        private Dictionary<Point3D, int> PointDictionary =
+        private readonly Dictionary<Point3D, int> PointDictionary =
             new Dictionary<Point3D, int>();
 
         // If the point already exists, return its index.
@@ -235,7 +242,9 @@ namespace howto_WPF_3D_triangle_normals
             // If the point is in the point dictionary,
             // return its saved index.
             if (PointDictionary.ContainsKey(point))
+            {
                 return PointDictionary[point];
+            }
 
             // We didn't find the point. Create it.
             points.Add(point);
@@ -250,11 +259,19 @@ namespace howto_WPF_3D_triangle_normals
             {
                 case Key.Up:
                     CameraPhi += CameraDPhi;
-                    if (CameraPhi > Math.PI / 2.0) CameraPhi = Math.PI / 2.0;
+                    if (CameraPhi > Math.PI / 2.0)
+                    {
+                        CameraPhi = Math.PI / 2.0;
+                    }
+
                     break;
                 case Key.Down:
                     CameraPhi -= CameraDPhi;
-                    if (CameraPhi < -Math.PI / 2.0) CameraPhi = -Math.PI / 2.0;
+                    if (CameraPhi < -Math.PI / 2.0)
+                    {
+                        CameraPhi = -Math.PI / 2.0;
+                    }
+
                     break;
                 case Key.Left:
                     CameraTheta += CameraDTheta;
@@ -265,7 +282,11 @@ namespace howto_WPF_3D_triangle_normals
                 case Key.Add:
                 case Key.OemPlus:
                     CameraR -= CameraDR;
-                    if (CameraR < CameraDR) CameraR = CameraDR;
+                    if (CameraR < CameraDR)
+                    {
+                        CameraR = CameraDR;
+                    }
+
                     break;
                 case Key.Subtract:
                 case Key.OemMinus:
@@ -303,29 +324,44 @@ namespace howto_WPF_3D_triangle_normals
             for (int i = MainModel3Dgroup.Children.Count - 1; i >= 0; i--)
             {
                 if (MainModel3Dgroup.Children[i] is GeometryModel3D)
+                {
                     MainModel3Dgroup.Children.RemoveAt(i);
+                }
             }
 
             // Add the selected GeometryModel3Ds.
             if ((SurfaceModel != null) && ((bool)chkSurface.IsChecked))
+            {
                 MainModel3Dgroup.Children.Add(SurfaceModel);
+            }
+
             if ((WireframeModel != null) && ((bool)chkWireframe.IsChecked))
+            {
                 MainModel3Dgroup.Children.Add(WireframeModel);
+            }
+
             if ((NormalsModel != null) && ((bool)chkNormals.IsChecked))
+            {
                 MainModel3Dgroup.Children.Add(NormalsModel);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             gr = new Form1();
-            WindowInteropHelper wih = new WindowInteropHelper(this);
-            wih.Owner = gr.Handle;
+            WindowInteropHelper wih = new WindowInteropHelper(this)
+            {
+                Owner = gr.Handle
+            };
             gr.Show();
         }
-        bool exist(Point3D ss, List<List<Point3D>> d)
+
+        private bool exist(Point3D ss, List<List<Point3D>> d)
         {
             if (d.Count == 0)
+            {
                 return false;
+            }
 
             for (int i = 0; i < d.Count; i++)
             {
@@ -333,37 +369,52 @@ namespace howto_WPF_3D_triangle_normals
                 {
 
                     if (ss.X == d[i][j].X && ss.Y == d[i][j].Y && ss.Z == d[i][j].Z)
+                    {
                         return true;
+                    }
                 }
             }
             return false;
         }
 
-        bool exist(Point3D ss, List<Point3D> d)
+        private bool exist(Point3D ss, List<Point3D> d)
         {
             if (d.Count == 0)
+            {
                 return false;
+            }
+
             for (int i = 0; i < d.Count; i++)
             {
                 if (ss.X == d[i].X && ss.Y == d[i].Y && ss.Z == d[i].Z)
+                {
                     return true;
+                }
             }
             return false;
         }
-        bool exist(Point3D ss, Point3D d)
+
+        private bool exist(Point3D ss, Point3D d)
         {
 
             if (ss.X == d.X && ss.Y == d.Y && ss.Z == d.Z)
+            {
                 return true;
+            }
+
             return false;
         }
-        bool exist(Point3D[] ss, List<Point3D[]> d)
+
+        private bool exist(Point3D[] ss, List<Point3D[]> d)
         {
             object o = new object();
             lock (o)
             {
                 if (d.Count == 0)
+                {
                     return false;
+                }
+
                 for (int i = 0; i < d.Count; i++)
                 {
                     if (ss[0].X == d[i][0].X && ss[0].Y == d[i][0].Y && ss[0].Z == d[i][0].Z)
@@ -380,7 +431,8 @@ namespace howto_WPF_3D_triangle_normals
                 return false;
             }
         }
-        double minraddpoints(List<Point3D> p0)
+
+        private double minraddpoints(List<Point3D> p0)
         {
             double r = double.MaxValue;
             for (int i = 0; i < p0.Count; i++)
@@ -391,12 +443,15 @@ namespace howto_WPF_3D_triangle_normals
                     double a = Math.Sqrt((p0[i].X - p0[j].X) * (p0[i].X - p0[j].X) + (p0[i].Y - p0[j].Y) * (p0[i].Y - p0[j].Y) + (p0[i].Z - p0[j].Z) * (p0[i].Z - p0[j].Z));
 
                     if (a < r && a != 0)
+                    {
                         r = a;
+                    }
                 }
             }
             return r;
         }
-        bool IsNeigbour(List<double[]> sall, List<Point3D> pall, Point3D p0, Point3D p1)
+
+        private bool IsNeigbour(List<double[]> sall, List<Point3D> pall, Point3D p0, Point3D p1)
         {
             int siall = pall.IndexOf(p1);
             int all = pall.IndexOf(p0);
@@ -406,12 +461,12 @@ namespace howto_WPF_3D_triangle_normals
                 double j = 0;
                 if (all < sall.Count)
                 {
-                    i = (double)sall[all][0];
-                    j = (double)sall[all][1];
+                    i = sall[all][0];
+                    j = sall[all][1];
                     if (i >= 0 && j >= 0 && siall >= 0 && siall < sall.Count)
                     {
-                        double mountsi = (double)sall[siall][0];
-                        double mountsj = (double)sall[siall][1];
+                        double mountsi = sall[siall][0];
+                        double mountsj = sall[siall][1];
                         /*double minX = minGetListX(pall);
                         double minY = minGetListY(pall);
                         double maxX = maxGetListX(pall);
@@ -423,11 +478,14 @@ namespace howto_WPF_3D_triangle_normals
             return true;
         }
 
-        bool IsNeigbourChild(double mountsi, double mountsj, List<double[]> sall, int siall, double i, double j)
+        private bool IsNeigbourChild(double mountsi, double mountsj, List<double[]> sall, int siall, double i, double j)
         {
             bool Is = false;
             if (i < 1 || j > 1 || i > gr.a.cx - 1 || j > gr.a.cyp0 - 1)
+            {
                 return Is;
+            }
+
             if (mountsi == i && mountsj == j)
             {
                 Is = true;
@@ -438,7 +496,9 @@ namespace howto_WPF_3D_triangle_normals
             }
 
             if (Is)
+            {
                 return Is;
+            }
 
             if (sall[siall][6] == (i + 1) && sall[siall][7] == (j))
             {
@@ -446,7 +506,9 @@ namespace howto_WPF_3D_triangle_normals
             }
 
             if (Is)
+            {
                 return Is;
+            }
 
             if (sall[siall][9] == (i) && sall[siall][10] == (j - 1))
             {
@@ -454,7 +516,9 @@ namespace howto_WPF_3D_triangle_normals
             }
 
             if (Is)
+            {
                 return Is;
+            }
 
             if (sall[siall][12] == (i) && sall[siall][13] == (j + 1))
             {
@@ -462,7 +526,9 @@ namespace howto_WPF_3D_triangle_normals
             }
 
             if (Is)
+            {
                 return Is;
+            }
 
             if (sall[siall][15] == (i - 1) && sall[siall][16] == (j - 1))
             {
@@ -470,7 +536,9 @@ namespace howto_WPF_3D_triangle_normals
             }
 
             if (Is)
+            {
                 return Is;
+            }
 
             if (sall[siall][18] == (i - 1) && sall[siall][19] == (j + 1))
             {
@@ -478,7 +546,9 @@ namespace howto_WPF_3D_triangle_normals
             }
 
             if (Is)
+            {
                 return Is;
+            }
 
             if (sall[siall][21] == (i + 1) && sall[siall][22] == (j - 1))
             {
@@ -486,7 +556,9 @@ namespace howto_WPF_3D_triangle_normals
             }
 
             if (Is)
+            {
                 return Is;
+            }
 
             if (sall[siall][24] == (i + 1) && sall[siall][25] == (j + 1))
             {
@@ -494,7 +566,8 @@ namespace howto_WPF_3D_triangle_normals
             }
             return Is;
         }
-        void CtreatPoints(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddp1Conected)
+
+        private void CtreatPoints(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddp1Conected)
         {
             for (int i = 0; i < gr.a.cx; i++)
             {
@@ -504,8 +577,10 @@ namespace howto_WPF_3D_triangle_normals
                     {
                         Point3D s = new Point3D(i, j, (gr.a.c[i, j, 0] + gr.a.c[i, j, 1] + gr.a.c[i, j, 2]) / 3);
                         if (!exist(s, PointsAddp0))
-
+                        {
                             PointsAddp0.Add(s);
+                        }
+
                         PointsAddp0Conected.Add(gr.a.st[i][j]);
                     }
                 }
@@ -524,7 +599,8 @@ namespace howto_WPF_3D_triangle_normals
             }
 
         }
-        void reductFirst(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddp1Conected, double minrp0, double minrp1)
+
+        private void reductFirst(ref List<Point3D> PointsAddp0, List<Point3D> PointsAddp1, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddp1Conected, double minrp0, double minrp1)
         {
             if (PointsAddp0.Count > 35 || PointsAddp1.Count > 35)
             {
@@ -537,8 +613,8 @@ namespace howto_WPF_3D_triangle_normals
 
                 List<double[]> xxxp1C = new List<double[]>();
 
-                int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0, ref xxxp0C, System.Convert.ToDouble(gr.textBox1.Text));
-                f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, ref PointsAddp1Conected, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1, ref xxxp1C, System.Convert.ToDouble(gr.textBox1.Text));
+                int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp0 * 2, 35.0 / PointsAddp0.Count, ref xxxp0, ref xxxp0C, System.Convert.ToDouble(gr.textBox1.Text));
+                f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, ref PointsAddp1Conected, minrp1 * 2, 35.0 / PointsAddp1.Count, ref xxxp1, ref xxxp1C, System.Convert.ToDouble(gr.textBox1.Text));
                 if (xxxp0.Count > 1)
                 {
                     PointsAddp0 = xxxp0;
@@ -552,9 +628,10 @@ namespace howto_WPF_3D_triangle_normals
             }
 
         }
-        void reductionSecond(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<Point3D> xxxp00, ref List<double[]> xxxp00C, double minrp)
+
+        private void reductionSecond(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<Point3D> xxxp00, ref List<double[]> xxxp00C, double minrp)
         {
-            int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp00, ref xxxp00C, System.Convert.ToDouble(gr.textBox1.Text) //System.Convert.ToDouble(gr.textBox1.Text) / 3
+            int ff = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp * 2, 35.0 / PointsAddp0.Count, ref xxxp00, ref xxxp00C, System.Convert.ToDouble(gr.textBox1.Text) //System.Convert.ToDouble(gr.textBox1.Text) / 3
                                       /// (minrp / minrp0)
                                       );
             if (xxxp00.Count > 1)
@@ -563,10 +640,13 @@ namespace howto_WPF_3D_triangle_normals
                 PointsAddp0Conected = xxxp00C;
                 MessageBox.Show("reduced...p0! " + PointsAddp0.Count.ToString() + " points.");
             }
-            else MessageBox.Show("no reductio p0! " + PointsAddp0.Count.ToString());
-
+            else
+            {
+                MessageBox.Show("no reductio p0! " + PointsAddp0.Count.ToString());
+            }
         }
-        void DrawTriangle(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected, ref List<Point3D> dd, ref List<Point3D[]> d, ref MeshGeometry3D mesh)
+
+        private void DrawTriangle(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected, ref List<Point3D> dd, ref List<Point3D[]> d, ref MeshGeometry3D mesh)
         {
             double x= PointsAdd.Count;;
             for (int i = 0; i < PointsAdd.Count; i++)
@@ -582,7 +662,9 @@ namespace howto_WPF_3D_triangle_normals
                             za.Content = ((int)((ind / max) * 100)).ToString() + "%";
                             za.InvalidateVisual();
                             if ((new Triangle()).boundry(i, j, k))
+                            {
                                 continue;
+                            }
 
                             Point3D[] ss = new Point3D[3];
                             ss[0] = PointsAdd[i];
@@ -600,7 +682,7 @@ namespace howto_WPF_3D_triangle_normals
                                 if (!IsNeigbour(PointsAddpConected, PointsAddp, ss[1], ss[2]))
                                     continue;*/
                                 bool s = true;
-                                var outputn = Task.Factory.StartNew(() =>
+                                Task outputn = Task.Factory.StartNew(() =>
                                 {
 
                                     Parallel.Invoke(() =>
@@ -617,7 +699,9 @@ namespace howto_WPF_3D_triangle_normals
                                 });
                                 outputn.Wait();
                                 if (!s)
+                                {
                                     continue;
+                                }
 
                                 d.Add(ss);
                                 if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
@@ -639,18 +723,28 @@ namespace howto_WPF_3D_triangle_normals
         {
             public static object Lock = new object();
         }
-        void DrawTriangleParallel(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected, List<Point3D> dd, List<Point3D[]> d, MeshGeometry3D mesh)
+
+        private void DrawTriangleParallel(List<Point3D> PointsAdd, List<Point3D> PointsAddp, double max, List<double[]> PointsAddpConected, List<Point3D> dd, List<Point3D[]> d, MeshGeometry3D mesh)
         {
             double x = PointsAdd.Count; ;
-            var output = Task.Factory.StartNew(() =>
+            Task output = Task.Factory.StartNew(() =>
             {
 
-                ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, i =>
+                ParallelOptions po = new ParallelOptions
+                {
+                    MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                }; Parallel.For(0, PointsAdd.Count, i =>
                 {
 
-                    ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, j =>
+                    ParallelOptions poo = new ParallelOptions
+                    {
+                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                    }; Parallel.For(0, PointsAdd.Count, j =>
                     {//float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                        ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, PointsAdd.Count, k =>
+                        ParallelOptions ppoio = new ParallelOptions
+                        {
+                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                        }; Parallel.For(0, PointsAdd.Count, k =>
                         {
                             object o = new object();
                             lock (o)
@@ -662,7 +756,9 @@ namespace howto_WPF_3D_triangle_normals
                                       za.Content = ((int)((ind / max) * 100)).ToString() + "%";                                      
                                   }*/
                                 if ((new Triangle()).boundry(i, j, k))
+                                {
                                     return;
+                                }
 
                                 Point3D[] ss = new Point3D[3];
                                 ss[0] = PointsAdd[i];
@@ -683,7 +779,7 @@ namespace howto_WPF_3D_triangle_normals
                                     if ((new Triangle()).externalMuliszerotow(ss[0], ss[1], ss[2], PointsAdd, dd) == 0)
                                     {
                                         bool s = true;
-                                        var outputn = Task.Factory.StartNew(() =>
+                                        Task outputn = Task.Factory.StartNew(() =>
                                         {
 
                                             Parallel.Invoke(() =>
@@ -700,11 +796,14 @@ namespace howto_WPF_3D_triangle_normals
                                         });
                                         outputn.Wait();
                                         if (!s)
+                                        {
                                             return;
+                                        }
+
                                         dd.Add(ss[0]);
                                         dd.Add(ss[1]);
                                         dd.Add(ss[2]);
-                                        var outputt = Task.Factory.StartNew(() =>
+                                        Task outputt = Task.Factory.StartNew(() =>
                                         {
                                             object b = new object();
                                             lock (b)
@@ -728,12 +827,8 @@ namespace howto_WPF_3D_triangle_normals
             output.Wait();
 
         }
-       static string IsCreation3D
-        {
-            get
-            {
 
-                return @"
+        private static string IsCreation3D => @"
         kernel    void Creation3D(List<Point3D> PointsAddp0,List<Point3D> PointsAddp1,
             List<Point3D> PointsAddp
             ,List<double[]> PointsAddp0Conected,List<double[]> PointsAddpConected,
@@ -855,18 +950,21 @@ namespace howto_WPF_3D_triangle_normals
                  
 
 ";
-            }
 
-        }
-        void addlist(ref List<Point3D> PointsAddp, ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddpConected)
+        private void addlist(ref List<Point3D> PointsAddp, ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddpConected)
         {
             for (int y = 0; y < PointsAddp0.Count; y++)
+            {
                 PointsAddp.Add(PointsAddp0[y]);
-            for (int y = 0; y < PointsAddp0Conected.Count; y++)
-                PointsAddpConected.Add(PointsAddp0Conected[y]);
+            }
 
+            for (int y = 0; y < PointsAddp0Conected.Count; y++)
+            {
+                PointsAddpConected.Add(PointsAddp0Conected[y]);
+            }
         }
-        void Strong(ref List<Point3D> PointsAddp0, ref List<Point3D> PointsAddp1,
+
+        private void Strong(ref List<Point3D> PointsAddp0, ref List<Point3D> PointsAddp1,
             ref List<Point3D> PointsAddp
             , ref List<double[]> PointsAddp0Conected, ref List<double[]> PointsAddpConected,
             ref List<double[]> PointsAddp1Conected
@@ -900,7 +998,8 @@ namespace howto_WPF_3D_triangle_normals
             MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
 
         }
-        void Creation3D(List<Point3D> PointsAddp0, List<Point3D> PointsAddp1,
+
+        private void Creation3D(List<Point3D> PointsAddp0, List<Point3D> PointsAddp1,
             List<Point3D> PointsAddp
             , List<double[]> PointsAddp0Conected, List<double[]> PointsAddpConected,
             List<double[]> PointsAddp1Conected
@@ -947,10 +1046,12 @@ namespace howto_WPF_3D_triangle_normals
                                 makeListFittness(ref PointsAddp0);
                                 MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
                             }
-                            // Give the camera its initial position.
-                            TheCamer = new PerspectiveCamera();
-                            TheCamer.FieldOfView = 60;
-                            MainViewport.Camera = TheCamer;
+                // Give the camera its initial position.
+                TheCamer = new PerspectiveCamera
+                {
+                    FieldOfView = 60
+                };
+                MainViewport.Camera = TheCamer;
                             PositionCamera();
 
                             // Define lights.
@@ -990,14 +1091,16 @@ namespace howto_WPF_3D_triangle_normals
                             // Make the surface's material using a solid green brush.
                             surface_material = new DiffuseMaterial(Brushes.LightGreen);
 
-                            // Make the surface's model.
-                            SurfaceMode = new GeometryModel3D(mesh, surface_material);
+                // Make the surface's model.
+                SurfaceMode = new GeometryModel3D(mesh, surface_material)
+                {
 
-                            // Make the surface visible from both sides.
-                            SurfaceMode.BackMaterial = surface_material;
+                    // Make the surface visible from both sides.
+                    BackMaterial = surface_material
+                };
 
-                            // Add the model to the model groups.
-                            model_group.Children.Add(SurfaceMode);
+                // Add the model to the model groups.
+                model_group.Children.Add(SurfaceMode);
 
                             // Make a wireframe.
 
@@ -1023,12 +1126,14 @@ namespace howto_WPF_3D_triangle_normals
                             Console.WriteLine("    " + normals.TriangleIndices.Count / 3 + " triangles");
                             Console.WriteLine();
 
-                            // Add the group of models to a ModelVisual3D.
-                            model_visual = new ModelVisual3D();
-                            model_visual.Content = MainModel3Dgrou;
+                // Add the group of models to a ModelVisual3D.
+                model_visual = new ModelVisual3D
+                {
+                    Content = MainModel3Dgrou
+                };
 
-                            // Display the main visual in the viewportt.
-                            MainViewport.Children.Add(model_visual);
+                // Display the main visual in the viewportt.
+                MainViewport.Children.Add(model_visual);
                         }
                         // if (PointsAdd.Count > 0)
                         // Window_Loaded(sender, e);
@@ -1174,8 +1279,10 @@ namespace howto_WPF_3D_triangle_normals
                                         MessageBox.Show("begin draw! p0: " + PointsAddp0.Count + " points!");
                                     }
                                     // Give the camera its initial position.
-                                    TheCamera = new PerspectiveCamera();
-                                    TheCamera.FieldOfView = 60;
+                                    TheCamera = new PerspectiveCamera
+                                    {
+                                        FieldOfView = 60
+                                    };
                                     MainViewport.Camera = TheCamera;
                                     PositionCamera();
 
@@ -1217,10 +1324,12 @@ namespace howto_WPF_3D_triangle_normals
                                     DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.LightGreen);
 
                                     // Make the surface's model.
-                                    SurfaceModel = new GeometryModel3D(mesh, surface_material);
+                                    SurfaceModel = new GeometryModel3D(mesh, surface_material)
+                                    {
 
-                                    // Make the surface visible from both sides.
-                                    SurfaceModel.BackMaterial = surface_material;
+                                        // Make the surface visible from both sides.
+                                        BackMaterial = surface_material
+                                    };
 
                                     // Add the model to the model groups.
                                     model_group.Children.Add(SurfaceModel);
@@ -1250,8 +1359,10 @@ namespace howto_WPF_3D_triangle_normals
                                     Console.WriteLine();
 
                                     // Add the group of models to a ModelVisual3D.
-                                    ModelVisual3D model_visual =  new ModelVisual3D();
-                                    model_visual.Content = MainModel3Dgroup;
+                                    ModelVisual3D model_visual = new ModelVisual3D
+                                    {
+                                        Content = MainModel3Dgroup
+                                    };
 
                                     // Display the main visual in the viewportt.
                                     MainViewport.Children.Add(model_visual);
@@ -1306,7 +1417,8 @@ namespace howto_WPF_3D_triangle_normals
             }
 
         }
-        static double getAlphaperStringOfIndependentvars(String ind, List<List<double[]>> p0, int c, int l, int i, int j, int k)
+
+        private static double getAlphaperStringOfIndependentvars(string ind, List<List<double[]>> p0, int c, int l, int i, int j, int k)
         {
             double a = 0;
             if (ind == "x")
@@ -1328,7 +1440,8 @@ namespace howto_WPF_3D_triangle_normals
             }
             return a;
         }
-        static double[] SetneighboursSt(double i, double j, double minx, double miny, double maxx, double maxy, double minr, double amount)
+
+        private static double[] SetneighboursSt(double i, double j, double minx, double miny, double maxx, double maxy, double minr, double amount)
         {
             double[] st = new double[18];
 
@@ -1445,7 +1558,7 @@ namespace howto_WPF_3D_triangle_normals
             MessageBox.Show("add points complete! points: " + non.Count.ToString());
         }
 
-        static double maxGetListX(List<Point3D> d)
+        private static double maxGetListX(List<Point3D> d)
         {
             int inex = -1;
             double max = float.MinValue;
@@ -1459,7 +1572,8 @@ namespace howto_WPF_3D_triangle_normals
             }
             return d[inex].X;
         }
-        static double maxGetListY(List<Point3D> d)
+
+        private static double maxGetListY(List<Point3D> d)
         {
             int inex = -1;
             double max = float.MinValue;
@@ -1473,7 +1587,8 @@ namespace howto_WPF_3D_triangle_normals
             }
             return d[inex].Y;
         }
-        static double maxGetListZ(List<Point3D> d)
+
+        private static double maxGetListZ(List<Point3D> d)
         {
             int inex = -1;
             double max = float.MinValue;
@@ -1487,7 +1602,8 @@ namespace howto_WPF_3D_triangle_normals
             }
             return d[inex].Z;
         }
-        static double minGetListX(List<Point3D> d)
+
+        private static double minGetListX(List<Point3D> d)
         {
             int inex = -1;
             double min = float.MaxValue;
@@ -1501,7 +1617,8 @@ namespace howto_WPF_3D_triangle_normals
             }
             return d[inex].X;
         }
-        static double minGetListY(List<Point3D> d)
+
+        private static double minGetListY(List<Point3D> d)
         {
             int inex = -1;
             double min = float.MaxValue;
@@ -1515,7 +1632,8 @@ namespace howto_WPF_3D_triangle_normals
             }
             return d[inex].Y;
         }
-        static double minGetListZ(List<Point3D> d)
+
+        private static double minGetListZ(List<Point3D> d)
         {
             int inex = -1;
             double min = float.MaxValue;

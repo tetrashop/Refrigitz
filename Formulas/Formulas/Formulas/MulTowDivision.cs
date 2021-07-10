@@ -1,16 +1,19 @@
 namespace Formulas
 {
-    static class MulTowDivision
+    internal static class MulTowDivision
     {
-        static public AddToTree.Tree MulTowDivisionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree MulTowDivisionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             Dummy = MulTowDivision.MulTowDivisionCalculator(Dummy, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree MulTowDivisionCalculator(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree MulTowDivisionCalculator(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
             //int INCREASE = 2147483647;
             UIS.SetProgressValue(UIS.progressBar6, 0);
             if (IS.IsMul(Dummy.SampleAccess))

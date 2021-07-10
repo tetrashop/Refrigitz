@@ -1,17 +1,18 @@
 namespace Formulas
 {
-    static class IntegralAnswerAdding
+    internal static class IntegralAnswerAdding
     {
-        static AddToTreeTreeLinkList Answer = new AddToTreeTreeLinkList();
-        static public void IntegralAnswerAddingFx(AddToTree.Tree Dummy)
+        private static AddToTreeTreeLinkList Answer = new AddToTreeTreeLinkList();
+        public static void IntegralAnswerAddingFx(AddToTree.Tree Dummy)
         {
             IntegralAnswerAdding.IntegralAnswerAddingActionFx(Dummy);
         }
-        static void IntegralAnswerAddingActionFx(AddToTree.Tree Dummy)
+
+        private static void IntegralAnswerAddingActionFx(AddToTree.Tree Dummy)
         {
             Answer.CreateLinkListFromTree1(Dummy);
         }
-        static public AddToTreeTreeLinkList AnswerAccess
+        public static AddToTreeTreeLinkList AnswerAccess
         {
             get
             { return Answer; }

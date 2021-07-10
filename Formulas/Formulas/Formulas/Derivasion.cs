@@ -4,17 +4,18 @@
 
 namespace Formulas
 {
-    static class Derivasion
+    internal static class Derivasion
     {
         //static SenderSample Sender = new SenderSample(new Equation());
-        static public AddToTree.Tree DerivasionOfFX(AddToTree.Tree Node, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree DerivasionOfFX(AddToTree.Tree Node, ref UknownIntegralSolver UIS)
         {
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             Dummy = Derivasion.DerivasionCalculator(Node, Dummy, ref UIS);
             Dummy = Simplifier.SimplifierFx(Dummy, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree ConsTantFuctionDerivasion(AddToTree.Tree Node)
+
+        private static AddToTree.Tree ConsTantFuctionDerivasion(AddToTree.Tree Node)
         {
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             if (Node.SampleAccess.ToString().ToLower() == "sin")
@@ -211,7 +212,8 @@ namespace Formulas
             return Dummy;
 
         }
-        static AddToTree.Tree ReplaceXToFX(AddToTree.Tree Dummy, AddToTree.Tree FX)
+
+        private static AddToTree.Tree ReplaceXToFX(AddToTree.Tree Dummy, AddToTree.Tree FX)
         {
 
             if (Dummy.LeftSideAccess != null)
@@ -225,7 +227,10 @@ namespace Formulas
                 }
             }
             else
+            {
                 return Dummy;
+            }
+
             if (Dummy.RightSideAccess != null)
             {
                 if (Dummy.RightSideAccess.SampleAccess == "x")
@@ -237,16 +242,22 @@ namespace Formulas
                 }
             }
             else
+            {
                 return Dummy;
+            }
+
             Derivasion.ReplaceXToFX(Dummy.LeftSideAccess, FX);
             Derivasion.ReplaceXToFX(Dummy.RightSideAccess, FX);
             return Dummy;
         }
 
-        static AddToTree.Tree DerivasionCalculator(AddToTree.Tree Node, AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        private static AddToTree.Tree DerivasionCalculator(AddToTree.Tree Node, AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Node == null)
+            {
                 return Dummy;
+            }
+
             if (Node.SampleAccess == "x")
             {
                 Dummy.SampleAccess = "1";
@@ -256,8 +267,11 @@ namespace Formulas
 
             //ERRORCORECTION30704012 :The error correced.refer to page 155.
             if (Node.LeftSideAccess != null)
+            {
                 if (Node.LeftSideAccess.LeftSideAccess == null)
+                {
                     if (Node.LeftSideAccess.RightSideAccess == null)
+                    {
                         if (IS.IsFunction(Node.SampleAccess))
                         {
                             Dummy = Derivasion.ConsTantFuctionDerivasion(Node);
@@ -269,6 +283,10 @@ namespace Formulas
                             Dummy = null;
                             return Dummy;
                         }
+                    }
+                }
+            }
+
             if (Node.SampleAccess == "/")
             {
                 AddToTree.Tree Minuse = new AddToTree.Tree("-", false);
@@ -328,12 +346,16 @@ namespace Formulas
                 MulL.SetLefTandRightCommonlySide(DFX, NRMulR);
                 MulL.LeftSideAccess.ThreadAccess = MulL;
                 if (NRMulR.SampleAccess != null)
+                {
                     MulL.RightSideAccess.ThreadAccess = MulL;
+                }
 
                 MulR.SetLefTandRightCommonlySide(Node.LeftSideAccess, DGX);
                 MulR.LeftSideAccess.ThreadAccess = MulR;
                 if (DGX.SampleAccess != null)
+                {
                     MulR.RightSideAccess.ThreadAccess = MulR;
+                }
 
                 Dummy.SampleAccess = "+";
                 Dummy.SetLefTandRightCommonlySide(MulL, MulR);

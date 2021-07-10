@@ -60,17 +60,17 @@
 
 namespace Formulas
 {
-    static class Integral
+    internal static class Integral
     {
-        static float Queficient = (float)1.0;
-        static public bool IntegralSignPositive = false;
-        static AddToTreeTreeLinkList INTEGRALS = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList ANSWERS = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList FDeviosionByG = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList FMulAtG = new AddToTreeTreeLinkList();
-        static StackBoolean stk = new StackBoolean();
+        private static float Queficient = (float)1.0;
+        public static bool IntegralSignPositive = false;
+        private static readonly AddToTreeTreeLinkList INTEGRALS = new AddToTreeTreeLinkList();
+        private static readonly AddToTreeTreeLinkList ANSWERS = new AddToTreeTreeLinkList();
+        private static readonly AddToTreeTreeLinkList FDeviosionByG = new AddToTreeTreeLinkList();
+        private static readonly AddToTreeTreeLinkList FMulAtG = new AddToTreeTreeLinkList();
+        private static readonly StackBoolean stk = new StackBoolean();
 
-        static public AddToTree.Tree IntegralOfFX(AddToTree.Tree Node, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree IntegralOfFX(AddToTree.Tree Node, ref UknownIntegralSolver UIS)
         {
             do
             {
@@ -92,44 +92,60 @@ namespace Formulas
             Dummy = Integral.IntegralCalculator(Node.CopyNewTree(Node), ref UIS);
             return Dummy;
         }
-        static public int NumberOfElements(AddToTree.Tree Dummy)
+        public static int NumberOfElements(AddToTree.Tree Dummy)
         {
             int i = 0;
             if (Dummy == null)
+            {
                 return 0;
+            }
             else
+            {
                 i++;
+            }
+
             i = i + Integral.NumberOfElements(Dummy.LeftSideAccess);
             i = i + Integral.NumberOfElements(Dummy.RightSideAccess);
             return i;
         }
-        static public int NumberOfElementsSet(Set Dummy)
+        public static int NumberOfElementsSet(Set Dummy)
         {
             int i = 0;
             if (Dummy == null)
+            {
                 return 0;
+            }
             else
+            {
                 i++;
+            }
+
             i = i + Integral.NumberOfElementsSet(Dummy.LeftSideAccess);
             i = i + Integral.NumberOfElementsSet(Dummy.RightSideAccess);
             return i;
         }
-        static public int NumberOfFunctionElementsSet(Set Dummy)
+        public static int NumberOfFunctionElementsSet(Set Dummy)
         {
             int i = 0;
             if (Dummy == null)
+            {
                 return 0;
+            }
             else
                 if ((Dummy.StringSampleAccess.Length) >= 2)
+            {
                 i++;
+            }
+
             i = i + Integral.NumberOfFunctionElementsSet(Dummy.LeftSideAccess);
             i = i + Integral.NumberOfFunctionElementsSet(Dummy.RightSideAccess);
             return i;
         }
+
         //ERRORCORECTION66456546464:The Multiplicative Queficient Solved with Erro Calculation.
         //ERRORCORECTION644344654554:The Derivasion Should be Copy.:1394/4/9
         //ERRORCORECTION6546544644544:The Power Integral Power and The Multiplication Integral Recursive Integral resolved:1394/4/9
-        static AddToTree.Tree IntegralCalculator(AddToTree.Tree Node, ref UknownIntegralSolver UIS)
+        private static AddToTree.Tree IntegralCalculator(AddToTree.Tree Node, ref UknownIntegralSolver UIS)
         {
             UIS.SetLableValue(UIS.label17, "Integral Begin.");
             int INCREASE = 2147483647;
@@ -138,7 +154,9 @@ namespace Formulas
 
             AddToTree.Tree DummyEqual = new AddToTree.Tree(null, false);
             if (Node == null)
+            {
                 return Dummy;
+            }
 
 
             //bool IntegralA = false;
@@ -167,8 +185,11 @@ namespace Formulas
             }
             else
                     if (Node.LeftSideAccess != null)
+            {
                 if (Node.LeftSideAccess.LeftSideAccess == null)
+                {
                     if (Node.LeftSideAccess.RightSideAccess == null)
+                    {
                         if ((IS.IsFunction(Node.SampleAccess)) || (IS.ISindependenceVaribaleOrNumber(Node.SampleAccess)))
                         {
                             UIS.SetLableValue(UIS.label17, "Integral Function Finder.");
@@ -177,11 +198,17 @@ namespace Formulas
                         }
                         else
                     if (Node.LeftSideAccess != null)
+                        {
                             if (Node.LeftSideAccess.LeftSideAccess == null)
+                            {
                                 if (Node.LeftSideAccess.RightSideAccess == null)
+                                {
                                     if (Node.RightSideAccess != null)
+                                    {
                                         if (Node.RightSideAccess.LeftSideAccess == null)
+                                        {
                                             if (Node.LeftSideAccess.RightSideAccess == null)
+                                            {
                                                 if (IS.IsPower(Node.SampleAccess) && IS.ISindependenceVaribaleOrNumber(Node.RightSideAccess.SampleAccess) && IS.IsNumber(Node.LeftSideAccess.SampleAccess))
                                                 {
                                                     UIS.SetLableValue(UIS.label17, "Integral exponential.");
@@ -214,6 +241,16 @@ namespace Formulas
                                                     Dummy.RightSideAccess.ThreadAccess = Dummy;
                                                     return Dummy;
                                                 }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             if (KnownIntegralFormulla.KnownIntegralFormullaFx(Node) != null)
             {
                 UIS.SetLableValue(UIS.label17, "Integral UnownIntegral Finder.");
@@ -286,7 +323,9 @@ namespace Formulas
 
 
                 if (DummyTOW.SampleAccess == null)
+                {
                     DummyTOW.SampleAccess = "0";
+                }
 
 
 
@@ -302,42 +341,65 @@ namespace Formulas
                     if (DummyHOLDE.SampleAccess == "*")
                     {
                         if (IS.IsNumber(DummyHOLDE.LeftSideAccess.SampleAccess))
+                        {
                             CIntegralG = System.Convert.ToDouble(DummyHOLDE.LeftSideAccess.SampleAccess);
+                        }
                         else
                             if (IS.IsNumber(DummyHOLDE.RightSideAccess.SampleAccess))
+                        {
                             CIntegralG = System.Convert.ToDouble(DummyHOLDE.RightSideAccess.SampleAccess);
+                        }
                         else
+                        {
                             CIntegralG = 1.0;
-
+                        }
                     }
                     else
                         if (IS.IsNumber(DummyHOLDE.SampleAccess))
+                    {
                         CIntegralG = System.Convert.ToDouble(DummyHOLDE.SampleAccess);
+                    }
                     else
+                    {
                         CIntegralG = 1.0;
+                    }
+
                     if (DummyDerivationF.SampleAccess == "*")
                     {
                         if (IS.IsNumber(DummyDerivationF.LeftSideAccess.SampleAccess))
+                        {
                             QDerivasion = System.Convert.ToDouble(DummyDerivationF.LeftSideAccess.SampleAccess);
+                        }
                         else
                             if (IS.IsNumber(DummyDerivationF.RightSideAccess.SampleAccess))
+                        {
                             QDerivasion = System.Convert.ToDouble(DummyDerivationF.RightSideAccess.SampleAccess);
+                        }
                         else
+                        {
                             QDerivasion = 1.0;
-
+                        }
                     }
                     else
                         if (IS.IsNumber(DummyDerivationF.SampleAccess))
+                    {
                         QDerivasion = System.Convert.ToDouble(DummyDerivationF.SampleAccess);
+                    }
                     else
+                    {
                         QDerivasion = 1.0;
+                    }
+
                     DummyTOW.SetLefTandRightCommonlySide(null, null);
                     //Queficient = (float)System.Math.Round(1 / Queficient);
                     if (IntegralSignPositive)
+                    {
                         DummyTOW.SampleAccess = (CIntegralG / (1 - QDerivasion)).ToString();
+                    }
                     else
+                    {
                         DummyTOW.SampleAccess = (CIntegralG / (1 + QDerivasion)).ToString();
-
+                    }
 
                     Dummy.SampleAccess = "*";
                     Dummy.SetLefTandRightCommonlySide(Node, DummyTOW);
@@ -365,7 +427,9 @@ namespace Formulas
                         UIS.SetLableValue(UIS.label17, "Integral F(X)*G(X).");
 
                         if (DummyTOW == null)
+                        {
                             return DummyONE;
+                        }
 
                         UIS.SetProgressValue(UIS.progressBar2, HOLDE);
 
@@ -1515,7 +1579,9 @@ namespace Formulas
                 UIS.SetProgressValue(UIS.progressBar2, Holde);
 
                 if (Right == null)
+                {
                     return Left;
+                }
 
                 Dummy.SampleAccess = "+";
                 Dummy.SetLefTandRightCommonlySide(Left, Right);
@@ -1565,7 +1631,9 @@ namespace Formulas
 
                 UIS.SetProgressValue(UIS.progressBar2, Holde);
                 if (Right == null)
+                {
                     return Left;
+                }
 
                 Dummy.SampleAccess = "-";
                 Dummy.SetLefTandRightCommonlySide(Left, Right);
@@ -1685,7 +1753,9 @@ namespace Formulas
                 Queficient = (float)1.0;
                 //if (!IS.IsNumberNegative(Node.RightSideAccess.SampleAccess))
                 if (!FRact)
+                {
                     INTNODEPERFONE = Integral.IntegralCalculator(INTNODEPERFONE.CopyNewTree(INTNODEPERFONE), ref UIS);
+                }
 
                 UIS.SetLableValue(UIS.label17, "Integral F(X)^G(X).");
 
@@ -1736,31 +1806,43 @@ namespace Formulas
                     {
                         MULTOW.SetLefTandRightCommonlySide(null, null);
 
-                        double QDerivasionF = 0, BG = 0;
+                        double QDerivasionF = 0;
                         if (FPRIN.SampleAccess == "*")
                         {
                             if (IS.IsNumber(FPRIN.LeftSideAccess.SampleAccess))
+                            {
                                 QDerivasionF = System.Convert.ToDouble(FPRIN.LeftSideAccess.SampleAccess);
+                            }
                             else
                                 if (IS.IsNumber(FPRIN.RightSideAccess.SampleAccess))
+                            {
                                 QDerivasionF = System.Convert.ToDouble(FPRIN.RightSideAccess.SampleAccess);
+                            }
                             else
+                            {
                                 QDerivasionF = 1.0;
-
+                            }
                         }
                         else
                             if (IS.IsNumber(FPRIN.SampleAccess))
+                        {
                             QDerivasionF = System.Convert.ToDouble(FPRIN.SampleAccess);
+                        }
                         else
+                        {
                             QDerivasionF = 1.0;
+                        }
 
                         MULTOW.SetLefTandRightCommonlySide(null, null);
 
                         if (IntegralSignPositive)
+                        {
                             MULTOW.SampleAccess = (1 / (1 - QDerivasionF)).ToString();
+                        }
                         else
+                        {
                             MULTOW.SampleAccess = (1 / (1 + QDerivasionF)).ToString();
-
+                        }
                     }
                     else
                     {
@@ -1786,7 +1868,10 @@ namespace Formulas
 
                     }
                     if (MULTOW == null)
+                    {
                         return MULONE;
+                    }
+
                     Dummy.SampleAccess = "-";
                     Dummy.SetLefTandRightCommonlySide(MULONE, MULTOW);
                     Dummy.LeftSideAccess.ThreadAccess = Dummy;
@@ -1931,7 +2016,9 @@ namespace Formulas
                     Dummy.SampleAccess = "*";
                 }
                 else
+                {
                     System.Windows.Forms.MessageBox.Show(" knowldege cant not be applied.");
+                }
 
                 UIS.SetProgressValue(UIS.progressBar2, UIS.progressBar2.Value + INCREASE);
 
@@ -2007,7 +2094,8 @@ namespace Formulas
             return Dummy;
 
         }
-        static AddToTree.Tree ConsTantFuctionIntegral(AddToTree.Tree Node)
+
+        private static AddToTree.Tree ConsTantFuctionIntegral(AddToTree.Tree Node)
         {
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             AddToTree.Tree C = new AddToTree.Tree("C", false);
@@ -2267,13 +2355,18 @@ namespace Formulas
              */
             return Dummy;
         }
-        static int Fibonatchi(int i)
+
+        private static int Fibonatchi(int i)
         {
             if (i == 1)
+            {
                 return 1;
+            }
+
             return i * Fibonatchi(i - 1);
         }
-        static AddToTree.Tree ReplaceXToFX(AddToTree.Tree Dummy, AddToTree.Tree FX)
+
+        private static AddToTree.Tree ReplaceXToFX(AddToTree.Tree Dummy, AddToTree.Tree FX)
         {
 
             if (Dummy.LeftSideAccess != null)
@@ -2287,7 +2380,10 @@ namespace Formulas
                 }
             }
             else
+            {
                 return Dummy;
+            }
+
             if (Dummy.RightSideAccess != null)
             {
                 if (Dummy.RightSideAccess.SampleAccess == "x")
@@ -2299,12 +2395,16 @@ namespace Formulas
                 }
             }
             else
+            {
                 return Dummy;
+            }
+
             Integral.ReplaceXToFX(Dummy.LeftSideAccess, FX);
             Integral.ReplaceXToFX(Dummy.RightSideAccess, FX);
             return Dummy;
         }
-        static AddToTree.Tree XPowerIMulFXPerGXDerI(int i, AddToTree.Tree FX, AddToTree.Tree GX, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree XPowerIMulFXPerGXDerI(int i, AddToTree.Tree FX, AddToTree.Tree GX, ref UknownIntegralSolver UIS)
         {
             AddToTree.Tree Node = new AddToTree.Tree(null, false);
             AddToTree.Tree X = new AddToTree.Tree("x", false);
@@ -2316,9 +2416,13 @@ namespace Formulas
 
             AddToTree.Tree FXPERGX = null;
             if (GX != null)
+            {
                 FXPERGX = Integral.FXPerGX(FX, GX);
+            }
             else
+            {
                 FXPERGX = FX;
+            }
 
             FXPERGX = Integral.DervisionI(i, FXPERGX, ref UIS);
 
@@ -2356,13 +2460,19 @@ namespace Formulas
                     Holder.SampleAccess = "/";
                 }
                 else
+                {
                     Holder = HolderPart;
+                }
             }
-            else Holder = CTX;
+            else
+            {
+                Holder = CTX;
+            }
+
             return Holder;
 
         }
-        static public AddToTree.Tree DervisionI(int t, AddToTree.Tree T, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree DervisionI(int t, AddToTree.Tree T, ref UknownIntegralSolver UIS)
         {
             int i = 0;
             while (i < t)
@@ -2375,11 +2485,14 @@ namespace Formulas
                 i++;
                 //ERRORCORECTION97918724 :Error corrected.refer to page 180.
                 if (T.SampleAccess == null)
+                {
                     break;
+                }
             }
             return T;
         }
-        static AddToTree.Tree FXPerGX(AddToTree.Tree FX, AddToTree.Tree GX)
+
+        private static AddToTree.Tree FXPerGX(AddToTree.Tree FX, AddToTree.Tree GX)
         {
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             Dummy.SetLefTandRightCommonlySide(FX, GX);
@@ -2388,7 +2501,8 @@ namespace Formulas
             Dummy.RightSideAccess.ThreadAccess = Dummy;
             return Dummy;
         }
-        static AddToTree.Tree XMulDerivisionOfFx(int i, AddToTree.Tree FX, AddToTree.Tree GX, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree XMulDerivisionOfFx(int i, AddToTree.Tree FX, AddToTree.Tree GX, ref UknownIntegralSolver UIS)
         {
 
             AddToTree.Tree FXPerGX = new AddToTree.Tree(null, false);
@@ -2402,7 +2516,9 @@ namespace Formulas
             FXPerGX.SetLefTandRightCommonlySide(FX, GX);
 
             if (GX == null)
+            {
                 FXPerGX = FX;
+            }
             //ERROR307040131222  :Ther method give wrong at (Derivasion I).refre to page 182.
             FXPerGX = Integral.DervisionI(i, FXPerGX, ref UIS);
             FXPerGX = Simplifier.SimplifierFx(FXPerGX, ref UIS);
@@ -2436,7 +2552,10 @@ namespace Formulas
                 Power = Power.CopyNewTree(PowerThree);
             }
             else
+            {
                 Power = FXPerGX;
+            }
+
             return Power;
         }
     }

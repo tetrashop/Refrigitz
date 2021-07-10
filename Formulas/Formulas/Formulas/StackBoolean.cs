@@ -1,13 +1,16 @@
 ﻿namespace Formulas
 {
-    class StackBoolean
+    internal class StackBoolean
     {
-        bool[] Stack = new bool[100];
-        int Top = 99;
+        private readonly bool[] Stack = new bool[100];
+        private int Top = 99;
         public void Push(bool A)
         {
             if (isFull())
+            {
                 return;
+            }
+
             Stack[Top] = A;
             Top--;
 
@@ -15,21 +18,32 @@
         public bool Pop()
         {
             if (isEmpty())
+            {
                 return false;
+            }
+
             Top++;
             return Stack[Top];
 
         }
-        bool isEmpty()
+
+        private bool isEmpty()
         {
             if (Top == 99)
+            {
                 return true;
+            }
+
             return false;
         }
-        bool isFull()
+
+        private bool isFull()
         {
             if (Top == 0)
+            {
                 return true;
+            }
+
             return false;
         }
     }

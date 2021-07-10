@@ -13,8 +13,8 @@ namespace CigRemove
 {
     public partial class FormCigRemove : Form
     {
-        delegate void SetLableValueCalBack(Label JSON, String value);
-        private void SetLableValue(Label JSON, String value)
+        private delegate void SetLableValueCalBack(Label JSON, string value);
+        private void SetLableValue(Label JSON, string value)
         {
             try
             {
@@ -33,8 +33,9 @@ namespace CigRemove
                 Log(t);
             }
         }
-        delegate void SetprogressBarJSONMaxValueCalBack(ProgressBar JSON, Int32 value);
-        private void SetprogressBarJSONMaxValue(ProgressBar JSON, Int32 value)
+
+        private delegate void SetprogressBarJSONMaxValueCalBack(ProgressBar JSON, int value);
+        private void SetprogressBarJSONMaxValue(ProgressBar JSON, int value)
         {
             try
             {
@@ -53,8 +54,9 @@ namespace CigRemove
                 Log(t);
             }
         }
-        delegate void SetlableJSONMaxValueCalBack(Label JSON, String value);
-        private void SetlableJSONMaxValue(Label JSON, String value)
+
+        private delegate void SetlableJSONMaxValueCalBack(Label JSON, string value);
+        private void SetlableJSONMaxValue(Label JSON, string value)
         {
             try
             {
@@ -73,7 +75,8 @@ namespace CigRemove
                 Log(t);
             }
         }
-        delegate void SetDataGridViewDataSourceCallback(DataGridView dat, object state);
+
+        private delegate void SetDataGridViewDataSourceCallback(DataGridView dat, object state);
 
         private void SetDataGridViewDataSource(DataGridView dat, object state)
         {
@@ -96,9 +99,10 @@ namespace CigRemove
             [DllImport("kernel32.dll", SetLastError = true)]
             internal static extern bool Beep(uint dwFreq, uint dwDuration);
         }
-        Graphics g = null;
-        List<String> CigRead = null;
-        Bitmap Map = null;
+
+        private readonly Graphics g = null;
+        private List<string> CigRead = null;
+        private readonly Bitmap Map = null;
         public FormCigRemove()
         {
             InitializeComponent();
@@ -116,9 +120,9 @@ namespace CigRemove
 
                 CigReaderDatabase.CigDatabase Cig = new CigReaderDatabase.CigDatabase();
                 Cig.CigInsert(DateTime.Now.ToString());
-                CigRead = new List<String>();
+                CigRead = new List<string>();
                 Cig.CigRead(ref dataGridViewCig, ref CigRead);
-                List<Double> SL = new List<Double>();
+                List<double> SL = new List<double>();
 
                 if (CigRead != null)
                 {
@@ -132,10 +136,10 @@ namespace CigRemove
                         DateTime A = System.Convert.ToDateTime(CigRead[i + 1]);
                         double SS = S.Hour * 60 * 60 * 1000 + S.Minute * 60 * 1000 + S.Second * 1000 + S.Millisecond;
                         double AA = A.Hour * 60 * 60 * 1000 + A.Minute * 60 * 1000 + A.Second * 1000 + A.Millisecond;
-                        String D = S.ToString().Substring(S.ToString().Length - 2, 2);
+                        string D = S.ToString().Substring(S.ToString().Length - 2, 2);
                         //       if (D == "PM" && S.Hour != 12)
                         //           SS += 12 * 60 * 60 * 1000;
-                        String H = A.ToString().Substring(A.ToString().Length - 2, 2);
+                        string H = A.ToString().Substring(A.ToString().Length - 2, 2);
                         //       if (H == "PM" && A.Hour != 12)
                         //           AA += 12 * 60 * 60 * 1000;
                         if (CigReadL < (AA - SS))
@@ -144,31 +148,38 @@ namespace CigRemove
                             iL = i;
                         }
                         if (CigL > (AA - SS))
+                        {
                             CigL = (int)(AA - SS);
+                        }
                     }
                     if (CigRead != null)
+                    {
                         for (int i = 0; i < CigRead.Count; i++)
                         {
                             DateTime S = System.Convert.ToDateTime(CigRead[i]);
-                            String D = S.ToString().Substring(S.ToString().Length - 2, 2);
+                            string D = S.ToString().Substring(S.ToString().Length - 2, 2);
                             double SS = S.Hour * 60 * 60 * 1000 + S.Minute * 60 * 1000 + S.Second * 1000 + S.Millisecond;
                             //                if (D == "PM" && S.Hour != 12)
                             //                  SS += 12 * 60 * 60 * 1000;
                             SL.Add(SS);
 
                         }
+                    }
                 }
                 int SA = SL.Count - 1;
 
                 double AD = SL[SA] - SL[SA - 1];
                 DateTime ASA = DateTime.Now;
                 double ASS = ASA.Hour * 60 * 60 * 1000 + ASA.Minute * 60 * 1000 + ASA.Second * 1000 + ASA.Millisecond;
-                String HHY = ASA.ToString().Substring(ASA.ToString().Length - 2, 2);
+                string HHY = ASA.ToString().Substring(ASA.ToString().Length - 2, 2);
                 //   if (HHY == "PM" && ASA.Hour != 12)
                 //       ASS += 12 * 60 * 60 * 1000;
                 double AZ = ASS - SL[SA];
                 if (File.Exists("Time.tm"))
+                {
                     File.Delete("Time.tm");
+                }
+
                 File.WriteAllText("Time.tm", (AD - AZ).ToString());
 
             }
@@ -182,16 +193,18 @@ namespace CigRemove
         private void buttonChart_Click(object sender, EventArgs e)
         {
             CigReaderDatabase.CigDatabase Cig = new CigReaderDatabase.CigDatabase();
-            CigRead = new List<String>();
+            CigRead = new List<string>();
             Cig.CigRead(ref dataGridViewCig, ref CigRead);
-            PictureBox1_Paint(sender, new System.Windows.Forms.PaintEventArgs(g, new System.Drawing.Rectangle(0, 0, this.PictureBox1.Width, PictureBox1.Height)));
+            PictureBox1_Paint(sender, new System.Windows.Forms.PaintEventArgs(g, new System.Drawing.Rectangle(0, 0, PictureBox1.Width, PictureBox1.Height)));
         }
-        static void Log(Exception ex)
+
+        private static void Log(Exception ex)
         {
             string stackTrace = ex.ToString();
             File.AppendAllText("ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString()); // path of file where stack trace will be stored.
         }
-        void Draw()
+
+        private void Draw()
         {
             try
             {
@@ -208,10 +221,10 @@ namespace CigRemove
                         DateTime A = System.Convert.ToDateTime(CigRead[i + 1]);
                         double SS = S.Hour * 60 * 60 * 1000 + S.Minute * 60 * 1000 + S.Second * 1000 + S.Millisecond;
                         double AA = A.Hour * 60 * 60 * 1000 + A.Minute * 60 * 1000 + A.Second * 1000 + A.Millisecond;
-                        String D = S.ToString().Substring(S.ToString().Length - 2, 2);
+                        string D = S.ToString().Substring(S.ToString().Length - 2, 2);
                         //  if (D == "PM" && S.Hour != 12)
                         //       SS += 12 * 60 * 60 * 1000;
-                        String H = A.ToString().Substring(A.ToString().Length - 2, 2);
+                        string H = A.ToString().Substring(A.ToString().Length - 2, 2);
                         //     if (H == "PM" && A.Hour != 12)
                         //           AA += 12 * 60 * 60 * 1000;
                         if (CigReadL < (AA - SS))
@@ -220,34 +233,42 @@ namespace CigRemove
                             iL = i;
                         }
                         if (CigL > (AA - SS))
+                        {
                             CigL = (int)(AA - SS);
+                        }
                     }
-                    g.DrawLine(new System.Drawing.Pen(new SolidBrush(Color.Black)), new Point(10, this.PictureBox1.Height - 10), new Point(this.PictureBox1.Width - 10, this.PictureBox1.Height - 10));
-                    g.DrawLine(new System.Drawing.Pen(new SolidBrush(Color.Black)), new Point(10, this.PictureBox1.Height - 10), new Point(10, 10));
-                    List<Double> SL = new List<Double>();
+                    g.DrawLine(new System.Drawing.Pen(new SolidBrush(Color.Black)), new Point(10, PictureBox1.Height - 10), new Point(PictureBox1.Width - 10, PictureBox1.Height - 10));
+                    g.DrawLine(new System.Drawing.Pen(new SolidBrush(Color.Black)), new Point(10, PictureBox1.Height - 10), new Point(10, 10));
+                    List<double> SL = new List<double>();
                     if (CigRead != null)
+                    {
                         for (int i = 0; i < CigRead.Count; i++)
                         {
                             DateTime S = System.Convert.ToDateTime(CigRead[i]);
-                            String D = S.ToString().Substring(S.ToString().Length - 2, 2);
+                            string D = S.ToString().Substring(S.ToString().Length - 2, 2);
                             double SS = S.Hour * 60 * 60 * 1000 + S.Minute * 60 * 1000 + S.Second * 1000 + S.Millisecond;
                             //        if (D == "PM"&& S.Hour != 12)
                             //             SS += 12 * 60 * 60 * 1000;
                             SL.Add(SS);
 
                         }
+                    }
+
                     if (CigRead != null)
+                    {
                         for (int i = 1; i < SL.Count - 1; i++)
                         {
-                            g.DrawLine(new System.Drawing.Pen(new SolidBrush(Color.Red)), new Point((i - 1) * 5 + 10, this.PictureBox1.Height - (int)(((SL[i] - SL[i - 1] - CigL) / CigReadL) * this.PictureBox1.Height) - 10), new Point(i * 5 + 10, this.PictureBox1.Height - (int)(((SL[i + 1] - SL[i] - CigL) / CigReadL) * this.PictureBox1.Height) - 10));
+                            g.DrawLine(new System.Drawing.Pen(new SolidBrush(Color.Red)), new Point((i - 1) * 5 + 10, PictureBox1.Height - (int)(((SL[i] - SL[i - 1] - CigL) / CigReadL) * PictureBox1.Height) - 10), new Point(i * 5 + 10, PictureBox1.Height - (int)(((SL[i + 1] - SL[i] - CigL) / CigReadL) * PictureBox1.Height) - 10));
                         }
-                    g.DrawString(CigRead[iL].ToString(), new System.Drawing.Font("Times New Roman", 10), new SolidBrush(Color.Green), new Point(this.PictureBox1.Width - 100, this.PictureBox1.Height - 20));
+                    }
+
+                    g.DrawString(CigRead[iL].ToString(), new System.Drawing.Font("Times New Roman", 10), new SolidBrush(Color.Green), new Point(PictureBox1.Width - 100, PictureBox1.Height - 20));
                     g.DrawString("مقدار بیشتر، کاهش مصرف بیشتر نسبت به قبلی ", new System.Drawing.Font("B Nazanin", 14), new SolidBrush(Color.Green), new Point(20, 20));
 
 
 
 
-                    this.PictureBox1.Image = Map;
+                    PictureBox1.Image = Map;
 
                     int SA = SL.Count - 1;
                     /*if (SA > 0)
@@ -271,12 +292,12 @@ namespace CigRemove
                     }
                     else*/
                     {
-                        String As = "";
+                        string As = "";
                         As = File.ReadAllText("Time.tm");
                         double AS = System.Convert.ToDouble(As);
                         DateTime ASA = DateTime.Now;
                         double ASS = ASA.Hour * 60 * 60 * 1000 + ASA.Minute * 60 * 1000 + ASA.Second * 1000 + ASA.Millisecond;
-                        String HHY = ASA.ToString().Substring(ASA.ToString().Length - 2, 2);
+                        string HHY = ASA.ToString().Substring(ASA.ToString().Length - 2, 2);
                         //        if (HHY == "PM" && ASA.Hour != 12)
                         //            ASS += 12 * 60 * 60 * 1000;
                         double AZ = ASS - SL[SA];
@@ -288,7 +309,9 @@ namespace CigRemove
                             Bump();
                         }
                         else
+                        {
                             labelRemaining.ForeColor = Color.Black;
+                        }
                     }
                 }
 
@@ -312,7 +335,7 @@ namespace CigRemove
             try
             {
                 CigReaderDatabase.CigDatabase Cig = new CigReaderDatabase.CigDatabase();
-                CigRead = new List<String>();
+                CigRead = new List<string>();
                 Cig.CigRead(ref dataGridViewCig, ref CigRead);
                 DateTime S = System.Convert.ToDateTime(CigRead[0]);
                 DateTime Now = DateTime.Now;
@@ -340,7 +363,10 @@ namespace CigRemove
         private void textBoxSelectiveTime_TextChanged(object sender, EventArgs e)
         {
             if (File.Exists("Time.tm"))
+            {
                 File.Delete("Time.tm");
+            }
+
             File.WriteAllText("Time.tm", textBoxSelectiveTime.Text);
 
         }
@@ -361,7 +387,10 @@ namespace CigRemove
                     saveFileDialogBackup.Filter = "Access Database|*.accdb";
                     saveFileDialogBackup.ShowDialog();
                     if (File.Exists(saveFileDialogBackup.FileName))
+                    {
                         File.Delete(saveFileDialogBackup.FileName);
+                    }
+
                     File.Copy(openFileDialogBackup.FileName, saveFileDialogBackup.FileName);
                     //(new CigReaderDatabase.CigDatabase()).CigDelete();
                 }
@@ -389,7 +418,9 @@ namespace CigRemove
                 //  if (S.Year != Now.Year || S.Month != Now.Month || S.Day != Now.Day)
                 {
                     if (File.Exists("CigRemove.accdb"))
+                    {
                         File.Delete("CigRemove.accdb");
+                    }
 
                     File.Copy(openFileDialogBackup.FileName, "CigRemove.accdb");
                     //(new CigReaderDatabase.CigDatabase()).CigDelete();

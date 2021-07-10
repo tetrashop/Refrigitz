@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace OpenCL
@@ -11,7 +8,7 @@ namespace OpenCL
     //Fixed method on CPU or GPU
     public class ComputeMethod
     {
-        private EasyCL cl;
+        private readonly EasyCL cl;
         public string Source { get; private set; }
         public string Method { get; private set; }
         public AcceleratorDevice Device { get; private set; }
@@ -21,7 +18,7 @@ namespace OpenCL
         /// </summary>
         public TimeSpan LastInvocationTime { get; private set; } = TimeSpan.Zero;
 
-        Stopwatch watch = new Stopwatch();
+        private readonly Stopwatch watch = new Stopwatch();
 
 
         /// <summary>
@@ -61,9 +58,9 @@ namespace OpenCL
 
         public ComputeMethod(string Kernel, string Method, AcceleratorDevice device)
         {
-            this.Source = Kernel;
+            Source = Kernel;
             this.Method = Method;
-            this.Device = device;
+            Device = device;
 
             cl = new EasyCL() { Accelerator = device };
             cl.LoadKernel(Kernel);

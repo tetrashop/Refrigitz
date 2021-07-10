@@ -1,16 +1,20 @@
 namespace Formulas
 {
-    static class ChangeFunction
+    internal static class ChangeFunction
     {
-        static public AddToTree.Tree ChangeFunctionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree ChangeFunctionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             Dummy = ChangeFunction.ChangeFunctionFxAction(Dummy);
             return Simplifier.SimplifierFx(Dummy, ref UIS);
         }
-        static AddToTree.Tree ChangeFunctionFxAction(AddToTree.Tree Dummy)
+
+        private static AddToTree.Tree ChangeFunctionFxAction(AddToTree.Tree Dummy)
         {
             if (Dummy == null)
+            {
                 return null;
+            }
+
             if ((Dummy.SampleAccess == "^") && (Dummy.LeftSideAccess.SampleAccess.ToLower() == "sin") && (IS.IsNumber(Dummy.RightSideAccess.SampleAccess)))
             {
                 AddToTree.Tree Cos = new AddToTree.Tree("Cos", false);
@@ -19,11 +23,16 @@ namespace Formulas
 
                 float NUM = (float)System.Convert.ToDouble(Dummy.RightSideAccess.SampleAccess);
                 if (NUM <= 1)
+                {
                     return Dummy;
+                }
+
                 NUM = NUM - 2;
 
-                Cos.LeftSideAccess = new AddToTree.Tree(null, false);
-                Cos.LeftSideAccess.ThreadAccess = Cos;
+                Cos.LeftSideAccess = new AddToTree.Tree(null, false)
+                {
+                    ThreadAccess = Cos
+                };
 
                 Cos = Cos.LeftSideAccess;
 
@@ -68,7 +77,10 @@ namespace Formulas
 
                 }
                 else
+                {
                     Dummy = Cos;
+                }
+
                 Dummy.ThreadAccess = HOLDER;
 
 
@@ -81,11 +93,16 @@ namespace Formulas
 
                 float NUM = (float)System.Convert.ToDouble(Dummy.RightSideAccess.SampleAccess);
                 if (NUM <= 1)
+                {
                     return Dummy;
+                }
+
                 NUM = NUM - 2;
 
-                Cos.LeftSideAccess = new AddToTree.Tree(null, false);
-                Cos.LeftSideAccess.ThreadAccess = Cos;
+                Cos.LeftSideAccess = new AddToTree.Tree(null, false)
+                {
+                    ThreadAccess = Cos
+                };
 
                 Cos = Cos.LeftSideAccess;
 
@@ -130,7 +147,10 @@ namespace Formulas
 
                 }
                 else
+                {
                     Dummy = Cos;
+                }
+
                 Dummy.ThreadAccess = HOLDER;
             }
             return Dummy;

@@ -1,16 +1,20 @@
 namespace Formulas
 {
-    static class BesidesAverage
+    internal static class BesidesAverage
     {
-        static public AddToTree.Tree BesidesAverageFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree BesidesAverageFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             Dummy = AddingDivisionToThreeDivStructure.AddingDivisionToThreeDivStructureFx(Dummy);
             return BesidesAverage.BesidesAverageActionFx(Dummy, ref UIS);
         }
-        static AddToTree.Tree BesidesAverageActionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree BesidesAverageActionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             int INCREASE = 2147483647 / 4;
             UIS.SetProgressValue(UIS.progressBar8, 0);
             if (IS.IsDiv(Dummy.SampleAccess))

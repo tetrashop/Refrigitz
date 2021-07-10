@@ -8,12 +8,12 @@ using System;
 
 namespace Formulas
 {
-    class AddToTreeTreeLinkList
+    internal class AddToTreeTreeLinkList
     {
         //ERRORCORECTION0917283 :The ERROR31704506 CORECTION :The Node Declared static and is shared with all classes and set nodes to deleted deleteded all nodes.
         //static LinkListNodeClass Node = null;
         public LinkListNodeClass Node = new LinkListNodeClass();
-        int CurrentSize = -1;
+        private int CurrentSize = -1;
 
         //int NodeNumber = 0;
         public void LinkListInizialize()
@@ -31,7 +31,7 @@ namespace Formulas
         }
         public AddToTreeTreeLinkList()
         {
-            this.LinkListInizialize();
+            LinkListInizialize();
         }
         /*public int NodeNumberAccess
         {
@@ -49,41 +49,49 @@ namespace Formulas
             LinkListNodeClass Dummy = Node;
             AddToTree.Tree NUM = new AddToTree.Tree(Num.ToString(), true);
             if (Dummy != null)
+            {
                 while (Dummy.NextAccess != null)
                 {
                     Dummy.CurrentAccess.SetLefTandRightCommonlySide(Dummy.CurrentAccess.CopyNewTree(Dummy.CurrentAccess), NUM);
                     Dummy.CurrentAccess.SampleAccess = "*";
                     Dummy = Dummy.NextAccess;
                 }
+            }
         }
         public AddToTreeTreeLinkList CopyLinkList()
         {
             AddToTreeTreeLinkList t = new AddToTreeTreeLinkList();
             t.LinkListInizialize();
 
-            t.Node = this.CopyLinkListAction(this.Node);
+            t.Node = CopyLinkListAction(Node);
             t.Node.ThreadAccess = null;
-            t.CurrentSizeAccess = this.CurrentSizeAccess;
+            t.CurrentSizeAccess = CurrentSizeAccess;
 
             try
             {
-                t.Node.CurrentAccess = this.Node.CurrentAccess.CopyNewTree(this.Node.CurrentAccess);
+                t.Node.CurrentAccess = Node.CurrentAccess.CopyNewTree(Node.CurrentAccess);
             }
 
             catch (NullReferenceException k) { ExceptionClass.ExceptionClassMethod(k); }
             return t;
         }
-        LinkListNodeClass CopyLinkListAction(LinkListNodeClass Dummy)
+
+        private LinkListNodeClass CopyLinkListAction(LinkListNodeClass Dummy)
         {
             if (Dummy == null)
+            {
                 return null;
+            }
+
             LinkListNodeClass t = new LinkListNodeClass();
             try
             {
                 t.CurrentAccess = Dummy.CurrentAccess.CopyNewTree(Dummy.CurrentAccess);
-                t.NextAccess = this.CopyLinkListAction(Dummy.NextAccess);
+                t.NextAccess = CopyLinkListAction(Dummy.NextAccess);
                 if (t.NextAccess != null)
+                {
                     t.NextAccess.ThreadAccess = t;
+                }
             }
             catch (NullReferenceException k) { ExceptionClass.ExceptionClassMethod(k); }
             return t;
@@ -92,7 +100,7 @@ namespace Formulas
         public void CreateLinkListFromTree1(AddToTree.Tree T)
         {
 
-            bool AD = false, Parantez = false;
+            bool AD = false;
             LinkListNodeClass Dummy = Node;//new LinkListNodeClass();            
             LinkListNodeClass NEW = new LinkListNodeClass();
             if (T != null)//ERRORCORECTION1246789:The Link Litst Of Dummy Corected:1394/3/31
@@ -103,7 +111,9 @@ namespace Formulas
                     Dummy = Node;//new LinkListNodeClass();            
                     NEW = new LinkListNodeClass();
                     while (Dummy.NextAccess != null)
+                    {
                         Dummy = Dummy.NextAccess;
+                    }
 
                     NEW.CurrentAccess.SampleAccess = ")";
                     Dummy.NextAccess = NEW;
@@ -117,7 +127,10 @@ namespace Formulas
                     NEW = new LinkListNodeClass();
 
                     while (Dummy.NextAccess != null)
+                    {
                         Dummy = Dummy.NextAccess;
+                    }
+
                     NEW.CurrentAccess.SampleAccess = "(";
                     Dummy.NextAccess = NEW;
                     Dummy.NextAccess.ThreadAccess = Dummy;
@@ -170,7 +183,10 @@ namespace Formulas
                     //LinkListNodeClass NEW = new LinkListNodeClass();
 
                     while (Dummy.NextAccess != null)
+                    {
                         Dummy = Dummy.NextAccess;
+                    }
+
                     NEW.CurrentAccess.SampleAccess = T.SampleAccess;
                     Dummy.NextAccess = NEW;
                     Dummy.NextAccess.ThreadAccess = Dummy;
@@ -205,7 +221,10 @@ namespace Formulas
                 Dummy = Node;//new LinkListNodeClass();            
                 NEW = new LinkListNodeClass();
                 while (Dummy.NextAccess != null)
+                {
                     Dummy = Dummy.NextAccess;
+                }
+
                 NEW.CurrentAccess.SampleAccess = T.SampleAccess;
                 Dummy.NextAccess = NEW;
                 Dummy.NextAccess.ThreadAccess = Dummy;
@@ -225,7 +244,10 @@ namespace Formulas
                 LinkListNodeClass NEW = new LinkListNodeClass();
 
                 while (Dummy.NextAccess != null)
+                {
                     Dummy = Dummy.NextAccess;
+                }
+
                 NEW.CurrentAccess.SampleAccess = T.SampleAccess;
                 Dummy.NextAccess = NEW;
                 Dummy.NextAccess.ThreadAccess = Dummy;
@@ -241,11 +263,16 @@ namespace Formulas
         public void ADDToTree(AddToTree.Tree T)
         {
             if (T == null)
+            {
                 return;
+            }
+
             if (Node == null)
             {
-                Node = new LinkListNodeClass();
-                Node.CurrentAccess = T;
+                Node = new LinkListNodeClass
+                {
+                    CurrentAccess = T
+                };
                 //NodeNumber = CurrentSize + 1;
                 //                NodeNumber = CurrentSize;
                 CurrentSize++;
@@ -257,12 +284,19 @@ namespace Formulas
                 LinkListNodeClass NEW = new LinkListNodeClass();
 
                 while (Dummy.NextAccess != null)
+                {
                     Dummy = Dummy.NextAccess;
+                }
 
                 if (Dummy.NextAccess == null)
+                {
                     Dummy.NextAccess = new LinkListNodeClass();
+                }
+
                 if (Dummy.NextAccess.ThreadAccess == null)
+                {
                     Dummy.NextAccess.ThreadAccess = new LinkListNodeClass();
+                }
 
                 NEW.CurrentAccess = T;
                 Dummy.NextAccess = NEW;
@@ -271,17 +305,28 @@ namespace Formulas
                 CurrentSize++;
                 SetNode(Dummy);
                 if (T.LeftSideAccess != null)
+                {
                     ADDToTree(T.LeftSideAccess);
+                }
+
                 if (T.RightSideAccess != null)
+                {
                     ADDToTree(T.RightSideAccess);
+                }
             }
 
         }
-        void SetNode(LinkListNodeClass t)
+
+        private void SetNode(LinkListNodeClass t)
         {
             if (t != null)
+            {
                 while (t.ThreadAccess != null)
+                {
                     t = t.ThreadAccess;
+                }
+            }
+
             Node = t;
         }
         public AddToTree.Tree DELETEFromTreeFirstNode()
@@ -297,11 +342,17 @@ namespace Formulas
                         LinkListNodeClass Dummy = Node;
 
                         while (Dummy.NextAccess != null)
+                        {
                             Dummy = Dummy.NextAccess;
+                        }
+
                         RETURN = Dummy.CurrentAccess;
                         Dummy = Dummy.ThreadAccess;
                         if (Dummy != null)
+                        {
                             Dummy.NextAccess = null;
+                        }
+
                         CurrentSize--;
                         SetNode(Dummy);
 
@@ -314,7 +365,10 @@ namespace Formulas
                 }
             }
             else
+            {
                 CurrentSize = -1;
+            }
+
             return RETURN;
         }
         public AddToTree.Tree DELETEFromTreeFindedNode(AddToTree.Tree DummyToDeleted)
@@ -329,11 +383,17 @@ namespace Formulas
                         LinkListNodeClass Dummy = Node;
 
                         while ((Dummy != null) && (!(EqualToObject.IsEqualWithOutThreadConsiderationCommonly(Dummy.CurrentAccess, DummyToDeleted))))
+                        {
                             Dummy = Dummy.NextAccess;
+                        }
+
                         if (Dummy != null)
                         {
                             if (Dummy.NextAccess != null)
+                            {
                                 Dummy.NextAccess.ThreadAccess = Dummy.ThreadAccess;
+                            }
+
                             Dummy = Dummy.NextAccess;
                         }
                         SetNode(Dummy);
@@ -347,16 +407,24 @@ namespace Formulas
                 }
             }
             else
+            {
                 CurrentSize = -1;
+            }
+
             return RETURN;
         }
         public bool ISEmpty()
         {
             bool Is = true;
             if (CurrentSize > -1)
+            {
                 Is = false;
+            }
             else
+            {
                 Is = true;
+            }
+
             return Is;
         }
         public bool FINDTreeWithThreadConsideration(AddToTree.Tree Dummy)
@@ -371,11 +439,14 @@ namespace Formulas
             while (Tracer != null)
             {
                 if (Tracer.CurrentAccess != null)
+                {
                     if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy, Tracer.CurrentAccess))
                     {
                         Is = true;
                         break;
                     }
+                }
+
                 Tracer = Tracer.NextAccess;
             }
 
@@ -393,11 +464,14 @@ namespace Formulas
             while (Tracer != null)
             {
                 if (Tracer.CurrentAccess != null)
+                {
                     if (EqualToObject.IsEqualWithOutThreadConsiderationCommonly(Dummy, Tracer.CurrentAccess))
                     {
                         Is = true;
                         break;
                     }
+                }
+
                 Tracer = Tracer.NextAccess;
             }
             return Is;
@@ -411,19 +485,25 @@ namespace Formulas
             while (Tracer != null)
             {
                 if (Tracer.CurrentAccess != null)
+                {
                     if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess, Tracer.CurrentAccess))
                     {
                         Is = true;
                         //break;
                         Quefiicent = (float)System.Convert.ToDouble(Dummy.RightSideAccess.SampleAccess);
                     }
+                }
+
                 if (Tracer.CurrentAccess != null)
+                {
                     if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, Tracer.CurrentAccess))
                     {
                         Is = true;
                         Quefiicent = (float)System.Convert.ToDouble(Dummy.LeftSideAccess.SampleAccess);
                         break;
                     }
+                }
+
                 Tracer = Tracer.NextAccess;
             }
             return Is;

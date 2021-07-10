@@ -15,72 +15,70 @@ namespace WindowsApplication1
     {
         
         public static int stkin = 0;
-        List<Form1> Stk = new List<Form1>();
-        List<Image> StkIm = new List<Image>();
-        List<bool> Stkch = new List<bool>();
-        List<string> Stklb = new List<string>();
-        List<string> Stktx= new List<string>();
+        private readonly List<Form1> Stk = new List<Form1>();
+        private readonly List<Image> StkIm = new List<Image>();
+        private readonly List<bool> Stkch = new List<bool>();
+        private readonly List<string> Stklb = new List<string>();
+        private readonly List<string> Stktx= new List<string>();
 
 
 
 
         public bool Strong = false;
-        int count = 1250 * System.Threading.PlatformHelper.ProcessorCount;
+        private int count = 1250 * System.Threading.PlatformHelper.ProcessorCount;
+
         //int count = 125 * System.Threading.PlatformHelper.ProcessorCount;
-        bool go = false;
-        bool[,] curvedallpoints = null;
-
-        float[] region = null;
-        float[] r = null;
-        float[] teta = null;
-        int rlen = 0;
-        List<Point2D> outsidecurved = new List<Point2D>();
-        const int penratio = 400000;
-        PointF[] curvedline = new PointF[100000];
-        int curvedlinelen = 0;
-        bool curved = false;
+        private bool go = false;
+        private bool[,] curvedallpoints = null;
+        private float[] region = null;
+        private float[] r = null;
+        private float[] teta = null;
+        private int rlen = 0;
+        private List<Point2D> outsidecurved = new List<Point2D>();
+        private const int penratio = 400000;
+        private PointF[] curvedline = new PointF[100000];
+        private int curvedlinelen = 0;
+        private bool curved = false;
         public bool Reducedinteligent = false;
-
-        bool mouseclick = false;
-        long time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
-
-        Image at;
-        bool Colorset = false;
-        double percent = 0.5;
-        bool elim = false;
+        private bool mouseclick = false;
+        private long time = (DateTime.Now.Hour * 24 * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second) * 1000 + DateTime.Now.Millisecond;
+        private Image at;
+        private bool Colorset = false;
+        private double percent = 0.5;
+        private bool elim = false;
         public _2dTo3D a = null;
-        int Kind = 0;
-        float xp0 = 0, yp0 = 0, xp1 = 0, yp1 = 0, xp2 = 0, yp2 = 0, xp3 = 0, yp3 = 0;
-        float xz0 = 0, yz0 = 0, xz1 = 0, yz1 = 0, xz2 = 0, yz2 = 0, xz3 = 0, yz3 = 0;
-        float xs0 = 0, ys0 = 0, xs1 = 0, ys1 = 0, xs2 = 0, ys2 = 0;// xs3 = 0, ys3 = 0;
-        float xb0 = 0, yb0 = 0, xb1 = 0, yb1 = 0, xb2 = 0, yb2 = 0, xb3 = 0, yb3 = 0;
-        float xe0 = 0, ye0 = 0, xe1 = 0, ye1 = 0;
-        float xr0 = 0, yr0 = 0, xr1 = 0, yr1 = 0;
-        float xm = 0, ym = 0;
-        float XP = 0, YP = 0;
-        int ColorBox = 0;
-        float R = 0, P = 0, N = 0, TetaStart = 0, TetaSweep = 0;
+        private int Kind = 0;
+        private float xp0 = 0, yp0 = 0, xp1 = 0, yp1 = 0, xp2 = 0, yp2 = 0, xp3 = 0, yp3 = 0;
+        private float xz0 = 0, yz0 = 0, xz1 = 0, yz1 = 0, xz2 = 0, yz2 = 0, xz3 = 0, yz3 = 0;
+        private float xs0 = 0, ys0 = 0, xs1 = 0, ys1 = 0, xs2 = 0, ys2 = 0;// xs3 = 0, ys3 = 0;
+        private float xb0 = 0, yb0 = 0, xb1 = 0, yb1 = 0, xb2 = 0, yb2 = 0, xb3 = 0, yb3 = 0;
+        private float xe0 = 0, ye0 = 0, xe1 = 0, ye1 = 0;
+        private float xr0 = 0, yr0 = 0, xr1 = 0, yr1 = 0;
+        private float xm = 0, ym = 0;
+        private float XP = 0, YP = 0;
+        private int ColorBox = 0;
+        private float R = 0, P = 0, N = 0, TetaStart = 0, TetaSweep = 0;
         private float xprin, yprin;
-        bool[] outcode0, outcode1, outcodeOut = new bool[4];
-        Shape2D Node = new Shape2D();
-        Shape2D Sh = new Shape2D();
-        static int ClickMouse = -1;
-        bool DrawLine = false;
-        bool[] SetValue = new bool[3];
-        bool[] SetValueforBezier = new bool[4];
-        bool MoveAllow = false;
-        bool Trans = false;
+        private bool[] outcode0, outcode1, outcodeOut = new bool[4];
+        private Shape2D Node = new Shape2D();
+        private Shape2D Sh = new Shape2D();
+        private static int ClickMouse = -1;
+        private bool DrawLine = false;
+        private bool[] SetValue = new bool[3];
+        private bool[] SetValueforBezier = new bool[4];
+        private bool MoveAllow = false;
+        private bool Trans = false;
+        private static int ArcCount = 0;
+        private static int LineCount = 0;
+        private static int BezierCount = 0;
+        private static int EllipseCount = 0;
+        private static int RectangleCount = 0;
 
-        static int ArcCount = 0;
-        static int LineCount = 0;
-        static int BezierCount = 0;
-        static int EllipseCount = 0;
-        static int RectangleCount = 0;
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -89,10 +87,11 @@ namespace WindowsApplication1
                 }
             }
 
-            catch (Exception t) { }
+            catch (Exception) { }
 
         }
-        void push()
+
+        private void push()
         {
             Stk.Add(this);
             StkIm.Add((Image)pictureBox24.Image.Clone());
@@ -101,13 +100,18 @@ namespace WindowsApplication1
             Stkch.Add(checkBox1.Checked);
             stkin = Stk.Count - 1;
        }
-        bool PushPop(bool pu)
+
+        private bool PushPop(bool pu)
         {
            bool ass = false;
             if (pu)
+            {
                 ass = (stkin  < Stk.Count);
+            }
             else
+            {
                 ass = stkin >= 0;
+            }
 
             if (ass )
             {
@@ -223,17 +227,23 @@ namespace WindowsApplication1
                     done = true;
                 }
                 if ((outcode0[0] & outcode1[0] == false) && (outcode0[1] & outcode1[1] == false) && (outcode0[2] & outcode1[2] == false) && (outcode0[3] & outcode1[3] == false))
+                {
                     done = true;
+                }
                 else
                 {
                     /*Failed both test,so calculate the line segment to clip;
                      from an outside point to an intersection with clip edge.*/
                     if (!(outcode0[0] == false && outcode0[1] == false && outcode0[2] == false && outcode0[3] == false))
+                    {
                         outcodeOut = outcode0;
+                    }
                     else
+                    {
                         outcodeOut = outcode1;
+                    }
                     /*Now find intersection point;
-                     use formulas y=y0+slope*(x-x0),x=x0+(1/slope)*(y-y0).*/
+use formulas y=y0+slope*(x-x0),x=x0+(1/slope)*(y-y0).*/
                     if (outcodeOut[3])
                     {//Divide line at top of clip rectangle
                         x = x0 + (x1 - x0) * (ymax - y0) / (y1 - y0);
@@ -273,11 +283,27 @@ namespace WindowsApplication1
         private void CompOutCode(float x, float y, float xmin, float xmax, float ymin, float ymax, ref bool[] code)
         {
             for (int i = 0; i < 4; i++)
+            {
                 code[i] = false;
-            if (y > ymax) code[3] = true;
-            else if (y < ymin) code[2] = true;
-            if (x > xmax) code[0] = true;
-            else if (x < xmin) code[0] = true;
+            }
+
+            if (y > ymax)
+            {
+                code[3] = true;
+            }
+            else if (y < ymin)
+            {
+                code[2] = true;
+            }
+
+            if (x > xmax)
+            {
+                code[0] = true;
+            }
+            else if (x < xmin)
+            {
+                code[0] = true;
+            }
         }
         private void aRCToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -300,18 +326,27 @@ namespace WindowsApplication1
 
             //Shape2D Set = new Shape2D();
             if (ClickMouse == 0)
+            {
                 DrawLine = false;
+            }
+
             if (ClickMouse == 1)
+            {
                 DrawLine = true;
+            }
+
             ClickMouse++;
             if (ClickMouse != 1)
+            {
                 if (Kind == 3)
                 {
                     xp0 = xp1;
                     yp0 = yp1;
                 }
-            xprin = this.PointToClient(Control.MousePosition).X;
-            yprin = this.PointToClient(Control.MousePosition).Y;
+            }
+
+            xprin = PointToClient(Control.MousePosition).X;
+            yprin = PointToClient(Control.MousePosition).Y;
             //The Mouse Click event;
             if (!MoveAllow)
             {
@@ -350,43 +385,72 @@ namespace WindowsApplication1
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            this.DrawExistShape(sender);
+            DrawExistShape(sender);
 
             if (Kind == 1)
-                this.ArcDraw(sender, this.DetermineColor(sender));
+            {
+                ArcDraw(sender, DetermineColor(sender));
+            }
+
             if (Kind == 2)
-                this.LineDraw(sender, this.DetermineColor(sender));
+            {
+                LineDraw(sender, DetermineColor(sender));
+            }
+
             if (Kind == 3)
-                this.LineForBezierDraw(sender, this.DetermineColor(sender));
+            {
+                LineForBezierDraw(sender, DetermineColor(sender));
+            }
+
             if (Kind == 4)
-                this.EllipseDraw(sender);
+            {
+                EllipseDraw(sender);
+            }
+
             if (Kind == 5)
-                this.RectangleDraw(sender);
+            {
+                RectangleDraw(sender);
+            }
+
             if (Kind == 6)
-                this.Pen(sender);
+            {
+                Pen(sender);
+            }
+
             if ((ClickMouse == 1) || (ClickMouse == 2))
+            {
                 if (MoveAllow)
-                    this.MoveAll(sender);
+                {
+                    MoveAll(sender);
+                }
+            }
+
             if (Trans)
-                this.TransOperation(sender);
-            this.DrawExistShape(sender);
+            {
+                TransOperation(sender);
+            }
+
+            DrawExistShape(sender);
         }
         private void ArcDraw(object sender, Pen p)
         {
             if (ClickMouse == 1)
-                this.LineDraw(sender, this.DetermineColor(sender));
+            {
+                LineDraw(sender, DetermineColor(sender));
+            }
+
             if (ClickMouse == 2)
             {
-                Graphics g = this.CreateGraphics();
+                Graphics g = CreateGraphics();
                 g.Clear(Color.White);
-                xp2 = this.PointToClient(Control.MousePosition).X;
-                yp2 = this.PointToClient(Control.MousePosition).Y;
+                xp2 = PointToClient(Control.MousePosition).X;
+                yp2 = PointToClient(Control.MousePosition).Y;
                 R = (float)System.Math.Sqrt(System.Math.Pow((xp1 - xp0), 2) + System.Math.Pow((yp1 - yp0), 2));
                 P = (float)System.Math.Sqrt(System.Math.Pow((xp2 - xp0), 2) + System.Math.Pow((yp2 - yp0), 2));
                 N = (float)System.Math.Sqrt(System.Math.Pow((xp1 - xp2), 2) + System.Math.Pow((yp1 - yp2), 2));
                 TetaStart = (float)((180 / 3.14) * (System.Math.Atan((yp1 - yp0) / (xp1 - yp0))));
                 TetaSweep = (float)((180 / 3.14) * System.Math.Acos(((System.Math.Pow(R, 2)) + (System.Math.Pow(P, 2)) - (System.Math.Pow(N, 2))) / (2 * R * P)));
-                g.DrawArc(this.DetermineColor(sender), xp0, yp0, (float)System.Math.Abs(xp1 - xp0), (float)System.Math.Abs(yp1 - yp0), TetaStart, TetaSweep);
+                g.DrawArc(DetermineColor(sender), xp0, yp0, (float)System.Math.Abs(xp1 - xp0), (float)System.Math.Abs(yp1 - yp0), TetaStart, TetaSweep);
             }
             //The thirth point is setting.
             if (ClickMouse == 4)
@@ -397,20 +461,24 @@ namespace WindowsApplication1
                 ys1 = ys1 + yp3;
             }
             if (Kind == 1)
+            {
                 if (ClickMouse == 3)
                 {
-                    xp3 = this.PointToClient(Control.MousePosition).X - xp0;
-                    yp3 = this.PointToClient(Control.MousePosition).Y - yp0;
-                    Graphics g = this.CreateGraphics();
+                    xp3 = PointToClient(Control.MousePosition).X - xp0;
+                    yp3 = PointToClient(Control.MousePosition).Y - yp0;
+                    Graphics g = CreateGraphics();
                     g.Clear(Color.White);
                     //g.DrawArc(this.DetermineColor(sender), xp0, yp0, (float)System.Math.Abs(xp1+xp3 - xp0), (float)System.Math.Abs(yp1+yp3 - yp0), TetaStart, TetaSweep);                                 
-                    g.DrawArc(this.DetermineColor(sender), xp0, yp0, (float)System.Math.Abs(xp1 + xp3 - xp0), (float)System.Math.Abs(yp1 + yp3 - yp0), TetaStart, TetaSweep);
+                    g.DrawArc(DetermineColor(sender), xp0, yp0, (float)System.Math.Abs(xp1 + xp3 - xp0), (float)System.Math.Abs(yp1 + yp3 - yp0), TetaStart, TetaSweep);
                 }
+            }
+
             if (Kind == 1)
+            {
                 if (ClickMouse == 4)
                 {
                     Shape2D Sh = new Shape2D(1, xs0, ys0, xs1, ys1, xs2, ys2, 0, 0);
-                    this.GetShapeLast(sender).Start2D = Sh;
+                    GetShapeLast(sender).Start2D = Sh;
                     Sh.Redraw = true;
                     Sh.Name = "Arc" + System.Convert.ToSingle(ArcCount);
                     ArcCount++;
@@ -418,52 +486,58 @@ namespace WindowsApplication1
                     ClickMouse = 0;
                     Kind = 0;
                     //SetColor
-                    Sh.Pc = this.DetermineColor(sender);
+                    Sh.Pc = DetermineColor(sender);
 
                 }
+            }
             //
         }
         private void LineDraw(object sender, Pen p)
         {
-            xp1 = this.PointToClient(Control.MousePosition).X;
-            yp1 = this.PointToClient(Control.MousePosition).Y;
+            xp1 = PointToClient(Control.MousePosition).X;
+            yp1 = PointToClient(Control.MousePosition).Y;
             //The First point Setting for redraw
             xs0 = xp0;
             ys0 = yp0;
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             if (ClickMouse == 1)
             {
                 if (ClickMouse != 2)
+                {
                     g.Clear(Color.White);
-                g.DrawLine(this.DetermineColor(sender), xp0, yp0, xp1, yp1);
+                }
+
+                g.DrawLine(DetermineColor(sender), xp0, yp0, xp1, yp1);
             }
             if (Kind == 2)
+            {
                 if (ClickMouse == 2)
                 {
                     xs1 = xp1;
                     ys1 = yp1;
                     Shape2D Sh = new Shape2D(2, xs0, ys0, xs1, ys1, 0, 0, 0, 0);
-                    this.GetShapeLast(sender).Start2D = Sh;
+                    GetShapeLast(sender).Start2D = Sh;
                     Sh.Name = "Line" + System.Convert.ToSingle(LineCount);
                     Sh.Redraw = true;
                     LineCount++;
                     comboBox1.Items.Add(Sh.Name);
                     ClickMouse = 0;
                     Kind = 0;
-                    Sh.Pc = this.DetermineColor(sender);
+                    Sh.Pc = DetermineColor(sender);
                 }
+            }
         }
         private void LineForBezierDraw(object sender, Pen p)
         {
-            xp1 = this.PointToClient(Control.MousePosition).X;
-            yp1 = this.PointToClient(Control.MousePosition).Y;
-            Graphics g = this.CreateGraphics();
+            xp1 = PointToClient(Control.MousePosition).X;
+            yp1 = PointToClient(Control.MousePosition).Y;
+            Graphics g = CreateGraphics();
             if (ClickMouse == 1)
             {
                 xb0 = xp0;
                 yb0 = yp0;
                 g.Clear(Color.White);
-                g.DrawLine(this.DetermineColor(sender), xb0, yb0, xp1, yp1);
+                g.DrawLine(DetermineColor(sender), xb0, yb0, xp1, yp1);
             }
             else
             if (ClickMouse == 2)
@@ -473,10 +547,10 @@ namespace WindowsApplication1
                 xb1 = xp0;
                 yb1 = yp0;
                 g.Clear(Color.White);
-                xp1 = this.PointToClient(Control.MousePosition).X;
-                yp1 = this.PointToClient(Control.MousePosition).Y;
-                g.DrawLine(this.DetermineColor(sender), xb0, yb0, xb1, yb1);
-                g.DrawLine(this.DetermineColor(sender), xb1, yb1, xp1, yp1);
+                xp1 = PointToClient(Control.MousePosition).X;
+                yp1 = PointToClient(Control.MousePosition).Y;
+                g.DrawLine(DetermineColor(sender), xb0, yb0, xb1, yb1);
+                g.DrawLine(DetermineColor(sender), xb1, yb1, xp1, yp1);
             }
             else
                 if (ClickMouse == 3)
@@ -486,11 +560,11 @@ namespace WindowsApplication1
                 xb2 = xp0;
                 yb2 = yp0;
                 g.Clear(Color.White);
-                xp1 = this.PointToClient(Control.MousePosition).X;
-                yp1 = this.PointToClient(Control.MousePosition).Y;
-                g.DrawLine(this.DetermineColor(sender), xb0, yb0, xb1, yb1);
-                g.DrawLine(this.DetermineColor(sender), xb1, yb1, xb2, yb2);
-                g.DrawLine(this.DetermineColor(sender), xb2, yb2, xp1, yp1);
+                xp1 = PointToClient(Control.MousePosition).X;
+                yp1 = PointToClient(Control.MousePosition).Y;
+                g.DrawLine(DetermineColor(sender), xb0, yb0, xb1, yb1);
+                g.DrawLine(DetermineColor(sender), xb1, yb1, xb2, yb2);
+                g.DrawLine(DetermineColor(sender), xb2, yb2, xp1, yp1);
             }
             else
                    if (ClickMouse == 4)
@@ -500,19 +574,20 @@ namespace WindowsApplication1
                 xb3 = xp0;
                 yb3 = yp0;
                 g.Clear(Color.White);
-                xp1 = this.PointToClient(Control.MousePosition).X;
-                yp1 = this.PointToClient(Control.MousePosition).Y;
+                xp1 = PointToClient(Control.MousePosition).X;
+                yp1 = PointToClient(Control.MousePosition).Y;
                 g.DrawLine(p, xb0, yb0, xb1, yb1);
                 g.DrawLine(p, xb1, yb1, xb2, yb2);
                 g.DrawLine(p, xb2, yb2, xb3, yb3);
                 g.Clear(Color.White);
-                g.DrawBezier(this.DetermineColor(sender), xb0, yb0, xb1, yb1, xb2, yb2, xb3, yb3);
+                g.DrawBezier(DetermineColor(sender), xb0, yb0, xb1, yb1, xb2, yb2, xb3, yb3);
             }
             if (Kind == 3)
+            {
                 if (ClickMouse == 4)
                 {
                     Shape2D Sh = new Shape2D(3, xb0, yb0, xb1, yb1, xb2, yb2, xb3, yb3);
-                    this.GetShapeLast(sender).Start2D = Sh;
+                    GetShapeLast(sender).Start2D = Sh;
                     Sh.Start2D = null;
                     Sh.Name = "Bezier" + System.Convert.ToSingle(BezierCount);
                     Sh.Redraw = true;
@@ -520,100 +595,106 @@ namespace WindowsApplication1
                     comboBox1.Items.Add(Sh.Name);
                     Kind = 0;
                     ClickMouse = 0;
-                    Sh.Pc = this.DetermineColor(sender);
+                    Sh.Pc = DetermineColor(sender);
                 }
-
+            }
         }
         private void BezierDraw(object sender)
         {
-            Graphics g = this.CreateGraphics();
-            this.LineForBezierDraw(sender, this.DetermineColor(sender));
+            Graphics g = CreateGraphics();
+            LineForBezierDraw(sender, DetermineColor(sender));
             if (ClickMouse == 4)
-                g.DrawBezier(this.DetermineColor(sender), xp0, yp0, xp1, yp1, xp2, yp2, xp3, yp3);
-
-
+            {
+                g.DrawBezier(DetermineColor(sender), xp0, yp0, xp1, yp1, xp2, yp2, xp3, yp3);
+            }
         }
         private void EllipseDraw(object sender)
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             if (ClickMouse == 1)
             {
-                xp1 = this.PointToClient(Control.MousePosition).X - 80;
-                yp1 = this.PointToClient(Control.MousePosition).Y - 80;
+                xp1 = PointToClient(Control.MousePosition).X - 80;
+                yp1 = PointToClient(Control.MousePosition).Y - 80;
                 g.Clear(Color.White);
-                g.DrawEllipse(this.DetermineColor(sender), (int)xp0, (int)yp0, xp1, yp1);
+                g.DrawEllipse(DetermineColor(sender), (int)xp0, (int)yp0, xp1, yp1);
             }
             if (ClickMouse == 2)
             {
-                xp0 = this.PointToClient(Control.MousePosition).X - 80;
-                yp0 = this.PointToClient(Control.MousePosition).Y - 80;
+                xp0 = PointToClient(Control.MousePosition).X - 80;
+                yp0 = PointToClient(Control.MousePosition).Y - 80;
                 g.Clear(Color.White);
-                g.DrawEllipse(this.DetermineColor(sender), (int)xp0, (int)yp0, xp1, yp1);
+                g.DrawEllipse(DetermineColor(sender), (int)xp0, (int)yp0, xp1, yp1);
             }
             if (Kind == 4)
+            {
                 if (ClickMouse == 3)
                 {
                     Shape2D Sh = new Shape2D(4, xp0, yp0, xp1, yp1, 0, 0, 0, 0);
-                    this.GetShapeLast(sender).Start2D = Sh;
+                    GetShapeLast(sender).Start2D = Sh;
                     Sh.Name = "Ellipse" + System.Convert.ToSingle(EllipseCount);
                     Sh.Redraw = true;
                     EllipseCount++;
                     comboBox1.Items.Add(Sh.Name);
                     Kind = 0;
                     ClickMouse = 0;
-                    Sh.Pc = this.DetermineColor(sender);
+                    Sh.Pc = DetermineColor(sender);
                 }
-
+            }
         }
         private void RectangleDraw(object sender)
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             if (ClickMouse == 1)
             {
                 xp1 = (this.PointToClient(Control.MousePosition).X) - 50;
                 yp1 = (this.PointToClient(Control.MousePosition).Y) - 50;
                 g.Clear(Color.White);
-                g.DrawRectangle(this.DetermineColor(sender), xp0, yp0, xp1, yp1);
+                g.DrawRectangle(DetermineColor(sender), xp0, yp0, xp1, yp1);
             }
             if (ClickMouse == 2)
             {
                 xp0 = (this.PointToClient(Control.MousePosition).X) - 50;
                 yp0 = (this.PointToClient(Control.MousePosition).Y) - 50;
                 g.Clear(Color.White);
-                g.DrawRectangle(this.DetermineColor(sender), xp0, yp0, xp1, yp1);
+                g.DrawRectangle(DetermineColor(sender), xp0, yp0, xp1, yp1);
             }
             if (Kind == 5)
+            {
                 if (ClickMouse == 3)
                 {
                     Shape2D Sh = new Shape2D(5, xp0, yp0, xp1, yp1, 0, 0, 0, 0);
-                    this.GetShapeLast(sender).Start2D = Sh;
+                    GetShapeLast(sender).Start2D = Sh;
                     Sh.Name = "Rectangle" + System.Convert.ToSingle(RectangleCount);
                     Sh.Redraw = true;
                     RectangleCount++;
                     comboBox1.Items.Add(Sh.Name);
                     Kind = 0;
                     ClickMouse = 0;
-                    Sh.Pc = this.DetermineColor(sender);
+                    Sh.Pc = DetermineColor(sender);
                 }
-
-
+            }
         }
         private void Pen(object sender)
         {
             Point2D PoS = new Point2D();
-            Graphics g = this.CreateGraphics();
-            xprin = this.PointToClient(Control.MousePosition).X;
-            yprin = this.PointToClient(Control.MousePosition).Y;
+            Graphics g = CreateGraphics();
+            xprin = PointToClient(Control.MousePosition).X;
+            yprin = PointToClient(Control.MousePosition).Y;
             //System.Drawing.Pen Pn=new Pen(xprin,yprin);
-            g.DrawLine(this.DetermineColor(sender), xprin, yprin, (float)(xprin + 0.5), (float)(yprin + 0.5));
-            g.DrawLine(this.DetermineColor(sender), xprin, yprin, (float)(xprin + 0.5), (float)(yprin - 0.5));
-            g.DrawLine(this.DetermineColor(sender), xprin, yprin, (float)(xprin - 0.5), (float)(yprin + 0.5));
-            g.DrawLine(this.DetermineColor(sender), xprin, yprin, (float)(xprin - 0.5), (float)(yprin - 0.5));
+            g.DrawLine(DetermineColor(sender), xprin, yprin, (float)(xprin + 0.5), (float)(yprin + 0.5));
+            g.DrawLine(DetermineColor(sender), xprin, yprin, (float)(xprin + 0.5), (float)(yprin - 0.5));
+            g.DrawLine(DetermineColor(sender), xprin, yprin, (float)(xprin - 0.5), (float)(yprin + 0.5));
+            g.DrawLine(DetermineColor(sender), xprin, yprin, (float)(xprin - 0.5), (float)(yprin - 0.5));
             Point2D Po = new Point2D(xprin, yprin);
             PoS = Sh.StartPoint2D;
             if (PoS != null)
+            {
                 while (PoS.StartPoint2D != null)
+                {
                     PoS = PoS.StartPoint2D;
+                }
+            }
+
             PoS = Po;
             Po.StartPoint2D = null;
             if (ClickMouse == 2)
@@ -626,7 +707,7 @@ namespace WindowsApplication1
         }
         private void DrawPath(object sender, Pen p)
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
 
         }
         private void DrawExistShape(object sender)
@@ -634,7 +715,7 @@ namespace WindowsApplication1
 
             Shape2D Start = new Shape2D();
             Start = Node;
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             while (Start != null)
             {
 
@@ -735,10 +816,15 @@ namespace WindowsApplication1
         private Shape2D GetShapeLast(object sender)
         {
             Shape2D Last = new Shape2D();
-            Last = this.Node;
+            Last = Node;
             if (Last != null)
+            {
                 while (Last.Start2D != null)
+                {
                     Last = Last.Start2D;
+                }
+            }
+
             return Last;
         }
         private void lToolStripMenuItem_Click(object sender, EventArgs e)
@@ -758,7 +844,7 @@ namespace WindowsApplication1
           
             openFileDialog1.ShowDialog();
 
-            var output = Task.Factory.StartNew(() =>
+            Task output = Task.Factory.StartNew(() =>
             {
                 a = new _2dTo3D(openFileDialog1.FileName);
             });
@@ -793,7 +879,10 @@ namespace WindowsApplication1
                 if (go)
                 {
                     if (mouseclick)
+                    {
                         return;
+                    }
+
                     if (Colorset)
                     {
                         if (elim)
@@ -802,8 +891,8 @@ namespace WindowsApplication1
                             int x = e.X;
                             int y = e.Y;
 
-                            x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                            y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                            x = (int)(e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                            y = (int)(e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
                             List<Color> ss = new List<Color>();
                             for (int r = 0; r < 5; r++)
                             {
@@ -811,7 +900,9 @@ namespace WindowsApplication1
                                 {
                                     Color d = (pictureBox24.Image as Bitmap).GetPixel(x + (int)(r * Math.Cos(t)), y + (int)(r * Math.Sin(t)));
                                     if (!ss.Contains(d))
+                                    {
                                         ss.Add(d);
+                                    }
                                 }
                             }
                             Graphics g = Graphics.FromImage(pictureBox24.Image);
@@ -854,8 +945,8 @@ namespace WindowsApplication1
                             int x = e.X;
                             int y = e.Y;
 
-                            x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                            y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                            x = (int)(e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                            y = (int)(e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
 
                             Color s = (pictureBox24.Image as Bitmap).GetPixel(x, y);
                             Graphics g = Graphics.FromImage(pictureBox24.Image);
@@ -887,17 +978,17 @@ namespace WindowsApplication1
                     }
                     if (curved)
                     {
-                        float x = (float)e.X;
-                        float y = (float)e.Y;
+                        float x = e.X;
+                        float y = e.Y;
 
-                        x = ((float)e.X * (float)((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
-                        y = ((float)e.Y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
+                        x = (e.X * (float)((float)(pictureBox24.Image.Width / (float)(pictureBox24.Width))));
+                        y = (e.Y * (float)((float)(pictureBox24.Image.Height / (float)(pictureBox24.Height))));
                         curvedline[curvedlinelen] = new PointF(x, y);
                         curvedlinelen++;
                     }
                 }
             }
-            catch (Exception t) { }
+            catch (Exception) { }
         }
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -905,7 +996,10 @@ namespace WindowsApplication1
             try
             {
                 if (pictureBox24.Image != null)
+                {
                     pictureBox24.Image.Dispose();
+                }
+
                 pictureBox24.Visible = false;
                 Strong = false;
                 count = 1250 * System.Threading.PlatformHelper.ProcessorCount;
@@ -940,7 +1034,7 @@ namespace WindowsApplication1
             
             openFileDialog1.ShowDialog();
 
-            var output = Task.Factory.StartNew(() =>
+            Task output = Task.Factory.StartNew(() =>
             {
                 a = new _2dTo3D(openFileDialog1.FileName, 0.5);
             });
@@ -956,7 +1050,8 @@ namespace WindowsApplication1
             }
             push();
         }
-        string Get(Image aa)
+
+        private string Get(Image aa)
         {
             lock (a)
             {
@@ -967,17 +1062,25 @@ namespace WindowsApplication1
                     int hei = (aa as Bitmap).Height;
 
                     if (a.x > 0)
+                    {
                         return "Dimentin; " + wid.ToString() + "X" + hei.ToString() + "; active pixels :" + a.x.ToString();
+                    }
+
                     return "Dimentin " + wid.ToString() + "X" + hei.ToString();
                 }
             }
         }
-        void PointsNumber()
+
+        private void PointsNumber()
         {
             if (a.x > 20 * System.Threading.PlatformHelper.ProcessorCount)
+            {
                 textBox1.Text = (20 * System.Threading.PlatformHelper.ProcessorCount).ToString();
+            }
             else
+            {
                 textBox1.Text = a.x.ToString();
+            }
         }
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -990,7 +1093,7 @@ namespace WindowsApplication1
                 lock (o)
                 {
                     Image b = Image.FromFile(openFileDialog1.FileName);
-                    var output = Task.Factory.StartNew(() =>
+                    Task output = Task.Factory.StartNew(() =>
                     {
                         a = new _2dTo3D(b, true);
                     });
@@ -1042,12 +1145,16 @@ namespace WindowsApplication1
                         MessageBox.Show("Reduced image size;Desired Less Than " + count.ToString() + "; Current : " + (a.x).ToString());
                         return;
                     }
-                    var output = Task.Factory.StartNew(() =>
+                    Task output = Task.Factory.StartNew(() =>
                     {
                         if (a == null)
+                        {
                             a = new _2dTo3D(aa);
+                        }
                         else
+                        {
                             a._2dTo3D_reconstructed(aa);
+                        }
                     });
                     output.Wait();
                 }
@@ -1060,7 +1167,10 @@ namespace WindowsApplication1
                     pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                     pictureBox24.Visible = true;
                     if (pictureBox24.Image != null)
+                    {
                         pictureBox24.Image.Dispose();
+                    }
+
                     pictureBox24.Image = a.ar;
                     pictureBox24.Invalidate();
                     pictureBox24.Refresh();
@@ -1111,7 +1221,7 @@ namespace WindowsApplication1
                 pictureBox24.Invalidate();
                 pictureBox24.Refresh();
                 pictureBox24.Update();
-                var output = Task.Factory.StartNew(() =>
+                Task output = Task.Factory.StartNew(() =>
                     {
                         a = new _2dTo3D(aa, true);
                     });
@@ -1133,12 +1243,12 @@ namespace WindowsApplication1
                 {
                     pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                     pictureBox24.Visible = true;
-                    pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)((double)(pictureBox24.Image.Width) - ((double)(pictureBox24.Image.Width) * 0.1)), (int)((double)(pictureBox24.Image.Height) - ((double)(pictureBox24.Image.Height) * 0.1)))));
+                    pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)(pictureBox24.Image.Width - (pictureBox24.Image.Width * 0.1)), (int)(pictureBox24.Image.Height - (pictureBox24.Image.Height * 0.1)))));
                     pictureBox24.Invalidate();
                     pictureBox24.Refresh();
                     pictureBox24.Update();
-                   
-                        var output = Task.Factory.StartNew(() =>
+
+                    Task output = Task.Factory.StartNew(() =>
                         {
                             a = new _2dTo3D(pictureBox24.Image, true);
                         });
@@ -1185,8 +1295,8 @@ namespace WindowsApplication1
                                         int x = e.X;
                                         int y = e.Y;
 
-                                        x = (int)((double)e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
-                                        y = (int)((double)e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
+                                        x = (int)(e.X * ((double)(pictureBox24.Image.Width / (double)(pictureBox24.Width))));
+                                        y = (int)(e.Y * ((double)(pictureBox24.Image.Height / (double)(pictureBox24.Height))));
                                         g.DrawEllipse(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), new Rectangle(x, y, -5, 5));
                                         pictureBox24.Image = a;
                                         g.Dispose();
@@ -1224,7 +1334,10 @@ namespace WindowsApplication1
                                     if (curvedlinelen > 1)
                                     {
                                         for (int i = 0; i < curvedlinelen; i++)
+                                        {
                                             s[i] = curvedline[i];
+                                        }
+
                                         g.DrawLines(new Pen(new SolidBrush(Color.White), (pictureBox24.Image.Width * pictureBox24.Image.Height) / penratio), s);
                                     }
                                     pictureBox24.Image = a;
@@ -1258,7 +1371,7 @@ namespace WindowsApplication1
                         }
                     }
                 }
-                catch (Exception t)
+                catch (Exception)
                 {
 
                 }
@@ -1275,13 +1388,15 @@ namespace WindowsApplication1
                 {
                     Color d = (pictureBox24.Image as Bitmap).GetPixel(r, t);
                     if (!ss.Contains(d))
+                    {
                         ss.Add(d);
+                    }
                 }
             }
 
             Graphics g = Graphics.FromImage(pictureBox24.Image);
             List<Color> ssrep = new List<Color>();
-            int gg = (int)((double)ss.Count * 0.1);
+            int gg = (int)(ss.Count * 0.1);
             {
                 if (ss[gg] != Color.Black)
                 {
@@ -1338,7 +1453,8 @@ namespace WindowsApplication1
             }
             push();
         }
-        void addingpoints(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<Point3D> PointsAddp1, ref List<double[]> PointsAddp1Conected)
+
+        private void addingpoints(ref List<Point3D> PointsAddp0, ref List<double[]> PointsAddp0Conected, ref List<Point3D> PointsAddp1, ref List<double[]> PointsAddp1Conected)
         {
             for (int i = 0; i < a.cx; i++)
             {
@@ -1365,7 +1481,8 @@ namespace WindowsApplication1
                 }
             }
         }
-        void reducedpoints(ref List<Point3D> PointsAddp0, ref List<Point3D> PointsAddp1)
+
+        private void reducedpoints(ref List<Point3D> PointsAddp0, ref List<Point3D> PointsAddp1)
         {
             for (int i = 0; i < a.cx; i++)
             {
@@ -1422,8 +1539,8 @@ namespace WindowsApplication1
                     List<double[]> xxxp0Con = new List<double[]>();
 
                     List<double[]> xxxp1Con = new List<double[]>();
-                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp0 * 2, 35.0 / (double)PointsAddp0.Count, ref xxxp0, ref xxxp0Con, System.Convert.ToDouble(textBox1.Text));
-                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, ref PointsAddp1Conected, minrp1 * 2, 35.0 / (double)PointsAddp1.Count, ref xxxp1, ref xxxp1Con, System.Convert.ToDouble(textBox1.Text));
+                    int f = (new Triangle()).reduceCountOfpoints(ref PointsAddp0, ref PointsAddp0Conected, minrp0 * 2, 35.0 / PointsAddp0.Count, ref xxxp0, ref xxxp0Con, System.Convert.ToDouble(textBox1.Text));
+                    f = f + (new Triangle()).reduceCountOfpoints(ref PointsAddp1, ref PointsAddp1Conected, minrp1 * 2, 35.0 / PointsAddp1.Count, ref xxxp1, ref xxxp1Con, System.Convert.ToDouble(textBox1.Text));
                     if (xxxp0.Count > 1)
                     {
                         PointsAddp0 = xxxp0;
@@ -1438,7 +1555,7 @@ namespace WindowsApplication1
 
                     reducedpoints(ref PointsAddp0, ref PointsAddp1);
                     pictureBox24.Image.Dispose();
-                    var output = Task.Factory.StartNew(() =>
+                    Task output = Task.Factory.StartNew(() =>
                     {
                         a.reconstruct2dto3d(f);
                     });
@@ -1457,19 +1574,25 @@ namespace WindowsApplication1
             }
             push();
         }
-        bool exist(Point3D ss, List<Point3D> d)
+
+        private bool exist(Point3D ss, List<Point3D> d)
         {
             if (d.Count == 0)
+            {
                 return false;
+            }
+
             for (int i = 0; i < d.Count; i++)
             {
                 if (ss.X == d[i].X && ss.Y == d[i].Y && ss.Z == d[i].Z)
+                {
                     return true;
+                }
             }
             return false;
         }
 
-        double minraddpoints(List<Point3D> p0)
+        private double minraddpoints(List<Point3D> p0)
         {
             double r = double.MaxValue;
             for (int i = 0; i < p0.Count; i++)
@@ -1480,7 +1603,9 @@ namespace WindowsApplication1
                     double a = Math.Sqrt((p0[i].X - p0[j].X) * (p0[i].X - p0[j].X) + (p0[i].Y - p0[j].Y) * (p0[i].Y - p0[j].Y) + (p0[i].Z - p0[j].Z) * (p0[i].Z - p0[j].Z));
 
                     if (a < r && a != 0)
+                    {
                         r = a;
+                    }
                 }
             }
             return r;
@@ -1493,7 +1618,8 @@ namespace WindowsApplication1
             pictureBox24.Cursor = Cursors.Cross;
             push();
         }
-        void isOutsideofCurvedInit()
+
+        private void isOutsideofCurvedInit()
         {
             curvedallpoints = new bool[pictureBox24.Image.Width, pictureBox24.Image.Height];
             bool[,] curvedapoints = new bool[pictureBox24.Image.Width, pictureBox24.Image.Height];
@@ -1533,7 +1659,9 @@ namespace WindowsApplication1
                     nn[1] = (int)p;
 
                     if (nn[0] >= 0 && nn[1] >= 0 && nn[0] < pictureBox24.Image.Width && nn[1] < pictureBox24.Image.Height)
+                    {
                         curvedapoints[nn[0], nn[1]] = true;
+                    }
                 }
             }
             for (int x = 0; x < pictureBox24.Image.Width; x++)
@@ -1584,14 +1712,16 @@ namespace WindowsApplication1
                         if (ocuuredcount >= 0)
                         {
                             int[] nn = new int[2];
-                            nn[0] = (int)x;
-                            nn[1] = (int)y;
+                            nn[0] = x;
+                            nn[1] = y;
 
                             if (nn[0] < pictureBox24.Image.Width && nn[1] < pictureBox24.Image.Height)
                             {
                                 curvedallpoints[nn[0], nn[1]] = true;
                                 if (add == 1)
+                                {
                                     add = 2;
+                                }
                             }
                         }
                     }
@@ -1599,43 +1729,74 @@ namespace WindowsApplication1
             }
             return;
         }
-        int getregion(float x, float y)
+
+        private int getregion(float x, float y)
         {
             int reg = -1;
 
             if (x > 0 && y > 0)
+            {
                 reg = 1;
+            }
+
             if (x < 0 && y > 0)
+            {
                 reg = 2;
+            }
+
             if (x < 0 && y < 0)
+            {
                 reg = 3;
+            }
+
             if (x > 0 && y < 0)
+            {
                 reg = 4;
+            }
 
             if (x > 0 && y == 0)
+            {
                 reg = 5;
+            }
+
             if (x == 0 && y > 0)
+            {
                 reg = 6;
+            }
+
             if (x < 0 && y == 0)
+            {
                 reg = 7;
+            }
+
             if (x == 0 && y < 0)
+            {
                 reg = 8;
+            }
+
             return reg;
         }
 
-        bool isOutsideofCurved(int x, int y)
+        private bool isOutsideofCurved(int x, int y)
         {
             bool Is = true;
 
 
             if (curvedallpoints[x, y])
+            {
                 Is = false;
+            }
+
             return Is;
         }
-        bool D(float a, float b)
+
+        private bool D(float a, float b)
         {
             if (System.Math.Abs(a - b) <= 3)
+            {
                 return true;
+            }
+
             return false;
         }
         private void pictureBox24_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1645,7 +1806,10 @@ namespace WindowsApplication1
                 if (go)
                 {
                     if (mouseclick)
+                    {
                         return;
+                    }
+
                     if (curvedlinelen > 0)
                     {
                         curvedline[curvedlinelen] = curvedline[0];
@@ -1697,7 +1861,7 @@ namespace WindowsApplication1
                     pictureBox24.Cursor = Cursors.Default;
                 }
             }
-            catch (Exception t) { }
+            catch (Exception) { }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -1707,7 +1871,9 @@ namespace WindowsApplication1
                 loadToolStripMenuItem.Enabled = false;
                 Strong= true;
                 if (at != null)
+                {
                     pictureBox24.Image = at;
+                }
             }
             else
             {
@@ -1726,12 +1892,12 @@ namespace WindowsApplication1
                     {
                         pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                         pictureBox24.Visible = true;
-                        pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)((double)(pictureBox24.Image.Width) - ((double)(pictureBox24.Image.Width) * 0.1)), (int)((double)(pictureBox24.Image.Height) - ((double)(pictureBox24.Image.Height) * 0.1)))));
+                        pictureBox24.Image = (new Bitmap(pictureBox24.Image, new Size((int)(pictureBox24.Image.Width - (pictureBox24.Image.Width * 0.1)), (int)(pictureBox24.Image.Height - (pictureBox24.Image.Height * 0.1)))));
                         pictureBox24.Invalidate();
                         pictureBox24.Refresh();
                         pictureBox24.Update();
 
-                        var output = Task.Factory.StartNew(() =>
+                        Task output = Task.Factory.StartNew(() =>
                         {
                             a = new _2dTo3D(pictureBox24.Image, true);
                         });
@@ -1754,7 +1920,10 @@ namespace WindowsApplication1
                 if (PushPop(true))
                 {
                     if (stkin < Stk.Count - 1)
+                    {
                         stkin++;
+                    }
+
                     textBox1.Text = Stktx[stkin ];
                     checkBox1.Checked = Stkch[stkin ];
                     label4.Text = Stklb[stkin ];
@@ -1793,7 +1962,9 @@ namespace WindowsApplication1
                     pictureBox24.Update();
                     button11.Enabled = true;
                     if (stkin > 0)
+                    {
                         stkin--;
+                    }
                 }
             }
             else
@@ -1825,8 +1996,9 @@ namespace WindowsApplication1
             ClickMouse = 0;
             Kind = 3;
             for (int i = 0; i < 3; i++)
-                this.SetValue[i] = true;
-
+            {
+                SetValue[i] = true;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -1834,8 +2006,9 @@ namespace WindowsApplication1
             ClickMouse = 0;
             Kind = 3;
             for (int i = 0; i < 3; i++)
-                this.SetValue[i] = true;
-
+            {
+                SetValue[i] = true;
+            }
         }
 
         private void EllipseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1865,7 +2038,7 @@ namespace WindowsApplication1
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Obtaining Name.
-            String Name = "";
+            string Name = "";
             Name = comboBox1.Text.ToString();
             Shape2D Selecte = new Shape2D();
             Selecte = Node;
@@ -1873,9 +2046,13 @@ namespace WindowsApplication1
             while (Selecte != null)
             {
                 if (Selecte.Name == this.Name)
+                {
                     break;
+                }
                 else
+                {
                     Selecte = Selecte.Start2D;
+                }
             }
 
 
@@ -1883,7 +2060,7 @@ namespace WindowsApplication1
 
         private void button6_Click(object sender, EventArgs e)
         {
-            String Name = "";
+            string Name = "";
             Name = comboBox1.Text.ToString();
             Shape2D Selecte = new Shape2D();
             Selecte = Node;
@@ -1895,19 +2072,21 @@ namespace WindowsApplication1
                     Selecte.Start2D = Selecte.Start2D.Start2D;
                 }
                 else
+                {
                     Selecte = Selecte.Start2D;
+                }
             }
             comboBox1.Items.Remove(Name);
             comboBox1.Text = "";
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             g.Clear(Color.White);
-            this.DrawExistShape(sender);
+            DrawExistShape(sender);
         }
 
         private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Shape2D Zoom = new Shape2D();
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             Zoom = Node.Start2D;
             while (Zoom != null)
             {
@@ -2029,13 +2208,13 @@ namespace WindowsApplication1
                 Zoom = Zoom.Start2D;
             }
             g.Clear(Color.White);
-            this.DrawExistShape(sender);
+            DrawExistShape(sender);
         }
 
         private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Shape2D Zoom = new Shape2D();
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             Zoom = Node.Start2D;
             while (Zoom != null)
             {
@@ -2156,16 +2335,16 @@ namespace WindowsApplication1
                 Zoom = Zoom.Start2D;
             }
             g.Clear(Color.White);
-            this.DrawExistShape(sender);
+            DrawExistShape(sender);
         }
         private void button7_Click(object sender, EventArgs e)
         {
-            this.zoomInToolStripMenuItem_Click(sender, e); ;
+            zoomInToolStripMenuItem_Click(sender, e); ;
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            this.zoomOutToolStripMenuItem_Click(sender, e);
+            zoomOutToolStripMenuItem_Click(sender, e);
         }
 
         private void moveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2176,7 +2355,7 @@ namespace WindowsApplication1
         private void MoveAll(object sender)
         {
             Shape2D Zoom = new Shape2D();
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             Zoom = Node.Start2D;
             if (ClickMouse == 2)
             {
@@ -2189,16 +2368,28 @@ namespace WindowsApplication1
                 float Holdx = 0, Holdy = 0;
                 Holdx = XP;
                 Holdy = YP;
-                XP = this.PointToClient(Control.MousePosition).X;
-                YP = this.PointToClient(Control.MousePosition).Y;
+                XP = PointToClient(Control.MousePosition).X;
+                YP = PointToClient(Control.MousePosition).Y;
                 if (XP > Holdx)
+                {
                     xm = 3;
+                }
+
                 if (XP < Holdx)
+                {
                     xm = -3;
+                }
+
                 if (YP > Holdy)
+                {
                     ym = 3;
+                }
+
                 if (YP < Holdy)
+                {
                     ym = -3;
+                }
+
                 g.Clear(Color.White);
                 if (Zoom.Shap == Shape2D.Shape.Arc)
                 {
@@ -2308,7 +2499,7 @@ namespace WindowsApplication1
                 Zoom = Zoom.Start2D;
             }
             g.Clear(Color.White);
-            this.DrawExistShape(sender);
+            DrawExistShape(sender);
 
         }
 
@@ -2319,24 +2510,33 @@ namespace WindowsApplication1
         }
         private void TransOperation(object sender)
         {
-            String Name = "";
+            string Name = "";
             Name = comboBox1.Text.ToString();
             Shape2D TransmisionObject = new Shape2D();
             TransmisionObject = Node.Start2D;
             //Founding Object
             if (TransmisionObject == null)
+            {
                 return;
+            }
+
             while (TransmisionObject != null)
             {
                 if (TransmisionObject.Name == Name)
+                {
                     break;
+                }
                 else
+                {
                     TransmisionObject = TransmisionObject.Start2D;
+                }
             }
             if (TransmisionObject == null)
+            {
                 return;
+            }
             //exit when the object is null
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
 
             if (TransmisionObject.Shap == Shape2D.Shape.Arc)
             {
@@ -2348,10 +2548,10 @@ namespace WindowsApplication1
                 yz2 = TransmisionObject.StartPoint2D.StartPoint2D.StartPoint2D.GetY();
                 if (ClickMouse == 1)
                 {
-                    XP = this.PointToClient(Control.MousePosition).X;
-                    YP = this.PointToClient(Control.MousePosition).Y;
+                    XP = PointToClient(Control.MousePosition).X;
+                    YP = PointToClient(Control.MousePosition).Y;
 
-                    this.Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
+                    Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
                 }
 
                 float R = 0, P = 0, N = 0, TetaStart = 0, TetaSweep;
@@ -2384,10 +2584,10 @@ namespace WindowsApplication1
                 yz1 = TransmisionObject.StartPoint2D.StartPoint2D.GetY();
                 if (ClickMouse == 1)
                 {
-                    XP = this.PointToClient(Control.MousePosition).X;
-                    YP = this.PointToClient(Control.MousePosition).Y;
+                    XP = PointToClient(Control.MousePosition).X;
+                    YP = PointToClient(Control.MousePosition).Y;
 
-                    this.Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
+                    Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
                 }
                 g.Clear(Color.White);
                 g.DrawLine(TransmisionObject.Pc, xprin, yprin, xz1 + xprin - xz0, yz1 + yprin - yz0);
@@ -2413,10 +2613,10 @@ namespace WindowsApplication1
                 yz3 = TransmisionObject.StartPoint2D.StartPoint2D.StartPoint2D.StartPoint2D.GetY();
                 if (ClickMouse == 1)
                 {
-                    XP = this.PointToClient(Control.MousePosition).X;
-                    YP = this.PointToClient(Control.MousePosition).Y;
+                    XP = PointToClient(Control.MousePosition).X;
+                    YP = PointToClient(Control.MousePosition).Y;
 
-                    this.Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
+                    Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
                 }
                 g.Clear(Color.White);
                 g.DrawBezier(TransmisionObject.Pc, xprin, yprin, xz1 + xprin - xz0, yz1 + yprin - yz0, xz2 + xprin - xz0, yz2 + yprin - yz0, xz3 + xprin - xz0, yz3 + yprin - yz0);
@@ -2442,10 +2642,10 @@ namespace WindowsApplication1
                 yz1 = TransmisionObject.StartPoint2D.StartPoint2D.GetY();
                 if (ClickMouse == 1)
                 {
-                    XP = this.PointToClient(Control.MousePosition).X;
-                    YP = this.PointToClient(Control.MousePosition).Y;
+                    XP = PointToClient(Control.MousePosition).X;
+                    YP = PointToClient(Control.MousePosition).Y;
 
-                    this.Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
+                    Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
                 }
                 g.Clear(Color.White);
                 g.DrawEllipse(TransmisionObject.Pc, xprin, yprin, xz1, yz1);
@@ -2464,10 +2664,10 @@ namespace WindowsApplication1
                 yz1 = TransmisionObject.StartPoint2D.StartPoint2D.GetY();
                 if (ClickMouse == 1)
                 {
-                    XP = this.PointToClient(Control.MousePosition).X;
-                    YP = this.PointToClient(Control.MousePosition).Y;
+                    XP = PointToClient(Control.MousePosition).X;
+                    YP = PointToClient(Control.MousePosition).Y;
 
-                    this.Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
+                    Transmition(sender, xz0, yz0, XP - xz0, YP - yz0);
                 }
                 g.Clear(Color.White);
                 g.DrawRectangle(TransmisionObject.Pc, xprin, yprin, xz1, yz1);
@@ -2499,133 +2699,181 @@ namespace WindowsApplication1
         private void PictureBox9_Click(object sender, EventArgs e)
         {
             ColorBox = 0;
-            this.PictureBox23.BackColor = Color.White;
+            PictureBox23.BackColor = Color.White;
         }
 
         private void PictureBox5_Click(object sender, EventArgs e)
         {
             ColorBox = 1;
-            this.PictureBox23.BackColor = Color.Black;
+            PictureBox23.BackColor = Color.Black;
 
         }
 
         private void PictureBox10_Click(object sender, EventArgs e)
         {
             ColorBox = 2;
-            this.PictureBox23.BackColor = Color.Brown;
+            PictureBox23.BackColor = Color.Brown;
         }
 
         private void PictureBox8_Click(object sender, EventArgs e)
         {
             ColorBox = 3;
-            this.PictureBox23.BackColor = Color.Silver;
+            PictureBox23.BackColor = Color.Silver;
         }
 
         private void PictureBox11_Click(object sender, EventArgs e)
         {
             ColorBox = 4;
-            this.PictureBox23.BackColor = Color.LightCoral;
+            PictureBox23.BackColor = Color.LightCoral;
         }
 
         private void PictureBox12_Click(object sender, EventArgs e)
         {
             ColorBox = 5;
-            this.PictureBox23.BackColor = Color.Red;
+            PictureBox23.BackColor = Color.Red;
         }
 
         private void PictureBox13_Click(object sender, EventArgs e)
         {
             ColorBox = 6;
-            this.PictureBox23.BackColor = Color.OrangeRed;
+            PictureBox23.BackColor = Color.OrangeRed;
         }
 
         private void PictureBox14_Click(object sender, EventArgs e)
         {
             ColorBox = 7;
-            this.PictureBox23.BackColor = Color.Bisque;
+            PictureBox23.BackColor = Color.Bisque;
         }
 
         private void PictureBox18_Click(object sender, EventArgs e)
         {
             ColorBox = 8;
-            this.PictureBox23.BackColor = Color.Gold;
+            PictureBox23.BackColor = Color.Gold;
         }
 
         private void PictureBox17_Click(object sender, EventArgs e)
         {
             ColorBox = 9;
-            this.PictureBox23.BackColor = Color.Yellow;
+            PictureBox23.BackColor = Color.Yellow;
         }
 
         private void PictureBox21_Click(object sender, EventArgs e)
         {
             ColorBox = 10;
-            this.PictureBox23.BackColor = Color.LawnGreen;
+            PictureBox23.BackColor = Color.LawnGreen;
         }
 
         private void PictureBox22_Click(object sender, EventArgs e)
         {
             ColorBox = 11;
-            this.PictureBox23.BackColor = Color.Aquamarine;
+            PictureBox23.BackColor = Color.Aquamarine;
         }
 
         private void PictureBox19_Click(object sender, EventArgs e)
         {
             ColorBox = 12;
-            this.PictureBox23.BackColor = Color.Blue;
+            PictureBox23.BackColor = Color.Blue;
         }
 
         private void PictureBox20_Click(object sender, EventArgs e)
         {
             ColorBox = 13;
-            this.PictureBox23.BackColor = Color.Fuchsia;
+            PictureBox23.BackColor = Color.Fuchsia;
         }
         private void PictureBox15_Click(object sender, EventArgs e)
         {
             ColorBox = 14;
-            this.PictureBox23.BackColor = Color.Pink;
+            PictureBox23.BackColor = Color.Pink;
         }
 
         private void PictureBox16_Click(object sender, EventArgs e)
         {
             ColorBox = 15;
-            this.PictureBox23.BackColor = Color.LightPink;
+            PictureBox23.BackColor = Color.LightPink;
         }
         private Pen DetermineColor(object sender)
         {
             Pen p = new Pen(Color.White);
             if (ColorBox == 0)
+            {
                 p.Color = Color.White;
+            }
+
             if (ColorBox == 1)
+            {
                 p.Color = Color.Black;
+            }
+
             if (ColorBox == 2)
+            {
                 p.Color = Color.Brown;
+            }
+
             if (ColorBox == 3)
+            {
                 p.Color = Color.Silver;
+            }
+
             if (ColorBox == 4)
+            {
                 p.Color = Color.LightCoral;
+            }
+
             if (ColorBox == 5)
+            {
                 p.Color = Color.Red;
+            }
+
             if (ColorBox == 6)
+            {
                 p.Color = Color.OrangeRed;
+            }
+
             if (ColorBox == 7)
+            {
                 p.Color = Color.Bisque;
+            }
+
             if (ColorBox == 8)
+            {
                 p.Color = Color.Gold;
+            }
+
             if (ColorBox == 9)
+            {
                 p.Color = Color.Yellow;
+            }
+
             if (ColorBox == 10)
+            {
                 p.Color = Color.LawnGreen;
+            }
+
             if (ColorBox == 11)
+            {
                 p.Color = Color.Aquamarine;
+            }
+
             if (ColorBox == 12)
+            {
                 p.Color = Color.Blue;
+            }
+
             if (ColorBox == 13)
+            {
                 p.Color = Color.Fuchsia;
+            }
+
             if (ColorBox == 14)
+            {
                 p.Color = Color.Pink;
+            }
+
             if (ColorBox == 15)
+            {
                 p.Color = Color.LightPink;
+            }
+
             return p;
         }
 
@@ -2656,7 +2904,7 @@ namespace WindowsApplication1
     }
     public class Point2D
     {
-        float X, Y;
+        private float X, Y;
         public Point2D StartPoint2D;
         public Point2D()
         {
@@ -2707,7 +2955,7 @@ namespace WindowsApplication1
         }
         public Shape Shap;
         public ColorShape ColorSh;
-        public String Name = "";
+        public string Name = "";
         public Shape2D Start2D;
         public bool Redraw = false;
         public Pen Pc;
@@ -2717,7 +2965,7 @@ namespace WindowsApplication1
         }
         public Shape2D(int ShapeMode, float X1, float Y1, float X2, float Y2, float X3, float Y3, float X4, float Y4)
         {
-            this.Start2D = null;
+            Start2D = null;
             if (ShapeMode == 1)//Arc
             {
                 Shap = Shape.Arc;
@@ -2725,7 +2973,7 @@ namespace WindowsApplication1
                 Point2D Po2 = new Point2D(X2, Y2);
                 Point2D Po3 = new Point2D(X3, Y3);
                 Point2D Po4 = new Point2D(X4, Y4);
-                this.StartPoint2D = Po1;
+                StartPoint2D = Po1;
                 Po1.StartPoint2D = Po2;
                 Po2.StartPoint2D = Po3;
                 Po3.StartPoint2D = Po4;
@@ -2736,7 +2984,7 @@ namespace WindowsApplication1
                 Shap = Shape.Line;
                 Point2D Po1 = new Point2D(X1, Y1);
                 Point2D Po2 = new Point2D(X2, Y2);
-                this.StartPoint2D = Po1;
+                StartPoint2D = Po1;
                 Po1.StartPoint2D = Po2;
                 Po2.StartPoint2D = null;
             }
@@ -2747,7 +2995,7 @@ namespace WindowsApplication1
                 Point2D Po2 = new Point2D(X2, Y2);
                 Point2D Po3 = new Point2D(X3, Y3);
                 Point2D Po4 = new Point2D(X4, Y4);
-                this.StartPoint2D = Po1;
+                StartPoint2D = Po1;
                 Po1.StartPoint2D = Po2;
                 Po2.StartPoint2D = Po3;
                 Po3.StartPoint2D = Po4;
@@ -2758,7 +3006,7 @@ namespace WindowsApplication1
                 Shap = Shape.Ellipse;
                 Point2D Po1 = new Point2D(X1, Y1);
                 Point2D Po2 = new Point2D(X2, Y2);
-                this.StartPoint2D = Po1;
+                StartPoint2D = Po1;
                 Po1.StartPoint2D = Po2;
                 Po2.StartPoint2D = null;
             }
@@ -2768,7 +3016,7 @@ namespace WindowsApplication1
                 Shap = Shape.Rectangle;
                 Point2D Po1 = new Point2D(X1, Y1);
                 Point2D Po2 = new Point2D(X2, Y2);
-                this.StartPoint2D = Po1;
+                StartPoint2D = Po1;
                 Po1.StartPoint2D = Po2;
                 Po2.StartPoint2D = null;
             }
@@ -2779,7 +3027,7 @@ namespace WindowsApplication1
                 Point2D Po2 = new Point2D(X2, Y2);
                 Point2D Po3 = new Point2D(X3, Y3);
                 Point2D Po4 = new Point2D(X4, Y4);
-                this.StartPoint2D = Po1;
+                StartPoint2D = Po1;
                 Po1.StartPoint2D = Po2;
                 Po2.StartPoint2D = Po3;
                 Po3.StartPoint2D = Po4;
@@ -2792,7 +3040,7 @@ namespace WindowsApplication1
                 Point2D Po2 = new Point2D(X2, Y2);
                 Point2D Po3 = new Point2D(X3, Y3);
                 Point2D Po4 = new Point2D(X4, Y4);
-                this.StartPoint2D = Po1;
+                StartPoint2D = Po1;
                 Po1.StartPoint2D = Po2;
                 Po2.StartPoint2D = Po3;
                 Po3.StartPoint2D = Po4;

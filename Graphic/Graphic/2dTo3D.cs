@@ -11,35 +11,37 @@ namespace WindowsApplication1
     public class _2dTo3D
 
     {
-        byte[,,] geta = null;
+        private byte[,,] geta = null;
         public int width = 0,height = 0;
         public double x = 0;
-        int cxC = -1, cyC = -1, czC = -1;
+        private int cxC = -1, cyC = -1, czC = -1;
         public List<List<double[]>> st = new List<List<double[]>>();
         public bool _3DReady = false;
-        Image a;
+        private Image a;
         public Image ar;
+
         //size
-        int[] b = new int[3];
-        int[,,] t;// zeros(b(1,1),b(1,2),3);
-        int[,,] rr;// rr=zeros(b(1,1),b(1,2),3);
-        int[,,] f;//     f=zeros(b(1,1),b(1,2),3);
-        int[,,] ddr;//     f=zeros(b(1,1),b(1,2),3);
+        private readonly int[] b = new int[3];
+        private int[,,] t;// zeros(b(1,1),b(1,2),3);
+        private int[,,] rr;// rr=zeros(b(1,1),b(1,2),3);
+        private int[,,] f;//     f=zeros(b(1,1),b(1,2),3);
+        private int[,,] ddr;//     f=zeros(b(1,1),b(1,2),3);
         public float[,,] c;
         public int cx = 0, cyp0 = 0, cyp1 = 0, cz = 3;
         public float[,,] e;
-        int fg = 2;
+        private readonly int fg = 2;
         public int minr = int.MaxValue;
-        int minteta = int.MaxValue;
-        int minfi = int.MaxValue;
+        private int minteta = int.MaxValue;
+        private int minfi = int.MaxValue;
         public int maxr = int.MinValue;
-        int maxteta = int.MinValue;
-        int maxfi = int.MinValue;
-        static void Log(Exception ex)
+        private int maxteta = int.MinValue;
+        private int maxfi = int.MinValue;
+
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a as Bitmap)
                 {
                     string stackTrace = ex.ToString();
@@ -48,10 +50,11 @@ namespace WindowsApplication1
                 }
             }
 
-            catch (Exception t) { }
+            catch (Exception) { }
 
         }
-        double[] cart2sph(float i, float j, float k)
+
+        private double[] cart2sph(float i, float j, float k)
         {
             double[] s = new double[3];
             s[2] = Math.Sqrt(i * i + j * j + k * k);
@@ -62,12 +65,13 @@ namespace WindowsApplication1
             }
             else
             {
-                s[0] = Math.Acos((double)k / s[2]);
-                s[1] = Math.Atan2((double)j, (double)i);
+                s[0] = Math.Acos(k / s[2]);
+                s[1] = Math.Atan2(j, i);
             }
             return s;
         }
-        bool SetneighboursSt(Image a, double cxr, double cyr, double i, double j, double maxx, double maxy)
+
+        private bool SetneighboursSt(Image a, double cxr, double cyr, double i, double j, double maxx, double maxy)
         {
             bool aa = false;
 
@@ -118,7 +122,7 @@ namespace WindowsApplication1
                                             st[(int)cxr][(int)cyr][13] = (cyr + 1);
                                             st[(int)cxr][(int)cyr][14] = (System.Convert.ToSingle(GetK(a, (int)(i), (int)(j + 1), 0)) + System.Convert.ToSingle(GetK(a, (int)(i), (int)(j + 1), 1)) + System.Convert.ToSingle(GetK(a, (int)(i), (int)(j + 1), 2))) / 3.0;
                                         }
-                                        if (System.Convert.ToSingle(GetK(a, (int)i, (int)(int)j, 0)) + System.Convert.ToSingle(GetK(a, (int)i, (int)(int)j, 1)) + System.Convert.ToSingle(GetK(a, (int)i, (int)(int)j, 2)) > 0)
+                                        if (System.Convert.ToSingle(GetK(a, (int)i, (int)j, 0)) + System.Convert.ToSingle(GetK(a, (int)i, (int)j, 1)) + System.Convert.ToSingle(GetK(a, (int)i, (int)j, 2)) > 0)
                                         {
                                             st[(int)cxr][(int)cyr][15] = cxr - 1;
                                             st[(int)cxr][(int)cyr][16] = (cyr - 1);
@@ -153,46 +157,50 @@ namespace WindowsApplication1
             }
 
         }
-        void Threaadcal(int i, int j, int k, int ii, int jj)
+
+        private void Threaadcal(int i, int j, int k, int ii, int jj)
         {
             try
             {
                 lock (c)
                 {
                     if ((float)(System.Convert.ToSingle(GetK(a, i, j, k))) == 0)
+                    {
                         return;
+                    }
+
                     float dr = 0;
                     double[] s = new double[3];
                     //[teta, fi, r] = cart2sph(i, j, 0);
                     s = cart2sph(i, j, 1);
                     t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415));
                     f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
-                    rr[i, j, k] = (int)Math.Round((double)(s[2]));
-                    dr = (float)Math.Round(maxr * ((1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToSingle(GetK(a, i, j, 0)) + System.Convert.ToSingle(GetK(a, i, j, 1)) + System.Convert.ToSingle(GetK(a, i, j, 2)))); ;
+                    rr[i, j, k] = (int)Math.Round(s[2]);
+                    dr = (float)Math.Round(maxr * ((1.0 * (i + 1)) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToSingle(GetK(a, i, j, 0)) + System.Convert.ToSingle(GetK(a, i, j, 1)) + System.Convert.ToSingle(GetK(a, i, j, 2)))); ;
                     ddr[i, j, k] = (int)dr;
 
                     try
                     {
                         int cxT = (maxr - minr) * ii + (int)dr;
-                        int cyT1 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] + 2.0));
-                        int cyT2 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0));
+                        int cyT1 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + t[i, j, k] + 2.0));
+                        int cyT2 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + t[i, j, k] - 2.0));
 
                         if (cxT >= 0 && cyT1 >= 0 && cyT2 >= 0 && cxT < cx && cyT1 < cyp1 && cyT2 < cyp1// && (t[i, j, k + 1] + 2 < maxteta - minteta) && (t[i, j, k + 1] - 2 > minteta)
                        )
                         {
                             if ((ii + jj) % 2 == 0)
                             {
-                                c[cxT, cyT1, k] = (float)(System.Convert.ToSingle(GetK(a, i, j, k)));
+                                c[cxT, cyT1, k] = System.Convert.ToSingle(GetK(a, i, j, k));
                                 //SetneighboursSt(a, cxT, cyT1, cxC, cyC);
                             }
                             else
                             {
-                                c[cxT, cyT2, k] = (float)(System.Convert.ToSingle(GetK(a, i, j, k)));
+                                c[cxT, cyT2, k] = System.Convert.ToSingle(GetK(a, i, j, k));
                                 //SetneighboursSt(a, cxT, cyT2, cxC, cyC);
                             }
                         }
                     }
-                    catch (Exception t)
+                    catch (Exception)
                     {
 
                     }
@@ -201,29 +209,33 @@ namespace WindowsApplication1
             }
             catch (Exception t) {  Log(t); MessageBox.Show(t.ToString()); }
         }
-        void ThreaadcalNeighbour(int i, int j, int k, int ii, int jj)
+
+        private void ThreaadcalNeighbour(int i, int j, int k, int ii, int jj)
         {
             try
             {
                 lock (c)
                 {
                     if ((float)(System.Convert.ToSingle(GetK(a, i, j, k))) == 0)
+                    {
                         return;
+                    }
+
                     float dr = 0;
                     double[] s = new double[3];
                     //[teta, fi, r] = cart2sph(i, j, 0);
                     s = cart2sph(i, j, 1);
                     t[i, j, k] = (int)Math.Round((double)(s[0] * 180.0 / 3.1415));
                     f[i, j, k] = (int)Math.Round((double)(s[1] * 180.0 / 3.1415));
-                    rr[i, j, k] = (int)Math.Round((double)(s[2]));
-                    dr = (float)Math.Round(maxr * ((1.0 * ((double)(i + 1))) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToSingle(GetK(a, i, j, 0)) + System.Convert.ToSingle(GetK(a, i, j, 1)) + System.Convert.ToSingle(GetK(a, i, j, 2)))); ;
+                    rr[i, j, k] = (int)Math.Round(s[2]);
+                    dr = (float)Math.Round(maxr * ((1.0 * (i + 1)) / (1 + Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2) + Math.Pow(k, 2)))) * 3.0 * 300.0 / (1.0 + System.Convert.ToSingle(GetK(a, i, j, 0)) + System.Convert.ToSingle(GetK(a, i, j, 1)) + System.Convert.ToSingle(GetK(a, i, j, 2)))); ;
                     ddr[i, j, k] = (int)dr;
                     
                         try
                         {
                             int cxT = (maxr - minr) * ii + (int)dr;
-                            int cyT1 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] + 2.0));
-                            int cyT2 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + (double)t[i, j, k] - 2.0));
+                            int cyT1 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + t[i, j, k] + 2.0));
+                            int cyT2 = (int)Math.Round((double)((maxteta - minteta) * (double)jj + t[i, j, k] - 2.0));
                         if ((maxr - minr) * ii + dr >= 0// && (t[i, j, k + 1] + 2 < maxteta - minteta) && (t[i, j, k + 1] - 2 > minteta)
                         )
                         {
@@ -237,8 +249,8 @@ namespace WindowsApplication1
                             }
                         }
                         }
-                        catch (Exception t)
-                        {
+                        catch (Exception)
+                    {
 
                         }
                     }
@@ -246,7 +258,8 @@ namespace WindowsApplication1
             }
             catch (Exception t) {  Log(t); MessageBox.Show(t.ToString()); }
         }
-        void Threaadfetch(int i, int j, int k, int ii, int jj)
+
+        private void Threaadfetch(int i, int j, int k, int ii, int jj)
         {
             lock (e)
             {
@@ -254,16 +267,29 @@ namespace WindowsApplication1
                 {
                     try
                     {
-                        if ((int)(ii * (maxr - minr) + ddr[i, j, k]) < 0 || (int)(jj * (maxteta - minteta) + t[i, j, k] + 2) < 0)
+                        if (ii * (maxr - minr) + ddr[i, j, k] < 0 || jj * (maxteta - minteta) + t[i, j, k] + 2 < 0)
+                        {
                             return;
-                        if ((int)(ii * (maxr - minr) + ddr[i, j, k]) >= cx || (int)(jj * (maxteta - minteta) + t[i, j, k] + 2) >= cyp1)
+                        }
+
+                        if (ii * (maxr - minr) + ddr[i, j, k] >= cx || jj * (maxteta - minteta) + t[i, j, k] + 2 >= cyp1)
+                        {
                             return;
-                        if (c[(int)(ii * (maxr - minr) + ddr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k] + 2), k] == 0)
+                        }
+
+                        if (c[ii * (maxr - minr) + ddr[i, j, k], jj * (maxteta - minteta) + t[i, j, k] + 2, k] == 0)
+                        {
                             return;
+                        }
+
                         if ((ii + jj) % 2 == 0)
-                            e[(int)(ii * b[0] + i), (int)(j), k] = c[(int)(ii * (maxr - minr) + ddr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k] + 2), k];
+                        {
+                            e[ii * b[0] + i, j, k] = c[ii * (maxr - minr) + ddr[i, j, k], jj * (maxteta - minteta) + t[i, j, k] + 2, k];
+                        }
                         else
-                            e[(int)(ii * b[0] + i), (int)(j), k] = c[(int)(ii * (maxr - minr) + ddr[i, j, k]), (int)(jj * (maxteta - minteta) + t[i, j, k] - 2), k];
+                        {
+                            e[ii * b[0] + i, j, k] = c[ii * (maxr - minr) + ddr[i, j, k], jj * (maxteta - minteta) + t[i, j, k] - 2, k];
+                        }
                     }
                     catch (Exception t)
                     {
@@ -272,7 +298,8 @@ namespace WindowsApplication1
                 }
             }
         }
-        void Threaaddraw(int i, int j, ref Graphics g, ref Image ar)
+
+        private void Threaaddraw(int i, int j, ref Graphics g, ref Image ar)
         {
             try
             {
@@ -296,20 +323,18 @@ namespace WindowsApplication1
                  Log(t); MessageBox.Show(t.ToString());
             }
         }
-        void ContoObject()
+
+        private void ContoObject()
         {
             try
             {
-                int r = 0;
-                int teta = 0;
-                int fi = 0;
-                cx = (int)((maxr - minr) * fg + (int)maxr + 1);
+                cx = (maxr - minr) * fg + maxr + 1;
 
-                cyp0 = (int)Math.Round((double)(maxteta - minteta) + (double)maxteta + 1.0);
-                cyp1 = (int)Math.Round((double)(maxteta - minteta) * (double)2 + (double)maxteta + 1.0);
+                cyp0 = (int)Math.Round(maxteta - minteta + (double)maxteta + 1.0);
+                cyp1 = (int)Math.Round((maxteta - minteta) * (double)2 + maxteta + 1.0);
                 //cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
-                cxC = (int)((maxr - minr) * fg + (int)maxr + 1);
-                cyC = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
+                cxC = (maxr - minr) * fg + maxr + 1;
+                cyC = (int)Math.Round((maxteta - minteta) * (double)fg + maxteta + 1.0);
                 czC = 3;
                 for (int i = 0; i < cxC; i++)
                 {
@@ -324,37 +349,46 @@ namespace WindowsApplication1
                 rr = new int[b[0], b[1], 3];
                 f = new int[b[0], b[1], 3];
                 ddr = new int[b[0], b[1], 3];
-                int v = 0;
-                int n = 0;
-                int q = 0;
-                int robeta = 0;
-
-                float rb = (float)0.20;// pixel;
-                float Z = (float)0.100;// distance of eye form screen cm;
-                float ra = 0;//varabale;
                 List<Task> th = new List<Task>();
 
-                var output = Task.Factory.StartNew(() =>
+                Task output = Task.Factory.StartNew(() =>
                {
 
-                   ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
+                   ParallelOptions po = new ParallelOptions
+                   {
+                       MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                   }; Parallel.For(0, fg, delegate (int ii)
                     {
 
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
+                        ParallelOptions poo = new ParallelOptions
+                        {
+                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                        }; Parallel.For(0, fg, delegate (int jj)
                         {
                             //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                            ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
+                            ParallelOptions ppoio = new ParallelOptions
+                            {
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.For(0, b[0], delegate (int i)
                         {
-                            ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
+                            ParallelOptions pooo = new ParallelOptions
+                            {
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.For(0, b[1], delegate (int j)
                         {
                             lock (geta)
                             {
                                 if (geta[i, j, 0] + geta[i, j, 1] + geta[i, j, 2] > 0)
+                                {
                                     x++;
+                                }
                             }
-                            ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
+                            ParallelOptions poooo = new ParallelOptions
+                            {
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.For(0, 2, delegate (int k)
                               {
-                                  var output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, ii, jj));
+                                  Task output1 = Task.Factory.StartNew(() => Threaadcal(i, j, k, ii, jj));
                                   lock (th) { th.Add(output1); }
                               });
 
@@ -373,20 +407,18 @@ namespace WindowsApplication1
                 Log(t); MessageBox.Show(t.ToString());
             }
         }
-        void ContoObjectNeighbour()
+
+        private void ContoObjectNeighbour()
         {
             try
             {
-                int r = 0;
-                int teta = 0;
-                int fi = 0;
-                cx = (int)((maxr - minr) * fg + (int)maxr + 1);
+                cx = (maxr - minr) * fg + maxr + 1;
 
-                cyp0 = (int)Math.Round((double)(maxteta - minteta) + (double)maxteta + 1.0);
-                cyp1 = (int)Math.Round((double)(maxteta - minteta) * (double)2 + (double)maxteta + 1.0);
+                cyp0 = (int)Math.Round(maxteta - minteta + (double)maxteta + 1.0);
+                cyp1 = (int)Math.Round((maxteta - minteta) * (double)2 + maxteta + 1.0);
                 //cy = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
-                cxC = (int)((maxr - minr) * fg + (int)maxr + 1);
-                cyC = (int)Math.Round((double)(maxteta - minteta) * (double)fg + (double)maxteta + 1.0);
+                cxC = (maxr - minr) * fg + maxr + 1;
+                cyC = (int)Math.Round((maxteta - minteta) * (double)fg + maxteta + 1.0);
                 czC = 3;
                 for (int i = 0; i < cxC; i++)
                 {
@@ -401,37 +433,46 @@ namespace WindowsApplication1
                 rr = new int[b[0], b[1], 3];
                 f = new int[b[0], b[1], 3];
                 ddr = new int[b[0], b[1], 3];
-                int v = 0;
-                int n = 0;
-                int q = 0;
-                int robeta = 0;
-
-                float rb = (float)0.20;// pixel;
-                float Z = (float)0.100;// distance of eye form screen cm;
-                float ra = 0;//varabale;
                 List<Task> th = new List<Task>();
 
-                var output = Task.Factory.StartNew(() =>
+                Task output = Task.Factory.StartNew(() =>
                 {
 
-                    ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
+                    ParallelOptions po = new ParallelOptions
+                    {
+                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                    }; Parallel.For(0, fg, delegate (int ii)
                     {
 
-                        ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
+                        ParallelOptions poo = new ParallelOptions
+                        {
+                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                        }; Parallel.For(0, fg, delegate (int jj)
                         {
                             //float[,,] cc = new float[(maxr - minr + 1), (maxteta - minteta + 1), 3];
-                            ParallelOptions ppoio = new ParallelOptions(); ppoio.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
+                            ParallelOptions ppoio = new ParallelOptions
+                            {
+                                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                            }; Parallel.For(0, b[0], delegate (int i)
                                 {
-                                    ParallelOptions pooo = new ParallelOptions(); pooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
+                                    ParallelOptions pooo = new ParallelOptions
+                                    {
+                                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                                    }; Parallel.For(0, b[1], delegate (int j)
                                     {
                                         lock (geta)
                                         {
                                             if (geta[i, j, 0] + geta[i, j, 1] + geta[i, j, 2] > 0)
+                                            {
                                                 x++;
+                                            }
                                         }
-                                        ParallelOptions poooo = new ParallelOptions(); poooo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 3, delegate (int k)
+                                        ParallelOptions poooo = new ParallelOptions
                                         {
-                                            var output1 = Task.Factory.StartNew(() => ThreaadcalNeighbour(i, j, k, ii, jj));
+                                            MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                                        }; Parallel.For(0, 3, delegate (int k)
+                                        {
+                                            Task output1 = Task.Factory.StartNew(() => ThreaadcalNeighbour(i, j, k, ii, jj));
                                             lock (th) { th.Add(output1); }
                                         });
 
@@ -450,7 +491,8 @@ namespace WindowsApplication1
                  Log(t); MessageBox.Show(t.ToString());
             }
         }
-        byte GetK(Image a, int i, int j, int k)
+
+        private byte GetK(Image a, int i, int j, int k)
         {
             try
             {
@@ -460,9 +502,15 @@ namespace WindowsApplication1
                     lock (geta)
                     {
                         if (i < 0 || j < 0)
+                        {
                             return 0;
+                        }
+
                         if (i >= width || j >= height)
+                        {
                             return 0;
+                        }
+
                         return geta[i, j, k];
                     }
                 }
@@ -473,29 +521,42 @@ namespace WindowsApplication1
             }
             return 0;
         }
-        void ConvTo3D()
+
+        private void ConvTo3D()
         {
             try
             {
-                int r = 0;
-                int teta = 0;
-                int fi = 0;
-                e = new float[(int)(b[0] * fg), (int)((b[1])), 3];
+                e = new float[(b[0] * fg), (b[1]), 3];
                 List<Task> th = new List<Task>();
 
-                var output = Task.Factory.StartNew(() =>
+                Task output = Task.Factory.StartNew(() =>
                 {
-                    ParallelOptions pop = new ParallelOptions(); pop.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int ii)
+                    ParallelOptions pop = new ParallelOptions
+                    {
+                        MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                    }; Parallel.For(0, fg, delegate (int ii)
                      {
-                         ParallelOptions popp = new ParallelOptions(); popp.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, fg, delegate (int jj)
+                         ParallelOptions popp = new ParallelOptions
                          {
-                             ParallelOptions poo = new ParallelOptions(); poo.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[0], delegate (int i)
+                             MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                         }; Parallel.For(0, fg, delegate (int jj)
+                         {
+                             ParallelOptions poo = new ParallelOptions
+                             {
+                                 MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                             }; Parallel.For(0, b[0], delegate (int i)
                                {
-                                   ParallelOptions pon = new ParallelOptions(); pon.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, b[1], delegate (int j)
+                                   ParallelOptions pon = new ParallelOptions
                                    {
-                                       ParallelOptions pob = new ParallelOptions(); pob.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For(0, 2, delegate (int k)
+                                       MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                                   }; Parallel.For(0, b[1], delegate (int j)
+                                   {
+                                       ParallelOptions pob = new ParallelOptions
                                        {
-                                           var output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
+                                           MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+                                       }; Parallel.For(0, 2, delegate (int k)
+                                       {
+                                           Task output1 = Task.Factory.StartNew(() => Threaadfetch(i, j, k, ii, jj));
 
                                            lock (th) { th.Add(output1); }
                                        });
@@ -514,7 +575,8 @@ namespace WindowsApplication1
             }
 
         }
-        void Initiate()
+
+        private void Initiate()
         {
             try
             {
@@ -558,23 +620,34 @@ namespace WindowsApplication1
                             fi = (int)Math.Round(s[1] * 180.0 / 3.1415);
                             r = (int)Math.Round(s[2]);
                             if (minr > r)
+                            {
                                 minr = r;
+                            }
 
                             if (maxr < r)
+                            {
                                 maxr = r;
+                            }
 
                             if (minfi > fi)
+                            {
                                 minfi = fi;
+                            }
 
                             if (maxfi < fi)
+                            {
                                 maxfi = fi;
+                            }
 
                             if (minteta > teta)
+                            {
                                 minteta = teta;
+                            }
 
                             if (maxteta < teta)
+                            {
                                 maxteta = teta;
-
+                            }
                         }
 
 
@@ -586,7 +659,8 @@ namespace WindowsApplication1
                  Log(t); MessageBox.Show(t.ToString());
             }
         }
-        void InitiateIntelli()
+
+        private void InitiateIntelli()
         {
             try
             {
@@ -616,23 +690,34 @@ namespace WindowsApplication1
                             fi = (int)Math.Round(s[1] * 180.0 / 3.1415);
                             r = (int)Math.Round(s[2]);
                             if (minr > r)
+                            {
                                 minr = r;
+                            }
 
                             if (maxr < r)
+                            {
                                 maxr = r;
+                            }
 
                             if (minfi > fi)
+                            {
                                 minfi = fi;
+                            }
 
                             if (maxfi < fi)
+                            {
                                 maxfi = fi;
+                            }
 
                             if (minteta > teta)
+                            {
                                 minteta = teta;
+                            }
 
                             if (maxteta < teta)
+                            {
                                 maxteta = teta;
-
+                            }
                         }
 
 
@@ -644,7 +729,8 @@ namespace WindowsApplication1
                  Log(t); MessageBox.Show(t.ToString());
             }
         }
-        float[,,] uitn8(float[,,] p, int ii, int jj, int kk)
+
+        private float[,,] uitn8(float[,,] p, int ii, int jj, int kk)
         {
             try
             {
@@ -739,7 +825,7 @@ namespace WindowsApplication1
                 {
                     ConvTo3D();
                     MessageBox.Show("ConvTo3D pass!");
-                    ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                    ar = new Bitmap(b[0] * fg, (b[1]));
                     MessageBox.Show("Graphic begin!!");
                     Graphics g = Graphics.FromImage(ar as Bitmap);
 
@@ -780,8 +866,8 @@ namespace WindowsApplication1
                 MessageBox.Show("ContoObject pass!");
                 ConvTo3D();
                 MessageBox.Show("ConvTo3D pass!");
-                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-                ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                e = uitn8(e, b[0] * fg, (b[1]), 3);
+                ar = new Bitmap(b[0] * fg, (b[1]));
                 MessageBox.Show("Graphic begin!!");
                 Graphics g = Graphics.FromImage(ar as Bitmap);
 
@@ -840,8 +926,8 @@ namespace WindowsApplication1
                 MessageBox.Show("ContoObject pass!");
                 ConvTo3D();
                 MessageBox.Show("ConvTo3D pass!");
-                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-                ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                e = uitn8(e, b[0] * fg, (b[1]), 3);
+                ar = new Bitmap(b[0] * fg, (b[1]));
                 MessageBox.Show("Graphic begin!!");
                 g = Graphics.FromImage(ar as Bitmap);
 
@@ -902,8 +988,8 @@ namespace WindowsApplication1
                 MessageBox.Show("ContoObject pass!");
                 ConvTo3D();
                 MessageBox.Show("ConvTo3D pass!");
-                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-                ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                e = uitn8(e, b[0] * fg, (b[1]), 3);
+                ar = new Bitmap(b[0] * fg, (b[1]));
                 MessageBox.Show("Graphic begin!!");
                 g = Graphics.FromImage(ar as Bitmap);
 
@@ -944,8 +1030,8 @@ namespace WindowsApplication1
                 MessageBox.Show("ContoObject pass!");
                 ConvTo3D();
                 MessageBox.Show("ConvTo3D pass!");
-                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-                ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                e = uitn8(e, b[0] * fg, (b[1]), 3);
+                ar = new Bitmap(b[0] * fg, (b[1]));
                 MessageBox.Show("Graphic begin!!");
                 g = Graphics.FromImage(ar as Bitmap);
 
@@ -1006,8 +1092,8 @@ namespace WindowsApplication1
                 MessageBox.Show("ContoObject pass!");
                 ConvTo3D();
                 MessageBox.Show("ConvTo3D pass!");
-                e = uitn8(e, (int)(b[0] * fg), (int)((b[1])), 3);
-                ar = new Bitmap((int)(b[0] * fg), (int)((b[1])));
+                e = uitn8(e, b[0] * fg, (b[1]), 3);
+                ar = new Bitmap(b[0] * fg, (b[1]));
                 MessageBox.Show("Graphic begin!!");
                 g = Graphics.FromImage(ar as Bitmap);
 

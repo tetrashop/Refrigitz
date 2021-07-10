@@ -12,17 +12,21 @@ using System;
 
 namespace Formulas
 {
-    static class LocalSearchMulDivionWithNumberMulatedEqualSimplifier
+    internal static class LocalSearchMulDivionWithNumberMulatedEqualSimplifier
     {
-        static public AddToTree.Tree LocalSearchMulDivionWithNumberMulatedEqualSimplifierFx(AddToTree.Tree Dummy, ref bool MULDIVISIONWITHNUMBERMULATED, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree LocalSearchMulDivionWithNumberMulatedEqualSimplifierFx(AddToTree.Tree Dummy, ref bool MULDIVISIONWITHNUMBERMULATED, ref UknownIntegralSolver UIS)
         {
             //Dummy = MulDivioneSorteStructure.MulDivioneSorteStructureFx(Dummy);
             return LocalSearchMulDivionWithNumberMulatedEqualSimplifier.LocalSearchMulDivionWithNumberMulatedEqualSimplifierActionFx(Dummy, ref MULDIVISIONWITHNUMBERMULATED, ref UIS);
         }
-        static AddToTree.Tree LocalSearchMulDivionWithNumberMulatedEqualSimplifierActionFx(AddToTree.Tree Dummy, ref bool MULDIVISIONWITHNUMBERMULATED, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree LocalSearchMulDivionWithNumberMulatedEqualSimplifierActionFx(AddToTree.Tree Dummy, ref bool MULDIVISIONWITHNUMBERMULATED, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             bool SimplifiedTrueOtherWiseFalse = false;
             bool Suitable = false;
             bool MulTrueDivFalse = false;
@@ -43,9 +47,14 @@ namespace Formulas
                             Dummy.RightSideAccess.SampleAccess = "1";
                             Num = Num * (float)(System.Convert.ToDouble(Dummy.LeftSideAccess.SampleAccess));
                             if (Num == 0)
+                            {
                                 Dummy.LeftSideAccess.SampleAccess = null;
+                            }
                             else
+                            {
                                 Dummy.LeftSideAccess.SampleAccess = Num.ToString();
+                            }
+
                             MULDIVISIONWITHNUMBERMULATED = true;
                         }
                         /*else
@@ -99,9 +108,14 @@ namespace Formulas
                             Dummy.LeftSideAccess.SampleAccess = "1";
                             Num = (float)(System.Convert.ToDouble(Dummy.LeftSideAccess.SampleAccess)) / Num;
                             if (Num == 0)
+                            {
                                 Dummy.RightSideAccess.SampleAccess = null;
+                            }
                             else
+                            {
                                 Dummy.RightSideAccess.SampleAccess = Num.ToString();
+                            }
+
                             MULDIVISIONWITHNUMBERMULATED = true;
                         }
                         else
@@ -111,18 +125,28 @@ namespace Formulas
                             Dummy.RightSideAccess.SampleAccess = "1";
                             Num = Num * (float)(System.Convert.ToDouble(Dummy.LeftSideAccess.SampleAccess));
                             if (Num == 0)
+                            {
                                 Dummy.LeftSideAccess.SampleAccess = null;
+                            }
                             else
+                            {
                                 Dummy.LeftSideAccess.SampleAccess = Num.ToString();
+                            }
+
                             MULDIVISIONWITHNUMBERMULATED = true;
                         }
                         else
                         {
                             Dummy.SetLefTandRightCommonlySide(null, null);
                             if (Num == 0)
+                            {
                                 Dummy.SampleAccess = null;
+                            }
                             else
+                            {
                                 Dummy.SampleAccess = Num.ToString();
+                            }
+
                             MULDIVISIONWITHNUMBERMULATED = true;
                         }
                     }
@@ -142,12 +166,19 @@ namespace Formulas
             LocalSearchMulDivionWithNumberMulatedEqualSimplifier.LocalSearchMulDivionWithNumberMulatedEqualSimplifierActionFx(Dummy.RightSideAccess, ref MULDIVISIONWITHNUMBERMULATED, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree SuitableToSimplifierLocalThatDivIsLocatedAtDown(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, ref bool Suitable, ref bool MulTrueDivFalse, ref bool SimplifiedTrueOtherWiseFalse, ref float Num, ref bool RETURNED)
+
+        private static AddToTree.Tree SuitableToSimplifierLocalThatDivIsLocatedAtDown(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, ref bool Suitable, ref bool MulTrueDivFalse, ref bool SimplifiedTrueOtherWiseFalse, ref float Num, ref bool RETURNED)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             if (RETURNED)
+            {
                 return Dummy;
+            }
+
             try
             {
                 if (IS.IsMul(Dummy.SampleAccess)) { }
@@ -205,12 +236,19 @@ namespace Formulas
             LocalSearchMulDivionWithNumberMulatedEqualSimplifier.SuitableToSimplifierLocalThatDivIsLocatedAtDown(Dummy.RightSideAccess, ToSimplified, ref Suitable, ref MulTrueDivFalse, ref SimplifiedTrueOtherWiseFalse, ref Num, ref RETURNED);
             return Dummy;
         }
-        static AddToTree.Tree SuitableToSimplifierLocalThatDivIsLocatedAtUp(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, ref bool Suitable, ref bool MulTrueDivFalse, ref bool SimplifiedTrueOtherWiseFalse, ref float Num, ref bool RETURNED)
+
+        private static AddToTree.Tree SuitableToSimplifierLocalThatDivIsLocatedAtUp(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, ref bool Suitable, ref bool MulTrueDivFalse, ref bool SimplifiedTrueOtherWiseFalse, ref float Num, ref bool RETURNED)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             if (RETURNED)
+            {
                 return Dummy;
+            }
+
             try
             {
                 if (IS.IsMul(Dummy.SampleAccess))

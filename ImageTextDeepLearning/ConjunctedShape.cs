@@ -205,14 +205,19 @@ namespace ImageTextDeepLearning
             }
             return Ma;
         }
-        bool Equality(Color a, Color b)
+
+        private bool Equality(Color a, Color b)
         {
             bool Is = false;
             if (a.G == b.G && a.B == b.B && a.R == b.R)
+            {
                 Is = true;
+            }
+
             return Is;
         }
-        bool[,] GetBolleanFromArgb(Bitmap Temp)
+
+        private bool[,] GetBolleanFromArgb(Bitmap Temp)
         {
             Color[,] TemI = new Color[Width, Height];
             bool[,] TemB = ZerosB();
@@ -270,7 +275,8 @@ namespace ImageTextDeepLearning
             }
             return TemB;
         }
-        bool[,] ZerosB()
+
+        private bool[,] ZerosB()
         {
             bool[,] TemB = new bool[Width, Height];
             for (int i = 0; i < Width; i++)
@@ -282,7 +288,8 @@ namespace ImageTextDeepLearning
             }
             return TemB;
         }
-        int[,] ZerosI()
+
+        private int[,] ZerosI()
         {
             int[,] TemB = new int[Width, Height];
             for (int i = 0; i < Width; i++)
@@ -314,7 +321,10 @@ namespace ImageTextDeepLearning
                         Point[] tec = All[i].ToArray();
                         PointF[] te = new PointF[tec.Length];
                         for (int ii = 0; ii < te.Length; ii++)
+                        {
                             te[ii] = new PointF(tec[ii].X, tec[ii].Y);
+                        }
+
                         float MiX = MinX(te), MiY = MinY(te), MaX = MaxX(te), MaY = MaxY(te);
 
                         //centeralized
@@ -376,7 +386,9 @@ namespace ImageTextDeepLearning
 
                                 Do = HollowCountreImageCommmon(ref Te);
                                 if (!Do)
+                                {
                                     MessageBox.Show("fault on hollow!");
+                                }
 
                                 AllImage.Add(Te);
                             }
@@ -389,7 +401,9 @@ namespace ImageTextDeepLearning
 
                                 Do = HollowCountreImageCommmon(ref Te);
                                 if (!Do)
+                                {
                                     MessageBox.Show("fault on hollow!");
+                                }
 
 
                                 // AllImage.Add((Bitmap)Te.Clone());

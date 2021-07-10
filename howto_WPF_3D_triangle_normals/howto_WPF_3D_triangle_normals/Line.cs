@@ -3,7 +3,7 @@ using System.Windows.Media.Media3D;
 
 namespace howto_WPF_3D_triangle_normals
 {
-    class Line
+    internal class Line
     {
         public double a, b, c, x0, y0, z0;
         public Line(Point3D p0, Point3D p1)
@@ -25,13 +25,18 @@ namespace howto_WPF_3D_triangle_normals
             b = normal0.nb;
             c = normal0.nc;
         }
-        bool existPointOnCurrentLine(Point3D p)
+
+        private bool existPointOnCurrentLine(Point3D p)
         {
             if (a == 0 || b == 0 || c == 0)
+            {
                 return false;
+            }
+
             return (((p.X - x0) / a) == (p.Y - y0) / b) && ((p.X - x0) / a) == ((p.Z - z0) / c);
         }
-        bool externalMulIsEqual(Triangle t0, Point3D p0)
+
+        private bool externalMulIsEqual(Triangle t0, Point3D p0)
         {
             Line l1 = new Line(t0, p0);
             double na = (t0.nb * l1.c) - (t0.nc * l1.b);
@@ -40,8 +45,9 @@ namespace howto_WPF_3D_triangle_normals
             return (na == nb) && (na == nc) & (na == 0);
 
         }
+
         //tan(pi/2) is ultimate orthogonal and zero is equal 0<landa<pi/2
-        bool externalMulIsLessTanLanda(Triangle t0, Point3D p0, double landa)
+        private bool externalMulIsLessTanLanda(Triangle t0, Point3D p0, double landa)
         {
             Line l1 = new Line(t0, p0);
             double na = (t0.nb * l1.c) - (t0.nc * l1.b);

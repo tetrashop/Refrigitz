@@ -1,19 +1,24 @@
 namespace Formulas
 {
-    static class AddingDivisionToThreeDivStructure
+    internal static class AddingDivisionToThreeDivStructure
     {
-        static public AddToTree.Tree AddingDivisionToThreeDivStructureFx(AddToTree.Tree Dummy)
+        public static AddToTree.Tree AddingDivisionToThreeDivStructureFx(AddToTree.Tree Dummy)
         {
             Dummy = AddingDivisionToThreeDivStructure.AddingDivisionToThreeDivStructureActionFx(Dummy);
             return Dummy;
         }
-        static AddToTree.Tree AddingDivisionToThreeDivStructureActionFx(AddToTree.Tree Dummy)
+
+        private static AddToTree.Tree AddingDivisionToThreeDivStructureActionFx(AddToTree.Tree Dummy)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             if (Dummy.SampleAccess == "/")
             {
                 if (Dummy.LeftSideAccess.SampleAccess == "/")
+                {
                     if (Dummy.RightSideAccess.SampleAccess != "/")
                     {
                         AddToTree.Tree Div = new AddToTree.Tree("/", false);
@@ -24,7 +29,10 @@ namespace Formulas
                         Div.ThreadAccess = Dummy;
                         Dummy.RightSideAccess = Div;
                     }
+                }
+
                 if (Dummy.LeftSideAccess.SampleAccess != "/")
+                {
                     if (Dummy.RightSideAccess.SampleAccess == "/")
                     {
                         AddToTree.Tree Div = new AddToTree.Tree("/", false);
@@ -35,7 +43,7 @@ namespace Formulas
                         Div.ThreadAccess = Dummy;
                         Dummy.LeftSideAccess = Div;
                     }
-
+                }
             }
             Dummy.LeftSideAccess = AddingDivisionToThreeDivStructure.AddingDivisionToThreeDivStructureActionFx(Dummy.LeftSideAccess);
             Dummy.RightSideAccess = AddingDivisionToThreeDivStructure.AddingDivisionToThreeDivStructureActionFx(Dummy.RightSideAccess);

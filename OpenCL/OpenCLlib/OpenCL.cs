@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Threading.Tasks;
-using System.IO;
-using Cloo;
+﻿using Cloo;
+using System;
 using System.Linq;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Collections;
 using System.Reflection;
-using OpenCLlib;
 
 namespace OpenCL
 {
@@ -48,7 +41,7 @@ namespace OpenCL
 
         public CLMethod(string EntryPoint,string Body)
         {
-            this.Name = EntryPoint;
+            Name = EntryPoint;
 
             int found=Body.IndexOf(EntryPoint);
             int start = Body.IndexOf('(', found)+1;
@@ -56,7 +49,7 @@ namespace OpenCL
 
 
             string parameter = Body.Substring(start, end-start);
-            var parameters=parameter.Split(',');
+            string[] parameters =parameter.Split(',');
 
             Arguments = parameters.Select(x => new CLArgumentInfo(x)).ToArray();
         }
@@ -84,25 +77,31 @@ namespace OpenCL
 
         public static CLArgument<T> CreateReturn(T[] Data)
         {
-            CLArgument<T> arg = new CLArgument<T>();
-            arg.Data = Data;
-            arg.CopyBack = true;
-            arg.memoryflags = MemoryFlags.WriteOnly | MemoryFlags.AllocateHostPointer;
+            CLArgument<T> arg = new CLArgument<T>
+            {
+                Data = Data,
+                CopyBack = true,
+                memoryflags = MemoryFlags.WriteOnly | MemoryFlags.AllocateHostPointer
+            };
             return arg;
         }
         
         public static CLArgument<T> CreateArray(T[] Data)
         {
-            CLArgument<T> arg = new CLArgument<T>();
-            arg.Data = Data;
-            arg.memoryflags = MemoryFlags.ReadWrite | MemoryFlags.UseHostPointer;
+            CLArgument<T> arg = new CLArgument<T>
+            {
+                Data = Data,
+                memoryflags = MemoryFlags.ReadWrite | MemoryFlags.UseHostPointer
+            };
             return arg;
         }
 
         public static CLArgument<T> CreateValue(T Value)
         {
-            CLArgument<T> arg = new CLArgument<T>();
-            arg.ComputeValue = Value;
+            CLArgument<T> arg = new CLArgument<T>
+            {
+                ComputeValue = Value
+            };
             return arg;
         }
 
@@ -119,7 +118,10 @@ namespace OpenCL
 
         internal ComputeMemory GenerateComputeMemory(ComputeContext context)
         {
-            if (Data == null) return null;
+            if (Data == null)
+            {
+                return null;
+            }
 
             if (CopyBack)
             {
@@ -140,10 +142,10 @@ namespace OpenCL
         public ComputeMemory ComputeMemory { get; set; }
         public dynamic ComputeValue { get; set; }
 
-        string Name;
-        string AccessModifier;
-        string SpaceModifier;
-        string Type;
+        private readonly string Name;
+        private readonly string AccessModifier;
+        private readonly string SpaceModifier;
+        private readonly string Type;
 
         public bool IsArray;
 
@@ -155,7 +157,7 @@ namespace OpenCL
             arg = arg.Replace(" *", "* ");//global *int->global *int;
 
 
-            var info=arg.Split(' ');
+            string[] info =arg.Split(' ');
 
             Name = info.Last();
 
@@ -191,47 +193,32 @@ namespace OpenCL
     /// </summary>
     public class OpenCL
     {
-        ComputeContext context;
-        ComputeCommandQueue queue;
-        ComputeKernel kernel;
-        bool MethodSet = false;
-        string OpenCLBody;
-        string EntryPoint;
+        private ComputeContext context;
+        private ComputeCommandQueue queue;
+        private ComputeKernel kernel;
+        private bool MethodSet = false;
+        private string OpenCLBody;
+        private string EntryPoint;
 
-        public string PlatformName
-        {
-            get
-            {
-                return context.Platform.Name;
-            }
-        }
+        public string PlatformName => context.Platform.Name;
 
-        public string AcceleratorName
-        {
-            get
-            {
-                return context.Devices[0].Name;
-            }
-        }
+        public string AcceleratorName => context.Devices[0].Name;
 
-        AcceleratorDevice _device = AcceleratorDevice.GPU;
+        private AcceleratorDevice _device = AcceleratorDevice.GPU;
         public AcceleratorDevice Accelerator
         {
-            get
-            {
-                return _device;
-            }
+            get => _device;
             set
             {
-                if (value!=_device)
+                if (value != _device)
                 {
                     _device = value;
                     CreateContext();
                     if (MethodSet)
                     {
-                        CLMethod tmp = this.MethodInfo;
+                        CLMethod tmp = MethodInfo;
                         SetKernel(OpenCLBody, EntryPoint);
-                        this.MethodInfo = tmp;
+                        MethodInfo = tmp;
                     }
                 }
             }
@@ -262,8 +249,7 @@ namespace OpenCL
             MethodSet = true;
         }
 
-
-        void CreateContext()
+        private void CreateContext()
         {
             context = new ComputeContext(_device.Type, new ComputeContextPropertyList(Accelerator.Device.Platform), null, IntPtr.Zero);
             queue = new ComputeCommandQueue(context, context.Devices[0], ComputeCommandQueueFlags.None);
@@ -296,14 +282,21 @@ namespace OpenCL
             return MethodInfo.Arguments[index];
         }
 
-        void SetArgs()
+        private void SetArgs()
         {
             for (int i = 0; i < MethodInfo.Arguments.Length; i++)
             {
-                var arg = MethodInfo.Arguments[i];
+                CLArgumentInfo arg = MethodInfo.Arguments[i];
 
-                if (arg.ComputeMemory == null && arg.IsArray) throw new ArgumentException("Expected Array at index " + i);
-                if (arg.ComputeMemory!=null && arg.IsArray == false) throw new ArgumentException("Expected Variable at index " + i);
+                if (arg.ComputeMemory == null && arg.IsArray)
+                {
+                    throw new ArgumentException("Expected Array at index " + i);
+                }
+
+                if (arg.ComputeMemory!=null && arg.IsArray == false)
+                {
+                    throw new ArgumentException("Expected Variable at index " + i);
+                }
 
                 if (arg.ComputeMemory != null)
                 {
@@ -316,9 +309,9 @@ namespace OpenCL
             }
         }
 
-        void _SetGenericArg(int index,object genericarg)
+        private void _SetGenericArg(int index,object genericarg)
         {
-            this.GetType().GetMethod(nameof(SetArgumentDirect)).MakeGenericMethod(genericarg.GetType().GetGenericArguments()[0]).Invoke(
+            GetType().GetMethod(nameof(SetArgumentDirect)).MakeGenericMethod(genericarg.GetType().GetGenericArguments()[0]).Invoke(
                         this, new object[] { index, genericarg });
         }
 
@@ -408,7 +401,7 @@ namespace OpenCL
 
             for (int i = 0; i < MethodInfo.Arguments.Length; i++)
             {
-                var arg = MethodInfo.Arguments[i];
+                CLArgumentInfo arg = MethodInfo.Arguments[i];
                 if (arg.CopyBack)
                 {
                     queue.ReadFromBuffer<T>((Cloo.ComputeBuffer<T>)MethodInfo.Arguments[i].ComputeMemory, ref Returned, false, null);

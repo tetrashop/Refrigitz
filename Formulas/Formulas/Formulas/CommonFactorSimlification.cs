@@ -5,29 +5,38 @@
 
 namespace Formulas
 {
-    static class CommonFactorSimlification
+    internal static class CommonFactorSimlification
     {
-        static public AddToTree.Tree CommonFactorSimlificationFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree CommonFactorSimlificationFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return null;
+            }
+
             bool CONTINUE = false;
             do
             {
                 CONTINUE = false;
                 Dummy = CommonFactorSimlification.CommonFactorSimlificationActionFx(Dummy, ref CONTINUE, ref UIS);
                 while (Dummy.ThreadAccess != null)
+                {
                     Dummy = Dummy.ThreadAccess;
+                }
                 //Dummy = MulTowDivision.MulTowDivisionFx(Dummy);
                 //Dummy = Simplifier.SimplifierFxMul(Dummy);
             } while (CONTINUE);
 
             return Dummy;
         }
-        static AddToTree.Tree CommonFactorSimlificationActionFx(AddToTree.Tree Dummy, ref bool CONTINUE, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree CommonFactorSimlificationActionFx(AddToTree.Tree Dummy, ref bool CONTINUE, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             Dummy.LeftSideAccess = CommonFactorSimlification.CommonFactorSimlificationActionFx(Dummy.LeftSideAccess, ref CONTINUE, ref UIS);
             Dummy.RightSideAccess = CommonFactorSimlification.CommonFactorSimlificationActionFx(Dummy.RightSideAccess, ref CONTINUE, ref UIS);
             //Dummy = CommonFactorSimlification.CommonFactorSuitable(Dummy,ref CONTINUE);

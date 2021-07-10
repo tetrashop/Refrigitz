@@ -4,16 +4,20 @@ using System;
 
 namespace Formulas
 {
-    static class LocalSearchMinusPlusEqualSimplifier
+    internal static class LocalSearchMinusPlusEqualSimplifier
     {
-        static public AddToTree.Tree LocalSearchMinusPlusEqualSimplifierFx(AddToTree.Tree Dummy, ref bool MINUSEPLUSEEQUAL, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree LocalSearchMinusPlusEqualSimplifierFx(AddToTree.Tree Dummy, ref bool MINUSEPLUSEEQUAL, ref UknownIntegralSolver UIS)
         {
             return LocalSearchMinusPlusEqualSimplifier.LocalSearchMinusPlusEqualSimplifierActionFx(Dummy, ref MINUSEPLUSEEQUAL, ref UIS);
         }
-        static AddToTree.Tree LocalSearchMinusPlusEqualSimplifierActionFx(AddToTree.Tree Dummy, ref bool MINUSEPLUSEEQUAL, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree LocalSearchMinusPlusEqualSimplifierActionFx(AddToTree.Tree Dummy, ref bool MINUSEPLUSEEQUAL, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             bool SimplifiedTrueOtherWiseFalse = false;
             bool Suitable = false;
             bool MinuseTruePluseFalse = false;
@@ -38,7 +42,8 @@ namespace Formulas
             LocalSearchMinusPlusEqualSimplifier.LocalSearchMinusPlusEqualSimplifierActionFx(Dummy.RightSideAccess, ref MINUSEPLUSEEQUAL, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree SuitableToSimplifierLocalThatToSimplifiedLocatedAtRight(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, out bool Suitable, out bool MinuseTruePlusFalse, out bool SimplifiedTrueOtherWiseFalse)
+
+        private static AddToTree.Tree SuitableToSimplifierLocalThatToSimplifiedLocatedAtRight(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, out bool Suitable, out bool MinuseTruePlusFalse, out bool SimplifiedTrueOtherWiseFalse)
         {
             if (Dummy == null)
             {
@@ -52,6 +57,7 @@ namespace Formulas
                 if (IS.IsMinuseOrPluse(Dummy.SampleAccess))
                 {
                     if (Dummy.FINDTreeWithThreadConsideration(ToSimplified, Dummy.LeftSideAccess) == null)
+                    {
                         if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess, ToSimplified))
                         {
                             try
@@ -100,6 +106,7 @@ namespace Formulas
                         }
                         else
                             if (Dummy.FINDTreeWithThreadConsideration(ToSimplified, Dummy.RightSideAccess) == null)
+                        {
                             if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, ToSimplified))
                             {
                                 try
@@ -147,6 +154,9 @@ namespace Formulas
                                 }
                                 catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
                             }
+                        }
+                    }
+
                     Suitable = true;
                 }
                 else
@@ -162,7 +172,8 @@ namespace Formulas
             LocalSearchMinusPlusEqualSimplifier.SuitableToSimplifierLocalThatToSimplifiedLocatedAtRight(Dummy.RightSideAccess, ToSimplified, out Suitable, out MinuseTruePlusFalse, out SimplifiedTrueOtherWiseFalse);
             return Dummy;
         }
-        static AddToTree.Tree SuitableToSimplifierLocalThatToSimplifiedLocatedAtLeft(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, out bool Suitable, out bool MinuseTruePlusFalse, out bool SimplifiedTrueOtherWiseFalse)
+
+        private static AddToTree.Tree SuitableToSimplifierLocalThatToSimplifiedLocatedAtLeft(AddToTree.Tree Dummy, AddToTree.Tree ToSimplified, out bool Suitable, out bool MinuseTruePlusFalse, out bool SimplifiedTrueOtherWiseFalse)
         {
             if (Dummy == null)
             {
@@ -177,6 +188,7 @@ namespace Formulas
                 if (IS.IsMinuseOrPluse(Dummy.SampleAccess))
                 {
                     if (Dummy.FINDTreeWithThreadConsideration(ToSimplified, Dummy.LeftSideAccess) == null)
+                    {
                         if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.LeftSideAccess, ToSimplified))
                         {
                             try
@@ -206,6 +218,7 @@ namespace Formulas
                                 }
                                 else
                                     if ((ToSimplified.ThreadAccess.ThreadAccess != null) && (Dummy.ThreadAccess.SampleAccess == "-"))
+                                {
                                     if ((ToSimplified.ThreadAccess.ThreadAccess.SampleAccess == "+") && (Dummy.ThreadAccess.SampleAccess == "-"))
                                     {
                                         SimplifiedTrueOtherWiseFalse = true;
@@ -229,6 +242,7 @@ namespace Formulas
                                     }
                                     else
                                         if ((ToSimplified.ThreadAccess.ThreadAccess != null) && (Dummy.ThreadAccess.SampleAccess == "+"))
+                                    {
                                         if ((ToSimplified.ThreadAccess.ThreadAccess.SampleAccess == "-") && (Dummy.ThreadAccess.SampleAccess == "+"))
                                         {
                                             SimplifiedTrueOtherWiseFalse = true;
@@ -250,6 +264,8 @@ namespace Formulas
                                             Suitable = true;
                                             return Dummy;
                                         }
+                                    }
+                                }
                             }
                             catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
 
@@ -257,6 +273,7 @@ namespace Formulas
                         }
                         else
                             if (Dummy.FINDTreeWithThreadConsideration(ToSimplified, Dummy.RightSideAccess) == null)
+                        {
                             if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.RightSideAccess, ToSimplified))
                             {
                                 Dummy.RightSideAccess.SampleAccess = null;
@@ -287,6 +304,7 @@ namespace Formulas
                                     }
                                     else
                                         if ((ToSimplified.ThreadAccess.ThreadAccess != null) && (Dummy.SampleAccess == "-"))
+                                    {
                                         if ((ToSimplified.ThreadAccess.ThreadAccess.SampleAccess == "+") && (Dummy.SampleAccess == "-"))
                                         {
                                             SimplifiedTrueOtherWiseFalse = true;
@@ -310,6 +328,7 @@ namespace Formulas
                                         }
                                         else
                                         if ((ToSimplified.ThreadAccess.ThreadAccess != null) && (Dummy.SampleAccess == "+"))
+                                        {
                                             if ((ToSimplified.ThreadAccess.ThreadAccess.SampleAccess == "-") && (Dummy.SampleAccess == "+"))
                                             {
                                                 SimplifiedTrueOtherWiseFalse = true;
@@ -331,10 +350,13 @@ namespace Formulas
                                                 Suitable = true;
                                                 return Dummy;
                                             }
-
+                                        }
+                                    }
                                 }
                                 catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
                             }
+                        }
+                    }
                 }
                 else
                 {

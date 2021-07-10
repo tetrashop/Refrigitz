@@ -2,24 +2,24 @@ using System;
 
 namespace Ellipse
 {
-    class EllipsAroundFormula
+    internal class EllipsAroundFormula
     {
-        double around = 0;
-        double aroundP2 = 0;
-        double Laround = 0;
-        double Paround = 0;
-        double Paround0 = 0;
-        double Paround1 = 0;
-        double Laround0 = 0;
-        double Laround1 = 0;
-        double p = 0;
-        double e = 0;
+        private double around = 0;
+        private double aroundP2 = 0;
+        private readonly double Laround = 0;
+        private readonly double Paround = 0;
+        private readonly double Paround0 = 0;
+        private readonly double Paround1 = 0;
+        private readonly double Laround0 = 0;
+        private readonly double Laround1 = 0;
+        private readonly double p = 0;
+        private readonly double e = 0;
         public EllipsAroundFormula(double a, double b, double c)
         {
             // Params rr = new Params(a, b);
             //Initiate Parameters of Ellipse.
             p = Math.Pow(b, 2) / a;
-            e = (double)System.Math.Sqrt(1 - (p / a));
+            e = System.Math.Sqrt(1 - (p / a));
             c = e * a;
             double u = Math.PI - Math.Atan((b / c)// * (Math.PI / 180)//b / c)// * (Math.PI / 180)
                 );
@@ -94,13 +94,13 @@ namespace Ellipse
         }
         public double aroundAccess
         {
-            get { return around; }
-            set { around = value; }
+            get => around;
+            set => around = value;
         }
         public double aroundP2Access
         {
-            get { return aroundP2; }
-            set { aroundP2 = value; }
+            get => aroundP2;
+            set => aroundP2 = value;
         }
 
     }

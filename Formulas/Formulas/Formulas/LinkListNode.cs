@@ -1,10 +1,10 @@
 namespace Formulas
 {
-    class LinkListNodeClass
+    internal class LinkListNodeClass
     {
-        AddToTree.Tree Current = new AddToTree.Tree(null, false);
-        LinkListNodeClass Next = null;
-        LinkListNodeClass Thread = null;
+        private AddToTree.Tree Current = new AddToTree.Tree(null, false);
+        private LinkListNodeClass Next = null;
+        private LinkListNodeClass Thread = null;
         public LinkListNodeClass()
         {
         }
@@ -13,24 +13,42 @@ namespace Formulas
         {
             bool Is = true;
             if (T.NextAccess.NextAccess == null)
+            {
                 return true;
-            if (T.CurrentAccess.SampleAccess != this.CurrentAccess.SampleAccess)
+            }
+
+            if (T.CurrentAccess.SampleAccess != CurrentAccess.SampleAccess)
+            {
                 Is = false;
-            if (this.NextAccess == null)
+            }
+
+            if (NextAccess == null)
+            {
                 return true;
-            return Is && this.NextAccess.EqualLinkList(T.NextAccess);
+            }
+
+            return Is && NextAccess.EqualLinkList(T.NextAccess);
         }
         //Ramin Edjlal.1394/3/31
         public bool EqualLinkList2(LinkListNodeClass T)
         {
             bool Is = true;
             if (T == null)
+            {
                 return true;
-            if (T.CurrentAccess.SampleAccess != this.CurrentAccess.SampleAccess)
+            }
+
+            if (T.CurrentAccess.SampleAccess != CurrentAccess.SampleAccess)
+            {
                 Is = false;
-            if (this.NextAccess == null)
+            }
+
+            if (NextAccess == null)
+            {
                 return true;
-            return Is && this.NextAccess.EqualLinkList(T.NextAccess);
+            }
+
+            return Is && NextAccess.EqualLinkList(T.NextAccess);
         }
         public AddToTree.Tree CurrentAccess
         {

@@ -6,22 +6,22 @@ namespace Formulas
 {
     public partial class Parantez : Form
     {
-        Graphic.Squares Sq = null;
-        Graphics g = null;
-        static int[] SquredPushed = new int[2];
-        int DummyRow = 0, DummyColumn = 0;
-        int INTPressded = 0;
-        String Contained = null;
+        private Graphic.Squares Sq = null;
+        private Graphics g = null;
+        private static readonly int[] SquredPushed = new int[2];
+        private int DummyRow = 0, DummyColumn = 0;
+        private int INTPressded = 0;
+        private string Contained = null;
         public Parantez()
         {
             InitializeComponent();
         }
         private void Parantez_Load(object sender, EventArgs e)
         {
-            this.DrawForm();
-            this.DrawParantezOnForm();
+            DrawForm();
+            DrawParantezOnForm();
         }
-        public String GetContained()
+        public string GetContained()
         {
             return Contained;
         }
@@ -34,51 +34,59 @@ namespace Formulas
         {
             int HeightValue = 40;
             int WidthValue = 80;
-            g = this.CreateGraphics();
+            g = CreateGraphics();
             g.Clear(Color.White);
             Sq = new Graphic.Squares(WidthValue, HeightValue);
             for (int i = 0; i < WidthValue; i = i + 40)
+            {
                 for (int j = 0; j < HeightValue; j = j + 40)
                 {
                     g.DrawRectangle(new Pen(Color.Black, 5), Sq.lwBase[i / 40, j / 40, 0], Sq.lwBase[i / 40, j / 40, 1], 40, 40);
                     g.FillRectangle(new SolidBrush(Color.LightGray), Sq.lwBase[i / 40, j / 40, 0], Sq.lwBase[i / 40, j / 40, 1], 40, 40);
                     g.FillRectangle(new SolidBrush(Color.White), Sq.lwUp[i / 40, j / 40, 0], Sq.lwUp[i / 40, j / 40, 1], 34, 34);
                 }
+            }
             /*  Integral.BackColor = Color.White;
-                Line.BackColor = Color.White;
-                Trianglic.BackColor = Color.White;
-                Cerices.BackColor = Color.White;
-                Root.BackColor = Color.White;
-                Parantez.BackColor = Color.White;
-                ToUp.BackColor = Color.White;
-                ToDown.BackColor = Color.White;
-                ToLeft.BackColor = Color.White;
-                ToRight.BackColor = Color.White;
-             */
+   Line.BackColor = Color.White;
+   Trianglic.BackColor = Color.White;
+   Cerices.BackColor = Color.White;
+   Root.BackColor = Color.White;
+   Parantez.BackColor = Color.White;
+   ToUp.BackColor = Color.White;
+   ToDown.BackColor = Color.White;
+   ToLeft.BackColor = Color.White;
+   ToRight.BackColor = Color.White;
+*/
         }
         private void Parantez_Paint(object sender, PaintEventArgs e)
         {
-            this.DrawForm();
-            this.DrawParantezOnForm();
+            DrawForm();
+            DrawParantezOnForm();
         }
         private void Parantez_MouseMove(object sender, MouseEventArgs e)
         {
-            SquredPushed[0] = this.PointToClient(MousePosition).X;
-            SquredPushed[1] = this.PointToClient(MousePosition).Y;
-            this.PushedRectangle();
+            SquredPushed[0] = PointToClient(MousePosition).X;
+            SquredPushed[1] = PointToClient(MousePosition).Y;
+            PushedRectangle();
         }
         public bool IsOpenedParantez()
         {
             bool Is = false;
             if (INTPressded == 1)
+            {
                 Is = true;
+            }
+
             return Is;
         }
         public bool IsClosedParantez()
         {
             bool Is = false;
             if (INTPressded == 2)
+            {
                 Is = true;
+            }
+
             return Is;
         }
         private void PushedRectangle()
@@ -93,15 +101,25 @@ namespace Formulas
                         Row = i;
                         Column = j;
                         if (((SquredPushed[0] > Sq.lwBase[Row, Column, 0]) & (SquredPushed[0] < Sq.lwBase[Row, Column, 2])))
+                        {
                             if (((SquredPushed[1] > Sq.lwBase[Row, Column, 1]) & (SquredPushed[1] < Sq.lwBase[Row, Column, 3])))
+                            {
                                 break;
+                            }
+                        }
                     }
                     if (((SquredPushed[0] > Sq.lwBase[Row, Column, 0]) & (SquredPushed[0] < Sq.lwBase[Row, Column, 2])))
+                    {
                         if (((SquredPushed[1] > Sq.lwBase[Row, Column, 1]) & (SquredPushed[1] < Sq.lwBase[Row, Column, 3])))
+                        {
                             break;
+                        }
+                    }
                 }
                 if ((Row != DummyRow) || (Column != DummyColumn))
+                {
                     if (((SquredPushed[0] > Sq.lwBase[Row, Column, 0]) & (SquredPushed[0] < Sq.lwBase[Row, Column, 2])))
+                    {
                         if (((SquredPushed[1] > Sq.lwBase[Row, Column, 1]) & (SquredPushed[1] < Sq.lwBase[Row, Column, 3])))
                         {
                             g.DrawRectangle(new Pen(Color.Black, 5), Sq.lwBase[DummyRow, DummyColumn, 0], Sq.lwBase[DummyRow, DummyColumn, 1], 40, 40);
@@ -110,25 +128,32 @@ namespace Formulas
                             //Open
 
                             if (Row == 0)
+                            {
                                 if (Column == 0)
                                 {
                                     INTPressded = 1;
                                     Contained = "(";
                                 }
+                            }
 
 
                             //Close
                             if (Row == 1)
+                            {
                                 if (Column == 0)
                                 {
                                     INTPressded = 2;
                                     Contained = ")";
                                 }
+                            }
 
                             DummyRow = Row;
                             DummyColumn = Column;
                         }
-                this.DrawParantezOnForm();
+                    }
+                }
+
+                DrawParantezOnForm();
             }
         }
         private void Parantez_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -138,7 +163,7 @@ namespace Formulas
 
         private void Parantez_Mouseclick(object sender, MouseEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
 

@@ -418,25 +418,25 @@ namespace Formulas
 {
     public partial class Equation : Form
     {
-        bool AutoTrueManualFalse = true;
-        Graphic.Squares Sq = null;
-        Graphics g = null;
-        static int[] SquredPushed = new int[2];
-        int DummyRow = 0, DummyColumn = 0;
-        PictureBox Integral = new PictureBox();
-        PictureBox Line = new PictureBox();
-        PictureBox Trianglic = new PictureBox();
-        PictureBox Cerices = new PictureBox();
-        PictureBox Root = new PictureBox();
-        PictureBox Parantez = new PictureBox();
-        PictureBox ToUp = new PictureBox();
-        PictureBox ToDown = new PictureBox();
-        PictureBox ToLeft = new PictureBox();
-        PictureBox ToRight = new PictureBox();
-        PictureBox Ln = new PictureBox();
-        PictureBox Log = new PictureBox();
-        PictureBox No = new PictureBox();
-        SenderSample Sender = null;
+        private bool AutoTrueManualFalse = true;
+        private Graphic.Squares Sq = null;
+        private Graphics g = null;
+        private static readonly int[] SquredPushed = new int[2];
+        private int DummyRow = 0, DummyColumn = 0;
+        private readonly PictureBox Integral = new PictureBox();
+        private readonly PictureBox Line = new PictureBox();
+        private readonly PictureBox Trianglic = new PictureBox();
+        private readonly PictureBox Cerices = new PictureBox();
+        private readonly PictureBox Root = new PictureBox();
+        private readonly PictureBox Parantez = new PictureBox();
+        private readonly PictureBox ToUp = new PictureBox();
+        private readonly PictureBox ToDown = new PictureBox();
+        private readonly PictureBox ToLeft = new PictureBox();
+        private readonly PictureBox ToRight = new PictureBox();
+        private readonly PictureBox Ln = new PictureBox();
+        private readonly PictureBox Log = new PictureBox();
+        private readonly PictureBox No = new PictureBox();
+        private SenderSample Sender = null;
 
         public Setting.EquationSettingInsertion EquationSettingInsertionOnEquationForm = null;
         private int INTPressded = -1;
@@ -446,26 +446,32 @@ namespace Formulas
         public Formulas.EquationTrace EquationTraceVariable = null;
         public Formulas.EquationTrace DummyEquationTraceVariable = null;
         public TraceKind TraceKindVariable = new TraceKind();
+
         //Formulas.Sinusad SinusadClassVariableResived = null;        
-        bool LastInsertionTruePreviouseInsertonFalse = true;//Refet to page 145.
-        bool ADDTrueDELETEFalse = true;
+        private bool LastInsertionTruePreviouseInsertonFalse = true;//Refet to page 145.
+        private bool ADDTrueDELETEFalse = true;
         public void InizilzingNullEquationTraceInsertionCallObjetcs()
         {
             Equation THISREF = this;
             if (SinusadClassVariable == null)
+            {
                 SinusadClassVariable = new Sinusad(ref SinusadClassVariable, ref THISREF);
-
+            }
 
             if (NumberAndVariable == null)
+            {
                 NumberAndVariable = new NumberVar.NumberAndVariable(ref NumberAndVariable, ref THISREF);
+            }
 
             if (EquationSettingInsertionOnEquationForm == null)
+            {
                 EquationSettingInsertionOnEquationForm = new Setting.EquationSettingInsertion();
+            }
 
             if (EquationTraceVariable == null)
+            {
                 EquationTraceVariable = new EquationTrace(THISREF, new Set());
-
-
+            }
         }
         public Equation()
         {
@@ -547,95 +553,176 @@ namespace Formulas
             get { return INTPressded; }
             set { INTPressded = value; }
         }
-        public String GetString(int INTPressded)
+        public string GetString(int INTPressded)
         {
-            String Sample = null;
+            string Sample = null;
             if (INTPressded == 0)
+            {
                 Sample = "Sin";
+            }
+
             if (INTPressded == 1)
+            {
                 Sample = "Cos";
+            }
+
             if (INTPressded == 2)
+            {
                 Sample = "Tan";
+            }
+
             if (INTPressded == 3)
+            {
                 Sample = "Cot";
+            }
+
             if (INTPressded == 4)
+            {
                 Sample = "Sec";
+            }
+
             if (INTPressded == 5)
+            {
                 Sample = "Csc";
+            }
+
             if (INTPressded == 6)
+            {
                 Sample = "Ln";
+            }
+
             if (INTPressded == 7)
+            {
                 Sample = "Log";
+            }
+
             return Sample;
         }
         public void SetIndependenceVariable()
         {
-            g = this.CreateGraphics();
+            g = CreateGraphics();
             g.DrawString("x", new Font("Times New Roman", 15), new SolidBrush(Color.Black), 250, 8);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.DrawForm();
+            DrawForm();
             Sender = new SenderSample(this);
             Equation E = this;
             SinusadClassVariable = new Sinusad(ref SinusadClassVariable, ref E);
             NumberAndVariable = new NumberVar.NumberAndVariable(ref NumberAndVariable, ref E);
             EquationSettingInsertionOnEquationForm = new Setting.EquationSettingInsertion();
-            EquationTraceVariable = new EquationTrace(this, this.Sender.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss);
+            EquationTraceVariable = new EquationTrace(this, Sender.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss);
         }
-        public String GetCurrentSampleFromBoard(int StringValue)
+        public string GetCurrentSampleFromBoard(int StringValue)
         {
-            String DummyGetCurrentSample = null;
+            string DummyGetCurrentSample = null;
             if (StringValue == 0)
+            {
                 DummyGetCurrentSample = "INT";
+            }
+
             if (StringValue == 1)
+            {
                 DummyGetCurrentSample = "/";
+            }
+
             if (StringValue == 2)
+            {
                 DummyGetCurrentSample = SinusadClassVariable.GetContained();
+            }
+
             if (StringValue == 3)
+            {
                 DummyGetCurrentSample = "sic";
+            }
+
             if (StringValue == 4)
+            {
                 DummyGetCurrentSample = "Root";
+            }
+
             if (StringValue == 5)
+            {
                 DummyGetCurrentSample = "()";
+            }
+
             if (StringValue == 6)
+            {
                 DummyGetCurrentSample = "Up";
+            }
+
             if (StringValue == 7)
+            {
                 DummyGetCurrentSample = "Down";
+            }
+
             if (StringValue == 8)
+            {
                 DummyGetCurrentSample = "Left";
+            }
+
             if (StringValue == 9)
+            {
                 DummyGetCurrentSample = "Right";
+            }
+
             if (StringValue == 10)
+            {
                 DummyGetCurrentSample = "+";
+            }
+
             if (StringValue == 11)
+            {
                 DummyGetCurrentSample = "-";
+            }
+
             if (StringValue == 12)
+            {
                 DummyGetCurrentSample = "*";
+            }
+
             if (StringValue == 13)
+            {
                 DummyGetCurrentSample = "/";
+            }
+
             if (StringValue == 14)
+            {
                 DummyGetCurrentSample = "x";
+            }
+
             if (StringValue == 15)
+            {
                 DummyGetCurrentSample = NumberAndVariable.GetContained();
+            }
+
             if (StringValue == 16)
+            {
                 DummyGetCurrentSample = "^";
+            }
+
             if (StringValue == 17)
+            {
                 DummyGetCurrentSample = "=";
+            }
+
             return DummyGetCurrentSample;
         }
         private void DrawForm()
         {
-            g = this.CreateGraphics();
+            g = CreateGraphics();
             g.Clear(Color.White);
-            Sq = new Graphic.Squares(this.Width, this.Height);
-            for (int i = 0; i < this.Width; i = i + 40)
-                for (int j = 0; j < this.Height; j = j + 40)
+            Sq = new Graphic.Squares(Width, Height);
+            for (int i = 0; i < Width; i = i + 40)
+            {
+                for (int j = 0; j < Height; j = j + 40)
                 {
                     g.DrawRectangle(new Pen(Color.Black, 5), Sq.lwBase[i / 40, j / 40, 0], Sq.lwBase[i / 40, j / 40, 1], 40, 40);
                     g.FillRectangle(new SolidBrush(Color.LightGray), Sq.lwBase[i / 40, j / 40, 0], Sq.lwBase[i / 40, j / 40, 1], 40, 40);
                     g.FillRectangle(new SolidBrush(Color.White), Sq.lwUp[i / 40, j / 40, 0], Sq.lwUp[i / 40, j / 40, 1], 34, 34);
                 }
+            }
+
             Integral.BackColor = Color.White;
             Line.BackColor = Color.White;
             Trianglic.BackColor = Color.White;
@@ -650,12 +737,15 @@ namespace Formulas
         public void SenderOperations()
         {
             if (INTPressded == 18)
+            {
                 AutoTrueManualFalse = !AutoTrueManualFalse;
+            }
+
             try
             {
-                this.Form1_Paint(new object(), new PaintEventArgs(g, new Rectangle()));
+                Form1_Paint(new object(), new PaintEventArgs(g, new Rectangle()));
             }
-            catch (ArgumentNullException t) { ExceptionClass.ExceptionClassMethod(t); this.Form1_Paint(new object(), new PaintEventArgs(this.CreateGraphics(), new Rectangle())); }
+            catch (ArgumentNullException t) { ExceptionClass.ExceptionClassMethod(t); Form1_Paint(new object(), new PaintEventArgs(CreateGraphics(), new Rectangle())); }
             //on every sample should inroduce Three state
             //EquationSettingInsertionOnEquationForm.ShowDialog();
             Equation THIS = this;
@@ -670,28 +760,33 @@ namespace Formulas
                     //To Trace movement if needed.
                     //ERROR3070403:refer to page 145.
                     //ERROR3298403:refer to page 145.
-                    EquationTraceVariable.SetSettingsOnMoveButtons(THIS, this.SenderSampleAccess.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss, this.SenderSampleAccess.AutoSenderAccess.DrawingAccess.GraphicsAccess, this.INTPressded, this.TraceKindVariable);
+                    EquationTraceVariable.SetSettingsOnMoveButtons(THIS, SenderSampleAccess.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss, SenderSampleAccess.AutoSenderAccess.DrawingAccess.GraphicsAccess, INTPressded, TraceKindVariable);
                 }
                 else
+                {
                     Sender.SenderSampleOperation(ref THIS, false, INTPressded, ref SinusadClassVariable, ref EquationSettingInsertionOnEquationForm, ref NumberAndVariable, ref ParantezVariable, ref EquationTraceVariable, TraceKindVariable);
+                }
                 /* if (EquationTraceVariable.HolderReadyAccess)
-                    {
-                        this.SenderSampleAccess.AutoSenderAccess.NodeAccess = EquationTraceVariable.HOLDERAccess.SenderSampleAccess.AutoSenderAccess.NodeAccess;
-                        DummyEquationTraceVariable = null;
-                    }            
-                 */
+   {
+       this.SenderSampleAccess.AutoSenderAccess.NodeAccess = EquationTraceVariable.HOLDERAccess.SenderSampleAccess.AutoSenderAccess.NodeAccess;
+       DummyEquationTraceVariable = null;
+   }            
+*/
 
             }
             else
             {
                 if (DummyEquationTraceVariable == null)
+                {
                     DummyEquationTraceVariable = new EquationTrace(THIS, THIS.SenderSampleAccess.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss);
+                }
+
                 DummyEquationTraceVariable.SetSettingsOnMoveButtons(THIS, THIS.SenderSampleAccess.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss, THIS.SenderSampleAccess.AutoSenderAccess.DrawingAccess.GraphicsAccess, INTPressded, THIS.TraceKindVariable);
             }
         }
         private void Form1_Click(object sender, EventArgs e)
         {
-            this.SenderOperations();
+            SenderOperations();
         }
         public Setting.EquationSettingInsertion EquationSettingInsertionVariableAccess
         {
@@ -710,15 +805,25 @@ namespace Formulas
                         Row = i;
                         Column = j;
                         if (((SquredPushed[0] > Sq.lwBase[Row, Column, 0]) & (SquredPushed[0] < Sq.lwBase[Row, Column, 2])))
+                        {
                             if (((SquredPushed[1] > Sq.lwBase[Row, Column, 1]) & (SquredPushed[1] < Sq.lwBase[Row, Column, 3])))
+                            {
                                 break;
+                            }
+                        }
                     }
                     if (((SquredPushed[0] > Sq.lwBase[Row, Column, 0]) & (SquredPushed[0] < Sq.lwBase[Row, Column, 2])))
+                    {
                         if (((SquredPushed[1] > Sq.lwBase[Row, Column, 1]) & (SquredPushed[1] < Sq.lwBase[Row, Column, 3])))
+                        {
                             break;
+                        }
+                    }
                 }
                 if ((Row != DummyRow) || (Column != DummyColumn))
+                {
                     if (((SquredPushed[0] > Sq.lwBase[Row, Column, 0]) & (SquredPushed[0] < Sq.lwBase[Row, Column, 2])))
+                    {
                         if (((SquredPushed[1] > Sq.lwBase[Row, Column, 1]) & (SquredPushed[1] < Sq.lwBase[Row, Column, 3])))
                         {
                             g.DrawRectangle(new Pen(Color.Black, 5), Sq.lwBase[DummyRow, DummyColumn, 0], Sq.lwBase[DummyRow, DummyColumn, 1], 40, 40);
@@ -726,72 +831,101 @@ namespace Formulas
                             g.FillRectangle(new SolidBrush(Color.White), Sq.lwUp[DummyRow, DummyColumn, 0], Sq.lwUp[DummyRow, DummyColumn, 1], 34, 34);
                             //Integral
                             if (DummyRow == 0)
+                            {
                                 if (DummyColumn == 0)
+                                {
                                     Integral.BackColor = Color.White;
+                                }
+                            }
 
                             if (Row == 0)
+                            {
                                 if (Column == 0)
                                 {
                                     INTPressded = 0;
                                     Integral.BackColor = Color.LightGray;
                                 }
+                            }
                             //line
                             if (DummyRow == 1)
+                            {
                                 if (DummyColumn == 0)
+                                {
                                     Line.BackColor = Color.White;
-
+                                }
+                            }
 
                             if (Row == 1)
+                            {
                                 if (Column == 0)
                                 {
                                     INTPressded = 1;
                                     Line.BackColor = Color.LightGray;
                                 }
+                            }
                             //Trianglic
                             if (DummyRow == 2)
+                            {
                                 if (DummyColumn == 0)
-
+                                {
                                     Trianglic.BackColor = Color.White;
+                                }
+                            }
 
                             if (Row == 2)
+                            {
                                 if (Column == 0)
                                 {
                                     INTPressded = 2;
                                     Trianglic.BackColor = Color.LightGray;
                                 }
+                            }
                             //cerieces
                             if (DummyRow == 3)
+                            {
                                 if (DummyColumn == 0)
+                                {
                                     Cerices.BackColor = Color.White;
+                                }
+                            }
 
                             if (Row == 3)
+                            {
                                 if (Column == 0)
                                 {
                                     Cerices.BackColor = Color.LightGray;
                                     INTPressded = 3;
                                 }
+                            }
                             //Root
                             if (DummyRow == 4)
+                            {
                                 if (DummyColumn == 0)
-
-
+                                {
                                     Root.BackColor = Color.White;
+                                }
+                            }
 
                             if (Row == 4)
+                            {
                                 if (Column == 0)
                                 {
                                     INTPressded = 4;
                                     Root.BackColor = Color.LightGray;
                                 }
+                            }
                             //Parantez
                             if (DummyRow == 5)
+                            {
                                 if (DummyColumn == 0)
                                 {
 
                                     Parantez.BackColor = Color.White;
                                 }
+                            }
 
                             if (Row == 5)
+                            {
                                 if (Column == 0)
                                 {
 
@@ -799,157 +933,241 @@ namespace Formulas
                                     Parantez.BackColor = Color.LightGray;
 
                                 }
+                            }
                             //ToUp
                             if (DummyRow == 0)
+                            {
                                 if (DummyColumn == 1)
-
+                                {
                                     ToUp.BackColor = Color.White;
+                                }
+                            }
 
                             if (Row == 0)
+                            {
                                 if (Column == 1)
                                 {
                                     ToUp.BackColor = Color.LightGray;
                                     INTPressded = 6;
                                 }
+                            }
                             //ToDown
                             if (DummyRow == 1)
+                            {
                                 if (DummyColumn == 1)
-
+                                {
                                     ToDown.BackColor = Color.White;
+                                }
+                            }
 
                             if (Row == 1)
+                            {
                                 if (Column == 1)
                                 {
                                     INTPressded = 7;
                                     ToDown.BackColor = Color.LightGray;
                                 }
+                            }
                             //ToLeft
                             if (DummyRow == 2)
+                            {
                                 if (DummyColumn == 1)
-
+                                {
                                     ToLeft.BackColor = Color.White;
+                                }
+                            }
 
                             if (Row == 2)
+                            {
                                 if (Column == 1)
                                 {
                                     INTPressded = 8;
                                     ToLeft.BackColor = Color.LightGray;
                                 }
+                            }
                             //ToRight
                             if (DummyRow == 3)
+                            {
                                 if (DummyColumn == 1)
+                                {
                                     ToRight.BackColor = Color.White;
+                                }
+                            }
 
                             if (Row == 3)
+                            {
                                 if (Column == 1)
                                 {
                                     INTPressded = 9;
                                     ToRight.BackColor = Color.LightGray;
                                 }
+                            }
+
                             if (Row == 4)
+                            {
                                 if (Column == 1)
+                                {
                                     INTPressded = 10;
+                                }
+                            }
+
                             if (Row == 5)
+                            {
                                 if (Column == 1)
+                                {
                                     INTPressded = 11;
+                                }
+                            }
+
                             if (Row == 6)
+                            {
                                 if (Column == 1)
+                                {
                                     INTPressded = 12;
+                                }
+                            }
+
                             if (Row == 7)
+                            {
                                 if (Column == 1)
+                                {
                                     INTPressded = 13;
+                                }
+                            }
+
                             if (Row == 8)
+                            {
                                 if (Column == 1)
                                 {
                                     EquationSettingInsertionOnEquationForm.ShowDialog();
 
                                 }
+                            }
                             //Independency variable
                             if (Row == 6)
+                            {
                                 if (Column == 0)
+                                {
                                     INTPressded = 14;
+                                }
+                            }
+
                             if (Row == 7)
+                            {
                                 if (Column == 0)
+                                {
                                     INTPressded = 16;
+                                }
+                            }
                             //number
                             if (DummyRow == 8)
+                            {
                                 if (DummyColumn == 0)
-
+                                {
                                     No.BackColor = Color.White;
+                                }
+                            }
 
                             if (Row == 8)
+                            {
                                 if (Column == 0)
                                 {
                                     INTPressded = 15;
                                     No.BackColor = Color.LightGray;
                                 }
+                            }
 
                             if (Row == 9)
+                            {
                                 if (Column == 0)
                                 {
                                     INTPressded = 17;
                                     No.BackColor = Color.LightGray;
                                 }
-                            if (DummyRow == 9)
-                                if (DummyColumn == 0)
+                            }
 
+                            if (DummyRow == 9)
+                            {
+                                if (DummyColumn == 0)
+                                {
                                     No.BackColor = Color.White;
+                                }
+                            }
+
                             if (Row == 10)
+                            {
                                 if (Column == 0)
                                 {
 
                                     INTPressded = 18;
                                 }
+                            }
+
                             if (Row == 10)
+                            {
                                 if (Column == 1)
                                 {
                                     TraceKindVariable.ShowDialog();
                                     INTPressded = 19;
                                     //TraceKindVariable.Close();
                                 }
+                            }
+
                             if (AutoTrueManualFalse)
-                                this.DrawAuto();
+                            {
+                                DrawAuto();
+                            }
                             else
-                                this.DrawManual();
-                            this.DrawTraceKind();
-                            this.FiveBasicOprators();
-                            this.SetIndependenceVariable();
-                            this.DrawEqual();
+                            {
+                                DrawManual();
+                            }
+
+                            DrawTraceKind();
+                            FiveBasicOprators();
+                            SetIndependenceVariable();
+                            DrawEqual();
                             DummyRow = Row;
                             DummyColumn = Column;
                         }
+                    }
+                }
             }
         }
         private void Form1_Activated(object sender, EventArgs e)
         {
-            this.DrawForm();
+            DrawForm();
         }
         private void Form1_AutoValidateChanged(object sender, EventArgs e)
         {
-            this.DrawForm();
+            DrawForm();
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            this.DrawForm();
-            this.DrawIntegralOnForm();//0
-            this.DrawLineOnForm();//1
-            this.DrawTrianglicOnForm();//2
-            this.DrawCericesOnForm();//3
-            this.DrawRootOnForm();//4
-            this.DrawParantezOnForm();//5
-            this.DrawToUpOnForm();//6
-            this.DrawToDownOnForm();//7
-            this.DrawToLeftOnForm();//8
-            this.DrawToRightOnForm();//9
-            this.FiveBasicOprators();//10
-            this.SetIndependenceVariable();//11
-            this.DrawNumberAndVaribale();//12
-            this.DrawEqual();//13
+            DrawForm();
+            DrawIntegralOnForm();//0
+            DrawLineOnForm();//1
+            DrawTrianglicOnForm();//2
+            DrawCericesOnForm();//3
+            DrawRootOnForm();//4
+            DrawParantezOnForm();//5
+            DrawToUpOnForm();//6
+            DrawToDownOnForm();//7
+            DrawToLeftOnForm();//8
+            DrawToRightOnForm();//9
+            FiveBasicOprators();//10
+            SetIndependenceVariable();//11
+            DrawNumberAndVaribale();//12
+            DrawEqual();//13
             if (AutoTrueManualFalse)
-                this.DrawAuto();
+            {
+                DrawAuto();
+            }
             else
-                this.DrawManual();
-            this.DrawTraceKind();
+            {
+                DrawManual();
+            }
+
+            DrawTraceKind();
         }
         private void DrawEqual()
         {
@@ -979,7 +1197,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "Integral.gif");
-            this.Controls.Add(Integral);
+            Controls.Add(Integral);
         }
         private void DrawLineOnForm()
         {
@@ -992,7 +1210,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "Line.gif");
-            this.Controls.Add(Line);
+            Controls.Add(Line);
         }
         private void DrawTrianglicOnForm()
         {
@@ -1005,7 +1223,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "Trianglic.gif");
-            this.Controls.Add(Trianglic);
+            Controls.Add(Trianglic);
         }
         private void DrawCericesOnForm()
         {
@@ -1018,7 +1236,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "Cerices.gif");
-            this.Controls.Add(Cerices);
+            Controls.Add(Cerices);
         }
         private void DrawRootOnForm()
         {
@@ -1032,7 +1250,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "Root.gif");
-            this.Controls.Add(Root);
+            Controls.Add(Root);
         }
         private void DrawParantezOnForm()
         {
@@ -1046,7 +1264,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "Parantez.gif");
-            this.Controls.Add(Parantez);
+            Controls.Add(Parantez);
         }
         private void DrawToUpOnForm()
         {
@@ -1059,7 +1277,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "ToUp.gif");
-            this.Controls.Add(ToUp);
+            Controls.Add(ToUp);
         }
         private void DrawToDownOnForm()
         {
@@ -1073,7 +1291,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "ToDown.gif");
-            this.Controls.Add(ToDown);
+            Controls.Add(ToDown);
         }
 
         private void DrawToLeftOnForm()
@@ -1087,7 +1305,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "ToLeft.gif");
-            this.Controls.Add(ToLeft);
+            Controls.Add(ToLeft);
         }
         private void DrawToRightOnForm()
         {
@@ -1101,7 +1319,7 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "ToRight.gif");
-            this.Controls.Add(ToRight);
+            Controls.Add(ToRight);
         }
         private void FiveBasicOprators()
         {
@@ -1123,54 +1341,66 @@ namespace Formulas
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
               + "No.gif");
-            this.Controls.Add(No);
+            Controls.Add(No);
 
         }
         private void Equation_MouseMove(object sender, MouseEventArgs e)
         {
-            SquredPushed[0] = this.PointToClient(MousePosition).X;
-            SquredPushed[1] = this.PointToClient(MousePosition).Y;
-            this.PushedRectangle();
+            SquredPushed[0] = PointToClient(MousePosition).X;
+            SquredPushed[1] = PointToClient(MousePosition).Y;
+            PushedRectangle();
             if (INTPressded != 2)
+            {
                 SinusadClassVariable.Hide();
+            }
         }
 
         private void Equation_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 27)//Escape
+            {
                 LastInsertionTruePreviouseInsertonFalse = true;
-            if (e.KeyChar == 32)//Insertion
-                LastInsertionTruePreviouseInsertonFalse = false;
-            if (e.KeyChar == 68)
-                ADDTrueDELETEFalse = false;
-            else
-                ADDTrueDELETEFalse = true;
+            }
 
+            if (e.KeyChar == 32)//Insertion
+            {
+                LastInsertionTruePreviouseInsertonFalse = false;
+            }
+
+            if (e.KeyChar == 68)
+            {
+                ADDTrueDELETEFalse = false;
+            }
+            else
+            {
+                ADDTrueDELETEFalse = true;
+            }
         }
 
         private void Equation_Paint(object sender, PaintEventArgs e)
         {
-            this.DrawForm();
+            DrawForm();
             Sender = new SenderSample(this);
             Equation E = this;
             SinusadClassVariable = new Sinusad(ref SinusadClassVariable, ref E);
             NumberAndVariable = new NumberVar.NumberAndVariable(ref NumberAndVariable, ref E);
             EquationSettingInsertionOnEquationForm = new Setting.EquationSettingInsertion();
-            EquationTraceVariable = new EquationTrace(this, this.Sender.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss);
+            EquationTraceVariable = new EquationTrace(this, Sender.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss);
 
         }
 
         private void Equation_Resize(object sender, EventArgs e)
         {
-            this.Height = 120;
-            this.Width = 400;
+            Height = 120;
+            Width = 400;
         }
     }
-    class AddDeleteNode
+
+    internal class AddDeleteNode
     {
-        EquationTrace EquationTraceVariable = null;
-        Equation EquationVariable = null;
-        SenderSample DummySenderSample = null;
+        private EquationTrace EquationTraceVariable = null;
+        private Equation EquationVariable = null;
+        private SenderSample DummySenderSample = null;
         public AddDeleteNode(Equation THISE, EquationTrace TR)
         {
             EquationVariable = THISE;
@@ -1201,40 +1431,60 @@ namespace Formulas
         {
             AddToTree.Tree Node = THISE.SenderSampleAccess.AutoSenderAccess.NodeAccess;
             AddToTree.Tree Dummy = Node;
-            this.FINDTreeWithThreadConsiderationNode(Node, ref Dummy);
+            FINDTreeWithThreadConsiderationNode(Node, ref Dummy);
             return Dummy;
         }
         private void FINDTreeWithThreadConsiderationNode(AddToTree.Tree Node, ref AddToTree.Tree Dummy)
         {
             if (Node == null)
+            {
                 return;
+            }
+
             if (Node.SampleAccess == EquationTraceVariable.PreviouseNodeForBetweenTraceKindDummyAccess.StringSampleAccess)
+            {
                 if (Node.LeftSideAccess.SampleAccess == EquationTraceVariable.PreviouseNodeForBetweenTraceKindDummyAccess.LeftSideAccess.StringSampleAccess)
+                {
                     if (Node.RightSideAccess.SampleAccess == EquationTraceVariable.PreviouseNodeForBetweenTraceKindDummyAccess.RightSideAccess.StringSampleAccess)
+                    {
                         Dummy = Node;
-            this.FINDTreeWithThreadConsiderationNode(Node.LeftSideAccess, ref Dummy);
-            this.FINDTreeWithThreadConsiderationNode(Node.RightSideAccess, ref Dummy);
+                    }
+                }
+            }
+
+            FINDTreeWithThreadConsiderationNode(Node.LeftSideAccess, ref Dummy);
+            FINDTreeWithThreadConsiderationNode(Node.RightSideAccess, ref Dummy);
         }
         private Set FindSetNodeOfCurrentNodeAdded(Equation THISE, AddToTree.Tree Added)
         {
             AddToTree.Tree Node = Added;
             Set Dummy = THISE.SenderSampleAccess.AutoSenderAccess.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss;
-            Dummy = this.FindSetNode(ref Node, Dummy);
+            Dummy = FindSetNode(ref Node, Dummy);
             return Dummy;
         }
         private Set FindSetNode(ref AddToTree.Tree Node, Set Dummy)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             if (Node.SampleAccess == EquationTraceVariable.PreviouseNodeForBetweenTraceKindDummyAccess.StringSampleAccess)
+            {
                 if (Node.LeftSideAccess.SampleAccess == EquationTraceVariable.PreviouseNodeForBetweenTraceKindDummyAccess.LeftSideAccess.StringSampleAccess)
+                {
                     if (Node.RightSideAccess.SampleAccess == EquationTraceVariable.PreviouseNodeForBetweenTraceKindDummyAccess.RightSideAccess.StringSampleAccess)
+                    {
                         return Dummy;
-            Dummy = this.FindSetNode(ref Node, Dummy.LeftSideAccess);
-            Dummy = this.FindSetNode(ref Node, Dummy.RightSideAccess);
+                    }
+                }
+            }
+
+            Dummy = FindSetNode(ref Node, Dummy.LeftSideAccess);
+            Dummy = FindSetNode(ref Node, Dummy.RightSideAccess);
             return Dummy;
         }
-        public void AddDeleteNodeOperation(Equation THISE, EquationTrace TR, bool ADDTrueDELETEFalse, String Sample, bool InCurrentADDDELETETrueOtherWiseFalse)
+        public void AddDeleteNodeOperation(Equation THISE, EquationTrace TR, bool ADDTrueDELETEFalse, string Sample, bool InCurrentADDDELETETrueOtherWiseFalse)
         {
             if (InCurrentADDDELETETrueOtherWiseFalse)//IN OPERATION
             {
@@ -1247,10 +1497,13 @@ namespace Formulas
                         DummySenderSample.AutoSenderAccess.SenderToAddToTree(THISE.GetCurrentSampleFromBoard(THISE.INTPressedAccess), THISE, false);
                      */
                     if (THISE.AutoTrueManualFalseAccess)
+                    {
                         DummySenderSample.SenderSampleOperation(ref THISE, true, THISE.INTPressedAccess, ref (THISE.SinusadClassVariable), ref THISE.EquationSettingInsertionOnEquationForm, ref THISE.NumberAndVariable, ref THISE.ParantezVariable, ref THISE.EquationTraceVariable, THISE.TraceKindVariable);
+                    }
                     else
+                    {
                         DummySenderSample.SenderSampleOperation(ref THISE, false, THISE.INTPressedAccess, ref THISE.SinusadClassVariable, ref THISE.EquationSettingInsertionOnEquationForm, ref THISE.NumberAndVariable, ref THISE.ParantezVariable, ref THISE.EquationTraceVariable, THISE.TraceKindVariable);
-
+                    }
                 }
                 else//DELETE
                 { }
@@ -1341,8 +1594,8 @@ namespace Formulas
     public class Drawing
     {
         //ArrtificialItelligenceForGraphicallyDrawing ArrtificialItelligenceForGraphicallyDrawingNext = null;
-        static ArrtificialItelligenceForGraphicallyDrawing ArrtificialItelligenceForGraphicallyDrawingNode = null;
-        GraphicallyInterface GraphicallyInterfaceVariable = null;
+        private static ArrtificialItelligenceForGraphicallyDrawing ArrtificialItelligenceForGraphicallyDrawingNode = null;
+        private GraphicallyInterface GraphicallyInterfaceVariable = null;
         //Graphics g = null;
         public Drawing(Equation THIS, AutoSender AutoSendervarible, GraphicallyInterface Graphically)
         {
@@ -1389,7 +1642,7 @@ namespace Formulas
             {
                 Dummy.InizializingWhenNeede(xBegin, yBegin);
                 //for every statment draws.
-                this.DrawEachNodeOfArrtificialItelligenceForGraphicallyDrawing(Dummy, THIS, AutoSenderVarible);
+                DrawEachNodeOfArrtificialItelligenceForGraphicallyDrawing(Dummy, THIS, AutoSenderVarible);
                 Dummy = Dummy.ArrtificialItelligenceForGraphicallyDrawingNextAcess;
             }
         }
@@ -1402,12 +1655,15 @@ namespace Formulas
             //To Draw Each Node.(grpe of ArrtificialIntelligence)
             Dummy = ArrtificialItelligenceForGraphicallyDrawingNode.NodeSetAcesss;
             //by recursive on this method all Set Nodes draws
-            this.DrawOnForm(Dummy, GraphicallyInterfaceVariable);
+            DrawOnForm(Dummy, GraphicallyInterfaceVariable);
         }
         public void DrawOnForm(Set SetVariable, GraphicallyInterface GraphicallyInterfaceVariable)
         {
             if (SetVariable == null)
+            {
                 return;
+            }
+
             int xBegin = 32000, yBegin = SetVariable.YAccess;
             int xEnd = 0, yEnd = SetVariable.YAccess;
             if (((SetVariable.GetDecoder() >= 2) && (SetVariable.GetDecoder() <= 7))
@@ -1420,76 +1676,114 @@ namespace Formulas
                 GraphicallyInterfaceVariable.DrawTowParantez(xBegin - 5, yBegin, xEnd + 5, yEnd, 10);
             }
             if (SetVariable.GetDecoder() == 0)
+            {
                 GraphicallyInterfaceVariable.DrawIntegralOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
+            }
             else
                 if (SetVariable.GetDecoder() == 1)
+            {
                 GraphicallyInterfaceVariable.DrawLineOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
+            }
             else
                     if (SetVariable.GetDecoder() == 2)
+            {
                 GraphicallyInterfaceVariable.Sin(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                         if (SetVariable.GetDecoder() == 3)
+            {
                 GraphicallyInterfaceVariable.Cos(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                             if (SetVariable.GetDecoder() == 4)
+            {
                 GraphicallyInterfaceVariable.Tan(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                 if (SetVariable.GetDecoder() == 5)
+            {
                 GraphicallyInterfaceVariable.Cot(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                     if (SetVariable.GetDecoder() == 6)
+            {
                 GraphicallyInterfaceVariable.Sec(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                         if (SetVariable.GetDecoder() == 7)
+            {
                 GraphicallyInterfaceVariable.Csc(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                             if (SetVariable.GetDecoder() == 8)
+            {
                 GraphicallyInterfaceVariable.DrawCericesOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
+            }
             else
                                                 if (SetVariable.GetDecoder() == 9)
+            {
                 GraphicallyInterfaceVariable.DrawRootOnForm(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
+            }
             else
                                                     if (SetVariable.GetDecoder() == 10)
+            {
                 GraphicallyInterfaceVariable.DrawLn(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                                         if (SetVariable.GetDecoder() == 11)
+            {
                 GraphicallyInterfaceVariable.DrawLog(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                                             if (SetVariable.GetDecoder() == 12)
+            {
                 GraphicallyInterfaceVariable.DrawNumber(SetVariable, SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                                                 if (SetVariable.GetDecoder() == 13)
+            {
                 GraphicallyInterfaceVariable.FiveBasicOpratorsPlus(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                                                     if (SetVariable.GetDecoder() == 14)
+            {
                 GraphicallyInterfaceVariable.FiveBasicOpratorsMinuse(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                                                         if (SetVariable.GetDecoder() == 15)
+            {
                 GraphicallyInterfaceVariable.FiveBasicOpratorsMul(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                                                             if (SetVariable.GetDecoder() == 16)
+            {
                 //ERROR81723678 :Cuase of ERROR13725150 .The Line Of division is not drawn corectly.refr top page 127.
                 //ERRORCORECTION736340574 :the Argumnet was set.
                 GraphicallyInterfaceVariable.FiveBasicOpratorsDiv(SetVariable.XAccess, SetVariable.YAccess, SetVariable.WidhtAccess, SetVariable.HieghtAcess);
+            }
             else
                                                                                 if (SetVariable.GetDecoder() == 17)
+            {
                 GraphicallyInterfaceVariable.FiveBasicOpratorsPow(SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
             else
                                                                                     if (SetVariable.GetDecoder() == 18)
+            {
                 GraphicallyInterfaceVariable.DrawIndependence(SetVariable, SetVariable.XAccess, SetVariable.YAccess, 10);
+            }
 
-            this.DrawOnForm(SetVariable.LeftSideAccess, GraphicallyInterfaceVariable);
-            this.DrawOnForm(SetVariable.RightSideAccess, GraphicallyInterfaceVariable);
+            DrawOnForm(SetVariable.LeftSideAccess, GraphicallyInterfaceVariable);
+            DrawOnForm(SetVariable.RightSideAccess, GraphicallyInterfaceVariable);
         }
     }
     //This class is due to ArrtificialIntelligence drawing.
     //The Stores is a link list data type.
     public class ArrtificialItelligenceForGraphicallyDrawing
     {
-        GraphicallyInterface GraphicallyInterfaceVaribale = null;
-        ArrtificialItelligenceForGraphicallyDrawing ArrtificialItelligenceForGraphicallyDrawingNext = null;
-        Set NodeSet = null;
-        AddToTree.Tree NodeTree = null;
+        private GraphicallyInterface GraphicallyInterfaceVaribale = null;
+        private ArrtificialItelligenceForGraphicallyDrawing ArrtificialItelligenceForGraphicallyDrawingNext = null;
+        private Set NodeSet = null;
+        private AddToTree.Tree NodeTree = null;
         public ArrtificialItelligenceForGraphicallyDrawing(Equation EquationVariable, AutoSender AutoSenderVaribale, GraphicallyInterface Graphically)
         {
             GraphicallyInterfaceVaribale = Graphically;
@@ -1509,8 +1803,8 @@ namespace Formulas
         }
         public ArrtificialItelligenceForGraphicallyDrawing ArrtificialItelligenceForGraphicallyDrawingNextAcess
         {
-            get { return this.ArrtificialItelligenceForGraphicallyDrawingNext; }
-            set { this.ArrtificialItelligenceForGraphicallyDrawingNext = value; }
+            get { return ArrtificialItelligenceForGraphicallyDrawingNext; }
+            set { ArrtificialItelligenceForGraphicallyDrawingNext = value; }
         }
         //This Method Inizialize Set Nodes First time.
         public void InizializingWhenNeede(int xBegin, int yBegin)
@@ -1532,7 +1826,7 @@ namespace Formulas
             //It may to be corrected Except "No" variable.
             //ERROR560364
             //CORRECTION12456.The Number is set now. 
-            NodeSet = this.CreateGraphicallyNodes(NodeTree);
+            NodeSet = CreateGraphicallyNodes(NodeTree);
             //Set Dimensions.                        
             //(Error) The dimensions are not set.
             //ERROR12769034 .The Settings too only for one of condition is not Occured .
@@ -1540,11 +1834,11 @@ namespace Formulas
             //There Is already ERROR .
             //ERROR23659008 :Error on XY Calculation
             //ERROR30807507  :The whidth of line is not ok.
-            NodeSet = this.CalculatingXAndYAndWhithAndHeight(NodeSet, xBegin, yBegin, 20, 20, true);
+            NodeSet = CalculatingXAndYAndWhithAndHeight(NodeSet, xBegin, yBegin, 20, 20, true);
             //ERROR77007 :The problem dose not found.refer to page 130.
             //ERRORCORECTION8756 :The Shift when needed.refer to page 106.
-            NodeSet = this.ShiftWhenNeededX(NodeSet);
-            NodeSet = this.ShiftWhenNeededY(NodeSet);
+            NodeSet = ShiftWhenNeededX(NodeSet);
+            NodeSet = ShiftWhenNeededY(NodeSet);
             /*
             Set Dummy = new Set();
             this.SetWhidthValueOfNumberNode(NodeSet, ref Dummy);
@@ -1576,7 +1870,7 @@ namespace Formulas
             //It may to be corrected Except "No" variable.
             //ERROR560364
             //CORRECTION12456.The Number is set now. 
-            NodeSet = this.CreateGraphicallyNodes(NodeTree);
+            NodeSet = CreateGraphicallyNodes(NodeTree);
 
             // System.Windows.Forms.MessageBox.Show("5-2.The Graphically Node creates and assigned.");
             //Set Dimensions.
@@ -1586,14 +1880,14 @@ namespace Formulas
             //There Is already ERROR.
             //ERROR23659008 :Error on XY Calculation
             //ERROR30807507  :The whidth of line is not ok.
-            NodeSet = this.CalculatingXAndYAndWhithAndHeight(NodeSet, xBegin, yBegin, 20, 20, false);
+            NodeSet = CalculatingXAndYAndWhithAndHeight(NodeSet, xBegin, yBegin, 20, 20, false);
 
             // System.Windows.Forms.MessageBox.Show("5-3.The Graphically Node calcculated.");
 
             //ERROR77007 :The problem dose not found.refer to page 130.
             //ERRORCORECTION8756 :The Shift when needed.refer to page 106.
-            NodeSet = this.ShiftWhenNeededX(NodeSet);
-            NodeSet = this.ShiftWhenNeededY(NodeSet);
+            NodeSet = ShiftWhenNeededX(NodeSet);
+            NodeSet = ShiftWhenNeededY(NodeSet);
             /*
             Set Dummy = new Set();
             this.SetWhidthValueOfNumberNode(NodeSet, ref Dummy);
@@ -1607,54 +1901,72 @@ namespace Formulas
         private Set TheSmalestNodeX(Set Node, Set DummySmalest)
         {
             if (Node == null)
+            {
                 return DummySmalest;
+            }
+
             if (Node.XAccess < DummySmalest.XAccess)
+            {
                 DummySmalest = Node;
-            DummySmalest = this.TheSmalestNodeX(Node.LeftSideAccess, DummySmalest);
-            DummySmalest = this.TheSmalestNodeX(Node.RightSideAccess, DummySmalest);
+            }
+
+            DummySmalest = TheSmalestNodeX(Node.LeftSideAccess, DummySmalest);
+            DummySmalest = TheSmalestNodeX(Node.RightSideAccess, DummySmalest);
             return DummySmalest;
         }
         private Set TheSmalestNodeY(Set Node, Set DummySmalest)
         {
             if (Node == null)
+            {
                 return DummySmalest;
+            }
+
             if (Node.YAccess < DummySmalest.YAccess)
+            {
                 DummySmalest = Node;
-            DummySmalest = this.TheSmalestNodeY(Node.LeftSideAccess, DummySmalest);
-            DummySmalest = this.TheSmalestNodeY(Node.RightSideAccess, DummySmalest);
+            }
+
+            DummySmalest = TheSmalestNodeY(Node.LeftSideAccess, DummySmalest);
+            DummySmalest = TheSmalestNodeY(Node.RightSideAccess, DummySmalest);
             return DummySmalest;
         }
         private Set ShiftActionX(Set Node, int ShiftCount)
         {
             if (Node == null)
+            {
                 return Node;
+            }
+
             Node.SetDimentions(((Node.XAccess) + ShiftCount), Node.YAccess, Node.WidhtAccess, Node.HieghtAcess);
-            this.ShiftActionX(Node.LeftSideAccess, ShiftCount);
-            this.ShiftActionX(Node.RightSideAccess, ShiftCount);
+            ShiftActionX(Node.LeftSideAccess, ShiftCount);
+            ShiftActionX(Node.RightSideAccess, ShiftCount);
             return Node;
         }
         private Set ShiftActionY(Set Node, int ShiftCount)
         {
             if (Node == null)
+            {
                 return Node;
+            }
+
             Node.SetDimentions(Node.XAccess, Node.YAccess + ShiftCount, Node.WidhtAccess, Node.HieghtAcess);
-            this.ShiftActionY(Node.LeftSideAccess, ShiftCount);
-            this.ShiftActionY(Node.RightSideAccess, ShiftCount);
+            ShiftActionY(Node.LeftSideAccess, ShiftCount);
+            ShiftActionY(Node.RightSideAccess, ShiftCount);
             return Node;
         }
         private Set ShiftWhenNeededX(Set Node)
         {
-            int x = this.TheSmalestNodeX(Node, Node).XAccess;
+            int x = TheSmalestNodeX(Node, Node).XAccess;
             int ShiftCount = 0;
             ShiftCount = 40 - x;
-            return this.ShiftActionX(Node, ShiftCount);
+            return ShiftActionX(Node, ShiftCount);
         }
         private Set ShiftWhenNeededY(Set Node)
         {
-            int y = this.TheSmalestNodeY(Node, Node).YAccess;
+            int y = TheSmalestNodeY(Node, Node).YAccess;
             int ShiftCount = 0;
             ShiftCount = 40 - y;
-            return this.ShiftActionY(Node, ShiftCount);
+            return ShiftActionY(Node, ShiftCount);
         }
 
         private Set ShiftLeftSideDivisionCurrentNodeYNodesValues(Set CurrentLeftSide, Set Current)
@@ -1662,37 +1974,56 @@ namespace Formulas
             Set Bigest = new Set();
             //ERRORCORECTION5698670946 :When at mosst one node is at right side of division the addition should not be down.
             if (CurrentLeftSide != null)
+            {
                 //ERRORCORECTION127609 :The condition leads to invalid operation.refer to page 129.
                 //ERRORCORECTION1276097 :deleting condition leads to error 129.(below if condition)
                 if (CurrentLeftSide.LeftSideAccess != null)
                 {
 
-                    this.ReturnBigestNodeOfLeftSideCurrentDivision(CurrentLeftSide, ref Bigest);
-                    int ShiftCount = this.ShiftUpToUpOrDownCount(Bigest, Current);
+                    ReturnBigestNodeOfLeftSideCurrentDivision(CurrentLeftSide, ref Bigest);
+                    int ShiftCount = ShiftUpToUpOrDownCount(Bigest, Current);
                     if (ShiftCount != 0)
-                        CurrentLeftSide = this.SetActionY(CurrentLeftSide, ShiftCount);
+                    {
+                        CurrentLeftSide = SetActionY(CurrentLeftSide, ShiftCount);
+                    }
                 }
+            }
+
             return CurrentLeftSide;
         }
         private void ReturnBigestNodeOfLeftSideCurrentDivision(Set Current, ref Set Dummy)
         {
             if (Current == null)
+            {
                 return;
+            }
+
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
                 {
                     if (Current.YAccess <= Current.LeftSideAccess.YAccess)
+                    {
                         Dummy = Current.LeftSideAccess;
-                    this.ReturnBigestNodeOfLeftSideCurrentDivision(Current.LeftSideAccess, ref Dummy);
+                    }
+
+                    ReturnBigestNodeOfLeftSideCurrentDivision(Current.LeftSideAccess, ref Dummy);
 
                 }
+            }
+
             if (Current != null)
+            {
                 if (Current.RightSideAccess != null)
                 {   //ERRORCORECTION45038 :refer to page 129.
                     if (Current.YAccess <= Current.RightSideAccess.YAccess)
+                    {
                         Dummy = Current.RightSideAccess;
-                    this.ReturnBigestNodeOfLeftSideCurrentDivision(Current.RightSideAccess, ref Dummy);
+                    }
+
+                    ReturnBigestNodeOfLeftSideCurrentDivision(Current.RightSideAccess, ref Dummy);
                 }
+            }
 
             return;
         }
@@ -1701,11 +2032,14 @@ namespace Formulas
             int y = 0;
             //The Smallest Vlaue
             if (BigestNode != null)
+            {
                 if (DivisionNode != null)
                 {
                     y = BigestNode.YAccess;
                     y = DivisionNode.YAccess - y - 15;
                 }
+            }
+
             return y;
         }
 
@@ -1715,23 +2049,31 @@ namespace Formulas
             Set Smallest = new Set();
             //ERRORCORECTION5698670946 :When at mosst one node is at right side of division the addition should not be down.
             if (CurrentRightSide != null)
+            {
                 //ERRORCORECTION127609 :The condition leads to invalid operation.refer to page 129.
                 //ERRORCORECTION1276097 :deleting condition leads to error 129.(below if condition)
                 if (CurrentRightSide.RightSideAccess != null)
                 {
-                    this.ReturnSmallestNodeOfRightSideCurrentDivision(CurrentRightSide, ref Smallest);
-                    int ShiftCount = this.ShiftDownToUpOrDownCount(Smallest, Current);
+                    ReturnSmallestNodeOfRightSideCurrentDivision(CurrentRightSide, ref Smallest);
+                    int ShiftCount = ShiftDownToUpOrDownCount(Smallest, Current);
                     if (ShiftCount != 0)
-                        CurrentRightSide = this.SetActionY(CurrentRightSide, ShiftCount);
+                    {
+                        CurrentRightSide = SetActionY(CurrentRightSide, ShiftCount);
+                    }
                 }
+            }
+
             return CurrentRightSide;
         }
         private Set SetActionY(Set Current, int ShiftCount)
         {
             if (Current == null)
+            {
                 return null;
+            }
+
             Current.SetDimentions(Current.XAccess, Current.YAccess + ShiftCount, Current.WidhtAccess, Current.HieghtAcess);
-            Current.SetLefTandRight(this.SetActionY(Current.LeftSideAccess, ShiftCount), this.SetActionY(Current.RightSideAccess, ShiftCount));
+            Current.SetLefTandRight(SetActionY(Current.LeftSideAccess, ShiftCount), SetActionY(Current.RightSideAccess, ShiftCount));
             return Current;
         }
         private int ShiftDownToUpOrDownCount(Set SmallestNode, Set DivisionNode)
@@ -1739,11 +2081,14 @@ namespace Formulas
             int y = 0;
             //The Smallest Vlaue
             if (SmallestNode != null)
+            {
                 if (DivisionNode != null)
                 {
                     y = SmallestNode.YAccess;
                     y = DivisionNode.YAccess - y + 15;
                 }
+            }
+
             return y;
         }
         //Gets Smalest y value of rightside node of current division.
@@ -1752,23 +2097,37 @@ namespace Formulas
             //Set Dummy = Current.RightSideAccess;
             //Set Dummy = Current.RightSideAccess;
             if (Current == null)
+            {
                 return;
+            }
+
             if (Current != null)
+            {
                 if (Current.RightSideAccess != null)
                 {
                     //ERRORCORECTION45038 :refer to page 129.
                     if (Current.YAccess >= Current.RightSideAccess.YAccess)
+                    {
                         Dummy = Current.RightSideAccess;
-                    this.ReturnSmallestNodeOfRightSideCurrentDivision(Current.RightSideAccess, ref Dummy);
+                    }
+
+                    ReturnSmallestNodeOfRightSideCurrentDivision(Current.RightSideAccess, ref Dummy);
 
                 }
+            }
+
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
                 {   //ERRORCORECTION45038 :refer to page 129.
                     if (Current.YAccess >= Current.LeftSideAccess.YAccess)
+                    {
                         Dummy = Current.LeftSideAccess;
-                    this.ReturnSmallestNodeOfRightSideCurrentDivision(Current.LeftSideAccess, ref Dummy);
+                    }
+
+                    ReturnSmallestNodeOfRightSideCurrentDivision(Current.LeftSideAccess, ref Dummy);
                 }
+            }
 
             return;
         }
@@ -1786,11 +2145,16 @@ namespace Formulas
         {
             //t
             if (Exsit == null)
+            {
                 return null;
-            Set Current = new Set();
-            Current.NodeAccess = Exsit.GetSample();
+            }
+
+            Set Current = new Set
+            {
+                NodeAccess = Exsit.GetSample()
+            };
             Current.SetOneOfThem(Exsit.GetSample());
-            Current.SetLefTandRight(this.CreateGraphicallyNodes(Exsit.LeftSideAccess), this.CreateGraphicallyNodes(Exsit.RightSideAccess));
+            Current.SetLefTandRight(CreateGraphicallyNodes(Exsit.LeftSideAccess), CreateGraphicallyNodes(Exsit.RightSideAccess));
             return Current;
             /*
             //becuase of Exist Not creation correctly The stack overfloaw i encountred            
@@ -1807,56 +2171,86 @@ namespace Formulas
         private void SetAttribute(Set Current, AddToTree.Tree Exist)
         {
             if (Exist.GetSample().ToLower() == "no")
+            {
                 Current.SetOneOfThem("No");
+            }
             else
                 if (Exist.GetSample().ToLower() == "int")
+            {
                 Current.SetOneOfThem("Integral");
+            }
             else
                     if (Exist.GetSample().ToLower() == "/")
+            {
                 Current.SetOneOfThem("Line");
+            }
             else
                         if (Exist.GetSample().ToLower() == "sin")
+            {
                 Current.SetOneOfThem("Sin");
+            }
             else
                             if (Exist.GetSample().ToLower() == "cos")
+            {
                 Current.SetOneOfThem("Cos");
+            }
             else
                                 if (Exist.GetSample().ToLower() == "tan")
+            {
                 Current.SetOneOfThem("Tan");
+            }
             else
                                     if (Exist.GetSample().ToLower() == "sec")
+            {
                 Current.SetOneOfThem("Sec");
+            }
             else
                                         if (Exist.GetSample().ToLower() == "csc")
+            {
                 Current.SetOneOfThem("Csc");
+            }
             else
                                             if (Exist.GetSample().ToLower() == "sic")
+            {
                 Current.SetOneOfThem("Cerices");
+            }
             else
                                                 if (Exist.GetSample().ToLower() == "root")
+            {
                 Current.SetOneOfThem("Root");
+            }
             else
                                                     if (Exist.GetSample().ToLower() == "+")
+            {
                 Current.SetOneOfThem("+");
+            }
             else
                                                         if (Exist.GetSample().ToLower() == "-")
+            {
                 Current.SetOneOfThem("-");
+            }
             else
                                                             if (Exist.GetSample().ToLower() == "*")
+            {
                 Current.SetOneOfThem("*");
+            }
             else
                                                                 if (Exist.GetSample().ToLower() == "/")
+            {
                 Current.SetOneOfThem("/");
+            }
             else
                                                                     if (Exist.GetSample().ToLower() == "ln")
+            {
                 Current.SetOneOfThem("Ln");
+            }
             else
                                                                         if (Exist.GetSample().ToLower() == "^")
+            {
                 Current.SetOneOfThem("^");
-
-
+            }
         }
-        private void AddToSetNode(Set C, String t)
+        private void AddToSetNode(Set C, string t)
         {
             C.NodeAccess = t;
         }
@@ -1866,27 +2260,35 @@ namespace Formulas
             NodeSet = null;
             NodeSet = new Set();
             //Create Set Node Link List.
-            NodeSet = this.CreateGraphicallyNodes(NodeTree);
+            NodeSet = CreateGraphicallyNodes(NodeTree);
         }
         private bool IsRoot(int i)
         {
             bool Is = false;
             if (i == 9)
+            {
                 Is = true;
+            }
+
             return Is;
         }
         private bool IsPower(int i)
         {
             bool Is = false;
             if (i == 17)
+            {
                 Is = true;
+            }
+
             return Is;
         }
         private bool IsFunction(int t)
         {
             bool Is = false;
             if ((t >= 2) && (t <= 11))
+            {
                 Is = true;
+            }
             //if ((t >= 9) && (t <= 11))
             //  Is = true;
             return Is;
@@ -1895,39 +2297,60 @@ namespace Formulas
         {
             bool Is = false;
             if (i == 12)
+            {
                 Is = true;
+            }
+
             return Is;
         }
         private bool IsArithmaticsOperator(int t)
         {
             bool Is = false;
             if ((t >= 13) && (t <= 16))
+            {
                 Is = true;
+            }
+
             if (t == 1)
+            {
                 Is = true;
+            }
+
             return Is;
         }
         private bool ISindependenceOrNumber(int i)
         {
             bool Is = false;
             if (i == 18)
+            {
                 Is = true;
+            }
+
             if (i == 12)
+            {
                 Is = true;
+            }
+
             return Is;
         }
         private bool ISindependence(int i)
         {
             bool Is = false;
             if (i == 18)
+            {
                 Is = true;
+            }
+
             return Is;
         }
         private bool IsDivision(int i)
         {
             bool Is = false;
             if ((i == 1) || (i == 16))
+            {
                 Is = true;
+            }
+
             return Is;
         }
         private int BigestCurrentNodeDivisionBigestXAccess(Set Current)
@@ -1935,13 +2358,25 @@ namespace Formulas
             //ERROR34721530 :This method is completly is wrong.we move this method to end of calXandY.. Method.
             int i = Current.XAccess;
             if (Current.LeftSideAccess == null)
+            {
                 return i;
-            if (i < this.BigestCurrentNodeDivisionBigestXAccess(Current.LeftSideAccess))
-                i = this.BigestCurrentNodeDivisionBigestXAccess(Current.LeftSideAccess);
+            }
+
+            if (i < BigestCurrentNodeDivisionBigestXAccess(Current.LeftSideAccess))
+            {
+                i = BigestCurrentNodeDivisionBigestXAccess(Current.LeftSideAccess);
+            }
+
             if (Current.RightSideAccess == null)
+            {
                 return i;
-            if (i < this.BigestCurrentNodeDivisionBigestXAccess(Current.RightSideAccess))
-                i = this.BigestCurrentNodeDivisionBigestXAccess(Current.RightSideAccess);
+            }
+
+            if (i < BigestCurrentNodeDivisionBigestXAccess(Current.RightSideAccess))
+            {
+                i = BigestCurrentNodeDivisionBigestXAccess(Current.RightSideAccess);
+            }
+
             return i;
         }
         private int BigestCurrentNodeDivisionSmallestXAccess(Set Current)
@@ -1949,28 +2384,45 @@ namespace Formulas
             //ERROR34721530 :This method is completly is wrong.we move this method to end of calXandY.. Method.
             int i = Current.XAccess;
             if (Current.LeftSideAccess == null)
+            {
                 return i;
-            if (i > this.BigestCurrentNodeDivisionSmallestXAccess(Current.LeftSideAccess))
-                i = this.BigestCurrentNodeDivisionSmallestXAccess(Current.LeftSideAccess);
+            }
+
+            if (i > BigestCurrentNodeDivisionSmallestXAccess(Current.LeftSideAccess))
+            {
+                i = BigestCurrentNodeDivisionSmallestXAccess(Current.LeftSideAccess);
+            }
+
             if (Current.RightSideAccess == null)
+            {
                 return i;
-            if (i > this.BigestCurrentNodeDivisionSmallestXAccess(Current.RightSideAccess))
-                i = this.BigestCurrentNodeDivisionSmallestXAccess(Current.RightSideAccess);
+            }
+
+            if (i > BigestCurrentNodeDivisionSmallestXAccess(Current.RightSideAccess))
+            {
+                i = BigestCurrentNodeDivisionSmallestXAccess(Current.RightSideAccess);
+            }
+
             return i;
         }
         private void BigestCurrentNodeDivisionGetYUpEdited(Set Current, ref int y)
         {
             //ERRORCORECTION64740948 :The method has been edited.
             if (Current == null)
+            {
                 return;
+            }
+
             if (Current != null)
             //if (Current.LeftSideAccess != null)
             {
-                if (this.IsDivision(Current.GetDecoder()))
+                if (IsDivision(Current.GetDecoder()))
+                {
                     y = y - 15;
+                }
             }
-            this.BigestCurrentNodeDivisionGetYUpEdited(Current.LeftSideAccess, ref y);
-            this.BigestCurrentNodeDivisionGetYUpEdited(Current.RightSideAccess, ref y);
+            BigestCurrentNodeDivisionGetYUpEdited(Current.LeftSideAccess, ref y);
+            BigestCurrentNodeDivisionGetYUpEdited(Current.RightSideAccess, ref y);
             return;
         }
 
@@ -1978,13 +2430,25 @@ namespace Formulas
         {
             int i = Current.YAccess;
             if (Current.LeftSideAccess == null)
+            {
                 return i;
-            if (i > this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess))
-                i = this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess);
+            }
+
+            if (i > BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess))
+            {
+                i = BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess);
+            }
+
             if (Current.RightSideAccess == null)
+            {
                 return i;
-            if (i > this.BigestCurrentNodeDivisionGetYUp(Current.RightSideAccess))
-                i = this.BigestCurrentNodeDivisionGetYUp(Current.RightSideAccess);
+            }
+
+            if (i > BigestCurrentNodeDivisionGetYUp(Current.RightSideAccess))
+            {
+                i = BigestCurrentNodeDivisionGetYUp(Current.RightSideAccess);
+            }
+
             return i;
         }
 
@@ -1992,30 +2456,47 @@ namespace Formulas
         {
             int i = Current.YAccess;
             if (Current.LeftSideAccess == null)
+            {
                 return i;
-            if (i < this.BigestCurrentNodeDivisionGetYDown(Current.LeftSideAccess))
-                i = this.BigestCurrentNodeDivisionGetYDown(Current.LeftSideAccess);
+            }
+
+            if (i < BigestCurrentNodeDivisionGetYDown(Current.LeftSideAccess))
+            {
+                i = BigestCurrentNodeDivisionGetYDown(Current.LeftSideAccess);
+            }
+
             if (Current.RightSideAccess == null)
+            {
                 return i;
-            if (i < this.BigestCurrentNodeDivisionGetYDown(Current.RightSideAccess))
-                i = this.BigestCurrentNodeDivisionGetYDown(Current.RightSideAccess);
+            }
+
+            if (i < BigestCurrentNodeDivisionGetYDown(Current.RightSideAccess))
+            {
+                i = BigestCurrentNodeDivisionGetYDown(Current.RightSideAccess);
+            }
+
             return i;
         }
         private int XAccessLocation(Set Current, int x)
         {
             //ERROR3171154210 : Error is the far disTance between strings.
             if (Current == null)
+            {
                 return 0;
+            }
+
             if (Current != null)
             {
 
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if ((this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder())) &&
-                            (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder())))
+                    {
+                        if ((ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder())) &&
+                            (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder())))
                         {
                             //ERROR IN power node ERROR12875646
-                            if (this.IsPower(Current.GetDecoder()))
+                            if (IsPower(Current.GetDecoder()))
                             {
                                 //return 5 + (((Current.LeftSideAccess.StringSampleAccess.Length - 1) * 15) + ((Current.RightSideAccess.StringSampleAccess.Length - 1) * 15));
                                 //x = 5 + (((Current.LeftSideAccess.StringSampleAccess.Length - 1) * 15) + ((Current.RightSideAccess.StringSampleAccess.Length - 1) * 15));
@@ -2024,40 +2505,46 @@ namespace Formulas
                                 goto END;
                             }
                             //ERRORCORECTION87908906
-                            if (this.IsArithmaticsOperator(Current.GetDecoder()))
+                            if (IsArithmaticsOperator(Current.GetDecoder()))
                             {
                                 //return 20 + (((Current.LeftSideAccess.StringSampleAccess.Length-1 ) * 15) + ((Current.RightSideAccess.StringSampleAccess.Length-1) * 15));
                                 x = 20 + (((Current.LeftSideAccess.StringSampleAccess.Length - 1) * 15) + ((Current.RightSideAccess.StringSampleAccess.Length - 1) * 15));
                                 goto END;
                             }
-                            if (this.IsDivision(Current.GetDecoder()))
+                            if (IsDivision(Current.GetDecoder()))
                             {
                                 //return 15 + (((Current.LeftSideAccess.StringSampleAccess.Length - 1) * 15) + ((Current.RightSideAccess.StringSampleAccess.Length - 1) * 15));
                                 x = 15 + (((Current.LeftSideAccess.StringSampleAccess.Length - 1) * 15) + ((Current.RightSideAccess.StringSampleAccess.Length - 1) * 15));
                                 goto END;
                             }
                         }
+                    }
+                }
                 //ERRORCORECTION892174982374 :The condition is added.
                 if (Current.RightSideAccess == null)
+                {
                     if (Current.LeftSideAccess != null)
-                        if (this.IsFunction(Current.GetDecoder()))
+                    {
+                        if (IsFunction(Current.GetDecoder()))
                         {
                             //ERROR928375 :Condition needed.
                             //ERRORCORECTION98127498234 :The Condition adedd.           
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
                             {
                                 //return ((15 * this.NumberOfFunctionSamplesElements(Current.StringSampleAccess)) + 25);
-                                x = ((15 * this.NumberOfFunctionSamplesElements(Current.StringSampleAccess)) + 25);
+                                x = ((15 * NumberOfFunctionSamplesElements(Current.StringSampleAccess)) + 25);
                                 goto END;
                             }
                             else
                             {
                                 //return (15 * this.NumberOfFunctionSamplesElements(Current.StringSampleAccess)) + this.XAccessLocation(Current.LeftSideAccess);
-                                x = (15 * this.NumberOfFunctionSamplesElements(Current.StringSampleAccess)) + this.XAccessLocation(Current.LeftSideAccess, x);
+                                x = (15 * NumberOfFunctionSamplesElements(Current.StringSampleAccess)) + XAccessLocation(Current.LeftSideAccess, x);
                                 goto END;
                             }
                             //ERRORCORECTION1982748921374 :Corection  of ERROR35724231 and ERROR3572425332 .refer to page 101.condition will be added.
                         }
+                    }
+                }
 
                 //if(Current.LeftSideAccess!=null)
                 //    if(Current.RightSideAccess==null)                
@@ -2066,14 +2553,15 @@ namespace Formulas
                 //ERROR23746872365
                 //ERRORCORRECTION987248623
                 if (Current.LeftSideAccess == null)
+                {
                     if (Current.RightSideAccess == null)
                     {
 
                         //ERRORCORECTION7981248 :The ERROR76982147982347 Corrected.
-                        if (this.IsFunction(Current.ThreadAccess.GetDecoder()))
+                        if (IsFunction(Current.ThreadAccess.GetDecoder()))
                         {
                             //return (15*this.NumberOfFunctionSamplesElements(Current.ThreadAccess.StringSampleAccess))+5;
-                            x = (15 * this.NumberOfFunctionSamplesElements(Current.ThreadAccess.StringSampleAccess)) + 5;
+                            x = (15 * NumberOfFunctionSamplesElements(Current.ThreadAccess.StringSampleAccess)) + 5;
                             goto ENDOFRETURN;
                         }
                         else
@@ -2085,24 +2573,28 @@ namespace Formulas
                         }
 
                     }
+                }
             }
             //if(this.IsArithmaticsOperator(Current.RightSideAccess))
             //         return (this.XAccessLocation(Current.LeftSideAccess)+5);
             //ERROR317241 :The XAccessLocation() Calculate incorrectly.refer to page 104.
             //return (this.XAccessLocation(Current.LeftSideAccess) + this.XAccessLocation(Current.RightSideAccess));
-            x = x - (this.XAccessLocation(Current.LeftSideAccess, x));
+            x = x - (XAccessLocation(Current.LeftSideAccess, x));
             END:
             //ERRORCORECTION9098218238 :The Function value is constructed and added.     
-            if (this.IsFunction(Current.ThreadAccess.GetDecoder()))
-                x = x + 15 * this.NumberOfFunctionSamplesElements(Current.ThreadAccess.StringSampleAccess);
+            if (IsFunction(Current.ThreadAccess.GetDecoder()))
+            {
+                x = x + 15 * NumberOfFunctionSamplesElements(Current.ThreadAccess.StringSampleAccess);
+            }
+
             ENDOFRETURN:
             return x;
         }
-        private int GetWhidthOfNumber(String Dummy)
+        private int GetWhidthOfNumber(string Dummy)
         {
             return Dummy.Length * 15;
         }
-        private int NumberOfFunctionSamplesElements(String Sample)
+        private int NumberOfFunctionSamplesElements(string Sample)
         {
             if ((Sample.ToString().ToLower() == "sin")
                 || (Sample.ToString().ToLower() == "cos")
@@ -2112,89 +2604,124 @@ namespace Formulas
                 || (Sample.ToString().ToLower() == "csc")
                 || (Sample.ToString().ToLower() == "log")
                 )
+            {
                 return 3;
+            }
             else
+            {
                 return 2;
+            }
         }
         public void TheSmallestValue(Set SetVariable, ref int xBegin)
         {
             if (SetVariable == null)
+            {
                 return;
+            }
+
             if (xBegin < (SetVariable.XAccess))
+            {
                 xBegin = SetVariable.XAccess;
-            this.TheSmallestValue(SetVariable.LeftSideAccess, ref xBegin);
-            this.TheSmallestValue(SetVariable.RightSideAccess, ref xBegin);
+            }
+
+            TheSmallestValue(SetVariable.LeftSideAccess, ref xBegin);
+            TheSmallestValue(SetVariable.RightSideAccess, ref xBegin);
         }
         public void TheBigestValueNodeXForcalculationMethode(Set SetVariable, ref int xBegin)
         {
             if (SetVariable == null)
+            {
                 return;
+            }
+
             if (xBegin < (SetVariable.XAccess + SetVariable.WidhtAccess))
+            {
                 xBegin = SetVariable.XAccess + SetVariable.WidhtAccess;
-            this.TheBigestValueNodeXForcalculationMethode(SetVariable.LeftSideAccess, ref xBegin);
-            this.TheBigestValueNodeXForcalculationMethode(SetVariable.RightSideAccess, ref xBegin);
+            }
+
+            TheBigestValueNodeXForcalculationMethode(SetVariable.LeftSideAccess, ref xBegin);
+            TheBigestValueNodeXForcalculationMethode(SetVariable.RightSideAccess, ref xBegin);
         }
         private void GetSmallestXOfCurrentNode(Set Current, ref Set Dummy)
         {
             if (Current != null)
             {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.LeftSideAccess.XAccess < Dummy.XAccess)
                     {
                         Dummy = Current.LeftSideAccess;
-                        this.GetSmallestXOfCurrentNode(Current.LeftSideAccess, ref Dummy);
+                        GetSmallestXOfCurrentNode(Current.LeftSideAccess, ref Dummy);
 
                     }
+                }
+
                 if (Current.RightSideAccess != null)
+                {
                     if (Current.RightSideAccess.XAccess < Dummy.XAccess)
                     {
                         Dummy = Current.RightSideAccess;
-                        this.GetSmallestXOfCurrentNode(Current.RightSideAccess, ref Dummy);
+                        GetSmallestXOfCurrentNode(Current.RightSideAccess, ref Dummy);
 
                     }
+                }
             }
         }
         private void GetBigestXOfCurrentNode(Set Current, ref Set Dummy)
         {
             if (Current != null)
+            {
                 if (Dummy != null)
                 {
                     if (Current.LeftSideAccess != null)
+                    {
                         if (Current.LeftSideAccess.XAccess > Dummy.XAccess)
                         {
                             Dummy = Current.LeftSideAccess;
-                            this.GetBigestXOfCurrentNode(Current.LeftSideAccess, ref Dummy);
+                            GetBigestXOfCurrentNode(Current.LeftSideAccess, ref Dummy);
 
                         }
+                    }
+
                     if (Current.RightSideAccess != null)
+                    {
                         if (Current.RightSideAccess.XAccess > Dummy.XAccess)
                         {
                             Dummy = Current.RightSideAccess;
-                            this.GetBigestXOfCurrentNode(Current.RightSideAccess, ref Dummy);
+                            GetBigestXOfCurrentNode(Current.RightSideAccess, ref Dummy);
 
                         }
+                    }
                 }
+            }
         }
         private int BigestLenghtOfLefTandRightArguments(Set CurrentLeft, Set CurrentRight, ref int LenghtLeft, ref int LenghtRight)
         {
             Set DummySmall = CurrentLeft;
             Set DummyBig = CurrentRight;
 
-            this.GetSmallestXOfCurrentNode(CurrentLeft, ref DummySmall);
-            this.GetBigestXOfCurrentNode(CurrentRight, ref DummyBig);
+            GetSmallestXOfCurrentNode(CurrentLeft, ref DummySmall);
+            GetBigestXOfCurrentNode(CurrentRight, ref DummyBig);
 
-            this.GetSmallestXOfCurrentNode(CurrentRight, ref DummySmall);
-            this.GetBigestXOfCurrentNode(CurrentLeft, ref DummyBig);
+            GetSmallestXOfCurrentNode(CurrentRight, ref DummySmall);
+            GetBigestXOfCurrentNode(CurrentLeft, ref DummyBig);
             int x = 0;
             if (DummyBig != null)
             {
                 if (DummySmall != null)
+                {
                     x = ((DummyBig.XAccess + DummyBig.StringSampleAccess.Length * 15) - (DummySmall.XAccess));
+                }
                 else
+                {
                     x = (DummyBig.XAccess + DummyBig.StringSampleAccess.Length * 15);
+                }
             }
             else
+            {
                 x = 0;
+            }
+
             return x;
 
 
@@ -2226,7 +2753,9 @@ namespace Formulas
         {
             //   System.Windows.Forms.MessageBox.Show("5.2.1-Entering at calculating method.");
             if (Current == null)
+            {
                 return Current;
+            }
             //     System.Windows.Forms.MessageBox.Show("5.2.2-pass nul condition.");
             //HOLE ERROR : ERROR56289087
             //Inizializing Nodes.
@@ -2240,18 +2769,28 @@ namespace Formulas
             //ERROR7081235783 :Both of BigestCurrentNodeDivisionGetYUp(...) and BigestCurrentNodeDivisionGetYDown(...) are completly wrong.refr to page 126.
             //ERROR20984098 :The Value of whidth is not set correctly.refer to page 141.
             if (InizializingAllowed)
-                this.Inizializing();
+            {
+                Inizializing();
+            }
             //      System.Windows.Forms.MessageBox.Show("5.2.3-The Inizlizing is act in clacluation.");
             if (Current.LeftSideAccess == null)
+            {
                 if (Current.RightSideAccess == null)
                 {
                     //ERRORCORECTION9287498 :the ERROR3070401 Correction.
-                    if (this.IsNumber(Current.GetDecoder()))
+                    if (IsNumber(Current.GetDecoder()))
+                    {
                         Current.SetDimentions(x, y, (Current.StringSampleAccess.Length * 15), Height);
+                    }
                     else
+                    {
                         Current.SetDimentions(x, y, Whidt, Height);
+                    }
+
                     return Current;
                 }
+            }
+
             Current.SetDimentions(x, y, Whidt, Height);
             //+-+
             //If current is artith and the left is power
@@ -2261,27 +2800,32 @@ namespace Formulas
             //        System.Windows.Forms.MessageBox.Show("5.2.4-Ready for clacluation.");
 
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERRORCORECTION317243 :refer to page 126.
                                     //ERROR41723110 :refer to page 125.
 
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {   //t permanently                                        
                                         //ERROR317125507013 :refer to page 126.
                                         //this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5,this.BigestCurrentNodeDivisionGetYUp(Current),15, 15, false);
                                         //ERRORCORECTION03840912384 :The y Value Set.refer top page 126
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 18, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 18, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x + 5, this.BigestCurrentNodeDivisionGetYUp(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         //this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess,x) + 5, this.BigestCurrentNodeDivisionGetYDown(Current),15, 15, false);
                                         //ERRORCORECTION038409176584 :The y Value Set.refer top page 126
                                         //this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess, x) + 5, y + 10, 15, 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 18, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 18, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess) + 5, this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
@@ -2289,11 +2833,11 @@ namespace Formulas
                                     {
                                         if ((Current.ThreadAccess != null) && IS.IsFunction(Current.ThreadAccess.StringSampleAccess))
                                         {
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 15, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 15, y, 15, 15, false);
                                             //Current.LeftSideAccess.SetDimentions(x-10, y, 15, 15);
                                             //Current.SetDimentions(x, y, Whidt, Height);
                                             Current.XAccess = Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 30;
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + 15, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + 15, y, 15, 15, false);
 
                                         }
                                         else
@@ -2303,37 +2847,51 @@ namespace Formulas
                                             //ERROR239856 : When The x should be entered it dose not work.
                                             //ERROR901204980 :The Thread is set to node.refer to pag 141.
                                             if (Current.ThreadAccess != null)
-                                                this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                                            {
+                                                CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                                            }
                                             else
+                                            {
                                                 //ERRORCORECTION98237498 :The Above ERROR (ERROR901204980) set to error.
-                                                this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                                                CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                                            }
                                             //Current.SetDimentions(x,y,Whidt,Height);
                                             //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess) + Current.ThreadAccess.XAccess + 10, y, 15, 15);
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + Current.WidhtAccess, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + Current.WidhtAccess, y, 15, 15, false);
                                             //Current.LeftSideAccess.SetDimentions(x + 10, y, 15, 15);
                                             //Current.SetDimentions(x,y,Whidt, Height);
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //If current is artith and the left is independence varibale OR NUMBER
             //and the right side is pow.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsPower(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsPower(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {   //t permanently.2
                                         //ERRORCORECTION679847386  :The y Value of a independence variable is atmost 15 .refer to page 127.
                                         //this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, this.BigestCurrentNodeDivisionGetYUp(Current), this.XAccessLocation(Current.LeftSideAccess,x), 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 15, this.XAccessLocation(Current.LeftSideAccess, x), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 15, XAccessLocation(Current.LeftSideAccess, x), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x + 5, this.BigestCurrentNodeDivisionGetYUp(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         //ERROR3070802113 :The y value has not been correct.
                                         //this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess,x) + 5, this.BigestCurrentNodeDivisionGetYDown(Current), this.XAccessLocation(Current.RightSideAccess,x), 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess, x) + 5, this.BigestCurrentNodeDivisionGetYDown(Current), this.XAccessLocation(Current.RightSideAccess, x), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, XAccessLocation(Current.RightSideAccess, x) + 5, BigestCurrentNodeDivisionGetYDown(Current), XAccessLocation(Current.RightSideAccess, x), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess) + 5, this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
@@ -2341,11 +2899,11 @@ namespace Formulas
                                     {
                                         if ((Current.ThreadAccess != null) && IS.IsFunction(Current.ThreadAccess.StringSampleAccess))
                                         {
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 15, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 15, y, 15, 15, false);
                                             //Current.LeftSideAccess.SetDimentions(x-10, y, 15, 15);
                                             //Current.SetDimentions(x, y, Whidt, Height);
                                             Current.XAccess = Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 30;
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + 15, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + 15, y, 15, 15, false);
 
                                         }
                                         else
@@ -2353,37 +2911,47 @@ namespace Formulas
                                             //ERROR760967 Cuase: The relative Thread is null.another Error cuase is of Value Arguments setting.
                                             //t permanently.2 it is seem to better.
                                             //The error is on current power the left side is independence and the right side is number.
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x) - 10, y, this.XAccessLocation(Current.LeftSideAccess, x) + 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x) - 10, y, XAccessLocation(Current.LeftSideAccess, x) + 15, 15, false);
                                             //Current.SetDimentions(x,y,Whidt,Height);
                                             //Current.LeftSideAccess.SetDimentions(x - 10, y, 15, 15);
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
                                             //Current.LeftSideAccess.SetDimentions(x + 10, y, 15, 15);
                                             //Current.SetDimentions(x,y,Whidt, Height);
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //==-
             //If current is operator and the left is independence varibale or number
             //and the right side is arrithmatic operator.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
                                 {   //BackArtiAritArit143
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {   //t permanently.2
                                         //ERROR6509705095 :The y value of tow method is invalid.
                                         //this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5,this.BigestCurrentNodeDivisionGetYUp(Current),this.XAccessLocation(Current.LeftSideAccess,x), 15, false);
                                         //ERRORCORECTION870989 :Error corection of ERROR6509705095.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 15, this.XAccessLocation(Current.LeftSideAccess, x), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 15, XAccessLocation(Current.LeftSideAccess, x), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x + 5, this.BigestCurrentNodeDivisionGetYUp(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         //ERRORCORECTION8798689056 : The Right argumnet the (Division) Reduced from Displacement.
                                         //this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, this.BigestCurrentNodeDivisionGetYDown(Current),15, 15, false);
                                         //ERRORCORECTION870989 :Error corection of ERROR6509705095.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 15, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 15, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x + 5, this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
@@ -2395,82 +2963,94 @@ namespace Formulas
                                         //ERROR2309890 :Error on XAccessLocation Method.
                                         //ERRORRCORRECTION2409879 : Refer Above.
 
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - Current.LeftSideAccess.StringSampleAccess.Length * 10, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - Current.LeftSideAccess.StringSampleAccess.Length * 10, y, 15, 15, false);
                                         //Current.SetDimentions(x,y,Whidt,Height);
                                         //Current.LeftSideAccess.SetDimentions(x - 10, y, 15, 15);
                                         //ERROR87096587 : The x argument dose not set correctly.Error is form XAccessLocation Method.
                                         //ERROR34567957879087124 :When the rightside is a division operator this is not suitable.
                                         //ERRORCORECTION34569856789 :The condition is added.
-                                        if (!(this.IsDivision(Current.RightSideAccess.GetDecoder())))
+                                        if (!(IsDivision(Current.RightSideAccess.GetDecoder())))
                                         {
                                             int FunctionNumber = Integral.NumberOfFunctionElementsSet(Current.RightSideAccess.LeftSideAccess);
                                             int ElemenmtNumber = Integral.NumberOfElementsSet(Current.RightSideAccess.LeftSideAccess);
                                             int a = x + ((ElemenmtNumber - FunctionNumber) + FunctionNumber * 3) * 10;
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, a + 10, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, a + 10, y, 15, 15, false);
                                         }
                                         else
                                         {
                                             //int ElementNumber = Integral.NumberOfElementsSet(Current.RightSideAccess.LeftSideAccess);
                                             //int FunctionNumber = Integral.NumberOfFunctionElementsSet(Current.RightSideAccess.LeftSideAccess);
                                             //int a = x + (((ElementNumber - FunctionNumber) + FunctionNumber * 3)) * 10;                             
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
                                         }
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess.LeftSideAccess) + Current.XAccess, y, 15, 15);
                                         //Current.SetDimentions(x,y,Whidt, Height);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             /*       //This Set Dimentions.
-                   //if the node is arithmatics operator 
-                   //and right Side is operator and left side is a number.
-                        if (Current != null)
-                            if (Current.LeftSideAccess != null)
-                                if (Current.RightSideAccess != null)
-                                    if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                                        if (this.IsNumber(Current.LeftSideAccess.GetDecoder()))
-                                            if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
-                                            {
-                                                if (this.IsDivision(Current.GetDecoder()))
-                                                {   //t permanently.2 ===
-                                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess,x-10, this.BigestCurrentNodeDivisionGetYUp(Current),15, 15, false);
-                                                    //Current.LeftSideAccess.SetDimentions(x-10, this.BigestCurrentNodeDivisionGetYUp(Current),15, 15);
-                                                    //this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess)+10, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
-                                                    ////Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess)+10, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15);
-                                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess) + 10, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
-                                                    //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess) + 10, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15);
-                                        
-                                                }
-                                                else
-                                                {  //t permanently.2 ===
-                                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess,x-10, y, 15, 15, false);
-                                                    //Current.SetDimentions(x, y, Whidt, Height);
-                                                    //Current.LeftSideAccess.SetDimentions(x-10, y, 15, 15);
-                                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess), y, 15, 15, false);
-                                                    //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess), y, 15, 15);
-                                                    //Current.SetDimentions(x, y, Whidt, Height);
-                                                }
-                                            }
-                        */
+      //if the node is arithmatics operator 
+      //and right Side is operator and left side is a number.
+           if (Current != null)
+               if (Current.LeftSideAccess != null)
+                   if (Current.RightSideAccess != null)
+                       if (this.IsArithmaticsOperator(Current.GetDecoder()))
+                           if (this.IsNumber(Current.LeftSideAccess.GetDecoder()))
+                               if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                               {
+                                   if (this.IsDivision(Current.GetDecoder()))
+                                   {   //t permanently.2 ===
+                                       this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess,x-10, this.BigestCurrentNodeDivisionGetYUp(Current),15, 15, false);
+                                       //Current.LeftSideAccess.SetDimentions(x-10, this.BigestCurrentNodeDivisionGetYUp(Current),15, 15);
+                                       //this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess)+10, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
+                                       ////Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess)+10, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15);
+                                       this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess) + 10, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
+                                       //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess) + 10, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15);
+
+                                   }
+                                   else
+                                   {  //t permanently.2 ===
+                                       this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess,x-10, y, 15, 15, false);
+                                       //Current.SetDimentions(x, y, Whidt, Height);
+                                       //Current.LeftSideAccess.SetDimentions(x-10, y, 15, 15);
+                                       this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess), y, 15, 15, false);
+                                       //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess), y, 15, 15);
+                                       //Current.SetDimentions(x, y, Whidt, Height);
+                                   }
+                               }
+           */
             //if the node is arithmatics operator 
             //and right and left side are arithmatics operator too.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {
                                         //t permanently.2 ===
                                         int DummyY = 0;
                                         //ERRORANDERRORCORECTION307021 :The condition has been incorected.refer to page 131.
-                                        this.BigestCurrentNodeDivisionGetYUpEdited(Current, ref DummyY);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y + DummyY, this.XAccessLocation(Current.LeftSideAccess, x), 15, false);
+                                        BigestCurrentNodeDivisionGetYUpEdited(Current, ref DummyY);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y + DummyY, XAccessLocation(Current.LeftSideAccess, x), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionGetYUp(Current), 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
 
                                         if (Current.LeftSideAccess.LeftSideAccess != null)
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
+                                        {
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
+                                        }
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess), this.BigestCurrentNodeDivisionGetYDown(Current),15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
@@ -2480,32 +3060,42 @@ namespace Formulas
                                         //ERROR4586203 : the Second argument was not valid.
                                         //ERRORCORRECTION1287657 :the Second argument correct by proper parameter.
                                         //ERROR1254317892 ERROR on Left side.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x) + 15, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x) + 15, y, 15, 15, false);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         //Current.LeftSideAccess.SetDimentions(Current.LeftSideAccess.XAccess, y, 15, 15);
                                         //ERROR75875123 : On Third argument
                                         //ERRORCORRECTION1276548 : The parameters of third argument correct.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess), y, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and rightSide is Function and left side is arithmatics operator.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsFunction(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {   //t permanently.2
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, this.XAccessLocation(Current.LeftSideAccess, x) + 15, this.BigestCurrentNodeDivisionGetYUp(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, XAccessLocation(Current.LeftSideAccess, x) + 15, BigestCurrentNodeDivisionGetYUp(Current), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
 
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionGetYUp(Current), 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.BigestCurrentNodeDivisionBigestXAccess(Current) + 15, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + BigestCurrentNodeDivisionBigestXAccess(Current) + 15, BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x + 10, this.BigestCurrentNodeDivisionGetYDown(Current),15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
@@ -2515,14 +3105,19 @@ namespace Formulas
                                         int ElementNumber = Integral.NumberOfElementsSet(Current.LeftSideAccess.RightSideAccess);
                                         int FunctionNumber = Integral.NumberOfFunctionElementsSet(Current.LeftSideAccess.RightSideAccess);
                                         int a = x - (((ElementNumber - FunctionNumber) + FunctionNumber * 3)) * 10;
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, a - 10, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, a - 10, y, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), y, 20, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x+10,y,15,15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is arithmatics operator 
             //and LedtSide is independence and Right side is number.
@@ -2530,18 +3125,23 @@ namespace Formulas
             //ERRORCORRECTION236587 :the node is artihmatice and the left side 
             //is independence and the right side is number.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {   //t permanently 2.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 20, this.XAccessLocation(Current.LeftSideAccess, x), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 20, XAccessLocation(Current.LeftSideAccess, x), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x+5, y - 20, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 20, this.XAccessLocation(Current.RightSideAccess, x), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 20, XAccessLocation(Current.RightSideAccess, x), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x+5, y + 20, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
@@ -2551,84 +3151,123 @@ namespace Formulas
                                         //ERRORCORECTION98214 :the left and right side set correctly.
                                         if ((Current.ThreadAccess != null) && IS.IsFunction(Current.ThreadAccess.StringSampleAccess))
                                         {
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 15, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 15, y, 15, 15, false);
                                             //Current.LeftSideAccess.SetDimentions(x-10, y, 15, 15);
                                             //Current.SetDimentions(x, y, Whidt, Height);
                                             Current.XAccess = Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 30;
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + 15, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + 15, y, 15, 15, false);
 
                                         }
                                         else
                                         {
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.XAccess - Current.LeftSideAccess.StringSampleAccess.Length * 15, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.XAccess - Current.LeftSideAccess.StringSampleAccess.Length * 15, y, 15, 15, false);
                                             //Current.LeftSideAccess.SetDimentions(x-10, y, 15, 15);
                                             //Current.SetDimentions(x, y, Whidt, Height);
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
                                         }
                                         //Current.LeftSideAccess.SetDimentions(x+10, y, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)//LOCATINO1872643876786
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsFunction(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {   //t permanently 2.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 20, this.XAccessLocation(Current.LeftSideAccess, x), 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 20, this.XAccessLocation(Current.RightSideAccess, x), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 20, XAccessLocation(Current.LeftSideAccess, x), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 20, XAccessLocation(Current.RightSideAccess, x), 15, false);
                                     }
                                     else
                                     {   //t permanently 2.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - ((Current.LeftSideAccess.StringSampleAccess.Length) * 10) - 10, y, 15, 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - ((Current.LeftSideAccess.StringSampleAccess.Length) * 10) - 10, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)//LOCATINO18726438
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {   //t permanently 2.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 20, this.XAccessLocation(Current.LeftSideAccess, x), 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 20, this.XAccessLocation(Current.RightSideAccess, x), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, y - 20, XAccessLocation(Current.LeftSideAccess, x), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y + 20, XAccessLocation(Current.RightSideAccess, x), 15, false);
                                     }
                                     else
                                     {   //t permanently 2.
                                         Set t = new Set();
-                                        this.GetBigestXOfCurrentNode(Current.LeftSideAccess, ref t);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - t.XAccess - 15, y, 15, 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 25, y, 15, 15, false);
+                                        GetBigestXOfCurrentNode(Current.LeftSideAccess, ref t);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - t.XAccess - 15, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 25, y, 15, 15, false);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is pow operator 
             //and rightSide is number and left side is independence.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
                                 {
                                     int Queficient = 1;
                                     if (Current.ThreadAccess != null)
-                                        if (this.IsDivision(Current.ThreadAccess.GetDecoder()))
+                                    {
+                                        if (IsDivision(Current.ThreadAccess.GetDecoder()))
+                                        {
                                             if (Current == (Current.ThreadAccess.RightSideAccess))
+                                            {
                                                 Queficient = -1;
+                                            }
+                                        }
+                                    }
+
                                     if ((Current.ThreadAccess != null) && IS.IsFunction(Current.ThreadAccess.StringSampleAccess))
                                     {
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 15, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 15, y, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x-10, y, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         Current.XAccess = Current.ThreadAccess.XAccess + Current.ThreadAccess.StringSampleAccess.Length * 10 + 30;
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + 5, y - 5, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + 5, y - 5, 15, 15, false);
 
                                     }
                                     else
@@ -2637,62 +3276,81 @@ namespace Formulas
                                         //ERRORCORECTION9821748 :The Error is constructed.The value is optimized.refer top page 105.
                                         //ERRORCORECTION109824 :The y value set to up.refer to page 143.
                                         //ERROR30701121 :some times The equation is set graphically wrong.refer to page 143.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - 10, y - 5 * Queficient, this.XAccessLocation(Current.LeftSideAccess, x) + 5, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - 10, y - 5 * Queficient, XAccessLocation(Current.LeftSideAccess, x) + 5, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x + 10, y, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         //ERORR317215 :The right side node of "^" node is set valued incorectly.
                                         //ERORRCORECTION1238 :The right side node of "^" node set valued corectly.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 10 * Queficient, this.XAccessLocation(Current.RightSideAccess, x) + 5, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 10 * Queficient, XAccessLocation(Current.RightSideAccess, x) + 5, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x + 15, y - 10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             /*//==+
-             //if the node is pow operator 
-             //and rightSide is number and left side is independence.
-             //and the power thread is arithmatics
-             if (Current != null)
-                 if (Current.LeftSideAccess != null)
-                     if (Current.RightSideAccess != null)
-                         if (Current.ThreadAccess != null)
-                             if (Current.ThreadAccess.ThreadAccess == null)
-                         if (this.IsPower(Current.GetDecoder()))
-                             if (this.ISindependence(Current.LeftSideAccess.GetDecoder()))
-                                 if (this.IsNumber(Current.RightSideAccess.GetDecoder()))
-                                     if (this.IsArithmaticsOperator(Current.ThreadAccess.GetDecoder()))
-                                     {   //t permanently.2
-                                         // ERROR45768905
-                                         //this condition never done.
-                                     this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + 10, y, 15, 15, false);
-                                      //Current.LeftSideAccess.SetDimentions(Current.ThreadAccess.XAccess + 10, y, 15, 15);
-                                     //Current.SetDimentions(x, y, Whidt, Height);
-                                     this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 12, y - 5, 15, 15, false);
-                                     //Current.LeftSideAccess.SetDimentions(x + 12, y - 5, 15, 15);
-                                     //Current.SetDimentions(x, y, Whidt, Height);
-                                 }
-                        */
+//if the node is pow operator 
+//and rightSide is number and left side is independence.
+//and the power thread is arithmatics
+if (Current != null)
+    if (Current.LeftSideAccess != null)
+        if (Current.RightSideAccess != null)
+            if (Current.ThreadAccess != null)
+                if (Current.ThreadAccess.ThreadAccess == null)
+            if (this.IsPower(Current.GetDecoder()))
+                if (this.ISindependence(Current.LeftSideAccess.GetDecoder()))
+                    if (this.IsNumber(Current.RightSideAccess.GetDecoder()))
+                        if (this.IsArithmaticsOperator(Current.ThreadAccess.GetDecoder()))
+                        {   //t permanently.2
+                            // ERROR45768905
+                            //this condition never done.
+                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + 10, y, 15, 15, false);
+                         //Current.LeftSideAccess.SetDimentions(Current.ThreadAccess.XAccess + 10, y, 15, 15);
+                        //Current.SetDimentions(x, y, Whidt, Height);
+                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 12, y - 5, 15, 15, false);
+                        //Current.LeftSideAccess.SetDimentions(x + 12, y - 5, 15, 15);
+                        //Current.SetDimentions(x, y, Whidt, Height);
+                    }
+           */
             //ERROR30701573 :Wehn function is on right side the function dose not work.refer to page .
             //ERROR2734527363 :te argument dose not work. Because  
             //ERROR76293874 :When it recived to this node the calculatingXAndTY... Method X Calculate the child of this node incorectly.
             //if the node is function The Left Side is Argument and the rightside is null.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
+                    {
                         //ERROR73423753 :the function dosnot effect when there is.
-                        if (this.IsFunction(Current.GetDecoder()))
+                        if (IsFunction(Current.GetDecoder()))
                         {   //t permanently 2.
                             //ERROR35724231 :The XAccessLocation Method dose not any effect.
-                            this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + Current.StringSampleAccess.Length * 10, y, 15, 15, false);
+                            CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + Current.StringSampleAccess.Length * 10, y, 15, 15, false);
                             //Current.LeftSideAccess.SetDimentions(x + 10, y, 15, 15);
                             //Current.SetDimentions(x, y, Whidt, Height);
                         }
+                    }
+                }
+            }
             //ERRORCORECTION981273 :The Right side if is and left side is null.
             //if the node is function The Left Side is Argument and the rightside is null.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess == null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsFunction(Current.GetDecoder()))
-                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + Current.StringSampleAccess.Length * 10, y, 15, 15, false);
+                    {
+                        if (IsFunction(Current.GetDecoder()))
+                        {
+                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + Current.StringSampleAccess.Length * 10, y, 15, 15, false);
+                        }
+                    }
+                }
+            }
 
 
             //if the node is arithmatics operator 
@@ -2700,89 +3358,119 @@ namespace Formulas
             //ERROR0921384 :The Value setting is incorectly.The XAccessLocation Method is calculted incorectly.refere to page 104.
             //ERRORCORECTION31574213 :Should correct
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {
                                         //t permanently 2. ===
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current) - 10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x), BigestCurrentNodeDivisionGetYDown(Current), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess),this.BigestCurrentNodeDivisionBigestXAccess(Current)+10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                     else
                                     {   //t permanently 2. ===
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), y, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         //ERROR31724215 :The Right side is incorectly valued.
                                         int BigestX = 0;
-                                        this.TheSmallestValue(Current.LeftSideAccess, ref BigestX);
+                                        TheSmallestValue(Current.LeftSideAccess, ref BigestX);
                                         if (Current.RightSideAccess.LeftSideAccess != null)
+                                        {
                                             //ERROR31724215 :The Right side of current node (+) is valued incorectly.
                                             //ERRORCORECTION189264 :The value set corectly.Error is already exist.
                                             //ERROR41527231 :The lenght of number is not token.and the value of Second Method is Not set correctly.refer to page 106.
                                             //ERRORCORRECTION8237427231 :The lenght of number is set.and the value of Second Method is  set correctly.
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y, 15, 15, false);
+                                        }
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess), y, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is function and  
             //and rightSide is null and left side is function too.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsFunction(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
+                    {
+                        if (IsFunction(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
                             {
                                 //t permanently 2.
-                                this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
                                 //Current.LeftSideAccess.SetDimentions(x - 10, y, 15, 15);
                                 //Current.SetDimentions(x, y, Whidt, Height);
                                 //this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
                                 //Current.LeftSideAccess.SetDimentions(x + 10, y, 15, 15);
                                 //Current.SetDimentions(x, y, Whidt, Height);                                 
                             }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatic and  
             //and rightSide is function and left side is numberorIndependence.
             //ERROR63729387549 :The quality is not valid.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsFunction(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERROR31754230 :The division was not.refer to page 138.
                                     //ERRORCORECTION124754230 :The condition added.refer to page 138.
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {   //t permanently 2.
 
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x) - 5, y - 15, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x) - 5, y - 15, 15, 15, false);
                                         //ERROR3040506077 :The dowen is near line.refer to page 138.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y + this.BigestCurrentNodeDivisionGetYDown(Current.RightSideAccess), 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y + BigestCurrentNodeDivisionGetYDown(Current.RightSideAccess), 15, 15, false);
 
                                     }
                                     else
                                     {
                                         //t permanently 2.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - (Current.LeftSideAccess.StringSampleAccess.Length * 15), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - (Current.LeftSideAccess.StringSampleAccess.Length * 15), y, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x - 10, y, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         //ERROR531724125 :The Value is not valid.
                                         //ERRORCORECTION509238749 :The Value is valid.refer to page 106.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(x + 10, y, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);                                 
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
 
             /*
           
@@ -2818,11 +3506,16 @@ namespace Formulas
             //if the node is power 
             //and right and left side are arithmatics operator too.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //t permanently.2 === 
                                     //ERROR4586203 : the Second argument was not valid.
@@ -2831,166 +3524,254 @@ namespace Formulas
                                     //ERROR987324 :The Current.ThreadAccess. is null and The null exeption Occeres.
                                     //this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.ThreadAccess.XAccess + this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x) + 15, y, 15, 15, false);
                                     //ERRORCORECTION31724152 :The Error is corected.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.XAccess - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x) + 5, y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.XAccess - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x) + 5, y, 15, 15, false);
                                     //Current.SetDimentions(x, y, Whidt, Height);
                                     //Current.LeftSideAccess.SetDimentions(Current.LeftSideAccess.XAccess, y, 15, 15);
                                     //ERROR75875123 : On Third argument
                                     //ERRORCORRECTION1276548 : The parameters of third argument correct.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y - 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y - 10, 15, 15, false);
                                     //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess), y, 15, 15);
                                     //Current.SetDimentions(x, y, Whidt, Height);                             
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and rightSide is pow and left side power.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsPower(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsPower(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {
                                         //t permanently 2. ===
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current) - 10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x), BigestCurrentNodeDivisionGetYDown(Current), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess),this.BigestCurrentNodeDivisionBigestXAccess(Current)+10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                     else
                                     {   //t permanently 2. ===
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y, 15, 15, false);
                                     }
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is power and rightSide is pow and left side power.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsPower(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsPower(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y + 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y + 10, 15, 15, false);
 
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y - 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y - 10, 15, 15, false);
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is power and rightSide is ind and left side is arithmatics.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
                                 {
                                     int ElementNumber = Integral.NumberOfElementsSet(Current.LeftSideAccess.RightSideAccess);
                                     int FunctionNumber = Integral.NumberOfFunctionElementsSet(Current.LeftSideAccess.RightSideAccess);
                                     int a = x - (((ElementNumber - FunctionNumber) + FunctionNumber * 3)) * 10;
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, a - 10, y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y - 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, a - 10, y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y - 10, 15, 15, false);
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is power and rightSide is arithmatic and left side is numor var.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y - 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y - 10, 15, 15, false);
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is power and rightSide is in dependence or variable  and left side is function.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y - 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y - 10, 15, 15, false);
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is Artithmatic Operator  and rightSide is in null  and left side of Left is independnce variable.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsFunction(Current.GetDecoder()))
-                            if (this.ISindependence(Current.LeftSideAccess.GetDecoder()))
+                    {
+                        if (IsFunction(Current.GetDecoder()))
+                        {
+                            if (ISindependence(Current.LeftSideAccess.GetDecoder()))
                             {
-                                this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
 
                             }
+                        }
+                    }
+                }
+            }
 
             //if the node is power and rightSide is function  and left side is ind or var.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsFunction(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y - 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y - 10, 15, 15, false);
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and rightSide is pow and left side is arithmatics.
             //ERROR41732145 :The graphically draw is incorect.refer to page 111.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsPower(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsPower(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {
                                         //ERROR307080 :refer to page 136.
                                         //t permanently 2. ===
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current) - 10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x), BigestCurrentNodeDivisionGetYDown(Current), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess),this.BigestCurrentNodeDivisionBigestXAccess(Current)+10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                     else
                                     {   //t permanently 2. ===
                                         //ERROR514230 :The first method call set value changed.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess.RightSideAccess, x), y, 15, 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess.RightSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y, 15, 15, false);
                                     }
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and rightSide and left side are function.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsFunction(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {
                                         //ERROR30702507 :The x Begining is incorected.refer to page 137.
                                         //ERROR18924 :The y upo and down is incorrected.
                                         //t permanently 2. ===
                                         //this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - 25, this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - 25, BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current) - 10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         //this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + (Integral.NumberOfElementsSet(Current.LeftSideAccess) * 15) + 5, this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + (Integral.NumberOfElementsSet(Current.LeftSideAccess) * 15) + 5, BigestCurrentNodeDivisionGetYDown(Current), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess),this.BigestCurrentNodeDivisionBigestXAccess(Current)+10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
@@ -3001,138 +3782,183 @@ namespace Formulas
                                         int FunctionNumbner = Integral.NumberOfFunctionElementsSet(Current.LeftSideAccess);
                                         int ElementNumber = Integral.NumberOfElementsSet(Current.LeftSideAccess);
                                         if (Current.ThreadAccess != null)
+                                        {
                                             a = Current.ThreadAccess.XAccess + 10;
+                                        }
                                         else
+                                        {
                                             a = x - (((ElementNumber - FunctionNumbner) + (FunctionNumbner * 3)) * 15) - 10;
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, a, y, 15, 15, false); this.TheBigestValueNodeXForcalculationMethode(Current.LeftSideAccess, ref x);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y, 15, 15, false);
+                                        }
+
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, a, y, 15, 15, false); TheBigestValueNodeXForcalculationMethode(Current.LeftSideAccess, ref x);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y, 15, 15, false);
                                     }
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
 
 
             //if the node is arithmatics operator 
             //and rightSide is aritmatic and left side is function.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {
                                         //ERROR307050 :The far disTance long width line.refer to page 137.
                                         //t permanently 2. ===
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current) - 10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x), BigestCurrentNodeDivisionGetYDown(Current), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess),this.BigestCurrentNodeDivisionBigestXAccess(Current)+10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                     else
                                     {   //t permanently 2. ===                                                                  
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
                                         //ERROR2019348 :The below setting value is incorrect.
                                         //refer to page 112. The leftside() deleted.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x), y, 15, 15, false);
                                     }
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and rightSide is pow and left side is function.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsPower(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsPower(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {
                                         //ERROR9812734 :The far disTance line.refr to page 137.
                                         //t permanently 2. ===
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current) - 10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x), BigestCurrentNodeDivisionGetYDown(Current), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess),this.BigestCurrentNodeDivisionBigestXAccess(Current)+10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                     else
                                     {   //t permanently 2. ===                                                                  
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x), y, 15, 15, false);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and LeftSide is pow and Right side is function.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsFunction(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {
                                         //ERROR987123 :The Right side function is incorrectly set value.
                                         //t permanently 2. ===
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current) - 10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x), BigestCurrentNodeDivisionGetYDown(Current), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess),this.BigestCurrentNodeDivisionBigestXAccess(Current)+10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                     else
                                     {   //t permanently 2. ===                                                                  
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y, 15, 15, false);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and LeftSide is arithmatics and Right side is ind or var.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    if (this.IsDivision(Current.GetDecoder()))
+                                    if (IsDivision(Current.GetDecoder()))
                                     {
                                         //t permanently 2. ===
                                         //ERROR982375 :the line drawn is not set correctly.refer to page 138.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current) - 10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                         //ERRORCUASE23785 :cause of ERROR28373248754.refer to page 142.
                                         //ERRORCORECTION2428734 : Corection of ERRORCUASE23785.refer top pae 143.
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x), y + 15, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x), y + 15, 15, 15, false);
                                         //Current.LeftSideAccess.SetDimentions(this.XAccessLocation(Current.RightSideAccess),this.BigestCurrentNodeDivisionBigestXAccess(Current)+10, 15, 15);
                                         //Current.SetDimentions(x, y, Whidt, Height);
                                     }
                                     else
                                     {   //t permanently 2. ===                                                                  
-                                        this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                        CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
                                         //ERRORCORECTION6756980 :refer to page 140.
-                                        if (this.IsDivision(Current.LeftSideAccess.GetDecoder()))
+                                        if (IsDivision(Current.LeftSideAccess.GetDecoder()))
                                         {
                                             x = Current.LeftSideAccess.XAccess + Current.LeftSideAccess.WidhtAccess;
                                             Current.SetDimentions(x, Current.YAccess, Current.WidhtAccess, Current.HieghtAcess);
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y, 15, 15, false);
                                         }
                                         else
                                         //if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
                                         {
                                             int p = 0;
-                                            this.TheBigestValueNodeXForcalculationMethode(Current.LeftSideAccess.RightSideAccess, ref p);
+                                            TheBigestValueNodeXForcalculationMethode(Current.LeftSideAccess.RightSideAccess, ref p);
                                             //x = Current.LeftSideAccess.XAccess + Current.LeftSideAccess.GetWidht();
                                             x = p + 15;
                                             Current.SetDimentions(x, Current.YAccess, Current.WidhtAccess, Current.HieghtAcess);
-                                            this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y, 15, 15, false);
+                                            CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y, 15, 15, false);
                                         }
                                         /*else
                                         {
@@ -3149,6 +3975,11 @@ namespace Formulas
                                          */
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and LeftSide is arithmatics and Right side is function.     
             /*if (Current != null)
@@ -3180,305 +4011,589 @@ namespace Formulas
             //if the node is power operator 
             //and LeftSide is power and Right side is ind or var.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
                                 {
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
                                     //ERROR415210: It seems will be an error at y value setting.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 20, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 20, 15, 15, false);
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is power and LeftSide is power and Right side is aritmatics operator.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERROR30407513 :The error are far disTance between some strings and the y value setting.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x) + 5, y - 20, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x) + 5, y - 20, 15, 15, false);
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is power and LeftSide is power and Right side is FUNCTION.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsFunction(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERROR17412375  :The error are far disTance between some strings and the y value setting.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 20, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 20, 15, 15, false);
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is power and LeftSide is arithmatics and Right side is power.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsPower(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsPower(Current.RightSideAccess.GetDecoder()))
                                 {
 
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x) + 5, y - 20, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.LeftSideAccess, x) + 5, y - 20, 15, 15, false);
                                 }
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is power and LeftSide is function and Right side is power.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsPower(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsPower(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERROR13407035
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x) + 5, y - 20, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.LeftSideAccess, x) + 5, y - 20, 15, 15, false);
                                 }
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is power and LeftSide is arithmatics and Right side is function.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsFunction(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERROR17492834 :The error are far disTance between some strings and the y value setting.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 20, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 20, 15, 15, false);
                                 }
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is power and LeftSide is ind or var and Right side is power.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsPower(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsPower(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERROR40503017 :The error are far disTance between some strings and the y value setting.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x) + 5, y - 20, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x) + 5, y - 20, 15, 15, false);
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is power and LeftSide is functon and Right side is power.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsPower(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsPower(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERROR30715031 :The error are far disTance between some strings and the y value setting.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x) + 5, y - 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x) + 5, y - 10, 15, 15, false);
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is power and LeftSide is arithmatics and Right side is function.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERROR3078796    :The error are far disTance between some strings and the y value setting.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x) + 5, y - 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x) + 5, y - 10, 15, 15, false);
                                 }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is power and LeftSide is function and Right side is function.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsFunction(Current.RightSideAccess.GetDecoder()))
                                 {
                                     //ERROR307986    :The error are far disTance between some strings and the y value setting.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess, x) + 5, y - 10, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess, x) + 5, y - 10, 15, 15, false);
 
                                 }
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is power and rightSide is null and left side power.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y + 10, 15, 15, false);
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y + 10, 15, 15, false);
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is power and right is null and left side are arithmatics operator too.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.XAccess - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x) + 5, y, 15, 15, false);
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, Current.XAccess - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x) + 5, y, 15, 15, false);
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is pow operator 
             //and rightSide is null and left side is independence.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-                                this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - 10, y, this.XAccessLocation(Current.LeftSideAccess, x) + 5, 15, false);
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - 10, y, XAccessLocation(Current.LeftSideAccess, x) + 5, 15, false);
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is power and rightSide is null  and left side is function.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x), y, 15, 15, false);
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is power and rightSide is pow and left side null.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess == null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsPower(Current.RightSideAccess.GetDecoder()))
-                                this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y - 10, 15, 15, false);
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.RightSideAccess.GetDecoder()))
+                            {
+                                CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + 10, y - 10, 15, 15, false);
+                            }
+                        }
+                    }
+                }
+            }
 
 
 
 
             //if the node is power and right and left side is null.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess == null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
-                                this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y - 10, 15, 15, false);
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                            {
+                                CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + XAccessLocation(Current.RightSideAccess.LeftSideAccess, x), y - 10, 15, 15, false);
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is pow operator 
             //and rightSide is number and left side is null.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess == null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsPower(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
-                                this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 10, this.XAccessLocation(Current.RightSideAccess, x) + 5, 15, false);
+                    {
+                        if (IsPower(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                            {
+                                CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, y - 10, XAccessLocation(Current.RightSideAccess, x) + 5, 15, false);
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and rightSide is arithmatics null and left side power.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsPower(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsDivision(Current.GetDecoder()))
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsDivision(Current.GetDecoder()))
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                }
                                 else
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             //if the node is arithmatics operator 
             //and right is null and left side is  arithmatics operator too.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsDivision(Current.GetDecoder()))
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current), this.XAccessLocation(Current.LeftSideAccess, x), 15, false);
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsDivision(Current.GetDecoder()))
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current), XAccessLocation(Current.LeftSideAccess, x), 15, false);
+                                }
                                 else
+                                {
                                     //ERRORCORECTION1872487 :The GetThread was not valid set.
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x) - 5, y, 15, 15, false);
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess.LeftSideAccess, x) - 5, y, 15, 15, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             //If current is artith and the left is independence varibale OR NUMBER
             //and the right side is null.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
-
-                                if (this.IsDivision(Current.GetDecoder()))
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, this.BigestCurrentNodeDivisionGetYUp(Current), this.XAccessLocation(Current.LeftSideAccess, x), 15, false);
-
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsDivision(Current.GetDecoder()))
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + 5, BigestCurrentNodeDivisionGetYUp(Current), XAccessLocation(Current.LeftSideAccess, x), 15, false);
+                                }
                                 else
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x) - 10, y, this.XAccessLocation(Current.LeftSideAccess, x) + 15, 15, false);
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x) - 10, y, XAccessLocation(Current.LeftSideAccess, x) + 15, 15, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and rightSide is null and left side is function.     
             if (Current != null)
+            {
                 if (Current.LeftSideAccess != null)
+                {
                     if (Current.RightSideAccess == null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsFunction(Current.LeftSideAccess.GetDecoder()))
-                                if (this.IsDivision(Current.GetDecoder()))
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + this.XAccessLocation(Current.LeftSideAccess, x), this.BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), this.BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.LeftSideAccess.GetDecoder()))
+                            {
+                                if (IsDivision(Current.GetDecoder()))
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x + XAccessLocation(Current.LeftSideAccess, x), BigestCurrentNodeDivisionGetYUp(Current.LeftSideAccess), BigestCurrentNodeDivisionBigestXAccess(Current), 15, false);
+                                }
                                 else
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - this.XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.LeftSideAccess, x - XAccessLocation(Current.LeftSideAccess, x), y, 15, 15, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             //If current is artith and the left is null
             //and the right side is pow.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess == null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsPower(Current.RightSideAccess.GetDecoder()))
-                                if (this.IsDivision(Current.GetDecoder()))
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess, x) + 5, this.BigestCurrentNodeDivisionGetYDown(Current), this.XAccessLocation(Current.RightSideAccess, x), 15, false);
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsPower(Current.RightSideAccess.GetDecoder()))
+                            {
+                                if (IsDivision(Current.GetDecoder()))
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, XAccessLocation(Current.RightSideAccess, x) + 5, BigestCurrentNodeDivisionGetYDown(Current), XAccessLocation(Current.RightSideAccess, x), 15, false);
+                                }
                                 else
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             //If current is operator and the left is null
             //and the right side is arrithmatic operator.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess == null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
-                                if (this.IsDivision(Current.GetDecoder()))
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsArithmaticsOperator(Current.RightSideAccess.GetDecoder()))
+                            {
+                                if (IsDivision(Current.GetDecoder()))
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 5, BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
+                                }
                                 else
-                                    if (!this.IsDivision(Current.RightSideAccess.GetDecoder()))
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + Current.XAccess + 25, y, 15, 15, false);
+                                    if (!IsDivision(Current.RightSideAccess.GetDecoder()))
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, XAccessLocation(Current.RightSideAccess.LeftSideAccess, x) + Current.XAccess + 25, y, 15, 15, false);
+                                }
                                 else
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 15, y, 15, 15, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             //If current is artith and the left is null
             //and the right side is num or independence.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess == null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
-                                if (this.IsDivision(Current.GetDecoder()))
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, this.XAccessLocation(Current.RightSideAccess, x) + 5, this.BigestCurrentNodeDivisionGetYDown(Current), this.BigestCurrentNodeDivisionBigestXAccess(Current.RightSideAccess), 15, false);
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (ISindependenceOrNumber(Current.RightSideAccess.GetDecoder()))
+                            {
+                                if (IsDivision(Current.GetDecoder()))
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, XAccessLocation(Current.RightSideAccess, x) + 5, BigestCurrentNodeDivisionGetYDown(Current), BigestCurrentNodeDivisionBigestXAccess(Current.RightSideAccess), 15, false);
+                                }
                                 else
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + Current.WidhtAccess, y, 15, 15, false);
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, Current.XAccess + Current.WidhtAccess, y, 15, 15, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             //if the node is arithmatics operator 
             //and rightSide is Function and left side is null.
             if (Current != null)
+            {
                 if (Current.LeftSideAccess == null)
+                {
                     if (Current.RightSideAccess != null)
-                        if (this.IsArithmaticsOperator(Current.GetDecoder()))
-                            if (this.IsFunction(Current.RightSideAccess.GetDecoder()))
-                                if (this.IsDivision(Current.GetDecoder()))
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + this.BigestCurrentNodeDivisionBigestXAccess(Current) + 15, this.BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
+                    {
+                        if (IsArithmaticsOperator(Current.GetDecoder()))
+                        {
+                            if (IsFunction(Current.RightSideAccess.GetDecoder()))
+                            {
+                                if (IsDivision(Current.GetDecoder()))
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + BigestCurrentNodeDivisionBigestXAccess(Current) + 15, BigestCurrentNodeDivisionGetYDown(Current), 15, 15, false);
+                                }
                                 else
-                                    this.CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
+                                {
+                                    CalculatingXAndYAndWhithAndHeight(Current.RightSideAccess, x + 10, y, 15, 15, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             //System.Windows.Forms.MessageBox.Show("5.2.5-The End of Claculation Conditions");
 
             //ERRORCORECTION12197234 :The location of division condition for the lenght of divisio operator.refer to page 125.           
             //ERROR31012634 :The Hieght of diviosn is very large. refer to page 125.
             //ERRORCORECTION019238709124 :The condition lead to ERROR13725150 deleted.
-            if (this.IsDivision(Current.GetDecoder()))
+            if (IsDivision(Current.GetDecoder()))
             { //NOTE1982738 :To Set Lenght of Division Operator.refer to page 126.
                 int x0 = 1000, x1 = 0;
                 //ERROR1243 :The NOTE1982738 has some invalid Concept.refr to page 126.
                 //ERROR13725150 :when this method returned the "/" ,widt value was not valid.refer to page 127.
-                Current.SetDimentions(x, y, this.BigestLenghtOfLefTandRightArguments(Current.LeftSideAccess, Current.RightSideAccess, ref x0, ref x1), 5);
+                Current.SetDimentions(x, y, BigestLenghtOfLefTandRightArguments(Current.LeftSideAccess, Current.RightSideAccess, ref x0, ref x1), 5);
                 //ERRORCORECTION6345012948 :Correction Of ERROR3070802113.refer to page 127.
                 //ERROR307021 :TheError is far disTance between line division and right side nodes(below of line division).
                 //ERRORCORECTION1897234 :The Some code changed to be corrected.
                 //ERROR30704123 :The error is invalid set.refer to page 129.
-                Current.SetLefTandRight(Current.LeftSideAccess, this.ShiftRightSideDivisionCurrentNodeYNodesValues(Current.RightSideAccess, Current));
-                Current.SetLefTandRight(this.ShiftLeftSideDivisionCurrentNodeYNodesValues(Current.LeftSideAccess, Current), Current.RightSideAccess);
+                Current.SetLefTandRight(Current.LeftSideAccess, ShiftRightSideDivisionCurrentNodeYNodesValues(Current.RightSideAccess, Current));
+                Current.SetLefTandRight(ShiftLeftSideDivisionCurrentNodeYNodesValues(Current.LeftSideAccess, Current), Current.RightSideAccess);
             }
-            if (this.IsNumber(Current.GetDecoder()))
-                Current.SetDimentions(Current.XAccess, Current.YAccess, this.GetWhidthOfNumber(Current.StringSampleAccess), Current.HieghtAcess);
+            if (IsNumber(Current.GetDecoder()))
+            {
+                Current.SetDimentions(Current.XAccess, Current.YAccess, GetWhidthOfNumber(Current.StringSampleAccess), Current.HieghtAcess);
+            }
 
             // System.Windows.Forms.MessageBox.Show("5.2.4-The end of Clacluation");
             // Current.SetDimentions(x,y,this.BigestCurrentNodeDivisionBigestXAccess(Current)-this.BigestCurrentNodeDivisionSmallestXAccess(Current),2);                   
@@ -3487,15 +4602,18 @@ namespace Formulas
         private void SetWhidthValueOfNumberNode(Set Node, ref Set Dummy)
         {
             if (Node == null)
+            {
                 return;
-            if (this.IsNumber(Node.GetDecoder()))
+            }
+
+            if (IsNumber(Node.GetDecoder()))
             {
                 int p = 0;
                 p = Node.StringSampleAccess.Length * 15;
                 Node.SetDimentions(Node.XAccess, Node.YAccess, p, Node.HieghtAcess);
             }
-            this.SetWhidthValueOfNumberNode(Node.LeftSideAccess, ref Dummy);
-            this.SetWhidthValueOfNumberNode(Node.RightSideAccess, ref Dummy);
+            SetWhidthValueOfNumberNode(Node.LeftSideAccess, ref Dummy);
+            SetWhidthValueOfNumberNode(Node.RightSideAccess, ref Dummy);
             Dummy = Node;
             return;
 
@@ -3503,13 +4621,16 @@ namespace Formulas
         private void SetXValueOfArithmaticsNode(Set Node, ref Set Dummy)
         {
             if (Node == null)
+            {
                 return;
-            this.SetXValueOfArithmaticsNode(Node.LeftSideAccess, ref Dummy);
-            this.SetXValueOfArithmaticsNode(Node.RightSideAccess, ref Dummy);
-            if (this.IsArithmaticsOperator(Node.GetDecoder()))
+            }
+
+            SetXValueOfArithmaticsNode(Node.LeftSideAccess, ref Dummy);
+            SetXValueOfArithmaticsNode(Node.RightSideAccess, ref Dummy);
+            if (IsArithmaticsOperator(Node.GetDecoder()))
             {
                 int p = 0;
-                if (this.IsArithmaticsOperator(Node.LeftSideAccess.GetDecoder()))
+                if (IsArithmaticsOperator(Node.LeftSideAccess.GetDecoder()))
                 {
                     p = Node.LeftSideAccess.RightSideAccess.XAccess + Node.LeftSideAccess.RightSideAccess.WidhtAccess + 15;
                     Node.SetDimentions(p, Node.YAccess, Node.WidhtAccess, Node.HieghtAcess);
@@ -3524,37 +4645,37 @@ namespace Formulas
     //This class Create graphically Nodes
     public class Set
     {
-        Set LeftSide = null;
-        Set RightSide = null;
-        Set Thread = null;
+        private Set LeftSide = null;
+        private Set RightSide = null;
+        private Set Thread = null;
+
         //AddToTree.Tree TreeVariable = null;
-        String StringSampel = null;
+        private string StringSampel = null;
 
         //Current Setting Elements.
-        int x = 0, y = 0;
-        int Width = 0, Height = 0;
-
-        bool Integral = false;//0
-        bool Line = false;//1
-        bool Sin = false;//2
-        bool Cos = false;//3
-        bool Tan = false;//4
-        bool Cot = false;//5
-        bool Sec = false;//6
-        bool Csc = false;//7 
-        bool Cerices = false;//8
-        bool Root = false;//9
-        bool Ln = false;//10
-        bool Log = false;//11
-        bool No = false;//12
-        String Number = null;//12
-        bool Add = false;//13
-        bool Subtract = false;//14
-        bool Mul = false;//15
-        bool Div = false;//16
-        bool Pow = false;//17
-        bool Independence = false;//17
-        int Decoder = 0;
+        private int x = 0, y = 0;
+        private int Width = 0, Height = 0;
+        private bool Integral = false;//0
+        private bool Line = false;//1
+        private bool Sin = false;//2
+        private bool Cos = false;//3
+        private bool Tan = false;//4
+        private bool Cot = false;//5
+        private bool Sec = false;//6
+        private bool Csc = false;//7 
+        private bool Cerices = false;//8
+        private bool Root = false;//9
+        private bool Ln = false;//10
+        private bool Log = false;//11
+        private bool No = false;//12
+        private string Number = null;//12
+        private bool Add = false;//13
+        private bool Subtract = false;//14
+        private bool Mul = false;//15
+        private bool Div = false;//16
+        private bool Pow = false;//17
+        private bool Independence = false;//17
+        private int Decoder = 0;
         public Set()
         {
         }
@@ -3600,7 +4721,9 @@ namespace Formulas
                 return Current;
             }
             else
+            {
                 return null;
+            }
         }
         public void SetLefTandRightSetCommonlySide(Set L, Set R)
         {
@@ -3615,7 +4738,10 @@ namespace Formulas
         public Set CopyNewSetAction(Set Exsit)
         {
             if (Exsit == null)
+            {
                 return null;
+            }
+
             Set Current = new Set();
             try
             {
@@ -3662,12 +4788,12 @@ namespace Formulas
 
         }
 
-        public String NumberAcess
+        public string NumberAcess
         {
             get { return Number; }
             set { Number = value; }
         }
-        public String StringSampleAccess
+        public string StringSampleAccess
         {
             get { return StringSampel; }
             set { StringSampel = value; }
@@ -3720,69 +4846,107 @@ namespace Formulas
             Height = h0;
         }
         //By every setting cleans before settings.
-        public void SetOneOfThem(String t)
+        public void SetOneOfThem(string t)
         {
-            this.ResetAll();
+            ResetAll();
             if (t != null)
+            {
                 if (t.ToString().ToLower().ToLower() == "integral")
+                {
                     Integral = true;
+                }
                 else
                     if (t.ToString().ToLower() == "line")
+                {
                     Line = true;
+                }
                 else
                         if (t.ToString().ToLower() == "sin")
+                {
                     Sin = true;
+                }
                 else
                             if (t.ToString().ToLower() == "cos")
+                {
                     Cos = true;
+                }
                 else
                                 if (t.ToString().ToLower() == "tan")
+                {
                     Tan = true;
+                }
                 else
                                     if (t.ToString().ToLower() == "cot")
+                {
                     Cot = true;
+                }
                 else
                                         if (t.ToString().ToLower() == "sec")
+                {
                     Cot = true;
+                }
                 else
                                             if (t.ToString().ToLower() == "csc")
+                {
                     Cot = true;
+                }
                 else
                                                 if (t.ToString().ToLower() == "cerices")
+                {
                     Cerices = true;
+                }
                 else
                                                     if (t.ToString().ToLower() == "root")
+                {
                     Root = true;
+                }
                 else
                                                         if (t.ToString().ToLower() == "ln")
+                {
                     Ln = true;
+                }
                 else
                                                             if (t.ToString().ToLower() == "log")
+                {
                     Log = true;
+                }
                 else
                                                                 if (t.ToString().ToLower() == "+")
+                {
                     Add = true;
+                }
                 else
                                                                     if (t.ToString().ToLower() == "-")
+                {
                     Subtract = true;
+                }
                 else
                                                                         if (t.ToString().ToLower() == "/")
+                {
                     Div = true;
+                }
                 else
                                                                             if (t.ToString().ToLower() == "*")
+                {
                     Mul = true;
+                }
                 else
                                                                                 if (t.ToString().ToLower() == "^")
+                {
                     Pow = true;
+                }
                 else
                                                                                     if (t.ToString().ToLower() == "x")
+                {
                     Independence = true;
+                }
                 else
                 {   //Correctiorn of ERROR560364?
                     //Consider .ERROR is Elready.
                     No = true;
                     Number = t;
                 }
+            }
         }
         public void ResetAll()
         {
@@ -3814,16 +4978,21 @@ namespace Formulas
             //The left side or right side my be null.
             //at this time the null exeption ocures
             if (LeftSide != null)
+            {
                 LeftSide.Thread = this;
+            }
+
             if (RightSide != null)
+            {
                 RightSide.Thread = this;
+            }
         }
         /*public void SetNode(String t)
         {
              StringSampel =            t;
         }
          */
-        public String NodeAccess
+        public string NodeAccess
         {
             get { return StringSampel; }
             set { StringSampel = value; }
@@ -3831,61 +5000,99 @@ namespace Formulas
         public int GetDecoder()
         {
             if (Integral)
+            {
                 Decoder = 0;
+            }
             else
                 if (Line)
+            {
                 Decoder = 1;
+            }
             else
                     if (Sin)
+            {
                 Decoder = 2;
+            }
             else
                         if (Cos)
+            {
                 Decoder = 3;
+            }
             else
                             if (Tan)
+            {
                 Decoder = 4;
+            }
             else
                                 if (Cot)
+            {
                 Decoder = 5;
+            }
             else
                                     if (Sec)
+            {
                 Decoder = 6;
+            }
             else
                                         if (Csc)
+            {
                 Decoder = 7;
+            }
             else
                                             if (Cerices)
+            {
                 Decoder = 8;
+            }
             else
                                                 if (Root)
+            {
                 Decoder = 9;
+            }
             else
                                                     if (Ln)
+            {
                 Decoder = 10;
+            }
             else
                                                         if (Log)
+            {
                 Decoder = 11;
+            }
             else
                                                             if (No)
+            {
                 Decoder = 12;
+            }
             else
                                                                 if (Add)
+            {
                 Decoder = 13;
+            }
             else
                                                                     if (Subtract)
+            {
                 Decoder = 14;
+            }
             else
                                                                         if (Mul)
+            {
                 Decoder = 15;
+            }
             else
                                                                             if (Div)
+            {
                 Decoder = 16;
+            }
             else
                                                                                 if (Pow)
+            {
                 Decoder = 17;
+            }
             else
                                                                                     if (Independence)
+            {
                 Decoder = 18;
+            }
 
             return Decoder;
         }
@@ -3895,47 +5102,64 @@ namespace Formulas
             Set t = this;
             bool Is = false;
             if (t == null)
+            {
                 Is = false;
+            }
             else
                 if (t != null)
             {
                 if (t.Equals(Exist))
+                {
                     Is = true;
+                }
                 else
                 {
                     if (t.LeftSideAccess != null)
+                    {
                         if (t.LeftSideAccess.IsNodeInTree(Exist))
+                        {
                             Is = true;
+                        }
+                    }
+
                     if (t.RightSideAccess != null)
+                    {
                         if (t.RightSideAccess.IsNodeInTree(Exist))
+                        {
                             Is = true;
+                        }
+                    }
                 }
             }
             else
+            {
                 Is = false;
+            }
+
             return Is;
         }
     }
     //This class stores drawing settings.
     public class EquationTrace
     {
-        int MaxX = 0, MaxY = 0, MinX = 100000, MinY = 100000;
+        private int MaxX = 0, MaxY = 0, MinX = 100000, MinY = 100000;
+        private int XTrace = 0, YTrace = 0;
 
-        int XTrace = 0, YTrace = 0;
         //static int TraceMovmentCount = 5;
-        Set Setvariable = null;
-        Set CurrentSetvariable = null;
-        Equation Equation = null;
-        Graphics g = null;
-        AddToTree.reciverContractionTree reciverContractionTreeVaribale = null;
-        TraceKind TraceKindVariable = null;
-        Set PreviouseNodeForBetweenTraceKindDummy = null;
-        AddDeleteNode AddDeleteNodeOperations = null;
+        private Set Setvariable = null;
+        private Set CurrentSetvariable = null;
+        private Equation Equation = null;
+        private Graphics g = null;
+        private AddToTree.reciverContractionTree reciverContractionTreeVaribale = null;
+        private TraceKind TraceKindVariable = null;
+        private Set PreviouseNodeForBetweenTraceKindDummy = null;
+        private readonly AddDeleteNode AddDeleteNodeOperations = null;
+
         //     Equation HOLDER = null;//new Equation();
-        AddToTree.Tree HOLDER = new AddToTree.Tree(null, false);
-        bool HolderReady = false;
-        bool EquationReady = false;
-        EquationTraceInsertion EquationTraceInsertionVariable = null;
+        private AddToTree.Tree HOLDER = new AddToTree.Tree(null, false);
+        private bool HolderReady = false;
+        private bool EquationReady = false;
+        private EquationTraceInsertion EquationTraceInsertionVariable = null;
         public bool EquationReadyAccess
         {
             get { return EquationReady; }
@@ -3995,19 +5219,40 @@ namespace Formulas
             D = (Node.RightSideAccess == null);
             E = (Dummy.RightSideAccess == null);
             if (!(B || C))
+            {
                 F = (Node.LeftSideAccess.SampleAccess == Dummy.LeftSideAccess.StringSampleAccess);
+            }
             else
+            {
                 F = true;
+            }
+
             if (!(D || E))
+            {
                 G = (Node.RightSideAccess.SampleAccess == Dummy.RightSideAccess.StringSampleAccess);
+            }
             else
+            {
                 G = true;
+            }
+
             if (A)
+            {
                 if (B == C)
+                {
                     if (D == E)
+                    {
                         if (F)
+                        {
                             if (G)
+                            {
                                 IS = true;
+                            }
+                        }
+                    }
+                }
+            }
+
             return IS;
         }
         private AddToTree.Tree GetAddToTreeNode(AddToTree.Tree Node, ref AddToTree.Tree Dummy)
@@ -4018,7 +5263,9 @@ namespace Formulas
              */
             //ERRORCORECTION9285 :The Null Eception corection.
             if (Node == null)
+            {
                 return Dummy;
+            }
             //ERROR317542.refer to page 149.
             /*if (Node.LeftSideAccess.SampleAccess == this.PreviouseNodeForBetweenTraceKindDummy.LeftSideAccess.StringSampleAccess) 
             if (Node.SampleAccess == this.PreviouseNodeForBetweenTraceKindDummy.StringSampleAccess)
@@ -4027,10 +5274,13 @@ namespace Formulas
                         Dummy=Node;
              */
             //ERRORCORECTION09128409 :The Fining of Proper node.
-            if (this.IsEqualWithThreadConsiderationCommonlyTS(Node, this.PreviouseNodeForBetweenTraceKindDummy))
+            if (IsEqualWithThreadConsiderationCommonlyTS(Node, PreviouseNodeForBetweenTraceKindDummy))
+            {
                 Dummy = Node;
-            Dummy = this.GetAddToTreeNode(Node.LeftSideAccess, ref Dummy);
-            Dummy = this.GetAddToTreeNode(Node.RightSideAccess, ref Dummy);
+            }
+
+            Dummy = GetAddToTreeNode(Node.LeftSideAccess, ref Dummy);
+            Dummy = GetAddToTreeNode(Node.RightSideAccess, ref Dummy);
             return Dummy;
         }
         //Thread XAndY=new Thread(new ThreadStart(this.TransmiteXAndYTraceAtNodes));
@@ -4064,36 +5314,55 @@ namespace Formulas
             THISE.SenderSampleAccess.AutoSenderAccess.reciverCuntractionTreeAccess.NodeAccess.SampleAccess = null;
             THISE.SenderSampleAccess.AutoSenderAccess.reciverCuntractionTreeAccess.NodeAccess.ThreadAccess = null;
         }
-        private bool IsFunction(String Sample)
+        private bool IsFunction(string Sample)
         {
             bool IsFunction = false;
             if (Sample != null)
             {
                 if (Sample.ToString().ToLower() == "sin")
+                {
                     IsFunction = true;
+                }
                 else
                     if (Sample.ToString().ToLower() == "cos")
+                {
                     IsFunction = true;
+                }
                 else
                         if (Sample.ToString().ToLower() == "tan")
+                {
                     IsFunction = true;
+                }
                 else
                             if (Sample.ToString().ToLower() == "cot")
+                {
                     IsFunction = true;
+                }
                 else
                                 if (Sample.ToString().ToLower() == "sec")
+                {
                     IsFunction = true;
+                }
                 else
                                     if (Sample.ToString().ToLower() == "csc")
+                {
                     IsFunction = true;
+                }
                 else
                                         if (Sample.ToString().ToLower() == "log")
+                {
                     IsFunction = true;
+                }
                 else
                                             if (Sample.ToString().ToLower() == "ln")
+                {
                     IsFunction = true;
+                }
+
                 if (Sample.ToString().ToLower() == "root")
+                {
                     IsFunction = true;
+                }
             }
             return IsFunction;
         }
@@ -4101,7 +5370,9 @@ namespace Formulas
         {
             bool Is = false;
             if ((Preesed == 6) || (Preesed == 7) || (Preesed == 8) || (Preesed == 9))
+            {
                 Is = true;
+            }
 
             return Is;
         }
@@ -4114,17 +5385,17 @@ namespace Formulas
             TraceKindVariable = TRK;
             HolderReady = false;
             //UNACTIVATE1307.refer to page 145.
-            if (!(this.MovementAlowed(InPressed)))
+            if (!(MovementAlowed(InPressed)))
             {
                 //adding operations.
                 if (EquationTraceInsertionVariable.EqauationTraceInsertionAccess)
                 {
-                    this.EquationReady = false;
+                    EquationReady = false;
                     EquationTraceInsertionVariable.SetTraceTreeVariblefunction(THISE);
-                    if ((this.EquationReady))
+                    if ((EquationReady))
                     {
                         EquationTraceInsertionVariable.EqauationTraceInsertionAccess = false;
-                        this.EquationReady = false;
+                        EquationReady = false;
                     }
 
                 }
@@ -4241,66 +5512,89 @@ namespace Formulas
                  }*/
             }
             else
+            {
                 EquationTraceInsertionVariable.EqauationTraceInsertionAccess = true;
+            }
             //ERROR09284 :The box drawing is not occured.refer to page 146.
             reciverContractionTreeVaribale = THISE.SenderSampleAccess.AutoSenderAccess.reciverCuntractionTreeAccess;
             //To Calculate Border chart.
             MaxX = 0; MaxY = 0; MinX = 100000; MinY = 100000;
-            this.CalculateMaxMinXAandY();
+            CalculateMaxMinXAandY();
             if ((XTrace == 0) && (YTrace == 0))
-                this.SetXTraceAndYTrace();
+            {
+                SetXTraceAndYTrace();
+            }
             else
-                if (!this.MovementAlowed(InPressed))
-                this.CurrentNodeXTraceAndYtrace();
+                if (!MovementAlowed(InPressed))
+            {
+                CurrentNodeXTraceAndYtrace();
+            }
             else
             {
                 if (TraceKindVariable.RadioButtonOneAcess.Checked)
                 {
                     bool SET = true;
-                    this.TransmiteXAndYTraceAtNodes(Setvariable, ref SET);
-                    this.DrawBoxAroundDummyAtNodeKind();
+                    TransmiteXAndYTraceAtNodes(Setvariable, ref SET);
+                    DrawBoxAroundDummyAtNodeKind();
                 }
                 else
                     if (TraceKindVariable.RadioButtonTowAcess.Checked)
                 {
                     bool SET = true;
-                    this.TransmiteXAndYTraceAtNodes(Setvariable, ref SET);
-                    this.DrawBoxAroundDummyAtNodeKind();
+                    TransmiteXAndYTraceAtNodes(Setvariable, ref SET);
+                    DrawBoxAroundDummyAtNodeKind();
                     SET = true;
-                    this.TransmiteXAndYTraceBetweenNodes(Setvariable, ref SET);
-                    this.DrawBoxAroundDummyAtBetweenNodeKind();
+                    TransmiteXAndYTraceBetweenNodes(Setvariable, ref SET);
+                    DrawBoxAroundDummyAtBetweenNodeKind();
                 }
             }
-            this.DrawBox();
+            DrawBox();
 
-            if (!this.MovementAlowed(InPressed))
+            if (!MovementAlowed(InPressed))
             {
                 if ((XTrace == MinX) && (YTrace == MinY))
-                    this.DrawTraceSimbolOnTopLeftNode();
+                {
+                    DrawTraceSimbolOnTopLeftNode();
+                }
                 else
                     if ((XTrace == MinX) && (YTrace == MaxY))
-                    this.DrawTraceSimbolOnBelowLeftNode();
+                {
+                    DrawTraceSimbolOnBelowLeftNode();
+                }
                 else
                         if ((XTrace == MaxX) && (YTrace == MinY))
-                    this.DrawTraceSimbolOnTopRightNode();
+                {
+                    DrawTraceSimbolOnTopRightNode();
+                }
                 else
                             if ((XTrace == MaxX) && (YTrace == MaxY))
-                    this.DrawTraceSimbolOnBelowRightNode();
+                {
+                    DrawTraceSimbolOnBelowRightNode();
+                }
                 else
                                 if (YTrace == MaxY)
-                    this.DrawTraceSimbolOnBloweNode();
+                {
+                    DrawTraceSimbolOnBloweNode();
+                }
                 else
                                     if (YTrace == MinY)
-                    this.DrawTraceSimbolOnTopNode();
+                {
+                    DrawTraceSimbolOnTopNode();
+                }
                 else
                                         if (XTrace == MinX)
-                    this.DrawTraceSimbolOnLeftNode();
+                {
+                    DrawTraceSimbolOnLeftNode();
+                }
                 else
                                             if (XTrace == MaxX)
-                    this.DrawTraceSimbolOnRightNode();
+                {
+                    DrawTraceSimbolOnRightNode();
+                }
                 else
-                    this.DrawTraceSimbolToSelect();
-
+                {
+                    DrawTraceSimbolToSelect();
+                }
             }
 
         }
@@ -4310,10 +5604,16 @@ namespace Formulas
             while (Dummy.RightSideAccess != null)
             {
                 Dummy = Dummy.RightSideAccess;
-                if (this.IsFunction(Dummy.StringSampleAccess))
+                if (IsFunction(Dummy.StringSampleAccess))
+                {
                     if (Dummy.RightSideAccess == null)
+                    {
                         if (Dummy.LeftSideAccess != null)
+                        {
                             Dummy = Dummy.LeftSideAccess;
+                        }
+                    }
+                }
             }
             XTrace = Dummy.XAccess + Dummy.WidhtAccess;
             YTrace = Dummy.YAccess;
@@ -4385,7 +5685,7 @@ namespace Formulas
         private void DrawBoxAroundDummyAtNodeKind()
         {
             Set Dummy = new Set();
-            this.GetNodeOfXTraceAndYTrace(Setvariable, ref Dummy);
+            GetNodeOfXTraceAndYTrace(Setvariable, ref Dummy);
             CurrentSetvariable = Dummy;
             Pen P = new Pen(Color.Green);
             float[] a = new float[2];
@@ -4417,22 +5717,38 @@ namespace Formulas
         private Set GetNodeOfXTraceAndYTrace(Set Node, ref Set Dummy)
         {
             if (Node == null)
+            {
                 return Dummy;
+            }
+
             if ((Node.XAccess) == XTrace)
+            {
                 if ((Node.YAccess) == YTrace)
+                {
                     Dummy = Node;
+                }
+            }
+
             if (Node.LeftSideAccess == null)
+            {
                 if (Node.RightSideAccess == null)
+                {
                     return Dummy;
-            Dummy = this.GetNodeOfXTraceAndYTrace(Node.LeftSideAccess, ref Dummy);
-            Dummy = this.GetNodeOfXTraceAndYTrace(Node.RightSideAccess, ref Dummy);
+                }
+            }
+
+            Dummy = GetNodeOfXTraceAndYTrace(Node.LeftSideAccess, ref Dummy);
+            Dummy = GetNodeOfXTraceAndYTrace(Node.RightSideAccess, ref Dummy);
             return Dummy;
         }
         private void TransmiteXAndYTraceAtNodes(Set Dummy, ref bool SetXTraceAndYTrace)
         {
             //ERROR28373248754 :The Set X and Y value at Set Structure  is not ok.refer to page 142.
             if (Dummy == null)
+            {
                 return;
+            }
+
             if (Equation.INTPressedAccess == 6)//Up
             {
                 if ((Dummy.YAccess) < YTrace)
@@ -4497,8 +5813,8 @@ namespace Formulas
                     }
                 }
             }
-            this.TransmiteXAndYTraceAtNodes(Dummy.LeftSideAccess, ref SetXTraceAndYTrace);
-            this.TransmiteXAndYTraceAtNodes(Dummy.RightSideAccess, ref SetXTraceAndYTrace);
+            TransmiteXAndYTraceAtNodes(Dummy.LeftSideAccess, ref SetXTraceAndYTrace);
+            TransmiteXAndYTraceAtNodes(Dummy.RightSideAccess, ref SetXTraceAndYTrace);
 
             /*if (Equation.INTPressedAccess == 6)//Up
                 if (YTrace > MinY)
@@ -4531,70 +5847,97 @@ namespace Formulas
         private void TransmiteXAndYTraceBetweenNodes(Set Dummy, ref bool SetXTraceAndYTrace)
         {
             if (PreviouseNodeForBetweenTraceKindDummy == null)
+            {
                 PreviouseNodeForBetweenTraceKindDummy = Setvariable;
+            }
+
             XTrace = PreviouseNodeForBetweenTraceKindDummy.XAccess;
             YTrace = PreviouseNodeForBetweenTraceKindDummy.YAccess;
             //ERROR912874 : Refer to page 143.Cause on XTrace And YTrace.
-            this.TransmiteXAndYTraceAtNodes(Dummy, ref SetXTraceAndYTrace);
+            TransmiteXAndYTraceAtNodes(Dummy, ref SetXTraceAndYTrace);
             Set Node = new Set();
-            this.GetNodeOfXTraceAndYTrace(Dummy, ref Node);
+            GetNodeOfXTraceAndYTrace(Dummy, ref Node);
             if (Node.ThreadAccess != null)
             {
-                XTrace = (int)((PreviouseNodeForBetweenTraceKindDummy.XAccess + Node.ThreadAccess.XAccess) / 2);
-                YTrace = (int)((PreviouseNodeForBetweenTraceKindDummy.YAccess + Node.ThreadAccess.YAccess) / 2);
+                XTrace = (PreviouseNodeForBetweenTraceKindDummy.XAccess + Node.ThreadAccess.XAccess) / 2;
+                YTrace = (PreviouseNodeForBetweenTraceKindDummy.YAccess + Node.ThreadAccess.YAccess) / 2;
             }
             else
             {
-                XTrace = (int)(XTrace - 10);
+                XTrace = XTrace - 10;
                 //YTrace = (int)(YTrace -10);            
             }
             PreviouseNodeForBetweenTraceKindDummy = Node;
         }
         private void CalculateMaxMinXAandY()
         {
-            this.GetSmallestNodeX(Setvariable, ref MinX);
-            this.GetSmallestNodeY(Setvariable, ref MinY);
-            this.GetBigestNodeX(Setvariable, ref MaxX);
-            this.GetBigestNodeY(Setvariable, ref MaxY);
+            GetSmallestNodeX(Setvariable, ref MinX);
+            GetSmallestNodeY(Setvariable, ref MinY);
+            GetBigestNodeX(Setvariable, ref MaxX);
+            GetBigestNodeY(Setvariable, ref MaxY);
         }
         private void GetSmallestNodeX(Set SetS, ref int XMinX)
         {
             if (SetS == null)
+            {
                 return;
+            }
+
             if (SetS.XAccess < XMinX)
+            {
                 XMinX = SetS.XAccess;
-            this.GetSmallestNodeX(SetS.LeftSideAccess, ref XMinX);
-            this.GetSmallestNodeX(SetS.RightSideAccess, ref XMinX);
+            }
+
+            GetSmallestNodeX(SetS.LeftSideAccess, ref XMinX);
+            GetSmallestNodeX(SetS.RightSideAccess, ref XMinX);
 
         }
         private void GetSmallestNodeY(Set SetS, ref int YMinY)
         {
             if (SetS == null)
+            {
                 return;
+            }
+
             if ((SetS.YAccess - SetS.HieghtAcess) < YMinY)
+            {
                 YMinY = SetS.YAccess - SetS.HieghtAcess;
-            this.GetSmallestNodeY(SetS.LeftSideAccess, ref YMinY);
-            this.GetSmallestNodeY(SetS.RightSideAccess, ref YMinY);
+            }
+
+            GetSmallestNodeY(SetS.LeftSideAccess, ref YMinY);
+            GetSmallestNodeY(SetS.RightSideAccess, ref YMinY);
 
         }
         private void GetBigestNodeX(Set SetS, ref int XMaxX)
         {
             if (SetS == null)
+            {
                 return;
+            }
+
             if ((SetS.XAccess + SetS.WidhtAccess) > XMaxX)
+            {
                 XMaxX = SetS.XAccess + SetS.WidhtAccess;
-            this.GetBigestNodeX(SetS.LeftSideAccess, ref XMaxX);
-            this.GetBigestNodeX(SetS.RightSideAccess, ref XMaxX);
+            }
+
+            GetBigestNodeX(SetS.LeftSideAccess, ref XMaxX);
+            GetBigestNodeX(SetS.RightSideAccess, ref XMaxX);
 
         }
         private void GetBigestNodeY(Set SetS, ref int YMaxY)
         {
             if (SetS == null)
+            {
                 return;
+            }
+
             if ((SetS.YAccess + SetS.HieghtAcess) > YMaxY)
+            {
                 YMaxY = SetS.YAccess + SetS.HieghtAcess;
-            this.GetBigestNodeY(SetS.LeftSideAccess, ref YMaxY);
-            this.GetBigestNodeY(SetS.RightSideAccess, ref YMaxY);
+            }
+
+            GetBigestNodeY(SetS.LeftSideAccess, ref YMaxY);
+            GetBigestNodeY(SetS.RightSideAccess, ref YMaxY);
 
         }
     }
@@ -4619,11 +5962,11 @@ namespace Formulas
         PictureBox Log = new PictureBox();
         PictureBox No = new PictureBox();
         */
-        Equation EquationVariable = null;
-        Editors.Editor EditorVariable = null;
-        AddToTree.Tree TreeVariable = null;
-        AutoSender AutoSenderVariable = null;
-        Graphics g = null;
+        private Equation EquationVariable = null;
+        private Editors.Editor EditorVariable = null;
+        private AddToTree.Tree TreeVariable = null;
+        private AutoSender AutoSenderVariable = null;
+        private Graphics g = null;
         public GraphicallyInterface(Equation THIS, AutoSender AutoSender)
         {
             EquationVariable = THIS;
@@ -4663,7 +6006,9 @@ namespace Formulas
         public AddToTree.Tree GetNodeTree()
         {
             while (AutoSenderVariable.NodeAccess.ThreadAccess != null)
+            {
                 AutoSenderVariable.NodeAccess = AutoSenderVariable.NodeAccess.ThreadAccess;
+            }
             //ERRORCORECTION0927498 :The Optimizing strucure will be added.
             TreeVariable = AutoSenderVariable.NodeAccess;
             return TreeVariable;
@@ -4672,7 +6017,9 @@ namespace Formulas
         {
             bool Is = false;
             if ((t >= 2) && (t <= 11))
+            {
                 Is = true;
+            }
             //if ((t >= 9) && (t <= 11))
             //  Is = true;
             return Is;
@@ -4687,51 +6034,63 @@ namespace Formulas
                 //this.DrawTowParantez(xBegin, yBegin, xEnd, yEnd, Size);
                 return;
             }
-            if (!this.IsFunction(SetVariable.GetDecoder()))
+            if (!IsFunction(SetVariable.GetDecoder()))
             {
                 if (xBegin > (SetVariable.XAccess))
+                {
                     xBegin = SetVariable.XAccess;
+                }
+
                 if (xEnd < (SetVariable.XAccess))
+                {
                     xEnd = SetVariable.XAccess;
+                }
             }
             //ERROR76094896096948 :The Value of Cos function dose not calculated.refer to page 97
             else
                 if (SetVariable.LeftSideAccess != null)
-                if (this.IsFunction(SetVariable.LeftSideAccess.GetDecoder()))
+            {
+                if (IsFunction(SetVariable.LeftSideAccess.GetDecoder()))
                 {
                     xBegin = SetVariable.LeftSideAccess.XAccess - 5;
                     SetVariable = SetVariable.LeftSideAccess;
                 }
-            this.DrawTowParantezOnForm(SetVariable.LeftSideAccess, ref xBegin, ref yBegin, ref xEnd, ref yEnd, Size);
-            this.DrawTowParantezOnForm(SetVariable.RightSideAccess, ref xBegin, ref yBegin, ref xEnd, ref yEnd, Size);
+            }
+
+            DrawTowParantezOnForm(SetVariable.LeftSideAccess, ref xBegin, ref yBegin, ref xEnd, ref yEnd, Size);
+            DrawTowParantezOnForm(SetVariable.RightSideAccess, ref xBegin, ref yBegin, ref xEnd, ref yEnd, Size);
         }
         public void DrawIntegralOnForm(int x, int y, int Whith, int Lenght)
         {
-            PictureBox Integral = new PictureBox();
-            Integral.Visible = true;
-            Integral.Location = new Point(x, y);
-            Integral.Width = Whith;
-            Integral.Height = Lenght;
-            Integral.SizeMode = PictureBoxSizeMode.StretchImage;
-            Integral.Image = Image.FromFile
+            PictureBox Integral = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(x, y),
+                Width = Whith,
+                Height = Lenght,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "Integral.gif");
+              + "Integral.gif")
+            };
             EditorVariable.Controls.Add(Integral);
         }
         public void DrawLineOnForm(int x, int y, int Whith, int Height)
         {
-            PictureBox Line = new PictureBox();
-            Line.Visible = true;
-            Line.Location = new Point(x, y);
-            Line.Width = Whith;
-            Line.Height = Height;
-            Line.SizeMode = PictureBoxSizeMode.StretchImage;
-            Line.BorderStyle = BorderStyle.Fixed3D;
-            Line.Image = Image.FromFile
+            PictureBox Line = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(x, y),
+                Width = Whith,
+                Height = Height,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                BorderStyle = BorderStyle.Fixed3D,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "LineOnly.gif");
+              + "LineOnly.gif")
+            };
             EditorVariable.Controls.Add(Line);
         }
         public void DrawTowParantez(int xBegin, int yBegin, int xEnd, int yEnd, int Size)
@@ -4741,117 +6100,132 @@ namespace Formulas
         }
         private void DrawTrianglicOnForm()
         {
-            PictureBox Trianglic = new PictureBox();
-            Trianglic.Visible = true;
-            Trianglic.Location = new Point(92, 12);
-            Trianglic.Width = 16;
-            Trianglic.Height = 16;
-            Trianglic.SizeMode = PictureBoxSizeMode.StretchImage;
-            Trianglic.Image = Image.FromFile
+            PictureBox Trianglic = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(92, 12),
+                Width = 16,
+                Height = 16,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "Trianglic.gif");
+              + "Trianglic.gif")
+            };
             EditorVariable.Controls.Add(Trianglic);
         }
         public void DrawCericesOnForm(int x, int y, int Whith, int Lenght)
         {
-            PictureBox Cerices = new PictureBox();
-            Cerices.Visible = true;
-            Cerices.Location = new Point(x, y);
-            Cerices.Width = Whith;
-            Cerices.Height = Lenght;
-            Cerices.SizeMode = PictureBoxSizeMode.StretchImage;
-            Cerices.Image = Image.FromFile
+            PictureBox Cerices = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(x, y),
+                Width = Whith,
+                Height = Lenght,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "Cerices.gif");
+              + "Cerices.gif")
+            };
             EditorVariable.Controls.Add(Cerices);
         }
         public void DrawRootOnForm(int x, int y, int Whith, int Lenght)
         {
-            PictureBox Root = new PictureBox();
-            Root.Visible = true;
-            Root.Location = new Point(x, y);
-            Root.Width = Whith;
-            Root.Height = Lenght;
-            Root.SizeMode = PictureBoxSizeMode.StretchImage;
-            Root.Image = Image.FromFile
+            PictureBox Root = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(x, y),
+                Width = Whith,
+                Height = Lenght,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "Root.gif");
+              + "Root.gif")
+            };
             EditorVariable.Controls.Add(Root);
         }
         public void DrawParantezOnForm()
         {
-            PictureBox Parantez = new PictureBox();
-            Parantez.Visible = true;
-            Parantez.Location = new Point(212, 12);
-            Parantez.Width = 16;
-            Parantez.Height = 16;
-            Parantez.SizeMode = PictureBoxSizeMode.StretchImage;
-            Parantez.Image = Image.FromFile
+            PictureBox Parantez = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(212, 12),
+                Width = 16,
+                Height = 16,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "Parantez.gif");
+              + "Parantez.gif")
+            };
             EditorVariable.Controls.Add(Parantez);
         }
 
         public void DrawToUpOnForm()
         {
-            PictureBox ToUp = new PictureBox();
-            ToUp.Visible = true;
-            ToUp.Location = new Point(12, 52);
-            ToUp.Width = 16;
-            ToUp.Height = 16;
-            ToUp.SizeMode = PictureBoxSizeMode.StretchImage;
-            ToUp.Image = Image.FromFile
+            PictureBox ToUp = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(12, 52),
+                Width = 16,
+                Height = 16,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "ToUp.gif");
+              + "ToUp.gif")
+            };
             EditorVariable.Controls.Add(ToUp);
         }
         public void DrawToDownOnForm()
         {
-            PictureBox ToDown = new PictureBox();
-            ToDown.Visible = true;
-            ToDown.Location = new Point(52, 52);
-            ToDown.Width = 16;
-            ToDown.Height = 16;
-            ToDown.SizeMode = PictureBoxSizeMode.StretchImage;
-            ToDown.Image = Image.FromFile
+            PictureBox ToDown = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(52, 52),
+                Width = 16,
+                Height = 16,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "ToDown.gif");
+              + "ToDown.gif")
+            };
             EditorVariable.Controls.Add(ToDown);
         }
 
         public void DrawToLeftOnForm()
         {
-            PictureBox ToLeft = new PictureBox();
-            ToLeft.Visible = true;
-            ToLeft.Location = new Point(92, 52);
-            ToLeft.Width = 16;
-            ToLeft.Height = 16;
-            ToLeft.SizeMode = PictureBoxSizeMode.StretchImage;
-            ToLeft.Image = Image.FromFile
+            PictureBox ToLeft = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(92, 52),
+                Width = 16,
+                Height = 16,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "ToLeft.gif");
+              + "ToLeft.gif")
+            };
             EditorVariable.Controls.Add(ToLeft);
         }
         public void DrawToRightOnForm()
         {
-            PictureBox ToRight = new PictureBox();
-
-            ToRight.Visible = true;
-            ToRight.Location = new Point(132, 52);
-            ToRight.Width = 16;
-            ToRight.Height = 16;
-            ToRight.SizeMode = PictureBoxSizeMode.StretchImage;
-            ToRight.Image = Image.FromFile
+            PictureBox ToRight = new PictureBox
+            {
+                Visible = true,
+                Location = new Point(132, 52),
+                Width = 16,
+                Height = 16,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "ToRight.gif");
+              + "ToRight.gif")
+            };
             EditorVariable.Controls.Add(ToRight);
         }
         public void FiveBasicOpratorsPlus(int x, int y, int Size)
@@ -4908,18 +6282,20 @@ namespace Formulas
         }
         public void FiveBasicOpratorsDiv(int x, int y, int Wdth, int Hight)
         {
-            PictureBox Line = new PictureBox();
+            PictureBox Line = new PictureBox
+            {
 
-            //g.DrawString("/", new Font("Times New Roman", Size, FontStyle.Bold), new SolidBrush(Color.Black), x, y);
-            Line.Visible = true;
-            Line.Location = new Point(x, y);
-            Line.Width = Wdth;
-            Line.Height = Hight;
-            Line.SizeMode = PictureBoxSizeMode.StretchImage;
-            Line.Image = Image.FromFile
+                //g.DrawString("/", new Font("Times New Roman", Size, FontStyle.Bold), new SolidBrush(Color.Black), x, y);
+                Visible = true,
+                Location = new Point(x, y),
+                Width = Wdth,
+                Height = Hight,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Image = Image.FromFile
               (System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "\\"
 
-              + "LineOnly.gif");
+              + "LineOnly.gif")
+            };
             EditorVariable.Controls.Add(Line);
         }
         public void FiveBasicOpratorsPow(int x, int y, int Size)
@@ -4955,8 +6331,8 @@ namespace Formulas
     }
     public class SenderSample
     {
-        AutoSender AutoSender = null;
-        ManualSenderSample ManualSender = null;
+        private AutoSender AutoSender = null;
+        private readonly ManualSenderSample ManualSender = null;
         public SenderSample(Equation THIS)
         {
             AutoSender = new AutoSender(THIS);
@@ -4975,33 +6351,54 @@ namespace Formulas
             {
                 AutoSender.SetEquationSettingInsertionVariable(EquationSettingInsertionOnEquationForm);
                 if (INTPressded == 2)
+                {
                     SinusadClassVariable.ShowDialog();
+                }
                 else
+                {
                     SinusadClassVariable.Hide();
+                }
+
                 if (INTPressded == 15)
+                {
                     NumberAndVariable.ShowDialog();
+                }
                 //SinusadClassVariable.ShowDialog();
                 else
+                {
                     NumberAndVariable.Hide();
+                }
+
                 if (INTPressded == 5)
+                {
                     ParantezVariable.ShowDialog();
+                }
                 else
+                {
                     ParantezVariable.Hide();
+                }
                 //ERRORCORECTION7346 :it seems at each time calling the parantez is tow time increazes and decreament.refer to page 135.
                 AutoSender.PreventTowTimeAdded = false;
                 //SinusadClassVariable.Hide();
                 if ((INTPressded != 2) && (INTPressded != 15) && (INTPressded != 5))
+                {
                     AutoSender.SenderToAddToTree(THIS.GetCurrentSampleFromBoard(INTPressded), THIS, false);
+                }
                 else
                     if (INTPressded == 2)
+                {
                     AutoSender.SenderToAddToTree(SinusadClassVariable.GetContained(), THIS, false);
+                }
                 else
                         if (INTPressded == 15)
+                {
                     AutoSender.SenderToAddToTree(NumberAndVariable.GetContained(), THIS, false);
+                }
                 else
                             if (INTPressded == 5)
+                {
                     AutoSender.SenderToAddToTree(ParantezVariable.GetContained(), THIS, false);
-
+                }
             }
             else
             {
@@ -5010,11 +6407,12 @@ namespace Formulas
         private void AddToProperXTraceAndYTrace(Equation THIS)
         {
             Set Dummy = new Set();
-            Set ADDED = new Set();
-
-            ADDED.NodeAccess = THIS.GetCurrentSampleFromBoard(THIS.INTPressedAccess);
+            Set ADDED = new Set
+            {
+                NodeAccess = THIS.GetCurrentSampleFromBoard(THIS.INTPressedAccess)
+            };
             Dummy = AutoSender.DrawingAccess.ArrtificialItelligenceForGraphicallyDrawingAccess.NodeSetAcesss;
-            Dummy = this.FindPreviouseNode(Dummy, THIS);
+            Dummy = FindPreviouseNode(Dummy, THIS);
             if (Dummy == null)
             {
                 MessageBox.Show("The Indicatore has not set to valid location.");
@@ -5033,13 +6431,16 @@ namespace Formulas
         {
             Set Dummy = null;
             if (System.Math.Abs(Dummy.XAccess + Dummy.WidhtAccess - THISE.EquationTraceAccess.XTRACEAccess) < 10)
+            {
                 if (System.Math.Abs(Dummy.YAccess - THISE.EquationTraceAccess.YTRACEAccess) < 10)
                 {
                     Dummy = Node;
                     return Dummy;
                 }
-            Dummy = this.FindPreviouseNode(Node.LeftSideAccess, THISE);
-            Dummy = this.FindPreviouseNode(Node.RightSideAccess, THISE);
+            }
+
+            Dummy = FindPreviouseNode(Node.LeftSideAccess, THISE);
+            Dummy = FindPreviouseNode(Node.RightSideAccess, THISE);
             return Dummy;
         }
         public AutoSender AutoSenderAccess
@@ -5048,10 +6449,11 @@ namespace Formulas
             set { AutoSender = value; }
         }
     }
-    class ManualSenderSample
+
+    internal class ManualSenderSample
     {
-        AddToTree.Tree SetVaribale = null;
-        AutoSender AutoSenderVaribale = null;
+        private AddToTree.Tree SetVaribale = null;
+        private AutoSender AutoSenderVaribale = null;
         public ManualSenderSample(AutoSender THIS)
         {
             AutoSenderVaribale = THIS;
@@ -5067,23 +6469,25 @@ namespace Formulas
     public class AutoSender
     {
         private AddToTree.reciverContractionTree reciverContractionTreeVaribale = null;
-        QueueString QueueStringVariable = new QueueString(100);
+        private readonly QueueString QueueStringVariable = new QueueString(100);
+
         //Formulas.Equation EquationVariable = null;
-        AddToTree.Tree TreeConstructed = null;
-        static bool IsParantes = false;
-        Setting.EquationSettingInsertion EquationSettingInsertionVariable = null;
-        StackTree StackTreeVariable = null;
-        StackTree StackHoled = null;
-        ArrayTree ArrayTreeVariable = null;
+        private AddToTree.Tree TreeConstructed = null;
+        private static bool IsParantes = false;
+        private Setting.EquationSettingInsertion EquationSettingInsertionVariable = null;
+        private readonly StackTree StackTreeVariable = null;
+        private readonly StackTree StackHoled = null;
+        private readonly ArrayTree ArrayTreeVariable = null;
+
         //GraphicallyInterface GraphicallyInterface = null;
-        Equation THISEquationVariable = null;
-        Drawing DrawingVariable = null;
-        Thread ThreadVaribale = null;
-        long previous = 0;
-        int ParantezOpenedNumber = 0;
-        String Current = null;
-        bool ISSuitableForFunctionArgumnetVariable = false;
-        Formulas.Parantez ParantezVariable = null;
+        private Equation THISEquationVariable = null;
+        private Drawing DrawingVariable = null;
+        private readonly Thread ThreadVaribale = null;
+        private long previous = 0;
+        private int ParantezOpenedNumber = 0;
+        private string Current = null;
+        private bool ISSuitableForFunctionArgumnetVariable = false;
+        private Formulas.Parantez ParantezVariable = null;
         public bool PreventTowTimeAdded = false;
         public AutoSender(Equation THIS)
         {
@@ -5108,15 +6512,15 @@ namespace Formulas
         return this.DrawingVariable;
         }
         */
-        public String CurrentStirngAccess
+        public string CurrentStirngAccess
         {
             get { return Current; }
             set { Current = value; }
         }
         public Formulas.Drawing DrawingAccess
         {
-            get { return this.DrawingVariable; }
-            set { this.DrawingVariable = value; }
+            get { return DrawingVariable; }
+            set { DrawingVariable = value; }
         }
         public AddToTree.reciverContractionTree reciverCuntractionTreeAccess
         {
@@ -5140,12 +6544,18 @@ namespace Formulas
             while (true)
             {
                 //in Here The Tree Is empty and the null exeption occures
-                if (this.ISFrame())
+                if (ISFrame())
+                {
                     DrawingVariable.GraphicsAccess.Clear(Color.White);
-                if (TreeConstructed != null)
-                    if (TreeConstructed.GetSample() != null)//by this condition ocures.
-                        DrawingVariable.Draw(THISEquationVariable, this, 40, 40);
+                }
 
+                if (TreeConstructed != null)
+                {
+                    if (TreeConstructed.GetSample() != null)//by this condition ocures.
+                    {
+                        DrawingVariable.Draw(THISEquationVariable, this, 40, 40);
+                    }
+                }
             }
         }
         /*public Setting.EquationSettingInsertion GetEquationSettingInsertionVariable()
@@ -5171,15 +6581,22 @@ namespace Formulas
         private void ChangeTheSideOfArgument(AddToTree.Tree t)
         {
             if (t == null)
+            {
                 return;
-            if (this.IsFunction(t.GetSample()))
+            }
+
+            if (IsFunction(t.GetSample()))
             {
                 if (t.LeftSideAccess == null)
+                {
                     if (t.RightSideAccess != null)
+                    {
                         t.SetLefTandRightCommonlySide(t.RightSideAccess, t.LeftSideAccess);
+                    }
+                }
             }
-            this.ChangeTheSideOfArgument(t.LeftSideAccess);
-            this.ChangeTheSideOfArgument(t.RightSideAccess);
+            ChangeTheSideOfArgument(t.LeftSideAccess);
+            ChangeTheSideOfArgument(t.RightSideAccess);
         }
         private bool ifIsLastOperatorAndItsLeftOperator(AddToTree.Tree t)
         {
@@ -5187,13 +6604,27 @@ namespace Formulas
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             Dummy = t;
             if (Dummy != null)
+            {
                 while (Dummy.RightSideAccess != null)
+                {
                     Dummy = Dummy.RightSideAccess;
+                }
+            }
+
             if (Dummy.LeftSideAccess != null)
+            {
                 if (Dummy.RightSideAccess != null)//This Condition Refer to ERROR43713501
-                    if (this.IsOperator(Dummy.LeftSideAccess.GetSample()))
-                        if (this.IsOperator(Dummy.GetSample()))
+                {
+                    if (IsOperator(Dummy.LeftSideAccess.GetSample()))
+                    {
+                        if (IsOperator(Dummy.GetSample()))
+                        {
                             ifIsLastOperatorAndItsLeftOperato = true;
+                        }
+                    }
+                }
+            }
+
             return ifIsLastOperatorAndItsLeftOperato;
         }
         private bool ifIsLastOperatorAndItsLeftFunction(AddToTree.Tree t)
@@ -5202,24 +6633,39 @@ namespace Formulas
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             Dummy = t;
             if (Dummy != null)
+            {
                 while (Dummy.RightSideAccess != null)
+                {
                     Dummy = Dummy.RightSideAccess;
+                }
+            }
+
             if (Dummy != null)
-                if (this.IsFunction(Dummy.GetSample()))
+            {
+                if (IsFunction(Dummy.GetSample()))
+                {
                     ifIsLastOperatorAndItsLeftFunction = true;
+                }
+            }
+
             return ifIsLastOperatorAndItsLeftFunction;
         }
-        private bool IsEqualWithThreadConsiderationCommonlySample(String Sample)
+        private bool IsEqualWithThreadConsiderationCommonlySample(string Sample)
         {
             bool Is = false;
             if (Sample == "=")
+            {
                 Is = true;
+            }
             else
+            {
                 Is = false;
+            }
+
             return Is;
 
         }
-        public bool SettingSenders(String Sample, Equation THIS, ref bool ACT)
+        public bool SettingSenders(string Sample, Equation THIS, ref bool ACT)
         {
             //ERROR73425362 : The "(" Sample is like a number.
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
@@ -5235,14 +6681,22 @@ namespace Formulas
 
 
             while ((Dummy != null) && (Dummy.RightSideAccess != null))
+            {
                 Dummy = Dummy.RightSideAccess;
+            }
+
             Holder = Dummy;
             if (Dummy != null)
+            {
                 if (!ISSuitableForFunctionArgumnetVariable)
+                {
                     if (Dummy.GetSample() != null)
+                    {
                         if (Dummy.RightSideAccess == null)
-                            if (this.IsOperator(Sample) || this.ISindependenceVaribaleOrNumber(Sample) || this.IsFunction(Sample))
-                                if (this.IsFunction(Dummy.GetSample()))
+                        {
+                            if (IsOperator(Sample) || ISindependenceVaribaleOrNumber(Sample) || IsFunction(Sample))
+                            {
+                                if (IsFunction(Dummy.GetSample()))
                                 {
 
                                     //                    ADDED.SetLefTandRightCommonlySide(Dummy,ADDED.RightSideAccess);
@@ -5267,23 +6721,34 @@ namespace Formulas
                                         Holder.SampleAccess = Sample;
                                         TreeConstructed = Holder;
                                         THIS.EquationTraceAccess.EquationReadyAccess = true;
-                                        this.reciverContractionTreeVaribale.NodeAccess = TreeConstructed;
+                                        reciverContractionTreeVaribale.NodeAccess = TreeConstructed;
                                     }
                                     //Holder.SetThread(ADDED.ThreadAccess);                        
                                     goto End;
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+
             Dummy = TreeConstructed;
             //ERRORXT1037 : the parantez is like a number.
             if (!IsParantes)
             {
-                if (this.ISindependenceVaribaleOrNumber(Sample))
+                if (ISindependenceVaribaleOrNumber(Sample))
                 //ERRORCORECTION219347 :refer to  page 118.
                 {
                     while ((Dummy != null) && (Dummy.RightSideAccess != null))
+                    {
                         Dummy = Dummy.RightSideAccess;
-                    if (!this.IsEqualWithThreadConsiderationCommonlySample(Sample))
+                    }
+
+                    if (!IsEqualWithThreadConsiderationCommonlySample(Sample))
+                    {
                         if ((Dummy != null) && (Dummy.LeftSideAccess != null))
-                            if (this.IsOperator(Dummy.LeftSideAccess.GetSample()))
+                        {
+                            if (IsOperator(Dummy.LeftSideAccess.GetSample()))
                             {
                                 //ERROR87124 :refer to page 120.
                                 //AddToTree.Tree ADDED=new AddToTree.Tree(null,false);
@@ -5296,16 +6761,21 @@ namespace Formulas
                                 THIS.EquationTraceAccess.EquationReadyAccess = true;
                                 goto End;
                             }
+                        }
+                    }
                 }
                 else
                 {
                     //ERRORCORECTION1092387093 :The condition added.refer top page 120.
                     while ((Dummy != null) && (Dummy.RightSideAccess != null))
+                    {
                         Dummy = Dummy.RightSideAccess;
-                    if ((Dummy != null) && (this.ISindependenceVaribaleOrNumber(Dummy.GetSample())))
+                    }
+
+                    if ((Dummy != null) && (ISindependenceVaribaleOrNumber(Dummy.GetSample())))
                     {
                         //ERRORCORECTION98127389724 :Refer to page 185 and LOCATION987127973
-                        if ((this.IsOperator(Sample) || this.IsFunction(Sample)) && (!IS.IsMinuseOrPluse(Sample)))
+                        if ((IsOperator(Sample) || IsFunction(Sample)) && (!IS.IsMinuseOrPluse(Sample)))
                         {
 
                             //ERRORCUASE2093487 :The error is from here.The x dose not added.
@@ -5335,7 +6805,7 @@ namespace Formulas
                             */
                             //ERRORCORECTION239487 :The Correction of ERROR192874984.refr to page 139.
                             //Holder = Dummy.ThreadAccess;
-                            if (!this.IsPower(Sample))
+                            if (!IsPower(Sample))
                             {   //LOCATION31745197  :Refer to page 187.
                                 /*if (Dummy.ThreadAccess != null)
                                     if (Dummy.ThreadAccess.ThreadAccess != null)
@@ -5378,8 +6848,10 @@ namespace Formulas
                                 //  }
                                 //else
                                 // {
-                                Holder = new AddToTree.Tree(null, false);
-                                Holder.SampleAccess = Sample;
+                                Holder = new AddToTree.Tree(null, false)
+                                {
+                                    SampleAccess = Sample
+                                };
                                 //ADDED.SetSample(Sample);
                                 //ADDED.SetThread(Holder);
                                 //ERRORCORECTION30171892 :Errorcorrection of ERROR307040.Convert ADDED.RightSideAccess To ADDED.refer to page 139.
@@ -5394,16 +6866,21 @@ namespace Formulas
                             //ERRORCORCION01823098 :The Power error cuase corection..refer to page 142.
                             else
                             {
-                                if (this.ISindependenceVaribaleOrNumber(Dummy.GetSample()))
+                                if (ISindependenceVaribaleOrNumber(Dummy.GetSample()))
                                 {
-                                    Holder = new AddToTree.Tree(null, false);
-                                    Holder.SampleAccess = Sample;
+                                    Holder = new AddToTree.Tree(null, false)
+                                    {
+                                        SampleAccess = Sample
+                                    };
                                     Holder.SetLefTandRightCommonlySide(Dummy, Holder.RightSideAccess);
                                     Dummy.ThreadAccess.SetLefTandRightCommonlySide(Dummy.ThreadAccess.LeftSideAccess, Holder);
                                     Holder.ThreadAccess = Dummy.ThreadAccess;
                                     THIS.EquationTraceAccess.EquationReadyAccess = true;
                                     while (Dummy.ThreadAccess != null)
+                                    {
                                         Dummy = Dummy.ThreadAccess;
+                                    }
+
                                     reciverContractionTreeVaribale.NodeAccess = Dummy;
                                 }
                             }
@@ -5422,70 +6899,94 @@ namespace Formulas
             //ERROR345678567MCD98 :The Function Dose not found.
             //LOCATION678976509467 :The page 93 request.
             if (!IsParantes)
+            {
                 if (TreeConstructed != null)
+                {
                     //ERRORCORECTION24358734875 :The Condition Will add.
                     if (TreeConstructed.RightSideAccess != null)
-                        if (!this.ifIsLastOperatorAndItsLeftOperator(TreeConstructed))
-                            if (!this.ifIsLastOperatorAndItsLeftFunction(TreeConstructed))
-                                if (this.IsNumber(Sample) || (this.ISindependenceVaribale(Sample)))
-                                    if (this.QueueStringVariable.NumberOfElement() == 0)
+                    {
+                        if (!ifIsLastOperatorAndItsLeftOperator(TreeConstructed))
+                        {
+                            if (!ifIsLastOperatorAndItsLeftFunction(TreeConstructed))
+                            {
+                                if (IsNumber(Sample) || (ISindependenceVaribale(Sample)))
+                                {
+                                    if (QueueStringVariable.NumberOfElement() == 0)
+                                    {
                                         //Refer to page 93.
                                         if (!ISSuitableForFunctionArgumnetVariable)
                                         {
                                             //LOCATION131705 :Refer to page 185. 
-                                            this.reciverContractionTreeVaribale.ResivedTaskFunction(Sample, null, null, 0, null, ref ACT);
+                                            reciverContractionTreeVaribale.ResivedTaskFunction(Sample, null, null, 0, null, ref ACT);
                                             return true;
                                         }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             /*//CONDITION317450 :refer to page 186.
-            //ERROR345678567MCD98 :The Function Dose not found.
-            //LOCATION678976509467 :The page 93 request.
-            if (!IsParantes)
-                if (TreeConstructed != null)
-                    //ERRORCORECTION24358734875 :The Condition Will add.
-                    if (TreeConstructed.RightSideAccess != null)
-                        if (!this.ifIsLastOperatorAndItsLeftOperator(TreeConstructed))
-                            if (!this.ifIsLastOperatorAndItsLeftFunction(TreeConstructed))
-                                if (this.IsNumber(Sample) || (this.ISindependenceVaribale(Sample)))
-                                    if (this.QueueStringVariable.NumberOfElement() == 0)
-                                        QueueStringVariable.Add(Sample);
-                                                   
-                                        //Refer to page 93.
-                                        /*if (!ISSuitableForFunctionArgumnetVariable)
-                                        {
-                                            //LOCATION131705 :Refer to page 185. 
-                                            this.reciverContractionTreeVaribale.ResivedTaskFunction(Sample, null, null, 0, null);
-                                            return true;
-                                        }
-                                         */
+//ERROR345678567MCD98 :The Function Dose not found.
+//LOCATION678976509467 :The page 93 request.
+if (!IsParantes)
+   if (TreeConstructed != null)
+       //ERRORCORECTION24358734875 :The Condition Will add.
+       if (TreeConstructed.RightSideAccess != null)
+           if (!this.ifIsLastOperatorAndItsLeftOperator(TreeConstructed))
+               if (!this.ifIsLastOperatorAndItsLeftFunction(TreeConstructed))
+                   if (this.IsNumber(Sample) || (this.ISindependenceVaribale(Sample)))
+                       if (this.QueueStringVariable.NumberOfElement() == 0)
+                           QueueStringVariable.Add(Sample);
+
+                           //Refer to page 93.
+                           /*if (!ISSuitableForFunctionArgumnetVariable)
+                           {
+                               //LOCATION131705 :Refer to page 185. 
+                               this.reciverContractionTreeVaribale.ResivedTaskFunction(Sample, null, null, 0, null);
+                               return true;
+                           }
+                            */
 
             //EROROCORRECTION74523274XA :x should stores and when "+" will comes add to tree.
             //Might to ERRORCuase1298670 :it may on some locations be unsafty.
             //LOCATION765765 :refer to page 185.
             if (!IsParantes)
-                if (this.IsFunction(Sample) || this.IsOperator(Sample))
+            {
+                if (IsFunction(Sample) || IsOperator(Sample))
+                {
                     if (QueueStringVariable.NumberOfElement() >= 1)
                     {   //e
-                        String x0 = null;
+                        string x0 = null;
                         x0 = QueueStringVariable.Delete();
                         //ERORRCORECTION878919274872 :The number extend to number and variable.
                         //ERROR35724342 : Dose not any effect.refer to page 102.
                         //LOCATION78264928 :Here by refering to page 185.
-                        if (this.ISindependenceVaribaleOrNumber(x0))
+                        if (ISindependenceVaribaleOrNumber(x0))
+                        {
                             //this.reciverContractionTreeVaribale.ResivedTaskFunction(x0,null,null, 0);
                             //this.reciverContractionTreeVaribale.ResivedTaskFunction(Sample,null,x0, 0,null);
                             //ERORRCORECTION678901297349814CXS :The above satatment replaced by below statment.
-                            this.reciverContractionTreeVaribale.ResivedTaskFunction(Sample, x0, null, 0, null, ref ACT);
+                            reciverContractionTreeVaribale.ResivedTaskFunction(Sample, x0, null, 0, null, ref ACT);
+                        }
                         else
+                        {
                             QueueStringVariable.Add(x0);
+                        }
                     }
+                }
+            }
             //ERRORCORECTION41723050
-            if (this.IsEqualWithThreadConsiderationCommonlySample(Sample))
+            if (IsEqualWithThreadConsiderationCommonlySample(Sample))
+            {
                 if (QueueStringVariable.NumberOfElement() >= 1)
                 {
-                    String x0 = null;
+                    string x0 = null;
                     x0 = QueueStringVariable.Delete();
-                    this.reciverContractionTreeVaribale.ResivedTaskFunction(Sample, null, x0, 0, null, ref ACT);
+                    reciverContractionTreeVaribale.ResivedTaskFunction(Sample, null, x0, 0, null, ref ACT);
                 }
+            }
 
             //The Last operation.
             //ERROR7809678905 : Error on data structure.
@@ -5500,9 +7001,9 @@ namespace Formulas
               }
               }
             */
-            if (!this.PreventTowTimeAdded)
+            if (!PreventTowTimeAdded)
             {
-                if (this.IsParantez(Sample))//for parantez openning and cloSing.
+                if (IsParantez(Sample))//for parantez openning and cloSing.
                 {
                     if (ParantezVariable.IsOpenedParantez())
                     {
@@ -5527,10 +7028,12 @@ namespace Formulas
                             ParantezOpenedNumber--;
                         }
                     }
-                    this.PreventTowTimeAdded = true;
+                    PreventTowTimeAdded = true;
                 }
                 if (ParantezOpenedNumber > 0)
+                {
                     ISSuitableForFunctionArgumnetVariable = true;
+                }
                 else
                 {
                     ISSuitableForFunctionArgumnetVariable = false;
@@ -5539,14 +7042,14 @@ namespace Formulas
                 //ERORRCORECTION890758746789 :The Last Sample of Parantez Closeed.
                 if (!ISSuitableForFunctionArgumnetVariable)
                 {
-                    if (this.QueueStringVariable.NumberOfElement() >= 1)
+                    if (QueueStringVariable.NumberOfElement() >= 1)
                     {
-                        String x0 = null;
+                        string x0 = null;
                         x0 = QueueStringVariable.Delete();
-                        this.reciverContractionTreeVaribale.ResivedTaskFunction(x0, null, null, 0, null, ref ACT);
+                        reciverContractionTreeVaribale.ResivedTaskFunction(x0, null, null, 0, null, ref ACT);
                     }
                     //ERRORCORECTION870957834 :For changing the function Argumnet.
-                    this.ChangeTheSideOfArgument(TreeConstructed);
+                    ChangeTheSideOfArgument(TreeConstructed);
                 }
             }
             //ERROR34534253 : Cuase to an infinite loop.
@@ -5558,7 +7061,7 @@ namespace Formulas
                 {
                     //ERORRCORECTION78JDLK981274 :Editing                    
                     IsParantes = !IsParantes;
-                    this.SenderToAddToTree(Sample, THIS, true);
+                    SenderToAddToTree(Sample, THIS, true);
                     IsParantes = !IsParantes;
 
 
@@ -5567,24 +7070,34 @@ namespace Formulas
             else
                 if (!IsParantes)//if is not function arguments.
             {
-                if (this.ISindependenceVaribale(Sample))
-                    this.QueueStringVariable.Add(Sample);
-                if (this.IsNumber(Sample))
-                    this.QueueStringVariable.Add(Sample);
-                if ((this.IsOperator(Sample)) || (this.IsFunction(Sample)))
-                    if (this.IsOperator(Sample))
+                if (ISindependenceVaribale(Sample))
+                {
+                    QueueStringVariable.Add(Sample);
+                }
+
+                if (IsNumber(Sample))
+                {
+                    QueueStringVariable.Add(Sample);
+                }
+
+                if ((IsOperator(Sample)) || (IsFunction(Sample)))
+                {
+                    if (IsOperator(Sample))
                     {
-                        if (this.QueueStringVariable.NumberOfElement() >= 1)
+                        if (QueueStringVariable.NumberOfElement() >= 1)
                         {
-                            String x0 = null;
+                            string x0 = null;
                             x0 = QueueStringVariable.Delete();
-                            this.reciverContractionTreeVaribale.ResivedTaskFunction(Sample, x0, null, 0, null, ref ACT);
+                            reciverContractionTreeVaribale.ResivedTaskFunction(Sample, x0, null, 0, null, ref ACT);
                         }
                     }
                     else
                         //ERROR1826432164 :Refer to page 85 .this condition leads to error
-                        if (this.IsFunction(Sample))
+                        if (IsFunction(Sample))
+                    {
                         reciverContractionTreeVaribale.ResivedTaskFunction(Sample, null, null, 0, null, ref ACT);
+                    }
+                }
             }
 
             End:
@@ -5594,22 +7107,38 @@ namespace Formulas
         {
 
             if (T1 == null)
+            {
                 if (T2 == null)
+                {
                     return true;
+                }
+            }
+
             bool IsEuqalTow = false;
 
             if (T1 != null)
+            {
                 if (T2 != null)
+                {
                     if (T1.GetHashCode() == T1.GetHashCode())
+                    {
                         if (T1.GetSample() == T2.GetSample())
+                        {
                             IsEuqalTow = true;
+                        }
+                    }
+                }
+            }
+
             return IsEuqalTow;
         }
         public StackTree ToDeleteStackOfArray(StackTree St, ArrayTree At)
         {
 
             if (St.IsEmpty())
+            {
                 return St;
+            }
 
             bool IsEqualWithThreadConsiderationCommonly = false;
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
@@ -5617,40 +7146,56 @@ namespace Formulas
 
 
             for (int i = 0; i < At.MexLetghOfElementsAccess + 1; i++)
+            {
                 if (Dummy.Equals(At.GetIthMember(i)))
                 {
                     IsEqualWithThreadConsiderationCommonly = true;
                     break;
                 }
-            St = this.ToDeleteStackOfArray(St, At);
+            }
+
+            St = ToDeleteStackOfArray(St, At);
             if (!IsEqualWithThreadConsiderationCommonly)
+            {
                 St.Push(Dummy);
+            }
+
             return St;
         }
-        private bool ISMovement(String Sample)
+        private bool ISMovement(string Sample)
         {
             bool Is = false;
             if (Sample != null)
             {
                 if (Sample.ToString().ToLower() == "up")
+                {
                     Is = true;
+                }
                 else
                     if (Sample.ToString().ToLower() == "down")
+                {
                     Is = true;
+                }
                 else
                         if (Sample.ToString().ToLower() == "left")
+                {
                     Is = true;
+                }
                 else
                             if (Sample.ToString().ToLower() == "right")
+                {
                     Is = true;
+                }
             }
             return Is;
         }
-        public void SenderToAddToTree(String Sample, Equation THIS, bool Parantez)
+        public void SenderToAddToTree(string Sample, Equation THIS, bool Parantez)
         {
             bool EQUATIONINSERTIOn = false;
             if (Sample != null)
+            {
                 Current = Sample;
+            }
             else
             {
                 Sample = Current;
@@ -5660,8 +7205,11 @@ namespace Formulas
 
             //ERRORCORECTION19274 :the correction of ERROR30408034.refer to page 139.           
 
-            if (this.ISMovement(Sample))
+            if (ISMovement(Sample))
+            {
                 goto End;
+            }
+
             THISEquationVariable = THIS;
             //ERRORCORECTION78290374987234 :The ERROR34095780976 Correction. 
             ParantezVariable = THIS.GetParantezFormVariable();
@@ -5682,7 +7230,7 @@ namespace Formulas
             //ERROR30704350 :The right side is null.error in structure.
 
             //ERROR30408034 :The movement charackters fall in structure.
-            TreeConstructed = this.NodeAccess;
+            TreeConstructed = NodeAccess;
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             AddToTree.Tree ADDED = new AddToTree.Tree(null, false);
             AddToTree.Tree Holder = new AddToTree.Tree(null, false);
@@ -5693,14 +7241,18 @@ namespace Formulas
             try
             {
                 if (THIS.EquationTraceAccess.EquationTraceInsertionAccess.EqauationTraceInsertionAccess)
+                {
                     goto End;
-
+                }
             }
             catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
 
             if (EQUATIONINSERTIOn)
+            {
                 if (Holder.LeftSideAccess == null)
+                {
                     if (Holder.RightSideAccess == null)
+                    {
                         if (IS.IsOperator(Sample))
                         {
                             Dummy.SampleAccess = Sample;
@@ -5708,10 +7260,13 @@ namespace Formulas
                             Dummy.ThreadAccess = Holder.ThreadAccess;
                             Dummy.LeftSideAccess.ThreadAccess = Dummy;
                             Holder = Dummy;
-                            this.reciverContractionTreeVaribale.NodeAccess = Holder;
+                            reciverContractionTreeVaribale.NodeAccess = Holder;
                             THIS.EquationTraceAccess.EquationReadyAccess = true;
                             goto Return;
                         }
+                    }
+                }
+            }
 
             //To Delete Extra Memebers.
             //e(it might to delete members incorrectly.
@@ -5729,37 +7284,50 @@ namespace Formulas
             {
                 //ERROR1826432164 :Refer to page 85
                 bool ACT = false;
-                this.SettingSenders(Sample, THIS, ref ACT);
+                SettingSenders(Sample, THIS, ref ACT);
                 if (ACT)
+                {
                     THIS.EquationTraceAccess.EquationReadyAccess = true;
+                }
                 //ERROR92834798234 :The strucure on base node is correctly but on local variable is not true.refer to page 103.
                 //Inizialization for the first time.
                 //if (EquationSettingInsertionVariable.GetHolder().GetSample() == null)
 
                 if (StackTreeVariable.IsEmpty())
+                {
                     if (ArrayTreeVariable.IsEmpty())
-                        if (this.IsFunction(Sample)
+                    {
+                        if (IsFunction(Sample)
                             ||
-                            this.IsOperator(Sample))
+                            IsOperator(Sample))
                         {
                             StackTreeVariable.Push(TreeConstructed);
                             ArrayTreeVariable.Push(TreeConstructed);
                         }
+                    }
+                }
                 //Relative to Parantez argument.
                 AddToTree.Tree RightSideLast = null;
                 //ERRORCORECTION5687345980 :Th condition was added.
                 //ERROR73425273 :The RightSiodeLast is null.
                 if (!Parantez)
+                {
                     RightSideLast = reciverContractionTreeVaribale.GetRightSideOfLastStage();
+                }
                 else
+                {
                     RightSideLast = reciverContractionTreeVaribale.GetRightSideOfLastStageByParantez();
+                }
                 //LOCATION678509874  : the sencse location of page 90 tick 
                 //ERRORCORECTION780654785 :Add ISParantez varibale
                 if (!IsParantes)
+                {
                     if (RightSideLast != null)
-                        if (this.IsOperator(Sample)
+                    {
+                        if (IsOperator(Sample)
                               ||
-                           this.IsFunction(Sample))
+                           IsFunction(Sample))
+                        {
                             if (reciverContractionTreeVaribale.GetIsLastRightNumberOrIndependenceVariale())
                             //ERROR30490678 :Enterring To Block Without any neede.refer to page 139.
                             {   //LOCATION87687988 :Refer to page 185.
@@ -5780,9 +7348,14 @@ namespace Formulas
                                   */
                                 //ERRORCORECTION30714123 :Refer to page 185.
                                 if (!Parantez)
+                                {
                                     Dummy = reciverContractionTreeVaribale.GetRightSideOfLastStage();
+                                }
                                 else
+                                {
                                     Dummy = reciverContractionTreeVaribale.GetRightSideOfLastStageByParantez();
+                                }
+
                                 Dummy = Dummy.ThreadAccess;
                                 ADDED.SampleAccess = Sample;
                                 ADDED.SetLefTandRightCommonlySide(Dummy.LeftSideAccess.CopyNewTree(Dummy).RightSideAccess, null);
@@ -5829,28 +7402,38 @@ namespace Formulas
                                 //extra
                                 //EquationSettingInsertionVariable.SetHolder(ADDED);
                             }
+                        }
+                    }
+                }
                 //ERRORCORECTION780654785 :Add ISParantez varibale
                 if (!IsParantes)
-                    if (this.IsOperator(Sample)
+                {
+                    if (IsOperator(Sample)
                         ||
-                       this.IsFunction(Sample))
-                        if (this.reciverContractionTreeVaribale.GetRightSideOfLastStage() != null)
-                            if (this.ISindependenceVaribale(this.reciverContractionTreeVaribale.GetRightSideOfLastStage().GetSample())
+                       IsFunction(Sample))
+                    {
+                        if (reciverContractionTreeVaribale.GetRightSideOfLastStage() != null)
+                        {
+                            if (ISindependenceVaribale(reciverContractionTreeVaribale.GetRightSideOfLastStage().GetSample())
                                     ||
-                                    this.IsNumber(this.reciverContractionTreeVaribale.GetRightSideOfLastStage().GetSample())
+                                    IsNumber(reciverContractionTreeVaribale.GetRightSideOfLastStage().GetSample())
                                     ||
-                                    this.IsFunction(this.reciverContractionTreeVaribale.GetRightSideOfLastStage().GetSample()))
+                                    IsFunction(reciverContractionTreeVaribale.GetRightSideOfLastStage().GetSample()))
                             {
                                 MessageBox.Show("If statment Reached To Finished Click 'End' other wise inCurrent.");
                                 EquationSettingInsertionVariable.SetGropBox1(false, true, false);
                                 EquationSettingInsertionVariable.ShowDialog();
                             }
+                        }
+                    }
+                }
                 //ERRORCORECTION780654785 :Add ISParantez varibale
                 if (!IsParantes)
-
+                {
                     if (EquationSettingInsertionVariable.GropeBox2ReturnIsEnd()
                         ||
                         EquationSettingInsertionVariable.GropeBox1ReturnIsEnd())
+                    {
                         if (TreeConstructed != null)
                         {
                             //fte(The Dummy Contained next idea Node)
@@ -5859,9 +7442,14 @@ namespace Formulas
                             ADDED.SetLefTandRightCommonlySide(Dummy.RightSideAccess, ADDED.RightSideAccess);
                             //ERRORCORECTION190187234 :refer to page 119.
                             if (Dummy.RightSideAccess != null)
+                            {
                                 Dummy.RightSideAccess.ThreadAccess = ADDED;
+                            }
+
                             if (ADDED.RightSideAccess != null)
+                            {
                                 ADDED.RightSideAccess.ThreadAccess = ADDED;
+                            }
 
                             Dummy.SetLefTandRightCommonlySide(Dummy.LeftSideAccess, ADDED);
                             //ERRORCORECTION190187234 :refer to page 119.
@@ -5870,170 +7458,254 @@ namespace Formulas
                             EquationSettingInsertionVariable.SetGropBox1(true, false, false);
                             THIS.EquationTraceAccess.EquationReadyAccess = true;
                         }
+                    }
+                }
             }
             if ((TreeConstructed != null) && (TreeConstructed.GetSample() == null))
-                if (this.IsFunction(Sample))
+            {
+                if (IsFunction(Sample))
+                {
                     TreeConstructed.SampleAccess = Sample;
+                }
+            }
             //To Set Graphically Settings.
             //GraphicallyInterface.GraphicallyRefreshingToOnotherClass(THIS,this);
             End:
             DrawingVariable.GraphicsAccess.Clear(Color.White);
             if (TreeConstructed != null)
+            {
                 if (TreeConstructed.GetSample() != null)//by this condition ocures.
+                {
                     DrawingVariable.Draw(THISEquationVariable, this, 40, 40);
+                }
+            }
+
             Return:
             return;
 
         }
-        public bool IsNumber(String Sample)
+        public bool IsNumber(string Sample)
         {
             bool IsNumber = false;
             if (Sample != null)
             {
                 //ERRORCORECTION89764567 :The condition of being parantez added
-                if ((!this.IsFunction(Sample)) && (!this.IsOperator(Sample)) && (!this.ISindependenceVaribale(Sample)) && (!this.IsParantez(Sample)) && (!this.IsEqualWithThreadConsiderationCommonlySample(Sample)))
+                if ((!IsFunction(Sample)) && (!IsOperator(Sample)) && (!ISindependenceVaribale(Sample)) && (!IsParantez(Sample)) && (!IsEqualWithThreadConsiderationCommonlySample(Sample)))
+                {
                     IsNumber = true;
+                }
             }
             return IsNumber;
         }
-        public bool IsOperator(String Sample)
+        public bool IsOperator(string Sample)
         {
             bool IsOperator = false;
             if (Sample != null)
             {
                 if (Sample.ToString() == "+")
+                {
                     IsOperator = true;
+                }
                 else
                     if (Sample.ToString() == "-")
+                {
                     IsOperator = true;
+                }
                 else
                         if (Sample.ToString() == "*")
+                {
                     IsOperator = true;
+                }
                 else
                             if (Sample.ToString() == "/")
+                {
                     IsOperator = true;
+                }
                 else
                                 if (Sample.ToString().ToLower() == "pow")
+                {
                     IsOperator = true;
+                }
                 else
                                     if (Sample.ToString().ToLower() == "^")
+                {
                     IsOperator = true;
+                }
             }
             return IsOperator;
         }
-        private bool IsPower(String Sample)
+        private bool IsPower(string Sample)
         {
             bool Is = false;
             if (Sample == "^")
+            {
                 Is = true;
+            }
+
             return Is;
         }
 
-        public bool IsParantez(String Sample)
+        public bool IsParantez(string Sample)
         {
             //ERRORCORECTION896709487 : it is like a number ERROR73425362.The problem solved.
             bool IsPrantez = false;
             if (Sample != null)
+            {
                 if ((Sample.ToString() == "()") || (Sample.ToString() == "(") || (Sample.ToString() == ")"))
+                {
                     IsPrantez = true;
+                }
+            }
+
             return IsPrantez;
         }
-        public bool IsFunction(String Sample)
+        public bool IsFunction(string Sample)
         {
             bool IsFunction = false;
             if (Sample != null)
             {
                 if (Sample.ToString().ToLower() == "sin")
+                {
                     IsFunction = true;
+                }
                 else
                     if (Sample.ToString().ToLower() == "cos")
+                {
                     IsFunction = true;
+                }
                 else
                         if (Sample.ToString().ToLower() == "tan")
+                {
                     IsFunction = true;
+                }
                 else
                             if (Sample.ToString().ToLower() == "cot")
+                {
                     IsFunction = true;
+                }
                 else
                                 if (Sample.ToString().ToLower() == "sec")
+                {
                     IsFunction = true;
+                }
                 else
                                     if (Sample.ToString().ToLower() == "csc")
+                {
                     IsFunction = true;
+                }
                 else
                                         if (Sample.ToString().ToLower() == "log")
+                {
                     IsFunction = true;
+                }
                 else
                                             if (Sample.ToString().ToLower() == "ln")
+                {
                     IsFunction = true;
+                }
+
                 if (Sample.ToString().ToLower() == "root")
+                {
                     IsFunction = true;
+                }
             }
             return IsFunction;
         }
-        public bool ISindependenceVaribale(String Sample)
+        public bool ISindependenceVaribale(string Sample)
         {
             bool ISindePendenceVariable = false;
             if (Sample != null)
             {
                 if (Sample.ToString().ToLower() == "x")
+                {
                     ISindePendenceVariable = true;
+                }
                 else
+                {
                     ISindePendenceVariable = false;
+                }
             }
             return ISindePendenceVariable;
         }
-        public bool ISindependenceVaribaleOrNumber(String Sample)
+        public bool ISindependenceVaribaleOrNumber(string Sample)
         {
             bool ISindePendenceVariableOrNumber = false;
             if (Sample != null)
             {
-                if (this.ISindependenceVaribale(Sample))
+                if (ISindependenceVaribale(Sample))
+                {
                     ISindePendenceVariableOrNumber = true;
-                if (this.IsNumber(Sample))
+                }
+
+                if (IsNumber(Sample))
+                {
                     ISindePendenceVariableOrNumber = true;
+                }
             }
             return ISindePendenceVariableOrNumber;
         }
     }
-    class QueueString
+
+    internal class QueueString
     {
-        String[] QueueStringVariable = null;
-        int front, rear;
-        int MaxLen = 0;
+        private readonly string[] QueueStringVariable = null;
+        private int front, rear;
+        private readonly int MaxLen = 0;
         public QueueString(int Size)
         {
-            QueueStringVariable = new String[Size];
+            QueueStringVariable = new string[Size];
             MaxLen = Size;
             front = rear = -1;
         }
-        public bool Add(String Sample)
+        public bool Add(string Sample)
         {
             bool Isfull = false;
             int k = (rear + 1) % MaxLen;
-            if (front == k) Isfull = true;
-            else QueueStringVariable[rear = k] = Sample;
+            if (front == k)
+            {
+                Isfull = true;
+            }
+            else
+            {
+                QueueStringVariable[rear = k] = Sample;
+            }
+
             return Isfull;
         }
-        public String Delete()
+        public string Delete()
         {
             if (front == rear)
+            {
                 return null;
+            }
+
             front++;
             front = front % MaxLen;
-            String Sample = QueueStringVariable[front];
+            string Sample = QueueStringVariable[front];
             QueueStringVariable[front] = null;
             return Sample;
         }
         public bool IsEmpty()
         {
-            if (rear == MaxLen - 1) return true;
-            else return false;
+            if (rear == MaxLen - 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public bool IsFull()
         {
-            if (front == rear) return true;
-            else return false;
+            if (front == rear)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public int NumberOfElement()
         {
@@ -6043,9 +7715,9 @@ namespace Formulas
     }
     public class StackTree
     {
-        AddToTree.Tree[] StackTreeVariable = null;
-        int StackTreePointer = -1;
-        int MaxSize = 0;
+        private readonly AddToTree.Tree[] StackTreeVariable = null;
+        private int StackTreePointer = -1;
+        private readonly int MaxSize = 0;
         public StackTree(int Max)
         {
             StackTreeVariable = new AddToTree.Tree[Max];
@@ -6053,7 +7725,7 @@ namespace Formulas
         }
         public void Push(AddToTree.Tree t)
         {
-            if (!this.IsFull())
+            if (!IsFull())
             {
                 StackTreePointer++;
                 StackTreeVariable[StackTreePointer] = t;
@@ -6062,7 +7734,7 @@ namespace Formulas
         public AddToTree.Tree Pop()
         {
             AddToTree.Tree Dummy = null;
-            if (!this.IsEmpty())
+            if (!IsEmpty())
             {
                 Dummy = StackTreeVariable[StackTreePointer];
                 StackTreeVariable[StackTreePointer] = null;
@@ -6074,22 +7746,28 @@ namespace Formulas
         {
             bool ISEmpty = false;
             if (StackTreePointer == -1)
+            {
                 ISEmpty = true;
+            }
+
             return ISEmpty;
         }
         public bool IsFull()
         {
             bool ISFull = false;
             if (StackTreePointer == MaxSize)
+            {
                 ISFull = true;
+            }
+
             return ISFull;
         }
     }
     public class ArrayTree
     {
-        AddToTree.Tree[] ArrayTreeVariable = null;
-        int CurrentMember = -1;
-        bool[] ChangingIndication = null;
+        private readonly AddToTree.Tree[] ArrayTreeVariable = null;
+        private int CurrentMember = -1;
+        private readonly bool[] ChangingIndication = null;
         public ArrayTree(int MaxSize)
         {
             ArrayTreeVariable = new AddToTree.Tree[MaxSize];
@@ -6104,7 +7782,10 @@ namespace Formulas
         {
             bool ISEmpty = false;
             if (CurrentMember == -1)
+            {
                 ISEmpty = true;
+            }
+
             return ISEmpty;
         }
         public bool GetIthMemberOfChenging(int i)
@@ -6126,21 +7807,25 @@ namespace Formulas
         {
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             for (int i = 0; i < CurrentMember + 1; i++)
-                if (this.ArrayTreeVariable[i].Equals(t))
+            {
+                if (ArrayTreeVariable[i].Equals(t))
                 {
-                    this.ChangingIndication[i] = true;
+                    ChangingIndication[i] = true;
                     break;
                 }
+            }
         }
         public void SetFalSechangingArrayMember(AddToTree.Tree t)
         {
             AddToTree.Tree Dummy = new AddToTree.Tree(null, false);
             for (int i = 0; i < CurrentMember + 1; i++)
-                if (this.ArrayTreeVariable[i].Equals(t))
+            {
+                if (ArrayTreeVariable[i].Equals(t))
                 {
-                    this.ChangingIndication[i] = false;
+                    ChangingIndication[i] = false;
                     break;
                 }
+            }
         }
         public int CurrentMemberLocationAcess
         {
@@ -6151,14 +7836,14 @@ namespace Formulas
     }
     public class EquationTraceInsertion
     {
-        Equation Equation = null;
-        EquationTrace EqautionTrace = null;
-        AddToTree.Tree TreeVariable = null;
-        Set SetVariable = null;
-        bool EquationInsertion = false;
-        SenderSample SendeSampleVariable = null;
-        Equation EquationNEW = null;
-        SenderSample SenderSampleNEW = null;
+        private readonly Equation Equation = null;
+        private EquationTrace EqautionTrace = null;
+        private AddToTree.Tree TreeVariable = null;
+        private Set SetVariable = null;
+        private bool EquationInsertion = false;
+        private SenderSample SendeSampleVariable = null;
+        private readonly Equation EquationNEW = null;
+        private readonly SenderSample SenderSampleNEW = null;
         public EquationTraceInsertion(Equation THIS)
         {
             Equation = THIS;
@@ -6245,7 +7930,9 @@ namespace Formulas
                 }
 
                 while ((Holder != null) && (Holder.ThreadAccess != null))
+                {
                     Holder = Holder.ThreadAccess;
+                }
 
                 SendeSampleVariable.AutoSenderAccess.reciverCuntractionTreeAccess.NodeAccess = Holder;
                 THIS.EquationTraceAccess.EquationReadyAccess = EquationNEW.EquationTraceAccess.EquationReadyAccess;

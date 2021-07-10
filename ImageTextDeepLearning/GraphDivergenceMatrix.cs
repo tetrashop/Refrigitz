@@ -222,8 +222,8 @@ namespace ContourAnalysisNS
         public List<List<Vertex>> XlDegree = new List<List<Vertex>>();
         public int N, M;
         public List<Vertex[]> XlOverLap = new List<Vertex[]>();
-        List<List<Vertex[]>> XloverlapsLisf = new List<List<Vertex[]>>();
-        List<List<Vertex>> XloverlapsLisInsider = new List<List<Vertex>>();
+        private readonly List<List<Vertex[]>> XloverlapsLisf = new List<List<Vertex[]>>();
+        private readonly List<List<Vertex>> XloverlapsLisInsider = new List<List<Vertex>>();
         //consider existance of vertex in a graph basically
         public bool ExistV(int x1, int y1)
         {
@@ -936,7 +936,7 @@ namespace ContourAnalysisNS
             bool IgnoreLess = false;
             bool OverAgain = false;
             bool Again = false;
-            int ii = 0, jj = 0, kk = 0, pp, max = int.MinValue;
+            int ii = 0, jj = 0, kk = 0, pp;
             do
             {
                 do
@@ -974,9 +974,14 @@ namespace ContourAnalysisNS
                             else
                             {
                                 if (LessNootFound)
+                                {
                                     IgnoreLess = true;
+                                }
                                 else
+                                {
                                     IgnoreLess = false;
+                                }
+
                                 KPNotFound = false;
                                 LessNootFound = false;
                                 if (I != -1 && J != -1)
@@ -1034,7 +1039,10 @@ namespace ContourAnalysisNS
                                         {
 
                                             if (ExistLOverLap(i, j, k, p))
+                                            {
                                                 continue;
+                                            }
+
                                             float weB = (float)Math.Sqrt((i - k) * (i - k) + (j - p) * (j - p));
                                             if (Xv.Count > First)
                                             {
@@ -1523,7 +1531,9 @@ namespace ContourAnalysisNS
                         }
                     }
                     if (Occurred && LessNootFound)
+                    {
                         Occurred = false;
+                    }
                 } while (Occurred);
                 XiXjDelete();
                 //IJBelongToLineHaveFalseBolleanA(A);
@@ -1567,7 +1577,9 @@ namespace ContourAnalysisNS
                     }
                 }
                 if (!IsOverLapIterative())
+                {
                     XloverlapsLisf.Add(XlOverLap);
+                }
                 else
                 if (I != -1 && J != -1)
                 {
@@ -1603,11 +1615,15 @@ namespace ContourAnalysisNS
                 }
             } while (OverAgain);
         }
-        bool IsOverLapIterative()
+
+        private bool IsOverLapIterative()
         {
             bool Is = false;
             if (XlOverLap.Count == 0)
+            {
                 return Is;
+            }
+
             for (int i = 0; i < XloverlapsLisf.Count; i++)
             {
                 if (XloverlapsLisf[i].Count == XlOverLap.Count)
@@ -1615,17 +1631,23 @@ namespace ContourAnalysisNS
                     Is = IsEquality(XloverlapsLisf[i], XlOverLap);
 
                     if (Is)
+                    {
                         return Is;
+                    }
                 }
             }
             return Is;
         }
-        bool IsEquality(List<Vertex[]> x1, List<Vertex[]> x2)
+
+        private bool IsEquality(List<Vertex[]> x1, List<Vertex[]> x2)
         {
             bool Is = false;
 
             if (x1.Count != x2.Count)
+            {
                 return Is;
+            }
+
             List<Vertex[]> xl1 = new List<Vertex[]>();
             List<Vertex[]> xl2 = new List<Vertex[]>();
             for (int i = 0; i < x1.Count; i++)
@@ -1721,7 +1743,9 @@ namespace ContourAnalysisNS
                         continue;
                     }
                     else
+                    {
                         ii++;
+                    }
                 }
             } while (ii < xl1.Count);
             ii = 0;
@@ -1736,11 +1760,16 @@ namespace ContourAnalysisNS
                         continue;
                     }
                     else
+                    {
                         ii++;
+                    }
                 }
             } while (ii < xl1.Count);
             if (xl1.Count == 0 && xl2.Count == 0)
+            {
                 Is = true;
+            }
+
             return Is;
         }
             
@@ -2115,7 +2144,7 @@ namespace ContourAnalysisNS
     //line class
     public class Line
     {
-        static float  interval = (float)0.1;
+        private static readonly float  interval = (float)0.1;
         public int VertexIndexX, VertexIndexY;
         public float Weigth;
         //constructor
@@ -2137,13 +2166,16 @@ namespace ContourAnalysisNS
             }
             return null;
         }
-        static bool IsSame(Vertex x, Vertex y, Vertex z)
+
+        private static bool IsSame(Vertex x, Vertex y, Vertex z)
         {
             bool Is = false;
             if (x.X == y.X && y.X == z.X)
             {
                 if (x.Y == y.Y && y.Y == z.Y)
+                {
                     Is = true;
+                }
             }
             return Is;
         }
@@ -2158,62 +2190,102 @@ namespace ContourAnalysisNS
                 for (int j = 0; j < xl.Count; j++)
                 {
                     if (i == j)
+                    {
                         continue;
+                    }
+
                     Vertex y1 = GetVerIdO(xl[j].VertexIndexX, xv);
                     Vertex y2 = GetVerIdO(xl[j].VertexIndexY, xv);
 
                     if (IsSame(x1, x2, y1))
+                    {
                         Is = true;
+                    }
 
                     if (IsSame(x1, x2, y2))
+                    {
                         Is = true;
+                    }
 
                     for (int k = 0; k < xl.Count; k++)
                     {
                         if (i == k)
+                        {
                             continue;
+                        }
+
                         if (j == k)
+                        {
                             continue;
+                        }
+
                         Vertex z1 = GetVerIdO(xl[k].VertexIndexX, xv);
                         Vertex z2 = GetVerIdO(xl[k].VertexIndexY, xv);
 
                         if (IsSame(x1, x2, z1))
+                        {
                             Is = true;
+                        }
 
                         if (IsSame(x1, x2, z2))
+                        {
                             Is = true;
+                        }
 
                         if (IsSame(x1, y1, z1))
+                        {
                             Is = true;
+                        }
 
                         if (IsSame(x1, y2, z1))
+                        {
                             Is = true;
+                        }
 
                         if (IsSame(x1, y1, z2))
+                        {
                             Is = true;
+                        }
 
                         if (IsSame(x1, y2, z2))
+                        {
                             Is = true;
+                        }
 
                         if (IsSame(x2, y1, z1))
+                        {
                             Is = true;
+                        }
 
                         if (IsSame(x2, y2, z1))
+                        {
                             Is = true;
+                        }
 
                         if (IsSame(x2, y1, z2))
+                        {
                             Is = true;
+                        }
 
                         if (IsSame(x2, y2, z2))
+                        {
                             Is = true;
+                        }
+
                         if (Is)
+                        {
                             break;
+                        }
                     }
                     if (Is)
+                    {
                         break;
+                    }
                 }
                 if (Is)
+                {
                     break;
+                }
             }
             return Is;
         }
@@ -2222,14 +2294,14 @@ namespace ContourAnalysisNS
         {
             bool Is = false;
             //howto_WPF_3D_triangle_normalsuser.Line l0 = new howto_WPF_3D_triangle_normalsuser.Line(new Point3Dspaceuser.Point3D(v0.X, v0.Y, 0), new Point3Dspaceuser.Point3D(v1.X, v1.Y, 0));
-            float X1 = (float)v2.X, X2 = (float)v3.X;
+            float X1 = v2.X, X2 = v3.X;
             if (X1 > X2)
             {
                 float v = X1;
                 X1 = X2;
                 X2 = v;
             }
-            float Y1 = (float)v2.Y, Y2 = (float)v3.Y;
+            float Y1 = v2.Y, Y2 = v3.Y;
             if (Y1 > Y2)
             {
                 float v = Y1;
@@ -2238,7 +2310,7 @@ namespace ContourAnalysisNS
             }
             for (float i = (float)X1 + interval; i < (float)X2 - interval; i += interval)
             {
-                float y = ((((float)((float)v0.Y - (float)v1.Y) / (float)((float)v0.X - (float)v1.X)) * (float)(i - (float)v2.X)) + (float)v2.Y);
+                float y = ((((float)(v0.Y - (float)v1.Y) / (float)(v0.X - (float)v1.X)) * (float)(i - v2.X)) + v2.Y);
                  if (Line.IsPointsInVertexes(v2, v3, i, y))
                 {
                     return true;
@@ -2253,10 +2325,13 @@ namespace ContourAnalysisNS
             if (v1.Y == v2.Y)
             {
                 if (v1.Y == y)
+                {
                     return true;
+                }
+
                 return false;
             }
-            if (Math.Abs(((float)(y - v1.Y) - ((((float)(v1.Y - v2.Y)) / (float)(v1.X - v2.X)) * (float)(x - v1.X)))) < 1)
+            if (Math.Abs((y - v1.Y - (((v1.Y - v2.Y) / (float)(v1.X - v2.X)) * (x - v1.X)))) < 1)
             {
                 Is = true;
             }
@@ -2268,10 +2343,13 @@ namespace ContourAnalysisNS
             if (v1.Y == v2.Y)
             {
                 if (v1.Y == y)
+                {
                     return true;
+                }
+
                 return false;
             }
-            if (Math.Abs(((float)(y - v1.Y) - ((((float)(v1.Y - v2.Y)) / (float)(v1.X - v2.X)) * (float)(x - v1.X)))) < 1)
+            if (Math.Abs(((float)(y - v1.Y) - (((v1.Y - v2.Y) / (float)(v1.X - v2.X)) * (float)(x - v1.X)))) < 1)
             {
                 Is = true;
             }
@@ -2348,7 +2426,7 @@ namespace ContourAnalysisNS
             return Is;
         }
 
-        bool[,] ZerosB()
+        private bool[,] ZerosB()
         {
             bool[,] TemB = new bool[M, N];
             for (int i = 0; i < M; i++)
@@ -2360,7 +2438,8 @@ namespace ContourAnalysisNS
             }
             return TemB;
         }
-        int[,] ZerosI()
+
+        private int[,] ZerosI()
         {
             int[,] TemB = new int[N, M];
             for (int i = 0; i < N; i++)

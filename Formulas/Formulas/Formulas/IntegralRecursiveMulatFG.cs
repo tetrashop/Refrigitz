@@ -1,15 +1,18 @@
 namespace Formulas
 {
-    static class IntegralRecursiveMulatFG
+    internal static class IntegralRecursiveMulatFG
     {
-        static public bool IntegralRecursiveMulatFGFx(AddToTreeTreeLinkList MulAtFG, AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static bool IntegralRecursiveMulatFGFx(AddToTreeTreeLinkList MulAtFG, AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             AddToTree.Tree HOLDER = MulAtFG.DELETEFromTreeFirstNode();
             if (Dummy != null)
+            {
                 return EqualToObject.IsEqualWithOutThreadConsiderationByDivision(HOLDER.CopyNewTree(HOLDER), Dummy.CopyNewTree(Dummy), ref UIS);
+            }
+
             return false;
         }
-        static public bool IntegralRecursiveMulatFPowerGFx(AddToTree.Tree Integral, AddToTree.Tree Dummy, ref UknownIntegralSolver UIS, ref float Queficient)
+        public static bool IntegralRecursiveMulatFPowerGFx(AddToTree.Tree Integral, AddToTree.Tree Dummy, ref UknownIntegralSolver UIS, ref float Queficient)
         {
 
             AddToTree.Tree HOLDER = new AddToTree.Tree(null, false);
@@ -24,7 +27,9 @@ namespace Formulas
             /*   else break;
                         */
             if (Istrue)
+            {
                 return Istrue;
+            }
 
             //}
             return false;

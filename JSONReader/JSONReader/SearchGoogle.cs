@@ -1,9 +1,9 @@
 ﻿using System;
 namespace JSONReader
 {
-    class SearchGoogle
+    internal class SearchGoogle
     {
         public DateTime timestamp_usec;
-        public String query_text = "";
+        public string query_text = "";
     }
 }

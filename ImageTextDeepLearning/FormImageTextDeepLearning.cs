@@ -857,14 +857,15 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
             textBox1.Text = "";
         }
-        void SetTotal()
+
+        private void SetTotal()
         {
-            var output = Task.Factory.StartNew(() => CreateOneConShape());
+            Task output = Task.Factory.StartNew(() => CreateOneConShape());
             if (!ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly)
             {
                 do { Thread.Sleep(10); } while (DetectionOfLitteral.total == -1 || DetectionOfLitteral.current == -1);
                 progressBarCompleted.Maximum = DetectionOfLitteral.total;
-                var outputC = Task.Factory.StartNew(() => Current());
+                Task outputC = Task.Factory.StartNew(() => Current());
                 output.Wait();
             }
             else
@@ -943,7 +944,8 @@ if (buttonSplitationConjunction.Text == "Conjunction")
         {
     
         }
-        void Current()
+
+        private void Current()
         {
             int count = 0;
             do
@@ -1044,7 +1046,8 @@ if (buttonSplitationConjunction.Text == "Conjunction")
                 }
             }
         }
-        void DrawGraph(bool[,] Ab, int m, int n)
+
+        private void DrawGraph(bool[,] Ab, int m, int n)
         {
             SameRikhEquvalent A = new SameRikhEquvalent(Ab, m, n);
             Graphics e = Graphics.FromImage(PictureBoxImageTextDeepLearning.Image);
@@ -1053,7 +1056,10 @@ if (buttonSplitationConjunction.Text == "Conjunction")
             {
                 for (int j = 0; j < A.Xv.Count; j++)
                 {if (i == j)
+                    {
                         continue;
+                    }
+
                     Line sd = A.d(A.Xv[i], A.Xv[j]);
                     if (sd != null)
                     {
@@ -1103,12 +1109,12 @@ if (buttonSplitationConjunction.Text == "Conjunction")
 
             //var output = Task.Factory.StartNew(() => SetTotal());
 
-            var output = Task.Factory.StartNew(() => CreateOneConShape());
+            Task output = Task.Factory.StartNew(() => CreateOneConShape());
             if (!ImageTextDeepLearning.FormImageTextDeepLearning.Checkonly)
             {
                 do { Thread.Sleep(10); } while (DetectionOfLitteral.total == -1 || DetectionOfLitteral.current == -1);
                 progressBarCompleted.Maximum = DetectionOfLitteral.total;
-                var outputC = Task.Factory.StartNew(() => Current());
+                Task outputC = Task.Factory.StartNew(() => Current());
                 output.Wait();
             }
             else

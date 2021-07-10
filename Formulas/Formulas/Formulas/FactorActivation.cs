@@ -21,31 +21,46 @@ using System;
 
 namespace Formulas
 {
-    static class FactorActivation
+    internal static class FactorActivation
     {
-        static AddToTreeTreeLinkList NotAbledFactors = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList AbledFactors = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList ONLYMULnODE = new AddToTreeTreeLinkList();
-        static AddToTreeTreeLinkList MULATEDELEMENTS = new AddToTreeTreeLinkList();
+        private static readonly AddToTreeTreeLinkList NotAbledFactors = new AddToTreeTreeLinkList();
+        private static readonly AddToTreeTreeLinkList AbledFactors = new AddToTreeTreeLinkList();
+        private static readonly AddToTreeTreeLinkList ONLYMULnODE = new AddToTreeTreeLinkList();
+        private static AddToTreeTreeLinkList MULATEDELEMENTS = new AddToTreeTreeLinkList();
 
-        static public AddToTree.Tree FactorActivationFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree FactorActivationFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             while (!(NotAbledFactors.ISEmpty()))
+            {
                 NotAbledFactors.DELETEFromTreeFirstNode();
+            }
+
             while (!(AbledFactors.ISEmpty()))
+            {
                 AbledFactors.DELETEFromTreeFirstNode();
+            }
+
             while (!(ONLYMULnODE.ISEmpty()))
+            {
                 ONLYMULnODE.DELETEFromTreeFirstNode();
+            }
+
             while (!(MULATEDELEMENTS.ISEmpty()))
+            {
                 MULATEDELEMENTS.DELETEFromTreeFirstNode();
+            }
+
             Dummy = FactorActivation.FactorActivationFirstMinuseOrPluseFx(Dummy, ref UIS);
 
             return Dummy;
         }
-        static AddToTree.Tree FactorActivationFirstMinuseOrPluseFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree FactorActivationFirstMinuseOrPluseFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
 
             if ((FactorActivation.SuitableForFactorActivation(Dummy.CopyNewTree(Dummy))) && ((Dummy.SampleAccess == "+") || (Dummy.SampleAccess == "-")))
             {
@@ -53,18 +68,31 @@ namespace Formulas
                 Dummy = FactorActivation.FactorActivationActionFx(Dummy, ref UIS);
             }
             while (!(NotAbledFactors.ISEmpty()))
+            {
                 NotAbledFactors.DELETEFromTreeFirstNode();
+            }
+
             while (!(AbledFactors.ISEmpty()))
+            {
                 AbledFactors.DELETEFromTreeFirstNode();
+            }
+
             while (!(ONLYMULnODE.ISEmpty()))
+            {
                 ONLYMULnODE.DELETEFromTreeFirstNode();
+            }
+
             while (!(MULATEDELEMENTS.ISEmpty()))
+            {
                 MULATEDELEMENTS.DELETEFromTreeFirstNode();
+            }
+
             Dummy.LeftSideAccess = FactorActivation.FactorActivationFirstMinuseOrPluseFx(Dummy.LeftSideAccess, ref UIS);
             Dummy.RightSideAccess = FactorActivation.FactorActivationFirstMinuseOrPluseFx(Dummy.RightSideAccess, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree FactorActivationActionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+
+        private static AddToTree.Tree FactorActivationActionFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             //ERROR932875987 : Refer to page 301 :If The Non Copy of Dummy Passes to method the result of dummy become invalid.
             //AddToTree.Tree Factor = FactorActivation.GetBigestCommonFactor(Dummy.CopyNewTree(Dummy));
@@ -83,9 +111,13 @@ namespace Formulas
                 try
                 {
                     if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.ThreadAccess.RightSideAccess, Dummy))
+                    {
                         LeftTrueRightFalse = false;
+                    }
                     else
+                    {
                         LeftTrueRightFalse = true;
+                    }
                 }
                 catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
 
@@ -97,24 +129,35 @@ namespace Formulas
                     Dummy = FactorActivation.FactorActivationDivActionFx(Dummy.CopyNewTree(Dummy), Factor, ref Action, ref Mul, FactorLinkList.CopyLinkList());
                 }
                 while (Dummy.ThreadAccess != null)
+                {
                     Dummy = Dummy.ThreadAccess;
+                }
+
                 Dummy = Simplifier.SimplifierFxSimpler(Dummy, ref UIS);
                 try
                 {
                     if (!LeftTrueRightFalse)
+                    {
                         Holder.RightSideAccess = Dummy;
+                    }
                     else
+                    {
                         Holder.LeftSideAccess = Dummy;
+                    }
                 }
                 catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
                 Dummy.ThreadAccess = Holder;
             }
             return Dummy;
         }
-        static AddToTree.Tree FactorActivationDivActionFx(AddToTree.Tree Dummy, AddToTree.Tree Factor, ref bool Action, ref bool Mul, AddToTreeTreeLinkList CopyOfFactors)
+
+        private static AddToTree.Tree FactorActivationDivActionFx(AddToTree.Tree Dummy, AddToTree.Tree Factor, ref bool Action, ref bool Mul, AddToTreeTreeLinkList CopyOfFactors)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             bool Current = false;
 
             try
@@ -139,7 +182,9 @@ namespace Formulas
                 Current = true;
             }
             else//CAUSEDERROR2983747 :This Section because of Loss Factors not is not become one extra factors.            
+            {
                 Dummy = FactorActivation.ConvertExtraFactorsTooneFx(Dummy, Factor, ref Action, Current);
+            }
 
             if (Current)
             {
@@ -153,7 +198,8 @@ namespace Formulas
 
             return Dummy;
         }
-        static AddToTree.Tree ConvertExtraFactorsTooneFx(AddToTree.Tree Dummy, AddToTree.Tree Factors, ref bool Action, bool Current)
+
+        private static AddToTree.Tree ConvertExtraFactorsTooneFx(AddToTree.Tree Dummy, AddToTree.Tree Factors, ref bool Action, bool Current)
         {
             /*AddToTree.Tree HOLDER = Dummy;
             if(IS.IsMinuseOrPluse(Dummy.SampleAccess))
@@ -166,10 +212,14 @@ namespace Formulas
             return Dummy;
 
         }
-        static AddToTree.Tree ConvertExtraFactorsToone(AddToTree.Tree Dummy, AddToTree.Tree Factors, ref bool Action, bool Current)
+
+        private static AddToTree.Tree ConvertExtraFactorsToone(AddToTree.Tree Dummy, AddToTree.Tree Factors, ref bool Action, bool Current)
         {
             if (Dummy == null)
+            {
                 return Dummy;
+            }
+
             if ((EqualToObject.IsEqualWithOutThreadConsiderationCommonly(Dummy, Factors)) && (!Action) && (!Current))
             {
                 Action = true;
@@ -180,19 +230,23 @@ namespace Formulas
             Dummy.RightSideAccess = FactorActivation.ConvertExtraFactorsToone(Dummy.RightSideAccess, Factors, ref Action, Current);
             return Dummy;
         }
-        static void FactorActivationOnlyMuLnodesListedFx(AddToTree.Tree Dummy)
+
+        private static void FactorActivationOnlyMuLnodesListedFx(AddToTree.Tree Dummy)
         {
             if (IS.IsNotMinusAndPluseInNode(Dummy))
+            {
                 if (!(ONLYMULnODE.FINDTreeWithOutThreadConsideration(Dummy)))
                 {
                     ONLYMULnODE.ADDToTree(Dummy);
                     return;
                 }
+            }
+
             FactorActivation.FactorActivationOnlyMuLnodesListedFx(Dummy.LeftSideAccess);
             FactorActivation.FactorActivationOnlyMuLnodesListedFx(Dummy.RightSideAccess);
             return;
         }
-        static public AddToTreeTreeLinkList GetBigestCommonFactor(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTreeTreeLinkList GetBigestCommonFactor(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             AddToTreeTreeLinkList CommonFactors = new AddToTreeTreeLinkList();
             AddToTreeTreeLinkList Holder = new AddToTreeTreeLinkList();
@@ -223,23 +277,28 @@ namespace Formulas
                     //bool IsFactor = false;
                     float Num = 0;
                     if (EveryMulatedElementsConsideration.SampleAccess != null)
+                    {
                         if ((IS.IsMinusAndPluseFirstNode(Dummy)) && (IS.ExistElementOnAllMulatedNodes(EveryMulatedElementsConsideration, DummyConsideration, ref UIS)) && (IS.IsNotUpperPowerOfNodeInList(EveryMulatedElementsConsideration, AbledFactors.CopyLinkList(), ref Num)) && (!(AbledFactors.FINDTreeWithOutThreadConsideration(EveryMulatedElementsConsideration))))
                         {
                             Factors = EveryMulatedElementsConsideration;
                             AbledFactors.ADDToTree(Factors);
                         }
+                    }
                 }
             }
             return AbledFactors;
         }
-        static public AddToTreeTreeLinkList GetMultedElements(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTreeTreeLinkList GetMultedElements(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             AddToTreeTreeLinkList HOLDER = new AddToTreeTreeLinkList();
             try
             {
                 if (Dummy.SampleAccess != "*")
+                {
                     HOLDER.ADDToTree(Dummy);
+                }
                 else//ERRORCORECTION912847 :refer to page 302.
+                {
                     while (!((Dummy.LeftSideAccess == null) && (Dummy.RightSideAccess == null)))
                     {
                         //ERROCORECTION172487 ;the non copy strategy cused to invalid result(effection of To be "1").refer to page 302.
@@ -260,17 +319,25 @@ namespace Formulas
                         Dummy = Simplifier.SimplifierFxSimpler(Dummy, ref UIS);
 
                     }
+                }
             }
             catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
             return HOLDER;
         }
-        static bool SuitableForFactorActivation(AddToTree.Tree Dummy)
+
+        private static bool SuitableForFactorActivation(AddToTree.Tree Dummy)
         {
             if (Dummy == null)
+            {
                 return false;
+            }
+
             bool Is = false;
             if (Dummy.SampleAccess == "/")
+            {
                 Is = true;
+            }
+
             Is = Is || FactorActivation.SuitableForFactorActivation(Dummy.LeftSideAccess);
             Is = Is || FactorActivation.SuitableForFactorActivation(Dummy.RightSideAccess);
             return Is;

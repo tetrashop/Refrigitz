@@ -3,10 +3,10 @@ using System;
 
 namespace Ellipse
 {
-    class EllipseDifferentialAroundCalculating
+    internal class EllipseDifferentialAroundCalculating
     {
-        double around = 0;
-        double aroundOiler = 0;
+        private double around = 0;
+        private double aroundOiler = 0;
         //double Paround = 0;
         public EllipseDifferentialAroundCalculating(double a, double b, double c)
         {
@@ -55,13 +55,13 @@ namespace Ellipse
         }
         public double aroundAccess
         {
-            get { return around; }
-            set { around = value; }
+            get => around;
+            set => around = value;
         }
         public double aroundOilerAccess
         {
-            get { return aroundOiler; }
-            set { aroundOiler = value; }
+            get => aroundOiler;
+            set => aroundOiler = value;
         }
     }
 }

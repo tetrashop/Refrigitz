@@ -2,9 +2,9 @@ using System;
 
 namespace Formulas
 {
-    static class MinuseToPluSeconverter
+    internal static class MinuseToPluSeconverter
     {
-        static public AddToTree.Tree MinuseToPluSeconverterFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree MinuseToPluSeconverterFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             AddToTree.Tree THREAD = Dummy.ThreadAccess;
 
@@ -17,14 +17,20 @@ namespace Formulas
             Dummy = NumberDivMul.NumberDivMulFx(Dummy, ref UIS);
             return Dummy;
         }
-        static AddToTree.Tree MinuseToPluSeconverterActionFx(AddToTree.Tree Dummy)
+
+        private static AddToTree.Tree MinuseToPluSeconverterActionFx(AddToTree.Tree Dummy)
         {
             if (Dummy == null)
+            {
                 return null;
+            }
+
             try
             {
                 if (Dummy.SampleAccess == "-")
+                {
                     if (Dummy.ThreadAccess.SampleAccess == "-")
+                    {
                         if (EqualToObject.IsEqualWithThreadConsiderationCommonly(Dummy.ThreadAccess.RightSideAccess, Dummy))
                         {
                             Dummy.ThreadAccess.SampleAccess = "+";
@@ -36,6 +42,8 @@ namespace Formulas
                             CONVERT.ThreadAccess = Dummy;
                             Dummy.LeftSideAccess = CONVERT;
                         }
+                    }
+                }
             }
             catch (NullReferenceException t) { ExceptionClass.ExceptionClassMethod(t); }
             MinuseToPluSeconverter.MinuseToPluSeconverterActionFx(Dummy.LeftSideAccess);

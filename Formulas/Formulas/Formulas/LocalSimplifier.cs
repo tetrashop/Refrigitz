@@ -3,9 +3,9 @@
 
 namespace Formulas
 {
-    static class LocalSimplifier
+    internal static class LocalSimplifier
     {
-        static public AddToTree.Tree LocalSimplifierFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
+        public static AddToTree.Tree LocalSimplifierFx(AddToTree.Tree Dummy, ref UknownIntegralSolver UIS)
         {
             Dummy = SuitableStructureForLocalSimplifier.SuitableStructureForLocalSimplifierFx(Dummy, ref UIS);
             bool MINUSEPLUSEEQUAL = false;

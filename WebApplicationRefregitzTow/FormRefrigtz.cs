@@ -82,18 +82,18 @@ namespace RefrigtzW
     //Constructor
     public class FormRefrigtz
     {
-        bool FOUND = false;
-        int AllDrawKind = 0;
+        private bool FOUND = false;
+        private int AllDrawKind = 0;
         public AllDraw Draw;
-        readonly String path3 = "temp";
-        public static String AllDrawReplacement = "";
-        bool NotFoundBegin = false;
-        public static String AllDrawKindString = "";
-        bool Deeperthandeeper = false;
+        private readonly string path3 = "temp";
+        public static string AllDrawReplacement = "";
+        private bool NotFoundBegin = false;
+        public static string AllDrawKindString = "";
+        private bool Deeperthandeeper = false;
 
         //Initiate Global Variable.
         //public bool DisableTemporarlyTimerUpdate = false;
-        public static double MaxHeuristicx = Double.MinValue;
+        public static double MaxHeuristicx = double.MinValue;
         public static bool MovementsAStarGreedyHeuristicFound = false;
         public static bool IInoreSelfObjects = false;
         public static bool UsePenaltyRegardMechnisam = true;
@@ -101,8 +101,8 @@ namespace RefrigtzW
         public static bool PredictHeuristic = true;
         public static bool OnlySelf = false;
         public static bool AStarGreedyHeuristic = false;
-        bool IsPenaltyRegardCanceled = false;
-        WebApplicationRefregitzTow._Default ttt = null;
+        private bool IsPenaltyRegardCanceled = false;
+        private WebApplicationRefregitzTow._Default ttt = null;
         public static bool LoadPlaceHolder = true;
         public bool PlaceHolderBreak = false;
         public static bool ThinkingA = false;
@@ -110,148 +110,155 @@ namespace RefrigtzW
         public static OleDbConnection bookConn = null;
         public static OleDbCommand oleDbCmd = new OleDbCommand();
         public static OleDbCommand oleDbCmdUser = new OleDbCommand();
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
-        bool BobWithStockfishFinished = false;
+        private readonly bool BobWithStockfishFinished = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.BobWithStockfishFinished' is assigned but its value is never used
-        bool Stockfish = false;
+        private readonly bool Stockfish = false;
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
-        bool RefregitzisCurrent = true;
+        private readonly bool RefregitzisCurrent = true;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.RefregitzisCurrent' is assigned but its value is never used
-        bool SettingPRFALSE = false;
+        private bool SettingPRFALSE = false;
         public static bool ProfesionalWithComputer = false;
         public bool TimersSet = true;
         public static bool GameStarted = false;
         public static bool ArrangmentsChanged = true;
         public static int MaxCurrentMovmentsNumber = 1;
         public static bool ErrorTrueMonitorFalse = true;
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
-        Thread tM = null;
+        private readonly Thread tM = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.tM' is assigned but its value is never used
-        bool Clicked = true;
+        private readonly bool Clicked = true;
         public static int MaxAStarGreedyHeuristicProgress = 0;
-        public static String Root = System.Web.HttpRuntime.AppDomainAppPath;
+        public static string Root = System.Web.HttpRuntime.AppDomainAppPath;
         public bool MouseClicked = false;
         public static bool Blitz = false;
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
-        static bool LoadAG = false;
+        private static readonly bool LoadAG = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.LoadAG' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
-        static bool _1 = false;
+        private static readonly bool _1 = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz._1' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
-        static bool _2 = false;
+        private static readonly bool _2 = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz._2' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
-        static bool _3 = false;
+        private static readonly bool _3 = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz._3' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
-        static bool _4 = false;
+        private static readonly bool _4 = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz._4' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
-        static bool Hideag = false;
+        private static readonly bool Hideag = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.Hideag' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
-        bool exit = false;
+        private readonly bool exit = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.exit' is assigned but its value is never used
-        bool AllDrawLoad = false;
+        private readonly bool AllDrawLoad = false;
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
-        Thread AllOperate = null;
+        private readonly Thread AllOperate = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.AllOperate' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
-        static bool Paused = false;
+        private static readonly bool Paused = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.Paused' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
-        static bool UpdateConfigurationTableVal = false;
+        private static readonly bool UpdateConfigurationTableVal = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.UpdateConfigurationTableVal' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
-        static bool NewTable = false;
+        private static readonly bool NewTable = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.NewTable' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
-        Image TimerImage = null;
+        private readonly Image TimerImage = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
-        Graphics g1 = null;
+        private readonly Graphics g1 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.g1' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
-        Image TimerImage1 = null;
+        private readonly Image TimerImage1 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.TimerImage1' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
-        Graphics g2 = null;
+        private readonly Graphics g2 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.g2' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
-        Graphics g = null;
+        private readonly Graphics g = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.g' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
-        Image ChessTable = null;
+        private readonly Image ChessTable = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.ChessTable' is assigned but its value is never used
         public static int LastRowQ = -1;
         public static int LastColumn = -1;
-        Thread t1 = null;
+        private Thread t1 = null;
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
-        Thread t2 = null;
+        private readonly Thread t2 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.t2' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
-        Thread t3 = null;
+        private readonly Thread t3 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.t3' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
-        Thread t4 = null;
+        private readonly Thread t4 = null;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.t4' is assigned but its value is never used
-        Thread TTimerSet;
+        private readonly Thread TTimerSet;
         public static bool LoadedTable = false;
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
-        bool GrayWinner = false;
+        private readonly bool GrayWinner = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.GrayWinner' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
-        bool BrownWiner = false;
+        private readonly bool BrownWiner = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.BrownWiner' is assigned but its value is never used
         public Refrigtz.Timer TimerText = null;
@@ -259,9 +266,10 @@ namespace RefrigtzW
         public Refrigtz.Timer BrownTimer = null;
         public static int MovmentsNumber = 0;
         public static bool EndOfGame = false;
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
-        bool Maximize = false;
+        private readonly bool Maximize = false;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.Maximize' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
@@ -272,7 +280,7 @@ namespace RefrigtzW
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowP' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ColS' is assigned but its value is never used
-        static int RowP = 0, ColP = 0, RowS = 0, ColS = 0;
+        private static readonly int RowP = 0, ColP = 0, RowS = 0, ColS = 0;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ColS' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowP' is assigned but its value is never used
@@ -281,25 +289,28 @@ namespace RefrigtzW
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.ColP' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.ColS' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.RowS' is assigned but its value is never used
-        bool BobSection = true;
-        bool AliceSection = false;
+        private bool BobSection = true;
+        private bool AliceSection = false;
         public static bool Person = true;
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
-        static int CurrentKind = 0;
+        private static readonly int CurrentKind = 0;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.CurrentKind' is assigned but its value is never used
         public static bool StateCC = false;//Computer With Computer
         public static bool StateCP = false;//Person With Computer
         public static bool StateGe = false;//For Genetic Games.
         public static int OrderPlate = 1;
+
         // int AllDraw.MouseClick;
-        float RowClickP = -1, ColumnClickP = -1;
+        private readonly float RowClickP = -1, ColumnClickP = -1;
+
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.RowClick' is assigned but its value is never used
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowClick' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
-        int RowClick = -1, ColumnClick = -1;
+        private readonly int RowClick = -1, ColumnClick = -1;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowClick' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnClick' is assigned but its value is never used
@@ -308,7 +319,7 @@ namespace RefrigtzW
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnRealeasedP' is assigned but its value is never used
-        float RowRealesedP = -1, ColumnRealeasedP = -1;
+        private readonly float RowRealesedP = -1, ColumnRealeasedP = -1;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnRealeasedP' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesedP' is assigned but its value is never used
@@ -317,20 +328,21 @@ namespace RefrigtzW
         //#pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'FormRefrigtz.RowRealesed' is assigned but its value is never used
-        float RowRealesed = -1, ColumnRealeased = -1;
+        private readonly float RowRealesed = -1, ColumnRealeased = -1;
 #pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesed' is assigned but its value is never used
 #pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.ColumnRealeased' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'FormRefrigtz.RowRealesed' is assigned but its value is never used
         public static int[,] Table = new int[8, 8];
-        FormRefrigtz THIs = null;
-        String connParam = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Root + "Database\\CurrentBank.accdb;;Persist Security Info=False; Jet OLEDB:Database Password='!HN#BGHHN&N$G$V4'";
+        private readonly FormRefrigtz THIs = null;
+        private readonly string connParam = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Root + "Database\\CurrentBank.accdb;;Persist Security Info=False; Jet OLEDB:Database Password='!HN#BGHHN&N$G$V4'";
+
         //Error Handling.
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -375,16 +387,23 @@ namespace RefrigtzW
             if (!AllDrawLoad)
             {
                 for (int i = 0; i < 8; i++)
+                {
                     for (int j = 0; j < 8; j++)
                     {
                         Table[i, j] = 0;
                     }
+                }
 
                 for (int i = 0; i < 8; i++)
+                {
                     Table[i, 1] = 1;
+                }
 
                 for (int i = 8; i < 16; i++)
+                {
                     Table[i - 8, 6] = -1;
+                }
+
                 Table[2, 0] = 2;
                 Table[5, 0] = 2;
                 Table[2, 7] = -2;
@@ -407,11 +426,14 @@ namespace RefrigtzW
                 Table[0, 0] = -5;
             }
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     AllDraw.TableVeryfy[i, j] = Table[i, j];
                     AllDraw.TableVeryfyConst[i, j] = Table[i, j];
                 }
+            }
+
             if (!AllDrawLoad)
             {
                 AllDraw.TableListAction.Add(Table);
@@ -453,8 +475,12 @@ namespace RefrigtzW
             if (WebApplicationRefregitzTow._Default.First && MovmentsNumber == 0)
             {
                 for (int i = 0; i < 8; i++)
+                {
                     for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] *= -1;
+                    }
+                }
             }
             RefrigtzW.ThinkingRefrigtzW.LearniningTable = new RefrigtzW.NetworkQuantumLearningKrinskyAtamata(8, 8, 8);
             Draw.TableList.Clear();
@@ -465,8 +491,8 @@ namespace RefrigtzW
         //Acccess Point
         public AllDraw AccessDraw
         {
-            get { return Draw; }
-            set { Draw = value; }
+            get => Draw;
+            set => Draw = value;
 
         }
         //Syncronization Between Class Dlls.
@@ -486,15 +512,21 @@ namespace RefrigtzW
         }
 
         //Boolean Setting of Illustration at Slected Object Rules.
-        bool[,] VeryFye(int[,] Table, int Order, Color a)
+        private bool[,] VeryFye(int[,] Table, int Order, Color a)
         {
             int Cdummy = ChessRules.CurrentOrder;
             if (OrderPlate == 1)
+            {
                 ChessRules.CurrentOrder = 1;
+            }
             else
+            {
                 ChessRules.CurrentOrder = -1;
+            }
+
             bool[,] Tab = new bool[8, 8];
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, Table[(int)RowClickP, (int)ColumnClickP], CloneATable(Table), Order, (int)RowClickP, (int)ColumnClickP)).Rules((int)RowClickP, (int)ColumnClickP, i, j, a, Table[(int)RowClickP, (int)ColumnClickP]))
@@ -502,12 +534,15 @@ namespace RefrigtzW
                         Tab[i, j] = true;
                     }
                 }
+            }
+
             ChessRules.CurrentOrder = Cdummy;
             return Tab;
         }
+
         //Load Refregitz Form.
         //Reading Table Database.
-        int[,] ReadTable(int Movment, ref int MoveNumber)
+        private int[,] ReadTable(int Movment, ref int MoveNumber)
         {
 
             ChessRules.CastleActBrown = false;
@@ -526,10 +561,13 @@ namespace RefrigtzW
                     oleDbCmd.Connection = bookConn;
 
 
-                    String TableName = Move.ToString();
-                    String Zero = "Table";
+                    string TableName = Move.ToString();
+                    string Zero = "Table";
                     for (int i = 0; i < 8 - TableName.Length; i++)
+                    {
                         Zero += "0";
+                    }
+
                     TableName = Zero + TableName;
 
                     oleDbCmd.CommandText = "Select * From " + TableName;
@@ -550,8 +588,13 @@ namespace RefrigtzW
                     }
                     int[,] TableA = new int[8, 8];
                     for (int i = 0; i < 8; i++)
+                    {
                         for (int j = 0; j < 8; j++)
+                        {
                             TableA[i, j] = Tab[i, j];
+                        }
+                    }
+
                     MaxCurrentMovmentsNumber++;
                     AllDraw.TableListAction.Add(TableA);
 
@@ -563,17 +606,25 @@ namespace RefrigtzW
                             bool HitVal = false;
                             int Hit = AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRow, R.CromosomColumn];
                             if (Hit != 0)
+                            {
                                 HitVal = true;
+                            }
+
                             bool Convert = false;
                             if (OrderPlate == 1)
                             {
                                 if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 1][R.CromosomRow, R.CromosomColumn] == 1)
                                 {
                                     if (R.CromosomColumn == 7)
+                                    {
                                         Convert = true;
+                                    }
                                 }
                                 if ((ChessRules.SmallKingCastleGray || ChessRules.BigKingCastleGray) && (!ChessRules.CastleActGray))
+                                {
                                     ChessRules.CastleActGray = true;
+                                }
+
                                 AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MoveNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                             }
                             else
@@ -581,10 +632,14 @@ namespace RefrigtzW
                                 if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 1][R.CromosomRow, R.CromosomColumn] == -1)
                                 {
                                     if (R.CromosomColumn == 0)
+                                    {
                                         Convert = true;
+                                    }
                                 }
                                 if ((ChessRules.SmallKingCastleBrown || ChessRules.BigKingCastleBrown) && (!ChessRules.CastleActBrown))
+                                {
                                     ChessRules.CastleActBrown = true;
+                                }
 
                                 AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MoveNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                             }
@@ -600,16 +655,22 @@ namespace RefrigtzW
                     //MoveNumber++;
 
                     for (int i = 0; i < 8; i++)
+                    {
                         for (int j = 0; j < 8; j++)
+                        {
                             TableA[i, j] = Tab[i, j];
-
+                        }
+                    }
 
                     bookConn.Close();
                     bookConn.Dispose();
                     oleDbCmd.Dispose();
 
                     if (Move > 0)
+                    {
                         OrderPlate *= -1;
+                    }
+
                     if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 1, TableA, OrderPlate, -1, -1).CheckMate(TableA, OrderPlate)))
                     {
                         int iii = 0;
@@ -638,13 +699,18 @@ namespace RefrigtzW
                         bookConn = new OleDbConnection(connParam);
 
                         bookConn.Open();
-                        oleDbCmd = new OleDbCommand();
-                        oleDbCmd.Connection = bookConn;
+                        oleDbCmd = new OleDbCommand
+                        {
+                            Connection = bookConn
+                        };
 
-                        String TableName = (Move).ToString();
-                        String Zero = "Table";
+                        string TableName = (Move).ToString();
+                        string Zero = "Table";
                         for (int i = 0; i < 8 - TableName.Length; i++)
+                        {
                             Zero += "0";
+                        }
+
                         TableName = Zero + TableName;
 
                         oleDbCmd.CommandText = "Select * From " + TableName;
@@ -665,8 +731,12 @@ namespace RefrigtzW
                         }
                         int[,] TableA = new int[8, 8];
                         for (int i = 0; i < 8; i++)
+                        {
                             for (int j = 0; j < 8; j++)
+                            {
                                 TableA[i, j] = Tab[i, j];
+                            }
+                        }
 
                         Draw.TableList.Clear();
                         Draw.TableList.Add(CloneATable(TableA));
@@ -680,14 +750,19 @@ namespace RefrigtzW
                                 bool HitVal = false;
                                 int Hit = AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRow, R.CromosomColumn];
                                 if (Hit != 0)
+                                {
                                     HitVal = true;
+                                }
+
                                 bool Convert = false;
                                 if (OrderPlate == 1)
                                 {
                                     if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 1][R.CromosomRow, R.CromosomColumn] == 1)
                                     {
                                         if (R.CromosomColumn == 7)
+                                        {
                                             Convert = true;
+                                        }
                                     }
                                     AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MoveNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                                 }
@@ -696,7 +771,9 @@ namespace RefrigtzW
                                     if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst] == -1)
                                     {
                                         if (R.CromosomColumn == 0)
+                                        {
                                             Convert = true;
+                                        }
                                     }
                                     AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MoveNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                                 }
@@ -706,9 +783,12 @@ namespace RefrigtzW
 
 
                         for (int i = 0; i < 8; i++)
+                        {
                             for (int j = 0; j < 8; j++)
+                            {
                                 TableA[i, j] = Tab[i, j];
-
+                            }
+                        }
 
                         if ((new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 1, TableA, OrderPlate, -1, -1).CheckMate(TableA, OrderPlate)))
                         {
@@ -723,7 +803,9 @@ namespace RefrigtzW
                         bookConn.Dispose();
                         oleDbCmd.Dispose();
                         if (Move > 0)
+                        {
                             OrderPlate *= -1;
+                        }
                     }
                     catch (Exception tt)
                     {
@@ -733,19 +815,23 @@ namespace RefrigtzW
                 }
                 Move++;
                 if (Move > 2)
+                {
                     GameStarted = true;
+                }
+
                 if (Move > 1)
+                {
                     MoveNumber++;
-
-
+                }
             } while (true);
             ReadF = true;
             return Tab;
 
 
         }
+
         //Verify Accuarance of Table Games Methos.
-        bool VerifyTable(String FileName, int Movment, ref int MoveNumber)
+        private bool VerifyTable(string FileName, int Movment, ref int MoveNumber)
         {
             bool PreviouseCheck = false;
             FileName = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + "/CurrentBank.accdb";
@@ -756,23 +842,32 @@ namespace RefrigtzW
             do
             {
                 if (Move > 5000)
+                {
                     break;
+                }
+
                 try
                 {
                     if (Move % 2 == 1)
+                    {
                         Order = 1;
+                    }
                     else
+                    {
                         Order = -1;
-
+                    }
 
                     bookConn = new OleDbConnection(connParam);
                     oleDbCmd = new OleDbCommand();
                     bookConn.Open();
                     oleDbCmd.Connection = bookConn;
-                    String TableName = Move.ToString();
-                    String Zero = "Table";
+                    string TableName = Move.ToString();
+                    string Zero = "Table";
                     for (int i = 0; i < 8 - TableName.Length; i++)
+                    {
                         Zero += "0";
+                    }
+
                     TableName = Zero + TableName;
 
                     oleDbCmd.CommandText = "Select * From " + TableName;
@@ -802,8 +897,13 @@ namespace RefrigtzW
                     }
                     int[,] TableA = new int[8, 8];
                     for (int i = 0; i < 8; i++)
+                    {
                         for (int j = 0; j < 8; j++)
+                        {
                             TableA[i, j] = Tab[i, j];
+                        }
+                    }
+
                     Draw.TableList.Clear();
                     Draw.TableList.Add(CloneATable(TableA));
                     Draw.SetRowColumn(0);
@@ -815,9 +915,12 @@ namespace RefrigtzW
                     else
                     {
                         for (int i = 0; i < 8; i++)
+                        {
                             for (int j = 0; j < 8; j++)
+                            {
                                 AllDraw.TableVeryfy[i, j] = Tab[i, j];
-
+                            }
+                        }
                     }
 
 
@@ -826,10 +929,17 @@ namespace RefrigtzW
                     bookConn.Dispose();
                     Move++;
                     if (Move > 1)
+                    {
                         MoveNumber++;
+                    }
+
                     for (int i = 0; i < 8; i++)
+                    {
                         for (int j = 0; j < 8; j++)
+                        {
                             TableA[i, j] = Tab[i, j];
+                        }
+                    }
 
                     ChessRules A = new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, 1, TableA, OrderPlate, -1, -1);
                     if (A.CheckMate(TableA, OrderPlate))
@@ -850,9 +960,13 @@ namespace RefrigtzW
                     }
                     else
                         if (Order == 1 && A.CheckGray)
+                    {
                         TowCheckFromOneKind = true;
+                    }
                     else
+                    {
                         TowCheckFromOneKind = false;
+                    }
 
                     if (A.CheckGray && TowCheckFromOneKind)
                     {
@@ -862,19 +976,29 @@ namespace RefrigtzW
                     }
                     else
                         if (Order == 1 && A.CheckGray)
+                    {
                         TowCheckFromOneKind = true;
+                    }
                     else
+                    {
                         TowCheckFromOneKind = false;
+                    }
 
                     if (A.CheckBrown || A.CheckGray)
                     {
                         if (PreviouseCheck)
+                        {
                             return false;
+                        }
                         else
+                        {
                             PreviouseCheck = true;
+                        }
                     }
                     else
+                    {
                         PreviouseCheck = false;
+                    }
                 }
                 catch (Exception t)
                 {
@@ -896,10 +1020,13 @@ namespace RefrigtzW
                             bookConn = new OleDbConnection(connParam);
                             bookConn.Open();
                             oleDbCmd.Connection = bookConn;
-                            String TableName = (Move).ToString();
-                            String Zero = "Table";
+                            string TableName = (Move).ToString();
+                            string Zero = "Table";
                             for (int i = 0; i < 8 - TableName.Length; i++)
+                            {
                                 Zero += "0";
+                            }
+
                             TableName = Zero + TableName;
 
                             oleDbCmd.CommandText = "Drop Table " + TableName;
@@ -937,8 +1064,9 @@ namespace RefrigtzW
 
 
         }
+
         //Read Specific Table Number.
-        int[,] ReadTableMovmentNumber()
+        private int[,] ReadTableMovmentNumber()
         {
             int[,] Tab = Table;
             int Move = MovmentsNumber;
@@ -949,19 +1077,27 @@ namespace RefrigtzW
                 if (Move > 1)
                 {
                     if (MovmentsNumber % 2 == 0)
+                    {
                         OrderPlate = 1;
+                    }
                     else
+                    {
                         OrderPlate = -1;
+                    }
+
                     ChessRules.CurrentOrder = OrderPlate;
                 }
 
                 bookConn = new OleDbConnection(connParam);
                 bookConn.Open();
                 oleDbCmd.Connection = bookConn;
-                String TableName = Move.ToString();
-                String Zero = "Table";
+                string TableName = Move.ToString();
+                string Zero = "Table";
                 for (int i = 0; i < 8 - TableName.Length; i++)
+                {
                     Zero += "0";
+                }
+
                 TableName = Zero + TableName;
 
                 oleDbCmd.CommandText = "Select * From " + TableName;
@@ -982,8 +1118,12 @@ namespace RefrigtzW
                 }
                 int[,] TableA = new int[8, 8];
                 for (int i = 0; i < 8; i++)
+                {
                     for (int j = 0; j < 8; j++)
+                    {
                         TableA[i, j] = Tab[i, j];
+                    }
+                }
 
                 AllDraw.TableListAction.Add(TableA);
                 if (AllDraw.TableListAction.Count >= 1)
@@ -994,14 +1134,19 @@ namespace RefrigtzW
                         bool HitVal = false;
                         int Hit = AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRow, R.CromosomColumn];
                         if (Hit != 0)
+                        {
                             HitVal = true;
+                        }
+
                         bool Convert = false;
                         if (OrderPlate == 1)
                         {
                             if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 1][R.CromosomRow, R.CromosomColumn] == 1)
                             {
                                 if (R.CromosomColumn == 7)
+                                {
                                     Convert = true;
+                                }
                             }
                             AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                         }
@@ -1010,7 +1155,9 @@ namespace RefrigtzW
                             if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 1][R.CromosomRowFirst, R.CromosomColumnFirst] == -1)
                             {
                                 if (R.CromosomColumn == 0)
+                                {
                                     Convert = true;
+                                }
                             }
                             AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                         }
@@ -1050,10 +1197,13 @@ namespace RefrigtzW
                     bookConn = new OleDbConnection(connParam);
                     bookConn.Open();
                     oleDbCmd.Connection = bookConn;
-                    String TableName = (Move).ToString();
-                    String Zero = "Table";
+                    string TableName = (Move).ToString();
+                    string Zero = "Table";
                     for (int i = 0; i < 8 - TableName.Length; i++)
+                    {
                         Zero += "0";
+                    }
+
                     TableName = Zero + TableName;
 
                     oleDbCmd.CommandText = "Select * From " + TableName;
@@ -1074,8 +1224,12 @@ namespace RefrigtzW
                     }
                     int[,] TableA = new int[8, 8];
                     for (int i = 0; i < 8; i++)
+                    {
                         for (int j = 0; j < 8; j++)
+                        {
                             TableA[i, j] = Tab[i, j];
+                        }
+                    }
 
                     AllDraw.TableListAction.Add(TableA);
                     if (AllDraw.TableListAction.Count >= 1)
@@ -1086,14 +1240,19 @@ namespace RefrigtzW
                             bool HitVal = false;
                             int Hit = AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRow, R.CromosomColumn];
                             if (Hit != 0)
+                            {
                                 HitVal = true;
+                            }
+
                             bool Convert = false;
                             if (OrderPlate == 1)
                             {
                                 if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 1][R.CromosomRow, R.CromosomColumn] == 1)
                                 {
                                     if (R.CromosomColumn == 7)
+                                    {
                                         Convert = true;
+                                    }
                                 }
                                 AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                             }
@@ -1102,7 +1261,9 @@ namespace RefrigtzW
                                 if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst] == -1)
                                 {
                                     if (R.CromosomColumn == 0)
+                                    {
                                         Convert = true;
+                                    }
                                 }
                                 AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, TableA, MovmentsNumber, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                             }
@@ -1141,8 +1302,9 @@ namespace RefrigtzW
 
 
         }
+
         //Creation of New Tables at DatabaseMethod.
-        String CreatTable()
+        private string CreatTable()
         {
             Begin12:
             try
@@ -1152,10 +1314,13 @@ namespace RefrigtzW
                 bookConn = new OleDbConnection(connParam);
                 bookConn.Open();
                 oleDbCmd.Connection = bookConn;
-                String TableName = MovmentsNumber.ToString();
-                String Zero = "Table";
+                string TableName = MovmentsNumber.ToString();
+                string Zero = "Table";
                 for (int i = 0; i < 8 - TableName.Length; i++)
+                {
                     Zero += "0";
+                }
+
                 TableName = Zero + TableName;
 
                 oleDbCmd.CommandText = "Create Table " + TableName + " (a Number NOT NULL,b Number NOT NULL,c Number NOT NULL,d Number NOT NULL,e Number NOT NULL,f Number NOT NULL,g Number NOT NULL,h Number NOT NULL)";
@@ -1174,10 +1339,13 @@ namespace RefrigtzW
                 bookConn = new OleDbConnection(connParam);
                 bookConn.Open();
                 oleDbCmd.Connection = bookConn;
-                String TableName = MovmentsNumber.ToString();
-                String Zero = "Table";
+                string TableName = MovmentsNumber.ToString();
+                string Zero = "Table";
                 for (int i = 0; i < 8 - TableName.Length; i++)
+                {
                     Zero += "0";
+                }
+
                 TableName = Zero + TableName;
 
                 oleDbCmd.CommandText = "Drop Table " + TableName;
@@ -1227,7 +1395,8 @@ namespace RefrigtzW
                 }
             }
         }
-        void UpdateTable(int[,] Tabl, String TableName)
+
+        private void UpdateTable(int[,] Tabl, string TableName)
         {
             try
             {
@@ -1245,7 +1414,7 @@ namespace RefrigtzW
 
 
         //Reading of Configuration Table Method.
-        void ReadConfigurationTable()
+        private void ReadConfigurationTable()
         {
 
             if (!AllDrawLoad)
@@ -1294,8 +1463,9 @@ namespace RefrigtzW
                 }
             }
         }
+
         //Updating of Configuration Method.
-        void UpdateConfigurationTable()
+        private void UpdateConfigurationTable()
         {
 
             //if (UpdateConfigurationTableVal)
@@ -1338,9 +1508,14 @@ namespace RefrigtzW
             //TimersSet = false;
             int[,] Tab = new int[8, 8];
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
+                {
                     Tab[i, j] = Table[i, j];
-            String TableName = CreatTable();
+                }
+            }
+
+            string TableName = CreatTable();
             for (int i = 0; i < 8; i++)
             {
                 bookConn = new OleDbConnection(connParam);
@@ -1364,7 +1539,9 @@ namespace RefrigtzW
             //oleDbCmd.Dispose();
             //bookConn.Dispose();
             if (MovmentsNumber > 1)
+            {
                 GameStarted = true;
+            }
             //RefrigtzW.ChessRules.CastleActBrown = false;
             //RefrigtzW.ChessRules.CastleActGray = false;
             //TimersSet = true;
@@ -1387,7 +1564,8 @@ namespace RefrigtzW
             catch (Exception t) { Log(t); }
             return Draw;
         }
-        void L()
+
+        private void L()
         {
             do
             {
@@ -1429,10 +1607,14 @@ namespace RefrigtzW
 
             int[,] TableA = new int[8, 8];
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
+                {
                     TableA[i, j] = Table[i, j];
+                }
+            }
 
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 {
@@ -1459,7 +1641,10 @@ namespace RefrigtzW
                             int Ord = OrderPlate;
                             Color aa = Color.Gray;
                             if (Ord == -1)
+                            {
                                 aa = Color.Brown;
+                            }
+
                             bool B = AllDraw.Blitz;
                             AllDraw.Blitz = false;
                             RefrigtzW.AllDraw.MaxAStarGreedy = 2; //PlatformHelper.ProcessorCount;
@@ -1527,8 +1712,13 @@ namespace RefrigtzW
 
                     int[,] Tab = new int[8, 8];
                     for (int i = 0; i < 8; i++)
+                    {
                         for (int j = 0; j < 8; j++)
+                        {
                             Tab[i, j] = Table[i, j];
+                        }
+                    }
+
                     OrderPlate *= -1;
                     ChessRules.CurrentOrder *= -1;
                     //RefrigtzW.FormRefrigtz.MovmentsNumber++; 
@@ -1605,55 +1795,67 @@ namespace RefrigtzW
                 SetDrawFound();
             } while (true);
         }
+
         //Inserting of New Tabler at Database.
 
-        void Wait()
+        private void Wait()
         {
             do
             {
 
             } while (Clicked);
         }
-        int[,] CloneATable(int[,] Tab)
+
+        private int[,] CloneATable(int[,] Tab)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 int[,] Table = new int[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Table;
             }
 
         }
-        bool[,] CloneATable(bool[,] Tab)
+
+        private bool[,] CloneATable(bool[,] Tab)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 bool[,] Table = new bool[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Table;
             }
 
         }
+
         //All Operation of Thinking Handling.
 
         //The State of Alice with Person Thinking.
-        void AliceWithPerson()
+        private void AliceWithPerson()
         {
 
             ThinkingRefrigtzW.ThinkingRun = true;
@@ -1677,7 +1879,10 @@ namespace RefrigtzW
                 ////RefreshBoxText();();
                 Color a = Color.Gray;
                 if (OrderPlate == -1)
+                {
                     a = Color.Brown;
+                }
+
                 int LeafAStarGrteedy = 0;
                 bool FOUND = false;
                 AllDraw THIS = null;
@@ -1708,20 +1913,22 @@ namespace RefrigtzW
                         SettingPRFALSE = true;
                         UpdateConfigurationTable();
                         System.IO.File.AppendAllText("CheckSum.btt", "\n\tInstallation Begine On " + DateTime.Now.ToString());
-                        String FolderLocation = Root;
+                        string FolderLocation = Root;
                         int exitCode = 0;
 
                         // Prepare the process to run
-                        ProcessStartInfo start = new ProcessStartInfo();
-                        // Prepare the process to run
-                        // Enter in the command line arguments, everything you would enter after the executable name itself
-                        start.Arguments = "";
-                        // Enter the executable to run, including the complete path
-                        start.FileName = "\"" + FolderLocation + "\\" + "LoadRP.exe" + "\"";
-                        // Do you want to show a console window?
-                        start.WindowStyle = ProcessWindowStyle.Normal;
-                        start.CreateNoWindow = true;
-                        start.UseShellExecute = true;
+                        ProcessStartInfo start = new ProcessStartInfo
+                        {
+                            // Prepare the process to run
+                            // Enter in the command line arguments, everything you would enter after the executable name itself
+                            Arguments = "",
+                            // Enter the executable to run, including the complete path
+                            FileName = "\"" + FolderLocation + "\\" + "LoadRP.exe" + "\"",
+                            // Do you want to show a console window?
+                            WindowStyle = ProcessWindowStyle.Normal,
+                            CreateNoWindow = true,
+                            UseShellExecute = true
+                        };
 
                         // Run the external process & wait for it to finish
                         using (Process proc = Process.Start(start))
@@ -1743,13 +1950,22 @@ namespace RefrigtzW
                 //Draw.SetRowColumn(0);
                 int[,] TableCon = new int[8, 8];
                 for (int i = 0; i < 8; i++)
+                {
                     for (int j = 0; j < 8; j++)
+                    {
                         TableCon[i, j] = Table[i, j];
+                    }
+                }
+
                 AllDraw.TableListAction.Add(TableCon);
                 int[,] Tab = new int[8, 8];
                 for (int i = 0; i < 8; i++)
+                {
                     for (int j = 0; j < 8; j++)
+                    {
                         Tab[i, j] = Table[i, j];
+                    }
+                }
                 //RefrigtzW.FormRefrigtz.MovmentsNumber++; 
 
                 InsertTableAtDataBase(Tab);
@@ -1763,17 +1979,25 @@ namespace RefrigtzW
                         bool HitVal = false;
                         int Hit = AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRow, R.CromosomColumn];
                         if (Hit != 0)
+                        {
                             HitVal = true;
+                        }
+
                         bool Convert = false;
                         if (OrderPlate == 1)
                         {
                             if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 1][R.CromosomRow, R.CromosomColumn] == 1)
                             {
                                 if (R.CromosomColumn == 7)
+                                {
                                     Convert = true;
+                                }
                             }
                             if ((ChessRules.SmallKingCastleGray || ChessRules.BigKingCastleGray) && (!ChessRules.CastleActGray))
+                            {
                                 ChessRules.CastleActGray = true;
+                            }
+
                             AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActGray, Convert);
                         }
                         else
@@ -1781,10 +2005,14 @@ namespace RefrigtzW
                             if (AllDraw.TableListAction[AllDraw.TableListAction.Count - 1][R.CromosomRow, R.CromosomColumn] == -1)
                             {
                                 if (R.CromosomColumn == 0)
+                                {
                                     Convert = true;
+                                }
                             }
                             if ((ChessRules.SmallKingCastleBrown || ChessRules.BigKingCastleBrown) && (!ChessRules.CastleActBrown))
+                            {
                                 ChessRules.CastleActBrown = true;
+                            }
 
                             AllDraw.SyntaxToWrite = (new ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, OrderPlate)).CreateStatistic(ArrangmentsChanged, CloneATable(Table), MovmentsNumber + 1, AllDraw.TableListAction[AllDraw.TableListAction.Count - 2][R.CromosomRowFirst, R.CromosomColumnFirst], R.CromosomColumn, R.CromosomRow, HitVal, Hit, ChessRules.CastleActBrown, Convert);
                         }
@@ -1844,18 +2072,26 @@ namespace RefrigtzW
         {
             bool NotZerro = false;
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
+                {
                     if (Ta[i, j] != 0)
+                    {
                         NotZerro = true;
+                    }
+                }
+            }
+
             return NotZerro;
         }
+
         //Alice Section of Computer by Computer Thinking.
         //Bob Section of Computer By Computer Thinking.
-        void SetRefregitzDLL()
+        private void SetRefregitzDLL()
         {
             do
             {
-                Object o = new Object();
+                object o = new object();
                 lock (o)
                 {
                     if (AllDraw.ActionStringReady)
@@ -1875,19 +2111,22 @@ namespace RefrigtzW
 
             } while (true);
         }
-        //Deligation of Control Threading.
-        delegate void SetTextBoxTextCallback(String state);
 
-        public void SetBoxText(String state)
+        //Deligation of Control Threading.
+        private delegate void SetTextBoxTextCallback(string state);
+
+        public void SetBoxText(string state)
         {
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
             try
             {
-                String A = TimerText.ReturnTime();
+                string A = TimerText.ReturnTime();
                 if (OrderPlate == -1)
+                {
                     A = TimerText.ReturnTime();
+                }
 
                 File.AppendAllText(Root + "\\Database\\Monitor.txt", "\n\t" + state + " At Time " + A);
 
@@ -1898,11 +2137,13 @@ namespace RefrigtzW
         public void SetDrawFounding(ref bool FOUNDI, ref RefrigtzW.AllDraw THISI, bool FirstI)
         {
 
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 if (Draw == null)
+                {
                     return;
+                }
 
                 RefrigtzW.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel;
 
@@ -1914,7 +2155,7 @@ namespace RefrigtzW
                 RefrigtzW.AllDraw THIS = null;
                 bool First = false;
 
-                Object O = new Object();
+                object O = new object();
                 lock (O)
                 {
                     FOUND = false;
@@ -1924,7 +2165,7 @@ namespace RefrigtzW
                     //else
                     int Ord = OrderPlate;
                     AllDraw.OrderPlate = Ord;
-                    var output = Task.Factory.StartNew(() => Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND));
+                    Task<AllDraw> output = Task.Factory.StartNew(() => Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND));
                     output.Wait();
                     output.Dispose();
                     if (FOUND)
@@ -1945,7 +2186,10 @@ namespace RefrigtzW
 
                         Color aa = Color.Gray;
                         if (Ord == -1)
+                        {
                             aa = Color.Brown;
+                        }
+
                         bool B = AllDraw.Blitz;
                         AllDraw.Blitz = false;
                         RefrigtzW.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount * 2;
@@ -1985,7 +2229,10 @@ namespace RefrigtzW
                         {
                             Draw = THISStore;
                             if (MovmentsNumber == 1)
+                            {
                                 NotFoundBegin = true;
+                            }
+
                             bool LoadTree = true;
 
                             Draw.TableList.Clear();
@@ -2001,16 +2248,20 @@ namespace RefrigtzW
                     }
                 }
                 if (RefrigtzW.AllDraw.FirstTraversalTree)
+                {
                     FOUND = false;
+                }
+
                 FOUNDI = FOUND;
                 THISI = THIS;
                 FirstI = First;
                 DrawManagement();
             }
         }
-        bool DrawManagement()
+
+        private bool DrawManagement()
         {
-            Object OO = new Object();
+            object OO = new object();
             lock (OO)
             {
                 SetAllDrawKind();
@@ -2018,24 +2269,27 @@ namespace RefrigtzW
 
                 SetAllDrawKindString();
                 bool Found = false;
-                String P = System.Web.HttpRuntime.AppDomainAppPath + path3 + "\\";
+                string P = System.Web.HttpRuntime.AppDomainAppPath + path3 + "\\";
                 AllDrawReplacement = P + AllDrawKindString;
                 Logger y = new Logger(AllDrawReplacement);
 
-                String PP = System.Web.HttpRuntime.AppDomainAppPath;
+                string PP = System.Web.HttpRuntime.AppDomainAppPath;
                 AllDrawKindString = PP + AllDrawKindString;
                 y = new Logger(AllDrawKindString);
 
                 if (File.Exists(AllDrawReplacement))
                 {
                     if (AllDraw.HarasAct)
+                    {
                         File.Delete(AllDrawReplacement);
+                    }
                 }
                 if (File.Exists(AllDrawKindString))
                 {
                     if (AllDraw.HarasAct)
+                    {
                         File.Delete(AllDrawKindString);
-
+                    }
                 }
                 AllDraw.HarasAct = false;
                 if (!NotFoundBegin)
@@ -2053,7 +2307,10 @@ namespace RefrigtzW
                             else if (((new System.IO.FileInfo(AllDrawKindString).Length) > (new System.IO.FileInfo(AllDrawReplacement)).Length))
                             {
                                 if (File.Exists(AllDrawReplacement))
+                                {
                                     File.Delete(AllDrawReplacement);
+                                }
+
                                 File.Copy(AllDrawKindString, AllDrawReplacement);
                                 Found = true;
                             }
@@ -2061,7 +2318,10 @@ namespace RefrigtzW
                         else
                         {
                             if (!Directory.Exists(Path.GetFullPath(path3)))
+                            {
                                 Directory.CreateDirectory(Path.GetFullPath(path3));
+                            }
+
                             File.Copy(AllDrawKindString, AllDrawReplacement);
                             Found = true;
                         }
@@ -2076,51 +2336,78 @@ namespace RefrigtzW
                 else
                 {
                     if (File.Exists(AllDrawKindString))
+                    {
                         File.Delete(AllDrawKindString);
+                    }
+
                     if (File.Exists(AllDrawReplacement))
+                    {
                         File.Delete(AllDrawReplacement);
+                    }
+
                     NotFoundBegin = false;
                 }
                 return Found;
             }
         }
-        void SetAllDrawKindString()
+
+        private void SetAllDrawKindString()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (AllDrawKind == 4)
+                {
                     AllDrawKindString = "AllDrawBT.asd";
+                }
                 else
                 if (AllDrawKind == 3)
+                {
                     AllDrawKindString = "AllDrawFFST.asd";
+                }
                 else
                 if (AllDrawKind == 2)
+                {
                     AllDrawKindString = "AllDrawFTSF.asd";
+                }
                 else
                 if (AllDrawKind == 1)
+                {
                     AllDrawKindString = "AllDrawFFSF.asd";
+                }
             }
         }
-        void SetAllDrawKind()
+
+        private void SetAllDrawKind()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (UsePenaltyRegardMechnisam && AStarGreedyHeuristic)
+                {
                     AllDrawKind = 4;
+                }
                 else
           if ((!UsePenaltyRegardMechnisam) && AStarGreedyHeuristic)
+                {
                     AllDrawKind = 3;
+                }
+
                 if (UsePenaltyRegardMechnisam && (!AStarGreedyHeuristic))
+                {
                     AllDrawKind = 2;
+                }
+
                 if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHeuristic))
+                {
                     AllDrawKind = 1;
+                }
             }
         }
-        void SetDrawFound()
+
+        private void SetDrawFound()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 FOUND = false;

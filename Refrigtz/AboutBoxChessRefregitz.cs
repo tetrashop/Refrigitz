@@ -5,18 +5,18 @@ using System.Windows.Forms;
 namespace Refrigtz
 {
     [Serializable]
-    partial class AboutBoxChessRefregitz : Form
+    internal partial class AboutBoxChessRefregitz : Form
     {
 
         public AboutBoxChessRefregitz()
         {
             InitializeComponent();
-            this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.TextBoxDescription.Text = AssemblyDescription;
+            Text = string.Format("About {0}", AssemblyTitle);
+            labelProductName.Text = AssemblyProduct;
+            labelVersion.Text = string.Format("Version {0}", AssemblyVersion);
+            labelCopyright.Text = AssemblyCopyright;
+            labelCompanyName.Text = AssemblyCompany;
+            TextBoxDescription.Text = AssemblyDescription;
         }
 
         #region Assembly Attribute Accessors
@@ -38,13 +38,7 @@ namespace Refrigtz
             }
         }
 
-        public string AssemblyVersion
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            }
-        }
+        public string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         public string AssemblyDescription
         {
@@ -131,7 +125,7 @@ namespace Refrigtz
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

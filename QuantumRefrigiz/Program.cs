@@ -6,19 +6,17 @@ using System.Threading;
 using System.Threading.Tasks;
 namespace QuantumRefrigiz
 {
-
-
-    static class Program
+    internal static class Program
     {
         public static long SomeExtremelyLargeNumber { get; private set; }
 
         /// <summary>
         /// The main en
 
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
 
-            Object a = new Object();
+            object a = new object();
             lock (a)
             {
                 string stackTrace = ex.ToString();
@@ -34,12 +32,15 @@ namespace QuantumRefrigiz
             // Of course this only affects the main thread rather than child threads.
             Thread.CurrentThread.Priority = ThreadPriority.Highest;
 
-            Int64 seed = SomeExtremelyLargeNumber; // Millions of digits.
+            long seed = SomeExtremelyLargeNumber; // Millions of digits.
             int[] nums = Enumerable.Range(0, 1000000).ToArray();
             long total = 0;
 
             // Use type parameter to make subtotal a long, not an int
-            ParallelOptions po = new ParallelOptions(); po.MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount; Parallel.For<long>(0, nums.Length, () => 0, (j, loop, subtotal) =>
+            ParallelOptions po = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
+            }; Parallel.For<long>(0, nums.Length, () => 0, (j, loop, subtotal) =>
  {
      subtotal += nums[j];
      return subtotal;
@@ -51,7 +52,7 @@ namespace QuantumRefrigiz
         }
         public class StackOverflowDetector
         {
-            static void CheckStackDepth()
+            private static void CheckStackDepth()
             {
                 if (new StackTrace().FrameCount > 60) // some arbitrary limit
                 {

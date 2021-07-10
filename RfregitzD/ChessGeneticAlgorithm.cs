@@ -10,36 +10,30 @@ namespace RefrigtzDLL
     {
         //
         public bool Hit = false;
-
-        const int PlusOne = 1;
-        const int MinusOne = -1;
-
-        const int ConversionDistantRowBelow = 6;
-        const int ConversionDistantRowUp = 1;
-
-        const int DistantColumnSmall = 6;
-        const int DistantColumnBig = 3;
-        const int DistantRowBelow = 7;
-        const int DistantRowUp = 0;
-
-        const int SmallCastleKingColumnBefore = 4;
-        const int SmallCastleKingColumnAfter = 6;
-        const int SmallCastleCastleColumnBefore = 7;
-        const int SmallCastleCastleColumnAfter = 5;
-
-        const int BigCastleKingColumnBefore = 4;
-        const int BigCastleKingColumnAfter = 2;
-        const int BigCastleCastleColumnBefore = 0;
-        const int BigCastleCastleColumnAfter = 3;
-
-        const int TowObjectDistanceInBigCastleBefor = 4;
-        const int TowObjectDistanceInBigCastleAfter = 1;
-        const int TowObjectDistanceInSamllCastleBefor = 2;
-        const int TowObjectDistanceInSmallCastleAfter = 1;
-        const int CastleGray = 4;
-        const int CastleBrown = -4;
-        const int KingGray = 6;
-        const int KingBrown = -6;
+        private const int PlusOne = 1;
+        private const int MinusOne = -1;
+        private const int ConversionDistantRowBelow = 6;
+        private const int ConversionDistantRowUp = 1;
+        private const int DistantColumnSmall = 6;
+        private const int DistantColumnBig = 3;
+        private const int DistantRowBelow = 7;
+        private const int DistantRowUp = 0;
+        private const int SmallCastleKingColumnBefore = 4;
+        private const int SmallCastleKingColumnAfter = 6;
+        private const int SmallCastleCastleColumnBefore = 7;
+        private const int SmallCastleCastleColumnAfter = 5;
+        private const int BigCastleKingColumnBefore = 4;
+        private const int BigCastleKingColumnAfter = 2;
+        private const int BigCastleCastleColumnBefore = 0;
+        private const int BigCastleCastleColumnAfter = 3;
+        private const int TowObjectDistanceInBigCastleBefor = 4;
+        private const int TowObjectDistanceInBigCastleAfter = 1;
+        private const int TowObjectDistanceInSamllCastleBefor = 2;
+        private const int TowObjectDistanceInSmallCastleAfter = 1;
+        private const int CastleGray = 4;
+        private const int CastleBrown = -4;
+        private const int KingGray = 6;
+        private const int KingBrown = -6;
         //Initiate Global Variables.
         public bool MovementsAStarGreedyHeuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
@@ -48,27 +42,28 @@ namespace RefrigtzDLL
         public bool PredictHeuristicT = true;
         public bool OnlySelfT = false;
         public bool AStarGreedyHeuristicT = false;
-        bool ArrangmentsChanged = true;
+        private readonly bool ArrangmentsChanged = true;
         public bool CastlesKing = false;
         public static bool NoGameFounf = false;
-        List<int[]> RowColumn = new List<int[]>();
-        int Ki = 0;
+        private readonly List<int[]> RowColumn = new List<int[]>();
+        private int Ki = 0;
         public int CromosomRow = -1, CromosomColumn = -1, CromosomRowHit = -1, CromosomColumnHit = -1;
         public int CromosomRowFirst = -1, CromosomColumnFirst = -1;
-        int Gen1 = 0, Gen2 = 0;
-        int[,] GeneticTable = new int[8, 8];
-        static void Log(Exception ex)
+        private int Gen1 = 0, Gen2 = 0;
+        private int[,] GeneticTable = new int[8, 8];
+
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
                     Helper.WaitOnUsed(AllDraw.Root + "\\ErrorProgramRun.txt"); File.AppendAllText(AllDraw.Root + "\\ErrorProgramRun.txt", stackTrace + ": On" + DateTime.Now.ToString());
                 }
             }
-            catch (Exception t) { }
+            catch (Exception) { }
         }
         //Constructor.
         public ChessGeneticAlgorithm(bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments)
@@ -97,13 +92,15 @@ namespace RefrigtzDLL
             bool Brj = false;
 
             //For All Table Home
-            for (var j = 0; j < 8; j++)
+            for (int j = 0; j < 8; j++)
             {
-                for (var i = 0; i < 8; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     //Gray Order.
                     if (Cromosom1[j, i] == 0 && Cromosom2[j, i] == 0)
+                    {
                         continue;
+                    }
 
                     //Gray Order.
 
@@ -212,7 +209,7 @@ namespace RefrigtzDLL
                                 //Small Castles King Brown.
                                 if (j == DistantColumnSmall && Cromosom2[BigCastleKingColumnAfter, DistantRowBelow] == KingBrown && Cromosom2[BigCastleCastleColumnAfter, DistantRowBelow] == CastleBrown && Cromosom1[BigCastleKingColumnBefore, DistantRowBelow] == KingBrown && Cromosom1[BigCastleCastleColumnBefore, DistantRowBelow] == CastleBrown)
                                 {
-                                    Object O = new Object();
+                                    object O = new object();
                                     lock (O)
                                     {
                                         //CromosomRowFirst = DistantRowBelow;
@@ -228,7 +225,7 @@ namespace RefrigtzDLL
                                 else//Big Castles King Brown.
                                     if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowBelow] == CastleBrown && Cromosom2[BigCastleKingColumnBefore, DistantRowBelow] == KingBrown && Cromosom1[BigCastleCastleColumnBefore, DistantRowBelow] == CastleBrown && Cromosom1[BigCastleKingColumnBefore, DistantRowBelow] == KingBrown)
                                 {
-                                    Object O = new Object();
+                                    object O = new object();
                                     lock (O)
                                     {
                                         CromosomRowFirst = BigCastleKingColumnBefore;
@@ -352,7 +349,7 @@ namespace RefrigtzDLL
                                 //Small Castles King Brown.
                                 if (j == DistantColumnSmall && Cromosom2[SmallCastleKingColumnAfter, DistantRowUp] == KingBrown && Cromosom2[SmallCastleCastleColumnAfter, DistantRowUp] == CastleBrown && Cromosom1[SmallCastleKingColumnBefore, DistantRowUp] == KingBrown && Cromosom1[SmallCastleCastleColumnBefore, DistantRowUp] == CastleBrown)
                                 {
-                                    Object O = new Object();
+                                    object O = new object();
                                     lock (O)
                                     {
                                         //CromosomRowFirst = DistantRowUp;
@@ -368,7 +365,7 @@ namespace RefrigtzDLL
                                 else//Big Castles King Brown.
                                     if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowUp] == CastleBrown && Cromosom2[BigCastleKingColumnAfter, DistantRowUp] == KingBrown && Cromosom1[BigCastleCastleColumnBefore, DistantRowUp] == CastleBrown && Cromosom1[BigCastleKingColumnBefore, DistantRowUp] == KingBrown)
                                 {
-                                    Object O = new Object();
+                                    object O = new object();
                                     lock (O)
                                     {
                                         CromosomRowFirst = BigCastleKingColumnBefore;
@@ -445,12 +442,15 @@ namespace RefrigtzDLL
 
             //If Gen Foundatjon js Valjd. 
             if (((FindNumber >= 1) && Find) || Brj || AllDraw.SodierConversionOcuured)
+            {
                 return Find;
+            }
             //Gen Not Found.
             return false;
         }
+
         //Found of Different Home Gen in Tow Chess Home Table Method. 
-        bool HitSet(int Order, int[,] Cromosom1, int[,] Cromosom2)
+        private bool HitSet(int Order, int[,] Cromosom1, int[,] Cromosom2)
         {
             bool Hit = false;
             try
@@ -460,48 +460,62 @@ namespace RefrigtzDLL
                     if (Order == 1)
                     {
                         if (Cromosom1[CromosomRowFirst, CromosomColumnFirst] > 0 && Cromosom1[CromosomRow, CromosomColumn] < 0)
+                        {
                             Hit = true;
+                        }
                     }
                     else
                     {
                         if (Cromosom1[CromosomRowFirst, CromosomColumnFirst] < 0 && Cromosom1[CromosomRow, CromosomColumn] > 0)
+                        {
                             Hit = true;
+                        }
                     }
                 }
             }
             catch (Exception t) { Log(t); }
             return Hit;
         }
-        int[,] CloneATable(int[,] Tab)
+
+        private int[,] CloneATable(int[,] Tab)
         {
 
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 int[,] Table = new int[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
 
                 return Table;
             }
 
         }
-        bool[,] CloneATable(bool[,] Tab)
+
+        private bool[,] CloneATable(bool[,] Tab)
         {
 
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 bool[,] Table = new bool[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
 
                 return Table;
@@ -531,7 +545,9 @@ namespace RefrigtzDLL
             Index = Store;
             //Found of Gen.
             if (!FindGenToModified(Cromosom1, Cromosom2, List, Index, Order, false))
+            {
                 goto EndFindAThing;
+            }
 
 
 
@@ -541,7 +557,10 @@ namespace RefrigtzDLL
             BeginFind:
             Color color = Color.Gray;
             if (Order == -1)
+            {
                 color = Color.Brown;
+            }
+
             try
             {
                 //If Cromosom Location is Not Founded.
@@ -564,21 +583,30 @@ namespace RefrigtzDLL
                 else
                 {
                     //Clone a Copy.
-                    for (var ii = 0; ii < 8; ii++)
-                        for (var jj = 0; jj < 8; jj++)
+                    for (int ii = 0; ii < 8; ii++)
+                    {
+                        for (int jj = 0; jj < 8; jj++)
+                        {
                             GeneticTable[ii, jj] = List[List.Count + MinusOne][ii, jj];
+                        }
+                    }
                 }
                 //Initiate Global and Local Variables.
                 color = Color.Gray;
                 if (Order == -1)
+                {
                     color = Color.Brown;
+                }
                 //For All Gens.
                 for (Gen1 = 0; Gen1 < 8; Gen1++)
+                {
                     for (Gen2 = 0; Gen2 < 8; Gen2++)
                     {
                         //If Gen is Current Gen Location Continue Traversal Back.
                         if (Gen1 == CromosomRow && Gen2 == CromosomColumn)
+                        {
                             continue;
+                        }
                         //Rulement of Gen Movments.
                         if ((new ChessRules(0, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, GeneticTable[CromosomRow, CromosomColumn], CloneATable(GeneticTable), Order, CromosomRow, CromosomColumn)).Rules(CromosomRow, CromosomColumn, Gen1,
                         Gen2, color, GeneticTable[CromosomRow, CromosomColumn]))
@@ -623,6 +651,7 @@ namespace RefrigtzDLL
 
 
                     }
+                }
                 //Initiate Try Catch.
                 GeneticTable = null;
                 int a = GeneticTable[0, 0];
@@ -633,9 +662,13 @@ namespace RefrigtzDLL
                 //Try Catch Expetion Handling of Not Successful Foundation of Gen.
                 Log(t);
                 if (Order == 1)
+                {
                     Ki = (new Random()).Next(1, 7);
+                }
                 else
+                {
                     Ki = (new Random()).Next(1, 7) * -1;
+                }
 
                 if (Order == 1)
                 {
@@ -643,9 +676,14 @@ namespace RefrigtzDLL
                     do
                     {
                         if (Ki < 6)
+                        {
                             Ki++;
+                        }
                         else
+                        {
                             Ki = 1;
+                        }
+
                         Count++;
                     } while (Count < 6 && !(new ChessRules(0, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Ki, List[List.Count + MinusOne], Order, CromosomRow, CromosomColumn)).FindAThing(List[List.Count + MinusOne], ref CromosomRow, ref CromosomColumn, Ki, true, RowColumn));
                     if (Count >= 6)
@@ -662,9 +700,14 @@ namespace RefrigtzDLL
                     do
                     {
                         if (Ki > -6)
+                        {
                             Ki--;
+                        }
                         else
+                        {
                             Ki = -1;
+                        }
+
                         Count++;
                     } while (Count < 6 && !(new ChessRules(0, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Ki, List[List.Count + MinusOne], Order, CromosomRow, CromosomColumn)).FindAThing(List[List.Count + MinusOne], ref CromosomRow, ref CromosomColumn, Ki, true, RowColumn));
                     if (Count >= 6)
@@ -686,23 +729,34 @@ namespace RefrigtzDLL
             EndFindAThing:
             //Foudn of Some Samness Gen.
             if (Order == 1)
+            {
                 Ki = (new Random()).Next(1, 7);
+            }
             else
+            {
                 Ki = (new Random()).Next(1, 7) * -1;
+            }
+
             if (Order == 1)
             {
                 int Count = 0;
                 do
                 {
                     if (Ki < 6)
+                    {
                         Ki++;
+                    }
                     else
+                    {
                         Ki = 1;
+                    }
+
                     Count++;
                 } while (Count < 6 && !(new ChessRules(0, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Ki, List[List.Count + MinusOne], Order, CromosomRow, CromosomColumn)).FindAThing(List[List.Count + MinusOne], ref CromosomRow, ref CromosomColumn, Ki, true, RowColumn));
                 if (Count >= 6)
+                {
                     return null;
-
+                }
             }
             else
             {
@@ -710,13 +764,20 @@ namespace RefrigtzDLL
                 do
                 {
                     if (Ki > -6)
+                    {
                         Ki--;
+                    }
                     else
+                    {
                         Ki = -1;
+                    }
+
                     Count++;
                 } while (Count < 6 && !(new ChessRules(0, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Ki, List[List.Count + MinusOne], Order, CromosomRow, CromosomColumn)).FindAThing(List[List.Count + MinusOne], ref CromosomRow, ref CromosomColumn, Ki, true, RowColumn));
                 if (Count >= 6)
+                {
                     return null;
+                }
             }
 
             goto BeginFind;

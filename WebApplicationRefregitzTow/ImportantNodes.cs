@@ -4,15 +4,14 @@ using System.Collections.Generic;
 namespace Refrigtz
 {
     [Serializable]
-    class ImportantNodes
+    internal class ImportantNodes
     {
-
-        List<Soldier> S;
-        List<Elephant> E;
-        List<Hourse> H;
-        List<Bridge> B;
-        List<Minister> M;
-        List<King> K;
+        private readonly List<Soldier> S;
+        private readonly List<Elephant> E;
+        private readonly List<Hourse> H;
+        private readonly List<Bridge> B;
+        private readonly List<Minister> M;
+        private readonly List<King> K;
         public ImportantNodes()
         {
             S = new List<Soldier>();
@@ -36,7 +35,8 @@ namespace Refrigtz
             K.Add(new King(Table));
         }
     }
-    class Soldier
+
+    internal class Soldier
     {
 
         public int GrayNumbers = 0;
@@ -50,6 +50,7 @@ namespace Refrigtz
         {
 
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == 1)
@@ -60,6 +61,8 @@ namespace Refrigtz
                         Solders.Add(RowColumn);
                     }
                 }
+            }
+
             GrayNumbers = Solders.Count;
             for (int i = Solders.Count; i < 8; i++)
             {
@@ -69,6 +72,7 @@ namespace Refrigtz
                 Solders.Add(RowColumn);
             }
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == -1)
@@ -79,6 +83,8 @@ namespace Refrigtz
                         Solders.Add(RowColumn);
                     }
                 }
+            }
+
             BrowNumbers = Solders.Count;
             for (int i = Solders.Count; i < 16; i++)
             {
@@ -90,7 +96,8 @@ namespace Refrigtz
 
         }
     }
-    class Elephant
+
+    internal class Elephant
     {
 
         public int GrayNumbers = 0;
@@ -104,6 +111,7 @@ namespace Refrigtz
         {
 
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == 2)
@@ -114,6 +122,8 @@ namespace Refrigtz
                         Elephants.Add(RowColumn);
                     }
                 }
+            }
+
             GrayNumbers = Elephants.Count;
             for (int i = Elephants.Count; i < 2; i++)
             {
@@ -123,6 +133,7 @@ namespace Refrigtz
                 Elephants.Add(RowColumn);
             }
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == -1)
@@ -133,6 +144,8 @@ namespace Refrigtz
                         Elephants.Add(RowColumn);
                     }
                 }
+            }
+
             BrowNumbers = Elephants.Count;
             for (int i = Elephants.Count; i < 4; i++)
             {
@@ -144,7 +157,8 @@ namespace Refrigtz
 
         }
     }
-    class Hourse
+
+    internal class Hourse
     {
 
         public int GrayNumbers = 0;
@@ -158,6 +172,7 @@ namespace Refrigtz
         {
 
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == 3)
@@ -168,6 +183,8 @@ namespace Refrigtz
                         Hourses.Add(RowColumn);
                     }
                 }
+            }
+
             GrayNumbers = Hourses.Count;
             for (int i = Hourses.Count; i < 2; i++)
             {
@@ -177,6 +194,7 @@ namespace Refrigtz
                 Hourses.Add(RowColumn);
             }
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == -3)
@@ -187,6 +205,8 @@ namespace Refrigtz
                         Hourses.Add(RowColumn);
                     }
                 }
+            }
+
             BrowNumbers = Hourses.Count;
             for (int i = Hourses.Count; i < 4; i++)
             {
@@ -198,7 +218,8 @@ namespace Refrigtz
 
         }
     }
-    class Bridge
+
+    internal class Bridge
     {
 
         public int GrayNumbers = 0;
@@ -212,6 +233,7 @@ namespace Refrigtz
         {
 
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == 4)
@@ -222,6 +244,8 @@ namespace Refrigtz
                         Bridges.Add(RowColumn);
                     }
                 }
+            }
+
             GrayNumbers = Bridges.Count;
             for (int i = Bridges.Count; i < 2; i++)
             {
@@ -231,6 +255,7 @@ namespace Refrigtz
                 Bridges.Add(RowColumn);
             }
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == -4)
@@ -241,6 +266,8 @@ namespace Refrigtz
                         Bridges.Add(RowColumn);
                     }
                 }
+            }
+
             BrowNumbers = Bridges.Count;
             for (int i = Bridges.Count; i < 4; i++)
             {
@@ -252,7 +279,8 @@ namespace Refrigtz
 
         }
     }
-    class Minister
+
+    internal class Minister
     {
 
         public int GrayNumbers = 0;
@@ -266,6 +294,7 @@ namespace Refrigtz
         {
 
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == 5)
@@ -276,6 +305,8 @@ namespace Refrigtz
                         Ministers.Add(RowColumn);
                     }
                 }
+            }
+
             for (int i = Ministers.Count; i < 1; i++)
             {
                 int[] RowColumn = new int[2];
@@ -285,6 +316,7 @@ namespace Refrigtz
             }
             GrayNumbers = Ministers.Count;
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == -5)
@@ -295,6 +327,8 @@ namespace Refrigtz
                         Ministers.Add(RowColumn);
                     }
                 }
+            }
+
             BrowNumbers = Ministers.Count;
             for (int i = Ministers.Count; i < 2; i++)
             {
@@ -306,7 +340,8 @@ namespace Refrigtz
 
         }
     }
-    class King
+
+    internal class King
     {
 
         public int GrayNumbers = 0;
@@ -320,6 +355,7 @@ namespace Refrigtz
         {
 
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == 6)
@@ -330,6 +366,7 @@ namespace Refrigtz
                         Kings.Add(RowColumn);
                     }
                 }
+            }
 
             GrayNumbers = Kings.Count;
 
@@ -341,6 +378,7 @@ namespace Refrigtz
                 Kings.Add(RowColumn);
             }
             for (int i = 0; i < 8; i++)
+            {
                 for (int j = 0; j < 8; j++)
                 {
                     if (Table[i, j] == -6)
@@ -351,6 +389,8 @@ namespace Refrigtz
                         Kings.Add(RowColumn);
                     }
                 }
+            }
+
             BrowNumbers = Kings.Count;
             for (int i = Kings.Count; i < 2; i++)
             {

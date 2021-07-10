@@ -9,7 +9,7 @@ namespace RefrigtzW
         public bool[] Bits = new bool[2];
         public Bit()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 Bits[0] = false;
@@ -18,7 +18,7 @@ namespace RefrigtzW
         }
         public bool[] GetBits()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 return Bits;
@@ -26,7 +26,7 @@ namespace RefrigtzW
         }
         public void SetZeroZero()//State 0
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 Bits[0] = false;
@@ -35,7 +35,7 @@ namespace RefrigtzW
         }
         public void SetZeroOne()//State 1
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 Bits[0] = true;
@@ -44,7 +44,7 @@ namespace RefrigtzW
         }
         public void SetOneZero()//State SuperPosition
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 Bits[0] = false;
@@ -53,7 +53,7 @@ namespace RefrigtzW
         }
         public void SetOneOne()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 Bits[0] = true;
@@ -62,41 +62,53 @@ namespace RefrigtzW
         }
         public bool IsZeroZero()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (Bits[0] == false && Bits[1] == false)
+                {
                     return true;
+                }
+
                 return false;
             }
         }
         public bool IsZeroOne()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (Bits[0] == true && Bits[1] == false)
+                {
                     return true;
+                }
+
                 return false;
             }
         }
         public bool IsOneZero()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (Bits[0] == false && Bits[1] == true)
+                {
                     return true;
+                }
+
                 return false;
             }
         }
         public bool IsOneOne()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (Bits[0] == true && Bits[1] == true)
+                {
                     return true;
+                }
+
                 return false;
             }
         }
@@ -104,29 +116,29 @@ namespace RefrigtzW
     [Serializable]
     public class QuantumAtamata : LearningKrinskyAtamata
     {
-        List<String> States = new List<String>();
-        List<Byte> StateByte = new List<Byte>();
-        int r = 0, m = 0, k = 0;
+        private readonly List<string> States = new List<string>();
+        private readonly List<byte> StateByte = new List<byte>();
+        private readonly int r = 0, m = 0, k = 0;
         public Bit[] BitState = new Bit[3];
-        double[] QuatumProbabilities = new double[3];
+        private readonly double[] QuatumProbabilities = new double[3];
 
         public LearningKrinskyAtamata[] ThreeSet = new LearningKrinskyAtamata[3];
         public int NumberActiveAtamata = 3;
         public double[] FirstProbibility = null;
         public double[] SecondProbibility = null;
         public double[] ThirdProbibility = null;
-        int A1 = 0;
-        int A2 = 0;
-        int A3 = 0;
-        public String AA = "";
-        public String AB = "";
-        public String AC = "";
+        private int A1 = 0;
+        private int A2 = 0;
+        private int A3 = 0;
+        public string AA = "";
+        public string AB = "";
+        public string AC = "";
 
-        public String CurrentState = "";
+        public string CurrentState = "";
         public QuantumAtamata(int r0, int m0, int k0)
             : base(r0, m0, k0)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 for (int i = 0; i < 3; i++)
@@ -145,7 +157,7 @@ namespace RefrigtzW
         }
         public void CurrenStateInitialize()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 A1 = FirstAtamataState();
@@ -155,29 +167,50 @@ namespace RefrigtzW
                 AB = A2.ToString();
                 AC = A3.ToString();
                 if (A1 == 0)
+                {
                     AA = "|0>,";
+                }
                 else
                     if (A1 == 1)
+                {
                     AA = "|1>,";
+                }
                 else
                         if (A1 == 2)
+                {
                     AA = "|2>+|3>,";
+                }
+
                 if (A2 == 0)
+                {
                     AB = "|0>,";
+                }
                 else
                     if (A2 == 1)
+                {
                     AB = "|1>,";
+                }
                 else
                         if (A2 == 2)
+                {
                     AB = "|2>+|3>,";
+                }
+
                 if (A3 == 0)
+                {
                     AC = "|0>,";
+                }
                 else
                     if (A3 == 1)
+                {
                     AC = "|1>,";
+                }
                 else
                         if (A3 == 2)
+                {
                     AC = "|2>+|3>,";
+                }
+
                 CurrentState = AA + AB + AC;
                 //  CurrentStateByte = System.Convert.ToByte(CurrentState, 2);
                 States.Add(CurrentState);
@@ -280,7 +313,7 @@ namespace RefrigtzW
 
         public int FirstAtamataState()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
 
@@ -301,7 +334,7 @@ namespace RefrigtzW
         }
         public int SecondAtamataState()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
 
@@ -323,7 +356,7 @@ namespace RefrigtzW
         }
         public int ThirdAtamataState()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
 

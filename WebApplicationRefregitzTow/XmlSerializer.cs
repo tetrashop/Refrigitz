@@ -14,24 +14,25 @@ namespace InternalTypesInXmlSerializer
     public class Program
 
     {
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
 
         {
 
-            Address address = new Address();
+            Address address = new Address
+            {
+                Street = "One Microsoft Way",
 
-            address.Street = "One Microsoft Way";
+                City = "Redmond",
 
-            address.City = "Redmond";
+                Zip = 98053
+            };
 
-            address.Zip = 98053;
+            Order order = new Order
+            {
+                BillTo = address,
 
-            Order order = new Order();
-
-            order.BillTo = address;
-
-            order.ShipTo = address;
+                ShipTo = address
+            };
 
 
 

@@ -45,7 +45,7 @@ namespace WebApplicationRefregitzTow
         }
         public void Iniziate()
         {
-            WebApplicationRefregitzTow._Default.uc = (Control)Page.LoadControl("Controls_CBC.ascx");
+            WebApplicationRefregitzTow._Default.uc = Page.LoadControl("Controls_CBC.ascx");
             // WebApplicationRefregitzTow._Default.ucc = new WebApplicationRefregitzTow.Controls_CBC();
             //uc.ID = "AddBPOP";
             // ucc.Controls.Add(uc);
@@ -92,7 +92,11 @@ namespace WebApplicationRefregitzTow
                 }
                 Thread tt = new Thread(new ThreadStart(t.Load));
                 tt.Start();
-                while (!RefrigtzW.FormRefrigtz.ReadF) ;
+                while (!RefrigtzW.FormRefrigtz.ReadF)
+                {
+                    ;
+                }
+
                 PlaceHolder1_Load(sender, e);
                 First = false;
 
@@ -338,9 +342,13 @@ namespace WebApplicationRefregitzTow
         public void PlaceHolder1_Load(object sender, EventArgs e)
         {
             if (RefrigtzW.FormRefrigtz.OrderPlate == 1)
+            {
                 Label2.Text = "Do Somthing.";
+            }
             else
+            {
                 Label2.Text = "Thinking...";            //Thread ttt = new Thread(new ThreadStart(LoadPlaceHolder));
+            }
             //ttt.Start();
             LoadPlaceHolder();
 

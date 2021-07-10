@@ -34,23 +34,24 @@ namespace Refrigtz
         public static bool UseDoubleTime = false;
         public static long AStarGreedytiLevelMax = 0;
         public static bool AStarGreadyFirstSearch;
-        long ConstTimer = 0;
-        double AStarGreedytMidleTimer = 0;
-        long AStarGreedytLastTime = 0;
+        private long ConstTimer = 0;
+        private double AStarGreedytMidleTimer = 0;
+        private long AStarGreedytLastTime = 0;
         public static bool Text = false;
         public long Times = 5 * 60 * 1000;
-        long TimesBegin = 0;
+        private long TimesBegin = 0;
         public bool EndTime = false;
-        Thread t;
+        private Thread t;
         public bool Paused = true;
         public bool TextChanged = true;
         public int Sign = -1;
-        bool Infinity = false;
-        static void Log(Exception ex)
+        private readonly bool Infinity = false;
+
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -63,7 +64,7 @@ namespace Refrigtz
         public Timer(bool SignPositive)
         {
 
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 //For Infinity Timer until end.
@@ -79,18 +80,19 @@ namespace Refrigtz
         //Initiate Timer.
         public void TimerInitiate()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 t = new Thread(new ThreadStart(TimerThread));
                 t.Start();
             }
         }
+
         //Main Timer of Threading.
-        void TimerThread()
+        private void TimerThread()
         {
 
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
 
@@ -129,22 +131,22 @@ namespace Refrigtz
         //Access to Private Timer Value of Long.
         public long TimesAccess
         {
-            get { return Times; }
-            set { Times = value; }
+            get => Times;
+            set => Times = value;
 
 
         }
         public long TimesConstAccess
         {
-            get { return ConstTimer; }
-            set { ConstTimer = value; }
+            get => ConstTimer;
+            set => ConstTimer = value;
 
 
         }
         //AStarGreedyt First MAx Level Condition checked.
         public int AStarGreedytiLevelMaxInitiate(Timer TimerColor, int AStarGreedyti)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 //int PowerEx = 4;
@@ -155,10 +157,13 @@ namespace Refrigtz
                 {
 
                     if (Times - 120000 < 0)
+                    {
                         Increase = -1;
+                    }
                     else
+                    {
                         Increase = 1;
-
+                    }
                 }
                 return Increase;
             }
@@ -166,21 +171,28 @@ namespace Refrigtz
         //Set AStarGreedyt First Level Max Variables.
         public void SetAStarGreedytTimer()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (AStarGreedytLastTime == 0)
+                {
                     AStarGreedytLastTime = 0;
+                }
                 else
+                {
                     AStarGreedytLastTime = Times - AStarGreedytLastTime;
+                }
+
                 if (StoreAllDrawCount == 0)
+                {
                     AStarGreedytMidleTimer = 0;
+                }
             }
         }
         //Cal Midle (Avarage) AStarGreedyt First Some static variables.
         public void MidleAStarGreedytTimer(int AStarGreedyti)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 try
@@ -199,7 +211,7 @@ namespace Refrigtz
         //Strat timer function.
         public void StartTime()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (Sign != 1)
@@ -208,8 +220,10 @@ namespace Refrigtz
                     TimerInitiate();
                     //When Begin Timer Valuee is Zero cal.
                     if (TimesBegin == 0)
+                    {
                         TimesBegin = DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000
                                     + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond;
+                    }
                 }
                 //Set to Thread Paused.
                 Paused = false;
@@ -219,7 +233,7 @@ namespace Refrigtz
         //Stop Timer.
         public void StopTime()
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (Sign != 1)
@@ -231,13 +245,19 @@ namespace Refrigtz
                         long Remaining = Times;
                         //When Remaining timer is greter than zero.
                         if (Remaining > 0)
+                        {
                             Remaining = 0;
+                        }
                         //When Regrad timer is valuable.
                         if ((DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000
                                 + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond - TimesBegin) < 5000)
+                        {
                             Times = 5 * 60 * 1000 + 60000 + Remaining;
+                        }
                         else
+                        {
                             Times = 5 * 60 * 1000 + Remaining;
+                        }
                         //Const timer value.
                         ConstTimer = 5 * 60 * 1000 + Remaining;
                     }
@@ -246,13 +266,20 @@ namespace Refrigtz
                         //Same as else.
                         long Remaining = Times;
                         if (Remaining > 0)
+                        {
                             Remaining = 0;
+                        }
 
                         if ((DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000
                           + DateTime.Now.Second * 1000 + DateTime.Now.Millisecond - TimesBegin) < 10000)
+                        {
                             Times = 10 * 60 * 1000 + 60000 + Remaining;
+                        }
                         else
+                        {
                             Times = 10 * 60 * 1000 + Remaining;
+                        }
+
                         ConstTimer = 10 * 60 * 1000 + Remaining;
                     }
                     TimesBegin = 0;
@@ -263,29 +290,29 @@ namespace Refrigtz
                 Paused = true;
             }
         }
-        public String ReturnTime()
+        public string ReturnTime()
         {
             //Cal and return timer string.
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 long T = Times;
                 //Cal and return timer string.
-                String Houre = "0";
+                string Houre = "0";
                 if (T >= 3600000)
                 {
 
                     Houre = ((System.Convert.ToInt64(T / 3600000))).ToString();
                     T = (T - System.Convert.ToInt64(T / 3600000) * 3600000);
                 }
-                String Minute = "0";
+                string Minute = "0";
                 if (T >= 60000)
                 {
 
                     Minute = ((System.Convert.ToInt64(T / 60000))).ToString();
                     T = (T - System.Convert.ToInt64(T / 60000) * 60000);
                 }
-                String Second = (T / 1000).ToString();
+                string Second = (T / 1000).ToString();
                 return Houre + ":" + Minute + ":" + Second;
             }
         }

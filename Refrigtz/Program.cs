@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Refrigtz
 {
     [Serializable]
-    static class Program
+    internal static class Program
     {
         public static long SomeExtremelyLargeNumber { get; private set; }
 
@@ -18,11 +18,11 @@ namespace Refrigtz
         /// The main entry point for the application.
         /// </summary>
 
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -39,7 +39,7 @@ namespace Refrigtz
             // Of course this only affects the main thread rather than child threads.
             Thread.CurrentThread.Priority = ThreadPriority.Highest;
 
-            Int64 seed = SomeExtremelyLargeNumber; // Millions of digits.
+            long seed = SomeExtremelyLargeNumber; // Millions of digits.
             int[] nums = Enumerable.Range(0, 1000000).ToArray();
             long total = 0;
 
@@ -56,7 +56,7 @@ namespace Refrigtz
         }
         public class StackOverflowDetector
         {
-            static void CheckStackDepth()
+            private static void CheckStackDepth()
             {
                 if (new StackTrace().FrameCount > 60) // some arbitrary limit
                 {
@@ -108,11 +108,7 @@ namespace Refrigtz
 
         }
 
-
-
-
-
-        static void CoordinationDataStructures()
+        private static void CoordinationDataStructures()
         {
             /*Not to be outshined, our concurrent collections and synchronization
              primitives have also been improved.This again follows the principle
@@ -128,9 +124,9 @@ namespace Refrigtz
             {
                 do { Thread.Sleep(1); } while (!RefrigtzDLL.AllDraw.ThinkingRunInBothSide);
 
-                var cd = new ConcurrentDictionary<int, int>();
+                ConcurrentDictionary<int, int> cd = new ConcurrentDictionary<int, int>();
 
-                var sw = Stopwatch.StartNew();
+                Stopwatch sw = Stopwatch.StartNew();
 
                 cd.TryAdd(42, 0);
 
@@ -147,7 +143,8 @@ namespace Refrigtz
             }
 
         }
-        static void TaskParallelLibrary()
+
+        private static void TaskParallelLibrary()
 
         {
             /*Just by upgrading from .NET 4 to.NET 4.5, on the machine on which I’m 
@@ -155,7 +152,7 @@ namespace Refrigtz
              a microbenchmark that’s purely measuring a particular kind of overhead, 
              but nevertheless it should give you a glimpse into the kind of improvements
              that exist in the runtime.*/
-            var sw = new Stopwatch();
+            Stopwatch sw = new Stopwatch();
 
             while (true)
 
@@ -177,17 +174,18 @@ namespace Refrigtz
 
 
 
-                var tcs = new TaskCompletionSource<object>();
+                TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
 
-                var t = tcs.Task;
+                Task<object> t = tcs.Task;
 
                 sw.Restart();
 
                 for (int i = 0; i < 1000000; i++)
-
+                {
                     t = t.ContinueWith(_ => (object)null);
+                }
 
-                var elapsed = sw.Elapsed;
+                TimeSpan elapsed = sw.Elapsed;
 
                 GC.KeepAlive(tcs);
 

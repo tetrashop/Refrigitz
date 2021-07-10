@@ -96,7 +96,7 @@ namespace WebApplicationRefregitzTow
         public static Control _2 = null;
 #pragma warning restore CS3008 // Identifier '_2' is not CLS-compliant
         //#pragma warning restore CS3008 // Identifier '_2' is not CLS-compliant
-        public double MaxHeuristicxT = Double.MinValue;
+        public double MaxHeuristicxT = double.MinValue;
         public bool MovementsAStarGreedyHeuristicFound = false;
         public bool IIgnoreSelfObjects = false;
         public bool UsePenaltyRegardMechnisam = true;
@@ -104,9 +104,8 @@ namespace WebApplicationRefregitzTow
         public bool PredictHeuristic = true;
         public bool OnlySelf = false;
         public bool AStarGreedyHeuristic = false;
-
-        bool ArrangmentsChanged = true;
-        Thread t;
+        private readonly bool ArrangmentsChanged = true;
+        private Thread t;
         /// <summary>
         /// recursively finds a child control of the specified parent.
         /// </summary>
@@ -115,28 +114,38 @@ namespace WebApplicationRefregitzTow
         /// <returns></returns>
         public Control FindControlRecursive(string id)
         {
-            if (this == null) return null;
+            if (this == null)
+            {
+                return null;
+            }
             //try to find the control at the current level
-            Control ctrl = this.FindControl(id);
+            Control ctrl = FindControl(id);
 
             if (ctrl == null)
             {
                 //search the children
-                foreach (Control child in this.Controls)
+                foreach (Control child in Controls)
                 {
-                    ctrl = this.FindControlRecursive(id);
+                    ctrl = FindControlRecursive(id);
 
-                    if (ctrl != null) break;
+                    if (ctrl != null)
+                    {
+                        break;
+                    }
                 }
             }
             return ctrl;
         }
 
-        void SetLoadUserControl()
+        private void SetLoadUserControl()
         {
             do
             {
-                while (!WebApplicationRefregitzTow.Controls_CBC.Found) ;
+                while (!WebApplicationRefregitzTow.Controls_CBC.Found)
+                {
+                    ;
+                }
+
                 UserControlLoad();
             } while (true);
         }
@@ -185,7 +194,10 @@ namespace WebApplicationRefregitzTow
                         int Column2 = (MoveTo - 1) / 8;
                         System.Drawing.Color A = System.Drawing.Color.Gray;
                         if (FormRefrigtz.OrderPlate == -1)
+                        {
                             A = System.Drawing.Color.Brown;
+                        }
+
                         if ((Column1 == Column2) && (Row1 == Row2 - 2))
                         {
 
@@ -201,8 +213,9 @@ namespace WebApplicationRefregitzTow
                                 Found = true;
                             }
                             else
+                            {
                                 MouseClicked = 0;
-
+                            }
                         }
 
                         else if ((Column1 == Column2) && (Row1 == Row2 + 2))
@@ -227,13 +240,21 @@ namespace WebApplicationRefregitzTow
 
                                     FormRefrigtz.Table[Row1, Column1] = 0;
                                     if (t.ConvertedToMinister)
+                                    {
                                         FormRefrigtz.Table[Row2, Column2] = 5;
+                                    }
                                     else if (t.ConvertedToCastle)
+                                    {
                                         FormRefrigtz.Table[Row2, Column2] = 4;
+                                    }
                                     else if (t.ConvertedToHourse)
+                                    {
                                         FormRefrigtz.Table[Row2, Column2] = 3;
+                                    }
                                     else if (t.ConvertedToElefant)
+                                    {
                                         FormRefrigtz.Table[Row2, Column2] = 2;
+                                    }
                                 }
                                 else
                                 {
@@ -1348,12 +1369,15 @@ namespace WebApplicationRefregitzTow
         }
         public void UserControlLoad()
         {
-            while (!RefrigtzW.FormRefrigtz.ReadF) ;
+            while (!RefrigtzW.FormRefrigtz.ReadF)
+            {
+                ;
+            }
             //RefrigtzW.FormRefrigtz.LoadPlaceHolder = false;
             //RefrigtzW.FormRefrigtz.LoadPlaceHolder = false;
-            Control lblMove = this.FindControl("lblMove");
-            Control lblMove1 = this.FindControl("lblMove1");
-            Control lblMove2 = this.FindControl("lblMove2");
+            Control lblMove = FindControl("lblMove");
+            Control lblMove1 = FindControl("lblMove1");
+            Control lblMove2 = FindControl("lblMove2");
             //lblMove = (Label)lblMove;
             //lblMove1 = (Label)lblMove1;
             //lblMove2 = (Label)lblMove2;
@@ -1366,10 +1390,15 @@ namespace WebApplicationRefregitzTow
             {
                 int[,] Tab = new int[8, 8];
                 for (int i = 0; i < 8; i++)
+                {
                     for (int j = 0; j < 8; j++)
+                    {
                         Tab[i, j] = RefrigtzW.FormRefrigtz.Table[i, j];
+                    }
+                }
 
                 for (int i = 0; i < 8; i++)
+                {
                     for (int j = 0; j < 8; j++)
                     {
                         GC.Collect();
@@ -1378,9 +1407,9 @@ namespace WebApplicationRefregitzTow
                         string ctrlNameP = "Panel" + ((j * 8 + i) + 1).ToString();
                         string ctrlNameC = "CheckBox" + ((j * 8 + i) + 1).ToString();
 
-                        Control c = this.FindControl(ctrlName);
-                        Control cP = this.FindControl(ctrlNameP);
-                        Control cC = this.FindControl(ctrlNameC);
+                        Control c = FindControl(ctrlName);
+                        Control cP = FindControl(ctrlNameP);
+                        Control cC = FindControl(ctrlNameC);
                         if (c != null)
                         {
                             if (Tab[i, j] == 1)
@@ -1480,6 +1509,7 @@ namespace WebApplicationRefregitzTow
 
 
                     }
+                }
             }
             // else
             {
@@ -1777,135 +1807,326 @@ namespace WebApplicationRefregitzTow
         public string CreateString(int a)
         {
             if (a == 1)
+            {
                 return "a8";
+            }
             else
 
                 if (a == 2)
+            {
                 return "b8";
+            }
+
             if (a == 3)
+            {
                 return "c8";
+            }
+
             if (a == 4)
+            {
                 return "d8";
+            }
+
             if (a == 5)
+            {
                 return "e8";
+            }
+
             if (a == 6)
+            {
                 return "f8";
+            }
+
             if (a == 7)
+            {
                 return "g8";
+            }
+
             if (a == 8)
+            {
                 return "h8";
+            }
+
             if (a == 9)
+            {
                 return "a7";
+            }
+
             if (a == 10)
+            {
                 return "b7";
+            }
+
             if (a == 11)
+            {
                 return "c7";
+            }
+
             if (a == 12)
+            {
                 return "d7";
+            }
+
             if (a == 13)
+            {
                 return "e7";
+            }
+
             if (a == 14)
+            {
                 return "f7";
+            }
+
             if (a == 15)
+            {
                 return "g7";
+            }
+
             if (a == 16)
+            {
                 return "h7";
+            }
+
             if (a == 17)
+            {
                 return "a6";
+            }
+
             if (a == 18)
+            {
                 return "b6";
+            }
+
             if (a == 19)
+            {
                 return "c6";
+            }
+
             if (a == 20)
+            {
                 return "d6";
+            }
+
             if (a == 21)
+            {
                 return "e6";
+            }
+
             if (a == 22)
+            {
                 return "f6";
+            }
+
             if (a == 23)
+            {
                 return "g6";
+            }
+
             if (a == 24)
+            {
                 return "h6";
+            }
+
             if (a == 25)
+            {
                 return "a5";
+            }
+
             if (a == 26)
+            {
                 return "b5";
+            }
+
             if (a == 27)
+            {
                 return "c5";
+            }
+
             if (a == 28)
+            {
                 return "d5";
+            }
+
             if (a == 29)
+            {
                 return "e5";
+            }
+
             if (a == 10)
+            {
                 return "f5";
+            }
+
             if (a == 31)
+            {
                 return "g5";
+            }
+
             if (a == 32)
+            {
                 return "h5";
+            }
+
             if (a == 33)
+            {
                 return "a4";
+            }
+
             if (a == 34)
+            {
                 return "b4";
+            }
+
             if (a == 35)
+            {
                 return "c4";
+            }
+
             if (a == 36)
+            {
                 return "d4";
+            }
+
             if (a == 37)
+            {
                 return "e4";
+            }
+
             if (a == 38)
+            {
                 return "f4";
+            }
+
             if (a == 39)
+            {
                 return "g4";
+            }
+
             if (a == 40)
+            {
                 return "h4";
+            }
+
             if (a == 41)
+            {
                 return "a3";
+            }
+
             if (a == 42)
+            {
                 return "b3";
+            }
+
             if (a == 43)
+            {
                 return "c3";
+            }
+
             if (a == 44)
+            {
                 return "d3";
+            }
+
             if (a == 45)
+            {
                 return "e3";
+            }
+
             if (a == 46)
+            {
                 return "f3";
+            }
+
             if (a == 47)
+            {
                 return "g3";
+            }
+
             if (a == 48)
+            {
                 return "h3";
+            }
+
             if (a == 49)
+            {
                 return "a2";
+            }
+
             if (a == 50)
+            {
                 return "b2";
+            }
+
             if (a == 51)
+            {
                 return "c2";
+            }
+
             if (a == 52)
+            {
                 return "d2";
+            }
+
             if (a == 53)
+            {
                 return "e2";
+            }
+
             if (a == 54)
+            {
                 return "f2";
+            }
+
             if (a == 55)
+            {
                 return "g2";
+            }
+
             if (a == 56)
+            {
                 return "h2";
+            }
+
             if (a == 57)
+            {
                 return "a1";
+            }
+
             if (a == 58)
+            {
                 return "b1";
+            }
+
             if (a == 59)
+            {
                 return "c1";
+            }
+
             if (a == 60)
+            {
                 return "d1";
+            }
+
             if (a == 61)
+            {
                 return "e1";
+            }
+
             if (a == 62)
+            {
                 return "f1";
+            }
+
             if (a == 63)
+            {
                 return "g1";
+            }
+
             if (a == 64)
+            {
                 return "h1";
+            }
+
             return "";
 
         }

@@ -11,11 +11,11 @@ namespace TryCatchDisable
 {
     public partial class FormTryCatchDisable : Form
     {
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -40,9 +40,9 @@ namespace TryCatchDisable
                 //Open file c#,c++,...
                 OpenFileDialogTryCatchDisable.ShowDialog();
                 //Strore file name.
-                String A = OpenFileDialogTryCatchDisable.FileName;
+                string A = OpenFileDialogTryCatchDisable.FileName;
                 //Read text  computer languages.
-                String Contain = System.IO.File.ReadAllText(A);
+                string Contain = System.IO.File.ReadAllText(A);
                 //Found of first try
                 int A1 = Contain.IndexOf("try");
                 //store
@@ -62,10 +62,14 @@ namespace TryCatchDisable
                         A2 = A1;
                         //when is negative break
                         if (A1 < 0)
+                        {
                             break;
+                        }
                         //increase when end of try
                         while ((!(Contain[A2].Equals('{'))) && (A2 < Contain.Length))
+                        {
                             A2++;
+                        }
                         //repace try section and free code
                         Contain = Contain.Replace(Contain.Substring(A1, A2 - A1 + 1), "/*" + Contain.Substring(A1, A2 - A1 + 1) + "*/");
                         A1 = A2 + 5;
@@ -91,8 +95,9 @@ namespace TryCatchDisable
                 Log(t);
             }
         }
+
         //Ignore of Comments Double Slash
-        bool IgnoreofCommentsDoubleSlash(String Contain, int Main)
+        private bool IgnoreofCommentsDoubleSlash(string Contain, int Main)
         {
             //Initiate
             int A = 0;
@@ -101,7 +106,7 @@ namespace TryCatchDisable
             do
             {
                 //Substring of index found
-                String S = Contain.Substring(A, Contain.Length - A);
+                string S = Contain.Substring(A, Contain.Length - A);
                 //Index of begin comments
                 Begin = S.IndexOf("//");
                 //index of all
@@ -135,8 +140,9 @@ namespace TryCatchDisable
             } while (A < Contain.Length);//while end of file
             return false;
         }
+
         //Found Of Proper Closed Bracetin catch
-        int FoundOfProperClosedBracetincatch(String Contain, int MainOpenBracketIndex)
+        private int FoundOfProperClosedBracetincatch(string Contain, int MainOpenBracketIndex)
         {
             try
             {
@@ -148,7 +154,9 @@ namespace TryCatchDisable
                     bool Ign = IgnoreofCommentsDoubleSlash(Contain, MainOpenBracketIndex);
                     //when substring contains new braket begine and Ignore of Comments Double Slash is faild 
                     if (Contain[MainOpenBracketIndex].Equals('{') && (!Ign))
+                    {
                         IsMainClosedBraket++;
+                    }
                     //when braket closed return gioven index
                     if (Contain[MainOpenBracketIndex].Equals('}') && IsMainClosedBraket == 1 && (!Ign))
                     {
@@ -157,7 +165,9 @@ namespace TryCatchDisable
                     else
                     //else untile contains new braket end decreamet
                     if (Contain[MainOpenBracketIndex].Equals('}') && IsMainClosedBraket >= 1 && (!Ign))
+                    {
                         IsMainClosedBraket--;
+                    }
                     //increase
                     MainOpenBracketIndex++;
                     //untile end of file
@@ -169,8 +179,9 @@ namespace TryCatchDisable
             }
             return MainOpenBracketIndex;
         }
+
         //catch consideration method
-        void CatchReplace(ref String Contain, int S, int A2)
+        private void CatchReplace(ref string Contain, int S, int A2)
         {
             try
             {
@@ -193,7 +204,9 @@ namespace TryCatchDisable
                     {
                         //while begine of catch before decrease
                         while (!(Contain[A2].Equals('}')))
+                        {
                             A2--;
+                        }
                         //decrease
                         A2--;
                         //Found Of Proper Closed Bracetin catch index
@@ -227,9 +240,9 @@ namespace TryCatchDisable
                 //Open file c#,c++,...
                 OpenFileDialogTryCatchDisable.ShowDialog();
                 //Strore file name.
-                String A = OpenFileDialogTryCatchDisable.FileName;
+                string A = OpenFileDialogTryCatchDisable.FileName;
                 //Read text  computer languages.
-                String Contain = System.IO.File.ReadAllText(A);
+                string Contain = System.IO.File.ReadAllText(A);
                 //Found of first try
                 int A1 = Contain.IndexOf("try");
                 //store
@@ -249,10 +262,14 @@ namespace TryCatchDisable
                         A2 = A1;
                         //when is negative break
                         if (A1 < 0)
+                        {
                             break;
+                        }
                         //increase when end of try
                         while ((!(Contain[A2].Equals('{'))) && (A2 < Contain.Length))
+                        {
                             A2++;
+                        }
                         //repace try section and free code
                         Contain = Contain.Replace(Contain.Substring(A1, A2 - A1 + 1), "/*" + Contain.Substring(A1, A2 - A1 + 1) + "*/");
                         A1 = A2 + 5;

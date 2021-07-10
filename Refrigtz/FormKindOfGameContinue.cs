@@ -17,7 +17,12 @@ namespace Refrigtz
             do
             {
 
-                if (DateTime.Now.Second * 1000 + DateTime.Now.Millisecond - t > 1000) break; iii++; if (System.IO.File.Exists(FormRefrigtz.Root + "\\Database\\Games\\CurrentBank" + iii.ToString() + ".accdb")) { ComboBoxDatabase.Items.Add("CurrentBank" + iii.ToString() + ".accdb"); }
+                if (DateTime.Now.Second * 1000 + DateTime.Now.Millisecond - t > 1000)
+                {
+                    break;
+                }
+
+                iii++; if (System.IO.File.Exists(FormRefrigtz.Root + "\\Database\\Games\\CurrentBank" + iii.ToString() + ".accdb")) { ComboBoxDatabase.Items.Add("CurrentBank" + iii.ToString() + ".accdb"); }
             } while (true);
 
         }

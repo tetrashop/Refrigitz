@@ -5,84 +5,47 @@ namespace RefrigtzW
     [Serializable]
     public class Customers
     {
-        static Int32 NumberOfObjects = 0;
-        const char NULL = '\0';
-
-        Int32 CustomerID = new Int32();
-        String Name = new String(NULL, 20);
-        String FamilyName = new String(NULL, 20);
-        String Address = new String(NULL, 20);
-        Int32 TelephonNumber = new Int32();
+        private static int NumberOfObjects = 0;
+        private const char NULL = '\0';
+        private int CustomerID = new int();
+        private string Name = new string(NULL, 20);
+        private string FamilyName = new string(NULL, 20);
+        private string Address = new string(NULL, 20);
+        private int TelephonNumber = new int();
 
         public Customers()
         {
 
         }
-        public Int32 CustomenrNumberOfObjectsAccess
+        public int CustomenrNumberOfObjectsAccess
         {
-            get
-            {
-                return NumberOfObjects;
-            }
-            set
-            {
-                NumberOfObjects = value;
-            }
+            get => NumberOfObjects;
+            set => NumberOfObjects = value;
         }
-        public Int32 CustomersCustomerID
+        public int CustomersCustomerID
         {
-            get
-            {
-                return CustomerID;
-            }
-            set
-            {
-                CustomerID = value;
-            }
+            get => CustomerID;
+            set => CustomerID = value;
         }
-        public String CustomersName
+        public string CustomersName
         {
-            get
-            {
-                return Name;
-            }
-            set
-            {
-                Name = value;
-            }
+            get => Name;
+            set => Name = value;
         }
-        public String CustomersFamilyName
+        public string CustomersFamilyName
         {
-            get
-            {
-                return FamilyName;
-            }
-            set
-            {
-                FamilyName = value;
-            }
+            get => FamilyName;
+            set => FamilyName = value;
         }
-        public String CustomersAddress
+        public string CustomersAddress
         {
-            get
-            {
-                return Address;
-            }
-            set
-            {
-                Address = value;
-            }
+            get => Address;
+            set => Address = value;
         }
-        public Int32 CustomersTellefon
+        public int CustomersTellefon
         {
-            get
-            {
-                return TelephonNumber;
-            }
-            set
-            {
-                TelephonNumber = value;
-            }
+            get => TelephonNumber;
+            set => TelephonNumber = value;
         }
 
     }

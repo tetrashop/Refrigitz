@@ -6,13 +6,17 @@ namespace RefrigtzW
 
     public class CustomerMemmorry
     {
-        const string S = "Customers.txt";
-        static RefrigtzW.CustomerMemmorry Node = new CustomerMemmorry();
-        RefrigtzW.Customers Current = new Customers();
-        RefrigtzW.CustomerMemmorry Next = null;
+        private const string S = "Customers.txt";
+        private static RefrigtzW.CustomerMemmorry Node = new CustomerMemmorry();
+        private RefrigtzW.Customers Current = new Customers();
+        private RefrigtzW.CustomerMemmorry Next = null;
         public void Load()
         {
-            if (Node == null) Node = new CustomerMemmorry();
+            if (Node == null)
+            {
+                Node = new CustomerMemmorry();
+            }
+
             Node.CustomersNextAccess = null;
             Node.CustomersCurrentAccess = null;
             try
@@ -27,14 +31,21 @@ namespace RefrigtzW
                 {
                     Dummy = (Customers)Formatters.Deserialize(DummyFileStream);
                     if (Node.Current == null)
+                    {
                         Node.Current = Dummy;
+                    }
                     else
                     {
                         Last = Node;
                         while (Last.Next != null)
+                        {
                             Last = Last.Next;
-                        CustomerMemmorry New = new CustomerMemmorry();
-                        New.Current = Dummy;
+                        }
+
+                        CustomerMemmorry New = new CustomerMemmorry
+                        {
+                            Current = Dummy
+                        };
                         Last.CustomersNextAccess = New;
                     }
                 }
@@ -50,10 +61,13 @@ namespace RefrigtzW
             if ((t.CustomersCurrentAccess.CustomersName) != (p.CustomersCurrentAccess.CustomersName))
             {
                 if (t != null)
+                {
                     while ((t.CustomersNextAccess.CustomersCurrentAccess.CustomersName) != (p.CustomersCurrentAccess.CustomersName))
                     {
                         if (t.CustomersNextAccess != null)
+                        {
                             t = t.CustomersNextAccess;
+                        }
                         else
                         if ((t.CustomersCurrentAccess.CustomersName) != (p.CustomersCurrentAccess.CustomersName))
                         {
@@ -61,13 +75,18 @@ namespace RefrigtzW
                             break;
                         }
                     }
+                }
+
                 if (t != null)
                 {
                     if (t.CustomersNextAccess != null)
+                    {
                         t.CustomersNextAccess = t.CustomersNextAccess.CustomersNextAccess;
-
+                    }
                     else
+                    {
                         t.CustomersNextAccess = null;
+                    }
                 }
 
             }
@@ -82,32 +101,33 @@ namespace RefrigtzW
             CustomerMemmorry t = new CustomerMemmorry();
             t = p.CustomersNodeAccess;
             while (t.CustomersNextAccess != null)
+            {
                 t = t.CustomersNextAccess;
+            }
+
             if (t.CustomersCurrentAccess == null)
+            {
                 t.CustomersCurrentAccess = p.CustomersCurrentAccess;
+            }
             else
+            {
                 t.CustomersNextAccess = p;
+            }
         }
         public CustomerMemmorry CustomersNodeAccess
         {
-            get
-            { return Node; }
-            set
-            { Node = value; }
+            get => Node;
+            set => Node = value;
         }
         public Customers CustomersCurrentAccess
         {
-            get
-            { return Current; }
-            set
-            { Current = value; }
+            get => Current;
+            set => Current = value;
         }
         public CustomerMemmorry CustomersNextAccess
         {
-            get
-            { return Next; }
-            set
-            { Next = value; }
+            get => Next;
+            set => Next = value;
         }
     }
 }

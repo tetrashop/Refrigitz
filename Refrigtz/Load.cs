@@ -103,18 +103,19 @@ namespace Refrigtz
     public partial class Load : Form
     {
         public FormRefrigtz ttt = null;
-        bool Exit = false;
+        private bool Exit = false;
         //Intiate  Global Variables.
         [field: NonSerialized]
-        Thread tt = null;
+        private readonly Thread tt = null;
         [field: NonSerialized]
-        Thread t = null;
+        private readonly Thread t = null;
         public static Load THIS = null;
-        static void Log(Exception ex)
+
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -128,7 +129,7 @@ namespace Refrigtz
         {      //Initaie Global Variables.
             InitializeComponent();
 
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 tt = new Thread(new ThreadStart(baseThread));
@@ -141,14 +142,14 @@ namespace Refrigtz
         //Form Load Method Event Handling.
         private void Load_Load(object sender, EventArgs e)
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 if (!Exit)
                 {
                     Exit = true;
                     THIS = this;
-                    this.Location = this.PointToScreen(this.Location);
+                    Location = PointToScreen(Location);
                 }
                 else
                 {
@@ -156,23 +157,24 @@ namespace Refrigtz
                 }
             }
         }
+
         //Delegate Of Form Close Visibility.
-        delegate void SetLoadVisibleCallback();
+        private delegate void SetLoadVisibleCallback();
 
         public void SetLoadVisible()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {   // InvokeRequired required compares the thread ID of the
                 // calling thread to the thread ID of the creating thread.
                 // If these threads are different, it continue;s true.
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
                     try
                     {
 
                         SetLoadVisibleCallback d = new SetLoadVisibleCallback(SetLoadVisible);
-                        this.Invoke(new Action(() => this.Hide()));
+                        Invoke(new Action(() => Hide()));
                     }
                     catch (Exception t) { Log(t); }
                 }
@@ -180,30 +182,31 @@ namespace Refrigtz
                 {
                     try
                     {
-                        this.Hide();
+                        Hide();
                     }
                     catch (Exception t) { Log(t); }
                 }
 
             }
         }
+
         //Delegate Of Form Close Visibility.
-        delegate void SetCloseVisibleCallback();
+        private delegate void SetCloseVisibleCallback();
 
         public void SetCloseVisible()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {   // InvokeRequired required compares the thread ID of the
                 // calling thread to the thread ID of the creating thread.
                 // If these threads are different, it continue;s true.
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
                     try
                     {
 
                         SetCloseVisibleCallback d = new SetCloseVisibleCallback(SetCloseVisible);
-                        this.Invoke(new Action(() => this.Close()));
+                        Invoke(new Action(() => Close()));
                     }
                     catch (Exception t) { Log(t); }
                 }
@@ -211,16 +214,17 @@ namespace Refrigtz
                 {
                     try
                     {
-                        this.Close();
+                        Close();
                     }
                     catch (Exception t) { Log(t); }
                 }
             }
         }
+
         //Task Load Loop On Waiting Load.
-        void LoadThread()
+        private void LoadThread()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 do
@@ -231,10 +235,11 @@ namespace Refrigtz
                 SetLoadVisible();
             }
         }
+
         //base Task Load.
-        void baseThread()
+        private void baseThread()
         {
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {    //Initiate Task.
                 ttt = new FormRefrigtz(false);

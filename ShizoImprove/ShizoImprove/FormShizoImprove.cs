@@ -9,9 +9,9 @@ namespace ShizoImprove
 {
     public partial class FormShizoImprove : Form
     {
-        public String path = "D:\\";//'DVD'\\";
-        ShizoImprove t = null;
-        ShizoImproveFile tt = null;
+        public string path = "D:\\";//'DVD'\\";
+        private ShizoImprove t = null;
+        private ShizoImproveFile tt = null;
         public FormShizoImprove()
         {
             InitializeComponent();
@@ -32,7 +32,10 @@ namespace ShizoImprove
             if (!checkBoxActOnSuffixes.Checked)
             {
                 if (ShizoImprove.AllFiles.Count == 0)
+                {
                     t = new ShizoImprove(path);
+                }
+
                 progressBarWorking.Maximum = ShizoImprove.AllFiles.Count;
                 progressBarWorking.Minimum = 0;
                 t.FormShizoImprove(textBoxWorkingProject.Text, ref progressBarWorking);
@@ -41,7 +44,10 @@ namespace ShizoImprove
             else
             {
                 if (ShizoImproveFile.AllFiles.Count == 0)
+                {
                     tt = new ShizoImproveFile(path);
+                }
+
                 progressBarWorking.Maximum = ShizoImproveFile.AllFiles.Count;
                 progressBarWorking.Minimum = 0;
                 tt.FormShizoImprove(textBoxWorkingProject.Text, ref progressBarWorking);

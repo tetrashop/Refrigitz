@@ -9,20 +9,21 @@ namespace RefrigtzW
     [Serializable]
     public class DrawSoldier : ThingsConverter
     {
+        private readonly StringBuilder Space = new StringBuilder("&nbsp;");
 
-        StringBuilder Space = new StringBuilder("&nbsp;");
         //#pragma warning disable CS0414 // The field 'DrawSoldier.Spaces' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'DrawSoldier.Spaces' is assigned but its value is never used
-        int Spaces = 0;
+        private readonly int Spaces = 0;
 #pragma warning restore CS0414 // The field 'DrawSoldier.Spaces' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'DrawSoldier.Spaces' is assigned but its value is never used
 
 
         public int WinOcuuredatChiled = 0; public int[] LoseOcuuredatChiled = { 0, 0, 0 };
+
         //Iniatate Global Variables.
         //private readonly object balancelock = new object();
         //private readonly object balancelockS = new object();
-        List<int[]> ValuableSelfSupported = new List<int[]>();
+        private List<int[]> ValuableSelfSupported = new List<int[]>();
 
         public static Image[] S = new Image[2];
         public bool MovementsAStarGreedyHeuristicFoundT = false;
@@ -40,11 +41,12 @@ namespace RefrigtzW
         public int[,] Table = null;
         public int Order = 0;
         public int Current = 0;
-        int CurrentAStarGredyMax = -1;
-        static void Log(Exception ex)
+        private readonly int CurrentAStarGredyMax = -1;
+
+        private static void Log(Exception ex)
         {
 
-            Object a = new Object();
+            object a = new object();
             lock (a)
             {
                 string stackTrace = ex.ToString();
@@ -66,12 +68,15 @@ namespace RefrigtzW
             int a = ReturnHeuristic();
             if (MaxHeuristicxS < a)
             {
-                Object O2 = new Object();
+                object O2 = new object();
                 lock (O2)
                 {
                     MaxNotFound = false;
                     if (ThinkingRefrigtzW.MaxHeuristicx < MaxHeuristicxS)
+                    {
                         ThinkingRefrigtzW.MaxHeuristicx = a;
+                    }
+
                     MaxHeuristicxS = a;
                 }
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("MaxFound:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
@@ -87,9 +92,10 @@ namespace RefrigtzW
             int HaveKilled = 0;
             //long Time = TimeElapced.TimeNow();Spaces++;
             int a = 0;
-            for (var ii = 0; ii < AllDraw.SodierMovments; ii++)
-
+            for (int ii = 0; ii < AllDraw.SodierMovments; ii++)
+            {
                 a += SoldierThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
+            }
 
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ReturnHeuristic:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
             return a;
@@ -118,12 +124,19 @@ namespace RefrigtzW
                 ArrangmentsChanged = Arrangments;
                 //Initiate Global Variables.  
                 Table = new int[8, 8];
-                for (var ii = 0; ii < 8; ii++)
-                    for (var jj = 0; jj < 8; jj++)
+                for (int ii = 0; ii < 8; ii++)
+                {
+                    for (int jj = 0; jj < 8; jj++)
+                    {
                         Table[ii, jj] = Tab[ii, jj];
-                for (var ii = 0; ii < AllDraw.SodierMovments; ii++)
+                    }
+                }
 
+                for (int ii = 0; ii < AllDraw.SodierMovments; ii++)
+                {
                     SoldierThinking[ii] = new ThinkingRefrigtzW(ii, 1, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 4, Ord, TB, Cur, 16, 1);
+                }
+
                 Row = i;
                 Column = j;
                 color = a;
@@ -132,36 +145,46 @@ namespace RefrigtzW
             }
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("DrawSoldier:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
         }
-        int[,] CloneATable(int[,] Tab)
+
+        private int[,] CloneATable(int[,] Tab)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 int[,] Table = new int[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Table;
             }
 
         }
-        bool[,] CloneATable(bool[,] Tab)
+
+        private bool[,] CloneATable(bool[,] Tab)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 bool[,] Table = new bool[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CloneATable:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Table;
@@ -174,25 +197,36 @@ namespace RefrigtzW
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
             int[,] Tab = new int[8, 8];
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Tab[i, j] = this.Table[i, j];
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Tab[i, j] = Table[i, j];
+                }
+            }
             //Initiate a Object and Assignemt of a Clone to Construction of a Copy.
 
-            AA = new DrawSoldier(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, this.Row, this.Column, this.color, CloneATable(Tab), this.Order, false, this.Current
-                );
-            AA.ArrangmentsChanged = ArrangmentsChanged;
-            for (var i = 0; i < AllDraw.SodierMovments; i++)
+            AA = new DrawSoldier(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, color, CloneATable(Tab), Order, false, Current
+                )
+            {
+                ArrangmentsChanged = ArrangmentsChanged
+            };
+            for (int i = 0; i < AllDraw.SodierMovments; i++)
             {
 
-                AA.SoldierThinking[i] = new ThinkingRefrigtzW(i, 1, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
-                this.SoldierThinking[i].Clone(ref AA.SoldierThinking[i]);
+                AA.SoldierThinking[i] = new ThinkingRefrigtzW(i, 1, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)Row, (int)Column);
+                SoldierThinking[i].Clone(ref AA.SoldierThinking[i]);
 
             }
             AA.Table = new int[8, 8];
-            for (var ii = 0; ii < 8; ii++)
-                for (var jj = 0; jj < 8; jj++)
+            for (int ii = 0; ii < 8; ii++)
+            {
+                for (int jj = 0; jj < 8; jj++)
+                {
                     AA.Table[ii, jj] = Tab[ii, jj];
+                }
+            }
+
             AA.Row = Row;
             AA.Column = Column;
             AA.Order = Order;
@@ -204,7 +238,9 @@ namespace RefrigtzW
         public void DrawSoldierOnTable(ref Graphics g, int CellW, int CellH)
         {
             if (g == null)
+            {
                 return;
+            }
             //long Time = TimeElapced.TimeNow();Spaces++;
             try
             {
@@ -229,20 +265,20 @@ namespace RefrigtzW
                             //If Order is Gray.
                             if (Order == 1)
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {    //Draw an Instant from File of Gray Soldeirs.
-                                    g.DrawImage(S[0], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                    g.DrawImage(S[0], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
 
                                 }
                             }
                             else
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {    //Draw an Instant from File of Gray Soldeirs.
                                      //Draw an Instatnt of Brown Soldier File On the Table.
-                                    g.DrawImage(S[1], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                    g.DrawImage(S[1], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                                 }
                             }
 
@@ -255,20 +291,20 @@ namespace RefrigtzW
                             //Color of Gray.
                             if (Order == 1)
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {    //Draw an Instant from File of Gray Soldeirs.
                                      //Draw of Gray Minsister Image File By an Instant.
-                                    g.DrawImage(DrawMinister.M[0], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                    g.DrawImage(DrawMinister.M[0], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                                 }
                             }
                             else
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {    //Draw an Instant from File of Gray Soldeirs.
                                      //Draw a Image File on the Table Form n Instatnt One.
-                                    g.DrawImage(DrawMinister.M[1], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                    g.DrawImage(DrawMinister.M[1], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                                 }
                             }
 
@@ -279,20 +315,20 @@ namespace RefrigtzW
                             //Color of Gray.
                             if (Order == 1)
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {    //Draw an Instant from File of Gray Soldeirs.
                                      //Create on the Inststant of Gray Castles Images.
-                                    g.DrawImage(DrawCastle.C[0], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                    g.DrawImage(DrawCastle.C[0], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                                 }
                             }
                             else
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {    //Draw an Instant from File of Gray Soldeirs.
                                      //Creat of an Instant of Brown Image Castles.
-                                    g.DrawImage(DrawCastle.C[1], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                    g.DrawImage(DrawCastle.C[1], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                                 }
                             }
 
@@ -304,18 +340,18 @@ namespace RefrigtzW
                             //Color of Gray.
                             if (Order == 1)
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {//Draw an Instatnt of Gray Hourse Image File.
-                                    g.DrawImage(DrawHourse.H[0], new Rectangle((int)(Row * (float)CellW), (int)(Column * (int)CellH), CellW, CellH));
+                                    g.DrawImage(DrawHourse.H[0], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                                 }
                             }
                             else
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {//Creat of an Instatnt Hourse Image File.
-                                    g.DrawImage(DrawHourse.H[1], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                    g.DrawImage(DrawHourse.H[1], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                                 }
                             }
 
@@ -327,18 +363,18 @@ namespace RefrigtzW
                             //Color of Gray.
                             if (Order == 1)
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {//Draw an Instatnt Image of Gray Elephant.
-                                    g.DrawImage(DrawElefant.E[0], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                    g.DrawImage(DrawElefant.E[0], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                                 }
                             }
                             else
                             {
-                                Object O1 = new Object();
+                                object O1 = new object();
                                 lock (O1)
                                 {//Draw of Instant Image of Brown Elephant.
-                                    g.DrawImage(DrawElefant.E[1], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                    g.DrawImage(DrawElefant.E[1], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                                 }
                             }
 

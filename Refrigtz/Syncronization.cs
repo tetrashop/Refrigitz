@@ -4,14 +4,14 @@ using System.Threading;
 namespace Refrigtz
 {
     [Serializable]
-    class Syncronization
+    internal class Syncronization
     {
         //Error Handling.
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -20,8 +20,9 @@ namespace Refrigtz
             }
             catch (Exception t) { Log(t); }
         }
+
         //
-        bool LastState = false;
+        private readonly bool LastState = false;
         public Syncronization(Thread t, int a)
         {
             try
@@ -44,7 +45,8 @@ namespace Refrigtz
                 Log(tt);
             }
         }
-        bool Mutex(Thread t)
+
+        private bool Mutex(Thread t)
         {
             try
             {
@@ -59,7 +61,8 @@ namespace Refrigtz
             }
             return true;
         }
-        bool Event(Thread t)
+
+        private bool Event(Thread t)
         {
             try
             {
@@ -72,7 +75,8 @@ namespace Refrigtz
             }
             return true;
         }
-        bool Semaphore(Thread t)
+
+        private bool Semaphore(Thread t)
         {
             try
             {

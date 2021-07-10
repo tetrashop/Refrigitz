@@ -6,24 +6,25 @@ namespace Refrigtz
     [Serializable]
     public class TakeRoot
     {
-        String path3 = @"temp";
-        String AllDrawReplacement = "";
+        private readonly string path3 = @"temp";
+        private string AllDrawReplacement = "";
 
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6
-        public static String AllDrawKindString = "";
+        public static string AllDrawKindString = "";
 
         //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         public RefrigtzDLL.AllDraw t = null;
         //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         public QuantumRefrigiz.AllDraw tt = null;
+
         //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
 
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -32,36 +33,54 @@ namespace Refrigtz
             }
             catch (Exception t) { Log(t); }
         }
-        void SetAllDrawKindString()
+
+        private void SetAllDrawKindString()
         {
             if (AllDrawKind == 4)
+            {
                 AllDrawKindString = "AllDrawBT.asd";//Both True
+            }
             else
                 if (AllDrawKind == 3)
+            {
                 AllDrawKindString = "AllDrawFFST.asd";//First false second true
+            }
             else
                 if (AllDrawKind == 2)
+            {
                 AllDrawKindString = "AllDrawFTSF.asd";//First true second false
+            }
             else
                 if (AllDrawKind == 1)
+            {
                 AllDrawKindString = "AllDrawFFSF.asd";//Fist false second false
-
-
+            }
         }
-        void SetAllDrawKind(bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
+
+        private void SetAllDrawKind(bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
         {
             if (UsePenaltyRegardMechnisam && AStarGreedyHeuristic)
+            {
                 AllDrawKind = 4;
+            }
             else
           if ((!UsePenaltyRegardMechnisam) && AStarGreedyHeuristic)
+            {
                 AllDrawKind = 3;
+            }
+
             if (UsePenaltyRegardMechnisam && (!AStarGreedyHeuristic))
+            {
                 AllDrawKind = 2;
+            }
+
             if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHeuristic))
+            {
                 AllDrawKind = 1;
+            }
         }
 
-        bool DrawManagement(bool FOUND, bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
+        private bool DrawManagement(bool FOUND, bool UsePenaltyRegardMechnisam, bool AStarGreedyHeuristic)
         {
             SetAllDrawKind(UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
 
@@ -70,7 +89,7 @@ namespace Refrigtz
             SetAllDrawKindString();
 
             bool Found = false;
-            String P = Path.GetFullPath(path3);
+            string P = Path.GetFullPath(path3);
             AllDrawReplacement = Path.Combine(P, AllDrawKindString);
             if (File.Exists(AllDrawKindString))
             {
@@ -86,7 +105,10 @@ namespace Refrigtz
                     else if (((new System.IO.FileInfo(AllDrawKindString).Length) > (new System.IO.FileInfo(AllDrawReplacement)).Length))
                     {
                         if (File.Exists(AllDrawReplacement))
+                        {
                             File.Delete(AllDrawReplacement);
+                        }
+
                         File.Copy(AllDrawKindString, AllDrawReplacement);
                         Found = true;
                     }
@@ -94,7 +116,10 @@ namespace Refrigtz
                 else
                 {
                     if (!Directory.Exists(Path.GetFullPath(path3)))
+                    {
                         Directory.CreateDirectory(Path.GetFullPath(path3));
+                    }
+
                     File.Copy(AllDrawKindString, AllDrawReplacement);
                     Found = true;
 
@@ -125,7 +150,7 @@ namespace Refrigtz
                         if (!Quantum)
                         {
                             GalleryStudio.RefregizMemmory tr = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                            t = (RefrigtzDLL.AllDraw)tr.Load(Quantum, FormRefrigtz.OrderPlate);
+                            t = tr.Load(Quantum, FormRefrigtz.OrderPlate);
                             if (t != null)
                             {
                                 Curent.Draw = t;
@@ -146,7 +171,7 @@ namespace Refrigtz
                         else
                         {
                             GalleryStudio.RefregizMemmory tr = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                            tt = (QuantumRefrigiz.AllDraw)tr.LoadQ(Quantum, FormRefrigtz.OrderPlate);
+                            tt = tr.LoadQ(Quantum, FormRefrigtz.OrderPlate);
                             if (t != null)
                             {
 
@@ -179,14 +204,16 @@ namespace Refrigtz
                 if (!Quantum)
                 {
                     if (!RefrigtzDLL.AllDraw.ChangedInTreeOccured)
+                    {
                         return true;
+                    }
                 }
                 else
                 {
                     if (!QuantumRefrigiz.AllDraw.ChangedInTreeOccured)
+                    {
                         return true;
-
-
+                    }
                 }
             }
             /*if (!Quantum)

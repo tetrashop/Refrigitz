@@ -11,7 +11,7 @@ namespace GalleryStudio
     public class RefregitzOperator//:RefregizMemmory
     {
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6
-        public static String AllDrawKindString = "";
+        public static string AllDrawKindString = "";
 
 
         public bool MovementsAStarGreedyHeuristicFoundT = false;
@@ -22,17 +22,17 @@ namespace GalleryStudio
         public bool OnlySelfT = false;
         public bool AStarGreedyHeuristicT = false;
         public bool ArrangmentsT = false;
-        public static String Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+        public static string Root = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+        private readonly string SAllDraw = "";
 
-        string SAllDraw = "";
         //static GalleryStudio.RefregizMemmory Node;
         //RefrigtzW.AllDraw Current = null;
         //GalleryStudio.RefregizMemmory Next = null;
         //int Kind = -1;
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
 
-            Object a = new Object();
+            object a = new object();
             lock (a)
             {
                 string stackTrace = ex.ToString();
@@ -40,39 +40,56 @@ namespace GalleryStudio
             }
 
         }
-        void SetAllDrawKindString()
+
+        private void SetAllDrawKindString()
         {
             if (AllDrawKind == 4)
+            {
                 AllDrawKindString = "AllDrawBT.asd";//Both True
+            }
             else
                 if (AllDrawKind == 3)
+            {
                 AllDrawKindString = "AllDrawFFST.asd";//First false second true
+            }
             else
                 if (AllDrawKind == 2)
+            {
                 AllDrawKindString = "AllDrawFTSF.asd";//First true second false
+            }
             else
                 if (AllDrawKind == 1)
+            {
                 AllDrawKindString = "AllDrawFFSF.asd";//Fist false second false
-
-
+            }
         }
         public RefregitzOperator(int Order, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments//) : base(MovementsAStarGreedyHeuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments
             )
         {
             if (UsePenaltyRegardMechnisamT && AStarGreedyHeuristicT)
+            {
                 AllDrawKind = 4;
+            }
             else
                                             if ((!UsePenaltyRegardMechnisamT) && AStarGreedyHeuristicT)
+            {
                 AllDrawKind = 3;
+            }
+
             if (UsePenaltyRegardMechnisamT && (!AStarGreedyHeuristicT))
+            {
                 AllDrawKind = 2;
+            }
+
             if ((!UsePenaltyRegardMechnisamT) && (!AStarGreedyHeuristicT))
+            {
                 AllDrawKind = 1;
+            }
             //Set Configuration To True for some unknown reason!.
             //UpdateConfigurationTableVal = true;                             
             SetAllDrawKindString();
             SAllDraw = AllDrawKindString;
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 MovementsAStarGreedyHeuristicFoundT = MovementsAStarGreedyHeuristicTFou;
@@ -90,7 +107,7 @@ namespace GalleryStudio
 
         public RefrigtzW.AllDraw GetRefregiz(int No)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
 
@@ -104,9 +121,14 @@ namespace GalleryStudio
                 while (p <= No)
                 {
                     if (DummyFileStream.Length >= DummyFileStream.Position)
+                    {
                         Dummy = (RefrigtzW.AllDraw)Formatters.Deserialize(DummyFileStream);
+                    }
                     else
+                    {
                         Dummy = null;
+                    }
+
                     p++;
                 }
                 DummyFileStream.Flush(); DummyFileStream.Close();

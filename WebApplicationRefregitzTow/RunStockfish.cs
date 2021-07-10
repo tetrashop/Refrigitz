@@ -1,6 +1,6 @@
 ﻿namespace Refrigtz
 {
-    class RunStockfish
+    internal class RunStockfish
     {
     }
 }

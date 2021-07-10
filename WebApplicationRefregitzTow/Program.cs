@@ -6,18 +6,16 @@ using System.Threading;
 using System.Threading.Tasks;
 namespace RefrigtzW
 {
-
-
-    static class Program
+    internal static class Program
     {
         public static long SomeExtremelyLargeNumber { get; private set; }
 
         /// <summary>
         /// The main en
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
 
-            Object a = new Object();
+            object a = new object();
             lock (a)
             {
                 string stackTrace = ex.ToString();
@@ -33,7 +31,7 @@ namespace RefrigtzW
             // Of course this only affects the main thread rather than child threads.
             Thread.CurrentThread.Priority = ThreadPriority.Highest;
 
-            Int64 seed = SomeExtremelyLargeNumber; // Millions of digits.
+            long seed = SomeExtremelyLargeNumber; // Millions of digits.
             int[] nums = Enumerable.Range(0, 1000000).ToArray();
             long total = 0;
 
@@ -50,7 +48,7 @@ namespace RefrigtzW
         }
         public class StackOverflowDetector
         {
-            static void CheckStackDepth()
+            private static void CheckStackDepth()
             {
                 if (new StackTrace().FrameCount > 60) // some arbitrary limit
                 {

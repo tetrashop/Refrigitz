@@ -6,14 +6,18 @@ namespace RefrigtzW
 
     public class PhotoMemmorry
     {
-        const string S = "Photos.txt";
-        static RefrigtzW.PhotoMemmorry Node = new PhotoMemmorry();
-        RefrigtzW.Photo Current = new Photo();
-        RefrigtzW.PhotoMemmorry Next = null;
+        private const string S = "Photos.txt";
+        private static RefrigtzW.PhotoMemmorry Node = new PhotoMemmorry();
+        private RefrigtzW.Photo Current = new Photo();
+        private RefrigtzW.PhotoMemmorry Next = null;
 
         public void Load()
         {
-            if (Node == null) Node = new PhotoMemmorry();
+            if (Node == null)
+            {
+                Node = new PhotoMemmorry();
+            }
+
             Node.PhotosNextAccess = null;
             Node.PhotosCurrentAccess = null;
             try
@@ -35,9 +39,14 @@ namespace RefrigtzW
                     {
                         Last = Node;
                         while (Last.Next != null)
+                        {
                             Last = Last.Next;
-                        PhotoMemmorry New = new PhotoMemmorry();
-                        New.Current = Dummy;
+                        }
+
+                        PhotoMemmorry New = new PhotoMemmorry
+                        {
+                            Current = Dummy
+                        };
                         Last.PhotosNextAccess = New;
                     }
                 }
@@ -56,10 +65,13 @@ namespace RefrigtzW
             if ((t.PhotosCurrentAccess.PhotoNameAccess) != (p.PhotosCurrentAccess.PhotoNameAccess))
             {
                 if (t != null)
+                {
                     while ((t.PhotosNextAccess.PhotosCurrentAccess.PhotoNameAccess) != (p.PhotosCurrentAccess.PhotoNameAccess))
                     {
                         if (t.PhotosNextAccess != null)
+                        {
                             t = t.PhotosNextAccess;
+                        }
                         else
                         if ((t.PhotosCurrentAccess.PhotoNameAccess) != (p.PhotosCurrentAccess.PhotoNameAccess))
                         {
@@ -67,13 +79,18 @@ namespace RefrigtzW
                             break;
                         }
                     }
+                }
+
                 if (t != null)
                 {
                     if (t.PhotosNextAccess != null)
+                    {
                         t.PhotosNextAccess = t.PhotosNextAccess.PhotosNextAccess;
-
+                    }
                     else
+                    {
                         t.PhotosNextAccess = null;
+                    }
                 }
 
             }
@@ -91,47 +108,38 @@ namespace RefrigtzW
             {
                 t = p.PhotosNodeAccess;
                 while (t.PhotosNextAccess != null)
+                {
                     t = t.PhotosNextAccess;
+                }
+
                 if (t.PhotosCurrentAccess == null)
+                {
                     t.PhotosCurrentAccess = p.PhotosCurrentAccess;
+                }
                 else
+                {
                     t.PhotosNextAccess = p;
+                }
             }
             else
+            {
                 Node = p;
+            }
         }
         public PhotoMemmorry PhotosNodeAccess
         {
-            get
-            {
-                return Node;
-            }
-            set
-            {
-                Node = value;
-            }
+            get => Node;
+            set => Node = value;
         }
         public Photo PhotosCurrentAccess
         {
-            get
-            {
-                return Current;
-            }
-            set
-            {
-                Current = value;
-            }
+            get => Current;
+            set => Current = value;
         }
         public PhotoMemmorry PhotosNextAccess
         {
-            get
-            {
-                return Next;
-            }
-            set
-            {
-                Next = value;
-            }
+            get => Next;
+            set => Next = value;
         }
     }
 }

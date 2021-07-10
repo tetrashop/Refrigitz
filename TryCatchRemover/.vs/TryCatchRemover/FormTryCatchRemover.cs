@@ -1163,11 +1163,11 @@ namespace TryCatchRemover
 {
     public partial class FormTryCatchRemover : Form
     {
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -1183,13 +1183,14 @@ namespace TryCatchRemover
         {
             InitializeComponent();
         }
-        bool IgnoreofCommentsDoubleSlash(String Contain, int Main)
+
+        private bool IgnoreofCommentsDoubleSlash(string Contain, int Main)
         {
             int A = 0;
             int Begin = 0, End = 0;
             do
             {
-                String S = Contain.Substring(A, Contain.Length - A);
+                string S = Contain.Substring(A, Contain.Length - A);
 
                 Begin = S.IndexOf("//");
                 End = S.IndexOf('\0');
@@ -1215,7 +1216,8 @@ namespace TryCatchRemover
             } while (A < Contain.Length);
             return false;
         }
-        int FoundOfProperClosedBracetincatch(String Contain, int MainOpenBracketIndex)
+
+        private int FoundOfProperClosedBracetincatch(string Contain, int MainOpenBracketIndex)
         {
             try
             {
@@ -1225,7 +1227,9 @@ namespace TryCatchRemover
                     bool Ign = IgnoreofCommentsDoubleSlash(Contain, MainOpenBracketIndex);
 
                     if (Contain[MainOpenBracketIndex].Equals('{') && (!Ign))
+                    {
                         IsMainClosedBraket++;
+                    }
 
                     if (Contain[MainOpenBracketIndex].Equals('}') && IsMainClosedBraket == 1 && (!Ign))
                     {
@@ -1233,7 +1237,10 @@ namespace TryCatchRemover
                     }
                     else
                     if (Contain[MainOpenBracketIndex].Equals('}') && IsMainClosedBraket >= 1 && (!Ign))
+                    {
                         IsMainClosedBraket--;
+                    }
+
                     MainOpenBracketIndex++;
                 } while (MainOpenBracketIndex < Contain.Length);
             }
@@ -1244,7 +1251,7 @@ namespace TryCatchRemover
             return MainOpenBracketIndex;
         }
 
-        void CatchRemove(ref String Contain, int S, int A2)
+        private void CatchRemove(ref string Contain, int S, int A2)
         {
             try
             {
@@ -1259,7 +1266,10 @@ namespace TryCatchRemover
                     {
 
                         while (!(Contain[A2].Equals('}')))
+                        {
                             A2--;
+                        }
+
                         A2--;
                         int A1 = FoundOfProperClosedBracetincatch(Contain, P);
 
@@ -1275,7 +1285,8 @@ namespace TryCatchRemover
         {
 
         }
-        int IndexofType(String A, ref int lenght)
+
+        private int IndexofType(string A, ref int lenght)
         {
             if (A.ToLower().Contains("int "))
             {
@@ -1321,8 +1332,8 @@ namespace TryCatchRemover
             if (CheckBoxVarConvertOnly.Checked)
             {
                 OpenFileDialogTryCatchRemover.ShowDialog();
-                String A = OpenFileDialogTryCatchRemover.FileName;
-                String Contain = System.IO.File.ReadAllText(A);
+                string A = OpenFileDialogTryCatchRemover.FileName;
+                string Contain = System.IO.File.ReadAllText(A);
                 int lengh = 0;
                 int A1 = 0;
                 int A2 = A1;
@@ -1342,8 +1353,8 @@ namespace TryCatchRemover
                 try
                 {
                     OpenFileDialogTryCatchRemover.ShowDialog();
-                    String A = OpenFileDialogTryCatchRemover.FileName;
-                    String Contain = System.IO.File.ReadAllText(A);
+                    string A = OpenFileDialogTryCatchRemover.FileName;
+                    string Contain = System.IO.File.ReadAllText(A);
                     int A1 = Contain.IndexOf("try");
                     int A2 = A1;
                     try
@@ -1353,9 +1364,15 @@ namespace TryCatchRemover
                             A1 = Contain.IndexOf("try");
                             A2 = A1;
                             if (A1 < 0)
+                            {
                                 break;
+                            }
+
                             while ((!(Contain[A2].Equals('{'))) && (A2 < Contain.Length))
+                            {
                                 A2++;
+                            }
+
                             Contain = Contain.Remove(A1, A2 - A1 + 1);
                         }
                     }
@@ -1408,8 +1425,8 @@ namespace TryCatchRemover
             if (CheckBoxVarConvertOnly.Checked)
             {
                 OpenFileDialogTryCatchRemover.ShowDialog();
-                String A = OpenFileDialogTryCatchRemover.FileName;
-                String Contain = System.IO.File.ReadAllText(A);
+                string A = OpenFileDialogTryCatchRemover.FileName;
+                string Contain = System.IO.File.ReadAllText(A);
                 int lengh = 0;
                 int A1 = 0;
                 int A2 = A1;
@@ -1429,8 +1446,8 @@ namespace TryCatchRemover
                 try
                 {
                     OpenFileDialogTryCatchRemover.ShowDialog();
-                    String A = OpenFileDialogTryCatchRemover.FileName;
-                    String Contain = System.IO.File.ReadAllText(A);
+                    string A = OpenFileDialogTryCatchRemover.FileName;
+                    string Contain = System.IO.File.ReadAllText(A);
                     int A1 = Contain.IndexOf("try");
                     int A2 = A1;
                     try
@@ -1440,9 +1457,15 @@ namespace TryCatchRemover
                             A1 = Contain.IndexOf("try");
                             A2 = A1;
                             if (A1 < 0)
+                            {
                                 break;
+                            }
+
                             while ((!(Contain[A2].Equals('{'))) && (A2 < Contain.Length))
+                            {
                                 A2++;
+                            }
+
                             Contain = Contain.Remove(A1, A2 - A1 + 1);
                         }
                     }
@@ -1468,19 +1491,30 @@ namespace TryCatchRemover
         private void buttonComment_Click(object sender, EventArgs e)
         {
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String A = OpenFileDialogTryCatchRemover.FileName;
-            String Contain = System.IO.File.ReadAllText(A);
-            int i = 0;
+            string A = OpenFileDialogTryCatchRemover.FileName;
+            string Contain = System.IO.File.ReadAllText(A);
             do
             {
                 if (!(Contain.Contains("/*") && Contain.Contains("*/")))
+                {
                     break;
+                }
+
                 if (Contain.IndexOf("*/") == -1)
+                {
                     break;
+                }
+
                 if (Contain.IndexOf("/*") == -1)
+                {
                     break;
+                }
+
                 if (Contain.IndexOf("*/") + 2 > Contain.Length)
+                {
                     break;
+                }
+
                 Contain = Contain.Replace(Contain.Substring(Contain.IndexOf("/*"), Contain.IndexOf("*/") + 2 - Contain.IndexOf("/*")), "");
 
             } while (Contain.Contains("*/"));
@@ -1493,8 +1527,8 @@ namespace TryCatchRemover
         private void buttonCodeComment_Click(object sender, EventArgs e)
         {
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String A = OpenFileDialogTryCatchRemover.FileName;
-            String[] Contain = System.IO.File.ReadAllLines(A);
+            string A = OpenFileDialogTryCatchRemover.FileName;
+            string[] Contain = System.IO.File.ReadAllLines(A);
             int i = 0;
             do
             {
@@ -1503,119 +1537,153 @@ namespace TryCatchRemover
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("for") != -1 && Contain[i].IndexOf("(") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("if") != -1 && Contain[i].IndexOf("(") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("while") != -1 && (Contain[i].Length == 5 && Contain[i].IndexOf("}") != -1) && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("do") != -1 && (Contain[i].IndexOf("{") != -1 || Contain[i].Length == 2) && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("Parallel.") != -1 && Contain[i].IndexOf("=>") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("var") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("int") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("double") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("float") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("char") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("string") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("String") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("Int32") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("Int64") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("Double") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("//") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("new") != -1 && (Contain[i].IndexOf("(") != -1 || Contain[i].IndexOf(")") != -1) && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("//");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
 
 
@@ -1624,224 +1692,288 @@ namespace TryCatchRemover
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("if") != -1 && Contain[i].IndexOf("(") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("while") != -1 && (Contain[i].Length == 5 && Contain[i].IndexOf("}") != -1) && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("do") != -1 && (Contain[i].IndexOf("{") != -1 || Contain[i].Length == 2) && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("Parallel.") != -1 && Contain[i].IndexOf("=>") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("var") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("int") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("double") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("float") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("char") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("string") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("String") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("Int32") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("Int64") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("Double") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("///") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("new") != -1 && (Contain[i].IndexOf("(") != -1 || Contain[i].IndexOf(")") != -1) && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("///");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("for") != -1 && Contain[i].IndexOf("(") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("if") != -1 && Contain[i].IndexOf("(") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("while") != -1 && (Contain[i].Length == 5 && Contain[i].IndexOf("}") != -1) && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("do") != -1 && (Contain[i].IndexOf("{") != -1 || Contain[i].Length == 2) && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("Parallel.") != -1 && Contain[i].IndexOf("=>") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("var") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("int") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("double") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("float") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("char") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("string") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("String") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("Int32") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("Int64") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("Double") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 if (Contain[i].IndexOf("////") != -1 && Contain[i].IndexOf("=") != -1 && Contain[i].IndexOf("new") != -1 && (Contain[i].IndexOf("(") != -1 || Contain[i].IndexOf(")") != -1) && Contain[i].IndexOf("/r") != -1)
                 {
                     int ii = Contain[i].IndexOf("////");
                     int jj = Contain[i].Length;
                     if (jj > ii)
+                    {
                         Contain[i] = Contain[i].Replace(Contain[i].Substring(ii, jj - ii), "");
+                    }
                 }
                 i++;
             } while (i < Contain.Length);
@@ -1849,20 +1981,27 @@ namespace TryCatchRemover
             System.IO.File.WriteAllLines(saveFileDialogTryCatchRemover.FileName, Contain);
             MessageBox.Show("Done!");
         }
-        String[] Remove(String[] In, int i)
+
+        private string[] Remove(string[] In, int i)
         {
-            String[] Re = new String[In.Length - 1];
+            string[] Re = new string[In.Length - 1];
             for (int o = 0; o < i; o++)
+            {
                 Re[o] = In[o];
+            }
+
             for (int o = i; o < In.Length - 1; o++)
+            {
                 Re[o] = In[o + 1];
+            }
+
             return Re;
         }
         private void buttonSpaceLine_Click(object sender, EventArgs e)
         {
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String A = OpenFileDialogTryCatchRemover.FileName;
-            String[] Contain = System.IO.File.ReadAllLines(A);
+            string A = OpenFileDialogTryCatchRemover.FileName;
+            string[] Contain = System.IO.File.ReadAllLines(A);
             int i = 0;
             do
             {
@@ -1884,14 +2023,17 @@ namespace TryCatchRemover
 
         private void buttonTetraShop_Click(object sender, EventArgs e)
         {
-            String[] TetraShop = new String[40];
+            string[] TetraShop = new string[40];
             TetraShop[0] = "/";
 
             for (int j = 0; j < 40; j++)
             {
                 int i = 0;
                 if (j != 0)
+                {
                     TetraShop[j] = "";
+                }
+
                 bool SetB = true;
                 do
                 {
@@ -1962,12 +2104,15 @@ namespace TryCatchRemover
 
 
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String A = OpenFileDialogTryCatchRemover.FileName;
-            String Contain = System.IO.File.ReadAllText(A);
-            String Brand = "";
+            string A = OpenFileDialogTryCatchRemover.FileName;
+            string Contain = System.IO.File.ReadAllText(A);
+            string Brand = "";
 
             for (int i = 0; i < 40; i++)
+            {
                 Brand += TetraShop[i];
+            }
+
             Contain = Brand + Contain;
             saveFileDialogTryCatchRemover.ShowDialog();
             System.IO.File.WriteAllText(saveFileDialogTryCatchRemover.FileName, Contain);
@@ -1978,7 +2123,7 @@ namespace TryCatchRemover
         {
             MessageBox.Show("Select Image:");
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String AImage = OpenFileDialogTryCatchRemover.FileName;
+            string AImage = OpenFileDialogTryCatchRemover.FileName;
             Image AI = Image.FromFile(AImage);
             int Wi = AI.Width;
             int He = AI.Height;
@@ -2000,13 +2145,16 @@ namespace TryCatchRemover
             }
             Bitmap TetraShopImage = new Bitmap(AI, new Size(Wi, He));
             Graphics g = Graphics.FromImage(TetraShopImage);
-            String[] TetraShop = new String[n];
+            string[] TetraShop = new string[n];
             TetraShop[0] = "/*";
 
             for (int j = 0; j < n; j++)
             {
                 if (j != 0)
+                {
                     TetraShop[j] = "";
+                }
+
                 for (int i = 0; i < n; i++)
                 {
 
@@ -2023,9 +2171,13 @@ namespace TryCatchRemover
                             {
 
                                 if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) > 125)
+                                {
                                     TetraShop[j] += " ";
-                                else TetraShop[j] += "*";
-
+                                }
+                                else
+                                {
+                                    TetraShop[j] += "*";
+                                }
                             }
                             else
                             {
@@ -2069,9 +2221,13 @@ namespace TryCatchRemover
                                 {
 
                                     if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) > 125)
+                                    {
                                         TetraShop[j] += " ";
-                                    else TetraShop[j] += "*";
-
+                                    }
+                                    else
+                                    {
+                                        TetraShop[j] += "*";
+                                    }
                                 }
                             }
                         }
@@ -2096,12 +2252,15 @@ namespace TryCatchRemover
 
             MessageBox.Show("Select Text To Open:");
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String A = OpenFileDialogTryCatchRemover.FileName;
-            String Contain = System.IO.File.ReadAllText(A);
-            String Brand = "";
+            string A = OpenFileDialogTryCatchRemover.FileName;
+            string Contain = System.IO.File.ReadAllText(A);
+            string Brand = "";
 
             for (int i = 0; i < n; i++)
+            {
                 Brand += TetraShop[i];
+            }
+
             Contain = Brand + Contain;
             MessageBox.Show("Select Text To Save:");
             saveFileDialogTryCatchRemover.ShowDialog();
@@ -2114,7 +2273,7 @@ namespace TryCatchRemover
         {
             MessageBox.Show("Select Image:");
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String AImage = OpenFileDialogTryCatchRemover.FileName;
+            string AImage = OpenFileDialogTryCatchRemover.FileName;
             Image AI = Image.FromFile(AImage);
             int Wi = AI.Width;
             int He = AI.Height;
@@ -2136,13 +2295,16 @@ namespace TryCatchRemover
             }
             Bitmap TetraShopImage = new Bitmap(AI);
             Graphics g = Graphics.FromImage(TetraShopImage);
-            String[] TetraShop = new String[n];
+            string[] TetraShop = new string[n];
             TetraShop[0] = "/*";
 
             for (int j = 0; j < n; j++)
             {
                 if (j != 0)
+                {
                     TetraShop[j] = "";
+                }
+
                 for (int i = 0; i < n; i++)
                 {
 
@@ -2160,12 +2322,18 @@ namespace TryCatchRemover
 
 
                                 if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 86)
+                                {
                                     TetraShop[j] += "*";
+                                }
                                 else
                                 if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 172)
+                                {
                                     TetraShop[j] += ".";
-                                else TetraShop[j] += " ";
-
+                                }
+                                else
+                                {
+                                    TetraShop[j] += " ";
+                                }
                             }
                             else
                             {
@@ -2208,13 +2376,18 @@ namespace TryCatchRemover
                                 if (He > j && Wi > i)
                                 {
                                     if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 86)
+                                    {
                                         TetraShop[j] += "*";
+                                    }
                                     else
                                                            if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 172)
+                                    {
                                         TetraShop[j] += ".";
-                                    else TetraShop[j] += " ";
-
-
+                                    }
+                                    else
+                                    {
+                                        TetraShop[j] += " ";
+                                    }
                                 }
                             }
                         }
@@ -2239,12 +2412,15 @@ namespace TryCatchRemover
 
             MessageBox.Show("Select Text To Open:");
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String A = OpenFileDialogTryCatchRemover.FileName;
-            String Contain = System.IO.File.ReadAllText(A);
-            String Brand = "";
+            string A = OpenFileDialogTryCatchRemover.FileName;
+            string Contain = System.IO.File.ReadAllText(A);
+            string Brand = "";
 
             for (int i = 0; i < n; i++)
+            {
                 Brand += TetraShop[i];
+            }
+
             Contain = Brand + Contain;
             MessageBox.Show("Select Text To Save:");
             saveFileDialogTryCatchRemover.ShowDialog();
@@ -2257,7 +2433,7 @@ namespace TryCatchRemover
         {
             MessageBox.Show("Select Image:");
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String AImage = OpenFileDialogTryCatchRemover.FileName;
+            string AImage = OpenFileDialogTryCatchRemover.FileName;
             Image AI = Image.FromFile(AImage);
             int Wi = AI.Width;
             int He = AI.Height;
@@ -2279,13 +2455,16 @@ namespace TryCatchRemover
             }
             Bitmap TetraShopImage = new Bitmap(AI);
             Graphics g = Graphics.FromImage(TetraShopImage);
-            String[] TetraShop = new String[n];
+            string[] TetraShop = new string[n];
             TetraShop[0] = "/*";
 
             for (int j = 0; j < n; j++)
             {
                 if (j != 0)
+                {
                     TetraShop[j] = "";
+                }
+
                 for (int i = 0; i < n; i++)
                 {
 
@@ -2303,17 +2482,25 @@ namespace TryCatchRemover
 
 
                                 if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 62)
+                                {
                                     TetraShop[j] += "*";
+                                }
                                 else
 
                                if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 124)
+                                {
                                     TetraShop[j] += ",";
+                                }
                                 else
 
                                if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 186)
+                                {
                                     TetraShop[j] += ".";
-                                else TetraShop[j] += " ";
-
+                                }
+                                else
+                                {
+                                    TetraShop[j] += " ";
+                                }
                             }
                             else
                             {
@@ -2356,18 +2543,25 @@ namespace TryCatchRemover
                                 if (He > j && Wi > i)
                                 {
                                     if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 62)
+                                    {
                                         TetraShop[j] += "*";
+                                    }
                                     else
 
                                     if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 124)
+                                    {
                                         TetraShop[j] += ",";
+                                    }
                                     else
 
                                     if (((TetraShopImage.GetPixel(i, j).R + TetraShopImage.GetPixel(i, j).B + TetraShopImage.GetPixel(i, j).G) / 3) < 186)
+                                    {
                                         TetraShop[j] += ".";
-                                    else TetraShop[j] += " ";
-
-
+                                    }
+                                    else
+                                    {
+                                        TetraShop[j] += " ";
+                                    }
                                 }
                             }
                         }
@@ -2392,12 +2586,15 @@ namespace TryCatchRemover
 
             MessageBox.Show("Select Text To Open:");
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String A = OpenFileDialogTryCatchRemover.FileName;
-            String Contain = System.IO.File.ReadAllText(A);
-            String Brand = "";
+            string A = OpenFileDialogTryCatchRemover.FileName;
+            string Contain = System.IO.File.ReadAllText(A);
+            string Brand = "";
 
             for (int i = 0; i < n; i++)
+            {
                 Brand += TetraShop[i];
+            }
+
             Contain = Brand + Contain;
             MessageBox.Show("Select Text To Save:");
             saveFileDialogTryCatchRemover.ShowDialog();
@@ -2414,12 +2611,20 @@ namespace TryCatchRemover
             for (int i = char.MinValue; i < char.MaxValue; i++)
             {
                 if (i < 33)
+                {
                     continue;
+                }
+
                 if (i > 127 && i < 161)
+                {
                     continue;
+                }
 
                 if (System.Convert.ToChar(i) == '\0' || System.Convert.ToChar(i) == '\\' || System.Convert.ToChar(i) == '\t' || System.Convert.ToChar(i) == '\f' || System.Convert.ToChar(i) == '\r' || System.Convert.ToChar(i) == '\n' || System.Convert.ToChar(i) == '\a' || System.Convert.ToChar(i) == '\b' || System.Convert.ToChar(i) == '\v')
+                {
                     continue;
+                }
+
                 if (System.Convert.ToChar(i).GetType().IsAssignableFrom(System.Convert.ToChar(i).GetType()))
                 {
 
@@ -2439,7 +2644,7 @@ namespace TryCatchRemover
 
             MessageBox.Show("Select Image:");
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String AImage = OpenFileDialogTryCatchRemover.FileName;
+            string AImage = OpenFileDialogTryCatchRemover.FileName;
             Bitmap AI = new Bitmap(Image.FromFile(AImage));
             int Wi = AI.Width;
             int He = AI.Height;
@@ -2475,13 +2680,16 @@ namespace TryCatchRemover
             }
             Bitmap TetraShopImage = d;
             Graphics g = Graphics.FromImage(TetraShopImage);
-            String[] TetraShop = new String[n];
+            string[] TetraShop = new string[n];
             TetraShop[0] = "/*";
 
             for (int j = 0; j < n; j++)
             {
                 if (j != 0)
+                {
                     TetraShop[j] = "";
+                }
+
                 for (int i = 0; i < n; i++)
                 {
 
@@ -2502,12 +2710,18 @@ namespace TryCatchRemover
                                 if (TetraShop[j].Length > 0)
                                 {
                                     if (!((TetraShop[j][TetraShop[j].Length - 1] == '/' && Lists[f] == '*') || ((TetraShop[j][TetraShop[j].Length - 1] == '*' && Lists[f] == '/'))))
+                                    {
                                         TetraShop[j] += Lists[f];
+                                    }
                                     else
+                                    {
                                         TetraShop[j] += " ";
+                                    }
                                 }
                                 else
+                                {
                                     TetraShop[j] += " ";
+                                }
                             }
                             else
                             {
@@ -2553,12 +2767,18 @@ namespace TryCatchRemover
                                     if (TetraShop[j].Length > 0)
                                     {
                                         if (!((TetraShop[j][TetraShop[j].Length - 1] == '/' && Lists[f] == '*') || ((TetraShop[j][TetraShop[j].Length - 1] == '*' && Lists[f] == '/'))))
+                                        {
                                             TetraShop[j] += Lists[f];
+                                        }
                                         else
+                                        {
                                             TetraShop[j] += " ";
+                                        }
                                     }
                                     else
+                                    {
                                         TetraShop[j] += " ";
+                                    }
                                 }
                             }
                         }
@@ -2583,12 +2803,15 @@ namespace TryCatchRemover
 
             MessageBox.Show("Select Text To Open:");
             OpenFileDialogTryCatchRemover.ShowDialog();
-            String A = OpenFileDialogTryCatchRemover.FileName;
-            String Contain = System.IO.File.ReadAllText(A);
-            String Brand = "";
+            string A = OpenFileDialogTryCatchRemover.FileName;
+            string Contain = System.IO.File.ReadAllText(A);
+            string Brand = "";
 
             for (int i = 0; i < n; i++)
+            {
                 Brand += TetraShop[i];
+            }
+
             Contain = Brand + Contain;
             MessageBox.Show("Select Text To Save:");
             saveFileDialogTryCatchRemover.ShowDialog();
@@ -2616,29 +2839,35 @@ namespace ImageTextDeepLearning
                 fonts.Clear();
                 bool Do = ListAllFonts();
                 if (!Do)
+                {
                     fonts.Clear();
+                }
             }
 
         }
 
         //Initiate global vars
-        int Width = 10, Height = 10;
-        List<String> KeyboardAllStrings = new List<String>();
-        List<Bitmap> KeyboardAllImage = new List<Bitmap>();
-        List<bool[,]> KeyboardAllConjunctionMatrix = new List<bool[,]>();
-        List<bool[,]> KeyboardAllConjunctionMatrixList = new List<bool[,]>();
+        private readonly int Width = 10, Height = 10;
+        private List<string> KeyboardAllStrings = new List<string>();
+        private List<Bitmap> KeyboardAllImage = new List<Bitmap>();
+        private List<bool[,]> KeyboardAllConjunctionMatrix = new List<bool[,]>();
+        private List<bool[,]> KeyboardAllConjunctionMatrixList = new List<bool[,]>();
+
         //Crate all able chars on List indevidully
-        bool CreateString(char[] A)
+        private bool CreateString(char[] A)
         {
             //when not existence
             if (KeyboardAllStrings.Count == 0)
             {
                 for (int i = 0; i < 256; i++)
+                {
                     KeyboardAllStrings.Add(A[i].ToString());
+                }
             }
             return true;
         }
-        bool ListAllFonts()
+
+        private bool ListAllFonts()
         {
             try
             {
@@ -2647,11 +2876,12 @@ namespace ImageTextDeepLearning
                     fonts.Add(font.Name);
                 }
             }
-            catch (Exception t) { return false; }
+            catch (Exception) { return false; }
             return true;
         }
+
         //Savle all
-        bool SaveAll()
+        private bool SaveAll()
         {
             try
             {
@@ -2667,7 +2897,7 @@ namespace ImageTextDeepLearning
                            }
                        }*/
                     //serialized on take root
-                    if (this.KeyboardAllImage.Count > 0)
+                    if (KeyboardAllImage.Count > 0)
                     {
                         Refrigtz.TakeRoot t = new Refrigtz.TakeRoot();
                         t.Save(this, "KeyboardAllStrings.asd");
@@ -2677,7 +2907,7 @@ namespace ImageTextDeepLearning
                 else
                 {//delete and serilized take root
                     File.Delete("KeyboardAllStrings.asd");
-                    if (this.KeyboardAllImage.Count > 0)
+                    if (KeyboardAllImage.Count > 0)
                     {
                         Refrigtz.TakeRoot t = new Refrigtz.TakeRoot();
                         t.Save(this, "KeyboardAllStrings.asd");
@@ -2687,14 +2917,15 @@ namespace ImageTextDeepLearning
 
             }
 
-            catch (Exception t)
+            catch (Exception)
             {
                 //System.Windows.Forms.MessageBox.Show("Fatual Error!" + t.ToString()); return false;
             }
             return true;
         }
+
         //read all
-        bool ReadAll()
+        private bool ReadAll()
         {
             try
             {
@@ -2724,16 +2955,18 @@ namespace ImageTextDeepLearning
                     //serilized
                     Refrigtz.TakeRoot tr = new Refrigtz.TakeRoot();
                     AllKeyboardOfWorld t = tr.Load("KeyboardAllStrings.asd");
-                    this.KeyboardAllConjunctionMatrix = t.KeyboardAllConjunctionMatrix;
-                    this.KeyboardAllConjunctionMatrixList = t.KeyboardAllConjunctionMatrixList;
-                    this.KeyboardAllImage = t.KeyboardAllImage;
-                    this.KeyboardAllStrings = t.KeyboardAllStrings;
+                    KeyboardAllConjunctionMatrix = t.KeyboardAllConjunctionMatrix;
+                    KeyboardAllConjunctionMatrixList = t.KeyboardAllConjunctionMatrixList;
+                    KeyboardAllImage = t.KeyboardAllImage;
+                    KeyboardAllStrings = t.KeyboardAllStrings;
 
                 }
                 else//others retiurn unsuccessfull
+                {
                     return false;
+                }
             }
-            catch (Exception t)
+            catch (Exception)
             {
                 //when unsuccessfull return false
                 return false;
@@ -2741,8 +2974,9 @@ namespace ImageTextDeepLearning
             //return true
             return true;
         }
+
         //Founf Min of Y
-        int MinY(Bitmap Im)
+        private int MinY(Bitmap Im)
         {
             int Mi = 0;
             int j = 0;
@@ -2757,8 +2991,9 @@ namespace ImageTextDeepLearning
             return Mi;
 
         }
+
         //Cropping and fitting image
-        Bitmap cropImage(Bitmap img, Rectangle cropArea)
+        private Bitmap cropImage(Bitmap img, Rectangle cropArea)
         {
             int X = cropArea.X;
             int Y = cropArea.Y;
@@ -2775,8 +3010,9 @@ namespace ImageTextDeepLearning
             }
             return bmp;
         }
+
         //Found of Min of X
-        int MinX(Bitmap Im)
+        private int MinX(Bitmap Im)
         {
             int Mi = 0;
             int k = 0;
@@ -2791,8 +3027,9 @@ namespace ImageTextDeepLearning
             return Mi;
 
         }
+
         //Found of Max Of Y
-        int MaxY(Bitmap Im)
+        private int MaxY(Bitmap Im)
         {
             int Ma = 0;
             int j = 0;
@@ -2807,8 +3044,9 @@ namespace ImageTextDeepLearning
             return Ma;
 
         }
+
         //Found of Max of X
-        int MaxX(Bitmap Im)
+        private int MaxX(Bitmap Im)
         {
             int Ma = 0;
             int k = 0;
@@ -2823,8 +3061,9 @@ namespace ImageTextDeepLearning
             return Ma;
 
         }
+
         //store all strings list to proper  images themselves list
-        bool ConvertAllStringToImage(char[] d)
+        private bool ConvertAllStringToImage(char[] d)
         {
             try
             {
@@ -2836,7 +3075,9 @@ namespace ImageTextDeepLearning
                     Do = CreateString(d);
                     //when is successfull 
                     if (Do)//Save
+                    {
                         Do = SaveAll();
+                    }
                     //when not return successfull
                     if (!Do)
                     {
@@ -2882,15 +3123,20 @@ namespace ImageTextDeepLearning
                             //create proper conjunction matrix
                             bool[,] Tem = new bool[Width, Height];
                             for (int k = 0; k < Width; k++)
+                            {
                                 for (int p = 0; p < Height; p++)
                                 {
                                     // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
                                     if ((Te.GetPixel(k, p).R == 255 && Te.GetPixel(k, p).B == 255 && Te.GetPixel(k, p).G == 255))
+                                    {
                                         Tem[k, p] = true;
+                                    }
                                     else
+                                    {
                                         Tem[k, p] = false;
-
+                                    }
                                 }
+                            }
                             //Add
                             KeyboardAllConjunctionMatrix.Add(Tem);
                             e.Dispose();
@@ -2918,15 +3164,20 @@ namespace ImageTextDeepLearning
                             //create proper conjunction matrix
                             bool[,] Tem = new bool[Width, Height];
                             for (int k = 0; k < Width; k++)
+                            {
                                 for (int p = 0; p < Height; p++)
                                 {
                                     // Tem[k, p] = Temp.GetPixel(k, p).ToArgb();
                                     if (!(Te.GetPixel(k, p).A == 255 && Te.GetPixel(k, p).R == 255 && Te.GetPixel(k, p).B == 255 && Te.GetPixel(k, p).G == 255))
+                                    {
                                         Tem[k, p] = true;
+                                    }
                                     else
+                                    {
                                         Tem[k, p] = false;
-
+                                    }
                                 }
+                            }
                             //Add
                             KeyboardAllConjunctionMatrix.Add(Tem);
                             e.Dispose();
@@ -2943,7 +3194,7 @@ namespace ImageTextDeepLearning
                 //System.Windows.Forms.MessageBox.Show("Fatual Error!");
 
             }
-            catch (Exception t)
+            catch (Exception)
             {
                 //when existence of exeptio return false
                 //System.Windows.Forms.MessageBox.Show("Fatual Error!");
@@ -2953,8 +3204,9 @@ namespace ImageTextDeepLearning
             //KeyboardAllImage.Clear();
             return true;
         }
+
         //Convert image list to conjunction matrix
-        bool ConvertAllTempageToMatrix(List<Bitmap> Temp)
+        private bool ConvertAllTempageToMatrix(List<Bitmap> Temp)
         {
             try
             {
@@ -2980,11 +3232,13 @@ namespace ImageTextDeepLearning
                                 //assigne proper matrix
                                 //Tem[k, p] = Temp[i].GetPixel(k, p).ToArgb();
                                 if (!(Temp[i].GetPixel(k, p).A == 255 && Temp[i].GetPixel(k, p).R == 255 && Temp[i].GetPixel(k, p).B == 255 && Temp[i].GetPixel(k, p).G == 255))
-
+                                {
                                     Tem[k, p] = true;
+                                }
                                 else
+                                {
                                     Tem[k, p] = false;
-
+                                }
                             }
                         }
                         //add
@@ -2993,9 +3247,11 @@ namespace ImageTextDeepLearning
                     }
                 }
                 else//othewise return successfull
+                {
                     return true;
+                }
             }
-            catch (Exception t)
+            catch (Exception)
             {
                 //when is exeption return unsuccessfull
                 return false;

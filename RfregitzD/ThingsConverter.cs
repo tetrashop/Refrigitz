@@ -6,18 +6,18 @@ namespace RefrigtzDLL
     [Serializable]
     public class ThingsConverter
     {
+        private readonly StringBuilder Space = new StringBuilder("&nbsp;");
 
-        StringBuilder Space = new StringBuilder("&nbsp;");
         //#pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
-        int Spaces = 0;
+        private readonly int Spaces = 0;
 #pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
 
         //Initiate Global Variables.
         public static bool LoadConvertTable = false;
         public static int[,] TableConverted = null;
-        bool ArrangmentsChanged = true;
+        private readonly bool ArrangmentsChanged = true;
         public static bool ClickOcurred = false;
         public static bool ActOfClickEqualTow = false;
         public bool Convert = false;
@@ -27,13 +27,13 @@ namespace RefrigtzDLL
         public bool ConvertedToHourse = false;
         public int Max;
         public int RowS, ColumnS;
-        Color color;
-        int Order;
-        int Current = 0;
-        private int rowSource;
-        private int columnSource;
-        private int[,] tableS;
-        private int v;
+        private Color color;
+        private int Order;
+        private int Current = 0;
+        private readonly int rowSource;
+        private readonly int columnSource;
+        private readonly int[,] tableS;
+        private readonly int v;
 
         //AllDraw. THIS;
         public ThingsConverter()
@@ -55,14 +55,20 @@ namespace RefrigtzDLL
 
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ThingsConverter:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
         }
+
         //return maximum of six type values 
         //clone a table
-        int[,] CloneATable(int[,] Tab)
+        private int[,] CloneATable(int[,] Tab)
         {
             int[,] Tabl = new int[8, 8];
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
                     Tabl[i, j] = Tab[i, j];
+                }
+            }
+
             return Tabl;
         }
 
@@ -83,7 +89,7 @@ namespace RefrigtzDLL
         public bool ConvertOperation(int i, int j, Color a, int[,] Tab, int Ord, bool TB, int Cur)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            Object OOO = new Object();
+            object OOO = new object();
             lock (OOO)
             {
                 //Initiate Global variables with Local One.
@@ -96,19 +102,19 @@ namespace RefrigtzDLL
                 if (!Convert && (ActOfClickEqualTow || AllDraw.StateCC || (!AllDraw.Person)))
 
                 {
-                    Object O = new Object();
+                    object O = new object();
                     lock (O)
                     {
                         AllDraw.ConvertWait = true;
                     }
 
-                    Object O1 = new Object();
+                    object O1 = new object();
                     lock (O1)
                     {
                         ClickOcurred = true;
                     }
                     //Set tow time click unclicked.
-                    Object O2 = new Object();
+                    object O2 = new object();
                     lock (O2)
                     {
                         ActOfClickEqualTow = false;
@@ -117,22 +123,32 @@ namespace RefrigtzDLL
                     {
                         //Convert State Boolean Variable Consideration.
                         if (Order == 1 && ColumnS == 7)
+                        {
                             Convert = true;
+                        }
+
                         if (Order == -1 && ColumnS == 0)
+                        {
                             Convert = true;
+                        }
                     }
                     else
                     {
                         //Convert State Boolean Variable Consideration.
                         if (Order == 1 && ColumnS == 0)
+                        {
                             Convert = true;
+                        }
+
                         if (Order == -1 && ColumnS == 7)
+                        {
                             Convert = true;
+                        }
                     }
                     //If Converted is Occured the Operation od Set and table reference content occured.
                     if (Convert)
                     {
-                        bool ASS = false; Object OOOAAA = new Object(); lock (OOOAAA) { ASS = AllDraw.Blitz; }
+                        bool ASS = false; object OOOAAA = new object(); lock (OOOAAA) { ASS = AllDraw.Blitz; }
                         if (!ASS)
                         {
                             AllDraw.ConvertedKind = -1;
@@ -176,7 +192,9 @@ namespace RefrigtzDLL
                                 }
                             }
                             else
+                            {
                                 Rand = (new Random()).Next(0, 4);
+                            }
                             //If Rand is Equaled the Operation will cuased automaticcally base on Color..
                             if (Rand == 0)
                             {
@@ -284,7 +302,9 @@ namespace RefrigtzDLL
                                     }
                                 }
                                 else
+                                {
                                     Rand = (new Random()).Next(0, 4);
+                                }
                                 //If Rand is Equaled the Operation will cuased automaticcally base on Color..
                                 if (Rand == 0)
                                 {
@@ -395,7 +415,9 @@ namespace RefrigtzDLL
                                     }
                                 }
                                 else
+                                {
                                     Rand = (new Random()).Next(0, 4);
+                                }
                                 //If Rand is Equaled the Operation will cuased automaticcally base on Color..
                                 if (Rand == 0)
                                 {
@@ -467,15 +489,19 @@ namespace RefrigtzDLL
                 AllDraw.ConvertWait = false;
                 if (Convert)
                 {
-                    Object O = new Object();
+                    object O = new object();
                     lock (O)
                     {
                         TableConverted = new int[8, 8];
-                        for (var iii = 0; iii < 8; iii++)
-                            for (var jjj = 0; jjj < 8; jjj++)
+                        for (int iii = 0; iii < 8; iii++)
+                        {
+                            for (int jjj = 0; jjj < 8; jjj++)
+                            {
                                 TableConverted[iii, jjj] = Tab[iii, jjj];
+                            }
+                        }
                     }
-                    Object O1 = new Object();
+                    object O1 = new object();
                     lock (O1)
                     {
                         LoadConvertTable = true;

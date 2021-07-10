@@ -14,9 +14,8 @@ namespace WebApplicationRefregitzTow
         protected void Page_Init(object sender, EventArgs e)
         {
             // The code below helps to protect against XSRF attacks
-            var requestCookie = Request.Cookies[AntiXsrfTokenKey];
-            Guid requestCookieGuidValue;
-            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
+            HttpCookie requestCookie = Request.Cookies[AntiXsrfTokenKey];
+            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out Guid requestCookieGuidValue))
             {
                 // Use the Anti-XSRF token from the cookie
                 _antiXsrfTokenValue = requestCookie.Value;
@@ -28,7 +27,7 @@ namespace WebApplicationRefregitzTow
                 _antiXsrfTokenValue = Guid.NewGuid().ToString("N");
                 Page.ViewStateUserKey = _antiXsrfTokenValue;
 
-                var responseCookie = new HttpCookie(AntiXsrfTokenKey)
+                HttpCookie responseCookie = new HttpCookie(AntiXsrfTokenKey)
                 {
                     HttpOnly = true,
                     Value = _antiXsrfTokenValue
@@ -49,13 +48,13 @@ namespace WebApplicationRefregitzTow
             {
                 // Set Anti-XSRF token
                 ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
-                ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
+                ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? string.Empty;
             }
             else
             {
                 // Validate the Anti-XSRF token
                 if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
-                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
+                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? string.Empty))
                 {
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }

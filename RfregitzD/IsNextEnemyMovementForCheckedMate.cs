@@ -1,35 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
 namespace RefrigtzDLL
 {
-    class IsNextEnemyMovementForCheckedMate : AllDraw
+    internal class IsNextEnemyMovementForCheckedMate : AllDraw
     {
+        private readonly StringBuilder Space = new StringBuilder("&nbsp;");
 
-        StringBuilder Space = new StringBuilder("&nbsp;");
         //#pragma warning disable CS0414 // The field 'IsNextEnemyMovementForCheckedMate.Spaces' is assigned but its value is never used
-        int Spaces = 0;
+        private readonly int Spaces = 0;
+
         //#pragma warning restore CS0414 // The field 'IsNextEnemyMovementForCheckedMate.Spaces' is assigned but its value is never used
 
-        int[,] TableIsNextEnemyMovementForCheckedMate = new int[8, 8];
+        private readonly int[,] TableIsNextEnemyMovementForCheckedMate = new int[8, 8];
         public IsNextEnemyMovementForCheckedMate(int Order, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, int[,] Tab)
             : base(Order, MovementsAStarGreedyHeuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
                     TableIsNextEnemyMovementForCheckedMate[i, j] = Tab[i, j];
+                }
+            }
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("IsNextEnemyMovementForCheckedMate:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
         }
         public IsNextEnemyMovementForCheckedMate(int Order, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, AllDraw THi, int[,] Tab)
             : base(Order, MovementsAStarGreedyHeuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments, THi)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
                     TableIsNextEnemyMovementForCheckedMate[i, j] = Tab[i, j];
+                }
+            }
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("IsNextEnemyMovementForCheckedMate:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
         }
         public bool Is()
@@ -38,8 +46,11 @@ namespace RefrigtzDLL
             bool IS = false;
             Color a = Color.Gray;
             if (OrderP == -1)
+            {
                 a = Color.Brown;
-            String A1 = AllDraw.ActionString.ToString();
+            }
+
+            string A1 = AllDraw.ActionString.ToString();
             bool A2 = AllDraw.ActionStringReady;
             bool A3 = AllDraw.AStarGreadyFirstSearch;
             int A4 = AllDraw.AStarGreedyiLevelMax;
@@ -56,8 +67,8 @@ namespace RefrigtzDLL
             bool A15 = AllDraw.EndOfGame;
             bool A16 = AllDraw.FoundATable;
             int A17 = AllDraw.HourseMovments;
-            String A18 = AllDraw.ImageRoot;
-            String A19 = AllDraw.ImagesSubRoot;
+            string A18 = AllDraw.ImageRoot;
+            string A19 = AllDraw.ImagesSubRoot;
             int A20 = AllDraw.increasedProgress;
             int A21 = AllDraw.KingMovments;
             int A22 = AllDraw.LastColumn;
@@ -74,11 +85,11 @@ namespace RefrigtzDLL
             int A33 = AllDraw.NextRow;
             bool A34 = AllDraw.NoTableFound;
             int A35 = AllDraw.OrderPlate;
-            String A36 = AllDraw.OutPut.ToString();
+            string A36 = AllDraw.OutPut.ToString();
             bool A37 = AllDraw.Person;
             bool A38 = AllDraw.RedrawTable;
             bool A39 = AllDraw.RegardOccurred;
-            String A40 = AllDraw.Root;
+            string A40 = AllDraw.Root;
             int A41 = AllDraw.SignAttack;
             int A42 = AllDraw.SignDistance;
             int A43 = AllDraw.SignKiller;
@@ -93,38 +104,63 @@ namespace RefrigtzDLL
             bool A52 = AllDraw.StateCP;
             bool A53 = AllDraw.Stockfish;
             List<AllDraw> A54 = new List<AllDraw>();
-            for (var i = 0; i < AllDraw.StoreADraw.Count; i++)
+            for (int i = 0; i < AllDraw.StoreADraw.Count; i++)
+            {
                 A54.Add(AllDraw.StoreADraw[i]);
+            }
+
             List<int> A55 = new List<int>();
-            for (var i = 0; i < AllDraw.StoreADrawAStarGreedy.Count; i++)
+            for (int i = 0; i < AllDraw.StoreADrawAStarGreedy.Count; i++)
+            {
                 A55.Add(AllDraw.StoreADrawAStarGreedy[i]);
+            }
+
             int A56 = AllDraw.SuppportCountStaticBrown;
             int A57 = AllDraw.SuppportCountStaticGray;
-            String A58 = AllDraw.SyntaxToWrite;
+            string A58 = AllDraw.SyntaxToWrite;
             List<int[,]> A59 = new List<int[,]>();
-            for (var i = 0; i < AllDraw.TableCurrent.Count; i++)
+            for (int i = 0; i < AllDraw.TableCurrent.Count; i++)
+            {
                 A59.Add(AllDraw.TableCurrent[i]);
+            }
+
             List<int[,]> A60 = new List<int[,]>();
-            for (var i = 0; i < AllDraw.TableListAction.Count; i++)
+            for (int i = 0; i < AllDraw.TableListAction.Count; i++)
+            {
                 A60.Add(AllDraw.TableListAction[i]);
+            }
+
             int[,] A61 = new int[8, 8];
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
                     A61[i, j] = AllDraw.TableVeryfy[i, j];
+                }
+            }
+
             int[,] A62 = new int[8, 8];
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
                     A62[i, j] = AllDraw.TableVeryfyConst[i, j];
+                }
+            }
+
             int A63 = AllDraw.TaskBegin;
             int A64 = AllDraw.TaskEnd;
-            String A65 = AllDraw.THIScomboBoxMaxLevelText;
+            string A65 = AllDraw.THIScomboBoxMaxLevelText;
             AllDraw A66 = null;
             if (AllDraw.THISDummy != null)
+            {
                 AllDraw.THISDummy.Clone(A66);
+            }
+
             bool A67 = AllDraw.THISSecradioButtonBrownOrderChecked;
             bool A68 = AllDraw.THISSecradioButtonGrayOrderChecked;
             bool A69 = AllDraw.UseDoubleTime;
-            String B1 = ThinkingChess.ActionsString;
+            string B1 = ThinkingChess.ActionsString;
             int B2 = ThinkingChess.BeginThread;
             int B3 = ThinkingChess.EndThread;
             int B4 = ThinkingChess.FoundFirstMating;
@@ -147,7 +183,9 @@ namespace RefrigtzDLL
             ////MaxAStarGreedy = 0;
             int[,] tab = Initiate(0, 0, a, TableIsNextEnemyMovementForCheckedMate, OrderP, false, false, 0, true);
             if (ThinkingChess.FoundFirstSelfMating > 0)
+            {
                 IS = true;
+            }
 
             AllDraw.ActionString = new StringBuilder(A1);
             AllDraw.ActionStringReady = A2;
@@ -203,33 +241,56 @@ namespace RefrigtzDLL
             AllDraw.StateCP = A52;
             AllDraw.Stockfish = A53;
             AllDraw.StoreADraw.Clear();
-            for (var i = 0; i < AllDraw.StoreADraw.Count; i++)
+            for (int i = 0; i < AllDraw.StoreADraw.Count; i++)
+            {
                 AllDraw.StoreADraw.Add(A54[i]);
+            }
+
             AllDraw.StoreADrawAStarGreedy.Clear();
-            for (var i = 0; i < AllDraw.StoreADrawAStarGreedy.Count; i++)
+            for (int i = 0; i < AllDraw.StoreADrawAStarGreedy.Count; i++)
+            {
                 AllDraw.StoreADrawAStarGreedy.Add(A55[i]);
+            }
+
             AllDraw.SuppportCountStaticBrown = A56;
             AllDraw.SuppportCountStaticGray = A57;
             AllDraw.SyntaxToWrite = A58;
             AllDraw.TableCurrent.Clear();
-            for (var i = 0; i < AllDraw.TableCurrent.Count; i++)
+            for (int i = 0; i < AllDraw.TableCurrent.Count; i++)
+            {
                 AllDraw.TableCurrent.Add(A59[i]);
+            }
+
             AllDraw.TableListAction.Clear();
-            for (var i = 0; i < AllDraw.TableListAction.Count; i++)
+            for (int i = 0; i < AllDraw.TableListAction.Count; i++)
+            {
                 AllDraw.TableListAction.Add(A60[i]);
+            }
 
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
                     AllDraw.TableVeryfy[i, j] = A61[i, j];
+                }
+            }
 
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
                     AllDraw.TableVeryfyConst[i, j] = A62[i, j];
+                }
+            }
+
             AllDraw.TaskBegin = A63;
             AllDraw.TaskEnd = A64;
             AllDraw.THIScomboBoxMaxLevelText = A65;
             if (A66 != null)
+            {
                 A66.Clone(AllDraw.THISDummy);
+            }
+
             AllDraw.THISSecradioButtonBrownOrderChecked = A67;
             AllDraw.THISSecradioButtonGrayOrderChecked = A68;
             AllDraw.UseDoubleTime = A69;

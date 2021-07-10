@@ -5,45 +5,26 @@ namespace RefrigtzW
     [Serializable]
     public class Photo
     {
-        Int32 PhotoNumber = new Int32();
-        String PhotoName = null;
-        Boolean PhotoType = new Boolean();
+        private int PhotoNumber = new int();
+        private string PhotoName = null;
+        private bool PhotoType = new bool();
         public Photo()
         {
         }
-        public Int32 PhotoNumberAccsess
+        public int PhotoNumberAccsess
         {
-            get
-            {
-                return PhotoNumber;
-            }
-            set
-            {
-                PhotoNumber = value;
-            }
+            get => PhotoNumber;
+            set => PhotoNumber = value;
         }
-        public String PhotoNameAccess
+        public string PhotoNameAccess
         {
-            get
-            {
-                return PhotoName;
-
-            }
-            set
-            {
-                PhotoName = value;
-            }
+            get => PhotoName;
+            set => PhotoName = value;
         }
-        public Boolean PhotoTypeAccess
+        public bool PhotoTypeAccess
         {
-            get
-            {
-                return PhotoType;
-            }
-            set
-            {
-                PhotoType = value;
-            }
+            get => PhotoType;
+            set => PhotoType = value;
         }
     }
 }

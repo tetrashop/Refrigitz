@@ -3,12 +3,12 @@ using System.Collections.Generic;
 namespace RefregitzReader
 {
     [Serializable]
-    class RefregitzReader
+    internal class RefregitzReader
     {
-        List<String> Item;
+        private readonly List<string> Item;
         //public List<SearchGoogle> ItemSearch;
         public bool OKResult = false;
-        public RefregitzReader(String Path)
+        public RefregitzReader(string Path)
         {
 
         }

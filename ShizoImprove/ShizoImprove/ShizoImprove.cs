@@ -14,18 +14,23 @@ namespace ShizoImprove
     {
         //Initiate All Files var
         public static List<string> AllFiles = new List<string>();
+
         //Al File Information
-        FileInfo fi = null;
-        DateTime created;
-        DateTime Lastmodified;
+        private FileInfo fi = null;
+        private DateTime created;
+        private DateTime Lastmodified;
+
         //for evry statistic files create info
-        List<ShizoImprove> All = new List<ShizoImprove>();
+        private readonly List<ShizoImprove> All = new List<ShizoImprove>();
         //retrive files and directories Constructor
-        public ShizoImprove(String Root, bool Imp = false)
+        public ShizoImprove(string Root, bool Imp = false)
         {
             bool Do = false;
             if (AllFiles.Count == 0)
+            {
                 Do = ParsePath(Root, Imp);
+            }
+
             if (Do && AllFiles.Count > 0)
             {
                 for (int i = 0; i < AllFiles.Count; i++)
@@ -33,12 +38,15 @@ namespace ShizoImprove
                     All.Add((new ShizoImprove(AllFiles[i])));
                     Do = All[i].FilesInfo(Root);
                     if (!Do)
+                    {
                         return;
+                    }
                 }
             }
         }
+
         //retrive all files and sub directories in a list
-        static bool ParsePath(string path, bool Imp)
+        private static bool ParsePath(string path, bool Imp)
         {
             try
             {
@@ -64,17 +72,21 @@ namespace ShizoImprove
                 foreach (string subdir in SubDirs)
                 {
                     if (Imp && subdir.Contains("\\Improved"))
+                    {
                         continue;
+                    }
+
                     ParsePath(subdir, Imp);
                 }
                 return true;
 
             }
-            catch (Exception t) { return false; }
+            catch (Exception) { return false; }
             return true;
         }
+
         //retrive file information
-        bool FilesInfo(String path)
+        private bool FilesInfo(string path)
         {
             try
             {
@@ -82,11 +94,12 @@ namespace ShizoImprove
                 created = fi.CreationTime;
                 Lastmodified = fi.LastWriteTime;
             }
-            catch (Exception t) { return false; }
+            catch (Exception) { return false; }
             return true;
         }
+
         //When path is file return true
-        bool IsFile(String Des)
+        private bool IsFile(string Des)
         {
             //when contains
             if (Des.Contains("."))
@@ -100,14 +113,16 @@ namespace ShizoImprove
                     string D = Des.Substring(A, Des.Length - A);
                     //when existence
                     if (D.Length > 0)
+                    {
                         return true;
+                    }
                 }
             }
             return false;
 
         }
         //Imrove all date into one folder
-        public bool FormShizoImprove(String Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
+        public bool FormShizoImprove(string Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
         {
             try
             {
@@ -121,7 +136,7 @@ namespace ShizoImprove
                         if (AllFiles[i].Contains(Pro))
                         {
                             //index of to substring
-                            String Des = AllFiles[i].Substring(AllFiles[i].IndexOf(Pro));
+                            string Des = AllFiles[i].Substring(AllFiles[i].IndexOf(Pro));
                             //create correct path
                             Des = "C:\\ShizoImprove\\" + Pro + "\\" + All[i].Lastmodified.ToLongDateString() + "\\" + Des;
                             //when
@@ -129,7 +144,9 @@ namespace ShizoImprove
                             {
                                 //create directory exitence condition
                                 if (!Directory.Exists(Des))
+                                {
                                     Directory.CreateDirectory(Des);
+                                }
                             }
                             else
                             {
@@ -138,7 +155,9 @@ namespace ShizoImprove
                                     //copy file
                                     //copy file when unexistence
                                     if (!File.Exists(AllFiles[i]))
+                                    {
                                         File.Copy(AllFiles[i], Des);
+                                    }
                                     else  //copy file on condition of Last modified
                                     {
                                         if ((new FileInfo(AllFiles[i])).LastWriteTime > (new FileInfo(Des)).LastWriteTime)
@@ -150,7 +169,7 @@ namespace ShizoImprove
 
                                     }
                                 }
-                                catch (Exception t)
+                                catch (Exception)
                                 {
                                     // return false;
                                 }
@@ -159,11 +178,11 @@ namespace ShizoImprove
 
 
                     }
-                    catch (Exception t) { }
+                    catch (Exception) { }
                 }
 
             }
-            catch (Exception y)
+            catch (Exception)
             {
                 return false;
             }
@@ -172,7 +191,7 @@ namespace ShizoImprove
 
 
         }
-        public bool FormShizoImproveActOnFileHistory(String Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
+        public bool FormShizoImproveActOnFileHistory(string Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
         {
             try
             {
@@ -186,7 +205,7 @@ namespace ShizoImprove
                         if (AllFiles[i].Contains("("))
                         {
                             //index of to substring
-                            String Des = AllFiles[i].Substring(0, AllFiles[i].IndexOf("("));
+                            string Des = AllFiles[i].Substring(0, AllFiles[i].IndexOf("("));
                             //create correct path
                             Des = "C:\\ShizoImprove\\" + Pro + "\\" + All[i].Lastmodified.ToLongDateString() + "\\" + Des;
                             //when
@@ -194,7 +213,9 @@ namespace ShizoImprove
                             {
                                 //create directory exitence condition
                                 if (!Directory.Exists(Des))
+                                {
                                     Directory.CreateDirectory(Des);
+                                }
                             }
                             else
                             {
@@ -202,7 +223,9 @@ namespace ShizoImprove
                                 {
                                     //copy file when unexistence
                                     if (!File.Exists(AllFiles[i]))
+                                    {
                                         File.Copy(AllFiles[i], Des);
+                                    }
                                     else  //copy file on condition of Last modified
                                     {
                                         if ((new FileInfo(AllFiles[i])).LastWriteTime > (new FileInfo(Des)).LastWriteTime)
@@ -214,7 +237,7 @@ namespace ShizoImprove
 
                                     }
                                 }
-                                catch (Exception t)
+                                catch (Exception)
                                 {
                                     // return false;
                                 }
@@ -223,11 +246,11 @@ namespace ShizoImprove
 
 
                     }
-                    catch (Exception t) { }
+                    catch (Exception) { }
                 }
 
             }
-            catch (Exception y)
+            catch (Exception)
             {
                 return false;
             }
@@ -236,16 +259,20 @@ namespace ShizoImprove
 
 
         }
-        void setAttributesNormal(DirectoryInfo dir)
+
+        private void setAttributesNormal(DirectoryInfo dir)
         {
-            foreach (var subDir in dir.GetDirectories())
+            foreach (DirectoryInfo subDir in dir.GetDirectories())
+            {
                 setAttributesNormal(subDir);
-            foreach (var file in dir.GetFiles())
+            }
+
+            foreach (FileInfo file in dir.GetFiles())
             {
                 file.Attributes = FileAttributes.Normal;
             }
         }
-        public bool FormShizoImproveClearCach(String Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
+        public bool FormShizoImproveClearCach(string Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
         {
             try
             {
@@ -273,7 +300,7 @@ namespace ShizoImprove
                                     }
 
                                 }
-                                catch (Exception t) { }
+                                catch (Exception) { }
                             }
                             else
                             {
@@ -281,20 +308,22 @@ namespace ShizoImprove
                                 {
                                     //copy file
                                     if (File.Exists(AllFiles[i]))
+                                    {
                                         File.Delete(AllFiles[i]);
+                                    }
                                 }
-                                catch (Exception t)
+                                catch (Exception)
                                 {
                                     // return false;
                                 }
                             }
                         }
                     }
-                    catch (Exception t) { }
+                    catch (Exception) { }
                 }
 
             }
-            catch (Exception y)
+            catch (Exception)
             {
                 return false;
             }
@@ -304,7 +333,7 @@ namespace ShizoImprove
 
         }
         //move date Last modified of set improved into improved folder
-        public bool FormImprove(String Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
+        public bool FormImprove(string Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
         {
             try
             {
@@ -318,7 +347,7 @@ namespace ShizoImprove
                         if (AllFiles[i].Contains(Pro))
                         {
                             //index of to substring
-                            String Des = AllFiles[i].Substring(AllFiles[i].IndexOf(Pro));
+                            string Des = AllFiles[i].Substring(AllFiles[i].IndexOf(Pro));
                             //index of Last modified path and substring
                             for (int j = 1990; j <= DateTime.Now.Year; j++)
                             {
@@ -337,7 +366,9 @@ namespace ShizoImprove
                             {
                                 //create directory exitence condition
                                 if (!Directory.Exists(Des))
+                                {
                                     Directory.CreateDirectory(Des);
+                                }
                             }
                             else
                             {
@@ -345,7 +376,9 @@ namespace ShizoImprove
                                 {
                                     //copy file when unexistence
                                     if (!File.Exists(Des))
+                                    {
                                         File.Copy(AllFiles[i], Des);
+                                    }
                                     else  //copy file on condition of Last modified
                                     {
                                         if ((new FileInfo(AllFiles[i])).LastWriteTime > (new FileInfo(Des)).LastWriteTime)
@@ -356,20 +389,20 @@ namespace ShizoImprove
 
                                     }
                                 }
-                                catch (Exception t)
+                                catch (Exception)
                                 {
                                     //return false;
                                 }
                             }
                         }
                     }
-                    catch (Exception y)
+                    catch (Exception)
                     {
 
                     }
                 }
             }
-            catch (Exception y)
+            catch (Exception)
             {
                 return false;
             }
@@ -386,18 +419,23 @@ namespace ShizoImprove
     {
         //Initiate All Files var
         public static List<string> AllFiles = new List<string>();
+
         //Al File Information
-        FileInfo fi = null;
-        DateTime created;
-        DateTime Lastmodified;
+        private FileInfo fi = null;
+        private DateTime created;
+        private DateTime Lastmodified;
+
         //for evry statistic files create info
-        List<ShizoImproveFile> All = new List<ShizoImproveFile>();
+        private readonly List<ShizoImproveFile> All = new List<ShizoImproveFile>();
         //retrive files and directories Constructor
-        public ShizoImproveFile(String Root, bool Imp = false)
+        public ShizoImproveFile(string Root, bool Imp = false)
         {
             bool Do = false;
             if (AllFiles.Count == 0)
+            {
                 Do = ParsePath(Root, Imp);
+            }
+
             if (Do && AllFiles.Count > 0)
             {
                 for (int i = 0; i < AllFiles.Count; i++)
@@ -405,12 +443,15 @@ namespace ShizoImprove
                     All.Add((new ShizoImproveFile(AllFiles[i])));
                     Do = All[i].FilesInfo(Root);
                     if (!Do)
+                    {
                         return;
+                    }
                 }
             }
         }
+
         //retrive all files and sub directories in a list
-        static bool ParsePath(string path, bool Imp)
+        private static bool ParsePath(string path, bool Imp)
         {
             try
             {
@@ -436,17 +477,21 @@ namespace ShizoImprove
                 foreach (string subdir in SubDirs)
                 {
                     if (Imp && subdir.Contains("\\Improved"))
+                    {
                         continue;
+                    }
+
                     ParsePath(subdir, Imp);
                 }
                 return true;
 
             }
-            catch (Exception t) { return false; }
+            catch (Exception) { return false; }
             return true;
         }
+
         //retrive file information
-        bool FilesInfo(String path)
+        private bool FilesInfo(string path)
         {
             try
             {
@@ -454,11 +499,12 @@ namespace ShizoImprove
                 created = fi.CreationTime;
                 Lastmodified = fi.LastWriteTime;
             }
-            catch (Exception t) { return false; }
+            catch (Exception) { return false; }
             return true;
         }
+
         //When path is file return true
-        bool IsFile(String Des)
+        private bool IsFile(string Des)
         {
             //when contains
             if (Des.Contains("."))
@@ -472,16 +518,19 @@ namespace ShizoImprove
                     string D = Des.Substring(A, Des.Length - A);
                     //when existence
                     if (D.Length > 0)
+                    {
                         return true;
+                    }
                 }
             }
             return false;
 
         }
-        String FileS(String A)
+
+        private string FileS(string A)
         {
 
-            String f = "";
+            string f = "";
             do
             {
                 f = f.Substring(f.IndexOf("\\"), f.Length - f.IndexOf("\\"));
@@ -490,7 +539,7 @@ namespace ShizoImprove
 
         }
         //Imrove all date into one folder
-        public bool FormShizoImprove(String Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
+        public bool FormShizoImprove(string Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
         {
             try
             {
@@ -504,7 +553,7 @@ namespace ShizoImprove
                         if (AllFiles[i].Contains("." + Pro))
                         {
                             //index of to substring
-                            String Des = FileS(AllFiles[i]);
+                            string Des = FileS(AllFiles[i]);
                             //create correct path
                             Des = "C:\\ShizoImprove\\" + Pro + "\\" + All[i].Lastmodified.ToLongDateString() + "\\" + Des;
                             //when
@@ -512,7 +561,9 @@ namespace ShizoImprove
                             {
                                 //create directory exitence condition
                                 if (!Directory.Exists(Des))
+                                {
                                     Directory.CreateDirectory(Des);
+                                }
                             }
                             else
                             {
@@ -521,7 +572,9 @@ namespace ShizoImprove
                                     //copy file
                                     //copy file when unexistence
                                     if (!File.Exists(AllFiles[i]))
+                                    {
                                         File.Copy(AllFiles[i], Des);
+                                    }
                                     else  //copy file on condition of Last modified
                                     {
                                         if ((new FileInfo(AllFiles[i])).LastWriteTime > (new FileInfo(Des)).LastWriteTime)
@@ -533,7 +586,7 @@ namespace ShizoImprove
 
                                     }
                                 }
-                                catch (Exception t)
+                                catch (Exception)
                                 {
                                     // return false;
                                 }
@@ -542,11 +595,11 @@ namespace ShizoImprove
 
 
                     }
-                    catch (Exception t) { }
+                    catch (Exception) { }
                 }
 
             }
-            catch (Exception y)
+            catch (Exception)
             {
                 return false;
             }
@@ -555,7 +608,7 @@ namespace ShizoImprove
 
 
         }
-        public bool FormShizoImproveActOnFileHistory(String Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
+        public bool FormShizoImproveActOnFileHistory(string Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
         {
             try
             {
@@ -569,7 +622,7 @@ namespace ShizoImprove
                         if (AllFiles[i].Contains("("))
                         {
                             //index of to substring
-                            String Des = AllFiles[i].Substring(0, AllFiles[i].IndexOf("("));
+                            string Des = AllFiles[i].Substring(0, AllFiles[i].IndexOf("("));
                             //create correct path
                             Des = "C:\\ShizoImprove\\" + Pro + "\\" + All[i].Lastmodified.ToLongDateString() + "\\" + Des;
                             //when
@@ -577,7 +630,9 @@ namespace ShizoImprove
                             {
                                 //create directory exitence condition
                                 if (!Directory.Exists(Des))
+                                {
                                     Directory.CreateDirectory(Des);
+                                }
                             }
                             else
                             {
@@ -585,7 +640,9 @@ namespace ShizoImprove
                                 {
                                     //copy file when unexistence
                                     if (!File.Exists(AllFiles[i]))
+                                    {
                                         File.Copy(AllFiles[i], Des);
+                                    }
                                     else  //copy file on condition of Last modified
                                     {
                                         if ((new FileInfo(AllFiles[i])).LastWriteTime > (new FileInfo(Des)).LastWriteTime)
@@ -597,7 +654,7 @@ namespace ShizoImprove
 
                                     }
                                 }
-                                catch (Exception t)
+                                catch (Exception)
                                 {
                                     // return false;
                                 }
@@ -606,11 +663,11 @@ namespace ShizoImprove
 
 
                     }
-                    catch (Exception t) { }
+                    catch (Exception) { }
                 }
 
             }
-            catch (Exception y)
+            catch (Exception)
             {
                 return false;
             }
@@ -619,16 +676,20 @@ namespace ShizoImprove
 
 
         }
-        void setAttributesNormal(DirectoryInfo dir)
+
+        private void setAttributesNormal(DirectoryInfo dir)
         {
-            foreach (var subDir in dir.GetDirectories())
+            foreach (DirectoryInfo subDir in dir.GetDirectories())
+            {
                 setAttributesNormal(subDir);
-            foreach (var file in dir.GetFiles())
+            }
+
+            foreach (FileInfo file in dir.GetFiles())
             {
                 file.Attributes = FileAttributes.Normal;
             }
         }
-        public bool FormShizoImproveClearCach(String Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
+        public bool FormShizoImproveClearCach(string Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
         {
             try
             {
@@ -656,7 +717,7 @@ namespace ShizoImprove
                                     }
 
                                 }
-                                catch (Exception t) { }
+                                catch (Exception) { }
                             }
                             else
                             {
@@ -664,20 +725,22 @@ namespace ShizoImprove
                                 {
                                     //copy file
                                     if (File.Exists(AllFiles[i]))
+                                    {
                                         File.Delete(AllFiles[i]);
+                                    }
                                 }
-                                catch (Exception t)
+                                catch (Exception)
                                 {
                                     // return false;
                                 }
                             }
                         }
                     }
-                    catch (Exception t) { }
+                    catch (Exception) { }
                 }
 
             }
-            catch (Exception y)
+            catch (Exception)
             {
                 return false;
             }
@@ -687,7 +750,7 @@ namespace ShizoImprove
 
         }
         //move date Last modified of set improved into improved folder
-        public bool FormImprove(String Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
+        public bool FormImprove(string Pro, ref System.Windows.Forms.ProgressBar progressBarWorking)
         {
             try
             {
@@ -701,7 +764,7 @@ namespace ShizoImprove
                         if (AllFiles[i].Contains("." + Pro))
                         {
                             //index of to substring
-                            String Des = FileS(AllFiles[i]);
+                            string Des = FileS(AllFiles[i]);
                             //index of Last modified path and substring
                             for (int j = 1990; j <= DateTime.Now.Year; j++)
                             {
@@ -720,7 +783,9 @@ namespace ShizoImprove
                             {
                                 //create directory exitence condition
                                 if (!Directory.Exists(Des))
+                                {
                                     Directory.CreateDirectory(Des);
+                                }
                             }
                             else
                             {
@@ -728,7 +793,9 @@ namespace ShizoImprove
                                 {
                                     //copy file when unexistence
                                     if (!File.Exists(Des))
+                                    {
                                         File.Copy(AllFiles[i], Des);
+                                    }
                                     else  //copy file on condition of Last modified
                                     {
                                         if ((new FileInfo(AllFiles[i])).LastWriteTime > (new FileInfo(Des)).LastWriteTime)
@@ -739,20 +806,20 @@ namespace ShizoImprove
 
                                     }
                                 }
-                                catch (Exception t)
+                                catch (Exception)
                                 {
                                     //return false;
                                 }
                             }
                         }
                     }
-                    catch (Exception y)
+                    catch (Exception)
                     {
 
                     }
                 }
             }
-            catch (Exception y)
+            catch (Exception)
             {
                 return false;
             }

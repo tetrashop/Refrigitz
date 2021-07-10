@@ -14,7 +14,7 @@ namespace GalleryStudio
     public class RefregizMemmory //:AllDraw
     {
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6
-        public static String AllDrawKindString = "";
+        public static string AllDrawKindString = "";
 
         public int iii = 0, jjj = 0;
         public bool MovementsAStarGreedyHeuristicFoundT = false;
@@ -25,49 +25,66 @@ namespace GalleryStudio
         public bool OnlySelfT = false;
         public bool AStarGreedyHeuristicT = false;
         public bool ArrangmentsT = false;
-        string SAllDraw = "";
+        private string SAllDraw = "";
         public int Kind = 0;
         //static GalleryStudio.RefregizMemmory Node;
         public RefrigtzW.AllDraw Current = null;
+
         //bool NewListOfNextBegins = true;
 
 
 
-        void SetAllDrawKindString()
+        private void SetAllDrawKindString()
         {
             if (AllDrawKind == 4)
+            {
                 AllDrawKindString = "AllDrawBT.asd";//Both True
+            }
             else
                 if (AllDrawKind == 3)
+            {
                 AllDrawKindString = "AllDrawFFST.asd";//First false second true
+            }
             else
                 if (AllDrawKind == 2)
+            {
                 AllDrawKindString = "AllDrawFTSF.asd";//First true second false
+            }
             else
                 if (AllDrawKind == 1)
+            {
                 AllDrawKindString = "AllDrawFFSF.asd";//Fist false second false
-
-
+            }
         }
         public RefregizMemmory(bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments//) : base(MovementsAStarGreedyHeuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments
             )
         {
             if (UsePenaltyRegardMechnisa && AStarGreedyHuris)
+            {
                 AllDrawKind = 4;
+            }
             else
                                            if ((!UsePenaltyRegardMechnisa) && AStarGreedyHuris)
+            {
                 AllDrawKind = 3;
+            }
+
             if (UsePenaltyRegardMechnisa && (!AStarGreedyHuris))
+            {
                 AllDrawKind = 2;
+            }
+
             if ((!UsePenaltyRegardMechnisa) && (!AStarGreedyHuris))
+            {
                 AllDrawKind = 1;
+            }
             //Set Configuration To True for some unknown reason!.
             //UpdateConfigurationTableVal = true;                             
             SetAllDrawKindString();
             SAllDraw = AllDrawKindString;
 
 
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 MovementsAStarGreedyHeuristicFoundT = MovementsAStarGreedyHeuristicTFou;
@@ -81,14 +98,16 @@ namespace GalleryStudio
         }
         public RefrigtzW.AllDraw Load(bool Quantum, int Order)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 if (File.Exists(SAllDraw))
                 {
                     FileInfo A = new FileInfo(SAllDraw);
                     if (A.Length == 0)
+                    {
                         return null;
+                    }
 
                     RefrigtzW.AllDraw tt = new RefrigtzW.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                     FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
@@ -98,8 +117,11 @@ namespace GalleryStudio
                     Console.WriteLine("Loading...");
                     tt = (RefrigtzW.AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
+                    {
                         return tt;
-                    tt = (RefrigtzW.AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+                    }
+
+                    tt = tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
 
                     DummyFileStream.Flush();
                     DummyFileStream.Close();
@@ -114,7 +136,7 @@ namespace GalleryStudio
         }
         public RefrigtzW.AllDraw LoadJungle(string pathj, bool Quantum, int Order)
         {
-            Object o = new Object();
+            object o = new object();
             lock (o)
             {
                 SAllDraw = pathj;
@@ -122,7 +144,9 @@ namespace GalleryStudio
                 {
                     FileInfo A = new FileInfo(SAllDraw);
                     if (A.Length == 0)
+                    {
                         return null;
+                    }
 
                     RefrigtzW.AllDraw tt = new RefrigtzW.AllDraw(Order, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsT);
                     FileStream DummyFileStream = new FileStream(SAllDraw, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
@@ -133,8 +157,11 @@ namespace GalleryStudio
                     RefrigtzW.AllDraw.indexStep = (int)Formatters.Deserialize(DummyFileStream);
                     tt = (RefrigtzW.AllDraw)Formatters.Deserialize(DummyFileStream);
                     if (tt == null)
+                    {
                         return tt;
-                    tt = (RefrigtzW.AllDraw)tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
+                    }
+
+                    tt = tt.LoaderEC(Quantum, Order, DummyFileStream, Formatters);
 
                     DummyFileStream.Flush();
                     DummyFileStream.Close();
@@ -149,7 +176,7 @@ namespace GalleryStudio
         }
         public void RewriteAllDraw(int Order)
         {
-            Object oo = new Object();
+            object oo = new object();
             lock (oo)
             {
 
@@ -177,10 +204,8 @@ namespace GalleryStudio
 
         public RefrigtzW.AllDraw AllDrawCurrentAccess
         {
-            get
-            { return Current; }
-            set
-            { Current = value; }
+            get => Current;
+            set => Current = value;
         }
 
 

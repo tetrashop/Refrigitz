@@ -3,14 +3,14 @@ using System.Collections.Generic;
 namespace RefregitzReader
 {
     [Serializable]
-    class RefregitzReader
+    internal class RefregitzReader
     {
         //#pragma warning disable CS0169 // The field 'RefregitzReader.Item' is never used
-        List<String> Item;
+        private readonly List<string> Item;
         //#pragma warning restore CS0169 // The field 'RefregitzReader.Item' is never used
         //public List<SearchGoogle> ItemSearch;
         public bool OKResult = false;
-        public RefregitzReader(String Path)
+        public RefregitzReader(string Path)
         {
 
         }

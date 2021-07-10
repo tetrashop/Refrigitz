@@ -8,12 +8,11 @@ namespace RefrigtzW
     [Serializable]
     public class DrawCastle
     {
+        private readonly StringBuilder Space = new StringBuilder("&nbsp;");
 
-
-        StringBuilder Space = new StringBuilder("&nbsp;");
         //#pragma warning disable CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
-        int Spaces = 0;
+        private readonly int Spaces = 0;
 #pragma warning restore CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'DrawCastle.Spaces' is assigned but its value is never used
 
@@ -23,8 +22,9 @@ namespace RefrigtzW
 
 
         public static Image[] C = new Image[2];
+
         //Iniatite Global Variable.
-        List<int[]> ValuableSelfSupported = new List<int[]>();
+        private List<int[]> ValuableSelfSupported = new List<int[]>();
 
         public bool MovementsAStarGreedyHeuristicFoundT = false;
         public bool IgnoreSelfObjectsT = false;
@@ -41,14 +41,14 @@ namespace RefrigtzW
         public int[,] Table = null;
         public int Current = 0;
         public int Order;
-        int CurrentAStarGredyMax = -1;
+        private readonly int CurrentAStarGredyMax = -1;
 
-        static void Log(Exception ex)
+        private static void Log(Exception ex)
         {
 
             try
             {
-                Object a = new Object();
+                object a = new object();
                 lock (a)
                 {
                     string stackTrace = ex.ToString();
@@ -77,11 +77,14 @@ namespace RefrigtzW
             if (MaxHeuristicxB < a)
             {
                 MaxNotFound = false;
-                Object O = new Object();
+                object O = new object();
                 lock (O)
                 {
                     if (ThinkingRefrigtzW.MaxHeuristicx < MaxHeuristicxB)
+                    {
                         ThinkingRefrigtzW.MaxHeuristicx = a;
+                    }
+
                     MaxHeuristicxB = a;
                 }
 
@@ -97,10 +100,10 @@ namespace RefrigtzW
             int HaveKilled = 0;
 
             int a = 0;
-            for (var ii = 0; ii < AllDraw.CastleMovments; ii++)
-
+            for (int ii = 0; ii < AllDraw.CastleMovments; ii++)
+            {
                 a += CastleThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
-
+            }
 
             return a;
         }
@@ -128,11 +131,18 @@ namespace RefrigtzW
                 ArrangmentsChanged = Arrangments;
                 //Initiate Global Variable By Local Parmenter.
                 Table = new int[8, 8];
-                for (var ii = 0; ii < 8; ii++)
-                    for (var jj = 0; jj < 8; jj++)
+                for (int ii = 0; ii < 8; ii++)
+                {
+                    for (int jj = 0; jj < 8; jj++)
+                    {
                         Table[ii, jj] = Tab[ii, jj];
-                for (var ii = 0; ii < AllDraw.CastleMovments; ii++)
+                    }
+                }
+
+                for (int ii = 0; ii < AllDraw.CastleMovments; ii++)
+                {
                     CastleThinking[ii] = new ThinkingRefrigtzW(ii, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)i, (int)j, a, CloneATable(Tab), 16, Ord, TB, Cur, 4, 4);
+                }
 
                 Row = i;
                 Column = j;
@@ -142,36 +152,46 @@ namespace RefrigtzW
             }
 
         }
-        int[,] CloneATable(int[,] Tab)
+
+        private int[,] CloneATable(int[,] Tab)
         {
 
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 int[,] Table = new int[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
 
                 return Table;
             }
 
         }
-        bool[,] CloneATable(bool[,] Tab)
+
+        private bool[,] CloneATable(bool[,] Tab)
         {
 
-            Object O = new Object();
+            object O = new object();
             lock (O)
             {
                 //Create and new an Object.
                 bool[,] Table = new bool[8, 8];
                 //Assigne Parameter To New Objects.
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
                         Table[i, j] = Tab[i, j];
+                    }
+                }
                 //Return New Object.
 
                 return Table;
@@ -184,23 +204,34 @@ namespace RefrigtzW
         {
 
             int[,] Tab = new int[8, 8];
-            for (var i = 0; i < 8; i++)
-                for (var j = 0; j < 8; j++)
-                    Tab[i, j] = this.Table[i, j];
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Tab[i, j] = Table[i, j];
+                }
+            }
             //Initiate a Constructed Brideges an Clone a Copy.
-            AA = new DrawCastle(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, this.Row, this.Column, this.color, this.CloneATable(Table), this.Order, false, this.Current);
-            AA.ArrangmentsChanged = ArrangmentsChanged;
-            for (var i = 0; i < AllDraw.CastleMovments; i++)
+            AA = new DrawCastle(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, color, CloneATable(Table), Order, false, Current)
+            {
+                ArrangmentsChanged = ArrangmentsChanged
+            };
+            for (int i = 0; i < AllDraw.CastleMovments; i++)
             {
 
-                AA.CastleThinking[i] = new ThinkingRefrigtzW(i, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)this.Row, (int)this.Column);
-                this.CastleThinking[i].Clone(ref AA.CastleThinking[i]);
+                AA.CastleThinking[i] = new ThinkingRefrigtzW(i, 4, CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, (int)Row, (int)Column);
+                CastleThinking[i].Clone(ref AA.CastleThinking[i]);
 
             }
             AA.Table = new int[8, 8];
-            for (var ii = 0; ii < 8; ii++)
-                for (var jj = 0; jj < 8; jj++)
+            for (int ii = 0; ii < 8; ii++)
+            {
+                for (int jj = 0; jj < 8; jj++)
+                {
                     AA.Table[ii, jj] = Tab[ii, jj];
+                }
+            }
+
             AA.Row = Row;
             AA.Column = Column;
             AA.Order = Order;
@@ -212,7 +243,9 @@ namespace RefrigtzW
         public void DrawCastleOnTable(ref Graphics g, int CellW, int CellH)
         {
             if (g == null)
+            {
                 return;
+            }
 
             try
             {
@@ -230,20 +263,20 @@ namespace RefrigtzW
                     { //Gray Color.
                         if (Order == 1)
                         {
-                            Object O1 = new Object();
+                            object O1 = new object();
                             lock (O1)
                             {    //Draw an Instant from File of Gray Soldeirs.
                                  //Draw a Gray Castles Instatnt Image On hte Tabe.
-                                g.DrawImage(C[0], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                g.DrawImage(C[0], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                             }
                         }
                         else
                         {
-                            Object O1 = new Object();
+                            object O1 = new object();
                             lock (O1)
                             {    //Draw an Instant from File of Gray Soldeirs.
                                  //Draw an Instatnt of Brown Castles On the Table.
-                                g.DrawImage(C[1], new Rectangle((int)(Row * (float)CellW), (int)(Column * (float)CellH), CellW, CellH));
+                                g.DrawImage(C[1], new Rectangle((int)(Row * CellW), (int)(Column * CellH), CellW, CellH));
                             }
                         }
                     }

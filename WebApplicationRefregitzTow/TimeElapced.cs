@@ -2,7 +2,7 @@
 
 namespace RefrigtzW
 {
-    static class TimeElapced
+    internal static class TimeElapced
     {
 
         public static long TimeNow()

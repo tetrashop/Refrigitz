@@ -5105,7 +5105,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 //C# TO C++ CONVERTER TODO TASK: There is no built-in support for multithreading in native C++:
 		//lock (O)
 		{
-			int HA = 0;
+			int HA = 1;
 			int Object = Table[Row][Column];
 			//Wehn Solider.
 			if (abs(Object) == 1)

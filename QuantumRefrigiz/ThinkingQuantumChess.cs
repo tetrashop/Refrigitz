@@ -1090,7 +1090,7 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 int HeuristicAttackValue = 0;
-                int HA = 0;
+                int HA = 1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -1445,7 +1445,7 @@ namespace QuantumRefrigiz
             {
                 int HeuristicReducedAttackValue = 0;
                 //Initiate Objects.
-                int HA = 0;
+                int HA = 1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -1768,7 +1768,7 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 int HeuristicCheckedMate = 0;
-                int HA = 0;
+                int HA = 1;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
                 ///When There is no AStarGreedyHeuristicT
@@ -1908,7 +1908,7 @@ namespace QuantumRefrigiz
 
                 int HeuristicReducedSupport = 0;
                 //Defualt is Gray Order.
-                int HA = 0;
+                int HA = 1;
                 int Sign = AllDraw.SignKiller;
                 int DummyOrder = Ord;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -3046,7 +3046,7 @@ namespace QuantumRefrigiz
             object ol = new object();
             lock (ol)
             {
-                int HA = 0;
+                int HA = 1;
                 const int CastleGray = 4, CastleBrown = -4, KingGray = 6, KingBrown = -6;
                 if (Order == 1)
                 {
@@ -3159,7 +3159,7 @@ namespace QuantumRefrigiz
             object O3 = new object();
             lock (O3)
             {
-                int HA = 0;
+                int HA = 1;
                 int[,] Tabl = CloneATable(Tab);
                 if (Tabl[RowS, ColS] != 0)
                 {
@@ -3280,7 +3280,7 @@ namespace QuantumRefrigiz
             {
                 int HeuristicSelfSupportedValue = 0;
                 //Initiate Local Vrariables.
-                int HA = 0;
+                int HA = 1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -3620,7 +3620,7 @@ namespace QuantumRefrigiz
             {
                 int HeuristicSelfSupportedValue = 0;
                 //Initiate Local Vrariables.
-                int HA = 0;
+                int HA = 1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -5862,7 +5862,7 @@ namespace QuantumRefrigiz
             object O = new object();
             lock (O)
             {
-                int HA = 0;
+                int HA = 1;
                 if (Order == 1)
                 {
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order, RowD, ColD);
@@ -5913,7 +5913,7 @@ namespace QuantumRefrigiz
             object O = new object();
             lock (O)
             {
-                int HA = 0;
+                int HA = 1;
                 if (Order == 1)
                 {
                     int RowK = -1, ColK = -1;
@@ -5994,7 +5994,7 @@ namespace QuantumRefrigiz
             object O = new object();
             lock (O)
             {
-                int HA = 0;
+                int HA = 1;
                 if (Order == 1)
                 {
                     int RowK = -1, ColK = -1;
@@ -6023,7 +6023,7 @@ namespace QuantumRefrigiz
             object O = new object();
             lock (O)
             {
-                int HA = 0;
+                int HA = 1;
                 if (Order == 1)
                 {
                     int RowK = -1, ColK = -1;
@@ -6451,24 +6451,24 @@ namespace QuantumRefrigiz
             object O = new object();
             lock (O)
             {
-                int HA = 0;
+                int HA = 1;
                 Task<int> H1 = Task.Factory.StartNew(() => HA = System.Math.Abs(HA) * SimpleMate_Zero(RowS, ColS, RowD, ColD, CloneATable(Table), a));
                 H1.Wait();
                 H1.Dispose();
 
-                if (HA == 0)
+                if (HA == 1)
                 {
                     Task<int> H2 = Task.Factory.StartNew(() => HA = System.Math.Abs(HA) * SimpleMate_One(RowS, ColS, RowD, ColD, CloneATable(Table), a));
                     H2.Wait();
                     H2.Dispose();
                 }
-                if (HA == 0)
+                if (HA == 1)
                 {
                     Task<int> H3 = Task.Factory.StartNew(() => HA = System.Math.Abs(HA) * SimpleMate_Tow(RowS, ColS, RowD, ColD, CloneATable(Table), a));
                     H3.Wait();
                     H3.Dispose();
                 }
-                if (HA == 0)
+                if (HA == 1)
                 {
                     Task<int> H4 = Task.Factory.StartNew(() => HA = System.Math.Abs(HA) * SimpleMate_Three_And_Four(RowS, ColS, RowD, ColD, CloneATable(Table), a));
                     H4.Wait();
@@ -6502,7 +6502,7 @@ namespace QuantumRefrigiz
             object O = new object();
             lock (O)
             {
-                int HA = 0;
+                int HA = 1;
                 int Object = Table[Row, Column];
                 //Wehn Solider.
                 if (System.Math.Abs(Object) == 1)
@@ -7492,7 +7492,7 @@ namespace QuantumRefrigiz
             object O = new object();
             lock (O)
             {
-                int Dis = 0;
+                int Dis = 1;
                 const int ObjectGray = 0, ObjectBrown = 0;
                 //opperation decision making  on pawn movment
                 bool ab = false;
@@ -7953,7 +7953,7 @@ namespace QuantumRefrigiz
             object O = new object();
             lock (O)
             {
-                int HA = 0;
+                int HA = 1;
                 object O1 = new object();
                 lock (O1)
                 {
@@ -7967,7 +7967,7 @@ namespace QuantumRefrigiz
                         HA = RationalPenalty;
                     }
 
-                    if (HA == 0)
+                    if (HA == 1)
                     {
                         int[,] Ta = CloneATable(Table);
                         bool Before = false;
@@ -8139,7 +8139,7 @@ namespace QuantumRefrigiz
             {
                 int[] HeuristicA = new int[6];
                 int[] HeuristicB = new int[6];
-                int HA = 0;
+                int HA = 1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -9525,7 +9525,7 @@ namespace QuantumRefrigiz
             {
                 int HeuristicMovementValue = 0;
                 //Initiate Local Variable.
-                int HA = 0;
+                int HA = 1;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
                 ///When AStarGreedy Heuristic is Not Assigned.
@@ -9815,7 +9815,7 @@ namespace QuantumRefrigiz
             {
                 int HeuristicMovementValue = 0;
                 //Initiate Local Variable.
-                int HA = 0;
+                int HA = 1;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
                 ///When AStarGreedy Heuristic is Not Assigned.
@@ -14717,7 +14717,7 @@ namespace QuantumRefrigiz
             object OO = new object();
             lock (OO)
             {
-                int HA = 0;
+                int HA = 1;
                 int SpaceSelf = 0, SpaceEnemy = 0;
                 for (int RowS = 0; RowS < 8; RowS++)
                 {

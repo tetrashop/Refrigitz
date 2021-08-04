@@ -217,8 +217,8 @@ namespace Chess
             lock (O)
             {
 
-
-
+                if (A.Length < 4)
+                    return -1;
 
                 if (A[0] == 'a')
                 {
@@ -2000,6 +2000,10 @@ else*/
                                         string t = Convert(b);
                                         System.IO.File.AppendAllText("a.txt", "\r" + t);
                                         int a = SetRowColumn(t);
+
+                                        if (a == -1)
+                                            return;
+
                                         if (a == -10 || a == -11)
                                         {
                                             System.IO.File.AppendAllText("a.txt", '1'.ToString() + b + "#" + a + "+" + t);

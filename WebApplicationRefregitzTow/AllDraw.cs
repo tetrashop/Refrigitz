@@ -22055,6 +22055,12 @@ namespace RefrigtzW
                         return true;
                     }
 
+                    if (ikk >= SolderesOnTable.Length)
+                    {
+                        return true;
+                    }
+
+
                     if (SolderesOnTable[ikk] == null)
                     {
                         return true;
@@ -22099,6 +22105,11 @@ namespace RefrigtzW
                 try
                 {
                     if (ElephantOnTable == null)
+                    {
+                        return true;
+                    }
+
+                    if (ikk >= ElephantOnTable.Length)
                     {
                         return true;
                     }
@@ -22154,6 +22165,11 @@ namespace RefrigtzW
                         return true;
                     }
 
+                    if (ikk >= HoursesOnTable.Length)
+                    {
+                        return true;
+                    }
+
                     if (HoursesOnTable[ikk] == null)
                     {
                         return true;
@@ -22200,6 +22216,11 @@ namespace RefrigtzW
                 try
                 {
                     if (CastlesOnTable == null)
+                    {
+                        return true;
+                    }
+
+                    if (ikk >= CastlesOnTable.Length)
                     {
                         return true;
                     }
@@ -22252,6 +22273,11 @@ namespace RefrigtzW
                         return true;
                     }
 
+                    if (ikk >= MinisterOnTable.Length)
+                    {
+                        return true;
+                    }
+
                     if (MinisterOnTable[ikk] == null)
                     {
                         return true;
@@ -22300,6 +22326,11 @@ namespace RefrigtzW
                         return true;
                     }
 
+                    if (ikk >= KingOnTable.Length)
+                    {
+                        return true;
+                    }
+
                     if (KingOnTable[ikk] == null)
                     {
                         return true;
@@ -22344,6 +22375,11 @@ namespace RefrigtzW
                 try
                 {
                     if (CastlingOnTable == null)
+                    {
+                        return true;
+                    }
+
+                    if (ikk >= CastlingOnTable.Length)
                     {
                         return true;
                     }

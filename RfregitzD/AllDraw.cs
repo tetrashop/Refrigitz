@@ -22054,6 +22054,12 @@ namespace RefrigtzDLL
                         return true;
                     }
 
+                    if (ikk >= SolderesOnTable.Length)
+                    {
+                        return true;
+                    }
+
+
                     if (SolderesOnTable[ikk] == null)
                     {
                         return true;
@@ -22098,6 +22104,11 @@ namespace RefrigtzDLL
                 try
                 {
                     if (ElephantOnTable == null)
+                    {
+                        return true;
+                    }
+
+                    if (ikk >= ElephantOnTable.Length)
                     {
                         return true;
                     }
@@ -22153,6 +22164,11 @@ namespace RefrigtzDLL
                         return true;
                     }
 
+                    if (ikk >= HoursesOnTable.Length)
+                    {
+                        return true;
+                    }
+
                     if (HoursesOnTable[ikk] == null)
                     {
                         return true;
@@ -22199,6 +22215,11 @@ namespace RefrigtzDLL
                 try
                 {
                     if (CastlesOnTable == null)
+                    {
+                        return true;
+                    }
+
+                    if (ikk >= CastlesOnTable.Length)
                     {
                         return true;
                     }
@@ -22251,6 +22272,11 @@ namespace RefrigtzDLL
                         return true;
                     }
 
+                    if (ikk >= MinisterOnTable.Length)
+                    {
+                        return true;
+                    }
+
                     if (MinisterOnTable[ikk] == null)
                     {
                         return true;
@@ -22295,6 +22321,11 @@ namespace RefrigtzDLL
                 try
                 {
                     if (KingOnTable == null)
+                    {
+                        return true;
+                    }
+
+                    if (ikk >= KingOnTable.Length)
                     {
                         return true;
                     }
@@ -22347,6 +22378,11 @@ namespace RefrigtzDLL
                         return true;
                     }
 
+                    if (ikk >= CastlingOnTable.Length)
+                    {
+                        return true;
+                    }
+
                     if (CastlingOnTable[ikk] == null)
                     {
                         return true;
@@ -22380,6 +22416,7 @@ namespace RefrigtzDLL
                 return IS;
             }
         }
+
 
         //boundry condition determistic method for break
         private bool FullBoundryConditionsSoldier(int ikk, int Current, int Order, int iAStarGreedy)

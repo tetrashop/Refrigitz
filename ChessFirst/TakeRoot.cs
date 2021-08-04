@@ -411,8 +411,15 @@ namespace ChessFirst
                           if (File.Exists(AllDrawKindString))
                     {
                         //DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
-
-                        File.Delete(ChessFirstForm.AllDrawKindString);
+                        Again:
+                        try
+                        {
+                            File.Delete(ChessFirstForm.AllDrawKindString);
+                        }catch(Exception t)
+                        {
+                            System.Threading.Thread.Sleep(100);
+                            goto Again;
+                        }
                         RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
                             );
                         //"Universal Root Founding";

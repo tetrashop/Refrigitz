@@ -283,8 +283,15 @@ namespace Refrigtz
                 {
                     //DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
 
-                    File.Delete(FormRefrigtz.AllDrawKindString);
-                    GalleryStudio.RefregizMemmory rt = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
+                  Again:
+                        try
+                        {
+                            File.Delete(FormRefrigtz.AllDrawKindString);
+                        }catch(Exception t)
+                        {
+                            System.Threading.Thread.Sleep(100);
+                            goto Again;
+                        } GalleryStudio.RefregizMemmory rt = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
                         );
                     //"Universal Root Founding";
                     if (Curent.Draw != null)

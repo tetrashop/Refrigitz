@@ -352,7 +352,16 @@ namespace RefrigtzW
                           if (File.Exists(AllDrawKindString))
                     {
 
-                        File.Delete(RefrigtzW.FormRefrigtz.AllDrawKindString);
+                    Again:
+                        try
+                        {
+                            File.Delete(RefrigtzW.FormRefrigtz.AllDrawKindString);
+                        }
+                        catch (Exception t)
+                        {
+                            System.Threading.Thread.Sleep(100);
+                            goto Again;
+                        }
                         GalleryStudio.RefregizMemmory rt = new GalleryStudio.RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
                             );
 

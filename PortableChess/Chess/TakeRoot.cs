@@ -410,9 +410,18 @@ namespace RefrigtzChessPortable
                     else
                           if (File.Exists(AllDrawKindString))
                     {
-                        //DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
+                    //DrawManagement(FOUND, UsePenaltyRegardMechnisam, AStarGreedyHeuristic);
 
-                        File.Delete(RefrigtzChessPortableForm.AllDrawKindString);
+                    Again:
+                        try
+                        {
+                            File.Delete(RefrigtzChessPortableForm.AllDrawKindString);
+                        }
+                        catch (Exception t)
+                        {
+                            System.Threading.Thread.Sleep(100);
+                            goto Again;
+                        }
                         RefregizMemmory rt = new RefregizMemmory(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged
                             );
                         //"Universal Root Founding";

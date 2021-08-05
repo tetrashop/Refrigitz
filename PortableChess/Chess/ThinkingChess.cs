@@ -1141,7 +1141,7 @@ namespace RefrigtzChessPortable
                             th.Dispose();
                             if (ab)
                             {
-                                HA = System.Math.Abs(HA) * RationalPenalty;
+                                              HA = Rational(HA, RationalPenalty) * RationalPenalty;;
                             }
                             else
                             {
@@ -1151,7 +1151,7 @@ namespace RefrigtzChessPortable
 
                                 if (ab)
                                 {
-                                    HA = System.Math.Abs(HA) * RationalRegard;
+                                                  HA = Rational(HA, RationalRegard) * RationalRegard;
                                     //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                     int Supported = new int();
                                     int SupportedS = new int();
@@ -1216,12 +1216,12 @@ namespace RefrigtzChessPortable
 
                                     if (SupportedS > 0 && Supported == 0)
                                     {
-                                        HA = System.Math.Abs(HA) * (int)System.Math.Pow(2, SupportedS);
+                                        HA = Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
                                     }
                                     else
                                     if (Supported > 0)
                                     {
-                                        HA = System.Math.Abs(HA) * (int)(-1 * System.Math.Pow(2, Supported));
+                                        HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                     }
                                 }
                             }
@@ -1276,7 +1276,7 @@ namespace RefrigtzChessPortable
                             th.Dispose();
                             if (ab)
                             {
-                                HA = System.Math.Abs(HA) * RationalPenalty;
+                                              HA = Rational(HA, RationalPenalty) * RationalPenalty;;
                             }
 
                             Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
@@ -1286,7 +1286,7 @@ namespace RefrigtzChessPortable
                             if (ab)
                             {
 
-                                HA = System.Math.Abs(HA) * RationalRegard;
+                                              HA = Rational(HA, RationalRegard) * RationalRegard;
 
                                 //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                 //For All Enemy Obejcts.                                             
@@ -1353,12 +1353,12 @@ namespace RefrigtzChessPortable
                                 }
                                 if (SupportedS > 0 && Supported == 0)
                                 {
-                                    HA = System.Math.Abs(HA) * (int)System.Math.Pow(2, SupportedS);
+                                    HA = Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
                                 }
                                 else
                                  if (Supported > 0)
                                 {
-                                    HA = System.Math.Abs(HA) * (int)(-1 * System.Math.Pow(2, Supported));
+                                    HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                 }
                             }
                         }
@@ -1509,7 +1509,7 @@ namespace RefrigtzChessPortable
                                     if (ab)
                                     {
                                         MinisterOnAttack = true;
-                                        HA = System.Math.Abs(HA) * RationalPenalty;
+                                                      HA = Rational(HA, RationalPenalty) * RationalPenalty;;
                                         //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                         int Supported = new int();
                                         int SupportedS = new int();
@@ -1573,7 +1573,7 @@ namespace RefrigtzChessPortable
                                         }
                                         if (SupportedS > 0 && Supported == 0)
                                         {
-                                            HA = System.Math.Abs(HA) * (int)System.Math.Pow(2, SupportedS);
+                                            HA = Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
                                         }
                                         else
                                               if (Supported > 0)
@@ -1639,7 +1639,7 @@ namespace RefrigtzChessPortable
                                 if (ab)
                                 {
                                     MinisterOnAttack = true;
-                                    HA = System.Math.Abs(HA) * RationalPenalty;
+                                                  HA = Rational(HA, RationalPenalty) * RationalPenalty;;
                                     //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                     int Supported = new int();
                                     int SupportedS = new int();
@@ -1703,12 +1703,12 @@ namespace RefrigtzChessPortable
                                     }
                                     if (SupportedS > 0 && Supported == 0)
                                     {
-                                        HA = System.Math.Abs(HA) * (int)System.Math.Pow(2, SupportedS);
+                                        HA = Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
                                     }
                                     else
                                if (Supported > 0)
                                     {
-                                        HA = System.Math.Abs(HA) * (int)(-1 * System.Math.Pow(2, Supported));
+                                        HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                     }
                                 }
                                 else
@@ -1735,12 +1735,12 @@ namespace RefrigtzChessPortable
                     th5.Dispose();
                     if (ab)
                     {
-                        HA = System.Math.Abs(HA) * RationalRegard;
+                                      HA = Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 else
                 {
-                    HA = System.Math.Abs(HA) * RationalPenalty;
+                                  HA = Rational(HA, RationalPenalty) * RationalPenalty;;
                 }
                 //Initiate to Begin Call Orders.
                 Order = DummyOrder;
@@ -1959,7 +1959,7 @@ namespace RefrigtzChessPortable
                         if (EnemyNotSupported)
                         {
                             //Heuristic positive.
-                            Task<int> th2 = Task.Factory.StartNew(() => HA += AllDraw.SignKiller * (ObjectValueCalculator(CloneATable(Tab), RowS, ColS, RowD, ColD)
+                            Task<int> th2 = Task.Factory.StartNew(() => HA= Rational(HA, AllDraw.SignKiller * (ObjectValueCalculator(CloneATable(Tab), RowS, ColS, RowD, ColD))* AllDraw.SignKiller * (ObjectValueCalculator(CloneATable(Tab), RowS, ColS, RowD, ColD))
                             ));
                             th2.Wait();
                             th2.Dispose();
@@ -1967,7 +1967,7 @@ namespace RefrigtzChessPortable
                         else
                         {
                             //Heuristic ngative.
-                            Task<int> th2 = Task.Factory.StartNew(() => HA += AllDraw.SignKiller * (ObjectValueCalculator(CloneATable(Tab), RowS, ColS, RowD, ColD)
+                            Task<int> th2 = Task.Factory.StartNew(() => HA= Rational(HA, AllDraw.SignKiller * (ObjectValueCalculator(CloneATable(Tab), RowS, ColS, RowD, ColD))* AllDraw.SignKiller * (ObjectValueCalculator(CloneATable(Tab), RowS, ColS, RowD, ColD))
                             ) * -1);
                             th2.Wait();
                             th2.Dispose();
@@ -3060,36 +3060,36 @@ namespace RefrigtzChessPortable
 
                     if (Tab[RowK, ColK] == KingGray && Tab[RowK, ColK] == TableInitiation[RowK, ColK] && ChessRules.CastleKingAllowedGray)
                     {
-                        HA += RationalPenalty;
+                        HA = Rational(HA, RationalPenalty) * RationalPenalty;
                     }
 
                     if ((Tab[RowK, ColK] == KingGray) && (Tab[RowK, 7] == CastleGray || Tab[RowK, 0] == CastleGray) && (TableInitiation[RowK, ColK] == 6) && ChessRules.CastleKingAllowedGray)
                     {
                         if (RowS == RowK && ColS == 5)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 6)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         //if (RowS == RowK - 1 && ColS == 5)
                         ///if (RowS == RowK - 1 && ColS == 6)
 
                         if (RowS == RowK && ColS == 3)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 2)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 1)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         // if (RowS == RowK - 1 && ColS == 3)
                         //if (RowS == RowK - 1 && ColS == 2)
@@ -3111,36 +3111,36 @@ namespace RefrigtzChessPortable
 
                     if (Tab[RowK, ColK] == KingBrown && Tab[RowK, ColK] == TableInitiation[RowK, ColK] && ChessRules.CastleKingAllowedBrown)
                     {
-                        HA += RationalPenalty;
+                        HA = Rational(HA, RationalPenalty) * RationalPenalty;
                     }
 
                     if ((Tab[RowK, ColK] == KingBrown) && (Tab[RowK, 7] == CastleBrown || Tab[RowK, 0] == CastleBrown) && (TableInitiation[RowK, ColK] == -6) && ChessRules.CastleKingAllowedBrown)
                     {
                         if (RowS == RowK && ColS == 5)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 6)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         //if (RowS == RowK + 1 && ColS == 5)
                         // if (RowS == RowK + 1 && ColS == 6)
 
                         if (RowS == RowK && ColS == 3)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 2)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 1)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         //if (RowS == RowK + 1 && ColS == 3)
                         // if (RowS == RowK + 1 && ColS == 2)
@@ -3174,31 +3174,31 @@ namespace RefrigtzChessPortable
                     {
                         if (A.CheckGray || A.CheckBrown)
                         {
-                            HA += RationalPenalty;
+                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                     if (Order == 1)
                     {
                         if (A.CheckMateGray)
                         {
-                            HA += RationalPenalty;
+                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                         else
                         if (A.CheckMateBrown)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                     }
                     else
                     {
                         if (A.CheckMateGray)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
              if (A.CheckMateBrown)
                         {
-                            HA += RationalPenalty;
+                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                 }
@@ -3210,30 +3210,30 @@ namespace RefrigtzChessPortable
                     th.Dispose();
                     if (A.CheckGray || A.CheckBrown)
                     {
-                        HA += RationalRegard;
+                        HA = Rational(HA, RationalRegard) * RationalRegard;
                     }
                     if (Order == 1)
                     {
                         if (A.CheckMateGray)
                         {
-                            HA += RationalPenalty;
+                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                         else
                         if (A.CheckMateBrown)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                     }
                     else
                     {
                         if (A.CheckMateGray)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
              if (A.CheckMateBrown)
                         {
-                            HA += RationalPenalty;
+                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                 }
@@ -3343,7 +3343,7 @@ namespace RefrigtzChessPortable
                             if (ab)
                             {
                                 //Calculate Local Support Heuristic.
-                                HA = System.Math.Abs(HA) * RationalRegard;
+                                              HA = Rational(HA, RationalRegard) * RationalRegard;
                                 int Supported = new int();
                                 int SupportedE = new int();
                                 Supported = 0;
@@ -3430,13 +3430,13 @@ namespace RefrigtzChessPortable
                                     if (Supported > 0 && SupportedE == 0)
                                     {
                                         //When is Not Supported multyply 100.
-                                        HA = System.Math.Abs(HA) * (int)(System.Math.Pow(2, Supported));
+                                        HA = Rational(HA, (int)(System.Math.Pow(2, Supported))) * (int)(System.Math.Pow(2, Supported));
                                     }
                                     else
                                         if (SupportedE > 0)
                                     {
                                         //When is Supported Multyply -100.
-                                        HA = System.Math.Abs(HA) * (int)(-1 * System.Math.Pow(2, SupportedE));
+                                        HA = Rational(HA, (int)(-1 * System.Math.Pow(2, SupportedE))) * (int)(-1 * System.Math.Pow(2, SupportedE));
                                     }
                                 }
                             }
@@ -3500,7 +3500,7 @@ namespace RefrigtzChessPortable
                                         if (ab)
                                         {
                                             //Calculate Local Support Heuristic.
-                                            HA = System.Math.Abs(HA) * RationalRegard;
+                                                          HA = Rational(HA, RationalRegard) * RationalRegard;
                                             int Supported = new int();
                                             int SupportedE = new int();
                                             Supported = 0;
@@ -3586,13 +3586,13 @@ namespace RefrigtzChessPortable
                                                 if (Supported > 0 && SupportedE == 0)
                                                 {
                                                     //When is Not Supported multyply 100.
-                                                    HA = System.Math.Abs(HA) * (int)(System.Math.Pow(2, Supported));
+                                                    HA = Rational(HA, (int)(System.Math.Pow(2, Supported))) * (int)(System.Math.Pow(2, Supported));
                                                 }
                                                 else
                                                   if (SupportedE > 0)
                                                 {
                                                     //When is Supported Multyply -100.
-                                                    HA = System.Math.Abs(HA) * (int)(-1 * System.Math.Pow(2, SupportedE));
+                                                    HA = Rational(HA, (int)(-1 * System.Math.Pow(2, SupportedE))) * (int)(-1 * System.Math.Pow(2, SupportedE));
                                                 }
                                             }
                                         }
@@ -3684,7 +3684,7 @@ namespace RefrigtzChessPortable
                             {
 
                                 //Calculate Local Support Heuristic.
-                                HA = System.Math.Abs(HA) * RationalPenalty;
+                                              HA = Rational(HA, RationalPenalty) * RationalPenalty;;
                                 int Supported = new int();
                                 int SupportedE = new int();
                                 Supported = 0;
@@ -3770,13 +3770,13 @@ namespace RefrigtzChessPortable
                                     if (SupportedE > 0 && Supported == 0)
                                     {
                                         //When is Not Supported multyply 100.
-                                        HA = System.Math.Abs(HA) * (int)System.Math.Pow(2, SupportedE);
+                                        HA = Rational(HA, (int)System.Math.Pow(2, SupportedE));
                                     }
                                     else
                                        if (Supported > 0)
                                     {
                                         //When is Supported Multyply -100.
-                                        HA = System.Math.Abs(HA) * (int)(-1 * System.Math.Pow(2, Supported));
+                                        HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                     }
                                 }
                             }
@@ -3841,7 +3841,7 @@ namespace RefrigtzChessPortable
                                         {
 
                                             //Calculate Local Support Heuristic.
-                                            HA = System.Math.Abs(HA) * RationalPenalty;
+                                                          HA = Rational(HA, RationalPenalty) * RationalPenalty;;
                                             int Supported = new int();
                                             int SupportedE = new int();
                                             Supported = 0;
@@ -3927,13 +3927,13 @@ namespace RefrigtzChessPortable
                                                 if (SupportedE > 0 && Supported == 0)
                                                 {
                                                     //When is Not Supported multyply 100.
-                                                    HA = System.Math.Abs(HA) * (int)System.Math.Pow(2, SupportedE);
+                                                    HA = Rational(HA, (int)System.Math.Pow(2, SupportedE));
                                                 }
                                                 else
                                                       if (Supported > 0)
                                                 {
                                                     //When is Supported Multyply -100.
-                                                    HA = System.Math.Abs(HA) * (int)(-1 * System.Math.Pow(2, Supported));
+                                                    HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                                 }
                                             }
                                         }
@@ -5875,12 +5875,12 @@ namespace RefrigtzChessPortable
                     {
                         if (Order == 1 && G.CheckMateBrown)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
                      if (Order == 1 && G.CheckMateGray)
                         {
-                            HA += RationalPenalty;
+                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                 }
@@ -5896,12 +5896,12 @@ namespace RefrigtzChessPortable
                     {
                         if (Order == -1 && G.CheckMateGray)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
                         if (Order == -1 && G.CheckMateBrown)
                         {
-                            HA += RationalPenalty;
+                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                 }
@@ -5925,7 +5925,7 @@ namespace RefrigtzChessPortable
                     H1.Dispose();
                     if (S1)
                     {
-                        HA += RationalRegard;
+                        HA = Rational(HA, RationalRegard) * RationalRegard;
                     }
                     else
                     {
@@ -5935,7 +5935,7 @@ namespace RefrigtzChessPortable
                         H2.Dispose();
                         if (S2)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
                         {
@@ -5945,7 +5945,7 @@ namespace RefrigtzChessPortable
                             H3.Dispose();
                             if (S3)
                             {
-                                HA += RationalRegard;
+                                HA = Rational(HA, RationalRegard) * RationalRegard;
                             }
                         }
                     }
@@ -5961,7 +5961,7 @@ namespace RefrigtzChessPortable
                     H1.Dispose();
                     if (S1)
                     {
-                        HA += RationalRegard;
+                        HA = Rational(HA, RationalRegard) * RationalRegard;
                     }
                     else
                     {
@@ -5971,7 +5971,7 @@ namespace RefrigtzChessPortable
                         H2.Dispose();
                         if (S2)
                         {
-                            HA += RationalRegard;
+                            HA = Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
                         {
@@ -5981,7 +5981,7 @@ namespace RefrigtzChessPortable
                             H3.Dispose();
                             if (S3)
                             {
-                                HA += RationalRegard;
+                                HA = Rational(HA, RationalRegard) * RationalRegard;
                             }
                         }
                     }
@@ -6002,7 +6002,7 @@ namespace RefrigtzChessPortable
                     G.FindBrownKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingCanMateByCloseHome(RowK, ColK, CloneATable(Table), Order))
                     {
-                        HA += RationalRegard;
+                        HA = Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 else
@@ -6012,7 +6012,7 @@ namespace RefrigtzChessPortable
                     G.FindGrayKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingCanMateByCloseHome(RowK, ColK, CloneATable(Table), Order))
                     {
-                        HA += RationalRegard;
+                        HA = Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 return HA;
@@ -6031,7 +6031,7 @@ namespace RefrigtzChessPortable
                     G.FindBrownKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingHaveAtMostOneEmptyItemInAttack(RowK, ColK, CloneATable(Table), Order))
                     {
-                        HA += RationalRegard;
+                        HA = Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 else
@@ -6041,7 +6041,7 @@ namespace RefrigtzChessPortable
                     G.FindGrayKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingHaveAtMostOneEmptyItemInAttack(RowK, ColK, CloneATable(Table), Order))
                     {
-                        HA += RationalRegard;
+                        HA = Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 return HA;
@@ -6445,6 +6445,7 @@ namespace RefrigtzChessPortable
             }
             return Is;
         }
+       
         ///Heuristic of Check and CheckMate.
         public int HeuristicCheckAndCheckMate(int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
         {
@@ -6481,7 +6482,7 @@ namespace RefrigtzChessPortable
                 H5.Dispose();
                 if (S1)
                 {
-                    HA = System.Math.Abs(HA) * RationalRegard;
+                    HA = Rational(HA, RationalRegard) * RationalRegard;
                 }
                 bool S2 = false;
 
@@ -6490,7 +6491,7 @@ namespace RefrigtzChessPortable
                 H6.Dispose();
                 if (S2)
                 {
-                    HA = System.Math.Abs(HA) * RationalRegard;
+                                  HA = Rational(HA, RationalRegard) * RationalRegard;
                 }
                 return HA;
             }
@@ -7514,11 +7515,11 @@ namespace RefrigtzChessPortable
 
                 if (IKIsCentralPawnIsOk && HeuristicAllReducedAttacked.Count == 0)
                 {
-                    Dis = System.Math.Abs(Dis) * RationalRegard;
+                    Dis =Rational(Dis,RationalRegard) * RationalRegard;
                 }
                 else
                 {
-                    Dis = System.Math.Abs(Dis) * RationalPenalty;
+                    Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                 }
 
                 Task<bool> th2 = Task.Factory.StartNew(() => ab = ExistCastleInDouble(Order, CloneATable(Tab), RowS, ColS, RowD, ColD));
@@ -7526,7 +7527,7 @@ namespace RefrigtzChessPortable
                 th2.Dispose();
                 if (ab)
                 {
-                    Dis = System.Math.Abs(Dis) * RationalRegard;
+                    Dis =Rational(Dis,RationalRegard) * RationalRegard;
                 }
 
                 if (Order == 1)
@@ -7536,7 +7537,7 @@ namespace RefrigtzChessPortable
                     {
                         if (Tab[RowS, ColS] == 4 || Tab[RowD, ColD] == 4)
                         {
-                            Dis = System.Math.Abs(Dis) * RationalRegard;
+                            Dis =Rational(Dis,RationalRegard) * RationalRegard;
                         }
                     }
                     if ((Tab[3, 4] > ObjectGray && Tab[4, 3] > ObjectGray && Tab[3, 3] > ObjectGray && Tab[4, 4] > ObjectGray) || (IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 25)))
@@ -7546,7 +7547,7 @@ namespace RefrigtzChessPortable
                         th3.Dispose();
                         if (ab)
                         {
-                            Dis = System.Math.Abs(Dis) * RationalPenalty;
+                            Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                         }
                         else
                         {
@@ -7555,7 +7556,7 @@ namespace RefrigtzChessPortable
                             th4.Dispose();
                             if (ab)
                             {
-                                Dis = System.Math.Abs(Dis) * RationalPenalty;
+                                Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                             }
                             else
 
@@ -7565,7 +7566,7 @@ namespace RefrigtzChessPortable
                                 th5.Dispose();
                                 if (ab)
                                 {
-                                    Dis = System.Math.Abs(Dis) * RationalRegard;
+                                    Dis =Rational(Dis,RationalRegard) * RationalRegard;
                                 }
                                 else
                                 {
@@ -7574,7 +7575,7 @@ namespace RefrigtzChessPortable
                                     th6.Dispose();
                                     if (ab)
                                     {
-                                        Dis = System.Math.Abs(Dis) * RationalRegard;
+                                        Dis =Rational(Dis,RationalRegard) * RationalRegard;
                                     }
                                 }
                             }
@@ -7590,7 +7591,7 @@ namespace RefrigtzChessPortable
                         if (Cor > Colleralation)
                         {
                             Colleralation = Cor;
-                            Dis = System.Math.Abs(Dis) * RationalRegard;
+                            Dis =Rational(Dis,RationalRegard) * RationalRegard;
                         }
                         if (Cor < ColleralationGray && Tab[RowS, ColS] > 0 && (Cor >= 0))
                         {
@@ -7604,7 +7605,7 @@ namespace RefrigtzChessPortable
                     th7.Dispose();
                     if (ab)
                     {
-                        Dis = System.Math.Abs(Dis) * RationalPenalty;
+                        Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                     }
                     else
                     {
@@ -7613,7 +7614,7 @@ namespace RefrigtzChessPortable
                         th8.Dispose();
                         if (ab)
                         {
-                            Dis = System.Math.Abs(Dis) * RationalPenalty;
+                            Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                         }
                         else
                         {
@@ -7622,7 +7623,7 @@ namespace RefrigtzChessPortable
                             th9.Dispose();
                             if (ab)
                             {
-                                Dis = System.Math.Abs(Dis) * RationalRegard;
+                                Dis =Rational(Dis,RationalRegard) * RationalRegard;
                             }
                             else
                             {
@@ -7631,7 +7632,7 @@ namespace RefrigtzChessPortable
                                 th10.Dispose();
                                 if (ab)
                                 {
-                                    Dis = System.Math.Abs(Dis) * RationalRegard;
+                                    Dis =Rational(Dis,RationalRegard) * RationalRegard;
                                 }
                             }
                         }
@@ -7655,7 +7656,7 @@ namespace RefrigtzChessPortable
                             if (Cor < DeColleralation)
                             {
                                 DeColleralation = Cor;
-                                Dis = System.Math.Abs(Dis) * RationalRegard;
+                                Dis =Rational(Dis,RationalRegard) * RationalRegard;
                             }
                         }
                     }
@@ -7667,7 +7668,7 @@ namespace RefrigtzChessPortable
                     {
                         if (Tab[RowS, ColS] == -4 || Tab[RowD, ColD] == -4)
                         {
-                            Dis = System.Math.Abs(Dis) * RationalRegard;
+                            Dis =Rational(Dis,RationalRegard) * RationalRegard;
                         }
                     }
                     if ((Tab[3, 4] < ObjectBrown && Tab[4, 3] < ObjectBrown && Tab[3, 3] < ObjectBrown && Tab[4, 4] < ObjectBrown) || (IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 25)))
@@ -7677,7 +7678,7 @@ namespace RefrigtzChessPortable
                         th13.Dispose();
                         if (ab)
                         {
-                            Dis = System.Math.Abs(Dis) * RationalPenalty;
+                            Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                         }
                         else
                         {
@@ -7686,7 +7687,7 @@ namespace RefrigtzChessPortable
                             th14.Dispose();
                             if (ab)
                             {
-                                Dis = System.Math.Abs(Dis) * RationalPenalty;
+                                Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                             }
                             else
                             {
@@ -7695,7 +7696,7 @@ namespace RefrigtzChessPortable
                                 th15.Dispose();
                                 if (ab)
                                 {
-                                    Dis = System.Math.Abs(Dis) * RationalRegard;
+                                    Dis =Rational(Dis,RationalRegard) * RationalRegard;
                                 }
                                 else
                                 {
@@ -7704,7 +7705,7 @@ namespace RefrigtzChessPortable
                                     th16.Dispose();
                                     if (ab)
                                     {
-                                        Dis = System.Math.Abs(Dis) * RationalRegard;
+                                        Dis =Rational(Dis,RationalRegard) * RationalRegard;
                                     }
                                 }
                             }
@@ -7722,7 +7723,7 @@ namespace RefrigtzChessPortable
                         if (Cor > Colleralation)
                         {
                             Colleralation = Cor;
-                            Dis = System.Math.Abs(Dis) * RationalRegard;
+                            Dis =Rational(Dis,RationalRegard) * RationalRegard;
                         }
                         if (Cor < ColleralationBrown && Tab[RowS, ColS] < 0 && (Cor >= 0))
                         {
@@ -7734,7 +7735,7 @@ namespace RefrigtzChessPortable
                     th18.Dispose();
                     if (ab)
                     {
-                        Dis = System.Math.Abs(Dis) * RationalPenalty;
+                        Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                     }
                     else
                     {
@@ -7743,7 +7744,7 @@ namespace RefrigtzChessPortable
                         th19.Dispose();
                         if (ab)
                         {
-                            Dis = System.Math.Abs(Dis) * RationalPenalty;
+                            Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                         }
                         else
                         {
@@ -7752,7 +7753,7 @@ namespace RefrigtzChessPortable
                             th20.Dispose();
                             if (ab)
                             {
-                                Dis = System.Math.Abs(Dis) * RationalRegard;
+                                Dis =Rational(Dis,RationalRegard) * RationalRegard;
                             }
                             else
                             {
@@ -7761,7 +7762,7 @@ namespace RefrigtzChessPortable
                                 th21.Dispose();
                                 if (ab)
                                 {
-                                    Dis = System.Math.Abs(Dis) * RationalRegard;
+                                    Dis =Rational(Dis,RationalRegard) * RationalRegard;
                                 }
                             }
                         }
@@ -7778,18 +7779,18 @@ namespace RefrigtzChessPortable
                             if (Cor < DeColleralation)
                             {
                                 DeColleralation = Cor;
-                                Dis = System.Math.Abs(Dis) * RationalRegard;
+                                Dis =Rational(Dis,RationalRegard) * RationalRegard;
                             }
                         }
                     }
                 }
                 if (CenrtrallnControlByTraversal(CloneATable(Tab), a, Order, RowS, ColS, RowD, ColD))
                 {
-                    Dis = System.Math.Abs(Dis) * RationalRegard;
+                    Dis =Rational(Dis,RationalRegard) * RationalRegard;
                 }
                 else
                 {
-                    Dis = System.Math.Abs(Dis) * RationalPenalty;
+                    Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                 }
 
                 return Dis;
@@ -8000,7 +8001,7 @@ namespace RefrigtzChessPortable
                     }
                     if (IsPawnIsolatedOrDoubleBackAwayOrHung(ii, jj, i, j, CloneATable(Table), Order))
                     {
-                        HA += RationalPenalty;
+                        HA = Rational(HA, RationalPenalty) * RationalPenalty;
                     }
                 }
                 return HA;
@@ -8171,7 +8172,7 @@ namespace RefrigtzChessPortable
              {
                  if (IsDistributedObjectAttackNonDistributedEnemyObject(Before, CloneATable(Table), Ord, aa, RowS, ColS, RowD, ColD))
                  {
-                     HA += RationalPenalty;
+                     HA = Rational(HA, RationalPenalty) * RationalPenalty;
                      return;
                  }
 
@@ -8764,7 +8765,7 @@ namespace RefrigtzChessPortable
                         HE = ((RationalRegard) * (NoOfExistInAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInSupportList(Before, Ros, Cos, Rod, Cod)) + ((RationalPenalty) * (NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedSupportList(Before, Ros, Cos, Rod, Cod))));
                         if (NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) == 0)
                         {
-                            HE = System.Math.Abs(HE) * NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod);
+                            HE = Rational(HE, NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod))* NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod);
                         }
                     }
                 }
@@ -8775,7 +8776,7 @@ namespace RefrigtzChessPortable
                         HE = ((RationalRegard) * (NoOfExistInAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInSupportList(Before, Ros, Cos, Rod, Cod)) + ((RationalPenalty) * (NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedSupportList(Before, Ros, Cos, Rod, Cod))));
                         if (NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) == 0)
                         {
-                            HE = System.Math.Abs(HE) * NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod);
+                            HE = Rational(HE, NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod))* NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod);
                         }
                     }
                 }
@@ -9659,14 +9660,14 @@ namespace RefrigtzChessPortable
                                 if (Supported > 0 && Attacked == 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA *= (int)System.Math.Pow(2, Supported);
+                                     HA = Rational(HA, (int)System.Math.Pow(2, Supported)) * (int)System.Math.Pow(2, Supported);
                                 }
                                 else
                                 //When is Supported Multyply -100.
                                 if (Attacked > 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA *= (int)(-(1 * System.Math.Pow(2, Attacked)));
+                                    HA = Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
                                 }
                             }
                         }
@@ -9793,14 +9794,14 @@ namespace RefrigtzChessPortable
                                 if (Supported > 0 && Attacked == 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA *= (int)System.Math.Pow(2, Supported);
+                                     HA = Rational(HA, (int)System.Math.Pow(2, Supported)) * (int)System.Math.Pow(2, Supported);
                                 }
                                 else
                               //When is Supported Multyply -100.
                               if (Attacked > 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA *= (int)(-(1 * System.Math.Pow(2, Attacked)));
+                                    HA = Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
                                 }
                             }
                         }
@@ -9954,7 +9955,7 @@ namespace RefrigtzChessPortable
                                 if (Supported > 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA *= (int)(-(1 * System.Math.Pow(2, Attacked)));
+                                    HA = Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
                                 }
                             }
                         }
@@ -10086,7 +10087,7 @@ namespace RefrigtzChessPortable
                                   if (Supported > 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA *= (int)(-(1 * System.Math.Pow(2, Attacked)));
+                                    HA = Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
                                 }
                             }
                         }
@@ -20046,6 +20047,13 @@ namespace RefrigtzChessPortable
                 }
                 return Is;
             }
+        }
+        int Rational(int HA, int Ratio)
+        {
+            if (HA < 0 && Ratio < 0)
+                return System.Math.Abs(HA);
+
+            return HA;
         }
     }
 }

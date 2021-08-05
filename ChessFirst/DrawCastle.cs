@@ -52,8 +52,10 @@ namespace ChessFirst
                 }
             }
 
-            catch (Exception) { }
-
+            catch (Exception t)
+            {
+                Log(t);
+            }
         }
         public void Dispose()
         {

@@ -8877,8 +8877,9 @@ namespace RefrigtzChessPortable
 
 
                 }
-                catch (Exception)
+                catch (Exception t)
                 {
+                    Log(t);
                     return false;
                 }
             }
@@ -8914,8 +8915,9 @@ namespace RefrigtzChessPortable
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception t)
                 {
+                    Log(t);
                     return false;
                 }
             }
@@ -8951,8 +8953,9 @@ namespace RefrigtzChessPortable
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception t)
                 {
+                    Log(t);
                     return false;
                 }
             }
@@ -8987,8 +8990,9 @@ namespace RefrigtzChessPortable
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception t)
                 {
+                    Log(t);
                     return false;
                 }
             }
@@ -9023,8 +9027,9 @@ namespace RefrigtzChessPortable
 
                     }
                 }
-                catch (Exception)
+                catch (Exception t)
                 {
+                    Log(t);
                     return false;
                 }
             }
@@ -9060,8 +9065,9 @@ namespace RefrigtzChessPortable
 
                     }
                 }
-                catch (Exception)
+                catch (Exception t)
                 {
+                    Log(t);
                     return false;
                 }
             }

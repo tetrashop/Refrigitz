@@ -1758,8 +1758,9 @@ else*/
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception t)
                 {
+                    Log(t);
                     return -1;
                 }
                 return 0;
@@ -1801,8 +1802,9 @@ else*/
                             A = A.Replace(z, "");
 
                         }
-                        catch (Exception)
+                        catch (Exception t)
                         {
+                            Log(t);
                             return;
                         }
                         if (W)

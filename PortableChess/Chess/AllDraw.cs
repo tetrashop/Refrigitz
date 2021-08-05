@@ -19648,8 +19648,9 @@ namespace RefrigtzChessPortable
                     Is = Is || ServeBoundryConditionsCasttling(i, Kind, Order);
                 }
             }
-            catch (Exception)
+            catch (Exception t)
             {
+                Log(t);
                 Is = true;
             }
             return Is;

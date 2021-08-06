@@ -6453,25 +6453,25 @@ namespace RefrigtzDLL
             lock (O)
             {
                 int HA = 1;
-                Task<int> H1 = Task.Factory.StartNew(() => HA = System.Math.Abs(HA) * SimpleMate_Zero(RowS, ColS, RowD, ColD, CloneATable(Table), a));
+                Task<int> H1 = Task.Factory.StartNew(() => HA = Rational(HA, SimpleMate_Zero(RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_Zero(RowS, ColS, RowD, ColD, CloneATable(Table), a));
                 H1.Wait();
                 H1.Dispose();
 
                 if (HA == 1)
                 {
-                    Task<int> H2 = Task.Factory.StartNew(() => HA = System.Math.Abs(HA) * SimpleMate_One(RowS, ColS, RowD, ColD, CloneATable(Table), a));
+                    Task<int> H2 = Task.Factory.StartNew(() => HA = Rational(HA, SimpleMate_One(RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_One(RowS, ColS, RowD, ColD, CloneATable(Table), a));
                     H2.Wait();
                     H2.Dispose();
                 }
                 if (HA == 1)
                 {
-                    Task<int> H3 = Task.Factory.StartNew(() => HA = System.Math.Abs(HA) * SimpleMate_Tow(RowS, ColS, RowD, ColD, CloneATable(Table), a));
+                    Task<int> H3 = Task.Factory.StartNew(() => HA = Rational(HA, SimpleMate_Tow(RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_Tow(RowS, ColS, RowD, ColD, CloneATable(Table), a));
                     H3.Wait();
                     H3.Dispose();
                 }
                 if (HA == 1)
                 {
-                    Task<int> H4 = Task.Factory.StartNew(() => HA = System.Math.Abs(HA) * SimpleMate_Three_And_Four(RowS, ColS, RowD, ColD, CloneATable(Table), a));
+                    Task<int> H4 = Task.Factory.StartNew(() => HA = Rational(HA, SimpleMate_Three_And_Four(RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_Three_And_Four(RowS, ColS, RowD, ColD, CloneATable(Table), a));
                     H4.Wait();
                     H4.Dispose();
                 }
@@ -20044,10 +20044,25 @@ namespace RefrigtzDLL
         }
         int Rational(int HA, int Ratio)
         {
-            if (HA < 0 && Ratio < 0)
-                return System.Math.Abs(HA);
+            object o = new object();
+            lock (o)
+            {
+                if (HA == Int32.MinValue && Ratio < 0)
+                {
+                    return Int32.MaxValue;
+                }
+                else
+                {
+                    if (HA == Int32.MinValue)
+                        return Int32.MinValue;
+                }
 
-            return HA;
+                if (HA < 0 && Ratio < 0)
+                    return System.Math.Abs(HA);
+
+                return HA;
+
+            }
         }
     }
 }

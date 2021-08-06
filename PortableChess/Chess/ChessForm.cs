@@ -2593,6 +2593,227 @@ namespace RefrigtzChessPortable
                 return Draw;
             }
         }
+        void SetDrawFoundingMain(int Ord, ref RefrigtzChessPortable.AllDraw THI, ref RefrigtzChessPortable.AllDraw THISSto, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzChessPortable.AllDraw THIS = THI;
+                RefrigtzChessPortable.AllDraw THISStore = THISSto;
+                AllDraw thiB = Draw.AStarGreedyString;
+
+                if (FOUND)
+                {
+                    var output2 = Task.Factory.StartNew(() => SetDrawFoundingMainFound(Ord, ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+
+
+                }
+                else
+                {
+                    var output2 = Task.Factory.StartNew(() => SetDrawFoundingMainNotFound(Ord, ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+                FOUN = FOUND;
+                THI = THIS;
+                THISSto = THISStore;
+
+            }
+        }
+        void SetDrawFoundingMainFound(int Ord, ref RefrigtzChessPortable.AllDraw THI, ref RefrigtzChessPortable.AllDraw THISStore, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzChessPortable.AllDraw THIS = THI;
+                AllDraw thiB = Draw.AStarGreedyString;
+
+                Draw = THIS;
+
+
+
+                bool LoadTree = true;
+                Ord = OrderPlate;
+                //if (MovmentsNumber > 1)
+                (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+
+                Draw.IsCurrentDraw = true;
+
+
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+        void SetDrawFoundingMainNotFound(int Ord, ref RefrigtzChessPortable.AllDraw THI, ref RefrigtzChessPortable.AllDraw THISStor, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzChessPortable.AllDraw THIS = THI;
+                RefrigtzChessPortable.AllDraw THISStore = THISStor;
+                AllDraw thiB = Draw.AStarGreedyString;
+
+                bool Store = Deeperthandeeper;
+                Deeperthandeeper = false;
+
+
+                Color aa = Color.Gray;
+                if (Ord == -1)
+                {
+                    aa = Color.Brown;
+                }
+
+                bool B = AllDraw.Blitz;
+                AllDraw.Blitz = false;
+                //RefrigtzChessPortable.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount * 2;
+
+                FOUND = false;
+
+                var output1 = Task.Factory.StartNew(() => SetDrawFoundingFirst(aa, Ord, B, Store, ref THIS, ref FOUND));
+                output1.Wait();
+                output1.Dispose();
+
+                if (FOUND)
+                {
+                    var output2 = Task.Factory.StartNew(() => SetDrawFoundingMainNotFoundFound(Ord, ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+
+
+
+                }
+                else
+                {
+                    var output2 = Task.Factory.StartNew(() => SetDrawFoundingMainNotFoundNotFound(Ord, ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+
+
+
+                FOUN = FOUND;
+                THI = THIS;
+                THISStor = THISStore;
+            }
+        }
+        void SetDrawFoundingMainNotFoundFound(int Ord, ref RefrigtzChessPortable.AllDraw THI, ref RefrigtzChessPortable.AllDraw THISStore, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzChessPortable.AllDraw THIS = THI;
+                AllDraw thiB = Draw.AStarGreedyString;
+
+                Draw = THIS;
+                bool LoadTree = true;
+                (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+
+                AllDraw.OrderPlate = Ord;
+
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+        void SetDrawFoundingMainNotFoundNotFound(int Ord, ref RefrigtzChessPortable.AllDraw THI, ref RefrigtzChessPortable.AllDraw THISStore, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzChessPortable.AllDraw THIS = THI;
+                AllDraw thiB = Draw.AStarGreedyString;
+
+                Draw = THISStore;
+                if (MovmentsNumber == 1)
+                {
+                    NotFoundBegin = true;
+                }
+
+                bool LoadTree = true;
+
+                RefrigtzChessPortable.AllDraw THISB = Draw.AStarGreedyString;
+
+                var output2 = Task.Factory.StartNew(() => SetDrawFoundingSecond(ref LoadTree, ref THIS, ref FOUND));
+                output2.Wait();
+                output2.Dispose();
+
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+        void SetDrawFoundingFirst(Color aa, int Ord, bool B, bool Store, ref RefrigtzChessPortable.AllDraw THI, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzChessPortable.AllDraw THIS = THI;
+                AllDraw thiB = Draw.AStarGreedyString;
+                if (Draw.IsAtLeastAllObjectIsNull())
+                {
+                    Draw.TableList.Clear();
+                    Draw.TableList.Add(CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]));
+                    Draw.SetRowColumn(0);
+                    Draw.IsCurrentDraw = true;
+                }
+                Draw.AStarGreedyString = thiB;
+
+                object n = new object();
+                lock (n)
+                {
+                    AllDraw.ChangedInTreeOccured = false;
+
+                }
+                AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
+
+                var output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
+                output.Wait();
+                output.Dispose();
+                AllDraw.Blitz = B;
+                Deeperthandeeper = Store;
+                //while (Draw.AStarGreedyString != null)
+
+                FOUND = false;
+
+
+                output = Task.Factory.StartNew(() => Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND));
+                output.Wait();
+                output.Dispose();
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+        void SetDrawFoundingSecond(ref bool LoadTree, ref RefrigtzChessPortable.AllDraw THI, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzChessPortable.AllDraw THISB = THI;
+
+                if (Draw.IsAtLeastAllObjectIsNull())
+                {
+                    Draw.TableList.Clear();
+                    Draw.TableList.Add(CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]));
+                    Draw.SetRowColumn(0);
+                    Draw.IsCurrentDraw = true;
+                }
+                Draw.AStarGreedyString = THISB;
+                RefrigtzChessPortable.ChessRules.CurrentOrder = OrderPlate;
+                RefrigtzChessPortable.AllDraw.DepthIterative = 0;
+                (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+
+
+                FOUN = FOUND;
+                THI = THISB;
+            }
+        }
         //tetrashop.ir
         public void SetDrawFounding(ref bool FOUNDI, ref RefrigtzChessPortable.AllDraw THISI, bool FirstI)
         {
@@ -2849,114 +3070,10 @@ namespace RefrigtzChessPortable
                     Task<AllDraw> output = Task.Factory.StartNew(() => Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND));
                     output.Wait();
                     output.Dispose();
-                    if (FOUND)
-                    {
-                        Draw = THIS;
 
-
-
-                        bool LoadTree = true;
-                        Ord = OrderPlate;
-                        //if (MovmentsNumber > 1)
-                        (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-
-                        Draw.IsCurrentDraw = true;
-
-
-                    }
-                    else
-                    {
-                        bool Store = Deeperthandeeper;
-                        Deeperthandeeper = false;
-
-
-                        Color aa = Color.Gray;
-                        if (Ord == -1)
-                        {
-                            aa = Color.Brown;
-                        }
-
-                        bool B = AllDraw.Blitz;
-                        AllDraw.Blitz = false;
-                        //RefrigtzChessPortable.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount * 2;
-
-                        FOUND = false;
-
-                        AllDraw thiB = Draw.AStarGreedyString;
-                        if (Draw.IsAtLeastAllObjectIsNull())
-                        {
-                            Draw.TableList.Clear();
-                            Draw.TableList.Add(CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]));
-                            Draw.SetRowColumn(0);
-                            Draw.IsCurrentDraw = true;
-                        }
-                        Draw.AStarGreedyString = thiB;
-
-                        object n = new object();
-                        lock (n)
-                        {
-                            AllDraw.ChangedInTreeOccured = false;
-
-                        }
-                        AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; AllDraw.MaxAStarGreedy = 0;
-
-                        output = Task.Factory.StartNew(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
-                        output.Wait();
-                        output.Dispose();
-                        AllDraw.Blitz = B;
-                        Deeperthandeeper = Store;
-                        //while (Draw.AStarGreedyString != null)
-
-                        FOUND = false;
-
-
-                        output = Task.Factory.StartNew(() => Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND));
-                        output.Wait();
-                        output.Dispose();
-
-                        if (FOUND)
-                        {
-                            Draw = THIS;
-
-
-
-
-
-                            bool LoadTree = true;
-                            (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                            AllDraw.OrderPlate = Ord;
-
-
-
-                        }
-                        else
-                        {
-                            Draw = THISStore;
-                            if (MovmentsNumber == 1)
-                            {
-                                NotFoundBegin = true;
-                            }
-
-                            bool LoadTree = true;
-
-
-                            THISB = Draw.AStarGreedyString;
-                            if (Draw.IsAtLeastAllObjectIsNull())
-                            {
-                                Draw.TableList.Clear();
-                                Draw.TableList.Add(CloneATable(RefrigtzChessPortable.AllDraw.TableListAction[RefrigtzChessPortable.AllDraw.TableListAction.Count - 1]));
-                                Draw.SetRowColumn(0);
-                                Draw.IsCurrentDraw = true;
-                            }
-                            Draw.AStarGreedyString = THISB;
-                            RefrigtzChessPortable.ChessRules.CurrentOrder = OrderPlate;
-                            RefrigtzChessPortable.AllDraw.DepthIterative = 0;
-                            (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-
-
-                        }
-
-                    }
+                    var output2 = Task.Factory.StartNew(() => SetDrawFoundingMain(Ord, ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
                 }
 
                 if (RefrigtzChessPortable.AllDraw.FirstTraversalTree)

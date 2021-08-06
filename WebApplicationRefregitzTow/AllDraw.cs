@@ -183,7 +183,7 @@ namespace RefrigtzW
         public bool PredictHeuristicT = true;
         public bool OnlySelfT = false;
         public bool AStarGreedyHeuristicT = false;
-        public int[] Index = { -1, -1, -1, -1, -1, -1 }, jindex = { -1, -1, -1, -1, -1, -1 }, Kind = { -1, -1, -1, -1, -1, -1 };
+        public int[] Index = { -1, -1, -1, -1, -1, -1,-1 }, jindex = { -1, -1, -1, -1, -1, -1,-1 }, Kind = { -1, -1, -1, -1, -1, -1 };
         public bool ArrangmentsChanged = true;
         public static int AStarGreedytMaxCount = 0;
         public static bool FoundATable = false;

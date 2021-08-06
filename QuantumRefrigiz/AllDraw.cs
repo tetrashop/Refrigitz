@@ -34557,7 +34557,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
         private int MaxOfSixHeuristic(int _1, int _2, int _3, int _4, int _5, int _6, int _7)
         {
 
-            int[] LessB = new int[6];
+            int[] LessB = new int[7];
             LessB[0] = _1;
             LessB[1] = _2;
             LessB[2] = _3;
@@ -34583,7 +34583,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
         private int MinOfSixHeuristic(int _1, int _2, int _3, int _4, int _5, int _6, int _7)
         {
 
-            int[] LessB = new int[6];
+            int[] LessB = new int[7];
             LessB[0] = _1;
             LessB[1] = _2;
             LessB[2] = _3;

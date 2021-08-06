@@ -29,8 +29,8 @@ namespace ChessFirst
         private static int NumbersofKingMovesToPatGray = 0;
         private static int NumbersofKingMovesToPatBrown = 0;
         public static bool PatCheckedInKingRule = false;
-        public static bool CastleKingAllowedGray = true;
-        public static bool CastleKingAllowedBrown = true;
+        public static bool CastlingAllowedGray = true;
+        public static bool CastlingAllowedBrown = true;
         public static bool KingAttacker = false;
         public static bool SmallKingCastleBrown = false;
         public static bool KingCastleBrown = false;
@@ -345,7 +345,7 @@ namespace ChessFirst
             }
         }
         //Castle King Movment Consideration.
-        public bool CastleKing(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
+        public bool Castling(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
         {
             object O = new object();
             lock (O)
@@ -358,7 +358,7 @@ namespace ChessFirst
                     if (Order == 1)
                     {
                         //When Gray Castles Not Act.
-                        if (ChessFirst.ChessRules.CastleKingAllowedGray)
+                        if (ChessFirst.ChessRules.CastlingAllowedGray)
                         {
                             //If Column is At First Location.
                             if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -376,7 +376,7 @@ namespace ChessFirst
                                             CastleActGray = true;
                                             SmallKingCastleGray = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -395,7 +395,7 @@ namespace ChessFirst
                                             CastleActGray = true;
                                             BigKingCastleGray = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -407,7 +407,7 @@ namespace ChessFirst
                     else//Order of Brown.
                     {
                         //When Brown Castles King Not Occured.
-                        if (ChessFirst.ChessRules.CastleKingAllowedBrown)
+                        if (ChessFirst.ChessRules.CastlingAllowedBrown)
                         {
                             //Column Situation.
                             if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -426,7 +426,7 @@ namespace ChessFirst
                                             CastleActBrown = true;
                                             SmallKingCastleBrown = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -446,7 +446,7 @@ namespace ChessFirst
                                             CastleActBrown = true;
                                             BigKingCastleBrown = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -461,7 +461,7 @@ namespace ChessFirst
                     if (Order == 1)
                     {
                         //When Gray Castles Not Act.
-                        if (ChessFirst.ChessRules.CastleKingAllowedGray)
+                        if (ChessFirst.ChessRules.CastlingAllowedGray)
                         {
                             //If Column is At First Location.
                             if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -474,7 +474,7 @@ namespace ChessFirst
 
                                     if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == 6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == 4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActGray = true;
                                         SmallKingCastleGray = true;
                                         return true;
@@ -489,7 +489,7 @@ namespace ChessFirst
 
                                     if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActGray = true;
                                         BigKingCastleGray = true;
                                         return true;
@@ -503,7 +503,7 @@ namespace ChessFirst
                     else//Order of Brown.
                     {
                         //When Brown Castles King Not Occured.
-                        if (ChessFirst.ChessRules.CastleKingAllowedBrown)
+                        if (ChessFirst.ChessRules.CastlingAllowedBrown)
                         {
                             //Column Situation.
                             if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -515,7 +515,7 @@ namespace ChessFirst
 
                                     if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == -6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == -4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActBrown = true;
                                         SmallKingCastleBrown = true;
                                         return true;
@@ -530,7 +530,7 @@ namespace ChessFirst
 
                                     if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActBrown = true;
                                         BigKingCastleBrown = true;
                                         return true;
@@ -541,7 +541,7 @@ namespace ChessFirst
                         }
                     }
                 }
-                ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return false;
             }
         }
@@ -1538,7 +1538,7 @@ namespace ChessFirst
             }
         }
         //Create Syntax of Movments.
-        public string CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool CastleKing, bool SodierConvert//, ref AllDraw. THIS
+        public string CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool Castling, bool SodierConvert//, ref AllDraw. THIS
 
             )
         {
@@ -1582,7 +1582,7 @@ namespace ChessFirst
                     object O2 = new object();
                     lock (O2)
                     {
-                        ChessFirst.ChessRules.CastleKingAllowedGray = false;
+                        ChessFirst.ChessRules.CastlingAllowedGray = false;
                         ChessFirst.ChessRules.CastleActGray = true;
                         ChessFirst.ThinkingChessFirst.KingMaovableGray = true;
                     }
@@ -1593,7 +1593,7 @@ namespace ChessFirst
                     lock (O2)
                     {
                         ChessFirst.ChessRules.CastleActBrown = true;
-                        ChessFirst.ChessRules.CastleKingAllowedBrown = false;
+                        ChessFirst.ChessRules.CastlingAllowedBrown = false;
                         ChessFirst.ThinkingChessFirst.KingMaovableBrown = true;
                     }
                 }
@@ -1614,10 +1614,10 @@ namespace ChessFirst
                     }
                 }
                 //When Solder Converted or Castles King Acts.
-                if (SodierConvert || (CastleKing && Castles))
+                if (SodierConvert || (Castling && Castles))
                 {
                     //When Castles Acts.
-                    if (CastleKing)
+                    if (Castling)
                     {
                         //Castles Brown King.
                         if (ChessFirst.ChessRules.SmallKingCastleGray)
@@ -1633,7 +1633,7 @@ namespace ChessFirst
                                     if (!AllDraw.Stockfish)
                                     {
                                         ChessFirst.ChessRules.SmallKingCastleGray = false;
-                                        ChessFirst.ChessRules.CastleKingAllowedGray = false;
+                                        ChessFirst.ChessRules.CastlingAllowedGray = false;
                                     }
                                 }
                             }
@@ -1653,7 +1653,7 @@ namespace ChessFirst
                                     if (!AllDraw.Stockfish)
                                     {
                                         ChessFirst.ChessRules.BigKingCastleGray = false;
-                                        ChessFirst.ChessRules.CastleKingAllowedGray = false;
+                                        ChessFirst.ChessRules.CastlingAllowedGray = false;
                                     }
                                 }
                             }
@@ -1673,7 +1673,7 @@ namespace ChessFirst
                                     if (!AllDraw.Stockfish)
                                     {
                                         ChessFirst.ChessRules.SmallKingCastleBrown = false;
-                                        ChessFirst.ChessRules.CastleKingAllowedBrown = false;
+                                        ChessFirst.ChessRules.CastlingAllowedBrown = false;
                                     }
                                 }
                             }
@@ -1694,7 +1694,7 @@ namespace ChessFirst
                                     if (!AllDraw.Stockfish)
                                     {
                                         ChessFirst.ChessRules.BigKingCastleBrown = false;
-                                        ChessFirst.ChessRules.CastleKingAllowedBrown = false;
+                                        ChessFirst.ChessRules.CastlingAllowedBrown = false;
                                     }
                                 }
                             }
@@ -1745,7 +1745,7 @@ namespace ChessFirst
                                 {
                                     ChessFirst.ThinkingChessFirst.KingMaovableBrown = true;
                                     ChessFirst.ChessRules.BigKingCastleBrown = false;
-                                    ChessFirst.ChessRules.CastleKingAllowedBrown = false;
+                                    ChessFirst.ChessRules.CastlingAllowedBrown = false;
                                 }
                             }
                             if (A.CheckGray && Order == 1)
@@ -1755,7 +1755,7 @@ namespace ChessFirst
                                 {
                                     ChessFirst.ThinkingChessFirst.KingMaovableGray = true;
                                     ChessFirst.ChessRules.BigKingCastleGray = false;
-                                    ChessFirst.ChessRules.CastleKingAllowedGray = false;
+                                    ChessFirst.ChessRules.CastlingAllowedGray = false;
                                 }
                             }
                         }
@@ -1824,7 +1824,7 @@ namespace ChessFirst
                             lock (O2)
                             {
                                 ChessFirst.ChessRules.BigKingCastleBrown = false;
-                                ChessFirst.ChessRules.CastleKingAllowedBrown = false;
+                                ChessFirst.ChessRules.CastlingAllowedBrown = false;
                                 ChessFirst.ThinkingChessFirst.KingMaovableGray = true;
 
                             }
@@ -1835,7 +1835,7 @@ namespace ChessFirst
                             lock (O2)
                             {
                                 ChessFirst.ChessRules.BigKingCastleGray = false;
-                                ChessFirst.ChessRules.CastleKingAllowedGray = false;
+                                ChessFirst.ChessRules.CastlingAllowedGray = false;
                                 ChessFirst.ThinkingChessFirst.KingMaovableGray = true;
 
                             }
@@ -3112,11 +3112,11 @@ namespace ChessFirst
                     case 7://Rule of Castles King.
 
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+                        return Castling(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
                     case -7://Rule of Castles King.
 
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+                        return Castling(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
                     default:
                         return false;
                 }

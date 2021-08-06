@@ -115,8 +115,8 @@
 		static int NumbersofKingMovesToPatBrown;
 	public:
 		static bool PatCheckedInKingRule;
-		static bool CastleKingAllowedGray;
-		static bool CastleKingAllowedBrown;
+		static bool CastlingAllowedGray;
+		static bool CastlingAllowedBrown;
 		static bool KingAttacker;
 		static bool SmallKingCastleBrown;
 		static bool KingCastleBrown;
@@ -167,7 +167,7 @@
 		//Initiate of Rules of Chess Refregitz.
 		bool Rules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, int color, int Ki, bool SelfHomeStatCP=true); //Current Kind..int..The Destination Click Column.The Destination Click Row.The First Click Column..The First Click Row
 		//Castle King Movment Consideration.
-		bool CastleKing(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, int color, int Ki);
+		bool Castling(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, int color, int Ki);
 		//Simulation and Consdtruction of Check.
 		bool CheckConstructor(int color, int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, int Ki, int Order);
 		//Method of Self Home int Objects Consideration.
@@ -195,7 +195,7 @@
 		static std::wstring RowAlphabet(int i);
 		//Create Syntax of Movments.
 	public:
-		std::wstring CreateStatistic(bool Arrange, int **Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool CastleKing, bool SodierConvert);
+		std::wstring CreateStatistic(bool Arrange, int **Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool Castling, bool SodierConvert);
 		
 		//Consideration of Existing Table in List.
 	public:

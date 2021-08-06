@@ -105,8 +105,8 @@ namespace Refregitz_12
         static int NumbersofKingMovesToPatGray = 0;
         static int NumbersofKingMovesToPatBrown = 0;
         public static bool PatCheckedInKingRule = false;
-        public static bool CastleKingAllowedGray = true;
-        public static bool CastleKingAllowedBrown = true;
+        public static bool CastlingAllowedGray = true;
+        public static bool CastlingAllowedBrown = true;
         public static bool KingAttacker = false;
         public static bool SmallKingCastleBrown = false;
         public static bool KingCastleBrown = false;
@@ -330,14 +330,14 @@ namespace Refregitz_12
 
         }
         //Castle King Movment Consideration.
-        public bool CastleKing(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
+        public bool Castling(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
         {
             if (!(ArrangmentsBoard))
             {             //Gray Order.
                 if (Order == 1)
                 {
                     //When Gray Castles Not Act.
-                    if (Refregitz_12.ChessRules.CastleKingAllowedGray)
+                    if (Refregitz_12.ChessRules.CastlingAllowedGray)
                     {
                         //If Column is At First Location.
                         if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -395,7 +395,7 @@ namespace Refregitz_12
                 else//Order of Brown.
                 {
                     //When Brown Castles King Not Occured.
-                    if (Refregitz_12.ChessRules.CastleKingAllowedBrown)
+                    if (Refregitz_12.ChessRules.CastlingAllowedBrown)
                     {
                         //Column Situation.
                         if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -455,7 +455,7 @@ namespace Refregitz_12
                 if (Order == 1)
                 {
                     //When Gray Castles Not Act.
-                    if (Refregitz_12.ChessRules.CastleKingAllowedGray)
+                    if (Refregitz_12.ChessRules.CastlingAllowedGray)
                     {
                         //If Column is At First Location.
                         if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -505,7 +505,7 @@ namespace Refregitz_12
                 else//Order of Brown.
                 {
                     //When Brown Castles King Not Occured.
-                    if (Refregitz_12.ChessRules.CastleKingAllowedBrown)
+                    if (Refregitz_12.ChessRules.CastlingAllowedBrown)
                     {
                         //Column Situation.
                         if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -1101,7 +1101,7 @@ namespace Refregitz_12
 
         }
         //Create Syntax of Movments.
-        public String CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool CastleKing, bool SodierConvert//, ref AllDraw. THIS
+        public String CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool Castling, bool SodierConvert//, ref AllDraw. THIS
 
             )
         {
@@ -1138,7 +1138,7 @@ namespace Refregitz_12
                     Object O2 = new Object();
                     lock (O2)
                     {
-                        Refregitz_12.ChessRules.CastleKingAllowedGray = false;
+                        Refregitz_12.ChessRules.CastlingAllowedGray = false;
                         Refregitz_12.ChessRules.CastleActGray = true;
                         Refregitz_12.ThinkingChess.KingMaovableGray = true;
                     }
@@ -1149,7 +1149,7 @@ namespace Refregitz_12
                     lock (O2)
                     {
                         Refregitz_12.ChessRules.CastleActBrown = true;
-                        Refregitz_12.ChessRules.CastleKingAllowedBrown = false;
+                        Refregitz_12.ChessRules.CastlingAllowedBrown = false;
                         Refregitz_12.ThinkingChess.KingMaovableBrown = true;
                     }
                 }
@@ -1161,10 +1161,10 @@ namespace Refregitz_12
                     if (Refregitz_12.ChessRules.SmallKingCastleBrown || Refregitz_12.ChessRules.BigKingCastleBrown)
                         Castles = true;
                 //When Solder Converted or Castles King Acts.
-                if (SodierConvert || (CastleKing && Castles))
+                if (SodierConvert || (Castling && Castles))
                 {
                     //When Castles Acts.
-                    if (CastleKing)
+                    if (Castling)
                     {
                         //Castles Brown King.
                         if (Refregitz_12.ChessRules.SmallKingCastleGray)
@@ -1180,7 +1180,7 @@ namespace Refregitz_12
                                     if (!AllDraw.Stockfish)
                                     {
                                         Refregitz_12.ChessRules.SmallKingCastleGray = false;
-                                        Refregitz_12.ChessRules.CastleKingAllowedGray = false;
+                                        Refregitz_12.ChessRules.CastlingAllowedGray = false;
                                     }
                                 }
                             }
@@ -1200,7 +1200,7 @@ namespace Refregitz_12
                                     if (!AllDraw.Stockfish)
                                     {
                                         Refregitz_12.ChessRules.BigKingCastleGray = false;
-                                        Refregitz_12.ChessRules.CastleKingAllowedGray = false;
+                                        Refregitz_12.ChessRules.CastlingAllowedGray = false;
                                     }
                                 }
                             }
@@ -1220,7 +1220,7 @@ namespace Refregitz_12
                                     if (!AllDraw.Stockfish)
                                     {
                                         Refregitz_12.ChessRules.SmallKingCastleBrown = false;
-                                        Refregitz_12.ChessRules.CastleKingAllowedBrown = false;
+                                        Refregitz_12.ChessRules.CastlingAllowedBrown = false;
                                     }
                                 }
                             }
@@ -1241,7 +1241,7 @@ namespace Refregitz_12
                                     if (!AllDraw.Stockfish)
                                     {
                                         Refregitz_12.ChessRules.BigKingCastleBrown = false;
-                                        Refregitz_12.ChessRules.CastleKingAllowedBrown = false;
+                                        Refregitz_12.ChessRules.CastlingAllowedBrown = false;
                                     }
                                 }
                             }
@@ -1292,7 +1292,7 @@ namespace Refregitz_12
                                 {
                                     Refregitz_12.ThinkingChess.KingMaovableBrown = true;
                                     Refregitz_12.ChessRules.BigKingCastleBrown = false;
-                                    Refregitz_12.ChessRules.CastleKingAllowedBrown = false;
+                                    Refregitz_12.ChessRules.CastlingAllowedBrown = false;
                                 }
                             }
                             if (A.CheckGray && Order == 1)
@@ -1302,7 +1302,7 @@ namespace Refregitz_12
                                 {
                                     Refregitz_12.ThinkingChess.KingMaovableGray = true;
                                     Refregitz_12.ChessRules.BigKingCastleGray = false;
-                                    Refregitz_12.ChessRules.CastleKingAllowedGray = false;
+                                    Refregitz_12.ChessRules.CastlingAllowedGray = false;
                                 }
                             }
                         }
@@ -1371,7 +1371,7 @@ namespace Refregitz_12
                             lock (O2)
                             {
                                 Refregitz_12.ChessRules.BigKingCastleBrown = false;
-                                Refregitz_12.ChessRules.CastleKingAllowedBrown = false;
+                                Refregitz_12.ChessRules.CastlingAllowedBrown = false;
                                 Refregitz_12.ThinkingChess.KingMaovableGray = true;
 
                             }
@@ -1382,7 +1382,7 @@ namespace Refregitz_12
                             lock (O2)
                             {
                                 Refregitz_12.ChessRules.BigKingCastleGray = false;
-                                Refregitz_12.ChessRules.CastleKingAllowedGray = false;
+                                Refregitz_12.ChessRules.CastlingAllowedGray = false;
                                 Refregitz_12.ThinkingChess.KingMaovableGray = true;
 
                             }
@@ -2317,7 +2317,7 @@ namespace Refregitz_12
                 return KingRules(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, ExistInDestinationEnemy, Ki);
             else
                                     if (Kind == 7)//Rule of Castles King.
-                return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+                return Castling(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
 
 
             //Non Rulements.

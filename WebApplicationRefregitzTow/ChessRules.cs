@@ -29,8 +29,8 @@ namespace RefrigtzW
         private static int NumbersofKingMovesToPatGray = 0;
         private static int NumbersofKingMovesToPatBrown = 0;
         public static bool PatCheckedInKingRule = false;
-        public static bool CastleKingAllowedGray = true;
-        public static bool CastleKingAllowedBrown = true;
+        public static bool CastlingAllowedGray = true;
+        public static bool CastlingAllowedBrown = true;
         public static bool KingAttacker = false;
         public static bool SmallKingCastleBrown = false;
         public static bool KingCastleBrown = false;
@@ -340,7 +340,7 @@ namespace RefrigtzW
             }
         }
         //Castle King Movment Consideration.
-        public bool CastleKing(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
+        public bool Castling(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
         {
             object O = new object();
             lock (O)
@@ -353,7 +353,7 @@ namespace RefrigtzW
                     if (Order == 1)
                     {
                         //When Gray Castles Not Act.
-                        if (RefrigtzW.ChessRules.CastleKingAllowedGray)
+                        if (RefrigtzW.ChessRules.CastlingAllowedGray)
                         {
                             //If Column is At First Location.
                             if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -371,7 +371,7 @@ namespace RefrigtzW
                                             CastleActGray = true;
                                             SmallKingCastleGray = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -390,7 +390,7 @@ namespace RefrigtzW
                                             CastleActGray = true;
                                             BigKingCastleGray = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -402,7 +402,7 @@ namespace RefrigtzW
                     else//Order of Brown.
                     {
                         //When Brown Castles King Not Occured.
-                        if (RefrigtzW.ChessRules.CastleKingAllowedBrown)
+                        if (RefrigtzW.ChessRules.CastlingAllowedBrown)
                         {
                             //Column Situation.
                             if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -421,7 +421,7 @@ namespace RefrigtzW
                                             CastleActBrown = true;
                                             SmallKingCastleBrown = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -441,7 +441,7 @@ namespace RefrigtzW
                                             CastleActBrown = true;
                                             BigKingCastleBrown = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -456,7 +456,7 @@ namespace RefrigtzW
                     if (Order == 1)
                     {
                         //When Gray Castles Not Act.
-                        if (RefrigtzW.ChessRules.CastleKingAllowedGray)
+                        if (RefrigtzW.ChessRules.CastlingAllowedGray)
                         {
                             //If Column is At First Location.
                             if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -469,7 +469,7 @@ namespace RefrigtzW
 
                                     if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == 6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == 4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActGray = true;
                                         SmallKingCastleGray = true;
                                         return true;
@@ -484,7 +484,7 @@ namespace RefrigtzW
 
                                     if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActGray = true;
                                         BigKingCastleGray = true;
                                         return true;
@@ -498,7 +498,7 @@ namespace RefrigtzW
                     else//Order of Brown.
                     {
                         //When Brown Castles King Not Occured.
-                        if (RefrigtzW.ChessRules.CastleKingAllowedBrown)
+                        if (RefrigtzW.ChessRules.CastlingAllowedBrown)
                         {
                             //Column Situation.
                             if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -510,7 +510,7 @@ namespace RefrigtzW
 
                                     if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == -6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == -4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActBrown = true;
                                         SmallKingCastleBrown = true;
                                         return true;
@@ -525,7 +525,7 @@ namespace RefrigtzW
 
                                     if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActBrown = true;
                                         BigKingCastleBrown = true;
                                         return true;
@@ -536,7 +536,7 @@ namespace RefrigtzW
                         }
                     }
                 }
-                ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return false;
             }
         }
@@ -1533,7 +1533,7 @@ namespace RefrigtzW
             }
         }
         //Create Syntax of Movments.
-        public string CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool CastleKing, bool SodierConvert//, ref AllDraw. THIS
+        public string CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool Castling, bool SodierConvert//, ref AllDraw. THIS
 
             )
         {
@@ -1577,7 +1577,7 @@ namespace RefrigtzW
                     object O2 = new object();
                     lock (O2)
                     {
-                        RefrigtzW.ChessRules.CastleKingAllowedGray = false;
+                        RefrigtzW.ChessRules.CastlingAllowedGray = false;
                         RefrigtzW.ChessRules.CastleActGray = true;
                         RefrigtzW.ThinkingRefrigtzW.KingMaovableGray = true;
                     }
@@ -1588,7 +1588,7 @@ namespace RefrigtzW
                     lock (O2)
                     {
                         RefrigtzW.ChessRules.CastleActBrown = true;
-                        RefrigtzW.ChessRules.CastleKingAllowedBrown = false;
+                        RefrigtzW.ChessRules.CastlingAllowedBrown = false;
                         RefrigtzW.ThinkingRefrigtzW.KingMaovableBrown = true;
                     }
                 }
@@ -1609,10 +1609,10 @@ namespace RefrigtzW
                     }
                 }
                 //When Solder Converted or Castles King Acts.
-                if (SodierConvert || (CastleKing && Castles))
+                if (SodierConvert || (Castling && Castles))
                 {
                     //When Castles Acts.
-                    if (CastleKing)
+                    if (Castling)
                     {
                         //Castles Brown King.
                         if (RefrigtzW.ChessRules.SmallKingCastleGray)
@@ -1628,7 +1628,7 @@ namespace RefrigtzW
                                     if (!AllDraw.Stockfish)
                                     {
                                         RefrigtzW.ChessRules.SmallKingCastleGray = false;
-                                        RefrigtzW.ChessRules.CastleKingAllowedGray = false;
+                                        RefrigtzW.ChessRules.CastlingAllowedGray = false;
                                     }
                                 }
                             }
@@ -1648,7 +1648,7 @@ namespace RefrigtzW
                                     if (!AllDraw.Stockfish)
                                     {
                                         RefrigtzW.ChessRules.BigKingCastleGray = false;
-                                        RefrigtzW.ChessRules.CastleKingAllowedGray = false;
+                                        RefrigtzW.ChessRules.CastlingAllowedGray = false;
                                     }
                                 }
                             }
@@ -1668,7 +1668,7 @@ namespace RefrigtzW
                                     if (!AllDraw.Stockfish)
                                     {
                                         RefrigtzW.ChessRules.SmallKingCastleBrown = false;
-                                        RefrigtzW.ChessRules.CastleKingAllowedBrown = false;
+                                        RefrigtzW.ChessRules.CastlingAllowedBrown = false;
                                     }
                                 }
                             }
@@ -1689,7 +1689,7 @@ namespace RefrigtzW
                                     if (!AllDraw.Stockfish)
                                     {
                                         RefrigtzW.ChessRules.BigKingCastleBrown = false;
-                                        RefrigtzW.ChessRules.CastleKingAllowedBrown = false;
+                                        RefrigtzW.ChessRules.CastlingAllowedBrown = false;
                                     }
                                 }
                             }
@@ -1740,7 +1740,7 @@ namespace RefrigtzW
                                 {
                                     RefrigtzW.ThinkingRefrigtzW.KingMaovableBrown = true;
                                     RefrigtzW.ChessRules.BigKingCastleBrown = false;
-                                    RefrigtzW.ChessRules.CastleKingAllowedBrown = false;
+                                    RefrigtzW.ChessRules.CastlingAllowedBrown = false;
                                 }
                             }
                             if (A.CheckGray && Order == 1)
@@ -1750,7 +1750,7 @@ namespace RefrigtzW
                                 {
                                     RefrigtzW.ThinkingRefrigtzW.KingMaovableGray = true;
                                     RefrigtzW.ChessRules.BigKingCastleGray = false;
-                                    RefrigtzW.ChessRules.CastleKingAllowedGray = false;
+                                    RefrigtzW.ChessRules.CastlingAllowedGray = false;
                                 }
                             }
                         }
@@ -1819,7 +1819,7 @@ namespace RefrigtzW
                             lock (O2)
                             {
                                 RefrigtzW.ChessRules.BigKingCastleBrown = false;
-                                RefrigtzW.ChessRules.CastleKingAllowedBrown = false;
+                                RefrigtzW.ChessRules.CastlingAllowedBrown = false;
                                 RefrigtzW.ThinkingRefrigtzW.KingMaovableGray = true;
 
                             }
@@ -1830,7 +1830,7 @@ namespace RefrigtzW
                             lock (O2)
                             {
                                 RefrigtzW.ChessRules.BigKingCastleGray = false;
-                                RefrigtzW.ChessRules.CastleKingAllowedGray = false;
+                                RefrigtzW.ChessRules.CastlingAllowedGray = false;
                                 RefrigtzW.ThinkingRefrigtzW.KingMaovableGray = true;
 
                             }
@@ -3107,11 +3107,11 @@ namespace RefrigtzW
                     case 7://Rule of Castles King.
 
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+                        return Castling(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
                     case -7://Rule of Castles King.
 
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+                        return Castling(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
                     default:
                         return false;
                 }

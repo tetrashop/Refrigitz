@@ -13,8 +13,8 @@ int ChessRules::ObjectHittedColumn = -1;
 int ChessRules::NumbersofKingMovesToPatGray = 0;
 int ChessRules::NumbersofKingMovesToPatBrown = 0;
 bool ChessRules::PatCheckedInKingRule = false;
-bool ChessRules::CastleKingAllowedGray = true;
-bool ChessRules::CastleKingAllowedBrown = true;
+bool ChessRules::CastlingAllowedGray = true;
+bool ChessRules::CastlingAllowedBrown = true;
 bool ChessRules::KingAttacker = false;
 bool ChessRules::SmallKingCastleBrown = false;
 bool ChessRules::KingCastleBrown = false;
@@ -273,14 +273,14 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 
 	}
 
-	bool ChessRules::CastleKing(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, int color, int Ki)
+	bool ChessRules::Castling(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, int color, int Ki)
 	{
 		if (!(ArrangmentsBoard))
 		{ //Gray Order.
 			if (Order == 1)
 			{
 				//When Gray Castles Not Act.
-				if (ChessRules::CastleKingAllowedGray)
+				if (ChessRules::CastlingAllowedGray)
 				{
 					//If Column is At First Location.
 					if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -342,7 +342,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 			else //Order of Brown.
 			{
 				//When Brown Castles King Not Occured.
-				if (ChessRules::CastleKingAllowedBrown)
+				if (ChessRules::CastlingAllowedBrown)
 				{
 					//Column Situation.
 					if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -406,7 +406,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 			if (Order == 1)
 			{
 				//When Gray Castles Not Act.
-				if (ChessRules::CastleKingAllowedGray)
+				if (ChessRules::CastlingAllowedGray)
 				{
 					//If Column is At First Location.
 					if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -458,7 +458,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 			else //Order of Brown.
 			{
 				//When Brown Castles King Not Occured.
-				if (ChessRules::CastleKingAllowedBrown)
+				if (ChessRules::CastlingAllowedBrown)
 				{
 					//Column Situation.
 					if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -1455,7 +1455,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 
 	}
 
-	std::wstring ChessRules::CreateStatistic(bool Arrange, int **Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool CastleKing, bool SodierConvert)
+	std::wstring ChessRules::CreateStatistic(bool Arrange, int **Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool Castling, bool SodierConvert)
 	{
 		//autoOOO = new Object();
 //C# TO C++ CONVERTER TODO TASK: There is no built-in support for multithreading in native C++:
@@ -1498,7 +1498,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 //C# TO C++ CONVERTER TODO TASK: There is no built-in support for multithreading in native C++:
 				//lock (O2)
 				{
-					ChessRules::CastleKingAllowedGray = false;
+					ChessRules::CastlingAllowedGray = false;
 					ChessRules::CastleActGray = true;
 					ThinkingChess::KingMaovableGray = true;
 				}
@@ -1510,7 +1510,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 				//lock (O2)
 				{
 					ChessRules::CastleActBrown = true;
-					ChessRules::CastleKingAllowedBrown = false;
+					ChessRules::CastlingAllowedBrown = false;
 					ThinkingChess::KingMaovableBrown = true;
 				}
 			}
@@ -1530,10 +1530,10 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 				}
 			}
 			//When Solder Converted or Castles King Acts.
-			if (SodierConvert || (CastleKing  &&Castles))
+			if (SodierConvert || (Castling  &&Castles))
 			{
 				//When Castles Acts.
-				if (CastleKing)
+				if (Castling)
 				{
 					//Castles Brown King.
 					if (ChessRules::SmallKingCastleGray)
@@ -1551,7 +1551,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 								if (!AllDraw::Stockfish)
 								{
 									ChessRules::SmallKingCastleGray = false;
-									ChessRules::CastleKingAllowedGray = false;
+									ChessRules::CastlingAllowedGray = false;
 								}
 							}
 						}
@@ -1574,7 +1574,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 								if (!AllDraw::Stockfish)
 								{
 									ChessRules::BigKingCastleGray = false;
-									ChessRules::CastleKingAllowedGray = false;
+									ChessRules::CastlingAllowedGray = false;
 								}
 							}
 						}
@@ -1597,7 +1597,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 								if (!AllDraw::Stockfish)
 								{
 									ChessRules::SmallKingCastleBrown = false;
-									ChessRules::CastleKingAllowedBrown = false;
+									ChessRules::CastlingAllowedBrown = false;
 								}
 							}
 						}
@@ -1621,7 +1621,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 								if (!AllDraw::Stockfish)
 								{
 									ChessRules::BigKingCastleBrown = false;
-									ChessRules::CastleKingAllowedBrown = false;
+									ChessRules::CastlingAllowedBrown = false;
 								}
 							}
 						}
@@ -1678,7 +1678,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 							{
 								ThinkingChess::KingMaovableBrown = true;
 								ChessRules::BigKingCastleBrown = false;
-								ChessRules::CastleKingAllowedBrown = false;
+								ChessRules::CastlingAllowedBrown = false;
 							}
 						}
 						if (A->CheckGray  &&Order == 1)
@@ -1689,7 +1689,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 							{
 								ThinkingChess::KingMaovableGray = true;
 								ChessRules::BigKingCastleGray = false;
-								ChessRules::CastleKingAllowedGray = false;
+								ChessRules::CastlingAllowedGray = false;
 							}
 						}
 					}
@@ -1764,7 +1764,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 						//lock (O2)
 						{
 							ChessRules::BigKingCastleBrown = false;
-							ChessRules::CastleKingAllowedBrown = false;
+							ChessRules::CastlingAllowedBrown = false;
 							ThinkingChess::KingMaovableGray = true;
 
 						}
@@ -1776,7 +1776,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 						//lock (O2)
 						{
 							ChessRules::BigKingCastleGray = false;
-							ChessRules::CastleKingAllowedGray = false;
+							ChessRules::CastlingAllowedGray = false;
 							ThinkingChess::KingMaovableGray = true;
 
 						}
@@ -2944,7 +2944,7 @@ int ChessRules::CheckBrownRemovableValueColumnjj = 0;
 							{
 								if (Kind == 7) //Rule of Castles King.
 								{
-									return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+									return Castling(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
 								}
 							}
 						}

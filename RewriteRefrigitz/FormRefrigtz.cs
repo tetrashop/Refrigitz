@@ -3859,7 +3859,7 @@ namespace RewriteRefrigitz
             //pictureBoxRewriteRefrigitz.Image = ChessTable;
             g.Dispose();
         }
-        void MovmentsCastleKing(int Kind)
+        void MovmentsCastling(int Kind)
         {
             if (Kind == 7)
             {
@@ -3964,7 +3964,7 @@ namespace RewriteRefrigitz
                         {
                             if (Sec.radioButtonGrayOrder.Checked)
                             {
-                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == 6 && (RefrigtzDLL.ChessRules.CastleKingAllowedGray))
+                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == 6 && (RefrigtzDLL.ChessRules.CastlingAllowedGray))
                                 {
                                     if (RefrigtzDLL.AllDraw.MouseClick == 1)
                                     {
@@ -3978,7 +3978,7 @@ namespace RewriteRefrigitz
                                             if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, 1))
                                                 return;
 
-                                            MovmentsCastleKing(7);
+                                            MovmentsCastling(7);
 
                                             int Castles = -1;
 
@@ -4776,7 +4776,7 @@ namespace RewriteRefrigitz
 
                             if (Sec.radioButtonBrownOrder.Checked)
                             {
-                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == -6 && (RefrigtzDLL.ChessRules.CastleKingAllowedBrown))
+                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == -6 && (RefrigtzDLL.ChessRules.CastlingAllowedBrown))
                                 {
 
 
@@ -4792,7 +4792,7 @@ namespace RewriteRefrigitz
                                             if (CheckMovment(Table, (int)RowClickP, (int)ColumnClickP, (int)RowRealesed, (int)ColumnRealeased, -1))
                                                 return;
 
-                                            MovmentsCastleKing(-7);
+                                            MovmentsCastling(-7);
 
                                             int Castles = -1;
                                             if (!ArrangmentsChanged)
@@ -5742,7 +5742,7 @@ namespace RewriteRefrigitz
             if (RefrigtzDLL.ChessRules.BigKingCastleBrown)
                 ss += "q";
 
-            if (!RefrigtzDLL.ChessRules.CastleKingAllowedGray && !RefrigtzDLL.ChessRules.CastleKingAllowedBrown)
+            if (!RefrigtzDLL.ChessRules.CastlingAllowedGray && !RefrigtzDLL.ChessRules.CastlingAllowedBrown)
                 ss += '-';
             String S = " - ";
 

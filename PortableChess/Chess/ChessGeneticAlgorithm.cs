@@ -18,12 +18,12 @@ namespace RefrigtzChessPortable
         private const int DistantColumnBig = 3;
         private const int DistantRowBelow = 7;
         private const int DistantRowUp = 0;
-        private const int SmallCastleKingColumnBefore = 4;
-        private const int SmallCastleKingColumnAfter = 6;
+        private const int SmallCastlingColumnBefore = 4;
+        private const int SmallCastlingColumnAfter = 6;
         private const int SmallCastleCastleColumnBefore = 7;
         private const int SmallCastleCastleColumnAfter = 5;
-        private const int BigCastleKingColumnBefore = 4;
-        private const int BigCastleKingColumnAfter = 2;
+        private const int BigCastlingColumnBefore = 4;
+        private const int BigCastlingColumnAfter = 2;
         private const int BigCastleCastleColumnBefore = 0;
         private const int BigCastleCastleColumnAfter = 3;
         private const int TowObjectDistanceInBigCastleBefor = 4;
@@ -233,9 +233,9 @@ namespace RefrigtzChessPortable
                             if (Order == 1 && i == DistantRowUp)
                             {
                                 //Small Gray Castles King.
-                                if (j == DistantColumnSmall && Cromosom2[SmallCastleCastleColumnAfter, DistantRowUp] == KingGray && Cromosom2[SmallCastleCastleColumnAfter, DistantRowUp] == CastleGray && Cromosom1[SmallCastleKingColumnBefore, DistantRowUp] == KingGray && Cromosom1[SmallCastleCastleColumnBefore, DistantRowUp] == CastleGray)
+                                if (j == DistantColumnSmall && Cromosom2[SmallCastleCastleColumnAfter, DistantRowUp] == KingGray && Cromosom2[SmallCastleCastleColumnAfter, DistantRowUp] == CastleGray && Cromosom1[SmallCastlingColumnBefore, DistantRowUp] == KingGray && Cromosom1[SmallCastleCastleColumnBefore, DistantRowUp] == CastleGray)
                                 {
-                                    //CromosomRowFirst = SmallCastleKingColumnBefore;
+                                    //CromosomRowFirst = SmallCastlingColumnBefore;
                                     //CromosomColumnFirst = i;
                                     CromosomRow = SmallCastleCastleColumnAfter;
                                     CromosomColumn = i;
@@ -245,7 +245,7 @@ namespace RefrigtzChessPortable
                                     Brj = true;
                                 }
                                 else //Big Brjges King Gray.
-                                    if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowUp] == CastleGray && Cromosom2[BigCastleKingColumnAfter, DistantRowUp] == KingGray && Cromosom1[BigCastleCastleColumnBefore, DistantRowUp] == CastleGray && Cromosom1[BigCastleKingColumnBefore, DistantRowUp] == KingGray)
+                                    if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowUp] == CastleGray && Cromosom2[BigCastlingColumnAfter, DistantRowUp] == KingGray && Cromosom1[BigCastleCastleColumnBefore, DistantRowUp] == CastleGray && Cromosom1[BigCastlingColumnBefore, DistantRowUp] == KingGray)
                                 {
                                     //CromosomRowFirst = DistantRowUp;
                                     //CromosomColumnFirst = i;
@@ -261,14 +261,14 @@ namespace RefrigtzChessPortable
                             else if (i == DistantRowBelow)
                             {
                                 //Small Castles King Brown.
-                                if (j == DistantColumnSmall && Cromosom2[BigCastleKingColumnAfter, DistantRowBelow] == KingBrown && Cromosom2[BigCastleCastleColumnAfter, DistantRowBelow] == CastleBrown && Cromosom1[BigCastleKingColumnBefore, DistantRowBelow] == KingBrown && Cromosom1[BigCastleCastleColumnBefore, DistantRowBelow] == CastleBrown)
+                                if (j == DistantColumnSmall && Cromosom2[BigCastlingColumnAfter, DistantRowBelow] == KingBrown && Cromosom2[BigCastleCastleColumnAfter, DistantRowBelow] == CastleBrown && Cromosom1[BigCastlingColumnBefore, DistantRowBelow] == KingBrown && Cromosom1[BigCastleCastleColumnBefore, DistantRowBelow] == CastleBrown)
                                 {
                                     object O = new object();
                                     lock (O)
                                     {
                                         //CromosomRowFirst = DistantRowBelow;
                                         //CromosomColumnFirst = i;
-                                        CromosomRow = BigCastleKingColumnAfter;
+                                        CromosomRow = BigCastlingColumnAfter;
                                         CromosomColumn = i;
                                         Find = true;
                                         FindNumber++;
@@ -277,12 +277,12 @@ namespace RefrigtzChessPortable
                                     }
                                 }
                                 else//Big Castles King Brown.
-                                    if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowBelow] == CastleBrown && Cromosom2[BigCastleKingColumnBefore, DistantRowBelow] == KingBrown && Cromosom1[BigCastleCastleColumnBefore, DistantRowBelow] == CastleBrown && Cromosom1[BigCastleKingColumnBefore, DistantRowBelow] == KingBrown)
+                                    if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowBelow] == CastleBrown && Cromosom2[BigCastlingColumnBefore, DistantRowBelow] == KingBrown && Cromosom1[BigCastleCastleColumnBefore, DistantRowBelow] == CastleBrown && Cromosom1[BigCastlingColumnBefore, DistantRowBelow] == KingBrown)
                                 {
                                     object O = new object();
                                     lock (O)
                                     {
-                                        CromosomRowFirst = BigCastleKingColumnBefore;
+                                        CromosomRowFirst = BigCastlingColumnBefore;
                                         CromosomColumnFirst = i;
                                         //CromosomRow = DistantRowBelow;
                                         //CromosomColumn = i;
@@ -372,7 +372,7 @@ namespace RefrigtzChessPortable
                             if (Order == 1 && i == DistantRowBelow)
                             {
                                 //Small Gray Castles King.
-                                if (j == DistantColumnSmall && Cromosom2[SmallCastleKingColumnAfter, DistantRowBelow] == KingGray && Cromosom2[SmallCastleCastleColumnAfter, DistantRowBelow] == CastleGray && Cromosom1[SmallCastleKingColumnBefore, DistantRowBelow] == KingGray && Cromosom1[SmallCastleCastleColumnBefore, DistantRowBelow] == CastleGray)
+                                if (j == DistantColumnSmall && Cromosom2[SmallCastlingColumnAfter, DistantRowBelow] == KingGray && Cromosom2[SmallCastleCastleColumnAfter, DistantRowBelow] == CastleGray && Cromosom1[SmallCastlingColumnBefore, DistantRowBelow] == KingGray && Cromosom1[SmallCastleCastleColumnBefore, DistantRowBelow] == CastleGray)
                                 {
                                     //CromosomRowFirst = DistantRowBelow;
                                     //CromosomColumnFirst = i;
@@ -384,7 +384,7 @@ namespace RefrigtzChessPortable
                                     Brj = true;
                                 }
                                 else //Big Brjges King Gray.
-                                    if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowBelow] == CastleGray && Cromosom2[BigCastleKingColumnAfter, DistantRowBelow] == KingGray && Cromosom1[BigCastleCastleColumnBefore, DistantRowBelow] == CastleGray && Cromosom1[BigCastleKingColumnBefore, DistantRowBelow] == KingGray)
+                                    if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowBelow] == CastleGray && Cromosom2[BigCastlingColumnAfter, DistantRowBelow] == KingGray && Cromosom1[BigCastleCastleColumnBefore, DistantRowBelow] == CastleGray && Cromosom1[BigCastlingColumnBefore, DistantRowBelow] == KingGray)
                                 {
 
                                     CromosomRowFirst = SmallCastleCastleColumnBefore;
@@ -401,14 +401,14 @@ namespace RefrigtzChessPortable
                             else if (i == DistantRowUp)
                             {
                                 //Small Castles King Brown.
-                                if (j == DistantColumnSmall && Cromosom2[SmallCastleKingColumnAfter, DistantRowUp] == KingBrown && Cromosom2[SmallCastleCastleColumnAfter, DistantRowUp] == CastleBrown && Cromosom1[SmallCastleKingColumnBefore, DistantRowUp] == KingBrown && Cromosom1[SmallCastleCastleColumnBefore, DistantRowUp] == CastleBrown)
+                                if (j == DistantColumnSmall && Cromosom2[SmallCastlingColumnAfter, DistantRowUp] == KingBrown && Cromosom2[SmallCastleCastleColumnAfter, DistantRowUp] == CastleBrown && Cromosom1[SmallCastlingColumnBefore, DistantRowUp] == KingBrown && Cromosom1[SmallCastleCastleColumnBefore, DistantRowUp] == CastleBrown)
                                 {
                                     object O = new object();
                                     lock (O)
                                     {
                                         //CromosomRowFirst = DistantRowUp;
                                         //CromosomColumnFirst = i;
-                                        CromosomRow = BigCastleKingColumnAfter;
+                                        CromosomRow = BigCastlingColumnAfter;
                                         CromosomColumn = i;
                                         Find = true;
                                         FindNumber++;
@@ -417,12 +417,12 @@ namespace RefrigtzChessPortable
                                     }
                                 }
                                 else//Big Castles King Brown.
-                                    if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowUp] == CastleBrown && Cromosom2[BigCastleKingColumnAfter, DistantRowUp] == KingBrown && Cromosom1[BigCastleCastleColumnBefore, DistantRowUp] == CastleBrown && Cromosom1[BigCastleKingColumnBefore, DistantRowUp] == KingBrown)
+                                    if (j == DistantColumnBig && Cromosom2[BigCastleCastleColumnAfter, DistantRowUp] == CastleBrown && Cromosom2[BigCastlingColumnAfter, DistantRowUp] == KingBrown && Cromosom1[BigCastleCastleColumnBefore, DistantRowUp] == CastleBrown && Cromosom1[BigCastlingColumnBefore, DistantRowUp] == KingBrown)
                                 {
                                     object O = new object();
                                     lock (O)
                                     {
-                                        CromosomRowFirst = BigCastleKingColumnBefore;
+                                        CromosomRowFirst = BigCastlingColumnBefore;
                                         CromosomColumnFirst = i;
                                         //CromosomRow = DistantRowUp;
                                         //CromosomColumn = i;

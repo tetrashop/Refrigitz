@@ -8217,7 +8217,7 @@ namespace Refrigtz
             }
         }
 
-        private void MovmentsCastleKing(int Kind)
+        private void MovmentsCastling(int Kind)
         {
             object O = new object();
             lock (O)
@@ -8402,7 +8402,7 @@ namespace Refrigtz
         }
 
         //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        private void MovementCastleKingGray(RefrigtzDLL.ChessRules AA, ref bool Do)
+        private void MovementCastlingGray(RefrigtzDLL.ChessRules AA, ref bool Do)
         //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             object O = new object();
@@ -8415,7 +8415,7 @@ namespace Refrigtz
                         return;
                     }
 
-                    MovmentsCastleKing(7);
+                    MovmentsCastling(7);
 
                     int Castles = -1;
 
@@ -9243,7 +9243,7 @@ namespace Refrigtz
         }
 
         //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        private void MovmentCastleKingBrown(RefrigtzDLL.ChessRules AA, ref bool Do)
+        private void MovmentCastlingBrown(RefrigtzDLL.ChessRules AA, ref bool Do)
         //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             object O = new object();
@@ -9259,7 +9259,7 @@ namespace Refrigtz
                             return;
                         }
 
-                        MovmentsCastleKing(-7);
+                        MovmentsCastling(-7);
 
                         int Castles = -1;
                         if (!ArrangmentsChanged)
@@ -10130,7 +10130,7 @@ namespace Refrigtz
                     {
                         if (Sec.RadioButtonGrayOrder.Checked)
                         {
-                            if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == 6 && (RefrigtzDLL.ChessRules.CastleKingAllowedGray))
+                            if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == 6 && (RefrigtzDLL.ChessRules.CastlingAllowedGray))
                             {
                                 if (RefrigtzDLL.AllDraw.MouseClick == 1)
                                 {
@@ -10140,7 +10140,7 @@ namespace Refrigtz
                                 else
                                     if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                 {
-                                    Task array1 = Task.Factory.StartNew(() => MovementCastleKingGray(AA, ref Do));
+                                    Task array1 = Task.Factory.StartNew(() => MovementCastlingGray(AA, ref Do));
                                     array1.Wait();
                                     Do = false;
                                 }
@@ -10270,7 +10270,7 @@ namespace Refrigtz
 
                         if (Sec.RadioButtonBrownOrder.Checked)
                         {
-                            if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == -6 && (RefrigtzDLL.ChessRules.CastleKingAllowedBrown))
+                            if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == -6 && (RefrigtzDLL.ChessRules.CastlingAllowedBrown))
                             {
 
 
@@ -10282,7 +10282,7 @@ namespace Refrigtz
                                 else
                                     if (RefrigtzDLL.AllDraw.MouseClick == 2)
                                 {
-                                    Task array1 = Task.Factory.StartNew(() => MovmentCastleKingBrown(AA, ref Do));
+                                    Task array1 = Task.Factory.StartNew(() => MovmentCastlingBrown(AA, ref Do));
                                     array1.Wait();
                                     Do = false;
 
@@ -10438,7 +10438,7 @@ namespace Refrigtz
         }
 
         //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
-        private void MovementCastleKingGrayQuantum(QuantumRefrigiz.ChessRules AA)
+        private void MovementCastlingGrayQuantum(QuantumRefrigiz.ChessRules AA)
         //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             object O = new object();
@@ -10462,7 +10462,7 @@ namespace Refrigtz
                                 return;
                             }
 
-                            MovmentsCastleKing(7);
+                            MovmentsCastling(7);
 
 
 
@@ -11361,7 +11361,7 @@ namespace Refrigtz
         }
 
         //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
-        private void MovmentCastleKingBrownQuantum(QuantumRefrigiz.ChessRules AA)
+        private void MovmentCastlingBrownQuantum(QuantumRefrigiz.ChessRules AA)
         //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
         {
             object O = new object();
@@ -11385,7 +11385,7 @@ namespace Refrigtz
                                 return;
                             }
 
-                            MovmentsCastleKing(-7);
+                            MovmentsCastling(-7);
 
                             int Castles = -1;
                             if (!ArrangmentsChanged)
@@ -12311,10 +12311,10 @@ namespace Refrigtz
                         {
                             if (Sec.RadioButtonGrayOrder.Checked)
                             {
-                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == 6 && (QuantumRefrigiz.ChessRules.CastleKingAllowedGray))
+                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == 6 && (QuantumRefrigiz.ChessRules.CastlingAllowedGray))
                                 {
 
-                                    Task array = Task.Factory.StartNew(() => MovementCastleKingGrayQuantum(AA));
+                                    Task array = Task.Factory.StartNew(() => MovementCastlingGrayQuantum(AA));
                                     array.Wait(); array.Dispose();
                                     Do = false;
                                 }
@@ -12377,11 +12377,11 @@ namespace Refrigtz
 
                             if (Sec.RadioButtonBrownOrder.Checked)
                             {
-                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == -6 && (QuantumRefrigiz.ChessRules.CastleKingAllowedBrown))
+                                if (ColumnClickP == ColumnRealeased && System.Math.Abs(RowClickP - RowRealesed) >= 2 && Table[(int)RowClickP, (int)ColumnClickP] == -6 && (QuantumRefrigiz.ChessRules.CastlingAllowedBrown))
                                 {
 
 
-                                    Task array = Task.Factory.StartNew(() => MovmentCastleKingBrownQuantum(AA)); array.Wait(); array.Dispose();
+                                    Task array = Task.Factory.StartNew(() => MovmentCastlingBrownQuantum(AA)); array.Wait(); array.Dispose();
                                     Do = false;
                                 }
                                 else
@@ -12811,7 +12811,7 @@ namespace Refrigtz
                     ss += "q";
                 }
 
-                if (!RefrigtzDLL.ChessRules.CastleKingAllowedGray && !RefrigtzDLL.ChessRules.CastleKingAllowedBrown)
+                if (!RefrigtzDLL.ChessRules.CastlingAllowedGray && !RefrigtzDLL.ChessRules.CastlingAllowedBrown)
                 {
                     ss += '-';
                 }

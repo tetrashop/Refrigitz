@@ -29,8 +29,8 @@ namespace QuantumRefrigiz
         private static int NumbersofKingMovesToPatGray = 0;
         private static int NumbersofKingMovesToPatBrown = 0;
         public static bool PatCheckedInKingRule = false;
-        public static bool CastleKingAllowedGray = true;
-        public static bool CastleKingAllowedBrown = true;
+        public static bool CastlingAllowedGray = true;
+        public static bool CastlingAllowedBrown = true;
         public static bool KingAttacker = false;
         public static bool SmallKingCastleBrown = false;
         public static bool KingCastleBrown = false;
@@ -340,7 +340,7 @@ namespace QuantumRefrigiz
             }
         }
         //Castle King Movment Consideration.
-        public bool CastleKing(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
+        public bool Castling(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, Color color, int Ki)
         {
             object O = new object();
             lock (O)
@@ -353,7 +353,7 @@ namespace QuantumRefrigiz
                     if (Order == 1)
                     {
                         //When Gray Castles Not Act.
-                        if (QuantumRefrigiz.ChessRules.CastleKingAllowedGray)
+                        if (QuantumRefrigiz.ChessRules.CastlingAllowedGray)
                         {
                             //If Column is At First Location.
                             if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -371,7 +371,7 @@ namespace QuantumRefrigiz
                                             CastleActGray = true;
                                             SmallKingCastleGray = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -390,7 +390,7 @@ namespace QuantumRefrigiz
                                             CastleActGray = true;
                                             BigKingCastleGray = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -402,7 +402,7 @@ namespace QuantumRefrigiz
                     else//Order of Brown.
                     {
                         //When Brown Castles King Not Occured.
-                        if (QuantumRefrigiz.ChessRules.CastleKingAllowedBrown)
+                        if (QuantumRefrigiz.ChessRules.CastlingAllowedBrown)
                         {
                             //Column Situation.
                             if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -421,7 +421,7 @@ namespace QuantumRefrigiz
                                             CastleActBrown = true;
                                             SmallKingCastleBrown = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -441,7 +441,7 @@ namespace QuantumRefrigiz
                                             CastleActBrown = true;
                                             BigKingCastleBrown = true;
                                         }
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         return true;
                                     }
 
@@ -456,7 +456,7 @@ namespace QuantumRefrigiz
                     if (Order == 1)
                     {
                         //When Gray Castles Not Act.
-                        if (QuantumRefrigiz.ChessRules.CastleKingAllowedGray)
+                        if (QuantumRefrigiz.ChessRules.CastlingAllowedGray)
                         {
                             //If Column is At First Location.
                             if (ColumnFirst == 0 && ColumnSecond == 0)
@@ -469,7 +469,7 @@ namespace QuantumRefrigiz
 
                                     if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == 6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == 4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActGray = true;
                                         SmallKingCastleGray = true;
                                         return true;
@@ -484,7 +484,7 @@ namespace QuantumRefrigiz
 
                                     if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == 6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == 4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActGray = true;
                                         BigKingCastleGray = true;
                                         return true;
@@ -498,7 +498,7 @@ namespace QuantumRefrigiz
                     else//Order of Brown.
                     {
                         //When Brown Castles King Not Occured.
-                        if (QuantumRefrigiz.ChessRules.CastleKingAllowedBrown)
+                        if (QuantumRefrigiz.ChessRules.CastlingAllowedBrown)
                         {
                             //Column Situation.
                             if (ColumnFirst == 7 && ColumnSecond == 7)
@@ -510,7 +510,7 @@ namespace QuantumRefrigiz
 
                                     if (((RowSecond - 2) >= 0) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && Table[RowSecond - 2, ColumnSecond] == -6 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond + 1, ColumnSecond] == -4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActBrown = true;
                                         SmallKingCastleBrown = true;
                                         return true;
@@ -525,7 +525,7 @@ namespace QuantumRefrigiz
 
                                     if (((RowSecond + 2) < 8) && ((RowSecond - 1) >= 0) && ((RowSecond + 1) < 8) && ((RowSecond - 2) >= 0) && Table[RowSecond + 2, ColumnSecond] == -6 && Table[RowSecond + 1, ColumnSecond] == 0 && Table[RowSecond, ColumnSecond] == 0 && Table[RowSecond - 1, ColumnSecond] == 0 && Table[RowSecond - 2, ColumnSecond] == -4)
                                     {
-                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                                        ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                                         CastleActBrown = true;
                                         BigKingCastleBrown = true;
                                         return true;
@@ -536,7 +536,7 @@ namespace QuantumRefrigiz
                         }
                     }
                 }
-                ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("CastleKing:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Castling:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return false;
             }
         }
@@ -1533,7 +1533,7 @@ namespace QuantumRefrigiz
             }
         }
         //Create Syntax of Movments.
-        public string CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool CastleKing, bool SodierConvert//, ref AllDraw. THIS
+        public string CreateStatistic(bool Arrange, int[,] Tab, int Movments, int SourceThings, int Column, int Row, bool Hit, int HitThings, bool Castling, bool SodierConvert//, ref AllDraw. THIS
 
             )
         {
@@ -1577,7 +1577,7 @@ namespace QuantumRefrigiz
                     object O2 = new object();
                     lock (O2)
                     {
-                        QuantumRefrigiz.ChessRules.CastleKingAllowedGray = false;
+                        QuantumRefrigiz.ChessRules.CastlingAllowedGray = false;
                         QuantumRefrigiz.ChessRules.CastleActGray = true;
                         QuantumRefrigiz.ThinkingQuantumChess.KingMaovableGray = true;
                     }
@@ -1588,7 +1588,7 @@ namespace QuantumRefrigiz
                     lock (O2)
                     {
                         QuantumRefrigiz.ChessRules.CastleActBrown = true;
-                        QuantumRefrigiz.ChessRules.CastleKingAllowedBrown = false;
+                        QuantumRefrigiz.ChessRules.CastlingAllowedBrown = false;
                         QuantumRefrigiz.ThinkingQuantumChess.KingMaovableBrown = true;
                     }
                 }
@@ -1609,10 +1609,10 @@ namespace QuantumRefrigiz
                     }
                 }
                 //When Solder Converted or Castles King Acts.
-                if (SodierConvert || (CastleKing && Castles))
+                if (SodierConvert || (Castling && Castles))
                 {
                     //When Castles Acts.
-                    if (CastleKing)
+                    if (Castling)
                     {
                         //Castles Brown King.
                         if (QuantumRefrigiz.ChessRules.SmallKingCastleGray)
@@ -1628,7 +1628,7 @@ namespace QuantumRefrigiz
                                     if (!AllDraw.Stockfish)
                                     {
                                         QuantumRefrigiz.ChessRules.SmallKingCastleGray = false;
-                                        QuantumRefrigiz.ChessRules.CastleKingAllowedGray = false;
+                                        QuantumRefrigiz.ChessRules.CastlingAllowedGray = false;
                                     }
                                 }
                             }
@@ -1648,7 +1648,7 @@ namespace QuantumRefrigiz
                                     if (!AllDraw.Stockfish)
                                     {
                                         QuantumRefrigiz.ChessRules.BigKingCastleGray = false;
-                                        QuantumRefrigiz.ChessRules.CastleKingAllowedGray = false;
+                                        QuantumRefrigiz.ChessRules.CastlingAllowedGray = false;
                                     }
                                 }
                             }
@@ -1668,7 +1668,7 @@ namespace QuantumRefrigiz
                                     if (!AllDraw.Stockfish)
                                     {
                                         QuantumRefrigiz.ChessRules.SmallKingCastleBrown = false;
-                                        QuantumRefrigiz.ChessRules.CastleKingAllowedBrown = false;
+                                        QuantumRefrigiz.ChessRules.CastlingAllowedBrown = false;
                                     }
                                 }
                             }
@@ -1689,7 +1689,7 @@ namespace QuantumRefrigiz
                                     if (!AllDraw.Stockfish)
                                     {
                                         QuantumRefrigiz.ChessRules.BigKingCastleBrown = false;
-                                        QuantumRefrigiz.ChessRules.CastleKingAllowedBrown = false;
+                                        QuantumRefrigiz.ChessRules.CastlingAllowedBrown = false;
                                     }
                                 }
                             }
@@ -1740,7 +1740,7 @@ namespace QuantumRefrigiz
                                 {
                                     QuantumRefrigiz.ThinkingQuantumChess.KingMaovableBrown = true;
                                     QuantumRefrigiz.ChessRules.BigKingCastleBrown = false;
-                                    QuantumRefrigiz.ChessRules.CastleKingAllowedBrown = false;
+                                    QuantumRefrigiz.ChessRules.CastlingAllowedBrown = false;
                                 }
                             }
                             if (A.CheckGray && Order == 1)
@@ -1750,7 +1750,7 @@ namespace QuantumRefrigiz
                                 {
                                     QuantumRefrigiz.ThinkingQuantumChess.KingMaovableGray = true;
                                     QuantumRefrigiz.ChessRules.BigKingCastleGray = false;
-                                    QuantumRefrigiz.ChessRules.CastleKingAllowedGray = false;
+                                    QuantumRefrigiz.ChessRules.CastlingAllowedGray = false;
                                 }
                             }
                         }
@@ -1819,7 +1819,7 @@ namespace QuantumRefrigiz
                             lock (O2)
                             {
                                 QuantumRefrigiz.ChessRules.BigKingCastleBrown = false;
-                                QuantumRefrigiz.ChessRules.CastleKingAllowedBrown = false;
+                                QuantumRefrigiz.ChessRules.CastlingAllowedBrown = false;
                                 QuantumRefrigiz.ThinkingQuantumChess.KingMaovableGray = true;
 
                             }
@@ -1830,7 +1830,7 @@ namespace QuantumRefrigiz
                             lock (O2)
                             {
                                 QuantumRefrigiz.ChessRules.BigKingCastleGray = false;
-                                QuantumRefrigiz.ChessRules.CastleKingAllowedGray = false;
+                                QuantumRefrigiz.ChessRules.CastlingAllowedGray = false;
                                 QuantumRefrigiz.ThinkingQuantumChess.KingMaovableGray = true;
 
                             }
@@ -3107,11 +3107,11 @@ namespace QuantumRefrigiz
                     case 7://Rule of Castles King.
 
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+                        return Castling(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
                     case -7://Rule of Castles King.
 
                         ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("Rule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
-                        return CastleKing(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
+                        return Castling(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, color, Ki);
                     default:
                         return false;
                 }

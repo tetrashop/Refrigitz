@@ -3058,12 +3058,12 @@ namespace ChessFirst
                         HA = RationalRegard;
                     }
 
-                    if (Tab[RowK, ColK] == KingGray && Tab[RowK, ColK] == TableInitiation[RowK, ColK] && ChessRules.CastleKingAllowedGray)
+                    if (Tab[RowK, ColK] == KingGray && Tab[RowK, ColK] == TableInitiation[RowK, ColK] && ChessRules.CastlingAllowedGray)
                     {
                         HA = Rational(HA, RationalPenalty) * RationalPenalty;
                     }
 
-                    if ((Tab[RowK, ColK] == KingGray) && (Tab[RowK, 7] == CastleGray || Tab[RowK, 0] == CastleGray) && (TableInitiation[RowK, ColK] == 6) && ChessRules.CastleKingAllowedGray)
+                    if ((Tab[RowK, ColK] == KingGray) && (Tab[RowK, 7] == CastleGray || Tab[RowK, 0] == CastleGray) && (TableInitiation[RowK, ColK] == 6) && ChessRules.CastlingAllowedGray)
                     {
                         if (RowS == RowK && ColS == 5)
                         {
@@ -3109,12 +3109,12 @@ namespace ChessFirst
                         HA = RationalRegard;
                     }
 
-                    if (Tab[RowK, ColK] == KingBrown && Tab[RowK, ColK] == TableInitiation[RowK, ColK] && ChessRules.CastleKingAllowedBrown)
+                    if (Tab[RowK, ColK] == KingBrown && Tab[RowK, ColK] == TableInitiation[RowK, ColK] && ChessRules.CastlingAllowedBrown)
                     {
                         HA = Rational(HA, RationalPenalty) * RationalPenalty;
                     }
 
-                    if ((Tab[RowK, ColK] == KingBrown) && (Tab[RowK, 7] == CastleBrown || Tab[RowK, 0] == CastleBrown) && (TableInitiation[RowK, ColK] == -6) && ChessRules.CastleKingAllowedBrown)
+                    if ((Tab[RowK, ColK] == KingBrown) && (Tab[RowK, 7] == CastleBrown || Tab[RowK, 0] == CastleBrown) && (TableInitiation[RowK, ColK] == -6) && ChessRules.CastlingAllowedBrown)
                     {
                         if (RowS == RowK && ColS == 5)
                         {
@@ -14207,21 +14207,43 @@ namespace ChessFirst
                             }
                             else
                             {
-                                if (RowDestination < RowSource)
+                                if (Kind == 7)
                                 {
-                                    TableS[RowSource - 1, ColumnDestination] = 4;
-                                    TableS[RowSource - 2, ColumnDestination] = 6;
-                                    TableS[RowSource - 4, ColumnDestination] = 0;
-                                    TableS[RowSource, ColumnSource] = 0;
+                                    if (RowDestination < RowSource)
+                                    {
+                                        TableS[RowSource - 1, ColumnDestination] = 4;
+                                        TableS[RowSource - 2, ColumnDestination] = 6;
+                                        TableS[RowSource - 4, ColumnDestination] = 0;
+                                        TableS[RowSource, ColumnSource] = 0;
 
+                                    }
+                                    else
+                                    {
+                                        TableS[RowSource + 1, ColumnDestination] = 4;
+                                        TableS[RowSource + 2, ColumnDestination] = 6;
+                                        TableS[RowSource + 3, ColumnDestination] = 0;
+                                        TableS[RowSource, ColumnSource] = 0;
+
+                                    }
                                 }
                                 else
                                 {
-                                    TableS[RowSource + 1, ColumnDestination] = 4;
-                                    TableS[RowSource + 2, ColumnDestination] = 6;
-                                    TableS[RowSource + 3, ColumnDestination] = 0;
-                                    TableS[RowSource, ColumnSource] = 0;
+                                    if (RowDestination < RowSource)
+                                    {
+                                        TableS[RowSource - 1, ColumnDestination] = -4;
+                                        TableS[RowSource - 2, ColumnDestination] = -6;
+                                        TableS[RowSource - 4, ColumnDestination] = 0;
+                                        TableS[RowSource, ColumnSource] = 0;
 
+                                    }
+                                    else
+                                    {
+                                        TableS[RowSource + 1, ColumnDestination] = -4;
+                                        TableS[RowSource + 2, ColumnDestination] = -6;
+                                        TableS[RowSource + 3, ColumnDestination] = 0;
+                                        TableS[RowSource, ColumnSource] = 0;
+
+                                    }
                                 }
                             }
                         }
@@ -18518,7 +18540,7 @@ namespace ChessFirst
 
                     if (Scop(ii, jj, i, jj, -7) && System.Math.Abs(TableS[ii, jj]) == 6 && System.Math.Abs(Kind) == 7)
                     {///Calculate of Castles of Brown.
-                        if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, -7, CloneATable(TableS), Order, ii, jj)).Rules(ii, jj, i, jj, color, -7) && (ChessRules.CastleKingAllowedBrown))
+                        if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, -7, CloneATable(TableS), Order, ii, jj)).Rules(ii, jj, i, jj, color, -7) && (ChessRules.CastlingAllowedBrown))
                         {
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
                             Task newTask = Task.Factory.StartNew(() => CastleThinkingBrown(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));
@@ -18549,7 +18571,7 @@ namespace ChessFirst
                     { ///"Inizialization of This New Class (Current is Dynamic class Object) is MalFunction (Constant Variable Count).
                         QuantumAtamata Current = new QuantumAtamata(3, 3, 3);
 
-                        if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 7, CloneATable(TableS), Order, ii, jj)).Rules(ii, jj, i, jj, color, 7) && (ChessRules.CastleKingAllowedGray))
+                        if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 7, CloneATable(TableS), Order, ii, jj)).Rules(ii, jj, i, jj, color, 7) && (ChessRules.CastlingAllowedGray))
                         {
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
                             Task newTask = Task.Factory.StartNew(() => CastleThinkingGray(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));

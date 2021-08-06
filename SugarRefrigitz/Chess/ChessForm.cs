@@ -812,7 +812,7 @@ namespace Chess
                     ss += "k";
                 if (RefrigtzDLL.ChessRules.BigKingCastleBrown)
                     ss += "q";
-                if (!RefrigtzDLL.ChessRules.CastleKingAllowedGray && !RefrigtzDLL.ChessRules.CastleKingAllowedBrown)
+                if (!RefrigtzDLL.ChessRules.CastlingAllowedGray && !RefrigtzDLL.ChessRules.CastlingAllowedBrown)
                     ss += '-';
                 String S = " - ";
                 if (!StartPos)

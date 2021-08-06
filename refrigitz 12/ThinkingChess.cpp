@@ -10451,7 +10451,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 				}
 			}
 			///Calculate of Castles of Brown.
-			if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, -7, TableS, Order, ii, jj))->Rules(ii, jj, i, jj, color, -7) && (ChessRules::CastleKingAllowedBrown))
+			if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, -7, TableS, Order, ii, jj))->Rules(ii, jj, i, jj, color, -7) && (ChessRules::CastlingAllowedBrown))
 			{
 				CastleThinkingBrown(LoseOcuuredatChiled, WinOcuuredatChiled, DummyOrder, DummyCurrentOrder, TableS, ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle);
 			}
@@ -10483,7 +10483,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 					TableS[RowS][ColS] = TableConst[RowS][ColS];
 				}
 			}
-			if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, 7, TableS, Order, ii, jj))->Rules(ii, jj, i, jj, color, 7) && (ChessRules::CastleKingAllowedGray))
+			if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, 7, TableS, Order, ii, jj))->Rules(ii, jj, i, jj, color, 7) && (ChessRules::CastlingAllowedGray))
 			{
 				CastleThinkingGray(LoseOcuuredatChiled, WinOcuuredatChiled, DummyOrder, DummyCurrentOrder, TableS, ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle);
 			}

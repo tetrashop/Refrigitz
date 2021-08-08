@@ -33,7 +33,7 @@ namespace Ellipse
             //I/O Paramenters of output.
             Console.WriteLine("The Differential is :");
             //Should be of minuse to zero boundry
-            Console.WriteLine(AEDAC.aroundAccess - AEAF.aroundAccess);
+            Console.WriteLine(AEDACP.aroundAccess - AEAF.AaroundAccess);
             Console.WriteLine("The Differential is :");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEDACP.aroundAccess - AEAF.aroundAccess);
@@ -43,14 +43,19 @@ namespace Ellipse
             Console.WriteLine("The Differential is :");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEDACP.aroundAccess - AEAF.aroundP2Access);
+            Console.WriteLine("The Differential is :");
+            //Should be of minuse to zero boundry
+            Console.WriteLine(AEDAC.aroundAccess - AEAF.aroundAccess);
 
 
             Console.WriteLine("The Actual First is :");
             //Should be of minuse to zero boundry
-            Console.WriteLine(AEAF.aroundAccess);
+            Console.WriteLine(AEAF.AaroundAccess);
             Console.WriteLine("The Actual Second is :");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEAF.aroundP2Access);
+            Console.WriteLine("The Actual Third is :");
+            Console.WriteLine(AEAF.aroundAccess);
             Console.WriteLine("The Apoximate First is :");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEDAC.aroundAccess);

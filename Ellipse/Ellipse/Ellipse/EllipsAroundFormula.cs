@@ -8,6 +8,9 @@ namespace Ellipse
         private double aroundP2 = 0;
         private readonly double Laround = 0;
         private readonly double Paround = 0;
+        private readonly double Aaround = 0;
+        private readonly double around0 = 0;
+        private readonly double around1 = 0;
         private readonly double Paround0 = 0;
         private readonly double Paround1 = 0;
         private readonly double Laround0 = 0;
@@ -28,6 +31,7 @@ namespace Ellipse
 
             //Second Integral priciple first parameters 
             Laround1 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Sin(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Log(Math.Pow(1 + e * Math.Cos(teta), 2), Math.E)) + 0.5 * Math.Pow(r, 2) + teta;
+            around1 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Sin(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Log(Math.Pow(1 + e * Math.Cos(teta), 2), Math.E)) + 0.5 * Math.Pow(r, 2) + teta;
             /*  Laround1 = (2 * p) * (teta * Math.Log(1 + e * Math.Cos(u), Math.E) + (2 / (1 - Math.Pow(e, 2))) *u * Math.Sin(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) + ((2 * e) / ((1 - Math.Pow(e, 2)))) * Math.Cos(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) - (2 / (1 - ((1 - e) / (1 + e)))) * ((2 * e) / ((1 - Math.Pow(e, 2)))) *u + ((1 - e) / (1 + e)) * ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((2 * (1 + ((1 - e) / (1 + e)))) / (1 - ((1 - e) / (1 + e)))) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) - ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((Math.Pow(((1 - e) / (1 + e)), 5) - 5 * ((1 - e) / (1 + e))) / ((1 - (Math.Pow(((1 - e) / (1 + e)), 4))) * (Math.Pow(((1 - e) / (1 + e)), 2) + 1))) * Math.Pow(teta, 2) * Math.Sin(u) - (((2 * e) / (Math.Sin(1 - Math.Pow(e, 2)))) * ((10 * (((1 - e) / (1 + e))) - (2 * Math.Pow((((1 - e) / (1 + e))), 5))) / ((1 - (Math.Pow(((1 - e) / (1 + e)), 4))) * (Math.Pow(((1 - e) / (1 + e)), 2) + 1)))) * Math.Cos(u) - ((2 * e) / (1 - Math.Pow(e, 2))) * (((4 * (((1 - e) / (1 + e))) - 4 * Math.Pow((((1 - e) / (1 + e))), 3))) / (Math.Pow(1 - (Math.Pow((((1 - e) / (1 + e))), 2)), 2) * Math.Pow(1 + (Math.Pow((((1 - e) / (1 + e))), 2)), 2))) * Math.Pow(teta, 2) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) + ((2 * e) / ((1 - Math.Pow(e, 2)) * ((8 - (12 * (Math.Pow(((1 - e) / (1 + e)), 2)))) / (3 * (Math.Pow(1 - (Math.Pow(((1 - e) / (1 + e)), 2)), 2)) * ((1 + (Math.Pow(((1 - e) / (1 + e)), 2)))))))) * Math.Pow(teta, 3) + teta) + Math.Pow(p / (1 + e * Math.Cos(u)), 2) + p / (1 + e * Math.Cos(u));
                       Paround1 = 2 * p * (u * Math.Log(1 + e * Math.Cos(u), Math.E)
                           + (2 / (1 - Math.Pow(e, 2))) * b *u * Math.Sin(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(u / 2))
@@ -60,11 +64,13 @@ namespace Ellipse
                          + 0.5 * Math.Pow(r, 2))
                          + r + teta;*/
             Laround0 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Sin(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Log(Math.Pow(1 + e * Math.Cos(teta), 2), Math.E)) + 0.5 * Math.Pow(r, 2) + teta;
+            around0 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Sin(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Log(Math.Pow(1 + e * Math.Cos(teta), 2), Math.E)) + 0.5 * Math.Pow(r, 2) + teta;
 
 
             //Orthogonality of multiply at 4
             //  around = 4 * ((Math.Abs(around1) - Math.Abs(around0)));
             Laround = 4 * (Math.Sqrt(Math.Abs(Laround1 - Laround0)));
+            Aaround = 4 * (Math.Sqrt(Math.Abs(around1)) - Math.Sqrt(Math.Abs(around0)));
             // Laround = 4 * ((Math.Abs(Laround1 - Laround0)));
             /* Paround = 4 * ((Math.Abs(around1)) - (Math.Abs(around0)));
              aroundT = 4 * ((Math.Abs(around1 - around0)));
@@ -92,6 +98,11 @@ namespace Ellipse
 
         }
         public double aroundAccess
+        {
+            get => around;
+            set => around = value;
+        }
+        public double AaroundAccess
         {
             get => around;
             set => around = value;

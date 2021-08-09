@@ -7,14 +7,10 @@ namespace Ellipse
         private double around = 0;
         private double aroundP2 = 0;
         private double Aaround = 0;
-        private readonly double Laround = 0;
-        private readonly double Paround = 0;
         private readonly double around0 = 0;
+        private readonly double aroundPiPer2 = 0;
+        private readonly double aroundPiatanpi2 = 0;
         private readonly double around1 = 0;
-        private readonly double Paround0 = 0;
-        private readonly double Paround1 = 0;
-        private readonly double Laround0 = 0;
-        private readonly double Laround1 = 0;
         private readonly double p = 0;
         private readonly double e = 0;
         public EllipsAroundFormula(double a, double b, double c)
@@ -22,80 +18,57 @@ namespace Ellipse
             // Params rr = new Params(a, b);
             //Initiate Parameters of Ellipse.
             p = Math.Pow(b, 2) / a;
-            e = System.Math.Sqrt(1 - (p / a));
+            e = System.Math.Sqrt(1.0 - (p / a));
             c = e * a;
-            double u = Math.PI - Math.Atan((b / c)// * (Math.PI / 180)//b / c)// * (Math.PI / 180)
+            double teta = Math.PI - Math.Atan((b / c)// * (Math.PI / 180)//b / c)// * (Math.PI / 180)
                 );
-            double teta = u;// * (180 / Math.PI);
-            double r = (p) / (1 + e * Math.Cos(u));
-
-            //Second Integral priciple first parameters 
-            Laround1 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
-            around1 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
-            /*  Laround1 = (2 * p) * (teta * Math.Log(1 + e * Math.Cos(u), Math.E) + (2 / (1 - Math.Pow(e, 2))) *u * Math.Sin(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) + ((2 * e) / ((1 - Math.Pow(e, 2)))) * Math.Cos(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) - (2 / (1 - ((1 - e) / (1 + e)))) * ((2 * e) / ((1 - Math.Pow(e, 2)))) *u + ((1 - e) / (1 + e)) * ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((2 * (1 + ((1 - e) / (1 + e)))) / (1 - ((1 - e) / (1 + e)))) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) - ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((Math.Pow(((1 - e) / (1 + e)), 5) - 5 * ((1 - e) / (1 + e))) / ((1 - (Math.Pow(((1 - e) / (1 + e)), 4))) * (Math.Pow(((1 - e) / (1 + e)), 2) + 1))) * Math.Pow(teta, 2) * Math.Sin(u) - (((2 * e) / (Math.Sin(1 - Math.Pow(e, 2)))) * ((10 * (((1 - e) / (1 + e))) - (2 * Math.Pow((((1 - e) / (1 + e))), 5))) / ((1 - (Math.Pow(((1 - e) / (1 + e)), 4))) * (Math.Pow(((1 - e) / (1 + e)), 2) + 1)))) * Math.Cos(u) - ((2 * e) / (1 - Math.Pow(e, 2))) * (((4 * (((1 - e) / (1 + e))) - 4 * Math.Pow((((1 - e) / (1 + e))), 3))) / (Math.Pow(1 - (Math.Pow((((1 - e) / (1 + e))), 2)), 2) * Math.Pow(1 + (Math.Pow((((1 - e) / (1 + e))), 2)), 2))) * Math.Pow(teta, 2) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) + ((2 * e) / ((1 - Math.Pow(e, 2)) * ((8 - (12 * (Math.Pow(((1 - e) / (1 + e)), 2)))) / (3 * (Math.Pow(1 - (Math.Pow(((1 - e) / (1 + e)), 2)), 2)) * ((1 + (Math.Pow(((1 - e) / (1 + e)), 2)))))))) * Math.Pow(teta, 3) + teta) + Math.Pow(p / (1 + e * Math.Cos(u)), 2) + p / (1 + e * Math.Cos(u));
-                      Paround1 = 2 * p * (u * Math.Log(1 + e * Math.Cos(u), Math.E)
-                          + (2 / (1 - Math.Pow(e, 2))) * b *u * Math.Sin(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(u / 2))
-                          + ((2 * e) / ((1 - Math.Pow(e, 2)))) * Math.Cos(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(u / 2))
-                          - (2 / (1 - ((1 - e) / (1 + e)))) * ((2 * e) / ((1 - Math.Pow(e, 2)))) *u
-                          + ((1 - e) / (1 + e)) * ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((2 * (1 + ((1 - e) / (1 + e)))) / (1 - ((1 - e) / (1 + e)))) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(u / 2))
-                          - ((2 * e) / (1 - Math.Pow(e, 2))) * ((Math.Pow(((1 - e) / (1 + e)), 5) - 5 * ((1 - e) / (1 + e))) / ((1 - Math.Pow(((1 - e) / (1 + e)), 4)) * (Math.Pow(((1 - e) / (1 + e)), 2) + 1))) * Math.Pow(u, 2) * Math.Sin(u)
-                          - ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((10 * (((1 - e) / (1 + e))) - 2 * (Math.Pow(((1 - e) / (1 + e)), 5))) / (((1 - Math.Pow(((1 - e) / (1 + e)), 4)) * ((Math.Pow(((1 - e) / (1 + e)), 2)) + 1)))) * Math.Cos(u)
-                          - ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((3 - 2 * (Math.Pow(((1 - e) / (1 + e)), 2)) - (Math.Pow(((1 - e) / (1 + e)), 4))) / ((1 - (Math.Pow(((1 - e) / (1 + e)), 4))) * ((Math.Pow(((1 - e) / (1 + e)), 2)) + 1))) * Math.Pow(u, 2) * Math.Cos(u) * Math.Atan(0.5 * Math.Tan(u / 2))
-                          - ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((4 * ((1 - e) / (1 + e)) - 4 * (Math.Pow(((1 - e) / (1 + e)), 3))) / (Math.Pow(1 - Math.Pow(((1 - e) / (1 + e)), 2), 2)) * (1 + Math.Pow(((1 - e) / (1 + e)), 2))) * Math.Pow(u, 2) * Math.Atan(0.5 * Math.Tan(u / 2))
-                          + ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((8 - 12 * (Math.Pow(((1 - e) / (1 + e)), 2))) / (3 * (Math.Pow(1 - Math.Pow(((1 - e) / (1 + e)), 2), 2) * (1 + Math.Pow(((1 - e) / (1 + e)), 2))))) * Math.Pow(u, 3)
-                          + 0.5 * Math.Pow(r, 2))
-                          + r + teta;
-                          */
-            //Second Integral priciple second parameters 
-            u = Math.PI / 2;
-            teta = u;// * (180 / Math.PI);
-            r = (p) / (1 + e * Math.Cos(u));
-            /*around0 = (2 * p) * (teta * Math.Log(1 + e * Math.Cos(u), Math.E) + (2 / (1 - Math.Pow(e, 2))) *u * Math.Sin(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) + ((2 * e) / ((1 - Math.Pow(e, 2)))) * Math.Cos(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) - (2 / (1 - ((1 - e) / (1 + e)))) * ((2 * e) / ((1 - Math.Pow(e, 2)))) *u + ((1 - e) / (1 + e)) * ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((2 * (1 + ((1 - e) / (1 + e)))) / (1 - ((1 - e) / (1 + e)))) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) - ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((Math.Pow(((1 - e) / (1 + e)), 5) - 5 * ((1 - e) / (1 + e))) / ((1 - (Math.Pow(((1 - e) / (1 + e)), 4))) * (Math.Pow(((1 - e) / (1 + e)), 2) + 1))) * Math.Pow(teta, 2) * Math.Sin(u) - (((2 * e) / (Math.Sin(1 - Math.Pow(e, 2)))) * ((10 * (((1 - e) / (1 + e))) - (2 * Math.Pow((((1 - e) / (1 + e))), 5))) / ((1 - (Math.Pow(((1 - e) / (1 + e)), 4))) * (Math.Pow(((1 - e) / (1 + e)), 2) + 1)))) * Math.Cos(u) - ((2 * e) / (1 - Math.Pow(e, 2))) * (((4 * (((1 - e) / (1 + e))) - 4 * Math.Pow((((1 - e) / (1 + e))), 3))) / (Math.Pow(1 - (Math.Pow((((1 - e) / (1 + e))), 2)), 2) * Math.Pow(1 + (Math.Pow((((1 - e) / (1 + e))), 2)), 2))) * Math.Pow(teta, 2) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(teta / 2)) + ((2 * e) / ((1 - Math.Pow(e, 2)) * ((8 - (12 * (Math.Pow(((1 - e) / (1 + e)), 2)))) / (3 * (Math.Pow(1 - (Math.Pow(((1 - e) / (1 + e)), 2)), 2)) * ((1 + (Math.Pow(((1 - e) / (1 + e)), 2)))))))) * Math.Pow(teta, 3) + teta) + Math.Pow(p / (1 + e * Math.Cos(u)), 2) + p / (1 + e * Math.Cos(u));
-                   Laround0 = 2 * p * (u * Math.Log(1 + e * Math.Cos(u), Math.E)
-                         + (2 / (1 - Math.Pow(e, 2))) * b *u * Math.Sin(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(u / 2))
-                         + ((2 * e) / ((1 - Math.Pow(e, 2)))) * Math.Cos(u) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(u / 2))
-                         - (2 / (1 - ((1 - e) / (1 + e)))) * ((2 * e) / ((1 - Math.Pow(e, 2)))) *u
-                         + ((1 - e) / (1 + e)) * ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((2 * (1 + ((1 - e) / (1 + e)))) / (1 - ((1 - e) / (1 + e)))) * Math.Atan(((1 - e) / (1 + e)) * Math.Tan(u / 2))
-                         - ((2 * e) / (1 - Math.Pow(e, 2))) * ((Math.Pow(((1 - e) / (1 + e)), 5) - 5 * ((1 - e) / (1 + e))) / ((1 - Math.Pow(((1 - e) / (1 + e)), 4)) * (Math.Pow(((1 - e) / (1 + e)), 2) + 1))) * Math.Pow(u, 2) * Math.Sin(u)
-                         - ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((10 * (((1 - e) / (1 + e))) - 2 * (Math.Pow(((1 - e) / (1 + e)), 5))) / (((1 - Math.Pow(((1 - e) / (1 + e)), 4)) * ((Math.Pow(((1 - e) / (1 + e)), 2)) + 1)))) * Math.Cos(u)
-                         - ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((3 - 2 * (Math.Pow(((1 - e) / (1 + e)), 2)) - (Math.Pow(((1 - e) / (1 + e)), 4))) / ((1 - (Math.Pow(((1 - e) / (1 + e)), 4))) * ((Math.Pow(((1 - e) / (1 + e)), 2)) + 1))) * Math.Pow(u, 2) * Math.Cos(u) * Math.Atan(0.5 * Math.Tan(u / 2))
-                       - ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((4 * ((1 - e) / (1 + e)) - 4 * (Math.Pow(((1 - e) / (1 + e)), 3))) / (Math.Pow(1 - Math.Pow(((1 - e) / (1 + e)), 2), 2)) * (1 + Math.Pow(((1 - e) / (1 + e)), 2))) * Math.Pow(u, 2) * Math.Atan(0.5 * Math.Tan(u / 2))
-                         + ((2 * e) / ((1 - Math.Pow(e, 2)))) * ((8 - 12 * (Math.Pow(((1 - e) / (1 + e)), 2))) / (3 * (Math.Pow(1 - Math.Pow(((1 - e) / (1 + e)), 2), 2) * (1 + Math.Pow(((1 - e) / (1 + e)), 2))))) * Math.Pow(u, 3)
-                         + 0.5 * Math.Pow(r, 2))
-                         + r + teta;*/
-            Laround0 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
-            around0 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
+            double u = (Math.PI - Math.Atan((b / c))) * (Math.PI / 180);
+            double r = (p) / (1 + e * Math.Cos(teta));
+            aroundPiatanpi2 = 2 * (p * (-1 * u * Math.Log(1 + e * Math.Cos(teta), Math.E) - e * u * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (e / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2)) + u;
 
 
-            //Orthogonality of multiply at 4
-            //  around = 4 * ((Math.Abs(around1) - Math.Abs(around0)));
-            Laround = 4 * (Math.Sqrt(Math.Abs(Laround1)) - Math.Sqrt(Math.Abs(Laround0)));
-            Aaround = 4 * (Math.Sqrt(Math.Abs(around1)) - Math.Sqrt(Math.Abs(around0)));
-            // Laround = 4 * ((Math.Abs(Laround1 - Laround0)));
-            /* Paround = 4 * ((Math.Abs(around1)) - (Math.Abs(around0)));
-             aroundT = 4 * ((Math.Abs(around1 - around0)));
-             aroundS = 4 * ((Math.Abs(Paround1) - Math.Abs(Paround0)));
-             ParoundS = 4 * ((Math.Abs(Paround1)) - (Math.Abs(Paround0)));
-             ParoundT = 4 * ((Math.Abs(Paround1 - Paround0)));
- */
-            u = Math.PI / 2;
-            teta = u;// * (180 / Math.PI);
-            r = (p) / (1 + e * Math.Cos(u));
+            teta = Math.PI / 2;
 
-            //Second Integral priciple first parameters 
-            Paround1 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
+            u = (Math.PI / 2) * (180 / Math.PI);
+
+            r = (p) / (1 + e * Math.Cos(teta));
+            aroundPiPer2 = 2 * (p * (-1 * u * Math.Log(1 + e * Math.Cos(teta), Math.E) - e * u * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (e / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2)) + u;
+
+
             u = 0;
-            teta = u;// * (180 / Math.PI);
-            r = (p) / (1 + e * Math.Cos(u));
-            //Second Integral priciple first parameters 
-            Paround0 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
+            teta = 0;// * (180 / Math.PI);
+            r = (p) / (1 + e * Math.Cos(teta));
+            around0 = 2 * (p * (-1 * u * Math.Log(1 + e * Math.Cos(teta), Math.E) - e * u * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (e / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2)) + u;
+            //Aaround = 4 * (Math.Abs(Math.Sqrt(Math.Abs(aroundPiatanpi2)) - Math.Sqrt(Math.Abs(aroundPiPer2))) + Math.Abs(Math.Sqrt(Math.Abs(aroundPiPer2)) - Math.Sqrt(Math.Abs(around0))));
+            //Aaround = 4 * (Math.Abs(Math.Sqrt(Math.Abs(aroundPiatanpi2)) - Math.Sqrt(Math.Abs(around0))));
 
-            Paround = 4 * (Math.Sqrt(Math.Abs(Paround1)) - Math.Sqrt(Math.Abs(Paround0)));
-            around = Paround + Laround;
-            aroundP2 = 4 * (Math.Sqrt(Math.Abs(Laround1)) - Math.Sqrt(Math.Abs(Paround0)));
-            ;
-            //around = Laround + 4 * ((Math.Abs(Paround1 - Paround0)));
+            //Aaround = 4 * (Math.Abs(Math.Sqrt(Math.Abs(aroundPiatanpi2 - around0))));
+            Aaround = 4 * (Math.Abs(Math.Sqrt(Math.Abs(aroundPiatanpi2 - aroundPiPer2))) + Math.Abs(Math.Sqrt(Math.Abs(aroundPiPer2 - around0))));
+            //Aaround = 4 * (Math.Sqrt(Math.Abs(aroundPiatanpi2 - around0)));
+            /*  //Second Integral priciple first parameters 
+              Laround1 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
+              //Second Integral priciple second parameters 
+              u = Math.PI - Math.Atan(b / c);
+              teta = u;// * (180 / Math.PI);
+              r = (p) / (1 + e * Math.Cos(u));
+                 Laround0 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
+                u = Math.PI - Math.Atan(b / c);
+              teta = u;// * (180 / Math.PI);
+              r = (p) / (1 + e * Math.Cos(u));
 
+              //Second Integral priciple first parameters 
+              Paround1 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
+              u = 0;
+              teta = u;// * (180 / Math.PI);
+              r = (p) / (1 + e * Math.Cos(u));
+              //Second Integral priciple first parameters 
+              Paround0 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;
+
+              Paround = 4 * (Math.Sqrt(Math.Abs(Paround1)) - Math.Sqrt(Math.Abs(Paround0)));
+              around = Paround + Laround;
+              aroundP2 = 4 * (Math.Sqrt(Math.Abs(Laround1)) - Math.Sqrt(Math.Abs(Paround0)));
+              ;
+          */
         }
         public double aroundAccess
         {

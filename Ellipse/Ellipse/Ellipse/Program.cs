@@ -80,6 +80,11 @@ namespace Ellipse
             Console.WriteLine("The Actual First is :");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEAF.AaroundAccess);
+            Console.WriteLine("The Actual Second is :");
+            //Should be of minuse to zero boundry
+            Console.WriteLine(AEDAC.aroundOilerAccess);
+            Console.WriteLine("The Actual Third is :");
+            Console.WriteLine(AEDACP.aroundAccess);
             Console.WriteLine("The Apoximate First is :");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEDAC.aroundAccess);

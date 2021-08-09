@@ -44,6 +44,7 @@ namespace Ellipse
 
             //Aaround = 4 * (Math.Abs(Math.Sqrt(Math.Abs(aroundPiatanpi2 - around0))));
             Aaround = 4 * (Math.Abs(Math.Sqrt(Math.Abs(aroundPiatanpi2 - aroundPiPer2))) + Math.Abs(Math.Sqrt(Math.Abs(aroundPiPer2 - around0))));
+            //Aaround = 4 * (Math.Sqrt(Math.Abs(Math.Abs(aroundPiatanpi2 - aroundPiPer2))) + Math.Abs(Math.Abs(Math.Abs(aroundPiPer2 - around0))));
             //Aaround = 4 * (Math.Sqrt(Math.Abs(aroundPiatanpi2 - around0)));
             /*  //Second Integral priciple first parameters 
               Laround1 = (2 * p) * (-1 * teta * Math.Log(1 + e * Math.Cos(teta), Math.E) - Math.E * teta * Math.Cos(teta) - 0.5 * Math.Sin(teta) + (Math.E / 2) * Math.Pow(Math.Log(1 + e * Math.Cos(teta), Math.E), 2)) + 0.5 * Math.Pow(r, 2) + teta;

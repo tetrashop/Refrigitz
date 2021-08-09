@@ -66,35 +66,29 @@ namespace Ellipse
              Console.ReadLine();
              */
 
-            Console.WriteLine("The Differential is :");
-            //Should be of minuse to zero boundry
-            Console.WriteLine(AEDACP.aroundAccess - AEAF.AaroundAccess);
-            Console.WriteLine("The Differential is :");
+            Console.WriteLine("The Differential is :(between desired and one common limit) : ");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEDACP.aroundOilerAccess - AEAF.AaroundAccess);
-            Console.WriteLine("The Differential is :");
+            Console.WriteLine("The Differential is :(between desired and Oilder limit ) : ");
+            //Should be of minuse to zero boundry
+            Console.WriteLine(AEDAC.aroundOilerAccess - AEAF.AaroundAccess);
+            Console.WriteLine("The Differential is (between desired cal and deferential) : ");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEDAC.aroundcalAccess - AEAF.AaroundAccess);
 
 
-            Console.WriteLine("The Actual First is :");
+            Console.WriteLine("The Actual First is (desired) : ");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEAF.AaroundAccess);
-            Console.WriteLine("The Actual Second is :");
+            Console.WriteLine("The Actual Second is (Oiler) : ");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEDAC.aroundOilerAccess);
-            Console.WriteLine("The Actual Third is :");
-            Console.WriteLine(AEDACP.aroundAccess);
-            Console.WriteLine("The Apoximate First is :");
-            //Should be of minuse to zero boundry
-            Console.WriteLine(AEDAC.aroundAccess);
-            Console.WriteLine("The Apoximate Second is :");
-            //Should be of minuse to zero boundry
-            Console.WriteLine(AEDACP.aroundAccess);
-            Console.WriteLine("The Apoximate Third is :");
+            Console.WriteLine("The Actual Third is (one limit) : ");
+            Console.WriteLine(AEDACP.aroundOilerAccess);
+            Console.WriteLine("The Apoximate is (desired calculation) :");
             //Should be of minuse to zero boundry
             Console.WriteLine(AEDAC.aroundcalAccess);
-            Console.ReadLine();
+             Console.ReadLine();
 
         }
     }

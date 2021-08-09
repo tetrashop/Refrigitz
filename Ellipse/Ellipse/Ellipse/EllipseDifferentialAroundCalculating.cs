@@ -30,7 +30,7 @@ namespace Ellipse
             aroundOiler = Math.PI * (Math.Sqrt(2 * (Math.Pow(a, 2) + Math.Pow(b, 2))));
 
 
-            double dteta = 0.0000001;
+            double dteta = 0.00000001;
 
             p = Math.Pow(b, 2) / a;
             e = System.Math.Sqrt(1.0 - (p / a));

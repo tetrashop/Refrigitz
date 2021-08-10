@@ -49,19 +49,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZiArO6uEi8d9egNKS7V5adgG3kiVeBjcSOlb87t4lKA=</dsig:DigestValue>
+        <dsig:DigestValue>e/al7B0YQxpCciF672bGfsTE3ppZcG6/JsbKJGwgYDI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ellipse.exe" size="8192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ellipse.exe" size="8704">
       <assemblyIdentity name="Ellipse" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wXAn0C46T+YnT4OZMVWjLFkyTWU6/XMYvCWFknvdDe0=</dsig:DigestValue>
+        <dsig:DigestValue>MbTe0NpeoR0/ZmseRG0SwoFeRdlWgbuaZmNW7FT/u7I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

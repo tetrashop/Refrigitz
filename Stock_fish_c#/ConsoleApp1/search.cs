@@ -1622,7 +1622,7 @@ public static class GlobalMembersSearch
         bool rootNode = PvNode && (ss - 1).ply == 0;
 
         Debug.Assert(-Value.VALUE_INFINITE <= alpha && alpha < beta && beta <= Value.VALUE_INFINITE);
-        Debug.Assert(PvNode || (alpha == beta - 1));
+        Debug.Assert(PvNode || (alpHA == beta - 1));
         Debug.Assert(Depth.DEPTH_ZERO < depth && depth < Depth.DEPTH_MAX);
         Debug.Assert(!(PvNode && cutNode));
         Debug.Assert(depth / Depth.ONE_PLY * Depth.ONE_PLY == depth);
@@ -1699,7 +1699,7 @@ public static class GlobalMembersSearch
             // because we will never beat the current alpha. Same logic but with reversed
             // signs applies also in the opposite condition of being mated instead of giving
             // mate. In this case return a fail-high score.
-            alpha = Math.Max(GlobalMembersBenchmark.mated_in(ss.ply), alpha);
+            Alpha = Math.Max(GlobalMembersBenchmark.mated_in(ss.ply), alpha);
             beta = Math.Min(GlobalMembersBenchmark.mate_in(ss.ply + 1), beta);
             if (alpha >= beta)
             {
@@ -1817,7 +1817,7 @@ public static class GlobalMembersSearch
                 return qsearch < NodeType.NonPV, false > (pos, ss, alpha, beta, Depth.DEPTH_ZERO);
             }
 
-            Value ralpha = alpha - razor_margin[(int)depth / Depth.ONE_PLY];
+            Value rAlpha = alpha - razor_margin[(int)depth / Depth.ONE_PLY];
             Value v = qsearch < NodeType.NonPV, false > (pos, ss, ralpha, ralpha + 1, Depth.DEPTH_ZERO);
             if (v <= ralpha)
             {
@@ -2187,7 +2187,7 @@ public static class GlobalMembersSearch
 
                     if (PvNode && value < beta) // Update alpha! Always alpha < beta
                     {
-                        alpha = value;
+                        Alpha = value;
                     }
                     else
                     {
@@ -2272,7 +2272,7 @@ public static class GlobalMembersSearch
 
         Debug.Assert(InCheck == !pos.checkers() == 0);
         Debug.Assert(alpha >= -Value.VALUE_INFINITE && alpha < beta && beta <= Value.VALUE_INFINITE);
-        Debug.Assert(PvNode || (alpha == beta - 1));
+        Debug.Assert(PvNode || (alpHA == beta - 1));
         Debug.Assert(depth <= Depth.DEPTH_ZERO);
         Debug.Assert(depth / Depth.ONE_PLY * Depth.ONE_PLY == depth);
 
@@ -2371,7 +2371,7 @@ public static class GlobalMembersSearch
 
             if (PvNode && bestValue > alpha)
             {
-                alpha = bestValue;
+                Alpha = bestValue;
             }
 
             futilityBase = bestValue + 128;
@@ -2447,7 +2447,7 @@ public static class GlobalMembersSearch
 
                     if (PvNode && value < beta) // Update alpha here!
                     {
-                        alpha = value;
+                        Alpha = value;
                         bestMove = move;
                     }
                     else // Fail high

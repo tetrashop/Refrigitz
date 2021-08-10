@@ -39,7 +39,6 @@
             this.panelImageTextDeepLearning = new System.Windows.Forms.Panel();
             this.PictureBoxImageTextDeepLearning = new System.Windows.Forms.PictureBox();
             this.checkBoxDisablePaintOnAligns = new System.Windows.Forms.CheckBox();
-            this.CreateConSha = new System.Windows.Forms.Button();
             this.labelMonitor = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();

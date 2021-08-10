@@ -7874,14 +7874,14 @@ namespace Refrigtz
                 //var parallelOptions = new ParallelOptions();
                 //parallelOptionsMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
 
-                int HA = 1;
+                //int HA =1;
                 if (!Quantum)
                 {
-                    HA = CalculateMoveMentHueuristicUserRefrigitzDLL(Kind, CloneATable(Table), Order, Row, Column, RowSource, ColumnS, color);
+                    HA += CalculateMoveMentHueuristicUserRefrigitzDLL(Kind, CloneATable(Table), Order, Row, Column, RowSource, ColumnS, color);
                 }
                 else
                 {
-                    HA = CalculateMoveMentHueuristicUserQuantum(Kind, CloneATable(Table), Order, Row, Column, RowSource, ColumnS, color);
+                    HA += CalculateMoveMentHueuristicUserQuantum(Kind, CloneATable(Table), Order, Row, Column, RowSource, ColumnS, color);
                 }
 
                 return HA;

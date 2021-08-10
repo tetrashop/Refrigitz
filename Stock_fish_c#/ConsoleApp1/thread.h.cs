@@ -596,7 +596,7 @@ public class Thread<Color Us>
 
         std.memset(ss - 5, 0, 8 * sizeof(Stack));
 
-        bestValue = delta = alpha = -Value.VALUE_INFINITE;
+        bestValue = delta = Alpha = -Value.VALUE_INFINITE;
         beta = Value.VALUE_INFINITE;
         completedDepth = Depth.DEPTH_ZERO;
 
@@ -653,7 +653,7 @@ public class Thread<Color Us>
                 if (rootDepth >= 5 * Depth.ONE_PLY)
                 {
                     delta = Value(18);
-                    alpha = Math.Max(rootMoves[PVIdx].previousScore - delta, -Value.VALUE_INFINITE);
+                    Alpha = Math.Max(rootMoves[PVIdx].previousScore - delta, -Value.VALUE_INFINITE);
                     beta = Math.Min(rootMoves[PVIdx].previousScore + delta, Value.VALUE_INFINITE);
                 }
 
@@ -693,7 +693,7 @@ public class Thread<Color Us>
                     if (bestValue <= alpha)
                     {
                         beta = (alpha + beta) / 2;
-                        alpha = Math.Max(bestValue - delta, -Value.VALUE_INFINITE);
+                        Alpha = Math.Max(bestValue - delta, -Value.VALUE_INFINITE);
 
                         if (mainThread)
                         {
@@ -703,7 +703,7 @@ public class Thread<Color Us>
                     }
                     else if (bestValue >= beta)
                     {
-                        alpha = (alpha + beta) / 2;
+                        Alpha = (alpha + beta) / 2;
                         beta = Math.Min(bestValue + delta, Value.VALUE_INFINITE);
                     }
                     else

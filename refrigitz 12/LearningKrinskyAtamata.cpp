@@ -36,7 +36,7 @@
 			r = r0;
 			m = m0;
 			k = k0;
-			alpha = new double[r];
+			Alpha = new double[r];
 			fi = new double[k];
 			fi = new double[r];
 			for (int i = 0; i < r; i++)
@@ -66,7 +66,7 @@
 			AA.r = r;
 			AA.m = m;
 			AA.k = k;
-			alpha = new double[AA.r];
+			Alpha = new double[AA.r];
 			for (int i = 0; i < AA.r; i++)
 			{
 				AA.alpha[i] = alpha[i];

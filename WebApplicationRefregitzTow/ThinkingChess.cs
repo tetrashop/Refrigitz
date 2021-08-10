@@ -1084,13 +1084,13 @@ namespace RefrigtzW
         }
 
         ///Heuristic of Attacker.
-        private int HeuristicAttack(bool Before, int[,] Table, int Ord, Color aa, int RowS, int ColS, int RowD, int ColD)
+        private int HeuristicAttack(ref int HA,bool Before, int[,] Table, int Ord, Color aa, int RowS, int ColS, int RowD, int ColD)
         {
             object O = new object();
             lock (O)
             {
                 int HeuristicAttackValue = 0;
-                int HA = 1;
+                //int HA =1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -1141,7 +1141,7 @@ namespace RefrigtzW
                             th.Dispose();
                             if (ab)
                             {
-                                              HA = Rational(HA, RationalPenalty) * RationalPenalty;;
+                                              HA += Rational(HA, RationalPenalty) * RationalPenalty;;
                             }
                             else
                             {
@@ -1151,7 +1151,7 @@ namespace RefrigtzW
 
                                 if (ab)
                                 {
-                                                  HA = Rational(HA, RationalRegard) * RationalRegard;
+                                                  HA += Rational(HA, RationalRegard) * RationalRegard;
                                     //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                     int Supported = new int();
                                     int SupportedS = new int();
@@ -1216,12 +1216,12 @@ namespace RefrigtzW
 
                                     if (SupportedS > 0 && Supported == 0)
                                     {
-                                        HA = Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
+                                        HA += Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
                                     }
                                     else
                                     if (Supported > 0)
                                     {
-                                        HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
+                                        HA += Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                     }
                                 }
                             }
@@ -1276,7 +1276,7 @@ namespace RefrigtzW
                             th.Dispose();
                             if (ab)
                             {
-                                              HA = Rational(HA, RationalPenalty) * RationalPenalty;;
+                                              HA += Rational(HA, RationalPenalty) * RationalPenalty;;
                             }
 
                             Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
@@ -1286,7 +1286,7 @@ namespace RefrigtzW
                             if (ab)
                             {
 
-                                              HA = Rational(HA, RationalRegard) * RationalRegard;
+                                              HA += Rational(HA, RationalRegard) * RationalRegard;
 
                                 //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                 //For All Enemy Obejcts.                                             
@@ -1353,12 +1353,12 @@ namespace RefrigtzW
                                 }
                                 if (SupportedS > 0 && Supported == 0)
                                 {
-                                    HA = Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
+                                    HA += Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
                                 }
                                 else
                                  if (Supported > 0)
                                 {
-                                    HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
+                                    HA += Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                 }
                             }
                         }
@@ -1437,7 +1437,7 @@ namespace RefrigtzW
             return Is;
         }
 
-        private int HeuristicReducsedAttack(bool Before, int[,] Table, int Ord, Color aa, int RowS, int ColS, int RowD, int ColD
+        private int HeuristicReducsedAttack(ref int HA,bool Before, int[,] Table, int Ord, Color aa, int RowS, int ColS, int RowD, int ColD
                   )
         {
             object O = new object();
@@ -1445,7 +1445,7 @@ namespace RefrigtzW
             {
                 int HeuristicReducedAttackValue = 0;
                 //Initiate Objects.
-                int HA = 1;
+                //int HA =1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -1509,7 +1509,7 @@ namespace RefrigtzW
                                     if (ab)
                                     {
                                         MinisterOnAttack = true;
-                                                      HA = Rational(HA, RationalPenalty) * RationalPenalty;;
+                                                      HA += Rational(HA, RationalPenalty) * RationalPenalty;;
                                         //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                         int Supported = new int();
                                         int SupportedS = new int();
@@ -1573,19 +1573,19 @@ namespace RefrigtzW
                                         }
                                         if (SupportedS > 0 && Supported == 0)
                                         {
-                                            HA = Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
+                                            HA += Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
                                         }
                                         else
                                               if (Supported > 0)
                                         {
-                                            HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
+                                            HA += Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                         }
                                     }
                                     else
                                     {
                                         if (IsMinisteBreakable(Before, CloneATable(Table), Order, aa, RowS, ColS, RowD, ColD))
                                         {
-                                            HA = System.Math.Abs(HA) * (3 * RationalPenalty);
+                                            HA += System.Math.Abs(HA) * (3 * RationalPenalty);
                                         }
                                     }
                                 }
@@ -1639,7 +1639,7 @@ namespace RefrigtzW
                                 if (ab)
                                 {
                                     MinisterOnAttack = true;
-                                                  HA = Rational(HA, RationalPenalty) * RationalPenalty;;
+                                                  HA += Rational(HA, RationalPenalty) * RationalPenalty;;
                                     //When there is supporter of attacked Objects take Heuristic negative else take muliply sign and muliply Heuristic.
                                     int Supported = new int();
                                     int SupportedS = new int();
@@ -1703,12 +1703,12 @@ namespace RefrigtzW
                                     }
                                     if (SupportedS > 0 && Supported == 0)
                                     {
-                                        HA = Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
+                                        HA += Rational(HA, (int)System.Math.Pow(2, SupportedS)) * (int)System.Math.Pow(2, SupportedS);
                                     }
                                     else
                                if (Supported > 0)
                                     {
-                                        HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
+                                        HA += Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                     }
                                 }
                                 else
@@ -1718,7 +1718,7 @@ namespace RefrigtzW
                                     th4.Dispose();
                                     if (ab)
                                     {
-                                        HA = System.Math.Abs(HA) * (3 * RationalPenalty);
+                                        HA += System.Math.Abs(HA) * (3 * RationalPenalty);
                                     }
                                 }
                             }
@@ -1735,12 +1735,12 @@ namespace RefrigtzW
                     th5.Dispose();
                     if (ab)
                     {
-                                      HA = Rational(HA, RationalRegard) * RationalRegard;
+                                      HA += Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 else
                 {
-                                  HA = Rational(HA, RationalPenalty) * RationalPenalty;;
+                                  HA += Rational(HA, RationalPenalty) * RationalPenalty;;
                 }
                 //Initiate to Begin Call Orders.
                 Order = DummyOrder;
@@ -1762,13 +1762,13 @@ namespace RefrigtzW
         }
 
         ///Heuristic of ObjectDanger.
-        private int HeuristicObjectDangour(int[,] Table, int Order, Color a, int RowS, int ColS, int RowD, int ColD)
+        private int HeuristicObjectDangour(ref int HS,int[,] Table, int Order, Color a, int RowS, int ColS, int RowD, int ColD)
         {
             object O = new object();
             lock (O)
             {
                 int HeuristicCheckedMate = 0;
-                int HA = 1;
+                int HA = HS;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
                 ///When There is no AStarGreedyHeuristicT
@@ -1777,6 +1777,7 @@ namespace RefrigtzW
                     ///For All Object in Current Table.
                     if (RowS == RowD && ColS == ColD)
                     {
+                        HS = HA;
                         return HeuristicCheckedMate;
                     }
 
@@ -1809,6 +1810,7 @@ namespace RefrigtzW
                     }
                     else
                     {
+                        HS = HA;
                         return HeuristicCheckedMate;
                     }
 
@@ -1832,6 +1834,7 @@ namespace RefrigtzW
                 {
                     if (RowS == RowD && ColS == ColD)
                     {
+                        HS = HA;
                         return HeuristicCheckedMate;
                     }
 
@@ -1863,6 +1866,7 @@ namespace RefrigtzW
                     }
                     else
                     {
+                        HS = HA;
                         return HeuristicCheckedMate;
                     }
                     //For ObjectDanger Movments.
@@ -1887,12 +1891,13 @@ namespace RefrigtzW
                 Order = DummyOrder;
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 //Assignments of Global Heuristic with Local One.
+                HS = HA;
                 //return Local Heuristic.
                 return HA * 1;
             }
         }
 
-        private int HeuristicKiller(int Killed, int[,] Tabl, int RowS, int ColS, int RowD, int ColD, int Ord, Color aa, bool Hit)
+        private int HeuristicKiller(ref int HS,int Killed, int[,] Tabl, int RowS, int ColS, int RowD, int ColD, int Ord, Color aa, bool Hit)
         {
             object O = new object();
             lock (O)
@@ -1908,7 +1913,7 @@ namespace RefrigtzW
 
                 int HeuristicReducedSupport = 0;
                 //Defualt is Gray Order.
-                int HA = 1;
+                int HA = HS;
                 int Sign = AllDraw.SignKiller;
                 int DummyOrder = Ord;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -1927,11 +1932,13 @@ namespace RefrigtzW
                 //Ignore of Self.
                 if (Order == 1 && Tab[RowD, ColD] >= 0)
                 {
+                    HS = HA;
                     return HeuristicReducedSupport;
                 }
 
                 if (Order == -1 && Tab[RowD, ColD] <= 0)
                 {
+                    HS = HA;
                     return HeuristicReducedSupport;
                 }
 
@@ -1977,6 +1984,7 @@ namespace RefrigtzW
                 }
                 Order = DummyOrder;
                 ChessRules.CurrentOrder = DummyCurrentOrder;
+                HS = HA;
                 return 1 * HA;
             }
         }
@@ -3039,14 +3047,14 @@ namespace RefrigtzW
         }
 
         ///Heuristic of King safty.
-        private int HeuristicKingSafety(int[,] Tab, int Order, Color a, int CurrentAStarGredy, int RowS, int ColS, int RowD, int ColD
+        private int HeuristicKingSafety(ref int HA,int[,] Tab, int Order, Color a, int CurrentAStarGredy, int RowS, int ColS, int RowD, int ColD
           )
         {
 
             object ol = new object();
             lock (ol)
             {
-                int HA = 1;
+                //int HA =1;
                 const int CastleGray = 4, CastleBrown = -4, KingGray = 6, KingBrown = -6;
                 if (Order == 1)
                 {
@@ -3055,41 +3063,41 @@ namespace RefrigtzW
                     G.FindGrayKing(CloneATable(Tab), ref RowK, ref ColK);
                     if (Kind == 7)
                     {
-                        HA = RationalRegard;
+                        HA += RationalRegard;
                     }
 
                     if (Tab[RowK, ColK] == KingGray && Tab[RowK, ColK] == TableInitiation[RowK, ColK] && ChessRules.CastlingAllowedGray)
                     {
-                        HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                        HA += Rational(HA, RationalPenalty) * RationalPenalty;
                     }
 
                     if ((Tab[RowK, ColK] == KingGray) && (Tab[RowK, 7] == CastleGray || Tab[RowK, 0] == CastleGray) && (TableInitiation[RowK, ColK] == 6) && ChessRules.CastlingAllowedGray)
                     {
                         if (RowS == RowK && ColS == 5)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 6)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         //if (RowS == RowK - 1 && ColS == 5)
                         ///if (RowS == RowK - 1 && ColS == 6)
 
                         if (RowS == RowK && ColS == 3)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 2)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 1)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         // if (RowS == RowK - 1 && ColS == 3)
                         //if (RowS == RowK - 1 && ColS == 2)
@@ -3106,41 +3114,41 @@ namespace RefrigtzW
                     G.FindBrownKing(CloneATable(Tab), ref RowK, ref ColK);
                     if (Kind == -7)
                     {
-                        HA = RationalRegard;
+                        HA += RationalRegard;
                     }
 
                     if (Tab[RowK, ColK] == KingBrown && Tab[RowK, ColK] == TableInitiation[RowK, ColK] && ChessRules.CastlingAllowedBrown)
                     {
-                        HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                        HA += Rational(HA, RationalPenalty) * RationalPenalty;
                     }
 
                     if ((Tab[RowK, ColK] == KingBrown) && (Tab[RowK, 7] == CastleBrown || Tab[RowK, 0] == CastleBrown) && (TableInitiation[RowK, ColK] == -6) && ChessRules.CastlingAllowedBrown)
                     {
                         if (RowS == RowK && ColS == 5)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 6)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         //if (RowS == RowK + 1 && ColS == 5)
                         // if (RowS == RowK + 1 && ColS == 6)
 
                         if (RowS == RowK && ColS == 3)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 2)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
 
                         if (RowS == RowK && ColS == 1)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         //if (RowS == RowK + 1 && ColS == 3)
                         // if (RowS == RowK + 1 && ColS == 2)
@@ -3153,13 +3161,13 @@ namespace RefrigtzW
 
         }
 
-        private int HeuristicKingPreventionOfCheckedAtBegin(int[,] Tab, int Order, Color a, int CurrentAStarGredy, int RowS, int ColS, int RowD, int ColD
+        private int HeuristicKingPreventionOfCheckedAtBegin(ref int HA,int[,] Tab, int Order, Color a, int CurrentAStarGredy, int RowS, int ColS, int RowD, int ColD
             )
         {
             object O3 = new object();
             lock (O3)
             {
-                int HA = 1;
+                //int HA =1;
                 int[,] Tabl = CloneATable(Tab);
                 if (Tabl[RowS, ColS] != 0)
                 {
@@ -3174,31 +3182,31 @@ namespace RefrigtzW
                     {
                         if (A.CheckGray || A.CheckBrown)
                         {
-                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                            HA += Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                     if (Order == 1)
                     {
                         if (A.CheckMateGray)
                         {
-                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                            HA += Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                         else
                         if (A.CheckMateBrown)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                     }
                     else
                     {
                         if (A.CheckMateGray)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
              if (A.CheckMateBrown)
                         {
-                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                            HA += Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                 }
@@ -3210,30 +3218,30 @@ namespace RefrigtzW
                     th.Dispose();
                     if (A.CheckGray || A.CheckBrown)
                     {
-                        HA = Rational(HA, RationalRegard) * RationalRegard;
+                        HA += Rational(HA, RationalRegard) * RationalRegard;
                     }
                     if (Order == 1)
                     {
                         if (A.CheckMateGray)
                         {
-                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                            HA += Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                         else
                         if (A.CheckMateBrown)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                     }
                     else
                     {
                         if (A.CheckMateGray)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
              if (A.CheckMateBrown)
                         {
-                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                            HA += Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                 }
@@ -3241,13 +3249,14 @@ namespace RefrigtzW
             }
         }
 
-        private int HeuristicSupported(int[,] Tab, int Ord, Color aa, int RowS, int ColS, int RowD, int ColD
+        private int HeuristicSupported(ref int HS,int[,] Tab, int Ord, Color aa, int RowS, int ColS, int RowD, int ColD
            )
         {
 
             object O = new object();
             lock (O)
             {
+                int HA = HS;
                 int HAS = 0;
                 int HAE = 0;
                 ParallelOptions po = new ParallelOptions
@@ -3255,24 +3264,25 @@ namespace RefrigtzW
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.Invoke(() =>
                 {
-                    Task<int> th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
+                    Task<int> th = Task.Factory.StartNew(() => HAS = HeuristicSelfSupported(ref HA,CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
                     th.Wait();
                     th.Dispose();
                 }
  , () =>
  {
-     Task<int> th = Task.Factory.StartNew(() => HAS = HAE = HeuristicEnemySupported(CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
+     Task<int> th = Task.Factory.StartNew(() => HAS = HAE = HeuristicEnemySupported(ref HA,CloneATable(Tab), Ord, aa, RowS, ColS, RowD, ColD));
      th.Wait();
      th.Dispose();
 
  });
+                HS = HA;
                 return HAS + (HAE);
             }
         }
 
         ///Identification of Equality
         //Heuristic of Supportation.
-        private int HeuristicSelfSupported(int[,] Tab, int Ord, Color aa, int RowS, int ColS, int RowD, int ColD
+        private int HeuristicSelfSupported(ref int HA,int[,] Tab, int Ord, Color aa, int RowS, int ColS, int RowD, int ColD
           )
         {
             object O = new object();
@@ -3280,7 +3290,7 @@ namespace RefrigtzW
             {
                 int HeuristicSelfSupportedValue = 0;
                 //Initiate Local Vrariables.
-                int HA = 1;
+                //int HA =1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -3343,7 +3353,7 @@ namespace RefrigtzW
                             if (ab)
                             {
                                 //Calculate Local Support Heuristic.
-                                              HA = Rational(HA, RationalRegard) * RationalRegard;
+                                              HA += Rational(HA, RationalRegard) * RationalRegard;
                                 int Supported = new int();
                                 int SupportedE = new int();
                                 Supported = 0;
@@ -3430,13 +3440,13 @@ namespace RefrigtzW
                                     if (Supported > 0 && SupportedE == 0)
                                     {
                                         //When is Not Supported multyply 100.
-                                        HA = Rational(HA, (int)(System.Math.Pow(2, Supported))) * (int)(System.Math.Pow(2, Supported));
+                                        HA += Rational(HA, (int)(System.Math.Pow(2, Supported))) * (int)(System.Math.Pow(2, Supported));
                                     }
                                     else
                                         if (SupportedE > 0)
                                     {
                                         //When is Supported Multyply -100.
-                                        HA = Rational(HA, (int)(-1 * System.Math.Pow(2, SupportedE))) * (int)(-1 * System.Math.Pow(2, SupportedE));
+                                        HA += Rational(HA, (int)(-1 * System.Math.Pow(2, SupportedE))) * (int)(-1 * System.Math.Pow(2, SupportedE));
                                     }
                                 }
                             }
@@ -3500,7 +3510,7 @@ namespace RefrigtzW
                                         if (ab)
                                         {
                                             //Calculate Local Support Heuristic.
-                                                          HA = Rational(HA, RationalRegard) * RationalRegard;
+                                                          HA += Rational(HA, RationalRegard) * RationalRegard;
                                             int Supported = new int();
                                             int SupportedE = new int();
                                             Supported = 0;
@@ -3586,13 +3596,13 @@ namespace RefrigtzW
                                                 if (Supported > 0 && SupportedE == 0)
                                                 {
                                                     //When is Not Supported multyply 100.
-                                                    HA = Rational(HA, (int)(System.Math.Pow(2, Supported))) * (int)(System.Math.Pow(2, Supported));
+                                                    HA += Rational(HA, (int)(System.Math.Pow(2, Supported))) * (int)(System.Math.Pow(2, Supported));
                                                 }
                                                 else
                                                   if (SupportedE > 0)
                                                 {
                                                     //When is Supported Multyply -100.
-                                                    HA = Rational(HA, (int)(-1 * System.Math.Pow(2, SupportedE))) * (int)(-1 * System.Math.Pow(2, SupportedE));
+                                                    HA += Rational(HA, (int)(-1 * System.Math.Pow(2, SupportedE))) * (int)(-1 * System.Math.Pow(2, SupportedE));
                                                 }
                                             }
                                         }
@@ -3612,7 +3622,7 @@ namespace RefrigtzW
         //Heuristic of Supportation.
 
 
-        private int HeuristicEnemySupported(int[,] Tab, int Ord, Color aa, int RowD, int ColD, int RowS, int ColS
+        private int HeuristicEnemySupported(ref int HA,int[,] Tab, int Ord, Color aa, int RowD, int ColD, int RowS, int ColS
           )
         {
             object O = new object();
@@ -3620,7 +3630,7 @@ namespace RefrigtzW
             {
                 int HeuristicSelfSupportedValue = 0;
                 //Initiate Local Vrariables.
-                int HA = 1;
+                //int HA =1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -3684,7 +3694,7 @@ namespace RefrigtzW
                             {
 
                                 //Calculate Local Support Heuristic.
-                                              HA = Rational(HA, RationalPenalty) * RationalPenalty;;
+                                              HA += Rational(HA, RationalPenalty) * RationalPenalty;;
                                 int Supported = new int();
                                 int SupportedE = new int();
                                 Supported = 0;
@@ -3770,13 +3780,13 @@ namespace RefrigtzW
                                     if (SupportedE > 0 && Supported == 0)
                                     {
                                         //When is Not Supported multyply 100.
-                                        HA = Rational(HA, (int)System.Math.Pow(2, SupportedE));
+                                        HA += Rational(HA, (int)System.Math.Pow(2, SupportedE));
                                     }
                                     else
                                        if (Supported > 0)
                                     {
                                         //When is Supported Multyply -100.
-                                        HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
+                                        HA += Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                     }
                                 }
                             }
@@ -3841,7 +3851,7 @@ namespace RefrigtzW
                                         {
 
                                             //Calculate Local Support Heuristic.
-                                                          HA = Rational(HA, RationalPenalty) * RationalPenalty;;
+                                                          HA += Rational(HA, RationalPenalty) * RationalPenalty;;
                                             int Supported = new int();
                                             int SupportedE = new int();
                                             Supported = 0;
@@ -3927,13 +3937,13 @@ namespace RefrigtzW
                                                 if (SupportedE > 0 && Supported == 0)
                                                 {
                                                     //When is Not Supported multyply 100.
-                                                    HA = Rational(HA, (int)System.Math.Pow(2, SupportedE));
+                                                    HA += Rational(HA, (int)System.Math.Pow(2, SupportedE));
                                                 }
                                                 else
                                                       if (Supported > 0)
                                                 {
                                                     //When is Supported Multyply -100.
-                                                    HA = Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
+                                                    HA += Rational(HA, (int)(-1 * System.Math.Pow(2, Supported))) * (int)(-1 * System.Math.Pow(2, Supported));
                                                 }
                                             }
                                         }
@@ -5857,12 +5867,12 @@ namespace RefrigtzW
                 return Is;
             }
         }
-        public int SimpleMate_Zero(int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
+        public int SimpleMate_Zero(ref int HA,int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
         {
             object O = new object();
             lock (O)
             {
-                int HA = 1;
+                //int HA =1;
                 if (Order == 1)
                 {
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order, RowD, ColD);
@@ -5875,12 +5885,12 @@ namespace RefrigtzW
                     {
                         if (Order == 1 && G.CheckMateBrown)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
                      if (Order == 1 && G.CheckMateGray)
                         {
-                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                            HA += Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                 }
@@ -5896,24 +5906,24 @@ namespace RefrigtzW
                     {
                         if (Order == -1 && G.CheckMateGray)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
                         if (Order == -1 && G.CheckMateBrown)
                         {
-                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                            HA += Rational(HA, RationalPenalty) * RationalPenalty;
                         }
                     }
                 }
                 return HA;
             }
         }
-        public int SimpleMate_One(int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
+        public int SimpleMate_One(ref int HA,int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
         {
             object O = new object();
             lock (O)
             {
-                int HA = 1;
+                //int HA =1;
                 if (Order == 1)
                 {
                     int RowK = -1, ColK = -1;
@@ -5925,7 +5935,7 @@ namespace RefrigtzW
                     H1.Dispose();
                     if (S1)
                     {
-                        HA = Rational(HA, RationalRegard) * RationalRegard;
+                        HA += Rational(HA, RationalRegard) * RationalRegard;
                     }
                     else
                     {
@@ -5935,7 +5945,7 @@ namespace RefrigtzW
                         H2.Dispose();
                         if (S2)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
                         {
@@ -5945,7 +5955,7 @@ namespace RefrigtzW
                             H3.Dispose();
                             if (S3)
                             {
-                                HA = Rational(HA, RationalRegard) * RationalRegard;
+                                HA += Rational(HA, RationalRegard) * RationalRegard;
                             }
                         }
                     }
@@ -5961,7 +5971,7 @@ namespace RefrigtzW
                     H1.Dispose();
                     if (S1)
                     {
-                        HA = Rational(HA, RationalRegard) * RationalRegard;
+                        HA += Rational(HA, RationalRegard) * RationalRegard;
                     }
                     else
                     {
@@ -5971,7 +5981,7 @@ namespace RefrigtzW
                         H2.Dispose();
                         if (S2)
                         {
-                            HA = Rational(HA, RationalRegard) * RationalRegard;
+                            HA += Rational(HA, RationalRegard) * RationalRegard;
                         }
                         else
                         {
@@ -5981,7 +5991,7 @@ namespace RefrigtzW
                             H3.Dispose();
                             if (S3)
                             {
-                                HA = Rational(HA, RationalRegard) * RationalRegard;
+                                HA += Rational(HA, RationalRegard) * RationalRegard;
                             }
                         }
                     }
@@ -5989,12 +5999,12 @@ namespace RefrigtzW
                 return HA;
             }
         }
-        public int SimpleMate_Tow(int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
+        public int SimpleMate_Tow(ref int HA,int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
         {
             object O = new object();
             lock (O)
             {
-                int HA = 1;
+                //int HA =1;
                 if (Order == 1)
                 {
                     int RowK = -1, ColK = -1;
@@ -6002,7 +6012,7 @@ namespace RefrigtzW
                     G.FindBrownKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingCanMateByCloseHome(RowK, ColK, CloneATable(Table), Order))
                     {
-                        HA = Rational(HA, RationalRegard) * RationalRegard;
+                        HA += Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 else
@@ -6012,18 +6022,18 @@ namespace RefrigtzW
                     G.FindGrayKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingCanMateByCloseHome(RowK, ColK, CloneATable(Table), Order))
                     {
-                        HA = Rational(HA, RationalRegard) * RationalRegard;
+                        HA += Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 return HA;
             }
         }
-        public int SimpleMate_Three_And_Four(int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
+        public int SimpleMate_Three_And_Four(ref int HA,int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
         {
             object O = new object();
             lock (O)
             {
-                int HA = 1;
+                //int HA =1;
                 if (Order == 1)
                 {
                     int RowK = -1, ColK = -1;
@@ -6031,7 +6041,7 @@ namespace RefrigtzW
                     G.FindBrownKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingHaveAtMostOneEmptyItemInAttack(RowK, ColK, CloneATable(Table), Order))
                     {
-                        HA = Rational(HA, RationalRegard) * RationalRegard;
+                        HA += Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 else
@@ -6041,7 +6051,7 @@ namespace RefrigtzW
                     G.FindGrayKing(CloneATable(Table), ref RowK, ref ColK);
                     if (EnemyKingHaveAtMostOneEmptyItemInAttack(RowK, ColK, CloneATable(Table), Order))
                     {
-                        HA = Rational(HA, RationalRegard) * RationalRegard;
+                        HA += Rational(HA, RationalRegard) * RationalRegard;
                     }
                 }
                 return HA;
@@ -6446,31 +6456,31 @@ namespace RefrigtzW
             return Is;
         }
         ///Heuristic of Check and CheckMate.
-        public int HeuristicCheckAndCheckMate(int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
+        public int HeuristicCheckAndCheckMate(ref int HS,int RowS, int ColS, int RowD, int ColD, int[,] Table, Color a)
         {
             object O = new object();
             lock (O)
             {
-                int HA = 1;
-                Task<int> H1 = Task.Factory.StartNew(() => HA = Rational(HA, SimpleMate_Zero(RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_Zero(RowS, ColS, RowD, ColD, CloneATable(Table), a));
+                int HA = HS;
+                Task<int> H1 = Task.Factory.StartNew(() => HA += Rational(HA, SimpleMate_Zero(ref HA,RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_Zero(ref HA,RowS, ColS, RowD, ColD, CloneATable(Table), a));
                 H1.Wait();
                 H1.Dispose();
 
                 if (HA == 1)
                 {
-                    Task<int> H2 = Task.Factory.StartNew(() => HA = Rational(HA, SimpleMate_One(RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_One(RowS, ColS, RowD, ColD, CloneATable(Table), a));
+                    Task<int> H2 = Task.Factory.StartNew(() => HA += Rational(HA, SimpleMate_One(ref HA,RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_One(ref HA,RowS, ColS, RowD, ColD, CloneATable(Table), a));
                     H2.Wait();
                     H2.Dispose();
                 }
                 if (HA == 1)
                 {
-                    Task<int> H3 = Task.Factory.StartNew(() => HA = Rational(HA, SimpleMate_Tow(RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_Tow(RowS, ColS, RowD, ColD, CloneATable(Table), a));
+                    Task<int> H3 = Task.Factory.StartNew(() => HA += Rational(HA, SimpleMate_Tow(ref HA,RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_Tow(ref HA,RowS, ColS, RowD, ColD, CloneATable(Table), a));
                     H3.Wait();
                     H3.Dispose();
                 }
                 if (HA == 1)
                 {
-                    Task<int> H4 = Task.Factory.StartNew(() => HA = Rational(HA, SimpleMate_Three_And_Four(RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_Three_And_Four(RowS, ColS, RowD, ColD, CloneATable(Table), a));
+                    Task<int> H4 = Task.Factory.StartNew(() => HA += Rational(HA, SimpleMate_Three_And_Four(ref HA,RowS, ColS, RowD, ColD, CloneATable(Table), a)) * SimpleMate_Three_And_Four(ref HA,RowS, ColS, RowD, ColD, CloneATable(Table), a));
                     H4.Wait();
                     H4.Dispose();
                 }
@@ -6481,7 +6491,7 @@ namespace RefrigtzW
                 H5.Dispose();
                 if (S1)
                 {
-                                  HA = Rational(HA, RationalRegard) * RationalRegard;
+                                  HA += Rational(HA, RationalRegard) * RationalRegard;
                 }
                 bool S2 = false;
 
@@ -6490,8 +6500,9 @@ namespace RefrigtzW
                 H6.Dispose();
                 if (S2)
                 {
-                                  HA = Rational(HA, RationalRegard) * RationalRegard;
+                                  HA += Rational(HA, RationalRegard) * RationalRegard;
                 }
+                HS = HA;
                 return HA;
             }
         }
@@ -6502,37 +6513,37 @@ namespace RefrigtzW
             object O = new object();
             lock (O)
             {
-                int HA = 1;
+                int HA = 0;
                 int Object = Table[Row, Column];
                 //Wehn Solider.
                 if (System.Math.Abs(Object) == 1)
                 {
-                    HA = 1;
+                    HA += 1;
                 }
                 //When Elephant.
                 else if (System.Math.Abs(Object) == 2)
                 {
-                    HA = 2;
+                    HA += 2;
                 }
                 //When Hourse.
                 else if (System.Math.Abs(Object) == 3)
                 {
-                    HA = 3;
+                    HA += 3;
                 }
                 //When Castles.
                 else if (System.Math.Abs(Object) == 4)
                 {
-                    HA = 5;
+                    HA += 5;
                 }
                 //When Minster.
                 else if (System.Math.Abs(Object) == 5)
                 {
-                    HA = 8;
+                    HA += 8;
                 }
                 //When King.
                 else if (System.Math.Abs(Object) == 6)
                 {
-                    HA = 10;
+                    HA += 10;
                 }
 
                 return HA;
@@ -7948,23 +7959,23 @@ namespace RefrigtzW
             }
         }
         //when pawn move to center by no reducedattack rational regard and heuristic of attacked and "IsPawnIsolatedOrDoubleBackAwayOrHung" rational penalty
-        public int HeuristicObjectAtCenterAndPawnAttackTraversalObjectsAndDangourForEnemy(int[,] Table, Color aa, int Ord, int ii, int jj, int i, int j)
+        public int HeuristicObjectAtCenterAndPawnAttackTraversalObjectsAndDangourForEnemy(ref int HA,int[,] Table, Color aa, int Ord, int ii, int jj, int i, int j)
         {
             object O = new object();
             lock (O)
             {
-                int HA = 1;
+                //int HA =1;
                 object O1 = new object();
                 lock (O1)
                 {
                     if ((i == 3 || i == 4) && (j == 3 || j == 4) && HeuristicAllReducedAttacked.Count == 0)
                     {
-                        HA = RationalRegard;
+                        HA += RationalRegard;
                     }
                     else
                     if ((i == 3 || i == 4) && (j == 3 || j == 4) && HeuristicAllReducedAttacked.Count != 0)
                     {
-                        HA = RationalPenalty;
+                        HA += RationalPenalty;
                     }
 
                     if (HA == 1)
@@ -7981,7 +7992,7 @@ namespace RefrigtzW
                             }
                             if (Ta[i, j] == 1)
                             {
-                                HA += HeuristicAttack(Before, CloneATable(Ta), Ord, aa, ii, jj, i, j);
+                                HA += HeuristicAttack(ref HA,Before, CloneATable(Ta), Ord, aa, ii, jj, i, j);
                             }
                         }
                         else
@@ -7994,13 +8005,13 @@ namespace RefrigtzW
                             }
                             if (Ta[i, j] == -1)
                             {
-                                HA += HeuristicAttack(Before, CloneATable(Ta), Ord, aa, ii, jj, i, j);
+                                HA += HeuristicAttack(ref HA,Before, CloneATable(Ta), Ord, aa, ii, jj, i, j);
                             }
                         }
                     }
                     if (IsPawnIsolatedOrDoubleBackAwayOrHung(ii, jj, i, j, CloneATable(Table), Order))
                     {
-                        HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                        HA += Rational(HA, RationalPenalty) * RationalPenalty;
                     }
                 }
                 return HA;
@@ -8137,9 +8148,10 @@ namespace RefrigtzW
             object O = new object();
             lock (O)
             {
+                int HA = 1;
                 int[] HeuristicA = new int[6];
                 int[] HeuristicB = new int[6];
-                int HA = 1;
+                //int HA =1;
                 int DumOrder = Order;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -8171,7 +8183,7 @@ namespace RefrigtzW
                                     {
                                         if (IsDistributedObjectAttackNonDistributedEnemyObject(Before, CloneATable(Table), Ord, aa, RowS, ColS, RowD, ColD))
                                         {
-                                            HA = Rational(HA, RationalPenalty) * RationalPenalty;
+                                            HA += Rational(HA, RationalPenalty) * RationalPenalty;
                                             return;
                                         }
 
@@ -9241,6 +9253,7 @@ namespace RefrigtzW
             object o = new object();
             lock (o)
             {
+                int HA = 1;
                 if (ExchangeSeed[0] + ExchangeSeed[1] + ExchangeSeed[2] >= 0)
                 {
                     if (Exchange[ToSupport] - Exchange[ReducedSupport] + Exchange[ToAttacked] - Exchange[ReducedAttacked] > 0)
@@ -9253,7 +9266,7 @@ namespace RefrigtzW
                             int[,] Table6 = CloneATable(Table);
                             int Ord6 = Ord;
                             Color aa6 = aa;
-                            Task<int> H3 = Task.Factory.StartNew(() => HAA6 = HeuristicEnemySupported(Table6, Ord6, aa6, i6, j6, iiii6, jjjj6));
+                            Task<int> H3 = Task.Factory.StartNew(() => HAA6 = HeuristicEnemySupported(ref HA,Table6, Ord6, aa6, i6, j6, iiii6, jjjj6));
                             H3.Wait();
                             H3.Dispose();
                         }
@@ -9491,11 +9504,12 @@ namespace RefrigtzW
             }
         }
         //Heuristic of Movments.
-        public int HeuristicMovment(bool Before, int[,] Table, Color aa, int Ord, int RowS, int ColS, int RowD, int ColD)
+        public int HeuristicMovment(ref int HS,bool Before, int[,] Table, Color aa, int Ord, int RowS, int ColS, int RowD, int ColD)
         {
             object O = new object();
             lock (O)
             {
+                int HA = HS;
                 int HAS = 0;
                 int HAE = 0;
                 ParallelOptions po = new ParallelOptions
@@ -9503,29 +9517,30 @@ namespace RefrigtzW
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.Invoke(() =>
                 {
-                    Task<int> th = Task.Factory.StartNew(() => HAS = HeuristicMovmentSelf(Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
+                    Task<int> th = Task.Factory.StartNew(() => HAS = HeuristicMovmentSelf(ref HA,Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
                     th.Wait();
                     th.Dispose();
                 }
  , () =>
  {
-     Task<int> th = Task.Factory.StartNew(() => HAE = HeuristicMovmentEnemy(Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
+     Task<int> th = Task.Factory.StartNew(() => HAE = HeuristicMovmentEnemy(ref HA,Before, CloneATable(Table), aa, Ord, RowS, ColS, RowD, ColD));
      th.Wait();
      th.Dispose();
 
  });
+                HS = HA;
                 return HAS + (HAE);
             }
         }
         //Heuristic of self Movments.
-        public int HeuristicMovmentSelf(bool Before, int[,] Table, Color aa, int Ord, int RowS, int ColS, int RowD, int ColD)
+        public int HeuristicMovmentSelf(ref int HA,bool Before, int[,] Table, Color aa, int Ord, int RowS, int ColS, int RowD, int ColD)
         {
             object O = new object();
             lock (O)
             {
                 int HeuristicMovementValue = 0;
                 //Initiate Local Variable.
-                int HA = 1;
+                //int HA =1;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
                 ///When AStarGreedy Heuristic is Not Assigned.
@@ -9583,7 +9598,7 @@ namespace RefrigtzW
                                 }
                             }
 
-                                          HA = Rational(HA, RationalRegard) * RationalRegard;
+                                          HA += Rational(HA, RationalRegard) * RationalRegard;
                             int Supported = 0;
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
@@ -9653,14 +9668,14 @@ namespace RefrigtzW
                                 if (Supported > 0 && Attacked == 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                     HA = Rational(HA, (int)System.Math.Pow(2, Supported)) * (int)System.Math.Pow(2, Supported);
+                                     HA += Rational(HA, (int)System.Math.Pow(2, Supported)) * (int)System.Math.Pow(2, Supported);
                                 }
                                 else
                                 //When is Supported Multyply -100.
                                 if (Attacked > 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA = Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
+                                    HA += Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
                                 }
                             }
                         }
@@ -9718,7 +9733,7 @@ namespace RefrigtzW
                         if (ab)
                         {
 
-                                          HA = Rational(HA, RationalRegard) * RationalRegard;
+                                          HA += Rational(HA, RationalRegard) * RationalRegard;
                             int Supported = 0;
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
@@ -9787,14 +9802,14 @@ namespace RefrigtzW
                                 if (Supported > 0 && Attacked == 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                     HA = Rational(HA, (int)System.Math.Pow(2, Supported)) * (int)System.Math.Pow(2, Supported);
+                                     HA += Rational(HA, (int)System.Math.Pow(2, Supported)) * (int)System.Math.Pow(2, Supported);
                                 }
                                 else
                               //When is Supported Multyply -100.
                               if (Attacked > 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA = Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
+                                    HA += Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
                                 }
                             }
                         }
@@ -9808,14 +9823,14 @@ namespace RefrigtzW
             }
         }
         //Heuristic of enemy Movments.
-        public int HeuristicMovmentEnemy(bool Before, int[,] Table, Color aa, int Ord, int RowD, int ColD, int RowS, int ColS)
+        public int HeuristicMovmentEnemy(ref int HA,bool Before, int[,] Table, Color aa, int Ord, int RowD, int ColD, int RowS, int ColS)
         {
             object O = new object();
             lock (O)
             {
                 int HeuristicMovementValue = 0;
                 //Initiate Local Variable.
-                int HA = 1;
+                //int HA =1;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
                 ///When AStarGreedy Heuristic is Not Assigned.
@@ -9873,7 +9888,7 @@ namespace RefrigtzW
                                 }
                             }
 
-                                          HA = Rational(HA, RationalPenalty) * RationalPenalty;;
+                                          HA += Rational(HA, RationalPenalty) * RationalPenalty;;
                             int Supported = 0;
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
@@ -9948,7 +9963,7 @@ namespace RefrigtzW
                                 if (Supported > 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA = Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
+                                    HA += Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
                                 }
                             }
                         }
@@ -10005,7 +10020,7 @@ namespace RefrigtzW
                         th.Dispose();
                         if (ab)
                         {
-                                          HA = Rational(HA, RationalPenalty) * RationalPenalty;;
+                                          HA += Rational(HA, RationalPenalty) * RationalPenalty;;
                             int Supported = 0;
                             int Attacked = 0;
                             //For All Enemy Obejcts.                                             
@@ -10080,7 +10095,7 @@ namespace RefrigtzW
                                   if (Supported > 0)
                                 {
                                     //When is Not Supported multyply 100.
-                                    HA = Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
+                                    HA += Rational(HA, (int)(-(1 * System.Math.Pow(2, Attacked)))) * (int)(-(1 * System.Math.Pow(2, Attacked)));
                                 }
                             }
                         }
@@ -14735,12 +14750,12 @@ namespace RefrigtzW
 
         }
 
-        private int HeuristicBetterSpace(int[,] TableSS, Color colorS, Color colorE, int OrderS, int OrderE)
+        private int HeuristicBetterSpace(ref int HA,int[,] TableSS, Color colorS, Color colorE, int OrderS, int OrderE)
         {
             object OO = new object();
             lock (OO)
             {
-                int HA = 1;
+                //int HA =1;
                 int SpaceSelf = 0, SpaceEnemy = 0;
                 for (int RowS = 0; RowS < 8; RowS++)
                 {
@@ -14770,12 +14785,12 @@ namespace RefrigtzW
                 }
                 if (SpaceSelf > SpaceEnemy)
                 {
-                    HA = RationalRegard;
+                    HA += RationalRegard;
                 }
                 else
                     if (SpaceSelf < SpaceEnemy)
                 {
-                    HA = RationalPenalty;
+                    HA += RationalPenalty;
                 }
 
                 return HA;
@@ -14796,12 +14811,13 @@ namespace RefrigtzW
 
             return Is;
         }
-        public int[] CalculateHeuristicsParallel(bool Before, int Killed, int[,] TableS, int RowS, int ColS, int RowD, int ColD, Color color
+        public int[] CalculateHeuristicsParallel(ref int HS,bool Before, int Killed, int[,] TableS, int RowS, int ColS, int RowD, int ColD, Color color
     )
         {
             object OO = new object();
             lock (OO)
             {
+                int HA = HS;
                 int[] Heuristic = null;
                 int[] Exchange = new int[3];
                 int[] HeuristicRemain = new int[6];
@@ -14870,7 +14886,7 @@ namespace RefrigtzW
 
                                     int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
                                     int[,] TableSS = CloneATable(TableS);
-                                    Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[0] = HeuristicCheckAndCheckMate(RoS, CoS, RoD, CoD, TableSS, color//, ref HeuristicReducedMovementValue
+                                    Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[0] = HeuristicCheckAndCheckMate(ref HA,RoS, CoS, RoD, CoD, TableSS, color//, ref HeuristicReducedMovementValue
                                     ));
                                     H.Wait();
                                     H.Dispose();
@@ -14908,7 +14924,7 @@ namespace RefrigtzW
 
                                 int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
                                 int[,] TableSS = CloneATable(TableS);
-                                Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[2] = HeuristicKingSafety(TableSS, Order, color, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
+                                Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[2] = HeuristicKingSafety(ref HA,TableSS, Order, color, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
                                      ));
                                 H.Wait();
                                 H.Dispose();
@@ -14925,7 +14941,7 @@ namespace RefrigtzW
 
                                 int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
                                 int[,] TableSS = CloneATable(TableS);
-                                Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[3] = HeuristicKingPreventionOfCheckedAtBegin(TableSS, Order, color, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
+                                Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[3] = HeuristicKingPreventionOfCheckedAtBegin(ref HA,TableSS, Order, color, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
                                 ));
                                 H.Wait();
                                 H.Dispose();
@@ -14944,7 +14960,7 @@ namespace RefrigtzW
 
                                     int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
                                     int[,] TableSS = CloneATable(TableS);
-                                    Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[4] = HeuristicObjectAtCenterAndPawnAttackTraversalObjectsAndDangourForEnemy(TableSS, color, Order, RoS, CoS, RoD, CoD));
+                                    Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[4] = HeuristicObjectAtCenterAndPawnAttackTraversalObjectsAndDangourForEnemy(ref HA,TableSS, color, Order, RoS, CoS, RoD, CoD));
                                     H.Wait();
                                     H.Dispose();
                                 }
@@ -14973,7 +14989,7 @@ namespace RefrigtzW
                                         colorE = Color.Brown;
                                     }
 
-                                    Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[5] = HeuristicBetterSpace(TableSS, color, colorE, Order, Order * -1));
+                                    Task<int> H = Task.Factory.StartNew(() => HeuristicRemain[5] = HeuristicBetterSpace(ref HA,TableSS, color, colorE, Order, Order * -1));
                                     H.Wait();
                                     H.Dispose();
                                 }
@@ -14983,6 +14999,7 @@ namespace RefrigtzW
                 });
 
                 output1.Wait(); output1.Dispose();
+                HS = HA;
                 //Central control befor attack
                 bool A = (Heuristic[1] > 0);
                 bool B = (HeuristicRemain[4] > 0);
@@ -17061,6 +17078,7 @@ namespace RefrigtzW
             object OO = new object();
             lock (OO)
             {
+                int HA = 1;
                 if (!Scop(RowS, ColS, RowD, ColD, Kind))
                 {
                     return;
@@ -17098,7 +17116,7 @@ namespace RefrigtzW
                 int HDoubleAttack = 0, HDoubleDefense = 0;
                 int HWin = 0, HLose = 0;
                 bool IsS = false;
-                Task<int[]> th = Task.Factory.StartNew(() => Hu = CalculateHeuristicsParallel(Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
+                Task<int[]> th = Task.Factory.StartNew(() => Hu = CalculateHeuristicsParallel(ref HA,Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
                 th.Wait();
                 th.Dispose();
 

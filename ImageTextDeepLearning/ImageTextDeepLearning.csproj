@@ -54,17 +54,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Emgu.CV, Version=2.2.1.1150, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Emgu.CV.dll</HintPath>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>.\Emgu.CV.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.CV.UI, Version=2.2.1.1150, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Emgu.CV.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Emgu.Util, Version=2.2.1.1150, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Emgu.Util.dll</HintPath>
+    <Reference Include="Emgu.Util">
+      <HintPath>.\Emgu.Util.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -163,10 +157,6 @@
     <ProjectReference Include="ContourAnalysisProcessing\ContourAnalysisProcessing.csproj">
       <Project>{e7bf3470-8f33-4917-9295-7782aae5c475}</Project>
       <Name>ContourAnalysisProcessing</Name>
-    </ProjectReference>
-    <ProjectReference Include="ContourAnalysis\ContourAnalysis\ContourAnalysis.csproj">
-      <Project>{26c090e4-105d-4681-bfe4-e60752d3dc63}</Project>
-      <Name>ContourAnalysis</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

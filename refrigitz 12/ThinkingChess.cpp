@@ -829,7 +829,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 		//lock (O)
 		{
 			double HuristicAttackValue = 0;
-			double HA = 0;
+			double HA += 0;
 			int DumOrder = Order;
 			int DummyOrder = Order;
 			int DummyCurrentOrder = ChessRules::CurrentOrder;
@@ -1098,7 +1098,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 		{
 			double HuristicReducedAttackValue = 0;
 			//Initiate Objects.
-			double HA = 0;
+			double HA += 0;
 			int DumOrder = Order;
 			int DummyOrder = Order;
 			int DummyCurrentOrder = ChessRules::CurrentOrder;
@@ -1408,7 +1408,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 		//lock (O)
 		{
 			double HuristicObjectDangourCheckMateValue = 0;
-			double HA = 0;
+			double HA += 0;
 			int DummyOrder = Order;
 			int DummyCurrentOrder = ChessRules::CurrentOrder;
 			///When There is no AStarGreedyHuristicT
@@ -1542,7 +1542,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 			}
 			double HuristicKillerValue = 0;
 			//Defualt is Gray Order.
-			double HA = 0.0;
+			double HA += 0.0;
 			double Sign = AllDraw::SignKiller;
 			int DummyOrder = Order;
 			int DummyCurrentOrder = ChessRules::CurrentOrder;
@@ -2752,7 +2752,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 		//lock (O)
 		{
 		    double HeuristicKingSafe = 0;
-		    double HA = 0;
+		    double HA += 0;
 	
 		    //For Enemies.
 	
@@ -2855,7 +2855,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 				
 			}
 		}
-		double HA = 0;
+		double HA += 0;
 		ChessRules *A = new ChessRules(CurrentAStarGredy, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, Tab[RowD][ColD], Table, Order * -1, RowD, ColD);
 		//if (A->ObjectDangourKingMove(Order, Table, false))
 		A->ObjectDangourKingMove(Order, Table);
@@ -2893,7 +2893,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 			//lock (O)
 			{
 			    double HeuristicKingDangour = 0;
-			    double HA = 0;
+			    double HA += 0;
 			    //For Self.
 			    //for (int RowS = 0; RowS < 8; RowS++)
 			    ////Parallel.For(0, 8, RowS =>
@@ -3009,7 +3009,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 			}
 			ChessRules *A = new ChessRules(CurrentAStarGredy, MovementsAStarGreedyHuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHuristicT, OnlySelfT, AStarGreedyHuristicT, ArrangmentsChanged, Tab[RowS][ColS], Tab, Order, RowS, ColS);
 
-			double HA = 0;
+			double HA += 0;
 			//autoO3 = new Object();
 //C# TO C++ CONVERTER TODO TASK: There is no built-in support for multithreading in native C++:
 			//lock (O3)
@@ -3052,7 +3052,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 	
 		double HuristicSelfSupportedValue = 0;
 		//Initiate Local Vrariables.
-		double HA = 0;
+		double HA += 0;
 		int DumOrder = Order;
 		int DummyOrder = Order;
 		int DummyCurrentOrder = ChessRules::CurrentOrder;
@@ -4965,7 +4965,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 //C# TO C++ CONVERTER TODO TASK: There is no built-in support for multithreading in native C++:
 		//lock (O)
 		{
-			double HA = 0;
+			double HA += 0;
 			//int DummyOrder = AllDraw::OrderPlate;
 			int DummyOrder = Order;
 			int DummyCurrentOrder = ChessRules::CurrentOrder;
@@ -5105,37 +5105,37 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 //C# TO C++ CONVERTER TODO TASK: There is no built-in support for multithreading in native C++:
 		//lock (O)
 		{
-			int HA = 1;
+			//int HA =1;
 			int Object = Table[Row][Column];
 			//Wehn Solider.
 			if (abs(Object) == 1)
 			{
-				HA = 1;
+				HA += 1;
 			}
 			//When Elephant.
 			else if (abs(Object) == 2)
 			{
-				HA = 2;
+				HA += 2;
 			}
 			//When Hourse.
 			else if (abs(Object) == 3)
 			{
-				HA = 3;
+				HA += 3;
 			}
 			//When Castles.
 			else if (abs(Object) == 4)
 			{
-				HA = 5;
+				HA += 5;
 			}
 			//When Minster.
 			else if (abs(Object) == 5)
 			{
-				HA = 8;
+				HA += 8;
 			}
 			//When King.
 			else if (abs(Object) == 6)
 			{
-				HA = 10;
+				HA += 10;
 			}
 			return HA;
 		}
@@ -5412,7 +5412,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 //C# TO C++ CONVERTER TODO TASK: There is no built-in support for multithreading in native C++:
 		//lock (O)
 		{
-			double HA = 0;
+			double HA += 0;
 			//autoO1 = new Object();
 //C# TO C++ CONVERTER TODO TASK: There is no built-in support for multithreading in native C++:
 			//lock (O1)
@@ -5747,7 +5747,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 		{
 			double HuristicMovementValue = 0;
 			//Initiate Local Variable.
-			double HA = 0;
+			double HA += 0;
 			int DummyOrder = Order;
 			int DummyCurrentOrder = ChessRules::CurrentOrder;
 			///When AStarGreedy Huristic is Not Assigned.
@@ -9708,7 +9708,7 @@ inline bool operator!=(const DrawKing& lhs, const std::nullptr_t rhs) { return !
 		TableSS = CloneATable(TableS);
 		HDistance = HeuristicDistabceOfCurrentMoveFromEnemyKing(TableSS, Order, RowS, ColS);
 		TableSS = CloneATable(TableS);
-		HKingSafe = HeuristicKingSafety(TableSS, Order, color, RowS, ColS, RowD, ColD, CurrentAStarGredyMax);
+		HKingSafe = HeuristicKingSafety(ref HA,TableSS, Order, color, RowS, ColS, RowD, ColD, CurrentAStarGredyMax);
 		TableSS = CloneATable(TableS);
 		HKingDangour = HeuristicKingDangourous(TableSS, Order, color, RowS, ColS, RowD, ColD, CurrentAStarGredyMax);
 		TableSS = CloneATable(TableS);

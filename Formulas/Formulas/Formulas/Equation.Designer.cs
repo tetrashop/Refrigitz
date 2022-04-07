@@ -34,7 +34,7 @@ namespace Formulas
             // Equation
             // 
             this.ClientSize = new System.Drawing.Size(384, 81);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Equation";

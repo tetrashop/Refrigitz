@@ -55,7 +55,7 @@ namespace Editors
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(584, 577);
             this.Controls.Add(this.pictureBoxInOut);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(600, 10000);
             this.MinimumSize = new System.Drawing.Size(500, 568);

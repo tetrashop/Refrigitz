@@ -66,6 +66,8 @@
             // 
             // logoPictureBox
             // 
+            this.logoPictureBox.BackgroundImage = global::Formulas.Properties.Resources.ProgramLogo_copy;
+            this.logoPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";

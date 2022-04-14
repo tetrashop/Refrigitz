@@ -59,5 +59,15 @@ namespace CigRemove.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ProgramLogo_copy {
+            get {
+                object obj = ResourceManager.GetObject("ProgramLogo copy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

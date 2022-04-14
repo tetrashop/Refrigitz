@@ -67,8 +67,9 @@
             // 
             // logoPictureBox
             // 
+            this.logoPictureBox.BackgroundImage = global::CigRemove.Properties.Resources.ProgramLogo_copy;
+            this.logoPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-           // this.logoPictureBox.Image = global::CigRemove.Properties.Resources.ProgramLogo_copy;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
@@ -155,7 +156,6 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-           // this.BackgroundImage = global::CigRemove.Properties.Resources.images;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(435, 283);
             this.Controls.Add(this.tableLayoutPanel);

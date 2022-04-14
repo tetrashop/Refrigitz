@@ -2899,20 +2899,20 @@ namespace ImageTextDeepLearning
                     //serialized on take root
                     if (KeyboardAllImage.Count > 0)
                     {
-                        Refrigtz.TakeRoot t = new Refrigtz.TakeRoot();
-                        t.Save(this, "KeyboardAllStrings.asd");
+                       /* Refrigtz.TakeRoot t = new Refrigtz.TakeRoot();
+                        t.Save(this, "KeyboardAllStrings.asd");*/
 
                     }
                 }
                 else
                 {//delete and serilized take root
-                    File.Delete("KeyboardAllStrings.asd");
+                    /*File.Delete("KeyboardAllStrings.asd");
                     if (KeyboardAllImage.Count > 0)
                     {
                         Refrigtz.TakeRoot t = new Refrigtz.TakeRoot();
                         t.Save(this, "KeyboardAllStrings.asd");
 
-                    }
+                    }*/
                 }
 
             }
@@ -2953,12 +2953,12 @@ namespace ImageTextDeepLearning
                              return false;
                      }*/
                     //serilized
-                    Refrigtz.TakeRoot tr = new Refrigtz.TakeRoot();
+                   /* Refrigtz.TakeRoot tr = new Refrigtz.TakeRoot();
                     AllKeyboardOfWorld t = tr.Load("KeyboardAllStrings.asd");
                     KeyboardAllConjunctionMatrix = t.KeyboardAllConjunctionMatrix;
                     KeyboardAllConjunctionMatrixList = t.KeyboardAllConjunctionMatrixList;
                     KeyboardAllImage = t.KeyboardAllImage;
-                    KeyboardAllStrings = t.KeyboardAllStrings;
+                    KeyboardAllStrings = t.KeyboardAllStrings;*/
 
                 }
                 else//others retiurn unsuccessfull

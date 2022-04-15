@@ -30,6 +30,7 @@ namespace Refrigtz
     public class Timer
     {
         //Initiate Variables. static and local for three timer.
+        String name = "";
         public static int StoreAllDrawCount = 0;
         public static bool UseDoubleTime = false;
         public static long DeptiLevelMax=0;
@@ -70,8 +71,9 @@ namespace Refrigtz
 
         }
         //Initiate Timer.
-        public void TimerInitiate()
+        public void TimerInitiate(String nam)
         {
+            name = nam;
             t = new Thread(new ThreadStart(timerThread));
             t.Start();
         }
@@ -182,12 +184,12 @@ namespace Refrigtz
             }
         }
         //Strat timer function.
-        public void StartTime()
+        public void StartTime(string nam)
         {
             if (Sign != 1)
             {
                 //Resume Suspended MAin Thread.
-                TimerInitiate();
+                TimerInitiate(nam);
                 //When Begin Timer Valuee is Zero cal.
                 if (TimesBegin == 0)
                     TimesBegin = DateTime.Now.Hour * 3600000 + DateTime.Now.Minute * 60000

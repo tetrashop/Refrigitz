@@ -31,7 +31,7 @@ namespace RefrigtzDLL
         public bool OnlySelfT = false;
         public bool AStarGreedyHeuristicT = false;
         public bool ArrangmentsChanged = true;
-        public static long MaxHeuristicxB = -20000000000000000;
+        public static double MaxHeuristicxB = double.MinValue;
         public float Row, Column;
         public Color color;
         public ThinkingChess[] CastleThinking = new ThinkingChess[AllDraw.CastleMovments];
@@ -67,7 +67,7 @@ namespace RefrigtzDLL
         {
 
 
-            int a = ReturnHeuristic();
+            double a = ReturnHeuristic();
             if (MaxHeuristicxB < a)
             {
                 MaxNotFound = false;
@@ -89,11 +89,11 @@ namespace RefrigtzDLL
 
             return false;
         }
-        public int ReturnHeuristic()
+        public double ReturnHeuristic()
         {
             int HaveKilled = 0;
 
-            int a = 0;
+            double a = 0;
             for (int ii = 0; ii < AllDraw.CastleMovments; ii++)
             {
                 a += CastleThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);

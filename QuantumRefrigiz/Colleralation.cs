@@ -1,6 +1,6 @@
 ﻿/*https://stackoverflow.com/questions/8869006/multiple-dimension-correlation-in-c-sharp*/
 
-namespace ImageTextDeepLearning
+namespace QuantumRefrigiz
 {
     public class Colleralation
     {

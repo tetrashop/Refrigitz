@@ -1150,7 +1150,7 @@ namespace Refrigtz
         }
 
         //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        private int ReturnbCal(RefrigtzDLL.ThinkingChess t, int Kind, int j)
+        private double ReturnbCal(RefrigtzDLL.ThinkingChess t, int Kind, int j)
         //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
         {
             object O = new object();

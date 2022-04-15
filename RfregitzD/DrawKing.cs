@@ -34,7 +34,7 @@ namespace RefrigtzDLL
         public bool AStarGreedyHeuristicT = false;
 
         public bool ArrangmentsChanged = true;
-        public static long MaxHeuristicxK = -20000000000000000;
+        public static double MaxHeuristicxK = double.MinValue;
         public float Row, Column;
         public Color color;
         public int[,] Table = null;
@@ -66,11 +66,11 @@ namespace RefrigtzDLL
 
         }
 
-        public int ReturnHeuristic()
+        public double ReturnHeuristic()
         {
             int HaveKilled = 0;
 
-            int a = 0;
+            double a = 0;
             for (int ii = 0; ii < AllDraw.KingMovments; ii++)
             {
                 a += KingThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
@@ -82,7 +82,7 @@ namespace RefrigtzDLL
         {
 
 
-            int a = ReturnHeuristic();
+            double a = ReturnHeuristic();
             if (MaxHeuristicxK < a)
             {
                 object O2 = new object();

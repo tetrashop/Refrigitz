@@ -30,7 +30,7 @@ namespace RefrigtzDLL
         public bool OnlySelfT = false;
         public bool AStarGreedyHeuristicT = false;
         public bool ArrangmentsChanged = true;
-        public static long MaxHeuristicxH = -20000000000000000;
+        public static double MaxHeuristicxH = double.MinValue;
         public float Row, Column;
         public Color color;
         public int[,] Table = null;
@@ -64,7 +64,7 @@ namespace RefrigtzDLL
         public bool MaxFound(ref bool MaxNotFound)
         {
 
-            int a = ReturnHeuristic();
+            double a = ReturnHeuristic();
             if (MaxHeuristicxH < a)
             {
                 object O2 = new object();
@@ -86,11 +86,11 @@ namespace RefrigtzDLL
 
             return false;
         }
-        public int ReturnHeuristic()
+        public double ReturnHeuristic()
         {
             int HaveKilled = 0;
 
-            int a = 0;
+            double a = 0;
             for (int ii = 0; ii < AllDraw.HourseMovments; ii++)
             {
                 a += HourseThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);

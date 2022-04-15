@@ -18,7 +18,7 @@ namespace QuantumRefrigiz
             }
         }
         public IsNextEnemyMovementForCheckedMate(int Order, bool MovementsAStarGreedyHuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, AllDraw THi, int[,] Tab)
-            : base(Order, MovementsAStarGreedyHuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments, THi)
+            : base(Order, MovementsAStarGreedyHuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -64,7 +64,7 @@ namespace QuantumRefrigiz
             int A26 = AllDraw.MaxAStarGreedy;
             //int A27 = AllDraw.MaxAStarGreedyHuristicProgress;
             int A28 = AllDraw.MinisterMovments;
-            int A29 = AllDraw.MinThinkingQuantumTreeDepth;
+            int A29 = AllDraw.MinThinkingTreeDepth;
             int A30 = AllDraw.MouseClick;
             int A31 = AllDraw.MovmentsNumber;
             int A32 = AllDraw.NextColumnQ;
@@ -155,7 +155,7 @@ namespace QuantumRefrigiz
             bool B7 = ThinkingQuantumChess.KingMaovableGray;
             bool B8 = ThinkingQuantumChess.LearningVarsCheckedMateOccured;
             bool B9 = ThinkingQuantumChess.LearningVarsCheckedMateOccuredOneCheckedMate;
-            int B10 = ThinkingQuantumChess.MaxHeuristicx;
+            double B10 = ThinkingQuantumChess.MaxHeuristicx;
             bool B11 = ThinkingQuantumChess.NotSolvedKingDanger;
             int B12 = ThinkingQuantumChess.NumbersOfAllNode;
             //bool B13 = ThinkingQuantumChess.ThinkingRun;
@@ -201,7 +201,7 @@ namespace QuantumRefrigiz
             AllDraw.MaxAStarGreedy = A26;
             //AllDraw.MaxAStarGreedyHuristicProgress = A27;
             AllDraw.MinisterMovments = A28;
-            AllDraw.MinThinkingQuantumTreeDepth = A29;
+            AllDraw.MinThinkingTreeDepth = A29;
             AllDraw.MouseClick = A30;
             AllDraw.MovmentsNumber = A31;
             AllDraw.NextColumnQ = A32;

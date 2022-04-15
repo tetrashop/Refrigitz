@@ -64,11 +64,11 @@ namespace RefrigtzDLL
 
         }
 
-        public int ReturnHeuristic()
+        public double ReturnHeuristic()
         {
             int HaveKilled = 0;
 
-            int a = 0;
+            double a = 0;
             for (int ii = 0; ii < 1; ii++)
             {
                 a += CastlingThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);

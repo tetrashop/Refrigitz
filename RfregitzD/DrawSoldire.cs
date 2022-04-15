@@ -37,7 +37,7 @@ namespace RefrigtzDLL
         public bool OnlySelfT = false;
         public bool AStarGreedyHeuristicT = false;
         public bool ArrangmentsChanged = true;
-        public static int MaxHeuristicxS = int.MinValue;
+        public static double MaxHeuristicxS = double.MinValue;
         public float Row, Column;
         public Color color;
         public ThinkingChess[] SoldierThinking = new ThinkingChess[AllDraw.SodierMovments];
@@ -72,7 +72,7 @@ namespace RefrigtzDLL
         public bool MaxFound(ref bool MaxNotFound)
         {
 
-            int a = ReturnHeuristic();
+            double a = ReturnHeuristic();
             if (MaxHeuristicxS < a)
             {
                 object O2 = new object();
@@ -94,11 +94,11 @@ namespace RefrigtzDLL
 
             return false;
         }
-        public int ReturnHeuristic()
+        public double ReturnHeuristic()
         {
             int HaveKilled = 0;
 
-            int a = 0;
+            double a = 0;
             for (int ii = 0; ii < AllDraw.SodierMovments; ii++)
             {
                 a += SoldierThinking[ii].ReturnHeuristic(-1, -1, Order, false, ref HaveKilled);
@@ -127,7 +127,7 @@ namespace RefrigtzDLL
         //Constructor 2.
         public DrawSoldier(int CurrentAStarGredy, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, float i, float j, Color a, int[,] Tab, int Ord, bool TB, int Cur//, ref AllDraw. THIS
             ) :
-            base(Arrangments, (int)i, (int)j, a, Tab, Ord, TB, Cur)
+            base(Arrangments, (int)i, (int)j, Ord)
         {
 
             object balancelock = new object();
@@ -251,7 +251,7 @@ namespace RefrigtzDLL
 
 
                     //When Conversion Solders Not Occured.
-                    if (!ConvertOperation((int)Row, (int)Column, color, CloneATable(Table), Order, false, Current))
+                    if (!ConvertOperation((int)Row, (int)Column, CloneATable(Table), Order))
                     {
 
                         //Gray Color.

@@ -1,21 +1,19 @@
 using System;
-using System.Drawing;
-using System.Text;
+
 namespace RefrigtzDLL
 {
     [Serializable]
     public class ThingsConverter
     {
-        private readonly StringBuilder Space = new StringBuilder("&nbsp;");
-
         //#pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
 #pragma warning disable CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
-        private readonly int Spaces = 0;
+
 #pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
         //#pragma warning restore CS0414 // The field 'ThingsConverter.Spaces' is assigned but its value is never used
 
         //Initiate Global Variables.
         public static bool LoadConvertTable = false;
+
         public static int[,] TableConverted = null;
         private readonly bool ArrangmentsChanged = true;
         public static bool ClickOcurred = false;
@@ -27,20 +25,15 @@ namespace RefrigtzDLL
         public bool ConvertedToHourse = false;
         public int Max;
         public int RowS, ColumnS;
-        private Color color;
         private int Order;
-        private int Current = 0;
-        private readonly int rowSource;
-        private readonly int columnSource;
-        private readonly int[,] tableS;
-        private readonly int v;
 
         //AllDraw. THIS;
         public ThingsConverter()
         { //long Time = TimeElapced.TimeNow();Spaces++;
         }
+
         //Constructor
-        public ThingsConverter(bool Arrangments, int i, int j, Color a, int[,] Tab, int Ord, bool TB, int Cur//,ref AllDraw. THI
+        public ThingsConverter(bool Arrangments, int i, int j, int Ord//,ref AllDraw. THI
             )
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
@@ -49,44 +42,22 @@ namespace RefrigtzDLL
             ArrangmentsChanged = Arrangments;
             RowS = i;
             ColumnS = j;
-            color = a;
             Order = Ord;
-            Current = Cur;
 
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ThingsConverter:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
         }
 
-        //return maximum of six type values 
-        //clone a table
-        private int[,] CloneATable(int[,] Tab)
-        {
-            int[,] Tabl = new int[8, 8];
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    Tabl[i, j] = Tab[i, j];
-                }
-            }
-
-            return Tabl;
-        }
-
-        public ThingsConverter(bool arrangmentsChanged, int rowSource, int columnSource, Color color, int[,] tableS, int order, int v)
+        public ThingsConverter(bool arrangmentsChanged, int order)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
             ArrangmentsChanged = arrangmentsChanged;
-            this.rowSource = rowSource;
-            this.columnSource = columnSource;
-            this.color = color;
-            this.tableS = CloneATable(tableS);
+
             Order = order;
-            this.v = v;
-            ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ThingsConverter:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+            ///{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ThingsConverter:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
         }
 
         //Convert Operation of Randomly All State Method.
-        public bool ConvertOperation(int i, int j, Color a, int[,] Tab, int Ord, bool TB, int Cur)
+        public bool ConvertOperation(int i, int j, int[,] Tab, int Ord)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
             object OOO = new object();
@@ -95,9 +66,7 @@ namespace RefrigtzDLL
                 //Initiate Global variables with Local One.
                 RowS = i;
                 ColumnS = j;
-                color = a;
                 Order = Ord;
-                Current = Cur;
                 //If Convert is Act and click tow time occured
                 if (!Convert && (ActOfClickEqualTow || AllDraw.StateCC || (!AllDraw.Person)))
 
@@ -155,12 +124,12 @@ namespace RefrigtzDLL
                             AllDraw.SodierConversionOcuured = true;
                             //Randomly Number of 4 kind Object.
                             int Rand = -1;
-                            if (//AllDraw.Person && 
+                            if (//AllDraw.Person &&
                                 AllDraw.StateCP && AllDraw.THISSecradioButtonGrayOrderChecked)
                             {
                                 if (AllDraw.OrderPlateDraw == 1)
                                 {
-                                    /* while (AllDraw.ConvertedKind == -1) { 
+                                    /* while (AllDraw.ConvertedKind == -1) {
                                      }
 
                                      Rand = AllDraw.ConvertedKind;
@@ -179,7 +148,7 @@ namespace RefrigtzDLL
                                 if (AllDraw.OrderPlateDraw == -1)
                                 {
                                     //(new FormُSelectItems()).ShowDialog();
-                                    /*  while (AllDraw.ConvertedKind == -1) {  
+                                    /*  while (AllDraw.ConvertedKind == -1) {
                                       }
 
                                       Rand = AllDraw.ConvertedKind;
@@ -238,7 +207,6 @@ namespace RefrigtzDLL
                                 {
                                     //HourseHight+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                     Tab[RowS, ColumnS] = -3;
-
                                 }
                                 ConvertedToHourse = true;
                             }
@@ -271,7 +239,7 @@ namespace RefrigtzDLL
                                 {
                                     if (AllDraw.OrderPlateDraw == 1)
                                     {
-                                        /* while (AllDraw.ConvertedKind == -1) {  
+                                        /* while (AllDraw.ConvertedKind == -1) {
                                          }
 
                                          Rand = AllDraw.ConvertedKind;
@@ -284,12 +252,12 @@ namespace RefrigtzDLL
                                     }
                                 }
                                 else
-                                    if (//AllDraw.Person && 
+                                    if (//AllDraw.Person &&
                                     AllDraw.StateCP && AllDraw.THISSecradioButtonBrownOrderChecked)
                                 {
                                     if (AllDraw.OrderPlateDraw == -1)
                                     {
-                                        /*  while (AllDraw.ConvertedKind == -1) {  
+                                        /*  while (AllDraw.ConvertedKind == -1) {
                                           }
 
                                           Rand = AllDraw.ConvertedKind;
@@ -348,7 +316,6 @@ namespace RefrigtzDLL
                                     {
                                         //HourseHight+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         Tab[RowS, ColumnS] = -3;
-
                                     }
                                     ConvertedToHourse = true;
                                 }
@@ -368,23 +335,18 @@ namespace RefrigtzDLL
                                     ConvertedToElefant = true;
                                 }
                             }
-
-
                             else
                             {
-
-
-
                                 AllDraw.ConvertedKind = -1;
                                 AllDraw.SodierConversionOcuured = true;
                                 //Randomly Number of 4 kind Object.
                                 int Rand = -1;
-                                if (//AllDraw.Person && 
+                                if (//AllDraw.Person &&
                                     AllDraw.StateCP && AllDraw.THISSecradioButtonGrayOrderChecked)
                                 {
                                     if (AllDraw.OrderPlateDraw == 1)
                                     {
-                                        /*  while (AllDraw.ConvertedKind == -1) { 
+                                        /*  while (AllDraw.ConvertedKind == -1) {
                                           }
 
                                           Rand = AllDraw.ConvertedKind;
@@ -397,12 +359,12 @@ namespace RefrigtzDLL
                                     }
                                 }
                                 else
-                                    if (//AllDraw.Person && 
+                                    if (//AllDraw.Person &&
                                     AllDraw.StateCP && AllDraw.THISSecradioButtonBrownOrderChecked)
                                 {
                                     if (AllDraw.OrderPlateDraw == -1)
                                     {
-                                        /*   while (AllDraw.ConvertedKind == -1) { 
+                                        /*   while (AllDraw.ConvertedKind == -1) {
                                            }
 
                                            Rand = AllDraw.ConvertedKind;
@@ -461,7 +423,6 @@ namespace RefrigtzDLL
                                     {
                                         //HourseHight+=0.00000000000000000000000000000000000000000000000000000000000000000000000001;
                                         Tab[RowS, ColumnS] = -3;
-
                                     }
                                     ConvertedToHourse = true;
                                 }
@@ -483,7 +444,6 @@ namespace RefrigtzDLL
                             }
                         }
                         AllDraw.ConvertWait = false;
-
                     }
                 }
                 AllDraw.ConvertWait = false;
@@ -506,8 +466,6 @@ namespace RefrigtzDLL
                     {
                         LoadConvertTable = true;
                     }
-
-
                 }
 
                 ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("ConvertOperation:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
@@ -517,4 +475,5 @@ namespace RefrigtzDLL
         }
     }
 }
+
 //End of Documeatation.

@@ -28,7 +28,7 @@ namespace RefrigtzDLL
             ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("IsNextEnemyMovementForCheckedMate:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
         }
         public IsNextEnemyMovementForCheckedMate(int Order, bool MovementsAStarGreedyHeuristicTFou, bool IgnoreSelfObject, bool UsePenaltyRegardMechnisa, bool BestMovment, bool PredictHurist, bool OnlySel, bool AStarGreedyHuris, bool Arrangments, AllDraw THi, int[,] Tab)
-            : base(Order, MovementsAStarGreedyHeuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments, THi)
+            : base(Order, MovementsAStarGreedyHeuristicTFou, IgnoreSelfObject, UsePenaltyRegardMechnisa, BestMovment, PredictHurist, OnlySel, AStarGreedyHuris, Arrangments)
         {
             //long Time = TimeElapced.TimeNow();Spaces++;
             for (int i = 0; i < 8; i++)
@@ -73,7 +73,7 @@ namespace RefrigtzDLL
             int A21 = AllDraw.KingMovments;
             int A22 = AllDraw.LastColumn;
             int A23 = AllDraw.LastRow;
-            int A24 = AllDraw.Less;
+            double A24 = AllDraw.Less;
             int A25 = AllDraw.LoopHeuristicIndex;
             int A26 = AllDraw.MaxAStarGreedy;
             int A27 = AllDraw.MaxAStarGreedyHeuristicProgress;
@@ -169,7 +169,7 @@ namespace RefrigtzDLL
             bool B7 = ThinkingChess.KingMaovableGray;
             bool B8 = ThinkingChess.LearningVarsCheckedMateOccured;
             bool B9 = ThinkingChess.LearningVarsCheckedMateOccuredOneCheckedMate;
-            int B10 = ThinkingChess.MaxHeuristicx;
+            double B10 = ThinkingChess.MaxHeuristicx;
             bool B11 = ThinkingChess.NotSolvedKingDanger;
             int B12 = ThinkingChess.NumbersOfAllNode;
             bool B13 = ThinkingChess.ThinkingRun;

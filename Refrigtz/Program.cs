@@ -164,7 +164,7 @@ namespace Refrigtz
                 }
                 else
                 {
-                    do { Thread.Sleep(1); } while (!QuantumRefrigiz.AllDraw.ThinkingQuantumRunInBothSide);
+                    do { Thread.Sleep(1); } while (!QuantumRefrigiz.AllDraw.ThinkingRunInBothSide);
                 }
                 GC.Collect();
 

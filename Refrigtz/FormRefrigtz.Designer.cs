@@ -1436,7 +1436,6 @@ namespace Refrigtz
             this.TextBoxText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBoxText.Size = new System.Drawing.Size(386, 77);
             this.TextBoxText.TabIndex = 132;
-            this.TextBoxText.Visible = false;
             this.TextBoxText.TextChanged += new System.EventHandler(this.TextBoxText_TextChanged);
             // 
             // label1

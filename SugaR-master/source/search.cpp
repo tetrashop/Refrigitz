@@ -363,7 +363,7 @@ void Thread::search() {
   if (cleanSearch)
 	  Search::clear();
 
-  bestValue = delta = Alpha = -VALUE_INFINITE;
+  bestValue = delta = alpha = -VALUE_INFINITE;
   beta = VALUE_INFINITE;
 
   if (mainThread)
@@ -441,7 +441,7 @@ void Thread::search() {
           {
               Value previousScore = rootMoves[pvIdx].previousScore;
               delta = Value(18);
-              Alpha = std::max(previousScore - delta,-VALUE_INFINITE);
+              alpha = std::max(previousScore - delta,-VALUE_INFINITE);
               beta  = std::min(previousScore + delta, VALUE_INFINITE);
 
               // Adjust contempt based on root move's previousScore (dynamic contempt)
@@ -485,7 +485,7 @@ void Thread::search() {
               if (bestValue <= alpha)
               {
                   beta = (alpha + beta) / 2;
-                  Alpha = std::max(bestValue - delta, -VALUE_INFINITE);
+                  alpha = std::max(bestValue - delta, -VALUE_INFINITE);
 
                   if (mainThread)
                   {
@@ -595,7 +595,7 @@ namespace {
         && !rootNode
         && pos.has_game_cycle(ss->ply))
     {
-        Alpha = VALUE_DRAW;
+        alpha = VALUE_DRAW;
         if (alpha >= beta)
             return alpha;
     }
@@ -605,7 +605,7 @@ namespace {
         return qsearch<NT>(pos, ss, alpha, beta);
 
     assert(-VALUE_INFINITE <= alpha && alpha < beta && beta <= VALUE_INFINITE);
-    assert(PvNode || (alpHA == beta - 1));
+    assert(PvNode || (alpha == beta - 1));
     assert(DEPTH_ZERO < depth && depth < DEPTH_MAX);
     assert(!(PvNode && cutNode));
     assert(depth / ONE_PLY * ONE_PLY == depth);
@@ -652,7 +652,7 @@ namespace {
         // because we will never beat the current alpha. Same logic but with reversed
         // signs applies also in the opposite condition of being mated instead of giving
         // mate. In this case return a fail-high score.
-        Alpha = std::max(mated_in(ss->ply), alpha);
+        alpha = std::max(mated_in(ss->ply), alpha);
         beta = std::min(mate_in(ss->ply+1), beta);
         if (alpha >= beta)
             return alpha;
@@ -753,7 +753,7 @@ namespace {
                 if (PvNode)
                 {
                     if (b == BOUND_LOWER)
-                        bestValue = value, Alpha = std::max(alpha, bestValue);
+                        bestValue = value, alpha = std::max(alpha, bestValue);
                     else
                         maxValue = value;
                 }
@@ -794,7 +794,7 @@ namespace {
         && depth < 3 * ONE_PLY
         && eval <= alpha - RazorMargin[depth / ONE_PLY])
     {
-        Value rAlpha = alpha - (depth >= 2 * ONE_PLY) * RazorMargin[depth / ONE_PLY];
+        Value ralpha = alpha - (depth >= 2 * ONE_PLY) * RazorMargin[depth / ONE_PLY];
         Value v = qsearch<NonPV>(pos, ss, ralpha, ralpha+1);
         if (depth < 2 * ONE_PLY || v <= ralpha)
             return v;
@@ -1185,7 +1185,7 @@ moves_loop: // When in check, search starts from here
                   update_pv(ss->pv, move, (ss+1)->pv);
 
               if (PvNode && value < beta) // Update alpha! Always alpha < beta
-                  Alpha = value;
+                  alpha = value;
               else
               {
                   assert(value >= beta); // Fail high
@@ -1265,7 +1265,7 @@ moves_loop: // When in check, search starts from here
     constexpr bool PvNode = NT == PV;
 
     assert(alpha >= -VALUE_INFINITE && alpha < beta && beta <= VALUE_INFINITE);
-    assert(PvNode || (alpHA == beta - 1));
+    assert(PvNode || (alpha == beta - 1));
     assert(depth <= DEPTH_ZERO);
     assert(depth / ONE_PLY * ONE_PLY == depth);
 
@@ -1354,7 +1354,7 @@ moves_loop: // When in check, search starts from here
         }
 
         if (PvNode && bestValue > alpha)
-            Alpha = bestValue;
+            alpha = bestValue;
 
         futilityBase = bestValue + 128;
     }
@@ -1445,7 +1445,7 @@ moves_loop: // When in check, search starts from here
 
               if (PvNode && value < beta) // Update alpha here!
               {
-                  Alpha = value;
+                  alpha = value;
                   bestMove = move;
               }
               else // Fail high

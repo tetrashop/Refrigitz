@@ -90,6 +90,7 @@
     <LibraryPath>C:\Program Files\Microsoft SDKs\Windows\v7.1A\Lib;$(LibraryPath)</LibraryPath>
     <IncludePath>C:\Program Files\Microsoft SDKs\Windows\v7.1A\Include;$(IncludePath)</IncludePath>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <OutDir>..\..\WindowsFormsAllInOne\WindowsFormsAllInOne\bin\Debug</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

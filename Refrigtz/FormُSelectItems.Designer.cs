@@ -51,6 +51,7 @@ namespace Refrigtz
             // 
             // PictureBox4
             // 
+            this.PictureBox4.BackgroundImage = global::Refrigtz.Properties.Resources.EG;
             this.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBox4.Location = new System.Drawing.Point(163, 12);
             this.PictureBox4.Name = "PictureBox4";
@@ -61,7 +62,8 @@ namespace Refrigtz
             // 
             // PictureBox3
             // 
-           this.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBox3.BackgroundImage = global::Refrigtz.Properties.Resources.HG;
+            this.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBox3.Location = new System.Drawing.Point(110, 12);
             this.PictureBox3.Name = "PictureBox3";
             this.PictureBox3.Size = new System.Drawing.Size(46, 50);
@@ -71,6 +73,7 @@ namespace Refrigtz
             // 
             // PictureBox2
             // 
+            this.PictureBox2.BackgroundImage = global::Refrigtz.Properties.Resources.BrG;
             this.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBox2.Location = new System.Drawing.Point(60, 12);
             this.PictureBox2.Name = "PictureBox2";
@@ -81,6 +84,7 @@ namespace Refrigtz
             // 
             // PictureBox1
             // 
+            this.PictureBox1.BackgroundImage = global::Refrigtz.Properties.Resources.MG;
             this.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBox1.Location = new System.Drawing.Point(12, 12);
             this.PictureBox1.Name = "PictureBox1";

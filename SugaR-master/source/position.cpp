@@ -1071,7 +1071,7 @@ bool Position::see_ge(Move m, Value threshold) const {
 
       stm = ~stm; // Switch side to move
 
-      // Negamax the balance with Alpha = balance, beta = balance+1 and
+      // Negamax the balance with alpha = balance, beta = balance+1 and
       // add nextVictim's value.
       //
       //      (balance, balance+1) -> (-balance-1, -balance)

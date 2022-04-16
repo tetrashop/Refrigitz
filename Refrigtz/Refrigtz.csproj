@@ -272,6 +272,12 @@
     <None Include="bin\Debug\Refregitz.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\EG.png" />
+    <None Include="Resources\HG.png" />
+    <None Include="Resources\BrG.png" />
+    <None Include="Resources\MG.png" />
+    <None Include="Resources\KB1.png" />
+    <None Include="Resources\KG1.png" />
     <None Include="bin\Debug\Images\Fit\Big\KG.png" />
     <None Include="bin\Debug\Images\Fit\Big\KB.png" />
     <None Include="bin\Debug\Images\Fit\Small\MB.png" />

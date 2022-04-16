@@ -375,7 +375,7 @@ static int probe_ab(Position& pos, int alpha, int beta, int *success)
         *success = 2;
         return v;
       }
-      Alpha = v;
+      alpha = v;
     }
   }
 

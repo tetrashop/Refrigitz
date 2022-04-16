@@ -343,7 +343,7 @@ void Thread::search() {
 
   std::memset(ss-5, 0, 8 * sizeof(Stack));
 
-  bestValue = delta = Alpha = -VALUE_INFINITE;
+  bestValue = delta = alpha = -VALUE_INFINITE;
   beta = VALUE_INFINITE;
   completedDepth = DEPTH_ZERO;
 
@@ -396,7 +396,7 @@ void Thread::search() {
           if (rootDepth >= 5 * ONE_PLY)
           {
               delta = Value(18);
-              Alpha = std::max(rootMoves[PVIdx].previousScore - delta,-VALUE_INFINITE);
+              alpha = std::max(rootMoves[PVIdx].previousScore - delta,-VALUE_INFINITE);
               beta  = std::min(rootMoves[PVIdx].previousScore + delta, VALUE_INFINITE);
           }
 
@@ -434,7 +434,7 @@ void Thread::search() {
               if (bestValue <= alpha)
               {
                   beta = (alpha + beta) / 2;
-                  Alpha = std::max(bestValue - delta, -VALUE_INFINITE);
+                  alpha = std::max(bestValue - delta, -VALUE_INFINITE);
 
                   if (mainThread)
                   {
@@ -444,7 +444,7 @@ void Thread::search() {
               }
               else if (bestValue >= beta)
               {
-                  Alpha = (alpha + beta) / 2;
+                  alpha = (alpha + beta) / 2;
                   beta = std::min(bestValue + delta, VALUE_INFINITE);
               }
               else
@@ -545,7 +545,7 @@ namespace {
     const bool rootNode = PvNode && (ss-1)->ply == 0;
 
     assert(-VALUE_INFINITE <= alpha && alpha < beta && beta <= VALUE_INFINITE);
-    assert(PvNode || (alpHA == beta - 1));
+    assert(PvNode || (alpha == beta - 1));
     assert(DEPTH_ZERO < depth && depth < DEPTH_MAX);
     assert(!(PvNode && cutNode));
     assert(depth / ONE_PLY * ONE_PLY == depth);
@@ -601,7 +601,7 @@ namespace {
         // because we will never beat the current alpha. Same logic but with reversed
         // signs applies also in the opposite condition of being mated instead of giving
         // mate. In this case return a fail-high score.
-        Alpha = std::max(mated_in(ss->ply), alpha);
+        alpha = std::max(mated_in(ss->ply), alpha);
         beta = std::min(mate_in(ss->ply+1), beta);
         if (alpha >= beta)
             return alpha;
@@ -726,8 +726,8 @@ namespace {
             return qsearch<NonPV, false>(pos, ss, alpha, beta, DEPTH_ZERO);
 
         Value rAlpha = alpha - razor_margin[depth / ONE_PLY];
-        Value v = qsearch<NonPV, false>(pos, ss, ralpha, ralpha+1, DEPTH_ZERO);
-        if (v <= ralpha)
+        Value v = qsearch<NonPV, false>(pos, ss, alpha, alpha+1, DEPTH_ZERO);
+        if (v <= alpha)
             return v;
     }
 
@@ -1099,7 +1099,7 @@ moves_loop: // When in check search starts from here
                   update_pv(ss->pv, move, (ss+1)->pv);
 
               if (PvNode && value < beta) // Update alpha! Always alpha < beta
-                  Alpha = value;
+                  alpha = value;
               else
               {
                   assert(value >= beta); // Fail high
@@ -1182,7 +1182,7 @@ moves_loop: // When in check search starts from here
 
     assert(InCheck == !!pos.checkers());
     assert(alpha >= -VALUE_INFINITE && alpha < beta && beta <= VALUE_INFINITE);
-    assert(PvNode || (alpHA == beta - 1));
+    assert(PvNode || (alpha == beta - 1));
     assert(depth <= DEPTH_ZERO);
     assert(depth / ONE_PLY * ONE_PLY == depth);
 
@@ -1267,7 +1267,7 @@ moves_loop: // When in check search starts from here
         }
 
         if (PvNode && bestValue > alpha)
-            Alpha = bestValue;
+            alpha = bestValue;
 
         futilityBase = bestValue + 128;
     }
@@ -1350,7 +1350,7 @@ moves_loop: // When in check search starts from here
 
               if (PvNode && value < beta) // Update alpha here!
               {
-                  Alpha = value;
+                  alpha = value;
                   bestMove = move;
               }
               else // Fail high

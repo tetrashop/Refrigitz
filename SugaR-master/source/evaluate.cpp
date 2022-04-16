@@ -1012,10 +1012,10 @@ namespace {
 		{
 			constexpr double Shashin_Winning_Scale_Factor_Default = 0.05;
 
-			constexpr double Alpha = 0.5;
+			constexpr double alpha = 0.5;
 			const double Beta = abs(Shashin_Winning_Scale_Factor_Default * 2 / (MidgameLimit + EndgameLimit));
 
-			const double Shashin_Scale_Factor_Bonus = (-abs(v_Shashin_test / SHASHIN_ADVANTAGE_VALUE) + Alpha);
+			const double Shashin_Scale_Factor_Bonus = (-abs(v_Shashin_test / SHASHIN_ADVANTAGE_VALUE) + alpha);
 
 			if (abs(v_Shashin_test) >= double(PawnValueMg + PawnValueEg) / 2.0)
 			{

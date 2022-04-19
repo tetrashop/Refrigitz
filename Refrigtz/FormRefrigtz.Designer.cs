@@ -255,47 +255,37 @@ namespace Refrigtz
             // 
             // ToolStripMenuItem11
             // 
-            this.ToolStripMenuItem11.Enabled = false;
             this.ToolStripMenuItem11.Name = "ToolStripMenuItem11";
             this.ToolStripMenuItem11.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem11.Text = "Blitz Witout PR";
-            this.ToolStripMenuItem11.Visible = false;
             this.ToolStripMenuItem11.Click += new System.EventHandler(this.ToolStripMenuItem11_Click);
             // 
             // ToolStripMenuItem14
             // 
-            this.ToolStripMenuItem14.Enabled = false;
             this.ToolStripMenuItem14.Name = "ToolStripMenuItem14";
             this.ToolStripMenuItem14.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem14.Text = "Full Game";
-            this.ToolStripMenuItem14.Visible = false;
             this.ToolStripMenuItem14.Click += new System.EventHandler(this.ToolStripMenuItem14_Click);
             // 
             // ToolStripMenuItem13
             // 
-            this.ToolStripMenuItem13.Enabled = false;
             this.ToolStripMenuItem13.Name = "ToolStripMenuItem13";
             this.ToolStripMenuItem13.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem13.Text = "Full Game NO PR";
-            this.ToolStripMenuItem13.Visible = false;
             this.ToolStripMenuItem13.Click += new System.EventHandler(this.ToolStripMenuItem13_Click);
             // 
             // ToolStripMenuItem12
             // 
-            this.ToolStripMenuItem12.Enabled = false;
             this.ToolStripMenuItem12.Name = "ToolStripMenuItem12";
             this.ToolStripMenuItem12.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem12.Text = "Blitz No PR";
-            this.ToolStripMenuItem12.Visible = false;
             this.ToolStripMenuItem12.Click += new System.EventHandler(this.ToolStripMenuItem12_Click);
             // 
             // ToolStripMenuItem15
             // 
-            this.ToolStripMenuItem15.Enabled = false;
             this.ToolStripMenuItem15.Name = "ToolStripMenuItem15";
             this.ToolStripMenuItem15.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem15.Text = "Computer By Computer Full Game";
-            this.ToolStripMenuItem15.Visible = false;
             this.ToolStripMenuItem15.Click += new System.EventHandler(this.ToolStripMenuItem15_Click);
             // 
             // ToolStripMenuItem21
@@ -314,128 +304,100 @@ namespace Refrigtz
             // 
             // ToolStripMenuItem7
             // 
-            this.ToolStripMenuItem7.Enabled = false;
             this.ToolStripMenuItem7.Name = "ToolStripMenuItem7";
             this.ToolStripMenuItem7.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem7.Text = "Computer By Person Increamental";
-            this.ToolStripMenuItem7.Visible = false;
             this.ToolStripMenuItem7.Click += new System.EventHandler(this.ToolStripMenuItem7_Click_1);
             // 
             // ToolStripMenuItem8
             // 
-            this.ToolStripMenuItem8.Enabled = false;
             this.ToolStripMenuItem8.Name = "ToolStripMenuItem8";
             this.ToolStripMenuItem8.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem8.Text = "Common Increamental Computer By Computer";
-            this.ToolStripMenuItem8.Visible = false;
             this.ToolStripMenuItem8.Click += new System.EventHandler(this.ToolStripMenuItem8_Click);
             // 
             // ComputerWithComputerToolStripMenuItem
             // 
-            this.ComputerWithComputerToolStripMenuItem.Enabled = false;
             this.ComputerWithComputerToolStripMenuItem.Name = "ComputerWithComputerToolStripMenuItem";
             this.ComputerWithComputerToolStripMenuItem.Size = new System.Drawing.Size(327, 22);
             this.ComputerWithComputerToolStripMenuItem.Text = "Computer With Computer";
-            this.ComputerWithComputerToolStripMenuItem.Visible = false;
             this.ComputerWithComputerToolStripMenuItem.Click += new System.EventHandler(this.ComputerWithComputerToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem9
             // 
-            this.ToolStripMenuItem9.Enabled = false;
             this.ToolStripMenuItem9.Name = "ToolStripMenuItem9";
             this.ToolStripMenuItem9.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem9.Text = "Perofesional With Computer";
-            this.ToolStripMenuItem9.Visible = false;
             this.ToolStripMenuItem9.Click += new System.EventHandler(this.ToolStripMenuItem9_Click);
             // 
             // ComputerWithComputerToolStripMenuItem1
             // 
-            this.ComputerWithComputerToolStripMenuItem1.Enabled = false;
             this.ComputerWithComputerToolStripMenuItem1.Name = "ComputerWithComputerToolStripMenuItem1";
             this.ComputerWithComputerToolStripMenuItem1.Size = new System.Drawing.Size(327, 22);
             this.ComputerWithComputerToolStripMenuItem1.Text = "Computer With Person";
-            this.ComputerWithComputerToolStripMenuItem1.Visible = false;
             this.ComputerWithComputerToolStripMenuItem1.Click += new System.EventHandler(this.ComputerWithComputerToolStripMenuItem1_Click);
             // 
             // ToolStripMenuItem16
             // 
-            this.ToolStripMenuItem16.Enabled = false;
             this.ToolStripMenuItem16.Name = "ToolStripMenuItem16";
             this.ToolStripMenuItem16.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem16.Text = "Refregitz With Stockfish Blitz";
-            this.ToolStripMenuItem16.Visible = false;
             this.ToolStripMenuItem16.Click += new System.EventHandler(this.ToolStripMenuItem16_Click);
             // 
             // ToolStripMenuItem22
             // 
-            this.ToolStripMenuItem22.Enabled = false;
             this.ToolStripMenuItem22.Name = "ToolStripMenuItem22";
             this.ToolStripMenuItem22.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem22.Text = "Blitz Game With SugR";
-            this.ToolStripMenuItem22.Visible = false;
             this.ToolStripMenuItem22.Click += new System.EventHandler(this.ToolStripMenuItem22_Click);
             // 
             // ToolStripMenuItem19
             // 
-            this.ToolStripMenuItem19.Enabled = false;
             this.ToolStripMenuItem19.Name = "ToolStripMenuItem19";
             this.ToolStripMenuItem19.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem19.Text = "Blitz Game With Stockfish 8";
-            this.ToolStripMenuItem19.Visible = false;
             this.ToolStripMenuItem19.Click += new System.EventHandler(this.ToolStripMenuItem19_Click);
             // 
             // ToolStripMenuItem20
             // 
-            this.ToolStripMenuItem20.Enabled = false;
             this.ToolStripMenuItem20.Name = "ToolStripMenuItem20";
             this.ToolStripMenuItem20.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem20.Text = "Blitz Game With stockfish 8 with No PR";
-            this.ToolStripMenuItem20.Visible = false;
             this.ToolStripMenuItem20.Click += new System.EventHandler(this.ToolStripMenuItem20_Click);
             // 
             // ToolStripMenuItem23
             // 
-            this.ToolStripMenuItem23.Enabled = false;
             this.ToolStripMenuItem23.Name = "ToolStripMenuItem23";
             this.ToolStripMenuItem23.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem23.Text = "Refregitz With SugR Full Game";
-            this.ToolStripMenuItem23.Visible = false;
             this.ToolStripMenuItem23.Click += new System.EventHandler(this.ToolStripMenuItem23_Click);
             // 
             // ToolStripMenuItem10
             // 
-            this.ToolStripMenuItem10.Enabled = false;
             this.ToolStripMenuItem10.Name = "ToolStripMenuItem10";
             this.ToolStripMenuItem10.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem10.Text = "Refregitz With Stockfish8 Full Game";
-            this.ToolStripMenuItem10.Visible = false;
             this.ToolStripMenuItem10.Click += new System.EventHandler(this.ToolStripMenuItem10_Click);
             // 
             // ToolStripMenuItem18
             // 
-            this.ToolStripMenuItem18.Enabled = false;
             this.ToolStripMenuItem18.Name = "ToolStripMenuItem18";
             this.ToolStripMenuItem18.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem18.Text = "Refregitz With Stockfish8 Full Game witout PR";
-            this.ToolStripMenuItem18.Visible = false;
             this.ToolStripMenuItem18.Click += new System.EventHandler(this.ToolStripMenuItem18_Click);
             // 
             // ToolStripMenuItem17
             // 
-            this.ToolStripMenuItem17.Enabled = false;
             this.ToolStripMenuItem17.Name = "ToolStripMenuItem17";
             this.ToolStripMenuItem17.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItem17.Text = "Person with stockfish 8";
-            this.ToolStripMenuItem17.Visible = false;
             this.ToolStripMenuItem17.Click += new System.EventHandler(this.ToolStripMenuItem17_Click);
             // 
             // ToolStripMenuItemRandomGeneticGames
             // 
-            this.ToolStripMenuItemRandomGeneticGames.Enabled = false;
             this.ToolStripMenuItemRandomGeneticGames.Name = "ToolStripMenuItemRandomGeneticGames";
             this.ToolStripMenuItemRandomGeneticGames.Size = new System.Drawing.Size(327, 22);
             this.ToolStripMenuItemRandomGeneticGames.Text = "Random Genetic Games";
-            this.ToolStripMenuItemRandomGeneticGames.Visible = false;
             this.ToolStripMenuItemRandomGeneticGames.Click += new System.EventHandler(this.ToolStripMenuItem3_Click);
             // 
             // ExitToolStripMenuItem
@@ -455,7 +417,6 @@ namespace Refrigtz
             this.ToolStripMenuItem4.Name = "ToolStripMenuItem4";
             this.ToolStripMenuItem4.Size = new System.Drawing.Size(39, 20);
             this.ToolStripMenuItem4.Text = "Edit";
-            this.ToolStripMenuItem4.Visible = false;
             // 
             // VerifyToolStripMenuItem
             // 
@@ -493,7 +454,6 @@ namespace Refrigtz
             this.ToolStripMenuItem5.Name = "ToolStripMenuItem5";
             this.ToolStripMenuItem5.Size = new System.Drawing.Size(45, 20);
             this.ToolStripMenuItem5.Text = "Load";
-            this.ToolStripMenuItem5.Visible = false;
             // 
             // ContinueAGameToolStripMenuItem
             // 
@@ -511,7 +471,6 @@ namespace Refrigtz
             this.ToolStripMenuItem2.Name = "ToolStripMenuItem2";
             this.ToolStripMenuItem2.Size = new System.Drawing.Size(46, 20);
             this.ToolStripMenuItem2.Text = "Level";
-            this.ToolStripMenuItem2.Visible = false;
             // 
             // HardestToolStripMenuItem
             // 
@@ -589,7 +548,6 @@ namespace Refrigtz
             this.CheckBoxOnlySelf.TabIndex = 11;
             this.CheckBoxOnlySelf.Text = "Only Self ";
             this.CheckBoxOnlySelf.UseVisualStyleBackColor = true;
-            this.CheckBoxOnlySelf.Visible = false;
             // 
             // CheckBoxPredictHuristci
             // 
@@ -602,7 +560,6 @@ namespace Refrigtz
             this.CheckBoxPredictHuristci.TabIndex = 12;
             this.CheckBoxPredictHuristci.Text = "Predict Heuristic";
             this.CheckBoxPredictHuristci.UseVisualStyleBackColor = true;
-            this.CheckBoxPredictHuristci.Visible = false;
             this.CheckBoxPredictHuristci.CheckedChanged += new System.EventHandler(this.CheckBoxPredictHuristci_CheckedChanged);
             // 
             // CheckBoxBestMovments
@@ -614,7 +571,6 @@ namespace Refrigtz
             this.CheckBoxBestMovments.TabIndex = 13;
             this.CheckBoxBestMovments.Text = "Best Movments";
             this.CheckBoxBestMovments.UseVisualStyleBackColor = true;
-            this.CheckBoxBestMovments.Visible = false;
             // 
             // RadioButtonOriginalImages
             // 
@@ -625,7 +581,6 @@ namespace Refrigtz
             this.RadioButtonOriginalImages.TabIndex = 14;
             this.RadioButtonOriginalImages.Text = "Original Images";
             this.RadioButtonOriginalImages.UseVisualStyleBackColor = true;
-            this.RadioButtonOriginalImages.Visible = false;
             this.RadioButtonOriginalImages.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
             // RadioButtonBigFittingImages
@@ -637,7 +592,6 @@ namespace Refrigtz
             this.RadioButtonBigFittingImages.TabIndex = 15;
             this.RadioButtonBigFittingImages.Text = "Big Fiting Images";
             this.RadioButtonBigFittingImages.UseVisualStyleBackColor = true;
-            this.RadioButtonBigFittingImages.Visible = false;
             this.RadioButtonBigFittingImages.CheckedChanged += new System.EventHandler(this.RadioButtonBigFittingImages_CheckedChanged);
             // 
             // RadioButtonSmallFittingImages
@@ -651,7 +605,6 @@ namespace Refrigtz
             this.RadioButtonSmallFittingImages.TabStop = true;
             this.RadioButtonSmallFittingImages.Text = "Small Fitting Images";
             this.RadioButtonSmallFittingImages.UseVisualStyleBackColor = true;
-            this.RadioButtonSmallFittingImages.Visible = false;
             this.RadioButtonSmallFittingImages.CheckedChanged += new System.EventHandler(this.RadioButtonSmallFittingImages_CheckedChanged);
             // 
             // ButtonStop
@@ -663,7 +616,6 @@ namespace Refrigtz
             this.ButtonStop.TabIndex = 17;
             this.ButtonStop.Text = "Stop";
             this.ButtonStop.UseVisualStyleBackColor = true;
-            this.ButtonStop.Visible = false;
             this.ButtonStop.Click += new System.EventHandler(this.ButtonStop_Click);
             // 
             // CheckBoxAStarGreadyFirstSearch
@@ -677,7 +629,6 @@ namespace Refrigtz
             this.CheckBoxAStarGreadyFirstSearch.TabIndex = 18;
             this.CheckBoxAStarGreadyFirstSearch.Text = "AStarGreedy First Search";
             this.CheckBoxAStarGreadyFirstSearch.UseVisualStyleBackColor = true;
-            this.CheckBoxAStarGreadyFirstSearch.Visible = false;
             this.CheckBoxAStarGreadyFirstSearch.CheckedChanged += new System.EventHandler(this.CheckBoxAStarGreadyFirstSearch_CheckedChanged);
             // 
             // ButtonPauseStart
@@ -688,7 +639,6 @@ namespace Refrigtz
             this.ButtonPauseStart.TabIndex = 19;
             this.ButtonPauseStart.Text = "Pause";
             this.ButtonPauseStart.UseVisualStyleBackColor = true;
-            this.ButtonPauseStart.Visible = false;
             this.ButtonPauseStart.Click += new System.EventHandler(this.ButtonPause_Click);
             // 
             // CheckBoxAStarGreedyMovement
@@ -711,19 +661,17 @@ namespace Refrigtz
             this.CheckBoxUseDoubleTime.TabIndex = 21;
             this.CheckBoxUseDoubleTime.Text = "UseDoubleTime";
             this.CheckBoxUseDoubleTime.UseVisualStyleBackColor = true;
-            this.CheckBoxUseDoubleTime.Visible = false;
             this.CheckBoxUseDoubleTime.CheckedChanged += new System.EventHandler(this.CheckBoxUseDoubleTime_CheckedChanged);
             // 
             // CheckBoxDynamicProgrammingAStarGreedyt
             // 
             this.CheckBoxDynamicProgrammingAStarGreedyt.AutoSize = true;
-            this.CheckBoxDynamicProgrammingAStarGreedyt.Location = new System.Drawing.Point(590, 323);
+            this.CheckBoxDynamicProgrammingAStarGreedyt.Location = new System.Drawing.Point(590, 171);
             this.CheckBoxDynamicProgrammingAStarGreedyt.Name = "CheckBoxDynamicProgrammingAStarGreedyt";
             this.CheckBoxDynamicProgrammingAStarGreedyt.Size = new System.Drawing.Size(216, 17);
             this.CheckBoxDynamicProgrammingAStarGreedyt.TabIndex = 23;
             this.CheckBoxDynamicProgrammingAStarGreedyt.Text = "Dynamic Programming AStarGreedy First";
             this.CheckBoxDynamicProgrammingAStarGreedyt.UseVisualStyleBackColor = true;
-            this.CheckBoxDynamicProgrammingAStarGreedyt.Visible = false;
             this.CheckBoxDynamicProgrammingAStarGreedyt.CheckedChanged += new System.EventHandler(this.CheckBoxDynamicProgrammingAStarGreedyt_CheckedChanged);
             // 
             // labelTimesRemaining
@@ -736,13 +684,12 @@ namespace Refrigtz
             // 
             // ButtonCalculateRootGray
             // 
-            this.ButtonCalculateRootGray.Location = new System.Drawing.Point(592, 350);
+            this.ButtonCalculateRootGray.Location = new System.Drawing.Point(822, 167);
             this.ButtonCalculateRootGray.Name = "ButtonCalculateRootGray";
             this.ButtonCalculateRootGray.Size = new System.Drawing.Size(154, 23);
             this.ButtonCalculateRootGray.TabIndex = 26;
             this.ButtonCalculateRootGray.Text = "CalculateRootGray";
             this.ButtonCalculateRootGray.UseVisualStyleBackColor = true;
-            this.ButtonCalculateRootGray.Visible = false;
             this.ButtonCalculateRootGray.Click += new System.EventHandler(this.ButtonCalculateRootGray_Click);
             // 
             // CheckBoxIgnoreSelf
@@ -754,7 +701,6 @@ namespace Refrigtz
             this.CheckBoxIgnoreSelf.TabIndex = 27;
             this.CheckBoxIgnoreSelf.Text = "Ignore Self Objects Thinking";
             this.CheckBoxIgnoreSelf.UseVisualStyleBackColor = true;
-            this.CheckBoxIgnoreSelf.Visible = false;
             this.CheckBoxIgnoreSelf.CheckedChanged += new System.EventHandler(this.CheckBoxIgnoreSelf_CheckedChanged);
             // 
             // groupBoxGroupOfPowerity
@@ -771,14 +717,12 @@ namespace Refrigtz
             this.groupBoxGroupOfPowerity.Controls.Add(this.ComboBoxReducedAttacked);
             this.groupBoxGroupOfPowerity.Controls.Add(this.ComboBoxObjectDangour);
             this.groupBoxGroupOfPowerity.Controls.Add(this.ComboBoxAttack);
-            this.groupBoxGroupOfPowerity.Enabled = false;
             this.groupBoxGroupOfPowerity.Location = new System.Drawing.Point(583, 528);
             this.groupBoxGroupOfPowerity.Name = "groupBoxGroupOfPowerity";
             this.groupBoxGroupOfPowerity.Size = new System.Drawing.Size(375, 72);
             this.groupBoxGroupOfPowerity.TabIndex = 42;
             this.groupBoxGroupOfPowerity.TabStop = false;
             this.groupBoxGroupOfPowerity.Text = "Group Of Powerity";
-            this.groupBoxGroupOfPowerity.Visible = false;
             // 
             // labelMovments
             // 
@@ -962,14 +906,12 @@ namespace Refrigtz
             // 
             // ButtonChangeArrangment
             // 
-            this.ButtonChangeArrangment.Enabled = false;
             this.ButtonChangeArrangment.Location = new System.Drawing.Point(592, 239);
             this.ButtonChangeArrangment.Name = "ButtonChangeArrangment";
             this.ButtonChangeArrangment.Size = new System.Drawing.Size(37, 23);
             this.ButtonChangeArrangment.TabIndex = 43;
             this.ButtonChangeArrangment.Text = "<>";
             this.ButtonChangeArrangment.UseVisualStyleBackColor = true;
-            this.ButtonChangeArrangment.Visible = false;
             this.ButtonChangeArrangment.Click += new System.EventHandler(this.ButtonChangeArrangment_Click);
             // 
             // BackgroundWorkerAllOp
@@ -1017,24 +959,20 @@ namespace Refrigtz
             // 
             // PictureBoxTimerGray
             // 
-            this.PictureBoxTimerGray.Enabled = false;
             this.PictureBoxTimerGray.Location = new System.Drawing.Point(583, 39);
             this.PictureBoxTimerGray.Name = "PictureBoxTimerGray";
             this.PictureBoxTimerGray.Size = new System.Drawing.Size(193, 66);
             this.PictureBoxTimerGray.TabIndex = 87;
             this.PictureBoxTimerGray.TabStop = false;
-            this.PictureBoxTimerGray.Visible = false;
             this.PictureBoxTimerGray.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxTimerGray_Paint);
             // 
             // PictureBoxTimerBrown
             // 
-            this.PictureBoxTimerBrown.Enabled = false;
             this.PictureBoxTimerBrown.Location = new System.Drawing.Point(794, 38);
             this.PictureBoxTimerBrown.Name = "PictureBoxTimerBrown";
             this.PictureBoxTimerBrown.Size = new System.Drawing.Size(193, 66);
             this.PictureBoxTimerBrown.TabIndex = 88;
             this.PictureBoxTimerBrown.TabStop = false;
-            this.PictureBoxTimerBrown.Visible = false;
             this.PictureBoxTimerBrown.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxTimerBrown_Paint);
             // 
             // PictureBox1
@@ -1297,14 +1235,12 @@ namespace Refrigtz
             // CheckBoxAStarGreedyHeuristic
             // 
             this.CheckBoxAStarGreedyHeuristic.AutoSize = true;
-            this.CheckBoxAStarGreedyHeuristic.Enabled = false;
             this.CheckBoxAStarGreedyHeuristic.Location = new System.Drawing.Point(877, 190);
             this.CheckBoxAStarGreedyHeuristic.Name = "CheckBoxAStarGreedyHeuristic";
             this.CheckBoxAStarGreedyHeuristic.Size = new System.Drawing.Size(130, 17);
             this.CheckBoxAStarGreedyHeuristic.TabIndex = 121;
             this.CheckBoxAStarGreedyHeuristic.Text = "AStarGreedy Heuristic";
             this.CheckBoxAStarGreedyHeuristic.UseVisualStyleBackColor = true;
-            this.CheckBoxAStarGreedyHeuristic.Visible = false;
             this.CheckBoxAStarGreedyHeuristic.CheckedChanged += new System.EventHandler(this.CheckBoxAStarGreedyHeuristic_CheckedChanged);
             this.CheckBoxAStarGreedyHeuristic.CheckStateChanged += new System.EventHandler(this.CheckBoxAStarGreedyHeuristic_CheckStateChanged);
             // 
@@ -1342,14 +1278,12 @@ namespace Refrigtz
             // CheckBoxUsePenaltyRegradMechnisam
             // 
             this.CheckBoxUsePenaltyRegradMechnisam.AutoSize = true;
-            this.CheckBoxUsePenaltyRegradMechnisam.Enabled = false;
             this.CheckBoxUsePenaltyRegradMechnisam.Location = new System.Drawing.Point(592, 289);
             this.CheckBoxUsePenaltyRegradMechnisam.Name = "CheckBoxUsePenaltyRegradMechnisam";
             this.CheckBoxUsePenaltyRegradMechnisam.Size = new System.Drawing.Size(178, 17);
             this.CheckBoxUsePenaltyRegradMechnisam.TabIndex = 125;
             this.CheckBoxUsePenaltyRegradMechnisam.Text = "Use Penalty Regrad Mechnisam";
             this.CheckBoxUsePenaltyRegradMechnisam.UseVisualStyleBackColor = true;
-            this.CheckBoxUsePenaltyRegradMechnisam.Visible = false;
             this.CheckBoxUsePenaltyRegradMechnisam.CheckedChanged += new System.EventHandler(this.CheckBoxUsePenaltyRegradMechnisam_CheckedChanged);
             this.CheckBoxUsePenaltyRegradMechnisam.CheckStateChanged += new System.EventHandler(this.CheckBoxUsePenaltyRegradMechnisam_CheckStateChanged);
             // 
@@ -1360,7 +1294,6 @@ namespace Refrigtz
             this.ProgressBarVerify.Name = "ProgressBarVerify";
             this.ProgressBarVerify.Size = new System.Drawing.Size(552, 23);
             this.ProgressBarVerify.TabIndex = 126;
-            this.ProgressBarVerify.Visible = false;
             this.ProgressBarVerify.CursorChanged += new System.EventHandler(this.ProgressBarVerify_CursorChanged);
             this.ProgressBarVerify.Click += new System.EventHandler(this.ProgressBarVerify_Click);
             this.ProgressBarVerify.Validated += new System.EventHandler(this.ProgressBarVerify_Validated);
@@ -1423,13 +1356,12 @@ namespace Refrigtz
             this.TextBoxStatistic.Multiline = true;
             this.TextBoxStatistic.Name = "TextBoxStatistic";
             this.TextBoxStatistic.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TextBoxStatistic.Size = new System.Drawing.Size(298, 72);
+            this.TextBoxStatistic.Size = new System.Drawing.Size(298, 53);
             this.TextBoxStatistic.TabIndex = 131;
             this.TextBoxStatistic.TextChanged += new System.EventHandler(this.TextBoxStatistic_TextChanged);
             // 
             // TextBoxText
             // 
-            this.TextBoxText.Enabled = false;
             this.TextBoxText.Location = new System.Drawing.Point(590, 379);
             this.TextBoxText.Multiline = true;
             this.TextBoxText.Name = "TextBoxText";
@@ -1456,26 +1388,22 @@ namespace Refrigtz
             // 
             // ButtonPrevious
             // 
-            this.ButtonPrevious.Enabled = false;
             this.ButtonPrevious.Location = new System.Drawing.Point(607, 606);
             this.ButtonPrevious.Name = "ButtonPrevious";
             this.ButtonPrevious.Size = new System.Drawing.Size(75, 23);
             this.ButtonPrevious.TabIndex = 135;
             this.ButtonPrevious.Text = "Previous";
             this.ButtonPrevious.UseVisualStyleBackColor = true;
-            this.ButtonPrevious.Visible = false;
             this.ButtonPrevious.Click += new System.EventHandler(this.ButtonPrevious_Click);
             // 
             // ButtonNext
             // 
-            this.ButtonNext.Enabled = false;
             this.ButtonNext.Location = new System.Drawing.Point(691, 606);
             this.ButtonNext.Name = "ButtonNext";
             this.ButtonNext.Size = new System.Drawing.Size(75, 23);
             this.ButtonNext.TabIndex = 136;
             this.ButtonNext.Text = "Next";
             this.ButtonNext.UseVisualStyleBackColor = true;
-            this.ButtonNext.Visible = false;
             this.ButtonNext.Click += new System.EventHandler(this.ButtonNext_Click);
             // 
             // FormRefrigtz

@@ -87,6 +87,8 @@ namespace Refrigtz
     //Constructor
     public partial class FormRefrigtz : Form
     {
+        int KindMoveDraw = 0;
+        bool AlloWMouseClickTow = false;
         public bool AddPath = false;
         private bool NotFoundBegin = false;
         private int[,] TabStor = null;
@@ -8289,6 +8291,17 @@ namespace Refrigtz
                 //g = null;
                 SetPrictureBoxRefregitzInvalidate(PictureBoxRefrigtz);
                 SetPrictureBoxRefregitzUpdate(PictureBoxRefrigtz);
+                if (!Quantum)
+                {
+                    if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                        AlloWMouseClickTow = true;
+                }
+                else
+                {
+                    if (QuantumRefrigiz.AllDraw.MouseClick == 1)
+                        AlloWMouseClickTow = true;
+
+                }
                 return;
             }
         }
@@ -18300,6 +18313,7 @@ if (Tag.Contains("King"))
                                                     {
                                                         Soldier = ii;
                                                         RefrigtzDLL.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 1;
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
                                                         return;
@@ -18320,6 +18334,7 @@ if (Tag.Contains("King"))
                                                         Elefant = ii;
                                                         RefrigtzDLL.AllDraw.MouseClick++;
                                                         SetBoxText("\r\nObject Selected.");
+                                                        KindMoveDraw = 2;
                                                         RefreshBoxText();
                                                         return;
                                                     }
@@ -18338,6 +18353,7 @@ if (Tag.Contains("King"))
                                                     {
                                                         Hourse = ii;
                                                         RefrigtzDLL.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 3;
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
 
@@ -18357,6 +18373,7 @@ if (Tag.Contains("King"))
                                                     {
                                                         Castle = ii;
                                                         RefrigtzDLL.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 4;
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
                                                         return;
@@ -18376,6 +18393,7 @@ if (Tag.Contains("King"))
                                                     {
                                                         Minister = ii;
                                                         RefrigtzDLL.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 5;
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
                                                         return;
@@ -18395,6 +18413,7 @@ if (Tag.Contains("King"))
                                                     {
                                                         King = ii;
                                                         RefrigtzDLL.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 6;
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
                                                         return;
@@ -18411,7 +18430,7 @@ if (Tag.Contains("King"))
                                         }
                                         else
                                         {
-                                            if (RefrigtzDLL.AllDraw.MouseClick == 1)
+                                            if (RefrigtzDLL.AllDraw.MouseClick == 1 && AlloWMouseClickTow)
                                             {
 
                                                 RowRealesed = i;
@@ -18426,7 +18445,8 @@ if (Tag.Contains("King"))
                                             }
                                             else
                                             {
-
+                                                AlloWMouseClickTow = false;
+                                                KindMoveDraw = 0;
                                                 //Needing for Objects for fen string of stockfish
                                                 if (!Stockfish && (!Person))
                                                 {
@@ -18469,6 +18489,7 @@ if (Tag.Contains("King"))
                                                     {
                                                         Soldier = ii;
                                                         QuantumRefrigiz.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 1;
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
                                                         return;
@@ -18488,6 +18509,7 @@ if (Tag.Contains("King"))
                                                     {
                                                         Elefant = ii;
                                                         QuantumRefrigiz.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 2;
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
                                                         return;
@@ -18507,6 +18529,7 @@ if (Tag.Contains("King"))
                                                     {
                                                         Hourse = ii;
                                                         QuantumRefrigiz.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 3;
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
 
@@ -18526,6 +18549,8 @@ if (Tag.Contains("King"))
                                                     {
                                                         Castle = ii;
                                                         QuantumRefrigiz.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 4;
+
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
                                                         return;
@@ -18545,6 +18570,8 @@ if (Tag.Contains("King"))
                                                     {
                                                         Minister = ii;
                                                         QuantumRefrigiz.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 5;
+
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
                                                         return;
@@ -18564,6 +18591,8 @@ if (Tag.Contains("King"))
                                                     {
                                                         King = ii;
                                                         QuantumRefrigiz.AllDraw.MouseClick++;
+                                                        KindMoveDraw = 6;
+
                                                         SetBoxText("\r\nObject Selected.");
                                                         RefreshBoxText();
                                                         return;
@@ -18580,7 +18609,7 @@ if (Tag.Contains("King"))
                                         }
                                         else
                                         {
-                                            if (QuantumRefrigiz.AllDraw.MouseClick == 1)
+                                            if (QuantumRefrigiz.AllDraw.MouseClick == 1 && AlloWMouseClickTow)
                                             {
 
                                                 RowRealesed = i;
@@ -18593,10 +18622,24 @@ if (Tag.Contains("King"))
                                                 RefreshBoxText();
 
                                             }
-                                            else if (!Person)
+                                            else
+                                            {
+                                                KindMoveDraw = 0;
+                                                AlloWMouseClickTow = false;
+                                                RowClick = -1;
+                                                ColumnClick = -1;
+                                                RowClickP = -1;
+                                                ColumnClickP = -1;
+                                                RowRealesed = -1;
+                                                ColumnRealeased = -1;
+                                                //////RefrigtzDLL.AllDraw.MouseClick = 0;
+                                                SetBoxText("\r\nObject Cleared.");
+                                                RefreshBoxText();
                                                 QuantumRefrigiz.AllDraw.MouseClick = 0;
+                                            }
                                         }
                                     }
+                                    
 
 
                                 }
@@ -18635,6 +18678,7 @@ if (Tag.Contains("King"))
                     f.Start();
 
                 }
+                MovmentneDraw(KindMoveDraw);
 
                 try
                 {
@@ -21999,12 +22043,13 @@ if (Tag.Contains("King"))
                 if (Quantum)
                 {
                     Do = MovementQuantum();
+                    
                 }
                 else
                 {
                     Do = MovementRefrigitzDLL();
                 }
-
+                
                 if (!Quantum)
                 {
                     if (RefrigtzDLL.AllDraw.MouseClick == 2)
@@ -22042,11 +22087,6 @@ if (Tag.Contains("King"))
         private void backgroundWorkerMoveBrown_DoWork(object sender, DoWorkEventArgs e)
         {
             MoveBrown();
-
-        }
-
-        private void PictureBoxRefrigitz_Click(object sender, EventArgs e)
-        {
 
         }
 

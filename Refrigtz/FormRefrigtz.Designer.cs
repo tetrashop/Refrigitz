@@ -950,7 +950,6 @@ namespace Refrigtz
             this.PictureBoxRefrigtz.Size = new System.Drawing.Size(552, 552);
             this.PictureBoxRefrigtz.TabIndex = 86;
             this.PictureBoxRefrigtz.TabStop = false;
-            this.PictureBoxRefrigtz.Click += new System.EventHandler(this.PictureBoxRefrigitz_Click);
             this.PictureBoxRefrigtz.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxRefrigtz_Paint);
             this.PictureBoxRefrigtz.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBoxRefrigtz_MouseClick);
             this.PictureBoxRefrigtz.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PictureBoxRefrigtz_MouseDoubleClick);

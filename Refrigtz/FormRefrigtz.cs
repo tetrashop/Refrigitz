@@ -87,6 +87,7 @@ namespace Refrigtz
     //Constructor
     public partial class FormRefrigtz : Form
     {
+        public bool AddPath = false;
         private bool NotFoundBegin = false;
         private int[,] TabStor = null;
         private bool PersonTmCall = true;
@@ -108,7 +109,7 @@ namespace Refrigtz
         public static int AllDrawKind = 0;//0,1,2,3,4,5,6
         public static string AllDrawKindString = "";
         private bool MenueSelecte = false;
-        private readonly string path3 = @"temp";
+        private string path3 = @"temp";
         private string AllDrawReplacement = "";
         private bool Sugar = false;
         public static bool Quantum = false;
@@ -3980,7 +3981,7 @@ namespace Refrigtz
                         else
                         {
                             //Refrigtz.Timer.AStarGreadyFirstSearch = QuantumRefrigiz.AllDraw.AStarGreadyFirstSearch;
-                           // Refrigtz.Timer.AStarGreedytiLevelMax = QuantumRefrigiz.AllDraw.AStarGreedyiLevelMax;
+                            // Refrigtz.Timer.AStarGreedytiLevelMax = QuantumRefrigiz.AllDraw.AStarGreedyiLevelMax;
                             Refrigtz.Timer.UseDoubleTime = QuantumRefrigiz.AllDraw.UseDoubleTime;
                             Refrigtz.Timer.StoreAllDrawCount = QuantumRefrigiz.AllDraw.StoreADraw.Count;
                         }
@@ -4233,7 +4234,7 @@ namespace Refrigtz
                         }
                         else
                         {
-                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, Table[(int)RowClickP, (int)ColumnClickP], CloneATable(Table), Order)).Rules((int)RowClickP, (int)ColumnClickP, i, j,Table[(int)RowClickP, (int)ColumnClickP]))
+                            if ((new QuantumRefrigiz.ChessRules(0, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged, Table[(int)RowClickP, (int)ColumnClickP], CloneATable(Table), Order)).Rules((int)RowClickP, (int)ColumnClickP, i, j, Table[(int)RowClickP, (int)ColumnClickP]))
                             {
                                 Tab[i, j] = true;
                             }
@@ -5021,7 +5022,9 @@ namespace Refrigtz
             }
         }
 
-        private bool DrawManagement()
+
+        //tetrashop.ir
+        public bool DrawManagement()
         {
             object OO = new object();
             lock (OO)
@@ -5029,69 +5032,111 @@ namespace Refrigtz
                 SetAllDrawKind();
 
                 //Set Configuration To True for some unknown reason!.
-                //UpdateConfigurationTableVal = true;                             
+                //UpdateConfigurationTableVal = true;
                 SetAllDrawKindString();
 
                 bool Found = false;
+                if (AddPath)
+                {
+                    path3 = path3 + "\\SimpleThreadedChat";
+                    Console.WriteLine(path3);
+                }
                 string P = Path.GetFullPath(path3);
                 AllDrawReplacement = Path.Combine(P, AllDrawKindString);
-                if (!NotFoundBegin)
+
+                if (AddPath)
                 {
+                    AllDrawKindString = Path.Combine("temp\\SimpleThreadedChat\\", AllDrawKindString);
+                    Console.WriteLine(AllDrawReplacement);
+                    Console.WriteLine(AllDrawKindString);
+                }
+                if (!Quantum)
+                {
+                   RefrigtzChessPortable.Logger y = new RefrigtzChessPortable.Logger(AllDrawReplacement);
+                    //y.Dispose();
+
+                    y = new RefrigtzChessPortable.Logger(AllDrawKindString);
+                    //y.Dispose();
+
+                    if (File.Exists(AllDrawReplacement))
+                    {
+                        if (RefrigtzDLL.AllDraw.HarasAct)
+                        {
+                            File.Delete(AllDrawReplacement);
+                        }
+                    }
                     if (File.Exists(AllDrawKindString))
                     {
-
-                        if (File.Exists(AllDrawReplacement))
+                        if (RefrigtzDLL.AllDraw.HarasAct)
                         {
-                            if ((!FOUND) && ((new System.IO.FileInfo(AllDrawKindString).Length) < (new System.IO.FileInfo(AllDrawReplacement)).Length))
-                            {
-                                File.Delete(AllDrawKindString);
-                                File.Copy(AllDrawReplacement, AllDrawKindString);
-                                Found = true;
-                            }
-                            else if (FOUND && ((new System.IO.FileInfo(AllDrawKindString).Length) > (new System.IO.FileInfo(AllDrawReplacement)).Length))
-                            {
-                                if (File.Exists(AllDrawReplacement))
-                                {
-                                    File.Delete(AllDrawReplacement);
-                                }
-
-                                File.Copy(AllDrawKindString, AllDrawReplacement);
-                                Found = true;
-                            }
+                            File.Delete(AllDrawKindString);
                         }
-                        else
+                    }
+                    RefrigtzDLL.AllDraw.HarasAct = false;
+                }
+                else
+                {
+                   RefrigtzChessPortable.Logger y = new RefrigtzChessPortable.Logger(AllDrawReplacement);
+                    //y.Dispose();
+
+                    y = new RefrigtzChessPortable.Logger(AllDrawKindString);
+                    //y.Dispose();
+
+                    if (File.Exists(AllDrawReplacement))
+                    {
+                        if (QuantumRefrigiz.AllDraw.HarasAct)
                         {
-                            if (!Directory.Exists(Path.GetFullPath(path3)))
+                            File.Delete(AllDrawReplacement);
+                        }
+                    }
+                    if (File.Exists(AllDrawKindString))
+                    {
+                        if (QuantumRefrigiz.AllDraw.HarasAct)
+                        {
+                            File.Delete(AllDrawKindString);
+                        }
+                    }
+                    QuantumRefrigiz.AllDraw.HarasAct = false;
+                }
+                if (File.Exists(AllDrawKindString))
+                {
+                    if (File.Exists(AllDrawReplacement))
+                    {
+                        if (((new System.IO.FileInfo(AllDrawKindString).Length) < (new System.IO.FileInfo(AllDrawReplacement)).Length))
+                        {
+                            File.Delete(AllDrawKindString);
+                            File.Copy(AllDrawReplacement, AllDrawKindString);
+                            Found = true;
+                        }
+                        else if (((new System.IO.FileInfo(AllDrawKindString).Length) > (new System.IO.FileInfo(AllDrawReplacement)).Length))
+                        {
+                            if (File.Exists(AllDrawReplacement))
                             {
-                                Directory.CreateDirectory(Path.GetFullPath(path3));
+                                File.Delete(AllDrawReplacement);
                             }
 
                             File.Copy(AllDrawKindString, AllDrawReplacement);
                             Found = true;
-
                         }
-                        Found = true;
                     }
-                    else if (File.Exists(AllDrawReplacement))
+                    else
                     {
-                        File.Copy(AllDrawReplacement, AllDrawKindString);
+                        if (!Directory.Exists(Path.GetFullPath(path3)))
+                        {
+                            Directory.CreateDirectory(Path.GetFullPath(path3));
+                        }
+
+                        File.Copy(AllDrawKindString, AllDrawReplacement);
                         Found = true;
                     }
+                    Found = true;
                 }
-                else
+                else if (File.Exists(AllDrawReplacement))
                 {
-                    if (File.Exists(AllDrawKindString))
-                    {
-                        File.Delete(AllDrawKindString);
-                    }
-
-                    if (File.Exists(AllDrawReplacement))
-                    {
-                        File.Delete(AllDrawReplacement);
-                    }
-
-                    NotFoundBegin = false;
+                    File.Copy(AllDrawReplacement, AllDrawKindString);
+                    Found = true;
                 }
+
                 return Found;
             }
         }
@@ -5144,6 +5189,8 @@ namespace Refrigtz
             }
         }
 
+
+        //tetrashop.ir
         private void SetAllDrawKindString()
         {
             object O = new object();
@@ -5151,26 +5198,27 @@ namespace Refrigtz
             {
                 if (AllDrawKind == 4)
                 {
-                    AllDrawKindString = "AllDrawBT.asd";//Both True
+                    AllDrawKindString = "S_AllDrawBT.asd";
                 }
                 else
                 if (AllDrawKind == 3)
                 {
-                    AllDrawKindString = "AllDrawFFST.asd";//First false second true
+                    AllDrawKindString = "S_AllDrawFFST.asd";
                 }
                 else
                 if (AllDrawKind == 2)
                 {
-                    AllDrawKindString = "AllDrawFTSF.asd";//First true second false
+                    AllDrawKindString = "S_AllDrawFTSF.asd";
                 }
                 else
                 if (AllDrawKind == 1)
                 {
-                    AllDrawKindString = "AllDrawFFSF.asd";//Fist false second false
+                    AllDrawKindString = "S_AllDrawFFSF.asd";
                 }
             }
         }
 
+        //tetrashop.ir
         private void SetAllDrawKind()
         {
             object O = new object();
@@ -5197,6 +5245,7 @@ namespace Refrigtz
                 }
             }
         }
+
 
         private void LoadForm()
         {
@@ -6556,7 +6605,7 @@ namespace Refrigtz
             lock (O)
             {
                 string TableName = null;
-                Begin12:
+            Begin12:
                 try
                 {
 
@@ -6628,7 +6677,7 @@ namespace Refrigtz
             object O = new object();
             lock (O)
             {
-                Begin12:
+            Begin12:
                 oleDbCmd = new OleDbCommand();
                 bookConn = new OleDbConnection(connParam);
                 bookConn.Open();
@@ -6803,7 +6852,7 @@ namespace Refrigtz
 
                 if (!AllDrawLoad)
                 {
-                    Begin12:
+                Begin12:
                     try
                     {
 
@@ -7046,7 +7095,7 @@ namespace Refrigtz
             object O = new object();
             lock (O)
             {
-                Begin12:
+            Begin12:
                 if (bookConn != null)
                 {
                     bookConn.Close();
@@ -7901,7 +7950,7 @@ namespace Refrigtz
                 //var parallelOptions = new ParallelOptions();
                 //parallelOptionsMaxDegreeOfParallelism =System.Threading.PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
 
-                double HA =1;
+                double HA = 1;
                 if (!Quantum)
                 {
                     HA += CalculateMoveMentHueuristicUserRefrigitzDLL(Kind, CloneATable(Table), Order, Row, Column, RowSource, ColumnS, color);
@@ -8661,7 +8710,7 @@ namespace Refrigtz
                         LastColumn = (int)ColumnRealeased;
                         CurrentKind = 1;
                         ConvertWait = true;
-                        Draw.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased,CloneATable(Table), OrderPlate);
+                        Draw.SolderesOnTable[Soldier].ConvertOperation((int)RowRealesed, (int)ColumnRealeased, CloneATable(Table), OrderPlate);
 
                         Task array = Task.Run(() => WaitConvertion()); array.Wait(); array.Dispose();
                         int[,] TableCon = new int[8, 8];
@@ -12659,9 +12708,9 @@ namespace Refrigtz
                         {
                             PersonTmCall = false;
                             Person = true;
-                             /*Thread t = new Thread(new ThreadStart(backgroundWorkerMoveGray.RunWorkerAsync));
-                             t.Start();
-                             t.Join();*/
+                            /*Thread t = new Thread(new ThreadStart(backgroundWorkerMoveGray.RunWorkerAsync));
+                            t.Start();
+                            t.Join();*/
                             backgroundWorkerMoveGray.RunWorkerAsync();
                             WaitBackGround(backgroundWorkerMoveGray);
                             Thread arr = new Thread(new ThreadStart(SetDrawFound));
@@ -15159,10 +15208,200 @@ else*/
                 }
             }
         }
-        //#pragma warning disable CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
-        public void SetDrawFounding(ref bool FOUND, ref RefrigtzDLL.AllDraw THIS, bool First)
-        //#pragma warning restore CS0246 // The type or namespace name 'RefrigtzDLL' could not be found (are you missing a using directive or an assembly reference?)
+        //tetrashop.ir
+        public void SetDrawFounding(ref bool FOUNDI, ref RefrigtzDLL.AllDraw THISI, bool FirstI)
         {
+            /*    Object OO = new Object();
+                lock (OO)
+                {
+                    if (Draw == null)
+                        return;
+                    int Dummy = OrderPlate;
+
+                    RefrigtzDLL.AllDraw THISB = Draw.AStarGreedyString;
+                    RefrigtzDLL.AllDraw THISStore = Draw;
+                    //while (Draw.AStarGreedyString != null)
+                    bool FOUND = false;
+                    RefrigtzDLL.AllDraw THIS = null;
+                    bool First = false;
+
+                    Object O = new Object();
+                    lock (O)
+                    {
+                        FOUND = false;
+                        THIS = null;
+                        Color a = Color.Brown;
+                        //if (First)
+
+                        //else
+                        int Ord = OrderPlate;
+                        AllDraw.OrderPlate = Ord;
+                        var output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND));
+                        output.Wait();
+                        output.Dispose();
+                        if (FOUND)
+                        {
+                            Draw = THIS;
+
+                            bool LoadTree = true;
+                            Ord = OrderPlate;
+                            //if (MovmentsNumber > 1)
+                            (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+
+                            Draw.IsCurrentDraw = true;
+                        }
+                        else
+                        {
+                            FOUND = false;
+
+                            a = Color.Brown;
+                            while (Draw.AStarGreedyString != null)
+                                Draw = Draw.AStarGreedyString;
+
+                            bool FirstS = false;
+                            if ((RefrigtzDLL.AllDraw.TableListAction.Count > 2))
+                            {
+                                Ord = OrderPlate * -1;
+                                AllDraw.OrderPlate = Ord;
+                                OrderPlate = Ord;
+
+                                Color aa = Color.Gray;
+                                if (Ord == -1)
+                                    aa = Color.Brown;
+                                output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]), Ord, ref THIS, ref FOUND));
+                                output.Wait();
+                                output.Dispose();
+                            }
+                            else
+                            if ((RefrigtzDLL.AllDraw.TableListAction.Count >= 1))
+                            {
+                                output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND));
+                                output.Wait();
+                                output.Dispose();
+                                FirstS = true;
+                            }
+
+                            if (FOUND)
+                            {
+                                Draw = THIS;
+
+                                Draw.IsCurrentDraw = true;
+
+                                bool Store = Deeperthandeeper;
+                                Deeperthandeeper = false;
+
+                                Color aa = Color.Gray;
+                                if (Ord == -1)
+                                    aa = Color.Brown;
+                                bool B = AllDraw.Blitz;
+                                AllDraw.Blitz = false;
+                                //RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
+
+                                if (!FirstS)
+                                {
+                                    AllDraw thiB = Draw.AStarGreedyString;
+                                    if (Draw.IsAtLeastAllObjectIsNull())
+                                    {
+                                        Draw.TableList.Clear();
+                                        Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]));
+                                        Draw.SetRowColumn(0);
+                                        Draw.IsCurrentDraw = true;
+                                    }
+                                    Draw.AStarGreedyString = thiB;
+
+                                    output = Task.Run(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]), Ord, false, FOUND, 0));
+                                    output.Wait();
+                                    output.Dispose();
+                                }
+                                else
+                                {
+                                    FOUND = false;
+
+                                    AllDraw thiB = Draw.AStarGreedyString;
+                                    if (Draw.IsAtLeastAllObjectIsNull())
+                                    {
+                                        Draw.TableList.Clear();
+                                        Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
+                                        Draw.SetRowColumn(0);
+                                        Draw.IsCurrentDraw = true;
+                                    }
+                                    Draw.AStarGreedyString = thiB;
+
+                                    output = Task.Run(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
+                                    output.Wait();
+                                    output.Dispose();
+                                }
+                                AllDraw.Blitz = B;
+                                Deeperthandeeper = Store;
+                                //while (Draw.AStarGreedyString != null)
+
+                                FOUND = false;
+                                if (!First && (RefrigtzDLL.AllDraw.TableListAction.Count > 2))
+                                {
+                                    Ord = OrderPlate * -1;
+                                    AllDraw.OrderPlate = Ord;
+                                    OrderPlate = Ord;
+                                }
+                                output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND));
+                                output.Wait();
+                                output.Dispose();
+
+                                if (FOUND)
+                                {
+                                    Draw = THIS;
+
+                                    bool LoadTree = true;
+                                    (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+                                    AllDraw.OrderPlate = Ord;
+                                }
+                                else
+                                {
+                                    Draw = THISStore;
+                                    if (MovmentsNumber == 1)
+                                        NotFoundBegin = true;
+
+                                    bool LoadTree = true;
+
+                                    Draw.TableList.Clear();
+                                    Draw.TableList.Add(CloneATable(Table));
+                                    Draw.SetRowColumn(0);
+                                    Draw.IsCurrentDraw = true;
+                                    Draw.AStarGreedyString = THISB;
+                                    RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
+                                    RefrigtzDLL.AllDraw.DepthIterative = 0;
+                                    (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+                                }
+                            }
+                            else
+                            {
+                                Draw = THISStore;
+                                if (MovmentsNumber == 1)
+                                    NotFoundBegin = true;
+                                OrderPlate = Dummy;
+
+                                bool LoadTree = true;
+
+                                Draw.TableList.Clear();
+                                Draw.TableList.Add(CloneATable(Table));
+                                Draw.SetRowColumn(0);
+                                Draw.IsCurrentDraw = true;
+                                Draw.AStarGreedyString = THISB;
+                                RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
+                                RefrigtzDLL.AllDraw.DepthIterative = 0;
+                                (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+                            }
+                        }
+                    }
+
+                    if (RefrigtzDLL.AllDraw.FirstTraversalTree)
+                        FOUND = false;
+                    FOUNDI = FOUND;
+                    THISI = THIS;
+                    FirstI = First;
+                    DrawManagement();
+                }
+    */
+
             object OO = new object();
             lock (OO)
             {
@@ -15172,304 +15411,34 @@ else*/
                 }
 
                 int Dummy = OrderPlate;
-                /*  if (Sec.RadioButtonGrayOrder.Checked)
-                      OrderPlate = 1;
-                  else
-                      OrderPlate = -1;
-           */
+
+                RefrigtzDLL.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; RefrigtzDLL.AllDraw.MaxAStarGreedy = 0;
+
                 RefrigtzDLL.AllDraw THISB = Draw.AStarGreedyString;
                 RefrigtzDLL.AllDraw THISStore = Draw;
                 //while (Draw.AStarGreedyString != null)
-                //Draw = Draw.AStarGreedyString;
+                bool FOUND = false;
+                RefrigtzDLL.AllDraw THIS = null;
+                bool First = false;
 
-                /*
-                OrderPlate = Draw.OrderP;
-                if ((Stockfish || Sugar || StateCC || StateCP) && (!BobSection) && LoadO)
-                    OrderPlate *= -1;
-    */
-                //OrderPlate = Draw.OrderP;
-
-                /*Object O = new Object();
-                lock (O)
-                {
-                    FOUND = false;
-                    THIS = null;
-
-                    Color a = Color.Brown;
-                    //if (First)
-                    //Draw.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate * -1, ref THIS, ref FOUND);
-                    //else
-                    int Ord = OrderPlate;
-                    Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
-                    if (FOUND)
-                    {
-                        //THISB = THIS.AStarGreedyString;
-                        Draw = THIS;
-                        //SetBoxText("\r\nDraw Found");
-                        //RefreshBoxText();
-                    }
-                    else
-                    {
-                        SetAllDrawKind();
-                        //Set Configuration To True for some unknown reason!.
-                        //UpdateConfigurationTableVal = true;                             
-                        SetAllDrawKindString();
-
-                      //if (MovmentsNumber > 1)
-                                    (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-    DrawManagement();
-
-                        Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                        Draw.TableList.Clear();
-                        Draw.TableList.Add(CloneATable(Table));
-                        Draw.SetRowColumn(0);
-                        //Draw.AStarGreedyString = THISB;
-                        RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                        RefrigtzDLL.AllDraw.DepthIterative = 0;
-                        //SetBoxText("\r\nDraw Not Found");
-                        //RefreshBoxText();
-                    }
-                }*/
                 object O = new object();
                 lock (O)
                 {
                     FOUND = false;
                     THIS = null;
-
                     Color a = Color.Brown;
                     //if (First)
-                    //Draw.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate * -1, ref THIS, ref FOUND);
+
                     //else
                     int Ord = OrderPlate;
                     RefrigtzDLL.AllDraw.OrderPlate = Ord;
-                    Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
-                    if (FOUND)
-                    {
+                    Task<RefrigtzDLL.AllDraw> output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND));
+                    output.Wait();
+                    output.Dispose();
 
-                        Draw = THIS;
-                        //Draw.AStarGreedyString = THISB;
-
-                        /*  if (UsePenaltyRegardMechnisam && AStarGreedyHeuristic)
-                              AllDrawKind = 4;
-                          else
-                                                  if ((!UsePenaltyRegardMechnisam) && AStarGreedyHeuristic)
-                              AllDrawKind = 3;
-                          if (UsePenaltyRegardMechnisam && (!AStarGreedyHeuristic))
-                              AllDrawKind = 2;
-                          if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHeuristic))
-                              AllDrawKind = 1;
-
-                          SetAllDrawKindString();*/
-                        //DrawManagement();
-                        bool LoadTree = true;
-                        Ord = OrderPlate;
-                        //if (MovmentsNumber > 1)
-                        (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-
-
-                        Draw.IsCurrentDraw = true;
-                        //SetBoxText("\r\nDraw Found");
-                        //RefreshBoxText();
-                    }
-                    else
-                    {
-
-                        FOUND = false;
-
-
-                        a = Color.Brown;
-                        while (Draw.AStarGreedyString != null)
-                        {
-                            Draw = Draw.AStarGreedyString;
-                        }
-
-                        bool FirstS = false;
-                        if ((RefrigtzDLL.AllDraw.TableListAction.Count >= 2))
-                        {
-
-                            if ((RefrigtzDLL.AllDraw.TableListAction.Count != 2))
-                            {
-                                Ord = OrderPlate * -1;
-                                RefrigtzDLL.AllDraw.OrderPlate = Ord;
-                                OrderPlate = Ord;
-                            }
-                            if (RefrigtzDLL.AllDraw.TableListAction.Count == 2)
-                            {
-                                FirstS = true;
-                            }
-
-                            Color aa = Color.Gray;
-                            if (Ord == -1)
-                            {
-                                aa = Color.Brown;
-                            }
-
-                            Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]), Ord, ref THIS, ref FOUND);
-                            /*if (RefrigtzDLL.AllDraw.TableListAction.Count == 2 && FOUND)
-                           {
-                               Draw.TableList.Clear();
-                               Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]));
-                               Draw.SetRowColumn(0);
-                               Draw.IsCurrentDraw = true;
-                               Draw.AStarGreedyString = THISB;
-                           }*/
-
-                        }
-                        else
-                        if ((RefrigtzDLL.AllDraw.TableListAction.Count >= 1))
-                        {
-                            Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND);
-                            Ord = OrderPlate;
-                            RefrigtzDLL.AllDraw.OrderPlate = Ord;
-                            FirstS = true;
-                            //SetBoxText("\r\nDraw Found By First Node");
-                            //RefreshBoxText();
-                            //return;
-                        }
-
-                        if (FOUND)
-                        {
-
-                            Draw = THIS;
-
-
-                            Draw.IsCurrentDraw = true;
-                            //SetBoxText("\r\nDraw Found By Recurve");
-                            //RefreshBoxText();
-                            //FOUND = false;
-
-                            //Draw.ClearAllTablesHeuristicsAndMore(Ord);
-                            bool Store = Deeperthandeeper;
-                            Deeperthandeeper = false;
-
-
-
-
-
-                            Color aa = Color.Gray;
-                            if (Ord == -1)
-                            {
-                                aa = Color.Brown;
-                            }
-
-                            bool B = RefrigtzDLL.AllDraw.Blitz;
-                            RefrigtzDLL.AllDraw.Blitz = false;
-                            RefrigtzDLL.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
-                            //FOUND = false;
-                            if (!FirstS)
-                            {
-                                if (Draw.IsAtLeastAllObjectIsNull())
-                                {
-                                    Draw.TableList.Clear();
-                                    Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]));
-                                    Draw.SetRowColumn(0);
-                                    Draw.IsCurrentDraw = true;
-                                }
-                                Draw.InitiateAStarGreedyt(RefrigtzDLL.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 2]), Ord, false, FOUND, 0);
-                            }
-                            else
-                            {
-                                if (Draw.IsAtLeastAllObjectIsNull())
-                                {
-                                    Draw.TableList.Clear();
-                                    Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
-                                    Draw.SetRowColumn(0);
-                                    Draw.IsCurrentDraw = true;
-                                }
-                                Draw.InitiateAStarGreedyt(RefrigtzDLL.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
-                            }
-                            RefrigtzDLL.AllDraw.Blitz = B;
-                            Deeperthandeeper = Store;
-
-                            //while (Draw.AStarGreedyString != null)
-                            //Draw = Draw.AStarGreedyString;
-                            FOUND = false;
-                            if (!First)
-                            {
-                                Ord = OrderPlate * -1;
-                                RefrigtzDLL.AllDraw.OrderPlate = Ord;
-                                OrderPlate = Ord;
-                            }
-                            Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND);
-
-
-                            if (FOUND)
-                            {
-                                Draw = THIS;
-                                //Draw.TableList.Clear();
-                                //Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
-                                //Draw.SetRowColumn(0);
-                                //Draw.AStarGreedyString = THISB;
-
-                                //DrawManagement();
-                                bool LoadTree = true;
-
-                                (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-
-                                RefrigtzDLL.AllDraw.OrderPlate = Ord;
-
-
-                                //SetBoxText("\r\nRecurved Draw Constructed and Found!");
-                                //RefreshBoxText();
-
-                            }
-                            else
-                            {
-
-                                Draw = THISStore;
-
-                                if (MovmentsNumber == 1)
-                                {
-                                    NotFoundBegin = true;
-                                }
-
-                                //DrawManagement();
-                                bool LoadTree = true;
-
-
-
-                                //Draw = new RefrigtzDLL.AllDraw(OrderPlate, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                Draw.TableList.Clear();
-                                Draw.TableList.Add(CloneATable(Table));
-                                Draw.SetRowColumn(0);
-                                Draw.IsCurrentDraw = true;
-                                Draw.AStarGreedyString = THISB;
-                                RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                                RefrigtzDLL.AllDraw.DepthIterative = 0;
-                                (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                                //SetBoxText("\r\nDraw Not Found");
-                                //RefreshBoxText();
-                            }
-                        }
-                        else
-                        {
-                            Draw = THISStore;
-                            if (MovmentsNumber == 1)
-                            {
-                                NotFoundBegin = true;
-                            }
-
-                            OrderPlate = Dummy;
-
-                            //DrawManagement();
-                            bool LoadTree = true;
-
-
-
-                            //Draw = new RefrigtzDLL.AllDraw(OrderPlate, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                            Draw.TableList.Clear();
-                            Draw.TableList.Add(CloneATable(Table));
-                            Draw.SetRowColumn(0);
-                            Draw.IsCurrentDraw = true;
-                            Draw.AStarGreedyString = THISB;
-                            RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
-                            RefrigtzDLL.AllDraw.DepthIterative = 0;
-                            (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                            //SetBoxText("\r\nDraw Not Found");
-                            //RefreshBoxText();
-                        }
-
-                    }
+                    var output2 = Task.Run(() => SetDrawFoundingMain(Ord, ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
                 }
 
                 if (RefrigtzDLL.AllDraw.FirstTraversalTree)
@@ -15477,320 +15446,451 @@ else*/
                     FOUND = false;
                 }
 
+                FOUNDI = FOUND;
+                THISI = THIS;
+                FirstI = First;
                 DrawManagement();
             }
         }
-        //#pragma warning disable CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
-        public void SetDrawFounding(ref bool FOUND, ref QuantumRefrigiz.AllDraw THIS, bool First)
-        //#pragma warning restore CS0246 // The type or namespace name 'QuantumRefrigiz' could not be found (are you missing a using directive or an assembly reference?)
+        private void SetDrawFoundingFirst(Color aa, int Ord, bool B, bool Store, ref RefrigtzDLL.AllDraw THI, ref bool FOUN)
         {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzDLL.AllDraw THIS = THI;
+                RefrigtzDLL.AllDraw thiB = Draw.AStarGreedyString;
+                if (Draw.IsAtLeastAllObjectIsNull())
+                {
+                    Draw.TableList.Clear();
+                    Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
+                    Draw.SetRowColumn(0);
+                    Draw.IsCurrentDraw = true;
+                }
+                Draw.AStarGreedyString = thiB;
+
+                object n = new object();
+                lock (n)
+                {
+                    RefrigtzDLL.AllDraw.ChangedInTreeOccured = false;
+                }
+                RefrigtzDLL.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; RefrigtzDLL.AllDraw.MaxAStarGreedy = 0;
+
+                var output = Task.Run(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + RefrigtzDLL.AllDraw.StoreInitMaxAStarGreedy - RefrigtzDLL.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
+                output.Wait();
+                output.Dispose();
+                RefrigtzDLL.AllDraw.Blitz = B;
+                Deeperthandeeper = Store;
+                //while (Draw.AStarGreedyString != null)
+
+                FOUND = false;
+
+                output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND));
+                output.Wait();
+                output.Dispose();
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+
+        private void SetDrawFoundingSecond(ref RefrigtzDLL.AllDraw THI, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzDLL.AllDraw THISB = THI;
+
+                if (Draw.IsAtLeastAllObjectIsNull())
+                {
+                    Draw.TableList.Clear();
+                    Draw.TableList.Add(CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]));
+                    Draw.SetRowColumn(0);
+                    Draw.IsCurrentDraw = true;
+                }
+                Draw.AStarGreedyString = THISB;
+                RefrigtzDLL.ChessRules.CurrentOrder = OrderPlate;
+                RefrigtzDLL.AllDraw.DepthIterative = 0;
+                (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+
+                FOUN = FOUND;
+                THI = THISB;
+            }
+        }
+        private void SetDrawFoundingMain(int Ord, ref RefrigtzDLL.AllDraw THI, ref RefrigtzDLL.AllDraw THISSto, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzDLL.AllDraw THIS = THI;
+                RefrigtzDLL.AllDraw THISStore = THISSto;
+                RefrigtzDLL.AllDraw thiB = Draw.AStarGreedyString;
+
+                if (FOUND)
+                {
+                    var output2 = Task.Run(() => SetDrawFoundingMainFound(ref THIS, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+                else
+                {
+                    var output2 = Task.Run(() => SetDrawFoundingMainNotFound(Ord, ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+                FOUN = FOUND;
+                THI = THIS;
+                THISSto = THISStore;
+            }
+        }
+
+        private void SetDrawFoundingMainFound(ref RefrigtzDLL.AllDraw THI, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzDLL.AllDraw THIS = THI;
+                RefrigtzDLL.AllDraw thiB = Draw.AStarGreedyString;
+
+                Draw = THIS;
+
+                //if (MovmentsNumber > 1)
+                (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+
+                Draw.IsCurrentDraw = true;
+
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+
+        private void SetDrawFoundingMainNotFound(int Ord, ref RefrigtzDLL.AllDraw THI, ref RefrigtzDLL.AllDraw THISStor, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzDLL.AllDraw THIS = THI;
+                RefrigtzDLL.AllDraw THISStore = THISStor;
+                RefrigtzDLL.AllDraw thiB = Draw.AStarGreedyString;
+
+                bool Store = Deeperthandeeper;
+                Deeperthandeeper = false;
+
+                Color aa = Color.Gray;
+                if (Ord == -1)
+                {
+                    aa = Color.Brown;
+                }
+
+                bool B = RefrigtzDLL.AllDraw.Blitz;
+                RefrigtzDLL.AllDraw.Blitz = false;
+                //RefrigtzDLL.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount * 2;
+
+                FOUND = false;
+
+                var output1 = Task.Run(() => SetDrawFoundingFirst(aa, Ord, B, Store, ref THIS, ref FOUND));
+                output1.Wait();
+                output1.Dispose();
+
+                if (FOUND)
+                {
+                    var output2 = Task.Run(() => SetDrawFoundingMainNotFoundFound(Ord, ref THIS, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+                else
+                {
+                    var output2 = Task.Run(() => SetDrawFoundingMainNotFoundNotFound(ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+
+                FOUN = FOUND;
+                THI = THIS;
+                THISStor = THISStore;
+            }
+        }
+
+        private void SetDrawFoundingMainNotFoundFound(int Ord, ref RefrigtzDLL.AllDraw THI, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzDLL.AllDraw THIS = THI;
+                RefrigtzDLL.AllDraw thiB = Draw.AStarGreedyString;
+
+                Draw = THIS;
+                (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+
+                RefrigtzDLL.AllDraw.OrderPlate = Ord;
+
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+
+        private void SetDrawFoundingMainNotFoundNotFound(ref RefrigtzDLL.AllDraw THI, ref RefrigtzDLL.AllDraw THISStore, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                RefrigtzDLL.AllDraw THIS = THI;
+                RefrigtzDLL.AllDraw thiB = Draw.AStarGreedyString;
+
+                Draw = THISStore;
+                if (MovmentsNumber == 1)
+                {
+                    NotFoundBegin = true;
+                }
+
+                RefrigtzDLL.AllDraw THISB = Draw.AStarGreedyString;
+
+                var output2 = Task.Run(() => SetDrawFoundingSecond(ref THIS, ref FOUND));
+                output2.Wait();
+                output2.Dispose();
+
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+
+        //tetrashop.ir
+        public void SetDrawFounding(ref bool FOUNDI, ref QuantumRefrigiz.AllDraw THISI, bool FirstI)
+        {
+            /*    Object OO = new Object();
+                lock (OO)
+                {
+                    if (Draw == null)
+                        return;
+                    int Dummy = OrderPlate;
+
+                    QuantumRefrigiz.AllDraw THISB = Draw.AStarGreedyString;
+                    QuantumRefrigiz.AllDraw THISStore = Draw;
+                    //while (Draw.AStarGreedyString != null)
+                    bool FOUND = false;
+                    QuantumRefrigiz.AllDraw THIS = null;
+                    bool First = false;
+
+                    Object O = new Object();
+                    lock (O)
+                    {
+                        FOUND = false;
+                        THIS = null;
+                        Color a = Color.Brown;
+                        //if (First)
+
+                        //else
+                        int Ord = OrderPlate;
+                        AllDraw.OrderPlate = Ord;
+                        var output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND));
+                        output.Wait();
+                        output.Dispose();
+                        if (FOUND)
+                        {
+                            Draw = THIS;
+
+                            bool LoadTree = true;
+                            Ord = OrderPlate;
+                            //if (MovmentsNumber > 1)
+                            (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+
+                            Draw.IsCurrentDraw = true;
+                        }
+                        else
+                        {
+                            FOUND = false;
+
+                            a = Color.Brown;
+                            while (Draw.AStarGreedyString != null)
+                                Draw = Draw.AStarGreedyString;
+
+                            bool FirstS = false;
+                            if ((QuantumRefrigiz.AllDraw.TableListAction.Count > 2))
+                            {
+                                Ord = OrderPlate * -1;
+                                AllDraw.OrderPlate = Ord;
+                                OrderPlate = Ord;
+
+                                Color aa = Color.Gray;
+                                if (Ord == -1)
+                                    aa = Color.Brown;
+                                output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2]), Ord, ref THIS, ref FOUND));
+                                output.Wait();
+                                output.Dispose();
+                            }
+                            else
+                            if ((QuantumRefrigiz.AllDraw.TableListAction.Count >= 1))
+                            {
+                                output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND));
+                                output.Wait();
+                                output.Dispose();
+                                FirstS = true;
+                            }
+
+                            if (FOUND)
+                            {
+                                Draw = THIS;
+
+                                Draw.IsCurrentDraw = true;
+
+                                bool Store = Deeperthandeeper;
+                                Deeperthandeeper = false;
+
+                                Color aa = Color.Gray;
+                                if (Ord == -1)
+                                    aa = Color.Brown;
+                                bool B = AllDraw.Blitz;
+                                AllDraw.Blitz = false;
+                                //QuantumRefrigiz.AllDraw.MaxAStarGreedy = 0; // PlatformHelper.ProcessorCount; //PlatformHelper.ProcessorCount;
+
+                                if (!FirstS)
+                                {
+                                    AllDraw thiB = Draw.AStarGreedyString;
+                                    if (Draw.IsAtLeastAllObjectIsNull())
+                                    {
+                                        Draw.TableList.Clear();
+                                        Draw.TableList.Add(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2]));
+                                        Draw.SetRowColumn(0);
+                                        Draw.IsCurrentDraw = true;
+                                    }
+                                    Draw.AStarGreedyString = thiB;
+
+                                    output = Task.Run(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2]), Ord, false, FOUND, 0));
+                                    output.Wait();
+                                    output.Dispose();
+                                }
+                                else
+                                {
+                                    FOUND = false;
+
+                                    AllDraw thiB = Draw.AStarGreedyString;
+                                    if (Draw.IsAtLeastAllObjectIsNull())
+                                    {
+                                        Draw.TableList.Clear();
+                                        Draw.TableList.Add(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]));
+                                        Draw.SetRowColumn(0);
+                                        Draw.IsCurrentDraw = true;
+                                    }
+                                    Draw.AStarGreedyString = thiB;
+
+                                    output = Task.Run(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount+AllDraw.StoreInitMaxAStarGreedy-AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
+                                    output.Wait();
+                                    output.Dispose();
+                                }
+                                AllDraw.Blitz = B;
+                                Deeperthandeeper = Store;
+                                //while (Draw.AStarGreedyString != null)
+
+                                FOUND = false;
+                                if (!First && (QuantumRefrigiz.AllDraw.TableListAction.Count > 2))
+                                {
+                                    Ord = OrderPlate * -1;
+                                    AllDraw.OrderPlate = Ord;
+                                    OrderPlate = Ord;
+                                }
+                                output = Task.Run(() => Draw.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND));
+                                output.Wait();
+                                output.Dispose();
+
+                                if (FOUND)
+                                {
+                                    Draw = THIS;
+
+                                    bool LoadTree = true;
+                                    (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+                                    AllDraw.OrderPlate = Ord;
+                                }
+                                else
+                                {
+                                    Draw = THISStore;
+                                    if (MovmentsNumber == 1)
+                                        NotFoundBegin = true;
+
+                                    bool LoadTree = true;
+
+                                    Draw.TableList.Clear();
+                                    Draw.TableList.Add(CloneATable(Table));
+                                    Draw.SetRowColumn(0);
+                                    Draw.IsCurrentDraw = true;
+                                    Draw.AStarGreedyString = THISB;
+                                    QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
+                                    QuantumRefrigiz.AllDraw.DepthIterative = 0;
+                                    (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+                                }
+                            }
+                            else
+                            {
+                                Draw = THISStore;
+                                if (MovmentsNumber == 1)
+                                    NotFoundBegin = true;
+                                OrderPlate = Dummy;
+
+                                bool LoadTree = true;
+
+                                Draw.TableList.Clear();
+                                Draw.TableList.Add(CloneATable(Table));
+                                Draw.SetRowColumn(0);
+                                Draw.IsCurrentDraw = true;
+                                Draw.AStarGreedyString = THISB;
+                                QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
+                                QuantumRefrigiz.AllDraw.DepthIterative = 0;
+                                (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
+                            }
+                        }
+                    }
+
+                    if (QuantumRefrigiz.AllDraw.FirstTraversalTree)
+                        FOUND = false;
+                    FOUNDI = FOUND;
+                    THISI = THIS;
+                    FirstI = First;
+                    DrawManagement();
+                }
+    */
+
             object OO = new object();
             lock (OO)
             {
-                if (DrawQ == null)
+                if (Draw == null)
                 {
                     return;
                 }
 
                 int Dummy = OrderPlate;
-                /*  if (Sec.RadioButtonGrayOrder.Checked)
-                      OrderPlate = 1;
-                  else
-                      OrderPlate = -1;
-           */
+
+                QuantumRefrigiz.AllDraw.StoreInitMaxAStarGreedy = DrawQ.CurrentMaxLevel; QuantumRefrigiz.AllDraw.MaxAStarGreedy = 0;
+
                 QuantumRefrigiz.AllDraw THISB = DrawQ.AStarGreedyString;
+
                 QuantumRefrigiz.AllDraw THISStore = DrawQ;
-                //while (DrawQ.AStarGreedyString != null)
-                //DrawQ = DrawQ.AStarGreedyString;
+                //while (Draw.AStarGreedyString != null)
+                bool FOUND = false;
+                QuantumRefrigiz.AllDraw THIS = null;
+                bool First = false;
 
-                /*
-                OrderPlate = DrawQ.OrderP;
-                if ((Stockfish || Sugar || StateCC || StateCP) && (!BobSection) && LoadO)
-                    OrderPlate *= -1;
-    */
-                //OrderPlate = DrawQ.OrderP;
-
-                /*Object O = new Object();
-                lock (O)
-                {
-                    FOUND = false;
-                    THIS = null;
-
-                    Color a = Color.Brown;
-                    //if (First)
-                    //DrawQ.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate * -1, ref THIS, ref FOUND);
-                    //else
-                    int Ord = OrderPlate;
-                    DrawQ.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
-                    if (FOUND)
-                    {
-                        //THISB = THIS.AStarGreedyString;
-                        DrawQ = THIS;
-                        //SetBoxText("\r\nDraw Found");
-                        //RefreshBoxText();
-                    }
-                    else
-                    {
-                        SetAllDrawKind();
-                        //Set Configuration To True for some unknown reason!.
-                        //UpdateConfigurationTableVal = true;                             
-                        SetAllDrawKindString();
-
-                      //if (MovmentsNumber > 1)
-                                    (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-    DrawManagement();
-
-                        DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                        DrawQ.TableList.Clear();
-                        DrawQ.TableList.Add(CloneATable(Table));
-                        DrawQ.SetRowColumn(0);
-                        //DrawQ.AStarGreedyString = THISB;
-                        QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                        QuantumRefrigiz.AllDraw.DepthIterative = 0;
-                        //SetBoxText("\r\nDraw Not Found");
-                        //RefreshBoxText();
-                    }
-                }*/
                 object O = new object();
                 lock (O)
                 {
                     FOUND = false;
                     THIS = null;
-
                     Color a = Color.Brown;
                     //if (First)
-                    //DrawQ.FoundOfCurrentTableNode(CloneATable(Table), OrderPlate * -1, ref THIS, ref FOUND);
+
                     //else
                     int Ord = OrderPlate;
                     QuantumRefrigiz.AllDraw.OrderPlate = Ord;
-                    DrawQ.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND);
-                    if (FOUND)
-                    {
+                    Task<QuantumRefrigiz.AllDraw> output = Task.Run(() => DrawQ.FoundOfCurrentTableNode(CloneATable(Table), Ord, ref THIS, ref FOUND));
+                    output.Wait();
+                    output.Dispose();
 
-                        DrawQ = THIS;
-                        //DrawQ.AStarGreedyString = THISB;
-
-                        /*  if (UsePenaltyRegardMechnisam && AStarGreedyHeuristic)
-                              AllDrawKind = 4;
-                          else
-                                                  if ((!UsePenaltyRegardMechnisam) && AStarGreedyHeuristic)
-                              AllDrawKind = 3;
-                          if (UsePenaltyRegardMechnisam && (!AStarGreedyHeuristic))
-                              AllDrawKind = 2;
-                          if ((!UsePenaltyRegardMechnisam) && (!AStarGreedyHeuristic))
-                              AllDrawKind = 1;
-
-                          SetAllDrawKindString();*/
-                        //DrawManagement();
-                        bool LoadTree = true;
-                        Ord = OrderPlate;
-                        //if (MovmentsNumber > 1)
-                        (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-
-
-                        DrawQ.IsCurrentDraw = true;
-                        //SetBoxText("\r\nDraw Found");
-                        //RefreshBoxText();
-                    }
-                    else
-                    {
-
-                        FOUND = false;
-
-
-                        a = Color.Brown;
-                        while (DrawQ.AStarGreedyString != null)
-                        {
-                            DrawQ = DrawQ.AStarGreedyString;
-                        }
-
-                        bool FirstS = false;
-                        if ((QuantumRefrigiz.AllDraw.TableListAction.Count >= 2))
-                        {
-
-                            if ((QuantumRefrigiz.AllDraw.TableListAction.Count != 2))
-                            {
-                                Ord = OrderPlate * -1;
-                                QuantumRefrigiz.AllDraw.OrderPlate = Ord;
-                                OrderPlate = Ord;
-                            }
-                            if (QuantumRefrigiz.AllDraw.TableListAction.Count == 2)
-                            {
-                                FirstS = true;
-                            }
-
-                            Color aa = Color.Gray;
-                            if (Ord == -1)
-                            {
-                                aa = Color.Brown;
-                            }
-
-                            DrawQ.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2]), Ord, ref THIS, ref FOUND);
-                            /*if (QuantumRefrigiz.AllDraw.TableListAction.Count == 2 && FOUND)
-                           {
-                               DrawQ.TableList.Clear();
-                               DrawQ.TableList.Add(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2]));
-                               DrawQ.SetRowColumn(0);
-                               DrawQ.IsCurrentDraw = true;
-                               DrawQ.AStarGreedyString = THISB;
-                           }*/
-
-                        }
-                        else
-                        if ((QuantumRefrigiz.AllDraw.TableListAction.Count >= 1))
-                        {
-                            DrawQ.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND);
-                            Ord = OrderPlate;
-                            QuantumRefrigiz.AllDraw.OrderPlate = Ord;
-                            FirstS = true;
-                            //SetBoxText("\r\nDraw Found By First Node");
-                            //RefreshBoxText();
-                            //return;
-                        }
-
-                        if (FOUND)
-                        {
-
-                            DrawQ = THIS;
-
-
-                            DrawQ.IsCurrentDraw = true;
-                            //SetBoxText("\r\nDraw Found By Recurve");
-                            //RefreshBoxText();
-                            //FOUND = false;
-
-                            //DrawQ.ClearAllTablesHeuristicsAndMore(Ord);
-                            bool Store = Deeperthandeeper;
-                            Deeperthandeeper = false;
-
-
-
-
-
-                            Color aa = Color.Gray;
-                            if (Ord == -1)
-                            {
-                                aa = Color.Brown;
-                            }
-
-                            bool B = QuantumRefrigiz.AllDraw.Blitz;
-                            QuantumRefrigiz.AllDraw.Blitz = false;
-                            QuantumRefrigiz.AllDraw.MaxAStarGreedy = 0; //PlatformHelper.ProcessorCount;
-                            //FOUND = false;
-                            if (!FirstS)
-                            {
-                                if (DrawQ.IsAtLeastAllObjectIsNull())
-                                {
-                                    DrawQ.TableList.Clear();
-                                    DrawQ.TableList.Add(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2]));
-                                    DrawQ.SetRowColumn(0);
-                                    DrawQ.IsCurrentDraw = true;
-                                }
-                                DrawQ.InitiateAStarGreedyt(QuantumRefrigiz.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2]), Ord, false, FOUND, 0);
-                            }
-                            else
-                            {
-                                if (DrawQ.IsAtLeastAllObjectIsNull())
-                                {
-                                    DrawQ.TableList.Clear();
-                                    DrawQ.TableList.Add(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]));
-                                    DrawQ.SetRowColumn(0);
-                                    DrawQ.IsCurrentDraw = true;
-                                }
-                                DrawQ.InitiateAStarGreedyt(QuantumRefrigiz.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0);
-                            }
-                            QuantumRefrigiz.AllDraw.Blitz = B;
-                            Deeperthandeeper = Store;
-
-                            //while (DrawQ.AStarGreedyString != null)
-                            //DrawQ = DrawQ.AStarGreedyString;
-                            FOUND = false;
-                            if (!First)
-                            {
-                                Ord = OrderPlate * -1;
-                                QuantumRefrigiz.AllDraw.OrderPlate = Ord;
-                                OrderPlate = Ord;
-                            }
-                            DrawQ.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND);
-
-
-                            if (FOUND)
-                            {
-                                DrawQ = THIS;
-                                //DrawQ.TableList.Clear();
-                                //DrawQ.TableList.Add(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]));
-                                //DrawQ.SetRowColumn(0);
-                                //DrawQ.AStarGreedyString = THISB;
-
-                                //DrawManagement();
-                                bool LoadTree = true;
-
-                                (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-
-                                QuantumRefrigiz.AllDraw.OrderPlate = Ord;
-
-
-                                //SetBoxText("\r\nRecurved DrawQ Constructed and Found!");
-                                //RefreshBoxText();
-
-                            }
-                            else
-                            {
-
-                                DrawQ = THISStore;
-
-                                if (MovmentsNumber == 1)
-                                {
-                                    NotFoundBegin = true;
-                                }
-
-                                //DrawManagement();
-                                bool LoadTree = true;
-
-
-
-                                //DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                                DrawQ.TableList.Clear();
-                                DrawQ.TableList.Add(CloneATable(Table));
-                                DrawQ.SetRowColumn(0);
-                                DrawQ.IsCurrentDraw = true;
-                                DrawQ.AStarGreedyString = THISB;
-                                QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                                QuantumRefrigiz.AllDraw.DepthIterative = 0;
-                                (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                                //SetBoxText("\r\nDraw Not Found");
-                                //RefreshBoxText();
-                            }
-                        }
-                        else
-                        {
-                            DrawQ = THISStore;
-                            if (MovmentsNumber == 1)
-                            {
-                                NotFoundBegin = true;
-                            }
-
-                            OrderPlate = Dummy;
-
-                            //DrawManagement();
-                            bool LoadTree = true;
-
-
-
-                            //DrawQ = new QuantumRefrigiz.AllDraw(OrderPlate, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                            DrawQ.TableList.Clear();
-                            DrawQ.TableList.Add(CloneATable(Table));
-                            DrawQ.SetRowColumn(0);
-                            DrawQ.IsCurrentDraw = true;
-                            DrawQ.AStarGreedyString = THISB;
-                            QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
-                            QuantumRefrigiz.AllDraw.DepthIterative = 0;
-                            (new TakeRoot()).Save(FOUND, false, this, ref LoadTree, false, false, UsePenaltyRegardMechnisam, false, false, false, AStarGreedyHeuristic, true);
-                            //SetBoxText("\r\nDraw Not Found");
-                            //RefreshBoxText();
-                        }
-
-                    }
+                    var output2 = Task.Run(() => SetDrawFoundingMain(Ord, ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
                 }
 
                 if (QuantumRefrigiz.AllDraw.FirstTraversalTree)
@@ -15798,9 +15898,218 @@ else*/
                     FOUND = false;
                 }
 
+                FOUNDI = FOUND;
+                THISI = THIS;
+                FirstI = First;
                 DrawManagement();
             }
         }
+        private void SetDrawFoundingFirst(Color aa, int Ord, bool B, bool Store, ref QuantumRefrigiz.AllDraw THI, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                QuantumRefrigiz.AllDraw THIS = THI;
+                QuantumRefrigiz.AllDraw thiB = DrawQ.AStarGreedyString;
+                if (DrawQ.IsAtLeastAllObjectIsNull())
+                {
+                    DrawQ.TableList.Clear();
+                    DrawQ.TableList.Add(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]));
+                    DrawQ.SetRowColumn(0);
+                    DrawQ.IsCurrentDraw = true;
+                }
+                DrawQ.AStarGreedyString = thiB;
+
+                object n = new object();
+                lock (n)
+                {
+                    QuantumRefrigiz.AllDraw.ChangedInTreeOccured = false;
+                }
+                QuantumRefrigiz.AllDraw.StoreInitMaxAStarGreedy = DrawQ.CurrentMaxLevel; QuantumRefrigiz.AllDraw.MaxAStarGreedy = 0;
+
+                var output = Task.Run(() => DrawQ.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + QuantumRefrigiz.AllDraw.StoreInitMaxAStarGreedy - QuantumRefrigiz.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0)); output.Wait();
+                output.Dispose();
+                QuantumRefrigiz.AllDraw.Blitz = B;
+                Deeperthandeeper = Store;
+                //while (Draw.AStarGreedyString != null)
+
+                FOUND = false;
+
+                output = Task.Run(() => DrawQ.FoundOfCurrentTableNode(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, ref THIS, ref FOUND));
+                output.Wait();
+                output.Dispose();
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+
+        private void SetDrawFoundingSecond(ref QuantumRefrigiz.AllDraw THI, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                QuantumRefrigiz.AllDraw THISB = THI;
+
+                if (DrawQ.IsAtLeastAllObjectIsNull())
+                {
+                    DrawQ.TableList.Clear();
+                    DrawQ.TableList.Add(CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]));
+                    DrawQ.SetRowColumn(0);
+                    DrawQ.IsCurrentDraw = true;
+                }
+                DrawQ.AStarGreedyString = THISB;
+                QuantumRefrigiz.ChessRules.CurrentOrder = OrderPlate;
+                QuantumRefrigiz.AllDraw.DepthIterative = 0;
+                (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+
+                FOUN = FOUND;
+                THI = THISB;
+            }
+        }
+        private void SetDrawFoundingMain(int Ord, ref QuantumRefrigiz.AllDraw THI, ref QuantumRefrigiz.AllDraw THISSto, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                QuantumRefrigiz.AllDraw THIS = THI;
+                QuantumRefrigiz.AllDraw THISStore = THISSto;
+                QuantumRefrigiz.AllDraw thiB = DrawQ.AStarGreedyString;
+
+                if (FOUND)
+                {
+                    var output2 = Task.Run(() => SetDrawFoundingMainFound(ref THIS, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+                else
+                {
+                    var output2 = Task.Run(() => SetDrawFoundingMainNotFound(Ord, ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+                FOUN = FOUND;
+                THI = THIS;
+                THISSto = THISStore;
+            }
+        }
+
+        private void SetDrawFoundingMainFound(ref QuantumRefrigiz.AllDraw THI, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                QuantumRefrigiz.AllDraw THIS = THI;
+                QuantumRefrigiz.AllDraw thiB = DrawQ.AStarGreedyString;
+
+                DrawQ = THIS;
+
+                //if (MovmentsNumber > 1)
+                (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+
+                DrawQ.IsCurrentDraw = true;
+
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+
+        private void SetDrawFoundingMainNotFound(int Ord, ref QuantumRefrigiz.AllDraw THI, ref QuantumRefrigiz.AllDraw THISStor, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                QuantumRefrigiz.AllDraw THIS = THI;
+                QuantumRefrigiz.AllDraw THISStore = THISStor;
+                QuantumRefrigiz.AllDraw thiB = DrawQ.AStarGreedyString;
+
+                bool Store = Deeperthandeeper;
+                Deeperthandeeper = false;
+
+                Color aa = Color.Gray;
+                if (Ord == -1)
+                {
+                    aa = Color.Brown;
+                }
+
+                bool B = QuantumRefrigiz.AllDraw.Blitz;
+                QuantumRefrigiz.AllDraw.Blitz = false;
+                //QuantumRefrigiz.AllDraw.MaxAStarGreedy = PlatformHelper.ProcessorCount * 2;
+
+                FOUND = false;
+
+                var output1 = Task.Run(() => SetDrawFoundingFirst(aa, Ord, B, Store, ref THIS, ref FOUND));
+                output1.Wait();
+                output1.Dispose();
+
+                if (FOUND)
+                {
+                    var output2 = Task.Run(() => SetDrawFoundingMainNotFoundFound(Ord, ref THIS, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+                else
+                {
+                    var output2 = Task.Run(() => SetDrawFoundingMainNotFoundNotFound(ref THIS, ref THISStore, ref FOUND));
+                    output2.Wait();
+                    output2.Dispose();
+                }
+
+                FOUN = FOUND;
+                THI = THIS;
+                THISStor = THISStore;
+            }
+        }
+
+        private void SetDrawFoundingMainNotFoundFound(int Ord, ref QuantumRefrigiz.AllDraw THI, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                QuantumRefrigiz.AllDraw THIS = THI;
+                QuantumRefrigiz.AllDraw thiB = DrawQ.AStarGreedyString;
+
+                DrawQ = THIS;
+                (new TakeRoot()).Save(FOUND, Quantum, this, ref LoadTree, MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
+
+                QuantumRefrigiz.AllDraw.OrderPlate = Ord;
+
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+
+        private void SetDrawFoundingMainNotFoundNotFound(ref QuantumRefrigiz.AllDraw THI, ref QuantumRefrigiz.AllDraw THISStore, ref bool FOUN)
+        {
+            object h = new object();
+            lock (h)
+            {
+                bool FOUND = FOUN;
+                QuantumRefrigiz.AllDraw THIS = THI;
+                QuantumRefrigiz.AllDraw thiB = DrawQ.AStarGreedyString;
+
+                DrawQ = THISStore;
+                if (MovmentsNumber == 1)
+                {
+                    NotFoundBegin = true;
+                }
+
+                QuantumRefrigiz.AllDraw THISB = DrawQ.AStarGreedyString;
+
+                var output2 = Task.Run(() => SetDrawFoundingSecond(ref THIS, ref FOUND));
+                output2.Wait();
+                output2.Dispose();
+
+                FOUN = FOUND;
+                THI = THIS;
+            }
+        }
+
 
         private void AllOperationsWait()
         {
@@ -15859,7 +16168,8 @@ else*/
                     proc.BeginOutputReadLine();
                     proc.BeginErrorReadLine();
                     Thread.Sleep(100);
-                }catch(Exception t) { Log(t); }
+                }
+                catch (Exception t) { Log(t); }
                 try
                 {
                     if (File.Exists("output.txt"))
@@ -16234,7 +16544,7 @@ if (Tag.Contains("King"))
                 //PaintedPaused = true;
                 try
                 {
-                    Begin1:
+                Begin1:
                     //LoadConvertedTable = false;
 
                     Color a = Color.Gray;
@@ -16331,7 +16641,7 @@ if (Tag.Contains("King"))
 
                 try
                 {
-                    Begin1:
+                Begin1:
 
                     Color a = Color.Gray;
                     bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
@@ -16801,7 +17111,7 @@ if (Tag.Contains("King"))
                     QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = false;
                 }
 
-                Begin4:
+            Begin4:
 
                 Color a = Color.Gray;
                 bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
@@ -16893,13 +17203,13 @@ if (Tag.Contains("King"))
 
 
 
-                //if (OrderPlate == 1)
+            //if (OrderPlate == 1)
 
-                //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Gray OrderPlate!");
-                //else
-                //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Brown OrderPlate!");
-                //RefreshBoxText();
-                Begin4:
+            //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Gray OrderPlate!");
+            //else
+            //SetBoxText("\r\nMovments Number " + MovmentsNumber.ToString() + " is Brown OrderPlate!");
+            //RefreshBoxText();
+            Begin4:
                 // if (OrderPlate == 1)
                 //SetBoxText("\r\nThinking Begin By Bob!");
                 //else
@@ -17112,7 +17422,7 @@ if (Tag.Contains("King"))
                     QuantumRefrigiz.ThinkingQuantumChess.ThinkingRun = true;
                 }
 
-                Begin2:
+            Begin2:
                 Color a = Color.Gray;
                 bool StoreStateCC = false, StoreStateCP = false, StoreStateGe = false;
                 OpBeforeThinking(ref a, ref StoreStateCC, ref StoreStateCP, ref StoreStateGe);
@@ -18307,7 +18617,7 @@ if (Tag.Contains("King"))
         {
             do
             {
-                  DrawImageOfMain();
+                DrawImageOfMain();
             } while (true);
 
         }
@@ -21032,11 +21342,11 @@ if (Tag.Contains("King"))
                 AliceSection = false;
                 Stockfish = false;
                 PersonTmCall = true;
-                   /*  AStarGreedyHeuristic = false;
-                  CheckBoxAStarGreedyHeuristic.Checked = false;
-                  UsePenaltyRegardMechnisam = false;
-                  CheckBoxUsePenaltyRegradMechnisam.Checked = false;
-                  */
+                /*  AStarGreedyHeuristic = false;
+               CheckBoxAStarGreedyHeuristic.Checked = false;
+               UsePenaltyRegardMechnisam = false;
+               CheckBoxUsePenaltyRegradMechnisam.Checked = false;
+               */
                 if (MovmentsNumber == 1)
                 {
                     GrayTimer = new Refrigtz.Timer(true);
@@ -21675,7 +21985,7 @@ if (Tag.Contains("King"))
         private void backgroundWorkerMoveGray_DoWork(object sender, DoWorkEventArgs e)
         {
             MoveGray();
-          
+
 
         }
 
@@ -21732,7 +22042,7 @@ if (Tag.Contains("King"))
         private void backgroundWorkerMoveBrown_DoWork(object sender, DoWorkEventArgs e)
         {
             MoveBrown();
-           
+
         }
 
         private void PictureBoxRefrigitz_Click(object sender, EventArgs e)

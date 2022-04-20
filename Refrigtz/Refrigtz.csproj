@@ -147,6 +147,7 @@
       <DependentUpon>AboutBoxFaraDars.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

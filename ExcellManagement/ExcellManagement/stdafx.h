@@ -80,15 +80,18 @@
 using namespace Gdiplus;
 #pragma comment (lib, "gdiplus.lib")
 
+//using namespace odbccp32;
+//#pragma comment (lib, "odbccp32.lib")
+
 
 #include "CGraphicConversation.h"
 
 
 
 //CCreateExcellSheet Headers
-#import "C:\Program Files\Common Files\microsoft shared\OFFICE14\mso.dll"
-#import "C:\Program Files\Common Files\microsoft shared\VBA\VBA6\VBE6EXT.OLB"
-#import "C:\Program Files\Microsoft Office\Office14\excel.exe" \
+#import "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\mso.dll"
+#import "C:\Program Files (x86)\Common Files\microsoft shared\VBA\VBA6\VBE6EXT.OLB"
+#import "C:\Program Files (x86)\Microsoft Office\Office14\excel.exe" \
 rename("DialogBox","ExcelDialogBox") rename("RGB","ExcelRGB") \
 exclude("IFont","IPicture")
 #include <stdexcept>

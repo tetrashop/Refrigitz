@@ -1023,19 +1023,23 @@ namespace RefrigtzDLL
                         }
                         //Make Empty Remaining.
                     }
+                    //Part Three For white castling
                     if (Dummy == 1)
                     {
                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                         ah.Wait();
                         ah.Dispose();
                     }
+                    //Part Three for black castling
                     else
                     {
                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                         ah.Wait();
                         ah.Dispose();
                     }
+                    //Object number reconstruction
                     SetObjectNumbers(TableList[0]);
+                    //setting insufficet empty
                     for (int i = So1; i < SodierMidle; i++)
                     {
                         SolderesOnTable[i] = null;
@@ -1106,6 +1110,7 @@ namespace RefrigtzDLL
                             }
                         }
                     }
+                    //Semaphore for concurrency
                     SetRowColumnFinished = true;
                 }
 
@@ -1117,9 +1122,11 @@ namespace RefrigtzDLL
                 object a1 = new object();
                 lock (a1)
                 {
+                    //Object number reconstruction
                     SetObjectNumbers(TableList[0]);
                     int So1 = 0;
                     int So2 = SodierMidle;
+                    //setting opeatinall semaphore
                     for (int i = 0; i < SodierHigh; i++)
                     {
                         SolderesOnTableMove.Add(false);
@@ -1169,6 +1176,7 @@ namespace RefrigtzDLL
                     Move = 0;
                     //Intiate Dummy Variables.
                     //When Conversion Occured.
+
                     SolderesOnTable = new DrawSoldier[SodierHigh];
                     ElephantOnTable = new DrawElefant[ElefantHigh];
                     HoursesOnTable = new DrawHourse[HourseHight];
@@ -1492,10 +1500,12 @@ namespace RefrigtzDLL
                         }
                         //Make Empty Remaining.
                     }
+                    //Spesial castling condition operation
                     if (CastlingBoundryCondition())
                     {
                         if (Dummy == 1)
                         {
+                            //act for white castling
                             CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column, Color.Gray, CloneATable(TableList[index]), 1, false, 0);
 
                             Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
@@ -1504,6 +1514,7 @@ namespace RefrigtzDLL
                         }
                         else
                         {
+                            //act for black castling
                             CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[1].Row, KingOnTable[1].Column, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
 
                             Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
@@ -1511,7 +1522,9 @@ namespace RefrigtzDLL
                             ah.Dispose();
                         }
                     }
+                    //Object number castling
                     SetObjectNumbers(TableList[0]);
+                    //setting emty reunusable to empty
                     for (int i = So1; i < SodierMidle; i++)
                     {
                         SolderesOnTable[i] = null;
@@ -1571,7 +1584,7 @@ namespace RefrigtzDLL
                     {
                         KingOnTable[i] = null;
                     }
-
+                    //copy
                     if (TableList.Count > 0)
                     {
                         for (int i = 0; i < 8; i++)
@@ -1586,6 +1599,7 @@ namespace RefrigtzDLL
                 }
 
                 OrderP = Dummy;
+                //Reconstruction of object number
                 SetObjectNumbers(Tabl);
             }
         }

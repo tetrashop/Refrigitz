@@ -1023,19 +1023,23 @@ namespace QuantumRefrigiz
                         }
                         //Make Empty Remaining.
                     }
+                    //Part Three For white castling
                     if (Dummy == 1)
                     {
                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                         ah.Wait();
                         ah.Dispose();
                     }
+                    //Part Three for black castling
                     else
                     {
                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                         ah.Wait();
                         ah.Dispose();
                     }
+                    //Object number reconstruction
                     SetObjectNumbers(TableList[0]);
+                    //setting insufficet empty
                     for (int i = So1; i < SodierMidle; i++)
                     {
                         SolderesOnTable[i] = null;
@@ -1106,6 +1110,7 @@ namespace QuantumRefrigiz
                             }
                         }
                     }
+                    //Semaphore for concurrency
                     SetRowColumnFinished = true;
                 }
 
@@ -1117,9 +1122,11 @@ namespace QuantumRefrigiz
                 object a1 = new object();
                 lock (a1)
                 {
+                    //Object number reconstruction
                     SetObjectNumbers(TableList[0]);
                     int So1 = 0;
                     int So2 = SodierMidle;
+                    //setting opeatinall semaphore
                     for (int i = 0; i < SodierHigh; i++)
                     {
                         SolderesOnTableMove.Add(false);
@@ -1169,12 +1176,13 @@ namespace QuantumRefrigiz
                     Move = 0;
                     //Intiate Dummy Variables.
                     //When Conversion Occured.
-                    SolderesOnTable = new DrawSoldierQ[SodierHigh];
-                    ElephantOnTable = new DrawElefantQ[ElefantHigh];
-                    HoursesOnTable = new DrawHourseQ[HourseHight];
-                    CastlesOnTable = new DrawCastleQ[CastleHigh];
-                    MinisterOnTable = new DrawMinisterQ[MinisterHigh];
-                    KingOnTable = new DrawKingQ[KingHigh];
+
+                    SolderesOnTable = new DrawSoldier[SodierHigh];
+                    ElephantOnTable = new DrawElefant[ElefantHigh];
+                    HoursesOnTable = new DrawHourse[HourseHight];
+                    CastlesOnTable = new DrawCastle[CastleHigh];
+                    MinisterOnTable = new DrawMinister[MinisterHigh];
+                    KingOnTable = new DrawKing[KingHigh];
                     CastlingOnTable = new DrawCastling[1];
                     AllDraw.SodierConversionOcuured = false;
                     //When Table Exist.
@@ -1207,7 +1215,7 @@ namespace QuantumRefrigiz
                                     if (a == Color.Gray)
                                     {
                                         //Construct Soder Gray.
-                                        SolderesOnTable[So1] = new DrawSoldierQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, So1);
+                                        SolderesOnTable[So1] = new DrawSoldier(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, So1);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(So1, OrderP, 1));
                                         ah.Wait();
@@ -1224,7 +1232,7 @@ namespace QuantumRefrigiz
                                     else
                                     {
                                         //Construct Soldeir Brown.
-                                        SolderesOnTable[So2] = new DrawSoldierQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, So2);
+                                        SolderesOnTable[So2] = new DrawSoldier(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, So2);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(So2, OrderP, 1));
                                         ah.Wait();
@@ -1255,7 +1263,7 @@ namespace QuantumRefrigiz
                                     if (a == Color.Gray)
                                     {
                                         //Construction of Draw Object.
-                                        ElephantOnTable[El1] = new DrawElefantQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, El1);
+                                        ElephantOnTable[El1] = new DrawElefant(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, El1);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(El1, OrderP, 2));
                                         ah.Wait();
@@ -1272,7 +1280,7 @@ namespace QuantumRefrigiz
                                     else//For Brown Elephant .Objects
                                     {
                                         //Construction of Draw Brown Elephant Object.
-                                        ElephantOnTable[El2] = new DrawElefantQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, El2);
+                                        ElephantOnTable[El2] = new DrawElefant(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, El2);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(El2, OrderP, 2));
                                         ah.Wait();
@@ -1304,7 +1312,7 @@ namespace QuantumRefrigiz
                                     if (a == Color.Gray)
                                     {
                                         //Construction of Draw Brown Hourse.
-                                        HoursesOnTable[Ho1] = new DrawHourseQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Ho1);
+                                        HoursesOnTable[Ho1] = new DrawHourse(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Ho1);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ho1, OrderP, 3));
                                         ah.Wait();
@@ -1321,7 +1329,7 @@ namespace QuantumRefrigiz
                                     else
                                     {
                                         //Construction of Draw Brown Hourse.
-                                        HoursesOnTable[Ho2] = new DrawHourseQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Ho2);
+                                        HoursesOnTable[Ho2] = new DrawHourse(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Ho2);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ho2, OrderP, 3));
                                         ah.Wait();
@@ -1353,7 +1361,7 @@ namespace QuantumRefrigiz
                                     if (a == Color.Gray)
                                     {
                                         //Construction of New Draw Gray Castles.
-                                        CastlesOnTable[Br1] = new DrawCastleQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Br1);
+                                        CastlesOnTable[Br1] = new DrawCastle(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Br1);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Br1, OrderP, 4));
                                         ah.Wait();
@@ -1371,7 +1379,7 @@ namespace QuantumRefrigiz
                                     else
                                     {
                                         //Construction Draw of New Brown Castles.
-                                        CastlesOnTable[Br2] = new DrawCastleQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Br2);
+                                        CastlesOnTable[Br2] = new DrawCastle(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Br2);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Br2, OrderP, 4));
                                         ah.Wait();
@@ -1404,7 +1412,7 @@ namespace QuantumRefrigiz
                                     if (a == Color.Gray)
                                     {
                                         //construction of new draw Gray Minster.
-                                        MinisterOnTable[Mi1] = new DrawMinisterQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Mi1);
+                                        MinisterOnTable[Mi1] = new DrawMinister(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Mi1);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Mi1, OrderP, 5));
                                         ah.Wait();
@@ -1422,7 +1430,7 @@ namespace QuantumRefrigiz
                                     else
                                     {
                                         //Construction of New Draw Brown Minster.
-                                        MinisterOnTable[Mi2] = new DrawMinisterQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Mi2);
+                                        MinisterOnTable[Mi2] = new DrawMinister(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Mi2);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Mi2, OrderP, 5));
                                         ah.Wait();
@@ -1455,7 +1463,7 @@ namespace QuantumRefrigiz
                                     if (a == Color.Gray)
                                     {
                                         //Construction of New Draw Gray King.
-                                        KingOnTable[Ki1] = new DrawKingQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Ki1);
+                                        KingOnTable[Ki1] = new DrawKing(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Ki1);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ki1, OrderP, 6));
                                         ah.Wait();
@@ -1473,7 +1481,7 @@ namespace QuantumRefrigiz
                                     else
                                     {
                                         //Construction of New Draw King Brown Object.
-                                        KingOnTable[Ki2] = new DrawKingQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Ki2);
+                                        KingOnTable[Ki2] = new DrawKing(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Ki2);
                                         //satisfied of created deeper three
                                         Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ki2, OrderP, 6));
                                         ah.Wait();
@@ -1492,10 +1500,12 @@ namespace QuantumRefrigiz
                         }
                         //Make Empty Remaining.
                     }
+                    //Spesial castling condition operation
                     if (CastlingBoundryCondition())
                     {
                         if (Dummy == 1)
                         {
+                            //act for white castling
                             CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column, Color.Gray, CloneATable(TableList[index]), 1, false, 0);
 
                             Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
@@ -1504,6 +1514,7 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
+                            //act for black castling
                             CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[1].Row, KingOnTable[1].Column, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
 
                             Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
@@ -1511,7 +1522,9 @@ namespace QuantumRefrigiz
                             ah.Dispose();
                         }
                     }
+                    //Object number castling
                     SetObjectNumbers(TableList[0]);
+                    //setting emty reunusable to empty
                     for (int i = So1; i < SodierMidle; i++)
                     {
                         SolderesOnTable[i] = null;
@@ -1571,7 +1584,7 @@ namespace QuantumRefrigiz
                     {
                         KingOnTable[i] = null;
                     }
-
+                    //copy
                     if (TableList.Count > 0)
                     {
                         for (int i = 0; i < 8; i++)
@@ -1586,6 +1599,7 @@ namespace QuantumRefrigiz
                 }
 
                 OrderP = Dummy;
+                //Reconstruction of object number
                 SetObjectNumbers(Tabl);
             }
         }

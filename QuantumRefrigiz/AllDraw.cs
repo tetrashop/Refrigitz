@@ -1935,13 +1935,14 @@ namespace QuantumRefrigiz
                     }
                     //Make Empty Remaining.
                 }
-
+                //object number counting
                 SetObjectNumbers(TableList[0]);
+                //setting null
                 for (int i = Ki2; i < KingHigh; i++)
                 {
                     KingOnTable[i] = null;
                 }
-
+                //copy
                 if (TableList.Count > 0)
                 {
                     for (int i = 0; i < 8; i++)
@@ -2099,6 +2100,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && ii < A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2140,6 +2142,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ii < A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2181,6 +2184,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && ii < A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2222,6 +2226,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && ii < A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2263,6 +2268,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && ii < A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2304,6 +2310,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && ii < A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2345,6 +2352,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2388,6 +2396,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && ii < A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2429,6 +2438,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ii < A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2470,6 +2480,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && ii < A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2511,6 +2522,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && ii < A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2553,6 +2565,7 @@ namespace QuantumRefrigiz
                             }
 
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && ii < A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2595,6 +2608,7 @@ namespace QuantumRefrigiz
                             }
 
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && ii < A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2636,6 +2650,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);

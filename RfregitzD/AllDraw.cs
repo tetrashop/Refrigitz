@@ -1935,13 +1935,14 @@ namespace RefrigtzDLL
                     }
                     //Make Empty Remaining.
                 }
-
+                //object number counting
                 SetObjectNumbers(TableList[0]);
+                //setting null
                 for (int i = Ki2; i < KingHigh; i++)
                 {
                     KingOnTable[i] = null;
                 }
-
+                //copy
                 if (TableList.Count > 0)
                 {
                     for (int i = 0; i < 8; i++)
@@ -2068,10 +2069,10 @@ namespace RefrigtzDLL
                     //For Solderis.
                     for (int i = 0; i < SodierMidle; i++)
                     {
-                        for (int j = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinking[0] != null && j < A.SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count; j++)
+                        for (int j = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && j < A.SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.SolderesOnTable[i].SoldierThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.SolderesOnTable[i].SoldierThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 //Set.
                                 ForCheckMate = AStarGreedy;
@@ -2086,7 +2087,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.SolderesOnTable[i].SoldierThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.SolderesOnTable[i].SoldierThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2099,9 +2100,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinking[0] != null && ii < A.SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && ii < A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2110,10 +2112,10 @@ namespace RefrigtzDLL
 
                     for (int i = 0; i < ElefantMidle; i++)
                     {
-                        for (int j = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinking[0] != null && j < A.ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count; j++)
+                        for (int j = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && j < A.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.ElephantOnTable[i].ElefantThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.ElephantOnTable[i].ElefantThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2127,7 +2129,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.ElephantOnTable[i].ElefantThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.ElephantOnTable[i].ElefantThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2140,9 +2142,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinking[0] != null && ii < A.ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ii < A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2151,10 +2154,10 @@ namespace RefrigtzDLL
 
                     for (int i = 0; i < HourseMidle; i++)
                     {
-                        for (int j = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinking[0] != null && j < A.HoursesOnTable[i].HourseThinking[0].TableListHourse.Count; j++)
+                        for (int j = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && j < A.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.HoursesOnTable[i].HourseThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.HoursesOnTable[i].HourseThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2168,7 +2171,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.HoursesOnTable[i].HourseThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.HoursesOnTable[i].HourseThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2181,9 +2184,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinking[0] != null && ii < A.HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && ii < A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.HoursesOnTable[i].HourseThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2192,10 +2196,10 @@ namespace RefrigtzDLL
 
                     for (int i = 0; i < CastleMidle; i++)
                     {
-                        for (int j = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinking[0] != null && j < A.CastlesOnTable[i].CastleThinking[0].TableListCastle.Count; j++)
+                        for (int j = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && j < A.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.CastlesOnTable[i].CastleThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.CastlesOnTable[i].CastleThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2209,7 +2213,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.CastlesOnTable[i].CastleThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.CastlesOnTable[i].CastleThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2222,9 +2226,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinking[0] != null && ii < A.CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && ii < A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlesOnTable[i].CastleThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2233,10 +2238,10 @@ namespace RefrigtzDLL
 
                     for (int i = 0; i < MinisterMidle; i++)
                     {
-                        for (int j = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinking[0] != null && j < A.MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count; j++)
+                        for (int j = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && j < A.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.MinisterOnTable[i].MinisterThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.MinisterOnTable[i].MinisterThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2250,7 +2255,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.MinisterOnTable[i].MinisterThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.MinisterOnTable[i].MinisterThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2263,9 +2268,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinking[0] != null && ii < A.MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && ii < A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2274,10 +2280,10 @@ namespace RefrigtzDLL
 
                     for (int i = 0; i < KingMidle; i++)
                     {
-                        for (int j = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinking[0] != null && j < A.KingOnTable[i].KingThinking[0].TableListKing.Count; j++)
+                        for (int j = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && j < A.KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.KingOnTable[i].KingThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.KingOnTable[i].KingThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2291,7 +2297,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.KingOnTable[i].KingThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.KingOnTable[i].KingThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2304,9 +2310,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinking[0] != null && ii < A.KingOnTable[i].KingThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && ii < A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.KingOnTable[i].KingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2345,6 +2352,7 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2358,10 +2366,10 @@ namespace RefrigtzDLL
                 {
                     for (int i = SodierMidle; i < SodierHigh; i++)
                     {
-                        for (int j = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinking[0] != null && j < A.SolderesOnTable[i].SoldierThinking[0].TableListSolder.Count; j++)
+                        for (int j = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && j < A.SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.SolderesOnTable[i].SoldierThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.SolderesOnTable[i].SoldierThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2375,7 +2383,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.SolderesOnTable[i].SoldierThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.SolderesOnTable[i].SoldierThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2388,9 +2396,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinking[0] != null && ii < A.SolderesOnTable[i].SoldierThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && ii < A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.SolderesOnTable[i].SoldierThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2399,10 +2408,10 @@ namespace RefrigtzDLL
 
                     for (int i = ElefantMidle; i < ElefantHigh; i++)
                     {
-                        for (int j = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinking[0] != null && j < A.ElephantOnTable[i].ElefantThinking[0].TableListElefant.Count; j++)
+                        for (int j = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && j < A.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.ElephantOnTable[i].ElefantThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.ElephantOnTable[i].ElefantThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2416,7 +2425,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.ElephantOnTable[i].ElefantThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.ElephantOnTable[i].ElefantThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2429,9 +2438,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinking[0] != null && ii < A.ElephantOnTable[i].ElefantThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ii < A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.ElephantOnTable[i].ElefantThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2440,10 +2450,10 @@ namespace RefrigtzDLL
 
                     for (int i = HourseMidle; i < HourseHight; i++)
                     {
-                        for (int j = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinking[0] != null && j < A.HoursesOnTable[i].HourseThinking[0].TableListHourse.Count; j++)
+                        for (int j = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && j < A.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.HoursesOnTable[i].HourseThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.HoursesOnTable[i].HourseThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2457,7 +2467,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.HoursesOnTable[i].HourseThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.HoursesOnTable[i].HourseThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2470,9 +2480,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinking[0] != null && ii < A.HoursesOnTable[i].HourseThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && ii < A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.HoursesOnTable[i].HourseThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2481,10 +2492,10 @@ namespace RefrigtzDLL
 
                     for (int i = CastleMidle; i < CastleHigh; i++)
                     {
-                        for (int j = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinking[0] != null && j < A.CastlesOnTable[i].CastleThinking[0].TableListCastle.Count; j++)
+                        for (int j = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && j < A.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.CastlesOnTable[i].CastleThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.CastlesOnTable[i].CastleThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2498,7 +2509,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.CastlesOnTable[i].CastleThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.CastlesOnTable[i].CastleThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2511,9 +2522,10 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
-                            for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinking[0] != null && ii < A.CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && ii < A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlesOnTable[i].CastleThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2522,10 +2534,10 @@ namespace RefrigtzDLL
 
                     for (int i = MinisterMidle; i < MinisterHigh; i++)
                     {
-                        for (int j = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinking[0] != null && j < A.MinisterOnTable[i].MinisterThinking[0].TableListMinister.Count; j++)
+                        for (int j = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && j < A.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.MinisterOnTable[i].MinisterThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.MinisterOnTable[i].MinisterThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2539,7 +2551,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.MinisterOnTable[i].MinisterThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.MinisterOnTable[i].MinisterThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2553,9 +2565,10 @@ namespace RefrigtzDLL
                             }
 
                             Order *= -1;
-                            for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinking[0] != null && ii < A.MinisterOnTable[i].MinisterThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && ii < A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.MinisterOnTable[i].MinisterThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2564,10 +2577,10 @@ namespace RefrigtzDLL
 
                     for (int i = KingMidle; i < KingHigh; i++)
                     {
-                        for (int j = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinking[0] != null && j < A.KingOnTable[i].KingThinking[0].TableListKing.Count; j++)
+                        for (int j = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && j < A.KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                         {
                             //When there is Brown checked mate.
-                            if (A.KingOnTable[i].KingThinking[0].CheckMateAStarGreedy == -1)
+                            if (A.KingOnTable[i].KingThinkingQuantum[0].CheckMateAStarGreedy == -1)
                             {
                                 ForCheckMate = AStarGreedy;
                                 if (ToCheckMate >= 0)
@@ -2581,7 +2594,7 @@ namespace RefrigtzDLL
                             else
                             {
                                 //When there is Gray Checked mate.
-                                if (A.KingOnTable[i].KingThinking[0].CheckMateAStarGreedy == 1)
+                                if (A.KingOnTable[i].KingThinkingQuantum[0].CheckMateAStarGreedy == 1)
                                 {
                                     ToCheckMate = AStarGreedy;
                                     if (ForCheckMate >= 0)
@@ -2595,9 +2608,10 @@ namespace RefrigtzDLL
                             }
 
                             Order *= -1;
-                            for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinking[0] != null && ii < A.KingOnTable[i].KingThinking[0].AStarGreedy.Count; ii++)
+                            //recursive
+                            for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && ii < A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.KingOnTable[i].KingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
+                                AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
                             }
 
                             Order = CDummy;
@@ -2636,6 +2650,7 @@ namespace RefrigtzDLL
                                 }
                             }
                             Order *= -1;
+                            //recursive
                             for (int ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
                                 AA = AA || IsToCheckMateHasLessDeeperThanForCheckMate(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order, ref ToCheckMate, ref ForCheckMate, AStarGreedy++);
@@ -2650,6 +2665,7 @@ namespace RefrigtzDLL
                 return AA;
             }
         }
+
 
         //When Penalty Regard Branches expanded to sub branches.
         private void IsPenaltyRegardCheckMateAtBranch(int Order, ref int Do, AllDraw Base)

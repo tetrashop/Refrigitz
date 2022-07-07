@@ -390,20 +390,21 @@ namespace RefrigtzDLL
                     {
                         if (Order == 1)
                         {
-                            if (Cromosom2[j, i] > 0 && Cromosom1[j, i] <= 0)
-                            {
-                                CromosomRow = j;
-                                CromosomColumn = i;
-                                Find = true;
-                                FindNumber++;
-
-                            }
-
-                            else
-                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] > 0)
+                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] >= 0)
                             {
                                 CromosomRowFirst = j;
                                 CromosomColumnFirst = i;
+                                Find = true;
+                                FindNumber++;
+
+                                Ki = Cromosom1[j, i];
+                            }
+
+                            else
+                            if (Cromosom2[j, i] > 0 && Cromosom1[j, i] == 0)
+                            {
+                                CromosomRow = j;
+                                CromosomColumn = i;
                                 Find = true;
                                 FindNumber++;
 
@@ -411,20 +412,20 @@ namespace RefrigtzDLL
                         }
                         else
                         {
-                            if (Cromosom2[j, i] < 0 && Cromosom1[j, i] >= 0)
-                            {
-                                CromosomRow = j;
-                                CromosomColumn = i;
-                                Find = true;
-                                FindNumber++;
-
-                            }
-
-                            else
-                           if (Cromosom2[j, i] == 0 && Cromosom1[j, i] < 0)
+                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] <= 0)
                             {
                                 CromosomRowFirst = j;
                                 CromosomColumnFirst = i;
+                                Find = true;
+                                FindNumber++;
+                                Ki = Cromosom1[j, i];
+                            }
+
+                            else
+                           if (Cromosom2[j, i] < 0 && Cromosom1[j, i] == 0)
+                            {
+                                CromosomRow = j;
+                                CromosomColumn = i;
                                 Find = true;
                                 FindNumber++;
 

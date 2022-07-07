@@ -81,7 +81,7 @@ namespace QuantumRefrigiz
             //Initiate Global Variables.
             RowColumn.Clear();
         }
-        public bool FindHitToModified(int[,] Cromosom1, int[,] Cromosom2, List<int[,]> List, int Index, int Order, bool and)
+        public bool FindHitToModified(int[,] Cromosom1, int[,] Cromosom2, int Order)
         {
             bool Find = false;
             for (int i = 0; i < 8; i++)
@@ -135,7 +135,7 @@ namespace QuantumRefrigiz
             return Find;
         }
         //Found of Different Home Gen in Tow Chess Home Table Method. 
-        public bool FindGenToModified(int[,] Cromosom1, int[,] Cromosom2, List<int[,]> List, int Index, int Order, bool and)
+        public bool FindGenToModified(int[,] Cromosom1, int[,] Cromosom2, int Order)
         {
             ChessRules.SmallKingCastleBrown = false;
             ChessRules.SmallKingCastleGray = false;
@@ -445,7 +445,7 @@ namespace QuantumRefrigiz
                     {
                         if (Order == 1)
                         {
-                            if (Cromosom2[j, i] > 0 && Cromosom1[j, i] <= 0)
+                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] >= 0)
                             {
                                 CromosomRowFirst = j;
                                 CromosomColumnFirst = i;
@@ -456,7 +456,7 @@ namespace QuantumRefrigiz
                             }
 
                             else
-                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] > 0)
+                            if (Cromosom2[j, i] > 0 && Cromosom1[j, i] == 0)
                             {
                                 CromosomRow = j;
                                 CromosomColumn = i;
@@ -467,7 +467,7 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            if (Cromosom2[j, i] < 0 && Cromosom1[j, i] >= 0)
+                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] <= 0)
                             {
                                 CromosomRowFirst = j;
                                 CromosomColumnFirst = i;
@@ -477,7 +477,7 @@ namespace QuantumRefrigiz
                             }
 
                             else
-                           if (Cromosom2[j, i] == 0 && Cromosom1[j, i] < 0)
+                           if (Cromosom2[j, i] < 0 && Cromosom1[j, i] == 0)
                             {
                                 CromosomRow = j;
                                 CromosomColumn = i;
@@ -599,7 +599,7 @@ namespace QuantumRefrigiz
 
             Index = Store;
             //Found of Gen.
-            if (!FindGenToModified(Cromosom1, Cromosom2, List, Index, Order, false))
+            if (!FindGenToModified(Cromosom1, Cromosom2, Order))
             {
                 goto EndFindAThing;
             }

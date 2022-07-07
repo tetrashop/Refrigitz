@@ -8435,7 +8435,7 @@ namespace Refrigtz
                     if (QuantumRefrigiz.AllDraw.TableListAction.Count > 1)
                     {
                         QuantumRefrigiz.ChessGeneticAlgorithm R = new QuantumRefrigiz.ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                        if (R.FindGenToModified(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2], QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1], QuantumRefrigiz.AllDraw.TableListAction, 0, OrderPlate, true))
+                        if (R.FindGenToModified(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2], QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1], OrderPlate))
                         {
                             bool HitVal = false;
                             int Hit = 0;
@@ -16967,7 +16967,7 @@ if (Tag.Contains("King"))
                     if (QuantumRefrigiz.AllDraw.TableListAction.Count >= 1)
                     {
                         QuantumRefrigiz.ChessGeneticAlgorithm R = new QuantumRefrigiz.ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                        if (R.FindGenToModified(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2], QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1], QuantumRefrigiz.AllDraw.TableListAction, 0, OrderPlate, true))
+                        if (R.FindGenToModified(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2], QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1], OrderPlate))
                         {
                             bool HitVal = false;
                             int Hit = 0;
@@ -17339,7 +17339,7 @@ if (Tag.Contains("King"))
                     if (QuantumRefrigiz.AllDraw.TableListAction.Count >= 1)
                     {
                         QuantumRefrigiz.ChessGeneticAlgorithm R = new QuantumRefrigiz.ChessGeneticAlgorithm(MovementsAStarGreedyHeuristicFound, IInoreSelfObjects, UsePenaltyRegardMechnisam, BestMovments, PredictHeuristic, OnlySelf, AStarGreedyHeuristic, ArrangmentsChanged);
-                        if (R.FindGenToModified(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2], QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1], QuantumRefrigiz.AllDraw.TableListAction, 0, OrderPlate, true))
+                        if (R.FindGenToModified(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2], QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1], OrderPlate))
                         {
                             bool HitVal = false;
                             int Hit = QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 2][R.CromosomRow, R.CromosomColumn];

@@ -445,14 +445,13 @@ namespace QuantumRefrigiz
                     {
                         if (Order == 1)
                         {
-                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] >= 0)
+                            if (Cromosom2[j, i] <= 0 && Cromosom1[j, i] > 0)
                             {
                                 CromosomRowFirst = j;
                                 CromosomColumnFirst = i;
                                 Find = true;
                                 FindNumber++;
 
-                                Ki = Cromosom1[j, i];
                             }
 
                             else
@@ -467,13 +466,12 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] <= 0)
+                            if (Cromosom2[j, i] >= 0 && Cromosom1[j, i] <= 0)
                             {
                                 CromosomRowFirst = j;
                                 CromosomColumnFirst = i;
                                 Find = true;
                                 FindNumber++;
-                                Ki = Cromosom1[j, i];
                             }
 
                             else
@@ -494,7 +492,7 @@ namespace QuantumRefrigiz
 
             }
 
-            Hit = HitSet(Order, Cromosom1, Cromosom2);
+            Hit = HitSet(Order, Cromosom1);
 
             //If Gen Foundatjon js Valjd. 
             if (((FindNumber >= 1) && Find) || Brj || AllDraw.SodierConversionOcuured)
@@ -505,7 +503,7 @@ namespace QuantumRefrigiz
             return false;
         }
 
-        private bool HitSet(int Order, int[,] Cromosom1, int[,] Cromosom2)
+        private bool HitSet(int Order, int[,] Cromosom1)
         {
             bool Hit = false;
             try

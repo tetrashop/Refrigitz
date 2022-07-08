@@ -80,7 +80,7 @@ namespace RefrigtzDLL
             RowColumn.Clear();
         }
         //Found of Different Home Gen in Tow Chess Home Table Method. 
-        public bool FindGenToModified(int[,] Cromosom1, int[,] Cromosom2, List<int[,]> List, int Index, int Order, bool and)
+        public bool FindGenToModified(int[,] Cromosom1, int[,] Cromosom2, int Order)
         {
             ChessRules.SmallKingCastleBrown = false;
             ChessRules.SmallKingCastleGray = false;
@@ -390,14 +390,13 @@ namespace RefrigtzDLL
                     {
                         if (Order == 1)
                         {
-                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] >= 0)
+                            if (Cromosom2[j, i] <= 0 && Cromosom1[j, i] > 0)
                             {
                                 CromosomRowFirst = j;
                                 CromosomColumnFirst = i;
                                 Find = true;
                                 FindNumber++;
 
-                                Ki = Cromosom1[j, i];
                             }
 
                             else
@@ -412,13 +411,12 @@ namespace RefrigtzDLL
                         }
                         else
                         {
-                            if (Cromosom2[j, i] == 0 && Cromosom1[j, i] <= 0)
+                            if (Cromosom2[j, i] >= 0 && Cromosom1[j, i] <= 0)
                             {
                                 CromosomRowFirst = j;
                                 CromosomColumnFirst = i;
                                 Find = true;
                                 FindNumber++;
-                                Ki = Cromosom1[j, i];
                             }
 
                             else
@@ -439,7 +437,7 @@ namespace RefrigtzDLL
 
             }
 
-            Hit = HitSet(Order, Cromosom1, Cromosom2);
+            Hit = HitSet(Order, Cromosom1);
 
             //If Gen Foundatjon js Valjd. 
             if (((FindNumber >= 1) && Find) || Brj || AllDraw.SodierConversionOcuured)
@@ -449,9 +447,8 @@ namespace RefrigtzDLL
             //Gen Not Found.
             return false;
         }
-
         //Found of Different Home Gen in Tow Chess Home Table Method. 
-        private bool HitSet(int Order, int[,] Cromosom1, int[,] Cromosom2)
+        private bool HitSet(int Order, int[,] Cromosom1)
         {
             bool Hit = false;
             try
@@ -545,7 +542,7 @@ namespace RefrigtzDLL
 
             Index = Store;
             //Found of Gen.
-            if (!FindGenToModified(Cromosom1, Cromosom2, List, Index, Order, false))
+            if (!FindGenToModified(Cromosom1, Cromosom2, Order))
             {
                 goto EndFindAThing;
             }

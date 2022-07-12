@@ -3222,6 +3222,7 @@ namespace QuantumRefrigiz
                     if (ColumnFirst < ColumnSecond)
                     {
                         Move = false;
+                        return Move;
                     }
                 }
                 else//int of Brown.
@@ -3231,183 +3232,74 @@ namespace QuantumRefrigiz
                     if (ColumnFirst > ColumnSecond)
                     {
                         Move = false;
+                        return Move;
                     }
                 }
                 //When Soldier Not Moved in Original Location do
-                if (NotMoved)
+
+                if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
                 {
-                    if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
-                    {
-                        //Depend on First Move do For Land Of Islam
+                    //Depend on First Move do For Land Of Islam
 
-                        if ((ColumnFirst + 2 < 8) && (ColumnFirst + 1 < 8) &&
-                            (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 2) && (Table[RowSecond, ColumnSecond - 1] == 0)
-                            )
-                        {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowSecond, ColumnSecond] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
-                        }
-                        else
-                            if ((ColumnFirst + 1 < 8) &&
-                                (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                        {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowSecond, ColumnSecond] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
-                        }
-                        else//Hit Brown Soldier Rulments.
-                                if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
-                        {
-                            if ((RowSecond - 1 < 8) &&
-                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                Move = true;
-                            }
-                            if ((RowSecond + 1 < 8) &&
-                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                Move = true;
-                            }
-                        }
+                    if ((RowFirst + 2 < 8) && (RowFirst + 1 < 8) &&
+                        (((RowFirst + 1 == RowSecond) || (NotMoved && (RowFirst == ColumnSecond + 2)) && (Table[RowSecond, ColumnSecond - 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
+                        )
+                    {
+                        //When Destination is The Empty Return Validity Else Return Not Validity.
+
+                        Move = false;
                     }
-                    else//Gray int.
-                        if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
+
+                    else//Hit Brown Soldier Rulments.
+                            if ((RowFirst + 1 < 8) && RowSecond == RowFirst + 1)
                     {
-                        //Depend Of First Move do For Positivism
-
-                        if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
-                            (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)
-                            )
-                        {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowSecond, ColumnSecond] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
-                        }
-                        else
-                            if ((ColumnSecond + 1 < 8) &&
-                                (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
-                        {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowSecond, ColumnSecond] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
-                        }
-                        else//Hit Condition Enemy Movments.
-                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                        {
-                            if ((RowSecond + 1 < 8) &&
-                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                //Return Validity.
-                                Move = true;
-                            }
-
-                            if ((RowSecond - 1 >= 0) &&
-                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                //Return Validity.
-                                Move = true;
-                            }
-                        }
-                    }
-                }
-                else//If Soldeior Moved Previously.
-                {
-                    //For Brown int.
-                    if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
-                    {
-                        //Depend on Second Move do For Land Of Islam
-
                         if ((ColumnFirst + 1 < 8) &&
-                                (RowFirst == RowSecond) && (ColumnSecond == ColumnFirst + 1) && (Table[RowSecond, ColumnSecond] == 0))
+                            (ColumnFirst == ColumnSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
                         {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowSecond, ColumnSecond] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
+                            //Return Validity.
+                            Move = true;
                         }
-                        else//Hit Brown Soldier Rulments.
-                            if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
-                        {
-                            if ((RowSecond - 1 < 8) &&
-                                (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                Move = true;
-                            }
-                            if ((RowSecond + 1 < 8) &&
-                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                Move = true;
-                            }
-                        }
-                    }
-                    else//Gray int.
-                        if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
-                    {
-                        //Depend Of Second Move do For Positivism Land
 
-                        if ((ColumnSecond + 1 < 8) &&
-                                 (RowFirst == RowSecond) && (ColumnFirst == ColumnSecond + 1) && (Table[RowSecond, ColumnSecond] == 0))
+                        if ((ColumnFirst - 1 >= 0) &&
+                                (ColumnFirst == ColumnSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
                         {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowSecond, ColumnSecond] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
-                        }
-                        else//Hit Condition Enemy Movments.
-                            if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                        {
-                            if ((RowSecond + 1 < 8) &&
-                                (RowFirst == RowSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                //Return Validity.
-                                Move = true;
-                            }
-
-                            if ((RowSecond - 1 >= 0) &&
-                                    (RowFirst == RowSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                //Return Validity.
-                                Move = true;
-                            }
+                            //Return Validity.
+                            Move = true;
                         }
                     }
                 }
-                ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("SoldierRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
+                else//Gray int.
+                    if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                {
+                    //Depend Of First Move do For Positivism
+
+                    if ((RowSecond + 2 < 8) && (RowSecond + 1 < 8) &&
+                       (((RowFirst == RowSecond + 1) || (NotMoved && (ColumnFirst == ColumnSecond + 2)) && (Table[RowSecond, ColumnSecond + 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
+                      )
+                    {
+
+                        Move = true;
+
+                    }
+
+                    else//Hit Condition Enemy Movments.
+                            if ((ColumnSecond + 1 < 8) && RowFirst == RowSecond + 1)
+                    {
+                        if ((ColumnFirst + 1 < 8) &&
+                            (ColumnFirst == ColumnSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        {
+                            //Return Validity.
+                            Move = true;
+                        }
+
+                        if ((ColumnFirst - 1 >= 0) &&
+                                (ColumnFirst == ColumnSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        {
+                            //Return Validity.
+                            Move = true;
+                        }
+                    }
+                }
                 return Move;
             }
         }
@@ -3428,6 +3320,7 @@ namespace QuantumRefrigiz
                     if (ColumnSecond < ColumnFirst)
                     {
                         Move = false;
+                        return Move;
                     }
                 }
                 else//int of Brown.
@@ -3437,183 +3330,83 @@ namespace QuantumRefrigiz
                     if (ColumnSecond > ColumnFirst)
                     {
                         Move = false;
+                        return Move;
                     }
                 }
                 //When Soldier Not Moved in Original Location do
-                if (NotMoved)
+
+                if (Order == 1 && Table[RowSecond, ColumnSecond] > 0)
                 {
-                    if (Order == -1 && Table[RowSecond, ColumnSecond] < 0)
-                    {
-                        //Depend on First Move do For Land Of Islam
+                    //Depend on First Move do For Land Of Islam
 
-                        if ((ColumnSecond + 2 < 8) && (ColumnSecond + 1 < 8) &&
-                           ((RowSecond + 1 == RowFirst) || ((ColumnFirst == ColumnSecond + 2) && (Table[RowFirst, ColumnFirst - 1] == 0)))
-                            )
-                        {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowFirst, ColumnFirst] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
-                        }
-                        else
-                            if ((ColumnSecond + 1 < 8) &&
-                                (ColumnFirst == ColumnSecond + 1) && (Table[RowFirst, ColumnFirst] == 0))
-                        {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowFirst, ColumnFirst] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
-                        }
-                        else//Hit Brown Soldier Rulments.
-                                if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                        {
-                            if ((RowFirst - 1 < 8) &&
-                                (RowSecond == RowFirst - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                Move = true;
-                            }
-                            if ((RowFirst + 1 < 8) &&
-                                (RowSecond == RowFirst + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                Move = true;
-                            }
-                        }
+                    if ((RowSecond + 2 < 8) && (RowSecond + 1 < 8) &&
+                       (((RowSecond + 1 == RowFirst) || (NotMoved && (RowFirst == RowSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)) && (Table[RowSecond, ColumnSecond] == 0)))
+                        )
+                    {
+                        Move = true;
+
                     }
-                    else//Gray int.
-                        if (Order == 1 && Table[RowSecond, ColumnSecond] > 0)
-                    {
-                        //Depend Of First Move do For Positivism
+                }
 
-                        if ((ColumnFirst + 2 < 8) && (ColumnFirst + 1 < 8) &&
-                           (ColumnSecond == ColumnFirst + 2) && (Table[RowFirst, ColumnFirst + 1] == 0)
-                            )
-                        {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowFirst, ColumnFirst] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
-                        }
-                        else
+                else//Hit Brown Soldier Rulments.
+                            if ((RowSecond + 1 < 8) && RowFirst == RowSecond + 1)
+                {
+                    if ((ColumnFirst - 1 < 8) &&
+                        (ColumnSecond == ColumnFirst - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                    {
+                        Move = true;
+                    }
+                    if ((ColumnFirst + 1 < 8) &&
+                        (ColumnSecond == ColumnFirst + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                    {
+                        Move = true;
+                    }
+                }
+
+                else//Gray int.
+                        if (Order == -1 && Table[RowSecond, ColumnSecond] < 0)
+                {
+                    //Depend Of First Move do For Positivism
+
+                    if ((RowFirst + 2 < 8) && (RowFirst + 1 < 8) &&
+                       (((RowSecond == RowFirst + 1) || (NotMoved && (RowSecond == RowFirst + 2) && Table[RowSecond, ColumnSecond - 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
+                        )
+                    {
+                        Move = true;
+
+                    }
+                    else
                             if ((ColumnFirst + 1 < 8) &&
                                 (ColumnSecond == ColumnFirst + 1) && (Table[RowFirst, ColumnFirst] == 0))
+                    {
+                        //When Destination is The Empty Return Validity Else Return Not Validity.
+                        if (Table[RowFirst, ColumnFirst] == 0)
                         {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowFirst, ColumnFirst] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
+                            Move = true;
                         }
-                        else//Hit Condition Enemy Movments.
-                                if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
+                        else
                         {
-                            if ((RowFirst + 1 < 8) &&
-                                (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                //Return Validity.
-                                Move = true;
-                            }
-
-                            if ((RowFirst - 1 >= 0) &&
-                                    (RowSecond == RowFirst - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                //Return Validity.
-                                Move = true;
-                            }
+                            Move = false;
                         }
                     }
-                }
-                else//If Soldeior Moved Previously.
-                {
-                    //For Brown int.
-                    if (Order == -1 && Table[RowSecond, ColumnSecond] < 0)
+                    else//Hit Condition Enemy Movments.
+                                if ((RowFirst + 1 < 8) && RowSecond == RowFirst + 1)
                     {
-                        //Depend on Second Move do For Land Of Islam
-
-                        if ((ColumnSecond + 1 < 8) &&
-                                ((ColumnFirst == ColumnSecond + 1) && (Table[RowFirst, ColumnFirst] == 0)))
-                        {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowFirst, ColumnFirst] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
-                        }
-                        else//Hit Brown Soldier Rulments.
-                            if ((ColumnSecond + 1 < 8) && ColumnFirst == ColumnSecond + 1)
-                        {
-                            if ((RowFirst - 1 < 8) &&
-                                (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                Move = true;
-                            }
-                            if ((RowFirst + 1 < 8) &&
-                                (RowSecond == RowFirst + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                Move = true;
-                            }
-                        }
-                    }
-                    else//Gray int.
-                        if (Order == 1 && Table[RowSecond, ColumnSecond] > 0)
-                    {
-                        //Depend Of Second Move do For Positivism Land
-
                         if ((ColumnFirst + 1 < 8) &&
-                                 (ColumnSecond == ColumnFirst + 1) && (Table[RowFirst, ColumnFirst] == 0))
+                           (ColumnFirst + 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject))
                         {
-                            //When Destination is The Empty Return Validity Else Return Not Validity.
-                            if (Table[RowFirst, ColumnFirst] == 0)
-                            {
-                                Move = true;
-                            }
-                            else
-                            {
-                                Move = false;
-                            }
+                            //Return Validity.
+                            Move = true;
                         }
-                        else//Hit Condition Enemy Movments.
-                            if ((ColumnFirst + 1 < 8) && ColumnSecond == ColumnFirst + 1)
-                        {
-                            if ((RowFirst + 1 < 8) &&
-                                (RowSecond == RowFirst + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                //Return Validity.
-                                Move = true;
-                            }
 
-                            if ((RowFirst - 1 >= 0) &&
-                                    (RowSecond == RowFirst - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                            {
-                                //Return Validity.
-                                Move = true;
-                            }
+                        if ((ColumnFirst - 1 < 8) &&
+                            (ColumnFirst - 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        {
+                            //Return Validity.
+                            Move = true;
                         }
                     }
                 }
-                ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("SoldierRule:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                 return Move;
             }
         }
@@ -3626,7 +3419,7 @@ namespace QuantumRefrigiz
             {
                 //long Time = TimeElapced.TimeNow();Spaces++;
 
-                if (!(ArrangmentsBoard))
+                if ((ArrangmentsBoard))
                 {
                     ////{ //AllDraw.OutPut.Append("\r\n");for (int l = 0; l < Spaces; l++) //AllDraw.OutPut.Append(Space);  //AllDraw.OutPut.Append("SoldierRules:" + (TimeElapced.TimeNow() - Time).ToString());}Spaces--;
                     return SoldierRulesaArrangmentsBoardZero(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy);

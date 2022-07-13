@@ -3242,7 +3242,7 @@ namespace QuantumRefrigiz
                     //Depend on First Move do For Land Of Islam
 
                     if ((RowFirst + 2 < 8) && (RowFirst + 1 < 8) &&
-                        (((RowFirst + 1 == RowSecond) || (NotMoved && (RowFirst == ColumnSecond + 2)) && (Table[RowSecond, ColumnSecond - 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
+                        (((RowFirst + 1 == RowSecond) || (NotMoved && (RowFirst == RowSecond + 2)) && (Table[RowSecond, ColumnSecond - 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
                         )
                     {
                         //When Destination is The Empty Return Validity Else Return Not Validity.
@@ -3254,14 +3254,14 @@ namespace QuantumRefrigiz
                             if ((RowFirst + 1 < 8) && RowSecond == RowFirst + 1)
                     {
                         if ((ColumnFirst + 1 < 8) &&
-                            (ColumnFirst == ColumnSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                            (ColumnFirst + 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject))
                         {
                             //Return Validity.
                             Move = true;
                         }
 
                         if ((ColumnFirst - 1 >= 0) &&
-                                (ColumnFirst == ColumnSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                                (ColumnFirst - 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject))
                         {
                             //Return Validity.
                             Move = true;
@@ -3274,7 +3274,7 @@ namespace QuantumRefrigiz
                     //Depend Of First Move do For Positivism
 
                     if ((RowSecond + 2 < 8) && (RowSecond + 1 < 8) &&
-                       (((RowFirst == RowSecond + 1) || (NotMoved && (ColumnFirst == ColumnSecond + 2)) && (Table[RowSecond, ColumnSecond + 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
+                       (((RowFirst == RowSecond + 1) || (NotMoved && (RowFirst == RowSecond + 2)) && (Table[RowSecond, ColumnSecond + 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
                       )
                     {
 
@@ -3283,16 +3283,16 @@ namespace QuantumRefrigiz
                     }
 
                     else//Hit Condition Enemy Movments.
-                            if ((ColumnSecond + 1 < 8) && RowFirst == RowSecond + 1)
+                            if ((RowSecond + 1 < 8) && RowFirst == RowSecond + 1)
                     {
-                        if ((ColumnFirst + 1 < 8) &&
+                        if ((RowSecond + 1 < 8) &&
                             (ColumnFirst == ColumnSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
                         {
                             //Return Validity.
                             Move = true;
                         }
 
-                        if ((ColumnFirst - 1 >= 0) &&
+                        if ((RowSecond - 1 >= 0) &&
                                 (ColumnFirst == ColumnSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
                         {
                             //Return Validity.
@@ -3335,7 +3335,7 @@ namespace QuantumRefrigiz
                 }
                 //When Soldier Not Moved in Original Location do
 
-                if (Order == 1 && Table[RowSecond, ColumnSecond] > 0)
+                if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
                 {
                     //Depend on First Move do For Land Of Islam
 
@@ -3364,7 +3364,7 @@ namespace QuantumRefrigiz
                 }
 
                 else//Gray int.
-                        if (Order == -1 && Table[RowSecond, ColumnSecond] < 0)
+                        if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
                 {
                     //Depend Of First Move do For Positivism
 
@@ -3375,20 +3375,7 @@ namespace QuantumRefrigiz
                         Move = true;
 
                     }
-                    else
-                            if ((ColumnFirst + 1 < 8) &&
-                                (ColumnSecond == ColumnFirst + 1) && (Table[RowFirst, ColumnFirst] == 0))
-                    {
-                        //When Destination is The Empty Return Validity Else Return Not Validity.
-                        if (Table[RowFirst, ColumnFirst] == 0)
-                        {
-                            Move = true;
-                        }
-                        else
-                        {
-                            Move = false;
-                        }
-                    }
+
                     else//Hit Condition Enemy Movments.
                                 if ((RowFirst + 1 < 8) && RowSecond == RowFirst + 1)
                     {
